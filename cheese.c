@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
  * All rights reserved. This software is released under the GPL2 licence.
+ * some parts are from http://maemo.org/platform/docs/howtos/howto_camera_api_bora.html
  */
 
 #include <stdio.h>
@@ -34,6 +35,8 @@ static gboolean expose_cb(GtkWidget * widget, GdkEventExpose * event, gpointer d
 static void take_photo(GtkWidget * widget, GdkEventExpose * event, gpointer data);
 static void create_jpeg(unsigned char *data);
 static gboolean cb_have_data(GstElement *element, GstBuffer * buffer, GstPad* pad, gpointer user_data);
+gchar *get_cheese_path();
+gchar *get_cheese_filename(int i);
 
 GladeXML *gxml;     
 static GtkWidget *app_window; 
@@ -67,8 +70,8 @@ int main(int argc, char **argv)
 
   g_signal_connect(G_OBJECT(app_window), "destroy", 
       G_CALLBACK(on_cheese_window_close_cb), NULL);
- 	g_signal_connect(G_OBJECT(take_picture), "clicked",
-			 G_CALLBACK(take_photo), NULL);
+  g_signal_connect(G_OBJECT(take_picture), "clicked",
+      G_CALLBACK(take_photo), NULL);
 
   gtk_widget_set_size_request(screen, 640, 480);
 
@@ -85,7 +88,7 @@ int main(int argc, char **argv)
   gst_bin_add(GST_BIN(pipeline), ffmpeg3);
   queuevid = gst_element_factory_make("queue", "queuevid");
   gst_bin_add(GST_BIN(pipeline), queuevid);
-	queueimg = gst_element_factory_make("queue", "queueimg");
+  queueimg = gst_element_factory_make("queue", "queueimg");
   gst_bin_add(GST_BIN(pipeline), queueimg);
   caps = gst_element_factory_make("capsfilter", "caps");
   gst_bin_add(GST_BIN(pipeline), caps);
@@ -111,13 +114,13 @@ int main(int argc, char **argv)
       "depth", G_TYPE_INT, 24, NULL);
 
   link_ok = gst_element_link_filtered(ffmpeg2, tee, filter);
-	if (!link_ok) {
-		g_warning("Failed to link elements !");
-	}
-  //filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
+  if (!link_ok) {
+    g_warning("Failed to link elements !");
+  }
+  filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
 
   gst_element_link(tee, queuevid);
-	gst_element_link(queuevid, ffmpeg3);
+  gst_element_link(queuevid, ffmpeg3);
 
   gst_element_link(ffmpeg3, ximagesink);
 
@@ -127,7 +130,7 @@ int main(int argc, char **argv)
   gst_element_set_state (pipeline , GST_STATE_PLAYING);
   g_object_set (G_OBJECT (fakesink), "signal-handoffs", TRUE, NULL);
 
-	g_signal_connect (fakesink, "handoff", G_CALLBACK (cb_have_data), NULL);
+  g_signal_connect (fakesink, "handoff", G_CALLBACK (cb_have_data), NULL);
 
   g_signal_connect(screen, "expose-event", G_CALLBACK(expose_cb), ximagesink);
 
@@ -144,7 +147,7 @@ void on_cheese_window_close_cb (GtkWidget *widget, gpointer data)
   gtk_main_quit();
 }
 
-static gboolean expose_cb(GtkWidget * widget, GdkEventExpose * event, gpointer data)
+static gboolean expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
   gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data),
       GDK_WINDOW_XWINDOW(widget->window));
@@ -156,34 +159,30 @@ static void take_photo(GtkWidget *widget, GdkEventExpose *event, gpointer data)
   picture_requested = 1;
 }
 
-static gboolean cb_have_data(GstElement *element, GstBuffer * buffer, GstPad* pad, gpointer user_data)
+static gboolean cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
 {
-	unsigned char *data_photo = (unsigned char *) GST_BUFFER_DATA(buffer);
-	if (picture_requested) {
-		picture_requested = 0;
-		create_jpeg(data_photo);
-	}
-	return TRUE;
+  unsigned char *data_photo = (unsigned char *) GST_BUFFER_DATA(buffer);
+  if (picture_requested) {
+    picture_requested = 0;
+    create_jpeg(data_photo);
+  }
+  return TRUE;
 }
 
 static void create_jpeg(unsigned char *data)
 {
-	/* Boilerplate function that gets a framebuffer and writes a JPEG file */
-	struct jpeg_compress_struct cinfo;
-	struct jpeg_error_mgr jerr;
-	int i, width, height;
-	unsigned char *line;
-	int byte_pixel;
-	FILE *outfile;
-	gchar *filename = NULL;
-	gchar *path = NULL;
-	GnomeVFSURI *uri;
+  /* Boilerplate function that gets a framebuffer and writes a JPEG file */
+  struct jpeg_compress_struct cinfo;
+  struct jpeg_error_mgr jerr;
+  int i, width, height;
+  unsigned char *line;
+  int byte_pixel;
+  FILE *outfile;
+  gchar *filename = NULL;
+  gchar *path = NULL;
+  GnomeVFSURI *uri;
 
-  //g_get_home_dir ()
-	i = 1;
-	//filename = g_build_filename(getenv("MYDOCSDIR"), SAVE_FOLDER_DEFAULT, PHOTO_NAME_DEFAULT, NULL);
-  
-  path = g_strdup_printf("%s%s", "/home/dgsiegel/projects/cheese/", SAVE_FOLDER_DEFAULT);
+  path = get_cheese_path();
   uri = gnome_vfs_uri_new(path); 
 
   if (!gnome_vfs_uri_exists(uri)) {
@@ -191,49 +190,62 @@ static void create_jpeg(unsigned char *data)
     printf("creating directory: %s\n", path);
   }
 
-  filename = g_strdup_printf("%s%s%d%s", path, PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
+  i = 1;
+  filename = get_cheese_filename(i);
 
-
-	uri = gnome_vfs_uri_new(filename);
+  uri = gnome_vfs_uri_new(filename);
 
   while (gnome_vfs_uri_exists(uri)) {
     i++;
-    filename = g_strdup_printf("%s%s%d%s", path, PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
+    filename = get_cheese_filename(i);
     g_free(uri);
     uri = gnome_vfs_uri_new(filename);
   }
 
-	g_free(uri);
+  g_free(uri);
 
-	width = 640;
-	height = 480;
-	cinfo.err = jpeg_std_error(&jerr);
-	jpeg_create_compress(&cinfo);
+  width = 640;
+  height = 480;
+  cinfo.err = jpeg_std_error(&jerr);
+  jpeg_create_compress(&cinfo);
 
-	if ((outfile = fopen(filename, "wb")) == NULL) {
-		fprintf(stderr, "can't open %s\n", filename);
-		exit(1);
-	}
+  if ((outfile = fopen(filename, "wb")) == NULL) {
+    fprintf(stderr, "can't open %s\n", filename);
+    exit(1);
+  }
 
-	jpeg_stdio_dest(&cinfo, outfile);
+  jpeg_stdio_dest(&cinfo, outfile);
 
-	cinfo.image_width = width;
-	cinfo.image_height = height;
-	cinfo.input_components = 3;
-	cinfo.in_color_space = JCS_RGB;
-	jpeg_set_defaults(&cinfo);
-	jpeg_set_quality(&cinfo, 100, TRUE);
+  cinfo.image_width = width;
+  cinfo.image_height = height;
+  cinfo.input_components = 3;
+  cinfo.in_color_space = JCS_RGB;
+  jpeg_set_defaults(&cinfo);
+  jpeg_set_quality(&cinfo, 100, TRUE);
 
-	jpeg_start_compress(&cinfo, TRUE);
+  jpeg_start_compress(&cinfo, TRUE);
 
-	byte_pixel = 3;
+  byte_pixel = 3;
 
-	for (i = 0, line = data; i < height;
-	     i++, line += width * byte_pixel) {
-		jpeg_write_scanlines(&cinfo, &line, 1);
-	}
-	jpeg_finish_compress(&(cinfo));
-	fclose(outfile);
-	jpeg_destroy_compress(&(cinfo));
-	printf("Photo saved: %s\n", filename);
+  for (i = 0, line = data; i < height;
+      i++, line += width * byte_pixel) {
+    jpeg_write_scanlines(&cinfo, &line, 1);
+  }
+  jpeg_finish_compress(&(cinfo));
+  fclose(outfile);
+  jpeg_destroy_compress(&(cinfo));
+  printf("Photo saved: %s\n", filename);
+}
+
+gchar *get_cheese_path() {
+  //FIXME: check for real path
+  // maybe ~/cheese or on the desktop..
+  //g_get_home_dir ()
+  gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), SAVE_FOLDER_DEFAULT);
+  return path;
+}
+
+gchar *get_cheese_filename(int i) {
+  gchar *filename = g_strdup_printf("%s%s%d%s", get_cheese_path(), PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
+  return filename;
 }
