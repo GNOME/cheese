@@ -25,7 +25,7 @@
 
 #define GLADE_FILE  "cheese.glade"
 
-#define SAVE_FOLDER_DEFAULT  	 ".images/"
+#define SAVE_FOLDER_DEFAULT  	 "images/"
 #define PHOTO_NAME_DEFAULT	 "Picture"
 #define PHOTO_NAME_SUFFIX_DEFAULT ".jpg"
 
@@ -44,7 +44,6 @@ int main(int argc, char **argv)
 {
   GtkWidget *take_picture;
   GtkWidget *screen;
-  GMainLoop *loop;
   GstElement *source;
   GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
   GstElement *ximagesink;
@@ -58,8 +57,6 @@ int main(int argc, char **argv)
   glade_init();
   gst_init(&argc, &argv);
   gnome_vfs_init();
-
-  loop = g_main_loop_new (NULL , FALSE);
 
   gxml = glade_xml_new(GLADE_FILE, NULL, NULL);
   app_window = glade_xml_get_widget(gxml, "cheese_window");
@@ -156,8 +153,7 @@ static gboolean expose_cb(GtkWidget * widget, GdkEventExpose * event, gpointer d
 
 static void take_photo(GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
-  printf("clicked\n");
-    picture_requested = 1;
+  picture_requested = 1;
 }
 
 static gboolean cb_have_data(GstElement *element, GstBuffer * buffer, GstPad* pad, gpointer user_data)
@@ -180,28 +176,34 @@ static void create_jpeg(unsigned char *data)
 	int byte_pixel;
 	FILE *outfile;
 	gchar *filename = NULL;
-	char aux[256];
-	GnomeVFSURI *test_uri = NULL;
+	gchar *path = NULL;
+	GnomeVFSURI *uri;
 
+  //g_get_home_dir ()
 	i = 1;
-	filename =
-	    g_build_filename(getenv("MYDOCSDIR"), SAVE_FOLDER_DEFAULT,
-			     PHOTO_NAME_DEFAULT, NULL);
+	//filename = g_build_filename(getenv("MYDOCSDIR"), SAVE_FOLDER_DEFAULT, PHOTO_NAME_DEFAULT, NULL);
+  
+  path = g_strdup_printf("%s%s", "/home/dgsiegel/projects/cheese/", SAVE_FOLDER_DEFAULT);
+  uri = gnome_vfs_uri_new(path); 
 
-	sprintf(aux, "%s%d%s", PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
-	printf("%s%d%s", PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
-	test_uri = gnome_vfs_uri_new(aux);
+  if (!gnome_vfs_uri_exists(uri)) {
+    gnome_vfs_make_directory_for_uri(uri, 0775);
+    printf("creating directory: %s\n", path);
+  }
 
-	while (gnome_vfs_uri_exists(test_uri)) {
-		i++;
-		sprintf(aux, "%s%d%s", PHOTO_NAME_DEFAULT, i,
-			PHOTO_NAME_SUFFIX_DEFAULT);
-		g_free(test_uri);
-		test_uri = gnome_vfs_uri_new(aux);
-	}
+  filename = g_strdup_printf("%s%s%d%s", path, PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
 
-	filename = aux;
-	g_free(test_uri);
+
+	uri = gnome_vfs_uri_new(filename);
+
+  while (gnome_vfs_uri_exists(uri)) {
+    i++;
+    filename = g_strdup_printf("%s%s%d%s", path, PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
+    g_free(uri);
+    uri = gnome_vfs_uri_new(filename);
+  }
+
+	g_free(uri);
 
 	width = 640;
 	height = 480;
@@ -233,5 +235,5 @@ static void create_jpeg(unsigned char *data)
 	jpeg_finish_compress(&(cinfo));
 	fclose(outfile);
 	jpeg_destroy_compress(&(cinfo));
-	printf("Photo Saved\n");
+	printf("Photo saved: %s\n", filename);
 }
