@@ -78,7 +78,7 @@ int main(int argc, char **argv)
   gtk_widget_show_all(GTK_WIDGET(app_window));
 
   pipeline = gst_pipeline_new ("pipeline");
-  source = gst_element_factory_make ("v4l2src", "v4l2src");
+  source = gst_element_factory_make ("gconfvideosrc", "v4l2src");
   gst_bin_add(GST_BIN(pipeline), source);
   ffmpeg1 = gst_element_factory_make ("ffmpegcolorspace", "ffmpegcolorspace");
   gst_bin_add(GST_BIN(pipeline), ffmpeg1);
@@ -92,7 +92,7 @@ int main(int argc, char **argv)
   gst_bin_add(GST_BIN(pipeline), queueimg);
   caps = gst_element_factory_make("capsfilter", "caps");
   gst_bin_add(GST_BIN(pipeline), caps);
-  ximagesink = gst_element_factory_make ("ximagesink", "ximagesink");
+  ximagesink = gst_element_factory_make ("gconfvideosink", "ximagesink");
   gst_bin_add(GST_BIN(pipeline), ximagesink);
   tee = gst_element_factory_make ("tee", "tee");
   gst_bin_add(GST_BIN(pipeline), tee);
@@ -149,7 +149,9 @@ void on_cheese_window_close_cb (GtkWidget *widget, gpointer data)
 
 static gboolean expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
-  gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data),
+  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline), GST_TYPE_X_OVERLAY);
+  gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
+  //gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data),
       GDK_WINDOW_XWINDOW(widget->window));
   return FALSE;
 }
