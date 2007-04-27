@@ -21,6 +21,7 @@
 #include <gst/gst.h>
 #include <gst/interfaces/xoverlay.h>
 #include <jpeglib.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 #define _(str) gettext(str)
 
@@ -29,6 +30,9 @@
 #define SAVE_FOLDER_DEFAULT  	 "images/"
 #define PHOTO_NAME_DEFAULT	 "Picture"
 #define PHOTO_NAME_SUFFIX_DEFAULT ".jpg"
+#define PHOTO_WIDTH 640
+#define PHOTO_HEIGHT 480
+#define PICTURE_QUALITY 80
 
 void on_cheese_window_close_cb (GtkWidget *widget, gpointer data);
 static gboolean expose_cb(GtkWidget * widget, GdkEventExpose * event, gpointer data);
@@ -73,12 +77,13 @@ int main(int argc, char **argv)
   g_signal_connect(G_OBJECT(take_picture), "clicked",
       G_CALLBACK(take_photo), NULL);
 
-  gtk_widget_set_size_request(screen, 640, 480);
+  gtk_widget_set_size_request(screen, PHOTO_WIDTH, PHOTO_HEIGHT);
 
   gtk_widget_show_all(GTK_WIDGET(app_window));
 
   pipeline = gst_pipeline_new ("pipeline");
   source = gst_element_factory_make ("gconfvideosrc", "v4l2src");
+  //source = gst_element_factory_make ("videotestsrc", "v4l2src");
   gst_bin_add(GST_BIN(pipeline), source);
   ffmpeg1 = gst_element_factory_make ("ffmpegcolorspace", "ffmpegcolorspace");
   gst_bin_add(GST_BIN(pipeline), ffmpeg1);
@@ -107,8 +112,8 @@ int main(int argc, char **argv)
   gst_element_link(ffmpeg1, ffmpeg2);
 
   filter = gst_caps_new_simple("video/x-raw-rgb",
-      "width", G_TYPE_INT, 640,
-      "height", G_TYPE_INT, 480,
+      "width", G_TYPE_INT, PHOTO_WIDTH,
+      "height", G_TYPE_INT, PHOTO_HEIGHT,
       "framerate", GST_TYPE_FRACTION, 30, 1,
       "bpp", G_TYPE_INT, 24,
       "depth", G_TYPE_INT, 24, NULL);
@@ -173,16 +178,11 @@ static gboolean cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad
 
 static void create_jpeg(unsigned char *data)
 {
-  /* Boilerplate function that gets a framebuffer and writes a JPEG file */
-  struct jpeg_compress_struct cinfo;
-  struct jpeg_error_mgr jerr;
-  int i, width, height;
-  unsigned char *line;
-  int byte_pixel;
-  FILE *outfile;
+  int i;
   gchar *filename = NULL;
   gchar *path = NULL;
   GnomeVFSURI *uri;
+  GdkPixbuf *pixbuf;
 
   path = get_cheese_path();
   uri = gnome_vfs_uri_new(path); 
@@ -203,39 +203,12 @@ static void create_jpeg(unsigned char *data)
     g_free(uri);
     uri = gnome_vfs_uri_new(filename);
   }
-
   g_free(uri);
 
-  width = 640;
-  height = 480;
-  cinfo.err = jpeg_std_error(&jerr);
-  jpeg_create_compress(&cinfo);
+  pixbuf = gdk_pixbuf_new_from_data (data, GDK_COLORSPACE_RGB, FALSE, 8, PHOTO_WIDTH, PHOTO_HEIGHT, PHOTO_WIDTH * 3, NULL, NULL);
+  gdk_pixbuf_save (pixbuf, filename, "jpeg", NULL, "quality", "100", NULL);
+  g_object_unref(G_OBJECT(pixbuf));
 
-  if ((outfile = fopen(filename, "wb")) == NULL) {
-    fprintf(stderr, "can't open %s\n", filename);
-    exit(1);
-  }
-
-  jpeg_stdio_dest(&cinfo, outfile);
-
-  cinfo.image_width = width;
-  cinfo.image_height = height;
-  cinfo.input_components = 3;
-  cinfo.in_color_space = JCS_RGB;
-  jpeg_set_defaults(&cinfo);
-  jpeg_set_quality(&cinfo, 100, TRUE);
-
-  jpeg_start_compress(&cinfo, TRUE);
-
-  byte_pixel = 3;
-
-  for (i = 0, line = data; i < height;
-      i++, line += width * byte_pixel) {
-    jpeg_write_scanlines(&cinfo, &line, 1);
-  }
-  jpeg_finish_compress(&(cinfo));
-  fclose(outfile);
-  jpeg_destroy_compress(&(cinfo));
   printf("Photo saved: %s\n", filename);
 }
 
