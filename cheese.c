@@ -40,6 +40,9 @@ static void create_photo(unsigned char *data);
 static gboolean cb_have_data(GstElement *element, GstBuffer * buffer, GstPad* pad, gpointer user_data);
 gchar *get_cheese_path();
 gchar *get_cheese_filename(int i);
+static void gst_set_play();
+static void gst_set_stop();
+void show_thumbs();
 
 GladeXML *gxml;     
 static GtkWidget *app_window; 
@@ -131,14 +134,12 @@ int main(int argc, char **argv)
   gst_element_link(tee, queueimg);
   gst_element_link(queueimg, fakesink);
 
-  gst_element_set_state (pipeline , GST_STATE_PLAYING);
   g_object_set (G_OBJECT (fakesink), "signal-handoffs", TRUE, NULL);
 
   g_signal_connect (fakesink, "handoff", G_CALLBACK (cb_have_data), NULL);
-
   g_signal_connect(screen, "expose-event", G_CALLBACK(expose_cb), ximagesink);
 
-  gst_element_set_state(pipeline, GST_STATE_PLAYING);
+  gst_set_play();
   gtk_main();
 
   return EXIT_SUCCESS;
@@ -146,7 +147,7 @@ int main(int argc, char **argv)
 
 void on_cheese_window_close_cb (GtkWidget *widget, gpointer data)
 {
-  gst_element_set_state(pipeline, GST_STATE_NULL);
+  gst_set_stop();
   gst_object_unref(pipeline);
   gtk_main_quit();
 }
@@ -223,4 +224,12 @@ gchar *get_cheese_path() {
 gchar *get_cheese_filename(int i) {
   gchar *filename = g_strdup_printf("%s%s%d%s", get_cheese_path(), PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
   return filename;
+}
+
+void gst_set_play() {
+  gst_element_set_state(pipeline , GST_STATE_PLAYING);
+}
+
+void gst_set_stop() {
+  gst_element_set_state(pipeline , GST_STATE_NULL);
 }
