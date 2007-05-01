@@ -37,7 +37,7 @@
 void on_cheese_window_close_cb (GtkWidget *widget, gpointer data);
 static gboolean expose_cb(GtkWidget * widget, GdkEventExpose * event, gpointer data);
 static void take_photo(GtkWidget * widget, GdkEventExpose * event, gpointer data);
-static void create_jpeg(unsigned char *data);
+static void create_photo(unsigned char *data);
 static gboolean cb_have_data(GstElement *element, GstBuffer * buffer, GstPad* pad, gpointer user_data);
 gchar *get_cheese_path();
 gchar *get_cheese_filename(int i);
@@ -171,12 +171,12 @@ static gboolean cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad
   unsigned char *data_photo = (unsigned char *) GST_BUFFER_DATA(buffer);
   if (picture_requested) {
     picture_requested = 0;
-    create_jpeg(data_photo);
+    create_photo(data_photo);
   }
   return TRUE;
 }
 
-static void create_jpeg(unsigned char *data)
+static void create_photo(unsigned char *data)
 {
   int i;
   gchar *filename = NULL;
@@ -206,7 +206,8 @@ static void create_jpeg(unsigned char *data)
   g_free(uri);
 
   pixbuf = gdk_pixbuf_new_from_data (data, GDK_COLORSPACE_RGB, FALSE, 8, PHOTO_WIDTH, PHOTO_HEIGHT, PHOTO_WIDTH * 3, NULL, NULL);
-  gdk_pixbuf_save (pixbuf, filename, "jpeg", NULL, "quality", "100", NULL);
+  gdk_pixbuf_save (pixbuf, filename, "jpeg", NULL, NULL);
+  //gdk_pixbuf_save (pixbuf, "ff.png", "png", NULL, NULL);
   g_object_unref(G_OBJECT(pixbuf));
 
   printf("Photo saved: %s\n", filename);
