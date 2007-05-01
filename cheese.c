@@ -1,7 +1,6 @@
 /*
  * Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
  * All rights reserved. This software is released under the GPL2 licence.
- * some parts are from http://maemo.org/platform/docs/howtos/howto_camera_api_bora.html
  */
 
 #include <stdio.h>
