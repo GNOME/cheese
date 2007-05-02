@@ -19,7 +19,7 @@ GDK_CFLAGS = $(shell pkg-config --cflags gdk-2.0)
 GDK_LIBS = $(shell pkg-config --libs gdk-2.0)
 
 CFLAGS = -g -O2 -Wall $(DBUS_CFLAGS) $(GTK_CFLAGS) $(GLADE_CFLAGS) $(GSTREAMER_CFLAGS) $(GNOME_VFS_CFLAGS) $(GDK_CFLAGS)
-LDFLAGS = -lpthread -ljpeg $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS)
+LDFLAGS = -lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS)
 
 SOURCES = cheese.c
 #POFILES = po/fr.po po/de.po po/es.po po/it.po

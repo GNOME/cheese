@@ -19,7 +19,6 @@
 
 #include <gst/gst.h>
 #include <gst/interfaces/xoverlay.h>
-#include <jpeglib.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #define _(str) gettext(str)
