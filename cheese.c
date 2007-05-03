@@ -18,6 +18,9 @@
 #include <glade/glade.h>
 #include <libgnomevfs/gnome-vfs.h>
 
+#include <glib.h>
+#include <glib/gprintf.h>
+
 #include <gst/gst.h>
 #include <gst/interfaces/xoverlay.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -49,6 +52,7 @@ static void gst_set_stop(void);
 void show_thumbs(void);
 void append_photo(gchar *filename);
 static void fill_thumbs(void);
+void photos_monitor_cb (GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type);
 
 GladeXML *gxml;     
 static GtkWidget *app_window; 
@@ -56,6 +60,7 @@ GstElement *pipeline;
 int picture_requested = 0;
 GtkListStore *store;
 GtkTreeIter iter;
+GnomeVFSMonitorHandle *monitor_handle = NULL;
 
 int main(int argc, char **argv)
 {
@@ -167,6 +172,15 @@ int main(int argc, char **argv)
       G_CALLBACK(lens_open), NULL);
 
 
+  gchar *path = NULL;
+  GnomeVFSURI *uri;
+  path = get_cheese_path();
+  uri = gnome_vfs_uri_new(path); 
+
+  if (!gnome_vfs_uri_exists(uri)) {
+    gnome_vfs_make_directory_for_uri(uri, 0775);
+    g_printf("creating new directory: %s\n", path);
+  }
 
   store = gtk_list_store_new (1, GDK_TYPE_PIXBUF);
 
@@ -174,15 +188,11 @@ int main(int argc, char **argv)
   gtk_icon_view_set_columns (GTK_ICON_VIEW (iconview), G_MAXINT);
 
   gtk_icon_view_set_model (GTK_ICON_VIEW (iconview), GTK_TREE_MODEL (store));
+      
 
-
-  /*
-  gtk_list_store_append (store, &iter);
-  pixbuf = gdk_pixbuf_new_from_file ("Picture1.jpg", NULL);
-  pixbuf = gdk_pixbuf_scale_simple(pixbuf, THUMB_WIDTH, THUMB_HEIGHT, GDK_INTERP_BILINEAR);
-  gtk_list_store_set (store, &iter, 0, pixbuf, -1);
-  g_object_unref (pixbuf);
-  */
+  gnome_vfs_monitor_add(&monitor_handle, get_cheese_path(), 
+      GNOME_VFS_MONITOR_DIRECTORY,
+              (GnomeVFSMonitorCallback)photos_monitor_cb, NULL);
 
   fill_thumbs();
 
@@ -196,6 +206,7 @@ void on_cheese_window_close_cb (GtkWidget *widget, gpointer data)
 {
   gst_set_stop();
   gst_object_unref(pipeline);
+  gnome_vfs_monitor_cancel(monitor_handle);
   gtk_main_quit();
 }
 
@@ -229,17 +240,8 @@ static void create_photo(unsigned char *data)
 {
   int i;
   gchar *filename = NULL;
-  gchar *path = NULL;
   GnomeVFSURI *uri;
   GdkPixbuf *pixbuf;
-
-  path = get_cheese_path();
-  uri = gnome_vfs_uri_new(path); 
-
-  if (!gnome_vfs_uri_exists(uri)) {
-    gnome_vfs_make_directory_for_uri(uri, 0775);
-    printf("creating directory: %s\n", path);
-  }
 
   i = 1;
   filename = get_cheese_filename(i);
@@ -254,15 +256,20 @@ static void create_photo(unsigned char *data)
   }
   g_free(uri);
 
-  pixbuf = gdk_pixbuf_new_from_data (data, GDK_COLORSPACE_RGB, FALSE, 8, PHOTO_WIDTH, PHOTO_HEIGHT, PHOTO_WIDTH * 3, NULL, NULL);
+  pixbuf = gdk_pixbuf_new_from_data (data, 
+      GDK_COLORSPACE_RGB, 
+      FALSE, 
+      8, 
+      PHOTO_WIDTH, 
+      PHOTO_HEIGHT, 
+      PHOTO_WIDTH * 3, 
+      NULL, NULL);
   //FIXME: provide some options to set the format
   gdk_pixbuf_save (pixbuf, filename, "jpeg", NULL, NULL);
   //gdk_pixbuf_save (pixbuf, "ff.png", "png", NULL, NULL);
   g_object_unref(G_OBJECT(pixbuf));
 
-  printf("Photo saved: %s\n", filename);
-  sleep(1);
-  append_photo(filename);
+  g_printf("Photo saved: %s\n", filename);
 }
 
 gchar *get_cheese_path() {
@@ -288,12 +295,12 @@ void gst_set_stop() {
 
 void append_photo(gchar *filename) {
   //FIXME: somehow, this doesnt always work
-  printf("appending %s to thumbnail row\n", filename);
+  g_printf("appending %s to thumbnail row\n", filename);
   gtk_list_store_append (store, &iter);
   GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (filename, THUMB_WIDTH, THUMB_HEIGHT, NULL);
   if(!pixbuf) {
-    printf("could not load %s\n", filename);
-    exit(1);
+    g_warning("could not load %s\n", filename);
+    return;
   }
   gtk_list_store_set (store, &iter, 0, pixbuf, -1);
   g_object_unref (pixbuf);
@@ -328,4 +335,28 @@ static void fill_thumbs ()
     name = g_dir_read_name (dir);      
   }
   g_free (dir);
+}
+
+void photos_monitor_cb (GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type) 
+{
+  gchar *filename = gnome_vfs_get_local_path_from_uri(info_uri);
+  gboolean is_dir;
+
+  is_dir = g_file_test (filename, G_FILE_TEST_IS_DIR);
+
+  if (!is_dir) {
+    switch (event_type) {
+      case GNOME_VFS_MONITOR_EVENT_DELETED:
+        //FIXME: implement deleting photos
+        break;
+      //case GNOME_VFS_MONITOR_EVENT_CHANGED:
+      case GNOME_VFS_MONITOR_EVENT_CREATED:
+        g_message("new file found: %s\n", filename);
+        append_photo(filename);
+        break;
+      default:
+        break;
+    }
+  }
+  g_free(filename);
 }
