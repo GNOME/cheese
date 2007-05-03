@@ -21,7 +21,7 @@ GDK_LIBS = $(shell pkg-config --libs gdk-2.0)
 CFLAGS = -g -O2 -Wall $(DBUS_CFLAGS) $(GTK_CFLAGS) $(GLADE_CFLAGS) $(GSTREAMER_CFLAGS) $(GNOME_VFS_CFLAGS) $(GDK_CFLAGS)
 LDFLAGS = -lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS)
 
-SOURCES = cheese.c
+SOURCES = cheese.c gst-pipeline.c fileutil.c
 #POFILES = po/fr.po po/de.po po/es.po po/it.po
 
 OBJS = $(SOURCES:%.c=%.o)
@@ -35,6 +35,10 @@ all: cheese
 cheese: $(OBJS) $(LIBS)
 
 cheese.o: cheese.c cheese.h
+
+gst-pipeline.o: gst-pipeline.c gst-pipeline.h cheese.h
+
+fileutil.o: fileutil.c fileutil.h cheese.h
 
 #%.mo: %.po
 #	@echo Building $@...
