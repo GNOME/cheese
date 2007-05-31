@@ -14,194 +14,37 @@
 
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
-#include <glade/glade.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include <glib/gprintf.h>
 
-#include <gst/gst.h>
 #include <gst/interfaces/xoverlay.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "cheese.h"
-#include "gst-pipeline.h"
+#include "pipeline-photo.h"
 #include "fileutil.h"
+#include "thumbnails.h"
+#include "window.h"
 
 #define _(str) gettext(str)
 
-#define GLADE_FILE  "cheese.glade"
+struct _cheese_window cheese_window;
+struct _thumbnails thumbnails;
 
-
-void on_cheese_window_close_cb (GtkWidget *, gpointer);
-static void lens_open(GtkWidget *, GdkEventExpose *, gpointer);
-static void create_photo(unsigned char *);
-void show_thumbs(void);
-static void fill_thumbs(void);
-void photos_monitor_cb (GnomeVFSMonitorHandle *, const gchar *, const gchar *, GnomeVFSMonitorEventType);
-static gboolean expose_cb(GtkWidget *, GdkEventExpose *, gpointer);
-static gboolean cb_have_data(GstElement *, GstBuffer *, GstPad *, gpointer);
-void gst_pipeline_create(GstElement *);
-
-GladeXML *gxml;     
-static GtkWidget *app_window; 
-GstElement *pipeline;
-int picture_requested = FALSE;
-GtkListStore *store;
-GtkTreeIter iter;
 GnomeVFSMonitorHandle *monitor_handle = NULL;
-GstElement *ximagesink;
-GstElement *fakesink;
+Pipeline *PipelinePhoto;
 
-int main(int argc, char **argv)
+void
+on_cheese_window_close_cb(GtkWidget *widget, gpointer data)
 {
-  GtkWidget *take_picture;
-  GtkWidget *iconview;
-  GtkWidget *statusbar;
-  GtkWidget *screen;
-  GtkWidget *button_video;
-  GtkWidget *button_photo;
-  GtkWidget *button_effects_left;
-  GtkWidget *button_effects_right;
-
-  gtk_init(&argc, &argv);
-  glade_init();
-  gst_init(&argc, &argv);
-  gnome_vfs_init();
-
-  gxml = glade_xml_new(GLADE_FILE, NULL, NULL);
-  app_window = glade_xml_get_widget(gxml, "cheese_window");
-  take_picture = glade_xml_get_widget(gxml, "take_picture");
-  screen = glade_xml_get_widget(gxml, "screen");
-  iconview = glade_xml_get_widget(gxml, "previews");
-  statusbar = glade_xml_get_widget(gxml, "statusbar");
-  button_photo = glade_xml_get_widget(gxml, "button_photo");
-  button_effects_left = glade_xml_get_widget(gxml, "button_effects_left");
-
-  gtk_window_set_title(GTK_WINDOW(app_window), _("Cheese"));
-
-  gtk_widget_set_size_request(screen, PHOTO_WIDTH, PHOTO_HEIGHT);
-  gtk_widget_set_size_request(iconview, PHOTO_WIDTH, THUMB_HEIGHT + 20);
-  gtk_widget_set_sensitive(GTK_WIDGET(button_photo), FALSE);
-  gtk_widget_set_sensitive(GTK_WIDGET(button_effects_left), FALSE);
-
-  GstElement *source;
-  GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
-  GstElement *tee;
-  GstElement *queuevid, *queueimg;
-  GstElement *caps;
-  GstCaps *filter;
-  gboolean link_ok;
-
-  pipeline = gst_pipeline_new ("pipeline");
-  source = gst_element_factory_make ("gconfvideosrc", "v4l2src");
-  // if you want to test without having a webcam
-  //source = gst_element_factory_make ("videotestsrc", "v4l2src");
-  gst_bin_add(GST_BIN(pipeline), source);
-  ffmpeg1 = gst_element_factory_make ("ffmpegcolorspace", "ffmpegcolorspace");
-  gst_bin_add(GST_BIN(pipeline), ffmpeg1);
-  ffmpeg2 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace2");
-  gst_bin_add(GST_BIN(pipeline), ffmpeg2);
-  ffmpeg3 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace3");
-  gst_bin_add(GST_BIN(pipeline), ffmpeg3);
-  queuevid = gst_element_factory_make("queue", "queuevid");
-  gst_bin_add(GST_BIN(pipeline), queuevid);
-  queueimg = gst_element_factory_make("queue", "queueimg");
-  gst_bin_add(GST_BIN(pipeline), queueimg);
-  caps = gst_element_factory_make("capsfilter", "capsfilter");
-  gst_bin_add(GST_BIN(pipeline), caps);
-  ximagesink = gst_element_factory_make ("gconfvideosink", "gconfvideosink");
-  gst_bin_add(GST_BIN(pipeline), ximagesink);
-  tee = gst_element_factory_make ("tee", "tee");
-  gst_bin_add(GST_BIN(pipeline), tee);
-  fakesink = gst_element_factory_make ("fakesink", "fakesink");
-  gst_bin_add(GST_BIN(pipeline), fakesink);
-
-  /*
-   * the pipeline looks like this: 
-   * gconfvideosrc -> ffmpegcsp -> ffmpegcsp -> tee (filtered) -> queue-> ffmpegcsp -> gconfvideosink
-   *                                        |
-   *                                    queueimg -> fakesink -> pixbuf (gets picture from data)
-   */
-
-  gst_element_link(source, ffmpeg1);
-  //FIXME: provide effects here
-  gst_element_link(ffmpeg1, ffmpeg2);
-
-  filter = gst_caps_new_simple("video/x-raw-rgb",
-      "width", G_TYPE_INT, PHOTO_WIDTH,
-      "height", G_TYPE_INT, PHOTO_HEIGHT,
-      "framerate", GST_TYPE_FRACTION, 30, 1,
-      "bpp", G_TYPE_INT, 24,
-      "depth", G_TYPE_INT, 24, NULL);
-
-  link_ok = gst_element_link_filtered(ffmpeg2, tee, filter);
-  if (!link_ok) {
-    g_warning("Failed to link elements!");
-  }
-  //FIXME: do we need this?
-  //filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
-
-  gst_element_link(tee, queuevid);
-  gst_element_link(queuevid, ffmpeg3);
-
-  gst_element_link(ffmpeg3, ximagesink);
-
-  gst_element_link(tee, queueimg);
-  gst_element_link(queueimg, fakesink);
-
-  g_object_set (G_OBJECT (fakesink), "signal-handoffs", TRUE, NULL);
-
-  g_signal_connect(G_OBJECT(app_window), "destroy", 
-      G_CALLBACK(on_cheese_window_close_cb), NULL);
-  g_signal_connect(G_OBJECT(take_picture), "clicked",
-      G_CALLBACK(lens_open), NULL);
-  g_signal_connect (fakesink, "handoff", 
-      G_CALLBACK (cb_have_data), NULL);
-  g_signal_connect(screen, "expose-event", 
-      G_CALLBACK(expose_cb), ximagesink);
-
-  gchar *path = NULL;
-  GnomeVFSURI *uri;
-  path = get_cheese_path();
-  uri = gnome_vfs_uri_new(path); 
-
-  if (!gnome_vfs_uri_exists(uri)) {
-    gnome_vfs_make_directory_for_uri(uri, 0775);
-    g_printf("creating new directory: %s\n", path);
-  }
-
-  store = gtk_list_store_new (1, GDK_TYPE_PIXBUF);
-
-  gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (iconview), 0);
-  gtk_icon_view_set_columns (GTK_ICON_VIEW (iconview), G_MAXINT);
-
-  gtk_icon_view_set_model (GTK_ICON_VIEW (iconview), GTK_TREE_MODEL (store));
-      
-
-  gnome_vfs_monitor_add(&monitor_handle, get_cheese_path(), 
-      GNOME_VFS_MONITOR_DIRECTORY,
-              (GnomeVFSMonitorCallback)photos_monitor_cb, NULL);
-
-  fill_thumbs();
-
-  gst_set_play(pipeline);
-  gtk_main();
-
-  return EXIT_SUCCESS;
-}
-
-void on_cheese_window_close_cb (GtkWidget *widget, gpointer data)
-{
-  gst_set_stop(pipeline);
-  gst_object_unref(pipeline);
+  pipeline_set_stop(PipelinePhoto);
+	g_object_unref(G_OBJECT(PipelinePhoto));
   gnome_vfs_monitor_cancel(monitor_handle);
   gtk_main_quit();
 }
 
-static void lens_open(GtkWidget *widget, GdkEventExpose *event, gpointer data)
-{
-  picture_requested = TRUE;
-}
-
-static void create_photo(unsigned char *data)
+void
+create_photo(unsigned char *data)
 {
   int i;
   gchar *filename = NULL;
@@ -229,63 +72,17 @@ static void create_photo(unsigned char *data)
       PHOTO_HEIGHT, 
       PHOTO_WIDTH * 3, 
       NULL, NULL);
-  //FIXME: provide some options to set the format
-  gdk_pixbuf_save (pixbuf, filename, "jpeg", NULL, NULL);
-  //gdk_pixbuf_save (pixbuf, "ff.png", "png", NULL, NULL);
+  gdk_pixbuf_save(pixbuf, filename, "jpeg", NULL, NULL);
+  //gdk_pixbuf_save(pixbuf, filename, "png", NULL, NULL);
   g_object_unref(G_OBJECT(pixbuf));
 
   g_printf("Photo saved: %s\n", filename);
 }
 
-
-
-void append_photo(gchar *filename) {
-  //FIXME: somehow, this doesnt always work
-  g_printf("appending %s to thumbnail row\n", filename);
-  gtk_list_store_append (store, &iter);
-  GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size (filename, THUMB_WIDTH, THUMB_HEIGHT, NULL);
-  if(!pixbuf) {
-    g_warning("could not load %s\n", filename);
-    return;
-  }
-  gtk_list_store_set (store, &iter, 0, pixbuf, -1);
-  g_object_unref (pixbuf);
-}
-
-static void fill_thumbs ()
+gboolean
+expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
-  GDir *dir;
-  gchar *path;
-  const gchar *name;
-  gboolean is_dir;
-  
-  gtk_list_store_clear (store);
-
-  dir = g_dir_open (get_cheese_path(), 0, NULL);
-  if (!dir)
-    return;
-
-  name = g_dir_read_name (dir);
-  while (name != NULL)
-  {
-    if (name[0] != '.')
-    {
-      path = g_build_filename (get_cheese_path(), name, NULL);
-
-      is_dir = g_file_test (path, G_FILE_TEST_IS_DIR);
-
-      if (!is_dir)
-        append_photo(path);
-      g_free (path);
-    }
-    name = g_dir_read_name (dir);      
-  }
-  g_free (dir);
-}
-
-static gboolean expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
-{
-  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline), GST_TYPE_X_OVERLAY);
+  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline_get_pipeline(PipelinePhoto)), GST_TYPE_X_OVERLAY);
   gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
       GDK_WINDOW_XWINDOW(widget->window));
   // this is for using x(v)imagesink natively
@@ -294,13 +91,49 @@ static gboolean expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer dat
   return FALSE;
 }
 
-static gboolean cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data)
+int
+main(int argc, char **argv)
 {
-  unsigned char *data_photo = (unsigned char *) GST_BUFFER_DATA(buffer);
-  if (picture_requested) {
-    picture_requested = FALSE;
-    create_photo(data_photo);
-  }
-  return TRUE;
-}
+  gchar *path = NULL;
+  GnomeVFSURI *uri;
 
+  gtk_init(&argc, &argv);
+  glade_init();
+  gst_init(&argc, &argv);
+  gnome_vfs_init();
+	g_type_init();
+
+  create_window();
+
+  PipelinePhoto = PIPELINE(pipeline_new());
+  pipeline_create(PipelinePhoto);
+  pipeline_set_play(PipelinePhoto);
+
+  path = get_cheese_path();
+  uri = gnome_vfs_uri_new(path);
+
+  if (!gnome_vfs_uri_exists(uri)) {
+    gnome_vfs_make_directory_for_uri(uri, 0775);
+    g_printf("creating new directory: %s\n", path);
+  }
+
+  create_thumbnails_store();
+  gtk_icon_view_set_model(GTK_ICON_VIEW(thumbnails.iconview), GTK_TREE_MODEL(thumbnails.store));
+  fill_thumbs();
+
+  gnome_vfs_monitor_add(&monitor_handle, get_cheese_path(),
+      GNOME_VFS_MONITOR_DIRECTORY,
+      (GnomeVFSMonitorCallback)photos_monitor_cb, NULL);
+
+  g_signal_connect(G_OBJECT(cheese_window.window), "destroy",
+      G_CALLBACK(on_cheese_window_close_cb), NULL);
+  g_signal_connect(G_OBJECT(cheese_window.widgets.take_picture), "clicked",
+      G_CALLBACK(pipeline_button_clicked), PipelinePhoto);
+  g_signal_connect(cheese_window.widgets.screen, "expose-event",
+      G_CALLBACK(expose_cb), pipeline_get_ximagesink(PipelinePhoto));
+
+  gtk_widget_show_all(cheese_window.window);
+  gtk_main();
+
+  return EXIT_SUCCESS;
+}

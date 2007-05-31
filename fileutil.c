@@ -10,17 +10,22 @@
 #include <libgnomevfs/gnome-vfs.h>
 
 #include "cheese.h"
+#include "thumbnails.h"
 
-gchar *get_cheese_path() {
+gchar *
+get_cheese_path() {
   //FIXME: check for real path
   // maybe ~/cheese or on the desktop..
-  //g_get_home_dir ()
+  //g_get_home_dir()
   gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), SAVE_FOLDER_DEFAULT);
   return path;
 }
 
-gchar *get_cheese_filename(int i) {
+gchar *
+get_cheese_filename(int i) {
   gchar *filename;
+  if (i < 0)
+    i *= -1;
   if (i < 10)
     filename = g_strdup_printf("%s%s0%d%s", get_cheese_path(), PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
   else
@@ -29,17 +34,19 @@ gchar *get_cheese_filename(int i) {
   return filename;
 }
 
-void photos_monitor_cb (GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type) 
+void
+photos_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type)
 {
   gchar *filename = gnome_vfs_get_local_path_from_uri(info_uri);
   gboolean is_dir;
 
-  is_dir = g_file_test (filename, G_FILE_TEST_IS_DIR);
+  is_dir = g_file_test(filename, G_FILE_TEST_IS_DIR);
 
   if (!is_dir) {
     switch (event_type) {
       case GNOME_VFS_MONITOR_EVENT_DELETED:
         //FIXME: implement deleting photos
+        //remove_photo(filename);
         break;
       //case GNOME_VFS_MONITOR_EVENT_CHANGED:
       case GNOME_VFS_MONITOR_EVENT_CREATED:

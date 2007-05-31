@@ -1,8 +1,6 @@
 #include <gtk/gtk.h>
-#include <glib.h>
-#include <glib/gprintf.h>
 
-#include <gst/gst.h>
+#include <glib.h>
 
 //FIXME: provide option to choose the folder
 #define SAVE_FOLDER_DEFAULT  	 "images/"
@@ -15,5 +13,5 @@
 #define THUMB_WIDTH (PHOTO_WIDTH / 5)
 #define THUMB_HEIGHT (PHOTO_HEIGHT / 5)
 
-void append_photo(gchar *);
+void create_photo(unsigned char *data);
 
