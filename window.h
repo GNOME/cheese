@@ -11,6 +11,7 @@ struct _widgets
   GtkWidget *button_photo;
   GtkWidget *button_effects_left;
   GtkWidget *button_effects_right;
+  GtkWidget *label_effects;
 };
 
 struct _cheese_window
@@ -23,3 +24,4 @@ struct _cheese_window
 extern struct _cheese_window cheese_window;
 
 void create_window();
+void set_effects_label(gchar *effect);

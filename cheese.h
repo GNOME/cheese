@@ -15,3 +15,5 @@
 
 void create_photo(unsigned char *data);
 
+gboolean
+set_screen_x_window_id();

@@ -85,9 +85,18 @@ expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
   GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline_get_pipeline(PipelinePhoto)), GST_TYPE_X_OVERLAY);
   gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
       GDK_WINDOW_XWINDOW(widget->window));
-  // this is for using x(v)imagesink natively
+  // this is for using x(v)imagesink natively:
   //gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data),
   //    GDK_WINDOW_XWINDOW(widget->window));
+  return FALSE;
+}
+
+gboolean
+set_screen_x_window_id()
+{
+  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline_get_pipeline(PipelinePhoto)), GST_TYPE_X_OVERLAY);
+  gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
+      GDK_WINDOW_XWINDOW(cheese_window.widgets.screen->window));
   return FALSE;
 }
 
@@ -130,7 +139,11 @@ main(int argc, char **argv)
   g_signal_connect(G_OBJECT(cheese_window.widgets.take_picture), "clicked",
       G_CALLBACK(pipeline_button_clicked), PipelinePhoto);
   g_signal_connect(cheese_window.widgets.screen, "expose-event",
-      G_CALLBACK(expose_cb), pipeline_get_ximagesink(PipelinePhoto));
+      G_CALLBACK(expose_cb), NULL);
+  g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects_right), "clicked",
+      G_CALLBACK(pipeline_change_effect_next), PipelinePhoto);
+  g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects_left), "clicked",
+      G_CALLBACK(pipeline_change_effect_prev), PipelinePhoto);
 
   gtk_widget_show_all(cheese_window.window);
   gtk_main();
