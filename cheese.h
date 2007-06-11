@@ -2,6 +2,7 @@
 
 #include <glib.h>
 
+#define VERSION "0.1.0"
 //FIXME: provide option to choose the folder
 #define SAVE_FOLDER_DEFAULT  	 "images/"
 //FIXME: provide option to choose the naming of the photos
@@ -15,5 +16,5 @@
 
 void create_photo(unsigned char *data);
 
-gboolean
-set_screen_x_window_id();
+gboolean set_screen_x_window_id();
+void on_cheese_window_close_cb(GtkWidget *widget, gpointer data);

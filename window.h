@@ -12,6 +12,9 @@ struct _widgets
   GtkWidget *button_effects_left;
   GtkWidget *button_effects_right;
   GtkWidget *label_effects;
+  GtkWidget *menubar;
+  GtkWidget *file_menu;
+  GtkWidget *help_menu;
 };
 
 struct _cheese_window

@@ -28,6 +28,11 @@ append_photo(gchar *filename) {
     return;
   }
   gtk_list_store_set(thumbnails.store, &thumbnails.iter, 0, pixbuf, -1);
+
+  GtkTreePath *path = gtk_tree_model_get_path(GTK_TREE_MODEL(thumbnails.store),&thumbnails.iter);
+  gtk_icon_view_scroll_to_path(GTK_ICON_VIEW(thumbnails.iconview), path,
+                                  TRUE, 1.0, 0.5);
+
   g_object_unref(pixbuf);
 }
 
