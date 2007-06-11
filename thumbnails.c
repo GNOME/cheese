@@ -11,11 +11,16 @@
 #include "thumbnails.h"
 #include "window.h"
 
+enum {
+  PIXBUF_COLUMN,
+  URL_COLUMN
+};
+
 struct _thumbnails thumbnails;
 
 void
 create_thumbnails_store() {
-  thumbnails.store = gtk_list_store_new(1, GDK_TYPE_PIXBUF);
+  thumbnails.store = gtk_list_store_new(2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
 }
 
 void
@@ -27,7 +32,7 @@ append_photo(gchar *filename) {
     g_warning("could not load %s\n", filename);
     return;
   }
-  gtk_list_store_set(thumbnails.store, &thumbnails.iter, 0, pixbuf, -1);
+  gtk_list_store_set(thumbnails.store, &thumbnails.iter, PIXBUF_COLUMN, pixbuf, URL_COLUMN, filename, -1);
 
   GtkTreePath *path = gtk_tree_model_get_path(GTK_TREE_MODEL(thumbnails.store),&thumbnails.iter);
   gtk_icon_view_scroll_to_path(GTK_ICON_VIEW(thumbnails.iconview), path,

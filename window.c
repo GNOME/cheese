@@ -7,6 +7,8 @@
 #include "window.h"
 #include "thumbnails.h"
 
+#include <libgnomevfs/gnome-vfs.h>
+
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
 
@@ -54,6 +56,17 @@ void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 			  NULL);
 
 	gtk_widget_show (about);
+}
+
+void on_item_activated_cb (GtkIconView *iconview, GtkTreePath *tree_path, gpointer user_data) {
+  GtkTreeIter iter;
+  const gchar *file;
+  gtk_tree_model_get_iter(GTK_TREE_MODEL(thumbnails.store), &iter, tree_path);
+  gtk_tree_model_get(GTK_TREE_MODEL(thumbnails.store), &iter, 1, &file, -1);
+  printf("opening file %s\n", file);
+  file = g_strconcat ("file://", file, NULL);
+  printf("opening file %s\n", file);
+  gnome_vfs_url_show(file);
 }
 
 void
@@ -110,4 +123,7 @@ create_window()
   gtk_menu_append(GTK_MENU(menu), menuitem);
   gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
       GTK_SIGNAL_FUNC(on_about_cb), NULL);
+
+  gtk_signal_connect(GTK_OBJECT(thumbnails.iconview), "item-activated",
+      GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);
 }
