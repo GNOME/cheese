@@ -65,7 +65,6 @@ void on_item_activated_cb (GtkIconView *iconview, GtkTreePath *tree_path, gpoint
   gtk_tree_model_get(GTK_TREE_MODEL(thumbnails.store), &iter, 1, &file, -1);
   printf("opening file %s\n", file);
   file = g_strconcat ("file://", file, NULL);
-  printf("opening file %s\n", file);
   gnome_vfs_url_show(file);
 }
 
