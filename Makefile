@@ -21,7 +21,7 @@ GDK_LIBS = $(shell pkg-config --libs gdk-2.0)
 CFLAGS = -g -O2 -Wall -Werror $(DBUS_CFLAGS) $(GTK_CFLAGS) $(GLADE_CFLAGS) $(GSTREAMER_CFLAGS) $(GNOME_VFS_CFLAGS) $(GDK_CFLAGS)
 LDFLAGS = -lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS)
 
-SOURCES = cheese.c pipeline-photo.c fileutil.c thumbnails.c window.c
+SOURCES = cheese.c pipeline-photo.c fileutil.c thumbnails.c window.c cairo-custom.c
 #POFILES = po/fr.po po/de.po po/es.po po/it.po
 
 OBJS = $(SOURCES:%.c=%.o)
@@ -45,6 +45,10 @@ pipeline-photo.o: pipeline-photo.c pipeline-photo.h cheese.h
 thumbnails.o: thumbnails.c thumbnails.h cheese.h
 
 window.o: window.c window.h cheese.h
+
+cairo-custom.o: cairo-custom.c cairo-custom.h cheese.h
+
+effects.o: effects.h
 
 #%.mo: %.po
 #	@echo Building $@...
