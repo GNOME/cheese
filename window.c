@@ -8,6 +8,7 @@
 #include "thumbnails.h"
 
 #include <libgnomevfs/gnome-vfs.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
@@ -81,10 +82,11 @@ create_window()
   cheese_window.widgets.menubar               = glade_xml_get_widget(cheese_window.gxml, "menubar");
   cheese_window.widgets.take_picture          = glade_xml_get_widget(cheese_window.gxml, "take_picture");
   cheese_window.widgets.screen                = glade_xml_get_widget(cheese_window.gxml, "screen");
+  cheese_window.widgets.notebook              = glade_xml_get_widget(cheese_window.gxml, "notebook");
+  cheese_window.widgets.table                 = glade_xml_get_widget(cheese_window.gxml, "table");
   cheese_window.widgets.button_photo          = glade_xml_get_widget(cheese_window.gxml, "button_photo");
   cheese_window.widgets.button_video          = glade_xml_get_widget(cheese_window.gxml, "button_video");
-  cheese_window.widgets.button_effects_left   = glade_xml_get_widget(cheese_window.gxml, "button_effects_left");
-  cheese_window.widgets.button_effects_right  = glade_xml_get_widget(cheese_window.gxml, "button_effects_right");
+  cheese_window.widgets.button_effects        = glade_xml_get_widget(cheese_window.gxml, "button_effects");
   cheese_window.widgets.label_effects         = glade_xml_get_widget(cheese_window.gxml, "label_effects");
   thumbnails.iconview                         = glade_xml_get_widget(cheese_window.gxml, "previews");
 
@@ -125,4 +127,6 @@ create_window()
 
   gtk_signal_connect(GTK_OBJECT(thumbnails.iconview), "item-activated",
       GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);
+
+
 }
