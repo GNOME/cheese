@@ -14,6 +14,9 @@ struct _widgets
   GtkWidget *button_photo;
   GtkWidget *button_effects;
   GtkWidget *label_effects;
+  GtkWidget *label_photo;
+  GtkWidget *label_video;
+  GtkWidget *label_take_photo;
   GtkWidget *menubar;
   GtkWidget *file_menu;
   GtkWidget *help_menu;

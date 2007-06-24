@@ -3,12 +3,15 @@
  * All rights reserved. This software is released under the GPL2 licence.
  */
 
+#include <libgnomevfs/gnome-vfs.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
+#include <libintl.h>
+
 #include "cheese.h"
 #include "window.h"
 #include "thumbnails.h"
 
-#include <libgnomevfs/gnome-vfs.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
+#define _(str) gettext(str)
 
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
@@ -37,7 +40,7 @@ void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 		      "name",  "cheese",
 		      "version", VERSION,
 		      "copyright", "Copyright (c) 2007\n daniel g. siegel <dgsiegel@gmail.com>",
-		      "comments", "A cheesy program to take pictures from your webcam",
+		      "comments", _("A cheesy program to take pictures from your webcam"),
 		      //"authors", authors,
 		      "logo-icon-name", "face-grin",
 		      NULL);
@@ -88,9 +91,12 @@ create_window()
   cheese_window.widgets.button_video          = glade_xml_get_widget(cheese_window.gxml, "button_video");
   cheese_window.widgets.button_effects        = glade_xml_get_widget(cheese_window.gxml, "button_effects");
   cheese_window.widgets.label_effects         = glade_xml_get_widget(cheese_window.gxml, "label_effects");
+  cheese_window.widgets.label_photo           = glade_xml_get_widget(cheese_window.gxml, "label_photo");
+  cheese_window.widgets.label_video           = glade_xml_get_widget(cheese_window.gxml, "label_video");
+  cheese_window.widgets.label_take_photo      = glade_xml_get_widget(cheese_window.gxml, "label_take_photo");
   thumbnails.iconview                         = glade_xml_get_widget(cheese_window.gxml, "previews");
 
-  gtk_window_set_title(GTK_WINDOW(cheese_window.window), "Cheese");
+  gtk_window_set_title(GTK_WINDOW(cheese_window.window), _("Cheese"));
 
   gtk_widget_set_size_request(cheese_window.widgets.screen, PHOTO_WIDTH, PHOTO_HEIGHT);
   gtk_widget_set_size_request(thumbnails.iconview, PHOTO_WIDTH, THUMB_HEIGHT + 20);
@@ -102,8 +108,8 @@ create_window()
   gtk_icon_view_set_columns(GTK_ICON_VIEW(thumbnails.iconview), G_MAXINT);
 
   // menubar
-  file_menu = gtk_menu_item_new_with_mnemonic("_File");
-  help_menu = gtk_menu_item_new_with_mnemonic("_Help");
+  file_menu = gtk_menu_item_new_with_mnemonic(_("_File"));
+  help_menu = gtk_menu_item_new_with_mnemonic(_("_Help"));
   gtk_menu_bar_append(GTK_MENU_BAR(cheese_window.widgets.menubar), file_menu);
   gtk_menu_bar_append(GTK_MENU_BAR(cheese_window.widgets.menubar), help_menu);
 
@@ -129,4 +135,8 @@ create_window()
       GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);
 
 
+  gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_photo), _("Photo"));
+  gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_video), _("Video"));
+  gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Effects"));
+  gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_take_photo), _("Take a photo"));
 }

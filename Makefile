@@ -22,15 +22,15 @@ CFLAGS = -g -O2 -Wall -Werror $(DBUS_CFLAGS) $(GTK_CFLAGS) $(GLADE_CFLAGS) $(GST
 LDFLAGS = -lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS)
 
 SOURCES = cheese.c pipeline-photo.c fileutil.c thumbnails.c window.c cairo-custom.c
-#POFILES = po/fr.po po/de.po po/es.po po/it.po
+POFILES = po/de.po
 
 OBJS = $(SOURCES:%.c=%.o)
-#MOFILES = $(POFILES:%.po=%.mo)
+MOFILES = $(POFILES:%.po=%.mo)
 
-all: cheese
-#all: cheese mo
+#all: cheese
+all: cheese mo
 
-#mo: $(MOFILES)
+mo: $(MOFILES)
 
 cheese: $(OBJS) $(LIBS)
 
@@ -50,16 +50,16 @@ cairo-custom.o: cairo-custom.c cairo-custom.h cheese.h
 
 effects.o: effects.h
 
-#%.mo: %.po
-#	@echo Building $@...
-#	@msgfmt --statistics -o $@ $<
-#
-#updatepo:
-#	xgettext -L C -k_ -o po/cheese.pot $(SOURCES)
-#	for po in $(POFILES); do \
-#		msgmerge -U $$po po/cheese.pot; \
-#	done
-#
+%.mo: %.po
+	@echo Building $@...
+	@msgfmt --statistics -o $@ $<
+
+updatepo:
+	xgettext -L C -k_ -o po/cheese.pot $(SOURCES)
+	for po in $(POFILES); do \
+		msgmerge -U $$po po/cheese.pot; \
+	done
+
 clean:
 	rm -f cheese $(OBJS) $(MOFILES)
 	rm -f *~ po/*~

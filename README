@@ -18,8 +18,9 @@ but the next release will feature autotools, for shure! ;)
 
 Installing:
   - copy cheese somewhere in your PATH (/usr/bin)
-  - copy gpomme/cheese.desktop to /usr/share/applications
-  - copy gpomme/cheese.glade to /usr/share/cheese
+  - copy cheese/cheese.desktop to /usr/share/applications
+  - copy cheese/cheese.glade to /usr/share/cheese
+  - install cheese/po/$lang.mo as /usr/share/locale/$lang/LC_MESSAGES/cheese.mo
 
 Using:
 Simply launch 'cheese'. The taken photos will be stored in the folder images in your working path. e.g. if you start it from ~, you will end up with a folder ~/images.
