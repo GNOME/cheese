@@ -1,3 +1,8 @@
+/*
+ * Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+ * All rights reserved. This software is released under the GPL2 licence.
+ */
+
 #include "cairo-custom.h"
 
 void
