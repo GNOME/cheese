@@ -22,7 +22,7 @@ CFLAGS = -g -O2 -Wall -Werror $(DBUS_CFLAGS) $(GTK_CFLAGS) $(GLADE_CFLAGS) $(GST
 LDFLAGS = -lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS)
 
 SOURCES = cheese.c pipeline-photo.c fileutil.c thumbnails.c window.c cairo-custom.c
-POFILES = po/de.po
+POFILES = po/cs.po po/de.po po/es.po po/gl.po po/it.po po/pt.po
 
 OBJS = $(SOURCES:%.c=%.o)
 MOFILES = $(POFILES:%.po=%.mo)
