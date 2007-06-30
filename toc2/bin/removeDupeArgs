@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+
+# Expects a list of command-line arguments, from which it removes any
+# duplicates after the first instance of any given entry.
+# Intended to be used to clean up INCLUDES and LDADD-like entries.
+#
+# Example:
+# $0 a b c b b c d e a
+# would print:
+# a b c d e
+
+
+%cache = ();
+
+@args = ();
+while( @ARGV ) {
+	$a = $ARGV[0];
+	shift;
+	next if $cache{$a};
+	$cache{$a} = 1;
+	push( @args, $a );
+}
+
+foreach $a (@args) {
+	print $a," ";
+}
+print "\n";
+
+

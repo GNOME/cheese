@@ -1,0 +1,101 @@
+#!/bin/bash
+# creates makefile rules for use with file-filters.make
+
+# usage: $0 filtername [filtername2 ...]
+# where filternameN is a filter defined in a client
+# Makefile's $(file-filters.list) var.
+
+# This code, my friends, contains some mind-bending, completely
+# unmaintainable shell-within-make-within-shell stuff.
+
+test -z "$@" && {
+        echo "usage: $0 filtername [filtername2 ...]"
+        exit 1
+}
+
+thisapp="\$(toc2.dirs.makefiles)/makerules.file-filters"
+filters_makefile="\$(toc2.dirs.makefiles)/file-filters.make"
+
+cat <<EOF
+############################## file-filters rules:
+${thisapp}: ; @true
+${filters_makefile}: ; @true
+file-filters.TMPFILE = .toc2.file-filters.tmp
+EOF
+
+error_prefix="${filters_makefile}:"
+
+for f in $@; do
+fprefix=${f}.filter.
+cat <<EOF
+############################## file-filters: ${f}
+${f}.filter.deps += \$(toc2.files.makefile) ${thisapp} ${filters_makefile}
+${f}.filter.bin ?= \$(file-filters.bin)
+
+ifeq (,\$(${f}.filter.renameexpr))
+\$(error ${error_prefix} ${f}.filter.renameexpr must be set to a sed expression. e.g. s/^prefix//)
+endif
+ifeq (,\$(${f}.filter.sources))
+\$(error ${error_prefix} ${f}.filter.sources must be set to a list of input source files)
+endif
+ifeq (,\$(${f}.filter.bin))
+\$(error ${error_prefix} ${f}.filter.bin must be set to filter application. e.g. perl or sed)
+endif
+ifeq (,\$(${f}.filter.rules))
+\$(error ${error_prefix} ${f}.filter.rules must be a set of rules passable to ${f}.filter.bin. e.g. for perl: -e 's|\btoken\b|replacement|g')
+endif
+
+${fprefix}MAKEFILE = .toc2.file-filters.${f}.make
+# ${fprefix}clean_files += \$(${fprefix}MAKEFILE)
+
+\$(${fprefix}MAKEFILE): \$(file-filters.makefile)
+ifeq (1,\$(toc2.flags.making_clean))
+	@echo "\$(MAKECMDGOALS): skipping ${f}.filter.sources rules generation."
+else
+	@echo "Generating ${f}.filter.sources rules."; \\
+	for i in \$(${f}.filter.sources); do \\
+		tgt="\$\$(echo \$\${i} | sed -e '\$(${f}.filter.renameexpr)')"; \\
+                test "\$\$tgt" = "\$\${i}" -o -z "\$\$tgt" && { \\
+			echo "${f}.filter.sources: name translation for the output file failed: sed rule [\$(${f}.filter.renameexpr)] for [\$\${i}] --> [\$\${tgt}]"  1>&2; \\
+			exit 1; \\
+		}; \\
+		echo "${fprefix}clean_files += \$\${tgt}"; \\
+		echo "\$\${tgt}_INPUT = \$\${i}"; \\
+		echo "${fprefix}output.rules += \$\${tgt}"; \\
+		echo "\$\${tgt}: \$\${i} \$(${f}.filter.deps)"; \\
+	done > \$@
+endif
+-include \$(${fprefix}MAKEFILE)
+# This suddenly strikes me as odd: writing shell code to generate makefile code which will end
+# generating makefile code which we then re-import into make.
+# Thus all the confusion regarding the \ and $ characters.
+
+\$(${fprefix}output.rules): %:\$(%_INPUT)#<--- i can't believe this works!
+	@echo -n "file-filters '${f}': "; \\
+		\$(${f}.filter.bin) \$(${f}.filter.rules) < \$(\$(*)_INPUT) > \$(file-filters.TMPFILE); \\
+		cmp -s \$(file-filters.TMPFILE) \$@ && rm \$(file-filters.TMPFILE); \\
+		test -f \$(file-filters.TMPFILE) \\
+			&& { mv \$(file-filters.TMPFILE) \$@; echo "[updated] \$@"; } \\
+			|| { echo "[up to date] \$@"; };
+# Note: the above target will always run if some non-input-file
+# dependency is newer. That happens, for example, as i edit this shell
+# script ;). Since i am a big advocate of "better rebuild than wonder
+# if we're building the newest code", we're limited to two choices:
+#
+# a) touch $@, engendering immediate always-rebuild behaviour
+#    on files which depend on our output files.
+# b) do nothing, and *potentially* get always-rebuild behaviour.
+#
+# Since only build tree maintainers should actually trigger this case,
+# i've decided on taking route (b). Clients who actually see this
+# happen can fix it with a 'make clean' or simply removing the
+# filtered files in question and allowing them to be recreated.
+
+filter-${f}: \$(${fprefix}output.rules)
+
+\$(call toc2.call.define-cleanup-set,${f}.filter)
+file-filters: filter-${f}
+
+EOF
+
+done

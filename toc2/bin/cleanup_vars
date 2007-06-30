@@ -1,0 +1,17 @@
+#!/usr/bin/perl
+# reads in a list of KEY=VAL lines and removes all but the last-set
+# entries. Intended for use with cleaning up toc-exported variables.
+
+@IN = reverse <>;
+%gots = ();
+@out = ();
+foreach $l (@IN) {
+        chomp $l;
+        next unless $l =~ m|^\s*(\S+)\s*=\s*(.*)|;
+        $key = $1; $val = $2;
+        next if $gots{$key};
+        $gots{$key} = 1;
+        push( @out, $l );
+#        print $l."\n";
+}
+print join("\n", reverse @out),"\n";

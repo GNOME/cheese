@@ -1,0 +1,102 @@
+#!/usr/bin/perl
+#
+# A mind-numbingly stupid distribution tarball creator.
+#
+# todo: add some wildcard support to the file lists.
+#
+# stephan@s11n.net
+#
+# Note that is implicitely filters out some file names,
+# to simplify use of the toc client-side install code.
+#
+# Usage:
+#  $0 input_file_list release_name
+#
+# The release name must be a single token suitable for use
+# as a dir and file name. Normally this is
+# package_name-package_version.
+# input_file_list is a file containing relative paths to files
+# which should be tarred up. All files should exist in the current
+# dir or subdirs, not dirs outside of the current tree.
+########################################################################
+$verbose = 0;
+$dieonerror = 1;
+$USAGE = "usage: $0 input_list_file release_name";
+
+$DISTFILES_LIST = $ARGV[0] || die $USAGE;
+
+$basename = $ARGV[1] || die $USAGE;
+$TARBALL = $basename;
+$basename =~ s|\.tar$||;
+$TARBALL .= ".tar" unless $TARBALL =~ m|\.tar$|;
+execcmd( "rm -fr $basename" ) if -d $basename;
+execcmd( "mkdir $basename" );
+
+open DLIST, "<$DISTFILES_LIST" || die "Cannot open dist files list, $DISTFILES_LIST!";
+@list = <DLIST>;
+# print @list;
+close DLIST;
+
+@thelist = ();
+
+foreach $l (@list) {
+  next if $l =~ /^#/;
+  next if $l =~ m|^(.*/)?toc.q?make$|;
+  next if $l =~ m|\.o$|;
+  next if $l =~ m|/?CVS/?|;
+  chomp( $l );
+
+  next unless $l =~ /\w/;
+  next if $l =~ m|~$|;
+
+  $l =~ s/^\s+//;
+  if( (! -f $l) && (! -d $l) ) {
+    stderr( "WARNING: [$l] not found!" );
+    exit 1 if $dieonerror;
+  }
+  push( @thelist, $l );
+
+}
+
+$tarfileslist = ".tar.tmp";
+open TARLIST, ">$tarfileslist";
+print TARLIST join( "\n", @thelist );
+#print STDOUT "thelist=",join( "\n", @thelist ),"\n";
+print "File count: ".@thelist."\n" if $verbose;
+
+$tarargs = "--files-from=$tarfileslist --exclude=CVS";
+
+
+execcmd( "tar cf - $tarargs  | tar xf - -C \"$basename\"" );
+# ^^^^ got that? it's simpler than cp'ing the list of files to their proper subdirs. :)
+
+if( 0 ) {
+	$md5 = `which md5sum 2>/dev/null`;
+	if( $md5 ) {
+		$md5file = "$basename/md5.sums.$basename";
+		print STDERR "Generating md5 sums: $md5file\n";
+		#    execcmd( "cd $basename; for x in \$(find . -type f); do md5sum \$x  >> MD5SUMS.$basename; done" );
+		execcmd( "for x in \$(cat $tarfileslist); do md5sum \$x; done > $md5file" )
+	} else {
+		print STDERR "Warning: no md5sum binary found, so not including md5 info.\n";
+	}
+}
+
+execcmd( "rm $tarfileslist" );
+execcmd( "tar cf \"$TARBALL\" \"$basename\"" );
+execcmd( "rm -fr \"$basename\"" );
+
+# print "Tarball: ".`ls -la $TARBALL`."\n";
+print "Tarball: $TARBALL\n" if $verbose;
+
+exit 0;
+sub stderr() {
+  $msg = shift;
+  print STDERR $msg."\n";
+}
+
+sub execcmd() {
+  $cmd = shift;
+  print $cmd."\n" if $verbose;
+  `$cmd`;
+}

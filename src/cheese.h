@@ -2,7 +2,8 @@
 
 #include <glib.h>
 
-#define VERSION "0.1.0"
+#include "cheese_config.h"
+
 //FIXME: provide option to choose the folder
 #define SAVE_FOLDER_DEFAULT  	 "images/"
 //FIXME: provide option to choose the naming of the photos

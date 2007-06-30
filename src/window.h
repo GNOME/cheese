@@ -1,7 +1,7 @@
 
 #include <glade/glade.h>
 
-#define GLADE_FILE "cheese.glade"
+#define GLADE_FILE CHEESE_DATA_DIR"/cheese.glade"
 //#define GLADE_FILE "/usr/share/cheese/cheese.glade"
 
 struct _widgets

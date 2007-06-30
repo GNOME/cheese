@@ -1,0 +1,13 @@
+#!/bin/bash
+# you must set PACKAGE_NAME and PACKAGE_VERSION, and their values
+# must be filesystem-friendly (i.e., only alph-numeric, dots and underscores)
+# because they are used to create various files (e.g. mypackage-1.0.7.tar.gz)
+
+PACKAGE_NAME=ExamplePackageName
+PACKAGE_VERSION=$(date +%Y%m%d)
+export PACKAGE_NAME PACKAGE_VERSION
+
+# toconfigure kicks off the core toc process, which eventually calls
+# configure.${PACKAGE_NAME}. Do all of your package-specific
+# checks in configure.${PACKAGE_NAME}.
+. toc/sbin/toconfigure $@

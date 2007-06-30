@@ -1,0 +1,11 @@
+#!/bin/bash
+# ^^^^ toc needs a Genuine Bash, not some cheap work-alike!!!
+
+export PACKAGE_NAME=cheese
+export PACKAGE_VERSION=0.1.2
+export TOC2_HOME=${PWD}/toc2
+export TOC2_QUIET=1
+# toconfigure will call configure.${PACKAGE_NAME}, so package-specific
+# processing should be done there.
+. ${TOC2_HOME}/sbin/toconfigure "$@"
+# post-configure processing can be done in postconfig.${PACKAGE_NAME}

@@ -1,0 +1,15 @@
+#!/usr/bin/env make
+
+include toc2.make
+GLADEFILE = cheese.glade
+DESKTOPFILE = $(wildcard *.desktop)
+
+package.dist_files += $(GLADEFILE) $(EFFECTS) $(DESKTOPFILE)
+
+package.install.package_data += $(GLADEFILE)
+
+package.install.desktop = $(DESKTOPFILE)
+$(eval $(call toc2.call.setup_install_rules,desktop, $(prefix)/share/applications,-m 0644))
+ 
+package.subdirs := effects
+all: subdirs

@@ -37,8 +37,8 @@ void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 
 	about = gtk_about_dialog_new();
 	g_object_set (about,
-		      "name",  "cheese",
-		      "version", VERSION,
+		      "name",  CHEESE_PACKAGE_NAME,
+		      "version", CHEESE_VERSION,
 		      "copyright", "Copyright (c) 2007\n daniel g. siegel <dgsiegel@gmail.com>",
 		      "comments", _("A cheesy program to take pictures from your webcam"),
 		      //"authors", authors,

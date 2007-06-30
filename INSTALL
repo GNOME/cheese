@@ -1,0 +1,41 @@
+========================================================================
+This is the INSTALL file for cheese
+http://live.gnome.org/Cheese
+========================================================================
+
+While the core code is not platorm specific, the build tree and
+configure script are *quite* GNU-specific, and REQUIRE "recent"
+versions of the most common GNU tools, like sed, GNU make, GNU tar,
+gzip, etc. Complete docs for the build tree can be found on the build
+tool's home page:
+
+        http://toc.sourceforge.net
+
+cheese uses a conventional 'configure' script, which is run like so:
+
+        ./configure [--options]
+
+Run it with --help to see the complete list of options. None are
+normally necessary, but setting a prefix is required if you want
+to install cheese as a non-root user:
+
+        ./configure --prefix=$HOME
+(i.e., somewhere to which you have write access)
+
+If configure finds problems then you won't be able to build s11n
+without manual intervention - feel free to contact us if you
+have build problems.
+
+After configuring, simply:
+
+        make
+        make install
+
+Of course the Makefile provides also the DESTDIR option, which
+allows you to put the package content somewhere else:
+
+        make DESTDIR=$HOME install
+
+========================================================================
+the end
+========================================================================

@@ -1,0 +1,41 @@
+
+========================================================================
+Shell code:
+
+
+      functions: toc2_xxx
+      vars: TOC2_XXX
+
+========================================================================
+Makefile:
+
+All toc2-related vars start with 'toc2.'. Package-specific stuff
+starts with 'package.'.
+
+e.g.:
+
+	$(toc2.home)
+	$(package.name)
+	$(package.dist_files)
+
+
+toc2 $(call)able funcs:
+
+     $(toc2.call.xxx)
+
+binaries:
+
+	$(toc2.bins.xxx)
+
+toc2 flags:
+
+     $(toc2.flags.xxx)
+
+dirs:
+
+	$(toc2.dirs.xxx)
+
+emoticons:
+
+	$(toc.emoticons.xxx)
+

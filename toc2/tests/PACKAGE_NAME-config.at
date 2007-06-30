@@ -1,0 +1,86 @@
+#!/bin/sh
+#
+# This gets filtered at configure-time to create
+# ${PACKAGE_NAME}-config.
+
+
+version="@PACKAGE_VERSION@"
+ldadd="@CLIENT_LDADD@"
+includes="@CLIENT_INCLUDES@"
+prefix="@prefix@"
+
+usage() {
+    cat <<EOF 1>&2
+
+$0: shows information useful for configuring/building @PACKAGE_NAME@
+client applications.
+
+Usage:
+$0 [options]
+
+Options:
+--libs        : prints linker information about what libs clients should link to.
+                [${ldadd}]
+--includes    : prints INCLUDES information
+                [$includes]
+--prefix      : prints the library's installation prefix
+                [$prefix]
+--version     : prints the library's version
+                [$version]
+--toc2-make    : prints a makefile snippet suitable for use with toc2 makefiles
+--toc2-config  : prints a snippet suitable for a toc2 configure script
+--toc2-eval    : like --toc2-config, but the output may be directly eval()ed.
+EOF
+}
+
+foo=$1
+test "x" = "x$1" && {
+    usage
+    exit 1;
+}
+
+for arg in "$@"; do
+
+    case $arg in
+        --help|-?|-h)
+            usage
+        ;;
+        --libs)
+            echo $ldadd
+        ;;
+        --includes)
+            echo $includes
+        ;;
+        --prefix)
+            echo $prefix
+        ;;
+        --version)
+            echo $version
+        ;;
+        --toc2-make)
+            cat <<EOF
+@PACKAGE_PREFIX@CLIENT_LDADD=$ldadd
+@PACKAGE_PREFIX@CLIENT_INCLUDES=$includes
+@PACKAGE_PREFIX@LIBRARY_VERSION=$version
+EOF
+        ;;
+        --toc2-config)
+            cat <<EOF
+toc2_export @PACKAGE_PREFIX@CLIENT_LDADD="$ldadd"
+toc2_export @PACKAGE_PREFIX@CLIENT_INCLUDES="$includes"
+toc2_export @PACKAGE_PREFIX@LIBRARY_VERSION="$version"
+EOF
+        ;;
+        --toc2-eval)
+            cat <<EOF
+toc2_export @PACKAGE_PREFIX@CLIENT_LDADD="$ldadd" ;
+toc2_export @PACKAGE_PREFIX@CLIENT_INCLUDES="$includes" ;
+toc2_export @PACKAGE_PREFIX@LIBRARY_VERSION="$version" ;
+EOF
+        ;;
+        *)
+            echo "Unrecognized option: $arg"
+            exit 2
+       ;;
+    esac
+done

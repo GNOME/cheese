@@ -1,0 +1,120 @@
+#!/usr/bin/perl
+# ( ^^^^ when run with -n it tries to read in files named after the args. e.g. foo=bar)
+#
+# Takes command-line args in the format:
+#
+#   foo=bar [include:bar=infile] [shell:foobar=shellcmd]...
+#
+# and parses stdin, replacing @foo@ with bar.
+#
+# All output goes to stdout.
+#
+# Intended to be used as a simple parser for Makefile.in-type files.
+#
+# Special keys type:
+#
+#   include:KEY=filename
+#
+# Will try to read the file VAL and import it in place of @KEY@.
+#
+#   shell:KEY=shellcmd
+#
+# Will replace KEY with the output of shellcmd.
+#
+# The shell: and include: substitutions happen ONE time,
+# before the input stream is ever read, and not every time
+# the corresponding @token@ is replaced.
+#
+# Optional arguments:
+#
+# [-f filename] will read in that file. It must be in the form
+#               KEY=VALUE, with one key/value per line.
+#
+# [-c] will enable "cleanup mode". Any @TOKENS@ in the input stream
+#      which were not explicitely assigned values will be parsed out
+#      of the output. Without this option, the raw @TOKEN@ would go
+#      into the output.
+#
+# License: public domain
+# author: stephan <sgbeal@users.sourcceforge.net>
+# CVS Revision: $Revision: 1.2 $
+
+
+BEGIN {
+  $STRIP_LEADING_DASHES = 1; # if set to 1 then --foo=bar is same as foo=bar
+  $op_cleanup = 0; # strip un-parsed @TOKENS@ from the input.
+  if( ! @ARGV ) {
+    print "Usage: $0 foo=bar [bar=foobar] [argN=valN]...\n";
+    exit 1;
+  }
+
+  @args = ();
+  ############################################################ collect args...
+  for( $i = 0; $i < @ARGV; $i++ )
+  {
+          $a = $ARGV[$i];
+          if( $a eq "-f" ) {
+                  $fn = $ARGV[++$i];
+                  open( INFILE, $fn ) || die "Could not open input file [$fn].";
+                  @foo = <INFILE>;
+                  foreach $f (@foo) {
+                          chomp($f); push( @args, $f );
+                  }
+                  close INFILE;
+                  next;
+          }
+          if( $a eq "-c" ) {
+                  $op_cleanup = 1;
+                  next;
+          }
+          push( @args, $a );
+  }
+  #print join( "\n", @args )."\n";
+  
+  %args = ();
+
+  foreach $a ( @args ) {
+    ############################################################ parse out KEY=VAL pairs
+    next unless $a =~ m|([^=]+)\s*=\s*(.*)|;
+    $key = $1;
+    $val = $2;
+    if( $STRIP_LEADING_DASHES ) { $key =~ s/^-+//; }
+    #print STDERR ": [$key]=[$val]\n";
+    ############################################################ include:FOO=BAR
+    if( $key =~ m|^include:(.+)| ) {
+      $key = $1;
+      open INFILE, "<$val" or die "Cannot open file '$val', as requested by \@include:$key@!";
+      @foo = <INFILE>;
+      close INFILE;
+      $val = join( "", @foo );
+    }
+    ############################################################ shell:FOO=BAR
+    if( $key =~ m|^shell:(.+)| ) {
+      $key = $1;
+      $val = `$val`;
+    }
+    $args{$key} = $val;
+  }
+} # /BEGIN
+
+while( <STDIN> ) {
+
+  $loop = true;
+  while( $loop ) {
+    # loop over line until we can replace no more @tokens@
+          $cp = $_;
+          foreach $k (keys(%args)) {
+                  $v = $args{$k};
+                  next unless $_ =~ s|\@$k\@|$v|g;
+#                  print STDERR "replacing $k --> $v\n";
+          }
+          $loop = 0 if $cp eq $_;
+  }
+  if( $op_cleanup ) {
+    # parse out undefined @tokens@
+          while( $_ =~ s|\@\S+\@||g ) {}
+  }
+  print;
+}
+
+exit 0;
