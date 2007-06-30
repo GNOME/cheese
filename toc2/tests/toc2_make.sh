@@ -23,6 +23,7 @@ toc2_make_toc2_make ()
     local shortform
     local tocmakeprops
     for d in $(find ${TOC2_TOP_SRCDIR} -name Makefile -o -name 'GNU[Mm]akefile' -o -name Makefile.toc \
+        | sed -e '/_darcs\//d;' -e '/\.svn\//d' \
         | xargs grep -E -l "include.+${themake}" | sort -u); do
         #echo "d=$d" >&2
         thedir=$(dirname $d)
