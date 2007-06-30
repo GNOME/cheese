@@ -1,6 +1,7 @@
 #/usr/bin/env make -f
 
 package.subdirs = src po data
+toc2.dist.suffix_list := tar.gz
 include toc2.make
 
 package.dist_files += \
@@ -27,5 +28,5 @@ endif
 all: subdirs
 
 dist-postprocess:
-	-rm -f $(package.name)-$(package.version).tar
-	rm -f $(package.name)-$(package.version).tar.md5
+	@echo -n "$(package.dist.tarball_gz) "
+	@cat $(package.dist.tarball_gz).md5
