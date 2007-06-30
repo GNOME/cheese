@@ -88,7 +88,8 @@ toc2.call.uninstall =  $(call toc2.call.install.grep_kludge,$(1)); \
 				cmd="rm $$fp"; echo $$cmd; $$cmd || exit $$?; \
 			done; \
 			tgtdir="$(2)"; \
-			while test x != "x$${tgtdir}" -a '/' != "$${tgtdir}" -a -d "$(DESTDIR)$${tgtdir}"; do \
+			while test x != "x$${tgtdir}" -a '$(prefix)' != "$${tgtdir}" \
+				-a '/' != "$${tgtdir}" -a -d "$(DESTDIR)$${tgtdir}"; do \
 				rmdir $(DESTDIR)$${tgtdir} 2>/dev/null || break; \
 				echo "Removing empty dir: $(DESTDIR)$${tgtdir}"; \
 				tgtdir=$${tgtdir%/*}; \
@@ -154,12 +155,12 @@ install-subdirs-symlink: subdirs-install-symlink
 uninstall-subdirs: subdirs-uninstall
 
 ########################################################################
-# $(eval $(call toc2.call.setup_install_rules,SET_NAME,dest_dir,install_flags))
-define toc2.call.setup_install_rules
-$(if $(1),,$(error toc2.call.setup_install_rules requires an install set name as $$1))
-$(if $(2),,$(error toc2.call.setup_install_rules requires an installation path as $$2))
+# $(eval $(call toc2.call.define-install-set,SET_NAME,dest_dir,install_flags))
+define toc2.eval.define-install-set
+$(if $(1),,$(error toc2.call.define-install-set requires an install set name as $$1))
+$(if $(2),,$(error toc2.call.define-install-set requires an installation path as $$2))
 
-$(if $(package.install.$(1).dupecheck),$(error toc2.call.setup_install_rules: rules for $1 have already been created. \
+$(if $(package.install.$(1).dupecheck),$(error toc2.call.define-install-set: rules for $1 have already been created. \
 	You cannot create them twice.))
 package.install.$(1).dupecheck := 1
 package.install.$(1).dest ?= $(2)
@@ -182,6 +183,7 @@ uninstall-$(1):
 	$$(call toc2.call.uninstall,$$(package.install.$(1)),$$(package.install.$(1).dest))
 uninstall: uninstall-$(1)
 endef
+toc2.call.define-install-set = $(eval $(call toc2.eval.define-install-set,$(1),$(2),$(3)))
 # set up the initial install locations and install flags:
 toc2.install.target_basenames := bins sbins \
 				bin-scripts \
@@ -191,17 +193,17 @@ toc2.install.target_basenames := bins sbins \
 				package_data docs \
 				man1 man2 man3 man4 \
 				man5 man6 man7 man8 man9
-$(eval $(call toc2.call.setup_install_rules,bins,$(prefix)/bin,$(toc2.install.flags.bins)))
-$(eval $(call toc2.call.setup_install_rules,bin-scripts,$(prefix)/bin,$(toc2.install.flags.bin-scripts)))
-$(eval $(call toc2.call.setup_install_rules,sbins,$(prefix)/sbin,$(toc2.install.flags.bins)))
-$(eval $(call toc2.call.setup_install_rules,libs,$(prefix)/lib,$(toc2.install.flags.nonbins)))
-$(eval $(call toc2.call.setup_install_rules,dlls,$(prefix)/lib,$(toc2.install.flags.dlls)))
-$(eval $(call toc2.call.setup_install_rules,package_libs,$(prefix)/lib/$(package.name),$(toc2.install.flags.nonbins)))
-$(eval $(call toc2.call.setup_install_rules,package_dlls,$(prefix)/lib/$(package.name),$(toc2.install.flags.dlls)))
-$(eval $(call toc2.call.setup_install_rules,headers,$(prefix)/include,$(toc2.install.flags.nonbins)))
-$(eval $(call toc2.call.setup_install_rules,package_headers,$(prefix)/include/$(package.name),$(toc2.install.flags.nonbins)))
-$(eval $(call toc2.call.setup_install_rules,package_data,$(prefix)/share/$(package.name),$(toc2.install.flags.nonbins)))
-$(eval $(call toc2.call.setup_install_rules,docs,$(prefix)/share/doc/$(package.name),$(toc2.install.flags.nonbins)))
+$(call toc2.call.define-install-set,bins,$(prefix)/bin,$(toc2.install.flags.bins))
+$(call toc2.call.define-install-set,bin-scripts,$(prefix)/bin,$(toc2.install.flags.bin-scripts))
+$(call toc2.call.define-install-set,sbins,$(prefix)/sbin,$(toc2.install.flags.bins))
+$(call toc2.call.define-install-set,libs,$(prefix)/lib,$(toc2.install.flags.nonbins))
+$(call toc2.call.define-install-set,dlls,$(prefix)/lib,$(toc2.install.flags.dlls))
+$(call toc2.call.define-install-set,package_libs,$(prefix)/lib/$(package.name),$(toc2.install.flags.nonbins))
+$(call toc2.call.define-install-set,package_dlls,$(prefix)/lib/$(package.name),$(toc2.install.flags.dlls))
+$(call toc2.call.define-install-set,headers,$(prefix)/include,$(toc2.install.flags.nonbins))
+$(call toc2.call.define-install-set,package_headers,$(prefix)/include/$(package.name),$(toc2.install.flags.nonbins))
+$(call toc2.call.define-install-set,package_data,$(prefix)/share/$(package.name),$(toc2.install.flags.nonbins))
+$(call toc2.call.define-install-set,docs,$(prefix)/share/doc/$(package.name),$(toc2.install.flags.nonbins))
 # Set up man page entries...
-$(foreach NUM,1 2 3 4 5 6 7 8 9,$(eval $(call \
-	toc2.call.setup_install_rules,man$(NUM),man/man$(NUM),$(toc2.install.flags.nonbins))))
+$(foreach NUM,1 2 3 4 5 6 7 8 9,$(call \
+	toc2.call.define-install-set,man$(NUM),$(prefix)/man/man$(NUM),$(toc2.install.flags.nonbins)))
