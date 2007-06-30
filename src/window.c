@@ -42,7 +42,8 @@ void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 		      "copyright", "Copyright (c) 2007\n daniel g. siegel <dgsiegel@gmail.com>",
 		      "comments", _("A cheesy program to take pictures from your webcam"),
 		      //"authors", authors,
-		      "logo-icon-name", "face-grin",
+		      //"logo-icon-name", "face-grin",
+		      "logo-icon-name", "cheese",
 		      NULL);
 
 	gtk_window_set_wmclass(GTK_WINDOW(about), "about_dialog", "Panel");
