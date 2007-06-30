@@ -66,7 +66,7 @@ $(toc2.dist.file_list): FORCE $(toc2.files.makefile)
 		done >> $@
 
 dist-postprocess:# implement this in client-side code if you want to do something
-dist: subdirs-dist dist-. dist-postprocess
+dist: subdirs-dist dist-.
 
 ifeq (.,$(toc2.top_srcdir))
   ############################################################
@@ -135,5 +135,8 @@ ifeq (.,$(toc2.top_srcdir))
 
   toc2.dist.show-dist-tars:
 	@ls -la $(package.dist_name).*
-  dist: dist-postprocess toc2.dist.show-dist-tars toc2.dist.post-cleanup
+  dist: toc2.dist.show-dist-tars toc2.dist.post-cleanup
+
+  dist: dist-postprocess
 endif # . == $(toc2.top_srcdir)
+

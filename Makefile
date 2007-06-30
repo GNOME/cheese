@@ -28,3 +28,4 @@ all: subdirs
 
 dist-postprocess:
 	-rm -f $(package.name)-$(package.version).tar
+	rm -f $(package.name)-$(package.version).tar.md5
