@@ -36,6 +36,11 @@ allows you to put the package content somewhere else:
 
         make DESTDIR=$HOME install
 
+If you want to uninstall the package, run:
+
+        make uninstall
+        make DESTDIR=$HOME uninstall (if you used the DESTDIR-variable above)
+
 ========================================================================
 the end
 ========================================================================
