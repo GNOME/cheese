@@ -155,7 +155,7 @@ install-subdirs-symlink: subdirs-install-symlink
 uninstall-subdirs: subdirs-uninstall
 
 ########################################################################
-# $(eval $(call toc2.call.define-install-set,SET_NAME,dest_dir,install_flags))
+# $(call toc2.call.define-install-set,SET_NAME,dest_dir,install_flags)
 define toc2.eval.define-install-set
 $(if $(1),,$(error toc2.call.define-install-set requires an install set name as $$1))
 $(if $(2),,$(error toc2.call.define-install-set requires an installation path as $$2))

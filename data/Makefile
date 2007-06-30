@@ -11,5 +11,6 @@ package.install.package_data += $(GLADEFILE)
 package.install.desktop = $(DESKTOPFILE)
 $(call toc2.call.define-install-set,desktop, $(prefix)/share/applications,-m 0644)
 
-package.subdirs := effects
+package.subdirs := effects icons
+subdirs: subdir-effects subdir-icons
 all: subdirs
