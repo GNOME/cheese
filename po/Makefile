@@ -8,7 +8,7 @@ $(foreach LANG,$(LANGS),\
 
 package.dist_files += $(POFILES) $(package.name).pot
 toc2.bins.msgfmt.flags := --statistics --verbose
-POFILES = cs.po de.po es.po gl.po it.po pt.po
+POFILES = $(LANGS:%=%.po)
 MOFILES = $(POFILES:%.po=%.mo)
 
 
@@ -18,8 +18,8 @@ mo: $(MOFILES)
 
 SOURCES = $(wildcard $(toc2.top_srcdir)/src/*.c)
 updatepo:
-	xgettext -L C -k_ -o cheese.pot $(SOURCES)
+	xgettext -L C -k_ -o $(package.name).pot $(SOURCES)
 	for po in $(POFILES); do \
-		msgmerge -U $$po cheese.pot; \
+		msgmerge -U $$po $(package.name).pot; \
 	done
 
