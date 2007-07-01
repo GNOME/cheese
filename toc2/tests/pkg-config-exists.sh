@@ -24,9 +24,12 @@
 function pkg_config_check () {
 
   if pkg-config --exists $1; then
-    if [ ! -z "$2" ]; then
+    if [[ ! -z "$2" ]]; then
       if pkg-config --atleast-version $2 $1; then
         toc2_loudly "${TOC2_EMOTICON_OKAY} found $1 >= $2"
+      else
+        return 2
+        # die "$1 >= $2 was not found"
       fi
     else
         toc2_loudly "${TOC2_EMOTICON_OKAY} found $1"
@@ -36,12 +39,12 @@ function pkg_config_check () {
     toc2_export_make ${varname}_LIBS="$(pkg-config --libs $1)" || toc2_die $? "toc2_export_make ${varname} failed"
   else
     echo
-    if [ -z "$2" ]; then
+    if [[ -z "$2" ]]; then
       # die "$1 was not found"
-	return 1
+      return 1
     else
-	return 2
-	# die "$1 >= $2 was not found"
+      return 2
+      # die "$1 >= $2 was not found"
     fi
   fi
 }
