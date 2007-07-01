@@ -1,7 +1,7 @@
 #!/usr/bin/env make
 include toc2.make
 
-LANGS := cs de es gl it pt
+LANGS := cs de es fr gl it pt
 include $(toc2.home)/make/pomo.make
 $(foreach LANG,$(LANGS),\
 	$(call toc2.call.setup-pomo-rules,$(LANG)))
