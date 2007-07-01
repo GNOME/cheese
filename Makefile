@@ -11,8 +11,10 @@ package.dist_files += \
 	configure.$(package.name) \
 	COPYING \
 	README \
+	TODO \
+	INSTALL \
 	toc2.$(package.name).make.at \
-	TODO
+	toc2.$(package.name).help
 
 ifneq (,$(filter distclean dist,$(MAKECMDGOALS)))
 	package.subdirs += toc2
@@ -28,5 +30,4 @@ endif
 all: subdirs
 
 dist-postprocess:
-	@echo -n "$(package.dist.tarball_gz) "
-	@cat $(package.dist.tarball_gz).md5
+	@$(toc2.bins.md5sum) $(package.dist.tarball_gz)

@@ -6,7 +6,7 @@ include $(toc2.home)/make/pomo.make
 $(foreach LANG,$(LANGS),\
 	$(call toc2.call.setup-pomo-rules,$(LANG)))
 
-package.dist_files += $(POFILES)
+package.dist_files += $(POFILES) $(package.name).pot
 toc2.bins.msgfmt.flags := --statistics --verbose
 POFILES = cs.po de.po es.po gl.po it.po pt.po
 MOFILES = $(POFILES:%.po=%.mo)
