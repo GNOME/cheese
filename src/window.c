@@ -49,6 +49,7 @@ void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 	gtk_window_set_wmclass(GTK_WINDOW(about), "about_dialog", "Panel");
 	gtk_window_set_screen(GTK_WINDOW(about),
 			       gdk_screen_get_default());
+  gtk_window_set_default_icon_name ("cheese");
 	g_signal_connect(about, "destroy",
 			  G_CALLBACK(gtk_widget_destroyed),
 			  &about);
