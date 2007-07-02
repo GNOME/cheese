@@ -113,6 +113,9 @@ main(int argc, char **argv)
   gnome_vfs_init();
 	g_type_init();
 
+  bindtextdomain(CHEESE_PACKAGE_NAME, CHEESE_LOCALE_DIR);
+  textdomain(CHEESE_PACKAGE_NAME);
+
   create_window();
 
   PipelinePhoto = PIPELINE(pipeline_new());

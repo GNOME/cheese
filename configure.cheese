@@ -37,6 +37,8 @@ else
   toc2_export_make CHEESE_MAINTAINER_MODE=0
 fi
 
+toc2_export CHEESE_LOCALE_DIR="${prefix}/share/locale"
+
 toc2_test_require gnu_cpp_tools
 
 if toc2_find_in_path pkg-config; then
