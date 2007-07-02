@@ -18,7 +18,10 @@ mo: $(MOFILES)
 
 SOURCES = $(wildcard $(toc2.top_srcdir)/src/*.c)
 updatepo:
-	xgettext -L C -k_ -o $(package.name).pot $(SOURCES)
+	@#xgettext -L C -k_ -o $(package.name).pot $(SOURCES)
+	xgettext -k_ -klabel -ktitle -o $(package.name).pot \
+					$(SOURCES) \
+					$(wildcard $(toc2.top_srcdir)/data/*.glade)
 	for po in $(POFILES); do \
 		msgmerge -U $$po $(package.name).pot; \
 	done
