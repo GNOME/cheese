@@ -29,5 +29,10 @@ endif
 
 all: subdirs
 
+postinstall-message:
+	@echo "Install complete."
+
+install: postinstall-message
+
 dist-postprocess:
 	@$(toc2.bins.md5sum) $(package.dist.tarball_gz)

@@ -8,7 +8,7 @@ $(if $(ICON_GEOMETRY),,$(error You must set ICON_GEOMETRY before including this 
 
 PNG = $(wildcard $(package.name).png)
 ifneq (,$(PNG))
-  $(call toc2.call.define-install-set,icons-png-$(ICON_GEOMETRY),$(prefix)/share/icons/hicolor/$(ICON_GEOMETRY)/apps)
+  $(call toc2.call.define-install-set,icons-png-$(ICON_GEOMETRY),$(prefix)/share/icons/hicolor/$(ICON_GEOMETRY)/apps,-m 0644)
   package.install.icons-png-$(ICON_GEOMETRY) = $(PNG)
   package.dist_files += $(PNG)
 endif
@@ -19,7 +19,7 @@ ifneq (,$(SVG))
   ifeq (,$(PNG))
     ########################################################################
     # Only install SVG when there is no PNG.
-    $(call toc2.call.define-install-set,icons-svg-scalable,$(prefix)/share/icons/hicolor/scalable/apps)
+    $(call toc2.call.define-install-set,icons-svg-scalable,$(prefix)/share/icons/hicolor/scalable/apps,-m 0644)
     package.install.icons-svg-scalable = $(SVG)
   endif
 endif
