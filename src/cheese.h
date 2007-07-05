@@ -1,8 +1,8 @@
-#include <gtk/gtk.h>
+#ifndef __CHEESE_H__
+#define __CHEESE_H__
 
 #include <glib.h>
-
-#include "cheese_config.h"
+#include <gtk/gtk.h>
 
 //FIXME: provide option to choose the folder
 #define SAVE_FOLDER_DEFAULT  	 "images/"
@@ -19,3 +19,5 @@ void create_photo(unsigned char *data);
 
 gboolean set_screen_x_window_id();
 void on_cheese_window_close_cb(GtkWidget *widget, gpointer data);
+
+#endif /* __CHEESE_H__ */

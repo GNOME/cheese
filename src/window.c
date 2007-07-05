@@ -21,10 +21,12 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <libintl.h>
+#include <gtk/gtk.h>
 
 #include "cheese.h"
 #include "window.h"
 #include "thumbnails.h"
+#include "cheese_config.h"
 
 #define _(str) gettext(str)
 
@@ -39,44 +41,42 @@ set_effects_label(gchar *effect)
 
 void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 {
-	static GtkWidget *about = NULL;
-	//char             *authors [] = {
-	//	"daniel g. siegel <dgsiegel@gmail.com>",
-	//	NULL
-	//};
+  static const char *authors[] = {
+    "daniel g. siegel <dgsiegel@gmail.com>",
+    NULL
+  };
 
-	if (about) {
-		gtk_window_present(GTK_WINDOW(about));
-		return;
-	}
+  const char *license[] = {
+    _("This program is free software; you can redistribute it and/or modify "
+      "it under the terms of the GNU General Public License as published by "
+      "the Free Software Foundation; either version 2 of the License, or "
+      "(at your option) any later version.\n"),
+    _("This program is distributed in the hope that it will be useful, "
+      "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+      "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+      "GNU General Public License for more details.\n"),
+    _("You should have received a copy of the GNU General Public License "
+      "along with this program; if not, write to the Free Software "
+      "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.")
+  };
 
-	about = gtk_about_dialog_new();
-	g_object_set (about,
-		      "name",  CHEESE_PACKAGE_NAME,
-		      "version", CHEESE_VERSION,
-		      "copyright", "Copyright (c) 2007\n daniel g. siegel <dgsiegel@gmail.com>",
-		      "comments", _("A cheesy program to take pictures from your webcam"),
-		      //"authors", authors,
-		      //"logo-icon-name", "face-grin",
-		      "logo-icon-name", "cheese",
-		      NULL);
+  char *license_trans;
 
-	gtk_window_set_wmclass(GTK_WINDOW(about), "about_dialog", "Panel");
-	gtk_window_set_screen(GTK_WINDOW(about),
-			       gdk_screen_get_default());
-  gtk_window_set_default_icon_name ("cheese");
-	g_signal_connect(about, "destroy",
-			  G_CALLBACK(gtk_widget_destroyed),
-			  &about);
-// 	g_signal_connect (about, "event",
-// 			  G_CALLBACK (panel_context_menu_check_for_screen),
-// 			  NULL);
+  license_trans = g_strconcat (_(license[0]), "\n", _(license[1]), "\n",
+                               _(license[2]), "\n", NULL);
 
-	g_signal_connect (about, "response",
-			  G_CALLBACK (gtk_widget_destroy),
-			  NULL);
+  gtk_show_about_dialog (GTK_WINDOW(user_data),
+                         "version", CHEESE_VERSION,
+		                     "copyright", "Copyright \xc2\xa9 2007\n daniel g. siegel <dgsiegel@gmail.com>",
+                         "comments", _("A cheesy program to take pictures from your webcam"),
+                         "authors", authors,
+                         "website", "http://live.gnome.org/Cheese",
+                         "logo-icon-name", "cheese",
+                         "wrap-license", TRUE,
+                         "license", license_trans,
+                         NULL);
 
-	gtk_widget_show (about);
+  g_free (license_trans);
 }
 
 void on_item_activated_cb (GtkIconView *iconview, GtkTreePath *tree_path, gpointer user_data) {
@@ -144,7 +144,7 @@ create_window()
   menuitem = gtk_image_menu_item_new_from_stock(GTK_STOCK_ABOUT, NULL);
   gtk_menu_append(GTK_MENU(menu), menuitem);
   gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
-      GTK_SIGNAL_FUNC(on_about_cb), NULL);
+      GTK_SIGNAL_FUNC(on_about_cb), cheese_window.window);
 
   gtk_signal_connect(GTK_OBJECT(thumbnails.iconview), "item-activated",
       GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);

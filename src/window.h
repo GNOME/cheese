@@ -1,3 +1,5 @@
+#ifndef __WINDOW_H__
+#define __WINDOW_H__
 
 #include <glade/glade.h>
 
@@ -34,3 +36,5 @@ extern struct _cheese_window cheese_window;
 
 void create_window();
 void set_effects_label(gchar *effect);
+
+#endif /* __WINDOW_H__ */

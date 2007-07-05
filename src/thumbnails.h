@@ -1,3 +1,5 @@
+#ifndef __THUMBNAILS_H__
+#define __THUMBNAILS_H__
 
 void create_thumbnails_store();
 void fill_thumbs();
@@ -13,3 +15,5 @@ struct _thumbnails
 };
 
 extern struct _thumbnails thumbnails;
+
+#endif /* __THUMBNAILS_H__ */

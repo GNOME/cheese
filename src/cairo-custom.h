@@ -1,5 +1,5 @@
-#ifndef CAIRO_CUSTOM_H
-#define CAIRO_CUSTOM_H
+#ifndef __CAIRO_CUSTOM_H__
+#define __CAIRO_CUSTOM_H__
 #include <cairo.h>
 
 void
@@ -10,4 +10,4 @@ cairo_rectangle_round (cairo_t * cr,
                        double height,
                        double radius);
 
-#endif /* CAIRO_CUSTOM_H */
+#endif /* __CAIRO_CUSTOM_H__ */

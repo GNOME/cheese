@@ -27,6 +27,7 @@
 #include <libintl.h>
 
 #include "cheese.h"
+#include "cheese_config.h"
 #include "pipeline-photo.h"
 #include "window.h"
 #include "cairo-custom.h"

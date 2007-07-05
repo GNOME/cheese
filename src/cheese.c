@@ -27,14 +27,15 @@
 #include <libintl.h>
 #include <unistd.h>
 
+#include <glib.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <glib/gprintf.h>
 
 #include <gst/interfaces/xoverlay.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+#include "cheese_config.h"
 #include "cheese.h"
 #include "pipeline-photo.h"
 #include "fileutil.h"
@@ -53,7 +54,7 @@ void
 on_cheese_window_close_cb(GtkWidget *widget, gpointer data)
 {
   pipeline_set_stop(PipelinePhoto);
-	g_object_unref(G_OBJECT(PipelinePhoto));
+  g_object_unref(G_OBJECT(PipelinePhoto));
   gnome_vfs_monitor_cancel(monitor_handle);
   gtk_main_quit();
 }
@@ -91,7 +92,7 @@ create_photo(unsigned char *data)
   //gdk_pixbuf_save(pixbuf, filename, "png", NULL, NULL);
   g_object_unref(G_OBJECT(pixbuf));
 
-  g_printf("Photo saved: %s\n", filename);
+  g_print("Photo saved: %s\n", filename);
 }
 
 gboolean
@@ -142,7 +143,7 @@ main(int argc, char **argv)
 
   if (!gnome_vfs_uri_exists(uri)) {
     gnome_vfs_make_directory_for_uri(uri, 0775);
-    g_printf("creating new directory: %s\n", path);
+    g_print("creating new directory: %s\n", path);
   }
 
   create_thumbnails_store();
