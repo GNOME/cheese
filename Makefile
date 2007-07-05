@@ -29,8 +29,26 @@ endif
 
 all: subdirs
 
+ifeq (,$(DESTDIR))
 postinstall-message:
-	@echo "Install complete."
+	@echo "Installation complete."
+	@echo -n "Updating icon cache... "
+	@gtk-update-icon-cache -q -t -f $(prefix)/share/icons/hicolor
+	@echo "done"
+else
+postinstall-message:
+	@echo
+	@echo "Installation complete."
+	@echo
+	@echo please execute either
+	@echo gtk-update-icon-cache -q -t -f $(DESTDIR)$(prefix)/share/icons/hicolor
+	@echo
+	@echo or \(depending, where you plan to install $(package.name)\)
+	@echo gtk-update-icon-cache -q -t -f $(prefix)/share/icons/hicolor
+	@echo
+	@echo in order to update the icon cache and activate the icons of $(package.name)
+endif
+
 
 install: postinstall-message
 
