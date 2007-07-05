@@ -51,7 +51,7 @@ endif
 ########################################################################
 # $(call toc2.call.install.grep_kludge,file_name)
 # This is an ancient kludge force [un]install to silently fail without an
-# error when passed an empty file lists. This was done because saner
+# error when passed an empty file list. This was done because saner
 # approaches to checking this failed to work on some older machines.
 toc2.call.install.grep_kludge = echo $(1) "" | grep -q '[a-zA-Z0-9]' || exit 0
 
@@ -59,16 +59,24 @@ toc2.call.install.grep_kludge = echo $(1) "" | grep -q '[a-zA-Z0-9]' || exit 0
 # $(call toc2.call.install,file_list,destdir[,install-sh-flags])
 # Installs files $(1) to $(DESTDIR)$(2). $(3) is passed on to
 # $(toc2.bins.installer).
+#
+# This code has some rather old logic in it when uses 'cmp' to compare
+# the source and dest files, and does not update the destination if
+# they are the same. This was originally in place because the install
+# code was used to copy header files around the source tree during
+# build-time, and we wanted to avoid breaking dependencies. It hasn't
+# been used in that way in a long, long time (2003? 2004?) and can
+# probably be removed, as it just slows down the install process.
 toc2.call.install = $(call toc2.call.install.grep_kludge,$(1)); \
-			tgtdir="$(DESTDIR)$(2)"; \
-			test -d "$$tgtdir" || mkdir -p "$${tgtdir}" \
-				|| { err=$$?; echo "$(@): mkdir -p $${tgtdir} failed"; exit $$err; }; \
-			for b in $(1) ""; do test -z "$$b" && continue; \
-				b=$$(basename $$b); \
-				target="$${tgtdir}/$$b"; \
-				cmp "$$target" "$$b" > /dev/null 2>&1  && continue; \
-				cmd="$(toc2.bins.installer) $(3) $$b $$target"; echo $$cmd; $$cmd || exit; \
-			done
+		tgtdir="$(DESTDIR)$(2)"; \
+		test -d "$$tgtdir" || mkdir -p "$${tgtdir}" \
+			|| { err=$$?; echo "$(@): mkdir -p $${tgtdir} failed"; exit $$err; }; \
+		for b in $(1) ""; do test -z "$$b" && continue; \
+			b=$${b\#\#*/}; \
+			target="$${tgtdir}/$$b"; \
+			false && cmp "$$target" "$$b" > /dev/null 2>&1  && continue; \
+			cmd="$(toc2.bins.installer) $(3) $$b $$target"; echo $$cmd; $$cmd || exit; \
+		done
 
 ########################################################################
 # $(call toc2.call.uninstall,file_list,source_dir)
@@ -81,19 +89,19 @@ toc2.call.install = $(call toc2.call.install.grep_kludge,$(1)); \
 # since DESTDIR is presumably (but not necessarily) created by another
 # authority.
 toc2.call.uninstall =  $(call toc2.call.install.grep_kludge,$(1)); \
-			tgtdir="$(DESTDIR)$(2)"; \
-			test -e "$${tgtdir}" || exit 0; \
-			for b in $(1) ""; do test -z "$$b" && continue; \
-				fp="$${tgtdir}/$$b"; test -e "$$fp" || continue; \
-				cmd="rm $$fp"; echo $$cmd; $$cmd || exit $$?; \
-			done; \
-			tgtdir="$(2)"; \
-			while test x != "x$${tgtdir}" -a '$(prefix)' != "$${tgtdir}" \
-				-a '/' != "$${tgtdir}" -a -d "$(DESTDIR)$${tgtdir}"; do \
-				rmdir $(DESTDIR)$${tgtdir} 2>/dev/null || break; \
-				echo "Removing empty dir: $(DESTDIR)$${tgtdir}"; \
-				tgtdir=$${tgtdir%/*}; \
-			done; true
+		tgtdir="$(DESTDIR)$(2)"; \
+		test -e "$${tgtdir}" || exit 0; \
+		for b in $(1) ""; do test -z "$$b" && continue; \
+			fp="$${tgtdir}/$$b"; test -e "$$fp" || continue; \
+			cmd="rm $$fp"; echo $$cmd; $$cmd || exit $$?; \
+		done; \
+		tgtdir="$(2)"; \
+		while test x != "x$${tgtdir}" -a '$(prefix)' != "$${tgtdir}" \
+			-a '/' != "$${tgtdir}" -a -d "$(DESTDIR)$${tgtdir}"; do \
+			rmdir $(DESTDIR)$${tgtdir} 2>/dev/null || break; \
+			echo "Removing empty dir: $(DESTDIR)$${tgtdir}"; \
+			tgtdir=$${tgtdir%/*}; \
+		done; true
 
 # toc2.call.install-symlink call()able:
 # works similarly to toc2.call.install, but symlinks back to the install source,
@@ -102,13 +110,13 @@ toc2.call.uninstall =  $(call toc2.call.install.grep_kludge,$(1)); \
 # easily/reliably make a relative path from the target directory back to 
 # the install source:
 toc2.call.install-symlink = $(call toc2.call.install.grep_kludge,$(1)); \
-			test -d $(2) || mkdir -p "$(2)" || \
-				{ err=$$?; echo "$(@): mkdir -p $(2) failed"; exit $$err; }; \
-			for b in $(1) ""; do test -z "$$b" && continue; \
-				target=$(2)/$$b; \
-				test $$target -ef $$b && continue; \
-				echo "Symlinking $$target"; ln -s -f $$PWD/$$b $$target || exit $$?; \
-			done
+		test -d $(2) || mkdir -p "$(2)" || \
+			{ err=$$?; echo "$(@): mkdir -p $(2) failed"; exit $$err; }; \
+		for b in $(1) ""; do test -z "$$b" && continue; \
+			target=$(2)/$$b; \
+			test $$target -ef $$b && continue; \
+			echo "Symlinking $$target"; ln -s -f $$PWD/$$b $$target || exit $$?; \
+		done
 
 ########################################################################
 # toc2.call.install-dll: installs foo.so.X.Y.Z and symlinks foo.so,
@@ -117,20 +125,20 @@ toc2.call.install-symlink = $(call toc2.call.install.grep_kludge,$(1)); \
 # $2-4 = Major, Minor, Patch version numbers
 # $5 = destination directory
 toc2.call.install-dll =  $(call toc2.call.install.grep_kludge,$(1)); \
-                        test -d $(5) || mkdir -p $(5) || exit; \
-                        wholename=$(1).$(2).$(3).$(4); \
-                        target=$(5)/$$wholename; \
-			test $$wholename -ef $$target || { \
-	                        echo "Installing/symlinking $$target"; \
-				cmd="$(toc2.bins.installer) -s $$wholename $$target"; \
-				$$cmd || exit $$?; \
-			}; \
-			cd $(5); \
-			for i in $(1) $(1).$(2) $(1).$(2).$(3); do \
-				test -e $$i && rm -f $$i; \
-				cmd="ln -fs $$wholename $$i"; echo $$cmd; \
-				$$cmd || exit $$?; \
-			done
+	test -d $(5) || mkdir -p $(5) || exit; \
+        wholename=$(1).$(2).$(3).$(4); \
+        target=$(5)/$$wholename; \
+	test $$wholename -ef $$target || { \
+		echo "Installing/symlinking $$target"; \
+		cmd="$(toc2.bins.installer) -s $$wholename $$target"; \
+		$$cmd || exit $$?; \
+	}; \
+	cd $(5); \
+	for i in $(1) $(1).$(2) $(1).$(2).$(3); do \
+		test -e $$i && rm -f $$i; \
+		cmd="ln -fs $$wholename $$i"; echo $$cmd; \
+		$$cmd || exit $$?; \
+	done
 ## symlinking method number 2:
 ##			{ set -x; \
 ##				ln -fs $(1).$(2).$(3).$(4) $(1).$(2).$(3); \
