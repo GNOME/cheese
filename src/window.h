@@ -4,7 +4,6 @@
 #include <glade/glade.h>
 
 #define GLADE_FILE CHEESE_DATA_DIR"/cheese.glade"
-//#define GLADE_FILE "/usr/share/cheese/cheese.glade"
 
 struct _widgets
 {
@@ -36,5 +35,6 @@ extern struct _cheese_window cheese_window;
 
 void create_window();
 void set_effects_label(gchar *effect);
+void window_change_effect(GtkWidget *widget, gpointer self);
 
 #endif /* __WINDOW_H__ */

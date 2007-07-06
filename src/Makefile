@@ -3,7 +3,7 @@
 include toc2.make
 include $(toc2.dirs.makefiles)/toc2-c.make
 
-SOURCES := cheese.c pipeline-photo.c fileutil.c thumbnails.c window.c cairo-custom.c
+SOURCES := cheese.c pipeline-photo.c fileutil.c thumbnails.c window.c cairo-custom.c effects-widget.c
 
 print-var-%:
 	@echo $*=$($*)

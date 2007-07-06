@@ -1,5 +1,6 @@
 #include <glib.h>
 #include <glib-object.h>
+#include <gst/gst.h>
 
 G_BEGIN_DECLS
 
@@ -27,15 +28,16 @@ struct _PipelineClass
 	GObjectClass parent_class;
 };
 
-Pipeline*     pipeline_new            (void);
-GType         pipeline_get_type       (void);
-void          pipeline_set_play       (Pipeline *self);
-void          pipeline_set_stop       (Pipeline *self);
-void          pipeline_create         (Pipeline *self);
-GstElement   *pipeline_get_ximagesink (Pipeline *self);
-GstElement   *pipeline_get_fakesink   (Pipeline *self);
-GstElement   *pipeline_get_pipeline   (Pipeline *self);
-void pipeline_button_clicked(GtkWidget *widget, gpointer self);
+Pipeline*     pipeline_new                 (void);
+GType         pipeline_get_type            (void);
+void          pipeline_set_play            (Pipeline *self);
+void          pipeline_set_stop            (Pipeline *self);
+void          pipeline_create              (Pipeline *self);
+GstElement   *pipeline_get_ximagesink      (Pipeline *self);
+GstElement   *pipeline_get_fakesink        (Pipeline *self);
+GstElement   *pipeline_get_pipeline        (Pipeline *self);
+void          pipeline_button_clicked      (GtkWidget *widget, gpointer self);
+void          pipeline_change_effect       (gpointer self);
 
 G_END_DECLS
 

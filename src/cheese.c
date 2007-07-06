@@ -41,6 +41,7 @@
 #include "fileutil.h"
 #include "thumbnails.h"
 #include "window.h"
+#include "effects-widget.h"
 
 #define _(str) gettext(str)
 
@@ -134,6 +135,9 @@ main(int argc, char **argv)
 
   create_window();
 
+  effects_widget_init();
+  gtk_notebook_append_page(GTK_NOTEBOOK(cheese_window.widgets.notebook), cheese_window.widgets.effects_widget, gtk_label_new(NULL));
+
   PipelinePhoto = PIPELINE(pipeline_new());
   pipeline_create(PipelinePhoto);
   pipeline_set_play(PipelinePhoto);
@@ -161,7 +165,7 @@ main(int argc, char **argv)
   g_signal_connect(cheese_window.widgets.screen, "expose-event",
       G_CALLBACK(expose_cb), NULL);
   g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects), "clicked",
-      G_CALLBACK(pipeline_change_effect), PipelinePhoto);
+      G_CALLBACK(window_change_effect), PipelinePhoto);
 
   gtk_widget_show_all(cheese_window.window);
   gtk_main();

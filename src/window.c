@@ -27,6 +27,8 @@
 #include "window.h"
 #include "thumbnails.h"
 #include "cheese_config.h"
+#include "pipeline-photo.h"
+#include "effects-widget.h"
 
 #define _(str) gettext(str)
 
@@ -149,4 +151,23 @@ create_window()
   gtk_signal_connect(GTK_OBJECT(thumbnails.iconview), "item-activated",
       GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);
 
+}
+
+void
+window_change_effect(GtkWidget *widget, gpointer self)
+{
+  if (gtk_notebook_get_current_page(GTK_NOTEBOOK(cheese_window.widgets.notebook)) == 1) {
+    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 0);
+    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Effects"));
+    gtk_widget_set_sensitive(cheese_window.widgets.take_picture, TRUE);
+    pipeline_change_effect(self);
+  }
+  else {
+    if (cheese_window.widgets.effects_widget == NULL) {
+      gtk_widget_show(cheese_window.widgets.effects_widget);
+    }
+    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 1);
+    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Back"));
+    gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.take_picture), FALSE);
+  }
 }
