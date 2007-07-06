@@ -20,7 +20,7 @@
 
 #include <libgnomevfs/gnome-vfs.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <libintl.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 #include "cheese.h"
@@ -29,8 +29,6 @@
 #include "cheese_config.h"
 #include "pipeline-photo.h"
 #include "effects-widget.h"
-
-#define _(str) gettext(str)
 
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
