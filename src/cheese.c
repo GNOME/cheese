@@ -133,6 +133,7 @@ main(int argc, char **argv)
   bindtextdomain(CHEESE_PACKAGE_NAME, CHEESE_LOCALE_DIR);
   textdomain(CHEESE_PACKAGE_NAME);
 
+  gtk_window_set_default_icon_name("cheese");
   create_window();
 
   effects_widget_init();
