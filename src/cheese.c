@@ -125,7 +125,6 @@ main(int argc, char **argv)
   GnomeVFSURI *uri;
 
   gtk_init(&argc, &argv);
-  glade_init();
   gst_init(&argc, &argv);
   gnome_vfs_init();
 	g_type_init();
