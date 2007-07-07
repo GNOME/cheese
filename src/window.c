@@ -30,6 +30,9 @@
 #include "pipeline-photo.h"
 #include "effects-widget.h"
 
+#define GLADE_FILE CHEESE_DATA_DIR"/cheese.glade"
+
+
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
 

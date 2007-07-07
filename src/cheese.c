@@ -18,16 +18,9 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#include <pwd.h>
-#include <dirent.h>
-#include <libintl.h>
-#include <unistd.h>
 
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <libgnomevfs/gnome-vfs.h>
@@ -42,8 +35,6 @@
 #include "thumbnails.h"
 #include "window.h"
 #include "effects-widget.h"
-
-#define _(str) gettext(str)
 
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
@@ -124,10 +115,13 @@ main(int argc, char **argv)
   gchar *path = NULL;
   GnomeVFSURI *uri;
 
+  g_thread_init (NULL);
   gtk_init(&argc, &argv);
   gst_init(&argc, &argv);
   gnome_vfs_init();
-	g_type_init();
+  g_type_init();
+
+  g_set_application_name (_("Cheese"));
 
   bindtextdomain(CHEESE_PACKAGE_NAME, CHEESE_LOCALE_DIR);
   textdomain(CHEESE_PACKAGE_NAME);
