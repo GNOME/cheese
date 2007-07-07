@@ -18,26 +18,16 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include "cheese_config.h"
+
 #include <gst/interfaces/xoverlay.h>
 #include <glib.h>
-#include <glib/gi18n.h>
-
 #include <gtk/gtk.h>
-#include <cairo.h>
 
 #include "cheese.h"
-#include "cheese_config.h"
 #include "pipeline-photo.h"
-#include "window.h"
 #include "effects-widget.h"
 
-#define DEFAULT_WIDTH  640
-#define DEFAULT_HEIGHT 480
-#define BOARD_COLS 4
-#define BOARD_ROWS 3
-#define MAX_EFFECTS (BOARD_ROWS * BOARD_COLS)
-
-#define SHRINK(cr, x) cairo_translate (cr, (1-(x))/2.0, (1-(x))/2.0); cairo_scale (cr, (x), (x))
 
 G_DEFINE_TYPE (Pipeline, pipeline, G_TYPE_OBJECT)
 
@@ -123,7 +113,7 @@ pipeline_change_effect(gpointer self)
     gst_element_unlink(priv->effect, priv->ffmpeg2);
     gst_bin_remove(GST_BIN(PIPELINE(self)->pipeline), priv->effect);
 
-    printf("changing to effect: %s\n", effect);
+    g_print("changing to effect: %s\n", effect);
     priv->effect = gst_parse_bin_from_description(effect, TRUE, NULL);
     gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->effect);
 
@@ -227,32 +217,30 @@ cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer self)
 void
 pipeline_finalize(GObject *object)
 {
-	(*parent_class->finalize) (object);
-
-	return;
+  (*parent_class->finalize) (object);
+  return;
 }
 
 Pipeline *
 pipeline_new(void)
 {
-	Pipeline *self = g_object_new(PIPELINE_TYPE, NULL);
+  Pipeline *self = g_object_new(PIPELINE_TYPE, NULL);
 
-	return self;
+  return self;
 }
 
 void
 pipeline_class_init(PipelineClass *klass)
 {
-	GObjectClass *object_class;
+  GObjectClass *object_class;
 
-	parent_class = g_type_class_peek_parent(klass);
-	object_class = (GObjectClass*) klass;
+  parent_class = g_type_class_peek_parent(klass);
+  object_class = (GObjectClass*) klass;
 
-	object_class->finalize = pipeline_finalize;
+  object_class->finalize = pipeline_finalize;
   g_type_class_add_private(klass, sizeof(PipelinePrivate));
 
-	G_OBJECT_CLASS(klass)->finalize = (GObjectFinalizeFunc) pipeline_finalize;
-
+  G_OBJECT_CLASS(klass)->finalize = (GObjectFinalizeFunc) pipeline_finalize;
 }
 
 void
