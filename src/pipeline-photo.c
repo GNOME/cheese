@@ -20,19 +20,16 @@
 
 #include <gst/interfaces/xoverlay.h>
 #include <glib.h>
+#include <glib/gi18n.h>
 
 #include <gtk/gtk.h>
 #include <cairo.h>
-
-#include <libintl.h>
 
 #include "cheese.h"
 #include "cheese_config.h"
 #include "pipeline-photo.h"
 #include "window.h"
 #include "effects-widget.h"
-
-#define _(str) gettext(str)
 
 #define DEFAULT_WIDTH  640
 #define DEFAULT_HEIGHT 480
