@@ -24,7 +24,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 
 #include "cheese.h"
-#include "thumbnails.h"
+#include "cheese-thumbnails.h"
 
 gchar *
 get_cheese_path() {

@@ -3,7 +3,13 @@
 include toc2.make
 include $(toc2.dirs.makefiles)/toc2-c.make
 
-SOURCES := cheese.c pipeline-photo.c fileutil.c thumbnails.c window.c cairo-custom.c effects-widget.c
+SOURCES := cheese.c \
+						cheese-pipeline-photo.c \
+						cheese-fileutil.c \
+						cheese-thumbnails.c \
+						cheese-window.c \
+						cheese-cairo-custom.c \
+						cheese-effects-widget.c
 
 print-var-%:
 	@echo $*=$($*)
@@ -32,9 +38,9 @@ LDFLAGS := $(call toc2.call.remove-dupes,-lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GL
 
 OBJS = $(SOURCES:%.c=%.o)
 
-package.dist_files += $(SOURCES) $(SOURCES:%.c=%.h) cheese_config.h.at
+package.dist_files += $(SOURCES) $(SOURCES:%.c=%.h) cheese-config.h.at
 #package.clean_files += cheese $(OBJS)
-package.distclean_files += cheese_config.h
+package.distclean_files += cheese-config.h
 package.install.bins := cheese
 
 ########################################################################

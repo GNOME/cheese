@@ -22,9 +22,9 @@
 #include <glib/gprintf.h>
 
 #include "cheese.h"
-#include "fileutil.h"
-#include "thumbnails.h"
-#include "window.h"
+#include "cheese-fileutil.h"
+#include "cheese-thumbnails.h"
+#include "cheese-window.h"
 
 enum {
   PIXBUF_COLUMN,

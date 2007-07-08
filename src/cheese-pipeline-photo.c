@@ -18,15 +18,15 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#include "cheese_config.h"
+#include "cheese-config.h"
 
 #include <gst/interfaces/xoverlay.h>
 #include <glib.h>
 #include <gtk/gtk.h>
 
 #include "cheese.h"
-#include "pipeline-photo.h"
-#include "effects-widget.h"
+#include "cheese-pipeline-photo.h"
+#include "cheese-effects-widget.h"
 
 
 G_DEFINE_TYPE (Pipeline, pipeline, G_TYPE_OBJECT)

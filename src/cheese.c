@@ -28,13 +28,13 @@
 #include <gst/interfaces/xoverlay.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
-#include "cheese_config.h"
+#include "cheese-config.h"
 #include "cheese.h"
-#include "pipeline-photo.h"
-#include "fileutil.h"
-#include "thumbnails.h"
-#include "window.h"
-#include "effects-widget.h"
+#include "cheese-pipeline-photo.h"
+#include "cheese-fileutil.h"
+#include "cheese-thumbnails.h"
+#include "cheese-window.h"
+#include "cheese-effects-widget.h"
 
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;

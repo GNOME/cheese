@@ -18,22 +18,13 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __THUMBNAILS_H__
-#define __THUMBNAILS_H__
+#ifndef __CHEESE_EFFECTS_WIDGET_H__
+#define __CHEESE_EFFECTS_WIDGET_H__
 
-void create_thumbnails_store();
-void fill_thumbs();
-void append_photo(gchar *);
-void remove_photo(gchar *);
+gchar *
+get_selection();
 
-struct _thumbnails
-{
-  GtkListStore *store;
-  GtkTreeIter iter;
-  GtkWidget *iconview;
-  //FIXME: add some structure to save thumbnails
-};
+void
+effects_widget_init();
 
-extern struct _thumbnails thumbnails;
-
-#endif /* __THUMBNAILS_H__ */
+#endif /* __CHEESE_EFFECTS_WIDGET_H__ */

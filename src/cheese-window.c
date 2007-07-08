@@ -24,11 +24,11 @@
 #include <gtk/gtk.h>
 
 #include "cheese.h"
-#include "window.h"
-#include "thumbnails.h"
-#include "cheese_config.h"
-#include "pipeline-photo.h"
-#include "effects-widget.h"
+#include "cheese-window.h"
+#include "cheese-thumbnails.h"
+#include "cheese-config.h"
+#include "cheese-pipeline-photo.h"
+#include "cheese-effects-widget.h"
 
 #define GLADE_FILE CHEESE_DATA_DIR"/cheese.glade"
 

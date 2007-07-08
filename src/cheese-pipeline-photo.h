@@ -18,8 +18,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __PIPELINE_PHOTO_H__
-#define __PIPELINE_PHOTO_H__
+#ifndef __CHEESE_PIPELINE_PHOTO_H__
+#define __CHEESE_PIPELINE_PHOTO_H__
 #include <glib.h>
 #include <glib-object.h>
 #include <gst/gst.h>
@@ -64,4 +64,4 @@ void          pipeline_change_effect       (gpointer self);
 G_END_DECLS
 
 
-#endif /* __PIPELINE_PHOTO_H__ */
+#endif /* __CHEESE_PIPELINE_PHOTO_H__ */

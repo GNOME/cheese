@@ -18,41 +18,11 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __WINDOW_H__
-#define __WINDOW_H__
+#ifndef __CHEESE_FILE_UTIL_H__
+#define __CHEESE_FILE_UTIL_H__
 
-#include <glade/glade.h>
+gchar *get_cheese_path(void);
+gchar *get_cheese_filename(int);
+void photos_monitor_cb(GnomeVFSMonitorHandle *, const gchar *, const gchar *, GnomeVFSMonitorEventType);
 
-struct _widgets
-{
-  GtkWidget *take_picture;
-  GtkWidget *screen;
-  GtkWidget *notebook;
-  GtkWidget *table;
-  GtkWidget *button_video;
-  GtkWidget *button_photo;
-  GtkWidget *button_effects;
-  GtkWidget *label_effects;
-  GtkWidget *label_photo;
-  GtkWidget *label_video;
-  GtkWidget *label_take_photo;
-  GtkWidget *menubar;
-  GtkWidget *file_menu;
-  GtkWidget *help_menu;
-  GtkWidget *effects_widget;
-};
-
-struct _cheese_window
-{
-  GladeXML *gxml;
-  GtkWidget *window;
-  struct _widgets widgets;
-};
-
-extern struct _cheese_window cheese_window;
-
-void create_window();
-void set_effects_label(gchar *effect);
-void window_change_effect(GtkWidget *widget, gpointer self);
-
-#endif /* __WINDOW_H__ */
+#endif /* __CHEESE_FILE_UTIL_H__ */

@@ -18,8 +18,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef __CAIRO_CUSTOM_H__
-#define __CAIRO_CUSTOM_H__
+#ifndef __CHEESE_CAIRO_CUSTOM_H__
+#define __CHEESE_CAIRO_CUSTOM_H__
 #include <cairo.h>
 
 void
@@ -30,4 +30,4 @@ cairo_rectangle_round (cairo_t * cr,
                        double height,
                        double radius);
 
-#endif /* __CAIRO_CUSTOM_H__ */
+#endif /* __CHEESE_CAIRO_CUSTOM_H__ */

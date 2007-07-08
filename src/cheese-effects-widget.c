@@ -18,6 +18,8 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+#include "cheese-config.h"
+
 #include <glib.h>
 #include <glib/gi18n.h>
 
@@ -25,10 +27,9 @@
 #include <cairo.h>
 
 #include "cheese.h"
-#include "window.h"
-#include "cheese_config.h"
-#include "effects-widget.h"
-#include "cairo-custom.h"
+#include "cheese-window.h"
+#include "cheese-effects-widget.h"
+#include "cheese-cairo-custom.h"
 
 #define DEFAULT_WIDTH  640
 #define DEFAULT_HEIGHT 480
