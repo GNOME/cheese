@@ -56,14 +56,14 @@ static void pipeline_lens_open(Pipeline *self);
 void
 pipeline_set_play(Pipeline *self)
 {
-  gst_element_set_state(PIPELINE(self)->pipeline, GST_STATE_PLAYING);
+  gst_element_set_state(self->pipeline, GST_STATE_PLAYING);
   return;
 }
 
 void
 pipeline_set_stop(Pipeline *self)
 {
-  gst_element_set_state(PIPELINE(self)->pipeline, GST_STATE_NULL);
+  gst_element_set_state(self->pipeline, GST_STATE_NULL);
   return;
 }
 
@@ -85,19 +85,19 @@ pipeline_lens_open(Pipeline *self)
 GstElement *
 pipeline_get_ximagesink(Pipeline *self)
 {
-  return PIPELINE(self)->ximagesink;
+  return self->ximagesink;
 }
 
 GstElement *
 pipeline_get_fakesink(Pipeline *self)
 {
-  return PIPELINE(self)->fakesink;
+  return self->fakesink;
 }
 
 GstElement *
 pipeline_get_pipeline(Pipeline *self)
 {
-  return PIPELINE(self)->pipeline;
+  return self->pipeline;
 }
 
 void
@@ -107,7 +107,7 @@ pipeline_change_effect(gpointer self)
   gchar *effect = get_selection();
 
   if (effect != NULL) {
-    pipeline_set_stop(self);
+    pipeline_set_stop(PIPELINE(self));
 
     gst_element_unlink(priv->ffmpeg1, priv->effect);
     gst_element_unlink(priv->effect, priv->ffmpeg2);
@@ -133,34 +133,34 @@ pipeline_create(Pipeline *self) {
 
   PipelinePrivate *priv = PIPELINE_GET_PRIVATE(self);
 
-  PIPELINE(self)->pipeline = gst_pipeline_new("pipeline");
+  self->pipeline = gst_pipeline_new("pipeline");
   priv->source = gst_element_factory_make("gconfvideosrc", "v4l2src");
   // if you want to test without having a webcam
-  //source = gst_element_factory_make("videotestsrc", "v4l2src");
+  // priv->source = gst_element_factory_make("videotestsrc", "v4l2src");
 
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->source);
+  gst_bin_add(GST_BIN(self->pipeline), priv->source);
   priv->ffmpeg1 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->ffmpeg1);
+  gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg1);
 
   priv->effect = gst_element_factory_make("identity", "effect");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->effect);
+  gst_bin_add(GST_BIN(self->pipeline), priv->effect);
 
   priv->ffmpeg2 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace2");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->ffmpeg2);
+  gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg2);
   priv->ffmpeg3 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace3");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->ffmpeg3);
+  gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg3);
   priv->queuevid = gst_element_factory_make("queue", "queuevid");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->queuevid);
+  gst_bin_add(GST_BIN(self->pipeline), priv->queuevid);
   priv->queueimg = gst_element_factory_make("queue", "queueimg");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->queueimg);
+  gst_bin_add(GST_BIN(self->pipeline), priv->queueimg);
   priv->caps = gst_element_factory_make("capsfilter", "capsfilter");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->caps);
-  PIPELINE(self)->ximagesink = gst_element_factory_make("gconfvideosink", "gconfvideosink");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), PIPELINE(self)->ximagesink);
+  gst_bin_add(GST_BIN(self->pipeline), priv->caps);
+  self->ximagesink = gst_element_factory_make("gconfvideosink", "gconfvideosink");
+  gst_bin_add(GST_BIN(self->pipeline), self->ximagesink);
   priv->tee = gst_element_factory_make("tee", "tee");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->tee);
-  PIPELINE(self)->fakesink = gst_element_factory_make("fakesink", "fakesink");
-  gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), PIPELINE(self)->fakesink);
+  gst_bin_add(GST_BIN(self->pipeline), priv->tee);
+  self->fakesink = gst_element_factory_make("fakesink", "fakesink");
+  gst_bin_add(GST_BIN(self->pipeline), self->fakesink);
 
   /*
    * the pipeline looks like this:
@@ -174,9 +174,6 @@ pipeline_create(Pipeline *self) {
   gst_element_link(priv->effect, priv->ffmpeg2);
 
   filter = gst_caps_new_simple("video/x-raw-rgb",
-      "width", G_TYPE_INT, PHOTO_WIDTH,
-      "height", G_TYPE_INT, PHOTO_HEIGHT,
-      "framerate", GST_TYPE_FRACTION, 30, 1,
       "bpp", G_TYPE_INT, 24,
       "depth", G_TYPE_INT, 24, NULL);
 
@@ -184,20 +181,21 @@ pipeline_create(Pipeline *self) {
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
+  gst_caps_unref (filter);
   //FIXME: do we need this?
   //filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
 
   gst_element_link(priv->tee, priv->queuevid);
   gst_element_link(priv->queuevid, priv->ffmpeg3);
 
-  gst_element_link(priv->ffmpeg3, PIPELINE(self)->ximagesink);
+  gst_element_link(priv->ffmpeg3, self->ximagesink);
 
   gst_element_link(priv->tee, priv->queueimg);
-  gst_element_link(priv->queueimg, PIPELINE(self)->fakesink);
-  g_object_set(G_OBJECT(PIPELINE(self)->fakesink), "signal-handoffs", TRUE, NULL);
+  gst_element_link(priv->queueimg, self->fakesink);
+  g_object_set(G_OBJECT(self->fakesink), "signal-handoffs", TRUE, NULL);
 
-  g_signal_connect(G_OBJECT(PIPELINE(self)->fakesink), "handoff", 
-      G_CALLBACK(cb_have_data), self);
+  g_signal_connect(G_OBJECT(self->fakesink), "handoff", 
+                   G_CALLBACK(cb_have_data), self);
 
 }
 
@@ -208,8 +206,18 @@ cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer self)
 
   unsigned char *data_photo = (unsigned char *)GST_BUFFER_DATA(buffer);
   if (priv->picture_requested) {
+    GstCaps *caps;
+    const GstStructure *structure;
+
+    int width, height;
+
+    caps = gst_buffer_get_caps (buffer);
+    structure = gst_caps_get_structure (caps, 0);
+    gst_structure_get_int (structure, "width", &width);
+    gst_structure_get_int (structure, "height", &height);
+
+    create_photo(data_photo, width, height);
     priv->picture_requested = FALSE;
-    create_photo(data_photo);
   }
   return TRUE;
 }

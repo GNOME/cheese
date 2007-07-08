@@ -21,6 +21,9 @@
 #ifndef __CHEESE_THUMBNAILS_H__
 #define __CHEESE_THUMBNAILS_H__
 
+#define THUMB_WIDTH (128)
+#define THUMB_HEIGHT (96)
+
 void create_thumbnails_store();
 void fill_thumbs();
 void append_photo(gchar *);

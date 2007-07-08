@@ -87,7 +87,7 @@ void on_item_activated_cb (GtkIconView *iconview, GtkTreePath *tree_path, gpoint
   const gchar *file;
   gtk_tree_model_get_iter(GTK_TREE_MODEL(thumbnails.store), &iter, tree_path);
   gtk_tree_model_get(GTK_TREE_MODEL(thumbnails.store), &iter, 1, &file, -1);
-  printf("opening file %s\n", file);
+  g_print("opening file %s\n", file);
   file = g_strconcat ("file://", file, NULL);
   gnome_vfs_url_show(file);
 }
@@ -104,7 +104,7 @@ create_window()
   cheese_window.window                        = glade_xml_get_widget(cheese_window.gxml, "cheese_window");
   cheese_window.widgets.menubar               = glade_xml_get_widget(cheese_window.gxml, "menubar");
   cheese_window.widgets.take_picture          = glade_xml_get_widget(cheese_window.gxml, "take_picture");
-  cheese_window.widgets.screen                = glade_xml_get_widget(cheese_window.gxml, "screen");
+  cheese_window.widgets.screen                = glade_xml_get_widget(cheese_window.gxml, "video_screen");
   cheese_window.widgets.notebook              = glade_xml_get_widget(cheese_window.gxml, "notebook");
   cheese_window.widgets.table                 = glade_xml_get_widget(cheese_window.gxml, "table");
   cheese_window.widgets.button_photo          = glade_xml_get_widget(cheese_window.gxml, "button_photo");
@@ -114,10 +114,10 @@ create_window()
   cheese_window.widgets.label_photo           = glade_xml_get_widget(cheese_window.gxml, "label_photo");
   cheese_window.widgets.label_video           = glade_xml_get_widget(cheese_window.gxml, "label_video");
   cheese_window.widgets.label_take_photo      = glade_xml_get_widget(cheese_window.gxml, "label_take_photo");
+  cheese_window.widgets.effects_widget        = glade_xml_get_widget(cheese_window.gxml, "effects_screen");
   thumbnails.iconview                         = glade_xml_get_widget(cheese_window.gxml, "previews");
 
-  gtk_widget_set_size_request(cheese_window.widgets.screen, PHOTO_WIDTH, PHOTO_HEIGHT);
-  gtk_widget_set_size_request(thumbnails.iconview, PHOTO_WIDTH, THUMB_HEIGHT + 20);
+  gtk_widget_set_size_request(thumbnails.iconview, -1 , THUMB_HEIGHT + 20);
 
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_photo), FALSE);
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), FALSE);
@@ -164,9 +164,6 @@ window_change_effect(GtkWidget *widget, gpointer self)
     pipeline_change_effect(self);
   }
   else {
-    if (cheese_window.widgets.effects_widget == NULL) {
-      gtk_widget_show(cheese_window.widgets.effects_widget);
-    }
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 1);
     gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Back"));
     gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.take_picture), FALSE);

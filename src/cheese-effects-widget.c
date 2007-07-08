@@ -22,7 +22,6 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
-
 #include <gtk/gtk.h>
 #include <cairo.h>
 
@@ -31,8 +30,6 @@
 #include "cheese-effects-widget.h"
 #include "cheese-cairo-custom.h"
 
-#define DEFAULT_WIDTH  640
-#define DEFAULT_HEIGHT 480
 #define BOARD_COLS 4
 #define BOARD_ROWS 3
 #define MAX_EFFECTS (BOARD_ROWS * BOARD_COLS)
@@ -128,13 +125,13 @@ event_press(GtkWidget *widget, GdkEventButton *bev, gpointer self)
 {
   int i;
 
-  int col = (int) (bev->x / DEFAULT_WIDTH * BOARD_COLS);
-  int row = (int) (bev->y / DEFAULT_HEIGHT * BOARD_ROWS);
+  int col = (int) (bev->x / widget->allocation.width * BOARD_COLS);
+  int row = (int) (bev->y / widget->allocation.height * BOARD_ROWS);
 
   int slot = (row * BOARD_COLS + col);
 
   g_array_index(effects_widget.effects, gsteffects, slot).selected = ! g_array_index(effects_widget.effects, gsteffects, slot).selected;
-  printf("Slot %d selected (%f, %f, %d)\n", slot, bev->x, bev->y, g_array_index(effects_widget.effects, gsteffects, slot).selected);
+  g_print("Slot %d selected (%f, %f, %d)\n", slot, bev->x, bev->y, g_array_index(effects_widget.effects, gsteffects, slot).selected);
 
   if (g_array_index(effects_widget.effects, gsteffects, 0).selected == TRUE)
   {
@@ -151,9 +148,6 @@ void
 effects_widget_init()
 {
   effects_widget.used_effect = "identity";
-
-  cheese_window.widgets.effects_widget = gtk_drawing_area_new();
-  gtk_widget_set_size_request(cheese_window.widgets.effects_widget, DEFAULT_WIDTH, DEFAULT_HEIGHT);
 
   gtk_widget_add_events(cheese_window.widgets.effects_widget, GDK_BUTTON_PRESS_MASK);
 

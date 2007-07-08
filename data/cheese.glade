@@ -5,8 +5,8 @@
   <widget class="GtkWindow" id="cheese_window">
     <property name="visible">True</property>
     <property name="title" translatable="yes">Cheese</property>
-    <property name="resizable">False</property>
-    <property name="destroy_with_parent">True</property>
+    <property name="default_width">540</property>
+    <property name="default_height">640</property>
     <property name="icon_name">cheese</property>
     <child>
       <widget class="GtkVBox" id="vbox1">
@@ -40,12 +40,41 @@
                     <property name="ratio">1.3300000429153442</property>
                     <property name="obey_child">False</property>
                     <child>
-                      <widget class="GtkDrawingArea" id="screen">
+                      <widget class="GtkDrawingArea" id="video_screen">
+                        <property name="width_request">320</property>
+                        <property name="height_request">240</property>
                         <property name="visible">True</property>
                       </widget>
                     </child>
                   </widget>
                   <packing>
+                    <property name="tab_expand">False</property>
+                    <property name="tab_fill">False</property>
+                  </packing>
+                </child>
+                <child>
+                  <placeholder/>
+                  <packing>
+                    <property name="type">tab</property>
+                  </packing>
+                </child>
+                <child>
+                  <widget class="GtkAspectFrame" id="effects_frame">
+                    <property name="visible">True</property>
+                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">GTK_SHADOW_NONE</property>
+                    <property name="ratio">1.3300000429153442</property>
+                    <property name="obey_child">False</property>
+                    <child>
+                      <widget class="GtkDrawingArea" id="effects_screen">
+                        <property name="visible">True</property>
+                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                      </widget>
+                    </child>
+                  </widget>
+                  <packing>
+                    <property name="position">1</property>
                     <property name="tab_expand">False</property>
                   </packing>
                 </child>
@@ -55,19 +84,7 @@
                     <property name="type">tab</property>
                   </packing>
                 </child>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                  <packing>
-                    <property name="type">tab</property>
-                  </packing>
-                </child>
               </widget>
-              <packing>
-                <property name="fill">False</property>
-              </packing>
             </child>
             <child>
               <widget class="GtkHBox" id="hbox1">
@@ -88,7 +105,6 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="response_id">0</property>
                             <child>
                               <widget class="GtkAlignment" id="alignment4">
                                 <property name="visible">True</property>
@@ -127,7 +143,6 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <property name="response_id">0</property>
                             <child>
                               <widget class="GtkAlignment" id="alignment5">
                                 <property name="visible">True</property>
@@ -175,7 +190,6 @@
                   <widget class="GtkButton" id="take_picture">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="response_id">0</property>
                     <child>
                       <widget class="GtkAlignment" id="alignment1">
                         <property name="visible">True</property>
@@ -225,7 +239,6 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                    <property name="response_id">0</property>
                     <child>
                       <widget class="GtkAlignment" id="alignment2">
                         <property name="visible">True</property>

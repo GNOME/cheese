@@ -24,7 +24,6 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkx.h>
 #include <libgnomevfs/gnome-vfs.h>
-
 #include <gst/interfaces/xoverlay.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
@@ -52,7 +51,7 @@ on_cheese_window_close_cb(GtkWidget *widget, gpointer data)
 }
 
 void
-create_photo(unsigned char *data)
+create_photo(unsigned char *data, int width, int height)
 {
   int i;
   gchar *filename = NULL;
@@ -72,16 +71,10 @@ create_photo(unsigned char *data)
   }
   g_free(uri);
 
-  pixbuf = gdk_pixbuf_new_from_data (data, 
-      GDK_COLORSPACE_RGB, 
-      FALSE, 
-      8, 
-      PHOTO_WIDTH, 
-      PHOTO_HEIGHT, 
-      PHOTO_WIDTH * 3, 
-      NULL, NULL);
+  pixbuf = gdk_pixbuf_new_from_data (data, GDK_COLORSPACE_RGB, FALSE, 8, 
+                                     width, height, width * 3, NULL, NULL);
+
   gdk_pixbuf_save(pixbuf, filename, "jpeg", NULL, NULL);
-  //gdk_pixbuf_save(pixbuf, filename, "png", NULL, NULL);
   g_object_unref(G_OBJECT(pixbuf));
 
   g_print("Photo saved: %s\n", filename);
@@ -130,7 +123,6 @@ main(int argc, char **argv)
   create_window();
 
   effects_widget_init();
-  gtk_notebook_append_page(GTK_NOTEBOOK(cheese_window.widgets.notebook), cheese_window.widgets.effects_widget, gtk_label_new(NULL));
 
   PipelinePhoto = PIPELINE(pipeline_new());
   pipeline_create(PipelinePhoto);

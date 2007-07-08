@@ -30,12 +30,8 @@
 #define PHOTO_NAME_DEFAULT	 "Picture"
 //FIXME: provide option to choose the format
 #define PHOTO_NAME_SUFFIX_DEFAULT ".jpg"
-#define PHOTO_WIDTH 640
-#define PHOTO_HEIGHT 480
-#define THUMB_WIDTH (PHOTO_WIDTH / 5)
-#define THUMB_HEIGHT (PHOTO_HEIGHT / 5)
 
-void create_photo(unsigned char *data);
+void create_photo(unsigned char *data, int width, int height);
 
 gboolean set_screen_x_window_id();
 void on_cheese_window_close_cb(GtkWidget *widget, gpointer data);

@@ -21,6 +21,7 @@
 #ifndef __CHEESE_WINDOW_H__
 #define __CHEESE_WINDOW_H__
 
+#include <gtk/gtk.h>
 #include <glade/glade.h>
 
 struct _widgets
