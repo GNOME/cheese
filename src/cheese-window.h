@@ -53,7 +53,6 @@ struct _cheese_window
 extern struct _cheese_window cheese_window;
 
 void create_window();
-void set_effects_label(gchar *effect);
 void window_change_effect(GtkWidget *widget, gpointer self);
 
 #endif /* __CHEESE_WINDOW_H__ */
