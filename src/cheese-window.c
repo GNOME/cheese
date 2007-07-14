@@ -36,12 +36,6 @@
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
 
-void
-set_effects_label(gchar *effect)
-{
-  gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), effect);
-}
-
 void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 {
   static const char *authors[] = {
