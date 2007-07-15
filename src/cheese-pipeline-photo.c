@@ -183,12 +183,16 @@ pipeline_create(Pipeline *self) {
   }
   gst_caps_unref (filter);
   //FIXME: do we need this?
-  //filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
+  filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
 
   gst_element_link(priv->tee, priv->queuevid);
   gst_element_link(priv->queuevid, priv->ffmpeg3);
 
-  gst_element_link(priv->ffmpeg3, self->ximagesink);
+  //gst_element_link(priv->ffmpeg3, self->ximagesink);
+  link_ok = gst_element_link_filtered(priv->ffmpeg3, self->ximagesink, filter);
+  if (!link_ok) {
+    g_warning("Failed to link elements!");
+  }
 
   gst_element_link(priv->tee, priv->queueimg);
   gst_element_link(priv->queueimg, self->fakesink);
