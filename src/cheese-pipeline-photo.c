@@ -180,28 +180,35 @@ pipeline_create(Pipeline *self) {
   gst_element_link(priv->ffmpeg1, priv->effect);
   gst_element_link(priv->effect, priv->ffmpeg2);
 
-  filter = gst_caps_new_simple("video/x-raw-rgb",
-      "bpp", G_TYPE_INT, 24,
-      "depth", G_TYPE_INT, 24, NULL);
+  // settings for my isight
+  //filter = gst_caps_new_simple("video/x-raw-rgb",
+  //    "bpp", G_TYPE_INT, 24,
+  //    "depth", G_TYPE_INT, 24, NULL);
+  GstPad *pad = gst_element_get_pad (priv->source, "src");
+  filter = gst_pad_get_negotiated_caps(pad);
 
   link_ok = gst_element_link_filtered(priv->ffmpeg2, priv->tee, filter);
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
-  gst_caps_unref (filter);
+  //FIXME: unref really needed?
+  //gst_caps_unref (filter);
   //FIXME: do we need this?
-  filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
+  //filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
 
   gst_element_link(priv->tee, priv->queuevid);
   gst_element_link(priv->queuevid, priv->ffmpeg3);
 
-  //gst_element_link(priv->ffmpeg3, self->ximagesink);
-  link_ok = gst_element_link_filtered(priv->ffmpeg3, self->ximagesink, filter);
+  gst_element_link(priv->ffmpeg3, self->ximagesink);
+
+  // setting back the format to get nice pictures
+  filter = gst_caps_new_simple("video/x-raw-rgb", NULL);
+  link_ok = gst_element_link_filtered(priv->tee, priv->queueimg, filter);
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
+  //gst_element_link(priv->tee, priv->queueimg);
 
-  gst_element_link(priv->tee, priv->queueimg);
   gst_element_link(priv->queueimg, self->fakesink);
   g_object_set(G_OBJECT(self->fakesink), "signal-handoffs", TRUE, NULL);
 
