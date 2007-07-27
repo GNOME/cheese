@@ -147,18 +147,25 @@ pipeline_create(Pipeline *self) {
 
   priv->ffmpeg2 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace2");
   gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg2);
+
   priv->ffmpeg3 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace3");
   gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg3);
-  priv->queuevid = gst_element_factory_make("queue", "queuevid");
-  gst_bin_add(GST_BIN(self->pipeline), priv->queuevid);
-  priv->queueimg = gst_element_factory_make("queue", "queueimg");
-  gst_bin_add(GST_BIN(self->pipeline), priv->queueimg);
-  priv->caps = gst_element_factory_make("capsfilter", "capsfilter");
-  gst_bin_add(GST_BIN(self->pipeline), priv->caps);
-  self->ximagesink = gst_element_factory_make("gconfvideosink", "gconfvideosink");
-  gst_bin_add(GST_BIN(self->pipeline), self->ximagesink);
+
   priv->tee = gst_element_factory_make("tee", "tee");
   gst_bin_add(GST_BIN(self->pipeline), priv->tee);
+
+  priv->queuevid = gst_element_factory_make("queue", "queuevid");
+  gst_bin_add(GST_BIN(self->pipeline), priv->queuevid);
+
+  priv->queueimg = gst_element_factory_make("queue", "queueimg");
+  gst_bin_add(GST_BIN(self->pipeline), priv->queueimg);
+
+  priv->caps = gst_element_factory_make("capsfilter", "capsfilter");
+  gst_bin_add(GST_BIN(self->pipeline), priv->caps);
+
+  self->ximagesink = gst_element_factory_make("gconfvideosink", "gconfvideosink");
+  gst_bin_add(GST_BIN(self->pipeline), self->ximagesink);
+
   self->fakesink = gst_element_factory_make("fakesink", "fakesink");
   gst_bin_add(GST_BIN(self->pipeline), self->fakesink);
 
@@ -215,10 +222,10 @@ cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer self)
 
     int width, height;
 
-    caps = gst_buffer_get_caps (buffer);
-    structure = gst_caps_get_structure (caps, 0);
-    gst_structure_get_int (structure, "width", &width);
-    gst_structure_get_int (structure, "height", &height);
+    caps = gst_buffer_get_caps(buffer);
+    structure = gst_caps_get_structure(caps, 0);
+    gst_structure_get_int(structure, "width", &width);
+    gst_structure_get_int(structure, "height", &height);
 
     create_photo(data_photo, width, height);
     priv->picture_requested = FALSE;
