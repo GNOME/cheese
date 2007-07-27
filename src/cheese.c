@@ -77,7 +77,7 @@ create_photo(unsigned char *data, int width, int height)
   gdk_pixbuf_save(pixbuf, filename, "jpeg", NULL, NULL);
   g_object_unref(G_OBJECT(pixbuf));
 
-  g_print("Photo saved: %s\n", filename);
+  g_print("Photo saved: %s (%dx%d)\n", filename, width, height);
 }
 
 gboolean
