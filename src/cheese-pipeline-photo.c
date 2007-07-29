@@ -40,7 +40,8 @@ struct _PipelinePrivate
   int picture_requested;
 
   GstElement *source;
-  GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
+  GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3, *ffmpeg4;
+  GstElement *videoscale;
   GstElement *tee;
   GstElement *queuevid, *queueimg;
   GstElement *caps;
@@ -109,16 +110,16 @@ pipeline_change_effect(gpointer self)
   if (effect != NULL) {
     pipeline_set_stop(PIPELINE(self));
 
-    gst_element_unlink(priv->ffmpeg1, priv->effect);
-    gst_element_unlink(priv->effect, priv->ffmpeg2);
+    gst_element_unlink(priv->ffmpeg2, priv->effect);
+    gst_element_unlink(priv->effect, priv->ffmpeg3);
     gst_bin_remove(GST_BIN(PIPELINE(self)->pipeline), priv->effect);
 
     g_print("changing to effect: %s\n", effect);
     priv->effect = gst_parse_bin_from_description(effect, TRUE, NULL);
     gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->effect);
 
-    gst_element_link(priv->ffmpeg1, priv->effect);
-    gst_element_link(priv->effect, priv->ffmpeg2);
+    gst_element_link(priv->ffmpeg2, priv->effect);
+    gst_element_link(priv->effect, priv->ffmpeg3);
 
     pipeline_set_play(self);
     set_screen_x_window_id();
@@ -145,11 +146,17 @@ pipeline_create(Pipeline *self) {
   priv->effect = gst_element_factory_make("identity", "effect");
   gst_bin_add(GST_BIN(self->pipeline), priv->effect);
 
+  priv->videoscale = gst_element_factory_make("videoscale", "videoscale");
+  gst_bin_add(GST_BIN(self->pipeline), priv->videoscale);
+
   priv->ffmpeg2 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace2");
   gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg2);
 
   priv->ffmpeg3 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace3");
   gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg3);
+
+  priv->ffmpeg4 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace4");
+  gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg4);
 
   priv->tee = gst_element_factory_make("tee", "tee");
   gst_bin_add(GST_BIN(self->pipeline), priv->tee);
@@ -171,35 +178,44 @@ pipeline_create(Pipeline *self) {
 
   /*
    * the pipeline looks like this:
-   * gconfvideosrc -> ffmpegcsp -> ffmpegcsp -> tee (filtered) -> queue-> ffmpegcsp -> gconfvideosink
-   *                                             |
-   *                                         queueimg -> fakesink -> pixbuf (gets picture from data)
+   * gconfvideosrc -> ffmpegcsp
+   *                    '-> videoscale
+   *                         '-> ffmpegcsp -> effects -> ffmpegcsp 
+   *     ------------------------------------------------------'
+   *     '-> tee (filtered) -> queue-> ffmpegcsp -> gconfvideosink
+   *          |
+   *       queueimg -> fakesink -> pixbuf (gets picture from data)
    */
 
   gst_element_link(priv->source, priv->ffmpeg1);
-  gst_element_link(priv->ffmpeg1, priv->effect);
-  gst_element_link(priv->effect, priv->ffmpeg2);
 
-  // settings for my isight
-  //filter = gst_caps_new_simple("video/x-raw-rgb",
-  //    "bpp", G_TYPE_INT, 24,
-  //    "depth", G_TYPE_INT, 24, NULL);
-  GstPad *pad = gst_element_get_pad (priv->source, "src");
-  filter = gst_pad_get_negotiated_caps(pad);
+  //FIXME: ugly hack to resize all resolutions to 640x480... wahh
+  filter = gst_caps_new_simple("video/x-raw-rgb",
+      "width", G_TYPE_INT, 640,
+      "height", G_TYPE_INT, 480, NULL);
 
-  link_ok = gst_element_link_filtered(priv->ffmpeg2, priv->tee, filter);
+  link_ok = gst_element_link_filtered(priv->ffmpeg1, priv->videoscale, filter);
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
-  //FIXME: unref really needed?
-  //gst_caps_unref (filter);
-  //FIXME: do we need this?
-  //filter = gst_caps_new_simple("video/x-raw-yuv", NULL);
+  //gst_element_link(priv->ffmpeg1, priv->videoscale);
+  gst_element_link(priv->videoscale, priv->ffmpeg2);
+  gst_element_link(priv->ffmpeg2, priv->effect);
+  gst_element_link(priv->effect, priv->ffmpeg3);
+
+  filter = gst_caps_new_simple("video/x-raw-rgb",
+      "bpp", G_TYPE_INT, 24,
+      "depth", G_TYPE_INT, 24, NULL);
+
+  link_ok = gst_element_link_filtered(priv->ffmpeg3, priv->tee, filter);
+  if (!link_ok) {
+    g_warning("Failed to link elements!");
+  }
 
   gst_element_link(priv->tee, priv->queuevid);
-  gst_element_link(priv->queuevid, priv->ffmpeg3);
+  gst_element_link(priv->queuevid, priv->ffmpeg4);
 
-  gst_element_link(priv->ffmpeg3, self->ximagesink);
+  gst_element_link(priv->ffmpeg4, self->ximagesink);
 
   // setting back the format to get nice pictures
   filter = gst_caps_new_simple("video/x-raw-rgb", NULL);
@@ -208,6 +224,7 @@ pipeline_create(Pipeline *self) {
     g_warning("Failed to link elements!");
   }
   //gst_element_link(priv->tee, priv->queueimg);
+  //gst_caps_unref (filter);
 
   gst_element_link(priv->queueimg, self->fakesink);
   g_object_set(G_OBJECT(self->fakesink), "signal-handoffs", TRUE, NULL);
