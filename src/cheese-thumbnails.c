@@ -20,6 +20,7 @@
 
 #include <libgnomevfs/gnome-vfs.h>
 #include <glib/gprintf.h>
+#include <string.h>
 
 #include "cheese.h"
 #include "cheese-fileutil.h"
@@ -76,15 +77,15 @@ cheese_thumbnails_fill_thumbs()
   gchar *path;
   const gchar *name;
   gboolean is_dir;
+  GList *filelist = NULL;
   
   gtk_list_store_clear(thumbnails.store);
 
-  dir = g_dir_open(get_cheese_path(), 0, NULL);
+  dir = g_dir_open(cheese_fileutil_get_photo_path(), 0, NULL);
   if (!dir)
     return;
 
-  name = g_dir_read_name(dir);
-  while (name != NULL) {
+  while ((name = g_dir_read_name(dir))) {
     if (name[0] != '.') {
       if (!g_str_has_suffix (name, PHOTO_NAME_SUFFIX_DEFAULT))
         continue;
@@ -93,10 +94,12 @@ cheese_thumbnails_fill_thumbs()
       is_dir = g_file_test(path, G_FILE_TEST_IS_DIR);
 
       if (!is_dir)
-        cheese_thumbnails_append_photo(path);
+        filelist = g_list_prepend(filelist, g_strdup(path));
       g_free(path);
     }
-    name = g_dir_read_name(dir);      
   }
+  filelist = g_list_sort (filelist, (GCompareFunc)strcmp);
+  g_list_foreach (filelist, (GFunc)cheese_thumbnails_append_photo, NULL);
+
   g_free(dir);
 }
