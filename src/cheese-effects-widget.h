@@ -21,10 +21,8 @@
 #ifndef __CHEESE_EFFECTS_WIDGET_H__
 #define __CHEESE_EFFECTS_WIDGET_H__
 
-gchar *
-get_selection();
-
-void
-effects_widget_init();
+void cheese_effects_widget_init();
+void cheese_effects_widget_finalize();
+gchar *cheese_effects_get_selection();
 
 #endif /* __CHEESE_EFFECTS_WIDGET_H__ */

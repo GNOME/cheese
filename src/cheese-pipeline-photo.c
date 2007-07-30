@@ -23,11 +23,13 @@
 #include <gst/interfaces/xoverlay.h>
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <libgnomevfs/gnome-vfs.h>
 
 #include "cheese.h"
+#include "cheese-window.h"
 #include "cheese-pipeline-photo.h"
 #include "cheese-effects-widget.h"
-
+#include "cheese-fileutil.h"
 
 G_DEFINE_TYPE (Pipeline, pipeline, G_TYPE_OBJECT)
 
@@ -53,6 +55,7 @@ struct _PipelinePrivate
 // private methods
 static gboolean cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data);
 static void pipeline_lens_open(Pipeline *self);
+static void create_photo(unsigned char *data, int width, int height);
 
 void
 pipeline_set_play(Pipeline *self)
@@ -105,7 +108,7 @@ void
 pipeline_change_effect(gpointer self)
 {
   PipelinePrivate *priv = PIPELINE_GET_PRIVATE(self);
-  gchar *effect = get_selection();
+  gchar *effect = cheese_effects_get_selection();
 
   if (effect != NULL) {
     pipeline_set_stop(PIPELINE(self));
@@ -122,7 +125,6 @@ pipeline_change_effect(gpointer self)
     gst_element_link(priv->effect, priv->ffmpeg3);
 
     pipeline_set_play(self);
-    set_screen_x_window_id();
   }
 }
 
@@ -255,6 +257,36 @@ cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer self)
     priv->picture_requested = FALSE;
   }
   return TRUE;
+}
+
+void
+create_photo(unsigned char *data, int width, int height)
+{
+  int i;
+  gchar *filename = NULL;
+  GnomeVFSURI *uri;
+  GdkPixbuf *pixbuf;
+
+  i = 1;
+  filename = cheese_fileutil_get_photo_filename(i);
+
+  uri = gnome_vfs_uri_new(filename);
+
+  while (gnome_vfs_uri_exists(uri)) {
+    i++;
+    filename = cheese_fileutil_get_photo_filename(i);
+    g_free(uri);
+    uri = gnome_vfs_uri_new(filename);
+  }
+  g_free(uri);
+
+  pixbuf = gdk_pixbuf_new_from_data (data, GDK_COLORSPACE_RGB, FALSE, 8, 
+                                     width, height, width * 3, NULL, NULL);
+
+  gdk_pixbuf_save(pixbuf, filename, "jpeg", NULL, NULL);
+  g_object_unref(G_OBJECT(pixbuf));
+
+  g_print("Photo saved: %s (%dx%d)\n", filename, width, height);
 }
 
 void

@@ -22,6 +22,8 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <gst/interfaces/xoverlay.h>
+#include <gdk/gdkx.h>
 
 #include "cheese.h"
 #include "cheese-window.h"
@@ -36,44 +38,14 @@
 struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
 
-void on_about_cb (GtkWidget *p_widget, gpointer user_data)
-{
-  static const char *authors[] = {
-    "daniel g. siegel <dgsiegel@gmail.com>",
-    NULL
-  };
+static void create_window();
+static void on_about_cb (GtkWidget *p_widget, gpointer user_data);
 
-  const char *license[] = {
-    N_("This program is free software; you can redistribute it and/or modify "
-       "it under the terms of the GNU General Public License as published by "
-       "the Free Software Foundation; either version 2 of the License, or "
-       "(at your option) any later version.\n"),
-    N_("This program is distributed in the hope that it will be useful, "
-       "but WITHOUT ANY WARRANTY; without even the implied warranty of "
-       "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
-       "GNU General Public License for more details.\n"),
-    N_("You should have received a copy of the GNU General Public License "
-       "along with this program; if not, write to the Free Software "
-       "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.")
-  };
+void cheese_window_init() {
+  create_window();
+}
 
-  char *license_trans;
-
-  license_trans = g_strconcat (_(license[0]), "\n", _(license[1]), "\n",
-                               _(license[2]), "\n", NULL);
-
-  gtk_show_about_dialog (GTK_WINDOW(user_data),
-                         "version", CHEESE_VERSION,
-		                     "copyright", "Copyright \xc2\xa9 2007\n daniel g. siegel <dgsiegel@gmail.com>",
-                         "comments", _("A cheesy program to take pictures from your webcam"),
-                         "authors", authors,
-                         "website", "http://live.gnome.org/Cheese",
-                         "logo-icon-name", "cheese",
-                         "wrap-license", TRUE,
-                         "license", license_trans,
-                         NULL);
-
-  g_free (license_trans);
+void cheese_window_finalize() {
 }
 
 void on_item_activated_cb (GtkIconView *iconview, GtkTreePath *tree_path, gpointer user_data) {
@@ -87,6 +59,34 @@ void on_item_activated_cb (GtkIconView *iconview, GtkTreePath *tree_path, gpoint
 }
 
 void
+cheese_window_change_effect(GtkWidget *widget, gpointer self)
+{
+  if (gtk_notebook_get_current_page(GTK_NOTEBOOK(cheese_window.widgets.notebook)) == 1) {
+    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 0);
+    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Effects"));
+    gtk_widget_set_sensitive(cheese_window.widgets.take_picture, TRUE);
+    pipeline_change_effect(self);
+  }
+  else {
+    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 1);
+    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Back"));
+    gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.take_picture), FALSE);
+  }
+}
+
+gboolean
+cheese_window_expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
+{
+  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline_get_pipeline(data)), GST_TYPE_X_OVERLAY);
+  gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
+      GDK_WINDOW_XWINDOW(widget->window));
+  // this is for using x(v)imagesink natively:
+  //gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data),
+  //    GDK_WINDOW_XWINDOW(widget->window));
+  return FALSE;
+}
+
+static void
 create_window()
 {
   GtkWidget *file_menu;
@@ -148,18 +148,43 @@ create_window()
 
 }
 
-void
-window_change_effect(GtkWidget *widget, gpointer self)
+static void on_about_cb (GtkWidget *p_widget, gpointer user_data)
 {
-  if (gtk_notebook_get_current_page(GTK_NOTEBOOK(cheese_window.widgets.notebook)) == 1) {
-    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 0);
-    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Effects"));
-    gtk_widget_set_sensitive(cheese_window.widgets.take_picture, TRUE);
-    pipeline_change_effect(self);
-  }
-  else {
-    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 1);
-    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Back"));
-    gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.take_picture), FALSE);
-  }
+  static const char *authors[] = {
+    "daniel g. siegel <dgsiegel@gmail.com>",
+    NULL
+  };
+
+  const char *license[] = {
+    N_("This program is free software; you can redistribute it and/or modify "
+       "it under the terms of the GNU General Public License as published by "
+       "the Free Software Foundation; either version 2 of the License, or "
+       "(at your option) any later version.\n"),
+    N_("This program is distributed in the hope that it will be useful, "
+       "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+       "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+       "GNU General Public License for more details.\n"),
+    N_("You should have received a copy of the GNU General Public License "
+       "along with this program; if not, write to the Free Software "
+       "Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.")
+  };
+
+  char *license_trans;
+
+  license_trans = g_strconcat (_(license[0]), "\n", _(license[1]), "\n",
+                               _(license[2]), "\n", NULL);
+
+  gtk_show_about_dialog (GTK_WINDOW(user_data),
+                         "version", CHEESE_VERSION,
+		                     "copyright", "Copyright \xc2\xa9 2007\n daniel g. siegel <dgsiegel@gmail.com>",
+                         "comments", _("A cheesy program to take pictures from your webcam"),
+                         "authors", authors,
+                         "website", "http://live.gnome.org/Cheese",
+                         "logo-icon-name", "cheese",
+                         "wrap-license", TRUE,
+                         "license", license_trans,
+                         NULL);
+
+  g_free (license_trans);
 }
+

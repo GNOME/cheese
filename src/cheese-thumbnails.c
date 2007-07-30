@@ -34,12 +34,16 @@ enum {
 struct _thumbnails thumbnails;
 
 void
-create_thumbnails_store() {
+cheese_thumbnails_init() {
   thumbnails.store = gtk_list_store_new(2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
 }
 
 void
-append_photo(gchar *filename) {
+cheese_thumbnails_finalize() {
+}
+
+void
+cheese_thumbnails_append_photo(gchar *filename) {
   g_printf("appending %s to thumbnail row\n", filename);
   gtk_list_store_append(thumbnails.store, &thumbnails.iter);
   GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size(filename, THUMB_WIDTH, THUMB_HEIGHT, NULL);
@@ -57,7 +61,7 @@ append_photo(gchar *filename) {
 }
 
 void
-remove_photo(gchar *filename) {
+cheese_thumbnails_remove_photo(gchar *filename) {
 
   //gtk_tree_model_get_iter(GTK_TREE_MODEL(store), &iter, gtk_tree_path_new_from_string(path));
   //gtk_list_store_remove(store, &iter);
@@ -66,7 +70,7 @@ remove_photo(gchar *filename) {
 }
 
 void
-fill_thumbs()
+cheese_thumbnails_fill_thumbs()
 {
   GDir *dir;
   gchar *path;
@@ -82,12 +86,14 @@ fill_thumbs()
   name = g_dir_read_name(dir);
   while (name != NULL) {
     if (name[0] != '.') {
-      path = g_build_filename(get_cheese_path(), name, NULL);
+      if (!g_str_has_suffix (name, PHOTO_NAME_SUFFIX_DEFAULT))
+        continue;
+      path = g_build_filename(cheese_fileutil_get_photo_path(), name, NULL);
 
       is_dir = g_file_test(path, G_FILE_TEST_IS_DIR);
 
       if (!is_dir)
-        append_photo(path);
+        cheese_thumbnails_append_photo(path);
       g_free(path);
     }
     name = g_dir_read_name(dir);      

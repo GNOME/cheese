@@ -31,9 +31,7 @@
 //FIXME: provide option to choose the format
 #define PHOTO_NAME_SUFFIX_DEFAULT ".jpg"
 
-void create_photo(unsigned char *data, int width, int height);
 
-gboolean set_screen_x_window_id();
 void on_cheese_window_close_cb(GtkWidget *widget, gpointer data);
 
 #endif /* __CHEESE_H__ */

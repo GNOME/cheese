@@ -22,9 +22,7 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gdk/gdk.h>
-#include <gdk/gdkx.h>
 #include <libgnomevfs/gnome-vfs.h>
-#include <gst/interfaces/xoverlay.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include "cheese-config.h"
@@ -47,59 +45,13 @@ on_cheese_window_close_cb(GtkWidget *widget, gpointer data)
   pipeline_set_stop(PipelinePhoto);
   g_object_unref(G_OBJECT(PipelinePhoto));
   gnome_vfs_monitor_cancel(monitor_handle);
+
+  cheese_effects_widget_finalize();
+  cheese_window_finalize();
+  cheese_thumbnails_finalize();
+  cheese_fileutil_finalize();
+
   gtk_main_quit();
-}
-
-void
-create_photo(unsigned char *data, int width, int height)
-{
-  int i;
-  gchar *filename = NULL;
-  GnomeVFSURI *uri;
-  GdkPixbuf *pixbuf;
-
-  i = 1;
-  filename = get_cheese_filename(i);
-
-  uri = gnome_vfs_uri_new(filename);
-
-  while (gnome_vfs_uri_exists(uri)) {
-    i++;
-    filename = get_cheese_filename(i);
-    g_free(uri);
-    uri = gnome_vfs_uri_new(filename);
-  }
-  g_free(uri);
-
-  pixbuf = gdk_pixbuf_new_from_data (data, GDK_COLORSPACE_RGB, FALSE, 8, 
-                                     width, height, width * 3, NULL, NULL);
-
-  gdk_pixbuf_save(pixbuf, filename, "jpeg", NULL, NULL);
-  g_object_unref(G_OBJECT(pixbuf));
-
-  g_print("Photo saved: %s (%dx%d)\n", filename, width, height);
-}
-
-gboolean
-expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
-{
-  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline_get_pipeline(PipelinePhoto)), GST_TYPE_X_OVERLAY);
-  gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
-      GDK_WINDOW_XWINDOW(widget->window));
-  // this is for using x(v)imagesink natively:
-  //gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data),
-  //    GDK_WINDOW_XWINDOW(widget->window));
-  return FALSE;
-}
-
-gboolean
-set_screen_x_window_id()
-{
-  gtk_notebook_set_current_page(GTK_NOTEBOOK(cheese_window.widgets.notebook), 0);
-  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline_get_pipeline(PipelinePhoto)), GST_TYPE_X_OVERLAY);
-  gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
-      GDK_WINDOW_XWINDOW(cheese_window.widgets.screen->window));
-  return FALSE;
 }
 
 int
@@ -114,21 +66,22 @@ main(int argc, char **argv)
   gnome_vfs_init();
   g_type_init();
 
-  g_set_application_name (_("Cheese"));
-
   bindtextdomain(CHEESE_PACKAGE_NAME, CHEESE_LOCALE_DIR);
   textdomain(CHEESE_PACKAGE_NAME);
 
-  gtk_window_set_default_icon_name("cheese");
-  create_window();
+  g_set_application_name (_("Cheese"));
 
-  effects_widget_init();
+  gtk_window_set_default_icon_name("cheese");
+
+  cheese_window_init();
+
+  cheese_effects_widget_init();
 
   PipelinePhoto = PIPELINE(pipeline_new());
   pipeline_create(PipelinePhoto);
   pipeline_set_play(PipelinePhoto);
 
-  path = get_cheese_path();
+  path = cheese_fileutil_get_photo_path();
   uri = gnome_vfs_uri_new(path);
 
   if (!gnome_vfs_uri_exists(uri)) {
@@ -136,22 +89,22 @@ main(int argc, char **argv)
     g_print("creating new directory: %s\n", path);
   }
 
-  create_thumbnails_store();
+  cheese_thumbnails_init();
   gtk_icon_view_set_model(GTK_ICON_VIEW(thumbnails.iconview), GTK_TREE_MODEL(thumbnails.store));
-  fill_thumbs();
+  cheese_thumbnails_fill_thumbs();
 
-  gnome_vfs_monitor_add(&monitor_handle, get_cheese_path(),
+  gnome_vfs_monitor_add(&monitor_handle, cheese_fileutil_get_photo_path(),
       GNOME_VFS_MONITOR_DIRECTORY,
-      (GnomeVFSMonitorCallback)photos_monitor_cb, NULL);
+      (GnomeVFSMonitorCallback)cheese_fileutil_photos_monitor_cb, NULL);
 
   g_signal_connect(G_OBJECT(cheese_window.window), "destroy",
       G_CALLBACK(on_cheese_window_close_cb), NULL);
   g_signal_connect(G_OBJECT(cheese_window.widgets.take_picture), "clicked",
       G_CALLBACK(pipeline_button_clicked), PipelinePhoto);
   g_signal_connect(cheese_window.widgets.screen, "expose-event",
-      G_CALLBACK(expose_cb), NULL);
+      G_CALLBACK(cheese_window_expose_cb), PipelinePhoto);
   g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects), "clicked",
-      G_CALLBACK(window_change_effect), PipelinePhoto);
+      G_CALLBACK(cheese_window_change_effect), PipelinePhoto);
 
   gtk_widget_show_all(cheese_window.window);
   gtk_main();

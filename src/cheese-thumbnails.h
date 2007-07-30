@@ -24,10 +24,11 @@
 #define THUMB_WIDTH (128)
 #define THUMB_HEIGHT (96)
 
-void create_thumbnails_store();
-void fill_thumbs();
-void append_photo(gchar *);
-void remove_photo(gchar *);
+void cheese_thumbnails_init();
+void cheese_thumbnails_finalize();
+void cheese_thumbnails_fill_thumbs();
+void cheese_thumbnails_append_photo(gchar *);
+void cheese_thumbnails_remove_photo(gchar *);
 
 struct _thumbnails
 {

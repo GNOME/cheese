@@ -36,8 +36,6 @@
 
 #define SHRINK(cr, x) cairo_translate (cr, (1-(x))/2.0, (1-(x))/2.0); cairo_scale (cr, (x), (x))
 
-// FIXME: g_array_free(effects, TRUE); 
-
 
 struct _effects_widget effects_widget;
 typedef struct _gsteffects gsteffects;
@@ -62,8 +60,68 @@ static void paint (GtkWidget *widget, GdkEventExpose *eev, gpointer self);
 static void draw_card (cairo_t *cr, gsteffects *card, int highlight);
 static gboolean event_press(GtkWidget *widget, GdkEventButton *bev, gpointer self);
 
+void
+cheese_effects_widget_init()
+{
+  effects_widget.used_effect = "identity";
+
+  gtk_widget_add_events(cheese_window.widgets.effects_widget, GDK_BUTTON_PRESS_MASK);
+
+  g_signal_connect(G_OBJECT (cheese_window.widgets.effects_widget), "button_press_event",
+      G_CALLBACK (event_press), NULL);
+  g_signal_connect(G_OBJECT (cheese_window.widgets.effects_widget), "expose-event",
+      G_CALLBACK (paint), NULL);
+
+  effects_widget.effects = g_array_new(TRUE, FALSE, sizeof(gsteffects));
+
+  gsteffects g[] = {
+    { _("No Effect"),        "identity",
+        CHEESE_DATA_DIR"/effects/identity.png",
+        FALSE, FALSE, FALSE},
+    { _("Mauve"),            "videobalance saturation=1.5 hue=+0.5",
+        CHEESE_DATA_DIR"/effects/Mauve.png",
+        FALSE, FALSE, FALSE},
+    { _("Noir/Blanc"),       "videobalance saturation=0",
+        CHEESE_DATA_DIR"/effects/NoirBlanc.png",
+        FALSE, FALSE, FALSE},
+    { _("Saturation"),       "videobalance saturation=2",
+        CHEESE_DATA_DIR"/effects/Saturation.png",
+        FALSE, FALSE, FALSE},
+    { _("Hulk"),             "videobalance saturation=1.5 hue=-0.5",
+        CHEESE_DATA_DIR"/effects/Hulk.png",
+        FALSE, FALSE, FALSE},
+    { _("Vertical Flip"),    "videoflip method=4",
+        CHEESE_DATA_DIR"/effects/videoflip_v.png",
+        FALSE, FALSE, FALSE},
+    { _("Horizontal Flip"),  "videoflip method=5",
+        CHEESE_DATA_DIR"/effects/videoflip_h.png",
+        FALSE, FALSE, FALSE},
+    { _("Shagadelic"),       "shagadelictv",
+        CHEESE_DATA_DIR"/effects/shagadelictv.png",
+        FALSE, FALSE, TRUE},
+    { _("Vertigo"),          "vertigotv",
+        CHEESE_DATA_DIR"/effects/vertigotv.png",
+        FALSE, FALSE, TRUE},
+    { _("Edge"),             "edgetv",
+        CHEESE_DATA_DIR"/effects/edgetv.png",
+        FALSE, TRUE,  TRUE},
+    { _("Dice"),             "dicetv",
+        CHEESE_DATA_DIR"/effects/dicetv.png",
+        FALSE, FALSE, TRUE},
+    { _("Warp"),             "warptv",
+        CHEESE_DATA_DIR"/effects/warptv.png",
+        FALSE, FALSE, TRUE}};
+
+  effects_widget.effects = g_array_append_vals(effects_widget.effects, (gconstpointer)g, MAX_EFFECTS);
+}
+
+void
+cheese_effects_widget_finalize() {
+  g_array_free(effects_widget.effects, TRUE); 
+}
+
 gchar *
-get_selection() {
+cheese_effects_get_selection() {
 
   int i;
   gchar *effect = NULL;
@@ -142,61 +200,6 @@ event_press(GtkWidget *widget, GdkEventButton *bev, gpointer self)
   gtk_widget_queue_draw(widget);
 
   return TRUE;
-}
-
-void
-effects_widget_init()
-{
-  effects_widget.used_effect = "identity";
-
-  gtk_widget_add_events(cheese_window.widgets.effects_widget, GDK_BUTTON_PRESS_MASK);
-
-  g_signal_connect(G_OBJECT (cheese_window.widgets.effects_widget), "button_press_event",
-      G_CALLBACK (event_press), NULL);
-  g_signal_connect(G_OBJECT (cheese_window.widgets.effects_widget), "expose-event",
-      G_CALLBACK (paint), NULL);
-
-  effects_widget.effects = g_array_new(TRUE, FALSE, sizeof(gsteffects));
-
-  gsteffects g[] = {
-    { _("No Effect"),        "identity",
-        CHEESE_DATA_DIR"/effects/identity.png",
-        FALSE, FALSE, FALSE},
-    { _("Mauve"),            "videobalance saturation=1.5 hue=+0.5",
-        CHEESE_DATA_DIR"/effects/Mauve.png",
-        FALSE, FALSE, FALSE},
-    { _("Noir/Blanc"),       "videobalance saturation=0",
-        CHEESE_DATA_DIR"/effects/NoirBlanc.png",
-        FALSE, FALSE, FALSE},
-    { _("Saturation"),       "videobalance saturation=2",
-        CHEESE_DATA_DIR"/effects/Saturation.png",
-        FALSE, FALSE, FALSE},
-    { _("Hulk"),             "videobalance saturation=1.5 hue=-0.5",
-        CHEESE_DATA_DIR"/effects/Hulk.png",
-        FALSE, FALSE, FALSE},
-    { _("Vertical Flip"),    "videoflip method=4",
-        CHEESE_DATA_DIR"/effects/videoflip_v.png",
-        FALSE, FALSE, FALSE},
-    { _("Horizontal Flip"),  "videoflip method=5",
-        CHEESE_DATA_DIR"/effects/videoflip_h.png",
-        FALSE, FALSE, FALSE},
-    { _("Shagadelic"),       "shagadelictv",
-        CHEESE_DATA_DIR"/effects/shagadelictv.png",
-        FALSE, FALSE, TRUE},
-    { _("Vertigo"),          "vertigotv",
-        CHEESE_DATA_DIR"/effects/vertigotv.png",
-        FALSE, FALSE, TRUE},
-    { _("Edge"),             "edgetv",
-        CHEESE_DATA_DIR"/effects/edgetv.png",
-        FALSE, TRUE,  TRUE},
-    { _("Dice"),             "dicetv",
-        CHEESE_DATA_DIR"/effects/dicetv.png",
-        FALSE, FALSE, TRUE},
-    { _("Warp"),             "warptv",
-        CHEESE_DATA_DIR"/effects/warptv.png",
-        FALSE, FALSE, TRUE}};
-
-  effects_widget.effects = g_array_append_vals(effects_widget.effects, (gconstpointer)g, MAX_EFFECTS);
 }
 
 static void

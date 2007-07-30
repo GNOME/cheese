@@ -21,8 +21,10 @@
 #ifndef __CHEESE_FILE_UTIL_H__
 #define __CHEESE_FILE_UTIL_H__
 
-gchar *get_cheese_path(void);
-gchar *get_cheese_filename(int);
-void photos_monitor_cb(GnomeVFSMonitorHandle *, const gchar *, const gchar *, GnomeVFSMonitorEventType);
+void cheese_fileutil_init();
+void cheese_fileutil_finalize();
+gchar *cheese_fileutil_get_photo_path(void);
+gchar *cheese_fileutil_get_photo_filename(int);
+void cheese_fileutil_photos_monitor_cb(GnomeVFSMonitorHandle *, const gchar *, const gchar *, GnomeVFSMonitorEventType);
 
 #endif /* __CHEESE_FILE_UTIL_H__ */

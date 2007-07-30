@@ -26,8 +26,16 @@
 #include "cheese.h"
 #include "cheese-thumbnails.h"
 
+void
+cheese_fileutil_init() {
+}
+
+void
+cheese_fileutil_finalize() {
+}
+
 gchar *
-get_cheese_path() {
+cheese_fileutil_get_photo_path() {
   //FIXME: check for real path
   // maybe ~/cheese or on the desktop..
   //g_get_home_dir()
@@ -36,20 +44,20 @@ get_cheese_path() {
 }
 
 gchar *
-get_cheese_filename(int i) {
+cheese_fileutil_get_photo_filename(int i) {
   gchar *filename;
   if (i < 0)
     i *= -1;
   if (i < 10)
-    filename = g_strdup_printf("%s%s0%d%s", get_cheese_path(), PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
+    filename = g_strdup_printf("%s%s0%d%s", cheese_fileutil_get_photo_path(), PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
   else
-    filename = g_strdup_printf("%s%s%d%s", get_cheese_path(), PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
+    filename = g_strdup_printf("%s%s%d%s", cheese_fileutil_get_photo_path(), PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
 
   return filename;
 }
 
 void
-photos_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type)
+cheese_fileutil_photos_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type)
 {
   gchar *filename = gnome_vfs_get_local_path_from_uri(info_uri);
   gboolean is_dir;
@@ -65,7 +73,7 @@ photos_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_ur
       //case GNOME_VFS_MONITOR_EVENT_CHANGED:
       case GNOME_VFS_MONITOR_EVENT_CREATED:
         g_message("new file found: %s\n", filename);
-        append_photo(filename);
+        cheese_thumbnails_append_photo(filename);
         break;
       default:
         break;
