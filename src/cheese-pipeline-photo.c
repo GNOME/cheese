@@ -48,6 +48,7 @@ struct _PipelinePrivate
   GstElement *queuevid, *queueimg;
   GstElement *caps;
   GstElement *effect;
+  GstCaps *filter;
 };
 
 #define PIPELINE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), PIPELINE_TYPE, PipelinePrivate))
@@ -131,7 +132,6 @@ pipeline_change_effect(gpointer self)
 void
 pipeline_create(Pipeline *self) {
 
-  GstCaps *filter;
   gboolean link_ok; 
 
   PipelinePrivate *priv = PIPELINE_GET_PRIVATE(self);
@@ -169,9 +169,6 @@ pipeline_create(Pipeline *self) {
   priv->queueimg = gst_element_factory_make("queue", "queueimg");
   gst_bin_add(GST_BIN(self->pipeline), priv->queueimg);
 
-  priv->caps = gst_element_factory_make("capsfilter", "capsfilter");
-  gst_bin_add(GST_BIN(self->pipeline), priv->caps);
-
   self->ximagesink = gst_element_factory_make("gconfvideosink", "gconfvideosink");
   gst_bin_add(GST_BIN(self->pipeline), self->ximagesink);
 
@@ -183,8 +180,8 @@ pipeline_create(Pipeline *self) {
    * gconfvideosrc -> ffmpegcsp
    *                    '-> videoscale
    *                         '-> ffmpegcsp -> effects -> ffmpegcsp 
-   *     ------------------------------------------------------'
-   *     '-> tee (filtered) -> queue-> ffmpegcsp -> gconfvideosink
+   *    -------------------------------------------------------'
+   *    '--> tee (filtered) -> queue-> ffmpegcsp -> gconfvideosink
    *          |
    *       queueimg -> fakesink -> pixbuf (gets picture from data)
    */
@@ -192,11 +189,11 @@ pipeline_create(Pipeline *self) {
   gst_element_link(priv->source, priv->ffmpeg1);
 
   //FIXME: ugly hack to resize all resolutions to 640x480... wahh
-  filter = gst_caps_new_simple("video/x-raw-rgb",
+  priv->filter = gst_caps_new_simple("video/x-raw-rgb",
       "width", G_TYPE_INT, 640,
       "height", G_TYPE_INT, 480, NULL);
 
-  link_ok = gst_element_link_filtered(priv->ffmpeg1, priv->videoscale, filter);
+  link_ok = gst_element_link_filtered(priv->ffmpeg1, priv->videoscale, priv->filter);
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
@@ -205,11 +202,11 @@ pipeline_create(Pipeline *self) {
   gst_element_link(priv->ffmpeg2, priv->effect);
   gst_element_link(priv->effect, priv->ffmpeg3);
 
-  filter = gst_caps_new_simple("video/x-raw-rgb",
+  priv->filter = gst_caps_new_simple("video/x-raw-rgb",
       "bpp", G_TYPE_INT, 24,
       "depth", G_TYPE_INT, 24, NULL);
 
-  link_ok = gst_element_link_filtered(priv->ffmpeg3, priv->tee, filter);
+  link_ok = gst_element_link_filtered(priv->ffmpeg3, priv->tee, priv->filter);
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
@@ -220,13 +217,12 @@ pipeline_create(Pipeline *self) {
   gst_element_link(priv->ffmpeg4, self->ximagesink);
 
   // setting back the format to get nice pictures
-  filter = gst_caps_new_simple("video/x-raw-rgb", NULL);
-  link_ok = gst_element_link_filtered(priv->tee, priv->queueimg, filter);
+  priv->filter = gst_caps_new_simple("video/x-raw-rgb", NULL);
+  link_ok = gst_element_link_filtered(priv->tee, priv->queueimg, priv->filter);
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
   //gst_element_link(priv->tee, priv->queueimg);
-  //gst_caps_unref (filter);
 
   gst_element_link(priv->queueimg, self->fakesink);
   g_object_set(G_OBJECT(self->fakesink), "signal-handoffs", TRUE, NULL);
@@ -292,6 +288,9 @@ create_photo(unsigned char *data, int width, int height)
 void
 pipeline_finalize(GObject *object)
 {
+  PipelinePrivate *priv = PIPELINE_GET_PRIVATE(object);
+  gst_caps_unref(priv->filter);
+
   (*parent_class->finalize) (object);
   return;
 }
