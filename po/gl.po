@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-07-17 15:52+0200\n"
+"POT-Creation-Date: 2007-08-02 00:03+0200\n"
 "PO-Revision-Date: 2007-06-27 18:46+0100\n"
 "Last-Translator: Ricardo González Castro <rick@jinlabs.com>\n"
 "Language-Team: \n"
@@ -15,57 +15,65 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cheese-effects-widget.c:162
+#: ../src/cheese-effects-widget.c:78
 msgid "No Effect"
 msgstr "Sen efectos"
 
-#: ../src/cheese-effects-widget.c:165
+#: ../src/cheese-effects-widget.c:81
 msgid "Mauve"
 msgstr "Malva"
 
-#: ../src/cheese-effects-widget.c:168
+#: ../src/cheese-effects-widget.c:84
 msgid "Noir/Blanc"
 msgstr "Branco/Negro"
 
-#: ../src/cheese-effects-widget.c:171
+#: ../src/cheese-effects-widget.c:87
 msgid "Saturation"
 msgstr "Saturación"
 
-#: ../src/cheese-effects-widget.c:174
+#: ../src/cheese-effects-widget.c:90
 msgid "Hulk"
 msgstr "Hulk"
 
-#: ../src/cheese-effects-widget.c:177
+#: ../src/cheese-effects-widget.c:93
 msgid "Vertical Flip"
 msgstr "Xiro vertical"
 
-#: ../src/cheese-effects-widget.c:180
+#: ../src/cheese-effects-widget.c:96
 msgid "Horizontal Flip"
 msgstr "Xiro horizontal"
 
-#: ../src/cheese-effects-widget.c:183
+#: ../src/cheese-effects-widget.c:99
 msgid "Shagadelic"
 msgstr "Psicodélico"
 
-#: ../src/cheese-effects-widget.c:186
+#: ../src/cheese-effects-widget.c:102
 msgid "Vertigo"
 msgstr "Vértigo"
 
-#: ../src/cheese-effects-widget.c:189
+#: ../src/cheese-effects-widget.c:105
 msgid "Edge"
 msgstr "Contornos"
 
-#: ../src/cheese-effects-widget.c:192
+#: ../src/cheese-effects-widget.c:108
 msgid "Dice"
 msgstr "Anacos"
 
-#: ../src/cheese-effects-widget.c:195
+#: ../src/cheese-effects-widget.c:111
 msgid "Warp"
 msgstr "Distorsión"
 
-#: ../src/cheese-window.c:68
-msgid "A cheesy program to take pictures from your webcam"
-msgstr "Un programa para sacar fotografías coa tua cámara web"
+#: ../src/cheese-pipeline-photo.c:201
+msgid "Unable to find a webcam, SORRY!"
+msgstr ""
+
+#: ../src/cheese-window.c:66 ../data/cheese.glade:262
+msgid "Effects"
+msgstr "Efectos"
+
+#: ../src/cheese-window.c:72
+msgid "Back"
+msgstr "Atras"
 
 #: ../src/cheese-window.c:123
 msgid "_File"
@@ -75,15 +83,11 @@ msgstr "_Arquivo"
 msgid "_Help"
 msgstr "Axuda"
 
-#: ../src/cheese-window.c:156 ../data/cheese.glade:262
-msgid "Effects"
-msgstr "Efectos"
+#: ../src/cheese-window.c:180
+msgid "A cheesy program to take pictures from your webcam"
+msgstr "Un programa para sacar fotografías coa tua cámara web"
 
-#: ../src/cheese-window.c:162
-msgid "Back"
-msgstr "Atras"
-
-#: ../src/cheese.c:117 ../data/cheese.glade:7
+#: ../src/cheese.c:72 ../data/cheese.glade:7
 msgid "Cheese"
 msgstr "Cheese"
 

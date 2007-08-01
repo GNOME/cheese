@@ -22,6 +22,7 @@
 
 #include <gst/interfaces/xoverlay.h>
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
 
@@ -197,7 +198,7 @@ pipeline_create(Pipeline *self) {
     dialog = gtk_message_dialog_new(GTK_WINDOW(cheese_window.window),
         GTK_DIALOG_DESTROY_WITH_PARENT,
         GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-        "Unable to find a webcam, SORRY!");
+        _("Unable to find a webcam, SORRY!"));
 
   gtk_dialog_run(GTK_DIALOG (dialog));
   gtk_widget_destroy(dialog);
