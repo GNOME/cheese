@@ -181,8 +181,6 @@ pipeline_create(Pipeline *self) {
   if (test_pipeline("v4l2src ! fakesink", self)) {
     //source_pipeline = g_strdup_printf ("%s", v4l2src);
     source_pipeline = "v4l2src";
-  } else if (test_pipeline("v4lsrc ! fakesink", self)) {
-    source_pipeline = "v4lsrc";
   } else if (test_pipeline("v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=640,height=480 ! fakesink", self)) {
     source_pipeline = "v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=640,height=480";
   } else if (test_pipeline("v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=320,height=240 ! fakesink", self)) {
@@ -191,6 +189,8 @@ pipeline_create(Pipeline *self) {
     source_pipeline = "v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=1280,height=960";
   } else if (test_pipeline("v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=160,height=120 ! fakesink", self)) {
     source_pipeline = "v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=160,height=120";
+  } else if (test_pipeline("v4lsrc ! fakesink", self)) {
+    source_pipeline = "v4lsrc";
   } else {
     GtkWidget *dialog;
 
