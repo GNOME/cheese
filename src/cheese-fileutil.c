@@ -39,7 +39,8 @@ cheese_fileutil_get_photo_path() {
   //FIXME: check for real path
   // maybe ~/cheese or on the desktop..
   //g_get_home_dir()
-  gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), SAVE_FOLDER_DEFAULT);
+  //gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), SAVE_FOLDER_DEFAULT);
+  gchar *path = g_strdup_printf("%s/.gnome2/cheese/%s", g_get_home_dir(), SAVE_FOLDER_DEFAULT);
   return path;
 }
 

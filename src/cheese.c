@@ -73,6 +73,15 @@ main(int argc, char **argv)
 
   gtk_window_set_default_icon_name("cheese");
 
+  path = cheese_fileutil_get_photo_path();
+  uri = gnome_vfs_uri_new(path);
+
+  if (!gnome_vfs_uri_exists(uri)) {
+    gnome_vfs_make_directory_for_uri(uri, 0775);
+    g_mkdir_with_parents(path, 0775);
+    g_print("creating new directory: %s\n", path);
+  }
+
   cheese_window_init();
 
   cheese_effects_widget_init();
@@ -80,14 +89,6 @@ main(int argc, char **argv)
   PipelinePhoto = PIPELINE(pipeline_new());
   pipeline_create(PipelinePhoto);
   pipeline_set_play(PipelinePhoto);
-
-  path = cheese_fileutil_get_photo_path();
-  uri = gnome_vfs_uri_new(path);
-
-  if (!gnome_vfs_uri_exists(uri)) {
-    gnome_vfs_make_directory_for_uri(uri, 0775);
-    g_print("creating new directory: %s\n", path);
-  }
 
   cheese_thumbnails_init();
   gtk_icon_view_set_model(GTK_ICON_VIEW(thumbnails.iconview), GTK_TREE_MODEL(thumbnails.store));
