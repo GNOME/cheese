@@ -42,13 +42,13 @@ struct _PipelinePrivate
   int picture_requested;
 
   GstElement *source;
-  GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3, *ffmpeg4;
-  GstElement *videoscale;
+  GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
   GstElement *tee;
   GstElement *queuevid, *queueimg;
   GstElement *caps;
   GstElement *effect;
   GstCaps *filter;
+  GstElement *gst_test_pipeline;
 };
 
 #define PIPELINE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), PIPELINE_TYPE, PipelinePrivate))
@@ -57,6 +57,47 @@ struct _PipelinePrivate
 static gboolean cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer user_data);
 static void pipeline_lens_open(Pipeline *self);
 static void create_photo(unsigned char *data, int width, int height);
+static gboolean build_test_pipeline(const gchar *pipeline_desc, GError **p_err, Pipeline *self);
+static gboolean test_pipeline(const gchar *pipeline_desc, Pipeline *self);
+//static void pipeline_error_dlg(const gchar *pipeline_desc, const gchar *error_message, Pipeline *self);
+static void pipeline_error_print(const gchar *pipeline_desc, const gchar *error_message, Pipeline *self);
+
+void
+pipeline_finalize(GObject *object)
+{
+  PipelinePrivate *priv = PIPELINE_GET_PRIVATE(object);
+  gst_caps_unref(priv->filter);
+
+  (*parent_class->finalize) (object);
+  return;
+}
+
+Pipeline *
+pipeline_new(void)
+{
+  Pipeline *self = g_object_new(PIPELINE_TYPE, NULL);
+
+  return self;
+}
+
+void
+pipeline_class_init(PipelineClass *klass)
+{
+  GObjectClass *object_class;
+
+  parent_class = g_type_class_peek_parent(klass);
+  object_class = (GObjectClass*) klass;
+
+  object_class->finalize = pipeline_finalize;
+  g_type_class_add_private(klass, sizeof(PipelinePrivate));
+
+  G_OBJECT_CLASS(klass)->finalize = (GObjectFinalizeFunc) pipeline_finalize;
+}
+
+void
+pipeline_init(Pipeline *self)
+{
+}
 
 void
 pipeline_set_play(Pipeline *self)
@@ -114,16 +155,16 @@ pipeline_change_effect(gpointer self)
   if (effect != NULL) {
     pipeline_set_stop(PIPELINE(self));
 
-    gst_element_unlink(priv->ffmpeg2, priv->effect);
-    gst_element_unlink(priv->effect, priv->ffmpeg3);
+    gst_element_unlink(priv->ffmpeg1, priv->effect);
+    gst_element_unlink(priv->effect, priv->ffmpeg2);
     gst_bin_remove(GST_BIN(PIPELINE(self)->pipeline), priv->effect);
 
     g_print("changing to effect: %s\n", effect);
     priv->effect = gst_parse_bin_from_description(effect, TRUE, NULL);
     gst_bin_add(GST_BIN(PIPELINE(self)->pipeline), priv->effect);
 
-    gst_element_link(priv->ffmpeg2, priv->effect);
-    gst_element_link(priv->effect, priv->ffmpeg3);
+    gst_element_link(priv->ffmpeg1, priv->effect);
+    gst_element_link(priv->effect, priv->ffmpeg2);
 
     pipeline_set_play(self);
   }
@@ -133,32 +174,54 @@ void
 pipeline_create(Pipeline *self) {
 
   gboolean link_ok; 
+  gchar *source_pipeline;
 
   PipelinePrivate *priv = PIPELINE_GET_PRIVATE(self);
 
+  if (test_pipeline("v4l2src ! fakesink", self)) {
+    //source_pipeline = g_strdup_printf ("%s", v4l2src);
+    source_pipeline = "v4l2src";
+  } else if (test_pipeline("v4lsrc ! fakesink", self)) {
+    source_pipeline = "v4lsrc";
+  } else if (test_pipeline("v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=320,height=240 ! fakesink", self)) {
+    source_pipeline = "v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=320,height=240";
+  } else if (test_pipeline("v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=640,height=480 ! fakesink", self)) {
+    source_pipeline = "v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=640,height=480";
+  } else if (test_pipeline("v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=1280,height=960 ! fakesink", self)) {
+    source_pipeline = "v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=1280,height=960";
+  } else if (test_pipeline("v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=160,height=120 ! fakesink", self)) {
+    source_pipeline = "v4lsrc ! ffmpegcolorspace ! video/x-raw-rgb,width=160,height=120";
+  } else {
+    GtkWidget *dialog;
+
+    dialog = gtk_message_dialog_new(GTK_WINDOW(cheese_window.window),
+        GTK_DIALOG_DESTROY_WITH_PARENT,
+        GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+        "Unable to find a webcam, SORRY!");
+
+  gtk_dialog_run(GTK_DIALOG (dialog));
+  gtk_widget_destroy(dialog);
+    source_pipeline = "videotestsrc";
+  }
+
   self->pipeline = gst_pipeline_new("pipeline");
-  priv->source = gst_element_factory_make("gconfvideosrc", "v4l2src");
+  priv->source = gst_parse_bin_from_description(source_pipeline, TRUE, NULL);
+  //priv->source = gst_element_factory_make(source_pipeline, source_pipeline);
   // if you want to test without having a webcam
   // priv->source = gst_element_factory_make("videotestsrc", "v4l2src");
-
   gst_bin_add(GST_BIN(self->pipeline), priv->source);
+
   priv->ffmpeg1 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace");
   gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg1);
 
   priv->effect = gst_element_factory_make("identity", "effect");
   gst_bin_add(GST_BIN(self->pipeline), priv->effect);
 
-  priv->videoscale = gst_element_factory_make("videoscale", "videoscale");
-  gst_bin_add(GST_BIN(self->pipeline), priv->videoscale);
-
   priv->ffmpeg2 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace2");
   gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg2);
 
   priv->ffmpeg3 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace3");
   gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg3);
-
-  priv->ffmpeg4 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace4");
-  gst_bin_add(GST_BIN(self->pipeline), priv->ffmpeg4);
 
   priv->tee = gst_element_factory_make("tee", "tee");
   gst_bin_add(GST_BIN(self->pipeline), priv->tee);
@@ -186,35 +249,25 @@ pipeline_create(Pipeline *self) {
    *       queueimg -> fakesink -> pixbuf (gets picture from data)
    */
 
+
   gst_element_link(priv->source, priv->ffmpeg1);
 
-  //FIXME: ugly hack to resize all resolutions to 640x480... wahh
-  priv->filter = gst_caps_new_simple("video/x-raw-rgb",
-      "width", G_TYPE_INT, 640,
-      "height", G_TYPE_INT, 480, NULL);
-
-  link_ok = gst_element_link_filtered(priv->ffmpeg1, priv->videoscale, priv->filter);
-  if (!link_ok) {
-    g_warning("Failed to link elements!");
-  }
-  //gst_element_link(priv->ffmpeg1, priv->videoscale);
-  gst_element_link(priv->videoscale, priv->ffmpeg2);
-  gst_element_link(priv->ffmpeg2, priv->effect);
-  gst_element_link(priv->effect, priv->ffmpeg3);
+  gst_element_link(priv->ffmpeg1, priv->effect);
+  gst_element_link(priv->effect, priv->ffmpeg2);
 
   priv->filter = gst_caps_new_simple("video/x-raw-rgb",
       "bpp", G_TYPE_INT, 24,
       "depth", G_TYPE_INT, 24, NULL);
 
-  link_ok = gst_element_link_filtered(priv->ffmpeg3, priv->tee, priv->filter);
+  link_ok = gst_element_link_filtered(priv->ffmpeg2, priv->tee, priv->filter);
   if (!link_ok) {
     g_warning("Failed to link elements!");
   }
 
   gst_element_link(priv->tee, priv->queuevid);
-  gst_element_link(priv->queuevid, priv->ffmpeg4);
+  gst_element_link(priv->queuevid, priv->ffmpeg3);
 
-  gst_element_link(priv->ffmpeg4, self->ximagesink);
+  gst_element_link(priv->ffmpeg3, self->ximagesink);
 
   // setting back the format to get nice pictures
   priv->filter = gst_caps_new_simple("video/x-raw-rgb", NULL);
@@ -231,7 +284,6 @@ pipeline_create(Pipeline *self) {
                    G_CALLBACK(cb_have_data), self);
 
 }
-
 static gboolean
 cb_have_data(GstElement *element, GstBuffer *buffer, GstPad *pad, gpointer self)
 {
@@ -285,40 +337,135 @@ create_photo(unsigned char *data, int width, int height)
   g_print("Photo saved: %s (%dx%d)\n", filename, width, height);
 }
 
-void
-pipeline_finalize(GObject *object)
-{
-  PipelinePrivate *priv = PIPELINE_GET_PRIVATE(object);
-  gst_caps_unref(priv->filter);
+/*
+ * shamelessly Stolen from gnome-media:
+ * pipeline-tests.c
+ * Copyright (C) 2002 Jan Schmidt
+ * Copyright (C) 2005 Tim-Philipp Müller <tim centricular net>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ */
 
-  (*parent_class->finalize) (object);
-  return;
+static gboolean
+build_test_pipeline(const gchar *pipeline_desc, GError **p_err, Pipeline *self) {
+  PipelinePrivate *priv = PIPELINE_GET_PRIVATE(self);
+  gboolean return_val = FALSE;
+
+  g_assert (p_err != NULL);
+
+  if (pipeline_desc) {
+    priv->gst_test_pipeline = gst_parse_launch(pipeline_desc, p_err);
+
+    if (*p_err == NULL && priv->gst_test_pipeline != NULL) {
+      return_val = TRUE;
+    }
+  }
+
+  return return_val;
 }
 
-Pipeline *
-pipeline_new(void)
-{
-  Pipeline *self = g_object_new(PIPELINE_TYPE, NULL);
+static gboolean
+test_pipeline(const gchar *pipeline_desc, Pipeline *self) {
+  PipelinePrivate *priv = PIPELINE_GET_PRIVATE(self);
+  GstStateChangeReturn ret;
+  GstMessage *msg;
+  GError *err = NULL;
+  GstBus *bus;
 
-  return self;
+
+  /* Build the pipeline */
+  if (!build_test_pipeline (pipeline_desc, &err, self)) {
+    /* Show the error pipeline */
+    //pipeline_error_dlg(pipeline_desc, (err) ? err->message : NULL, self);
+    pipeline_error_print(pipeline_desc, (err) ? err->message : NULL, self);
+    if (err)
+      g_error_free(err);
+    return FALSE;
+  }
+
+  /* Start the pipeline and wait for max. 3 seconds for it to start up */
+  gst_element_set_state(priv->gst_test_pipeline, GST_STATE_PLAYING);
+  ret = gst_element_get_state(priv->gst_test_pipeline, NULL, NULL, 3 * GST_SECOND);
+
+  /* Check if any error messages were posted on the bus */
+  bus = gst_element_get_bus(priv->gst_test_pipeline);
+  msg = gst_bus_poll(bus, GST_MESSAGE_ERROR, 0);
+  gst_object_unref(bus);
+
+  if (priv->gst_test_pipeline) {
+    gst_element_set_state (priv->gst_test_pipeline, GST_STATE_NULL);
+    gst_object_unref (priv->gst_test_pipeline);
+    priv->gst_test_pipeline = NULL;
+  }
+
+  if (msg != NULL) {
+    gchar *dbg = NULL;
+
+    gst_message_parse_error(msg, &err, &dbg);
+    gst_message_unref(msg);
+
+    g_message("Error running pipeline '%s': %s [%s]", pipeline_desc,
+        (err) ? err->message : "(null error)",
+        (dbg) ? dbg : "no additional debugging details");
+    //pipeline_error_dlg(pipeline_desc, err->message, self);
+    pipeline_error_print(pipeline_desc, err->message, self);
+    g_error_free (err);
+    g_free (dbg);
+    return FALSE;
+  } else if (ret != GST_STATE_CHANGE_SUCCESS) {
+    //pipeline_error_dlg(pipeline_desc, NULL, self);
+    pipeline_error_print(pipeline_desc, NULL, self);
+    return FALSE;
+  } else {
+    //works
+    return TRUE;
+  }
+  return FALSE;
 }
 
-void
-pipeline_class_init(PipelineClass *klass)
-{
-  GObjectClass *object_class;
+/*
+static void
+pipeline_error_dlg(const gchar *pipeline_desc, const gchar *error_message, Pipeline *self) {
+  gchar *errstr;
 
-  parent_class = g_type_class_peek_parent(klass);
-  object_class = (GObjectClass*) klass;
+  if (error_message) {
+    errstr = g_strdup_printf("[%s]: %s", pipeline_desc, error_message);
+  } else {
+    errstr = g_strdup_printf(("Failed to construct test pipeline for '%s'"),
+        pipeline_desc);
+  }
 
-  object_class->finalize = pipeline_finalize;
-  g_type_class_add_private(klass, sizeof(PipelinePrivate));
+  GtkWidget *dialog;
 
-  G_OBJECT_CLASS(klass)->finalize = (GObjectFinalizeFunc) pipeline_finalize;
+  dialog = gtk_message_dialog_new(GTK_WINDOW(cheese_window.window),
+      GTK_DIALOG_DESTROY_WITH_PARENT,
+      GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
+      "SORRY, but Cheese has failed to set up you webcam with %s:\n\n%s",
+      g_strsplit(pipeline_desc, " !", 0)[0], errstr);
+
+  gtk_dialog_run(GTK_DIALOG (dialog));
+  gtk_widget_destroy(dialog);
+
+  g_free(errstr);
 }
+*/
 
-void
-pipeline_init(Pipeline *self)
-{
+static void
+pipeline_error_print(const gchar *pipeline_desc, const gchar *error_message, Pipeline *self) {
+  gchar *errstr;
+
+  if (error_message) {
+    errstr = g_strdup_printf("[%s]: %s", pipeline_desc, error_message);
+  } else {
+    errstr = g_strdup_printf(("Failed to construct test pipeline for '%s'"),
+        pipeline_desc);
+  }
+
+  g_message("test pipeline for %s failed:\n%s",
+      g_strsplit(pipeline_desc, " !", 0)[0], errstr);
+
+  g_free(errstr);
 }
-
