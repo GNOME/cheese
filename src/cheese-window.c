@@ -63,13 +63,13 @@ cheese_window_change_effect(GtkWidget *widget, gpointer self)
 {
   if (gtk_notebook_get_current_page(GTK_NOTEBOOK(cheese_window.widgets.notebook)) == 1) {
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 0);
-    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Effects"));
+    gtk_label_set_text_with_mnemonic(GTK_LABEL(cheese_window.widgets.label_effects), _("_Effects"));
     gtk_widget_set_sensitive(cheese_window.widgets.take_picture, TRUE);
     pipeline_change_effect(self);
   }
   else {
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 1);
-    gtk_label_set_text(GTK_LABEL(cheese_window.widgets.label_effects), _("Back"));
+    gtk_label_set_text_with_mnemonic(GTK_LABEL(cheese_window.widgets.label_effects), _("_Back"));
     gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.take_picture), FALSE);
   }
 }

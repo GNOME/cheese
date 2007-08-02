@@ -105,6 +105,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="response_id">0</property>
                             <child>
                               <widget class="GtkAlignment" id="alignment4">
                                 <property name="visible">True</property>
@@ -125,7 +126,10 @@
                                       <widget class="GtkLabel" id="label_photo">
                                         <property name="visible">True</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                        <property name="label" translatable="yes">Photo</property>
+                                        <property name="label" translatable="yes">_Photo</property>
+                                        <property name="use_markup">True</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="mnemonic_widget">button_photo</property>
                                       </widget>
                                       <packing>
                                         <property name="position">1</property>
@@ -143,6 +147,7 @@
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <property name="response_id">0</property>
                             <child>
                               <widget class="GtkAlignment" id="alignment5">
                                 <property name="visible">True</property>
@@ -163,7 +168,10 @@
                                       <widget class="GtkLabel" id="label_video">
                                         <property name="visible">True</property>
                                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                        <property name="label" translatable="yes">Video</property>
+                                        <property name="label" translatable="yes">_Video</property>
+                                        <property name="use_markup">True</property>
+                                        <property name="use_underline">True</property>
+                                        <property name="mnemonic_widget">button_video</property>
                                       </widget>
                                       <packing>
                                         <property name="position">1</property>
@@ -190,6 +198,7 @@
                   <widget class="GtkButton" id="take_picture">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="response_id">0</property>
                     <child>
                       <widget class="GtkAlignment" id="alignment1">
                         <property name="visible">True</property>
@@ -212,9 +221,10 @@
                             <child>
                               <widget class="GtkLabel" id="label_take_photo">
                                 <property name="visible">True</property>
-                                <property name="label" translatable="yes">&lt;b&gt;Take a photo&lt;/b&gt;</property>
+                                <property name="label" translatable="yes">&lt;b&gt;_Take a photo&lt;/b&gt;</property>
                                 <property name="use_markup">True</property>
                                 <property name="use_underline">True</property>
+                                <property name="mnemonic_widget">take_picture</property>
                               </widget>
                               <packing>
                                 <property name="expand">False</property>
@@ -239,6 +249,7 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                    <property name="response_id">0</property>
                     <child>
                       <widget class="GtkAlignment" id="alignment2">
                         <property name="visible">True</property>
@@ -259,7 +270,10 @@
                               <widget class="GtkLabel" id="label_effects">
                                 <property name="visible">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="label" translatable="yes">Effects</property>
+                                <property name="label" translatable="yes">_Effects</property>
+                                <property name="use_markup">True</property>
+                                <property name="use_underline">True</property>
+                                <property name="mnemonic_widget">button_effects</property>
                               </widget>
                               <packing>
                                 <property name="position">1</property>
