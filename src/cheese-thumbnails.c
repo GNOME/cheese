@@ -45,13 +45,13 @@ cheese_thumbnails_finalize() {
 
 void
 cheese_thumbnails_append_photo(gchar *filename) {
-  g_printf("appending %s to thumbnail row\n", filename);
-  gtk_list_store_append(thumbnails.store, &thumbnails.iter);
   GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size(filename, THUMB_WIDTH, THUMB_HEIGHT, NULL);
   if (!pixbuf) {
     g_warning("could not load %s\n", filename);
     return;
   }
+  g_printf("appending %s to thumbnail row\n", filename);
+  gtk_list_store_append(thumbnails.store, &thumbnails.iter);
   gtk_list_store_set(thumbnails.store, &thumbnails.iter, PIXBUF_COLUMN, pixbuf, URL_COLUMN, filename, -1);
 
   GtkTreePath *path = gtk_tree_model_get_path(GTK_TREE_MODEL(thumbnails.store),&thumbnails.iter);
