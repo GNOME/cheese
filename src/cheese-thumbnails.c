@@ -50,13 +50,12 @@ cheese_thumbnails_append_photo(gchar *filename) {
     g_warning("could not load %s\n", filename);
     return;
   }
-  g_printf("appending %s to thumbnail row\n", filename);
+  g_print("appending %s to thumbnail row\n", filename);
   gtk_list_store_append(thumbnails.store, &thumbnails.iter);
   gtk_list_store_set(thumbnails.store, &thumbnails.iter, PIXBUF_COLUMN, pixbuf, URL_COLUMN, filename, -1);
 
-  GtkTreePath *path = gtk_tree_model_get_path(GTK_TREE_MODEL(thumbnails.store),&thumbnails.iter);
-  gtk_icon_view_scroll_to_path(GTK_ICON_VIEW(thumbnails.iconview), path,
-                                  TRUE, 1.0, 0.5);
+  GtkTreePath *path = gtk_tree_model_get_path(GTK_TREE_MODEL(thumbnails.store), &thumbnails.iter);
+  gtk_icon_view_scroll_to_path(GTK_ICON_VIEW(thumbnails.iconview), path, TRUE, 1.0, 0.5);
 
   g_object_unref(pixbuf);
 }
@@ -64,10 +63,17 @@ cheese_thumbnails_append_photo(gchar *filename) {
 void
 cheese_thumbnails_remove_photo(gchar *filename) {
 
-  //gtk_tree_model_get_iter(GTK_TREE_MODEL(store), &iter, gtk_tree_path_new_from_string(path));
-  //gtk_list_store_remove(store, &iter);
-  //if (is_file_in_list_store(store, info_uri, &iter)) {
-  //    gtk_list_store_remove(GTK_LIST_STORE(store), &iter);
+  gchar *path;
+  GtkTreeIter i;
+
+  gtk_tree_model_get_iter_first(GTK_TREE_MODEL(thumbnails.store), &i);
+  while (gtk_tree_model_iter_next(GTK_TREE_MODEL(thumbnails.store), &i)) {
+    gtk_tree_model_get(GTK_TREE_MODEL(thumbnails.store), &i, URL_COLUMN, &path, -1);
+    if (!g_ascii_strcasecmp(path, filename))
+      break;
+  }
+  gtk_list_store_remove(thumbnails.store, &i);
+  g_print("removing %s from thumbnail row\n", filename);
 }
 
 void

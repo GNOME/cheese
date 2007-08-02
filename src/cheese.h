@@ -26,9 +26,7 @@
 
 //FIXME: provide option to choose the folder
 #define SAVE_FOLDER_DEFAULT  	 "images/"
-//FIXME: provide option to choose the naming of the photos
 #define PHOTO_NAME_DEFAULT	 "Picture"
-//FIXME: provide option to choose the format
 #define PHOTO_NAME_SUFFIX_DEFAULT ".jpg"
 
 
