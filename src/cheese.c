@@ -84,17 +84,21 @@ main(int argc, char **argv)
 
   cheese_effects_widget_init();
 
-  PipelinePhoto = PIPELINE(pipeline_new());
-  pipeline_create(PipelinePhoto);
-  pipeline_set_play(PipelinePhoto);
-
   cheese_thumbnails_init();
-  gtk_icon_view_set_model(GTK_ICON_VIEW(thumbnails.iconview), GTK_TREE_MODEL(thumbnails.store));
+  gtk_icon_view_set_model(GTK_ICON_VIEW(thumbnails.iconview),
+      GTK_TREE_MODEL(thumbnails.store));
   cheese_thumbnails_fill_thumbs();
 
   gnome_vfs_monitor_add(&monitor_handle, cheese_fileutil_get_photo_path(),
       GNOME_VFS_MONITOR_DIRECTORY,
       (GnomeVFSMonitorCallback)cheese_fileutil_photos_monitor_cb, NULL);
+
+  PipelinePhoto = PIPELINE(pipeline_new());
+  pipeline_create(PipelinePhoto);
+
+  gtk_widget_show_all(cheese_window.window);
+
+  pipeline_set_play(PipelinePhoto);
 
   g_signal_connect(G_OBJECT(cheese_window.window), "destroy",
       G_CALLBACK(on_cheese_window_close_cb), NULL);
@@ -105,7 +109,6 @@ main(int argc, char **argv)
   g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects), "clicked",
       G_CALLBACK(cheese_window_change_effect), PipelinePhoto);
 
-  gtk_widget_show_all(cheese_window.window);
   gtk_main();
 
   return EXIT_SUCCESS;
