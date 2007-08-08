@@ -178,6 +178,7 @@ pipeline_create(Pipeline *self) {
 
   PipelinePrivate *priv = PIPELINE_GET_PRIVATE(self);
 
+  g_message("Probing the webcam, please ignore the following, not applicabable tries");
   if (test_pipeline("v4l2src ! fakesink", self)) {
     //source_pipeline = g_strdup_printf ("%s", v4l2src);
     source_pipeline = "v4l2src";
