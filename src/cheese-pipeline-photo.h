@@ -25,17 +25,17 @@
 
 G_BEGIN_DECLS
 
-#define PIPELINE_TYPE             (pipeline_get_type ())
-#define PIPELINE(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), PIPELINE_TYPE, Pipeline))
-#define PIPELINE_CLASS(vtable)    (G_TYPE_CHECK_CLASS_CAST ((vtable), PIPELINE_TYPE, PipelineClass))
-#define IS_PIPELINE(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), PIPELINE_TYPE))
-#define IS_PIPELINE_CLASS(vtable) (G_TYPE_CHECK_CLASS_TYPE ((vtable), PIPELINE_TYPE))
-#define PIPELINE_GET_CLASS(inst)  (G_TYPE_INSTANCE_GET_CLASS ((inst), PIPELINE_TYPE, PipelineClass))
+#define PIPELINE_PHOTO_TYPE             (cheese_pipeline_photo_get_type())
+#define PIPELINE_PHOTO(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), PIPELINE_PHOTO_TYPE, PipelinePhoto))
+#define PIPELINE_PHOTO_CLASS(vtable)    (G_TYPE_CHECK_CLASS_CAST ((vtable), PIPELINE_PHOTO_TYPE, PipelinePhotoClass))
+#define IS_PIPELINE_PHOTO(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), PIPELINE_PHOTO_TYPE))
+#define IS_PIPELINE_PHOTO_CLASS(vtable) (G_TYPE_CHECK_CLASS_TYPE ((vtable), PIPELINE_PHOTO_TYPE))
+#define PIPELINE_PHOTO_GET_CLASS(inst)  (G_TYPE_INSTANCE_GET_CLASS ((inst), PIPELINE_PHOTO_TYPE, PipelinePhotoClass))
 
-typedef struct _Pipeline Pipeline;
-typedef struct _PipelineClass PipelineClass;
+typedef struct _PipelinePhoto PipelinePhoto;
+typedef struct _PipelinePhotoClass PipelinePhotoClass;
 
-struct _Pipeline 
+struct _PipelinePhoto 
 {
 	GObject parent;
 
@@ -44,21 +44,21 @@ struct _Pipeline
   GstElement *fakesink;
 };
 
-struct _PipelineClass 
+struct _PipelinePhotoClass 
 {
 	GObjectClass parent_class;
 };
 
-Pipeline*     pipeline_new                 (void);
-GType         pipeline_get_type            (void);
-void          pipeline_set_play            (Pipeline *self);
-void          pipeline_set_stop            (Pipeline *self);
-void          pipeline_create              (Pipeline *self);
-GstElement   *pipeline_get_ximagesink      (Pipeline *self);
-GstElement   *pipeline_get_fakesink        (Pipeline *self);
-GstElement   *pipeline_get_pipeline        (Pipeline *self);
-void          pipeline_button_clicked      (GtkWidget *widget, gpointer self);
-void          pipeline_change_effect       (gpointer self);
+PipelinePhoto*    cheese_pipeline_photo_new               (void);
+GType             cheese_pipeline_photo_get_type          (void);
+void              cheese_pipeline_photo_set_play          (PipelinePhoto *self);
+void              cheese_pipeline_photo_set_stop          (PipelinePhoto *self);
+void              cheese_pipeline_photo_create            (gchar *source_pipeline, PipelinePhoto *self);
+GstElement       *cheese_pipeline_photo_get_ximagesink    (PipelinePhoto *self);
+GstElement       *cheese_pipeline_photo_get_fakesink      (PipelinePhoto *self);
+GstElement       *cheese_pipeline_photo_get_pipeline      (PipelinePhoto *self);
+void              cheese_pipeline_photo_button_clicked    (GtkWidget *widget, gpointer self);
+void              cheese_pipeline_photo_change_effect     (gchar *effect, gpointer self);
 
 G_END_DECLS
 

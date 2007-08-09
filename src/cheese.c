@@ -25,7 +25,7 @@
 
 #include "cheese-config.h"
 #include "cheese.h"
-#include "cheese-pipeline-photo.h"
+#include "cheese-pipeline.h"
 #include "cheese-fileutil.h"
 #include "cheese-thumbnails.h"
 #include "cheese-window.h"
@@ -35,15 +35,13 @@ struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
 
 GnomeVFSMonitorHandle *monitor_handle = NULL;
-Pipeline *PipelinePhoto;
 
 void
 on_cheese_window_close_cb(GtkWidget *widget, gpointer data)
 {
-  pipeline_set_stop(PipelinePhoto);
-  g_object_unref(G_OBJECT(PipelinePhoto));
   gnome_vfs_monitor_cancel(monitor_handle);
 
+  cheese_pipeline_finalize();
   cheese_effects_widget_finalize();
   cheese_window_finalize();
   cheese_thumbnails_finalize();
@@ -93,21 +91,19 @@ main(int argc, char **argv)
       GNOME_VFS_MONITOR_DIRECTORY,
       (GnomeVFSMonitorCallback)cheese_fileutil_photos_monitor_cb, NULL);
 
-  PipelinePhoto = PIPELINE(pipeline_new());
-  pipeline_create(PipelinePhoto);
-
   gtk_widget_show_all(cheese_window.window);
 
-  pipeline_set_play(PipelinePhoto);
+  cheese_pipeline_init();
+  cheese_pipeline_set_play();
 
   g_signal_connect(G_OBJECT(cheese_window.window), "destroy",
       G_CALLBACK(on_cheese_window_close_cb), NULL);
   g_signal_connect(G_OBJECT(cheese_window.widgets.take_picture), "clicked",
-      G_CALLBACK(pipeline_button_clicked), PipelinePhoto);
+      G_CALLBACK(cheese_pipeline_button_clicked), NULL);
   g_signal_connect(cheese_window.widgets.screen, "expose-event",
-      G_CALLBACK(cheese_window_expose_cb), PipelinePhoto);
+      G_CALLBACK(cheese_window_expose_cb), NULL);
   g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects), "clicked",
-      G_CALLBACK(cheese_window_change_effect), PipelinePhoto);
+      G_CALLBACK(cheese_window_change_effect), NULL);
 
   gtk_main();
 

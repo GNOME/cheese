@@ -17,12 +17,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CHEESE_EFFECTS_WIDGET_H__
-#define __CHEESE_EFFECTS_WIDGET_H__
+#ifndef __CHEESE_PIPELINE_H__
+#define __CHEESE_PIPELINE_H__
 
-void cheese_effects_widget_init();
-void cheese_effects_widget_finalize();
-void cheese_effects_widget_remove_all_effects();
-gchar *cheese_effects_get_selection();
+#include <gst/gst.h>
 
-#endif /* __CHEESE_EFFECTS_WIDGET_H__ */
+void cheese_pipeline_finalize(void);
+void cheese_pipeline_init(void);
+void cheese_pipeline_set_play(void);
+void cheese_pipeline_set_stop(void);
+void cheese_pipeline_button_clicked(GtkWidget *widget);
+void cheese_pipeline_change_effect(void);
+void cheese_pipeline_change_pipeline_type();
+void cheese_pipeline_create(void);
+GstElement *cheese_pipeline_get_ximagesink(void);
+GstElement *cheese_pipeline_get_fakesink(void);
+GstElement *cheese_pipeline_get_pipeline(void);
+
+#endif /* __CHEESE_PIPELINE_H__ */

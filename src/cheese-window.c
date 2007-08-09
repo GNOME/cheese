@@ -28,7 +28,7 @@
 #include "cheese-window.h"
 #include "cheese-thumbnails.h"
 #include "cheese-config.h"
-#include "cheese-pipeline-photo.h"
+#include "cheese-pipeline.h"
 #include "cheese-effects-widget.h"
 
 #define GLADE_FILE CHEESE_DATA_DIR"/cheese.glade"
@@ -64,7 +64,7 @@ cheese_window_change_effect(GtkWidget *widget, gpointer self)
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 0);
     gtk_label_set_text_with_mnemonic(GTK_LABEL(cheese_window.widgets.label_effects), _("_Effects"));
     gtk_widget_set_sensitive(cheese_window.widgets.take_picture, TRUE);
-    pipeline_change_effect(self);
+    cheese_pipeline_change_effect();
   }
   else {
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window.widgets.notebook), 1);
@@ -76,13 +76,32 @@ cheese_window_change_effect(GtkWidget *widget, gpointer self)
 gboolean
 cheese_window_expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data)
 {
-  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(pipeline_get_pipeline(data)), GST_TYPE_X_OVERLAY);
+  GstElement *tmp = gst_bin_get_by_interface(GST_BIN(cheese_pipeline_get_pipeline()),
+      GST_TYPE_X_OVERLAY);
   gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(tmp),
       GDK_WINDOW_XWINDOW(widget->window));
   // this is for using x(v)imagesink natively:
   //gst_x_overlay_set_xwindow_id(GST_X_OVERLAY(data),
   //    GDK_WINDOW_XWINDOW(widget->window));
   return FALSE;
+}
+
+void
+cheese_window_button_video_cb(GtkWidget *widget, gpointer self)
+{
+  gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_photo), TRUE);
+  gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), FALSE);
+  cheese_pipeline_change_pipeline_type();
+  cheese_window_expose_cb(cheese_window.widgets.screen, NULL, NULL);
+}
+
+void
+cheese_window_button_photo_cb(GtkWidget *widget, gpointer self)
+{
+  gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_photo), FALSE);
+  gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), TRUE);
+  cheese_pipeline_change_pipeline_type();
+  cheese_window_expose_cb(cheese_window.widgets.screen, NULL, NULL);
 }
 
 static void
@@ -113,7 +132,12 @@ create_window()
   gtk_widget_set_size_request(thumbnails.iconview, -1 , THUMB_HEIGHT + 20);
 
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_photo), FALSE);
-  gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), FALSE);
+  gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), TRUE);
+
+  g_signal_connect(G_OBJECT(cheese_window.widgets.button_photo), "clicked",
+      G_CALLBACK(cheese_window_button_photo_cb), NULL);
+  g_signal_connect(G_OBJECT(cheese_window.widgets.button_video), "clicked",
+      G_CALLBACK(cheese_window_button_video_cb), NULL);
 
   gtk_icon_view_set_pixbuf_column(GTK_ICON_VIEW(thumbnails.iconview), 0);
   gtk_icon_view_set_columns(GTK_ICON_VIEW(thumbnails.iconview), G_MAXINT);

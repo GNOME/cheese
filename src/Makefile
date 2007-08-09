@@ -4,12 +4,14 @@ include toc2.make
 include $(toc2.dirs.makefiles)/toc2-c.make
 
 SOURCES := cheese.c \
-						cheese-pipeline-photo.c \
-						cheese-fileutil.c \
-						cheese-thumbnails.c \
-						cheese-window.c \
 						cheese-cairo-custom.c \
-						cheese-effects-widget.c
+						cheese-effects-widget.c \
+						cheese-fileutil.c \
+						cheese-pipeline-photo.c \
+						cheese-pipeline-video.c \
+						cheese-pipeline.c \
+						cheese-thumbnails.c \
+						cheese-window.c
 
 print-var-%:
 	@echo $*=$($*)

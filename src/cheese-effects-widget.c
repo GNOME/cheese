@@ -147,6 +147,13 @@ cheese_effects_get_selection() {
   return effect;
 }
 
+void
+cheese_effects_widget_remove_all_effects() {
+  int i;
+  for (i = 0; i < MAX_EFFECTS; i++)
+    g_array_index(effects_widget.effects, gsteffects, i).selected = FALSE;
+}
+
 static void
 paint (GtkWidget *widget, GdkEventExpose *eev, gpointer self)
 {
