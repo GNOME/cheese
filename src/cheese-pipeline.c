@@ -66,8 +66,8 @@ cheese_pipeline_init()
   cheese_pipeline.pipeline_is_photo = TRUE;
   cheese_pipeline.PhotoPipeline = PIPELINE_PHOTO(cheese_pipeline_photo_new());
   cheese_pipeline_create();
-
   cheese_pipeline_set_play();
+  cheese_window_expose_cb(cheese_window.widgets.screen, NULL, NULL);
 }
 
 void
@@ -89,8 +89,9 @@ cheese_pipeline_set_stop()
 void
 cheese_pipeline_button_clicked(GtkWidget *widget)
 {
-  cheese_pipeline.pipeline_is_photo ?
-    cheese_pipeline_photo_button_clicked(widget, cheese_pipeline.PhotoPipeline) :
+  if (cheese_pipeline.pipeline_is_photo)
+    cheese_pipeline_photo_button_clicked(widget, cheese_pipeline.PhotoPipeline);
+  else
     cheese_pipeline_video_button_clicked(widget, cheese_pipeline.VideoPipeline);
 }
 
@@ -125,6 +126,12 @@ cheese_pipeline_change_effect()
   cheese_pipeline.pipeline_is_photo ?
     cheese_pipeline_photo_change_effect(effect, cheese_pipeline.PhotoPipeline) :
     cheese_pipeline_video_change_effect(effect, cheese_pipeline.VideoPipeline);
+}
+
+gboolean
+cheese_pipeline_pipeline_is_photo()
+{
+  return cheese_pipeline.pipeline_is_photo;
 }
 
 void

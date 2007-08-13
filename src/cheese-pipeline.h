@@ -33,5 +33,6 @@ void cheese_pipeline_create(void);
 GstElement *cheese_pipeline_get_ximagesink(void);
 GstElement *cheese_pipeline_get_fakesink(void);
 GstElement *cheese_pipeline_get_pipeline(void);
+gboolean cheese_pipeline_pipeline_is_photo(void);
 
 #endif /* __CHEESE_PIPELINE_H__ */

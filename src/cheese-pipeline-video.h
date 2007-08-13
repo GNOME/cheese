@@ -38,10 +38,6 @@ typedef struct _PipelineVideoClass PipelineVideoClass;
 struct _PipelineVideo 
 {
 	GObject parent;
-
-  GstElement *pipeline;
-  GstElement *ximagesink;
-  GstElement *fakesink;
 };
 
 struct _PipelineVideoClass 

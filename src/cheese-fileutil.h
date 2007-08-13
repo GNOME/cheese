@@ -24,6 +24,8 @@ void cheese_fileutil_init();
 void cheese_fileutil_finalize();
 gchar *cheese_fileutil_get_photo_path(void);
 gchar *cheese_fileutil_get_photo_filename(int);
-void cheese_fileutil_photos_monitor_cb(GnomeVFSMonitorHandle *, const gchar *, const gchar *, GnomeVFSMonitorEventType);
+gchar *cheese_fileutil_get_video_path(void);
+gchar *cheese_fileutil_get_video_filename(void);
+void cheese_fileutil_monitor_cb(GnomeVFSMonitorHandle *, const gchar *, const gchar *, GnomeVFSMonitorEventType);
 
 #endif /* __CHEESE_FILE_UTIL_H__ */

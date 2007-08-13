@@ -48,7 +48,6 @@ struct _PipelinePhotoPrivate
   GstElement *caps;
   GstElement *effect;
   GstCaps *filter;
-  GstElement *gst_test_pipeline;
 };
 
 #define PIPELINE_PHOTO_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), PIPELINE_PHOTO_TYPE, PipelinePhotoPrivate))
@@ -173,9 +172,6 @@ cheese_pipeline_photo_create(gchar *source_pipeline, PipelinePhoto *self) {
 
   self->pipeline = gst_pipeline_new("pipeline");
   priv->source = gst_parse_bin_from_description(source_pipeline, TRUE, NULL);
-  //priv->source = gst_element_factory_make(source_pipeline, source_pipeline);
-  // if you want to test without having a webcam
-  // priv->source = gst_element_factory_make("videotestsrc", "v4l2src");
   gst_bin_add(GST_BIN(self->pipeline), priv->source);
 
   priv->ffmpeg1 = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace");
@@ -207,7 +203,7 @@ cheese_pipeline_photo_create(gchar *source_pipeline, PipelinePhoto *self) {
 
   /*
    * the pipeline looks like this:
-   * gconfvideosrc -> ffmpegcsp
+   * v4l(2)src -> ffmpegcsp
    *                    '-> videoscale
    *                         '-> ffmpegcsp -> effects -> ffmpegcsp 
    *    -------------------------------------------------------'

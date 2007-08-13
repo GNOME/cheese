@@ -91,6 +91,8 @@ cheese_window_button_video_cb(GtkWidget *widget, gpointer self)
 {
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_photo), TRUE);
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), FALSE);
+  gtk_label_set_text_with_mnemonic(GTK_LABEL(cheese_window.widgets.label_take_photo), _("<b>_Start recording</b>"));
+  gtk_label_set_use_markup(GTK_LABEL(cheese_window.widgets.label_take_photo), TRUE);
   cheese_pipeline_change_pipeline_type();
   cheese_window_expose_cb(cheese_window.widgets.screen, NULL, NULL);
 }
@@ -100,7 +102,16 @@ cheese_window_button_photo_cb(GtkWidget *widget, gpointer self)
 {
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_photo), FALSE);
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), TRUE);
+  gtk_label_set_text_with_mnemonic(GTK_LABEL(cheese_window.widgets.label_take_photo), _("<b>_Take a photo</b>"));
+  gtk_label_set_use_markup(GTK_LABEL(cheese_window.widgets.label_take_photo), TRUE);
   cheese_pipeline_change_pipeline_type();
+  cheese_window_expose_cb(cheese_window.widgets.screen, NULL, NULL);
+}
+
+void
+cheese_window_pipeline_button_clicked_cb(GtkWidget *widget, gpointer self)
+{
+  cheese_pipeline_button_clicked(widget);
   cheese_window_expose_cb(cheese_window.widgets.screen, NULL, NULL);
 }
 
@@ -127,6 +138,7 @@ create_window()
   cheese_window.widgets.label_video           = glade_xml_get_widget(cheese_window.gxml, "label_video");
   cheese_window.widgets.label_take_photo      = glade_xml_get_widget(cheese_window.gxml, "label_take_photo");
   cheese_window.widgets.effects_widget        = glade_xml_get_widget(cheese_window.gxml, "effects_screen");
+  cheese_window.widgets.image_take_photo      = glade_xml_get_widget(cheese_window.gxml, "image_take_photo");
   thumbnails.iconview                         = glade_xml_get_widget(cheese_window.gxml, "previews");
 
   gtk_widget_set_size_request(thumbnails.iconview, -1 , THUMB_HEIGHT + 20);
@@ -169,6 +181,12 @@ create_window()
   gtk_signal_connect(GTK_OBJECT(thumbnails.iconview), "item-activated",
       GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);
 
+  g_signal_connect(G_OBJECT(cheese_window.window), "destroy",
+      G_CALLBACK(on_cheese_window_close_cb), NULL);
+  g_signal_connect(G_OBJECT(cheese_window.widgets.take_picture), "clicked",
+      G_CALLBACK(cheese_window_pipeline_button_clicked_cb), NULL);
+  g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects), "clicked",
+      G_CALLBACK(cheese_window_change_effect), NULL);
 }
 
 static void on_about_cb (GtkWidget *p_widget, gpointer user_data)

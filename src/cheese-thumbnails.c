@@ -20,6 +20,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 #include <glib/gprintf.h>
 #include <string.h>
+#include <libgnomeui/libgnomeui.h>
 
 #include "cheese.h"
 #include "cheese-fileutil.h"
@@ -43,12 +44,30 @@ cheese_thumbnails_finalize() {
 }
 
 void
-cheese_thumbnails_append_photo(gchar *filename) {
-  GdkPixbuf *pixbuf = gdk_pixbuf_new_from_file_at_size(filename, THUMB_WIDTH, THUMB_HEIGHT, NULL);
+cheese_thumbnails_append_item(gchar *filename) {
+  GdkPixbuf *pixbuf = NULL;
+  if (g_str_has_suffix(filename, PHOTO_NAME_SUFFIX_DEFAULT)) {
+    pixbuf = gdk_pixbuf_new_from_file_at_size(filename, THUMB_WIDTH, THUMB_HEIGHT, NULL);
+  } else if (g_str_has_suffix(filename, VIDEO_NAME_SUFFIX_DEFAULT)) {
+    GnomeThumbnailFactory *factory;
+    factory = gnome_thumbnail_factory_new(GNOME_THUMBNAIL_SIZE_NORMAL);
+    GnomeVFSFileInfo *file_info = gnome_vfs_file_info_new();
+    gchar *thumb_loc = gnome_thumbnail_factory_lookup(factory, filename, file_info->mtime);
+
+    if (!thumb_loc) {
+      g_print("creating thumbnail for %s\n", filename);
+      pixbuf = gnome_thumbnail_factory_generate_thumbnail(factory, filename, "video/x-theora+ogg");
+      gnome_thumbnail_factory_save_thumbnail(factory, pixbuf, filename, file_info->mtime);
+    } else {
+      pixbuf = gdk_pixbuf_new_from_file(thumb_loc, NULL);
+    }
+  }
+
   if (!pixbuf) {
     g_warning("could not load %s\n", filename);
     return;
   }
+
   g_print("appending %s to thumbnail row\n", filename);
   gtk_list_store_append(thumbnails.store, &thumbnails.iter);
   gtk_list_store_set(thumbnails.store, &thumbnails.iter, PIXBUF_COLUMN, pixbuf, URL_COLUMN, filename, -1);
@@ -60,7 +79,7 @@ cheese_thumbnails_append_photo(gchar *filename) {
 }
 
 void
-cheese_thumbnails_remove_photo(gchar *filename) {
+cheese_thumbnails_remove_item(gchar *filename) {
 
   gchar *path;
   GtkTreeIter i;
@@ -92,10 +111,27 @@ cheese_thumbnails_fill_thumbs()
 
   while ((name = g_dir_read_name(dir))) {
     if (name[0] != '.') {
-      if (!g_str_has_suffix (name, PHOTO_NAME_SUFFIX_DEFAULT))
+      if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX_DEFAULT))
         continue;
-      path = g_build_filename(cheese_fileutil_get_photo_path(), name, NULL);
 
+      path = g_build_filename(cheese_fileutil_get_photo_path(), name, NULL);
+      is_dir = g_file_test(path, G_FILE_TEST_IS_DIR);
+
+      if (!is_dir)
+        filelist = g_list_prepend(filelist, g_strdup(path));
+      g_free(path);
+    }
+  }
+  dir = g_dir_open(cheese_fileutil_get_video_path(), 0, NULL);
+  if (!dir)
+    return;
+
+  while ((name = g_dir_read_name(dir))) {
+    if (name[0] != '.') {
+      if (!g_str_has_suffix (name, VIDEO_NAME_SUFFIX_DEFAULT))
+        continue;
+
+      path = g_build_filename(cheese_fileutil_get_video_path(), name, NULL);
       is_dir = g_file_test(path, G_FILE_TEST_IS_DIR);
 
       if (!is_dir)
@@ -104,7 +140,7 @@ cheese_thumbnails_fill_thumbs()
     }
   }
   filelist = g_list_sort (filelist, (GCompareFunc)strcmp);
-  g_list_foreach (filelist, (GFunc)cheese_thumbnails_append_photo, NULL);
+  g_list_foreach (filelist, (GFunc)cheese_thumbnails_append_item, NULL);
 
   g_free(dir);
 }

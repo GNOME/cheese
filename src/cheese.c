@@ -77,6 +77,14 @@ main(int argc, char **argv)
     g_mkdir_with_parents(path, 0775);
     g_print("creating new directory: %s\n", path);
   }
+  path = cheese_fileutil_get_video_path();
+  uri = gnome_vfs_uri_new(path);
+
+  if (!gnome_vfs_uri_exists(uri)) {
+    gnome_vfs_make_directory_for_uri(uri, 0775);
+    g_mkdir_with_parents(path, 0775);
+    g_print("creating new directory: %s\n", path);
+  }
 
   cheese_window_init();
 
@@ -89,21 +97,18 @@ main(int argc, char **argv)
 
   gnome_vfs_monitor_add(&monitor_handle, cheese_fileutil_get_photo_path(),
       GNOME_VFS_MONITOR_DIRECTORY,
-      (GnomeVFSMonitorCallback)cheese_fileutil_photos_monitor_cb, NULL);
+      (GnomeVFSMonitorCallback)cheese_fileutil_monitor_cb, NULL);
+  gnome_vfs_monitor_add(&monitor_handle, cheese_fileutil_get_video_path(),
+      GNOME_VFS_MONITOR_DIRECTORY,
+      (GnomeVFSMonitorCallback)cheese_fileutil_monitor_cb, NULL);
 
   gtk_widget_show_all(cheese_window.window);
 
   cheese_pipeline_init();
   cheese_pipeline_set_play();
 
-  g_signal_connect(G_OBJECT(cheese_window.window), "destroy",
-      G_CALLBACK(on_cheese_window_close_cb), NULL);
-  g_signal_connect(G_OBJECT(cheese_window.widgets.take_picture), "clicked",
-      G_CALLBACK(cheese_pipeline_button_clicked), NULL);
   g_signal_connect(cheese_window.widgets.screen, "expose-event",
       G_CALLBACK(cheese_window_expose_cb), NULL);
-  g_signal_connect(G_OBJECT(cheese_window.widgets.button_effects), "clicked",
-      G_CALLBACK(cheese_window_change_effect), NULL);
 
   gtk_main();
 

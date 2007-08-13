@@ -38,8 +38,8 @@ cheese_fileutil_get_photo_path() {
   //FIXME: check for real path
   // maybe ~/cheese or on the desktop..
   //g_get_home_dir()
-  //gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), SAVE_FOLDER_DEFAULT);
-  gchar *path = g_strdup_printf("%s/.gnome2/cheese/%s", g_get_home_dir(), SAVE_FOLDER_DEFAULT);
+  //gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), PHOTO_FOLDER_DEFAULT);
+  gchar *path = g_strdup_printf("%s/.gnome2/cheese/%s", g_get_home_dir(), PHOTO_FOLDER_DEFAULT);
   return path;
 }
 
@@ -56,8 +56,43 @@ cheese_fileutil_get_photo_filename(int i) {
   return filename;
 }
 
+gchar *
+cheese_fileutil_get_video_path() {
+  //FIXME: check for real path
+  // maybe ~/cheese or on the desktop..
+  //g_get_home_dir()
+  //gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), VIDEO_FOLDER_DEFAULT);
+  gchar *path = g_strdup_printf("%s/.gnome2/cheese/%s", g_get_home_dir(), VIDEO_FOLDER_DEFAULT);
+  return path;
+}
+
+gchar *
+cheese_fileutil_get_video_filename() {
+  gchar *filename;
+  int i;
+  GnomeVFSURI *uri;
+
+  i = 1;
+  filename = g_strdup_printf("%s%s0%d%s", cheese_fileutil_get_video_path(), VIDEO_NAME_DEFAULT, i, VIDEO_NAME_SUFFIX_DEFAULT);
+
+  uri = gnome_vfs_uri_new(filename);
+
+  while (gnome_vfs_uri_exists(uri)) {
+    i++;
+    if (i < 10)
+      filename = g_strdup_printf("%s%s0%d%s", cheese_fileutil_get_video_path(), VIDEO_NAME_DEFAULT, i, VIDEO_NAME_SUFFIX_DEFAULT);
+    else
+      filename = g_strdup_printf("%s%s%d%s", cheese_fileutil_get_video_path(), VIDEO_NAME_DEFAULT, i, VIDEO_NAME_SUFFIX_DEFAULT);
+    g_free(uri);
+    uri = gnome_vfs_uri_new(filename);
+  }
+  g_free(uri);
+
+  return filename;
+}
+
 void
-cheese_fileutil_photos_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type)
+cheese_fileutil_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const gchar *monitor_uri, const gchar *info_uri, GnomeVFSMonitorEventType event_type)
 {
   gchar *filename = gnome_vfs_get_local_path_from_uri(info_uri);
   gboolean is_dir;
@@ -67,13 +102,13 @@ cheese_fileutil_photos_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const g
   if (!is_dir) {
     switch (event_type) {
       case GNOME_VFS_MONITOR_EVENT_DELETED:
-        cheese_thumbnails_remove_photo(filename);
+        cheese_thumbnails_remove_item(filename);
         break;
       // in case if we need to check if a file changed
       //case GNOME_VFS_MONITOR_EVENT_CHANGED:
       case GNOME_VFS_MONITOR_EVENT_CREATED:
         //g_message("new file found: %s\n", filename);
-        cheese_thumbnails_append_photo(filename);
+        cheese_thumbnails_append_item(filename);
         break;
       default:
         break;

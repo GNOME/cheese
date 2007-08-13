@@ -26,8 +26,8 @@
 void cheese_thumbnails_init();
 void cheese_thumbnails_finalize();
 void cheese_thumbnails_fill_thumbs();
-void cheese_thumbnails_append_photo(gchar *);
-void cheese_thumbnails_remove_photo(gchar *);
+void cheese_thumbnails_append_item(gchar *);
+void cheese_thumbnails_remove_item(gchar *);
 
 struct _thumbnails
 {
