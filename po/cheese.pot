@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-04 12:23+0200\n"
+"POT-Creation-Date: 2007-08-14 11:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,7 +64,15 @@ msgstr ""
 msgid "Warp"
 msgstr ""
 
-#: ../src/cheese-pipeline-photo.c:200
+#: ../src/cheese-pipeline-video.c:140
+msgid "<b>_Stop recording</b>"
+msgstr ""
+
+#: ../src/cheese-pipeline-video.c:145 ../src/cheese-window.c:94
+msgid "<b>_Start recording</b>"
+msgstr ""
+
+#: ../src/cheese-pipeline.c:188
 msgid "Unable to find a webcam, SORRY!"
 msgstr ""
 
@@ -76,19 +84,23 @@ msgstr ""
 msgid "_Back"
 msgstr ""
 
-#: ../src/cheese-window.c:122
+#: ../src/cheese-window.c:105 ../data/cheese.glade:224
+msgid "<b>_Take a photo</b>"
+msgstr ""
+
+#: ../src/cheese-window.c:158
 msgid "_File"
 msgstr ""
 
-#: ../src/cheese-window.c:123
+#: ../src/cheese-window.c:159
 msgid "_Help"
 msgstr ""
 
-#: ../src/cheese-window.c:178
-msgid "A cheesy program to take pictures from your webcam"
+#: ../src/cheese-window.c:220
+msgid "A cheesy program to take pictures and videos from your webcam"
 msgstr ""
 
-#: ../src/cheese.c:70 ../data/cheese.glade:7
+#: ../src/cheese.c:68 ../data/cheese.glade:7
 msgid "Cheese"
 msgstr ""
 
@@ -98,8 +110,4 @@ msgstr ""
 
 #: ../data/cheese.glade:171
 msgid "_Video"
-msgstr ""
-
-#: ../data/cheese.glade:224
-msgid "<b>_Take a photo</b>"
 msgstr ""

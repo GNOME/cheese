@@ -217,7 +217,7 @@ static void on_about_cb (GtkWidget *p_widget, gpointer user_data)
   gtk_show_about_dialog (GTK_WINDOW(user_data),
                          "version", CHEESE_VERSION,
 		                     "copyright", "Copyright \xc2\xa9 2007\n daniel g. siegel <dgsiegel@gmail.com>",
-                         "comments", _("A cheesy program to take pictures from your webcam"),
+                         "comments", _("A cheesy program to take pictures and videos from your webcam"),
                          "authors", authors,
                          "website", "http://live.gnome.org/Cheese",
                          "logo-icon-name", "cheese",

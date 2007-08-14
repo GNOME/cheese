@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-04 12:19+0200\n"
+"POT-Creation-Date: 2007-08-14 11:52+0200\n"
 "PO-Revision-Date: 2007-08-02 00:03+0200\n"
 "Last-Translator: Pierre Slamich\n"
 "Language-Team: French \n"
@@ -63,7 +63,15 @@ msgstr "en petits dés"
 msgid "Warp"
 msgstr "Déformer"
 
-#: ../src/cheese-pipeline-photo.c:200
+#: ../src/cheese-pipeline-video.c:140
+msgid "<b>_Stop recording</b>"
+msgstr ""
+
+#: ../src/cheese-pipeline-video.c:145 ../src/cheese-window.c:94
+msgid "<b>_Start recording</b>"
+msgstr ""
+
+#: ../src/cheese-pipeline.c:188
 msgid "Unable to find a webcam, SORRY!"
 msgstr "Impossible de détecter une webcam, DESOLE!"
 
@@ -77,19 +85,25 @@ msgstr "Effets"
 msgid "_Back"
 msgstr "Retour"
 
-#: ../src/cheese-window.c:122
+#: ../src/cheese-window.c:105 ../data/cheese.glade:224
+#, fuzzy
+msgid "<b>_Take a photo</b>"
+msgstr "<b>Prendre une photo</b>"
+
+#: ../src/cheese-window.c:158
 msgid "_File"
 msgstr "_Fichier"
 
-#: ../src/cheese-window.c:123
+#: ../src/cheese-window.c:159
 msgid "_Help"
 msgstr "_Aide"
 
-#: ../src/cheese-window.c:178
-msgid "A cheesy program to take pictures from your webcam"
+#: ../src/cheese-window.c:220
+#, fuzzy
+msgid "A cheesy program to take pictures and videos from your webcam"
 msgstr "Un programme qui fait cheese pour prendre des photos de votre webcam"
 
-#: ../src/cheese.c:70 ../data/cheese.glade:7
+#: ../src/cheese.c:68 ../data/cheese.glade:7
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -102,8 +116,3 @@ msgstr "Photo"
 #, fuzzy
 msgid "_Video"
 msgstr "Vidéo"
-
-#: ../data/cheese.glade:224
-#, fuzzy
-msgid "<b>_Take a photo</b>"
-msgstr "<b>Prendre une photo</b>"
