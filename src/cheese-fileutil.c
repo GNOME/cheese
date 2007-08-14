@@ -107,7 +107,7 @@ cheese_fileutil_monitor_cb(GnomeVFSMonitorHandle *monitor_handle, const gchar *m
       // in case if we need to check if a file changed
       //case GNOME_VFS_MONITOR_EVENT_CHANGED:
       case GNOME_VFS_MONITOR_EVENT_CREATED:
-        //g_message("new file found: %s\n", filename);
+        g_message("new file found: %s\n", filename);
         cheese_thumbnails_append_item(filename);
         break;
       default:
