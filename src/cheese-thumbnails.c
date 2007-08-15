@@ -58,9 +58,9 @@ cheese_thumbnails_append_item(gchar *filename) {
 
     file_info = gnome_vfs_file_info_new();
     uri = g_filename_to_uri(filename, NULL, NULL);
-    if (!uri &&
-        !(gnome_vfs_get_file_info(uri, file_info,
-            GNOME_VFS_FILE_INFO_DEFAULT) == GNOME_VFS_OK)) {
+    if (!uri ||
+        (gnome_vfs_get_file_info(uri, file_info,
+            GNOME_VFS_FILE_INFO_DEFAULT) != GNOME_VFS_OK)) {
       g_printerr ("Invalid filename\n");
       return;
     }
@@ -68,6 +68,7 @@ cheese_thumbnails_append_item(gchar *filename) {
     factory = gnome_thumbnail_factory_new(GNOME_THUMBNAIL_SIZE_NORMAL);
 
     thumb_loc = gnome_thumbnail_factory_lookup(factory, uri, file_info->mtime);
+    //g_print("file: %s, time: %s, icon: %s\n", uri, ctime(&file_info->mtime), thumb_loc);
 
     if (!thumb_loc) {
       g_print("creating thumbnail for %s\n", filename);
@@ -130,7 +131,7 @@ cheese_thumbnails_fill_thumbs()
 
   while ((name = g_dir_read_name(dir))) {
     if (name[0] != '.') {
-      if (!g_str_has_suffix (name, PHOTO_NAME_SUFFIX_DEFAULT))
+      if (!g_str_has_suffix(name, PHOTO_NAME_SUFFIX_DEFAULT))
         continue;
 
       path = g_build_filename(cheese_fileutil_get_photo_path(), name, NULL);
@@ -147,7 +148,7 @@ cheese_thumbnails_fill_thumbs()
 
   while ((name = g_dir_read_name(dir))) {
     if (name[0] != '.') {
-      if (!g_str_has_suffix (name, VIDEO_NAME_SUFFIX_DEFAULT))
+      if (!g_str_has_suffix(name, VIDEO_NAME_SUFFIX_DEFAULT))
         continue;
 
       path = g_build_filename(cheese_fileutil_get_video_path(), name, NULL);
