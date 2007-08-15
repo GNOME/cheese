@@ -30,6 +30,7 @@
 #include "cheese-pipeline-video.h"
 #include "cheese-effects-widget.h"
 #include "cheese-fileutil.h"
+#include "cheese-thumbnails.h"
 
 G_DEFINE_TYPE(PipelineVideo, cheese_pipeline_video, G_TYPE_OBJECT)
 
@@ -147,6 +148,7 @@ cheese_pipeline_video_button_clicked(GtkWidget *widget, gpointer self)
     gtk_image_set_from_stock(GTK_IMAGE(cheese_window.widgets.image_take_photo), GTK_STOCK_MEDIA_RECORD, GTK_ICON_SIZE_BUTTON);
 
     g_print("Video saved: %s\n", priv->filename);
+    cheese_thumbnails_append_item(priv->filename);
     priv->filename = cheese_fileutil_get_video_filename();
 
     g_object_set(priv->filesink, "location", priv->filename, NULL);
