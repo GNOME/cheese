@@ -51,7 +51,7 @@ struct _PipelineVideoPrivate
 
   GstElement *source;
   GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
-  GstElement *ffmpeg1_rec, *ffmpeg2_rec, *ffmpeg3_rec;
+  GstElement *ffmpeg1_rec, *ffmpeg2_rec, *ffmpeg3_rec, *ffmpeg4_rec;
   GstElement *tee, *tee_rec;
   GstElement *queuedisplay, *queuedisplay_rec, *queuemovie;
   GstElement *effect, *effect_rec;
@@ -61,6 +61,8 @@ struct _PipelineVideoPrivate
   GstElement *filesink;
   GstElement *oggmux;
   GstElement *theoraenc;
+  GstElement *videorate;
+  GstElement *videoscale;
   GstCaps *filter, *filter_rec;
 };
 
@@ -166,7 +168,6 @@ cheese_pipeline_video_button_clicked(GtkWidget *widget, gpointer self)
     gst_element_link(priv->theoraenc, priv->oggmux);
     gst_element_link(priv->vorbisenc, priv->oggmux);
     gst_element_link(priv->oggmux, priv->filesink);
-
   }
 
    // gst_element_set_state(priv->pipeline_rec, GST_STATE_READY);
@@ -308,8 +309,17 @@ cheese_pipeline_video_create_rec(PipelineVideo *self) {
   priv->ffmpeg3_rec = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace3_rec");
   gst_bin_add(GST_BIN(priv->pipeline_rec), priv->ffmpeg3_rec);
 
+  priv->ffmpeg4_rec = gst_element_factory_make("ffmpegcolorspace", "ffmpegcolorspace4_rec");
+  gst_bin_add(GST_BIN(priv->pipeline_rec), priv->ffmpeg4_rec);
+
   priv->tee_rec = gst_element_factory_make("tee", "tee_rec");
   gst_bin_add(GST_BIN(priv->pipeline_rec), priv->tee_rec);
+
+  priv->videorate = gst_element_factory_make("videorate", "videorate");
+  gst_bin_add(GST_BIN(priv->pipeline_rec), priv->videorate);
+
+  priv->videoscale = gst_element_factory_make("videoscale", "videoscale");
+  gst_bin_add(GST_BIN(priv->pipeline_rec), priv->videoscale);
 
   priv->queuedisplay_rec = gst_element_factory_make("queue", "queuedisplay_rec");
   gst_bin_add(GST_BIN(priv->pipeline_rec), priv->queuedisplay_rec);
@@ -335,17 +345,24 @@ cheese_pipeline_video_create_rec(PipelineVideo *self) {
    * gconfaudiosrc---^
    */
 
-  gst_element_link(priv->source, priv->ffmpeg1_rec);
+  gst_element_link(priv->source, priv->videoscale);
+  priv->filter_rec = gst_caps_new_simple("video/x-raw-yuv",
+      "width", G_TYPE_INT, 320,
+      "height", G_TYPE_INT, 240, NULL);
+  link_ok = gst_element_link_filtered(priv->videoscale, priv->videorate, priv->filter_rec);
+  if (!link_ok) {
+    g_warning("Failed to link elements!");
+  }
+  priv->filter_rec = gst_caps_new_simple("video/x-raw-yuv", "framerate", GST_TYPE_FRACTION, 15, 1, NULL);
+  link_ok = gst_element_link_filtered(priv->videorate, priv->ffmpeg1_rec, priv->filter_rec);
+  if (!link_ok) {
+    g_warning("Failed to link elements!");
+  }
   gst_element_link(priv->ffmpeg1_rec, priv->effect_rec);
   gst_element_link(priv->effect_rec, priv->ffmpeg2_rec);
   //gst_element_link(priv->ffmpeg2, priv->tee);
 
-  // theoraenc needs raw yuv data...
-  priv->filter_rec = gst_caps_new_simple("video/x-raw-yuv", NULL);
-  link_ok = gst_element_link_filtered(priv->ffmpeg2_rec, priv->tee_rec, priv->filter_rec);
-  if (!link_ok) {
-    g_warning("Failed to link elements!");
-  }
+  gst_element_link(priv->ffmpeg2_rec, priv->tee_rec);
 
   gst_element_link(priv->tee_rec, priv->queuedisplay_rec);
   gst_element_link(priv->queuedisplay_rec, priv->ffmpeg3_rec);
@@ -375,9 +392,18 @@ cheese_pipeline_video_create_rec(PipelineVideo *self) {
   priv->queuemovie = gst_element_factory_make("queue", "queuemovie");
   gst_bin_add(GST_BIN(priv->pipeline_rec), priv->queuemovie);
 
+  //gst_element_link(priv->tee_rec, priv->ffmpeg4_rec);
   gst_element_link(priv->tee_rec, priv->queuemovie);
-  gst_element_link(priv->queuemovie, priv->theoraenc);
-  gst_element_link(priv->tee_rec, priv->theoraenc);
+  gst_element_link(priv->queuemovie, priv->ffmpeg4_rec);
+
+  // theoraenc needs raw yuv data...
+  priv->filter_rec = gst_caps_new_simple("video/x-raw-yuv", NULL);
+  //priv->filter_rec = gst_caps_new_simple("video/x-raw-yuv", "framerate", GST_TYPE_FRACTION, 15, 1, NULL);
+  link_ok = gst_element_link_filtered(priv->ffmpeg4_rec, priv->theoraenc, priv->filter_rec);
+  if (!link_ok) {
+    g_warning("Failed to link elements!");
+  }
+  //gst_element_link(priv->queuemovie, priv->theoraenc);
 
   gst_element_link(priv->theoraenc, priv->oggmux);
 
