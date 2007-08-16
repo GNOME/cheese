@@ -28,6 +28,7 @@ void cheese_thumbnails_finalize();
 void cheese_thumbnails_fill_thumbs();
 void cheese_thumbnails_append_item(gchar *);
 void cheese_thumbnails_remove_item(gchar *);
+gchar *cheese_thumbnails_get_filename_from_path(GtkTreePath *path);
 
 struct _thumbnails
 {

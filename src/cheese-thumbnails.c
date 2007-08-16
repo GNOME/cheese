@@ -26,6 +26,7 @@
 #include "cheese-fileutil.h"
 #include "cheese-thumbnails.h"
 #include "cheese-window.h"
+#include "eog-thumb-shadow.h"
 
 enum {
   PIXBUF_COLUMN,
@@ -88,6 +89,9 @@ cheese_thumbnails_append_item(gchar *filename) {
     return;
   }
 
+  eog_thumb_shadow_add_shadow(&pixbuf);
+  eog_thumb_shadow_add_round_border(&pixbuf);
+
   g_print("appending %s to thumbnail row\n", filename);
   gtk_list_store_append(thumbnails.store, &thumbnails.iter);
   gtk_list_store_set(thumbnails.store, &thumbnails.iter, PIXBUF_COLUMN, pixbuf, URL_COLUMN, filename, -1);
@@ -112,6 +116,15 @@ cheese_thumbnails_remove_item(gchar *filename) {
   }
   gtk_list_store_remove(thumbnails.store, &i);
   g_print("removing %s from thumbnail row\n", filename);
+}
+
+gchar *
+cheese_thumbnails_get_filename_from_path(GtkTreePath *path) {
+  GtkTreeIter iter;
+  gchar *file;
+  gtk_tree_model_get_iter(GTK_TREE_MODEL(thumbnails.store), &iter, path);
+  gtk_tree_model_get(GTK_TREE_MODEL(thumbnails.store), &iter, 1, &file, -1);
+  return file;
 }
 
 void

@@ -41,6 +41,7 @@ struct _widgets
   GtkWidget *help_menu;
   GtkWidget *effects_widget;
   GtkWidget *image_take_photo;
+  GtkWidget *popup_menu;
 };
 
 struct _cheese_window

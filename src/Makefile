@@ -11,7 +11,8 @@ SOURCES := cheese.c \
 						cheese-pipeline-video.c \
 						cheese-pipeline.c \
 						cheese-thumbnails.c \
-						cheese-window.c
+						cheese-window.c \
+						eog-thumb-shadow.c
 
 print-var-%:
 	@echo $*=$($*)

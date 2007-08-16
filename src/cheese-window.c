@@ -23,6 +23,8 @@
 #include <gtk/gtk.h>
 #include <gst/interfaces/xoverlay.h>
 #include <gdk/gdkx.h>
+#include <glib.h>
+#include <glib/gstdio.h>
 
 #include "cheese.h"
 #include "cheese-window.h"
@@ -39,6 +41,9 @@ struct _thumbnails thumbnails;
 
 static void create_window();
 static void on_about_cb (GtkWidget *p_widget, gpointer user_data);
+static void cheese_window_url_show(GtkWidget *, GtkTreePath *path);
+static void cheese_window_create_popup_menu(GtkTreePath *path);
+static void cheese_window_remove_thumbnails_item(GtkWidget *widget, gchar *file);
 
 void cheese_window_init() {
   create_window();
@@ -47,14 +52,79 @@ void cheese_window_init() {
 void cheese_window_finalize() {
 }
 
-void on_item_activated_cb (GtkIconView *iconview, GtkTreePath *tree_path, gpointer user_data) {
-  GtkTreeIter iter;
-  const gchar *file;
-  gtk_tree_model_get_iter(GTK_TREE_MODEL(thumbnails.store), &iter, tree_path);
-  gtk_tree_model_get(GTK_TREE_MODEL(thumbnails.store), &iter, 1, &file, -1);
+static void on_button_press_event_cb(GtkWidget *iconview, GdkEventButton *event, gpointer user_data) {
+  GtkTreePath *path;
+
+  printf("AAAA %d %d\n", event->button, event->type);
+  printf("BBBB %f %f\n", event->x, event->y);
+  //if (event->button == 3 && event->type == GDK_BUTTON_PRESS)
+  if (event->type == GDK_BUTTON_PRESS || event->type == GDK_2BUTTON_PRESS) {
+    path = gtk_icon_view_get_path_at_pos (GTK_ICON_VIEW (iconview), 
+        (gint) event->x, (gint) event->y);
+    if (path == NULL) {
+      return;
+    }
+
+    gtk_icon_view_unselect_all(GTK_ICON_VIEW (iconview));
+    gtk_icon_view_select_path(GTK_ICON_VIEW (thumbnails.iconview), path);
+
+    if (event->type == GDK_BUTTON_PRESS && event->button == 3) {
+      int button, event_time;
+
+      if (event) {
+        button = event->button;
+        event_time = event->time;
+      } else {
+        button = 0;
+        event_time = gtk_get_current_event_time();
+      }
+
+      cheese_window_create_popup_menu(path);
+
+      gtk_menu_popup(GTK_MENU(cheese_window.widgets.popup_menu),
+          NULL, iconview, NULL, NULL, button, event_time);
+    }
+    else if (event->type == GDK_2BUTTON_PRESS && event->button == 1) {
+      cheese_window_url_show(NULL, path);
+    }
+  }    
+}
+
+static void
+cheese_window_url_show(GtkWidget *widget, GtkTreePath *path) {
+  gchar *file = cheese_thumbnails_get_filename_from_path(path);
   g_print("opening file %s\n", file);
   file = g_strconcat ("file://", file, NULL);
   gnome_vfs_url_show(file);
+}
+
+static void
+cheese_window_create_popup_menu(GtkTreePath *path) {
+  GtkWidget *menuitem;
+  cheese_window.widgets.popup_menu = gtk_menu_new();
+
+  menuitem = gtk_image_menu_item_new_from_stock(GTK_STOCK_OPEN, NULL);
+  gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+  gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
+      GTK_SIGNAL_FUNC(cheese_window_url_show), path);
+  gtk_widget_show(menuitem);
+
+  menuitem = gtk_separator_menu_item_new();
+  gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+  gtk_widget_show(menuitem);
+
+  menuitem = gtk_image_menu_item_new_from_stock(GTK_STOCK_DELETE, NULL);
+  gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+  gchar *file = cheese_thumbnails_get_filename_from_path(path);
+  g_signal_connect(GTK_OBJECT(menuitem), "activate",
+      GTK_SIGNAL_FUNC(cheese_window_remove_thumbnails_item), file);
+  gtk_widget_show(menuitem);
+
+}
+
+static void
+cheese_window_remove_thumbnails_item(GtkWidget *widget, gchar *file) {
+  g_remove(file);
 }
 
 void
@@ -141,7 +211,7 @@ create_window()
   cheese_window.widgets.image_take_photo      = glade_xml_get_widget(cheese_window.gxml, "image_take_photo");
   thumbnails.iconview                         = glade_xml_get_widget(cheese_window.gxml, "previews");
 
-  gtk_widget_set_size_request(thumbnails.iconview, -1 , THUMB_HEIGHT + 20);
+  gtk_widget_set_size_request(thumbnails.iconview, -1 , THUMB_HEIGHT + 25);
 
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_photo), FALSE);
   gtk_widget_set_sensitive(GTK_WIDGET(cheese_window.widgets.button_video), TRUE);
@@ -178,8 +248,10 @@ create_window()
   gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
       GTK_SIGNAL_FUNC(on_about_cb), cheese_window.window);
 
-  gtk_signal_connect(GTK_OBJECT(thumbnails.iconview), "item-activated",
-      GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);
+  gtk_signal_connect(GTK_OBJECT (thumbnails.iconview), "button_press_event",
+			  G_CALLBACK (on_button_press_event_cb), NULL);
+  //gtk_signal_connect(GTK_OBJECT(thumbnails.iconview), "item-activated",
+  //    GTK_SIGNAL_FUNC(on_item_activated_cb), NULL);
 
   g_signal_connect(G_OBJECT(cheese_window.window), "destroy",
       G_CALLBACK(on_cheese_window_close_cb), NULL);
