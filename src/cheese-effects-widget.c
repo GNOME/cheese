@@ -152,6 +152,7 @@ cheese_effects_widget_remove_all_effects() {
   int i;
   for (i = 0; i < MAX_EFFECTS; i++)
     g_array_index(effects_widget.effects, gsteffects, i).selected = FALSE;
+  effects_widget.used_effect = "identity";
 }
 
 static void
