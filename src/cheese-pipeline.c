@@ -168,15 +168,17 @@ cheese_pipeline_create() {
   if (cheese_pipeline_test("v4l2src ! fakesink")) {
     cheese_pipeline.source_pipeline = "v4l2src";
   } else if (cheese_pipeline_test("v4lsrc ! video/x-raw-rgb,width=640,height=480 ! fakesink")) {
-    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=640,height=480";
+    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=640,height=480 ! ffmpegcolorspace";
   } else if (cheese_pipeline_test("v4lsrc ! video/x-raw-yuv,width=640,height=480 ! fakesink")) {
-    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-yuv,width=640,height=480";
+    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-yuv,width=640,height=480 ! ffmpegcolorspace";
   } else if (cheese_pipeline_test("v4lsrc ! video/x-raw-rgb,width=320,height=240 ! fakesink")) {
-    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=320,height=240";
+    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=320,height=240 ! ffmpegcolorspace";
   } else if (cheese_pipeline_test("v4lsrc ! video/x-raw-rgb,width=1280,height=960 ! fakesink")) {
-    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=1280,height=960";
+    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=1280,height=960 ! ffmpegcolorspace";
+  } else if (cheese_pipeline_test("v4lsrc ! video/x-raw-rgb,width=174,height=144 ! fakesink")) {
+    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=174,height=144 ! ffmpegcolorspace";
   } else if (cheese_pipeline_test("v4lsrc ! video/x-raw-rgb,width=160,height=120 ! fakesink")) {
-    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=160,height=120";
+    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=160,height=120 ! ffmpegcolorspace";
   } else if (cheese_pipeline_test("v4lsrc ! fakesink")) {
     cheese_pipeline.source_pipeline = "v4lsrc";
   } else {
