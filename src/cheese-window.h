@@ -55,7 +55,8 @@ extern struct _cheese_window cheese_window;
 
 void cheese_window_init();
 void cheese_window_finalize();
-void cheese_window_change_effect(GtkWidget *widget, gpointer self);
-gboolean cheese_window_expose_cb(GtkWidget *widget, GdkEventExpose *event, gpointer data);
+void cheese_window_change_effect(GtkWidget *, gpointer);
+gboolean cheese_window_expose_cb(GtkWidget *, GdkEventExpose *, gpointer);
+int show_move_to_trash_confirm_dialog(gchar *);
 
 #endif /* __CHEESE_WINDOW_H__ */

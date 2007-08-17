@@ -32,6 +32,7 @@
 #include "cheese-config.h"
 #include "cheese-pipeline.h"
 #include "cheese-effects-widget.h"
+#include "cheese-command-handler.h"
 
 #define GLADE_FILE CHEESE_DATA_DIR"/cheese.glade"
 
@@ -40,10 +41,9 @@ struct _cheese_window cheese_window;
 struct _thumbnails thumbnails;
 
 static void create_window();
-static void on_about_cb (GtkWidget *p_widget, gpointer user_data);
-static void cheese_window_url_show(GtkWidget *, GtkTreePath *path);
-static void cheese_window_create_popup_menu(GtkTreePath *path);
-static void cheese_window_remove_thumbnails_item(GtkWidget *widget, gchar *file);
+static void on_about_cb (GtkWidget *, gpointer);
+static void cheese_window_create_popup_menu(GtkTreePath *);
+static void cheese_window_save_as_dialog(GtkWidget *, gchar *);
 
 void cheese_window_init() {
   create_window();
@@ -55,9 +55,6 @@ void cheese_window_finalize() {
 static void on_button_press_event_cb(GtkWidget *iconview, GdkEventButton *event, gpointer user_data) {
   GtkTreePath *path;
 
-  printf("AAAA %d %d\n", event->button, event->type);
-  printf("BBBB %f %f\n", event->x, event->y);
-  //if (event->button == 3 && event->type == GDK_BUTTON_PRESS)
   if (event->type == GDK_BUTTON_PRESS || event->type == GDK_2BUTTON_PRESS) {
     path = gtk_icon_view_get_path_at_pos (GTK_ICON_VIEW (iconview), 
         (gint) event->x, (gint) event->y);
@@ -83,30 +80,29 @@ static void on_button_press_event_cb(GtkWidget *iconview, GdkEventButton *event,
 
       gtk_menu_popup(GTK_MENU(cheese_window.widgets.popup_menu),
           NULL, iconview, NULL, NULL, button, event_time);
-    }
-    else if (event->type == GDK_2BUTTON_PRESS && event->button == 1) {
-      cheese_window_url_show(NULL, path);
+
+    } else if (event->type == GDK_2BUTTON_PRESS && event->button == 1) {
+      cheese_command_handler_url_show(NULL, path);
     }
   }    
 }
 
 static void
-cheese_window_url_show(GtkWidget *widget, GtkTreePath *path) {
-  gchar *file = cheese_thumbnails_get_filename_from_path(path);
-  g_print("opening file %s\n", file);
-  file = g_strconcat ("file://", file, NULL);
-  gnome_vfs_url_show(file);
-}
-
-static void
 cheese_window_create_popup_menu(GtkTreePath *path) {
   GtkWidget *menuitem;
+  gchar *file = cheese_thumbnails_get_filename_from_path(path);
   cheese_window.widgets.popup_menu = gtk_menu_new();
 
   menuitem = gtk_image_menu_item_new_from_stock(GTK_STOCK_OPEN, NULL);
   gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
   gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
-      GTK_SIGNAL_FUNC(cheese_window_url_show), path);
+      GTK_SIGNAL_FUNC(cheese_command_handler_url_show), path);
+  gtk_widget_show(menuitem);
+
+  menuitem = gtk_image_menu_item_new_from_stock(GTK_STOCK_SAVE_AS, NULL);
+  gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+  gtk_signal_connect(GTK_OBJECT(menuitem), "activate",
+      GTK_SIGNAL_FUNC(cheese_window_save_as_dialog), file);
   gtk_widget_show(menuitem);
 
   menuitem = gtk_separator_menu_item_new();
@@ -115,16 +111,134 @@ cheese_window_create_popup_menu(GtkTreePath *path) {
 
   menuitem = gtk_image_menu_item_new_from_stock(GTK_STOCK_DELETE, NULL);
   gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
-  gchar *file = cheese_thumbnails_get_filename_from_path(path);
   g_signal_connect(GTK_OBJECT(menuitem), "activate",
-      GTK_SIGNAL_FUNC(cheese_window_remove_thumbnails_item), file);
+      GTK_SIGNAL_FUNC(cheese_command_handler_move_to_trash), file);
   gtk_widget_show(menuitem);
 
+  menuitem = gtk_separator_menu_item_new();
+  gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+  gtk_widget_show(menuitem);
+
+  if (g_find_program_in_path("gnome-open")) {
+    menuitem = gtk_image_menu_item_new_with_mnemonic(_("Send by _Mail"));
+    gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+    g_signal_connect(GTK_OBJECT(menuitem), "activate",
+        GTK_SIGNAL_FUNC(cheese_command_handler_run_command_from_string),
+        g_strdup_printf("gnome-open mailto:?subject=%s&attachment=%s", g_basename(file), file));
+    gtk_widget_show(menuitem);
+  }
+
+  if (!g_str_has_suffix(file, VIDEO_NAME_SUFFIX_DEFAULT)) {
+
+    if (g_find_program_in_path("f-spot")) {
+      menuitem = gtk_image_menu_item_new_with_mnemonic(_("Export to F-_Spot"));
+      gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+      g_signal_connect(GTK_OBJECT(menuitem), "activate",
+          GTK_SIGNAL_FUNC(cheese_command_handler_run_command_from_string),
+          g_strdup_printf("f-spot -i %s", g_path_get_dirname(file)));
+      gtk_widget_show(menuitem);
+    }
+
+    if (g_find_program_in_path("postr")) {
+      menuitem = gtk_image_menu_item_new_with_mnemonic(_("Export to _Flickr"));
+      gtk_menu_append(GTK_MENU(cheese_window.widgets.popup_menu), menuitem);
+      g_signal_connect(GTK_OBJECT(menuitem), "activate",
+          GTK_SIGNAL_FUNC(cheese_command_handler_run_command_from_string),
+          g_strdup_printf("postr %s", file));
+      gtk_widget_show(menuitem);
+    }
+  }
 }
 
 static void
-cheese_window_remove_thumbnails_item(GtkWidget *widget, gchar *file) {
-  g_remove(file);
+cheese_window_save_as_dialog(GtkWidget *widgets, gchar *data) {
+  GtkWidget *dialog;
+  gint response;
+
+  dialog = gtk_file_chooser_dialog_new("Save File",
+      GTK_WINDOW(cheese_window.window),
+      GTK_FILE_CHOOSER_ACTION_SAVE,
+      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+      GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT,
+      NULL);
+
+  gtk_file_chooser_set_do_overwrite_confirmation(GTK_FILE_CHOOSER(dialog), TRUE);
+  gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(dialog), g_basename(data));
+  response = gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_hide(dialog);
+
+  if (response == GTK_RESPONSE_ACCEPT)
+  {
+    char *filename, *dirname;
+
+    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    dirname = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (dialog));
+
+    GnomeVFSURI const *source_uri = gnome_vfs_uri_new(g_filename_to_uri(data, NULL, NULL));
+    GnomeVFSURI const *target_uri = gnome_vfs_uri_new(g_filename_to_uri(filename, NULL, NULL));
+
+    response = gnome_vfs_xfer_uri (source_uri, target_uri,
+        GNOME_VFS_XFER_DEFAULT | GNOME_VFS_XFER_FOLLOW_LINKS,
+        GNOME_VFS_XFER_ERROR_MODE_ABORT,
+        GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE,
+        NULL,
+        NULL);
+
+    if (response != GNOME_VFS_OK) {
+			char *header;
+			GtkWidget *dlg;
+
+      header = g_strdup_printf (_("Could not save %s"), filename);
+
+			dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window.window),
+						      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+						      GTK_MESSAGE_ERROR,
+						      GTK_BUTTONS_OK,
+						      header);
+
+			gtk_dialog_run (GTK_DIALOG (dlg));
+
+			gtk_widget_destroy (dlg);
+
+			g_free (header);
+
+    }
+
+    g_free (filename);
+    g_free (dirname);
+  }
+
+  gtk_widget_destroy (dialog);
+}
+
+int
+show_move_to_trash_confirm_dialog(gchar *file)
+{
+  GtkWidget *dlg;
+  char *prompt;
+  int response;
+
+  prompt = g_strdup_printf (_("Are you sure you want to move\n\"%s\" to the trash?"),
+      g_basename(file));
+
+  dlg = gtk_message_dialog_new_with_markup(GTK_WINDOW(cheese_window.window),
+  					  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+  					  GTK_MESSAGE_QUESTION,
+  					  GTK_BUTTONS_NONE,
+  					  "<span weight=\"bold\" size=\"larger\">%s</span>",
+  					  prompt);
+  g_free (prompt);
+
+  gtk_dialog_add_button(GTK_DIALOG(dlg), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+  gtk_dialog_add_button(GTK_DIALOG(dlg), _("Move to Trash"), GTK_RESPONSE_OK);
+  gtk_dialog_set_default_response(GTK_DIALOG (dlg), GTK_RESPONSE_OK);
+  gtk_window_set_title(GTK_WINDOW(dlg), "");
+  gtk_widget_show_all(dlg);
+ 
+  response = gtk_dialog_run(GTK_DIALOG(dlg));
+  gtk_widget_destroy(dlg);
+ 
+  return response;
 }
 
 void

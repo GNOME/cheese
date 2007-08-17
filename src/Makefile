@@ -5,6 +5,7 @@ include $(toc2.dirs.makefiles)/toc2-c.make
 
 SOURCES := cheese.c \
 						cheese-cairo-custom.c \
+						cheese-command-handler.c \
 						cheese-effects-widget.c \
 						cheese-fileutil.c \
 						cheese-pipeline-photo.c \
