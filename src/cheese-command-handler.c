@@ -126,7 +126,7 @@ cheese_command_handler_move_to_trash (GtkWidget * widget, gchar * file)
     char *header;
     GtkWidget *dlg;
 
-    header = g_strdup_printf (_("Error on deleting image %s"),
+    header = g_strdup_printf (_("Error on deleting %s"),
         g_basename (file));
 
     dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window.window),

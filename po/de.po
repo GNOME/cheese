@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-17 16:06+0200\n"
+"POT-Creation-Date: 2007-08-17 20:32+0200\n"
 "PO-Revision-Date: 2007-08-14 11:49+0200\n"
 "Last-Translator: daniel g. siegel <dgsiegel@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,9 +15,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cheese.c:68 ../data/cheese.glade:7
-msgid "Cheese"
-msgstr "Cheese"
+#: ../src/cheese-command-handler.c:94
+msgid "Could not find the Trash"
+msgstr "Konnte den Mülleimer nicht finden"
+
+#: ../src/cheese-command-handler.c:129
+msgid "Error on deleting %s"
+msgstr "Fehler beim entfernen von %s"
 
 #: ../src/cheese-effects-widget.c:77
 msgid "No Effect"
@@ -67,41 +71,74 @@ msgstr "Würfel"
 msgid "Warp"
 msgstr "Warp"
 
-#: ../src/cheese-pipeline.c:190
-msgid "Unable to find a webcam, SORRY!"
-msgstr "Kann keine Webcam finden, Entschuldigung!"
-
-#: ../src/cheese-pipeline-video.c:143
+#: ../src/cheese-pipeline-video.c:150
 msgid "<b>_Stop recording</b>"
 msgstr "<b>_Aufnahme starten</b>"
 
-#: ../src/cheese-pipeline-video.c:148 ../src/cheese-window.c:164
+#: ../src/cheese-pipeline-video.c:165 ../src/cheese-window.c:316
 msgid "<b>_Start recording</b>"
 msgstr "<b>_Aufnahme stoppen</b>"
 
-#: ../src/cheese-window.c:135 ../data/cheese.glade:273
+#: ../src/cheese-pipeline.c:216
+msgid "Unable to find a webcam, SORRY!"
+msgstr "Kann keine Webcam finden, Entschuldigung!"
+
+#: ../src/cheese-window.c:141
+msgid "Send by _Mail"
+msgstr "Per E-Mail senden"
+
+#: ../src/cheese-window.c:155
+msgid "Export to F-_Spot"
+msgstr "Zu F-_Spot exportieren"
+
+#: ../src/cheese-window.c:165
+msgid "Export to _Flickr"
+msgstr "Zu _Flickr exportieren"
+
+#: ../src/cheese-window.c:217
+msgid "Could not save %s"
+msgstr "Konnte %s nicht speichern"
+
+#: ../src/cheese-window.c:247
+#, c-format
+msgid ""
+"Are you sure you want to move\n"
+"\"%s\" to the trash?"
+msgstr ""
+"Soll »%s« wirklich\n"
+"in den Mülleimer verschoben werden?"
+
+#: ../src/cheese-window.c:259
+msgid "Move to Trash"
+msgstr "In den Mülleimer verschieben"
+
+#: ../src/cheese-window.c:280 ../data/cheese.glade:273
 msgid "_Effects"
 msgstr "_Effekte"
 
-#: ../src/cheese-window.c:141
+#: ../src/cheese-window.c:290
 msgid "_Back"
 msgstr "_Zurück"
 
-#: ../src/cheese-window.c:175 ../data/cheese.glade:224
+#: ../src/cheese-window.c:331 ../data/cheese.glade:224
 msgid "<b>_Take a photo</b>"
 msgstr "<b>Foto _aufnehmen</b>"
 
-#: ../src/cheese-window.c:228
+#: ../src/cheese-window.c:385
 msgid "_File"
 msgstr "_Datei"
 
-#: ../src/cheese-window.c:229
+#: ../src/cheese-window.c:386
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../src/cheese-window.c:292
+#: ../src/cheese-window.c:450
 msgid "A cheesy program to take pictures and videos from your webcam"
 msgstr "Ein Programm um Bilder und Videos deiner Webcam aufzunehmen"
+
+#: ../src/cheese.c:69 ../data/cheese.glade:7
+msgid "Cheese"
+msgstr "Cheese"
 
 #: ../data/cheese.glade:129
 msgid "_Photo"

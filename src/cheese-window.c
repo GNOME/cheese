@@ -244,8 +244,7 @@ show_move_to_trash_confirm_dialog (gchar *file)
   char *prompt;
   int response;
 
-  prompt = g_strdup_printf (_("Are you sure you want to move\n\"%s\" to the trash?"),
-        g_basename (file));
+  prompt = g_strdup_printf (_("Are you sure you want to move\n\"%s\" to the trash?"), g_basename (file));
 
   dlg = gtk_message_dialog_new_with_markup (GTK_WINDOW (cheese_window.window),
       GTK_DIALOG_MODAL |
