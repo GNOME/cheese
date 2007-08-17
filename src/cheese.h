@@ -24,14 +24,13 @@
 #include <gtk/gtk.h>
 
 //FIXME: provide option to choose the folder
-#define PHOTO_FOLDER_DEFAULT  	 "images/"
-#define PHOTO_NAME_DEFAULT	 "Picture"
+#define PHOTO_FOLDER_DEFAULT  	  "images/"
+#define PHOTO_NAME_DEFAULT	      "Picture"
 #define PHOTO_NAME_SUFFIX_DEFAULT ".jpg"
-#define VIDEO_FOLDER_DEFAULT  	 "videos/"
-#define VIDEO_NAME_DEFAULT	 "Video"
+#define VIDEO_FOLDER_DEFAULT  	  "videos/"
+#define VIDEO_NAME_DEFAULT	      "Video"
 #define VIDEO_NAME_SUFFIX_DEFAULT ".ogg"
 
-
-void on_cheese_window_close_cb(GtkWidget *widget, gpointer data);
+void on_cheese_window_close_cb (GtkWidget *, gpointer);
 
 #endif /* __CHEESE_H__ */

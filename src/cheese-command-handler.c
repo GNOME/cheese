@@ -17,6 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "cheese-config.h"
+
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
@@ -29,37 +31,42 @@
 #include "cheese-window.h"
 
 void
-cheese_command_handler_init() {
+cheese_command_handler_init ()
+{
 }
 
 void
-cheese_command_handler_finalize() {
+cheese_command_handler_finalize ()
+{
 }
 
 void
-cheese_command_handler_url_show(GtkWidget *widget, GtkTreePath *path) {
-  gchar *file = cheese_thumbnails_get_filename_from_path(path);
-  g_print("opening file %s\n", file);
+cheese_command_handler_url_show (GtkWidget * widget, GtkTreePath * path)
+{
+  gchar *file = cheese_thumbnails_get_filename_from_path (path);
+  g_print ("opening file %s\n", file);
   file = g_strconcat ("file://", file, NULL);
-  gnome_vfs_url_show(file);
+  gnome_vfs_url_show (file);
 }
 
 void
-cheese_command_handler_run_command_from_string(GtkWidget *widget, gchar *data) {
-	GError       *error;
-	error = NULL;
+cheese_command_handler_run_command_from_string (GtkWidget * widget, gchar * data)
+{
+  GError *error;
+  error = NULL;
 
-  g_print("running custom command line: %s\n", data);
-	if (!gdk_spawn_command_line_on_screen(gtk_widget_get_screen(cheese_window.window),
-					       data, &error)) {
-		g_warning("cannot launch command line: %s\n", error->message);
-		g_error_free (error);
-	}
+  g_print ("running custom command line: %s\n", data);
+  if (!gdk_spawn_command_line_on_screen
+      (gtk_widget_get_screen (cheese_window.window), data, &error))
+  {
+    g_warning ("cannot launch command line: %s\n", error->message);
+    g_error_free (error);
+  }
 
 }
 
 void
-cheese_command_handler_move_to_trash(GtkWidget *widget, gchar *file)
+cheese_command_handler_move_to_trash (GtkWidget * widget, gchar * file)
 {
   GnomeVFSURI *uri;
   GnomeVFSURI *trash_dir;
@@ -68,22 +75,18 @@ cheese_command_handler_move_to_trash(GtkWidget *widget, gchar *file)
   char *name;
   GError *error = NULL;
 
-  result = show_move_to_trash_confirm_dialog(file);
+  result = show_move_to_trash_confirm_dialog (file);
 
   if (result != GTK_RESPONSE_OK)
     return;
 
-  printf("DELETIN\n");
-
-  uri = gnome_vfs_uri_new(g_filename_to_uri(file, NULL, NULL));
-  result = gnome_vfs_find_directory(uri,
+  uri = gnome_vfs_uri_new (g_filename_to_uri (file, NULL, NULL));
+  result = gnome_vfs_find_directory (uri,
       GNOME_VFS_DIRECTORY_KIND_TRASH,
-      &trash_dir,
-      FALSE,
-      FALSE,
-      0777);
+      &trash_dir, FALSE, FALSE, 0777);
 
-  if (result != GNOME_VFS_OK) {
+  if (result != GNOME_VFS_OK)
+  {
     gnome_vfs_uri_unref (uri);
     char *header;
     GtkWidget *dlg;
@@ -91,9 +94,9 @@ cheese_command_handler_move_to_trash(GtkWidget *widget, gchar *file)
     header = g_strdup_printf (_("Could not find the Trash"));
 
     dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window.window),
-        GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-        GTK_MESSAGE_ERROR,
-        GTK_BUTTONS_OK,
+        GTK_DIALOG_MODAL |
+        GTK_DIALOG_DESTROY_WITH_PARENT,
+        GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
         header);
 
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg),
@@ -108,27 +111,28 @@ cheese_command_handler_move_to_trash(GtkWidget *widget, gchar *file)
     return;
   }
 
-  name = gnome_vfs_uri_extract_short_name(uri);
-  trash_uri = gnome_vfs_uri_append_file_name(trash_dir, name);
-  g_free(name);
+  name = gnome_vfs_uri_extract_short_name (uri);
+  trash_uri = gnome_vfs_uri_append_file_name (trash_dir, name);
+  g_free (name);
 
-  result = gnome_vfs_move_uri(uri, trash_uri, TRUE);
+  result = gnome_vfs_move_uri (uri, trash_uri, TRUE);
 
   gnome_vfs_uri_unref (uri);
   gnome_vfs_uri_unref (trash_uri);
   gnome_vfs_uri_unref (trash_dir);
 
-  if (result != GNOME_VFS_OK) {
+  if (result != GNOME_VFS_OK)
+  {
     char *header;
     GtkWidget *dlg;
 
-    header = g_strdup_printf (_("Error on deleting image %s"), 
+    header = g_strdup_printf (_("Error on deleting image %s"),
         g_basename (file));
 
     dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window.window),
-        GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-        GTK_MESSAGE_ERROR,
-        GTK_BUTTONS_OK,
+        GTK_DIALOG_MODAL |
+        GTK_DIALOG_DESTROY_WITH_PARENT,
+        GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
         header);
 
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg),
@@ -140,6 +144,4 @@ cheese_command_handler_move_to_trash(GtkWidget *widget, gchar *file)
 
     g_free (header);
   }
-
 }
-

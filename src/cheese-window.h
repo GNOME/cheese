@@ -25,23 +25,23 @@
 
 struct _widgets
 {
-  GtkWidget *take_picture;
-  GtkWidget *screen;
-  GtkWidget *notebook;
-  GtkWidget *table;
-  GtkWidget *button_video;
-  GtkWidget *button_photo;
   GtkWidget *button_effects;
-  GtkWidget *label_effects;
-  GtkWidget *label_photo;
-  GtkWidget *label_video;
-  GtkWidget *label_take_photo;
-  GtkWidget *menubar;
+  GtkWidget *button_photo;
+  GtkWidget *button_video;
+  GtkWidget *effects_widget;
   GtkWidget *file_menu;
   GtkWidget *help_menu;
-  GtkWidget *effects_widget;
   GtkWidget *image_take_photo;
+  GtkWidget *label_effects;
+  GtkWidget *label_photo;
+  GtkWidget *label_take_photo;
+  GtkWidget *label_video;
+  GtkWidget *menubar;
+  GtkWidget *notebook;
   GtkWidget *popup_menu;
+  GtkWidget *screen;
+  GtkWidget *table;
+  GtkWidget *take_picture;
 };
 
 struct _cheese_window
@@ -53,10 +53,10 @@ struct _cheese_window
 
 extern struct _cheese_window cheese_window;
 
-void cheese_window_init();
-void cheese_window_finalize();
-void cheese_window_change_effect(GtkWidget *, gpointer);
-gboolean cheese_window_expose_cb(GtkWidget *, GdkEventExpose *, gpointer);
-int show_move_to_trash_confirm_dialog(gchar *);
+void cheese_window_init ();
+void cheese_window_finalize ();
+gboolean cheese_window_expose_cb (GtkWidget *, GdkEventExpose *, gpointer);
+int show_move_to_trash_confirm_dialog (gchar *);
+void cheese_window_change_effect (GtkWidget *, gpointer);
 
 #endif /* __CHEESE_WINDOW_H__ */

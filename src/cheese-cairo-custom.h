@@ -24,9 +24,6 @@
 void
 cairo_rectangle_round (cairo_t * cr,
                        double x0,
-                       double y0,
-                       double width,
-                       double height,
-                       double radius);
+                       double y0, double width, double height, double radius);
 
 #endif /* __CHEESE_CAIRO_CUSTOM_H__ */

@@ -35,32 +35,31 @@ G_BEGIN_DECLS
 typedef struct _PipelinePhoto PipelinePhoto;
 typedef struct _PipelinePhotoClass PipelinePhotoClass;
 
-struct _PipelinePhoto 
+struct _PipelinePhoto
 {
-	GObject parent;
+  GObject parent;
 
   GstElement *pipeline;
   GstElement *ximagesink;
   GstElement *fakesink;
 };
 
-struct _PipelinePhotoClass 
+struct _PipelinePhotoClass
 {
-	GObjectClass parent_class;
+  GObjectClass parent_class;
 };
 
-PipelinePhoto*    cheese_pipeline_photo_new               (void);
-GType             cheese_pipeline_photo_get_type          (void);
-void              cheese_pipeline_photo_set_play          (PipelinePhoto *self);
-void              cheese_pipeline_photo_set_stop          (PipelinePhoto *self);
-void              cheese_pipeline_photo_create            (gchar *source_pipeline, PipelinePhoto *self);
-GstElement       *cheese_pipeline_photo_get_ximagesink    (PipelinePhoto *self);
-GstElement       *cheese_pipeline_photo_get_fakesink      (PipelinePhoto *self);
-GstElement       *cheese_pipeline_photo_get_pipeline      (PipelinePhoto *self);
-void              cheese_pipeline_photo_button_clicked    (GtkWidget *widget, gpointer self);
-void              cheese_pipeline_photo_change_effect     (gchar *effect, gpointer self);
+PipelinePhoto  *cheese_pipeline_photo_new (void);
+GType           cheese_pipeline_photo_get_type (void);
+void            cheese_pipeline_photo_set_play (PipelinePhoto *);
+void            cheese_pipeline_photo_set_stop (PipelinePhoto *);
+void            cheese_pipeline_photo_create (gchar *, PipelinePhoto *);
+GstElement     *cheese_pipeline_photo_get_ximagesink (PipelinePhoto *);
+GstElement     *cheese_pipeline_photo_get_fakesink (PipelinePhoto *);
+GstElement     *cheese_pipeline_photo_get_pipeline (PipelinePhoto *);
+void            cheese_pipeline_photo_button_clicked (GtkWidget *, gpointer);
+void            cheese_pipeline_photo_change_effect (gchar *, gpointer);
 
 G_END_DECLS
-
 
 #endif /* __CHEESE_PIPELINE_PHOTO_H__ */
