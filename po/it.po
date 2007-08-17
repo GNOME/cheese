@@ -7,13 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-14 11:52+0200\n"
+"POT-Creation-Date: 2007-08-17 16:06+0200\n"
 "PO-Revision-Date: 2007-06-28 00:04+0100\n"
 "Last-Translator: Alessandro Falappa <alessandro@falappa.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/cheese.c:68 ../data/cheese.glade:7
+msgid "Cheese"
+msgstr "Cheese"
 
 #: ../src/cheese-effects-widget.c:77
 msgid "No Effect"
@@ -63,46 +67,42 @@ msgstr "A quadratini"
 msgid "Warp"
 msgstr "Distorsione"
 
-#: ../src/cheese-pipeline-video.c:140
-msgid "<b>_Stop recording</b>"
-msgstr ""
-
-#: ../src/cheese-pipeline-video.c:145 ../src/cheese-window.c:94
-msgid "<b>_Start recording</b>"
-msgstr ""
-
-#: ../src/cheese-pipeline.c:188
+#: ../src/cheese-pipeline.c:190
 msgid "Unable to find a webcam, SORRY!"
 msgstr "Webcam non rilevata!"
 
-#: ../src/cheese-window.c:65 ../data/cheese.glade:273
+#: ../src/cheese-pipeline-video.c:143
+msgid "<b>_Stop recording</b>"
+msgstr ""
+
+#: ../src/cheese-pipeline-video.c:148 ../src/cheese-window.c:164
+msgid "<b>_Start recording</b>"
+msgstr ""
+
+#: ../src/cheese-window.c:135 ../data/cheese.glade:273
 msgid "_Effects"
 msgstr "_Effetti"
 
-#: ../src/cheese-window.c:71
+#: ../src/cheese-window.c:141
 msgid "_Back"
 msgstr "_Indietro"
 
-#: ../src/cheese-window.c:105 ../data/cheese.glade:224
+#: ../src/cheese-window.c:175 ../data/cheese.glade:224
 msgid "<b>_Take a photo</b>"
 msgstr "<b>_Scatta foto</b>"
 
-#: ../src/cheese-window.c:158
+#: ../src/cheese-window.c:228
 msgid "_File"
 msgstr "_File"
 
-#: ../src/cheese-window.c:159
+#: ../src/cheese-window.c:229
 msgid "_Help"
 msgstr "_Aiuto"
 
-#: ../src/cheese-window.c:220
+#: ../src/cheese-window.c:292
 #, fuzzy
 msgid "A cheesy program to take pictures and videos from your webcam"
 msgstr "Un programma sfizioso per scattare fotografie con la propria webcam"
-
-#: ../src/cheese.c:68 ../data/cheese.glade:7
-msgid "Cheese"
-msgstr "Cheese"
 
 #: ../data/cheese.glade:129
 msgid "_Photo"
