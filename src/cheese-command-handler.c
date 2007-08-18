@@ -24,11 +24,15 @@
 #include <glib/gstdio.h>
 #include <gtk/gtk.h>
 #include <libgnomevfs/gnome-vfs.h>
+#include <libebook/e-book.h>
 
 #include "cheese.h"
 #include "cheese-command-handler.h"
 #include "cheese-thumbnails.h"
 #include "cheese-window.h"
+
+#define MAX_HEIGHT 150
+#define MAX_WIDTH  150
 
 void
 cheese_command_handler_init ()
@@ -145,3 +149,68 @@ cheese_command_handler_move_to_trash (GtkWidget * widget, gchar * file)
     g_free (header);
   }
 }
+
+void
+cheese_command_handler_about_me_update_photo (GtkWidget *widget, gchar *filename)
+{
+
+  EContact  *contact;
+  EBook     *book;
+  GError *error;
+  GdkPixbuf *pixbuf;
+
+  if (e_book_get_self (&contact, &book, NULL)) {
+    gchar *name = e_contact_get (contact, E_CONTACT_FULL_NAME);
+    printf("Setting Account Photo for %s\n", name);
+
+    if (filename) {
+      pixbuf = gdk_pixbuf_new_from_file_at_scale (filename, MAX_HEIGHT, MAX_WIDTH, TRUE, NULL);
+
+      if (contact) {
+        EContactPhoto new_photo;
+        guchar **data;
+        int *length = NULL;
+        new_photo.type = E_CONTACT_PHOTO_TYPE_INLINED;
+        new_photo.data.inlined.mime_type = "image/jpeg";
+
+        data = &new_photo.data.inlined.data;
+        length = &new_photo.data.inlined.length;
+
+        if (gdk_pixbuf_save_to_buffer (pixbuf,
+                                      (gchar **) data, (gsize *) length,
+                                      "png", NULL,
+                                      "compression", "9", NULL)) {
+
+          e_contact_set (contact, E_CONTACT_PHOTO, &new_photo);
+
+          if (!e_book_commit_contact(book, contact, &error)) {
+
+            char *header;
+            GtkWidget *dlg;
+
+            header = g_strdup_printf (_("Could not set the Account Photo"));
+
+            dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window.window),
+                GTK_DIALOG_MODAL |
+                GTK_DIALOG_DESTROY_WITH_PARENT,
+                GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
+                header);
+
+            gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg),
+                error->message);
+
+            gtk_dialog_run (GTK_DIALOG (dlg));
+
+            gtk_widget_destroy (dlg);
+
+            g_free (header);
+          }
+
+          g_free (*data);
+
+        }
+      }
+    }
+  }
+}
+

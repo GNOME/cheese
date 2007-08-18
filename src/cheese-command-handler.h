@@ -25,5 +25,7 @@ void cheese_command_handler_finalize ();
 void cheese_command_handler_move_to_trash (GtkWidget *, gchar *);
 void cheese_command_handler_run_command_from_string (GtkWidget *, gchar *);
 void cheese_command_handler_url_show (GtkWidget *, GtkTreePath * path);
+void cheese_command_handler_about_me_update_photo (GtkWidget *, gchar *);
+
 
 #endif /* __CHEESE_COMMAND_HANDLER_H__ */

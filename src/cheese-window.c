@@ -112,13 +112,13 @@ cheese_window_create_popup_menu (GtkTreePath * path)
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_OPEN, NULL);
   gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-  gtk_signal_connect (GTK_OBJECT (menuitem), "activate",
+  g_signal_connect (GTK_OBJECT (menuitem), "activate",
       GTK_SIGNAL_FUNC (cheese_command_handler_url_show), path);
   gtk_widget_show (menuitem);
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_SAVE_AS, NULL);
   gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-  gtk_signal_connect (GTK_OBJECT (menuitem), "activate",
+  g_signal_connect (GTK_OBJECT (menuitem), "activate",
       GTK_SIGNAL_FUNC (cheese_window_save_as_dialog), file);
   gtk_widget_show (menuitem);
 
@@ -149,6 +149,11 @@ cheese_window_create_popup_menu (GtkTreePath * path)
 
   if (!g_str_has_suffix (file, VIDEO_NAME_SUFFIX_DEFAULT))
   {
+    menuitem = gtk_image_menu_item_new_with_mnemonic (_("Set as Account _Photo"));
+    gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
+    g_signal_connect (GTK_OBJECT (menuitem), "activate",
+        GTK_SIGNAL_FUNC (cheese_command_handler_about_me_update_photo), file);
+    gtk_widget_show (menuitem);
 
     if (g_find_program_in_path ("f-spot"))
     {
@@ -393,7 +398,7 @@ create_window ()
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_QUIT, NULL);
   gtk_menu_append (GTK_MENU (menu), menuitem);
-  gtk_signal_connect (GTK_OBJECT (menuitem), "activate",
+  g_signal_connect (GTK_OBJECT (menuitem), "activate",
       GTK_SIGNAL_FUNC (on_cheese_window_close_cb), NULL);
 
   // help menu
@@ -402,10 +407,10 @@ create_window ()
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_ABOUT, NULL);
   gtk_menu_append (GTK_MENU (menu), menuitem);
-  gtk_signal_connect (GTK_OBJECT (menuitem), "activate",
+  g_signal_connect (GTK_OBJECT (menuitem), "activate",
       GTK_SIGNAL_FUNC (on_about_cb), cheese_window.window);
 
-  gtk_signal_connect (GTK_OBJECT (thumbnails.iconview), "button_press_event",
+  g_signal_connect (GTK_OBJECT (thumbnails.iconview), "button_press_event",
       G_CALLBACK (on_button_press_event_cb), NULL);
 
   g_signal_connect (G_OBJECT (cheese_window.window), "destroy",
