@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-17 20:32+0200\n"
+"POT-Creation-Date: 2007-08-18 16:25+0200\n"
 "PO-Revision-Date: 2007-06-28 00:04+0100\n"
 "Last-Translator: Alessandro Falappa <alessandro@falappa.net>\n"
 "Language-Team: \n"
@@ -15,13 +15,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cheese-command-handler.c:94
+#: ../src/cheese-command-handler.c:98
 msgid "Could not find the Trash"
 msgstr ""
 
-#: ../src/cheese-command-handler.c:129
+#: ../src/cheese-command-handler.c:133
 #, c-format
 msgid "Error on deleting %s"
+msgstr ""
+
+#: ../src/cheese-command-handler.c:191
+msgid "Could not set the Account Photo"
 msgstr ""
 
 #: ../src/cheese-effects-widget.c:77
@@ -76,7 +80,7 @@ msgstr "Distorsione"
 msgid "<b>_Stop recording</b>"
 msgstr "<b>Fine regis_trazione</b>"
 
-#: ../src/cheese-pipeline-video.c:165 ../src/cheese-window.c:316
+#: ../src/cheese-pipeline-video.c:165 ../src/cheese-window.c:321
 msgid "<b>_Start recording</b>"
 msgstr "<b>Inizio _registrazione</b>"
 
@@ -88,53 +92,59 @@ msgstr "Webcam non rilevata!"
 msgid "Send by _Mail"
 msgstr ""
 
-#: ../src/cheese-window.c:155
+#: ../src/cheese-window.c:152
+msgid "Set as Account _Photo"
+msgstr ""
+
+#: ../src/cheese-window.c:160
 msgid "Export to F-_Spot"
 msgstr ""
 
-#: ../src/cheese-window.c:165
+#: ../src/cheese-window.c:170
 msgid "Export to _Flickr"
 msgstr ""
 
-#: ../src/cheese-window.c:217
+#: ../src/cheese-window.c:222
 #, c-format
 msgid "Could not save %s"
 msgstr ""
 
-#: ../src/cheese-window.c:247
+#: ../src/cheese-window.c:252
 #, c-format
 msgid ""
 "Are you sure you want to move\n"
 "\"%s\" to the trash?"
 msgstr ""
 
-#: ../src/cheese-window.c:259
+#: ../src/cheese-window.c:264
 msgid "Move to Trash"
 msgstr ""
 
-#: ../src/cheese-window.c:280 ../data/cheese.glade:273
+#: ../src/cheese-window.c:285 ../data/cheese.glade:273
 msgid "_Effects"
 msgstr "_Effetti"
 
-#: ../src/cheese-window.c:290
+#: ../src/cheese-window.c:295
 msgid "_Back"
 msgstr "_Indietro"
 
-#: ../src/cheese-window.c:331 ../data/cheese.glade:224
+#: ../src/cheese-window.c:336 ../data/cheese.glade:224
 msgid "<b>_Take a photo</b>"
 msgstr "<b>_Scatta foto</b>"
 
-#: ../src/cheese-window.c:385
+#: ../src/cheese-window.c:390
 msgid "_File"
 msgstr "_File"
 
-#: ../src/cheese-window.c:386
+#: ../src/cheese-window.c:391
 msgid "_Help"
 msgstr "_Aiuto"
 
-#: ../src/cheese-window.c:450
+#: ../src/cheese-window.c:455
 msgid "A cheesy program to take pictures and videos from your webcam"
-msgstr "Un programma sfizioso per scattare fotografie e registrare filmati con la propria webcam"
+msgstr ""
+"Un programma sfizioso per scattare fotografie e registrare filmati con la "
+"propria webcam"
 
 #: ../src/cheese.c:69 ../data/cheese.glade:7
 msgid "Cheese"
