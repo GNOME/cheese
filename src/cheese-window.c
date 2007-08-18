@@ -387,7 +387,7 @@ create_window ()
   gtk_icon_view_set_columns (GTK_ICON_VIEW (thumbnails.iconview), G_MAXINT);
 
   // menubar
-  file_menu = gtk_menu_item_new_with_mnemonic (_("_File"));
+  file_menu = gtk_menu_item_new_with_mnemonic (_("_Cheese"));
   help_menu = gtk_menu_item_new_with_mnemonic (_("_Help"));
   gtk_menu_bar_append (GTK_MENU_BAR (cheese_window.widgets.menubar), file_menu);
   gtk_menu_bar_append (GTK_MENU_BAR (cheese_window.widgets.menubar), help_menu);
