@@ -67,6 +67,12 @@ do_check cairo
 do_check libgnomeui-2.0
 do_check libebook-1.2
 
+if pkg-config --atleast-version=1.11.0 libebook-1.2; then
+  toc2_export LIBEBOOK_VERSION_1_12=1
+else
+  toc2_export LIBEBOOK_VERSION_1_12=0
+fi
+
 echo "    all ok ${TOC2_EMOTICON_OKAY}"
 echo
 

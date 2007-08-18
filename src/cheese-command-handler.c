@@ -169,7 +169,11 @@ cheese_command_handler_about_me_update_photo (GtkWidget *widget, gchar *filename
       if (contact) {
         EContactPhoto new_photo;
         guchar **data;
-        int *length = NULL;
+#if LIBEBOOK_VERSION_1_12
+        gsize *length;
+#else
+        int *length;
+#endif
         new_photo.type = E_CONTACT_PHOTO_TYPE_INLINED;
         new_photo.data.inlined.mime_type = "image/jpeg";
 
