@@ -128,13 +128,17 @@ cheese_thumbnails_remove_item (gchar *filename)
   GtkTreeIter i;
 
   gtk_tree_model_get_iter_first (GTK_TREE_MODEL (thumbnails.store), &i);
-  while (gtk_tree_model_iter_next (GTK_TREE_MODEL (thumbnails.store), &i))
-  {
-    gtk_tree_model_get (GTK_TREE_MODEL (thumbnails.store), &i, URL_COLUMN,
-        &path, -1);
-    if (!g_ascii_strcasecmp (path, filename))
-      break;
+  // check if the selected item is the first, else go through the store
+  gtk_tree_model_get (GTK_TREE_MODEL (thumbnails.store), &i, URL_COLUMN, &path, -1);
+  if (g_ascii_strcasecmp (path, filename)) {
+    while (gtk_tree_model_iter_next (GTK_TREE_MODEL (thumbnails.store), &i))
+    {
+      gtk_tree_model_get (GTK_TREE_MODEL (thumbnails.store), &i, URL_COLUMN, &path, -1);
+      if (!g_ascii_strcasecmp (path, filename))
+        break;
+    }
   }
+
   gtk_list_store_remove (thumbnails.store, &i);
   g_print ("removing %s from thumbnail row\n", filename);
 }
