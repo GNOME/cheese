@@ -7,26 +7,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-18 19:49+0200\n"
-"PO-Revision-Date: 2007-08-17 22:41+0100\n"
+"POT-Creation-Date: 2007-08-18 16:25+0200\n"
+"PO-Revision-Date: 2007-08-18 18:21+0100\n"
 "Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/cheese-command-handler.c:98
 msgid "Could not find the Trash"
-msgstr "La Corbeille n'a pu �tre trouv�e"
+msgstr "La Corbeille n'a pu être trouvée"
 
 #: ../src/cheese-command-handler.c:133
 #, c-format
 msgid "Error on deleting %s"
 msgstr "Erreur lors de la suppression %s"
 
-#: ../src/cheese-command-handler.c:195
+#: ../src/cheese-command-handler.c:191
 msgid "Could not set the Account Photo"
-msgstr ""
+msgstr "La photo n'a pu être définie comme Photo de Compte"
 
 #: ../src/cheese-effects-widget.c:77
 msgid "No Effect"
@@ -80,7 +80,8 @@ msgstr "Déformer"
 msgid "<b>_Stop recording</b>"
 msgstr "<b>_Arrêter l'enregistrement</b>"
 
-#: ../src/cheese-pipeline-video.c:165 ../src/cheese-window.c:321
+#: ../src/cheese-pipeline-video.c:165
+#: ../src/cheese-window.c:321
 msgid "<b>_Start recording</b>"
 msgstr "<b>_Démarrer l'enregistrement</b>"
 
@@ -94,7 +95,7 @@ msgstr "Envoyer par _Mail"
 
 #: ../src/cheese-window.c:152
 msgid "Set as Account _Photo"
-msgstr ""
+msgstr "Utiliser comme _Photo de Compte"
 
 #: ../src/cheese-window.c:160
 msgid "Export to F-_Spot"
@@ -107,7 +108,7 @@ msgstr "Exporter vers _Flickr"
 #: ../src/cheese-window.c:222
 #, c-format
 msgid "Could not save %s"
-msgstr "La sauvegarde de %s n'a pu �tre effectu�e"
+msgstr "La sauvegarde de %s n'a pu être effectuée"
 
 #: ../src/cheese-window.c:252
 #, c-format
@@ -115,14 +116,15 @@ msgid ""
 "Are you sure you want to move\n"
 "\"%s\" to the trash?"
 msgstr ""
-"�tes-vous sur de vouloir envoyer\n"
-"\"%s\" � la corbeille?"
+"Êtes-vous sur de vouloir envoyer\n"
+"\"%s\" à la corbeille?"
 
 #: ../src/cheese-window.c:264
 msgid "Move to Trash"
-msgstr "Envoyer � la Corbeille"
+msgstr "Envoyer à la Corbeille"
 
-#: ../src/cheese-window.c:285 ../data/cheese.glade:273
+#: ../src/cheese-window.c:285
+#: ../data/cheese.glade:273
 msgid "_Effects"
 msgstr "_Effets"
 
@@ -130,14 +132,14 @@ msgstr "_Effets"
 msgid "_Back"
 msgstr "_Retour"
 
-#: ../src/cheese-window.c:336 ../data/cheese.glade:224
+#: ../src/cheese-window.c:336
+#: ../data/cheese.glade:224
 msgid "<b>_Take a photo</b>"
 msgstr "<b>_Prendre une photo</b>"
 
 #: ../src/cheese-window.c:390
-#, fuzzy
-msgid "_Cheese"
-msgstr "Cheese"
+msgid "_File"
+msgstr "_Fichier"
 
 #: ../src/cheese-window.c:391
 msgid "_Help"
@@ -145,11 +147,10 @@ msgstr "_Aide"
 
 #: ../src/cheese-window.c:455
 msgid "A cheesy program to take pictures and videos from your webcam"
-msgstr ""
-"Un programme qui fait cheese pour prendre des photos et des vidéos grâce "
-"à votre webcam"
+msgstr "Un programme qui fait cheese pour prendre des photos et des vidéos grâce à votre webcam"
 
-#: ../src/cheese.c:69 ../data/cheese.glade:7
+#: ../src/cheese.c:69
+#: ../data/cheese.glade:7
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -161,5 +162,3 @@ msgstr "_Photo"
 msgid "_Video"
 msgstr "_Vidéo"
 
-#~ msgid "_File"
-#~ msgstr "_Fichier"
