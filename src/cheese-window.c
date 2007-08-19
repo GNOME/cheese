@@ -341,10 +341,13 @@ cheese_window_button_photo_cb (GtkWidget *widget, gpointer self)
 void
 cheese_window_pipeline_button_clicked_cb (GtkWidget *widget, gpointer self)
 {
-  if (!cheese_pipeline_countdown_is_active()) {
+  if (!GTK_WIDGET_SENSITIVE(cheese_window.widgets.button_photo)) {
+    if (!cheese_pipeline_countdown_is_active()) {
+      cheese_pipeline_button_clicked (widget);
+    }
+  } else if (!GTK_WIDGET_SENSITIVE(cheese_window.widgets.button_video)) {
     cheese_pipeline_button_clicked (widget);
-    if (!GTK_WIDGET_SENSITIVE(cheese_window.widgets.button_video))
-      cheese_window_expose_cb (cheese_window.widgets.screen, NULL, NULL);
+    cheese_window_expose_cb (cheese_window.widgets.screen, NULL, NULL);
   }
 }
 

@@ -259,7 +259,7 @@ cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
 
   priv->textoverlay = gst_element_factory_make ("textoverlay", "textoverlay");
   gst_bin_add (GST_BIN (self->pipeline), priv->textoverlay);
-  g_object_set (priv->textoverlay, "font-desc", "mono 80", NULL);
+  g_object_set (priv->textoverlay, "font-desc", "mono 60", NULL);
   priv->timeout = 3;
 
   self->ximagesink = gst_element_factory_make ("gconfvideosink", "gconfvideosink");
