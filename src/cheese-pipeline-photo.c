@@ -206,6 +206,25 @@ cheese_pipeline_photo_change_effect (gchar *effect, gpointer self)
   }
 }
 
+/* 
+  this is an easter egg for raphael ;)
+
+              .-"-.                ,      ,_
+            .'=^=^='.              )\      \".
+           /=^=^=^=^=\             / )      ) \
+          :^= HAPPY =^;           / /       / /
+          |^ EASTER! ^|           | |      / / 
+          :^=^=^=^=^=^:           \ |     / /
+           \=^=^=^=^=/             \|-""-//`
+            `.=^=^=.'              / _  _ \
+              `~~~`              _| / \/ \ |_
+                                / `-\0||0/-' \
+                               =\.: ,_()_  :./=
+                                 `-._\II/_.-'
+                                     `""`      
+  it was nice to work with you the whole summer!
+*/
+
 void
 cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
 {

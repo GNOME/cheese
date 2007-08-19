@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-18 19:49+0200\n"
+"POT-Creation-Date: 2007-08-19 16:04+0200\n"
 "PO-Revision-Date: 2007-08-17 16:09+0100\n"
 "Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
 "Language-Team: Tomasz Dominikowsi\n"
@@ -76,15 +76,20 @@ msgstr "Kostka"
 msgid "Warp"
 msgstr "Deformacja"
 
-#: ../src/cheese-pipeline-video.c:150
+#: ../src/cheese-pipeline-photo.c:382
+#, fuzzy
+msgid "Cheese!"
+msgstr "Cheese"
+
+#: ../src/cheese-pipeline-video.c:151
 msgid "<b>_Stop recording</b>"
 msgstr "<b>_Zatrzymaj nagrywanie</b>"
 
-#: ../src/cheese-pipeline-video.c:165 ../src/cheese-window.c:321
+#: ../src/cheese-pipeline-video.c:166 ../src/cheese-window.c:321
 msgid "<b>_Start recording</b>"
 msgstr "<b>_Uruchom nagrywanie</b>"
 
-#: ../src/cheese-pipeline.c:216
+#: ../src/cheese-pipeline.c:226
 msgid "Unable to find a webcam, SORRY!"
 msgstr "Nie znaleziono kamery internetowej, przepraszamy!"
 
@@ -128,20 +133,24 @@ msgstr "_Efekty"
 msgid "_Back"
 msgstr "_Wstecz"
 
-#: ../src/cheese-window.c:336 ../data/cheese.glade:224
+#: ../src/cheese-window.c:334 ../data/cheese.glade:224
 msgid "<b>_Take a photo</b>"
 msgstr "<b>Zrób z_djęcie</b>"
 
-#: ../src/cheese-window.c:390
+#: ../src/cheese-window.c:404
 #, fuzzy
 msgid "_Cheese"
 msgstr "Cheese"
 
-#: ../src/cheese-window.c:391
+#: ../src/cheese-window.c:405
 msgid "_Help"
 msgstr "Pomo_c"
 
-#: ../src/cheese-window.c:455
+#: ../src/cheese-window.c:414
+msgid "_Countdown on taking a photo"
+msgstr ""
+
+#: ../src/cheese-window.c:479
 msgid "A cheesy program to take pictures and videos from your webcam"
 msgstr ""
 "Tandetny program do robienia zdjęć i nagrywania filmów za pomocą kamery "
