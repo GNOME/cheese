@@ -55,6 +55,7 @@ struct _PipelineVideoPrivate
   GstElement *tee, *tee_rec;
   GstElement *queuedisplay, *queuedisplay_rec, *queuemovie;
   GstElement *effect, *effect_rec;
+  GstElement *timeoverlay;
   GstElement *audiosrc;
   GstElement *audioconvert;
   GstElement *vorbisenc;
@@ -350,6 +351,9 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   priv->queuedisplay_rec = gst_element_factory_make ("queue", "queuedisplay_rec");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->queuedisplay_rec);
 
+  priv->timeoverlay = gst_element_factory_make ("timeoverlay", "timeoverlay");
+  gst_bin_add (GST_BIN (priv->pipeline_rec), priv->timeoverlay);
+
   priv->ximagesink_rec = gst_element_factory_make ("gconfvideosink", "gconfvideosink_rec");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->ximagesink_rec);
 
@@ -395,7 +399,8 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   gst_element_link (priv->ffmpeg2_rec, priv->tee_rec);
 
   gst_element_link (priv->tee_rec, priv->queuedisplay_rec);
-  gst_element_link (priv->queuedisplay_rec, priv->ffmpeg3_rec);
+  gst_element_link (priv->queuedisplay_rec, priv->timeoverlay);
+  gst_element_link (priv->timeoverlay, priv->ffmpeg3_rec);
 
   gst_element_link (priv->ffmpeg3_rec, priv->ximagesink_rec);
 
