@@ -165,6 +165,16 @@ cheese_pipeline_change_pipeline_type ()
 }
 
 void
+cheese_pipeline_set_countdown (gboolean countdown) {
+    cheese_pipeline_photo_set_countdown (countdown, cheese_pipeline.PhotoPipeline);
+}
+
+gboolean
+cheese_pipeline_countdown_is_active () {
+    return cheese_pipeline_photo_countdown_is_active (cheese_pipeline.PhotoPipeline);
+}
+
+void
 cheese_pipeline_create ()
 {
 

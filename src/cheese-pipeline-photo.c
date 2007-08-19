@@ -40,6 +40,9 @@ typedef struct _PipelinePhotoPrivate PipelinePhotoPrivate;
 struct _PipelinePhotoPrivate
 {
   int picture_requested;
+  int timeout;
+  gboolean countdown;
+  gboolean countdown_is_active;
 
   GstElement *source;
   GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
@@ -47,6 +50,7 @@ struct _PipelinePhotoPrivate
   GstElement *queuevid, *queueimg;
   GstElement *caps;
   GstElement *effect;
+  GstElement *textoverlay;
   GstCaps *filter;
 };
 
@@ -57,9 +61,9 @@ static gboolean cheese_pipeline_photo_have_data_cb (GstElement *,
                                                     GstBuffer *,
                                                     GstPad *,
                                                     gpointer);
-static void cheese_pipeline_photo_lens_open (PipelinePhoto *);
-static void cheese_pipeline_photo_create_photo (unsigned char *,
-                                                int, int);
+static gboolean cheese_pipeline_photo_lens_open (PipelinePhoto *);
+static void cheese_pipeline_photo_create_photo (unsigned char *, int, int);
+static gboolean cheese_pipeline_set_textoverlay (gpointer);
 
 void
 cheese_pipeline_photo_finalize (GObject *object)
@@ -116,16 +120,34 @@ cheese_pipeline_photo_set_stop (PipelinePhoto *self)
 void
 cheese_pipeline_photo_button_clicked (GtkWidget *widget, gpointer self)
 {
-  cheese_pipeline_photo_lens_open (self);
+  PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
+  if (priv->countdown) {
+    // "3"
+    g_timeout_add_seconds (0, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    // "2"
+    g_timeout_add_seconds (1, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    // "1"
+    g_timeout_add_seconds (2, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    // "Cheese!"
+    g_timeout_add_seconds (3, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    g_timeout_add_seconds (3, (GSourceFunc) cheese_pipeline_photo_lens_open, self);
+    // ""
+    g_timeout_add_seconds (4, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+  } else {
+    cheese_pipeline_photo_lens_open (self);
+  }
   return;
 }
 
-static void
+static gboolean
 cheese_pipeline_photo_lens_open (PipelinePhoto *self)
 {
   PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
   priv->picture_requested = TRUE;
-  return;
+  if (priv->countdown)
+    return FALSE;
+  else
+    return TRUE;
 }
 
 GstElement *
@@ -144,6 +166,20 @@ GstElement *
 cheese_pipeline_photo_get_pipeline (PipelinePhoto *self)
 {
   return self->pipeline;
+}
+
+void
+cheese_pipeline_photo_set_countdown (gboolean state, PipelinePhoto *self) {
+
+  PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
+  priv->countdown = state;
+}
+
+gboolean
+cheese_pipeline_photo_countdown_is_active (PipelinePhoto *self) {
+
+  PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
+  return priv->countdown_is_active;
 }
 
 void
@@ -202,6 +238,11 @@ cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
   priv->queueimg = gst_element_factory_make ("queue", "queueimg");
   gst_bin_add (GST_BIN (self->pipeline), priv->queueimg);
 
+  priv->textoverlay = gst_element_factory_make ("textoverlay", "textoverlay");
+  gst_bin_add (GST_BIN (self->pipeline), priv->textoverlay);
+  g_object_set (priv->textoverlay, "font-desc", "mono 80", NULL);
+  priv->timeout = 3;
+
   self->ximagesink = gst_element_factory_make ("gconfvideosink", "gconfvideosink");
   gst_bin_add (GST_BIN (self->pipeline), self->ximagesink);
 
@@ -236,8 +277,9 @@ cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
 
   gst_element_link (priv->tee, priv->queuevid);
   gst_element_link (priv->queuevid, priv->ffmpeg3);
+  gst_element_link (priv->ffmpeg3, priv->textoverlay);
 
-  gst_element_link (priv->ffmpeg3, self->ximagesink);
+  gst_element_link (priv->textoverlay, self->ximagesink);
 
   // setting back the format to get nice pictures
   priv->filter = gst_caps_new_simple ("video/x-raw-rgb", NULL);
@@ -310,4 +352,23 @@ cheese_pipeline_photo_create_photo (unsigned char *data, int width, int height)
   g_object_unref (G_OBJECT (pixbuf));
 
   g_print ("Photo saved: %s (%dx%d)\n", filename, width, height);
+}
+
+static gboolean
+cheese_pipeline_set_textoverlay (gpointer self) {
+  PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
+
+  priv->countdown_is_active = TRUE;
+  if (priv->timeout <= 0) {
+    g_object_set (priv->textoverlay, "text", _("Cheese!"), NULL);
+    priv->timeout = 4;
+  } else if (priv->timeout == 4) {
+    g_object_set (priv->textoverlay, "text", "", NULL);
+    priv->timeout = 3;
+    priv->countdown_is_active = FALSE;
+  } else {
+    g_object_set (priv->textoverlay, "text", g_strdup_printf("%d", priv->timeout), NULL);
+    priv->timeout--;
+  }
+  return FALSE;
 }

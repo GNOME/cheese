@@ -27,12 +27,14 @@ void cheese_pipeline_finalize (void);
 GstElement *cheese_pipeline_get_fakesink (void);
 GstElement *cheese_pipeline_get_pipeline (void);
 GstElement *cheese_pipeline_get_ximagesink (void);
-gboolean cheese_pipeline_pipeline_is_photo (void);
-void cheese_pipeline_button_clicked (GtkWidget *);
-void cheese_pipeline_change_effect (void);
-void cheese_pipeline_change_pipeline_type ();
-void cheese_pipeline_create (void);
-void cheese_pipeline_set_play (void);
-void cheese_pipeline_set_stop (void);
+gboolean    cheese_pipeline_countdown_is_active (void);
+gboolean    cheese_pipeline_pipeline_is_photo (void);
+void        cheese_pipeline_button_clicked (GtkWidget *);
+void        cheese_pipeline_change_effect (void);
+void        cheese_pipeline_change_pipeline_type (void);
+void        cheese_pipeline_create (void);
+void        cheese_pipeline_set_countdown (gboolean);
+void        cheese_pipeline_set_play (void);
+void        cheese_pipeline_set_stop (void);
 
 #endif /* __CHEESE_PIPELINE_H__ */

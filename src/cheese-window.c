@@ -327,10 +327,8 @@ cheese_window_button_video_cb (GtkWidget * widget, gpointer self)
 void
 cheese_window_button_photo_cb (GtkWidget *widget, gpointer self)
 {
-  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_photo),
-      FALSE);
-  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_video),
-      TRUE);
+  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_photo), FALSE);
+  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_video), TRUE);
   gtk_label_set_text_with_mnemonic (GTK_LABEL
       (cheese_window.widgets.label_take_photo),
       _("<b>_Take a photo</b>"));
@@ -343,8 +341,24 @@ cheese_window_button_photo_cb (GtkWidget *widget, gpointer self)
 void
 cheese_window_pipeline_button_clicked_cb (GtkWidget *widget, gpointer self)
 {
-  cheese_pipeline_button_clicked (widget);
-  cheese_window_expose_cb (cheese_window.widgets.screen, NULL, NULL);
+  if (!cheese_pipeline_countdown_is_active()) {
+    cheese_pipeline_button_clicked (widget);
+    if (!GTK_WIDGET_SENSITIVE(cheese_window.widgets.button_video))
+      cheese_window_expose_cb (cheese_window.widgets.screen, NULL, NULL);
+  }
+}
+
+void
+cheese_window_countdown_item_clicked_cb (GtkWidget *widget, gpointer self)
+{
+  if (gtk_check_menu_item_get_active (
+        GTK_CHECK_MENU_ITEM (cheese_window.widgets.check_item_countdown))) {
+      cheese_pipeline_set_countdown(TRUE);
+      g_print("Setting countdown to TRUE\n");
+  } else {
+      cheese_pipeline_set_countdown(FALSE);
+      g_print("Setting countdown to FALSE\n");
+  }
 }
 
 static void
@@ -395,6 +409,16 @@ create_window ()
   // file menu
   menu = gtk_menu_new ();
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (file_menu), menu);
+
+  cheese_window.widgets.check_item_countdown =
+    gtk_check_menu_item_new_with_mnemonic (_("_Countdown on taking a photo"));
+  gtk_menu_append (GTK_MENU (menu), cheese_window.widgets.check_item_countdown);
+  g_signal_connect (GTK_OBJECT (cheese_window.widgets.check_item_countdown), "toggled",
+      GTK_SIGNAL_FUNC (cheese_window_countdown_item_clicked_cb), NULL);
+
+  menuitem = gtk_separator_menu_item_new ();
+  gtk_menu_append (GTK_MENU (menu), menuitem);
+  gtk_widget_show (menuitem);
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_QUIT, NULL);
   gtk_menu_append (GTK_MENU (menu), menuitem);

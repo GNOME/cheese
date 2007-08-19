@@ -51,14 +51,16 @@ struct _PipelinePhotoClass
 
 PipelinePhoto  *cheese_pipeline_photo_new (void);
 GType           cheese_pipeline_photo_get_type (void);
-void            cheese_pipeline_photo_set_play (PipelinePhoto *);
-void            cheese_pipeline_photo_set_stop (PipelinePhoto *);
-void            cheese_pipeline_photo_create (gchar *, PipelinePhoto *);
-GstElement     *cheese_pipeline_photo_get_ximagesink (PipelinePhoto *);
 GstElement     *cheese_pipeline_photo_get_fakesink (PipelinePhoto *);
 GstElement     *cheese_pipeline_photo_get_pipeline (PipelinePhoto *);
+GstElement     *cheese_pipeline_photo_get_ximagesink (PipelinePhoto *);
 void            cheese_pipeline_photo_button_clicked (GtkWidget *, gpointer);
 void            cheese_pipeline_photo_change_effect (gchar *, gpointer);
+void            cheese_pipeline_photo_create (gchar *, PipelinePhoto *);
+void            cheese_pipeline_photo_set_countdown (gboolean, PipelinePhoto *);
+void            cheese_pipeline_photo_set_play (PipelinePhoto *);
+void            cheese_pipeline_photo_set_stop (PipelinePhoto *);
+gboolean        cheese_pipeline_photo_countdown_is_active (PipelinePhoto *);
 
 G_END_DECLS
 

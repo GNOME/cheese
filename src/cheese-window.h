@@ -42,6 +42,7 @@ struct _widgets
   GtkWidget *screen;
   GtkWidget *table;
   GtkWidget *take_picture;
+  GtkWidget *check_item_countdown;
 };
 
 struct _cheese_window
