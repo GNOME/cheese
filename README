@@ -1,7 +1,11 @@
 README for Cheese
 -----------------
 
-Requirements:
+Cheese is a Photobooth-inspired GNOME application for taking pictures and
+videos from a webcam. It also includes fancy graphical effects based on the
+gstreamer-backend.
+
+Cheese currently requires:
   - glib-2.0 >= 2.12.0
   - gobject-2.0
   - gtk+-2.0 >= 2.10.0
@@ -11,6 +15,7 @@ Requirements:
   - gstreamer-0.10 >= 0.10.12
   - gstreamer-plugins-base-0.10  >= 0.10.12
   - gstreamer-plugins-good-0.10  >= 0.10.12
+  - gstreamer-pango-0.10  >= 0.10.12
   - gnome-vfs-2.0
   - libgnomeui-2.0
   - libebook-1.2 (evolution-data-server)
@@ -20,12 +25,10 @@ Requirements:
   - a webcam
   - a brain
 
-Using:
-Simply launch 'cheese'. The taken photos will be stored in the folder images in
-your working path. e.g. if you start it from ~, you will end up with a folder
-~/images.
+The official website is:
+   http://live.gnome.org/Cheese
 
 How to get your camera working:
 To get your camera working with cheese, you will have to ensure that it works
 with the Gstreamer Framework and Video4Linux2 (V4L2) or Video4Linux (V4L). To
-modify the input or the output simply run 'gstreamer-properties'
+test this, you can use the 'gstreamer-properties' tool.
