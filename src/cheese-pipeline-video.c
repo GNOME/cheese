@@ -52,8 +52,8 @@ struct _PipelineVideoPrivate
   GstElement *source;
   GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
   GstElement *ffmpeg1_rec, *ffmpeg2_rec, *ffmpeg3_rec, *ffmpeg4_rec;
-  GstElement *tee, *tee_rec;
-  GstElement *queuedisplay, *queuedisplay_rec, *queuemovie;
+  GstElement *tee_rec;
+  GstElement *queuedisplay, *queuemovie, *queueaudio;
   GstElement *effect, *effect_rec;
   GstElement *timeoverlay;
   GstElement *audiosrc;
@@ -76,8 +76,9 @@ static void cheese_pipeline_video_create_rec (PipelineVideo *);
 void
 cheese_pipeline_video_finalize (GObject *object)
 {
-  PipelineVideoPrivate *priv = PIPELINE_VIDEO_GET_PRIVATE (object);
-  gst_caps_unref (priv->filter);
+  // FIXME: we need to unref the caps used by the recording pipeline
+  //PipelineVideoPrivate *priv = PIPELINE_VIDEO_GET_PRIVATE (object);
+  //gst_caps_unref (priv->filter);
 
   (*parent_class->finalize) (object);
   return;
@@ -266,9 +267,7 @@ cheese_pipeline_video_create (gchar *source_pipeline, PipelineVideo *self)
 static void
 cheese_pipeline_video_create_display (PipelineVideo *self)
 {
-
   PipelineVideoPrivate *priv = PIPELINE_VIDEO_GET_PRIVATE (self);
-  gboolean link_ok;
 
   priv->pipeline = gst_pipeline_new ("pipeline");
   priv->source = gst_parse_bin_from_description (priv->source_pipeline, TRUE, NULL);
@@ -286,12 +285,6 @@ cheese_pipeline_video_create_display (PipelineVideo *self)
   priv->ffmpeg3 = gst_element_factory_make ("ffmpegcolorspace", "ffmpegcolorspace3");
   gst_bin_add (GST_BIN (priv->pipeline), priv->ffmpeg3);
 
-  priv->tee = gst_element_factory_make ("tee", "tee");
-  gst_bin_add (GST_BIN (priv->pipeline), priv->tee);
-
-  priv->queuedisplay = gst_element_factory_make ("queue", "queuedisplay");
-  gst_bin_add (GST_BIN (priv->pipeline), priv->queuedisplay);
-
   priv->ximagesink = gst_element_factory_make ("gconfvideosink", "gconfvideosink");
   gst_bin_add (GST_BIN (priv->pipeline), priv->ximagesink);
 
@@ -299,24 +292,12 @@ cheese_pipeline_video_create_display (PipelineVideo *self)
   gst_element_link (priv->ffmpeg1, priv->effect);
   gst_element_link (priv->effect, priv->ffmpeg2);
 
-  // theoraenc needs raw yuv data...
-  priv->filter = gst_caps_new_simple ("video/x-raw-yuv", NULL);
-  link_ok = gst_element_link_filtered (priv->ffmpeg2, priv->tee, priv->filter);
-  if (!link_ok)
-  {
-    g_warning ("Failed to link elements!");
-  }
-
-  gst_element_link (priv->tee, priv->queuedisplay);
-  gst_element_link (priv->queuedisplay, priv->ffmpeg3);
-
-  gst_element_link (priv->ffmpeg3, priv->ximagesink);
+  gst_element_link (priv->ffmpeg2, priv->ximagesink);
 }
 
 static void
 cheese_pipeline_video_create_rec (PipelineVideo *self)
 {
-
   PipelineVideoPrivate *priv = PIPELINE_VIDEO_GET_PRIVATE (self);
   gboolean link_ok;
 
@@ -348,61 +329,15 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   priv->videoscale = gst_element_factory_make ("videoscale", "videoscale");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->videoscale);
 
-  priv->queuedisplay_rec = gst_element_factory_make ("queue", "queuedisplay_rec");
-  gst_bin_add (GST_BIN (priv->pipeline_rec), priv->queuedisplay_rec);
+  priv->queuedisplay = gst_element_factory_make ("queue", "queuedisplay");
+  gst_bin_add (GST_BIN (priv->pipeline_rec), priv->queuedisplay);
 
   priv->timeoverlay = gst_element_factory_make ("timeoverlay", "timeoverlay");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->timeoverlay);
+  g_object_set (priv->timeoverlay, "halignment", 2, "valignment", 1, NULL);
 
   priv->ximagesink_rec = gst_element_factory_make ("gconfvideosink", "gconfvideosink_rec");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->ximagesink_rec);
-
-  /*
-   * the pipeline looks like this:
-   * v4l(2)src
-   *      '-> ffmpegcsp -> effects -> ffmpegcsp
-   *    -----------------------------------'
-   *    '--> tee (filtered) -> queue-> ffmpegcsp -> gconfvideosink
-   *          |
-   *       theoraenc
-   *          |
-   *       queuemovie -------,
-   *                         |--------> mux -> filesink
-   *                         |
-   *                     vorbisenc
-   *           audioconvert--^
-   * gconfaudiosrc---^
-   */
-
-  gst_element_link (priv->source, priv->videoscale);
-  priv->filter_rec = gst_caps_new_simple ("video/x-raw-yuv",
-      "width", G_TYPE_INT, 320,
-      "height", G_TYPE_INT, 240, NULL);
-  link_ok = gst_element_link_filtered (priv->videoscale, priv->videorate,
-        priv->filter_rec);
-  if (!link_ok)
-  {
-    g_warning ("Failed to link elements!");
-  }
-  priv->filter_rec = gst_caps_new_simple ("video/x-raw-yuv",
-      "framerate", GST_TYPE_FRACTION, 15, 1, NULL);
-  link_ok = gst_element_link_filtered (priv->videorate, priv->ffmpeg1_rec,
-        priv->filter_rec);
-  if (!link_ok)
-  {
-    g_warning ("Failed to link elements!");
-  }
-  gst_element_link (priv->ffmpeg1_rec, priv->effect_rec);
-  gst_element_link (priv->effect_rec, priv->ffmpeg2_rec);
-  //gst_element_link(priv->ffmpeg2, priv->tee);
-
-  gst_element_link (priv->ffmpeg2_rec, priv->tee_rec);
-
-  gst_element_link (priv->tee_rec, priv->queuedisplay_rec);
-  gst_element_link (priv->queuedisplay_rec, priv->timeoverlay);
-  gst_element_link (priv->timeoverlay, priv->ffmpeg3_rec);
-
-  gst_element_link (priv->ffmpeg3_rec, priv->ximagesink_rec);
 
   priv->audiosrc = gst_element_factory_make ("gconfaudiosrc", "gconfaudiosrc");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->audiosrc);
@@ -427,36 +362,54 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   priv->queuemovie = gst_element_factory_make ("queue", "queuemovie");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->queuemovie);
 
-  //gst_element_link(priv->tee_rec, priv->ffmpeg4_rec);
-  gst_element_link (priv->tee_rec, priv->queuemovie);
-  gst_element_link (priv->queuemovie, priv->ffmpeg4_rec);
+  priv->queueaudio = gst_element_factory_make ("queue", "queueaudio");
+  gst_bin_add (GST_BIN (priv->pipeline_rec), priv->queueaudio);
 
-  // theoraenc needs raw yuv data...
-  priv->filter_rec = gst_caps_new_simple ("video/x-raw-yuv", NULL);
-  //priv->filter_rec = gst_caps_new_simple("video/x-raw-yuv", "framerate", GST_TYPE_FRACTION, 15, 1, NULL);
-  link_ok = gst_element_link_filtered (priv->ffmpeg4_rec, priv->theoraenc,
-        priv->filter_rec);
+  /*
+   * the pipeline looks like this:
+   * v4l(2)src
+   *      '-> ffmpegcsp -> effects -> ffmpegcsp
+   *    -----------------------------------'
+   *    '--> tee (filtered) -> queue-> ffmpegcsp -> gconfvideosink
+   *          |
+   *       queuemovie
+   *          |
+   *       theoraenc --------,
+   *                         |--------> mux -> filesink
+   *                         |
+   *                     vorbisenc
+   *           audioconvert--^
+   * gconfaudiosrc---^
+   */
+
+  gst_element_link (priv->source, priv->ffmpeg4_rec);
+  gst_element_link (priv->ffmpeg4_rec, priv->videorate);
+  priv->filter_rec = gst_caps_new_simple ("video/x-raw-yuv",
+      "width", G_TYPE_INT, 320,
+      "height", G_TYPE_INT, 240,
+      "framerate", GST_TYPE_FRACTION, 20, 2, NULL);
+  link_ok = gst_element_link_filtered (priv->videorate, priv->ffmpeg1_rec, priv->filter_rec);
   if (!link_ok)
   {
     g_warning ("Failed to link elements!");
   }
-  //gst_element_link(priv->queuemovie, priv->theoraenc);
+  gst_element_link (priv->ffmpeg1_rec, priv->effect_rec);
+  gst_element_link (priv->effect_rec, priv->ffmpeg2_rec);
+  gst_element_link (priv->ffmpeg2_rec, priv->tee_rec);
 
-  gst_element_link (priv->theoraenc, priv->oggmux);
+  gst_element_link (priv->tee_rec, priv->queuedisplay);
+  gst_element_link (priv->queuedisplay, priv->timeoverlay);
+  gst_element_link (priv->timeoverlay, priv->ffmpeg3_rec);
+  gst_element_link (priv->ffmpeg3_rec, priv->ximagesink_rec);
 
-  priv->filter = gst_caps_new_simple ("audio/x-raw-int",
-      "channels", G_TYPE_INT, 2,
-      "rate", G_TYPE_INT, 32000,
-      "depth", G_TYPE_INT, 16, NULL);
+  gst_element_link (priv->tee_rec, priv->queuemovie);
+  gst_element_link (priv->queuemovie, priv->theoraenc);
 
-  gst_element_link (priv->audiosrc, priv->audioconvert);
-  //link_ok = gst_element_link_filtered(priv->audiosrc, priv->audioconvert, priv->filter);
-  //link_ok = gst_element_link_filtered(priv->audioconvert, priv->vorbisenc, priv->filter);
-  //if (!link_ok) {
-  //  g_warning("Failed to link elements!");
-  //}
-
+  gst_element_link (priv->audiosrc, priv->queueaudio);
+  gst_element_link (priv->queueaudio, priv->audioconvert);
   gst_element_link (priv->audioconvert, priv->vorbisenc);
+
+  gst_element_link (priv->queuemovie, priv->oggmux);
   gst_element_link (priv->vorbisenc, priv->oggmux);
   gst_element_link (priv->oggmux, priv->filesink);
 }
