@@ -123,16 +123,16 @@ cheese_pipeline_photo_button_clicked (GtkWidget *widget, gpointer self)
   PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
   if (priv->countdown) {
     // "3"
-    g_timeout_add_seconds (0, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    g_timeout_add (0, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
     // "2"
-    g_timeout_add_seconds (1, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    g_timeout_add (1000, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
     // "1"
-    g_timeout_add_seconds (2, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    g_timeout_add (2000, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
     // "Cheese!"
-    g_timeout_add_seconds (3, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
-    g_timeout_add_seconds (3, (GSourceFunc) cheese_pipeline_photo_lens_open, self);
+    g_timeout_add (3000, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    g_timeout_add (3000, (GSourceFunc) cheese_pipeline_photo_lens_open, self);
     // ""
-    g_timeout_add_seconds (4, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
+    g_timeout_add (4000, (GSourceFunc) cheese_pipeline_set_textoverlay, self);
   } else {
     cheese_pipeline_photo_lens_open (self);
   }
