@@ -2,6 +2,8 @@ ChangeLog for Cheese
 --------------------
 
 version 0.2.1:
+	- workaround on a gstreamer-bug, which made the colors look wrong with
+		v4l-devices, courtesy of Patryk Zawadzki
 	- activate countdown by default
 	- the countdown is not available in video and segfaultet. fixed
 	- use g_timeout_add instead of g_timeout_add_seconds

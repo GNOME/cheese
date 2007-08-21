@@ -280,37 +280,34 @@ cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
    */
 
 
-  gst_element_link (priv->source, priv->ffmpeg1);
+  gst_element_link_many (priv->source,
+      priv->ffmpeg1,
+      priv->effect,
+      priv->ffmpeg2,
+      priv->tee, NULL);
 
-  gst_element_link (priv->ffmpeg1, priv->effect);
-  gst_element_link (priv->effect, priv->ffmpeg2);
+  // here we split: first path
+  gst_element_link_many (priv->tee,
+      priv->queuevid,
+      priv->ffmpeg3,
+      priv->textoverlay,
+      self->ximagesink, NULL);
+
+  // second path
+  gst_element_link (priv->tee, priv->queueimg);
 
   priv->filter = gst_caps_new_simple ("video/x-raw-rgb",
       "bpp", G_TYPE_INT, 24,
-      "depth", G_TYPE_INT, 24, NULL);
-
-  link_ok = gst_element_link_filtered (priv->ffmpeg2, priv->tee, priv->filter);
+      "depth", G_TYPE_INT, 24,
+      "red_mask",   G_TYPE_INT, 0xff0000, // enforce rgb
+      "green_mask", G_TYPE_INT, 0x00ff00,
+      "blue_mask",  G_TYPE_INT, 0x0000ff, NULL);
+  link_ok = gst_element_link_filtered (priv->queueimg, self->fakesink, priv->filter);
   if (!link_ok)
   {
     g_warning ("Failed to link elements!");
   }
 
-  gst_element_link (priv->tee, priv->queuevid);
-  gst_element_link (priv->queuevid, priv->ffmpeg3);
-  gst_element_link (priv->ffmpeg3, priv->textoverlay);
-
-  gst_element_link (priv->textoverlay, self->ximagesink);
-
-  // setting back the format to get nice pictures
-  priv->filter = gst_caps_new_simple ("video/x-raw-rgb", NULL);
-  link_ok = gst_element_link_filtered (priv->tee, priv->queueimg, priv->filter);
-  if (!link_ok)
-  {
-    g_warning ("Failed to link elements!");
-  }
-  //gst_element_link(priv->tee, priv->queueimg);
-
-  gst_element_link (priv->queueimg, self->fakesink);
   g_object_set (G_OBJECT (self->fakesink), "signal-handoffs", TRUE, NULL);
 
   g_signal_connect (G_OBJECT (self->fakesink), "handoff",
@@ -365,8 +362,13 @@ cheese_pipeline_photo_create_photo (unsigned char *data, int width, int height)
   }
   g_free (uri);
 
-  pixbuf = gdk_pixbuf_new_from_data (data, GDK_COLORSPACE_RGB, FALSE, 8,
-      width, height, width * 3, NULL, NULL);
+  pixbuf = gdk_pixbuf_new_from_data(data,
+      GDK_COLORSPACE_RGB, // RGB-colorspace
+      FALSE,              // No alpha-channel
+      8,                  // Bits per RGB-component
+      width, height,      // Dimensions
+      3 * width,          // Number of bytes between lines (ie stride)
+      NULL, NULL);
 
   gdk_pixbuf_save (pixbuf, filename, "jpeg", NULL, NULL);
   g_object_unref (G_OBJECT (pixbuf));
