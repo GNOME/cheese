@@ -316,6 +316,7 @@ cheese_window_button_video_cb (GtkWidget * widget, gpointer self)
 {
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_photo), TRUE);
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_video), FALSE);
+  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.check_item_countdown), FALSE);
   gtk_label_set_text_with_mnemonic (GTK_LABEL
       (cheese_window.widgets.label_take_photo),
       _("<b>_Start recording</b>"));
@@ -329,6 +330,7 @@ cheese_window_button_photo_cb (GtkWidget *widget, gpointer self)
 {
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_photo), FALSE);
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.button_video), TRUE);
+  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.check_item_countdown), TRUE);
   gtk_label_set_text_with_mnemonic (GTK_LABEL
       (cheese_window.widgets.label_take_photo),
       _("<b>_Take a photo</b>"));
