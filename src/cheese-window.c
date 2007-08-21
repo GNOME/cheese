@@ -418,6 +418,8 @@ create_window ()
   cheese_window.widgets.check_item_countdown =
     gtk_check_menu_item_new_with_mnemonic (_("_Countdown on taking a photo"));
   gtk_menu_append (GTK_MENU (menu), cheese_window.widgets.check_item_countdown);
+  gtk_check_menu_item_set_active
+    (GTK_CHECK_MENU_ITEM (cheese_window.widgets.check_item_countdown), TRUE);
   g_signal_connect (GTK_OBJECT (cheese_window.widgets.check_item_countdown), "toggled",
       GTK_SIGNAL_FUNC (cheese_window_countdown_item_clicked_cb), NULL);
 

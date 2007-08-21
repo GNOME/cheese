@@ -101,6 +101,7 @@ cheese_pipeline_photo_class_init (PipelinePhotoClass *klass)
 void
 cheese_pipeline_photo_init (PipelinePhoto *self)
 {
+  cheese_pipeline_photo_set_countdown (TRUE, self);
 }
 
 void
