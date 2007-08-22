@@ -45,7 +45,7 @@ struct _PipelinePhotoPrivate
   gboolean countdown_is_active;
 
   GstElement *source;
-  GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3;
+  GstElement *ffmpeg1, *ffmpeg2, *ffmpeg3, *ffmpeg4;
   GstElement *tee;
   GstElement *queuevid, *queueimg;
   GstElement *caps;
@@ -249,6 +249,9 @@ cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
   priv->ffmpeg3 = gst_element_factory_make ("ffmpegcolorspace", "ffmpegcolorspace3");
   gst_bin_add (GST_BIN (self->pipeline), priv->ffmpeg3);
 
+  priv->ffmpeg4 = gst_element_factory_make ("ffmpegcolorspace", "ffmpegcolorspace4");
+  gst_bin_add (GST_BIN (self->pipeline), priv->ffmpeg4);
+
   priv->tee = gst_element_factory_make ("tee", "tee");
   gst_bin_add (GST_BIN (self->pipeline), priv->tee);
 
@@ -291,6 +294,7 @@ cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
       priv->queuevid,
       priv->ffmpeg3,
       priv->textoverlay,
+      priv->ffmpeg4,
       self->ximagesink, NULL);
 
   // second path
