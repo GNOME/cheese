@@ -409,7 +409,7 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   gst_element_link (priv->queueaudio, priv->audioconvert);
   gst_element_link (priv->audioconvert, priv->vorbisenc);
 
-  gst_element_link (priv->queuemovie, priv->oggmux);
+  gst_element_link (priv->theoraenc, priv->oggmux);
   gst_element_link (priv->vorbisenc, priv->oggmux);
   gst_element_link (priv->oggmux, priv->filesink);
 }
