@@ -1,80 +1,80 @@
-# Cheese Galician translation
+# Cheese Japanese translation
 # Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
-# This file is distributed under the same license as cheese
-# Ricardo González Castro <rick@jinlabs.com>, 2007.
+# This file is distributed under the same license as the cheese package.
+# Takeshi Aihana <takeshi.aihana@gmail.com>, 2007.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-08-19 16:04+0200\n"
-"PO-Revision-Date: 2007-08-21 00:29+0100\n"
-"Last-Translator: Ricardo González <rick@jinlabs.com>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2007-08-22 23:00+0900\n"
+"Last-Translator: Takeshi Aihana <takeshi.aihana@gmail.com>\n"
+"Language-Team: Japanese <takeshi.aihana@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/cheese-command-handler.c:98
 msgid "Could not find the Trash"
-msgstr "Non se puido encontra-la Papeleira de Reciclaxe"
+msgstr "ゴミ箱が見つかりませんでした"
 
 #: ../src/cheese-command-handler.c:133
 #, c-format
 msgid "Error on deleting %s"
-msgstr "Erro ó borrar %s"
+msgstr "%s を削除する際にエラー"
 
 #: ../src/cheese-command-handler.c:195
 msgid "Could not set the Account Photo"
-msgstr "Non se puido configura-la Conta para Fotografias"
+msgstr "ログイン時のアカウント用フォトにセットできませんでした"
 
 #: ../src/cheese-effects-widget.c:77
 msgid "No Effect"
-msgstr "Sen efectos"
+msgstr "効果なし"
 
 #: ../src/cheese-effects-widget.c:80
 msgid "Mauve"
-msgstr "Malva"
+msgstr "薄紫色"
 
 #: ../src/cheese-effects-widget.c:83
 msgid "Noir/Blanc"
-msgstr "Branco/Negro"
+msgstr "白黒"
 
 #: ../src/cheese-effects-widget.c:86
 msgid "Saturation"
-msgstr "Saturación"
+msgstr "鮮やか"
 
 #: ../src/cheese-effects-widget.c:89
 msgid "Hulk"
-msgstr "Hulk"
+msgstr "ハルク"
 
 #: ../src/cheese-effects-widget.c:92
 msgid "Vertical Flip"
-msgstr "Xiro vertical"
+msgstr "Ｙ軸方向に折り返す"
 
 #: ../src/cheese-effects-widget.c:95
 msgid "Horizontal Flip"
-msgstr "Xiro horizontal"
+msgstr "Ｘ軸方向に折り返す"
 
 #: ../src/cheese-effects-widget.c:98
 msgid "Shagadelic"
-msgstr "Psicodélico"
+msgstr "セクシー"
 
 #: ../src/cheese-effects-widget.c:101
 msgid "Vertigo"
-msgstr "Vértigo"
+msgstr "めまい"
 
 #: ../src/cheese-effects-widget.c:104
 msgid "Edge"
-msgstr "Contornos"
+msgstr "エッジ"
 
 #: ../src/cheese-effects-widget.c:107
 msgid "Dice"
-msgstr "Anacos"
+msgstr "ダイス"
 
 #: ../src/cheese-effects-widget.c:110
 msgid "Warp"
-msgstr "Distorsión"
+msgstr "ワープ"
 
 #: ../src/cheese-pipeline-photo.c:382
 msgid "Cheese!"
@@ -82,37 +82,36 @@ msgstr "Cheese!"
 
 #: ../src/cheese-pipeline-video.c:151
 msgid "<b>_Stop recording</b>"
-msgstr "<b>_Parar de grabar</b>"
+msgstr "<b>録画の停止(_S)</b>"
 
-#: ../src/cheese-pipeline-video.c:166
-#: ../src/cheese-window.c:321
+#: ../src/cheese-pipeline-video.c:166 ../src/cheese-window.c:321
 msgid "<b>_Start recording</b>"
-msgstr "<b>_Empezar a grabar</b>"
+msgstr "<b>録画の開始(_S)</b>"
 
 #: ../src/cheese-pipeline.c:226
 msgid "Unable to find a webcam, SORRY!"
-msgstr "Non se puido encontra-la cámara web, ¡PERDÓN!"
+msgstr "ウェブカムが見つかりませんでした！"
 
 #: ../src/cheese-window.c:141
 msgid "Send by _Mail"
-msgstr "Enviar por Correo Electrónico"
+msgstr "メールで送信する(_M)"
 
 #: ../src/cheese-window.c:152
 msgid "Set as Account _Photo"
-msgstr "Establecer como Conta para Fotografias"
+msgstr "ログイン画面で使用する(_P)"
 
 #: ../src/cheese-window.c:160
 msgid "Export to F-_Spot"
-msgstr "Exportar a F-_Spot"
+msgstr "F-Spot に送る(_S)"
 
 #: ../src/cheese-window.c:170
 msgid "Export to _Flickr"
-msgstr "Exportar a _Flickr"
+msgstr "Flickr に送る(_F)"
 
 #: ../src/cheese-window.c:222
 #, c-format
 msgid "Could not save %s"
-msgstr "Non se puido gardar %s"
+msgstr "%s を保存できませんでした"
 
 #: ../src/cheese-window.c:252
 #, c-format
@@ -120,52 +119,49 @@ msgid ""
 "Are you sure you want to move\n"
 "\"%s\" to the trash?"
 msgstr ""
-"¿Está seguro de que quere enviar\n"
-"\"%s\" a  Papeleira de Reciclaxe?"
+"本当に %s をゴミ箱へ\n"
+"移動してもよろしいですか？"
 
 #: ../src/cheese-window.c:264
 msgid "Move to Trash"
-msgstr "Mandar a Papeleira de Reciclaxe"
+msgstr "ゴミ箱へ移動する"
 
-#: ../src/cheese-window.c:285
-#: ../data/cheese.glade:273
+#: ../src/cheese-window.c:285 ../data/cheese.glade:273
 msgid "_Effects"
-msgstr "_Efectos"
+msgstr "画像の効果(_E)"
 
 #: ../src/cheese-window.c:295
 msgid "_Back"
-msgstr "_Atras"
+msgstr "戻る(_B)"
 
-#: ../src/cheese-window.c:334
-#: ../data/cheese.glade:224
+#: ../src/cheese-window.c:334 ../data/cheese.glade:224
 msgid "<b>_Take a photo</b>"
-msgstr "<b>_Sacar unha fotografía</b>"
+msgstr "<b>写真を撮る(_T)</b>"
 
 #: ../src/cheese-window.c:404
 msgid "_Cheese"
-msgstr "_Cheese"
+msgstr "Cheese(_C)"
 
 #: ../src/cheese-window.c:405
 msgid "_Help"
-msgstr "_Axuda"
+msgstr "ヘルプ(_H)"
 
 #: ../src/cheese-window.c:414
 msgid "_Countdown on taking a photo"
-msgstr "_Conta atras para saca-la fotografia"
+msgstr "写真を撮るまでカウントダウンする(_C)"
 
 #: ../src/cheese-window.c:479
 msgid "A cheesy program to take pictures and videos from your webcam"
-msgstr "Un programa para sacar fotografías e videos coa tua cámara web"
+msgstr "ウェブカムから写真や動画を撮影するちっちゃなプログラムです。"
 
-#: ../src/cheese.c:69
-#: ../data/cheese.glade:7
+#: ../src/cheese.c:69 ../data/cheese.glade:7
 msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/cheese.glade:129
 msgid "_Photo"
-msgstr "_Fotografía"
+msgstr "写真(_P)"
 
 #: ../data/cheese.glade:171
 msgid "_Video"
-msgstr "_Video"
+msgstr "動画(_V)"
