@@ -284,18 +284,18 @@ cheese_pipeline_photo_create (gchar *source_pipeline, PipelinePhoto *self)
 
 
   gst_element_link_many (priv->source,
-      priv->ffmpeg1,
-      priv->effect,
-      priv->ffmpeg2,
-      priv->tee, NULL);
+                         priv->ffmpeg1,
+                         priv->effect,
+                         priv->ffmpeg2,
+                         priv->tee, NULL);
 
   // here we split: first path
   gst_element_link_many (priv->tee,
-      priv->queuevid,
-      priv->ffmpeg3,
-      priv->textoverlay,
-      priv->ffmpeg4,
-      self->ximagesink, NULL);
+                         priv->queuevid,
+                         priv->ffmpeg3,
+                         priv->textoverlay,
+                         priv->ffmpeg4,
+                         self->ximagesink, NULL);
 
   // second path
   gst_element_link (priv->tee, priv->queueimg);
