@@ -288,11 +288,12 @@ cheese_pipeline_video_create_display (PipelineVideo *self)
   priv->ximagesink = gst_element_factory_make ("gconfvideosink", "gconfvideosink");
   gst_bin_add (GST_BIN (priv->pipeline), priv->ximagesink);
 
-  gst_element_link (priv->source, priv->ffmpeg1);
-  gst_element_link (priv->ffmpeg1, priv->effect);
-  gst_element_link (priv->effect, priv->ffmpeg2);
-
-  gst_element_link (priv->ffmpeg2, priv->ximagesink);
+  gst_element_link_many (priv->source,
+                         priv->ffmpeg1,
+                         priv->effect,
+                         priv->ffmpeg2,
+                         priv->ximagesink,
+                         NULL);
 }
 
 static void
@@ -301,7 +302,7 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   PipelineVideoPrivate *priv = PIPELINE_VIDEO_GET_PRIVATE (self);
   gboolean link_ok;
 
-  priv->pipeline_rec = gst_pipeline_new ("pipeline");
+  priv->pipeline_rec = gst_pipeline_new ("pipeline_rec");
   priv->source = gst_parse_bin_from_description (priv->source_pipeline, TRUE, NULL);
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->source);
 
@@ -358,6 +359,7 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
 
   priv->theoraenc = gst_element_factory_make ("theoraenc", "theoraenc");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->theoraenc);
+  g_object_set (priv->theoraenc, "keyframe-force", 5, NULL);
 
   priv->queuemovie = gst_element_factory_make ("queue", "queuemovie");
   gst_bin_add (GST_BIN (priv->pipeline_rec), priv->queuemovie);
@@ -393,23 +395,31 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   {
     g_warning ("Failed to link elements!");
   }
-  gst_element_link (priv->ffmpeg1_rec, priv->effect_rec);
-  gst_element_link (priv->effect_rec, priv->ffmpeg2_rec);
-  gst_element_link (priv->ffmpeg2_rec, priv->tee_rec);
+  gst_element_link_many (priv->ffmpeg1_rec,
+                         priv->effect_rec,
+                         priv->ffmpeg2_rec,
+                         priv->tee_rec,
+                         NULL);
 
-  gst_element_link (priv->tee_rec, priv->queuedisplay);
-  gst_element_link (priv->queuedisplay, priv->timeoverlay);
-  gst_element_link (priv->timeoverlay, priv->ffmpeg3_rec);
-  gst_element_link (priv->ffmpeg3_rec, priv->ximagesink_rec);
+  gst_element_link_many (priv->tee_rec,
+                         priv->queuedisplay,
+                         priv->timeoverlay,
+                         priv->ffmpeg3_rec,
+                         priv->ximagesink_rec,
+                         NULL);
 
-  gst_element_link (priv->tee_rec, priv->queuemovie);
-  gst_element_link (priv->queuemovie, priv->theoraenc);
+  gst_element_link_many (priv->tee_rec,
+                         priv->queuemovie,
+                         priv->theoraenc,
+                         priv->oggmux,
+                         NULL);
 
-  gst_element_link (priv->audiosrc, priv->queueaudio);
-  gst_element_link (priv->queueaudio, priv->audioconvert);
-  gst_element_link (priv->audioconvert, priv->vorbisenc);
+  gst_element_link_many (priv->audiosrc,
+                         priv->queueaudio,
+                         priv->audioconvert,
+                         priv->vorbisenc,
+                         priv->oggmux,
+                         NULL);
 
-  gst_element_link (priv->theoraenc, priv->oggmux);
-  gst_element_link (priv->vorbisenc, priv->oggmux);
   gst_element_link (priv->oggmux, priv->filesink);
 }
