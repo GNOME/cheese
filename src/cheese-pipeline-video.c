@@ -389,7 +389,7 @@ cheese_pipeline_video_create_rec (PipelineVideo *self)
   priv->filter_rec = gst_caps_new_simple ("video/x-raw-yuv",
       "width", G_TYPE_INT, 320,
       "height", G_TYPE_INT, 240,
-      "framerate", GST_TYPE_FRACTION, 20, 2, NULL);
+      "framerate", GST_TYPE_FRACTION, 25, 1, NULL);
   link_ok = gst_element_link_filtered (priv->videorate, priv->ffmpeg1_rec, priv->filter_rec);
   if (!link_ok)
   {
