@@ -66,6 +66,7 @@ do_check gnome-vfs-2.0
 do_check cairo
 do_check libgnomeui-2.0
 do_check libebook-1.2
+do_check xxf86vm
 
 if pkg-config --atleast-version=1.11.0 libebook-1.2; then
   toc2_export LIBEBOOK_VERSION_1_12=1

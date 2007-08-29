@@ -8,6 +8,7 @@ SOURCES := cheese.c \
 						cheese-command-handler.c \
 						cheese-effects-widget.c \
 						cheese-fileutil.c \
+						cheese-flash.c \
 						cheese-pipeline-photo.c \
 						cheese-pipeline-video.c \
 						cheese-pipeline.c \
@@ -43,8 +44,11 @@ LIBGNOMEUI_LIBS := $(LIBGNOMEUI_2_0_LIBS)
 LIBEBOOK_CFLAGS := $(LIBEBOK_1_2_CFLAGS)
 LIBEBOOK_LIBS := $(LIBEBOK_1_2_LIBS)
 
-CFLAGS := $(call toc2.call.remove-dupes,-g -O2 -Wall -Werror $(DBUS_CFLAGS) $(GTK_CFLAGS) $(GLADE_CFLAGS) $(GSTREAMER_CFLAGS) $(GNOME_VFS_CFLAGS) $(GDK_CFLAGS) $(LIBGNOMEUI_CFLAGS) $(LIBEBOOK_CFLAGS))
-LDFLAGS := $(call toc2.call.remove-dupes,-lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS) $(LIBGNOMEUI_LIBS) $(LIBEBOOK_LIBS))
+XF86VM_CFLAGS := $(XF86VM_CFLAGS)
+XF86VM_LIBS := $(XF86VM_LIBS)
+
+CFLAGS := $(call toc2.call.remove-dupes,-g -O2 -Wall -Werror $(DBUS_CFLAGS) $(GTK_CFLAGS) $(GLADE_CFLAGS) $(GSTREAMER_CFLAGS) $(GNOME_VFS_CFLAGS) $(GDK_CFLAGS) $(LIBGNOMEUI_CFLAGS) $(LIBEBOOK_CFLAGS) $(XF86VM_CFLAGS))
+LDFLAGS := $(call toc2.call.remove-dupes,-lpthread $(DBUS_LIBS) $(GTK_LIBS) $(GLADE_LIBS) $(GSTREAMER_LIBS) $(GNOME_VFS_LIBS) $(GDK_LIBS) $(LIBGNOMEUI_LIBS) $(LIBEBOOK_LIBS) $(XF86VM_LIBS))
 
 OBJS = $(SOURCES:%.c=%.o)
 

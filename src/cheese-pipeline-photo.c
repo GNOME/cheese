@@ -28,6 +28,7 @@
 #include "cheese.h"
 #include "cheese-effects-widget.h"
 #include "cheese-fileutil.h"
+#include "cheese-flash.h"
 #include "cheese-pipeline-photo.h"
 #include "cheese-window.h"
 
@@ -145,6 +146,7 @@ cheese_pipeline_photo_lens_open (PipelinePhoto *self)
 {
   PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
   priv->picture_requested = TRUE;
+  cheese_flash_start ();
   if (priv->countdown)
     return FALSE;
   else
@@ -339,6 +341,7 @@ cheese_pipeline_photo_have_data_cb (GstElement *element, GstBuffer *buffer,
     gst_structure_get_int (structure, "height", &height);
 
     cheese_pipeline_photo_create_photo (data_photo, width, height);
+    g_timeout_add (50, (GSourceFunc) cheese_flash_dim, NULL);
     priv->picture_requested = FALSE;
   }
   return TRUE;
