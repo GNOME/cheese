@@ -20,9 +20,9 @@
 #ifndef __CHEESE_EFFECTS_WIDGET_H__
 #define __CHEESE_EFFECTS_WIDGET_H__
 
-void cheese_effects_widget_init ();
-void cheese_effects_widget_finalize ();
-gchar *cheese_effects_get_selection ();
-void cheese_effects_widget_remove_all_effects ();
+void cheese_effects_widget_init (void);
+void cheese_effects_widget_finalize (void);
+gchar *cheese_effects_get_selection (void);
+void cheese_effects_widget_remove_all_effects (void);
 
 #endif /* __CHEESE_EFFECTS_WIDGET_H__ */

@@ -20,8 +20,8 @@
 #ifndef __CHEESE_FILE_UTIL_H__
 #define __CHEESE_FILE_UTIL_H__
 
-void cheese_fileutil_init ();
-void cheese_fileutil_finalize ();
+void cheese_fileutil_init (void);
+void cheese_fileutil_finalize (void);
 gchar *cheese_fileutil_get_photo_filename (int);
 gchar *cheese_fileutil_get_photo_path (void);
 gchar *cheese_fileutil_get_video_filename (void);

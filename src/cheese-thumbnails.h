@@ -23,11 +23,11 @@
 #define THUMB_WIDTH (128)
 #define THUMB_HEIGHT (96)
 
-void cheese_thumbnails_init ();
-void cheese_thumbnails_finalize ();
+void cheese_thumbnails_init (void);
+void cheese_thumbnails_finalize (void);
 gchar *cheese_thumbnails_get_filename_from_path (GtkTreePath * path);
 void cheese_thumbnails_append_item (gchar *);
-void cheese_thumbnails_fill_thumbs ();
+void cheese_thumbnails_fill_thumbs (void);
 void cheese_thumbnails_remove_item (gchar *);
 
 struct _thumbnails
