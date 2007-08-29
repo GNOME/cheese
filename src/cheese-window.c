@@ -48,9 +48,6 @@ static void cheese_window_create_popup_menu (GtkTreePath *);
 static void cheese_window_save_as_dialog (GtkWidget *, gchar *);
 static void on_button_press_event_cb (GtkWidget *, GdkEventButton *, gpointer);
 static void on_key_press_event_cb (GtkWidget *, GdkEventKey *, gpointer);
-static void cheese_window_delete_item_by_path (GtkIconView *, GtkTreePath *, gpointer);
-static void cheese_window_open_item_by_path (GtkIconView *, GtkTreePath *, gpointer);
-
 
 void
 cheese_window_init ()
@@ -76,11 +73,11 @@ on_key_press_event_cb (GtkWidget *widget, GdkEventKey *event,
         break;
       case GDK_Delete:
         gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbnails.iconview),
-                                        cheese_window_delete_item_by_path, NULL);
+                                        cheese_command_handler_move_to_trash, NULL);
         break;
       case GDK_Return:
         gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbnails.iconview),
-                                        cheese_window_open_item_by_path, NULL);
+                                        cheese_command_handler_url_show, NULL);
         break;
     }
   }
@@ -127,22 +124,9 @@ on_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
     }
     else if (event->type == GDK_2BUTTON_PRESS && event->button == 1)
     {
-      cheese_command_handler_url_show (NULL, path);
+      cheese_command_handler_url_show (NULL, path, NULL);
     }
   }
-}
-
-static void
-cheese_window_delete_item_by_path (GtkIconView *iconview, GtkTreePath *path, gpointer data)
-{
-  gchar *file = cheese_thumbnails_get_filename_from_path (path);
-  cheese_command_handler_move_to_trash (GTK_WIDGET (iconview), file);
-}
-
-static void
-cheese_window_open_item_by_path (GtkIconView *iconview, GtkTreePath *path, gpointer data)
-{
-  cheese_command_handler_url_show (GTK_WIDGET (iconview), path);
 }
 
 static void
@@ -171,7 +155,7 @@ cheese_window_create_popup_menu (GtkTreePath * path)
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_DELETE, NULL);
   gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
   g_signal_connect (GTK_OBJECT (menuitem), "activate",
-      GTK_SIGNAL_FUNC (cheese_command_handler_move_to_trash), file);
+      GTK_SIGNAL_FUNC (cheese_command_handler_move_to_trash), path);
   gtk_widget_show (menuitem);
 
   menuitem = gtk_separator_menu_item_new ();

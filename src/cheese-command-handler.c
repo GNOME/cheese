@@ -45,7 +45,7 @@ cheese_command_handler_finalize ()
 }
 
 void
-cheese_command_handler_url_show (GtkWidget * widget, GtkTreePath * path)
+cheese_command_handler_url_show (GtkIconView *widget, GtkTreePath *path, gpointer data)
 {
   gchar *file = cheese_thumbnails_get_filename_from_path (path);
   g_print ("opening file %s\n", file);
@@ -54,7 +54,7 @@ cheese_command_handler_url_show (GtkWidget * widget, GtkTreePath * path)
 }
 
 void
-cheese_command_handler_run_command_from_string (GtkWidget * widget, gchar * data)
+cheese_command_handler_run_command_from_string (GtkWidget *widget, gchar *data)
 {
   GError *error;
   error = NULL;
@@ -70,7 +70,7 @@ cheese_command_handler_run_command_from_string (GtkWidget * widget, gchar * data
 }
 
 void
-cheese_command_handler_move_to_trash (GtkWidget * widget, gchar * file)
+cheese_command_handler_move_to_trash (GtkIconView *widget, GtkTreePath *path, gpointer data)
 {
   GnomeVFSURI *uri;
   GnomeVFSURI *trash_dir;
@@ -78,6 +78,7 @@ cheese_command_handler_move_to_trash (GtkWidget * widget, gchar * file)
   gint result;
   char *name;
   GError *error = NULL;
+  gchar *file = cheese_thumbnails_get_filename_from_path (path);
 
   result = show_move_to_trash_confirm_dialog (file);
 
