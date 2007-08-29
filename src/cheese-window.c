@@ -21,6 +21,7 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdkx.h>
+#include <gdk/gdkkeysyms.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <glib/gstdio.h>
@@ -45,6 +46,11 @@ static void create_window (void);
 static void on_about_cb (GtkWidget *, gpointer);
 static void cheese_window_create_popup_menu (GtkTreePath *);
 static void cheese_window_save_as_dialog (GtkWidget *, gchar *);
+static void on_button_press_event_cb (GtkWidget *, GdkEventButton *, gpointer);
+static void on_key_press_event_cb (GtkWidget *, GdkEventKey *, gpointer);
+static void cheese_window_delete_item_by_path (GtkIconView *, GtkTreePath *, gpointer);
+static void cheese_window_open_item_by_path (GtkIconView *, GtkTreePath *, gpointer);
+
 
 void
 cheese_window_init ()
@@ -58,7 +64,30 @@ cheese_window_finalize ()
 }
 
 static void
-on_button_press_event_cb (GtkWidget * iconview, GdkEventButton * event,
+on_key_press_event_cb (GtkWidget *widget, GdkEventKey *event,
+    gpointer user_data)
+{
+  if (event->type == GDK_KEY_PRESS) {
+    switch (event->keyval) {
+      case GDK_t: // take a photo
+      case GDK_T:
+      case GDK_space:
+        g_signal_emit_by_name (cheese_window.widgets.take_picture, "clicked");
+        break;
+      case GDK_Delete:
+        gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbnails.iconview),
+                                        cheese_window_delete_item_by_path, NULL);
+        break;
+      case GDK_Return:
+        gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbnails.iconview),
+                                        cheese_window_open_item_by_path, NULL);
+        break;
+    }
+  }
+}
+
+static void
+on_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
     gpointer user_data)
 {
   GtkTreePath *path;
@@ -103,7 +132,20 @@ on_button_press_event_cb (GtkWidget * iconview, GdkEventButton * event,
   }
 }
 
-  static void
+static void
+cheese_window_delete_item_by_path (GtkIconView *iconview, GtkTreePath *path, gpointer data)
+{
+  gchar *file = cheese_thumbnails_get_filename_from_path (path);
+  cheese_command_handler_move_to_trash (GTK_WIDGET (iconview), file);
+}
+
+static void
+cheese_window_open_item_by_path (GtkIconView *iconview, GtkTreePath *path, gpointer data)
+{
+  cheese_command_handler_url_show (GTK_WIDGET (iconview), path);
+}
+
+static void
 cheese_window_create_popup_menu (GtkTreePath * path)
 {
   GtkWidget *menuitem;
@@ -447,11 +489,12 @@ create_window ()
   g_signal_connect (G_OBJECT (cheese_window.window), "destroy",
       G_CALLBACK (on_cheese_window_close_cb), NULL);
   g_signal_connect (G_OBJECT (cheese_window.widgets.take_picture), "clicked",
-      G_CALLBACK (cheese_window_pipeline_button_clicked_cb),
-      NULL);
+      G_CALLBACK (cheese_window_pipeline_button_clicked_cb), NULL);
   g_signal_connect (G_OBJECT (cheese_window.widgets.button_effects),
-      "clicked", G_CALLBACK (cheese_window_change_effect),
-      NULL);
+      "clicked", G_CALLBACK (cheese_window_change_effect), NULL);
+
+  g_signal_connect (GTK_OBJECT (cheese_window.window), "key_press_event",
+      G_CALLBACK (on_key_press_event_cb), NULL);
 }
 
 static void
