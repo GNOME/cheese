@@ -45,7 +45,7 @@ cheese_command_handler_finalize ()
 }
 
 void
-cheese_command_handler_url_show (GtkIconView *widget, GtkTreePath *path, gpointer data)
+cheese_command_handler_url_show (GtkIconView *widget, GtkTreePath *path)
 {
   gchar *file = cheese_thumbnails_get_filename_from_path (path);
   g_print ("opening file %s\n", file);

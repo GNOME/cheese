@@ -46,8 +46,8 @@ static void create_window (void);
 static void on_about_cb (GtkWidget *, gpointer);
 static void cheese_window_create_popup_menu (GtkTreePath *);
 static void cheese_window_save_as_dialog (GtkWidget *, gchar *);
-static void on_button_press_event_cb (GtkWidget *, GdkEventButton *, gpointer);
-static void on_key_press_event_cb (GtkWidget *, GdkEventKey *, gpointer);
+static gboolean on_button_press_event_cb (GtkWidget *, GdkEventButton *, gpointer);
+static gboolean on_key_press_event_cb (GtkWidget *, GdkEventKey *, gpointer);
 
 void
 cheese_window_init ()
@@ -60,7 +60,7 @@ cheese_window_finalize ()
 {
 }
 
-static void
+static gboolean
 on_key_press_event_cb (GtkWidget *widget, GdkEventKey *event,
     gpointer user_data)
 {
@@ -70,20 +70,17 @@ on_key_press_event_cb (GtkWidget *widget, GdkEventKey *event,
       case GDK_T:
       case GDK_space:
         g_signal_emit_by_name (cheese_window.widgets.take_picture, "clicked");
-        break;
+        return TRUE;
       case GDK_Delete:
         gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbnails.iconview),
                                         cheese_command_handler_move_to_trash, NULL);
-        break;
-      case GDK_Return:
-        gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbnails.iconview),
-                                        cheese_command_handler_url_show, NULL);
-        break;
+        return TRUE;
     }
   }
+  return FALSE;
 }
 
-static void
+static gboolean
 on_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
     gpointer user_data)
 {
@@ -95,10 +92,10 @@ on_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
         (gint) event->x, (gint) event->y);
     if (path == NULL)
     {
-      return;
+      return FALSE;
     }
 
-    gtk_icon_view_unselect_all (GTK_ICON_VIEW (iconview));
+    //gtk_icon_view_unselect_all (GTK_ICON_VIEW (iconview));
     gtk_icon_view_select_path (GTK_ICON_VIEW (thumbnails.iconview), path);
 
     if (event->type == GDK_BUTTON_PRESS && event->button == 3)
@@ -120,13 +117,15 @@ on_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
 
       gtk_menu_popup (GTK_MENU (cheese_window.widgets.popup_menu),
           NULL, iconview, NULL, NULL, button, event_time);
-
+      return TRUE;
     }
     else if (event->type == GDK_2BUTTON_PRESS && event->button == 1)
     {
-      cheese_command_handler_url_show (NULL, path, NULL);
+      cheese_command_handler_url_show (NULL, path);
+      return TRUE;
     }
   }
+  return FALSE;
 }
 
 static void
@@ -467,9 +466,6 @@ create_window ()
   g_signal_connect (GTK_OBJECT (menuitem), "activate",
       GTK_SIGNAL_FUNC (on_about_cb), cheese_window.window);
 
-  g_signal_connect (GTK_OBJECT (thumbnails.iconview), "button_press_event",
-      G_CALLBACK (on_button_press_event_cb), NULL);
-
   g_signal_connect (G_OBJECT (cheese_window.window), "destroy",
       G_CALLBACK (on_cheese_window_close_cb), NULL);
   g_signal_connect (G_OBJECT (cheese_window.widgets.take_picture), "clicked",
@@ -477,8 +473,13 @@ create_window ()
   g_signal_connect (G_OBJECT (cheese_window.widgets.button_effects),
       "clicked", G_CALLBACK (cheese_window_change_effect), NULL);
 
-  g_signal_connect (GTK_OBJECT (cheese_window.window), "key_press_event",
+  g_signal_connect_after (GTK_OBJECT (thumbnails.iconview), "key_press_event",
       G_CALLBACK (on_key_press_event_cb), NULL);
+  g_signal_connect_after (GTK_OBJECT (thumbnails.iconview), "button_press_event",
+      G_CALLBACK (on_button_press_event_cb), NULL);
+  g_signal_connect_after (GTK_OBJECT (thumbnails.iconview), "item_activated",
+      G_CALLBACK (cheese_command_handler_url_show), NULL);
+
 }
 
 static void
