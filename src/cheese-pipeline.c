@@ -39,7 +39,8 @@ struct _cheese_pipeline
   PipelineVideo *VideoPipeline;
 
   gboolean pipeline_is_photo;
-  gchar *source_pipeline;
+  gchar *source_photo_pipeline;
+  gchar *source_video_pipeline;
   GstElement *gst_test_pipeline;
 };
 
@@ -147,7 +148,7 @@ cheese_pipeline_change_pipeline_type ()
 
     cheese_pipeline.pipeline_is_photo = FALSE;
     cheese_pipeline.VideoPipeline = PIPELINE_VIDEO (cheese_pipeline_video_new ());
-    cheese_pipeline_video_create (cheese_pipeline.source_pipeline, cheese_pipeline.VideoPipeline);
+    cheese_pipeline_video_create (cheese_pipeline.source_video_pipeline, cheese_pipeline.VideoPipeline);
     cheese_pipeline_set_play ();
   }
   else
@@ -159,7 +160,7 @@ cheese_pipeline_change_pipeline_type ()
 
     cheese_pipeline.pipeline_is_photo = TRUE;
     cheese_pipeline.PhotoPipeline = PIPELINE_PHOTO (cheese_pipeline_photo_new ());
-    cheese_pipeline_photo_create (cheese_pipeline.source_pipeline, cheese_pipeline.PhotoPipeline);
+    cheese_pipeline_photo_create (cheese_pipeline.source_photo_pipeline, cheese_pipeline.PhotoPipeline);
     cheese_pipeline_set_play ();
   }
 }
@@ -179,42 +180,46 @@ cheese_pipeline_create ()
 {
 
   g_message ("Probing the webcam, please ignore the following, not applicabable tries");
+  cheese_pipeline.source_video_pipeline = NULL;
   if (cheese_pipeline_test ("v4l2src ! fakesink"))
   {
-    cheese_pipeline.source_pipeline = "v4l2src";
+    cheese_pipeline.source_photo_pipeline = "v4l2src";
+    cheese_pipeline.source_video_pipeline = "v4l2src";
   }
   else if (cheese_pipeline_test ("v4lsrc ! video/x-raw-rgb,width=640,height=480 ! fakesink"))
   {
-    cheese_pipeline.source_pipeline = "v4lsrc ! video/x-raw-rgb,width=640,height=480 ! ffmpegcolorspace";
+    cheese_pipeline.source_photo_pipeline = "v4lsrc ! video/x-raw-rgb,width=640,height=480 ! ffmpegcolorspace";
   }
   else if (cheese_pipeline_test ("v4lsrc ! video/x-raw-yuv,width=640,height=480 ! fakesink"))
   {
-    cheese_pipeline.source_pipeline =
+    cheese_pipeline.source_photo_pipeline =
       "v4lsrc ! video/x-raw-yuv,width=640,height=480 ! ffmpegcolorspace";
   }
   else if (cheese_pipeline_test ("v4lsrc ! video/x-raw-rgb,width=320,height=240 ! fakesink"))
   {
-    cheese_pipeline.source_pipeline =
+    cheese_pipeline.source_photo_pipeline =
+      "v4lsrc ! video/x-raw-rgb,width=320,height=240 ! ffmpegcolorspace";
+    cheese_pipeline.source_video_pipeline =
       "v4lsrc ! video/x-raw-rgb,width=320,height=240 ! ffmpegcolorspace";
   }
   else if (cheese_pipeline_test ("v4lsrc ! video/x-raw-rgb,width=1280,height=960 ! fakesink"))
   {
-    cheese_pipeline.source_pipeline =
+    cheese_pipeline.source_photo_pipeline =
       "v4lsrc ! video/x-raw-rgb,width=1280,height=960 ! ffmpegcolorspace";
   }
   else if (cheese_pipeline_test ("v4lsrc ! video/x-raw-rgb,width=174,height=144 ! fakesink"))
   {
-    cheese_pipeline.source_pipeline =
+    cheese_pipeline.source_photo_pipeline =
       "v4lsrc ! video/x-raw-rgb,width=174,height=144 ! ffmpegcolorspace";
   }
   else if (cheese_pipeline_test ("v4lsrc ! video/x-raw-rgb,width=160,height=120 ! fakesink"))
   {
-    cheese_pipeline.source_pipeline =
+    cheese_pipeline.source_photo_pipeline =
       "v4lsrc ! video/x-raw-rgb,width=160,height=120 ! ffmpegcolorspace";
   }
   else if (cheese_pipeline_test ("v4lsrc ! fakesink"))
   {
-    cheese_pipeline.source_pipeline = "v4lsrc";
+    cheese_pipeline.source_photo_pipeline = "v4lsrc";
   }
   else
   {
@@ -227,12 +232,31 @@ cheese_pipeline_create ()
 
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
-    cheese_pipeline.source_pipeline = "videotestsrc";
+    cheese_pipeline.source_photo_pipeline = "videotestsrc";
   }
 
-  g_print ("using source: %s\n", cheese_pipeline.source_pipeline);
+  /* Not v4l2 and not using 320x240 for photos - probe for video */
+  if (!cheese_pipeline.source_video_pipeline)
+  {
+    if (cheese_pipeline_test ("v4lsrc ! video/x-raw-yuv,width=320,height=240 ! fakesink"))
+    {
+      cheese_pipeline.source_video_pipeline = "v4lsrc ! video/x-raw-yuv,width=320,height=240 ! ffmpegcolorspace";
+    }
+    else if (cheese_pipeline_test ("v4lsrc ! video/x-raw-rgb,width=320,height=240 ! fakesink"))
+    {
+      cheese_pipeline.source_video_pipeline =
+        "v4lsrc ! video/x-raw-rgb,width=320,height=240 ! ffmpegcolorspace";
+    }
+    else if (cheese_pipeline_test ("v4lsrc ! fakesink"))
+    {
+      cheese_pipeline.source_video_pipeline = "v4lsrc ! videoscale";
+    }
+  }
 
-  cheese_pipeline_photo_create (cheese_pipeline.source_pipeline,
+  g_print ("using photo source: %s\n", cheese_pipeline.source_photo_pipeline);
+  g_print ("using video source: %s\n", cheese_pipeline.source_video_pipeline);
+
+  cheese_pipeline_photo_create (cheese_pipeline.source_photo_pipeline,
       cheese_pipeline.PhotoPipeline);
 }
 
