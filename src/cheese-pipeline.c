@@ -233,6 +233,7 @@ cheese_pipeline_create ()
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
     cheese_pipeline.source_photo_pipeline = "videotestsrc";
+    cheese_pipeline.source_video_pipeline = "videotestsrc";
   }
 
   /* Not v4l2 and not using 320x240 for photos - probe for video */
