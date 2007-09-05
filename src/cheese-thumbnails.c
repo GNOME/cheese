@@ -53,56 +53,46 @@ void
 cheese_thumbnails_append_item (gchar *filename)
 {
   GdkPixbuf *pixbuf = NULL;
+  GnomeThumbnailFactory *factory;
+  GnomeVFSFileInfo *file_info;
+  gchar *uri;
+  gchar *thumb_loc;
 
-  if (g_str_has_suffix (filename, PHOTO_NAME_SUFFIX_DEFAULT))
+  file_info = gnome_vfs_file_info_new ();
+  uri = g_filename_to_uri (filename, NULL, NULL);
+  if (!uri ||
+      (gnome_vfs_get_file_info (uri, file_info,
+                                GNOME_VFS_FILE_INFO_DEFAULT |
+                                GNOME_VFS_FILE_INFO_GET_MIME_TYPE) != GNOME_VFS_OK))
   {
-    pixbuf = gdk_pixbuf_new_from_file_at_size (filename,
-        THUMB_WIDTH, THUMB_HEIGHT, NULL);
+    g_printerr ("Invalid filename\n");
+    return;
   }
-  else if (g_str_has_suffix (filename, VIDEO_NAME_SUFFIX_DEFAULT))
-  {
-    GnomeThumbnailFactory *factory;
-    GnomeVFSFileInfo *file_info;
-    gchar *uri;
-    gchar *thumb_loc;
 
-    file_info = gnome_vfs_file_info_new ();
-    uri = g_filename_to_uri (filename, NULL, NULL);
-    if (!uri ||
-        (gnome_vfs_get_file_info (uri, file_info,
-                                  GNOME_VFS_FILE_INFO_DEFAULT) != GNOME_VFS_OK))
+  factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+
+  thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, file_info->mtime);
+  //g_print("file: %s, time: %s, icon: %s\n", uri, ctime(&file_info->mtime), thumb_loc);
+
+  if (!thumb_loc)
+  {
+    g_print ("creating thumbnail for %s (%s)\n", filename, file_info->mime_type);
+    pixbuf = gnome_thumbnail_factory_generate_thumbnail (factory, uri, file_info->mime_type);
+    if (!pixbuf)
     {
-      g_printerr ("Invalid filename\n");
+      g_warning ("could not load %s (%s)\n", filename, file_info->mime_type);
       return;
     }
-
-    factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
-
-    thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, file_info->mtime);
-    //g_print("file: %s, time: %s, icon: %s\n", uri, ctime(&file_info->mtime), thumb_loc);
-
-    if (!thumb_loc)
-    {
-      g_print ("creating thumbnail for %s\n", filename);
-      pixbuf = gnome_thumbnail_factory_generate_thumbnail (factory, uri,
-            "video/x-theora+ogg");
-      if (!pixbuf)
-      {
-        g_warning ("could not load %s\n", filename);
-        return;
-      }
-      gnome_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, file_info->mtime);
-    }
-    else
-    {
-      pixbuf = gdk_pixbuf_new_from_file (thumb_loc, NULL);
-    }
+    gnome_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, file_info->mtime);
   }
-
-  if (!pixbuf)
+  else
   {
-    g_warning ("could not load %s\n", filename);
-    return;
+    pixbuf = gdk_pixbuf_new_from_file (thumb_loc, NULL);
+    if (!pixbuf)
+    {
+      g_warning ("could not load %s (%s)\n", filename, file_info->mime_type);
+      return;
+    }
   }
 
   eog_thumb_shadow_add_shadow (&pixbuf);
