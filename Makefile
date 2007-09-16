@@ -6,13 +6,14 @@ include toc2.make
 
 package.dist_files += \
 	AUTHORS \
-	ChangeLog \
-	configure \
-	configure.$(package.name) \
 	COPYING \
+	ChangeLog \
+	INSTALL \
+	NEWS \
 	README \
 	TODO \
-	INSTALL \
+	configure \
+	configure.$(package.name) \
 	toc2.$(package.name).make.at \
 	toc2.$(package.name).help
 
