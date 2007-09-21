@@ -51,6 +51,7 @@ cheese_command_handler_url_show (GtkIconView *widget, GtkTreePath *path)
   g_print ("opening file %s\n", file);
   file = g_strconcat ("file://", file, NULL);
   gnome_vfs_url_show (file);
+  g_free (file);
 }
 
 void
@@ -112,6 +113,7 @@ cheese_command_handler_move_to_trash (GtkIconView *widget, GtkTreePath *path, gp
     gtk_widget_destroy (dlg);
 
     g_free (header);
+    g_free (file);
 
     return;
   }

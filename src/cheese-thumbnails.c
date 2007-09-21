@@ -131,10 +131,11 @@ cheese_thumbnails_remove_item (gchar *filename)
 
   gtk_list_store_remove (thumbnails.store, &i);
   g_print ("removing %s from thumbnail row\n", filename);
+  g_free (path);
 }
 
 gchar *
-cheese_thumbnails_get_filename_from_path (GtkTreePath * path)
+cheese_thumbnails_get_filename_from_path (GtkTreePath *path)
 {
   GtkTreeIter iter;
   gchar *file;

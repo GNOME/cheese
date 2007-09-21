@@ -200,6 +200,7 @@ cheese_window_create_popup_menu (GtkTreePath * path)
       gtk_widget_show (menuitem);
     }
   }
+  g_free (file);
 }
 
 static void
@@ -318,8 +319,7 @@ cheese_window_change_effect (GtkWidget *widget, gpointer self)
     gtk_label_set_text_with_mnemonic (GTK_LABEL
         (cheese_window.widgets.label_effects),
         _("_Back"));
-    gtk_widget_set_sensitive (GTK_WIDGET
-        (cheese_window.widgets.take_picture), FALSE);
+    gtk_widget_set_sensitive (GTK_WIDGET (cheese_window.widgets.take_picture), FALSE);
   }
 }
 
