@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-08-19 16:04+0200\n"
+"POT-Creation-Date: 2007-09-22 13:59+0200\n"
 "PO-Revision-Date: 2007-08-19 22:27+0100\n"
 "Last-Translator: Pierre Slamich <pierre.slamich@gmail.com>\n"
 "Language-Team: \n"
@@ -15,16 +15,20 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cheese-command-handler.c:98
+#: ../src/cheese.c:69 ../data/cheese.glade:7
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../src/cheese-command-handler.c:100
 msgid "Could not find the Trash"
 msgstr "La Corbeille n'a pu être trouvée"
 
-#: ../src/cheese-command-handler.c:133
+#: ../src/cheese-command-handler.c:136
 #, c-format
 msgid "Error on deleting %s"
 msgstr "Erreur lors de la suppression %s"
 
-#: ../src/cheese-command-handler.c:195
+#: ../src/cheese-command-handler.c:198
 msgid "Could not set the Account Photo"
 msgstr "La photo n'a pu être définie comme Photo de Compte"
 
@@ -49,12 +53,12 @@ msgid "Hulk"
 msgstr "Hulk"
 
 #: ../src/cheese-effects-widget.c:92
-msgid "Vertical Flip"
-msgstr "Retournement vertical"
-
-#: ../src/cheese-effects-widget.c:95
 msgid "Horizontal Flip"
 msgstr "Retournement horizontal"
+
+#: ../src/cheese-effects-widget.c:95
+msgid "Vertical Flip"
+msgstr "Retournement vertical"
 
 #: ../src/cheese-effects-widget.c:98
 msgid "Shagadelic"
@@ -76,45 +80,44 @@ msgstr "En petits dés"
 msgid "Warp"
 msgstr "Déformer"
 
-#: ../src/cheese-pipeline-photo.c:382
-msgid "Cheese!"
-msgstr "Cheese!"
-
-#: ../src/cheese-pipeline-video.c:151
-msgid "<b>_Stop recording</b>"
-msgstr "<b>_Arrêter l'enregistrement</b>"
-
-#: ../src/cheese-pipeline-video.c:166
-#: ../src/cheese-window.c:321
-msgid "<b>_Start recording</b>"
-msgstr "<b>_Démarrer l'enregistrement</b>"
-
-#: ../src/cheese-pipeline.c:226
+#: ../src/cheese-pipeline.c:231
 msgid "Unable to find a webcam, SORRY!"
 msgstr "Impossible de détecter une webcam, DESOLE!"
 
-#: ../src/cheese-window.c:141
+#: ../src/cheese-pipeline-photo.c:392
+msgid "Cheese!"
+msgstr "Cheese!"
+
+#: ../src/cheese-pipeline-video.c:152
+msgid "<b>_Stop recording</b>"
+msgstr "<b>_Arrêter l'enregistrement</b>"
+
+#: ../src/cheese-pipeline-video.c:167 ../src/cheese-window.c:347
+msgid "<b>_Start recording</b>"
+msgstr "<b>_Démarrer l'enregistrement</b>"
+
+#: ../src/cheese-window.c:166
 msgid "Send by _Mail"
 msgstr "Envoyer par _Mail"
 
-#: ../src/cheese-window.c:152
+#: ../src/cheese-window.c:177
 msgid "Set as Account _Photo"
 msgstr "Utiliser comme _Photo de Compte"
 
-#: ../src/cheese-window.c:160
+#: ../src/cheese-window.c:185
 msgid "Export to F-_Spot"
 msgstr "Exporter vers F-_Spot"
 
-#: ../src/cheese-window.c:170
+#: ../src/cheese-window.c:195
 msgid "Export to _Flickr"
 msgstr "Exporter vers _Flickr"
 
-#: ../src/cheese-window.c:222
+#: ../src/cheese-window.c:248
 #, c-format
 msgid "Could not save %s"
 msgstr "La sauvegarde de %s n'a pu être effectuée"
 
-#: ../src/cheese-window.c:252
+#: ../src/cheese-window.c:278
 #, c-format
 msgid ""
 "Are you sure you want to move\n"
@@ -123,44 +126,39 @@ msgstr ""
 "Êtes-vous sur de vouloir envoyer\n"
 "\"%s\" à la corbeille?"
 
-#: ../src/cheese-window.c:264
+#: ../src/cheese-window.c:290
 msgid "Move to Trash"
 msgstr "Envoyer à la Corbeille"
 
-#: ../src/cheese-window.c:285
-#: ../data/cheese.glade:273
+#: ../src/cheese-window.c:311 ../data/cheese.glade:273
 msgid "_Effects"
 msgstr "_Effets"
 
-#: ../src/cheese-window.c:295
+#: ../src/cheese-window.c:321
 msgid "_Back"
 msgstr "_Retour"
 
-#: ../src/cheese-window.c:334
-#: ../data/cheese.glade:224
+#: ../src/cheese-window.c:361 ../data/cheese.glade:224
 msgid "<b>_Take a photo</b>"
 msgstr "<b>_Prendre une photo</b>"
 
-#: ../src/cheese-window.c:404
+#: ../src/cheese-window.c:434
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:405
+#: ../src/cheese-window.c:435
 msgid "_Help"
 msgstr "_Aide"
 
-#: ../src/cheese-window.c:414
+#: ../src/cheese-window.c:444
 msgid "_Countdown on taking a photo"
 msgstr "_Compte à rebours avant la prise d'une photo"
 
-#: ../src/cheese-window.c:479
+#: ../src/cheese-window.c:514
 msgid "A cheesy program to take pictures and videos from your webcam"
-msgstr "Un programme qui fait cheese pour prendre des photos et des vidéos grâce à votre webcam"
-
-#: ../src/cheese.c:69
-#: ../data/cheese.glade:7
-msgid "Cheese"
-msgstr "Cheese"
+msgstr ""
+"Un programme qui fait cheese pour prendre des photos et des vidéos grâce à "
+"votre webcam"
 
 #: ../data/cheese.glade:129
 msgid "_Photo"
@@ -169,4 +167,3 @@ msgstr "_Photo"
 #: ../data/cheese.glade:171
 msgid "_Video"
 msgstr "_Vidéo"
-
