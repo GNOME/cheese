@@ -386,6 +386,7 @@ cheese_pipeline_photo_create_photo (unsigned char *data, int width, int height)
 static gboolean
 cheese_pipeline_set_textoverlay (gpointer self) {
   PipelinePhotoPrivate *priv = PIPELINE_PHOTO_GET_PRIVATE (self);
+  gchar *text = NULL;
 
   priv->countdown_is_active = TRUE;
   if (priv->timeout <= 0) {
@@ -396,8 +397,10 @@ cheese_pipeline_set_textoverlay (gpointer self) {
     priv->timeout = 3;
     priv->countdown_is_active = FALSE;
   } else {
-    g_object_set (priv->textoverlay, "text", g_strdup_printf("%d", priv->timeout), NULL);
+    text = g_strdup_printf ("%d", priv->timeout);
+    g_object_set (priv->textoverlay, "text", text, NULL);
     priv->timeout--;
   }
+  g_free (text);
   return FALSE;
 }

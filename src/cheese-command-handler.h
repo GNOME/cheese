@@ -23,9 +23,9 @@
 void cheese_command_handler_init (void);
 void cheese_command_handler_finalize (void);
 void cheese_command_handler_move_to_trash (GtkIconView *, GtkTreePath *, gpointer);
-void cheese_command_handler_run_command_from_string (GtkWidget *, gchar *);
+void cheese_command_handler_run_command_from_string (GtkMenuItem *, gpointer);
 void cheese_command_handler_url_show (GtkIconView *, GtkTreePath *);
-void cheese_command_handler_about_me_update_photo (GtkWidget *, gchar *);
+void cheese_command_handler_about_me_update_photo (GtkWidget *, gpointer);
 
 
 #endif /* __CHEESE_COMMAND_HANDLER_H__ */

@@ -45,7 +45,7 @@ struct _thumbnails thumbnails;
 static void create_window (void);
 static void on_about_cb (GtkWidget *, gpointer);
 static void cheese_window_create_popup_menu (GtkTreePath *);
-static void cheese_window_save_as_dialog (GtkWidget *, gchar *);
+static void cheese_window_save_as_dialog (GtkWidget *, gpointer);
 static gboolean on_button_press_event_cb (GtkWidget *, GdkEventButton *, gpointer);
 static gboolean on_key_press_event_cb (GtkWidget *, GdkEventKey *, gpointer);
 
@@ -137,14 +137,16 @@ cheese_window_create_popup_menu (GtkTreePath * path)
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_OPEN, NULL);
   gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-  g_signal_connect (GTK_OBJECT (menuitem), "activate",
-      GTK_SIGNAL_FUNC (cheese_command_handler_url_show), path);
+  g_signal_connect (G_OBJECT (menuitem), "activate",
+      G_CALLBACK (cheese_command_handler_url_show), path);
   gtk_widget_show (menuitem);
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_SAVE_AS, NULL);
   gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-  g_signal_connect (GTK_OBJECT (menuitem), "activate",
-      GTK_SIGNAL_FUNC (cheese_window_save_as_dialog), file);
+  g_signal_connect_data (G_OBJECT (menuitem), "activate",
+      G_CALLBACK (cheese_window_save_as_dialog),
+      g_strdup_printf ("%s", file),
+      (GClosureNotify) g_free, 0);
   gtk_widget_show (menuitem);
 
   menuitem = gtk_separator_menu_item_new ();
@@ -153,8 +155,8 @@ cheese_window_create_popup_menu (GtkTreePath * path)
 
   menuitem = gtk_image_menu_item_new_from_stock (GTK_STOCK_DELETE, NULL);
   gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-  g_signal_connect (GTK_OBJECT (menuitem), "activate",
-      GTK_SIGNAL_FUNC (cheese_command_handler_move_to_trash), path);
+  g_signal_connect (G_OBJECT (menuitem), "activate",
+      G_CALLBACK (cheese_command_handler_move_to_trash), path);
   gtk_widget_show (menuitem);
 
   menuitem = gtk_separator_menu_item_new ();
@@ -165,10 +167,10 @@ cheese_window_create_popup_menu (GtkTreePath * path)
   {
     menuitem = gtk_image_menu_item_new_with_mnemonic (_("Send by _Mail"));
     gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-    g_signal_connect (GTK_OBJECT (menuitem), "activate",
-        GTK_SIGNAL_FUNC (cheese_command_handler_run_command_from_string),
-        g_strdup_printf ("gnome-open mailto:?subject=%s&attachment=%s",
-         g_basename (file), file));
+    g_signal_connect_data (G_OBJECT (menuitem), "activate",
+        G_CALLBACK (cheese_command_handler_run_command_from_string),
+        g_strdup_printf ("gnome-open mailto:?subject=%s&attachment=%s", g_basename (file), file),
+        (GClosureNotify) g_free, 0);
     gtk_widget_show (menuitem);
   }
 
@@ -176,17 +178,18 @@ cheese_window_create_popup_menu (GtkTreePath * path)
   {
     menuitem = gtk_image_menu_item_new_with_mnemonic (_("Set as Account _Photo"));
     gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-    g_signal_connect (GTK_OBJECT (menuitem), "activate",
-        GTK_SIGNAL_FUNC (cheese_command_handler_about_me_update_photo), file);
+    g_signal_connect_data (G_OBJECT (menuitem), "activate",
+        G_CALLBACK (cheese_command_handler_about_me_update_photo),
+        g_strdup_printf ("%s", file), (GClosureNotify) g_free, 0);
     gtk_widget_show (menuitem);
 
     if (g_find_program_in_path ("f-spot"))
     {
       menuitem = gtk_image_menu_item_new_with_mnemonic (_("Export to F-_Spot"));
       gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-      g_signal_connect (GTK_OBJECT (menuitem), "activate",
-          GTK_SIGNAL_FUNC (cheese_command_handler_run_command_from_string),
-          g_strdup_printf ("f-spot -i %s", g_path_get_dirname (file)));
+      g_signal_connect_data (G_OBJECT (menuitem), "activate",
+          G_CALLBACK (cheese_command_handler_run_command_from_string),
+          g_strdup_printf ("f-spot -i %s", g_path_get_dirname (file)), (GClosureNotify) g_free, 0);
       gtk_widget_show (menuitem);
     }
 
@@ -194,9 +197,9 @@ cheese_window_create_popup_menu (GtkTreePath * path)
     {
       menuitem = gtk_image_menu_item_new_with_mnemonic (_("Export to _Flickr"));
       gtk_menu_append (GTK_MENU (cheese_window.widgets.popup_menu), menuitem);
-      g_signal_connect (GTK_OBJECT (menuitem), "activate",
-          GTK_SIGNAL_FUNC (cheese_command_handler_run_command_from_string),
-          g_strdup_printf ("postr %s", file));
+      g_signal_connect_data (G_OBJECT (menuitem), "activate",
+          G_CALLBACK (cheese_command_handler_run_command_from_string),
+          g_strdup_printf ("postr %s", file), (GClosureNotify) g_free, 0);
       gtk_widget_show (menuitem);
     }
   }
@@ -204,10 +207,12 @@ cheese_window_create_popup_menu (GtkTreePath * path)
 }
 
 static void
-cheese_window_save_as_dialog (GtkWidget *widgets, gchar *data)
+cheese_window_save_as_dialog (GtkWidget *widget, gpointer data)
 {
   GtkWidget *dialog;
   gint response;
+  gchar *file = data;
+  printf("AAA %s", file);
 
   dialog = gtk_file_chooser_dialog_new ("Save File",
       GTK_WINDOW (cheese_window.window),
@@ -217,7 +222,7 @@ cheese_window_save_as_dialog (GtkWidget *widgets, gchar *data)
       NULL);
 
   gtk_file_chooser_set_do_overwrite_confirmation (GTK_FILE_CHOOSER (dialog), TRUE);
-  gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), g_basename (data));
+  gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), g_basename (file));
   response = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_hide (dialog);
 
@@ -229,7 +234,7 @@ cheese_window_save_as_dialog (GtkWidget *widgets, gchar *data)
     dirname = gtk_file_chooser_get_current_folder (GTK_FILE_CHOOSER (dialog));
 
     GnomeVFSURI const *source_uri =
-      gnome_vfs_uri_new (g_filename_to_uri (data, NULL, NULL));
+      gnome_vfs_uri_new (g_filename_to_uri (file, NULL, NULL));
     GnomeVFSURI const *target_uri =
       gnome_vfs_uri_new (g_filename_to_uri (filename, NULL, NULL));
 

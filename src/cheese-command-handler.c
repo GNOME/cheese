@@ -55,14 +55,16 @@ cheese_command_handler_url_show (GtkIconView *widget, GtkTreePath *path)
 }
 
 void
-cheese_command_handler_run_command_from_string (GtkWidget *widget, gchar *data)
+cheese_command_handler_run_command_from_string (GtkMenuItem *widget, gpointer data)
 {
   GError *error;
   error = NULL;
+  gchar* command = data;
+  printf("%s\n", command);
 
-  g_print ("running custom command line: %s\n", data);
+  g_print ("running custom command line: %s\n", command);
   if (!gdk_spawn_command_line_on_screen
-      (gtk_widget_get_screen (cheese_window.window), data, &error))
+      (gtk_widget_get_screen (cheese_window.window), command, &error))
   {
     g_warning ("cannot launch command line: %s\n", error->message);
     g_error_free (error);
@@ -154,13 +156,14 @@ cheese_command_handler_move_to_trash (GtkIconView *widget, GtkTreePath *path, gp
 }
 
 void
-cheese_command_handler_about_me_update_photo (GtkWidget *widget, gchar *filename)
+cheese_command_handler_about_me_update_photo (GtkWidget *widget, gpointer data)
 {
 
   EContact  *contact;
   EBook     *book;
   GError *error;
   GdkPixbuf *pixbuf;
+  gchar *filename = data;
 
   if (e_book_get_self (&contact, &book, NULL)) {
     gchar *name = e_contact_get (contact, E_CONTACT_FULL_NAME);
