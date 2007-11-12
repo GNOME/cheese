@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2007 Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2007 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -20,127 +21,55 @@
 #include "cheese-config.h"
 
 #include <glib.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <stdlib.h>
 
-#include "cheese.h"
-#include "cheese-thumbnails.h"
+#include "cheese-fileutil.h"
 
-void
-cheese_fileutil_init ()
+char *
+cheese_fileutil_get_media_path ()
 {
-}
+  const char *home_dir;
+  char *path;
 
-void
-cheese_fileutil_finalize ()
-{
-}
+  home_dir = g_get_home_dir ();
+  path = g_strdup_printf ("%s/.gnome2/cheese/media", home_dir);
 
-gchar *
-cheese_fileutil_get_photo_path ()
-{
-  //FIXME: check for real path
-  // maybe ~/cheese or on the desktop..
-  //g_get_home_dir()
-  //gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), PHOTO_FOLDER_DEFAULT);
-  gchar *path =
-    g_strdup_printf ("%s/.gnome2/cheese/%s", g_get_home_dir (), PHOTO_FOLDER_DEFAULT);
   return path;
 }
 
-gchar *
-cheese_fileutil_get_photo_filename (int i)
+char *
+cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
 {
-  gchar *filename;
-  if (i < 0)
-    i *= -1;
-
-  if (i < 10)
-    filename =
-      g_strdup_printf ("%s%s0%d%s", cheese_fileutil_get_photo_path (),
-          PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
-  else
-    filename =
-      g_strdup_printf ("%s%s%d%s", cheese_fileutil_get_photo_path (),
-          PHOTO_NAME_DEFAULT, i, PHOTO_NAME_SUFFIX_DEFAULT);
-
-  return filename;
-}
-
-gchar *
-cheese_fileutil_get_video_path ()
-{
-  //FIXME: check for real path
-  // maybe ~/cheese or on the desktop..
-  //gchar *path = g_strdup_printf("%s/%s", getenv("PWD"), VIDEO_FOLDER_DEFAULT);
-  gchar *path =
-    g_strdup_printf ("%s/.gnome2/cheese/%s", g_get_home_dir (), VIDEO_FOLDER_DEFAULT);
-  return path;
-}
-
-gchar *
-cheese_fileutil_get_video_filename ()
-{
-  gchar *filename;
-  int i;
-  GnomeVFSURI *uri;
-
-  i = 1;
-  filename =
-    g_strdup_printf ("%s%s0%d%s", cheese_fileutil_get_video_path (),
-        VIDEO_NAME_DEFAULT, i, VIDEO_NAME_SUFFIX_DEFAULT);
-
-  uri = gnome_vfs_uri_new (filename);
-
-  while (gnome_vfs_uri_exists (uri))
-  {
-    i++;
-    if (i < 10)
-      filename =
-        g_strdup_printf ("%s%s0%d%s", cheese_fileutil_get_video_path (),
-            VIDEO_NAME_DEFAULT, i, VIDEO_NAME_SUFFIX_DEFAULT);
-    else
-      filename =
-        g_strdup_printf ("%s%s%d%s", cheese_fileutil_get_video_path (),
-            VIDEO_NAME_DEFAULT, i, VIDEO_NAME_SUFFIX_DEFAULT);
-    g_free (uri);
-    uri = gnome_vfs_uri_new (filename);
-  }
-  g_free (uri);
-
-  return filename;
-}
-
-void
-cheese_fileutil_monitor_cb (GnomeVFSMonitorHandle *monitor_handle,
-                            const gchar * monitor_uri,
-                            const gchar * info_uri,
-                            GnomeVFSMonitorEventType event_type)
-{
-  gchar *filename = gnome_vfs_get_local_path_from_uri (info_uri);
-  gboolean is_dir;
-
-  is_dir = g_file_test (filename, G_FILE_TEST_IS_DIR);
-
-  if (!is_dir)
-  {
-    switch (event_type)
+  static int filename_num = 0;
+  char *filename;
+  GDir *dir;
+  char *path;
+  const char *name;
+  int num;
+  
+  path = cheese_fileutil_get_media_path ();
+  if (filename_num == 0)
+  { 
+    dir = g_dir_open (path, 0, NULL);
+    while ((name = g_dir_read_name (dir)) != NULL)
     {
-      case GNOME_VFS_MONITOR_EVENT_DELETED:
-        cheese_thumbnails_remove_item (filename);
-        break;
-        // in case if we need to check if a file changed
-        //case GNOME_VFS_MONITOR_EVENT_CHANGED:
-      case GNOME_VFS_MONITOR_EVENT_CREATED:
-        if (!g_str_has_suffix (filename, VIDEO_NAME_SUFFIX_DEFAULT))
-        {
-          g_message ("new file found: %s\n", filename);
-          cheese_thumbnails_append_item (filename);
-        }
-        break;
-      default:
-        break;
+      if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX) || 
+          g_str_has_suffix (name, VIDEO_NAME_SUFFIX))
+      {
+        num = atoi (name);
+        if (num > filename_num)
+          filename_num = num;
+      }
     }
   }
-  g_free (filename);
+  filename_num++;
+
+  if (mode == CHEESE_MEDIA_MODE_PHOTO)
+    filename = g_strdup_printf ("%s/%04d%s", path, filename_num, PHOTO_NAME_SUFFIX);
+  else
+    filename = g_strdup_printf ("%s/%04d%s", path, filename_num, VIDEO_NAME_SUFFIX);
+
+  g_free (path);
+  return filename;
 }
+

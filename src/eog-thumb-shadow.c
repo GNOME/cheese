@@ -241,9 +241,9 @@ void
 eog_thumb_shadow_add_rectangle (GdkPixbuf **src)
 {
   GdkPixbuf *dest;
-  gint width, height, rowstride;
-  gint dest_width, dest_height;
-  gint x, y;
+  int width, height, rowstride;
+  int dest_width, dest_height;
+  int x, y;
   guchar *pixels, *p;
   guint a;
 
@@ -305,13 +305,13 @@ eog_thumb_shadow_add_rectangle (GdkPixbuf **src)
    lifetime*/
 
 static GdkPixbuf *
-create_round_border (gint radius)
+create_round_border (int radius)
 {
-  gint x, y;
+  int x, y;
   GdkPixbuf *dest;
   guchar *dest_pixels;
-  gint dest_rowstride;
-  gint value;
+  int dest_rowstride;
+  int value;
 
   dest = gdk_pixbuf_new (GDK_COLORSPACE_RGB, TRUE, 8, 2 * radius, 2 * radius);
 
@@ -336,7 +336,7 @@ void
 eog_thumb_shadow_add_round_border (GdkPixbuf **src)
 {
   GdkPixbuf *dest;
-  gint width, height;
+  int width, height;
   GdkPixbuf *border;
 
   width = gdk_pixbuf_get_width (*src);
@@ -378,7 +378,7 @@ eog_thumb_shadow_add_round_border (GdkPixbuf **src)
 void
 eog_thumb_shadow_add_frame (GdkPixbuf **src)
 {
-  gint width, height, f_width;
+  int width, height, f_width;
   width = gdk_pixbuf_get_width (*src);
   height = gdk_pixbuf_get_height (*src);
 

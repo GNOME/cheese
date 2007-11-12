@@ -52,7 +52,8 @@ echo "${TOC2_EMOTICON_OKAY} Using pkg-config: ${pkgconfig}"
 GTK_REQUIRED=2.10.0
 GLIB_REQUIRED=2.12.0
 LIBGLADE_REQUIRED=2.0.0
-GSTREAMER_REQUIRED=0.10.12
+GSTREAMER_REQUIRED=0.10.14.1
+LIBEBOOK_REQUIRED=1.12.0
 
 do_check glib-2.0 $GLIB_REQUIRED
 do_check gobject-2.0
@@ -60,19 +61,14 @@ do_check gtk+-2.0 $GTK_REQUIRED
 do_check libglade-2.0 $LIBGLADE_REQUIRED
 do_check gdk-2.0
 do_check dbus-1
+do_check hal
 do_check gstreamer-0.10 $GSTREAMER_REQUIRED
 do_check gstreamer-plugins-base-0.10 $GSTREAMER_REQUIRED
 do_check gnome-vfs-2.0
 do_check cairo
 do_check libgnomeui-2.0
-do_check libebook-1.2
+do_check libebook-1.2 $LIBEBOOK_REQUIRED
 do_check xxf86vm
-
-if pkg-config --atleast-version=1.11.0 libebook-1.2; then
-  toc2_export LIBEBOOK_VERSION_1_12=1
-else
-  toc2_export LIBEBOOK_VERSION_1_12=0
-fi
 
 echo "    all ok ${TOC2_EMOTICON_OKAY}"
 echo

@@ -1,0 +1,28 @@
+<ui>
+  <menubar name="MainMenu">
+    <menu action="Cheese">
+      <menuitem action="TakePhoto" />
+      <separator />
+      <menuitem action="Quit" />
+    </menu>
+    <menu action="Edit">
+      <menuitem action="MoveToTrash" />
+    </menu>
+    <menu action="Help">
+      <menuitem action="About" />
+    </menu>
+  </menubar>
+
+  <popup name="ThumbnailPopup">
+    <menuitem action="Open" />
+    <separator/>
+    <menuitem action="SaveAs" />
+    <separator/>
+    <menuitem action="MoveToTrash" />
+    <separator/>
+    <menuitem action="SendByMail" />
+    <menuitem action="SetAsAccountPhoto" />
+    <menuitem action="ExportToFSpot" />
+    <menuitem action="ExportToFlickr" />
+  </popup>
+</ui>

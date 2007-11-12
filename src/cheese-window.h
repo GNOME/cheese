@@ -21,43 +21,8 @@
 #define __CHEESE_WINDOW_H__
 
 #include <gtk/gtk.h>
-#include <glade/glade.h>
 
-struct _widgets
-{
-  GtkWidget *button_effects;
-  GtkWidget *button_photo;
-  GtkWidget *button_video;
-  GtkWidget *effects_widget;
-  GtkWidget *file_menu;
-  GtkWidget *help_menu;
-  GtkWidget *image_take_photo;
-  GtkWidget *label_effects;
-  GtkWidget *label_photo;
-  GtkWidget *label_take_photo;
-  GtkWidget *label_video;
-  GtkWidget *menubar;
-  GtkWidget *notebook;
-  GtkWidget *popup_menu;
-  GtkWidget *screen;
-  GtkWidget *table;
-  GtkWidget *take_picture;
-  GtkWidget *check_item_countdown;
-};
-
-struct _cheese_window
-{
-  GladeXML *gxml;
-  GtkWidget *window;
-  struct _widgets widgets;
-};
-
-extern struct _cheese_window cheese_window;
 
 void cheese_window_init (void);
-void cheese_window_finalize (void);
-gboolean cheese_window_expose_cb (GtkWidget *, GdkEventExpose *, gpointer);
-int show_move_to_trash_confirm_dialog (gchar *);
-void cheese_window_change_effect (GtkWidget *, gpointer);
 
 #endif /* __CHEESE_WINDOW_H__ */

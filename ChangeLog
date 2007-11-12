@@ -1,3 +1,388 @@
+2007-11-12  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  configure,
+	  configure.cheese,
+	  data/cheese.glade,
+	  data/cheese-ui.xml,
+	  data/Makefile,
+	  src/cheese.c,
+	  src/cheese-cairo-custom.c,
+	  src/cheese-cairo-custom.h,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-pipeline-video.c,
+	  src/cheese-pipeline-video.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/eog-thumb-shadow.c,
+	  src/Makefile: 
+	  Merged back the cheese_0_2_4_refactor branch
+
+2007-11-11  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure,
+	  configure.cheese,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/Makefile: 
+	  Use HAL to detect webcams
+	  Use gstreamer to get capabilities of webcams
+	  Bump version of Cheese to 0.3.0. 0.2.4 was already released
+
+2007-11-04  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-window.c,
+	  src/Makefile: 
+	  Change cheese-effects-widget to a real GtkWidget and rename it to
+	  cheese-effect-chooser
+
+2007-11-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  small cosmetic cleanup and removing of key press events (they are handled now by gtkuimanager)
+
+2007-11-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  fixed a segfault, which happend when an item was activated
+
+2007-11-03  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/Makefile: 
+	  Change cheese-thumbnails to cheese-thumb-view and make a GtkWidget
+	  out of it
+	  Remove comments from cheese-webcam.c
+
+2007-11-03  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/eog-thumb-shadow.c: 
+	  replace all gchar's by char and all gint's by int
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  some actions for photos do not work for videos, splitted up
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  if no photo is selected, no file-action should be possible
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h: 
+	  return value should be gchar* not char*
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  split the gtkactionentries into actions_file, which is open, save as and move to trash
+
+2007-11-01  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Check if filename is not NULL in all the callbacks
+
+2007-10-31  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.cheese: 
+	  toc2 did not check for libebook >= 1.12.0
+
+2007-10-31  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.cheese,
+	  data/cheese-ui.xml,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c: 
+	  bump ebook requirement to 1.12
+	  Remove cheese_window global variable
+	  Use GtkUIManager also for thumbnail menu
+	  Move thumbnail code from cheese_window to cheese_thumbnail
+	  Make Space accelerator for take picture
+	  Other cleanups
+	  Remove leaks
+
+2007-10-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  translating the same strings twice is too much work for the translators ;)
+
+2007-10-28  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Pass cheese_window to about dialog
+
+2007-10-28  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  Use gtkuimanager in a cleaner way without a callback
+	  Do not place a menubar in the glade file. Otherwise we have 2 and
+	  leak one
+	  Sorry I accidently checked in space as an accelerator. Space is not 
+	  allowed as accelerator. Reverting back to Ctrl+T
+
+2007-10-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-window.c: 
+	  Space isnt an accelerator, space is ;)
+
+2007-10-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c: 
+	  Move thumbnail drag and drop code to cheese-thumbnails
+	  Add some TODOs in cheese-window.c
+
+2007-10-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  First item in menu is not "File" but "Cheese"
+
+2007-10-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-window.c: 
+	  a user shouldnt be able to switch to photo-mode while recording a video
+
+2007-10-23  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  data/cheese-menu.xml,
+	  data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  Renaming cheese-menu.xml to cheese-ui.xml as that's the convention in other
+
+	  gnome projects
+
+2007-10-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  data/cheese-menu.xml,
+	  data/Makefile,
+	  src/cheese-window.c: 
+	  i removed some memory leaks, sorry jaap ;)
+
+	  then i moved the ui-manager-menu to an extra file and did a small cleanup
+
+2007-10-22  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  src/cheese-webcam.c: 
+	  Make sure that higher resolution cameras work in higher resolution.
+
+	  Following step will be to build in autodetection
+
+	  Make sure that video recording works again by using an audiotestsrc i.s.o
+
+	  gconfaudiosrc. (Still needs to be fixed)
+
+	  Make sure that unreffing works
+
+2007-10-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog: 
+	  update the changelog file. please use it from now on, even if we are in a branch
+
+2007-10-21  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-window.c,
+	  src/cheese.c:
+	  Add myself as copyright owner to files I contributed significantly
+	  
+	  Add a TODO so that I remember to implement toggle button behavior correctly for
+	  photo and video toggle button
+
+2007-10-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c:
+	  add drag and drop support to the iconview
+
+2007-10-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  src/cheese-window.c:
+	  use gtkuimanager for the menu
+
+2007-10-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-window.c,
+	  src/cheese.c:
+	  fix the copyright
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-fileutil.h:
+	  more minor cleanups
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-fileutil.c:
+	  more minor cleanups
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-fileutil.c,
+	  src/cheese-webcam.c:
+	  minor cleanups
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c:
+	  gstreamer queue bug 486758 got fixed in CVS.  No need for work around anymore
+
+2007-10-10  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.cheese,
+	  src/cheese-webcam.c:
+	  Bump required CVS version to current head (=0.10.14.1)
+	  
+	  Insert workaround for queue element which has a bug when imagesink gets rescaled
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-window.c:
+	  Fix crasher in cheese-window
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-thumbnails.c:
+	  removed g_array from effects-widget
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-cairo-custom.c,
+	  src/cheese-cairo-custom.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-window.c:
+	  cleanups
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c:
+	  added comment
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c:
+	  more cleanups
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c:
+	  minor cleanups
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c:
+	  Thumbnails is not a global variable anymore
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c:
+	  Just use gtk_widget_show_all on main widget instead of gtk_widget_show on each widget
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-window.c:
+	  Pass cheese_window as a parameter to cheese-effects widget in order to remove
+	  global cheese_window variable in following commits
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/Makefile,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-pipeline-video.c,
+	  src/cheese-pipeline-video.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese.h:
+	  First step of major refactoring. Introduced a cheese-webcam class
+	  Also refactored a bit of the rest. Still quite some stuff to refactor
+	  
+	  Also some features which are in HEAD are still missing
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* .:
+	  Branched to allow major refactoring
+
 2007-10-20  daniel g. siegel  <dgsiegel@gmail.com>
 
 	* AUTHORS,
@@ -880,7 +1265,7 @@
 	* data/cheese.glade:
 	  set the default size back to 670x710
 
-2007-07-08  jhaitsma
+2007-07-08  Jaap Haitsma <jaap@haitsma.org>
 
 	* data/cheese.glade,
 	  src/cheese-effects-widget.c,
@@ -924,7 +1309,7 @@
 	  src/window.h:
 	  prepend a cheese ;)
 
-2007-07-07  jhaitsma
+2007-07-07  Jaap Haitsma <jaap@haitsma.org>
 
 	* src/pipeline-photo.c:
 	  pipeline-photo.c cleanup

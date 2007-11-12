@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2007 Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2007 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -20,13 +21,16 @@
 #ifndef __CHEESE_FILE_UTIL_H__
 #define __CHEESE_FILE_UTIL_H__
 
-void cheese_fileutil_init (void);
-void cheese_fileutil_finalize (void);
-gchar *cheese_fileutil_get_photo_filename (int);
-gchar *cheese_fileutil_get_photo_path (void);
-gchar *cheese_fileutil_get_video_filename (void);
-gchar *cheese_fileutil_get_video_path (void);
-void cheese_fileutil_monitor_cb (GnomeVFSMonitorHandle *, const gchar *,
-                                 const gchar *, GnomeVFSMonitorEventType);
+#define PHOTO_NAME_SUFFIX ".jpg"
+#define VIDEO_NAME_SUFFIX ".ogg"
+
+typedef enum
+{
+  CHEESE_MEDIA_MODE_PHOTO,
+  CHEESE_MEDIA_MODE_VIDEO
+} CheeseMediaMode;
+
+char *cheese_fileutil_get_media_path (void);
+char *cheese_fileutil_get_new_media_filename (CheeseMediaMode mode);
 
 #endif /* __CHEESE_FILE_UTIL_H__ */
