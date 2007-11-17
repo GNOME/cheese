@@ -1,0 +1,40 @@
+<gconfschemafile>
+  <schemalist>
+    <schema>
+      <key>/schemas/apps/cheese/countdown</key>
+      <applyto>/apps/cheese/countdown</applyto>
+      <owner>cheese</owner>
+      <type>bool</type>
+      <default>0</default>
+      <locale name="C">
+	<short>Use a countdown</short>
+	<long>Whether a countdown should be used, when taking a photo</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/webcam</key>
+      <applyto>/apps/cheese/webcam</applyto>
+      <owner>cheese</owner>
+      <type>string</type>
+      <default>CHECK_PATTERN</default>
+      <locale name="C">
+	<short>Webcam device string indicator</short>
+	<long>The device-string, which points to the webcam, e.g. /dev/video0</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/path</key>
+      <applyto>/apps/cheese/path</applyto>
+      <owner>cheese</owner>
+      <type>string</type>
+      <default>.gnome2/cheese/media</default>
+      <locale name="C">
+	<short>Place to store media</short>
+	<long>The place, where Cheese should store it's pictures and videos</locale>
+    </schema>
+
+
+  </schemalist>
+</gconfschemafile>
