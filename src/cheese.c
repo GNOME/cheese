@@ -27,6 +27,7 @@
 #include <libgnomevfs/gnome-vfs.h>
 
 #include "cheese-window.h"
+#include "cheese-gconf.h"
 
 int
 main (int argc, char **argv)
@@ -43,6 +44,8 @@ main (int argc, char **argv)
 
   gtk_window_set_default_icon_name ("cheese");
 
+  CheeseGConf *gconf;
+  gconf = cheese_gconf_new ();
   cheese_window_init ();
   
   gtk_main ();

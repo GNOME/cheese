@@ -9,6 +9,7 @@ SOURCES := cheese.c \
 	   cheese-thumb-view.c \
 	   cheese-window.c \
 	   eog-thumb-shadow.c \
+	   cheese-gconf.c \
 	   cheese-webcam.c
 
 print-var-%:
