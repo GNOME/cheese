@@ -183,7 +183,6 @@ cheese_gconf_init (CheeseGConf *gconf)
     g_print("    gconftool-2 -s -t bool " CHEESE_GCONF_PREFIX "/countdown \'false\'\n");
     g_print("    gconftool-2 -s -t string " CHEESE_GCONF_PREFIX "/webcam \'/dev/video0\'\n");
     g_print("\n ***************************************************************************\n\n");
-    exit(1);
 
   }
 }
