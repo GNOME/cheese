@@ -715,9 +715,7 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
 
   priv->video_save_bin = gst_bin_new ("video_save_bin");
 
-//TODO switch to gconfaudiosrc but that one is not working for me yet
-  priv->audio_source = gst_element_factory_make ("audiotestsrc", "audio_source");
-//  priv->audio_source = gst_element_factory_make ("gconfaudiosrc", "audio_source");
+  priv->audio_source = gst_element_factory_make ("gconfaudiosrc", "audio_source");
   audio_queue = gst_element_factory_make ("queue", "audio_queue");
   audio_convert = gst_element_factory_make ("audioconvert", "audio_convert");
   audio_enc = gst_element_factory_make ("vorbisenc", "audio_enc");
