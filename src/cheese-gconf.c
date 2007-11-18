@@ -34,7 +34,7 @@ G_DEFINE_TYPE (CheeseGConf, cheese_gconf, G_TYPE_OBJECT)
 #define CHEESE_GCONF_GET_PRIVATE(o) \
     (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_GCONF, CheeseGConfPrivate))
 
-  typedef struct
+typedef struct
 {
   GConfClient *client;
 
@@ -56,9 +56,9 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                           NULL));
       break;
     case GCONF_PROP_COUNTDOWN:
-      g_value_set_string (value, gconf_client_get_string (priv->client,
-                                                          CHEESE_GCONF_PREFIX "/countdown",
-                                                          NULL));
+      g_value_set_boolean (value, gconf_client_get_bool (priv->client,
+                                                         CHEESE_GCONF_PREFIX "/countdown",
+                                                         NULL));
       break;
     case GCONF_PROP_WEBCAM:
       g_value_set_string (value, gconf_client_get_string (priv->client,
@@ -88,10 +88,10 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                                NULL);
       break;
     case GCONF_PROP_COUNTDOWN:
-      gconf_client_set_string (priv->client,
-                               CHEESE_GCONF_PREFIX "/countdown",
-                               g_value_get_string (value),
-                               NULL);
+      gconf_client_set_bool (priv->client,
+                             CHEESE_GCONF_PREFIX "/countdown",
+                             g_value_get_boolean (value),
+                             NULL);
       break;
     case GCONF_PROP_WEBCAM:
       gconf_client_set_string (priv->client,
@@ -139,11 +139,11 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                         "",
                                                         G_PARAM_READWRITE));
   g_object_class_install_property (object_class, GCONF_PROP_COUNTDOWN,
-                                   g_param_spec_string ("gconf_prop_countdown",
-                                                        NULL,
-                                                        NULL,
-                                                        FALSE,
-                                                        G_PARAM_READWRITE));
+                                   g_param_spec_boolean ("gconf_prop_countdown",
+                                                         NULL,
+                                                         NULL,
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
 
   g_type_class_add_private (klass, sizeof (CheeseGConfPrivate));
 }
