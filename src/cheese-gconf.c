@@ -22,8 +22,8 @@
 #include <glib.h>
 #include <stdlib.h>
 
-#include <gconf/gconf-client.h>
 #include <gconf/gconf.h>
+#include <gconf/gconf-client.h>
 
 #include "cheese-gconf.h"
 

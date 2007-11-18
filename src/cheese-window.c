@@ -33,8 +33,9 @@
 #include <libebook/e-book.h>
 #include <glade/glade.h>
 
-#include "cheese-fileutil.h"
 #include "cheese-effect-chooser.h"
+#include "cheese-fileutil.h"
+#include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
 
@@ -57,6 +58,7 @@ typedef struct
 
   CheeseWebcam *webcam;
   WebcamMode webcam_mode;
+  CheeseGConf *gconf;
 
   GtkWidget *window;
   GtkWidget *notebook;
@@ -808,6 +810,8 @@ cheese_window_init ()
 
   cheese_window = g_new (CheeseWindow, 1);
   cheese_window_create_window (cheese_window);
+
+  cheese_window->gconf = cheese_gconf_new ();
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording = FALSE;
