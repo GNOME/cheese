@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-09-22 13:59+0200\n"
+"POT-Creation-Date: 2007-11-19 23:54+0100\n"
 "PO-Revision-Date: 2007-08-21 00:29+0100\n"
 "Last-Translator: Ricardo González <rick@jinlabs.com>\n"
 "Language-Team: \n"
@@ -15,109 +15,115 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/cheese.c:69 ../data/cheese.glade:7
+#: data/cheese.desktop.in.h:1
+#, fuzzy
+msgid "A cheesy program to take photos from your webcam"
+msgstr "Un programa para sacar fotografías e videos coa tua cámara web"
+
+#: data/cheese.desktop.in.h:2
+#, fuzzy
+msgid "Cheese Camera"
+msgstr "Cheese"
+
+#: data/cheese.glade.h:1
+msgid "<b>_Take a photo</b>"
+msgstr "<b>_Sacar unha fotografía</b>"
+
+#: data/cheese.glade.h:2 src/cheese.c:45
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../src/cheese-command-handler.c:100
-msgid "Could not find the Trash"
-msgstr "Non se puido encontra-la Papeleira de Reciclaxe"
+#: data/cheese.glade.h:3 src/cheese-window.c:552
+msgid "_Effects"
+msgstr "_Efectos"
 
-#: ../src/cheese-command-handler.c:136
-#, c-format
-msgid "Error on deleting %s"
-msgstr "Erro ó borrar %s"
+#: data/cheese.glade.h:4
+msgid "_Photo"
+msgstr "_Fotografía"
 
-#: ../src/cheese-command-handler.c:198
-msgid "Could not set the Account Photo"
-msgstr "Non se puido configura-la Conta para Fotografias"
+#: data/cheese.glade.h:5
+msgid "_Video"
+msgstr "_Video"
 
-#: ../src/cheese-effects-widget.c:77
+#: data/cheese.schemas.in.h:1
+msgid "Place to store media"
+msgstr ""
+
+#: data/cheese.schemas.in.h:2
+msgid "The device-string, which points to the webcam, e.g. /dev/video0"
+msgstr ""
+
+#: data/cheese.schemas.in.h:3
+msgid "The place, where Cheese should store it's pictures and videos"
+msgstr ""
+
+#: data/cheese.schemas.in.h:4
+msgid "Use a countdown"
+msgstr ""
+
+#: data/cheese.schemas.in.h:5
+msgid "Webcam device string indicator"
+msgstr ""
+
+#: data/cheese.schemas.in.h:6
+#, fuzzy
+msgid "Whether a countdown should be used, when taking a photo"
+msgstr "_Conta atras para saca-la fotografia"
+
+#: src/cheese-effect-chooser.c:60
 msgid "No Effect"
 msgstr "Sen efectos"
 
-#: ../src/cheese-effects-widget.c:80
+#: src/cheese-effect-chooser.c:62
 msgid "Mauve"
 msgstr "Malva"
 
-#: ../src/cheese-effects-widget.c:83
+#: src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Branco/Negro"
 
-#: ../src/cheese-effects-widget.c:86
+#: src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "Saturación"
 
-#: ../src/cheese-effects-widget.c:89
+#: src/cheese-effect-chooser.c:68
 msgid "Hulk"
 msgstr "Hulk"
 
-#: ../src/cheese-effects-widget.c:92
-msgid "Horizontal Flip"
-msgstr "Xiro horizontal"
-
-#: ../src/cheese-effects-widget.c:95
+#: src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
 msgstr "Xiro vertical"
 
-#: ../src/cheese-effects-widget.c:98
+#: src/cheese-effect-chooser.c:72
+msgid "Horizontal Flip"
+msgstr "Xiro horizontal"
+
+#: src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
 msgstr "Psicodélico"
 
-#: ../src/cheese-effects-widget.c:101
+#: src/cheese-effect-chooser.c:76
 msgid "Vertigo"
 msgstr "Vértigo"
 
-#: ../src/cheese-effects-widget.c:104
+#: src/cheese-effect-chooser.c:78
 msgid "Edge"
 msgstr "Contornos"
 
-#: ../src/cheese-effects-widget.c:107
+#: src/cheese-effect-chooser.c:80
 msgid "Dice"
 msgstr "Anacos"
 
-#: ../src/cheese-effects-widget.c:110
+#: src/cheese-effect-chooser.c:82
 msgid "Warp"
 msgstr "Distorsión"
 
-#: ../src/cheese-pipeline.c:231
-msgid "Unable to find a webcam, SORRY!"
-msgstr "Non se puido encontra-la cámara web, ¡PERDÓN!"
-
-#: ../src/cheese-pipeline-photo.c:392
-msgid "Cheese!"
-msgstr "Cheese!"
-
-#: ../src/cheese-pipeline-video.c:152
-msgid "<b>_Stop recording</b>"
-msgstr "<b>_Parar de grabar</b>"
-
-#: ../src/cheese-pipeline-video.c:167 ../src/cheese-window.c:347
-msgid "<b>_Start recording</b>"
-msgstr "<b>_Empezar a grabar</b>"
-
-#: ../src/cheese-window.c:166
-msgid "Send by _Mail"
-msgstr "Enviar por Correo Electrónico"
-
-#: ../src/cheese-window.c:177
-msgid "Set as Account _Photo"
-msgstr "Establecer como Conta para Fotografias"
-
-#: ../src/cheese-window.c:185
-msgid "Export to F-_Spot"
-msgstr "Exportar a F-_Spot"
-
-#: ../src/cheese-window.c:195
-msgid "Export to _Flickr"
-msgstr "Exportar a _Flickr"
-
-#: ../src/cheese-window.c:248
+#: src/cheese-window.c:210
 #, c-format
 msgid "Could not save %s"
 msgstr "Non se puido gardar %s"
 
-#: ../src/cheese-window.c:278
+#: src/cheese-window.c:234
 #, c-format
 msgid ""
 "Are you sure you want to move\n"
@@ -126,42 +132,118 @@ msgstr ""
 "¿Está seguro de que quere enviar\n"
 "\"%s\" a  Papeleira de Reciclaxe?"
 
-#: ../src/cheese-window.c:290
+#: src/cheese-window.c:243
 msgid "Move to Trash"
 msgstr "Mandar a Papeleira de Reciclaxe"
 
-#: ../src/cheese-window.c:311 ../data/cheese.glade:273
-msgid "_Effects"
-msgstr "_Efectos"
+#: src/cheese-window.c:284
+#, c-format
+msgid "Could not find the Trash"
+msgstr "Non se puido encontra-la Papeleira de Reciclaxe"
 
-#: ../src/cheese-window.c:321
-msgid "_Back"
-msgstr "_Atras"
+#: src/cheese-window.c:311
+#, c-format
+msgid "Error on deleting %s"
+msgstr "Erro ó borrar %s"
 
-#: ../src/cheese-window.c:361 ../data/cheese.glade:224
-msgid "<b>_Take a photo</b>"
-msgstr "<b>_Sacar unha fotografía</b>"
+#: src/cheese-window.c:363
+#, c-format
+msgid "Could not set the Account Photo"
+msgstr "Non se puido configura-la Conta para Fotografias"
 
-#: ../src/cheese-window.c:434
-msgid "_Cheese"
-msgstr "_Cheese"
+#: src/cheese-window.c:431
+msgid "translator-credits"
+msgstr ""
 
-#: ../src/cheese-window.c:435
-msgid "_Help"
-msgstr "_Axuda"
+#: src/cheese-window.c:434
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
 
-#: ../src/cheese-window.c:444
-msgid "_Countdown on taking a photo"
-msgstr "_Conta atras para saca-la fotografia"
+#: src/cheese-window.c:438
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
 
-#: ../src/cheese-window.c:514
+#: src/cheese-window.c:442
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: src/cheese-window.c:454
 msgid "A cheesy program to take pictures and videos from your webcam"
 msgstr "Un programa para sacar fotografías e videos coa tua cámara web"
 
-#: ../data/cheese.glade:129
-msgid "_Photo"
-msgstr "_Fotografía"
+#: src/cheese-window.c:560
+msgid "_Back"
+msgstr "_Atras"
 
-#: ../data/cheese.glade:171
-msgid "_Video"
-msgstr "_Video"
+#: src/cheese-window.c:574 src/cheese-window.c:629
+#, fuzzy
+msgid "_Start recording"
+msgstr "<b>_Empezar a grabar</b>"
+
+#: src/cheese-window.c:590 src/cheese-window.c:655
+#, fuzzy
+msgid "_Take a photo"
+msgstr "<b>_Sacar unha fotografía</b>"
+
+#: src/cheese-window.c:616
+#, fuzzy
+msgid "_Stop recording"
+msgstr "<b>_Parar de grabar</b>"
+
+#: src/cheese-window.c:640
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: src/cheese-window.c:641
+msgid "_Edit"
+msgstr ""
+
+#: src/cheese-window.c:642
+msgid "_Help"
+msgstr "_Axuda"
+
+#: src/cheese-window.c:649
+msgid "_Open"
+msgstr ""
+
+#: src/cheese-window.c:650
+msgid "Save _As..."
+msgstr ""
+
+#: src/cheese-window.c:651
+#, fuzzy
+msgid "Move to _Trash"
+msgstr "Mandar a Papeleira de Reciclaxe"
+
+#: src/cheese-window.c:659
+#, fuzzy
+msgid "_Set As Account Photo"
+msgstr "Establecer como Conta para Fotografias"
+
+#: src/cheese-window.c:663
+msgid "Send by _Mail"
+msgstr "Enviar por Correo Electrónico"
+
+#: src/cheese-window.c:667
+msgid "Export to F-_Spot"
+msgstr "Exportar a F-_Spot"
+
+#: src/cheese-window.c:671
+msgid "Export to _Flickr"
+msgstr "Exportar a _Flickr"
+
+#~ msgid "Unable to find a webcam, SORRY!"
+#~ msgstr "Non se puido encontra-la cámara web, ¡PERDÓN!"
+
+#~ msgid "Cheese!"
+#~ msgstr "Cheese!"
