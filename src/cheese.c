@@ -18,7 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "cheese-config.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -36,8 +38,9 @@ main (int argc, char **argv)
   gst_init (&argc, &argv);
   gnome_vfs_init ();
 
-  bindtextdomain (CHEESE_PACKAGE_NAME, CHEESE_LOCALE_DIR);
-  textdomain (CHEESE_PACKAGE_NAME);
+  bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
 
   g_set_application_name (_("Cheese"));
 

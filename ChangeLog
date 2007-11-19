@@ -1,3 +1,55 @@
+2007-11-19  Jaap Haitsma <jaap@haitsma.org>
+
+	* autogen.sh,
+	  configure,
+	  configure.ac,
+	  configure.cheese,
+	  data/cheese.desktop,
+	  data/cheese.schemas.in,
+	  data/effects/Makefile,
+	  data/effects/Makefile.am,
+	  data/icons/16x16/Makefile,
+	  data/icons/16x16/Makefile.am,
+	  data/icons/22x22/Makefile,
+	  data/icons/22x22/Makefile.am,
+	  data/icons/24x24/Makefile,
+	  data/icons/24x24/Makefile.am,
+	  data/icons/32x32/Makefile,
+	  data/icons/32x32/Makefile.am,
+	  data/icons/48x48/Makefile,
+	  data/icons/48x48/Makefile.am,
+	  data/icons/icons.make,
+	  data/icons/Makefile,
+	  data/icons/Makefile.am,
+	  data/icons/scalable/Makefile,
+	  data/icons/scalable/Makefile.am,
+	  data/Makefile,
+	  data/Makefile.am,
+	  INSTALL,
+	  Makefile,
+	  Makefile.am,
+	  po/ChangeLog,
+	  po/cheese.pot,
+	  po/LINGUAS,
+	  po/Makefile,
+	  po/POTFILES.in,
+	  src/cheese.c,
+	  src/cheese-config.h.at,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-gconf.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/eog-thumb-shadow.c,
+	  src/Makefile,
+	  src/Makefile.am,
+	  Remove toc2 build system. Use autotools instead.
+	  This also makes the desktop file also localizable. Fixes bug #489570
+	  Install and localize the schema file
+	  On the cheese-waf branch we'll try to show that waf can fully
+	  replace autotools
+
 2007-11-18  Jaap Haitsma <jaap@haitsma.org>
 
 	* src/cheese-webcam.c: 

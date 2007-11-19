@@ -18,7 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "cheese-config.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <glib.h>
 #include <glib/gi18n.h>
@@ -56,29 +58,29 @@ typedef struct
 static const GstEffect GST_EFFECT[] = 
 {
   {CHEESE_WEBCAM_EFFECT_NO_EFFECT, N_("No Effect"),
-   CHEESE_DATA_DIR "/effects/identity.png", FALSE},
+   PACKAGE_DATADIR "/effects/identity.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_MAUVE, N_("Mauve"), 
-   CHEESE_DATA_DIR "/effects/Mauve.png", FALSE},
+   PACKAGE_DATADIR "/effects/Mauve.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_NOIR_BLANC, N_("Noir/Blanc"), 
-   CHEESE_DATA_DIR "/effects/NoirBlanc.png", FALSE},
+   PACKAGE_DATADIR "/effects/NoirBlanc.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_SATURATION, N_("Saturation"),
-   CHEESE_DATA_DIR "/effects/Saturation.png", FALSE},
+   PACKAGE_DATADIR "/effects/Saturation.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_HULK, N_("Hulk"),
-   CHEESE_DATA_DIR "/effects/Hulk.png", FALSE},
+   PACKAGE_DATADIR "/effects/Hulk.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_VERTICAL_FLIP, N_("Vertical Flip"),
-   CHEESE_DATA_DIR "/effects/videoflip_v.png", FALSE},
+   PACKAGE_DATADIR "/effects/videoflip_v.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_HORIZONTAL_FLIP, N_("Horizontal Flip"), 
-   CHEESE_DATA_DIR "/effects/videoflip_h.png", FALSE},
+   PACKAGE_DATADIR "/effects/videoflip_h.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_SHAGADELIC, N_("Shagadelic"),
-   CHEESE_DATA_DIR "/effects/shagadelictv.png", FALSE},
+   PACKAGE_DATADIR "/effects/shagadelictv.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_VERTIGO, N_("Vertigo"),
-   CHEESE_DATA_DIR "/effects/vertigotv.png", FALSE},
+   PACKAGE_DATADIR "/effects/vertigotv.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_EDGE, N_("Edge"),
-   CHEESE_DATA_DIR "/effects/edgetv.png", TRUE},
+   PACKAGE_DATADIR "/effects/edgetv.png", TRUE},
   {CHEESE_WEBCAM_EFFECT_DICE, N_("Dice"),
-   CHEESE_DATA_DIR "/effects/dicetv.png", FALSE},
+   PACKAGE_DATADIR "/effects/dicetv.png", FALSE},
   {CHEESE_WEBCAM_EFFECT_WARP, N_("Warp"), 
-   CHEESE_DATA_DIR "/effects/warptv.png", FALSE}
+   PACKAGE_DATADIR "/effects/warptv.png", FALSE}
 };
 
 

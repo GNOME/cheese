@@ -18,7 +18,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "cheese-config.h"
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
 
 #include <string.h>
 
@@ -39,8 +41,8 @@
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
 
-#define GLADE_FILE CHEESE_DATA_DIR"/cheese.glade"
-#define UI_FILE CHEESE_DATA_DIR"/cheese-ui.xml"
+#define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
+#define UI_FILE PACKAGE_DATADIR"/cheese-ui.xml"
 
 typedef enum
 {
@@ -447,7 +449,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
       _(license[2]), "\n", NULL);
 
   gtk_show_about_dialog (GTK_WINDOW (cheese_window->window),
-                         "version", CHEESE_VERSION,
+                         "version", VERSION,
                          "copyright", "Copyright \xc2\xa9 2007\n daniel g. siegel <dgsiegel@gmail.com>",
                          "comments", _("A cheesy program to take pictures and videos from your webcam"),
                          "authors", authors,

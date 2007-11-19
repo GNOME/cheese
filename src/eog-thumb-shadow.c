@@ -23,6 +23,10 @@
 
 /* Modified and updated by Claudio Saavedra <csaavedra@alumnos.utalca.cl> */
 
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #include "eog-thumb-shadow.h"
 #include <math.h>
 
