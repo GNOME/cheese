@@ -234,7 +234,7 @@ cheese_webcam_bus_message_cb (GstBus *bus, GstMessage *message, CheeseWebcam *we
 
 
 static void
-cheese_webcam_get_video_devices_from_hal (webcam)
+cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   int i;
