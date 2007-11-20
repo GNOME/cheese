@@ -171,21 +171,9 @@ cheese_gconf_init (CheeseGConf *gconf)
   gconf_prop_countdown = gconf_client_get_bool (priv->client,
                                                 CHEESE_GCONF_PREFIX "/countdown",
                                                 NULL);
-
-  // FIXME: provide a schema file
-  if (gconf_prop_path == NULL || gconf_prop_webcam == NULL)
+  if (gconf_prop_path == NULL || gconf_prop_webcam == NULL || gconf_prop_countdown )
   {
-    g_print("\n ***************************************************************************\n");
-    g_print("  Remember that to run cheese you must set all those GConf keys; \n");
-    g_print("    '" CHEESE_GCONF_PREFIX "/path' \n");
-    g_print("    '" CHEESE_GCONF_PREFIX "/countdown' \n");
-    g_print("    '" CHEESE_GCONF_PREFIX "/webcam' \n");
-    g_print("\n  To set the keys, run;\n\n");
-    g_print("    gconftool-2 -s -t string " CHEESE_GCONF_PREFIX "/path \'.gnome2/cheese/media\'\n");
-    g_print("    gconftool-2 -s -t bool " CHEESE_GCONF_PREFIX "/countdown \'false\'\n");
-    g_print("    gconftool-2 -s -t string " CHEESE_GCONF_PREFIX "/webcam \'/dev/video0\'\n");
-    g_print("\n ***************************************************************************\n\n");
-
+    g_warning ("Cannot read settings from gconf");
   }
 }
 
