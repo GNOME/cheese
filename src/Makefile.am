@@ -5,7 +5,7 @@ INCLUDES = 						\
 	-DSYSCONFDIR=\""$(sysconfdir)"\" 		\
 	-DLIBDIR=\""$(libdir)"\" 			\
 	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\"	\
-	-DPACKAGE_LOCALE_DIR=\""$(datadir)/locale"\"	\
+	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
 	$(CHEESE_CFLAGS)
 
 bin_PROGRAMS = cheese
