@@ -1,0 +1,20 @@
+#! /usr/bin/env python
+# encoding: utf-8
+#
+# Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+# Copyright (C) 2007 Jaap A. Haitsma <jaap@haitsma.org>
+#
+# Licensed under the GNU General Public License Version 2
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+
+obj = bld.create_obj('gnome', 'program')
+obj.find_sources_in_dirs('.') # take the sources in the current folder
+obj.includes='.'
+obj.uselib='''GLIB GOBJECT GTK LIBGLADE GDK HAL GSTREAMER GSTREAMER_PLUGINS_BASE 
+              GNOME_VFS CAIRO LIBGNOMEUI LIBEBOOK XXF86VM'''
+
+obj.target='cheese'
+
