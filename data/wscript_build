@@ -12,6 +12,8 @@
 
 bld.add_subdirs('effects icons')
 
+install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
+
 # process .in files with intl_tool
 obj=bld.create_obj('gnome_intltool')
 obj.source  = 'cheese.schemas.in'

@@ -50,6 +50,7 @@ def configure(conf):
 	conf.add_define('PACKAGE', 'cheese')
  	conf.add_define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
  	conf.add_define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
+ 	conf.add_define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
 	conf.env.append_value('CCFLAGS', '-DHAVE_CONFIG_H')
 
 	conf.write_config_header('config.h')
@@ -57,6 +58,7 @@ def configure(conf):
 def build(bld):
 	# process subfolders from here
 	bld.add_subdirs('src data po')
+	install_files('PACKAGE_DOCDIR', '', 'AUTHORS NEWS COPYING README')
 
 def shutdown():
 	gnome.postinstall()
