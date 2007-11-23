@@ -10,7 +10,6 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-
 import os
 import Params, gnome
 
@@ -23,8 +22,7 @@ srcdir = '.'
 blddir = '_build_'
 
 def set_options(opt):
-	# add your custom options here, for example:
-	#opt.add_option('--bunny', type='string', help='how many bunnies we have', dest='bunny')	
+	opt.add_option('--maintainer', action="store_true", default=False, help="enable maintainer mode", dest="maintainer")
 	pass
 
 def configure(conf):
@@ -48,18 +46,34 @@ def configure(conf):
 	conf.add_define('VERSION', VERSION)
 	conf.add_define('GETTEXT_PACKAGE', 'cheese')
 	conf.add_define('PACKAGE', 'cheese')
- 	conf.add_define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
- 	conf.add_define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
- 	conf.add_define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
+
+	if Params.g_options.maintainer:
+	  import os
+	  conf.add_define('PACKAGE_DATADIR', os.getcwd() + '/data/')
+	  print ""
+	  print "*******************************************************************"
+	  print "**                 MAINTAINER MODE ENABLED.                      **"
+	  print "**       CHEESE CAN BE RUN BY EXECUTING CHEESE IN _build_        **"
+	  print "**               BUT DO NOT TRY TO INSTALL IT                    **"
+	  print "*******************************************************************"
+	  print ""
+	else:
+	  conf.add_define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
+
+
+	conf.add_define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
+	conf.add_define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
 	conf.env.append_value('CCFLAGS', '-DHAVE_CONFIG_H')
+
 
 	conf.write_config_header('config.h')
 
 def build(bld):
 	# process subfolders from here
 	bld.add_subdirs('src data po')
-	install_files('PACKAGE_DOCDIR', '', 'AUTHORS NEWS COPYING README')
 
 def shutdown():
 	gnome.postinstall()
 
+def install():
+	print "hello"

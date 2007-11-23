@@ -13,6 +13,7 @@
 bld.add_subdirs('effects icons')
 
 install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
+install_files('PACKAGE_DATADIR', '', 'cheese.glade')
 
 # process .in files with intl_tool
 obj=bld.create_obj('gnome_intltool')
