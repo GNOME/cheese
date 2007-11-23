@@ -725,6 +725,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   g_signal_connect (cheese_window->button_video, "clicked",
                     G_CALLBACK (cheese_window_button_video_cb), cheese_window);
 
+  gtk_widget_add_events (cheese_window->screen, GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
+
   cheese_window->ui_manager = gtk_ui_manager_new ();
 
   cheese_window->actions_main = cheese_window_action_group_new (cheese_window, 
