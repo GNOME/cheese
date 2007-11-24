@@ -10,8 +10,9 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-import os
+import os, sys
 import Params, gnome
+import Common
 
 # the following two variables are used by the target "waf dist"
 VERSION='0.3.0'
@@ -91,5 +92,4 @@ def dist():
 	  readBytes = len(readString)
 	f.close()
 	print filename, m.hexdigest()
-	import sys
 	sys.exit(0)
