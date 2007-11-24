@@ -1,3 +1,25 @@
+2007-11-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/effects/wscript_build,
+	  data/icons/16x16/wscript_build,
+	  data/icons/22x22/wscript_build,
+	  data/icons/24x24/wscript_build,
+	  data/icons/32x32/wscript_build,
+	  data/icons/48x48/wscript_build,
+	  data/icons/scalable/wscript_build,
+	  data/wscript_build,
+	  src/wscript_build,
+	  waf,
+	  wscript: 
+	  update waf to svn,
+	  exit, when a needed pkg wasnt found,
+	  print the md5sum, when doing a make dist,
+	  create a tar.gz when doing a make dist,
+	  install schemas and icons correctly,
+	  just update the icons and add the schema
+	  file if cheese isnt installed to a DESTDIR,
+	  and a small cleanup.
+
 2007-11-23  daniel g. siegel <dgsiegel@gmail.com>
 
 	* data/wscript_build,

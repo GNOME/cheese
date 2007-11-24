@@ -28,28 +28,28 @@ def set_options(opt):
 def configure(conf):
 	conf.check_tool('gcc gnome')
 
-	conf.check_pkg('gobject-2.0', destvar='GOBJECT', vnum='2.12.0')
-	conf.check_pkg('glib-2.0', destvar='GLIB', vnum='2.12.1' )
-	conf.check_pkg('cairo', destvar='CAIRO', vnum='1.4.0')
-	conf.check_pkg('gdk-2.0', destvar='GDK', vnum='2.12.0')
-	conf.check_pkg('gtk+-2.0', destvar='GTK', vnum='2.10.0')
-	conf.check_pkg('libglade-2.0', destvar='LIBGLADE', vnum='2.0.0')
-	conf.check_pkg('hal', destvar='HAL', vnum='0.5.0')
-	conf.check_pkg('gstreamer-0.10', destvar='GSTREAMER', vnum='0.10.15')
-	conf.check_pkg('gstreamer-plugins-base-0.10', destvar='GSTREAMER_PLUGINS_BASE', vnum='0.10.14')
-	conf.check_pkg('gnome-vfs-2.0', destvar='GNOME_VFS', vnum='2.18.0')
-	conf.check_pkg('libgnomeui-2.0', destvar='LIBGNOMEUI', vnum='2.20.0')
-	conf.check_pkg('libebook-1.2', destvar='LIBEBOOK', vnum='1.12.0')
-	conf.check_pkg('xxf86vm', destvar='XXF86VM', vnum='1.0.0')
+	conf.check_pkg('gobject-2.0', destvar='GOBJECT', vnum='2.12.0', mandatory=True)
+	conf.check_pkg('glib-2.0', destvar='GLIB', vnum='2.12.1', mandatory=True)
+	conf.check_pkg('cairo', destvar='CAIRO', vnum='1.4.0', mandatory=True)
+	conf.check_pkg('gdk-2.0', destvar='GDK', vnum='2.12.0', mandatory=True)
+	conf.check_pkg('gtk+-2.0', destvar='GTK', vnum='2.10.0', mandatory=True)
+	conf.check_pkg('libglade-2.0', destvar='LIBGLADE', vnum='2.0.0', mandatory=True)
+	conf.check_pkg('hal', destvar='HAL', vnum='0.5.0', mandatory=True)
+	conf.check_pkg('gstreamer-0.10', destvar='GSTREAMER', vnum='0.10.15', mandatory=True)
+	conf.check_pkg('gstreamer-plugins-base-0.10', destvar='GSTREAMER_PLUGINS_BASE', vnum='0.10.14', mandatory=True)
+	conf.check_pkg('gnome-vfs-2.0', destvar='GNOME_VFS', vnum='2.18.0', mandatory=True)
+	conf.check_pkg('libgnomeui-2.0', destvar='LIBGNOMEUI', vnum='2.20.0', mandatory=True)
+	conf.check_pkg('libebook-1.2', destvar='LIBEBOOK', vnum='1.12.0', mandatory=True)
+	conf.check_pkg('xxf86vm', destvar='XXF86VM', vnum='1.0.0', mandatory=True)
 	conf.env['LIB_GSTREAMER'] += ['gstinterfaces-0.10']
 
-	conf.add_define('VERSION', VERSION)
-	conf.add_define('GETTEXT_PACKAGE', 'cheese')
-	conf.add_define('PACKAGE', 'cheese')
+	conf.define('VERSION', VERSION)
+	conf.define('GETTEXT_PACKAGE', 'cheese')
+	conf.define('PACKAGE', 'cheese')
 
 	if Params.g_options.maintainer:
 	  import os
-	  conf.add_define('PACKAGE_DATADIR', os.getcwd() + '/data/')
+	  conf.define('PACKAGE_DATADIR', os.getcwd() + '/data/')
 	  print ""
 	  print "*******************************************************************"
 	  print "**                 MAINTAINER MODE ENABLED.                      **"
@@ -58,13 +58,11 @@ def configure(conf):
 	  print "*******************************************************************"
 	  print ""
 	else:
-	  conf.add_define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
+	  conf.define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
 
-
-	conf.add_define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
-	conf.add_define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
+	conf.define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
+	conf.define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
 	conf.env.append_value('CCFLAGS', '-DHAVE_CONFIG_H')
-
 
 	conf.write_config_header('config.h')
 
@@ -73,7 +71,25 @@ def build(bld):
 	bld.add_subdirs('src data po')
 
 def shutdown():
-	gnome.postinstall()
+	gnome.postinstall(APPNAME, schemas=True, icons=True, scrollkeeper=False)
 
-def install():
-	print "hello"
+def dist():
+	# set the compression type to gzip (default is bz2)
+	import Scripting
+	Scripting.g_gz = 'gz'
+
+	# after making the package, print the md5sum
+	import md5
+	from Scripting import DistTarball
+	(f, filename) = DistTarball(APPNAME, VERSION)
+	f = file(filename,'rb')
+	m = md5.md5()
+	readBytes = 1024 # read 1024 bytes per time
+	while (readBytes):
+	  readString = f.read(readBytes)
+	  m.update(readString)
+	  readBytes = len(readString)
+	f.close()
+	print filename, m.hexdigest()
+	import sys
+	sys.exit(0)
