@@ -11,8 +11,8 @@
 # (at your option) any later version.
 
 import os, sys
-import Params, gnome
-import Common
+# waf imports
+import Common, Params, gnome
 
 # the following two variables are used by the target "waf dist"
 VERSION='0.3.0'
