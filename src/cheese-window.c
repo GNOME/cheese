@@ -71,8 +71,6 @@ typedef struct
   GtkWidget *effect_chooser;
 
   GtkWidget *button_effects;
-// TODO: button_video and button_photo are toggle buttons now. Still have to 
-// implement that behavior correctly
   GtkWidget *button_photo;
   GtkWidget *button_video;
 
@@ -563,35 +561,71 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
 }
 
 static void
-cheese_window_button_video_cb (GtkWidget *widget, CheeseWindow *cheese_window)
+cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   char *str;
+  static gboolean ignore_callback = FALSE;
+  
+  
+  /* When we call gtk_toggle_button_set_active a "toggle" message is generated
+     we ignore that one */
+  if (ignore_callback)
+  {
+    ignore_callback = FALSE;
+    return;
+  }
 
-  cheese_window->webcam_mode = WEBCAM_MODE_VIDEO;
+  /* Set ignore_callback because we are call gtk_toggle_button_set_active in the next few lines */
+  ignore_callback = TRUE;
 
-  gtk_widget_set_sensitive (cheese_window->button_photo, TRUE);
-  gtk_widget_set_sensitive (cheese_window->button_video, FALSE);
-  str = g_strconcat ("<b>", _("_Start recording"), "</b>", NULL);
-  gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
-  g_free (str);
-  gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
-  gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
-}
+  if (widget == cheese_window->button_video)
+  {
+    if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (cheese_window->button_video)))
+    {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_video), TRUE);
+    }
+    else
+    {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), FALSE);
+    }
+  }
+  else if (widget == cheese_window->button_photo)
+  {
+    if (!gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo)))
+    {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), TRUE);
+    }
+    else
+    {
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_video), FALSE);
+    }
+  }
+  else
+  {
+    g_error ("Unknown toggle button");
+  }
 
-static void
-cheese_window_button_photo_cb (GtkWidget *widget, CheeseWindow *cheese_window)
-{
-  char *str;
+  if (gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (cheese_window->button_video))) 
+  {
+    cheese_window->webcam_mode = WEBCAM_MODE_VIDEO;
 
-  cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
+    str = g_strconcat ("<b>", _("_Start recording"), "</b>", NULL);
+    gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
+    g_free (str);
+    gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
 
-  gtk_widget_set_sensitive (cheese_window->button_photo, FALSE);
-  gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
-  str = g_strconcat ("<b>", _("_Take a photo"), "</b>", NULL);
-  gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
-  g_free (str);
-  gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
-  gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
+  }
+  else
+  {
+    cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
+
+    str = g_strconcat ("<b>", _("_Take a photo"), "</b>", NULL);
+    gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
+    g_free (str);
+    gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
+  }
 }
 
 static void
@@ -601,7 +635,6 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
-    gtk_widget_set_sensitive (cheese_window->button_photo, FALSE);
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
 
     cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
@@ -613,6 +646,7 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
     {
       gtk_widget_set_sensitive (cheese_window->button_effects, FALSE);
       gtk_widget_set_sensitive (cheese_window->button_photo, FALSE);
+      gtk_widget_set_sensitive (cheese_window->button_video, FALSE);
       str = g_strconcat ("<b>", _("_Stop recording"), "</b>", NULL);
       gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
       g_free (str);
@@ -625,7 +659,9 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
     else
     {
       cheese_webcam_stop_video_recording (cheese_window->webcam);
-      gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
+      gtk_widget_set_sensitive (cheese_window->button_effects, TRUE);
+      gtk_widget_set_sensitive (cheese_window->button_photo, TRUE);
+      gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
       str = g_strconcat ("<b>", _("_Start recording"), "</b>", NULL);
       gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
       g_free (str);
@@ -717,13 +753,13 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->effect_chooser      = cheese_effect_chooser_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
 
-  gtk_widget_set_sensitive (cheese_window->button_photo, FALSE);
-  gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), TRUE);
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_video), FALSE);
 
-  g_signal_connect (cheese_window->button_photo, "clicked",
-                    G_CALLBACK (cheese_window_button_photo_cb), cheese_window);
-  g_signal_connect (cheese_window->button_video, "clicked",
-                    G_CALLBACK (cheese_window_button_video_cb), cheese_window);
+  g_signal_connect (cheese_window->button_photo, "toggled",
+                    G_CALLBACK (cheese_window_photo_video_toggle_buttons_cb), cheese_window);
+  g_signal_connect (cheese_window->button_video, "toggled",
+                    G_CALLBACK (cheese_window_photo_video_toggle_buttons_cb), cheese_window);
 
   gtk_widget_add_events (cheese_window->screen, GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
 

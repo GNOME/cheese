@@ -88,7 +88,7 @@
                         <property name="visible">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <child>
-                          <widget class="GtkButton" id="button_photo">
+                          <widget class="GtkToggleButton" id="button_photo">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
@@ -130,7 +130,7 @@
                           </widget>
                         </child>
                         <child>
-                          <widget class="GtkButton" id="button_video">
+                          <widget class="GtkToggleButton" id="button_video">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
