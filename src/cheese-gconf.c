@@ -171,7 +171,7 @@ cheese_gconf_init (CheeseGConf *gconf)
   gconf_prop_countdown = gconf_client_get_bool (priv->client,
                                                 CHEESE_GCONF_PREFIX "/countdown",
                                                 NULL);
-  if (gconf_prop_path == NULL || gconf_prop_webcam == NULL || gconf_prop_countdown )
+  if (gconf_prop_path == NULL || gconf_prop_webcam == NULL || !gconf_prop_countdown )
   {
     g_warning ("Cannot read settings from gconf");
   }
