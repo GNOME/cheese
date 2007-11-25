@@ -10,8 +10,6 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-bld.add_subdirs('effects icons')
-
 install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
 install_files('PACKAGE_DATADIR', '', 'cheese.glade')
 
@@ -29,5 +27,13 @@ obj.destvar = 'PREFIX'
 obj.subdir  = 'share/applications'
 obj.podir   = '../po'
 obj.flags   = '-d'
+
+# data/effects
+install_files('PACKAGE_DATADIR', 'effects', 'effects/*.png')
+
+# data/icons
+for i in "16x16 22x22 24x24 32x32 48x48".split():
+  install_files('DATADIR', 'icons/hicolor/%s/apps' % i, 'icons/%s/cheese.png' % i)
+install_files('DATADIR', 'icons/hicolor/scalable/apps', 'icons/scalable/cheese.svg')
 
 
