@@ -99,6 +99,26 @@ typedef struct
 
 } CheeseWindow;
 
+
+/* Make url in about dialog clickable */
+static void
+cheese_about_dialog_handle_url (GtkAboutDialog *about, const char *link, gpointer data)
+{
+  gnome_vfs_url_show (link);
+}
+
+/* Make email in about dialog clickable */
+static void
+cheese_about_dialog_handle_email (GtkAboutDialog *about, const char *link, gpointer data)
+{
+  char *address;
+
+  address = g_strdup_printf ("mailto:%s", link);
+  gnome_vfs_url_show (address);
+  g_free (address);
+}
+
+
 /* standard event handler */
 static int
 cheese_window_delete_event_cb (GtkWidget *widget, GdkEvent event, gpointer data)
@@ -453,6 +473,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
                          "authors", authors,
                          "translator-credits", translators,
                          "website", "http://www.gnome.org/projects/cheese",
+                         "website-label", _("Cheese Website"),
                          "logo-icon-name", "cheese",
                          "wrap-license", TRUE,
                          "license", license_trans,
@@ -460,23 +481,6 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
 
   g_free (license_trans);
 }
-
-/*
-static gboolean
-cheese_window_key_press_event_cb (GtkWidget *widget, GdkEventKey *event, 
-                                  CheeseWindow *cheese_window)
-{
-  if (event->type == GDK_KEY_PRESS)
-  {
-    switch (event->keyval) {
-      case GDK_space:
-        g_signal_emit_by_name (cheese_window->take_picture, "clicked");
-        return TRUE;
-    }
-  }
-  return FALSE;
-}
-*/
 
 static gboolean
 cheese_window_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
@@ -836,9 +840,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   g_signal_connect (cheese_window->button_effects,
                     "clicked", G_CALLBACK (cheese_window_effect_button_pressed_cb), cheese_window);
 
-  //g_signal_connect_after (cheese_window->window, "key_press_event",
-  //                        G_CALLBACK (cheese_window_key_press_event_cb), cheese_window);
-  // TODO: look at button press event
   g_signal_connect (cheese_window->thumb_view, "button_press_event",
                           G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 }
@@ -861,6 +862,11 @@ cheese_window_init ()
                     G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);
   g_signal_connect (cheese_window->webcam, "video-saved",
                     G_CALLBACK (cheese_window_video_saved_cb), cheese_window);
+
+  /* Make URLs and email clickable in about dialog */
+  gtk_about_dialog_set_url_hook (cheese_about_dialog_handle_url, NULL, NULL);
+  gtk_about_dialog_set_email_hook (cheese_about_dialog_handle_email, NULL, NULL);
+
 
   cheese_webcam_play (cheese_window->webcam);
   gtk_widget_show_all (cheese_window->window);
