@@ -452,7 +452,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
                          "comments", _("A cheesy program to take pictures and videos from your webcam"),
                          "authors", authors,
                          "translator-credits", translators,
-                         "website", "http://live.gnome.org/Cheese",
+                         "website", "http://www.gnome.org/projects/cheese",
                          "logo-icon-name", "cheese",
                          "wrap-license", TRUE,
                          "license", license_trans,
