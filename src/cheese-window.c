@@ -40,7 +40,6 @@
 #include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
-#include "cheese-init-view.h"
 
 #define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
 #define UI_FILE PACKAGE_DATADIR"/cheese-ui.xml"
@@ -70,8 +69,6 @@ typedef struct
 
   GtkWidget *effect_frame;
   GtkWidget *effect_chooser;
-  GtkWidget *init_view_frame;
-  GtkWidget *init_view;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -759,10 +756,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->effect_chooser      = cheese_effect_chooser_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
 
-  cheese_window->init_view_frame     = glade_xml_get_widget (gxml, "init_view_frame");
-  cheese_window->init_view           = cheese_init_view_new ();
-  gtk_container_add (GTK_CONTAINER (cheese_window->init_view_frame), cheese_window->init_view);
-
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), TRUE);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_video), FALSE);
 
@@ -860,9 +853,6 @@ cheese_window_init ()
 
   cheese_window->gconf = cheese_gconf_new ();
 
-  gtk_widget_show_all (cheese_window->window);
-  gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 2);
-
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording = FALSE;
   cheese_window->webcam = cheese_webcam_new (cheese_window->screen);
@@ -878,6 +868,6 @@ cheese_window_init ()
 
 
   cheese_webcam_play (cheese_window->webcam);
-  //gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
+  gtk_widget_show_all (cheese_window->window);
 }
 
