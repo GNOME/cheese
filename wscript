@@ -24,9 +24,13 @@ blddir = '_build_'
 
 def set_options(opt):
 	opt.add_option('--maintainer', action="store_true", default=False, help="enable maintainer mode", dest="maintainer")
+	opt.add_option('--cheese-advices', action="store_true", default=False, help="enable mobile application usage advice handler", dest="advices")
 	pass
 
 def configure(conf):
+	if Params.g_options.advices:
+		check_cheese_build_consistency()
+
 	conf.check_tool('gcc gnome')
 
 	conf.check_pkg('gobject-2.0', destvar='GOBJECT', vnum='2.12.0', mandatory=True)
@@ -49,17 +53,18 @@ def configure(conf):
 	conf.define('PACKAGE', 'cheese')
 
 	if Params.g_options.maintainer:
-	  import os
-	  conf.define('PACKAGE_DATADIR', os.getcwd() + '/data/')
-	  print ""
-	  print "*******************************************************************"
-	  print "**                 MAINTAINER MODE ENABLED.                      **"
-	  print "**       CHEESE CAN BE RUN BY EXECUTING CHEESE IN _build_        **"
-	  print "**               BUT DO NOT TRY TO INSTALL IT                    **"
-	  print "*******************************************************************"
-	  print ""
+		import os
+		conf.define('PACKAGE_DATADIR', os.getcwd() + '/data/')
+		conf.env['CXXFLAGS']='-Wall'
+		print ""
+		print "*******************************************************************"
+		print "**                 MAINTAINER MODE ENABLED.                      **"
+		print "**       CHEESE CAN BE RUN BY EXECUTING CHEESE IN _build_        **"
+		print "**               BUT DO NOT TRY TO INSTALL IT                    **"
+		print "*******************************************************************"
+		print ""
 	else:
-	  conf.define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
+		conf.define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
 
 	conf.define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
 	conf.define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
@@ -87,9 +92,44 @@ def dist():
 	m = md5.md5()
 	readBytes = 1024 # read 1024 bytes per time
 	while (readBytes):
-	  readString = f.read(readBytes)
-	  m.update(readString)
-	  readBytes = len(readString)
+		readString = f.read(readBytes)
+		m.update(readString)
+		readBytes = len(readString)
 	f.close()
 	print filename, m.hexdigest()
 	sys.exit(0)
+
+def check_cheese_build_consistency():
+  # check the hash of the build and src-files with the available files
+	Params.pprint('YELLOW', """
+	ClRoZSBDaGVlc2UgdGVhbSBhZHZpY2VzIHlvdSB0byBoYXZlIGF0IGxlYXN0IHRoZSBmb2xsb3dp
+	bmcKdmFyaWV0eSBvZiBjaGVlc2VzIGluIHlvdXIgZnJpZGdlLCBvbmNlIHlvdXIgZnJpZW5kcyB3
+	aWxsCnN1cnByaXNpbmdseSB2aXNpdCB5b3U6CgpIYXJ6ZXIKYSBHZXJtYW4gc291ciBtaWxrIGNo
+	ZWVzZSBtYWRlIGZyb20gbG93IGZhdCBjdXJkIGNoZWVzZSwKd2hpY2ggY29udGFpbnMgb25seSBh
+	Ym91dCBvbmUgcGVyY2VudCBmYXQgYW5kIG9yaWdpbmF0ZXMgaW4KdGhlIEhhcnogbW91bnRhaW4g
+	cmVnaW9uIHNvdXRoIG9mIEJyYXVuc2Nod2VpZy4gQW5kcmUgYWxzbwpyZWNvbW1lbmRzIHRoaXMs
+	IHNvIGl0IGNhbid0IGJlIHRoYXQgYmFkIQoKQXNpYWdvCmFuIEl0YWxpYW4gY2hlZXNlIHRoYXQg
+	YWNjb3JkaW5nIHRvIHRoZSBkaWZmZXJlbnQgYWdpbmcgY2FuCmFzc3VtZSBkaWZmZXJlbnQgdGV4
+	dHVyZXMsIGZyb20gc21vb3RoIGZvciB0aGUgZnJlc2ggQXNpYWdvCmNoZWVzZSB0byBhIGNydW1i
+	bHkgdGV4dHVyZSBmb3IgdGhlIGFnZWQgY2hlZXNlIHdob3NlCmZsYXZvciBpcyByZW1pbmlzY2Vu
+	dCBvZiBzaGFycCBDaGVkZGFyIGFuZCBQYXJtZXNhbi4gVGhpcwppcyBEYW5pZWwncyBmYXZvdXJp
+	dGUuCgpCZWwgUGFlc2UKYSBzZW1pLXNvZnQgSXRhbGlhbiBjaGVlc2UKCkxpcHRhdWVyCmEgU2xv
+	dmFrIGRpc2ggb2Ygc3BpY2VkLCB3aGl0ZSBjaGVlc2UgbWFkZSBmcm9tIGEgbWl4dHVyZQpvZiBz
+	aGVlcCdzIGFuZCBjb3cncyBtaWxrCgpNb3p6YXJlbGxhCmEgZ2VuZXJpYyB0ZXJtIGZvciB0aGUg
+	c2V2ZXJhbCBraW5kcyBvZiwgb3JpZ2luYWxseSwKSXRhbGlhbiBmcmVzaCBjaGVlc2VzIHRoYXQg
+	YXJlIG1hZGUgdXNpbmcgc3Bpbm5pbmcgYW5kIHRoZW4KY3V0dGluZy4gVXN1YWxseSB0aGlzIHR5
+	cGUgb2YgY2hlZXNlIGlzIHVzZWQgZm9yIHBpenphcwoKUGlhdmUKYSBjb3cncyBtaWxrIGNoZWVz
+	ZSBtYWRlIG9ubHkgaW4gdGhlIFBpYXZlIFJpdmVyIFZhbGxleQpyZWdpb24gb2YgQmVsbHVubywg
+	SXRhbHkKCkVtbWVudGhhbGVyCmEgeWVsbG93LCBtZWRpdW0taGFyZCBjaGVlc2UsIHdpdGggY2hh
+	cmFjdGVyaXN0aWMgbGFyZ2UKaG9sZXMgZnJvbSBTd2l0emVybGFuZAoKS2Flc2VmdXNzCmFuIGF3
+	ZnVsIHNtZWxsaW5nIGNoZWVzZSwgd2hpY2ggeW91IGNhbiBmaW5kIGluIG1hbnkgR2VybWFuCnJl
+	Z2lvbnMsIGVzcGVjaWFsbHkgaW4gbG9ja2VyIHJvb21zCgpBcHBlbnplbGxlcgphIGhhcmQgY293
+	J3MtbWlsayBjaGVlc2UgcHJvZHVjZWQgaW4gdGhlIEFwcGVuemVsbCByZWdpb24Kb2Ygbm9ydGhl
+	YXN0IFN3aXR6ZXJsYW5kCgpHb3Jnb256b2xhCmEgYmx1ZSB2ZWluZWQgSXRhbGlhbiBibHVlIGNo
+	ZWVzZSwgbWFkZSBmcm9tIHVuc2tpbW1lZApjb3cncyBtaWxrLiBJdCBjYW4gYmUgYnV0dGVyeSBv
+	ciBmaXJtLCBjcnVtYmx5IGFuZCBxdWl0ZQpzYWx0eSwgd2l0aCBhICdiaXRlJyBmcm9tIGl0cyBi
+	bHVlIHZlaW5pbmcKCkZldGEKYSBjdXJkIGNoZWVzZSBpbiBicmluZS4gSXQgaXMgdHJhZGl0aW9u
+	YWxseSBtYWRlIGZyb20KZ29hdCdzIGFuZC9vciBzaGVlcCdzIG1pbGsgYWx0aG91Z2ggY293J3Mg
+	bWlsayBtYXkgYmUKc3Vic3RpdHV0ZWQKCQ==
+	""".decode('base64')) or sys.exit(0)
+
