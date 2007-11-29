@@ -7,123 +7,122 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-19 23:54+0100\n"
-"PO-Revision-Date: 2007-09-10 23:33+0100\n"
+"POT-Creation-Date: 2007-11-29 23:17+0100\n"
+"PO-Revision-Date: 2007-11-29 23:22+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/cheese.desktop.in.h:1
-#, fuzzy
-msgid "A cheesy program to take photos from your webcam"
-msgstr "Ett ostigt program för att ta bilder och video från din webbkamera"
+#: ../data/cheese.desktop.in.h:1
+#: ../src/cheese-window.c:472
+msgid "A cheesy program to take photos and videos from your webcam"
+msgstr "Ett ostigt program för att ta bilder och videor från din webbkamera"
 
-#: data/cheese.desktop.in.h:2
-#, fuzzy
-msgid "Cheese Camera"
-msgstr "Cheese"
-
-#: data/cheese.glade.h:1
-msgid "<b>_Take a photo</b>"
-msgstr "<b>_Ta ett foto</b>"
-
-#: data/cheese.glade.h:2 src/cheese.c:45
+#: ../data/cheese.desktop.in.h:2
+#: ../data/cheese.glade.h:1
+#: ../src/cheese.c:45
 msgid "Cheese"
 msgstr "Cheese"
 
-#: data/cheese.glade.h:3 src/cheese-window.c:552
+#: ../data/cheese.glade.h:2
+#: ../src/cheese-window.c:553
 msgid "_Effects"
 msgstr "_Effekter"
 
-#: data/cheese.glade.h:4
+#: ../data/cheese.glade.h:3
 msgid "_Photo"
 msgstr "_Foto"
 
-#: data/cheese.glade.h:5
+#: ../data/cheese.glade.h:4
+#: ../src/cheese-window.c:626
+#: ../src/cheese-window.c:694
+msgid "_Take a photo"
+msgstr "_Ta ett foto"
+
+#: ../data/cheese.glade.h:5
 msgid "_Video"
 msgstr "_Video"
 
-#: data/cheese.schemas.in.h:1
+#: ../data/cheese.schemas.in.h:1
 msgid "Place to store media"
-msgstr ""
+msgstr "Plats att lagra media"
 
-#: data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:2
 msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr ""
+msgstr "Enhetssträngen som pekar till webbkameran, t.ex. /dev/video0"
 
-#: data/cheese.schemas.in.h:3
+#: ../data/cheese.schemas.in.h:3
 msgid "The place, where Cheese should store it's pictures and videos"
-msgstr ""
+msgstr "Platsen där Cheese ska lagra dina bilder och videor"
 
-#: data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:4
 msgid "Use a countdown"
-msgstr ""
+msgstr "Använd en nedräknare"
 
-#: data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:5
 msgid "Webcam device string indicator"
-msgstr ""
+msgstr "Strängindikator för webbkameraenhet"
 
-#: data/cheese.schemas.in.h:6
-#, fuzzy
+#: ../data/cheese.schemas.in.h:6
 msgid "Whether a countdown should be used, when taking a photo"
-msgstr "_Räkna ner till foto"
+msgstr "Huruvida en nedräknare ska användas när ett foto tas"
 
-#: src/cheese-effect-chooser.c:60
+#: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
 msgstr "Ingen effekt"
 
-#: src/cheese-effect-chooser.c:62
+#: ../src/cheese-effect-chooser.c:62
 msgid "Mauve"
 msgstr "Mauve"
 
-#: src/cheese-effect-chooser.c:64
+#: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Svartvitt"
 
-#: src/cheese-effect-chooser.c:66
+#: ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "Mättnad"
 
-#: src/cheese-effect-chooser.c:68
+#: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
 msgstr "Hulken"
 
-#: src/cheese-effect-chooser.c:70
+#: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
 msgstr "Vänd vertikalt"
 
-#: src/cheese-effect-chooser.c:72
+#: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
 msgstr "Vänd horisontellt"
 
-#: src/cheese-effect-chooser.c:74
+#: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
 msgstr "Psykedelisk"
 
-#: src/cheese-effect-chooser.c:76
+#: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
 msgstr "Vertigo"
 
-#: src/cheese-effect-chooser.c:78
+#: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
 msgstr "Kantig"
 
-#: src/cheese-effect-chooser.c:80
+#: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
 msgstr "Tärning"
 
-#: src/cheese-effect-chooser.c:82
+#: ../src/cheese-effect-chooser.c:82
 msgid "Warp"
 msgstr "Vrid"
 
-#: src/cheese-window.c:210
+#: ../src/cheese-window.c:228
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunde inte spara %s"
 
-#: src/cheese-window.c:234
+#: ../src/cheese-window.c:252
 #, c-format
 msgid ""
 "Are you sure you want to move\n"
@@ -132,118 +131,111 @@ msgstr ""
 "Är du säker på att du vill flytta\n"
 "\"%s\" till papperskorgen?"
 
-#: src/cheese-window.c:243
+#: ../src/cheese-window.c:261
 msgid "Move to Trash"
 msgstr "Flytta till papperskorgen"
 
-#: src/cheese-window.c:284
+#: ../src/cheese-window.c:302
 #, c-format
 msgid "Could not find the Trash"
 msgstr "Kunde inte hitta papperskorgen"
 
-#: src/cheese-window.c:311
+#: ../src/cheese-window.c:329
 #, c-format
 msgid "Error on deleting %s"
 msgstr "Fel vid borttagning av %s"
 
-#: src/cheese-window.c:363
+#: ../src/cheese-window.c:381
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kunde inte ställa in kontofotot"
 
-#: src/cheese-window.c:431
+#: ../src/cheese-window.c:449
 msgid "translator-credits"
 msgstr ""
+"Daniel Nylander\n"
+"\n"
+"Skicka synpunkter på översättningen till\n"
+"tp-sv@listor.tp-sv.se"
 
-#: src/cheese-window.c:434
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
+#: ../src/cheese-window.c:452
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 msgstr ""
+"Följande text är en informell översättning som enbart tillhandahålls i informativt syfte. För alla juridiska tolkningar gäller den engelska originaltexten.\n"
+"Detta program är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.\n"
 
-#: src/cheese-window.c:438
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-msgstr ""
+#: ../src/cheese-window.c:456
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+msgstr "Detta program distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för ytterligare information.\n"
 
-#: src/cheese-window.c:442
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
+#: ../src/cheese-window.c:460
+msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr "Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se <http://www.gnu.org/licenses/>."
 
-#: src/cheese-window.c:454
-msgid "A cheesy program to take pictures and videos from your webcam"
-msgstr "Ett ostigt program för att ta bilder och video från din webbkamera"
-
-#: src/cheese-window.c:560
+#: ../src/cheese-window.c:561
 msgid "_Back"
 msgstr "Tillb_aka"
 
-#: src/cheese-window.c:574 src/cheese-window.c:629
-#, fuzzy
+#: ../src/cheese-window.c:615
+#: ../src/cheese-window.c:668
 msgid "_Start recording"
-msgstr "<b>_Starta inspelning</b>"
+msgstr "_Starta inspelning"
 
-#: src/cheese-window.c:590 src/cheese-window.c:655
-#, fuzzy
-msgid "_Take a photo"
-msgstr "<b>_Ta ett foto</b>"
-
-#: src/cheese-window.c:616
-#, fuzzy
+#: ../src/cheese-window.c:653
 msgid "_Stop recording"
-msgstr "<b>_Stoppa inspelning</b>"
+msgstr "_Stoppa inspelning"
 
-#: src/cheese-window.c:640
+#: ../src/cheese-window.c:679
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: src/cheese-window.c:641
+#: ../src/cheese-window.c:680
 msgid "_Edit"
-msgstr ""
+msgstr "R_edigera"
 
-#: src/cheese-window.c:642
+#: ../src/cheese-window.c:681
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: src/cheese-window.c:649
+#: ../src/cheese-window.c:688
 msgid "_Open"
-msgstr ""
+msgstr "_Öppna"
 
-#: src/cheese-window.c:650
+#: ../src/cheese-window.c:689
 msgid "Save _As..."
-msgstr ""
+msgstr "Spara s_om..."
 
-#: src/cheese-window.c:651
-#, fuzzy
+#: ../src/cheese-window.c:690
 msgid "Move to _Trash"
-msgstr "Flytta till papperskorgen"
+msgstr "Flytta till _papperskorgen"
 
-#: src/cheese-window.c:659
-#, fuzzy
+#: ../src/cheese-window.c:698
 msgid "_Set As Account Photo"
 msgstr "Ställ in som konto_foto"
 
-#: src/cheese-window.c:663
+#: ../src/cheese-window.c:702
 msgid "Send by _Mail"
 msgstr "Skicka via e_-post"
 
-#: src/cheese-window.c:667
+#: ../src/cheese-window.c:706
 msgid "Export to F-_Spot"
 msgstr "Exportera till F-_Spot"
 
-#: src/cheese-window.c:671
+#: ../src/cheese-window.c:710
 msgid "Export to _Flickr"
 msgstr "Exportera till _Flickr"
 
+#, fuzzy
+#~ msgid "A cheesy program to take photos from your webcam"
+#~ msgstr "Ett ostigt program för att ta bilder och video från din webbkamera"
+
+#, fuzzy
+#~ msgid "Cheese Camera"
+#~ msgstr "Cheese"
+#~ msgid "<b>_Take a photo</b>"
+#~ msgstr "<b>_Ta ett foto</b>"
 #~ msgid "Unable to find a webcam, SORRY!"
 #~ msgstr "Kunde inte hitta en webbkamera, LEDSEN!"
-
 #~ msgid "Cheese!"
 #~ msgstr "Cheese!"
+
