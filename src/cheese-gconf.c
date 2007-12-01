@@ -52,11 +52,6 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
 
   switch (prop_id) 
   {
-    case GCONF_PROP_PATH:
-      g_value_set_string (value, gconf_client_get_string (priv->client,
-                                                          CHEESE_GCONF_PREFIX "/path",
-                                                          NULL));
-      break;
     case GCONF_PROP_COUNTDOWN:
       g_value_set_boolean (value, gconf_client_get_bool (priv->client,
                                                          CHEESE_GCONF_PREFIX "/countdown",
@@ -83,12 +78,6 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
 
   switch (prop_id) 
   {
-    case GCONF_PROP_PATH:
-      gconf_client_set_string (priv->client,
-                               CHEESE_GCONF_PREFIX "/path",
-                               g_value_get_string (value),
-                               NULL);
-      break;
     case GCONF_PROP_COUNTDOWN:
       gconf_client_set_bool (priv->client,
                              CHEESE_GCONF_PREFIX "/countdown",
@@ -128,12 +117,6 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
   object_class->get_property = cheese_gconf_get_property;
   object_class->set_property = cheese_gconf_set_property;
 
-  g_object_class_install_property (object_class, GCONF_PROP_PATH,
-                                   g_param_spec_string ("gconf_prop_path",
-                                                        NULL,
-                                                        NULL,
-                                                        "",
-                                                        G_PARAM_READWRITE));
   g_object_class_install_property (object_class, GCONF_PROP_WEBCAM,
                                    g_param_spec_string ("gconf_prop_webcam",
                                                         NULL,
@@ -155,23 +138,18 @@ cheese_gconf_init (CheeseGConf *gconf)
 {
   CheeseGConfPrivate* priv = CHEESE_GCONF_GET_PRIVATE (gconf);
   priv->client = gconf_client_get_default();
-  char *gconf_prop_path;
   char *gconf_prop_webcam;
   gboolean gconf_prop_countdown;
 
   // FIXME: add notification
   //gconf_client_add_dir(client, CHEESE_GCONF_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
-
-  gconf_prop_path = gconf_client_get_string (priv->client,
-                                             CHEESE_GCONF_PREFIX "/path",
-                                             NULL);
   gconf_prop_webcam = gconf_client_get_string (priv->client,
                                                CHEESE_GCONF_PREFIX "/webcam",
                                                NULL);
   gconf_prop_countdown = gconf_client_get_bool (priv->client,
                                                 CHEESE_GCONF_PREFIX "/countdown",
                                                 NULL);
-  if (gconf_prop_path == NULL || gconf_prop_webcam == NULL || !gconf_prop_countdown )
+  if (gconf_prop_webcam == NULL || !gconf_prop_countdown )
   {
     g_warning ("Cannot read settings from gconf");
   }

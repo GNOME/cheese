@@ -42,7 +42,6 @@ typedef struct
 enum 
 {
   GCONF_PROP_0,
-  GCONF_PROP_PATH,
   GCONF_PROP_COUNTDOWN,
   GCONF_PROP_WEBCAM
 };
