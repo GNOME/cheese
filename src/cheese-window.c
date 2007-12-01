@@ -40,6 +40,7 @@
 #include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
+#include "ephy-spinner.h"
 
 #define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
 #define UI_FILE PACKAGE_DATADIR"/cheese-ui.xml"
@@ -69,6 +70,8 @@ typedef struct
 
   GtkWidget *effect_frame;
   GtkWidget *effect_chooser;
+  GtkWidget *throbber_frame;
+  GtkWidget *throbber;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -756,6 +759,12 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->effect_chooser      = cheese_effect_chooser_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
 
+  cheese_window->throbber_frame     = glade_xml_get_widget (gxml, "throbber_frame");
+  cheese_window->throbber   = ephy_spinner_new ();
+  ephy_spinner_set_size (EPHY_SPINNER (cheese_window->throbber), GTK_ICON_SIZE_DIALOG);
+  gtk_container_add (GTK_CONTAINER (cheese_window->throbber_frame), cheese_window->throbber);
+  gtk_widget_show (cheese_window->throbber);
+
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), TRUE);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_video), FALSE);
 
@@ -853,6 +862,11 @@ cheese_window_init ()
 
   cheese_window->gconf = cheese_gconf_new ();
 
+  gtk_widget_show_all (cheese_window->window);
+  ephy_spinner_start (EPHY_SPINNER (cheese_window->throbber));
+
+  gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 2);
+
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording = FALSE;
   cheese_window->webcam = cheese_webcam_new (cheese_window->screen);
@@ -868,6 +882,7 @@ cheese_window_init ()
 
 
   cheese_webcam_play (cheese_window->webcam);
-  gtk_widget_show_all (cheese_window->window);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
+  ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
 }
 
