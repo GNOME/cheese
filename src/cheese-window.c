@@ -476,6 +476,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
                          "authors", authors,
                          "translator-credits", translators,
                          "website", "http://www.gnome.org/projects/cheese",
+			 "website-label", _("Cheese Website"),
                          "logo-icon-name", "cheese",
                          "wrap-license", TRUE,
                          "license", license_trans,
