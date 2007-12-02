@@ -721,6 +721,7 @@ cheese_window_action_group_new (CheeseWindow *cheese_window, char *name,
   GtkActionGroup *action_group;
 
   action_group = gtk_action_group_new (name);
+  gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
   gtk_action_group_add_actions (action_group, action_entries,
                                 num_action_entries, cheese_window);
   gtk_ui_manager_insert_action_group (cheese_window->ui_manager, action_group, 0);
