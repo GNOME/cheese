@@ -25,7 +25,9 @@ cheese_SOURCES = \
 	cheese-window.c \
 	cheese-window.h \
 	eog-thumb-shadow.c \
-	eog-thumb-shadow.h
+	eog-thumb-shadow.h \
+	ephy-spinner.c \
+	ephy-spinner.h
 
 cheese_LDADD = \
 	$(CHEESE_LIBS)		
