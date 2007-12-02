@@ -14,14 +14,14 @@ install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
 install_files('PACKAGE_DATADIR', '', 'cheese.glade')
 
 # process .in files with intl_tool
-obj=bld.create_obj('gnome_intltool')
+obj=bld.create_obj('intltool_in')
 obj.source  = 'cheese.schemas.in'
 obj.destvar = 'PREFIX'
 obj.subdir  = 'etc/gconf/schemas'
 obj.podir   = '../po'
 obj.flags   = '-s'
 
-obj=bld.create_obj('gnome_intltool')
+obj=bld.create_obj('intltool_in')
 obj.source  = 'cheese.desktop.in'
 obj.destvar = 'PREFIX'
 obj.subdir  = 'share/applications'
