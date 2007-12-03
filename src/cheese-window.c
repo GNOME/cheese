@@ -796,6 +796,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->screen              = glade_xml_get_widget (gxml, "video_screen");
   cheese_window->take_picture        = glade_xml_get_widget (gxml, "take_picture");
 
+  char *str = g_strconcat ("<b>", _("_Take a photo"), "</b>", NULL);
+  gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
+  g_free (str);
+  gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
+
   cheese_window->thumb_scrollwindow  = glade_xml_get_widget (gxml, "thumb_scrollwindow");
   cheese_window->thumb_view          = cheese_thumb_view_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_view);
