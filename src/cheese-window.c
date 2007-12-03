@@ -243,38 +243,9 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
   gtk_widget_destroy (dialog);
 }
 
-static int
-cheese_window_move_to_trash_confirm_dialog (CheeseWindow *cheese_window, char *filename)
-{
-  GtkWidget *dlg;
-  char *prompt;
-  int response;
-  char *basename;
-
-  basename = g_path_get_basename (filename);
-  prompt = g_strdup_printf (_("Are you sure you want to move\n\"%s\" to the trash?"), basename);
-  g_free (basename);
-  dlg = gtk_message_dialog_new_with_markup (GTK_WINDOW (cheese_window->window),
-                                            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                            GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
-                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
-                                            prompt);
-  g_free (prompt);
-  gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-  gtk_dialog_add_button (GTK_DIALOG (dlg), _("Move to Trash"), GTK_RESPONSE_OK);
-  gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_OK);
-  gtk_window_set_title (GTK_WINDOW (dlg), "");
-  gtk_widget_show_all (dlg);
-
-  response = gtk_dialog_run (GTK_DIALOG (dlg));
-  gtk_widget_destroy (dlg);
-
-  return response;
-}
-
 
 static void
-cheese_window_cmd_move_to_trash (GtkWidget *widget, CheeseWindow *cheese_window)
+cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, char *filename)
 {
   GnomeVFSURI *uri;
   GnomeVFSURI *trash_dir;
@@ -282,16 +253,6 @@ cheese_window_cmd_move_to_trash (GtkWidget *widget, CheeseWindow *cheese_window)
   int result;
   char *name;
   GError *error = NULL;
-  char *filename;
-
-  // FIXME?: if you delete a file, and then delete again with the shortcut
-  // "delete", g_return_if_fail is called, as that file is no more
-  filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
-  g_return_if_fail (filename);
-  
-  result = cheese_window_move_to_trash_confirm_dialog (cheese_window, filename);
-  if (result != GTK_RESPONSE_OK)
-    return;
 
   uri = gnome_vfs_uri_new (g_filename_to_uri (filename, NULL, NULL));
   result = gnome_vfs_find_directory (uri, GNOME_VFS_DIRECTORY_KIND_TRASH,
@@ -339,6 +300,85 @@ cheese_window_cmd_move_to_trash (GtkWidget *widget, CheeseWindow *cheese_window)
     gtk_widget_destroy (dlg);
     g_free (header);
   }
+}
+
+static void
+cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_window)
+{
+  GtkWidget *dlg;
+  char *prompt;
+  int response;
+  char *filename;
+  GDir *dir;
+  char *path;
+  const char *name;
+
+  prompt = g_strdup_printf (_("Are you sure you want to move\nall media to the trash?"));
+  dlg = gtk_message_dialog_new_with_markup (GTK_WINDOW (cheese_window->window),
+                                            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                            GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
+                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
+                                            prompt);
+  g_free (prompt);
+  gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+  gtk_dialog_add_button (GTK_DIALOG (dlg), _("Move to Trash"), GTK_RESPONSE_OK);
+  gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_OK);
+  gtk_window_set_title (GTK_WINDOW (dlg), "");
+  gtk_widget_show_all (dlg);
+
+  response = gtk_dialog_run (GTK_DIALOG (dlg));
+  gtk_widget_destroy (dlg);
+
+  if (response !=  GTK_RESPONSE_OK)
+    return;
+
+  path = cheese_fileutil_get_media_path ();
+  dir = g_dir_open (path, 0, NULL);
+  while ((name = g_dir_read_name (dir)) != NULL)
+  {
+    if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX) || 
+        g_str_has_suffix (name, VIDEO_NAME_SUFFIX))
+    {
+      filename = g_strjoin ("/", path, name, NULL);
+      cheese_window_cmd_move_file_to_trash (cheese_window, filename);
+      g_free (filename);
+    }
+  }
+}
+
+static void
+cheese_window_move_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_window)
+{
+  GtkWidget *dlg;
+  char *prompt;
+  int response;
+  char *filename, *basename;
+
+  filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
+  g_return_if_fail (filename);
+
+  basename = g_path_get_basename (filename);
+  prompt = g_strdup_printf (_("Are you sure you want to move\n\"%s\" to the trash?"), basename);
+  g_free (basename);
+  dlg = gtk_message_dialog_new_with_markup (GTK_WINDOW (cheese_window->window),
+                                            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                            GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
+                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
+                                            prompt);
+  g_free (prompt);
+  gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+  gtk_dialog_add_button (GTK_DIALOG (dlg), _("Move to Trash"), GTK_RESPONSE_OK);
+  gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_OK);
+  gtk_window_set_title (GTK_WINDOW (dlg), "");
+  gtk_widget_show_all (dlg);
+
+  response = gtk_dialog_run (GTK_DIALOG (dlg));
+  gtk_widget_destroy (dlg);
+
+  if (response !=  GTK_RESPONSE_OK)
+    return;
+
+  cheese_window_cmd_move_file_to_trash (cheese_window, filename);
 }
 
 static void
@@ -681,7 +721,10 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
 static const GtkActionEntry action_entries_main[] = {
   {"Cheese", NULL, N_("_Cheese")},
+
   {"Edit", NULL, N_("_Edit")},
+  {"RemoveAll", "user-trash", N_("Remove all media"), NULL, NULL, G_CALLBACK (cheese_window_move_all_media_to_trash)},
+
   {"Help", NULL, N_("_Help")},
 
   {"Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_close)},
@@ -691,7 +734,7 @@ static const GtkActionEntry action_entries_main[] = {
 static const GtkActionEntry action_entries_edit_file[] = {
   {"Open", GTK_STOCK_OPEN, N_("_Open"), "<control>O", NULL, G_CALLBACK (cheese_window_cmd_open)},
   {"SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<control>S", NULL, G_CALLBACK (cheese_window_cmd_save_as)},
-  {"MoveToTrash", "user-trash", N_("Move to _Trash"), "Delete", NULL, G_CALLBACK (cheese_window_cmd_move_to_trash)},
+  {"MoveToTrash", "user-trash", N_("Move to _Trash"), "Delete", NULL, G_CALLBACK (cheese_window_move_media_to_trash)},
 };
 
 static const GtkActionEntry action_entries_photo[] = {
