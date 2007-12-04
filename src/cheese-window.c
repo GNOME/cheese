@@ -773,7 +773,7 @@ static const GtkActionEntry action_entries_main[] = {
   {"Cheese", NULL, N_("_Cheese")},
 
   {"Edit", NULL, N_("_Edit")},
-  {"RemoveAll", "user-trash", N_("Remove all media"), NULL, NULL, G_CALLBACK (cheese_window_move_all_media_to_trash)},
+  {"RemoveAll", NULL, N_("Remove all media"), NULL, NULL, G_CALLBACK (cheese_window_move_all_media_to_trash)},
 
   {"Help", NULL, N_("_Help")},
 
