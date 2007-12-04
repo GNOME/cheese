@@ -28,6 +28,7 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
 IT_PROG_INTLTOOL([0.35.0])
 AM_GLIB_GNU_GETTEXT
 
+GNOME_DOC_INIT
 
 #*******************************************************************************
 # Check required libraries
@@ -84,6 +85,7 @@ data/icons/24x24/Makefile
 data/icons/32x32/Makefile
 data/icons/48x48/Makefile
 data/icons/scalable/Makefile
+help/Makefile
 src/Makefile
 po/Makefile.in
 ])
