@@ -7,122 +7,131 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-19 23:54+0100\n"
-"PO-Revision-Date: 2007-08-20 09:20+0100\n"
+"POT-Creation-Date: 2007-12-06 23:29+0100\n"
+"PO-Revision-Date: 2007-12-06 23:29+0100\n"
 "Last-Translator: Vitezslav Kotrla <vitko@post.cz>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/cheese.desktop.in.h:1
-#, fuzzy
-msgid "A cheesy program to take photos from your webcam"
+#: ../data/cheese.desktop.in.h:1 ../src/cheese-window.c:565
+msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Vykutálený program pro snímání obrázků a videoklipů z webové kamery"
 
-#: data/cheese.desktop.in.h:2
-#, fuzzy
-msgid "Cheese Camera"
-msgstr "Cheese"
-
-#: data/cheese.glade.h:1
-msgid "<b>_Take a photo</b>"
-msgstr "<b>Vyfo_tit</b>"
-
-#: data/cheese.glade.h:2 src/cheese.c:45
+#: ../data/cheese.desktop.in.h:2 ../data/cheese.glade.h:1 ../src/cheese.c:45
 msgid "Cheese"
 msgstr "Cheese"
 
-#: data/cheese.glade.h:3 src/cheese-window.c:552
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:647
 msgid "_Effects"
 msgstr "_Efekty"
 
-#: data/cheese.glade.h:4
+#: ../data/cheese.glade.h:3
 msgid "_Photo"
 msgstr "_Snímek"
 
-#: data/cheese.glade.h:5
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:720
+#: ../src/cheese-window.c:793 ../src/cheese-window.c:851
+msgid "_Take a photo"
+msgstr "Pořídi_t snímek"
+
+#: ../data/cheese.glade.h:5
 msgid "_Video"
 msgstr "_Video"
 
-#: data/cheese.schemas.in.h:1
-msgid "Place to store media"
-msgstr ""
-
-#: data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:1
 msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr ""
+msgstr "Jméno zařízení, které označuje vaši webkameru, například /dev/video0"
 
-#: data/cheese.schemas.in.h:3
-msgid "The place, where Cheese should store it's pictures and videos"
-msgstr ""
-
-#: data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:2
 msgid "Use a countdown"
-msgstr ""
+msgstr "Použít odpočítávání"
 
-#: data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:3
 msgid "Webcam device string indicator"
-msgstr ""
+msgstr "Jméno zařízení pro webkameru"
 
-#: data/cheese.schemas.in.h:6
-#, fuzzy
+#: ../data/cheese.schemas.in.h:4
 msgid "Whether a countdown should be used, when taking a photo"
-msgstr "_Odpočítávání času před vyfocením"
+msgstr "Zda má být při pořízení snímku použito odpočítávání času"
 
-#: src/cheese-effect-chooser.c:60
+#: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
 msgstr "Bez efektů"
 
-#: src/cheese-effect-chooser.c:62
+#: ../src/cheese-effect-chooser.c:62
 msgid "Mauve"
 msgstr "Růžová (lila)"
 
-#: src/cheese-effect-chooser.c:64
+#: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Černá a bílá"
 
-#: src/cheese-effect-chooser.c:66
+#: ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "Syté barvy"
 
-#: src/cheese-effect-chooser.c:68
+#: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
 msgstr "Hulk"
 
-#: src/cheese-effect-chooser.c:70
+#: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
 msgstr "Svislé překlopení"
 
-#: src/cheese-effect-chooser.c:72
+#: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
 msgstr "Vodorovné překlopení"
 
-#: src/cheese-effect-chooser.c:74
+#: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
 msgstr "Shagadelic"
 
-#: src/cheese-effect-chooser.c:76
+#: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
 msgstr "Vír"
 
-#: src/cheese-effect-chooser.c:78
+#: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
 msgstr "Zvýraznění hran"
 
-#: src/cheese-effect-chooser.c:80
+#: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
 msgstr "Kostičky"
 
-#: src/cheese-effect-chooser.c:82
+#: ../src/cheese-effect-chooser.c:82
 msgid "Warp"
 msgstr "Deformace"
 
-#: src/cheese-window.c:210
+#: ../src/cheese-window.c:231
 #, c-format
 msgid "Could not save %s"
 msgstr "Nepodařilo se uložit %s"
 
-#: src/cheese-window.c:234
+#: ../src/cheese-window.c:266
+#, c-format
+msgid "Could not find the Trash"
+msgstr "Nemohu najít koš"
+
+#: ../src/cheese-window.c:293
+#, c-format
+msgid "Error on deleting %s"
+msgstr "Chyba při mazání %s"
+
+#: ../src/cheese-window.c:316
+#, c-format
+msgid ""
+"Are you sure you want to move\n"
+"all media to the trash?"
+msgstr ""
+"Opravdu chcete přesunout\n"
+"všechno do koše?"
+
+#: ../src/cheese-window.c:324 ../src/cheese-window.c:370
+msgid "Move to Trash"
+msgstr "Přesunout do koše"
+
+#: ../src/cheese-window.c:361
 #, c-format
 msgid ""
 "Are you sure you want to move\n"
@@ -131,118 +140,110 @@ msgstr ""
 "Opravdu chcete přesunout\n"
 "\"%s\" do koše?"
 
-#: src/cheese-window.c:243
-msgid "Move to Trash"
-msgstr "Přesunout do koše"
-
-#: src/cheese-window.c:284
-#, c-format
-msgid "Could not find the Trash"
-msgstr "Nemohu najít koš"
-
-#: src/cheese-window.c:311
-#, c-format
-msgid "Error on deleting %s"
-msgstr "Chyba při mazání %s"
-
-#: src/cheese-window.c:363
+#: ../src/cheese-window.c:424
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Nemohu nastavit fotografii pro účet"
 
-#: src/cheese-window.c:431
+#: ../src/cheese-window.c:542
 msgid "translator-credits"
-msgstr ""
+msgstr "Přeložili"
 
-#: src/cheese-window.c:434
+#: ../src/cheese-window.c:545
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
 msgstr ""
+"Tento program je svobodný software; můžete jej šířit a modifikovat podle "
+"ustanovení GNU General Public License, vydávané Free Software Foundation; a "
+"to buď verze 2 této licence anebo (podle vašeho uvážení) kterékoli pozdější "
+"verze.\n"
 
-#: src/cheese-window.c:438
+#: ../src/cheese-window.c:549
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
 msgstr ""
+"Tento program je rozšiřován v naději, že bude užitečný, avšak BEZ JAKÉKOLI "
+"ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO "
+"URČITÝ ÚČEL. Další podrobnosti hledejte ve GNU General Public License.\n"
 
-#: src/cheese-window.c:442
+#: ../src/cheese-window.c:553
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
+"Kopii GNU General Public License jste měl obdržet spolu s tímto programem; "
+"pokud se tak nestalo, naleznete ji na adrese <http://www.gnu.org/licenses/>."
 
-#: src/cheese-window.c:454
-msgid "A cheesy program to take pictures and videos from your webcam"
-msgstr "Vykutálený program pro snímání obrázků a videoklipů z webové kamery"
+#: ../src/cheese-window.c:569
+msgid "Cheese Website"
+msgstr "Domovská stránka projektu Cheese"
 
-#: src/cheese-window.c:560
+#: ../src/cheese-window.c:655
 msgid "_Back"
 msgstr "Zpět"
 
-#: src/cheese-window.c:574 src/cheese-window.c:629
-#, fuzzy
+#: ../src/cheese-window.c:709 ../src/cheese-window.c:762
 msgid "_Start recording"
-msgstr "<b>_Spustit nahrávání</b>"
+msgstr "_Spustit nahrávání"
 
-#: src/cheese-window.c:590 src/cheese-window.c:655
-#, fuzzy
-msgid "_Take a photo"
-msgstr "<b>Vyfo_tit</b>"
-
-#: src/cheese-window.c:616
-#, fuzzy
+#: ../src/cheese-window.c:747
 msgid "_Stop recording"
-msgstr "<b>Za_stavit nahrávání</b>"
+msgstr "Za_stavit nahrávání"
 
-#: src/cheese-window.c:640
+#: ../src/cheese-window.c:773
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: src/cheese-window.c:641
+#: ../src/cheese-window.c:775
 msgid "_Edit"
-msgstr ""
+msgstr "Upravit"
 
-#: src/cheese-window.c:642
+#: ../src/cheese-window.c:776
+msgid "Move all to Trash"
+msgstr "Přesunout vše do koše"
+
+#: ../src/cheese-window.c:778
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: src/cheese-window.c:649
+#: ../src/cheese-window.c:781
+msgid "_Contents"
+msgstr "Obsah"
+
+#: ../src/cheese-window.c:781
+msgid "Help on this application"
+msgstr "Nápověda k tomuto programu"
+
+#: ../src/cheese-window.c:787
 msgid "_Open"
-msgstr ""
+msgstr "_Otevřít"
 
-#: src/cheese-window.c:650
+#: ../src/cheese-window.c:788
 msgid "Save _As..."
-msgstr ""
+msgstr "Uložit j_ako..."
 
-#: src/cheese-window.c:651
-#, fuzzy
+#: ../src/cheese-window.c:789
 msgid "Move to _Trash"
-msgstr "Přesunout do koše"
+msgstr "Přesunou_t do koše"
 
-#: src/cheese-window.c:659
-#, fuzzy
+#: ../src/cheese-window.c:797
 msgid "_Set As Account Photo"
-msgstr "_Nastavit jako fotografii pro účet"
+msgstr "Na_stavit jako fotografii pro účet"
 
-#: src/cheese-window.c:663
+#: ../src/cheese-window.c:801
 msgid "Send by _Mail"
-msgstr "Pos_lat poštou"
+msgstr "Poslat poštou"
 
-#: src/cheese-window.c:667
+#: ../src/cheese-window.c:805
 msgid "Export to F-_Spot"
 msgstr "Export do F-_Spot"
 
-#: src/cheese-window.c:671
+#: ../src/cheese-window.c:809
 msgid "Export to _Flickr"
 msgstr "Export do _Flickru"
-
-#~ msgid "Unable to find a webcam, SORRY!"
-#~ msgstr "Nemohu najít webovou kameru!"
-
-#~ msgid "Cheese!"
-#~ msgstr "Cheese!"
