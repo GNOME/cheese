@@ -404,15 +404,15 @@ cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_wi
     if (contact)
     {
       EContactPhoto photo;
-      char **data;
+      guchar **data;
       gsize *length;
 
       photo.type = E_CONTACT_PHOTO_TYPE_INLINED;
       photo.data.inlined.mime_type = "image/jpeg";
-      data = (char **)&photo.data.inlined.data;
+      data = &photo.data.inlined.data;
       length = &photo.data.inlined.length;
 
-      gdk_pixbuf_save_to_buffer (pixbuf, data, length, "png", NULL, 
+      gdk_pixbuf_save_to_buffer (pixbuf, (char **) data, length, "png", NULL, 
                                  "compression", "9", NULL); 
       e_contact_set (contact, E_CONTACT_PHOTO, &photo);
 
