@@ -380,6 +380,16 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
     const GValue *width, *height;
     structure = gst_caps_get_structure (caps, i);
 
+    /* only interested in raw formats; we don't want to end up using image/jpeg
+     * (or whatever else the cam may produce) since we won't be able to link
+     * that to ffmpegcolorspace or the effect plugins, which makes it rather
+     * useless (although we could plug a decoder of course) */
+    if (!gst_structure_has_name (structure, "video/x-raw-yuv") &&
+        !gst_structure_has_name (structure, "video/x-raw-rgb"))
+    {
+      continue;
+    }
+
     width = gst_structure_get_value (structure, "width");
     height = gst_structure_get_value (structure, "height");
 
