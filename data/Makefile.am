@@ -1,4 +1,4 @@
-SUBDIRS = icons effects
+SUBDIRS = icons effects pixmaps
 
 @INTLTOOL_DESKTOP_RULE@
 desktopdir = $(datadir)/applications

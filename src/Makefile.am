@@ -24,8 +24,8 @@ cheese_SOURCES = \
 	cheese-webcam.h \
 	cheese-window.c \
 	cheese-window.h \
-	eog-thumb-shadow.c \
-	eog-thumb-shadow.h \
+	eog-thumbnail.c \
+	eog-thumbnail.h \
 	ephy-spinner.c \
 	ephy-spinner.h
 

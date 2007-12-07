@@ -1,8 +1,11 @@
-/* Stolen from Eye Of Gnome
+/* Eye Of Gnome - Thumbnailing functions 
  *
- * Copyright (C) 2006 The Free Software Foundation
+ * Copyright (C) 2000-2007 The Free Software Foundation
  *
- * Taken from gnome-utils/gnome-screensaver/screensaver-shadow.h
+ * Author: Lucas Rocha <lucasr@gnome.org>
+ *
+ * Based on nautilus code (libnautilus-private/nautilus-thumbnail.c) by: 
+ * 	- Andy Hertzfeld <andy@eazel.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,15 +22,25 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
-#ifndef EOG_THUMB_SHADOW_H
-#define EOG_THUMB_SHADOW_H
+#ifndef _EOG_THUMBNAIL_H_
+#define _EOG_THUMBNAIL_H_
 
-#include <gtk/gtk.h>
+#include <libgnomevfs/gnome-vfs.h>
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
-void eog_thumb_shadow_add_border (GdkPixbuf **);
-void eog_thumb_shadow_add_frame (GdkPixbuf **);
-void eog_thumb_shadow_add_rectangle (GdkPixbuf **);
-void eog_thumb_shadow_add_round_border (GdkPixbuf **);
-void eog_thumb_shadow_add_shadow (GdkPixbuf **);
+G_BEGIN_DECLS
 
-#endif /* EOG_THUMB_SHADOW_H */
+void          eog_thumbnail_init        (void);
+
+void          eog_thumbnail_fit_to_size (GdkPixbuf **thumbnail, 
+					 gint        dimension);
+
+void	      eog_thumbnail_add_frame   (GdkPixbuf **thumbnail);
+
+GdkPixbuf*    eog_thumbnail_load        (GnomeVFSURI *uri, 
+					 GError **error);
+
+
+G_END_DECLS
+
+#endif /* _EOG_THUMBNAIL_H_ */

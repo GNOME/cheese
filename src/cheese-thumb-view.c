@@ -29,7 +29,7 @@
 #include <glade/glade.h>
 
 #include "cheese-fileutil.h"
-#include "eog-thumb-shadow.h"
+#include "eog-thumbnail.h"
 
 #include "cheese-thumb-view.h"
 
@@ -111,8 +111,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, char *filename)
     }
   }
 
-  eog_thumb_shadow_add_shadow (&pixbuf);
-  eog_thumb_shadow_add_round_border (&pixbuf);
+  eog_thumbnail_add_frame (&pixbuf);
 
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter, THUMBNAIL_PIXBUF_COLUMN,
@@ -341,6 +340,8 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   char *path = NULL;
   GnomeVFSURI *uri;  
   const int THUMB_VIEW_HEIGHT = 120;
+
+  eog_thumbnail_init ();
 
   priv->store = gtk_list_store_new (2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
 
