@@ -8,5 +8,5 @@ DOC_INCLUDES =
 DOC_FIGURES = \
 	figures/cheese-screenshot.jpg 
 
-DOC_LINGUAS = 
+DOC_LINGUAS = oc
 
