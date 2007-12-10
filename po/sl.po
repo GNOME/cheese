@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-12-01 01:00+0000\n"
-"PO-Revision-Date: 2007-12-01 08:29+0100\n"
+"PO-Revision-Date: 2007-12-10 16:01+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: utf-8\n"
 
 #: ../data/cheese.desktop.in.h:1
-#: ../src/cheese-window.c:472
+#: ../src/cheese-window.c:565
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Program za zajem slike z vaše spletne kamere"
 
@@ -32,7 +32,7 @@ msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/cheese.glade.h:2
-#: ../src/cheese-window.c:553
+#: ../src/cheese-window.c:647
 msgid "_Effects"
 msgstr "_Učinki"
 
@@ -41,8 +41,9 @@ msgid "_Photo"
 msgstr "S_lika"
 
 #: ../data/cheese.glade.h:4
-#: ../src/cheese-window.c:626
-#: ../src/cheese-window.c:694
+#: ../src/cheese-window.c:720
+#: ../src/cheese-window.c:793
+#: ../src/cheese-window.c:851
 msgid "_Take a photo"
 msgstr "_Zajemi sliko"
 
@@ -114,12 +115,34 @@ msgstr "Kockasto"
 msgid "Warp"
 msgstr "Warp"
 
-#: ../src/cheese-window.c:228
+#: ../src/cheese-window.c:231
 #, c-format
 msgid "Could not save %s"
 msgstr "Ni mogoče shraniti %s"
 
-#: ../src/cheese-window.c:252
+#: ../src/cheese-window.c:266
+msgid "Could not find the Trash"
+msgstr "Ni mogoče najti smeti"
+
+#: ../src/cheese-window.c:293
+#, c-format
+msgid "Error on deleting %s"
+msgstr "Napaka med brisanjem %s"
+
+#: ../src/cheese-window.c:316
+msgid ""
+"Are you sure you want to move\n"
+"all media to the trash?"
+msgstr ""
+"Ali ste prepričani, da želite premakniti\n"
+"vse predmete v smeti?"
+
+#: ../src/cheese-window.c:324
+#: ../src/cheese-window.c:370
+msgid "Move to Trash"
+msgstr "Premakni v smeti"
+
+#: ../src/cheese-window.c:361
 #, c-format
 msgid ""
 "Are you sure you want to move\n"
@@ -128,103 +151,92 @@ msgstr ""
 "Ali ste prepričani, da želite premakniti\n"
 "\"%s\" v smeti?"
 
-#: ../src/cheese-window.c:261
-msgid "Move to Trash"
-msgstr "Premakni v smeti"
-
-#: ../src/cheese-window.c:302
-msgid "Could not find the Trash"
-msgstr "Ni mogoče najti smeti"
-
-#: ../src/cheese-window.c:329
-#, c-format
-msgid "Error on deleting %s"
-msgstr "Napaka med brisanjem %s"
-
-#: ../src/cheese-window.c:381
+#: ../src/cheese-window.c:424
 msgid "Could not set the Account Photo"
 msgstr "Ni mogoče nastaviti slike računa"
 
-#: ../src/cheese-window.c:449
+#: ../src/cheese-window.c:542
 msgid "translator-credits"
 msgstr "Deni Bačić <baccic@gmail.com>"
 
-#: ../src/cheese-window.c:452
+#: ../src/cheese-window.c:545
 msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 msgstr "To je prosta programska oprema. Program lahko uporabljate v skladu z pogoji Splošne Javne Licence (GNU General Public License).\n"
 
-#: ../src/cheese-window.c:456
+#: ../src/cheese-window.c:549
 msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 msgstr "Program je na voljo v upanju, da bo komu koristen, vendar brez vsakršne garancije. Oglejte si Splošno javno licenco (GNU General Public License) za več podrobnosti.\n"
 
-#: ../src/cheese-window.c:460
+#: ../src/cheese-window.c:553
 msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr "Skupaj s programom bi morali dobiti tudi kopijo GNU splošne javne licence. V primeru, da je niste, si oglejte <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:561
+#: ../src/cheese-window.c:569
+msgid "Cheese Website"
+msgstr "Spletna stran Cheese"
+
+#: ../src/cheese-window.c:655
 msgid "_Back"
 msgstr "_Nazaj"
 
-#: ../src/cheese-window.c:615
-#: ../src/cheese-window.c:668
+#: ../src/cheese-window.c:709
+#: ../src/cheese-window.c:762
 msgid "_Start recording"
 msgstr "_Začni s snemanjem"
 
-#: ../src/cheese-window.c:653
+#: ../src/cheese-window.c:747
 msgid "_Stop recording"
 msgstr "_Ustavi snemanje"
 
-#: ../src/cheese-window.c:679
+#: ../src/cheese-window.c:773
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:680
+#: ../src/cheese-window.c:775
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: ../src/cheese-window.c:681
+#: ../src/cheese-window.c:776
+msgid "Move all to Trash"
+msgstr "Vse premakni v smeti"
+
+#: ../src/cheese-window.c:778
 msgid "_Help"
 msgstr "Po_moč"
 
-#: ../src/cheese-window.c:688
+#: ../src/cheese-window.c:781
+msgid "_Contents"
+msgstr "_Vsebina"
+
+#: ../src/cheese-window.c:781
+msgid "Help on this application"
+msgstr "Pomoč za ta program"
+
+#: ../src/cheese-window.c:787
 msgid "_Open"
 msgstr "_Odpri"
 
-#: ../src/cheese-window.c:689
+#: ../src/cheese-window.c:788
 msgid "Save _As..."
 msgstr "Shrani _kot ..."
 
-#: ../src/cheese-window.c:690
+#: ../src/cheese-window.c:789
 msgid "Move to _Trash"
 msgstr "Premakni v smeti"
 
-#: ../src/cheese-window.c:698
+#: ../src/cheese-window.c:797
 msgid "_Set As Account Photo"
 msgstr "Določi _sliko računa"
 
-#: ../src/cheese-window.c:702
+#: ../src/cheese-window.c:801
 msgid "Send by _Mail"
 msgstr "Pošlji po _e-pošti"
 
-#: ../src/cheese-window.c:706
+#: ../src/cheese-window.c:805
 msgid "Export to F-_Spot"
 msgstr "Izvozi v F-_Spot"
 
-#: ../src/cheese-window.c:710
+#: ../src/cheese-window.c:809
 msgid "Export to _Flickr"
 msgstr "Izvozi v _Flickr"
-
-#, fuzzy
-#~ msgid "A cheesy program to take photos from your webcam"
-#~ msgstr "Program za zajem slike z vaše spletne kamere"
-
-#, fuzzy
-#~ msgid "Cheese Camera"
-#~ msgstr "Cheese"
-#~ msgid "<b>_Take a photo</b>"
-#~ msgstr "<b>_Zajami sliko</b>"
-#~ msgid "Cheese!"
-#~ msgstr "Cheese!"
-#~ msgid "Unable to find a webcam, SORRY!"
-#~ msgstr "Spletna kamera ni najdena!"
 
