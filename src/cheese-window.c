@@ -94,6 +94,7 @@ typedef struct
   GtkActionGroup *actions_effects;
   GtkActionGroup *actions_file;
   GtkActionGroup *actions_photo;
+  GtkActionGroup *actions_video;
   GtkActionGroup *actions_account_photo;
   GtkActionGroup *actions_mail;
   GtkActionGroup *actions_fspot;
@@ -712,6 +713,7 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
 
   }
   else
@@ -723,6 +725,7 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
   }
 }
 
@@ -796,6 +799,10 @@ static const GtkActionEntry action_entries_edit_file[] = {
 
 static const GtkActionEntry action_entries_photo[] = {
   {"TakePhoto", NULL, N_("_Take a photo"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb)},
+};
+
+static const GtkToggleActionEntry action_entries_video[] = {
+  {"TakeVideo", NULL, N_("_Recording"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb), FALSE},
 };
 
 static const GtkActionEntry action_entries_account_photo[] = {
@@ -915,6 +922,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                  "ActionsPhoto", 
                                                                  action_entries_photo, 
                                                                  G_N_ELEMENTS (action_entries_photo));
+  cheese_window->actions_video = cheese_window_toggle_action_group_new (cheese_window, 
+                                                                 "ActionsVideo", 
+                                                                 action_entries_video, 
+                                                                 G_N_ELEMENTS (action_entries_video));
+  gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
   cheese_window->actions_account_photo = cheese_window_action_group_new (cheese_window, 
                                                                          "ActionsAccountPhoto", 
                                                                          action_entries_account_photo, 
