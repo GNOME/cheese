@@ -146,13 +146,13 @@ cheese_cairo_rectangle_round (cairo_t * cr,
 static void
 cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 {
-  static const double border_width = .02;
+  static const double border_width = .01;
 
   cairo_save (cr);
 
   SHRINK (cr, .9);
 
-  cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.2);
+  cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.1);
   cairo_set_source_rgb (cr, 0, 0, 0);
   cairo_set_line_width (cr, border_width);
   cairo_stroke (cr);
@@ -161,7 +161,7 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 
   int w, h;
   cairo_surface_t *image;
-  cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.2);
+  cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.1);
   cairo_clip (cr);
   cairo_new_path (cr);
 
@@ -195,7 +195,7 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 
   if (highlight)
   {
-    cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.2);
+    cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.1);
     cairo_set_source_rgba (cr, 0, 0, 1, 0.25);
     cairo_fill (cr);
   }
