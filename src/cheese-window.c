@@ -91,6 +91,7 @@ typedef struct
   GtkWidget *take_picture;
 
   GtkActionGroup *actions_main;
+  GtkActionGroup *actions_toggle;
   GtkActionGroup *actions_effects;
   GtkActionGroup *actions_file;
   GtkActionGroup *actions_photo;
@@ -714,7 +715,6 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
     gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
-
   }
   else
   {
@@ -791,6 +791,11 @@ static const GtkToggleActionEntry action_entries_effects[] = {
   {"Effects", NULL, N_("_Effects"), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb), FALSE},
 };
 
+static const GtkRadioActionEntry action_entries_toggle[] = {
+  {"Photo", NULL, N_("_Photo"), NULL, NULL, 0},
+  {"Video", NULL, N_("_Video"), NULL, NULL, 1},
+};
+
 static const GtkActionEntry action_entries_edit_file[] = {
   {"Open", GTK_STOCK_OPEN, N_("_Open"), "<control>O", NULL, G_CALLBACK (cheese_window_cmd_open)},
   {"SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<control>S", NULL, G_CALLBACK (cheese_window_cmd_save_as)},
@@ -821,6 +826,17 @@ static const GtkActionEntry action_entries_flickr[] = {
   {"ExportToFlickr", NULL, N_("Export to _Flickr"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
 };
 
+static void
+cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current, CheeseWindow *cheese_window)
+{
+  if (strcmp (gtk_action_get_name (GTK_ACTION (current)), "Photo") == 0) {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), TRUE);
+  }
+  else
+  {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_video), TRUE);
+  }
+}
 
 GtkActionGroup*
 cheese_window_action_group_new (CheeseWindow *cheese_window, char *name, 
@@ -846,7 +862,24 @@ cheese_window_toggle_action_group_new (CheeseWindow *cheese_window, char *name,
   action_group = gtk_action_group_new (name);
   gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
   gtk_action_group_add_toggle_actions (action_group, action_entries,
-                                num_action_entries, cheese_window);
+                                       num_action_entries, cheese_window);
+  gtk_ui_manager_insert_action_group (cheese_window->ui_manager, action_group, 0);
+
+  return action_group;
+}
+
+GtkActionGroup*
+cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name, 
+                                const GtkRadioActionEntry *action_entries, int num_action_entries)
+{
+  GtkActionGroup *action_group;
+
+  action_group = gtk_action_group_new (name);
+  gtk_action_group_set_translation_domain (action_group, GETTEXT_PACKAGE);
+  gtk_action_group_add_radio_actions (action_group, action_entries,
+                                      num_action_entries, 0,
+                                      G_CALLBACK (cheese_window_activate_radio_action), 
+                                      cheese_window);
   gtk_ui_manager_insert_action_group (cheese_window->ui_manager, action_group, 0);
 
   return action_group;
@@ -910,6 +943,10 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                 "ActionsMain", 
                                                                 action_entries_main, 
                                                                 G_N_ELEMENTS (action_entries_main));
+  cheese_window->actions_toggle = cheese_window_radio_action_group_new (cheese_window, 
+                                                                "ActionsRadio", 
+                                                                action_entries_toggle, 
+                                                                G_N_ELEMENTS (action_entries_toggle));
   cheese_window->actions_effects = cheese_window_toggle_action_group_new (cheese_window, 
                                                                 "ActionsMain", 
                                                                 action_entries_effects, 
