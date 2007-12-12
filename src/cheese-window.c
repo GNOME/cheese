@@ -91,6 +91,8 @@ typedef struct
   GtkWidget *take_picture;
 
   GtkActionGroup *actions_main;
+  GtkActionGroup *actions_effects;
+  GtkActionGroup *actions_effects_back;
   GtkActionGroup *actions_file;
   GtkActionGroup *actions_photo;
   GtkActionGroup *actions_account_photo;
@@ -643,6 +645,8 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
 {
   if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) == 1)
   {
+    gtk_action_group_set_visible (cheese_window->actions_effects, TRUE);
+    gtk_action_group_set_visible (cheese_window->actions_effects_back, FALSE);
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Effects"));
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
@@ -651,6 +655,8 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
   }
   else
   {
+    gtk_action_group_set_visible (cheese_window->actions_effects, FALSE);
+    gtk_action_group_set_visible (cheese_window->actions_effects_back, TRUE);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 1);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Back"));
     gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), FALSE);
@@ -783,6 +789,14 @@ static const GtkActionEntry action_entries_main[] = {
 
 };
 
+static const GtkActionEntry action_entries_effects[] = {
+  {"Effects", NULL, N_("_Select Effect..."), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb)},
+};
+
+static const GtkActionEntry action_entries_effects_back[] = {
+  {"Back", NULL, N_("_Back to main window"), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb)},
+};
+
 static const GtkActionEntry action_entries_edit_file[] = {
   {"Open", GTK_STOCK_OPEN, N_("_Open"), "<control>O", NULL, G_CALLBACK (cheese_window_cmd_open)},
   {"SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<control>S", NULL, G_CALLBACK (cheese_window_cmd_save_as)},
@@ -883,6 +897,15 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                 "ActionsMain", 
                                                                 action_entries_main, 
                                                                 G_N_ELEMENTS (action_entries_main));
+  cheese_window->actions_effects = cheese_window_action_group_new (cheese_window, 
+                                                                "ActionsMain", 
+                                                                action_entries_effects, 
+                                                                G_N_ELEMENTS (action_entries_effects));
+  cheese_window->actions_effects_back = cheese_window_action_group_new (cheese_window, 
+                                                                "ActionsPhoto", 
+                                                                action_entries_effects_back, 
+                                                                G_N_ELEMENTS (action_entries_effects_back));
+  gtk_action_group_set_visible (cheese_window->actions_effects_back, FALSE);
   cheese_window->actions_file = cheese_window_action_group_new (cheese_window, 
                                                                 "ActionsMain", 
                                                                 action_entries_edit_file, 
