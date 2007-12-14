@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-13 14:09+0000\n"
-"PO-Revision-Date: 2007-12-13 15:49+0100\n"
+"POT-Creation-Date: 2007-12-14 14:57+0000\n"
+"PO-Revision-Date: 2007-12-14 21:33+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Spanish <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -27,84 +27,98 @@ msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/cheese.glade.h:2 ../src/cheese-window.c:650
-#: ../src/cheese-window.c:791
+#: ../src/cheese-window.c:794
 msgid "_Effects"
 msgstr "Efecto_s"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:795
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:798
 msgid "_Photo"
 msgstr "_Fotografía"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:723
-#: ../src/cheese-window.c:806 ../src/cheese-window.c:911
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:726
+#: ../src/cheese-window.c:809 ../src/cheese-window.c:914
 msgid "_Take a photo"
 msgstr "_Tomar una fotografía"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:796
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:799
 msgid "_Video"
 msgstr "_Vídeo"
 
 #: ../data/cheese.schemas.in.h:1
+msgid ""
+"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
+"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
+"Vertigo, Edge, Dice and Warp"
+msgstr ""
+"Efectos que se aplican al iniciar. Los valores posibles son: malva, blanco/negro, "
+"saturación, hulk, giro vertical, giro horizontal, psicodélico, "
+"vértigo, contornos, pedazos y distorsión."
+
+#: ../data/cheese.schemas.in.h:2
+msgid "Selected Effects"
+msgstr "Efectos seleccionados"
+
+#: ../data/cheese.schemas.in.h:3
 msgid "The device-string, which points to the webcam, e.g. /dev/video0"
 msgstr "La cadena de dispositivo que apunta a la cámara web, ej. /dev/video0"
 
-#: ../data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:4
 msgid "Use a countdown"
 msgstr "Usar cuenta atrás"
 
-#: ../data/cheese.schemas.in.h:3
+#: ../data/cheese.schemas.in.h:5
 msgid "Webcam device string indicator"
 msgstr "Indicador de la cadena de dispositivo de la webcam"
 
-#: ../data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:6
 msgid "Whether a countdown should be used, when taking a photo"
 msgstr "Indica si se debe usar una cuenta atrás al tomar una foto"
 
-#: ../src/cheese-effect-chooser.c:60
+#: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
 msgstr "Sin efectos"
 
-#: ../src/cheese-effect-chooser.c:62
+#: ../src/cheese-effect-chooser.c:63
 msgid "Mauve"
 msgstr "Malva"
 
-#: ../src/cheese-effect-chooser.c:64
+#: ../src/cheese-effect-chooser.c:65
 msgid "Noir/Blanc"
 msgstr "Blanco/negro"
 
-#: ../src/cheese-effect-chooser.c:66
+#: ../src/cheese-effect-chooser.c:67
 msgid "Saturation"
 msgstr "Saturación"
 
-#: ../src/cheese-effect-chooser.c:68
+#: ../src/cheese-effect-chooser.c:69
 msgid "Hulk"
 msgstr "Hulk"
 
-#: ../src/cheese-effect-chooser.c:70
+#: ../src/cheese-effect-chooser.c:71
 msgid "Vertical Flip"
 msgstr "Giro vertical"
 
-#: ../src/cheese-effect-chooser.c:72
+#: ../src/cheese-effect-chooser.c:73
 msgid "Horizontal Flip"
 msgstr "Giro horizontal"
 
-#: ../src/cheese-effect-chooser.c:74
+#: ../src/cheese-effect-chooser.c:75
 msgid "Shagadelic"
 msgstr "Psicodélico"
 
-#: ../src/cheese-effect-chooser.c:76
+#: ../src/cheese-effect-chooser.c:77
 msgid "Vertigo"
 msgstr "Vértigo"
 
-#: ../src/cheese-effect-chooser.c:78
+#: ../src/cheese-effect-chooser.c:79
 msgid "Edge"
 msgstr "Contornos"
 
-#: ../src/cheese-effect-chooser.c:80
+#: ../src/cheese-effect-chooser.c:81
 msgid "Dice"
 msgstr "Pedazos"
 
-#: ../src/cheese-effect-chooser.c:82
+#: ../src/cheese-effect-chooser.c:83
 msgid "Warp"
 msgstr "Distorsión"
 
@@ -190,71 +204,71 @@ msgstr ""
 msgid "Cheese Website"
 msgstr "Página web de Cheese"
 
-#: ../src/cheese-window.c:658
+#: ../src/cheese-window.c:661
 msgid "_Back"
 msgstr "A_trás"
 
-#: ../src/cheese-window.c:712 ../src/cheese-window.c:766
+#: ../src/cheese-window.c:715 ../src/cheese-window.c:769
 msgid "_Start recording"
 msgstr "_Comenzar a grabar"
 
-#: ../src/cheese-window.c:751
+#: ../src/cheese-window.c:754
 msgid "_Stop recording"
 msgstr "_Parar de grabar"
 
-#: ../src/cheese-window.c:777
+#: ../src/cheese-window.c:780
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:779
+#: ../src/cheese-window.c:782
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/cheese-window.c:780
+#: ../src/cheese-window.c:783
 msgid "Move all to Trash"
 msgstr "Mover todos a la papelera"
 
-#: ../src/cheese-window.c:782
+#: ../src/cheese-window.c:785
 msgid "_Help"
 msgstr "_Ayuda"
 
-#: ../src/cheese-window.c:785
+#: ../src/cheese-window.c:788
 msgid "_Contents"
 msgstr "_Índice"
 
-#: ../src/cheese-window.c:785
+#: ../src/cheese-window.c:788
 msgid "Help on this application"
 msgstr "Ayuda sobre esta aplicación"
 
-#: ../src/cheese-window.c:800
+#: ../src/cheese-window.c:803
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/cheese-window.c:801
+#: ../src/cheese-window.c:804
 msgid "Save _As..."
 msgstr "Guardar _como…"
 
-#: ../src/cheese-window.c:802
+#: ../src/cheese-window.c:805
 msgid "Move to _Trash"
 msgstr "Mover a la _papelera"
 
-#: ../src/cheese-window.c:810
+#: ../src/cheese-window.c:813
 msgid "_Recording"
 msgstr "G_rabar"
 
-#: ../src/cheese-window.c:814
+#: ../src/cheese-window.c:817
 msgid "_Set As Account Photo"
 msgstr "E_stablecer como cuenta para fotos"
 
-#: ../src/cheese-window.c:818
+#: ../src/cheese-window.c:821
 msgid "Send by _Mail"
 msgstr "Enviar por _correo-e"
 
-#: ../src/cheese-window.c:822
+#: ../src/cheese-window.c:825
 msgid "Export to F-_Spot"
 msgstr "Exportar a F-_Spot"
 
-#: ../src/cheese-window.c:826
+#: ../src/cheese-window.c:829
 msgid "Export to _Flickr"
 msgstr "Exportar a _Flickr"
 
