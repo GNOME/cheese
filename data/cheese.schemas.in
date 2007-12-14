@@ -24,5 +24,20 @@
 			</locale>
 		</schema>
 
+		<schema>
+			<key>/schemas/apps/cheese/selected_effects</key>
+			<applyto>/apps/cheese/selected_effects</applyto>
+			<owner>cheese</owner>
+			<type>list</type>
+			<list_type>string</list_type>
+			<default>[]</default>
+			<locale name="C">
+				<short>Selected Effects</short>
+				<long>Effects, that are applied on startup. Possible values are: Mauve,
+				Noir/Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip,
+				Shagadelic, Vertigo, Edge, Dice and Warp</long>
+			</locale>
+		</schema>
+
 	</schemalist>
 </gconfschemafile>

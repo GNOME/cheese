@@ -651,6 +651,9 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     cheese_webcam_set_effect (cheese_window->webcam, 
                               cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
+    g_object_set (cheese_window->gconf,
+                 "gconf_prop_selected_effects", cheese_effect_chooser_get_selection_string (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)),
+                 NULL);
   }
   else
   {
@@ -917,9 +920,14 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->thumb_view          = cheese_thumb_view_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_view);
 
+  char *gconf_effects;
+  g_object_get (cheese_window->gconf,
+               "gconf_prop_selected_effects", &gconf_effects,
+               NULL);
   cheese_window->effect_frame        = glade_xml_get_widget (gxml, "effect_frame");
-  cheese_window->effect_chooser      = cheese_effect_chooser_new ();
+  cheese_window->effect_chooser      = cheese_effect_chooser_new (gconf_effects);
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
+  g_free (gconf_effects);
 
   cheese_window->throbber_frame     = glade_xml_get_widget (gxml, "throbber_frame");
   cheese_window->throbber   = ephy_spinner_new ();
@@ -1033,10 +1041,11 @@ cheese_window_init ()
   CheeseWindow *cheese_window;
 
   cheese_window = g_new (CheeseWindow, 1);
-  cheese_window_create_window (cheese_window);
 
   cheese_window->gconf = cheese_gconf_new ();
 
+  cheese_window_create_window (cheese_window);
+ 
   gtk_widget_show_all (cheese_window->window);
   ephy_spinner_start (EPHY_SPINNER (cheese_window->throbber));
 
@@ -1055,6 +1064,8 @@ cheese_window_init ()
   gtk_about_dialog_set_url_hook (cheese_about_dialog_handle_url, NULL, NULL);
   gtk_about_dialog_set_email_hook (cheese_about_dialog_handle_email, NULL, NULL);
 
+  cheese_webcam_set_effect (cheese_window->webcam, 
+                            cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
 
   cheese_webcam_play (cheese_window->webcam);
   gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);

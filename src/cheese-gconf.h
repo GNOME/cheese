@@ -43,7 +43,8 @@ enum
 {
   GCONF_PROP_0,
   GCONF_PROP_COUNTDOWN,
-  GCONF_PROP_WEBCAM
+  GCONF_PROP_WEBCAM,
+  GCONF_PROP_SELECTED_EFFECTS
 };
 
 GType		      cheese_gconf_get_type(void);

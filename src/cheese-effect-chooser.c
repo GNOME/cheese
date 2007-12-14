@@ -22,6 +22,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
@@ -270,6 +271,26 @@ cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser)
   return effect;
 }
 
+char *
+cheese_effect_chooser_get_selection_string (CheeseEffectChooser *effect_chooser)
+{
+  CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
+  int i;
+  char *effects = NULL;
+
+  for (i = 0; i < NUM_EFFECTS; i++)
+  {
+    if (priv->selected[i])
+    {
+      if (effects == NULL)
+        effects = GST_EFFECT[i].name;
+      else
+        effects = g_strjoin (",", effects, GST_EFFECT[i].name, NULL);
+    }
+  }
+  return effects;
+}
+
 static void
 cheese_effect_chooser_finalize (GObject *object)
 {
@@ -298,10 +319,21 @@ cheese_effect_chooser_init (CheeseEffectChooser *effect_chooser)
 }
 
 GtkWidget * 
-cheese_effect_chooser_new ()
+cheese_effect_chooser_new (char* selected_effects)
 {
   CheeseEffectChooser *effect_chooser;
-
   effect_chooser = g_object_new (CHEESE_TYPE_EFFECT_CHOOSER, NULL);  
+
+  CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
+  int i;
+
+  if (selected_effects != NULL) {
+    for (i = 1; i < NUM_EFFECTS; i++)
+    {
+      if (strstr (selected_effects, GST_EFFECT[i].name) != NULL)
+        priv->selected[i] = TRUE;
+    }
+  }
+
   return GTK_WIDGET (effect_chooser);
 }

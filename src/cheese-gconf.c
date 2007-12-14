@@ -50,6 +50,9 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
   self = CHEESE_GCONF (object);
   CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (self);
 
+  char *effects;
+  GSList *list, *tmp;
+
   switch (prop_id) 
   {
     case GCONF_PROP_COUNTDOWN:
@@ -61,6 +64,27 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
       g_value_set_string (value, gconf_client_get_string (priv->client,
                                                           CHEESE_GCONF_PREFIX "/webcam",
                                                           NULL));
+      break;
+    case GCONF_PROP_SELECTED_EFFECTS:
+      effects = NULL;
+      list = gconf_client_get_list (priv->client,
+                                    CHEESE_GCONF_PREFIX "/selected_effects",
+                                    GCONF_VALUE_STRING,
+                                    NULL);
+      tmp = list;
+      while (tmp != NULL)
+      {
+        if (effects == NULL)
+          effects = tmp->data;
+        else
+          effects = g_strjoin (",", effects, tmp->data, NULL);
+
+        tmp = g_slist_next(tmp);
+      }
+      g_value_set_string (value, effects);
+
+      g_slist_free (list);
+      g_slist_free (tmp);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -76,6 +100,10 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
   self = CHEESE_GCONF (object);
   CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (self);
 
+  gchar **effects;
+  GSList *list = NULL;
+  int i;
+
   switch (prop_id) 
   {
     case GCONF_PROP_COUNTDOWN:
@@ -89,6 +117,21 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                                CHEESE_GCONF_PREFIX "/webcam",
                                g_value_get_string (value),
                                NULL);
+      break;
+    case GCONF_PROP_SELECTED_EFFECTS:
+
+      effects = g_strsplit(g_value_get_string (value), ",", 12);
+      for (i = 0; effects[i] != NULL; i++)
+      {
+        list = g_slist_append (list, effects[i]);
+      }
+      gconf_client_set_list (priv->client,
+                               CHEESE_GCONF_PREFIX "/selected_effects",
+                               GCONF_VALUE_STRING,
+                               list,
+                               NULL);
+      g_slist_free (list);
+      g_strfreev (effects);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -117,18 +160,24 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
   object_class->get_property = cheese_gconf_get_property;
   object_class->set_property = cheese_gconf_set_property;
 
-  g_object_class_install_property (object_class, GCONF_PROP_WEBCAM,
-                                   g_param_spec_string ("gconf_prop_webcam",
-                                                        NULL,
-                                                        NULL,
-                                                        "",
-                                                        G_PARAM_READWRITE));
   g_object_class_install_property (object_class, GCONF_PROP_COUNTDOWN,
                                    g_param_spec_boolean ("gconf_prop_countdown",
                                                          NULL,
                                                          NULL,
                                                          FALSE,
                                                          G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, GCONF_PROP_WEBCAM,
+                                   g_param_spec_string ("gconf_prop_webcam",
+                                                        NULL,
+                                                        NULL,
+                                                        "",
+                                                        G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, GCONF_PROP_SELECTED_EFFECTS,
+                                   g_param_spec_string ("gconf_prop_selected_effects",
+                                                        NULL,
+                                                        NULL,
+                                                        "",
+                                                        G_PARAM_READWRITE));
 
   g_type_class_add_private (klass, sizeof (CheeseGConfPrivate));
 }
@@ -138,21 +187,6 @@ cheese_gconf_init (CheeseGConf *gconf)
 {
   CheeseGConfPrivate* priv = CHEESE_GCONF_GET_PRIVATE (gconf);
   priv->client = gconf_client_get_default();
-  char *gconf_prop_webcam;
-  gboolean gconf_prop_countdown;
-
-  // FIXME: add notification
-  //gconf_client_add_dir(client, CHEESE_GCONF_PREFIX, GCONF_CLIENT_PRELOAD_ONELEVEL, NULL);
-  gconf_prop_webcam = gconf_client_get_string (priv->client,
-                                               CHEESE_GCONF_PREFIX "/webcam",
-                                               NULL);
-  gconf_prop_countdown = gconf_client_get_bool (priv->client,
-                                                CHEESE_GCONF_PREFIX "/countdown",
-                                                NULL);
-  if (gconf_prop_webcam == NULL || !gconf_prop_countdown )
-  {
-    g_warning ("Cannot read settings from gconf");
-  }
 }
 
 CheeseGConf * 
