@@ -30,6 +30,14 @@
 
 #include "cheese-window.h"
 
+const int verbose = TRUE;
+
+void cheese_printerr_handler(char *string)
+{
+  if (verbose) 
+    fprintf (stdout, "%s\n", string);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -45,6 +53,8 @@ main (int argc, char **argv)
   g_set_application_name (_("Cheese"));
 
   gtk_window_set_default_icon_name ("cheese");
+
+  g_set_print_handler ((GPrintFunc) cheese_printerr_handler);
 
   cheese_window_init ();
   
