@@ -1039,6 +1039,7 @@ void
 cheese_window_init ()
 {
   CheeseWindow *cheese_window;
+  char *webcam_device = NULL;
 
   cheese_window = g_new (CheeseWindow, 1);
 
@@ -1053,7 +1054,13 @@ cheese_window_init ()
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording = FALSE;
-  cheese_window->webcam = cheese_webcam_new (cheese_window->screen);
+  
+
+  g_object_get (cheese_window->gconf, "gconf_prop_webcam", &webcam_device,
+               NULL);
+
+  cheese_window->webcam = cheese_webcam_new (cheese_window->screen, webcam_device);
+  g_free (webcam_device);
 
   g_signal_connect (cheese_window->webcam, "photo-saved",
                     G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);

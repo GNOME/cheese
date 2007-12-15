@@ -95,6 +95,7 @@ typedef struct
   float flash_intensity;
 
   int num_webcam_devices;
+  char *device_name;
   CheeseWebcamDevice *webcam_devices;
 } CheeseWebcamPrivate;
 
@@ -103,7 +104,8 @@ typedef struct
 enum 
 {
   PROP_0,
-  PROP_VIDEO_WINDOW
+  PROP_VIDEO_WINDOW,
+  PROP_DEVICE_NAME
 };
 
 enum 
@@ -525,6 +527,7 @@ cheese_webcam_get_webcam_device_data (CheeseWebcamDevice *webcam_device)
     g_free (pipeline_desc);
     i++;
   }
+  g_print ("device: %s\n", webcam_device->video_device);
   for (i = 0; i < webcam_device->num_video_formats; i++)
   {
     CheeseVideoFormat video_format;
@@ -570,9 +573,16 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
   {
     CheeseVideoFormat *format; 
     int i;
-    /* For now just pick the first device */
-    int selected_device = 0;
+    int selected_device;
     int framerate_numerator, framerate_denominator;
+
+    /* If we have a matching video device use that one, otherwise use the first */
+    selected_device = 0;
+    for (i = 1; i < priv->num_webcam_devices ; i++)
+    {
+	if (strcmp (priv->webcam_devices[i].video_device, priv->device_name) == 0)
+          selected_device = i;
+    }
     CheeseWebcamDevice *selected_webcam = &(priv->webcam_devices[selected_device]);
 
     /* Select the highest resolution */
@@ -669,7 +679,7 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam)
 
 
   if (!ok)
-    g_warning ("Unable to create display pipeline");
+    g_error ("Unable to create display pipeline");
 
   return TRUE;
 }
@@ -709,7 +719,7 @@ cheese_webcam_create_photo_save_bin (CheeseWebcam *webcam)
   g_object_set (G_OBJECT (priv->photo_sink), "signal-handoffs", TRUE, NULL);
 
   if (!ok)
-    g_warning ("Unable to create photo save pipeline");
+    g_error ("Unable to create photo save pipeline");
 
   return TRUE;
 }
@@ -768,7 +778,7 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
   ok &= gst_element_link (video_enc, mux);
 
   if (!ok)
-    g_warning ("Unable to create video save pipeline");
+    g_error ("Unable to create video save pipeline");
 
   return TRUE;
 }
@@ -958,13 +968,14 @@ cheese_webcam_finalize (GObject *object)
 
   cheese_webcam_stop (webcam);
   gst_object_unref (priv->pipeline);
-
+  
   if (priv->is_recording)
     gst_object_unref (priv->photo_save_bin);
   else
     gst_object_unref (priv->video_save_bin);
 
   g_free (priv->photo_filename);
+  g_free (priv->device_name);
 
   /* Free CheeseWebcamDevice array */
   for (i = 0; i < priv->num_webcam_devices; i++)
@@ -994,6 +1005,9 @@ cheese_webcam_get_property (GObject *object, guint prop_id, GValue *value,
     case PROP_VIDEO_WINDOW:
       g_value_set_pointer (value, priv->video_window);
       break;
+    case PROP_DEVICE_NAME:
+      g_value_set_string (value, priv->device_name);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1015,6 +1029,10 @@ cheese_webcam_set_property (GObject *object, guint prop_id, const GValue *value,
       g_signal_connect(priv->video_window, "expose-event", 
                        G_CALLBACK(cheese_webcam_expose_cb), self);
       break;
+    case PROP_DEVICE_NAME:
+      g_free (priv->device_name);
+      priv->device_name = g_value_dup_string (value);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1029,7 +1047,6 @@ cheese_webcam_class_init (CheeseWebcamClass *klass)
   object_class->get_property = cheese_webcam_get_property;
   object_class->set_property = cheese_webcam_set_property;
 
-/* TODO: check G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION */
   webcam_signals [PHOTO_SAVED] = g_signal_new ("photo-saved", G_OBJECT_CLASS_TYPE (klass),
                                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                                G_STRUCT_OFFSET (CheeseWebcamClass, photo_saved),
@@ -1051,6 +1068,14 @@ cheese_webcam_class_init (CheeseWebcamClass *klass)
                                                           NULL,
                                                           G_PARAM_READWRITE));
 
+  g_object_class_install_property (object_class, PROP_DEVICE_NAME,
+                                   g_param_spec_string ("device-name",
+                                                         NULL,
+                                                         NULL,
+							 "",
+                                                         G_PARAM_READWRITE));
+
+
   g_type_class_add_private (klass, sizeof (CheeseWebcamPrivate));
 }
 
@@ -1064,6 +1089,7 @@ cheese_webcam_init (CheeseWebcam *webcam)
   priv->pipeline_is_playing = FALSE;
   priv->photo_filename = NULL;
   priv->webcam_devices = NULL;
+  priv->device_name = NULL;
 
   cheese_webcam_detect_webcam_devices (webcam);
   cheese_webcam_create_video_display_bin (webcam);
@@ -1084,16 +1110,24 @@ cheese_webcam_init (CheeseWebcam *webcam)
                     G_CALLBACK (cheese_webcam_bus_message_cb), webcam);
 
   if (!ok)
-    g_warning ("Unable link pipeline for photo");
+    g_error ("Unable link pipeline for photo");
 
   XF86VidModeGetGamma (GDK_DISPLAY (), 0, &(priv->normal_gamma));
 }
 
 CheeseWebcam*
-cheese_webcam_new (GtkWidget* video_window)
+cheese_webcam_new (GtkWidget* video_window, char *webcam_device_name)
 {
   CheeseWebcam *webcam;
-  webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, NULL);
+  if (webcam_device_name)
+  {
+    webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, 
+                           "device_name", webcam_device_name, NULL);
+  }
+  else
+  {
+    webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, NULL);
+  }
   return webcam;
 }
 

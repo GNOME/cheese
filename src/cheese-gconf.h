@@ -47,7 +47,7 @@ enum
   GCONF_PROP_SELECTED_EFFECTS
 };
 
-GType		      cheese_gconf_get_type(void);
+GType        cheese_gconf_get_type(void);
 CheeseGConf  *cheese_gconf_new ();
 
 G_END_DECLS

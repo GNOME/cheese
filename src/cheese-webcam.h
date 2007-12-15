@@ -66,7 +66,7 @@ typedef struct
 
 
 GType		 cheese_webcam_get_type			(void);
-CheeseWebcam 	*cheese_webcam_new 			(GtkWidget *video_window);
+CheeseWebcam 	*cheese_webcam_new 			(GtkWidget *video_window, char *webcam_device_name);
 void 		 cheese_webcam_play 			(CheeseWebcam *webcam);
 void 		 cheese_webcam_stop 			(CheeseWebcam *webcam);
 void 		 cheese_webcam_set_effect 		(CheeseWebcam *webcam, CheeseWebcamEffect effect);
