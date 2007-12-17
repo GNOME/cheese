@@ -33,6 +33,7 @@
 struct _CheeseOptions
 {
   gboolean verbose;
+  char *hal_device_id;
 } CheeseOptions;
 
 void cheese_printerr_handler(char *string)
@@ -47,8 +48,10 @@ main (int argc, char **argv)
   GOptionContext *context;
   GOptionEntry options[] = {
     { "verbose", 'v', 0, G_OPTION_ARG_NONE, &CheeseOptions.verbose, _("Be verbose"), NULL},
+    { "hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id, NULL, NULL},
     { NULL }
   };
+  CheeseOptions.hal_device_id = NULL;
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
