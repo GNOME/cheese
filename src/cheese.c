@@ -30,31 +30,48 @@
 
 #include "cheese-window.h"
 
-const int verbose = TRUE;
+struct _CheeseOptions
+{
+  gboolean verbose;
+} CheeseOptions;
 
 void cheese_printerr_handler(char *string)
 {
-  if (verbose) 
+  if (CheeseOptions.verbose) 
     fprintf (stdout, "%s\n", string);
 }
 
 int
 main (int argc, char **argv)
 {
-  g_thread_init (NULL);
-  gtk_init (&argc, &argv);
-  gst_init (&argc, &argv);
-  gnome_vfs_init ();
+  GOptionContext *context;
+  GOptionEntry options[] = {
+    { "verbose", 'v', 0, G_OPTION_ARG_NONE, &CheeseOptions.verbose, _("Be verbose"), NULL},
+    { NULL }
+  };
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  g_thread_init (NULL);
+
   g_set_application_name (_("Cheese"));
 
-  gtk_window_set_default_icon_name ("cheese");
+  context = g_option_context_new (N_("- Take photos and videos from your webcam"));
+	g_option_context_add_main_entries(context, options, GETTEXT_PACKAGE);
+	g_option_context_add_group (context, gtk_get_option_group (TRUE));
+	g_option_context_add_group (context, gst_init_get_option_group ());
+  g_option_context_parse(context, &argc, &argv, NULL);
+  g_option_context_free(context);
+
+  gtk_init (&argc, &argv);
+  gst_init (&argc, &argv);
+  gnome_vfs_init ();
 
   g_set_print_handler ((GPrintFunc) cheese_printerr_handler);
+
+  gtk_window_set_default_icon_name ("cheese");
 
   cheese_window_init ();
   
