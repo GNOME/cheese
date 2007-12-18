@@ -1,5 +1,10 @@
 2007-12-18  daniel g. siegel <dgsiegel@gmail.com>
 
+	* src/cheese-webcam.c: 
+	  cheese wont compile if string.h isnt included in cheese-webcam.c
+
+2007-12-18  daniel g. siegel <dgsiegel@gmail.com>
+
 	* wscript: 
 	  -Wall was never added to the CCFLAGS. adding -Werror if maintainer mode is enabled
 

@@ -21,6 +21,7 @@
 #include <config.h>
 #endif
 
+#include <string.h>
 #include <glib-object.h>
 #include <glib.h>
 #include <glib/gstring.h>
