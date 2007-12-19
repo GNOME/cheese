@@ -235,9 +235,9 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
 
       dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
                                     GTK_DIALOG_MODAL |
-          			    GTK_DIALOG_DESTROY_WITH_PARENT,
-          			    GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-          			    header);
+                                    GTK_DIALOG_DESTROY_WITH_PARENT,
+                                    GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
+                                    header);
       gtk_dialog_run (GTK_DIALOG (dlg));
       gtk_widget_destroy (dlg);
       g_free (header);
@@ -504,16 +504,16 @@ cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
       continue;
 
     uri = g_build_filename(DATADIR, "/gnome/help/cheese/", lang, "/cheese.xml", NULL);
-					
+
     if (g_file_test (uri, G_FILE_TEST_EXISTS))
       break;
   }
-	
+
   if (link_id)
     command = g_strconcat ("gnome-open ghelp://", uri, "?", link_id, NULL);
   else
     command = g_strconcat ("gnome-open ghelp://", uri,  NULL);
-	
+
 
   gscreen = gdk_screen_get_default();
   gdk_spawn_command_line_on_screen (gscreen, command, &error);
@@ -522,7 +522,7 @@ cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
     GtkWidget *d;
 
     d = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-			       GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error->message);
+                               GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error->message);
     gtk_dialog_run(GTK_DIALOG(d));
     gtk_widget_destroy(d);
     g_error_free(error);
@@ -569,7 +569,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
                          "authors", authors,
                          "translator-credits", translators,
                          "website", "http://www.gnome.org/projects/cheese",
-			 "website-label", _("Cheese Website"),
+                         "website-label", _("Cheese Website"),
                          "logo-icon-name", "cheese",
                          "wrap-license", TRUE,
                          "license", license_trans,
@@ -871,7 +871,7 @@ cheese_window_action_group_new (CheeseWindow *cheese_window, char *name,
 
 GtkActionGroup*
 cheese_window_toggle_action_group_new (CheeseWindow *cheese_window, char *name, 
-                                const GtkToggleActionEntry *action_entries, int num_action_entries)
+                                       const GtkToggleActionEntry *action_entries, int num_action_entries)
 {
   GtkActionGroup *action_group;
 
@@ -886,7 +886,7 @@ cheese_window_toggle_action_group_new (CheeseWindow *cheese_window, char *name,
 
 GtkActionGroup*
 cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name, 
-                                const GtkRadioActionEntry *action_entries, int num_action_entries)
+                                      const GtkRadioActionEntry *action_entries, int num_action_entries)
 {
   GtkActionGroup *action_group;
 
@@ -942,8 +942,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
   g_free (gconf_effects);
 
-  cheese_window->throbber_frame     = glade_xml_get_widget (gxml, "throbber_frame");
-  cheese_window->throbber   = ephy_spinner_new ();
+  cheese_window->throbber_frame      = glade_xml_get_widget (gxml, "throbber_frame");
+  cheese_window->throbber            = ephy_spinner_new ();
   ephy_spinner_set_size (EPHY_SPINNER (cheese_window->throbber), GTK_ICON_SIZE_DIALOG);
   gtk_container_add (GTK_CONTAINER (cheese_window->throbber_frame), cheese_window->throbber);
   gtk_widget_show (cheese_window->throbber);
@@ -1029,7 +1029,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                     "/ThumbnailPopup");
 
   gtk_window_add_accel_group (GTK_WINDOW (cheese_window->window), 
-		              gtk_ui_manager_get_accel_group (cheese_window->ui_manager));
+                              gtk_ui_manager_get_accel_group (cheese_window->ui_manager));
   gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
 
   /* Default handlers for closing the application */
@@ -1068,9 +1068,7 @@ cheese_window_init ()
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording = FALSE;
   
-
-  g_object_get (cheese_window->gconf, "gconf_prop_webcam", &webcam_device,
-               NULL);
+  g_object_get (cheese_window->gconf, "gconf_prop_webcam", &webcam_device, NULL);
 
   cheese_window->webcam = cheese_webcam_new (cheese_window->screen, webcam_device);
   g_free (webcam_device);
