@@ -668,7 +668,8 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
 {
   char *str;
   static gboolean ignore_callback = FALSE;
-  
+  GtkAction *photo, *video;
+  GList *actions, *tmp;
   
   /* When we call gtk_toggle_button_set_active a "toggle" message is generated
      we ignore that one */
@@ -676,6 +677,17 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
   {
     ignore_callback = FALSE;
     return;
+  }
+
+  // FIXME: THIS IS CRAP!
+  actions = gtk_action_group_list_actions (cheese_window->actions_toggle);
+  tmp = actions;
+  while (tmp != NULL) {
+    if (strcmp (gtk_action_get_name (GTK_ACTION (tmp->data)), "Photo") == 0)
+      photo = tmp->data;
+    else
+      video = tmp->data;
+    tmp = g_list_next (tmp);
   }
 
   /* Set ignore_callback because we are call gtk_toggle_button_set_active in the next few lines */
@@ -716,8 +728,7 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
-    gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
-    gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
+    gtk_action_activate (video);
   }
   else
   {
@@ -727,9 +738,11 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
-    gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
-    gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
+    gtk_action_activate (photo);
   }
+  g_list_free (actions);
+  g_list_free (tmp);
+
 }
 
 static void
