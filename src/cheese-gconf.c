@@ -100,7 +100,7 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
   self = CHEESE_GCONF (object);
   CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (self);
 
-  gchar **effects;
+  gchar **effects = NULL;
   GSList *list = NULL;
   int i;
 

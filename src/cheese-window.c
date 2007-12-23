@@ -668,7 +668,8 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
 {
   char *str;
   static gboolean ignore_callback = FALSE;
-  GtkAction *photo, *video;
+  GtkAction *photo = NULL;
+  GtkAction *video = NULL;
   GList *actions, *tmp;
   
   /* When we call gtk_toggle_button_set_active a "toggle" message is generated
