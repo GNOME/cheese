@@ -754,6 +754,11 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
   {
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
 
+    char *pipeline_desc = g_strdup_printf ("filesrc location=%s ! oggdemux ! vorbisdec ! audioconvert ! audioresample ! gconfaudiosink", 
+                                     PACKAGE_DATADIR "/sounds/shutter0.ogg");
+    GstElement *pipeline = gst_parse_launch (pipeline_desc, NULL);
+    gst_element_set_state (pipeline, GST_STATE_PLAYING);
+    g_free (pipeline_desc);
     cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
     cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
   }

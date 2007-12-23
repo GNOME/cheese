@@ -1,4 +1,4 @@
-SUBDIRS = icons effects pixmaps
+SUBDIRS = icons effects pixmaps sounds
 
 @INTLTOOL_DESKTOP_RULE@
 desktopdir = $(datadir)/applications
