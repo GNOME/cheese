@@ -39,7 +39,7 @@ struct _CheeseOptions
 void cheese_printerr_handler(char *string)
 {
   if (CheeseOptions.verbose) 
-    fprintf (stdout, "%s\n", string);
+    fprintf (stdout, "%s", string);
 }
 
 int
