@@ -120,10 +120,16 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
       break;
     case GCONF_PROP_SELECTED_EFFECTS:
 
-      effects = g_strsplit(g_value_get_string (value), ",", 12);
-      for (i = 0; effects[i] != NULL; i++)
+      if (g_value_get_string (value) == NULL) {
+        list = NULL;
+      }
+      else
       {
-        list = g_slist_append (list, effects[i]);
+        effects = g_strsplit(g_value_get_string (value), ",", 12);
+        for (i = 0; effects[i] != NULL; i++)
+        {
+          list = g_slist_append (list, effects[i]);
+        }
       }
       gconf_client_set_list (priv->client,
                                CHEESE_GCONF_PREFIX "/selected_effects",
