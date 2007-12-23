@@ -55,7 +55,7 @@ def configure(conf):
 	if Params.g_options.maintainer:
 		import os
 		conf.define('PACKAGE_DATADIR', os.getcwd() + '/data/')
-		conf.env['CCFLAGS']='-Wall -Werror'
+		conf.env['CCFLAGS']='-Wall -Werror -g'
 		print ""
 		print "*******************************************************************"
 		print "**                 MAINTAINER MODE ENABLED.                      **"
