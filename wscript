@@ -41,7 +41,7 @@ def configure(conf):
 	conf.check_pkg('libglade-2.0', destvar='LIBGLADE', vnum='2.0.0', mandatory=True)
 	conf.check_pkg('hal', destvar='HAL', vnum='0.5.0', mandatory=True)
 	conf.check_pkg('gstreamer-0.10', destvar='GSTREAMER', vnum='0.10.15', mandatory=True)
-	conf.check_pkg('gstreamer-plugins-base-0.10', destvar='GSTREAMER_PLUGINS_BASE', vnum='0.10.14', mandatory=True)
+	conf.check_pkg('gstreamer-plugins-base-0.10', destvar='GSTREAMER_PLUGINS_BASE', vnum='0.10.15', mandatory=True)
 	conf.check_pkg('gnome-vfs-2.0', destvar='GNOME_VFS', vnum='2.18.0', mandatory=True)
 	conf.check_pkg('libgnomeui-2.0', destvar='LIBGNOMEUI', vnum='2.20.0', mandatory=True)
 	conf.check_pkg('libebook-1.2', destvar='LIBEBOOK', vnum='1.12.0', mandatory=True)

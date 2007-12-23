@@ -6,15 +6,17 @@ videos from a webcam. It also includes fancy graphical effects based on the
 gstreamer-backend.
 
 Cheese currently requires:
-  - glib-2.0 >= 2.12.0
+  - glib-2.0 >= 2.12.1
   - gobject-2.0
   - gtk+-2.0 >= 2.10.0
   - libglade-2.0 >= 2.0.0
   - gdk-2.0
   - dbus-1
-  - gstreamer-0.10 >= 0.10.12
-  - gstreamer-plugins-base-0.10  >= 0.10.12
-  - gstreamer-plugins-good-0.10  >= 0.10.12
+  - hal
+  - cairo
+  - gstreamer-0.10 >= 0.10.15
+  - gstreamer-plugins-base-0.10  >= 0.10.15
+  - gstreamer-plugins-good-0.10  >= 0.10.15
   - gstreamer-pango-0.10  >= 0.10.12
   - gnome-vfs-2.0
   - libgnomeui-2.0
@@ -22,12 +24,11 @@ Cheese currently requires:
   - libebook-1.2 (evolution-data-server)
   - postr for Flickr export (optional)
   - f-spot for F-Spot export (optional)
-  - cairo
   - a webcam
   - a brain
 
 The official website is:
-   http://live.gnome.org/Cheese
+   http://www.gnome.org/projects/cheese
 
 How to get your camera working:
 To get your camera working with cheese, you will have to ensure that it works
