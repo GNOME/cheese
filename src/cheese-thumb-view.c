@@ -372,6 +372,9 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   g_signal_connect (G_OBJECT (thumb_view), "drag-data-get",
                     G_CALLBACK (cheese_thumb_view_on_drag_data_get_cb), NULL);
 
+  gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(priv->store),
+                                       THUMBNAIL_URL_COLUMN, GTK_SORT_ASCENDING);
+
   cheese_thumb_view_fill (thumb_view);
 }
 
