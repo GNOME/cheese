@@ -49,9 +49,9 @@ cheese_audio_get_filename (CheeseAudioPlay *audio_play)
   CheeseAudioPlayPrivate *priv = CHEESE_AUDIO_PLAY_GET_PRIVATE (audio_play);  
   char *filename;
   if (priv->counter > 7)
-   filename = g_strdup_printf ("file://%ssounds/shutter%i.ogg", PACKAGE_DATADIR, g_rand_int_range (priv->rand, 1, SHUTTER_SOUNDS));
+   filename = g_strdup_printf ("file://%s/sounds/shutter%i.ogg", PACKAGE_DATADIR, g_rand_int_range (priv->rand, 1, SHUTTER_SOUNDS));
   else
-   filename = g_strdup_printf ("file://%ssounds/shutter0.ogg", PACKAGE_DATADIR);
+   filename = g_strdup_printf ("file://%s/sounds/shutter0.ogg", PACKAGE_DATADIR);
 
   return filename;
 }
