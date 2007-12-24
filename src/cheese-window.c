@@ -40,6 +40,7 @@
 #include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
+#include "cheese-audio-play.h"
 #include "ephy-spinner.h"
 
 #define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
@@ -59,9 +60,12 @@ typedef struct
   char *video_filename;
   char *photo_filename;
 
+  int counter;
+
   CheeseWebcam *webcam;
   WebcamMode webcam_mode;
   CheeseGConf *gconf;
+  CheeseAudioPlay *audio_play;
 
   GtkWidget *window;
   GtkWidget *notebook;
@@ -754,12 +758,8 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
+    cheese_audio_play_file (cheese_window->audio_play);
 
-    char *pipeline_desc = g_strdup_printf ("filesrc location=%s ! oggdemux ! vorbisdec ! audioconvert ! audioresample ! gconfaudiosink", 
-                                     PACKAGE_DATADIR "/sounds/shutter0.ogg");
-    GstElement *pipeline = gst_parse_launch (pipeline_desc, NULL);
-    gst_element_set_state (pipeline, GST_STATE_PLAYING);
-    g_free (pipeline_desc);
     cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
     cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
   }
@@ -1063,6 +1063,7 @@ cheese_window_init ()
   cheese_window = g_new (CheeseWindow, 1);
 
   cheese_window->gconf = cheese_gconf_new ();
+  cheese_window->audio_play = cheese_audio_play_new ();
 
   cheese_window_create_window (cheese_window);
  
