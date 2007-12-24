@@ -158,6 +158,7 @@ cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 static void
 cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
 {
+  g_object_unref (cheese_window->audio_play);
   g_object_unref (cheese_window->webcam);
   g_object_unref (cheese_window->actions_main);
   g_object_unref (cheese_window->actions_photo);
