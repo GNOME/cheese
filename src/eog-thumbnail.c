@@ -23,7 +23,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <config.h>
+#include <cheese-config.h>
 #endif
 
 #include <libgnomeui/libgnomeui.h>

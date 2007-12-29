@@ -70,7 +70,7 @@ def configure(conf):
 	conf.define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
 	conf.env.append_value('CCFLAGS', '-DHAVE_CONFIG_H')
 
-	conf.write_config_header('config.h')
+	conf.write_config_header('cheese-config.h')
 
 def build(bld):
 	# process subfolders from here

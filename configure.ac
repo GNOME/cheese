@@ -3,7 +3,7 @@
 AC_INIT(cheese, 0.3.0)
 
 AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
-AM_CONFIG_HEADER(config.h)
+AM_CONFIG_HEADER(cheese-config.h)
 AM_MAINTAINER_MODE
 
 dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
