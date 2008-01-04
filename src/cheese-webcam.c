@@ -711,9 +711,7 @@ cheese_webcam_create_photo_save_bin (CheeseWebcam *webcam)
   caps = gst_caps_new_simple ("video/x-raw-rgb",
       			      "bpp", G_TYPE_INT, 24,
       			      "depth", G_TYPE_INT, 24,
-      			      "red_mask",   G_TYPE_INT, 0xff0000, /* enforce rgb */
-      			      "green_mask", G_TYPE_INT, 0x00ff00,
-      			      "blue_mask",  G_TYPE_INT, 0x0000ff, NULL);
+			      NULL);
   ok = gst_element_link_filtered (csp_photo_save_bin, priv->photo_sink, caps);
   gst_caps_unref (caps);
 

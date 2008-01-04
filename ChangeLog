@@ -1,5 +1,11 @@
 2008-01-04  Jaap Haitsma <jaap@haitsma.org>
 
+	* src/cheese-webcam.c: 
+	  Color forcing not needed anymore. This has been fixed in gstreamer
+	  http://webcvs.freedesktop.org/gstreamer/gst-plugins-base/sys/v4l/gstv4lsrc.c?revision=1.107&view=markup
+
+2008-01-04  Jaap Haitsma <jaap@haitsma.org>
+
 	* src/cheese-window.c: 
 	  Do not crash when Trash directory is not present.
 	  Fixes bug #507071
