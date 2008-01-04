@@ -260,7 +260,6 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, char *filenam
   GnomeVFSURI *trash_uri;
   int result;
   char *name;
-  GError *error = NULL;
 
   uri = gnome_vfs_uri_new (g_filename_to_uri (filename, NULL, NULL));
   result = gnome_vfs_find_directory (uri, GNOME_VFS_DIRECTORY_KIND_TRASH,
@@ -275,7 +274,7 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, char *filenam
     dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
                                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, header);
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), error->message);
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), gnome_vfs_result_to_string (result));
     gtk_dialog_run (GTK_DIALOG (dlg));
     gtk_widget_destroy (dlg);
     g_free (header);
@@ -303,7 +302,7 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, char *filenam
     dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
                                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, header);
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), error->message);
+    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), gnome_vfs_result_to_string (result));
     gtk_dialog_run (GTK_DIALOG (dlg));
     gtk_widget_destroy (dlg);
     g_free (header);
