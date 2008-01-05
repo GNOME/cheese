@@ -24,12 +24,12 @@ cheese_SOURCES = \
 	cheese-webcam.h \
 	cheese-window.c \
 	cheese-window.h \
-	cheese-audio-play.c \
-	cheese-audio-play.h \
 	eog-thumbnail.c \
 	eog-thumbnail.h \
 	ephy-spinner.c \
-	ephy-spinner.h
+	ephy-spinner.h \
+	gst-audio-play.c \
+	gst-audio-play.h 
 
 cheese_LDADD = \
 	$(CHEESE_LIBS)		

@@ -40,7 +40,7 @@
 #include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
-#include "gst-player.h"
+#include "gst-audio-play.h"
 #include "ephy-spinner.h"
 
 #define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
@@ -66,7 +66,6 @@ typedef struct
   CheeseWebcam *webcam;
   WebcamMode webcam_mode;
   CheeseGConf *gconf;
-  GstPlayer *gst_player;
 
   GtkWidget *window;
   GtkWidget *notebook;
@@ -108,8 +107,8 @@ typedef struct
 
   GtkUIManager *ui_manager;
 
+  int audio_play_counter;
   GRand *rand;
-  int gst_player_counter;
 
 } CheeseWindow;
 
@@ -133,16 +132,16 @@ cheese_about_dialog_handle_email (GtkAboutDialog *about, const char *link, gpoin
 }
 
 static char *
-gst_player_get_filename (CheeseWindow *cheese_window)
+audio_play_get_filename (CheeseWindow *cheese_window)
 {
   char *filename;
-  if (cheese_window->gst_player_counter > 7)
+  if (cheese_window->audio_play_counter > 7)
    filename = g_strdup_printf ("%s/sounds/shutter%i.ogg", PACKAGE_DATADIR,
                                g_rand_int_range (cheese_window->rand, 1, SHUTTER_SOUNDS));
   else
    filename = g_strdup_printf ("%s/sounds/shutter0.ogg", PACKAGE_DATADIR);
 
-  cheese_window->gst_player_counter++;
+  cheese_window->audio_play_counter++;
 
   return filename;
 }
@@ -775,15 +774,19 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
+    GError *error = NULL;
+    GstAudioPlay *audio_play;
+    char *file;
+
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
 
-    GError *error = NULL;
-    char *file = gst_player_get_filename (cheese_window);
-    cheese_window->gst_player = gst_play_file (file, &error);
-        if (!cheese_window->gst_player) {
-                  g_warning (error ? error->message : "Unknown error");
-                          g_clear_error (&error);
-                                      }
+    file = audio_play_get_filename (cheese_window);
+    audio_play = gst_audio_play_file (file, &error);
+    if (!audio_play) 
+    {
+      g_warning (error ? error->message : "Unknown error");
+      g_clear_error (&error);
+    }
 
     g_free (file);
 
@@ -1090,8 +1093,7 @@ cheese_window_init ()
   cheese_window = g_new (CheeseWindow, 1);
 
   cheese_window->gconf = cheese_gconf_new ();
-  cheese_window->gst_player = NULL;
-  cheese_window->gst_player_counter = 0;
+  cheese_window->audio_play_counter = 0;
   cheese_window->rand = g_rand_new ();
 
   cheese_window_create_window (cheese_window);
