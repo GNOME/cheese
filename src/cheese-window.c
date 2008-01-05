@@ -40,11 +40,12 @@
 #include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
-#include "cheese-audio-play.h"
+#include "gst-player.h"
 #include "ephy-spinner.h"
 
 #define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
 #define UI_FILE PACKAGE_DATADIR"/cheese-ui.xml"
+#define SHUTTER_SOUNDS 4
 
 typedef enum
 {
@@ -65,7 +66,7 @@ typedef struct
   CheeseWebcam *webcam;
   WebcamMode webcam_mode;
   CheeseGConf *gconf;
-  CheeseAudioPlay *audio_play;
+  GstPlayer *gst_player;
 
   GtkWidget *window;
   GtkWidget *notebook;
@@ -107,6 +108,9 @@ typedef struct
 
   GtkUIManager *ui_manager;
 
+  GRand *rand;
+  int gst_player_counter;
+
 } CheeseWindow;
 
 
@@ -128,6 +132,20 @@ cheese_about_dialog_handle_email (GtkAboutDialog *about, const char *link, gpoin
   g_free (address);
 }
 
+static char *
+gst_player_get_filename (CheeseWindow *cheese_window)
+{
+  char *filename;
+  if (cheese_window->gst_player_counter > 7)
+   filename = g_strdup_printf ("%s/sounds/shutter%i.ogg", PACKAGE_DATADIR,
+                               g_rand_int_range (cheese_window->rand, 1, SHUTTER_SOUNDS));
+  else
+   filename = g_strdup_printf ("%s/sounds/shutter0.ogg", PACKAGE_DATADIR);
+
+  cheese_window->gst_player_counter++;
+
+  return filename;
+}
 
 /* standard event handler */
 static int
@@ -158,7 +176,7 @@ cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 static void
 cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
 {
-  g_object_unref (cheese_window->audio_play);
+  g_free (cheese_window->rand);
   g_object_unref (cheese_window->webcam);
   g_object_unref (cheese_window->actions_main);
   g_object_unref (cheese_window->actions_photo);
@@ -758,7 +776,16 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
-    cheese_audio_play_file (cheese_window->audio_play);
+
+    GError *error = NULL;
+    char *file = gst_player_get_filename (cheese_window);
+    cheese_window->gst_player = gst_play_file (file, &error);
+        if (!cheese_window->gst_player) {
+                  g_warning (error ? error->message : "Unknown error");
+                          g_clear_error (&error);
+                                      }
+
+    g_free (file);
 
     cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
     cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
@@ -1063,7 +1090,9 @@ cheese_window_init ()
   cheese_window = g_new (CheeseWindow, 1);
 
   cheese_window->gconf = cheese_gconf_new ();
-  cheese_window->audio_play = cheese_audio_play_new ();
+  cheese_window->gst_player = NULL;
+  cheese_window->gst_player_counter = 0;
+  cheese_window->rand = g_rand_new ();
 
   cheese_window_create_window (cheese_window);
  
