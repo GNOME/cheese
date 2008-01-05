@@ -478,7 +478,7 @@ cheese_webcam_get_webcam_device_data (CheeseWebcamDevice *webcam_device)
   i = 0;
   while (!pipeline_works && (i < G_N_ELEMENTS (GSTREAMER_VIDEO_SOURCES)))
   {
-    pipeline_desc = g_strdup_printf ("%s name=source device=%s ! fakesink", 
+    pipeline_desc = g_strdup_printf ("%s name=source device=%s queue-size=2 ! fakesink", 
                                      GSTREAMER_VIDEO_SOURCES[i],
                                      webcam_device->video_device);
     err = NULL;
@@ -610,7 +610,7 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
       }
     }
 
-    webcam_input = g_strdup_printf ("%s name=video_source device=%s ! %s,width=%d,height=%d,framerate=%d/%d ! identity",
+    webcam_input = g_strdup_printf ("%s name=video_source device=%s queue-size=2 ! %s,width=%d,height=%d,framerate=%d/%d ! identity",
                                     selected_webcam->gstreamer_src,
                                     selected_webcam->video_device,
                                     format->mimetype,

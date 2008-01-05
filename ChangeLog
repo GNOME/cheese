@@ -1,3 +1,11 @@
+2008-01-05  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Force queue-size=2 to make cheese work for some cameras which in
+	  gst-plugins-good 0.10.6 have a bug and queue-size is set to 0. 
+	  This is fixed in gstreamer CVS already, but no release has been made
+	  yet. This patch fixes cheese bug #503503
+
 2008-01-04  Jaap Haitsma <jaap@haitsma.org>
 
 	* src/cheese-webcam.c: 
