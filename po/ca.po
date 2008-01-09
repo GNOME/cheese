@@ -1,249 +1,296 @@
 # Cheese Catalan translation
 # Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
 # This file is distributed under the same license as cheese
-# Carlos Garcia Porcel <cbing0786@gmail.com>, 2007.
-#
+# Gil Forcada <gilforcada@guifi.net>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-11-19 23:54+0100\n"
-"PO-Revision-Date: 2007-08-21 00:29+0100\n"
-"Last-Translator: Carlos Garcia Porcel <cbing0786@gmail.com>\n"
+"POT-Creation-Date: 2008-01-08 00:30+0100\n"
+"PO-Revision-Date: 2008-01-10 00:30+0100\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/cheese.desktop.in.h:1
-#, fuzzy
-msgid "A cheesy program to take photos from your webcam"
-msgstr "Un programa per a fer fotografies i videos amb la teva càmara web"
+#: ../data/cheese.desktop.in.h:1 ../src/cheese-window.c:589
+msgid "A cheesy program to take photos and videos from your webcam"
+msgstr "Un programa per a fer fotos i vídeos amb la càmera web"
 
-#: data/cheese.desktop.in.h:2
-#, fuzzy
-msgid "Cheese Camera"
-msgstr "Cheese"
-
-#: data/cheese.glade.h:1
-msgid "<b>_Take a photo</b>"
-msgstr "<b>Fer una fotografia</b>"
-
-#: data/cheese.glade.h:2 src/cheese.c:45
+#: ../data/cheese.desktop.in.h:2 ../data/cheese.glade.h:1 ../src/cheese.c:62
 msgid "Cheese"
 msgstr "Cheese"
 
-#: data/cheese.glade.h:3 src/cheese-window.c:552
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:671
+#: ../src/cheese-window.c:843
 msgid "_Effects"
 msgstr "_Efectes"
 
-#: data/cheese.glade.h:4
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:847
 msgid "_Photo"
-msgstr "_Fotografia"
+msgstr "_Foto"
 
-#: data/cheese.glade.h:5
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:759
+#: ../src/cheese-window.c:858 ../src/cheese-window.c:963
+msgid "_Take a photo"
+msgstr "_Fes una foto"
+
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:848
 msgid "_Video"
-msgstr "_Video"
+msgstr "_Vídeo"
 
-#: data/cheese.schemas.in.h:1
-msgid "Place to store media"
+#: ../data/cheese.schemas.in.h:1
+msgid ""
+"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
+"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
+"Vertigo, Edge, Dice and Warp"
 msgstr ""
+"Efectes que s'apliquen a l'inici. Els valors possibles són: Mauve (malva), "
+"Noir/Blanc (blanc/negre), Saturation (saturació), Hulk, Vertical Flip (Gir "
+"vertical), Horitzontal Flip (Gir horitzontal), Shagadelic (psicodèlic), "
+"Vertigo (vertigen), Edge (contorns), Dice (trossos) i Warp (distorssió)"
 
-#: data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:2
+msgid "Selected Effects"
+msgstr "Efectes seleccionats"
+
+#: ../data/cheese.schemas.in.h:3
 msgid "The device-string, which points to the webcam, e.g. /dev/video0"
 msgstr ""
+"La cadena del dispositiu que apunta a la càmera web, per exemple /dev/video0"
 
-#: data/cheese.schemas.in.h:3
-msgid "The place, where Cheese should store it's pictures and videos"
-msgstr ""
-
-#: data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:4
 msgid "Use a countdown"
-msgstr ""
+msgstr "Utilitza un temporitzador"
 
-#: data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:5
 msgid "Webcam device string indicator"
-msgstr ""
+msgstr "Indicador de la cadena del dispositiu de la càmera web"
 
-#: data/cheese.schemas.in.h:6
-#, fuzzy
+#: ../data/cheese.schemas.in.h:6
 msgid "Whether a countdown should be used, when taking a photo"
-msgstr "_Compte enrere per fer la fotografia"
+msgstr "Si s'hauria d'utilitzar un temporitzador quan es fan fotos"
 
-#: src/cheese-effect-chooser.c:60
+#: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
-msgstr "Sense Efectes"
+msgstr "Sense efectes"
 
-#: src/cheese-effect-chooser.c:62
+#: ../src/cheese-effect-chooser.c:63
 msgid "Mauve"
 msgstr "Malva"
 
-#: src/cheese-effect-chooser.c:64
+#: ../src/cheese-effect-chooser.c:65
 msgid "Noir/Blanc"
 msgstr "Blanc/Negre"
 
-#: src/cheese-effect-chooser.c:66
+#: ../src/cheese-effect-chooser.c:67
 msgid "Saturation"
 msgstr "Saturació"
 
-#: src/cheese-effect-chooser.c:68
+#: ../src/cheese-effect-chooser.c:69
 msgid "Hulk"
 msgstr "Hulk"
 
-#: src/cheese-effect-chooser.c:70
+#: ../src/cheese-effect-chooser.c:71
 msgid "Vertical Flip"
 msgstr "Gir vertical"
 
-#: src/cheese-effect-chooser.c:72
+#: ../src/cheese-effect-chooser.c:73
 msgid "Horizontal Flip"
 msgstr "Gir horitzontal"
 
-#: src/cheese-effect-chooser.c:74
+#: ../src/cheese-effect-chooser.c:75
 msgid "Shagadelic"
 msgstr "Psicodèlic"
 
-#: src/cheese-effect-chooser.c:76
+#: ../src/cheese-effect-chooser.c:77
 msgid "Vertigo"
-msgstr "Vetigen"
+msgstr "Vertigen"
 
-#: src/cheese-effect-chooser.c:78
+#: ../src/cheese-effect-chooser.c:79
 msgid "Edge"
 msgstr "Contorns"
 
-#: src/cheese-effect-chooser.c:80
+#: ../src/cheese-effect-chooser.c:81
 msgid "Dice"
 msgstr "Trossos"
 
-#: src/cheese-effect-chooser.c:82
+#: ../src/cheese-effect-chooser.c:83
 msgid "Warp"
 msgstr "Distorsió"
 
-#: src/cheese-window.c:210
+#: ../src/cheese-window.c:256
 #, c-format
 msgid "Could not save %s"
 msgstr "No s'ha pogut desar %s"
 
-#: src/cheese-window.c:234
+#: ../src/cheese-window.c:290
+#, c-format
+msgid "Could not find the Trash"
+msgstr "No s'ha pogut trobar la paperera"
+
+#: ../src/cheese-window.c:317
+#, c-format
+msgid "Error on deleting %s"
+msgstr "Error en suprimir %s"
+
+#: ../src/cheese-window.c:340
+#, c-format
+msgid ""
+"Are you sure you want to move\n"
+"all media to the trash?"
+msgstr ""
+"Segur que voleu moure\n"
+"totes les fotos i vídeos a la paperera?"
+
+#: ../src/cheese-window.c:348 ../src/cheese-window.c:394
+msgid "Move to Trash"
+msgstr "Moure a la paperera"
+
+#: ../src/cheese-window.c:385
 #, c-format
 msgid ""
 "Are you sure you want to move\n"
 "\"%s\" to the trash?"
 msgstr ""
-"¿Està segur que vol enviar\n"
-"\"%s\" a la Paperera de Reciclatge?"
+"Segur que voleu moure\n"
+"«%s» a la paperera?"
 
-#: src/cheese-window.c:243
-msgid "Move to Trash"
-msgstr "Moure a la Paperera de Reciclatge"
-
-#: src/cheese-window.c:284
-#, c-format
-msgid "Could not find the Trash"
-msgstr "No s'ha pogut trobar la Paperera de Reciclatge"
-
-#: src/cheese-window.c:311
-#, c-format
-msgid "Error on deleting %s"
-msgstr "Error a l'esborrar %s"
-
-#: src/cheese-window.c:363
+#: ../src/cheese-window.c:448
 #, c-format
 msgid "Could not set the Account Photo"
-msgstr "No s'ha pogut configurar el Compte per a Fotografies"
+msgstr "No s'ha pogut establir la foto del compte"
 
-#: src/cheese-window.c:431
+#: ../src/cheese-window.c:566
 msgid "translator-credits"
-msgstr ""
+msgstr "Gil Forcada <gilforcada@guifi.net>"
 
-#: src/cheese-window.c:434
+#: ../src/cheese-window.c:569
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
 msgstr ""
+"Aquest programari és programari lliure; podeu redistribuir-lo i/o modificar-"
+"lo sota els termes de la Llicència Pública General GNU tal com ha estat "
+"publicada per la Free Software Foundation; ja sigui la versió 2 de la "
+"Llicència o bé (si ho preferiu) qualsevol altra versió posterior.\n"
 
-#: src/cheese-window.c:438
+#: ../src/cheese-window.c:573
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
 msgstr ""
+"Aquest programari es distribueix amb l'expectativa que serà útil, però SENSE "
+"CAP GARANTIA; ni tan sols la garantia implícita de COMERCIABILITAT o "
+"ADEQUACIÓ PER UN PROPÒSIT PARTICULAR. Vegeu la Llicència Pública General GNU "
+"per obtenir-ne més detalls.\n"
 
-#: src/cheese-window.c:442
+#: ../src/cheese-window.c:577
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
+"Hauríeu d'haver rebut una còpia de la Llicència Pública General GNU "
+"juntament amb aquest programari. En cas contrari, vegeu <http://www.gnu.org/"
+"licenses/>."
 
-#: src/cheese-window.c:454
-msgid "A cheesy program to take pictures and videos from your webcam"
-msgstr "Un programa per a fer fotografies i videos amb la teva càmara web"
+#: ../src/cheese-window.c:593
+msgid "Cheese Website"
+msgstr "Lloc web del Cheese"
 
-#: src/cheese-window.c:560
+#: ../src/cheese-window.c:682
 msgid "_Back"
 msgstr "_Enrere"
 
-#: src/cheese-window.c:574 src/cheese-window.c:629
-#, fuzzy
+#: ../src/cheese-window.c:749 ../src/cheese-window.c:818
 msgid "_Start recording"
-msgstr "<b>_Començar a gravar</b>"
+msgstr "_Comença l'enregistrament"
 
-#: src/cheese-window.c:590 src/cheese-window.c:655
-#, fuzzy
-msgid "_Take a photo"
-msgstr "<b>Fer una fotografia</b>"
-
-#: src/cheese-window.c:616
-#, fuzzy
+#: ../src/cheese-window.c:803
 msgid "_Stop recording"
-msgstr "<b>_Parar de gravar</b>"
+msgstr "_Atura l'enregistrament"
 
-#: src/cheese-window.c:640
+#: ../src/cheese-window.c:829
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: src/cheese-window.c:641
+#: ../src/cheese-window.c:831
 msgid "_Edit"
-msgstr ""
+msgstr "_Edita"
 
-#: src/cheese-window.c:642
+#: ../src/cheese-window.c:832
+msgid "Move all to Trash"
+msgstr "Mou-ho tot a la paperera"
+
+#: ../src/cheese-window.c:834
 msgid "_Help"
 msgstr "_Ajuda"
 
-#: src/cheese-window.c:649
+#: ../src/cheese-window.c:837
+msgid "_Contents"
+msgstr "_Continguts"
+
+#: ../src/cheese-window.c:837
+msgid "Help on this application"
+msgstr "Ajuda sobre aquesta aplicació"
+
+#: ../src/cheese-window.c:852
 msgid "_Open"
-msgstr ""
+msgstr "_Obre"
 
-#: src/cheese-window.c:650
+#: ../src/cheese-window.c:853
 msgid "Save _As..."
-msgstr ""
+msgstr "_Anomena i desa..."
 
-#: src/cheese-window.c:651
-#, fuzzy
+#: ../src/cheese-window.c:854
 msgid "Move to _Trash"
-msgstr "Moure a la Paperera de Reciclatge"
+msgstr "Moure a la _paperera"
 
-#: src/cheese-window.c:659
-#, fuzzy
+#: ../src/cheese-window.c:862
+msgid "_Recording"
+msgstr "_Enregistrament"
+
+#: ../src/cheese-window.c:866
 msgid "_Set As Account Photo"
-msgstr "Establir com a Compte per a Fotografies"
+msgstr "_Estableix-la com a foto del compte"
 
-#: src/cheese-window.c:663
+#: ../src/cheese-window.c:870
 msgid "Send by _Mail"
-msgstr "Enviar per _Correu Electrònic"
+msgstr "Envia-la per _correu electrònic"
 
-#: src/cheese-window.c:667
+#: ../src/cheese-window.c:874
 msgid "Export to F-_Spot"
-msgstr "Exportar a F-_Spot"
+msgstr "Exporta-la a l'F-_Spot"
 
-#: src/cheese-window.c:671
+#: ../src/cheese-window.c:878
 msgid "Export to _Flickr"
-msgstr "Exportar a _Flickr"
+msgstr "Exporta-la al _Flickr"
+
+#: ../src/cheese.c:50
+msgid "Be verbose"
+msgstr "Sigues detallat"
+
+#: ../src/cheese.c:64
+msgid "- Take photos and videos from your webcam"
+msgstr "- Fes fotos i vídeos des de la càmera web"
+
+#~ msgid "A cheesy program to take photos from your webcam"
+#~ msgstr "Un programa per a fer fotos i vídeos amb la teva càmera web"
+
+#~ msgid "<b>_Take a photo</b>"
+#~ msgstr "<b>Fer una fotografia</b>"
+
+#, fuzzy
+#~ msgid "Cheese Camera"
+#~ msgstr "Cheese"
 
 #~ msgid "Unable to find a webcam, SORRY!"
-#~ msgstr "No s'ha pogut trobar la càmara web, HO SENTO!"
+#~ msgstr "No s'ha pogut trobar la càmara web."
 
 #~ msgid "Cheese!"
 #~ msgstr "Cheese!"
