@@ -1,3 +1,9 @@
+2008-01-12  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  v4lsrc does not have a queue-size property. Only set queue-size when 
+	  we have a v4l2src. Probably fixes #508912
+
 2008-01-11  daniel g. siegel <dgsiegel@gmail.com>
 
 	* data/effects/videoflip_h.png,
