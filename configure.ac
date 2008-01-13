@@ -77,6 +77,7 @@ AM_GCONF_SOURCE_2
 AC_OUTPUT([
 Makefile
 data/Makefile
+data/cheese.desktop.in
 data/effects/Makefile
 data/icons/Makefile
 data/icons/16x16/Makefile
