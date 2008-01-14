@@ -1,5 +1,10 @@
 2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
 
+	* src/cheese-webcam.c: 
+	  remove the queue-size=2, this should fix bug #507416 - iSight camera does not work in gstreamer
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
 	* configure.ac,
 	  wscript: 
 	  bump the version to 2.21.90
