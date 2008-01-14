@@ -5,7 +5,7 @@ Data_DATA =			\
 	shutter1.ogg  \
 	shutter2.ogg  \
 	shutter3.ogg  \
-	shutter3.ogg
+	shutter4.ogg
 
 EXTRA_DIST =			\
 	$(Data_DATA)
