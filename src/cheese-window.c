@@ -47,7 +47,7 @@
 
 #define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
 #define UI_FILE PACKAGE_DATADIR"/cheese-ui.xml"
-#define SHUTTER_SOUNDS 4
+#define SHUTTER_SOUNDS 5
 
 typedef enum
 {
@@ -140,7 +140,7 @@ static char *
 audio_play_get_filename (CheeseWindow *cheese_window)
 {
   char *filename;
-  if (cheese_window->audio_play_counter > 7)
+  if (cheese_window->audio_play_counter > 21)
    filename = g_strdup_printf ("%s/sounds/shutter%i.ogg", PACKAGE_DATADIR,
                                g_rand_int_range (cheese_window->rand, 1, SHUTTER_SOUNDS));
   else
@@ -1106,7 +1106,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                     "clicked", G_CALLBACK (cheese_window_effect_button_pressed_cb), cheese_window);
 
   g_signal_connect (cheese_window->thumb_view, "button_press_event",
-                          G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
+                    G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 }
 
 void
