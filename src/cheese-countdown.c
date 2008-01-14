@@ -50,7 +50,8 @@ typedef struct
 {
   gint iState;
   cairo_surface_t* pSurface;
-  t_cheese_countdown_cb callback;
+  cheese_countdown_cb_t picture_callback;
+  cheese_countdown_cb_t hide_callback;
   gpointer callback_data;
 } CheeseCountdownPrivate;
 
@@ -309,19 +310,19 @@ cheese_countdown_cb (gpointer countdown)
   else if (priv->iState == STATE_1)
   {
     priv->iState = STATE_SMILE;
-    if (priv->callback != NULL) (priv->callback)(priv->callback_data, FALSE);
+    if (priv->picture_callback != NULL) (priv->picture_callback)(priv->callback_data);
   }
   else if (priv->iState == STATE_SMILE)
   {
     priv->iState = STATE_OFF;
-    if (priv->callback != NULL) (priv->callback)(priv->callback_data, TRUE);
+    if (priv->hide_callback != NULL) (priv->hide_callback)(priv->callback_data);
     return FALSE;
   }
   return TRUE;
 }
 
 void
-cheese_countdown_start (CheeseCountdown *countdown, t_cheese_countdown_cb cb, gpointer data)
+cheese_countdown_start (CheeseCountdown *countdown, cheese_countdown_cb_t picture_cb, cheese_countdown_cb_t hide_cb, gpointer data)
 {
   CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
   if (priv->iState != STATE_OFF)
@@ -329,7 +330,8 @@ cheese_countdown_start (CheeseCountdown *countdown, t_cheese_countdown_cb cb, gp
     g_print ("Should not happen, state is not off.\n");
   }
   priv->iState = STATE_3;
-  priv->callback = cb;
+  priv->picture_callback = picture_cb;
+  priv->hide_callback = hide_cb;
   priv->callback_data = data;
   g_timeout_add_seconds (1, cheese_countdown_cb, (gpointer) countdown);
 }
@@ -357,7 +359,8 @@ cheese_countdown_init (CheeseCountdown *countdown)
   /* create/load svg-icon */
   priv->pSurface = create_surface_from_svg (PACKAGE_DATADIR "/pixmaps/camera-icon.svg");
   priv->iState = STATE_OFF;
-  priv->callback = NULL;
+  priv->picture_callback = NULL;
+  priv->hide_callback = NULL;
 
   g_signal_connect (G_OBJECT (countdown), "expose-event",
         G_CALLBACK (on_expose), NULL);

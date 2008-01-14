@@ -773,32 +773,32 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
 }
 
 void
-cheese_window_countdown_cb (gpointer data, gboolean hide)
+cheese_window_countdown_hide_cb (gpointer data)
 {
   CheeseWindow *cheese_window = (CheeseWindow *) data;
-  if (hide)
+  gtk_notebook_set_current_page(GTK_NOTEBOOK(cheese_window->notebook_bar), 0);
+}
+
+void
+cheese_window_countdown_picture_cb (gpointer data)
+{
+  CheeseWindow *cheese_window = (CheeseWindow *) data;
+  GError *error = NULL;
+  GstAudioPlay *audio_play;
+  char *file;
+
+  file = audio_play_get_filename (cheese_window);
+  audio_play = gst_audio_play_file (file, &error);
+  if (!audio_play) 
   {
-    gtk_notebook_set_current_page(GTK_NOTEBOOK(cheese_window->notebook_bar), 0);
+    g_warning (error ? error->message : "Unknown error");
+    g_clear_error (&error);
   }
-  else
-  {
-    GError *error = NULL;
-    GstAudioPlay *audio_play;
-    char *file;
 
-    file = audio_play_get_filename (cheese_window);
-    audio_play = gst_audio_play_file (file, &error);
-    if (!audio_play) 
-    {
-      g_warning (error ? error->message : "Unknown error");
-      g_clear_error (&error);
-    }
+  g_free (file);
 
-    g_free (file);
-
-    cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
-    cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
-  }
+  cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
+  cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
 }
 
 static void
@@ -808,7 +808,7 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
-    cheese_countdown_start((CheeseCountdown *) cheese_window->countdown, cheese_window_countdown_cb, (gpointer) cheese_window);
+    cheese_countdown_start((CheeseCountdown *) cheese_window->countdown, cheese_window_countdown_picture_cb, cheese_window_countdown_hide_cb, (gpointer) cheese_window);
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook_bar), 1);
 
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);

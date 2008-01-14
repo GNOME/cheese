@@ -40,12 +40,12 @@ typedef struct
   GtkDrawingAreaClass parent_class;
 } CheeseCountdownClass;
 
-typedef void (*t_cheese_countdown_cb) (gpointer data, gboolean hide);
+typedef void (* cheese_countdown_cb_t) (gpointer data);
 
 GType              cheese_countdown_get_type (void);
 GtkWidget         *cheese_countdown_new ();
 
-void cheese_countdown_start (CheeseCountdown *countdown, t_cheese_countdown_cb cb, gpointer data);
+void cheese_countdown_start (CheeseCountdown *countdown, cheese_countdown_cb_t picture_cb, cheese_countdown_cb_t hide_cb, gpointer data);
 
 G_END_DECLS
 
