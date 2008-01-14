@@ -15,8 +15,8 @@ obj.find_sources_in_dirs('.') # take the sources in the current folder
 obj.includes='.'
 obj.uselib='''GLIB GOBJECT GTK LIBGLADE GDK HAL
               GSTREAMER GSTREAMER_PLUGINS_BASE 
-              GNOME_VFS CAIRO LIBGNOMEUI LIBEBOOK
-              XXF86VM'''
+              GNOME_VFS CAIRO PANGOCAIRO LIBRSVG
+              LIBGNOMEUI LIBEBOOK XXF86VM'''
 
 obj.target='cheese'
 

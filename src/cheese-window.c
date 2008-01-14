@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
  * Copyright (C) 2007 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright (C) 2008 Patryk Zawadzki <patrys@pld-linux.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -35,13 +36,14 @@
 #include <libebook/e-book.h>
 #include <glade/glade.h>
 
+#include "cheese-countdown.h"
 #include "cheese-effect-chooser.h"
 #include "cheese-fileutil.h"
 #include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
 #include "cheese-window.h"
-#include "gst-audio-play.h"
 #include "ephy-spinner.h"
+#include "gst-audio-play.h"
 
 #define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
 #define UI_FILE PACKAGE_DATADIR"/cheese-ui.xml"
@@ -69,6 +71,7 @@ typedef struct
 
   GtkWidget *window;
   GtkWidget *notebook;
+  GtkWidget *notebook_bar;
 
   GtkWidget *main_vbox;
 
@@ -76,6 +79,8 @@ typedef struct
   GtkWidget *effect_chooser;
   GtkWidget *throbber_frame;
   GtkWidget *throbber;
+  GtkWidget *countdown_frame;
+  GtkWidget *countdown;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -767,18 +772,19 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
 
 }
 
-static void
-cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
+void
+cheese_window_countdown_cb (gpointer data, gboolean hide)
 {
-  char *str;
-
-  if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
+  CheeseWindow *cheese_window = (CheeseWindow *) data;
+  if (hide)
+  {
+    gtk_notebook_set_current_page(GTK_NOTEBOOK(cheese_window->notebook_bar), 0);
+  }
+  else
   {
     GError *error = NULL;
     GstAudioPlay *audio_play;
     char *file;
-
-    gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
 
     file = audio_play_get_filename (cheese_window);
     audio_play = gst_audio_play_file (file, &error);
@@ -792,6 +798,21 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
     cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
     cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
+  }
+}
+
+static void
+cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
+{
+  char *str;
+
+  if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
+  {
+    cheese_countdown_start((CheeseCountdown *) cheese_window->countdown, cheese_window_countdown_cb, (gpointer) cheese_window);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook_bar), 1);
+
+    gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
+    // FIXME: set menu inactive
   }
   else if (cheese_window->webcam_mode == WEBCAM_MODE_VIDEO)
   {
@@ -957,6 +978,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->label_video         = glade_xml_get_widget (gxml, "label_video");
   cheese_window->main_vbox           = glade_xml_get_widget (gxml, "main_vbox");
   cheese_window->notebook            = glade_xml_get_widget (gxml, "notebook");
+  cheese_window->notebook_bar        = glade_xml_get_widget (gxml, "notebook_bar");
   cheese_window->screen              = glade_xml_get_widget (gxml, "video_screen");
   cheese_window->take_picture        = glade_xml_get_widget (gxml, "take_picture");
 
@@ -970,9 +992,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_view);
 
   char *gconf_effects;
-  g_object_get (cheese_window->gconf,
-               "gconf_prop_selected_effects", &gconf_effects,
-               NULL);
+  g_object_get (cheese_window->gconf, "gconf_prop_selected_effects", &gconf_effects, NULL);
   cheese_window->effect_frame        = glade_xml_get_widget (gxml, "effect_frame");
   cheese_window->effect_chooser      = cheese_effect_chooser_new (gconf_effects);
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
@@ -983,6 +1003,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   ephy_spinner_set_size (EPHY_SPINNER (cheese_window->throbber), GTK_ICON_SIZE_DIALOG);
   gtk_container_add (GTK_CONTAINER (cheese_window->throbber_frame), cheese_window->throbber);
   gtk_widget_show (cheese_window->throbber);
+
+  cheese_window->countdown_frame      = glade_xml_get_widget (gxml, "countdown_frame");
+  cheese_window->countdown            = cheese_countdown_new ();
+  gtk_container_add (GTK_CONTAINER (cheese_window->countdown_frame), cheese_window->countdown);
+  gtk_widget_show (cheese_window->countdown);
 
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), TRUE);
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_video), FALSE);

@@ -30,7 +30,7 @@ obj.flags   = '-d'
 
 # data/effects
 install_files('PACKAGE_DATADIR', 'effects', 'effects/*.png')
-install_files('PACKAGE_DATADIR', 'pixmaps', 'pixmaps/thumbnail-frame.png')
+install_files('PACKAGE_DATADIR', 'pixmaps', 'pixmaps/*.png')
 
 # data/icons
 for i in ["16x16", "22x22", "24x24", "32x32", "48x48"]:

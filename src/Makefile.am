@@ -12,6 +12,8 @@ bin_PROGRAMS = cheese
 
 cheese_SOURCES = \
 	cheese.c \
+	cheese-countdown.c \
+	cheese-countdown.h \
 	cheese-effect-chooser.c \
 	cheese-effect-chooser.h \
 	cheese-fileutil.c \
