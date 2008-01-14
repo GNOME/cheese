@@ -4,6 +4,7 @@ Data_DATA =			\
 	shutter0.ogg  \
 	shutter1.ogg  \
 	shutter2.ogg  \
+	shutter3.ogg  \
 	shutter3.ogg
 
 EXTRA_DIST =			\

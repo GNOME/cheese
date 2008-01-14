@@ -1,8 +1,25 @@
 ChangeLog for Cheese
 --------------------
 
-version 0.3.0:
+version 2.21.5:
+	- version bump to follow the gnome release cycle
+	- add a stylish countdown widget by Mirco "MacSlow" Müller, courtesy of Patryk Zawadzki
+	- add X-GNOME-Bugzilla-* keys and validate .desktop file. fixes bug #508910, courtesy of Luca Ferretti
+	-	vertical and horizontal flip options were switched (again). fixes bug #479238, courtesy of Steve Magoun
+	- use the gst-player by Mathias Hasselman for playing the shutter sound
+	- removed color forcing. This has been fixed in gstreamer
+	- do not crash when trash directory is not present. fixes bug #507071
+	- make cheese build against uninstalled gstreamer. fixes bug #479259, courtesy of Tim Philip Müller
+	- added/updated translations
+		- et, courtesy of Ivar Smolin
+		- ja, courtesy of Takeshi Aihana
+		- ca, courtesy of Gil Forcada
+		- oc, courtesy of Yannig Marchegay    
+		- sv, courtesy of Daniel Nylander
+		- fr, courtesy of Robert-André Mauchin
+		- pt_BR, courtesy of Rodrigo Flores
 
+version 0.3.0:
 	- add a shutter sound, when taking a photo
 	- sort the thumbnail chronologically
 	- make the effect chooser look a bit nicer
