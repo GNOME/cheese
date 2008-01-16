@@ -6,7 +6,8 @@ DOC_ENTITIES = legal.xml
 DOC_INCLUDES = 
 
 DOC_FIGURES = \
-	figures/cheese-screenshot.jpg 
-
-DOC_LINGUAS = oc sv
+	figures/cheese-screenshot.jpg \ 
+	figures/cheese-effects-screenshot.png
+ 
+DOC_LINGUAS = es oc sv
 

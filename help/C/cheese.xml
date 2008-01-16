@@ -5,8 +5,8 @@
   <!ENTITY GFDL  SYSTEM "fdl-appendix.xml">
   <!ENTITY app "Cheese">
   <!ENTITY application "<application>&app;</application>">
-  <!ENTITY appversion "0.3">
-  <!ENTITY manrevision "0.3">
+  <!ENTITY appversion "2.22">
+  <!ENTITY manrevision "2.22">
 ]>
 <!--
       (Do not remove this comment block.)
@@ -48,7 +48,7 @@
      not specified, the publisher/author is the same for all versions of the
      document.  -->
     <publisher role="maintainer">
-      <publishername>daniel g. siegel</publishername>
+      <publishername>Joshua Henderson (joshhendo@gmail.com)</publishername>
     </publisher>
 
    &legal;
@@ -57,15 +57,15 @@
         any of this. -->
 
     <authorgroup>
-      <author role="maintainer">
-        <firstname>daniel</firstname>
-        <surname>siegel</surname>
-	<email>dgsiegel@gmail.com</email>
-      </author>
       <author>
         <firstname>Jaap</firstname>
         <surname>Haitsma</surname>
 	<email>jaap@haitsma.org</email>
+      </author>
+      <author>
+        <firstname>Joshua</firstname>
+        <surname>Henderson</surname>
+	<email>joshhendo@gmail.com</email>
       </author>
 
 <!-- This is appropriate place for other contributors: translators,
@@ -84,11 +84,24 @@
 
     <revhistory>
       <revision>
+      <revision>
         <revnumber>0.1</revnumber>
         <date>2007-12-04</date>
         <revdescription>
           <para role="author">Jaap A. Haitsma
             <email>jaap@haitsma.org</email>
+          </para>
+          <para role="publisher">Jaap A. Haitsma</para>
+        </revdescription>
+      </revision>
+        <revnumber>0.2</revnumber>
+        <date>2008-01-12</date>
+        <revdescription>
+          <para role="author">Jaap A. Haitsma
+            <email>jaap@haitsma.org</email>
+          </para>
+          <para role="author">Joshua Henderson
+            <email>joshhendo@gmail.com</email>
           </para>
           <para role="publisher">Jaap A. Haitsma</para>
         </revdescription>
@@ -136,6 +149,9 @@
 
 <section id="using">
   <title>Usage</title>
+  <para>
+    The main screen of &app; looks like the screen shot below
+  </para>
 
   <figure>
   <title>&app; screenshot</title>
@@ -148,42 +164,295 @@
     </screenshot>
   </figure>
 
-
   <para>
-  Describe usage here
-  </para>
-</section>
-
-<section id="preferences">
-  <title>Preferences</title>
-
-  <para>
-    Describe preferences overhere
+    &app; defaults to photo mode, and needs to be changed to video mode if
+    desired.
   </para>
 
-
-</section>
-
-
-
-<section id="faq">
-  <title>Frequently Asked Questions</title>
-  <para>
-    These are questions the mailing list gets asked frequently.
-  </para>
-  <section id="faq-supported-webcams">
-    <title>Which cameras are supported</title>
+  <section id="using-effects">
+    <title>Effects</title>
     <para>
-      Cheese uses gstreamer for video grabbing. So in principle cheese supports 
-      any camera that works with GStreamer. In principle that should be any camera
-      which support video4linux of video4linux2.
+      To apply effects to the input of your webcam, click
+      the button labelled Effects. When you go to the
+      effects window, you will see a window similar to the image below
+      <figure>
+        <title>&app; effects screenshot</title>
+        <screenshot>
+          <mediaobject>
+            <imageobject>
+              <imagedata fileref="figures/cheese-effects-screenshot.png" format="PNG"/>
+            </imageobject>
+          </mediaobject>
+       </screenshot>
+      </figure>
+
+    </para>
+    
+    <para>
+      You are able to select numerous effects to apply to your photo. To apply
+      an effect, just click on the name or image above, and the button will turn
+      to a blue shade. Selecting multiple effects will apply all the effects to
+      your image (for example, if you apply “Hulk” and “Horizontal Flip”, the
+      input from the webcam will be altered to have a green shade and be up side down).
+    </para>
+  </section>
+  
+  <section id="using-photomode">
+    <title>Photo Mode</title>
+    <para>
+      Photo mode is the default mode that &app; opens in. When not in photo mode,
+      click the button labelled “Photo” or press Alt – P to change to photo mode.
+      Photo mode will take a single photo every time the button labelled “Take a
+      photo” or the Spacebar is pressed, and will save to disk.
     </para>
   </section>
 
-  <section id="faq-webcam-not-working">
-    <title>Why is my camera not working?</title>
+  <section id="using-videomode">
+    <title>Video Mode</title>
     <para>
-       You most probably do not have the driver installed.
+      Video mode is a mode that allows you to take short videos using the webcam.
+      When not in video mode, click the button labelled “Video” or press Alt – V to
+      change to video mode. Video mode will start recording a video every time the
+      button labelled “Start Recording” or the Spacebar is pressed. The video will stop
+      recording and save to disk when the button labelled “Stop Recording”
+      or the Spacebar is pressed.
+    </para>
+
+    <para>
+      The video mode does look any different to the screen shot of photo mode,
+      except that the button labelled “Take a photo” will be either “Start Recording”
+      or “Stop Recording” (depends if you are currently recording or not),
+      and the button labelled “Video” is greyed out, whereas the button
+      labelled “Photo” is not.
+    </para>
+  </section>
+</section>
+
+<section id="working-with">
+  <title>Working with photos and videos</title>
+  <section id="takingaphoto">
+    <title>Taking a photo</title>
+    <para>
+      To take a photo in &app;, be sure to be in “Photo” mode. 
+    </para>
+
+    <para>
+      To take a photo, apply the effects that you wish by clicking the button
+      labelled “Effects”, click on the effects desired as described in a previous section
+      and press the button labelled “Back”. You should now have the effects that
+      you clicked on applied to the webcam input.
+    </para>
+
+    <para>
+      To take the photo, press the button labelled “Take a photo”. You will then
+      see &application; count down from 3. At the end of the count, your entire screen
+      will flash white, and the photo that was just taken will appear in the photo
+      stream at the bottom of the program window.
+    </para>
+  </section>
+
+  <section id="recordingavideo">
+    <title>Taking a video</title>
+    <para>
+      To take a video in &app;, make sure that the “Video” button has been pressed
+    </para>
+
+    <para>
+      To start recording a video, press the button labelled “Start Recording” or press the Spacebar.
+      The time of how much video has been recorded will appear in the bottom right
+      hand corner.
+    </para>
+
+    <note>
+      <para>
+        If your video appears to be jerky or have a low
+        frame rate (only updating the picture every few seconds), it is very likely
+        that the recording will not have this and have a more constant and higher
+        frame rate. To stop recording, press the button labelled “Stop Recording”.
+        The video recorded will appear in the photo stream at the bottom of the program.
+      </para>
+    </note>
+  </section>
+</section>
+
+<section id="sharing">
+  <title>Sharing Photos and Videos</title>
+  <section id="view">
+    <title>Viewing a photo or video</title>
+    <para>
+      To view a video or photo that has been taken, locate it in the photo stream and
+      double click on it. Alternatively, you can right click on it and select “Open”.
+      This will then open the file in the default application for that file type.
+    </para>
+  </section>
+
+  <section id="saving">
+    <title>Saving photos and videos to an alternate location</title>
+    <para>
+      To save a photo to an alternate place on your hard drive where you can easily
+      find them, fin the photo or video that you wish to save in the photo stream, right
+      click on it and select “Save As” from the pop-up menu. This will bring up a
+      standard “Save File” dialog that will allow you to rename the photo if desired
+      and save to any location you wish.
+    </para>
+  </section>
+
+  <section id="delete">
+    <title>Deleting a photo</title>
+    <para>
+      To delete a photo from the photo stream, locate the photo you wish to delete in
+      the photo stream, left click on it once and press the delete button on your
+      keyboard. Alternatively, you can right click on it and click “Delete”.
+    </para>
+
+    <para>
+      You will be prompted if you wish to delete it from the photo stream. To confirm,
+      press the button labelled “Move to Trash”.
+    </para>
+
+    <note>
+      <para>
+        This will only move the image to the trash/garbage bin, as well as remove from
+        your photo stream. This will not remove the photo from your computer. To remove
+        it from your trash, you will need to empty your trash.
+      </para>
+    </note>
+  </section>
+
+  <section id="email">
+    <title>Send a photo by e-mail</title>
+    <para>
+      Photos can be directly emailed from &app;. You will need to have the default mail
+      client set up with an email account, otherwise you will need to set one up. To email
+      a photo, locate the photo you wish to email in the photo stream, right click on
+      it and select “Send by Mail”.
+    </para>
+
+    <para>
+      This will open the default mail client (for example, Evolution) and a new email
+      message with the photo as an attachment.
+    </para>
+  </section>
+
+  <section id="account-photo">
+    <title>Set as Account Photo</title>
+    <para>
+      To set a photo as your account photo (which can be viewed from System -> Preferences
+      -> About Me, and which will also appear if the login window displays a list of
+      user names with photos), locate the photo that you wish to set in &app;, right click
+      on it and select “Set as Account Photo”
+    </para>
+  </section>
+
+  <section id="fspot">
+    <title>Export a photo to F-Spot</title>
+    <para>
+      To export a photo to F-Sport, locate the photo that you wish to export in your photo
+      stream, right click on it and select “Export to F-Spot”. You will then be prompted from
+      F-Spot if you wish to import the photos that are sent to it.
+    </para>
+
+    <note>
+      <para>
+        Depending on the version of &app; that you are currently using, F-Spot may prompt you
+        to import the entire photo stream.
+      </para>
+    </note>
+  </section>
+</section>
+
+<!--<section id="preferences">
+  <title>Preferences</title>
+
+  <para>
+    Describe preferences over here
+  </para>
+</section>-->
+
+<section id="faq">
+  <title>Frequently Asked Questions</title>
+  <!--<para>
+    These are questions the mailing list gets asked frequently.
+  </para>-->
+
+  <section id="faq-sluggish">
+    <title>The video is sluggish/has a slow response. What can I do?</title>
+    <para>
+      You may have set "ximagesink" ("X Window System (No Xv)") as video-output.
+      This means, that your cpu is doing all the work. Change it to "xvimagesink"
+      ("X Window System (X11/XShm/Xv)") in order to let your graphics card do the work.
+    </para>
+
+    <para>
+      To change the settings, run "gstreamer-properties", click the Video tab
+      and change the appropriate settings.
+    </para>
+  </section>
+
+  <section id="faq-mac">
+    <title>I have a Mac with iSight and a ATI graphics card, and the colors are weird.</title>
+    <para>
+      This is a problem with the ATI graphics card, though there is a work around.
+      Change the video-output to custom and insert the following: "ffmpegcolorspace !
+      video/x-raw-yuv,format=(fourcc)YV12 ! ffmpegcolorspace ! xvimagesink".
+    </para>
+
+    <para>
+      To change the settings, run "gstreamer-properties", click the Video tab
+      and select custom from the drop down menu.
+    </para>
+  </section>
+
+  <section id="faq-work-gstreamer">
+    <title>My webcam works with gstreamer, but does not work with &application;. What's wrong?</title>
+    <para>
+      Using "gstreamer-properties" mentioned in the above question, try changing from
+      xvimagesink to ximageskink or vice-versa. If this still does not work run "cheese --verbose" on
+      the command line and copy the logging into a bug report in our 
+      <ulink url="http://bugzilla.gnome.org/browse.cgi?product=cheese" type="http">
+      bug tracker</ulink>.
+    </para>
+  </section>
+
+  <section id="faq-work-other">
+    <title>My webcam works with other programs such as Ekiga, Camorama, but not with &application;. What's wrong?</title>
+    <para>
+      See if your webcam works when testing it in "gstreamer-properties". If it works
+      there, but not in &application;, please file a bug report in our 
+      <ulink url="http://bugzilla.gnome.org/browse.cgi?product=cheese" type="http">
+      bug tracker</ulink>.
+    </para>
+  </section>
+
+  <section id="faq-store">
+    <title>Where does &application; store my photos?</title>
+    <para>
+      Your photos are stored in ~/.gnome2/cheese/media. You can also save
+      them to an alternate location from within &app;. Please see the help
+      topic titled "Saving photos and videos to an alternate location" for
+      information on this.
+    </para>
+  </section>
+
+  <section id="faq-quickcam">
+    <title>My Quickcam Express doesn't work with &application;...</title>
+    <para>
+      or gstreamer, and I see errors like "Not enough buffers. We got 1, we
+      want at least 2" in the &application; output. With driver "qc-usb".
+    </para>
+
+    <para>
+      Try running "qcset /dev/video0 compat=dblbuf" to enable double buffer
+      compatibility mode, then restart &application;
+    </para>
+  </section>
+
+  <section id="faq-supported-webcams">
+    <title>Which cameras are supported</title>
+    <para>
+      &app; uses gstreamer for video grabbing. So in principle &app; supports 
+      any camera that works with GStreamer. In principle that should be any camera
+      which support video4linux of video4linux2.
     </para>
   </section>
 </section>
@@ -191,7 +460,9 @@
 <section id="about">
   <title>About</title>
   <para>
-    &app; was written by daniel g. siegel <email>dgsiegel@gmail.com</email>.
+    &app; was initially written by daniel g. siegel <email>dgsiegel@gmail.com</email>.
+    as a Google Summer of Code project. Later Jaap A. Haitsma <email>jaap@haitsma.org</email> and also 
+    others joined daniel in improving Cheese.
     To find more information about &app;, please visit the
     <ulink url="http://www.gnome.org/projects/cheese" type="http">
     &application; web page</ulink>.
