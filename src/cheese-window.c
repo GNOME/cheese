@@ -29,6 +29,7 @@
 #include <gdk/gdkkeysyms.h>
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <gio/gio.h>
 
 #include <gst/interfaces/xoverlay.h>
 #include <gtk/gtk.h>
@@ -275,59 +276,33 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
 
 
 static void
-cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, char *filename)
+cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 {
-  GnomeVFSURI *uri;
-  GnomeVFSURI *trash_dir;
-  GnomeVFSURI *trash_uri;
-  int result;
-  char *name;
+  GError *error;
+  GList *l;
+  gchar *primary, *secondary;
+  GtkWidget *error_dialog;
 
-  uri = gnome_vfs_uri_new (g_filename_to_uri (filename, NULL, NULL));
-  result = gnome_vfs_find_directory (uri, GNOME_VFS_DIRECTORY_KIND_TRASH,
-                                     &trash_dir, FALSE, FALSE, 0777);
-  if (result != GNOME_VFS_OK)
-  {
-    gnome_vfs_uri_unref (uri);
-    char *header;
-    GtkWidget *dlg;
+  for (l = files; l != NULL; l = l->next) {
+	error = NULL;
 
-    header = g_strdup_printf (_("Could not find the Trash"));
-    dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-                                  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                  GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, header);
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), gnome_vfs_result_to_string (result));
-    gtk_dialog_run (GTK_DIALOG (dlg));
-    gtk_widget_destroy (dlg);
-    g_free (header);
-    return;
-  }
+	if (!g_file_trash (l->data, NULL, &error)) {
+		primary = g_strdup (_("Cannot move file to trash"));
+		secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
+						g_file_get_basename (l->data), error->message);
 
-  name = gnome_vfs_uri_extract_short_name (uri);
-  trash_uri = gnome_vfs_uri_append_file_name (trash_dir, name);
-  g_free (name);
+		error_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
+						GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+						GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, primary);
+		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
+							 secondary);
+		gtk_dialog_run (GTK_DIALOG (error_dialog));
+		gtk_widget_destroy (error_dialog);
 
-  result = gnome_vfs_move_uri (uri, trash_uri, TRUE);
-
-  gnome_vfs_uri_unref (uri);
-  gnome_vfs_uri_unref (trash_uri);
-  gnome_vfs_uri_unref (trash_dir);
-
-  if (result != GNOME_VFS_OK)
-  {
-    char *header;
-    GtkWidget *dlg;
-    char *basename = g_path_get_basename (filename);
-
-    header = g_strdup_printf (_("Error on deleting %s"), basename);
-    g_free (basename);
-    dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-                                  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                  GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, header);
-    gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), gnome_vfs_result_to_string (result));
-    gtk_dialog_run (GTK_DIALOG (dlg));
-    gtk_widget_destroy (dlg);
-    g_free (header);
+		g_free (primary);
+		g_free (secondary);
+		/*TODO if we can't move files to trash, maybe we should try to delete them....*/
+	}
   }
 }
 
@@ -338,19 +313,21 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
   char *prompt;
   int response;
   char *filename;
+  GFile *file;
+  GList *files_list = NULL;
   GDir *dir;
   char *path;
   const char *name;
 
-  prompt = g_strdup_printf (_("Are you sure you want to move\nall media to the trash?"));
+  prompt = g_strdup_printf (_("Really move all photos and videos to the trash?"));
   dlg = gtk_message_dialog_new_with_markup (GTK_WINDOW (cheese_window->window),
                                             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                            GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
+                                            GTK_MESSAGE_WARNING, GTK_BUTTONS_NONE,
                                             "<span weight=\"bold\" size=\"larger\">%s</span>",
                                             prompt);
   g_free (prompt);
   gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-  gtk_dialog_add_button (GTK_DIALOG (dlg), _("Move to Trash"), GTK_RESPONSE_OK);
+  gtk_dialog_add_button (GTK_DIALOG (dlg), _("_Move to Trash"), GTK_RESPONSE_OK);
   gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_OK);
   gtk_window_set_title (GTK_WINDOW (dlg), "");
   gtk_widget_show_all (dlg);
@@ -368,46 +345,32 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
     if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX) || 
         g_str_has_suffix (name, VIDEO_NAME_SUFFIX))
     {
-      filename = g_strjoin ("/", path, name, NULL);
-      cheese_window_cmd_move_file_to_trash (cheese_window, filename);
+      filename = g_strjoin (G_DIR_SEPARATOR_S, path, name, NULL);
+      file = g_file_new_for_path (filename);
+
+      files_list = g_list_append (files_list, file);
       g_free (filename);
     }
   }
+  cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
+  g_list_free (files_list);
 }
 
 static void
 cheese_window_move_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_window)
 {
-  GtkWidget *dlg;
-  char *prompt;
-  int response;
-  char *filename, *basename;
+  char *filename;
+  GFile *file;
+  GList *files_list = NULL;
 
   filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
   g_return_if_fail (filename);
 
-  basename = g_path_get_basename (filename);
-  prompt = g_strdup_printf (_("Are you sure you want to move\n\"%s\" to the trash?"), basename);
-  g_free (basename);
-  dlg = gtk_message_dialog_new_with_markup (GTK_WINDOW (cheese_window->window),
-                                            GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                            GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
-                                            "<span weight=\"bold\" size=\"larger\">%s</span>",
-                                            prompt);
-  g_free (prompt);
-  gtk_dialog_add_button (GTK_DIALOG (dlg), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-  gtk_dialog_add_button (GTK_DIALOG (dlg), _("Move to Trash"), GTK_RESPONSE_OK);
-  gtk_dialog_set_default_response (GTK_DIALOG (dlg), GTK_RESPONSE_OK);
-  gtk_window_set_title (GTK_WINDOW (dlg), "");
-  gtk_widget_show_all (dlg);
+  file = g_file_new_for_path (filename);
 
-  response = gtk_dialog_run (GTK_DIALOG (dlg));
-  gtk_widget_destroy (dlg);
-
-  if (response !=  GTK_RESPONSE_OK)
-    return;
-
-  cheese_window_cmd_move_file_to_trash (cheese_window, filename);
+  files_list = g_list_append (files_list, file);
+  cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
+  g_list_free (files_list);
 }
 
 static void

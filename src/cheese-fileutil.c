@@ -30,11 +30,9 @@
 char *
 cheese_fileutil_get_media_path ()
 {
-  const char *home_dir;
   char *path;
 
-  home_dir = g_get_home_dir ();
-  path = g_strdup_printf ("%s/.gnome2/cheese/media", home_dir);
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", "media", NULL);
 
   return path;
 }

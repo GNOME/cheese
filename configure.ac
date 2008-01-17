@@ -34,7 +34,8 @@ GNOME_DOC_INIT
 # Check required libraries
 #*******************************************************************************
 
-GLIB_REQUIRED=2.10.0
+GLIB_REQUIRED=2.15.1
+GIO_REQUIRED=2.15.1
 GTK_REQUIRED=2.10.0
 LIBGLADE_REQUIRED=2.6.0
 LIBGNOMEUI_REQUIRED=2.14.0
@@ -51,6 +52,7 @@ PANGOCAIRO_REQUIRED=1.18.0
 
 PKG_CHECK_MODULES(CHEESE, \ 
   glib-2.0 >= $GLIB_REQUIRED \
+  gio-2.0 >= $GIO_REQUIRED \
   gtk+-2.0 >= $GTK_REQUIRED \
   libgnomeui-2.0 >= $LIBGNOMEUI_REQUIRED \
   libglade-2.0 >= $LIBGLADE_REQUIRED \
