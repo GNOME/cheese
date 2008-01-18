@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: cheese trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-15 15:21+0000\n"
-"PO-Revision-Date: 2008-01-16 11:45+0800\n"
+"PO-Revision-Date: 2008-01-18 21:37+0800\n"
 "Last-Translator: YangZhang <zyangmath@gmail.com>\n"
 "Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:594
 msgid "A cheesy program to take photos and videos from your webcam"
-msgstr ""
+msgstr "一个用您的摄像头拍照和录像的小程序"
 
 #: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
 #: ../src/cheese.c:62
@@ -49,94 +49,99 @@ msgid ""
 "Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
 "Vertigo, Edge, Dice and Warp"
 msgstr ""
+"在启动时应用的特将。可选择的值有：Mauve、Noir/Blanc、Saturation、Hulk、"
+"Vertical Flip、Horizontal Flip、Shagadelic、Vertigo、Edge、Dice 和 Warp"
 
 #: ../data/cheese.schemas.in.h:2
 msgid "Selected Effects"
-msgstr ""
+msgstr "选择的特效"
 
 #: ../data/cheese.schemas.in.h:3
 msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr ""
+msgstr "摄像头对应的设备字符串，如 /dev/video0"
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Use a countdown"
-msgstr ""
+msgstr "使用倒计时"
 
 #: ../data/cheese.schemas.in.h:5
 msgid "Webcam device string indicator"
-msgstr ""
+msgstr "摄像头设备字符串指示器"
 
 #: ../data/cheese.schemas.in.h:6
 msgid "Whether a countdown should be used, when taking a photo"
-msgstr ""
+msgstr "在拍照时是否使用倒计时"
 
 #: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
-msgstr ""
+msgstr "无特效"
 
 #: ../src/cheese-effect-chooser.c:63
 msgid "Mauve"
-msgstr ""
+msgstr "紫红"
 
 #: ../src/cheese-effect-chooser.c:65
 msgid "Noir/Blanc"
-msgstr ""
+msgstr "黑白"
 
 #: ../src/cheese-effect-chooser.c:67
 msgid "Saturation"
-msgstr ""
+msgstr "饱和"
 
 #: ../src/cheese-effect-chooser.c:69
+#, fuzzy
 msgid "Hulk"
-msgstr ""
+msgstr "笨重"
 
 #: ../src/cheese-effect-chooser.c:71
 msgid "Vertical Flip"
-msgstr ""
+msgstr "垂直翻转"
 
 #: ../src/cheese-effect-chooser.c:73
 msgid "Horizontal Flip"
-msgstr ""
+msgstr "水平翻转"
 
 #: ../src/cheese-effect-chooser.c:75
+#, fuzzy
 msgid "Shagadelic"
-msgstr ""
+msgstr "Shagadelic"
 
 #: ../src/cheese-effect-chooser.c:77
 msgid "Vertigo"
-msgstr ""
+msgstr "眩晕"
 
 #: ../src/cheese-effect-chooser.c:79
 msgid "Edge"
-msgstr ""
+msgstr "锐化"
 
 #: ../src/cheese-effect-chooser.c:81
 msgid "Dice"
-msgstr ""
+msgstr "方块"
 
 #: ../src/cheese-effect-chooser.c:83
 msgid "Warp"
-msgstr ""
+msgstr "扭曲"
 
 #: ../src/cheese-window.c:261
 #, c-format
 msgid "Could not save %s"
-msgstr ""
+msgstr "无法保存 %s"
 
 #: ../src/cheese-window.c:295
 msgid "Could not find the Trash"
-msgstr ""
+msgstr "找不到回收站"
 
 #: ../src/cheese-window.c:322
 #, c-format
 msgid "Error on deleting %s"
-msgstr ""
+msgstr "删除 %s 出错"
 
 #: ../src/cheese-window.c:345
 msgid ""
 "Are you sure you want to move\n"
 "all media to the trash?"
 msgstr ""
+"您确定要将所有媒体移动到回收站吗？"
 
 #: ../src/cheese-window.c:353 ../src/cheese-window.c:399
 msgid "Move to Trash"
@@ -148,10 +153,11 @@ msgid ""
 "Are you sure you want to move\n"
 "\"%s\" to the trash?"
 msgstr ""
+"您确定要将“%s”移动到回收站吗？"
 
 #: ../src/cheese-window.c:453
 msgid "Could not set the Account Photo"
-msgstr ""
+msgstr "无法设置为帐户照片"
 
 #: ../src/cheese-window.c:571
 msgid "translator-credits"
@@ -164,6 +170,9 @@ msgid ""
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
 msgstr ""
+"此程序是自由软件；您能在自由软件基金会发布的 GNU 通用"
+"公共许可证的条目下重新发布或修改它；许可证采用第二版本"
+"或其后的版本。\n"
 
 #: ../src/cheese-window.c:578
 msgid ""
@@ -172,12 +181,16 @@ msgid ""
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
 msgstr ""
+"此程序发布的目的是希望它对您有用，但没有任何担保，即使是对商业"
+"应用或其它任何目的。参见 GNU 通用公共许可证以获得更多细节。\n"
 
 #: ../src/cheese-window.c:582
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
+"您应该在收到此程序的同时收到了一份 GNU 通用公共许可证的副本。"
+"如果没有，参见<http://www.gnu.org/licenses/>。"
 
 #: ../src/cheese-window.c:598
 msgid "Cheese Website"
@@ -185,7 +198,7 @@ msgstr "Cheese 网站"
 
 #: ../src/cheese-window.c:687
 msgid "_Back"
-msgstr ""
+msgstr "后退(_B)"
 
 #: ../src/cheese-window.c:754 ../src/cheese-window.c:839
 msgid "_Start recording"
@@ -205,7 +218,7 @@ msgstr "编辑(_E)"
 
 #: ../src/cheese-window.c:853
 msgid "Move all to Trash"
-msgstr ""
+msgstr "全部移动到回收站"
 
 #: ../src/cheese-window.c:855
 msgid "_Help"
