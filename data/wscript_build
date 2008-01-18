@@ -9,11 +9,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
+import misc
 
 install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
 install_files('PACKAGE_DATADIR', '', 'cheese.glade')
 
-# process .in files with intl_tool
+# process schemas.in file
 obj=bld.create_obj('intltool_in')
 obj.source  = 'cheese.schemas.in'
 obj.destvar = 'PREFIX'
@@ -21,6 +22,16 @@ obj.subdir  = 'etc/gconf/schemas'
 obj.podir   = '../po'
 obj.flags   = '-s'
 
+# process desktop.in.in file
+VERSION = Params.g_build.m_allenvs['default']['VERSION']
+obj = bld.create_obj('subst')
+obj.source = 'cheese.desktop.in.in'
+obj.target = 'cheese.desktop.in'
+obj.dict = {'VERSION': VERSION}
+obj.fun = misc.subst_func
+obj.prio = 1 # make sure that we run before intltool_in which processes desktop.in file
+
+# process desktop.in file
 obj=bld.create_obj('intltool_in')
 obj.source  = 'cheese.desktop.in'
 obj.destvar = 'PREFIX'
@@ -34,7 +45,8 @@ install_files('PACKAGE_DATADIR', 'pixmaps', 'pixmaps/*.png')
 
 # data/icons
 for i in ["16x16", "22x22", "24x24", "32x32", "48x48"]:
-  install_files('DATADIR', 'icons/hicolor/%s/apps' % i, 'icons/%s/cheese.png' % i)
+	install_files('DATADIR', 'icons/hicolor/%s/apps' % i, 'icons/%s/cheese.png' % i)
+
 install_files('DATADIR', 'icons/hicolor/scalable/apps', 'icons/scalable/cheese.svg')
 
 # data/sounds

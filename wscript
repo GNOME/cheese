@@ -12,7 +12,7 @@
 
 import os, sys
 # waf imports
-import Common, Params, gnome, intltool
+import Common, Params, gnome, intltool, misc
 
 # the following two variables are used by the target "waf dist"
 VERSION='2.21.90'
@@ -31,7 +31,7 @@ def configure(conf):
 	if Params.g_options.advices:
 		check_cheese_build_consistency()
 
-	conf.check_tool('gcc gnome intltool')
+	conf.check_tool('gcc gnome intltool misc')
 
 	conf.check_pkg('gobject-2.0', destvar='GOBJECT', vnum='2.12.0', mandatory=True)
 	conf.check_pkg('glib-2.0', destvar='GLIB', vnum='2.15.1', mandatory=True)
