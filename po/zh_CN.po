@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese trunk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-15 15:21+0000\n"
-"PO-Revision-Date: 2008-01-18 21:37+0800\n"
+"POT-Creation-Date: 2008-01-18 13:37+0000\n"
+"PO-Revision-Date: 2008-01-18 21:52+0800\n"
 "Last-Translator: YangZhang <zyangmath@gmail.com>\n"
 "Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:594
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:557
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "一个用您的摄像头拍照和录像的小程序"
 
@@ -25,21 +25,21 @@ msgstr "一个用您的摄像头拍照和录像的小程序"
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:676
-#: ../src/cheese-window.c:864
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:639
+#: ../src/cheese-window.c:827
 msgid "_Effects"
 msgstr "特效(_E)"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:868
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:831
 msgid "_Photo"
 msgstr "照片(_P)"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:764
-#: ../src/cheese-window.c:879 ../src/cheese-window.c:985
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:727
+#: ../src/cheese-window.c:842 ../src/cheese-window.c:948
 msgid "_Take a photo"
 msgstr "拍照(_T)"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:869
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:832
 msgid "_Video"
 msgstr "视频(_V)"
 
@@ -122,145 +122,133 @@ msgstr "方块"
 msgid "Warp"
 msgstr "扭曲"
 
-#: ../src/cheese-window.c:261
+#: ../src/cheese-window.c:262
 #, c-format
 msgid "Could not save %s"
 msgstr "无法保存 %s"
 
-#: ../src/cheese-window.c:295
-msgid "Could not find the Trash"
-msgstr "找不到回收站"
+#: ../src/cheese-window.c:290
+msgid "Cannot move file to trash"
+msgstr "无法移动文件到回收站"
+
+#: ../src/cheese-window.c:291
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "无法移动文件“%s”到回收站。细节：%s"
 
 #: ../src/cheese-window.c:322
-#, c-format
-msgid "Error on deleting %s"
-msgstr "删除 %s 出错"
+msgid "Really move all photos and videos to the trash?"
+msgstr "真的要将所有照片和视频移动到回收站吗？"
 
-#: ../src/cheese-window.c:345
-msgid ""
-"Are you sure you want to move\n"
-"all media to the trash?"
-msgstr ""
-"您确定要将所有媒体移动到回收站吗？"
+#: ../src/cheese-window.c:330
+msgid "_Move to Trash"
+msgstr "移动到回收站(_M)"
 
-#: ../src/cheese-window.c:353 ../src/cheese-window.c:399
-msgid "Move to Trash"
-msgstr "移动到回收站"
-
-#: ../src/cheese-window.c:390
-#, c-format
-msgid ""
-"Are you sure you want to move\n"
-"\"%s\" to the trash?"
-msgstr ""
-"您确定要将“%s”移动到回收站吗？"
-
-#: ../src/cheese-window.c:453
+#: ../src/cheese-window.c:416
 msgid "Could not set the Account Photo"
 msgstr "无法设置为帐户照片"
 
-#: ../src/cheese-window.c:571
+#: ../src/cheese-window.c:534
 msgid "translator-credits"
 msgstr "YangZhang <zyangmath@gmail.com>, 2008"
 
-#: ../src/cheese-window.c:574
+#: ../src/cheese-window.c:537
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
 msgstr ""
-"此程序是自由软件；您能在自由软件基金会发布的 GNU 通用"
-"公共许可证的条目下重新发布或修改它；许可证采用第二版本"
-"或其后的版本。\n"
+"此程序是自由软件；您能在自由软件基金会发布的 GNU 通用公共许可证的条目下重新发"
+"布或修改它；许可证采用第二版本或其后的版本。\n"
 
-#: ../src/cheese-window.c:578
+#: ../src/cheese-window.c:541
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
 msgstr ""
-"此程序发布的目的是希望它对您有用，但没有任何担保，即使是对商业"
-"应用或其它任何目的。参见 GNU 通用公共许可证以获得更多细节。\n"
+"此程序发布的目的是希望它对您有用，但没有任何担保，即使是对商业应用或其它任何"
+"目的。参见 GNU 通用公共许可证以获得更多细节。\n"
 
-#: ../src/cheese-window.c:582
+#: ../src/cheese-window.c:545
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"您应该在收到此程序的同时收到了一份 GNU 通用公共许可证的副本。"
-"如果没有，参见<http://www.gnu.org/licenses/>。"
+"您应该在收到此程序的同时收到了一份 GNU 通用公共许可证的副本。如果没有，参见"
+"<http://www.gnu.org/licenses/>。"
 
-#: ../src/cheese-window.c:598
+#: ../src/cheese-window.c:561
 msgid "Cheese Website"
 msgstr "Cheese 网站"
 
-#: ../src/cheese-window.c:687
+#: ../src/cheese-window.c:650
 msgid "_Back"
 msgstr "后退(_B)"
 
-#: ../src/cheese-window.c:754 ../src/cheese-window.c:839
+#: ../src/cheese-window.c:717 ../src/cheese-window.c:802
 msgid "_Start recording"
 msgstr "开始录像(_S)"
 
-#: ../src/cheese-window.c:824
+#: ../src/cheese-window.c:787
 msgid "_Stop recording"
 msgstr "停止录像(_S)"
 
-#: ../src/cheese-window.c:850
+#: ../src/cheese-window.c:813
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:852
+#: ../src/cheese-window.c:815
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/cheese-window.c:853
+#: ../src/cheese-window.c:816
 msgid "Move all to Trash"
 msgstr "全部移动到回收站"
 
-#: ../src/cheese-window.c:855
+#: ../src/cheese-window.c:818
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/cheese-window.c:858
+#: ../src/cheese-window.c:821
 msgid "_Contents"
 msgstr "目录(_C)"
 
-#: ../src/cheese-window.c:858
+#: ../src/cheese-window.c:821
 msgid "Help on this application"
 msgstr "关于此应用程序的帮助"
 
-#: ../src/cheese-window.c:873
+#: ../src/cheese-window.c:836
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: ../src/cheese-window.c:874
+#: ../src/cheese-window.c:837
 msgid "Save _As..."
 msgstr "另存为(_A)..."
 
-#: ../src/cheese-window.c:875
+#: ../src/cheese-window.c:838
 msgid "Move to _Trash"
 msgstr "移动到回收站(_T)"
 
-#: ../src/cheese-window.c:883
+#: ../src/cheese-window.c:846
 msgid "_Recording"
 msgstr "录像(_R)"
 
-#: ../src/cheese-window.c:887
+#: ../src/cheese-window.c:850
 msgid "_Set As Account Photo"
 msgstr "设置为帐户照片(_S)"
 
-#: ../src/cheese-window.c:891
+#: ../src/cheese-window.c:854
 msgid "Send by _Mail"
 msgstr "以邮件发送(_M)"
 
-#: ../src/cheese-window.c:895
+#: ../src/cheese-window.c:858
 msgid "Export to F-_Spot"
 msgstr "输出到 F-_Spot"
 
-#: ../src/cheese-window.c:899
+#: ../src/cheese-window.c:862
 msgid "Export to _Flickr"
 msgstr "输出到 _Flickr"
 
@@ -271,3 +259,4 @@ msgstr "显示详细信息"
 #: ../src/cheese.c:64
 msgid "- Take photos and videos from your webcam"
 msgstr "- 用您的摄像头拍照或录像"
+
