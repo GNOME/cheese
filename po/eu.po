@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-15 16:23+0100\n"
-"PO-Revision-Date: 2008-01-15 16:19+0100\n"
+"POT-Creation-Date: 2008-01-18 18:05+0100\n"
+"PO-Revision-Date: 2008-01-18 18:06+0100\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:594
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:557
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Cheese programa web kameratik argazkiak eta bideoak hartzeko"
 
@@ -26,21 +26,21 @@ msgstr "Cheese programa web kameratik argazkiak eta bideoak hartzeko"
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:676
-#: ../src/cheese-window.c:864
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:639
+#: ../src/cheese-window.c:827
 msgid "_Effects"
 msgstr "_Efektuak"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:868
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:831
 msgid "_Photo"
 msgstr "_Argazkia"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:764
-#: ../src/cheese-window.c:879 ../src/cheese-window.c:985
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:727
+#: ../src/cheese-window.c:842 ../src/cheese-window.c:948
 msgid "_Take a photo"
 msgstr "_Hartu argazki bat"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:869
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:832
 msgid "_Video"
 msgstr "_Bideoa"
 
@@ -124,50 +124,37 @@ msgstr "Dadoak"
 msgid "Warp"
 msgstr "Okertu"
 
-#: ../src/cheese-window.c:261
+#: ../src/cheese-window.c:262
 #, c-format
 msgid "Could not save %s"
 msgstr "Ezin izan da %s gorde"
 
-#: ../src/cheese-window.c:295
-msgid "Could not find the Trash"
-msgstr "Ezin izan da Zakarrontzia aurkitu"
+#: ../src/cheese-window.c:290
+msgid "Cannot move file to trash"
+msgstr "Ezin da fitxategia zakarrontzira bota"
+
+#: ../src/cheese-window.c:291
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "\"%s\" fitxategia ezin da zakarrontzira bota. Xehetasunak: %s"
 
 #: ../src/cheese-window.c:322
-#, c-format
-msgid "Error on deleting %s"
-msgstr "Errorea %s ezabatzean"
+msgid "Really move all photos and videos to the trash?"
+msgstr "Ziur zaude argazki eta bideo guztiak zakarrontzira bota nahi dituzula?"
 
-#: ../src/cheese-window.c:345
-msgid ""
-"Are you sure you want to move\n"
-"all media to the trash?"
-msgstr ""
-"Ziur zaude euskarri guztiak\n"
-"zakarrontzira botatzea nahi duzula?"
+#: ../src/cheese-window.c:330
+msgid "_Move to Trash"
+msgstr "_Bota zakarrontzira"
 
-#: ../src/cheese-window.c:353 ../src/cheese-window.c:399
-msgid "Move to Trash"
-msgstr "Bota zakarrontzira"
-
-#: ../src/cheese-window.c:390
-#, c-format
-msgid ""
-"Are you sure you want to move\n"
-"\"%s\" to the trash?"
-msgstr ""
-"Ziur zaude \"%s\"\n"
-"zakarrontzira botatzea nahi duzula?"
-
-#: ../src/cheese-window.c:453
+#: ../src/cheese-window.c:416
 msgid "Could not set the Account Photo"
 msgstr "Ezin izan da argazkien kontua konfiguratu"
 
-#: ../src/cheese-window.c:571
+#: ../src/cheese-window.c:534
 msgid "translator-credits"
 msgstr "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
 
-#: ../src/cheese-window.c:574
+#: ../src/cheese-window.c:537
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -178,7 +165,7 @@ msgstr ""
 "Foundation-ek argitaratutako GNU Lizentzia Publiko Orokorraren 2. bertsioan, "
 "edo (nahiago baduzu) beste berriago batean, jasotako baldintzak betez gero.\n"
 
-#: ../src/cheese-window.c:578
+#: ../src/cheese-window.c:541
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -190,7 +177,7 @@ msgstr ""
 "MERKATURATZEKO edo HELBURU PARTIKULARRETARAKO ERABILTZEKO. Argibide gehiago "
 "nahi izanez gero, ikus GNU Lizentzia Publiko Orokorra.\n"
 
-#: ../src/cheese-window.c:582
+#: ../src/cheese-window.c:545
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -198,75 +185,75 @@ msgstr ""
 "Programa honekin batera GNU Lizentzia Publiko Orokorraren kopia bat jasoko "
 "zenuen. Bestela, ikusi <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:598
+#: ../src/cheese-window.c:561
 msgid "Cheese Website"
 msgstr "Cheese-ren web gunea"
 
-#: ../src/cheese-window.c:687
+#: ../src/cheese-window.c:650
 msgid "_Back"
 msgstr "_Atzera"
 
-#: ../src/cheese-window.c:754 ../src/cheese-window.c:839
+#: ../src/cheese-window.c:717 ../src/cheese-window.c:802
 msgid "_Start recording"
 msgstr "_Hasi grabazioa"
 
-#: ../src/cheese-window.c:824
+#: ../src/cheese-window.c:787
 msgid "_Stop recording"
 msgstr "_Utzi grabatzeari"
 
-#: ../src/cheese-window.c:850
+#: ../src/cheese-window.c:813
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:852
+#: ../src/cheese-window.c:815
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: ../src/cheese-window.c:853
+#: ../src/cheese-window.c:816
 msgid "Move all to Trash"
 msgstr "Bota denak zakarrontzira"
 
-#: ../src/cheese-window.c:855
+#: ../src/cheese-window.c:818
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: ../src/cheese-window.c:858
+#: ../src/cheese-window.c:821
 msgid "_Contents"
 msgstr "_Edukia"
 
-#: ../src/cheese-window.c:858
+#: ../src/cheese-window.c:821
 msgid "Help on this application"
 msgstr "Aplikazioaren laguntza"
 
-#: ../src/cheese-window.c:873
+#: ../src/cheese-window.c:836
 msgid "_Open"
 msgstr "_Ireki"
 
-#: ../src/cheese-window.c:874
+#: ../src/cheese-window.c:837
 msgid "Save _As..."
 msgstr "Gorde _honela..."
 
-#: ../src/cheese-window.c:875
+#: ../src/cheese-window.c:838
 msgid "Move to _Trash"
 msgstr "Bota _zakarrontzira"
 
-#: ../src/cheese-window.c:883
+#: ../src/cheese-window.c:846
 msgid "_Recording"
 msgstr "_Grabazioa"
 
-#: ../src/cheese-window.c:887
+#: ../src/cheese-window.c:850
 msgid "_Set As Account Photo"
 msgstr "_Ezarri argazki-kontu gisa"
 
-#: ../src/cheese-window.c:891
+#: ../src/cheese-window.c:854
 msgid "Send by _Mail"
 msgstr "Bidali posta _elektronikoz"
 
-#: ../src/cheese-window.c:895
+#: ../src/cheese-window.c:858
 msgid "Export to F-_Spot"
 msgstr "Esportatu 'F-_Spot'-era"
 
-#: ../src/cheese-window.c:899
+#: ../src/cheese-window.c:862
 msgid "Export to _Flickr"
 msgstr "Esportatu '_Flickr'-ra"
 
