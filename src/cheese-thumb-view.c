@@ -110,6 +110,10 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, char *filename)
       return;
     }
   }
+  gnome_vfs_file_info_unref(file_info);
+  g_object_unref (factory);
+  g_free(thumb_loc);
+  g_free(uri);
 
   eog_thumbnail_add_frame (&pixbuf);
 
@@ -143,6 +147,7 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, char *filename)
         break;
     }
   }
+  g_free(path);
 
   gtk_list_store_remove (priv->store, &iter);
 }

@@ -178,6 +178,7 @@ cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
   gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
 }
 
+
 static void
 cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
 {
@@ -185,7 +186,16 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_object_unref (cheese_window->webcam);
   g_object_unref (cheese_window->actions_main);
   g_object_unref (cheese_window->actions_photo);
+  g_object_unref (cheese_window->actions_mail);
+  g_object_unref (cheese_window->actions_toggle);
+  g_object_unref (cheese_window->actions_effects);
+  g_object_unref (cheese_window->actions_file);
+  g_object_unref (cheese_window->actions_video);
+  g_object_unref (cheese_window->actions_account_photo);
+  g_object_unref (cheese_window->actions_fspot);
+  g_object_unref (cheese_window->actions_flickr);
   g_object_unref (cheese_window->ui_manager);
+
   g_free (cheese_window);
   gtk_main_quit ();
 }
@@ -270,10 +280,11 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
       gtk_widget_destroy (dlg);
       g_free (header);
     }
+    g_free(target_filename);
   }
+  g_free(filename);
   gtk_widget_destroy (dialog);
 }
-
 
 static void
 cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
@@ -284,25 +295,24 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
   GtkWidget *error_dialog;
 
   for (l = files; l != NULL; l = l->next) {
-	error = NULL;
+    if (!g_file_trash (l->data, NULL, &error)) {
+      primary = g_strdup (_("Cannot move file to trash"));
+      secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
+				   g_file_get_basename (l->data), error->message);
 
-	if (!g_file_trash (l->data, NULL, &error)) {
-		primary = g_strdup (_("Cannot move file to trash"));
-		secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
-						g_file_get_basename (l->data), error->message);
+      error_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
+ 					     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+				             GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, primary);
+      gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
+					        secondary);
+      gtk_dialog_run (GTK_DIALOG (error_dialog));
+      gtk_widget_destroy (error_dialog);
 
-		error_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-						GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-						GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, primary);
-		gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
-							 secondary);
-		gtk_dialog_run (GTK_DIALOG (error_dialog));
-		gtk_widget_destroy (error_dialog);
-
-		g_free (primary);
-		g_free (secondary);
-		/*TODO if we can't move files to trash, maybe we should try to delete them....*/
-	}
+      g_free (primary);
+      g_free (secondary);
+      g_error_free(error);
+      /*TODO if we can't move files to trash, maybe we should try to delete them....*/
+    }
   }
 }
 
@@ -354,6 +364,7 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
   }
   cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
   g_list_free (files_list);
+  g_dir_close(dir);
 }
 
 static void
@@ -367,6 +378,7 @@ cheese_window_move_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_windo
   g_return_if_fail (filename);
 
   file = g_file_new_for_path (filename);
+  g_free(filename);
 
   files_list = g_list_append (files_list, file);
   cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
@@ -421,12 +433,15 @@ cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_wi
         gtk_dialog_run (GTK_DIALOG (dlg));
         gtk_widget_destroy (dlg);
         g_free (header);
+        g_error_free (error);
       }
       g_free (*data);
     }
+    g_free(filename);
     g_object_unref (pixbuf);
   }
 }
+
 
 static void
 cheese_window_cmd_command_line (GtkAction *action, CheeseWindow *cheese_window)
@@ -755,7 +770,7 @@ cheese_window_countdown_picture_cb (gpointer data)
   if (!audio_play) 
   {
     g_warning (error ? error->message : "Unknown error");
-    g_clear_error (&error);
+    g_error_free (error);
   }
 
   g_free (file);

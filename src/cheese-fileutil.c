@@ -61,6 +61,7 @@ cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
           filename_num = num;
       }
     }
+    g_dir_close(dir); 
   }
   filename_num++;
 

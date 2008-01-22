@@ -250,6 +250,7 @@ create_surface_from_svg (gchar* pcFilename)
   if (!pSvgHandle)
   {
     g_print ("Could not load file %s!\n", pcFilename);
+    g_error_free(pError);
     return NULL;
   }
 
@@ -294,30 +295,33 @@ static gboolean
 cheese_countdown_cb (gpointer countdown)
 {
   CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
-  if (priv->iState == STATE_OFF)
+
+  switch (priv->iState)
   {
-    // should just ignore it, testing purposes
-    g_print("Should not happen, unitialized state in countdown handler\n");
+    case STATE_OFF:
+      // should just ignore it, testing purposes
+      g_print("Should not happen, unitialized state in countdown handler\n");
+      break;
+
+    case STATE_3:
+      priv->iState = STATE_2;
+      break;
+
+    case STATE_2:
+      priv->iState = STATE_1;
+      break;
+
+    case STATE_1:
+      priv->iState = STATE_SMILE;
+      if (priv->picture_callback != NULL) (priv->picture_callback)(priv->callback_data);
+      break;
+
+    case STATE_SMILE:
+      priv->iState = STATE_OFF;
+      if (priv->hide_callback != NULL) (priv->hide_callback)(priv->callback_data);
+      return FALSE;
   }
-  else if (priv->iState == STATE_3)
-  {
-    priv->iState = STATE_2;
-  }
-  else if (priv->iState == STATE_2)
-  {
-    priv->iState = STATE_1;
-  }
-  else if (priv->iState == STATE_1)
-  {
-    priv->iState = STATE_SMILE;
-    if (priv->picture_callback != NULL) (priv->picture_callback)(priv->callback_data);
-  }
-  else if (priv->iState == STATE_SMILE)
-  {
-    priv->iState = STATE_OFF;
-    if (priv->hide_callback != NULL) (priv->hide_callback)(priv->callback_data);
-    return FALSE;
-  }
+
   return TRUE;
 }
 

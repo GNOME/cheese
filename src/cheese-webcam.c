@@ -909,6 +909,7 @@ cheese_webcam_set_effect (CheeseWebcam *webcam, CheeseWebcamEffect effect)
   effect_filter = gst_parse_bin_from_description (effects_pipeline_desc, TRUE, &err);
   if (!effect_filter || (err != NULL))
   {
+    g_error_free(err);
     g_error ("ERROR effect_filter\n");
   }
   cheese_webcam_change_effect_filter (webcam, effect_filter);
