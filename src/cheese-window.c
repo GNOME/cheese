@@ -1072,11 +1072,33 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                     G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 }
 
+void 
+setup_camera (CheeseWindow *cheese_window)
+{
+  char *webcam_device = NULL;
+
+  g_object_get (cheese_window->gconf, "gconf_prop_webcam", &webcam_device, NULL);
+
+  cheese_window->webcam = cheese_webcam_new (cheese_window->screen, webcam_device);
+  g_free (webcam_device);
+
+  g_signal_connect (cheese_window->webcam, "photo-saved",
+                    G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);
+  g_signal_connect (cheese_window->webcam, "video-saved",
+                    G_CALLBACK (cheese_window_video_saved_cb), cheese_window);
+
+  cheese_webcam_set_effect (cheese_window->webcam, 
+                            cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
+
+  cheese_webcam_play (cheese_window->webcam);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
+  ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
+}
+
 void
 cheese_window_init ()
 {
   CheeseWindow *cheese_window;
-  char *webcam_device = NULL;
 
   cheese_window = g_new (CheeseWindow, 1);
 
@@ -1094,25 +1116,15 @@ cheese_window_init ()
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording = FALSE;
   
-  g_object_get (cheese_window->gconf, "gconf_prop_webcam", &webcam_device, NULL);
-
-  cheese_window->webcam = cheese_webcam_new (cheese_window->screen, webcam_device);
-  g_free (webcam_device);
-
-  g_signal_connect (cheese_window->webcam, "photo-saved",
-                    G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);
-  g_signal_connect (cheese_window->webcam, "video-saved",
-                    G_CALLBACK (cheese_window_video_saved_cb), cheese_window);
+  /* Run cam setup in its own thread */
+  GError *error = NULL;
+  if (!g_thread_create ((GThreadFunc) setup_camera, cheese_window, FALSE, &error)) {
+    g_error ("Failed to create setup thread: %s\n", error->message);
+    g_error_free (error);
+    return;
+  }
 
   /* Make URLs and email clickable in about dialog */
   gtk_about_dialog_set_url_hook (cheese_about_dialog_handle_url, NULL, NULL);
   gtk_about_dialog_set_email_hook (cheese_about_dialog_handle_email, NULL, NULL);
-
-  cheese_webcam_set_effect (cheese_window->webcam, 
-                            cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
-
-  cheese_webcam_play (cheese_window->webcam);
-  gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
-  ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
 }
-

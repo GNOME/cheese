@@ -1111,7 +1111,9 @@ cheese_webcam_init (CheeseWebcam *webcam)
   if (!ok)
     g_error ("Unable link pipeline for photo");
 
+  gdk_threads_enter();
   XF86VidModeGetGamma (GDK_DISPLAY (), 0, &(priv->normal_gamma));
+  gdk_threads_leave();
 }
 
 CheeseWebcam*

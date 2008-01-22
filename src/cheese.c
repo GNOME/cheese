@@ -58,6 +58,7 @@ main (int argc, char **argv)
   textdomain (GETTEXT_PACKAGE);
 
   g_thread_init (NULL);
+  gdk_threads_init ();
 
   g_set_application_name (_("Cheese"));
 
@@ -78,7 +79,9 @@ main (int argc, char **argv)
 
   cheese_window_init ();
   
+  gdk_threads_enter ();
   gtk_main ();
+  gdk_threads_leave ();
 
   return 0;
 }

@@ -1,3 +1,11 @@
+2008-01-22  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c: 
+	  Run webcam detection in background thread. Fixes bug #505553.
+	  Patch by Steve Magoun <steve.magoun@canonical.com>
+
 2008-01-18  Jaap Haitsma <jaap@haitsma.org>
 
 	* data/wscript_build: 
