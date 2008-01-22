@@ -195,6 +195,7 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_object_unref (cheese_window->actions_fspot);
   g_object_unref (cheese_window->actions_flickr);
   g_object_unref (cheese_window->ui_manager);
+  g_object_unref (cheese_window->gconf);
 
   g_free (cheese_window);
   gtk_main_quit ();
