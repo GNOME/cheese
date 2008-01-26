@@ -15,6 +15,7 @@ env = bld.env()
 
 install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
 install_files('PACKAGE_DATADIR', '', 'cheese.glade')
+install_files('PACKAGE_DATADIR', '', 'cheese-bugreport.sh')
 
 # process schemas.in file
 obj=bld.create_obj('intltool_in')
@@ -28,7 +29,7 @@ obj.flags   = '-s'
 obj = bld.create_obj('subst')
 obj.source = 'cheese.desktop.in.in'
 obj.target = 'cheese.desktop.in'
-obj.dict = {'VERSION': env['VERSION']}
+obj.dict = {'VERSION': env['VERSION'], 'FULL_LIBDIR': env['PACKAGE_DATADIR']}
 obj.fun = misc.subst_func
 obj.prio = 1 # make sure that we run before intltool_in which processes desktop.in file
 
