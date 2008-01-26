@@ -33,7 +33,6 @@
 
 #include <gst/interfaces/xoverlay.h>
 #include <gtk/gtk.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <libebook/e-book.h>
 #include <glade/glade.h>
 
@@ -231,13 +230,16 @@ cheese_window_cmd_open (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   char *uri;
   char *filename;
+  GdkScreen *gscreen;
+
+  gscreen = gtk_window_get_screen (GTK_WINDOW (cheese_window->window));
 
   filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
   g_return_if_fail (filename);
 
-  uri = gnome_vfs_get_uri_from_local_path (filename);
+  uri = g_filename_to_uri (filename, NULL, NULL);
   g_free (filename);
-  gnome_vfs_url_show (uri);
+  open_url (uri, gscreen);
   g_free (uri);
 }
 
