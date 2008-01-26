@@ -252,7 +252,7 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
   filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
   g_return_if_fail (filename);
 
-  dialog = gtk_file_chooser_dialog_new ("Save File",
+  dialog = gtk_file_chooser_dialog_new (_("Save File"),
                                         GTK_WINDOW (cheese_window->window),
                                         GTK_FILE_CHOOSER_ACTION_SAVE,
                                         GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
