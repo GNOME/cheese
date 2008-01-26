@@ -20,6 +20,9 @@ EXTRA_DIST =						\
 	$(schema_in_files)				\
 	$(pkgdata_DATA)
 
+bugreportdir      = $(libdir)/cheese
+bugreport_SCRIPTS = cheese-bugreport.sh
+
 if GCONF_SCHEMAS_INSTALL
 install-data-local:
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \

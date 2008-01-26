@@ -1,3 +1,17 @@
+2008-01-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  data/cheese-bugreport.sh,
+	  data/cheese.desktop.in.in,
+	  data/Makefile.am,
+	  src/cheese.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h: 
+	  Write logging to file ~/.gnome2/cheese/log and send this along in 
+	  bug-buddy reports. Patch by <ruledbyfaith@gmail.com>. Fixes 
+	  http://code.google.com/p/google-highly-open-participation-gnome/issues/detail?id=108 
+	  and bug #510270
+
 2008-01-22  Jaap Haitsma <jaap@haitsma.org>
 
 	* src/cheese-window.c: 

@@ -22,12 +22,14 @@
 #include <cheese-config.h>
 #endif
 
+#include <stdio.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
 #include <libgnomevfs/gnome-vfs.h>
 
+#include "cheese-fileutil.h"
 #include "cheese-window.h"
 
 struct _CheeseOptions
@@ -36,9 +38,28 @@ struct _CheeseOptions
   char *hal_device_id;
 } CheeseOptions;
 
-void cheese_printerr_handler(char *string)
+void cheese_print_handler(char *string)
 {
-  if (CheeseOptions.verbose) 
+  static FILE *fp = NULL;
+  GDir *dir;
+  char *filename, *path;
+
+  if (fp == NULL) {
+    path = cheese_fileutil_get_path ();
+    dir = g_dir_open (path, 0, NULL);
+    if (!dir)
+      return;
+
+    filename = g_build_filename (path, "log", NULL);
+    fp = fopen(filename, "w");
+
+    g_free(filename);
+  }
+
+  if (fp)
+    fputs(string, fp);
+
+  if (CheeseOptions.verbose)
     fprintf (stdout, "%s", string);
 }
 
@@ -63,9 +84,9 @@ main (int argc, char **argv)
   g_set_application_name (_("Cheese"));
 
   context = g_option_context_new (N_("- Take photos and videos from your webcam"));
-	g_option_context_add_main_entries(context, options, GETTEXT_PACKAGE);
-	g_option_context_add_group (context, gtk_get_option_group (TRUE));
-	g_option_context_add_group (context, gst_init_get_option_group ());
+  g_option_context_add_main_entries(context, options, GETTEXT_PACKAGE);
+  g_option_context_add_group (context, gtk_get_option_group (TRUE));
+  g_option_context_add_group (context, gst_init_get_option_group ());
   g_option_context_parse(context, &argc, &argv, NULL);
   g_option_context_free(context);
 
@@ -73,7 +94,7 @@ main (int argc, char **argv)
   gst_init (&argc, &argv);
   gnome_vfs_init ();
 
-  g_set_print_handler ((GPrintFunc) cheese_printerr_handler);
+  g_set_print_handler ((GPrintFunc) cheese_print_handler);
 
   gtk_window_set_default_icon_name ("cheese");
 

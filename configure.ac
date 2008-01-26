@@ -19,6 +19,26 @@ CFLAGS="${CFLAGS} -Wall -Werror"
 
 
 #*******************************************************************************
+# Expanded dirs
+#*******************************************************************************
+# This macro expands DIR and assigns it to RET.
+# If DIR is NONE, then it's replaced by DEFAULT.
+# Based on AC_DEFINE_DIR
+AC_DEFUN([CHEESE_FULLPATH], [
+  test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+  test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
+  ac_expand=[$]$1
+  test "x$ac_expand" = xNONE && ac_expand="[$]$2"
+  ac_expand=`eval echo [$]ac_expand`
+  $3=`eval echo [$]ac_expand`
+])
+
+# FULL_LIBDIR is used for X-GNOME-Bugzilla-ExtraInfoScript expansion
+# in data/cheese.desktop.in.in
+CHEESE_FULLPATH(libdir, NONE, FULL_LIBDIR)
+AC_SUBST(FULL_LIBDIR)
+
+#*******************************************************************************
 # Internationalization
 #*******************************************************************************
 GETTEXT_PACKAGE=cheese

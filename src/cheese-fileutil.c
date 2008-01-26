@@ -28,11 +28,23 @@
 #include "cheese-fileutil.h"
 
 char *
-cheese_fileutil_get_media_path ()
+cheese_fileutil_get_path ()
 {
   char *path;
 
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", "media", NULL);
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", NULL);
+  return path;
+}
+
+char *
+cheese_fileutil_get_media_path ()
+{
+  char *path;
+  char *cheese_path;
+
+  cheese_path = cheese_fileutil_get_path ();
+  path = g_strjoin (G_DIR_SEPARATOR_S, cheese_path, "media", NULL);
+  g_free (cheese_path);
 
   return path;
 }
@@ -66,9 +78,9 @@ cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
   filename_num++;
 
   if (mode == CHEESE_MEDIA_MODE_PHOTO)
-    filename = g_strdup_printf ("%s/%04d%s", path, filename_num, PHOTO_NAME_SUFFIX);
+    filename = g_strdup_printf ("%s%s%04d%s", path, G_DIR_SEPARATOR_S, filename_num, PHOTO_NAME_SUFFIX);
   else
-    filename = g_strdup_printf ("%s/%04d%s", path, filename_num, VIDEO_NAME_SUFFIX);
+    filename = g_strdup_printf ("%s%s%04d%s", path, G_DIR_SEPARATOR_S, filename_num, VIDEO_NAME_SUFFIX);
 
   g_free (path);
   return filename;
