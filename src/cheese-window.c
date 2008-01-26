@@ -118,23 +118,48 @@ typedef struct
 
 } CheeseWindow;
 
+static void 
+open_url(const char *url, GdkScreen *screen)
+{
+  GError *error = NULL;
+  gboolean ret;
+  char *cmdline;
+  GtkWidget *error_dialog;
+
+  cmdline = g_strconcat ("xdg-open ", url, NULL);
+  ret = gdk_spawn_command_line_on_screen (screen, cmdline, &error);
+  g_free (cmdline);
+
+  if (ret == FALSE) {
+    error_dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL, 
+		 	  		   GTK_MESSAGE_INFO, GTK_BUTTONS_OK, 
+				           _("Failed to show url %s"), error->message); 
+		                           gtk_dialog_run (GTK_DIALOG (error_dialog));
+    g_error_free(error);
+  }
+}
 
 /* Make url in about dialog clickable */
 static void
-cheese_about_dialog_handle_url (GtkAboutDialog *about, const char *link, gpointer data)
+cheese_about_dialog_handle_url (GtkAboutDialog *dialog, const char *url, gpointer data)
 {
-  gnome_vfs_url_show (link);
+  GdkScreen *gscreen;
+  
+  gscreen = gtk_window_get_screen (GTK_WINDOW (dialog));
+  open_url (url, gscreen);
 }
 
 /* Make email in about dialog clickable */
 static void
-cheese_about_dialog_handle_email (GtkAboutDialog *about, const char *link, gpointer data)
+cheese_about_dialog_handle_email (GtkAboutDialog *dialog, const char *email, gpointer data)
 {
-  char *address;
+  char *url;
+  GdkScreen *gscreen;
 
-  address = g_strdup_printf ("mailto:%s", link);
-  gnome_vfs_url_show (address);
-  g_free (address);
+  gscreen = gtk_window_get_screen (GTK_WINDOW (dialog));
+  url = g_strconcat ("mailto:", email, NULL);
+  open_url (url, gscreen);
+  g_free (url);
 }
 
 static char *
