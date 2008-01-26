@@ -271,30 +271,25 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
   if (response == GTK_RESPONSE_ACCEPT)
   {
     char *target_filename;
+    GError *error = NULL;
+    gboolean ok;
 
     target_filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    GFile *target = g_file_new_for_path (target_filename);
 
-    char *source_uri = g_filename_to_uri (filename, NULL, NULL);
-    GnomeVFSURI *source = gnome_vfs_uri_new (source_uri);
-    g_free (source_uri);
+    GFile *source = g_file_new_for_path (filename);
 
-    char *target_uri = g_filename_to_uri (target_filename, NULL, NULL);
-    GnomeVFSURI *target = gnome_vfs_uri_new (target_uri);
-    g_free (target_uri);
+    ok = g_file_copy (source, target, G_FILE_COPY_OVERWRITE, NULL, NULL, NULL, &error);
 
-    response = gnome_vfs_xfer_uri (source, target,
-                                   GNOME_VFS_XFER_DEFAULT | GNOME_VFS_XFER_FOLLOW_LINKS,
-                                   GNOME_VFS_XFER_ERROR_MODE_ABORT,
-                                   GNOME_VFS_XFER_OVERWRITE_MODE_REPLACE,
-                                   NULL, NULL);
-    gnome_vfs_uri_unref (source);
-    gnome_vfs_uri_unref (target);
+    g_object_unref (source);
+    g_object_unref (target);
 
-    if (response != GNOME_VFS_OK)
+    if (!ok)
     {
       char *header;
       GtkWidget *dlg;
 
+      g_error_free (error);
       header = g_strdup_printf (_("Could not save %s"), target_filename);
 
       dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
