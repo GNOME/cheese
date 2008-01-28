@@ -1,6 +1,37 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.21.90:
+	- new effect images by Lapo Calamandrei and gidesa
+	- fix bug #510610 - Typo at the documentation
+	- Remove gnome-vfs completely from cheese-window.c
+	- Use gio instead of gnome-vfs for file copy
+	- Make Save dialog title localizable
+	- Don't use gnome-vfs for opening links in about dialog
+	- Write logging to file ~/.gnome2/cheese/log and send this along in bug-buddy
+	  reports. Patch by <ruledbyfaith@gmail.com>. fixes bug #510270
+	- Plug some leaks. Apply patches of Mauro <mukadr@gmail.com> of GHOP project. fixes bug #505441
+	- Run webcam detection in background thread. Fixes bug #505553. Patch by Steve Magoun <steve.magoun@canonical.com>
+	- Uso GIO g_file_trash() to trash files, patch by Luca Ferretti
+	- Update to new manual provided by Joshua Henderson as part of GHOP
+	- remove the queue-size=2, this should fix bug #507416 - iSight camera does not work in gstreamer
+	- added/updated translations
+    - ar, courtesy of Khaled Hosny
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - ga, courtesy of Seán de Búrca
+    - gl, courtesy of Ignacio Casal Quinteiro
+    - he, courtesy of Yair Hershkovitz
+    - mk, courtesy of Jovan Naumovski
+    - mr, courtesy of Sandeep Shedmake
+    - nb, courtesy of Kjartan Maraas
+    - oc, courtesy of Yannig Marchegay
+    - ru, courtesy of Vasiliy Faronov
+    - sv, courtesy of Daniel Nylander
+    - uk, courtesy of Maxim Dziumanenko
+    - zh_CN, courtesy of YangZhang
+
 version 2.21.5:
 	- version bump to follow the gnome release cycle
 	- add a stylish countdown widget by Mirco "MacSlow" Müller, courtesy of Patryk Zawadzki
