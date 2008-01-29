@@ -147,16 +147,12 @@ cheese_cairo_rectangle_round (cairo_t * cr,
 static void
 cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 {
-  static const double border_width = .01;
-
   cairo_save (cr);
 
   SHRINK (cr, .9);
 
   cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.1);
   cairo_set_source_rgb (cr, 0, 0, 0);
-  cairo_set_line_width (cr, border_width);
-  cairo_stroke (cr);
 
   cairo_save (cr);
 
@@ -189,7 +185,7 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
   cairo_set_font_size (cr, 0.09);
   cairo_text_extents (cr, card->name, &extents);
   x = 0.5 - (extents.width / 2 + extents.x_bearing);
-  y = 0.95 - (extents.height / 2 + extents.y_bearing);
+  y = 0.92 - (extents.height / 2 + extents.y_bearing);
 
   cairo_move_to (cr, x, y);
   cairo_show_text (cr, card->name);
