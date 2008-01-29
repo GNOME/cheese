@@ -18,7 +18,8 @@ pkgdata_DATA =						\
 EXTRA_DIST =						\
 	$(desktop_in_files)				\
 	$(schema_in_files)				\
-	$(pkgdata_DATA)
+	$(pkgdata_DATA)				\
+	$(bugreport_SCRIPTS)
 
 bugreportdir      = $(libdir)/cheese
 bugreport_SCRIPTS = cheese-bugreport.sh
