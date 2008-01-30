@@ -24,8 +24,8 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
+#include <gio/gio.h>
 #include <libgnomeui/libgnomeui.h>
-#include <libgnomevfs/gnome-vfs.h>
 #include <glade/glade.h>
 
 #include "cheese-fileutil.h"
@@ -43,7 +43,7 @@ G_DEFINE_TYPE (CheeseThumbView, cheese_thumb_view, GTK_TYPE_ICON_VIEW);
 typedef struct
 {
   GtkListStore *store;
-  GnomeVFSMonitorHandle *monitor_handle;
+  GFileMonitor *file_monitor;
 } CheeseThumbViewPrivate;
 
 enum
@@ -66,61 +66,66 @@ static GtkTargetEntry target_table[] =
 };
 
 static void
-cheese_thumb_view_append_item (CheeseThumbView *thumb_view, char *filename)
+cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 {
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
   GtkTreeIter iter;
   GdkPixbuf *pixbuf = NULL;
   GnomeThumbnailFactory *factory;
-  GnomeVFSFileInfo *file_info;
-  char *uri;
+  GFileInfo *info;
   char *thumb_loc;
   GtkTreePath *path;
+  GTimeVal mtime;
+  const char *mime_type;
+  char *uri;
+  char *filename;
 
-  file_info = gnome_vfs_file_info_new ();
-  uri = g_filename_to_uri (filename, NULL, NULL);
-  if (!uri || (gnome_vfs_get_file_info (uri, file_info,
-                                        GNOME_VFS_FILE_INFO_DEFAULT |
-                                        GNOME_VFS_FILE_INFO_GET_MIME_TYPE) != GNOME_VFS_OK))
+  info = g_file_query_info (file, "standard::content-type, time::modified", 0, NULL, NULL);
+
+  if (!info)
   {
     g_warning ("Invalid filename\n");
     return;
   }
+  g_file_info_get_modification_time (info, &mtime);
+  mime_type = g_file_info_get_content_type (info);
 
   factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
 
-  thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, file_info->mtime);
+  uri = g_file_get_uri (file);
+  thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
 
   if (!thumb_loc)
   {
-    pixbuf = gnome_thumbnail_factory_generate_thumbnail (factory, uri, file_info->mime_type);
+    pixbuf = gnome_thumbnail_factory_generate_thumbnail (factory, uri, mime_type);
     if (!pixbuf)
     {
-      g_warning ("could not load %s (%s)\n", filename, file_info->mime_type);
+      g_warning ("could not load %s (%s)\n", filename, mime_type);
       return;
     }
-    gnome_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, file_info->mtime);
+    gnome_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, mtime.tv_sec);
   }
   else
   {
     pixbuf = gdk_pixbuf_new_from_file (thumb_loc, NULL);
     if (!pixbuf)
     {
-      g_warning ("could not load %s (%s)\n", filename, file_info->mime_type);
+      g_warning ("could not load %s (%s)\n", filename, mime_type);
       return;
     }
   }
-  gnome_vfs_file_info_unref(file_info);
+  g_object_unref(info);
   g_object_unref (factory);
-  g_free(thumb_loc);
-  g_free(uri);
+  g_free (thumb_loc);
+  g_free (uri);
 
   eog_thumbnail_add_frame (&pixbuf);
 
+  filename = g_file_get_path (file);
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter, THUMBNAIL_PIXBUF_COLUMN,
                       pixbuf, THUMBNAIL_URL_COLUMN, filename, -1);
-
+  g_free (filename);
   path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
   gtk_icon_view_scroll_to_path (GTK_ICON_VIEW (thumb_view), path,
                                 TRUE, 1.0, 0.5);
@@ -129,11 +134,14 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, char *filename)
 }
 
 static void
-cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, char *filename)
+cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
 {
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
   char *path;
   GtkTreeIter iter;
+  char *filename;
+
+  filename = g_file_get_path (file);
 
   gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter);
   /* check if the selected item is the first, else go through the store */
@@ -147,38 +155,29 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, char *filename)
         break;
     }
   }
-  g_free(path);
-
+  g_free (path);
+  g_free (filename);
   gtk_list_store_remove (priv->store, &iter);
 }
 
 static void
-cheese_thumb_view_monitor_cb (GnomeVFSMonitorHandle *monitor_handle,
-                              const char *monitor_uri,
-                              const char *info_uri,
-                              GnomeVFSMonitorEventType event_type,
-                              CheeseThumbView *thumb_view)
+cheese_thumb_view_monitor_cb (GFileMonitor      *file_monitor,
+              		      GFile             *file,
+                              GFile             *other_file,
+                              GFileMonitorEvent  event_type,
+                              CheeseThumbView   *thumb_view)
 {
-  char *filename = gnome_vfs_get_local_path_from_uri (info_uri);
-  gboolean is_dir;
-
-  is_dir = g_file_test (filename, G_FILE_TEST_IS_DIR);
-
-  if (!is_dir)
+  switch (event_type)
   {
-    switch (event_type)
-    {
-      case GNOME_VFS_MONITOR_EVENT_DELETED:
-        cheese_thumb_view_remove_item (thumb_view, filename);
-        break;
-      case GNOME_VFS_MONITOR_EVENT_CREATED:
-        cheese_thumb_view_append_item (thumb_view, filename);
-        break;
-      default:
-        break;
-    }
+    case G_FILE_MONITOR_EVENT_DELETED:
+      cheese_thumb_view_remove_item (thumb_view, file);
+      break;
+    case G_FILE_MONITOR_EVENT_CREATED:
+      cheese_thumb_view_append_item (thumb_view, file);
+      break;
+    default:
+      break;
   }
-  g_free (filename);
 }
 
 
@@ -292,6 +291,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
   char *path;
   const char *name;
   char *filename;
+  GFile *file;
 
   gtk_list_store_clear (priv->store);
 
@@ -306,8 +306,10 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
       continue;
 
     filename = g_build_filename (path, name, NULL);
-    cheese_thumb_view_append_item (thumb_view, filename);
+    file = g_file_new_for_path (filename);
+    cheese_thumb_view_append_item (thumb_view, file);
     g_free (filename);
+    g_object_unref (file);
   }
 
   g_free (path);
@@ -323,7 +325,7 @@ cheese_thumb_view_finalize (GObject *object)
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);  
 
   g_object_unref (priv->store);
-  gnome_vfs_monitor_cancel (priv->monitor_handle);
+  g_file_monitor_cancel (priv->file_monitor);
 
   G_OBJECT_CLASS (cheese_thumb_view_parent_class)->finalize (object);
 }
@@ -343,7 +345,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 {
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
   char *path = NULL;
-  GnomeVFSURI *uri;  
+  GFile *file;  
   const int THUMB_VIEW_HEIGHT = 120;
 
   eog_thumbnail_init ();
@@ -355,18 +357,14 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   gtk_widget_set_size_request (GTK_WIDGET (thumb_view), -1, THUMB_VIEW_HEIGHT);
 
   path = cheese_fileutil_get_media_path ();
-  uri = gnome_vfs_uri_new (path);
 
-  if (!gnome_vfs_uri_exists (uri))
-  {
-    gnome_vfs_make_directory_for_uri (uri, 0775);
-    g_mkdir_with_parents (path, 0775);
-  }
+  g_mkdir_with_parents (path, 0775);
 
-  gnome_vfs_monitor_add (&(priv->monitor_handle), path, GNOME_VFS_MONITOR_DIRECTORY,
-                         (GnomeVFSMonitorCallback) cheese_thumb_view_monitor_cb, thumb_view);
+  file = g_file_new_for_path (path);
+  priv->file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+  g_signal_connect (priv->file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
+
   g_free (path);
-  gnome_vfs_uri_unref (uri);
 
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
   gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), G_MAXINT);
