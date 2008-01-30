@@ -27,7 +27,6 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
-#include <libgnomevfs/gnome-vfs.h>
 
 #include "cheese-fileutil.h"
 #include "cheese-window.h"
@@ -92,7 +91,6 @@ main (int argc, char **argv)
 
   gtk_init (&argc, &argv);
   gst_init (&argc, &argv);
-  gnome_vfs_init ();
 
   g_set_print_handler ((GPrintFunc) cheese_print_handler);
 
