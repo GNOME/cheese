@@ -91,8 +91,9 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   mime_type = g_file_info_get_content_type (info);
 
   factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
-
   uri = g_file_get_uri (file);
+  filename = g_file_get_path (file);
+
   thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
 
   if (!thumb_loc)
@@ -121,7 +122,6 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   eog_thumbnail_add_frame (&pixbuf);
 
-  filename = g_file_get_path (file);
   gtk_list_store_append (priv->store, &iter);
   gtk_list_store_set (priv->store, &iter, THUMBNAIL_PIXBUF_COLUMN,
                       pixbuf, THUMBNAIL_URL_COLUMN, filename, -1);
