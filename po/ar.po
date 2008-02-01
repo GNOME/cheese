@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: cheese.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-01-31 08:06+0000\n"
-"PO-Revision-Date: 2008-01-20 19:38+0200\n"
+"PO-Revision-Date: 2008-02-01 23:33+0200\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,8 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Arabic\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n>=3 && "
-"n<=10 ? 3 : n>=11 && n<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:595
 msgid "A cheesy program to take photos and videos from your webcam"
@@ -129,11 +128,11 @@ msgstr "طي"
 #: ../src/cheese-window.c:135
 #, c-format
 msgid "Failed to show url %s"
-msgstr ""
+msgstr "فشل عرض المسار %s"
 
 #: ../src/cheese-window.c:257
 msgid "Save File"
-msgstr ""
+msgstr "احفظ الملف"
 
 #: ../src/cheese-window.c:295
 #, c-format
@@ -279,3 +278,4 @@ msgstr "كُن مُسهِبا"
 #: ../src/cheese.c:85
 msgid "- Take photos and videos from your webcam"
 msgstr "- التقط الصور و الفيديو من آلة التصوير"
+
