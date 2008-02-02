@@ -54,8 +54,8 @@ GNOME_DOC_INIT
 # Check required libraries
 #*******************************************************************************
 
-GLIB_REQUIRED=2.15.1
-GIO_REQUIRED=2.15.1
+GLIB_REQUIRED=2.15.5
+GIO_REQUIRED=2.15.5
 GTK_REQUIRED=2.10.0
 LIBGLADE_REQUIRED=2.6.0
 LIBGNOMEUI_REQUIRED=2.14.0
