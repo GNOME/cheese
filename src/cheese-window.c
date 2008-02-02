@@ -117,48 +117,49 @@ typedef struct
 
 } CheeseWindow;
 
-static void 
-open_url(const char *url, GdkScreen *screen)
-{
-  GError *error = NULL;
-  gboolean ret;
-  char *cmdline;
-  GtkWidget *error_dialog;
-
-  cmdline = g_strconcat ("xdg-open ", url, NULL);
-  ret = gdk_spawn_command_line_on_screen (screen, cmdline, &error);
-  g_free (cmdline);
-
-  if (ret == FALSE) {
-    error_dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL, 
-		 	  		   GTK_MESSAGE_INFO, GTK_BUTTONS_OK, 
-				           _("Failed to show url %s"), error->message); 
-		                           gtk_dialog_run (GTK_DIALOG (error_dialog));
-    g_error_free(error);
-  }
-}
 
 /* Make url in about dialog clickable */
 static void
 cheese_about_dialog_handle_url (GtkAboutDialog *dialog, const char *url, gpointer data)
 {
-  GdkScreen *gscreen;
-  
-  gscreen = gtk_window_get_screen (GTK_WINDOW (dialog));
-  open_url (url, gscreen);
+  GError *error = NULL;
+  GtkWidget *error_dialog;
+  gboolean ret;
+
+  ret = g_app_info_launch_default_for_uri (url, NULL, &error);
+  if (ret == FALSE) {
+    error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog), 
+                                           GTK_DIALOG_DESTROY_WITH_PARENT, 
+		 	                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
+				           _("Failed to open browser to show:\n%s"), url); 
+    gtk_dialog_run (GTK_DIALOG (error_dialog));
+    gtk_widget_destroy (error_dialog);
+    g_error_free(error);
+  }
 }
 
 /* Make email in about dialog clickable */
 static void
 cheese_about_dialog_handle_email (GtkAboutDialog *dialog, const char *email, gpointer data)
 {
-  char *url;
-  GdkScreen *gscreen;
+  char *uri;
+  GError *error = NULL;
+  GtkWidget *error_dialog;
+  gboolean ret;
 
-  gscreen = gtk_window_get_screen (GTK_WINDOW (dialog));
-  url = g_strconcat ("mailto:", email, NULL);
-  open_url (url, gscreen);
-  g_free (url);
+  uri = g_strconcat ("mailto:", email, NULL);
+
+  ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
+  if (ret == FALSE) {
+    error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog), 
+                                           GTK_DIALOG_DESTROY_WITH_PARENT, 
+		 	                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
+				           _("Failed to open email client to send message to:\n%s"), email); 
+    gtk_dialog_run (GTK_DIALOG (error_dialog));
+    gtk_widget_destroy (error_dialog);
+    g_error_free(error);
+  }
+  g_free (uri);
 }
 
 static char *
@@ -230,16 +231,25 @@ cheese_window_cmd_open (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   char *uri;
   char *filename;
-  GdkScreen *gscreen;
-
-  gscreen = gtk_window_get_screen (GTK_WINDOW (cheese_window->window));
+  gboolean ret;
+  GError *error = NULL;
+  GtkWidget *dialog;
 
   filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
   g_return_if_fail (filename);
-
   uri = g_filename_to_uri (filename, NULL, NULL);
   g_free (filename);
-  open_url (uri, gscreen);
+ 
+  ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
+  if (ret == FALSE) {
+    dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window), 
+                                     GTK_DIALOG_DESTROY_WITH_PARENT, 
+	  	  		     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
+				     _("Failed to launch program to show:\n%s"), uri);
+    gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+    g_error_free(error);
+  }
   g_free (uri);
 }
 
