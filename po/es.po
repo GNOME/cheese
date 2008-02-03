@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-02 13:30+0000\n"
-"PO-Revision-Date: 2008-02-02 16:24+0100\n"
+"POT-Creation-Date: 2008-02-03 12:42+0000\n"
+"PO-Revision-Date: 2008-02-03 18:55+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:605
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:576
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Un programa para tomar fotografías y vídeos con su cámara web"
 
@@ -28,21 +28,21 @@ msgstr "Un programa para tomar fotografías y vídeos con su cámara web"
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:687
-#: ../src/cheese-window.c:875
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:658
+#: ../src/cheese-window.c:846
 msgid "_Effects"
 msgstr "Efecto_s"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:879
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:850
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:775
-#: ../src/cheese-window.c:890 ../src/cheese-window.c:996
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:746
+#: ../src/cheese-window.c:861 ../src/cheese-window.c:967
 msgid "_Take a photo"
 msgstr "_Tomar una foto"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:880
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:851
 msgid "_Video"
 msgstr "_Vídeo"
 
@@ -181,14 +181,18 @@ msgstr "_Mover a la papelera"
 msgid "Could not set the Account Photo"
 msgstr "No se pudo establecer la foto de la cuenta"
 
-#: ../src/cheese-window.c:582
+#: ../src/cheese-window.c:536
+msgid "Unable to open help file for Cheese"
+msgstr "No se pudo abrir el archivo de ayuda para Cheese"
+
+#: ../src/cheese-window.c:553
 msgid "translator-credits"
 msgstr ""
 "Jorge González <jorgegonz@svn.gnome.org>, 2007-2008\n"
 "Ricardo González Castro <rick@jinlabs.com>, 2007\n"
 "Diego Escalante Urrelo <diegoe@gnome.org>, 2007"
 
-#: ../src/cheese-window.c:585
+#: ../src/cheese-window.c:556
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -200,7 +204,7 @@ msgstr ""
 "la Free Software Foundation; ya sea la versión 2 de la Licencia, o (a su "
 "elección) cualquier versión posterior.\n"
 
-#: ../src/cheese-window.c:589
+#: ../src/cheese-window.c:560
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -212,7 +216,7 @@ msgstr ""
 "IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General GNU "
 "para más detalles.\n"
 
-#: ../src/cheese-window.c:593
+#: ../src/cheese-window.c:564
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -220,75 +224,75 @@ msgstr ""
 "Debería haber recibido una copia de la Licencia Pública General GNU junto "
 "con este programa. Si no la recibió, consulte <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:609
+#: ../src/cheese-window.c:580
 msgid "Cheese Website"
 msgstr "Página web de Cheese"
 
-#: ../src/cheese-window.c:698
+#: ../src/cheese-window.c:669
 msgid "_Back"
 msgstr "Vo_lver"
 
-#: ../src/cheese-window.c:765 ../src/cheese-window.c:850
+#: ../src/cheese-window.c:736 ../src/cheese-window.c:821
 msgid "_Start recording"
 msgstr "_Comenzar a grabar"
 
-#: ../src/cheese-window.c:835
+#: ../src/cheese-window.c:806
 msgid "_Stop recording"
 msgstr "_Parar de grabar"
 
-#: ../src/cheese-window.c:861
+#: ../src/cheese-window.c:832
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:863
+#: ../src/cheese-window.c:834
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/cheese-window.c:864
+#: ../src/cheese-window.c:835
 msgid "Move all to Trash"
 msgstr "Mover todos a la papelera"
 
-#: ../src/cheese-window.c:866
+#: ../src/cheese-window.c:837
 msgid "_Help"
 msgstr "_Ayuda"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:840
 msgid "_Contents"
 msgstr "_Índice"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:840
 msgid "Help on this application"
 msgstr "Ayuda sobre esta aplicación"
 
-#: ../src/cheese-window.c:884
+#: ../src/cheese-window.c:855
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/cheese-window.c:885
+#: ../src/cheese-window.c:856
 msgid "Save _As..."
 msgstr "Guardar _como…"
 
-#: ../src/cheese-window.c:886
+#: ../src/cheese-window.c:857
 msgid "Move to _Trash"
 msgstr "Mover a la _papelera"
 
-#: ../src/cheese-window.c:894
+#: ../src/cheese-window.c:865
 msgid "_Recording"
 msgstr "G_rabar"
 
-#: ../src/cheese-window.c:898
+#: ../src/cheese-window.c:869
 msgid "_Set As Account Photo"
 msgstr "E_stablecer como foto de la cuenta"
 
-#: ../src/cheese-window.c:902
+#: ../src/cheese-window.c:873
 msgid "Send by _Mail"
 msgstr "Enviar por correo-_e"
 
-#: ../src/cheese-window.c:906
+#: ../src/cheese-window.c:877
 msgid "Export to F-_Spot"
 msgstr "Exportar a F-_Spot"
 
-#: ../src/cheese-window.c:910
+#: ../src/cheese-window.c:881
 msgid "Export to _Flickr"
 msgstr "Exportar a _Flickr"
 
