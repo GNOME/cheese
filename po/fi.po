@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-02 14:32+0200\n"
-"PO-Revision-Date: 2008-02-02 14:48+0200\n"
+"POT-Creation-Date: 2008-02-03 16:37+0200\n"
+"PO-Revision-Date: 2008-02-03 16:37+0200\n"
 "Last-Translator: Tommi Vainikainen <Tommi.Vainikainen@iki.fi>\n"
 "Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:595
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:576
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Muikea ohjelma valokuvien ja videoiden ottamiseen webcamilla"
 
@@ -25,21 +25,21 @@ msgstr "Muikea ohjelma valokuvien ja videoiden ottamiseen webcamilla"
 msgid "Cheese"
 msgstr "Muikku"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:677
-#: ../src/cheese-window.c:865
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:658
+#: ../src/cheese-window.c:878
 msgid "_Effects"
 msgstr "_Tehosteet"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:869
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:882
 msgid "_Photo"
 msgstr "_Valokuva"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:765
-#: ../src/cheese-window.c:880 ../src/cheese-window.c:986
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:746
+#: ../src/cheese-window.c:893 ../src/cheese-window.c:999
 msgid "_Take a photo"
 msgstr "_Ota kuva"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:870
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:883
 msgid "_Video"
 msgstr "_Video"
 
@@ -121,51 +121,78 @@ msgstr "noppa"
 msgid "Warp"
 msgstr "warp"
 
-#: ../src/cheese-window.c:135
+#: ../src/cheese-window.c:134
 #, c-format
-msgid "Failed to show url %s"
-msgstr "Virhe näytettäessä URL:ia %s"
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"Selaimen käynnistys epäonnistui sivun avaamiseksi:\n"
+"%s"
 
-#: ../src/cheese-window.c:257
+#: ../src/cheese-window.c:157
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"Sähköpostisovelluksen käynnistys epäonnistui viestin lähettämiseksi "
+"osoitteesen:\n"
+"%s"
+
+#: ../src/cheese-window.c:248
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"Ohjelman käynnistys epäonnistui tiedoston näyttämiseksi:\n"
+"%s"
+
+#: ../src/cheese-window.c:267
 msgid "Save File"
 msgstr "Tallenna tiedosto"
 
-#: ../src/cheese-window.c:295
+#: ../src/cheese-window.c:305
 #, c-format
 msgid "Could not save %s"
 msgstr "Ei voitu tallentaa %s"
 
-#: ../src/cheese-window.c:322
+#: ../src/cheese-window.c:332
 msgid "Cannot move file to trash"
 msgstr "Tiedostoja ei voitu siirtää roskakoriin"
 
-#: ../src/cheese-window.c:323
+#: ../src/cheese-window.c:333
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Tiedostoa \"%s\" ei voitu siirtää roskakoriin. Yksityiskohdat: %s"
 
-#: ../src/cheese-window.c:355
+#: ../src/cheese-window.c:365
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Haluatko varmasti siirtää kaikki valokuvat ja videot roskakoriin?"
 
-#: ../src/cheese-window.c:363
+#: ../src/cheese-window.c:373
 msgid "_Move to Trash"
 msgstr "Siirrä _roskakoriin"
 
-#: ../src/cheese-window.c:451
+#: ../src/cheese-window.c:461
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Ei voitu asettaa tilin valokuvaa"
 
-#: ../src/cheese-window.c:572
+#: ../src/cheese-window.c:536
+msgid "Unable to open help file for Cheese"
+msgstr "Muikun ohjetiedostoa ei voitu avata"
+
+#: ../src/cheese-window.c:553
 msgid "translator-credits"
 msgstr ""
 "Tommi Vainikainen, 2008.\n"
 "\n"
 "http://gnome.fi/"
 
-#: ../src/cheese-window.c:575
+#: ../src/cheese-window.c:556
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -177,7 +204,7 @@ msgstr ""
 "Free Software Foundation on ne julkaissut; joko Lisenssin version 2, tai "
 "(valinnan mukaan) minkä tahansa myöhemmän version mukaisesti.\n"
 
-#: ../src/cheese-window.c:579
+#: ../src/cheese-window.c:560
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -189,7 +216,7 @@ msgstr ""
 "hyväksyttävästä laadusta tai soveltuvuudesta tiettyyn tarkoitukseen. Katso "
 "GNU-GPL-lisenssistä lisää yksityiskohtia.\n"
 
-#: ../src/cheese-window.c:583
+#: ../src/cheese-window.c:564
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -197,75 +224,75 @@ msgstr ""
 "Tämän ohjelman mukana pitäisi tulla kopio GPL lisenssistä; jos näin ei ole, "
 "katso <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:599
+#: ../src/cheese-window.c:580
 msgid "Cheese Website"
 msgstr "Muikun www-sivusto"
 
-#: ../src/cheese-window.c:688
+#: ../src/cheese-window.c:669
 msgid "_Back"
 msgstr "E_dellinen"
 
-#: ../src/cheese-window.c:755 ../src/cheese-window.c:840
+#: ../src/cheese-window.c:736 ../src/cheese-window.c:795
 msgid "_Start recording"
 msgstr "Aloita _nauhoitus"
 
-#: ../src/cheese-window.c:825
+#: ../src/cheese-window.c:845
 msgid "_Stop recording"
 msgstr "Lopeta _nauhoitus"
 
-#: ../src/cheese-window.c:851
+#: ../src/cheese-window.c:864
 msgid "_Cheese"
 msgstr "_Muikku"
 
-#: ../src/cheese-window.c:853
+#: ../src/cheese-window.c:866
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/cheese-window.c:854
+#: ../src/cheese-window.c:867
 msgid "Move all to Trash"
 msgstr "Siirrä kaikki roskakoriin"
 
-#: ../src/cheese-window.c:856
+#: ../src/cheese-window.c:869
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../src/cheese-window.c:859
+#: ../src/cheese-window.c:872
 msgid "_Contents"
 msgstr "_Sisältö"
 
-#: ../src/cheese-window.c:859
+#: ../src/cheese-window.c:872
 msgid "Help on this application"
 msgstr "Ohjeita tämän sovelluksen käytöstä"
 
-#: ../src/cheese-window.c:874
+#: ../src/cheese-window.c:887
 msgid "_Open"
 msgstr "_Avaa"
 
-#: ../src/cheese-window.c:875
+#: ../src/cheese-window.c:888
 msgid "Save _As..."
 msgstr "Tallenna _nimellä..."
 
-#: ../src/cheese-window.c:876
+#: ../src/cheese-window.c:889
 msgid "Move to _Trash"
 msgstr "Siirrä _roskakoriin"
 
-#: ../src/cheese-window.c:884
+#: ../src/cheese-window.c:897
 msgid "_Recording"
 msgstr "_Nauhoitus"
 
-#: ../src/cheese-window.c:888
+#: ../src/cheese-window.c:901
 msgid "_Set As Account Photo"
 msgstr "_Aseta tilin valokuvaksi"
 
-#: ../src/cheese-window.c:892
+#: ../src/cheese-window.c:905
 msgid "Send by _Mail"
 msgstr "Lähetä _sähköpostitse"
 
-#: ../src/cheese-window.c:896
+#: ../src/cheese-window.c:909
 msgid "Export to F-_Spot"
 msgstr "Vie F-_Spotiin"
 
-#: ../src/cheese-window.c:900
+#: ../src/cheese-window.c:913
 msgid "Export to _Flickr"
 msgstr "View _Flickriin"
 
@@ -276,3 +303,6 @@ msgstr "Toimi suulaasti"
 #: ../src/cheese.c:86
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ota valokuvia ja videoita webcamillasi"
+
+#~ msgid "Failed to show url %s"
+#~ msgstr "Virhe näytettäessä URL:ia %s"
