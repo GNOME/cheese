@@ -46,6 +46,7 @@ GType              cheese_countdown_get_type (void);
 GtkWidget         *cheese_countdown_new ();
 
 void cheese_countdown_start (CheeseCountdown *countdown, cheese_countdown_cb_t picture_cb, cheese_countdown_cb_t hide_cb, gpointer data);
+void cheese_countdown_cancel (CheeseCountdown *countdown);
 
 G_END_DECLS
 

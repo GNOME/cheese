@@ -299,9 +299,8 @@ cheese_countdown_cb (gpointer countdown)
   switch (priv->iState)
   {
     case STATE_OFF:
-      // should just ignore it, testing purposes
-      g_print("Should not happen, unitialized state in countdown handler\n");
-      break;
+      /* Countdown was cancelled */
+      return FALSE;
 
     case STATE_3:
       priv->iState = STATE_2;
@@ -338,6 +337,13 @@ cheese_countdown_start (CheeseCountdown *countdown, cheese_countdown_cb_t pictur
   priv->hide_callback = hide_cb;
   priv->callback_data = data;
   g_timeout_add_seconds (1, cheese_countdown_cb, (gpointer) countdown);
+}
+
+void
+cheese_countdown_cancel (CheeseCountdown *countdown)
+{
+  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+  priv->iState = STATE_OFF;
 }
 
 static void

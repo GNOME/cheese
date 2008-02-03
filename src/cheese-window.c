@@ -784,6 +784,45 @@ cheese_window_countdown_picture_cb (gpointer data)
 }
 
 static void
+cheese_window_stop_recording (CheeseWindow *cheese_window)
+{
+  if (cheese_window->recording)
+  {
+    cheese_webcam_stop_video_recording (cheese_window->webcam);
+    gtk_widget_set_sensitive (cheese_window->button_effects, TRUE);
+    gtk_widget_set_sensitive (cheese_window->button_photo, TRUE);
+    gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
+    gchar * str = g_strconcat ("<b>", _("_Start recording"), "</b>", NULL);
+    gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
+    g_free (str);
+    gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
+    gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo), GTK_STOCK_MEDIA_RECORD, GTK_ICON_SIZE_BUTTON);
+    
+    cheese_window->recording = FALSE;
+  }
+}
+
+static gboolean
+cheese_window_cancel_cb (CheeseWindow *cheese_window,
+			 GtkAccelGroup *accel_group,
+			 guint keyval, GdkModifierType modifier)
+{
+  cheese_countdown_cancel ((CheeseCountdown *) cheese_window->countdown);
+  
+  if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
+  {
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 0);
+      
+    gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
+  }
+  else
+  {
+    cheese_window_stop_recording (cheese_window);
+  }
+  return TRUE;
+}
+
+static void
 cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   char *str;
@@ -811,20 +850,13 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
       cheese_window->video_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_VIDEO);
       cheese_webcam_start_video_recording (cheese_window->webcam, cheese_window->video_filename);
+
+      cheese_window->recording = TRUE;
     }
     else
     {
-      cheese_webcam_stop_video_recording (cheese_window->webcam);
-      gtk_widget_set_sensitive (cheese_window->button_effects, TRUE);
-      gtk_widget_set_sensitive (cheese_window->button_photo, TRUE);
-      gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
-      str = g_strconcat ("<b>", _("_Start recording"), "</b>", NULL);
-      gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
-      g_free (str);
-      gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
-      gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo), GTK_STOCK_MEDIA_RECORD, GTK_ICON_SIZE_BUTTON);
+      cheese_window_stop_recording (cheese_window);
     }
-    cheese_window->recording = !cheese_window->recording;
   }
 }
 
@@ -1073,6 +1105,12 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   gtk_window_add_accel_group (GTK_WINDOW (cheese_window->window), 
                               gtk_ui_manager_get_accel_group (cheese_window->ui_manager));
+  gtk_accel_group_connect (gtk_ui_manager_get_accel_group (cheese_window->ui_manager),
+			   GDK_Escape, 0, 0,
+			   g_cclosure_new_swap (G_CALLBACK (cheese_window_cancel_cb),
+						cheese_window, NULL));
+
+
   gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
 
   /* Default handlers for closing the application */
