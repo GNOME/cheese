@@ -523,50 +523,21 @@ static void
 cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
 {
   GError *error = NULL;
-  char *command;
-  const char *lang;
-  char *uri = NULL;
-  GdkScreen *gscreen;
-  // TODO what do we want for link_id
-  char *link_id = NULL;
+  gboolean ret;
 
-  int i;
+  ret = g_app_info_launch_default_for_uri ("ghelp:cheese", NULL, &error);
 
-  const char * const * langs = g_get_language_names ();
-
-  for (i = 0; langs[i]; i++) 
-  {
-    lang = langs[i];
-    if (strchr (lang, '.')) 
-      continue;
-
-    uri = g_build_filename(DATADIR, "/gnome/help/cheese/", lang, "/cheese.xml", NULL);
-
-    if (g_file_test (uri, G_FILE_TEST_EXISTS))
-      break;
-  }
-
-  if (link_id)
-    command = g_strconcat ("gnome-open ghelp://", uri, "?", link_id, NULL);
-  else
-    command = g_strconcat ("gnome-open ghelp://", uri,  NULL);
-
-
-  gscreen = gdk_screen_get_default();
-  gdk_spawn_command_line_on_screen (gscreen, command, &error);
-  if (error != NULL) 
+  if (ret == FALSE) 
   {
     GtkWidget *d;
-
-    d = gtk_message_dialog_new(NULL, GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                               GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, error->message);
+    d = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window), 
+                                GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
+                                _("Unable to open help file for Cheese"));
     gtk_dialog_run(GTK_DIALOG(d));
     gtk_widget_destroy(d);
     g_error_free(error);
   }
-
-  g_free (command);
-  g_free (uri);
 }
 
 static void
