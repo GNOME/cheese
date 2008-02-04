@@ -1,8 +1,8 @@
 #! /usr/bin/env python
 # encoding: utf-8
 #
-# Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
-# Copyright (C) 2007 Jaap A. Haitsma <jaap@haitsma.org>
+# Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+# Copyright (C) 2007,2008 Jaap A. Haitsma <jaap@haitsma.org>
 #
 # Licensed under the GNU General Public License Version 2
 # This program is free software; you can redistribute it and/or modify

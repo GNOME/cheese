@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007 Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *

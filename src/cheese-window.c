@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright (C) 2008 Patryk Zawadzki <patrys@pld-linux.org>
  *
  * Licensed under the GNU General Public License Version 2
