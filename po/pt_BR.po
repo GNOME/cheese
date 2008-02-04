@@ -1,43 +1,45 @@
 # Brazilian Portuguese translation of cheese.
 # Copyright (C) 1999-2007 Free Software Foundation, Inc.
 # This file is distributed under the same license as the cheese package.
-# Rodrigo Flores <rodrigomarquesflores@gmail.com>, 2007. 
+# Rodrigo Flores <rodrigomarquesflores@gmail.com>, 2007.
+# Og Maciel <ogmaciel@gnome.org>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-27 23:04-0200\n"
-"PO-Revision-Date: 2007-12-27 23:07-0200\n"
-"Last-Translator: Rodrigo Flores <rodrigomarquesflores@gmail.com>\n"
+"POT-Creation-Date: 2008-02-04 00:05-0200\n"
+"PO-Revision-Date: 2008-02-04 00:15-0200\n"
+"Last-Translator: Og Maciel <ogmaciel@gnome.org>\n"
 "Language-Team: Brazilian Portuguese <gnome-l10n-br@listas.cipsga.org.br>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.h:1 ../src/cheese-window.c:573
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:576
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Um programa para tirar fotos e capturar vídeos da sua webcam"
 
-#: ../data/cheese.desktop.in.h:2 ../data/cheese.glade.h:1 ../src/cheese.c:62
+#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
+#: ../src/cheese.c:84
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:655
-#: ../src/cheese-window.c:814
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:658
+#: ../src/cheese-window.c:878
 msgid "_Effects"
 msgstr "_Efeitos"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:818
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:882
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:743
-#: ../src/cheese-window.c:829 ../src/cheese-window.c:934
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:746
+#: ../src/cheese-window.c:893 ../src/cheese-window.c:999
 msgid "_Take a photo"
 msgstr "_Tirar uma foto"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:819
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:883
 msgid "_Video"
 msgstr "_Vídeo"
 
@@ -57,7 +59,7 @@ msgstr "Efeitos Selecionados"
 
 #: ../data/cheese.schemas.in.h:3
 msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr "O arquivo do dispositivo da webcam, p. ex. /dev/video0"
+msgstr "O nome do dispositivo da webcam, ex: /dev/video0"
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Use a countdown"
@@ -119,50 +121,72 @@ msgstr "Despedaçar"
 msgid "Warp"
 msgstr "Deformar"
 
-#: ../src/cheese-window.c:239
+#: ../src/cheese-window.c:134
+#, c-format
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"Falha ao abrir o navegador para mostrar:\n"
+"%s"
+
+#: ../src/cheese-window.c:157
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"Falha ao abrir o cliente de e-mail para enviar mensagem para:\n"
+"%s"
+
+#: ../src/cheese-window.c:248
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"Falha ao executar programa para mostrar:\n"
+"%s"
+
+#: ../src/cheese-window.c:267
+msgid "Save File"
+msgstr "Salvar Arquivo"
+
+#: ../src/cheese-window.c:305
 #, c-format
 msgid "Could not save %s"
 msgstr "Não foi possível salvar %s"
 
-#: ../src/cheese-window.c:274
-msgid "Could not find the Trash"
-msgstr "Não foi possível encontrar a Lixeira"
+#: ../src/cheese-window.c:332
+msgid "Cannot move file to trash"
+msgstr "Não foi possível mover o arquivo para a lixeira"
 
-#: ../src/cheese-window.c:301
+#: ../src/cheese-window.c:333
 #, c-format
-msgid "Error on deleting %s"
-msgstr "Erro ao excluir %s"
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "Não é possível mover o arquivo \"%s\" para a lixeira. Detalhes: %s"
 
-#: ../src/cheese-window.c:324
-msgid ""
-"Are you sure you want to move\n"
-"all media to the trash?"
-msgstr ""
-"Você tem certeza que deseja mover\n"
-"toda mídia para a lixeira?"
+#: ../src/cheese-window.c:365
+msgid "Really move all photos and videos to the trash?"
+msgstr "Realmente mover todas fotos e vídeos para a lixeira?"
 
-#: ../src/cheese-window.c:332 ../src/cheese-window.c:378
-msgid "Move to Trash"
-msgstr "Mover para a lixeira"
+#: ../src/cheese-window.c:373
+msgid "_Move to Trash"
+msgstr "_Mover para a Lixeira"
 
-#: ../src/cheese-window.c:369
-#, c-format
-msgid ""
-"Are you sure you want to move\n"
-"\"%s\" to the trash?"
-msgstr ""
-"Você tem certeza que deseja\n"
-"mover \"%s\" para a lixeira?"
-
-#: ../src/cheese-window.c:432
+#: ../src/cheese-window.c:461
 msgid "Could not set the Account Photo"
 msgstr "Não foi possível definir a Foto da Conta"
 
-#: ../src/cheese-window.c:550
+#: ../src/cheese-window.c:536
+msgid "Unable to open help file for Cheese"
+msgstr "Não foi possível abrir a documentação do Cheese"
+
+#: ../src/cheese-window.c:553
 msgid "translator-credits"
 msgstr "créditos de tradução"
 
-#: ../src/cheese-window.c:553
+#: ../src/cheese-window.c:556
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -170,11 +194,11 @@ msgid ""
 "any later version.\n"
 msgstr ""
 "Este programa é um software livre; você pode redistribuí-lo e/ou modificá-lo "
-"sob os termos da Licença Pública GNU como publicada pela Free Software "
-"Foundation; tanto na versão versão 2 da Licença (como quiser) quanto em "
-"qualquer versão mais recente.\n"
+"sob os termos da Licença Pública Geral GNU publicada pela Free Software "
+"Foundation; qualquer versão 2 da Licença, ou (a seu critério) outra versão "
+"posterior.\n"
 
-#: ../src/cheese-window.c:557
+#: ../src/cheese-window.c:560
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -182,94 +206,114 @@ msgid ""
 "more details.\n"
 msgstr ""
 "Este programa é distribuído na esperança de que seja útil, mas SEM NENHUMA "
-"GARANTIA; até mesmo sem a garantia implícita de COMERCIALIZAÇÃO ou de "
-"ADAPTAÇÃO A UM PROPÓSITO EM PARTICULAR. Para mais detalhes, veja a Licença "
-"Pública Geral GNU.\n"
+"GARANTIA; sem mesmo implicar garantias de COMERCIABILIDADE ou ADAPTAÇÃO A UM "
+"PROPÓSITO PARTICULAR. Veja a Licença Pública Geral GNU (GPL) para mais "
+"detalhes.\n"
 
-#: ../src/cheese-window.c:561
+#: ../src/cheese-window.c:564
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"Você deve ter recebido uma cópia da Licença Pública Geral GNU (GPL) junto "
-"com este programa. Se não, veja <http://www.gnu.org/licenses/>."
+"Você deve ter recebido uma cópia da Licença Pública Geral GNU junto com este "
+"programa. Se não, veja <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:577
+#: ../src/cheese-window.c:580
 msgid "Cheese Website"
 msgstr "Página na web do Cheese"
 
-#: ../src/cheese-window.c:666
+#: ../src/cheese-window.c:669
 msgid "_Back"
 msgstr "_Voltar"
 
-#: ../src/cheese-window.c:733 ../src/cheese-window.c:789
+#: ../src/cheese-window.c:736 ../src/cheese-window.c:795
 msgid "_Start recording"
 msgstr "_Iniciar gravação"
 
-#: ../src/cheese-window.c:774
+#: ../src/cheese-window.c:845
 msgid "_Stop recording"
 msgstr "_Parar gravação"
 
-#: ../src/cheese-window.c:800
+#: ../src/cheese-window.c:864
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:802
+#: ../src/cheese-window.c:866
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/cheese-window.c:803
+#: ../src/cheese-window.c:867
 msgid "Move all to Trash"
 msgstr "Mover tudo para a lixeira"
 
-#: ../src/cheese-window.c:805
+#: ../src/cheese-window.c:869
 msgid "_Help"
 msgstr "Aj_uda"
 
-#: ../src/cheese-window.c:808
+#: ../src/cheese-window.c:872
 msgid "_Contents"
 msgstr "S_umário"
 
-#: ../src/cheese-window.c:808
+#: ../src/cheese-window.c:872
 msgid "Help on this application"
 msgstr "Ajuda nesta aplicação"
 
-#: ../src/cheese-window.c:823
+#: ../src/cheese-window.c:887
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/cheese-window.c:824
+#: ../src/cheese-window.c:888
 msgid "Save _As..."
 msgstr "Salvar _Como..."
 
-#: ../src/cheese-window.c:825
+#: ../src/cheese-window.c:889
 msgid "Move to _Trash"
 msgstr "Mover para a _Lixeira"
 
-#: ../src/cheese-window.c:833
+#: ../src/cheese-window.c:897
 msgid "_Recording"
 msgstr "_Gravando"
 
-#: ../src/cheese-window.c:837
+#: ../src/cheese-window.c:901
 msgid "_Set As Account Photo"
 msgstr "_Definir como Foto de Conta"
 
-#: ../src/cheese-window.c:841
+#: ../src/cheese-window.c:905
 msgid "Send by _Mail"
-msgstr "Enviar por E-_Mail"
+msgstr "Enviar por E-_mail"
 
-#: ../src/cheese-window.c:845
+#: ../src/cheese-window.c:909
 msgid "Export to F-_Spot"
 msgstr "Exportar para o F-_Spot"
 
-#: ../src/cheese-window.c:849
+#: ../src/cheese-window.c:913
 msgid "Export to _Flickr"
 msgstr "Exportar para o _Flickr"
 
-#: ../src/cheese.c:50
+#: ../src/cheese.c:71
 msgid "Be verbose"
 msgstr "Seja prolixo"
 
-#: ../src/cheese.c:64
+#: ../src/cheese.c:86
 msgid "- Take photos and videos from your webcam"
 msgstr "- Tire fotos e vídeos com sua webcam"
+
+#~ msgid "Could not find the Trash"
+#~ msgstr "Não foi possível encontrar a Lixeira"
+
+#~ msgid "Error on deleting %s"
+#~ msgstr "Erro ao excluir %s"
+
+#~ msgid ""
+#~ "Are you sure you want to move\n"
+#~ "all media to the trash?"
+#~ msgstr ""
+#~ "Você tem certeza que deseja mover\n"
+#~ "toda mídia para a lixeira?"
+
+#~ msgid ""
+#~ "Are you sure you want to move\n"
+#~ "\"%s\" to the trash?"
+#~ msgstr ""
+#~ "Você tem certeza que deseja\n"
+#~ "mover \"%s\" para a lixeira?"
