@@ -21,7 +21,7 @@ EXTRA_DIST =						\
 	$(pkgdata_DATA)				\
 	$(bugreport_SCRIPTS)
 
-bugreportdir      = $(libdir)/cheese
+bugreportdir      = $(libexecdir)/cheese
 bugreport_SCRIPTS = cheese-bugreport.sh
 
 if GCONF_SCHEMAS_INSTALL

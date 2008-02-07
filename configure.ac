@@ -33,10 +33,10 @@ AC_DEFUN([CHEESE_FULLPATH], [
   $3=`eval echo [$]ac_expand`
 ])
 
-# FULL_LIBDIR is used for X-GNOME-Bugzilla-ExtraInfoScript expansion
+# FULL_LIBEXECDIR is used for X-GNOME-Bugzilla-ExtraInfoScript expansion
 # in data/cheese.desktop.in.in
-CHEESE_FULLPATH(libdir, NONE, FULL_LIBDIR)
-AC_SUBST(FULL_LIBDIR)
+CHEESE_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)
+AC_SUBST(FULL_LIBEXECDIR)
 
 #*******************************************************************************
 # Internationalization
