@@ -117,6 +117,20 @@ typedef struct
 
 } CheeseWindow;
 
+static gboolean
+cheese_open_uri (GtkWindow *parent, const char *url, GError **error)
+{
+  gboolean ret;
+  char *cmdline;
+  GdkScreen *screen;
+
+  screen = gtk_window_get_screen (GTK_WINDOW (parent));
+  cmdline = g_strconcat ("xdg-open ", url, NULL);
+  ret = gdk_spawn_command_line_on_screen (screen, cmdline, error);
+  g_free (cmdline);
+
+  return ret;
+}
 
 /* Make url in about dialog clickable */
 static void
@@ -126,7 +140,7 @@ cheese_about_dialog_handle_url (GtkAboutDialog *dialog, const char *url, gpointe
   GtkWidget *error_dialog;
   gboolean ret;
 
-  ret = g_app_info_launch_default_for_uri (url, NULL, &error);
+  ret = cheese_open_uri (GTK_WINDOW (dialog), url, &error);
   if (ret == FALSE) {
     error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog), 
                                            GTK_DIALOG_DESTROY_WITH_PARENT, 
@@ -149,7 +163,7 @@ cheese_about_dialog_handle_email (GtkAboutDialog *dialog, const char *email, gpo
 
   uri = g_strconcat ("mailto:", email, NULL);
 
-  ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
+  ret = cheese_open_uri (GTK_WINDOW (dialog), uri, &error);
   if (ret == FALSE) {
     error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog), 
                                            GTK_DIALOG_DESTROY_WITH_PARENT, 
@@ -240,7 +254,7 @@ cheese_window_cmd_open (GtkWidget *widget, CheeseWindow *cheese_window)
   uri = g_filename_to_uri (filename, NULL, NULL);
   g_free (filename);
  
-  ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
+  ret = cheese_open_uri (GTK_WINDOW (cheese_window->window), uri, &error);
   if (ret == FALSE) {
     dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window), 
                                      GTK_DIALOG_DESTROY_WITH_PARENT, 
@@ -525,7 +539,7 @@ cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
   GError *error = NULL;
   gboolean ret;
 
-  ret = g_app_info_launch_default_for_uri ("ghelp:cheese", NULL, &error);
+  ret = cheese_open_uri (GTK_WINDOW (cheese_window->window), "ghelp:cheese", &error);
 
   if (ret == FALSE) 
   {

@@ -1,3 +1,11 @@
+2008-02-09  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-window.c,
+	  wscript: 
+	  Use xdg-open instead of g_app_info_launch_default_for_uri because for
+	  that gtk 2.16 is necessary. Bump back glib requirement to 2.15.4
+
 2008-02-07  Jaap Haitsma <jaap@haitsma.org>
 
 	* configure.ac,

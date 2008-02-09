@@ -34,8 +34,8 @@ def configure(conf):
 	conf.check_tool('gcc gnome intltool misc')
 
 	conf.check_pkg('gobject-2.0', destvar='GOBJECT', vnum='2.12.0', mandatory=True)
-	conf.check_pkg('glib-2.0', destvar='GLIB', vnum='2.15.5', mandatory=True)
-	conf.check_pkg('gio-2.0', destvar='GLIB', vnum='2.15.5', mandatory=True)
+	conf.check_pkg('glib-2.0', destvar='GLIB', vnum='2.15.4', mandatory=True)
+	conf.check_pkg('gio-2.0', destvar='GLIB', vnum='2.15.4', mandatory=True)
 	conf.check_pkg('cairo', destvar='CAIRO', vnum='1.4.0', mandatory=True)
 	conf.check_pkg('pangocairo', destvar='PANGOCAIRO', vnum='1.18.0', mandatory=True)
 	conf.check_pkg('gdk-2.0', destvar='GDK', vnum='2.12.0', mandatory=True)
