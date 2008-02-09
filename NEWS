@@ -1,6 +1,26 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.21.91:
+	- replaced all gnome-vfs calls by gio
+	- install bugreport script in libexec instead of lib, fixes bug #514833
+	- translate effect names too, courtesy of Tommi Vainikainen
+	- pressing 'esc' cancels countdown/stop video recording, courtesy of Tommi Vainikainen
+	- added/updated translations
+	  - ar, courtesy of Khaled Hosny
+	  - es, courtesy of Jorge González
+	  - et, courtesy of Ivar Smolin
+	  - eu, courtesy of Iñaki Larrañaga Murgoitio
+	  - fi, courtesy of Tommi Vainikainen
+	  - fr, courtesy of Robert-André Mauchin and Stéphane Raimbault
+	  - it, courtesy of Alessandro Falappa
+	  - oc, courtesy of Yannig Marchegay
+	  - pl, courtesy of GNOME PL Team
+	  - pt_BR, courtesy of Pedro de Medeiro and Og Maciel
+	  - sv, courtesy of Daniel Nylander 
+	  - zh_HK, courtesy of Chao-Hsiung Liao
+	  - zh_TW, courtesy of Chao-Hsiung Liao
+
 version 2.21.90.1:
 	- new effect images by Lapo Calamandrei and Or Dvory (again)
 	- the bugreport script didnt get copied on make dist
