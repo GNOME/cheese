@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-27 15:17+0100\n"
-"PO-Revision-Date: 2008-01-27 15:17+0100\n"
+"POT-Creation-Date: 2008-02-10 21:42+0100\n"
+"PO-Revision-Date: 2008-02-10 21:42+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:595
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:590
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Program for å ta bilder og film fra ditt webkamera"
 
@@ -23,21 +23,21 @@ msgstr "Program for å ta bilder og film fra ditt webkamera"
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:677
-#: ../src/cheese-window.c:865
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:672
+#: ../src/cheese-window.c:892
 msgid "_Effects"
 msgstr "_Effekter"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:869
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:896
 msgid "_Photo"
 msgstr "_Bilde"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:765
-#: ../src/cheese-window.c:880 ../src/cheese-window.c:986
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:760
+#: ../src/cheese-window.c:907 ../src/cheese-window.c:1013
 msgid "_Take a photo"
 msgstr "_Ta et bilde"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:870
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:897
 msgid "_Video"
 msgstr "_Video"
 
@@ -119,48 +119,74 @@ msgstr "Terning"
 msgid "Warp"
 msgstr "Warp"
 
-#: ../src/cheese-window.c:135
+#: ../src/cheese-window.c:148
 #, c-format
-msgid "Failed to show url %s"
-msgstr "Klarte ikke å vise URL %s"
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"Klarte ikke å åpne leser for å vise:\n"
+"%s"
 
-#: ../src/cheese-window.c:257
+#: ../src/cheese-window.c:171
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"Klarte ikke å åpne e-postprogram for å sende melding til:\n"
+"%s"
+
+#: ../src/cheese-window.c:262
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"Klarte ikke å starte program for å vise:\n"
+"%s"
+
+#: ../src/cheese-window.c:281
 msgid "Save File"
 msgstr "Lagre fil"
 
-#: ../src/cheese-window.c:295
+#: ../src/cheese-window.c:319
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke lagre %s"
 
-#: ../src/cheese-window.c:322
+#: ../src/cheese-window.c:346
 msgid "Cannot move file to trash"
 msgstr "Kan ikke flytte filen til papirkurven"
 
-#: ../src/cheese-window.c:323
+#: ../src/cheese-window.c:347
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Filen «%s» kan ikke flyttes til papirkurven. Detaljer: %s"
 
-#: ../src/cheese-window.c:355
+#: ../src/cheese-window.c:379
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Vil du virkelig flytte alle bilder og videoer til papirkurven?"
 
-#: ../src/cheese-window.c:363
+#: ../src/cheese-window.c:387
 msgid "_Move to Trash"
 msgstr "Flytt til _papirkurven"
 
-#: ../src/cheese-window.c:451
+#: ../src/cheese-window.c:475
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kunne ikke sette bilde for konto"
 
-#: ../src/cheese-window.c:572
+#: ../src/cheese-window.c:550
+msgid "Unable to open help file for Cheese"
+msgstr "Kan ikke åpne hjelp for Cheese"
+
+#: ../src/cheese-window.c:567
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/cheese-window.c:575
+#: ../src/cheese-window.c:570
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -172,7 +198,7 @@ msgstr ""
 "av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du "
 "ønsker det) enhver senere versjon.\n"
 
-#: ../src/cheese-window.c:579
+#: ../src/cheese-window.c:574
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -183,7 +209,7 @@ msgstr ""
 "NOEN GARANTI, ikke engang implisitt garanti om at det er SALGBART eller "
 "PASSER ET BESTEMT FORMÅL. Se GNU General Public License for detaljer.\n"
 
-#: ../src/cheese-window.c:583
+#: ../src/cheese-window.c:578
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -191,75 +217,75 @@ msgstr ""
 "Du skal ha mottatt en kopi av GNU General Public License sammen med "
 "Nautilus. Hvis dette ikke er tilfelle se på <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:599
+#: ../src/cheese-window.c:594
 msgid "Cheese Website"
 msgstr "Nettsted for Cheese"
 
-#: ../src/cheese-window.c:688
+#: ../src/cheese-window.c:683
 msgid "_Back"
 msgstr "Til_bake"
 
-#: ../src/cheese-window.c:755 ../src/cheese-window.c:840
+#: ../src/cheese-window.c:750 ../src/cheese-window.c:809
 msgid "_Start recording"
 msgstr "_Start opptak"
 
-#: ../src/cheese-window.c:825
+#: ../src/cheese-window.c:859
 msgid "_Stop recording"
 msgstr "_Stopp opptak"
 
-#: ../src/cheese-window.c:851
+#: ../src/cheese-window.c:878
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:853
+#: ../src/cheese-window.c:880
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/cheese-window.c:854
+#: ../src/cheese-window.c:881
 msgid "Move all to Trash"
 msgstr "Flytt alle til papirkurven"
 
-#: ../src/cheese-window.c:856
+#: ../src/cheese-window.c:883
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../src/cheese-window.c:859
+#: ../src/cheese-window.c:886
 msgid "_Contents"
 msgstr "_Innhold"
 
-#: ../src/cheese-window.c:859
+#: ../src/cheese-window.c:886
 msgid "Help on this application"
 msgstr "Hjelp for dette programmet"
 
-#: ../src/cheese-window.c:874
+#: ../src/cheese-window.c:901
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ../src/cheese-window.c:875
+#: ../src/cheese-window.c:902
 msgid "Save _As..."
 msgstr "L_agre som..."
 
-#: ../src/cheese-window.c:876
+#: ../src/cheese-window.c:903
 msgid "Move to _Trash"
 msgstr "Flytt til _papirkurv"
 
-#: ../src/cheese-window.c:884
+#: ../src/cheese-window.c:911
 msgid "_Recording"
 msgstr "_Opptak"
 
-#: ../src/cheese-window.c:888
+#: ../src/cheese-window.c:915
 msgid "_Set As Account Photo"
 msgstr "_Sett som bilde for konto"
 
-#: ../src/cheese-window.c:892
+#: ../src/cheese-window.c:919
 msgid "Send by _Mail"
 msgstr "Send via e-_post"
 
-#: ../src/cheese-window.c:896
+#: ../src/cheese-window.c:923
 msgid "Export to F-_Spot"
 msgstr "Eksporter til F-_Spot"
 
-#: ../src/cheese-window.c:900
+#: ../src/cheese-window.c:927
 msgid "Export to _Flickr"
 msgstr "Eksporter til _Flickr"
 
