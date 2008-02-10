@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-24 01:57+0100\n"
+"POT-Creation-Date: 2008-02-10 14:32+0100\n"
 "PO-Revision-Date: 2007-11-29 21:43+0100\n"
 "Last-Translator: Andre Klapper <ak-47@gmx.net>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
@@ -17,29 +17,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.h:1 ../src/cheese-window.c:568
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:590
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Ein Programm, um Bilder und Videos einer Webcam aufzunehmen"
 
-#: ../data/cheese.desktop.in.h:2 ../data/cheese.glade.h:1 ../src/cheese.c:62
+#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
+#: ../src/cheese.c:84
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:650
-#: ../src/cheese-window.c:813
+#: ../data/cheese.glade.h:2 ../src/cheese-window.c:672
+#: ../src/cheese-window.c:892
 msgid "_Effects"
 msgstr "_Effekte"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:817
+#: ../data/cheese.glade.h:3 ../src/cheese-window.c:896
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:738
-#: ../src/cheese-window.c:828 ../src/cheese-window.c:933
+#: ../data/cheese.glade.h:4 ../src/cheese-window.c:760
+#: ../src/cheese-window.c:907 ../src/cheese-window.c:1013
 msgid "_Take a photo"
 msgstr "Foto _aufnehmen"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:818
+#: ../data/cheese.glade.h:5 ../src/cheese-window.c:897
 msgid "_Video"
 msgstr "_Video"
 
@@ -122,55 +123,72 @@ msgstr "Würfel"
 msgid "Warp"
 msgstr "Warp"
 
-#: ../src/cheese-window.c:234
+#: ../src/cheese-window.c:148
+#, c-format
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr "Der Browser konnte zum Anzeigen nicht geöffnet werden: %s"
+
+#: ../src/cheese-window.c:171
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"Das E-Mail-Programm konnte zum Versenden der Nachricht nicht geöffnet "
+"werden: %s"
+
+#: ../src/cheese-window.c:262
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr "Das Anzeigeprogramm konnte nicht gestartet werden: %s"
+
+#: ../src/cheese-window.c:281
+msgid "Save File"
+msgstr "Datei speichern"
+
+#: ../src/cheese-window.c:319
 #, c-format
 msgid "Could not save %s"
 msgstr "%s konnte nicht gespeichert werden"
 
-#: ../src/cheese-window.c:269
+#: ../src/cheese-window.c:346
+msgid "Cannot move file to trash"
+msgstr "Datei konnte nicht in den Müll verschoben werden"
+
+#: ../src/cheese-window.c:347
 #, c-format
-msgid "Could not find the Trash"
-msgstr "Mülleimer konnte nicht gefunden werden"
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "Die Datei »%s« konnte nicht in den Müll verschoben werden. Details: %s"
 
-#: ../src/cheese-window.c:296
+#: ../src/cheese-window.c:379
 #, c-format
-msgid "Error on deleting %s"
-msgstr "Fehler beim Entfernen von %s"
+msgid "Really move all photos and videos to the trash?"
+msgstr "Möchten Sie wirklich alle Fotos und Videos in den Müll veschieben?"
 
-#: ../src/cheese-window.c:319
-#, c-format
-msgid ""
-"Are you sure you want to move\n"
-"all media to the trash?"
-msgstr ""
-"Sollen wirklich alle Bilder und Videos\n"
-"in den Mülleimer verschoben werden?"
+#: ../src/cheese-window.c:387
+msgid "_Move to Trash"
+msgstr "In den _Müll verschieben"
 
-#: ../src/cheese-window.c:327 ../src/cheese-window.c:373
-msgid "Move to Trash"
-msgstr "In den Mülleimer verschieben"
-
-#: ../src/cheese-window.c:364
-#, c-format
-msgid ""
-"Are you sure you want to move\n"
-"\"%s\" to the trash?"
-msgstr ""
-"Soll »%s« wirklich\n"
-"in den Mülleimer verschoben werden?"
-
-#: ../src/cheese-window.c:427
+#: ../src/cheese-window.c:475
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Das Anmeldefoto konnte nicht gesetzt werden"
 
-#: ../src/cheese-window.c:545
+#: ../src/cheese-window.c:550
+msgid "Unable to open help file for Cheese"
+msgstr "Die Hilfedatei zu Cheese konnte nicht geöffnet werden"
+
+#: ../src/cheese-window.c:567
 msgid "translator-credits"
 msgstr ""
 "daniel g. siegel <dgsiegel@gmail.com>\n"
 "Andre Klapper <ak-47@gmx.net>"
 
-#: ../src/cheese-window.c:548
+#: ../src/cheese-window.c:570
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -183,7 +201,7 @@ msgstr ""
 "entweder in Version 2 der Lizenz oder (nach Ihrem Ermessen) in jeder "
 "folgenden Lizenz.\n"
 
-#: ../src/cheese-window.c:552
+#: ../src/cheese-window.c:574
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -197,7 +215,7 @@ msgstr ""
 "für weitere Informationen bitten in der GNU General Public License (GNU GPL) "
 "nach.\n"
 
-#: ../src/cheese-window.c:556
+#: ../src/cheese-window.c:578
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -206,85 +224,105 @@ msgstr ""
 "License erhalten haben. Wenn dem nicht so ist, siehe <http://www.gnu.org/"
 "licenses/>."
 
-#: ../src/cheese-window.c:572
+#: ../src/cheese-window.c:594
 msgid "Cheese Website"
 msgstr "Cheese Webseite"
 
-#: ../src/cheese-window.c:661
+#: ../src/cheese-window.c:683
 msgid "_Back"
 msgstr "_Zurück"
 
-#: ../src/cheese-window.c:728 ../src/cheese-window.c:788
+#: ../src/cheese-window.c:750 ../src/cheese-window.c:809
 msgid "_Start recording"
 msgstr "_Aufnahme starten"
 
-#: ../src/cheese-window.c:773
+#: ../src/cheese-window.c:859
 msgid "_Stop recording"
 msgstr "_Aufnahme stoppen"
 
-#: ../src/cheese-window.c:799
+#: ../src/cheese-window.c:878
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:801
+#: ../src/cheese-window.c:880
 msgid "_Edit"
 msgstr "_Bearbeiten"
 
-#: ../src/cheese-window.c:802
+#: ../src/cheese-window.c:881
 msgid "Move all to Trash"
 msgstr "Alle in den Mülleimer verschieben"
 
-#: ../src/cheese-window.c:804
+#: ../src/cheese-window.c:883
 msgid "_Help"
 msgstr "_Hilfe"
 
-#: ../src/cheese-window.c:807
+#: ../src/cheese-window.c:886
 msgid "_Contents"
 msgstr "_Inhalt"
 
-#: ../src/cheese-window.c:807
+#: ../src/cheese-window.c:886
 msgid "Help on this application"
 msgstr "Hilfe zu diesem Programm"
 
-#: ../src/cheese-window.c:822
+#: ../src/cheese-window.c:901
 msgid "_Open"
 msgstr "Ö_ffnen"
 
-#: ../src/cheese-window.c:823
+#: ../src/cheese-window.c:902
 msgid "Save _As..."
 msgstr "Speichern _unter …"
 
-#: ../src/cheese-window.c:824
+#: ../src/cheese-window.c:903
 msgid "Move to _Trash"
 msgstr "In den Mülleimer _verschieben"
 
-#: ../src/cheese-window.c:832
+#: ../src/cheese-window.c:911
 msgid "_Recording"
 msgstr "_Aufnahme"
 
-#: ../src/cheese-window.c:836
+#: ../src/cheese-window.c:915
 msgid "_Set As Account Photo"
 msgstr "Als _Anmeldefoto setzen"
 
-#: ../src/cheese-window.c:840
+#: ../src/cheese-window.c:919
 msgid "Send by _Mail"
 msgstr "Per E-_Mail senden"
 
-#: ../src/cheese-window.c:844
+#: ../src/cheese-window.c:923
 msgid "Export to F-_Spot"
 msgstr "Zu F-_Spot exportieren"
 
-#: ../src/cheese-window.c:848
+#: ../src/cheese-window.c:927
 msgid "Export to _Flickr"
 msgstr "Zu _Flickr exportieren"
 
-#: ../src/cheese.c:50
+#: ../src/cheese.c:71
 msgid "Be verbose"
 msgstr "Ausführlich sein"
 
-#: ../src/cheese.c:64
+#: ../src/cheese.c:86
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ein Programm, um Bilder und Videos einer Webcam aufzunehmen"
+
+#~ msgid "Could not find the Trash"
+#~ msgstr "Mülleimer konnte nicht gefunden werden"
+
+#~ msgid "Error on deleting %s"
+#~ msgstr "Fehler beim Entfernen von %s"
+
+#~ msgid ""
+#~ "Are you sure you want to move\n"
+#~ "all media to the trash?"
+#~ msgstr ""
+#~ "Sollen wirklich alle Bilder und Videos\n"
+#~ "in den Mülleimer verschoben werden?"
+
+#~ msgid ""
+#~ "Are you sure you want to move\n"
+#~ "\"%s\" to the trash?"
+#~ msgstr ""
+#~ "Soll »%s« wirklich\n"
+#~ "in den Mülleimer verschoben werden?"
 
 #~ msgid "Place to store media"
 #~ msgstr "Der Ort, an dem die Daten gespeichert werden"
