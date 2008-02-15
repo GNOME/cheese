@@ -1148,8 +1148,10 @@ setup_camera (CheeseWindow *cheese_window)
                             cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
 
   cheese_webcam_play (cheese_window->webcam);
+  gdk_threads_enter ();
   gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
   ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
+  gdk_threads_leave ();
 }
 
 void
