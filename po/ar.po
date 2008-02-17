@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD.ar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-01-31 08:06+0000\n"
-"PO-Revision-Date: 2008-02-01 23:33+0200\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"POT-Creation-Date: 2008-02-17 11:48+0000\n"
+"PO-Revision-Date: 2008-02-17 11:55+0100\n"
+"Last-Translator: Djihed Afifi <djihed@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,42 +20,43 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:595
+#: ../data/cheese.desktop.in.in.h:1
+#: ../src/cheese-window.c:576
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "برنامج لالتقاط الصور و الفيديو من آلة التصوير"
 
-#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
-#: ../src/cheese.c:83
+#: ../data/cheese.desktop.in.in.h:2
+#: ../data/cheese.glade.h:1
+#: ../src/cheese.c:84
 msgid "Cheese"
 msgstr "جُبن"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:677
-#: ../src/cheese-window.c:865
+#: ../data/cheese.glade.h:2
+#: ../src/cheese-window.c:658
+#: ../src/cheese-window.c:878
 msgid "_Effects"
 msgstr "المؤث_رات"
 
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:869
+#: ../data/cheese.glade.h:3
+#: ../src/cheese-window.c:882
 msgid "_Photo"
 msgstr "_صورة"
 
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:765
-#: ../src/cheese-window.c:880 ../src/cheese-window.c:986
+#: ../data/cheese.glade.h:4
+#: ../src/cheese-window.c:746
+#: ../src/cheese-window.c:893
+#: ../src/cheese-window.c:999
 msgid "_Take a photo"
 msgstr "_خذ صورة"
 
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:870
+#: ../data/cheese.glade.h:5
+#: ../src/cheese-window.c:883
 msgid "_Video"
 msgstr "_فيديو"
 
 #: ../data/cheese.schemas.in.h:1
-msgid ""
-"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
-"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
-"Vertigo, Edge, Dice and Warp"
-msgstr ""
-"المؤثرات، التي تُطبق في بداية التشغيل. القيم الممكنة: Mauve، Noir/Blanc، "
-"Saturation، Hulk، Vertical Flip، Horizontal Flip، Shagadelic، Vertigo، Edge، "
-"Dice و Warp"
+msgid "Effects, that are applied on startup. Possible values are: Mauve, Noir/Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, Vertigo, Edge, Dice and Warp"
+msgstr "المؤثرات، التي تُطبق في بداية التشغيل. القيم الممكنة: Mauve، Noir/Blanc، Saturation، Hulk، Vertical Flip، Horizontal Flip، Shagadelic، Vertigo، Edge، Dice و Warp"
 
 #: ../data/cheese.schemas.in.h:2
 msgid "Selected Effects"
@@ -125,157 +126,169 @@ msgstr "نرد"
 msgid "Warp"
 msgstr "طي"
 
-#: ../src/cheese-window.c:135
+#: ../src/cheese-window.c:134
 #, c-format
-msgid "Failed to show url %s"
-msgstr "فشل عرض المسار %s"
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"فشل فتح متصفح لعرض:\n"
+"%s"
 
-#: ../src/cheese-window.c:257
+#: ../src/cheese-window.c:157
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"فشل فتح برنامج مراسلة لإرسال رسالة لـ:\n"
+"%s"
+
+#: ../src/cheese-window.c:248
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"فشل تنفيذ برنامج لعرض:\n"
+"%s"
+
+#: ../src/cheese-window.c:267
 msgid "Save File"
 msgstr "احفظ الملف"
 
-#: ../src/cheese-window.c:295
+#: ../src/cheese-window.c:305
 #, c-format
 msgid "Could not save %s"
 msgstr "تعذّر حفظ %s"
 
-#: ../src/cheese-window.c:322
+#: ../src/cheese-window.c:332
 msgid "Cannot move file to trash"
 msgstr "لا يمكن نقل الملف إلى المهملات"
 
-#: ../src/cheese-window.c:323
+#: ../src/cheese-window.c:333
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "لا يُمكن نقل الملف \"%s\" إلى المهملات. التفاصيل: %s "
 
-#: ../src/cheese-window.c:355
+#: ../src/cheese-window.c:365
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "أأنقل فعلا كل الصور والفيديو إلى المهملات؟"
 
-#: ../src/cheese-window.c:363
+#: ../src/cheese-window.c:373
 msgid "_Move to Trash"
 msgstr "ا_نقل إلى المهملات"
 
-#: ../src/cheese-window.c:451
+#: ../src/cheese-window.c:461
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "لا يمكن ضبط صورة الحساب"
 
-#: ../src/cheese-window.c:572
+#: ../src/cheese-window.c:536
+msgid "Unable to open help file for Cheese"
+msgstr "لا يمكن فتح ملف المساعدة"
+
+#: ../src/cheese-window.c:553
 msgid "translator-credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
 "جهاد عفيفي\t<djihed@gmail.com>\n"
 "خالد حسني\t<khaledhosny@eglug.org>"
 
-#: ../src/cheese-window.c:575
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-msgstr ""
-"هذا البرنامج حر؛ بإمكانك إعادة توزيعه و/أو تعديله تحت شروط الرخصة العمومية "
-"العامة لجنو والتي نشرتها منظمة البرمجيات الحرة؛ سواء الإصدارة 2 من الرخصة أو "
-"أي إصدارة بعدها حسب رغبتك.\n"
+#: ../src/cheese-window.c:556
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+msgstr "هذا البرنامج حر؛ بإمكانك إعادة توزيعه و/أو تعديله تحت شروط الرخصة العمومية العامة لجنو والتي نشرتها منظمة البرمجيات الحرة؛ سواء الإصدارة 2 من الرخصة أو أي إصدارة بعدها حسب رغبتك.\n"
 
-#: ../src/cheese-window.c:579
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-msgstr ""
-"يوزّع هذا البرنامج على أمل أن يكون مفيدًا لمن يستخدمه دون أدنى مسؤولية؛ ولا "
-"حتى أي ضمان يضمن صلاحية العرض في السوق أو توافقه مع أي استخدام محدد. يمكنك "
-"مراجعة الرخصة العمومية العامة لجنو لمزيد من التفاصيل.\n"
+#: ../src/cheese-window.c:560
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+msgstr "يوزّع هذا البرنامج على أمل أن يكون مفيدًا لمن يستخدمه دون أدنى مسؤولية؛ ولا حتى أي ضمان يضمن صلاحية العرض في السوق أو توافقه مع أي استخدام محدد. يمكنك مراجعة الرخصة العمومية العامة لجنو لمزيد من التفاصيل.\n"
 
-#: ../src/cheese-window.c:583
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"من المفترض أن تكون قد استلمت نسخة من رخصة جنو العامة مع البرنامج؛ في حال عدم "
-"استلامك لذلك، يمكنك تصفح <http://www.gnu.org/licenses/>."
+#: ../src/cheese-window.c:564
+msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr "من المفترض أن تكون قد استلمت نسخة من رخصة جنو العامة مع البرنامج؛ في حال عدم استلامك لذلك، يمكنك تصفح <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:599
+#: ../src/cheese-window.c:580
 msgid "Cheese Website"
 msgstr "موقع جُبن"
 
-#: ../src/cheese-window.c:688
+#: ../src/cheese-window.c:669
 msgid "_Back"
 msgstr "لل_خلف"
 
-#: ../src/cheese-window.c:755 ../src/cheese-window.c:840
+#: ../src/cheese-window.c:736
+#: ../src/cheese-window.c:795
 msgid "_Start recording"
 msgstr "ا_بدأ التسجيل"
 
-#: ../src/cheese-window.c:825
+#: ../src/cheese-window.c:845
 msgid "_Stop recording"
 msgstr "أ_وقف التسجيل"
 
-#: ../src/cheese-window.c:851
+#: ../src/cheese-window.c:864
 msgid "_Cheese"
 msgstr "_جُبن"
 
-#: ../src/cheese-window.c:853
+#: ../src/cheese-window.c:866
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../src/cheese-window.c:854
+#: ../src/cheese-window.c:867
 msgid "Move all to Trash"
 msgstr "انقل الكل إلى المهملات"
 
-#: ../src/cheese-window.c:856
+#: ../src/cheese-window.c:869
 msgid "_Help"
 msgstr "م_ساعدة"
 
-#: ../src/cheese-window.c:859
+#: ../src/cheese-window.c:872
 msgid "_Contents"
 msgstr "الم_حتويات"
 
-#: ../src/cheese-window.c:859
+#: ../src/cheese-window.c:872
 msgid "Help on this application"
 msgstr "مساعدة حوْل هذا البرنامج"
 
-#: ../src/cheese-window.c:874
+#: ../src/cheese-window.c:887
 msgid "_Open"
 msgstr "ا_فتح"
 
-#: ../src/cheese-window.c:875
+#: ../src/cheese-window.c:888
 msgid "Save _As..."
 msgstr "احفظ _كـ..."
 
-#: ../src/cheese-window.c:876
+#: ../src/cheese-window.c:889
 msgid "Move to _Trash"
 msgstr "انقل إلى  ال_مهملات"
 
-#: ../src/cheese-window.c:884
+#: ../src/cheese-window.c:897
 msgid "_Recording"
 msgstr "الت_سجيل"
 
-#: ../src/cheese-window.c:888
+#: ../src/cheese-window.c:901
 msgid "_Set As Account Photo"
 msgstr "ا_جعلها صورة الحساب"
 
-#: ../src/cheese-window.c:892
+#: ../src/cheese-window.c:905
 msgid "Send by _Mail"
 msgstr "أرسِل بال_بريد"
 
-#: ../src/cheese-window.c:896
+#: ../src/cheese-window.c:909
 msgid "Export to F-_Spot"
 msgstr "_صدّر إلى F-Spot"
 
-#: ../src/cheese-window.c:900
+#: ../src/cheese-window.c:913
 msgid "Export to _Flickr"
 msgstr "صدّر إلى _فليكر"
 
-#: ../src/cheese.c:70
+#: ../src/cheese.c:71
 msgid "Be verbose"
 msgstr "كُن مُسهِبا"
 
-#: ../src/cheese.c:85
+#: ../src/cheese.c:86
 msgid "- Take photos and videos from your webcam"
 msgstr "- التقط الصور و الفيديو من آلة التصوير"
+
+#~ msgid "Failed to show url %s"
+#~ msgstr "فشل عرض المسار %s"
 
