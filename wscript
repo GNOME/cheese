@@ -40,7 +40,6 @@ def configure(conf):
 	conf.check_pkg('pangocairo', destvar='PANGOCAIRO', vnum='1.18.0', mandatory=True)
 	conf.check_pkg('gdk-2.0', destvar='GDK', vnum='2.12.0', mandatory=True)
 	conf.check_pkg('gtk+-2.0', destvar='GTK', vnum='2.10.0', mandatory=True)
-	conf.check_pkg('libglade-2.0', destvar='LIBGLADE', vnum='2.0.0', mandatory=True)
 	conf.check_pkg('librsvg-2.0', destvar='LIBRSVG', vnum='2.18.0', mandatory=True)
 	conf.check_pkg('hal', destvar='HAL', vnum='0.5.0', mandatory=True)
 	conf.check_pkg('gstreamer-0.10', destvar='GSTREAMER', vnum='0.10.15', mandatory=True)

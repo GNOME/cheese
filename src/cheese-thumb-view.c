@@ -19,14 +19,13 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <cheese-config.h>
+#include "cheese-config.h"
 #endif
 
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
 #include <libgnomeui/libgnomeui.h>
-#include <glade/glade.h>
 
 #include "cheese-fileutil.h"
 #include "eog-thumbnail.h"

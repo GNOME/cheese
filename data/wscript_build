@@ -14,7 +14,7 @@ import misc
 env = bld.env()
 
 install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
-install_files('PACKAGE_DATADIR', '', 'cheese.glade')
+install_files('PACKAGE_DATADIR', '', 'cheese.ui')
 install_files('PACKAGE_DATADIR', '', 'cheese-bugreport.sh')
 
 # process schemas.in file

@@ -20,7 +20,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <cheese-config.h>
+#include "cheese-config.h"
 #endif
 
 #include <string.h>
@@ -34,7 +34,6 @@
 #include <gst/interfaces/xoverlay.h>
 #include <gtk/gtk.h>
 #include <libebook/e-book.h>
-#include <glade/glade.h>
 
 #include "cheese-countdown.h"
 #include "cheese-effect-chooser.h"
@@ -45,8 +44,7 @@
 #include "ephy-spinner.h"
 #include "gst-audio-play.h"
 
-#define GLADE_FILE PACKAGE_DATADIR"/cheese.glade"
-#define UI_FILE PACKAGE_DATADIR"/cheese-ui.xml"
+
 #define SHUTTER_SOUNDS 5
 
 typedef enum
@@ -975,50 +973,60 @@ cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name,
 static void
 cheese_window_create_window (CheeseWindow *cheese_window)
 {
-  GladeXML *gxml;
   GtkWidget *menubar;
   GError *error=NULL;
   char *path;
+  GtkBuilder* builder;
 
-  gxml = glade_xml_new (GLADE_FILE, NULL, NULL);
-  cheese_window->window              = glade_xml_get_widget (gxml, "cheese_window");
-  cheese_window->button_effects      = glade_xml_get_widget (gxml, "button_effects");
-  cheese_window->button_photo        = glade_xml_get_widget (gxml, "button_photo");
-  cheese_window->button_video        = glade_xml_get_widget (gxml, "button_video");
-  cheese_window->image_take_photo    = glade_xml_get_widget (gxml, "image_take_photo");
-  cheese_window->label_effects       = glade_xml_get_widget (gxml, "label_effects");
-  cheese_window->label_photo         = glade_xml_get_widget (gxml, "label_photo");
-  cheese_window->label_take_photo    = glade_xml_get_widget (gxml, "label_take_photo");
-  cheese_window->label_video         = glade_xml_get_widget (gxml, "label_video");
-  cheese_window->main_vbox           = glade_xml_get_widget (gxml, "main_vbox");
-  cheese_window->notebook            = glade_xml_get_widget (gxml, "notebook");
-  cheese_window->notebook_bar        = glade_xml_get_widget (gxml, "notebook_bar");
-  cheese_window->screen              = glade_xml_get_widget (gxml, "video_screen");
-  cheese_window->take_picture        = glade_xml_get_widget (gxml, "take_picture");
+  builder = gtk_builder_new ();
+  gtk_builder_add_from_file (builder, PACKAGE_DATADIR"/cheese.ui", &error);
+
+  if (error)
+  {
+    g_error ("building ui from %s failed: %s", PACKAGE_DATADIR"/cheese.ui", error->message);
+    g_clear_error (&error);
+  }
+
+  cheese_window->window             = GTK_WIDGET (gtk_builder_get_object (builder, "cheese_window"));
+  cheese_window->button_effects     = GTK_WIDGET (gtk_builder_get_object (builder, "button_effects"));
+  cheese_window->button_photo       = GTK_WIDGET (gtk_builder_get_object (builder, "button_photo"));
+  cheese_window->button_video       = GTK_WIDGET (gtk_builder_get_object (builder, "button_video"));
+  cheese_window->image_take_photo   = GTK_WIDGET (gtk_builder_get_object (builder, "image_take_photo"));
+  cheese_window->label_effects      = GTK_WIDGET (gtk_builder_get_object (builder, "label_effects"));
+  cheese_window->label_photo        = GTK_WIDGET (gtk_builder_get_object (builder, "label_photo"));
+  cheese_window->label_take_photo   = GTK_WIDGET (gtk_builder_get_object (builder, "label_take_photo"));
+  cheese_window->label_video        = GTK_WIDGET (gtk_builder_get_object (builder, "label_video"));
+  cheese_window->main_vbox          = GTK_WIDGET (gtk_builder_get_object (builder, "main_vbox"));
+  cheese_window->notebook           = GTK_WIDGET (gtk_builder_get_object (builder, "notebook"));
+  cheese_window->notebook_bar       = GTK_WIDGET (gtk_builder_get_object (builder, "notebook_bar"));
+  cheese_window->screen             = GTK_WIDGET (gtk_builder_get_object (builder, "video_screen"));
+  cheese_window->take_picture       = GTK_WIDGET (gtk_builder_get_object (builder, "take_picture"));
+  cheese_window->thumb_scrollwindow = GTK_WIDGET (gtk_builder_get_object (builder, "thumb_scrollwindow"));
+  cheese_window->throbber_frame     = GTK_WIDGET (gtk_builder_get_object (builder, "throbber_frame"));
+  cheese_window->countdown_frame    = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
+  cheese_window->effect_frame       = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
+
+  g_object_unref (builder);
 
   char *str = g_strconcat ("<b>", _("_Take a photo"), "</b>", NULL);
   gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
   g_free (str);
   gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
 
-  cheese_window->thumb_scrollwindow  = glade_xml_get_widget (gxml, "thumb_scrollwindow");
-  cheese_window->thumb_view          = cheese_thumb_view_new ();
+  cheese_window->thumb_view         = cheese_thumb_view_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_view);
 
   char *gconf_effects;
   g_object_get (cheese_window->gconf, "gconf_prop_selected_effects", &gconf_effects, NULL);
-  cheese_window->effect_frame        = glade_xml_get_widget (gxml, "effect_frame");
   cheese_window->effect_chooser      = cheese_effect_chooser_new (gconf_effects);
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
   g_free (gconf_effects);
 
-  cheese_window->throbber_frame      = glade_xml_get_widget (gxml, "throbber_frame");
   cheese_window->throbber            = ephy_spinner_new ();
   ephy_spinner_set_size (EPHY_SPINNER (cheese_window->throbber), GTK_ICON_SIZE_DIALOG);
   gtk_container_add (GTK_CONTAINER (cheese_window->throbber_frame), cheese_window->throbber);
   gtk_widget_show (cheese_window->throbber);
 
-  cheese_window->countdown_frame      = glade_xml_get_widget (gxml, "countdown_frame");
   cheese_window->countdown            = cheese_countdown_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->countdown_frame), cheese_window->countdown);
   gtk_widget_show (cheese_window->countdown);
@@ -1089,11 +1097,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_action_group_set_visible (cheese_window->actions_flickr, path != NULL);
   g_free (path);
 
-  gtk_ui_manager_add_ui_from_file (cheese_window->ui_manager, UI_FILE, &error);
+  gtk_ui_manager_add_ui_from_file (cheese_window->ui_manager, PACKAGE_DATADIR"/cheese-ui.xml", &error);
 
   if (error)
   {
-    g_critical ("building menus from %s failed: %s", UI_FILE, error->message);
+    g_critical ("building menus from %s failed: %s", PACKAGE_DATADIR"/cheese-ui.xml", error->message);
     g_error_free (error);
   }
 
