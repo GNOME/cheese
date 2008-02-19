@@ -69,6 +69,7 @@ def configure(conf):
 
 	conf.define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
 	conf.define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
+	conf.define('PACKAGE_LIBEXECDIR', conf.env['PREFIX'] + '/libexec/cheese')
 	conf.env.append_value('CCFLAGS', '-DHAVE_CONFIG_H')
 
 	conf.write_config_header('cheese-config.h')
