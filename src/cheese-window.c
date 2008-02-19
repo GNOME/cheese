@@ -827,8 +827,16 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
-    cheese_countdown_start((CheeseCountdown *) cheese_window->countdown, cheese_window_countdown_picture_cb, cheese_window_countdown_hide_cb, (gpointer) cheese_window);
-    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook_bar), 1);
+    gboolean countdown;
+    g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
+    if (countdown) {
+      cheese_countdown_start((CheeseCountdown *) cheese_window->countdown, cheese_window_countdown_picture_cb, cheese_window_countdown_hide_cb, (gpointer) cheese_window);
+      gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook_bar), 1);
+    }
+    else
+    {
+      cheese_window_countdown_picture_cb (cheese_window);
+    }
 
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
     // FIXME: set menu inactive
