@@ -1,6 +1,29 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.21.92:
+	- drop libglade and use GtkBuilder instead.
+	- putted gtk calls in critical section in threads, fixes bug #516697, courtesy of Mathias Clasen
+	- make use of the gconf countdown setting and show or hide the countdown depending on that
+	- added/updated translations
+    - ko, courtesy of Changwoo Ryu
+    - th, courtesy of Theppitak Karoonboonyanan
+    - sl, courtesy of Matej Urbančič
+    - bn_IN, courtesy of Runa Bhattacharjee
+    - pa, courtesy of Amanpreet Singh Brar
+    - nl, courtesy of Wouter Bolsterlee.
+    - nb, courtesy of Kjartan Maraas
+    - ar, courtesy of Djihed Afifi
+    - tr, courtesy of Baris Cicek
+    - ja, courtesy of Takeshi Aihana
+    - ca, courtesy of Gil Forcada
+    - cs, courtesy of Vitezslav Kotrla.
+    - pt, courtesy of Duarte Loreto
+    - oc, courtesy of Yannig Marchegay
+    - mk, courtesy of Arangel Angov
+    - zh_CN, courtesy of YangZhang
+    - hu, courtesy of Adam Pongracz
+
 version 2.21.91:
 	- replaced all gnome-vfs calls by gio
 	- install bugreport script in libexec instead of lib, fixes bug #514833
