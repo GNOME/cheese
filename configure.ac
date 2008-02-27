@@ -15,8 +15,10 @@ AM_PROG_CC_STDC
 AC_HEADER_STDC
 AM_PROG_LIBTOOL
 
-CFLAGS="${CFLAGS} -Wall -Werror"
+CFLAGS="${CFLAGS} -Wall"
 
+GNOME_MAINTAINER_MODE_DEFINES
+GNOME_COMPILE_WARNINGS
 
 #*******************************************************************************
 # Expanded dirs
