@@ -45,7 +45,7 @@ typedef struct
 
 
 GType		   cheese_effect_chooser_get_type (void);
-GtkWidget         *cheese_effect_chooser_new ();
+GtkWidget         *cheese_effect_chooser_new (char* selected_effects);
 CheeseWebcamEffect cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser);
 char               *cheese_effect_chooser_get_selection_string (CheeseEffectChooser *effect_chooser);
 void               cheese_effect_chooser_unselect_all (CheeseEffectChooser *effect_chooser);
