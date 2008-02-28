@@ -184,40 +184,40 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_set_source_rgba (pContext, 1.0f, 1.0f, 1.0f, fAlpha3);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
-           "3 ",
-           24 * PANGO_SCALE,
-           "Bitstream Charter",
-           PANGO_WEIGHT_BOLD,
-           PANGO_STYLE_NORMAL);
+                       "3 ",
+                       24 * PANGO_SCALE,
+                       "Bitstream Charter",
+                       PANGO_WEIGHT_BOLD,
+                       PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
 
   /* draw the 2 */
   cairo_set_source_rgba (pContext, 1.0f, 1.0f, 1.0f, fAlpha2);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
-           "2 ",
-           24 * PANGO_SCALE,
-           "Bitstream Charter",
-           PANGO_WEIGHT_BOLD,
-           PANGO_STYLE_NORMAL);
+                       "2 ",
+                       24 * PANGO_SCALE,
+                       "Bitstream Charter",
+                       PANGO_WEIGHT_BOLD,
+                       PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
 
   /* draw the 1 */
   cairo_set_source_rgba (pContext, 1.0f, 1.0f, 1.0f, fAlpha1);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
-           "1 ",
-           24 * PANGO_SCALE,
-           "Bitstream Charter",
-           PANGO_WEIGHT_BOLD,
-           PANGO_STYLE_NORMAL);
+                       "1 ",
+                       24 * PANGO_SCALE,
+                       "Bitstream Charter",
+                       PANGO_WEIGHT_BOLD,
+                       PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
 
   /* draw the camera */
   cairo_set_source_surface (pContext,
-          priv->pSurface,
-          (gdouble) iOffsetX,
-          (gdouble) iOffsetY);
+                            priv->pSurface,
+                            (gdouble) iOffsetX,
+                            (gdouble) iOffsetY);
   cairo_paint_with_alpha (pContext, fAlphaClick);
 
   cairo_destroy (pContext);
@@ -240,8 +240,8 @@ create_surface_from_svg (gchar* pcFilename)
   cairo_surface_t*  pSurface   = NULL;
   RsvgHandle*       pSvgHandle = NULL;
   GError*           pError     = NULL;
-  RsvgDimensionData dimension;
   cairo_t*          pContext   = NULL;
+  RsvgDimensionData dimension;
 
   rsvg_init ();
 

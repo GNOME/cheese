@@ -46,14 +46,14 @@ typedef struct
   void (*done) (GstAudioPlay *audio_play, GError *error);
 } GstAudioPlayClass;
 
-GType      gst_audio_play_get_type 	(void) G_GNUC_CONST;
-GstAudioPlay* gst_audio_play_new      	(const gchar *uri);
+GType         gst_audio_play_get_type 	(void) G_GNUC_CONST;
+GstAudioPlay *gst_audio_play_new      	(const gchar *uri);
 
-void       gst_audio_play_start    	(GstAudioPlay   *audio_play);
-void       gst_audio_play_stop     	(GstAudioPlay   *audio_play);
+void          gst_audio_play_start    	(GstAudioPlay *audio_play);
+void          gst_audio_play_stop     	(GstAudioPlay *audio_play);
 
-GstAudioPlay* gst_audio_play_file      	(const gchar *filename,
-                                         GError     **error);
+GstAudioPlay *gst_audio_play_file      	(const gchar *filename,
+                                         GError **error);
 
 G_END_DECLS
 

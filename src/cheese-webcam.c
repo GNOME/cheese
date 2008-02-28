@@ -100,8 +100,6 @@ typedef struct
   CheeseWebcamDevice *webcam_devices;
 } CheeseWebcamPrivate;
 
-
-
 enum 
 {
   PROP_0,
@@ -753,7 +751,7 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
   priv->video_file_sink = gst_element_factory_make ("filesink", "video_file_sink");
 
   gst_bin_add_many (GST_BIN (priv->video_save_bin), priv->audio_source, audio_queue,
-		    audio_convert, audio_enc, video_save_csp, video_save_scale, video_enc, 
+                    audio_convert, audio_enc, video_save_csp, video_save_scale, video_enc, 
                     mux, priv->video_file_sink, NULL);
 
   /* add ghostpad */

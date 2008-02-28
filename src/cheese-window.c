@@ -125,11 +125,12 @@ cheese_about_dialog_handle_url (GtkAboutDialog *dialog, const char *url, gpointe
   gboolean ret;
 
   ret = g_app_info_launch_default_for_uri (url, NULL, &error);
-  if (ret == FALSE) {
+  if (ret == FALSE)
+  {
     error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog), 
                                            GTK_DIALOG_DESTROY_WITH_PARENT, 
-		 	                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
-				           _("Failed to open browser to show:\n%s"), url); 
+                                           GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
+                                           _("Failed to open browser to show:\n%s"), url); 
     gtk_dialog_run (GTK_DIALOG (error_dialog));
     gtk_widget_destroy (error_dialog);
     g_error_free(error);
@@ -148,11 +149,12 @@ cheese_about_dialog_handle_email (GtkAboutDialog *dialog, const char *email, gpo
   uri = g_strconcat ("mailto:", email, NULL);
 
   ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
-  if (ret == FALSE) {
+  if (ret == FALSE)
+  {
     error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog), 
                                            GTK_DIALOG_DESTROY_WITH_PARENT, 
-		 	                   GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
-				           _("Failed to open email client to send message to:\n%s"), email); 
+                                           GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, 
+                                           _("Failed to open email client to send message to:\n%s"), email); 
     gtk_dialog_run (GTK_DIALOG (error_dialog));
     gtk_widget_destroy (error_dialog);
     g_error_free(error);
@@ -239,11 +241,12 @@ cheese_window_cmd_open (GtkWidget *widget, CheeseWindow *cheese_window)
   g_free (filename);
  
   ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
-  if (ret == FALSE) {
+  if (ret == FALSE)
+  {
     dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window), 
                                      GTK_DIALOG_DESTROY_WITH_PARENT, 
-	  	  		     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
-				     _("Failed to launch program to show:\n%s"), uri);
+                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
+                                     _("Failed to launch program to show:\n%s"), uri);
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
     g_error_free(error);
@@ -325,17 +328,19 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
   gchar *primary, *secondary;
   GtkWidget *error_dialog;
 
-  for (l = files; l != NULL; l = l->next) {
-    if (!g_file_trash (l->data, NULL, &error)) {
+  for (l = files; l != NULL; l = l->next)
+  {
+    if (!g_file_trash (l->data, NULL, &error))
+    {
       primary = g_strdup (_("Cannot move file to trash"));
       secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
-				   g_file_get_basename (l->data), error->message);
+                                   g_file_get_basename (l->data), error->message);
 
       error_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
- 					     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-				             GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, primary);
+                                             GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                             GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, primary);
       gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
-					        secondary);
+                                                secondary);
       gtk_dialog_run (GTK_DIALOG (error_dialog));
       gtk_widget_destroy (error_dialog);
 
@@ -552,25 +557,24 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
 
   const char *license[] = {
     N_("This program is free software; you can redistribute it and/or modify "
-        "it under the terms of the GNU General Public License as published by "
-        "the Free Software Foundation; either version 2 of the License, or "
-        "(at your option) any later version.\n"),
+       "it under the terms of the GNU General Public License as published by "
+       "the Free Software Foundation; either version 2 of the License, or "
+       "(at your option) any later version.\n"),
     N_("This program is distributed in the hope that it will be useful, "
-        "but WITHOUT ANY WARRANTY; without even the implied warranty of "
-        "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
-        "GNU General Public License for more details.\n"),
+       "but WITHOUT ANY WARRANTY; without even the implied warranty of "
+       "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the "
+       "GNU General Public License for more details.\n"),
     N_("You should have received a copy of the GNU General Public License "
-        "along with this program. If not, see <http://www.gnu.org/licenses/>.")
+       "along with this program. If not, see <http://www.gnu.org/licenses/>.")
   };
 
   char *license_trans;
 
-  license_trans = g_strconcat (_(license[0]), "\n", _(license[1]), "\n",
-      _(license[2]), "\n", NULL);
+  license_trans = g_strconcat (_(license[0]), "\n", _(license[1]), "\n", _(license[2]), "\n", NULL);
 
   gtk_show_about_dialog (GTK_WINDOW (cheese_window->window),
                          "version", VERSION,
-                         "copyright", "Copyright \xc2\xa9 2007\n daniel g. siegel <dgsiegel@gmail.com>",
+                         "copyright", "Copyright \xc2\xa9 2007, 2008\n daniel g. siegel <dgsiegel@gmail.com>",
                          "comments", _("A cheesy program to take photos and videos from your webcam"),
                          "authors", authors,
                          "translator-credits", translators,
@@ -658,8 +662,9 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     cheese_webcam_set_effect (cheese_window->webcam, 
                               cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
     g_object_set (cheese_window->gconf,
-                 "gconf_prop_selected_effects", cheese_effect_chooser_get_selection_string (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)),
-                 NULL);
+                  "gconf_prop_selected_effects",
+                  cheese_effect_chooser_get_selection_string (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)),
+                  NULL);
   }
   else
   {
@@ -689,7 +694,8 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
   // FIXME: THIS IS CRAP!
   actions = gtk_action_group_list_actions (cheese_window->actions_toggle);
   tmp = actions;
-  while (tmp != NULL) {
+  while (tmp != NULL)
+  {
     if (strcmp (gtk_action_get_name (GTK_ACTION (tmp->data)), "Photo") == 0)
       photo = tmp->data;
     else
@@ -802,8 +808,8 @@ cheese_window_stop_recording (CheeseWindow *cheese_window)
 
 static gboolean
 cheese_window_cancel_cb (CheeseWindow *cheese_window,
-			 GtkAccelGroup *accel_group,
-			 guint keyval, GdkModifierType modifier)
+                         GtkAccelGroup *accel_group,
+                         guint keyval, GdkModifierType modifier)
 {
   cheese_countdown_cancel ((CheeseCountdown *) cheese_window->countdown);
   
@@ -829,8 +835,12 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
   {
     gboolean countdown;
     g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
-    if (countdown) {
-      cheese_countdown_start((CheeseCountdown *) cheese_window->countdown, cheese_window_countdown_picture_cb, cheese_window_countdown_hide_cb, (gpointer) cheese_window);
+    if (countdown)
+    {
+      cheese_countdown_start((CheeseCountdown *) cheese_window->countdown,
+                             cheese_window_countdown_picture_cb,
+                             cheese_window_countdown_hide_cb,
+                             (gpointer) cheese_window);
       gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook_bar), 1);
     }
     else
@@ -922,7 +932,8 @@ static const GtkActionEntry action_entries_flickr[] = {
 static void
 cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current, CheeseWindow *cheese_window)
 {
-  if (strcmp (gtk_action_get_name (GTK_ACTION (current)), "Photo") == 0) {
+  if (strcmp (gtk_action_get_name (GTK_ACTION (current)), "Photo") == 0)
+  {
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (cheese_window->button_photo), TRUE);
   }
   else
@@ -1021,21 +1032,21 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   g_free (str);
   gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
 
-  cheese_window->thumb_view         = cheese_thumb_view_new ();
+  cheese_window->thumb_view = cheese_thumb_view_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_view);
 
   char *gconf_effects;
   g_object_get (cheese_window->gconf, "gconf_prop_selected_effects", &gconf_effects, NULL);
-  cheese_window->effect_chooser      = cheese_effect_chooser_new (gconf_effects);
+  cheese_window->effect_chooser = cheese_effect_chooser_new (gconf_effects);
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
   g_free (gconf_effects);
 
-  cheese_window->throbber            = ephy_spinner_new ();
+  cheese_window->throbber = ephy_spinner_new ();
   ephy_spinner_set_size (EPHY_SPINNER (cheese_window->throbber), GTK_ICON_SIZE_DIALOG);
   gtk_container_add (GTK_CONTAINER (cheese_window->throbber_frame), cheese_window->throbber);
   gtk_widget_show (cheese_window->throbber);
 
-  cheese_window->countdown            = cheese_countdown_new ();
+  cheese_window->countdown = cheese_countdown_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->countdown_frame), cheese_window->countdown);
   gtk_widget_show (cheese_window->countdown);
 
@@ -1056,15 +1067,15 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                 action_entries_main, 
                                                                 G_N_ELEMENTS (action_entries_main));
   cheese_window->actions_toggle = cheese_window_radio_action_group_new (cheese_window, 
-                                                                "ActionsRadio", 
-                                                                action_entries_toggle, 
-                                                                G_N_ELEMENTS (action_entries_toggle));
+                                                                        "ActionsRadio", 
+                                                                        action_entries_toggle, 
+                                                                        G_N_ELEMENTS (action_entries_toggle));
   cheese_window->actions_effects = cheese_window_toggle_action_group_new (cheese_window, 
-                                                                "ActionsMain", 
-                                                                action_entries_effects, 
-                                                                G_N_ELEMENTS (action_entries_effects));
+                                                                          "ActionsEffects", 
+                                                                          action_entries_effects, 
+                                                                          G_N_ELEMENTS (action_entries_effects));
   cheese_window->actions_file = cheese_window_action_group_new (cheese_window, 
-                                                                "ActionsMain", 
+                                                                "ActionsFile", 
                                                                 action_entries_edit_file, 
                                                                 G_N_ELEMENTS (action_entries_edit_file));
   cheese_window->actions_photo = cheese_window_action_group_new (cheese_window, 
@@ -1072,9 +1083,9 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                  action_entries_photo, 
                                                                  G_N_ELEMENTS (action_entries_photo));
   cheese_window->actions_video = cheese_window_toggle_action_group_new (cheese_window, 
-                                                                 "ActionsVideo", 
-                                                                 action_entries_video, 
-                                                                 G_N_ELEMENTS (action_entries_video));
+                                                                        "ActionsVideo", 
+                                                                        action_entries_video, 
+                                                                        G_N_ELEMENTS (action_entries_video));
   gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
   cheese_window->actions_account_photo = cheese_window_action_group_new (cheese_window, 
                                                                          "ActionsAccountPhoto", 
@@ -1122,25 +1133,22 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_window_add_accel_group (GTK_WINDOW (cheese_window->window), 
                               gtk_ui_manager_get_accel_group (cheese_window->ui_manager));
   gtk_accel_group_connect (gtk_ui_manager_get_accel_group (cheese_window->ui_manager),
-			   GDK_Escape, 0, 0,
-			   g_cclosure_new_swap (G_CALLBACK (cheese_window_cancel_cb),
-						cheese_window, NULL));
-
+                           GDK_Escape, 0, 0,
+                           g_cclosure_new_swap (G_CALLBACK (cheese_window_cancel_cb),
+                                                cheese_window, NULL));
 
   gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
 
   /* Default handlers for closing the application */
   g_signal_connect (cheese_window->window, "destroy",
                     G_CALLBACK (cheese_window_cmd_close), cheese_window);
-  g_signal_connect(cheese_window->window, "delete_event", 
-                   G_CALLBACK(cheese_window_delete_event_cb), NULL);
+  g_signal_connect (cheese_window->window, "delete_event", 
+                    G_CALLBACK(cheese_window_delete_event_cb), NULL);
 
   g_signal_connect (cheese_window->take_picture, "clicked",
                     G_CALLBACK (cheese_window_action_button_clicked_cb), cheese_window);
-
   g_signal_connect (cheese_window->button_effects,
                     "clicked", G_CALLBACK (cheese_window_effect_button_pressed_cb), cheese_window);
-
   g_signal_connect (cheese_window->thumb_view, "button_press_event",
                     G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 }
@@ -1193,7 +1201,8 @@ cheese_window_init ()
   
   /* Run cam setup in its own thread */
   GError *error = NULL;
-  if (!g_thread_create ((GThreadFunc) setup_camera, cheese_window, FALSE, &error)) {
+  if (!g_thread_create ((GThreadFunc) setup_camera, cheese_window, FALSE, &error))
+  {
     g_error ("Failed to create setup thread: %s\n", error->message);
     g_error_free (error);
     return;

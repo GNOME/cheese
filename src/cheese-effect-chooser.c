@@ -324,7 +324,8 @@ cheese_effect_chooser_new (char* selected_effects)
   CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
   int i;
 
-  if (selected_effects != NULL) {
+  if (selected_effects != NULL)
+  {
     for (i = 1; i < NUM_EFFECTS; i++)
     {
       if (strstr (selected_effects, GST_EFFECT[i].name) != NULL)

@@ -161,7 +161,7 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
 
 static void
 cheese_thumb_view_monitor_cb (GFileMonitor      *file_monitor,
-              		      GFile             *file,
+                              GFile             *file,
                               GFile             *other_file,
                               GFileMonitorEvent  event_type,
                               CheeseThumbView   *thumb_view)
