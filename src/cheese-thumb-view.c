@@ -156,7 +156,13 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
   }
   g_free (path);
   g_free (filename);
-  gtk_list_store_remove (priv->store, &iter);
+  gboolean valid = gtk_list_store_remove (priv->store, &iter);
+  if (valid)
+  {
+    GtkTreePath *tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
+    gtk_icon_view_select_path (GTK_ICON_VIEW (thumb_view), tree_path);
+    gtk_tree_path_free(tree_path);
+  }
 }
 
 static void
