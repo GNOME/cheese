@@ -659,6 +659,14 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Effects"));
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
+    if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
+    {
+      gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
+    }
+    else
+    {
+      gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
+    }
     cheese_webcam_set_effect (cheese_window->webcam, 
                               cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
     g_object_set (cheese_window->gconf,
@@ -671,6 +679,8 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 1);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Back"));
     gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
   }
 }
 
@@ -742,6 +752,8 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
     gtk_action_activate (video);
+    gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
   }
   else
   {
@@ -752,6 +764,8 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
     gtk_action_activate (photo);
+    gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
   }
   g_list_free (actions);
   g_list_free (tmp);
