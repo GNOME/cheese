@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-03 18:46+0000\n"
-"PO-Revision-Date: 2008-03-01 13:36+0100\n"
+"POT-Creation-Date: 2008-03-02 11:01+0000\n"
+"PO-Revision-Date: 2008-03-02 13:23+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,32 +19,13 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:576
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:587
 msgid "A cheesy program to take photos and videos from your webcam"
 msgstr "Un programa para tomar fotografías y vídeos con su cámara web"
 
-#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
-#: ../src/cheese.c:84
+#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.ui.h:1 ../src/cheese.c:85
 msgid "Cheese"
 msgstr "Cheese"
-
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:658
-#: ../src/cheese-window.c:878
-msgid "_Effects"
-msgstr "Efecto_s"
-
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:882
-msgid "_Photo"
-msgstr "_Foto"
-
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:746
-#: ../src/cheese-window.c:893 ../src/cheese-window.c:999
-msgid "_Take a photo"
-msgstr "_Tomar una foto"
-
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:883
-msgid "_Video"
-msgstr "_Vídeo"
 
 #: ../data/cheese.schemas.in.h:1
 msgid ""
@@ -75,6 +56,23 @@ msgstr "Indicador de la cadena de dispositivo de la cámara web"
 #: ../data/cheese.schemas.in.h:6
 msgid "Whether a countdown should be used, when taking a photo"
 msgstr "Indica si se debe usar una cuenta atrás al tomar una foto"
+
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:669 ../src/cheese-window.c:917
+msgid "_Effects"
+msgstr "Efecto_s"
+
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:921
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:771 ../src/cheese-window.c:932
+#: ../src/cheese-window.c:1081
+msgid "_Take a photo"
+msgstr "_Tomar una foto"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:922
+msgid "_Video"
+msgstr "_Vídeo"
 
 #: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
@@ -124,7 +122,7 @@ msgstr "Pedazos"
 msgid "Warp"
 msgstr "Distorsión"
 
-#: ../src/cheese-window.c:134
+#: ../src/cheese-window.c:142
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -133,7 +131,7 @@ msgstr ""
 "Falló al abrir el navegador para mostrar:\n"
 "%s"
 
-#: ../src/cheese-window.c:157
+#: ../src/cheese-window.c:166
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -142,7 +140,7 @@ msgstr ""
 "Falló al abrir el cliente de correo-e para enviar un mensaje a:\n"
 "%s"
 
-#: ../src/cheese-window.c:248
+#: ../src/cheese-window.c:258
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -151,48 +149,50 @@ msgstr ""
 "Falló al lanzar el programa para mostrar:\n"
 "%s"
 
-#: ../src/cheese-window.c:267
+#: ../src/cheese-window.c:277
 msgid "Save File"
 msgstr "Guardar archivo"
 
-#: ../src/cheese-window.c:305
+#: ../src/cheese-window.c:315
 #, c-format
 msgid "Could not save %s"
 msgstr "No se pudo guardar %s"
 
-#: ../src/cheese-window.c:332
+#: ../src/cheese-window.c:344
 msgid "Cannot move file to trash"
 msgstr "No se puede mover el archivo a la papelera"
 
-#: ../src/cheese-window.c:333
+#: ../src/cheese-window.c:345
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "No se puede mover el archivo «%s» a la papelera. Detalles: %s"
 
-#: ../src/cheese-window.c:365
+#: ../src/cheese-window.c:377
+#, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "¿Realmente desea mover todas las fotos y vídeos a la papelera?"
 
-#: ../src/cheese-window.c:373
+#: ../src/cheese-window.c:385
 msgid "_Move to Trash"
 msgstr "_Mover a la papelera"
 
-#: ../src/cheese-window.c:461
+#: ../src/cheese-window.c:473
+#, c-format
 msgid "Could not set the Account Photo"
 msgstr "No se pudo establecer la foto de la cuenta"
 
-#: ../src/cheese-window.c:536
+#: ../src/cheese-window.c:548
 msgid "Unable to open help file for Cheese"
 msgstr "No se pudo abrir el archivo de ayuda para Cheese"
 
-#: ../src/cheese-window.c:553
+#: ../src/cheese-window.c:565
 msgid "translator-credits"
 msgstr ""
 "Jorge González <jorgegonz@svn.gnome.org>, 2007-2008\n"
 "Ricardo González Castro <rick@jinlabs.com>, 2007\n"
 "Diego Escalante Urrelo <diegoe@gnome.org>, 2007"
 
-#: ../src/cheese-window.c:556
+#: ../src/cheese-window.c:568
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -204,7 +204,7 @@ msgstr ""
 "la Free Software Foundation; ya sea la versión 2 de la Licencia, o (a su "
 "elección) cualquier versión posterior.\n"
 
-#: ../src/cheese-window.c:560
+#: ../src/cheese-window.c:572
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -216,7 +216,7 @@ msgstr ""
 "IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General GNU "
 "para más detalles.\n"
 
-#: ../src/cheese-window.c:564
+#: ../src/cheese-window.c:576
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -224,83 +224,91 @@ msgstr ""
 "Debería haber recibido una copia de la Licencia Pública General GNU junto "
 "con este programa. Si no la recibió, consulte <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:580
+#: ../src/cheese-window.c:591
 msgid "Cheese Website"
 msgstr "Página web de Cheese"
 
-#: ../src/cheese-window.c:669
+#: ../src/cheese-window.c:689
 msgid "_Back"
 msgstr "Vo_lver"
 
-#: ../src/cheese-window.c:736 ../src/cheese-window.c:795
+#: ../src/cheese-window.c:759 ../src/cheese-window.c:822
 msgid "_Start recording"
 msgstr "_Comenzar a grabar"
 
-#: ../src/cheese-window.c:845
+#: ../src/cheese-window.c:884
 msgid "_Stop recording"
 msgstr "_Parar de grabar"
 
-#: ../src/cheese-window.c:864
+#: ../src/cheese-window.c:903
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:866
+#: ../src/cheese-window.c:905
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/cheese-window.c:867
+#: ../src/cheese-window.c:906
 msgid "Move all to Trash"
 msgstr "Mover todos a la papelera"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:908
 msgid "_Help"
 msgstr "_Ayuda"
 
-#: ../src/cheese-window.c:872
+#: ../src/cheese-window.c:911
 msgid "_Contents"
 msgstr "_Índice"
 
-#: ../src/cheese-window.c:872
+#: ../src/cheese-window.c:911
 msgid "Help on this application"
 msgstr "Ayuda sobre esta aplicación"
 
-#: ../src/cheese-window.c:887
+#: ../src/cheese-window.c:926
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/cheese-window.c:888
+#: ../src/cheese-window.c:927
 msgid "Save _As..."
 msgstr "Guardar _como…"
 
-#: ../src/cheese-window.c:889
+#: ../src/cheese-window.c:928
 msgid "Move to _Trash"
 msgstr "Mover a la _papelera"
 
-#: ../src/cheese-window.c:897
+#: ../src/cheese-window.c:936
 msgid "_Recording"
 msgstr "G_rabar"
 
-#: ../src/cheese-window.c:901
+#: ../src/cheese-window.c:940
 msgid "_Set As Account Photo"
 msgstr "E_stablecer como foto de la cuenta"
 
-#: ../src/cheese-window.c:905
+#: ../src/cheese-window.c:944
 msgid "Send by _Mail"
 msgstr "Enviar por correo-_e"
 
-#: ../src/cheese-window.c:909
+#: ../src/cheese-window.c:948
 msgid "Export to F-_Spot"
 msgstr "Exportar a F-_Spot"
 
-#: ../src/cheese-window.c:913
+#: ../src/cheese-window.c:952
 msgid "Export to _Flickr"
 msgstr "Exportar a _Flickr"
 
-#: ../src/cheese.c:71
+#: ../src/cheese-window.c:1180
+msgid "Quit"
+msgstr "Salir"
+
+#: ../src/cheese-window.c:1186
+msgid "About"
+msgstr "Acerca de"
+
+#: ../src/cheese.c:72
 msgid "Be verbose"
 msgstr "Proporcionar detalles"
 
-#: ../src/cheese.c:86
+#: ../src/cheese.c:87
 msgid "- Take photos and videos from your webcam"
 msgstr "- Un programa para tomar fotografías y vídeos con su cámara web"
 
