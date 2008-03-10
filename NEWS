@@ -1,6 +1,31 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.22.0
+	- typo in the documentaton: ximageskink instead of ximagesink
+	- menu entries for take a photo and recording never switched, fixes bug #516745
+	- select a thumb near the deleted item, fixes bug #505442
+	- make sure we have the right prototype definition, fixes bug #519030
+	- Rephrased hard-to-understand sentence in docs, fixes bug #518838, courtesy of Claude Paroz
+	- added/updated translations
+    - be@latin, courtesy of Ihar Hrachyshka
+    - da, courtesy of Kenneth Nielsen
+    - el, courtesy of Athanasios Lefteris
+    - en_GB, courtesy of Philip Withnall
+    - es, courtesy of Jorge González
+    - fr, courtesy of Claude Paroz and Stéphane Raimbault
+    - gu, courtesy of Ankit Patel
+    - he, courtesy of Yair Hershkovitz
+    - hu, courtesy of Gabor Kelemen
+    - it, courtesy of Alessandro Falappa
+    - lt, courtesy of Gintautas Miliauskas
+    - ml, courtesy of Ani Peter
+    - mr, courtesy of Sandeep Shedmake
+    - uk, courtesy of Maxim Dziumanenko
+    - zh_CN, courtesy of YangZhang
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+
 version 2.21.92:
 	- drop libglade and use GtkBuilder instead.
 	- putted gtk calls in critical section in threads, fixes bug #516697, courtesy of Mathias Clasen
