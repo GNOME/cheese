@@ -1081,13 +1081,19 @@ static void
 cheese_webcam_init (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-  gboolean ok;
 
   priv->is_recording = FALSE;
   priv->pipeline_is_playing = FALSE;
   priv->photo_filename = NULL;
   priv->webcam_devices = NULL;
   priv->device_name = NULL;
+}
+
+void
+cheese_webcam_setup (CheeseWebcam *webcam)
+{
+  CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  gboolean ok = TRUE;
 
   cheese_webcam_detect_webcam_devices (webcam);
   cheese_webcam_create_video_display_bin (webcam);
@@ -1115,6 +1121,7 @@ cheese_webcam_init (CheeseWebcam *webcam)
   gdk_threads_leave();
 }
 
+
 CheeseWebcam*
 cheese_webcam_new (GtkWidget* video_window, char *webcam_device_name)
 {
@@ -1122,7 +1129,7 @@ cheese_webcam_new (GtkWidget* video_window, char *webcam_device_name)
   if (webcam_device_name)
   {
     webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, 
-                           "device_name", webcam_device_name, NULL);
+                           "device-name", webcam_device_name, NULL);
   }
   else
   {

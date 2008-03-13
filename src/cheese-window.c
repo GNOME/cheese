@@ -1177,6 +1177,8 @@ setup_camera (CheeseWindow *cheese_window)
   cheese_window->webcam = cheese_webcam_new (cheese_window->screen, webcam_device);
   g_free (webcam_device);
 
+  cheese_webcam_setup (cheese_window->webcam);
+
   g_signal_connect (cheese_window->webcam, "photo-saved",
                     G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);
   g_signal_connect (cheese_window->webcam, "video-saved",
