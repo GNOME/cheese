@@ -97,16 +97,17 @@ typedef struct
   GtkWidget *screen;
   GtkWidget *take_picture;
 
-  GtkActionGroup *actions_main;
-  GtkActionGroup *actions_toggle;
+  GtkActionGroup *actions_account_photo;
+  GtkActionGroup *actions_countdown;
   GtkActionGroup *actions_effects;
   GtkActionGroup *actions_file;
-  GtkActionGroup *actions_photo;
-  GtkActionGroup *actions_video;
-  GtkActionGroup *actions_account_photo;
-  GtkActionGroup *actions_mail;
-  GtkActionGroup *actions_fspot;
   GtkActionGroup *actions_flickr;
+  GtkActionGroup *actions_fspot;
+  GtkActionGroup *actions_mail;
+  GtkActionGroup *actions_main;
+  GtkActionGroup *actions_photo;
+  GtkActionGroup *actions_toggle;
+  GtkActionGroup *actions_video;
 
   GtkUIManager *ui_manager;
 
@@ -210,15 +211,16 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_free (cheese_window->rand);
   g_object_unref (cheese_window->webcam);
   g_object_unref (cheese_window->actions_main);
-  g_object_unref (cheese_window->actions_photo);
-  g_object_unref (cheese_window->actions_mail);
-  g_object_unref (cheese_window->actions_toggle);
+  g_object_unref (cheese_window->actions_account_photo);
+  g_object_unref (cheese_window->actions_countdown);
   g_object_unref (cheese_window->actions_effects);
   g_object_unref (cheese_window->actions_file);
-  g_object_unref (cheese_window->actions_video);
-  g_object_unref (cheese_window->actions_account_photo);
-  g_object_unref (cheese_window->actions_fspot);
   g_object_unref (cheese_window->actions_flickr);
+  g_object_unref (cheese_window->actions_fspot);
+  g_object_unref (cheese_window->actions_mail);
+  g_object_unref (cheese_window->actions_photo);
+  g_object_unref (cheese_window->actions_toggle);
+  g_object_unref (cheese_window->actions_video);
   g_object_unref (cheese_window->ui_manager);
   g_object_unref (cheese_window->gconf);
 
@@ -419,6 +421,13 @@ cheese_window_move_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_windo
   files_list = g_list_append (files_list, file);
   cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
   g_list_free (files_list);
+}
+
+static void
+cheese_window_set_countdown (GtkWidget *widget, CheeseWindow *cheese_window)
+{
+  gboolean countdown = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (widget));
+  g_object_set (cheese_window->gconf, "gconf_prop_countdown", countdown, NULL);
 }
 
 static void
@@ -904,6 +913,10 @@ static const GtkActionEntry action_entries_main[] = {
 
 };
 
+static const GtkToggleActionEntry action_entries_countdown[] = {
+  {"Countdown", NULL, N_("Countdown"), NULL, NULL, G_CALLBACK (cheese_window_set_countdown), FALSE},
+};
+
 static const GtkToggleActionEntry action_entries_effects[] = {
   {"Effects", NULL, N_("_Effects"), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb), FALSE},
 };
@@ -913,7 +926,7 @@ static const GtkRadioActionEntry action_entries_toggle[] = {
   {"Video", NULL, N_("_Video"), NULL, NULL, 1},
 };
 
-static const GtkActionEntry action_entries_edit_file[] = {
+static const GtkActionEntry action_entries_file[] = {
   {"Open", GTK_STOCK_OPEN, N_("_Open"), "<control>O", NULL, G_CALLBACK (cheese_window_cmd_open)},
   {"SaveAs", GTK_STOCK_SAVE_AS, N_("Save _As..."), "<control>S", NULL, G_CALLBACK (cheese_window_cmd_save_as)},
   {"MoveToTrash", "user-trash", N_("Move to _Trash"), "Delete", NULL, G_CALLBACK (cheese_window_move_media_to_trash)},
@@ -1090,12 +1103,16 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                           G_N_ELEMENTS (action_entries_effects));
   cheese_window->actions_file = cheese_window_action_group_new (cheese_window, 
                                                                 "ActionsFile", 
-                                                                action_entries_edit_file, 
-                                                                G_N_ELEMENTS (action_entries_edit_file));
+                                                                action_entries_file, 
+                                                                G_N_ELEMENTS (action_entries_file));
   cheese_window->actions_photo = cheese_window_action_group_new (cheese_window, 
                                                                  "ActionsPhoto", 
                                                                  action_entries_photo, 
                                                                  G_N_ELEMENTS (action_entries_photo));
+  cheese_window->actions_countdown = cheese_window_toggle_action_group_new (cheese_window, 
+                                                                            "ActionsCountdown", 
+                                                                            action_entries_countdown, 
+                                                                            G_N_ELEMENTS (action_entries_countdown));
   cheese_window->actions_video = cheese_window_toggle_action_group_new (cheese_window, 
                                                                         "ActionsVideo", 
                                                                         action_entries_video, 
@@ -1136,6 +1153,14 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   {
     g_critical ("building menus from %s failed: %s", PACKAGE_DATADIR"/cheese-ui.xml", error->message);
     g_error_free (error);
+  }
+
+  GtkAction *action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/CountdownToggle");
+  gboolean countdown;
+  g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
+  if (countdown)
+  {
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
   }
 
   menubar = gtk_ui_manager_get_widget (cheese_window->ui_manager, "/MainMenu");
