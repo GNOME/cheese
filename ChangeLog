@@ -1,3 +1,8 @@
+2008-03-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  cheese crashes while initializing webcam, does strcmp on NULL, fixes bug #522143, courtesy of Alex Rostovtsev
+
 2008-03-11  daniel g. siegel <dgsiegel@gmail.com>
 
 	* configure.ac,
