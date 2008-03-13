@@ -579,7 +579,7 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
     selected_device = 0;
     for (i = 1; i < priv->num_webcam_devices ; i++)
     {
-	if (strcmp (priv->webcam_devices[i].video_device, priv->device_name) == 0)
+	    if (g_strcmp0 (priv->webcam_devices[i].video_device, priv->device_name) == 0)
           selected_device = i;
     }
     CheeseWebcamDevice *selected_webcam = &(priv->webcam_devices[selected_device]);
