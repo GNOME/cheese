@@ -562,11 +562,10 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   GError *err = NULL;
   char *webcam_input;
-  
+
   if (priv->num_webcam_devices == 0)
   {
-    priv->webcam_source_bin = gst_parse_bin_from_description ("videotestsrc name=video_source",
-                                                              TRUE, &err);
+    goto fallback;
   }
   else
   {
@@ -588,12 +587,16 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
     format = &(g_array_index (selected_webcam->video_formats, CheeseVideoFormat, 0));
     for (i = 1; i < selected_webcam->num_video_formats; i++)
     {
-      
+
       if (g_array_index (selected_webcam->video_formats, CheeseVideoFormat, i).width >  format->width)
       {
         format = &(g_array_index (selected_webcam->video_formats, CheeseVideoFormat, i));
       }
     }
+
+    if (format == NULL)
+      goto fallback;
+
     /* Select the highest framerate up to 30 Hz*/
     framerate_numerator = 1;
     framerate_denominator = 1;
@@ -620,15 +623,29 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
 
     priv->webcam_source_bin = gst_parse_bin_from_description (webcam_input,
                                                               TRUE, &err);
-    g_free (webcam_input);    
+    g_free (webcam_input);
+
+    if ( priv->webcam_source_bin == NULL)
+      goto fallback;
   }
+
+  priv->video_source = gst_bin_get_by_name (GST_BIN (priv->webcam_source_bin), "video_source");
+  return TRUE;
+
+fallback:
+  if (err != NULL)
+  {
+    g_error_free (err);
+    err = NULL;
+  }
+
+  priv->webcam_source_bin = gst_parse_bin_from_description ("videotestsrc name=video_source",
+                                                              TRUE, &err);
   if (err != NULL)
   {
     g_error_free (err);
     return FALSE;
   }
-
-  priv->video_source = gst_bin_get_by_name (GST_BIN (priv->webcam_source_bin), "video_source");
   return TRUE;
 }
 
