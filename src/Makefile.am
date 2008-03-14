@@ -34,5 +34,10 @@ cheese_SOURCES = \
 	gst-audio-play.h 
 
 cheese_LDADD = \
-	$(CHEESE_LIBS)		
+	$(CHEESE_LIBS)
+
+if WITH_HILDON
+  INCLUDES += $(HILDON_CFLAGS) -DHILDON
+  cheese_LDADD += $(HILDON_LIBS)
+endif
 

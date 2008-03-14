@@ -31,8 +31,11 @@ char *
 cheese_fileutil_get_path ()
 {
   char *path;
-
+#ifdef HILDON
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), "Mydocs", ".images", NULL);
+#else
   path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", NULL);
+#endif
   return path;
 }
 

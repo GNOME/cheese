@@ -35,6 +35,10 @@
 #include <gtk/gtk.h>
 #include <libebook/e-book.h>
 
+#ifdef HILDON
+#include <hildon/hildon-program.h>
+#endif
+
 #include "cheese-countdown.h"
 #include "cheese-effect-chooser.h"
 #include "cheese-fileutil.h"
@@ -43,7 +47,6 @@
 #include "cheese-window.h"
 #include "ephy-spinner.h"
 #include "gst-audio-play.h"
-
 
 #define SHUTTER_SOUNDS 5
 
@@ -72,6 +75,7 @@ typedef struct
   GtkWidget *notebook_bar;
 
   GtkWidget *main_vbox;
+  GtkWidget *video_vbox;
 
   GtkWidget *effect_frame;
   GtkWidget *effect_chooser;
@@ -96,6 +100,12 @@ typedef struct
 
   GtkWidget *screen;
   GtkWidget *take_picture;
+
+#ifdef HILDON
+   d
+   GtkWidget *main_hbox;
+   GtkWidget *subwindow;
+#endif      
 
   GtkActionGroup *actions_account_photo;
   GtkActionGroup *actions_countdown;
@@ -1019,10 +1029,17 @@ cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name,
 static void
 cheese_window_create_window (CheeseWindow *cheese_window)
 {
-  GtkWidget *menubar;
   GError *error=NULL;
   char *path;
   GtkBuilder* builder;
+
+#ifdef HILDON
+  HildonProgram *program = hildon_program_get_instance();
+  GtkWidget *menu;
+  GtkWidget *menuitem;
+#else
+  GtkWidget *menubar;
+#endif
 
   builder = gtk_builder_new ();
   gtk_builder_add_from_file (builder, PACKAGE_DATADIR"/cheese.ui", &error);
@@ -1043,6 +1060,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->label_take_photo   = GTK_WIDGET (gtk_builder_get_object (builder, "label_take_photo"));
   cheese_window->label_video        = GTK_WIDGET (gtk_builder_get_object (builder, "label_video"));
   cheese_window->main_vbox          = GTK_WIDGET (gtk_builder_get_object (builder, "main_vbox"));
+  cheese_window->video_vbox         = GTK_WIDGET (gtk_builder_get_object (builder, "video_vbox"));
   cheese_window->notebook           = GTK_WIDGET (gtk_builder_get_object (builder, "notebook"));
   cheese_window->notebook_bar       = GTK_WIDGET (gtk_builder_get_object (builder, "notebook_bar"));
   cheese_window->screen             = GTK_WIDGET (gtk_builder_get_object (builder, "video_screen"));
@@ -1051,6 +1069,26 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->throbber_frame     = GTK_WIDGET (gtk_builder_get_object (builder, "throbber_frame"));
   cheese_window->countdown_frame    = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
   cheese_window->effect_frame       = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
+
+#ifdef HILDON
+  /* Reparent widgets in case we use hildon. This saves us maintaining two
+     GtkBuilder ui files
+  */
+  cheese_window->window = hildon_window_new();
+  cheese_window->main_hbox = gtk_hbox_new(FALSE, 0);
+  hildon_program_add_window (program, HILDON_WINDOW(cheese_window->window));
+  gtk_container_add (GTK_CONTAINER(cheese_window->window), cheese_window->main_hbox);  
+  gtk_widget_ref(cheese_window->thumb_scrollwindow);
+  gtk_widget_ref(cheese_window->video_vbox);
+  gtk_container_remove(GTK_CONTAINER(cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
+  gtk_container_remove(GTK_CONTAINER(cheese_window->main_vbox),cheese_window->video_vbox);
+  gtk_box_pack_start (GTK_BOX(cheese_window->main_hbox), cheese_window->video_vbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX(cheese_window->main_hbox), GTK_WIDGET(cheese_window->thumb_scrollwindow), FALSE, FALSE, 0);
+  gtk_widget_destroy(cheese_window->main_vbox);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(cheese_window->thumb_scrollwindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+  gtk_widget_unref(cheese_window->thumb_scrollwindow);
+  gtk_widget_unref(cheese_window->video_vbox);
+#endif
 
   g_object_unref (builder);
 
@@ -1163,8 +1201,25 @@ cheese_window_create_window (CheeseWindow *cheese_window)
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
   }
 
+#ifdef HILDON
+  menu = gtk_menu_new();
+  menuitem = gtk_menu_item_new_with_label(_("Quit"));
+  g_signal_connect_swapped(menuitem,"activate",
+			   GTK_SIGNAL_FUNC(cheese_window_cmd_close),
+			   NULL);
+  gtk_menu_append(menu, menuitem);
+  
+  menuitem = gtk_menu_item_new_with_label(_("About"));
+  g_signal_connect_swapped(menuitem,"activate",
+			   GTK_SIGNAL_FUNC(cheese_window_cmd_about), 
+			   cheese_window->window);
+  gtk_menu_append(menu, menuitem);
+  
+  hildon_window_set_menu (HILDON_WINDOW(cheese_window->window),GTK_MENU(menu));
+#else
   menubar = gtk_ui_manager_get_widget (cheese_window->ui_manager, "/MainMenu");
   gtk_box_pack_start (GTK_BOX (cheese_window->main_vbox), menubar, FALSE, FALSE, 0);
+#endif
 
   cheese_window->thumb_view_popup_menu = gtk_ui_manager_get_widget (cheese_window->ui_manager, 
                                                                     "/ThumbnailPopup");

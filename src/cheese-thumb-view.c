@@ -372,7 +372,11 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   g_free (path);
 
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
+#ifdef HILDON
+  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), -1);
+#else
   gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), G_MAXINT);
+#endif
 
   gtk_icon_view_enable_model_drag_source (GTK_ICON_VIEW (thumb_view), GDK_BUTTON1_MASK,
                                           target_table, G_N_ELEMENTS (target_table),

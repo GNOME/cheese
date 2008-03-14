@@ -95,6 +95,16 @@ CHEESE_LIBS="$CHEESE_LIBS -lgstinterfaces-0.10"
 
 AC_SUBST(CHEESE_LIBS)
 
+AC_ARG_ENABLE(hildon, AS_HELP_STRING([--enable-hildon],[compile for Hildon environment (default=no)]),,enable_hildon=no)
+
+if test "x$enable_hildon" = "xyes"; then
+   PKG_CHECK_MODULES([HILDON], hildon-1 >= 1.0.5,enable_hildon=yes,enable_hildon=no)
+else
+   enable_hildon=no
+fi
+
+AM_CONDITIONAL(WITH_HILDON, test "x$enable_hildon" = "xyes")
+
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
 
