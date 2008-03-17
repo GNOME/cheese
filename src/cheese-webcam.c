@@ -483,9 +483,9 @@ cheese_webcam_get_webcam_device_data (CheeseWebcamDevice *webcam_device)
     pipeline = gst_parse_launch (pipeline_desc, &err);
     if ((pipeline != NULL) && (err == NULL))
     {
-      /* Start the pipeline and wait for max. 3 seconds for it to start up */
+      /* Start the pipeline and wait for max. 10 seconds for it to start up */
       gst_element_set_state (pipeline, GST_STATE_PLAYING);
-      ret = gst_element_get_state (pipeline, NULL, NULL, 3 * GST_SECOND);
+      ret = gst_element_get_state (pipeline, NULL, NULL, 10 * GST_SECOND);
 
       /* Check if any error messages were posted on the bus */
       bus = gst_element_get_bus (pipeline);
