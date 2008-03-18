@@ -1096,6 +1096,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
   g_free (str);
   gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
+  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), FALSE);
 
   cheese_window->thumb_view = cheese_thumb_view_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_view);
@@ -1272,6 +1273,7 @@ setup_camera (CheeseWindow *cheese_window)
   gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
   ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
   gdk_threads_leave ();
+  gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), TRUE);
 }
 
 void
