@@ -9,5 +9,5 @@ DOC_FIGURES = \
 	figures/cheese-screenshot.jpg \ 
 	figures/cheese-effects-screenshot.jpg
  
-DOC_LINGUAS = es fr oc ru sv
+DOC_LINGUAS = el es fr oc ru sv
 
