@@ -1,0 +1,285 @@
+# Copyright (C) 2008 Gnome i18n Project for Vietnamese
+# This file is distributed under the same license as the cheese package.
+# Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cheese HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-03-23 03:17+0000\n"
+"PO-Revision-Date: 2008-03-27 21:12+0700\n"
+"Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
+"Language-Team: Vietnamese <gnomevi-list@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:578
+msgid "A cheesy program to take photos and videos from your webcam"
+msgstr "Chương trình cheese dùng để chụp hình và quay phim từ webcam của bạn"
+
+#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.ui.h:1 ../src/cheese.c:85
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.schemas.in.h:1
+msgid ""
+"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
+"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
+"Vertigo, Edge, Dice and Warp"
+msgstr "Hiệu ứng, được sử dụng lúc mới đầu. Giá trị có thể là: Mauve, Noir, Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, Vertigo, Edge, Dice và Warp"
+
+#: ../data/cheese.schemas.in.h:2
+msgid "Selected Effects"
+msgstr "Hiệu ứng được chọn"
+
+#: ../data/cheese.schemas.in.h:3
+msgid "The device-string, which points to the webcam, e.g. /dev/video0"
+msgstr "Chuỗi-thiết-bị, trỏ đến webcam, ví dụ /dev/video0"
+
+#: ../data/cheese.schemas.in.h:4
+msgid "Use a countdown"
+msgstr "Dùng đếm ngược"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Webcam device string indicator"
+msgstr "Chỉ báo chuỗi thiết bị Webcam"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Whether a countdown should be used, when taking a photo"
+msgstr "Có dùng đếm ngược khi chụp hình không"
+
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:660 ../src/cheese-window.c:908
+msgid "_Effects"
+msgstr "_Hiệu ứng"
+
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:912
+msgid "_Photo"
+msgstr "Ả_nh"
+
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:762 ../src/cheese-window.c:923
+#: ../src/cheese-window.c:1044
+msgid "_Take a photo"
+msgstr "_Chụp hình"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:913
+msgid "_Video"
+msgstr "_Phim"
+
+#: ../src/cheese-effect-chooser.c:61
+msgid "No Effect"
+msgstr "Không hiệu ứng"
+
+#: ../src/cheese-effect-chooser.c:63
+msgid "Mauve"
+msgstr "Hoa cà"
+
+#: ../src/cheese-effect-chooser.c:65
+msgid "Noir/Blanc"
+msgstr ""
+
+#: ../src/cheese-effect-chooser.c:67
+msgid "Saturation"
+msgstr "Bão hoà"
+
+#: ../src/cheese-effect-chooser.c:69
+msgid "Hulk"
+msgstr ""
+
+#: ../src/cheese-effect-chooser.c:71
+msgid "Vertical Flip"
+msgstr "Lật dọc"
+
+#: ../src/cheese-effect-chooser.c:73
+msgid "Horizontal Flip"
+msgstr "Lật ngang"
+
+#: ../src/cheese-effect-chooser.c:75
+msgid "Shagadelic"
+msgstr ""
+
+#: ../src/cheese-effect-chooser.c:77
+msgid "Vertigo"
+msgstr "Chóng mặt"
+
+#: ../src/cheese-effect-chooser.c:79
+msgid "Edge"
+msgstr "Cạnh"
+
+#: ../src/cheese-effect-chooser.c:81
+msgid "Dice"
+msgstr "Xúc xắc"
+
+#: ../src/cheese-effect-chooser.c:83
+msgid "Warp"
+msgstr ""
+
+#: ../src/cheese-window.c:133
+#, c-format
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"Lỗi mở trình duyệt để hiển thị:\n"
+"%s"
+
+#: ../src/cheese-window.c:157
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"Lỗi mở trình đọc thư để gửi thông điệp đến:\n"
+"%s"
+
+#: ../src/cheese-window.c:249
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"Lỗi chạy chương trình để hiển thị:\n"
+"%s"
+
+#: ../src/cheese-window.c:268
+msgid "Save File"
+msgstr "Lưu tập tin"
+
+#: ../src/cheese-window.c:306
+#, c-format
+msgid "Could not save %s"
+msgstr "Không thể lưu %s"
+
+#: ../src/cheese-window.c:335
+msgid "Cannot move file to trash"
+msgstr "Không thể chuyển tập tin vào sọt rác"
+
+#: ../src/cheese-window.c:336
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "Không thể chuyển tập tin \"%s\" vào sọt rác. Chi tiết: %s"
+
+#: ../src/cheese-window.c:368
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "Thật sự chuyển tất cả hình và phim vào sọt rác chứ?"
+
+#: ../src/cheese-window.c:376
+msgid "_Move to Trash"
+msgstr "_Chuyển vào sọt rác"
+
+#: ../src/cheese-window.c:464
+#, c-format
+msgid "Could not set the Account Photo"
+msgstr "Không thể đặt Ảnh tài khoản"
+
+#: ../src/cheese-window.c:539
+msgid "Unable to open help file for Cheese"
+msgstr "Không tìm thấy tập tin trợ giúp của Cheese"
+
+#: ../src/cheese-window.c:556
+msgid "translator-credits"
+msgstr "Nhóm Việt hoá GNOME (http://live.gnome.org/GnomeVi)"
+
+#: ../src/cheese-window.c:559
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+
+#: ../src/cheese-window.c:563
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+
+#: ../src/cheese-window.c:567
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: ../src/cheese-window.c:582
+msgid "Cheese Website"
+msgstr "Trang web Cheese"
+
+#: ../src/cheese-window.c:680
+msgid "_Back"
+msgstr "_Lùi"
+
+#: ../src/cheese-window.c:750 ../src/cheese-window.c:813
+msgid "_Start recording"
+msgstr "_Bắt đầu thu"
+
+#: ../src/cheese-window.c:875
+msgid "_Stop recording"
+msgstr "_Ngừng thu"
+
+#: ../src/cheese-window.c:894
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../src/cheese-window.c:896
+msgid "_Edit"
+msgstr "Đ_iều chỉnh"
+
+#: ../src/cheese-window.c:897
+msgid "Move all to Trash"
+msgstr "Chuyển mọi thứ vào sọt rác"
+
+#: ../src/cheese-window.c:899
+msgid "_Help"
+msgstr "Trợ _giúp"
+
+#: ../src/cheese-window.c:902
+msgid "_Contents"
+msgstr "_Nội dung"
+
+#: ../src/cheese-window.c:902
+msgid "Help on this application"
+msgstr "Trợ giúp cho ứng dụng này"
+
+#: ../src/cheese-window.c:917
+msgid "_Open"
+msgstr "_Mở"
+
+#: ../src/cheese-window.c:918
+msgid "Save _As..."
+msgstr "Lưu _dạng..."
+
+#: ../src/cheese-window.c:919
+msgid "Move to _Trash"
+msgstr "Chuyển vào _sọt rác"
+
+#: ../src/cheese-window.c:927
+msgid "_Recording"
+msgstr "_Thu"
+
+#: ../src/cheese-window.c:931
+msgid "_Set As Account Photo"
+msgstr "Đặ_t làm Ảnh tài khoản"
+
+#: ../src/cheese-window.c:935
+msgid "Send by _Mail"
+msgstr "Gửi qua _thư"
+
+#: ../src/cheese-window.c:939
+msgid "Export to F-_Spot"
+msgstr "Xuất ra F-_Spot"
+
+#: ../src/cheese-window.c:943
+msgid "Export to _Flickr"
+msgstr "Tải lên Flicker"
+
+#: ../src/cheese.c:72
+msgid "Be verbose"
+msgstr "Chi tiết"
+
+#: ../src/cheese.c:87
+msgid "- Take photos and videos from your webcam"
+msgstr "- Chụp hình và quay phim từ Webcam của bạn"
