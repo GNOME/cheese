@@ -1,38 +1,38 @@
+# translation of el.po to Greek
 # translation of cheese to Greek
 # Copyright (C) 2007 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the cheese package.
 #
 # Athanasios Lefteris <alefteris@gmail.com>, 2007.
+# Simos Xenitellis <simos@gnome.org>, 2008.
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-03-10 11:43+0200\n"
-"PO-Revision-Date: 2008-03-10 12:00+0200\n"
-"Last-Translator: Athanasios Lefteris <alefteris@gmail.com>\n"
-"Language-Team: Greek <team@lists.gnome.gr>\n"
+"POT-Creation-Date: 2008-04-01 13:46+0100\n"
+"PO-Revision-Date: 2008-04-01 13:55+0100\n"
+"Last-Translator: Simos Xenitellis <simos@gnome.org>\n"
+"Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);"
+"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"X-Generator: KBabel 1.11.4\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:578
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:597
 msgid "A cheesy program to take photos and videos from your webcam"
-msgstr ""
-"Ένα Πρόγραμμα για την λήψη φωτογραφιών και βίντεο από την δικτυακή κάμερά σας"
+msgstr "Ένα πρόγραμμα για την λήψη φωτογραφιών και βίντεο από την κάμερα του υπολογιστή σας"
 
 #: ../data/cheese.desktop.in.in.h:2 ../data/cheese.ui.h:1 ../src/cheese.c:85
 msgid "Cheese"
-msgstr "Cheese"
+msgstr "Χαμογελάστε!"
 
 #: ../data/cheese.schemas.in.h:1
 msgid ""
 "Effects, that are applied on startup. Possible values are: Mauve, Noir/"
 "Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
 "Vertigo, Edge, Dice and Warp"
-msgstr "Εφέ που εφαρμόζονται κατά την εκκίνηση. Οι πιθανές τιμές είναι:Mauve, Noir/"
-"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
-"Vertigo, Edge, Dice και Warp"
+msgstr "Εφέ, που εφαρμόζονται κατά την εκκίνηση. Οι πιθανές τιμές είναι: Μωβ, Άσπρο/Μαύρο, Κορεσμός, Χουλκ, Κάθετο στρίψιμο, Οριζόντιο στρίψιμο, Ψυχεδέλεια, Ίλιγγος, Περίγραμμα, Κύβοι και Στρέβλωση"
 
 #: ../data/cheese.schemas.in.h:2
 msgid "Selected Effects"
@@ -40,8 +40,7 @@ msgstr "Επιλεγμένα εφέ"
 
 #: ../data/cheese.schemas.in.h:3
 msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr ""
-"Το αλφαριθμητικό-συσκευή που σημαδεύει στη δικτυακή κάμερα, π.χ. /dev/video0"
+msgstr "Το αλφαριθμητικό-συσκευή που αντιστοιχεί στη δικτυακή κάμερα, π.χ. /dev/video0"
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Use a countdown"
@@ -49,27 +48,26 @@ msgstr "Χρήση αντίστροφης μέτρησης"
 
 #: ../data/cheese.schemas.in.h:5
 msgid "Webcam device string indicator"
-msgstr "Ένδειξη αλφαριθμητικού συσκευής δικτυακής κάμερας"
+msgstr "Ένδειξη αλφαριθμητικού συσκευής κάμερας υπολογιστή"
 
 #: ../data/cheese.schemas.in.h:6
 msgid "Whether a countdown should be used, when taking a photo"
-msgstr ""
-"Αν θα χρησιμοποιείται αντίστροφη μέτρηση κατά την λήψη μιας φωτογραφίας"
+msgstr "Αν θα χρησιμοποιείται αντίστροφη μέτρηση κατά την λήψη φωτογραφίας"
 
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:660 ../src/cheese-window.c:908
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:679 ../src/cheese-window.c:931
 msgid "_Effects"
 msgstr "_Εφέ"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:912
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:935
 msgid "_Photo"
 msgstr "_Φωτογραφία"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:762 ../src/cheese-window.c:923
-#: ../src/cheese-window.c:1044
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:781 ../src/cheese-window.c:946
+#: ../src/cheese-window.c:1095
 msgid "_Take a photo"
 msgstr "_Λήψη φωτογραφίας"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:913
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:936
 msgid "_Video"
 msgstr "_Βίντεο"
 
@@ -79,11 +77,11 @@ msgstr "Δίχως εφέ"
 
 #: ../src/cheese-effect-chooser.c:63
 msgid "Mauve"
-msgstr "Mauve"
+msgstr "Μωβ"
 
 #: ../src/cheese-effect-chooser.c:65
 msgid "Noir/Blanc"
-msgstr "Noir/Blanc"
+msgstr "Άσπρο/μαύρο"
 
 #: ../src/cheese-effect-chooser.c:67
 msgid "Saturation"
@@ -91,19 +89,19 @@ msgstr "Κορεσμός"
 
 #: ../src/cheese-effect-chooser.c:69
 msgid "Hulk"
-msgstr "Hulk"
+msgstr "Χουλκ"
 
 #: ../src/cheese-effect-chooser.c:71
 msgid "Vertical Flip"
-msgstr "Κατακόρυφη αναστροφή"
+msgstr "Κάθετο στρίψιμο"
 
 #: ../src/cheese-effect-chooser.c:73
 msgid "Horizontal Flip"
-msgstr "Οριζόντια αναστροφή"
+msgstr "Οριζόντιο στρίψιμο"
 
 #: ../src/cheese-effect-chooser.c:75
 msgid "Shagadelic"
-msgstr "Shagadelic"
+msgstr "Ψυχεδέλεια"
 
 #: ../src/cheese-effect-chooser.c:77
 msgid "Vertigo"
@@ -111,7 +109,7 @@ msgstr "Ίλιγγος"
 
 #: ../src/cheese-effect-chooser.c:79
 msgid "Edge"
-msgstr "Ακμές"
+msgstr "Περίγραμμα"
 
 #: ../src/cheese-effect-chooser.c:81
 msgid "Dice"
@@ -119,77 +117,80 @@ msgstr "Κύβοι"
 
 #: ../src/cheese-effect-chooser.c:83
 msgid "Warp"
-msgstr "Παραμόρφωση"
+msgstr "Στρέβλωση"
 
-#: ../src/cheese-window.c:133
+#: ../src/cheese-window.c:144
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
 "%s"
-msgstr "Αποτυχία ανοίγματος περιηγητή για προβολή:\n"
+msgstr ""
+"Αποτυχία ανοίγματος περιηγητή για προβολή:\n"
 "%s"
 
-#: ../src/cheese-window.c:157
+#: ../src/cheese-window.c:168
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
 "%s"
-msgstr "Αποτυχία ανοίγματος εφαρμογής ηλ.αλληλογραφίας για αποστολή σε:\n"
+msgstr ""
+"Αποτυχία ανοίγματος εφαρμογής ηλ. αλληλογραφίας για αποστολή σε:\n"
 "%s"
 
-#: ../src/cheese-window.c:249
+#: ../src/cheese-window.c:261
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
 "%s"
-msgstr "Αποτυχία εκκίνησης προγράμματος για προβολή:\n"
+msgstr ""
+"Αποτυχία εκκίνησης προγράμματος για προβολή:\n"
 "%s"
 
-#: ../src/cheese-window.c:268
+#: ../src/cheese-window.c:280
 msgid "Save File"
 msgstr "Αποθήκευση αρχείου"
 
-#: ../src/cheese-window.c:306
+#: ../src/cheese-window.c:318
 #, c-format
 msgid "Could not save %s"
 msgstr "Δεν είναι δυνατή η αποθήκευση του %s"
 
-#: ../src/cheese-window.c:335
+#: ../src/cheese-window.c:347
 msgid "Cannot move file to trash"
 msgstr "Αδυναμία μετακίνησης αρχείο στα απορρίμματα"
 
-#: ../src/cheese-window.c:336
+#: ../src/cheese-window.c:348
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Το αρχείο \"%s\" δεν μπορεί να μεταφερθεί στα απορρίμματα, Λεπτομέρειες: %s"
 
-#: ../src/cheese-window.c:368
+#: ../src/cheese-window.c:380
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Να μεταφερθούν όλες οι φωτογραφίες στα απορρίμματα;"
 
-#: ../src/cheese-window.c:376
+#: ../src/cheese-window.c:388
 msgid "_Move to Trash"
 msgstr "_Μετακίνηση στα Απορρίμματα"
 
-#: ../src/cheese-window.c:464
+#: ../src/cheese-window.c:483
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Δεν είναι δυνατός ο καθορισμός της φωτογραφίας λογαριασμού"
 
-#: ../src/cheese-window.c:539
+#: ../src/cheese-window.c:558
 msgid "Unable to open help file for Cheese"
-msgstr "Αδυναμία άνοιγμα αρχείου βοήθειας για το Cheese"
+msgstr "Αδυναμία άνοιγμα αρχείου βοήθειας για το Χαμογελάστε"
 
-#: ../src/cheese-window.c:556
+#: ../src/cheese-window.c:575
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
-"  Αθανάσιος Λευτέρης <alefteris@gmail.com>\n"
+" Αθανάσιος Λευτέρης <alefteris@gmail.com>\n"
 "\n"
 "Για περισσότερα δείτε http://www.gnome.gr/"
 
-#: ../src/cheese-window.c:559
+#: ../src/cheese-window.c:578
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -201,7 +202,7 @@ msgstr ""
 "αυτή δημοσιεύτηκε από το  Free Software Foundation, έκδοση 2, ή "
 "(προαιρετικά) οποιαδήποτε νεότερη έκδοση.\n"
 
-#: ../src/cheese-window.c:563
+#: ../src/cheese-window.c:582
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -212,7 +213,7 @@ msgstr ""
 "ΚΑΜΜΙΑ ΑΠΟΛΥΤΩΣ ΕΓΓΥΗΣΗ για συγκεκριμένο σκοπό. Δείτε για περισσότερες "
 "λεπτομέρειες την GNU General Public License.\n"
 
-#: ../src/cheese-window.c:567
+#: ../src/cheese-window.c:586
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -221,77 +222,89 @@ msgstr ""
 "GNU (GNU General Public License) μαζί με αυτό το πρόγραμμα. Αν όχι, δείτε "
 "<http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:582
+#: ../src/cheese-window.c:601
 msgid "Cheese Website"
 msgstr "Cheese Website"
 
-#: ../src/cheese-window.c:680
+#: ../src/cheese-window.c:699
 msgid "_Back"
 msgstr "_Πίσω"
 
-#: ../src/cheese-window.c:750 ../src/cheese-window.c:813
+#: ../src/cheese-window.c:769 ../src/cheese-window.c:832
 msgid "_Start recording"
 msgstr "Έ_ναρξη εγγραφής"
 
-#: ../src/cheese-window.c:875
+#: ../src/cheese-window.c:894
 msgid "_Stop recording"
 msgstr "_Διακοπή εγγραφής"
 
-#: ../src/cheese-window.c:894
+#: ../src/cheese-window.c:913
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:896
+#: ../src/cheese-window.c:915
 msgid "_Edit"
 msgstr "_Επεξεργασία"
 
-#: ../src/cheese-window.c:897
+#: ../src/cheese-window.c:916
 msgid "Move all to Trash"
 msgstr "Μετακίνηση όλων στα Απορρίμματα"
 
-#: ../src/cheese-window.c:899
+#: ../src/cheese-window.c:918
 msgid "_Help"
 msgstr "_Βοήθεια"
 
-#: ../src/cheese-window.c:902
+#: ../src/cheese-window.c:921
 msgid "_Contents"
 msgstr "_Περιεχόμενα"
 
-#: ../src/cheese-window.c:902
+#: ../src/cheese-window.c:921
 msgid "Help on this application"
 msgstr "Βοήθεια για αυτή την εφαρμογή"
 
-#: ../src/cheese-window.c:917
+#: ../src/cheese-window.c:927
+msgid "Countdown"
+msgstr "Αντίστροφη μέτρηση"
+
+#: ../src/cheese-window.c:940
 msgid "_Open"
 msgstr "Άν_οιγμα"
 
-#: ../src/cheese-window.c:918
+#: ../src/cheese-window.c:941
 msgid "Save _As..."
 msgstr "_Αποθήκευση ως..."
 
-#: ../src/cheese-window.c:919
+#: ../src/cheese-window.c:942
 msgid "Move to _Trash"
 msgstr "Μετακίνηση στα Απορρίμμα_τα"
 
-#: ../src/cheese-window.c:927
+#: ../src/cheese-window.c:950
 msgid "_Recording"
 msgstr "Εγγρα_φή"
 
-#: ../src/cheese-window.c:931
+#: ../src/cheese-window.c:954
 msgid "_Set As Account Photo"
 msgstr "_Καθορισμός ως φωτογραφία λογαριασμού"
 
-#: ../src/cheese-window.c:935
+#: ../src/cheese-window.c:958
 msgid "Send by _Mail"
 msgstr "Αποστολή με _ηλεκτρονικό ταχυδρομείο"
 
-#: ../src/cheese-window.c:939
+#: ../src/cheese-window.c:962
 msgid "Export to F-_Spot"
 msgstr "Εξαγωγή στο F-_Spot"
 
-#: ../src/cheese-window.c:943
+#: ../src/cheese-window.c:966
 msgid "Export to _Flickr"
 msgstr "Εξαγωγή στο _Flickr"
+
+#: ../src/cheese-window.c:1207
+msgid "Quit"
+msgstr "Τερματισμός"
+
+#: ../src/cheese-window.c:1213
+msgid "About"
+msgstr "Περί"
 
 #: ../src/cheese.c:72
 msgid "Be verbose"
@@ -301,29 +314,3 @@ msgstr "Να είστε φλύαροι"
 msgid "- Take photos and videos from your webcam"
 msgstr "Λήψη φωτογραφιών και βίντεο από την δικτυακή κάμερά σας"
 
-#~ msgid "Place to store media"
-#~ msgstr "Τοποθεσία αποθήκευσης μέσων"
-
-#~ msgid "The place, where Cheese should store it's pictures and videos"
-#~ msgstr ""
-#~ "Η τοποθεσία στην οποία το Cheese αποθηκεύει τις φωτογραφίες και τα βίντεο "
-#~ "του"
-
-#~ msgid ""
-#~ "Are you sure you want to move\n"
-#~ "\"%s\" to the trash?"
-#~ msgstr ""
-#~ "Είστε βέβαιοι ότι θέλετε να μετακινήσετε το\n"
-#~ "\"%s\" στα απορρίμματα;"
-
-#~ msgid "Could not find the Trash"
-#~ msgstr "Δεν είναι δυνατή η εύρεση των Απορριμμάτων"
-
-#~ msgid "Error on deleting %s"
-#~ msgstr "Σφάλμα κατά την διαγραφή του %s"
-
-#~ msgid "A cheesy program to take photos from your webcam"
-#~ msgstr "Πρόγραμμα για την λήψη φωτογραφιών από την δικτυακή κάμερά σας"
-
-#~ msgid "<b>_Take a photo</b>"
-#~ msgstr "<b>_Λήψη φωτογραφίας</b>"
