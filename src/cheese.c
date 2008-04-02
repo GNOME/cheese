@@ -84,7 +84,7 @@ main (int argc, char **argv)
 
   g_set_application_name (_("Cheese"));
 
-  context = g_option_context_new (N_("- Take photos and videos from your webcam"));
+  context = g_option_context_new (N_("- Take photos and videos with your webcam, with fun graphical effects"));
   g_option_context_add_main_entries(context, options, GETTEXT_PACKAGE);
   g_option_context_add_group (context, gtk_get_option_group (TRUE));
   g_option_context_add_group (context, gst_init_get_option_group ());
