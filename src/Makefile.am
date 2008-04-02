@@ -31,7 +31,11 @@ cheese_SOURCES = \
 	ephy-spinner.c \
 	ephy-spinner.h \
 	gst-audio-play.c \
-	gst-audio-play.h 
+	gst-audio-play.h \
+  gedit-message-area.c \
+  gedit-message-area.h \
+  no-camera.c \
+  no-camera.h
 
 cheese_LDADD = \
 	$(CHEESE_LIBS)

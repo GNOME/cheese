@@ -47,6 +47,8 @@
 #include "cheese-window.h"
 #include "ephy-spinner.h"
 #include "gst-audio-play.h"
+#include "gedit-message-area.h"
+#include "cheese-no-camera.h"
 
 #define SHUTTER_SOUNDS 5
 
@@ -83,6 +85,8 @@ typedef struct
   GtkWidget *throbber;
   GtkWidget *countdown_frame;
   GtkWidget *countdown;
+  GtkWidget *message_area_frame;
+  GtkWidget *message_area;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -821,6 +825,30 @@ cheese_window_countdown_picture_cb (gpointer data)
 }
 
 static void
+cheese_window_no_camera_message_area_response (GtkWidget *widget, gint response_id, GtkWidget *cheese_window)
+{
+  GError *error = NULL;
+  gboolean ret;
+
+  if (response_id == GTK_RESPONSE_HELP)
+  {
+    ret = g_app_info_launch_default_for_uri ("ghelp:cheese?faq", NULL, &error);
+
+    if (ret == FALSE) 
+    {
+      GtkWidget *d;
+      d = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window), 
+                                  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                  GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
+                                  _("Unable to open help file for Cheese"));
+      gtk_dialog_run(GTK_DIALOG(d));
+      gtk_widget_destroy(d);
+      g_error_free(error);
+    }
+  }
+}
+
+static void
 cheese_window_stop_recording (CheeseWindow *cheese_window)
 {
   if (cheese_window->recording)
@@ -1027,6 +1055,25 @@ cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name,
 }
 
 static void
+cheese_window_set_message_area (CheeseWindow *cheese_window,
+                                GtkWidget *message_area)
+{
+  if (cheese_window->message_area == message_area)
+    return;
+
+  if (cheese_window->message_area != NULL)
+    gtk_widget_destroy (cheese_window->message_area);
+
+  cheese_window->message_area = message_area;
+
+  if (message_area == NULL)
+    return;
+
+  gtk_container_add (GTK_CONTAINER (cheese_window->message_area_frame), cheese_window->message_area);
+  gtk_widget_show (GTK_WIDGET(cheese_window->message_area));
+}
+
+static void
 cheese_window_create_window (CheeseWindow *cheese_window)
 {
   GError *error=NULL;
@@ -1040,6 +1087,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 #else
   GtkWidget *menubar;
 #endif
+
+  cheese_window->message_area = NULL;
 
   builder = gtk_builder_new ();
   gtk_builder_add_from_file (builder, PACKAGE_DATADIR"/cheese.ui", &error);
@@ -1069,6 +1118,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->throbber_frame     = GTK_WIDGET (gtk_builder_get_object (builder, "throbber_frame"));
   cheese_window->countdown_frame    = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
   cheese_window->effect_frame       = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
+  cheese_window->message_area_frame = GTK_WIDGET (gtk_builder_get_object (builder, "message_area_frame"));
 
 #ifdef HILDON
   /* Reparent widgets in case we use hildon. This saves us maintaining two
@@ -1252,6 +1302,7 @@ void
 setup_camera (CheeseWindow *cheese_window)
 {
   char *webcam_device = NULL;
+  GtkWidget *message_area;
 
   g_object_get (cheese_window->gconf, "gconf_prop_webcam", &webcam_device, NULL);
 
@@ -1272,6 +1323,17 @@ setup_camera (CheeseWindow *cheese_window)
   gdk_threads_enter ();
   gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
   ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
+  if (cheese_webcam_get_num_webcam_devices (cheese_window->webcam) == 0)
+  {
+    message_area = cheese_no_camera_message_area();
+
+    g_signal_connect (message_area,
+                      "response",
+                      G_CALLBACK (cheese_window_no_camera_message_area_response),
+                      cheese_window);
+
+    cheese_window_set_message_area (cheese_window, message_area);
+  }
   gdk_threads_leave ();
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), TRUE);
 }
