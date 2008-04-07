@@ -1,6 +1,22 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.22.1
+	- cheese crashed while initializing webcam on some devices, fixes bug #522143, courtesy of Alex Rostovtsev
+	- cheese did not list its gnome-vfs dependency, fixes bug #522152, courtesy of Alex Rostovtsev
+	- cheese did not open the webcam device set in gconf, courtesy of Sjoerd Simons, fixes bug #522198
+	- cheese crashed if getting information from a webcam fails, courtesy of Sjoerd Simons, fixes bug #522197
+	- set the max waiting time for detecting a camera to 10 seconds, fixes bug #520394
+	- do not allow to take pictures, while the webcam is initialising, fixes bug #523121
+	- show our fancy countdown widget by default
+	- added/updated translations
+	  - el, courtesy of Nick Paraschou
+	  - es, courtesy of Jorge González
+	  - et, courtesy of Ivar Smolin and Mattias Põldaru
+	  - nn, courtesy of Eskild Hustvedt
+	  - ru, courtesy of Vasiliy Faronov
+	  - vi, courtesy of Nguyễn Thái Ngọc Duy
+
 version 2.22.0
 	- typo in the documentaton: ximageskink instead of ximagesink
 	- menu entries for take a photo and recording never switched, fixes bug #516745
