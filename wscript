@@ -76,7 +76,7 @@ def configure(conf):
 
 def build(bld):
 	# process subfolders from here
-	bld.add_subdirs('src data po')
+	bld.add_subdirs('data help po src')
 
 def shutdown():
 	gnome.postinstall(APPNAME, schemas=True, icons=True, scrollkeeper=False)
