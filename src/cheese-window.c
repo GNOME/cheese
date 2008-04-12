@@ -782,7 +782,7 @@ cheese_window_photo_video_toggle_buttons_cb (GtkWidget *widget, CheeseWindow *ch
   {
     cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
 
-    str = g_strconcat ("<b>", _("_Take a photo"), "</b>", NULL);
+    str = g_strconcat ("<b>", _("_Take a Photo"), "</b>", NULL);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
@@ -857,7 +857,7 @@ cheese_window_stop_recording (CheeseWindow *cheese_window)
     gtk_widget_set_sensitive (cheese_window->button_effects, TRUE);
     gtk_widget_set_sensitive (cheese_window->button_photo, TRUE);
     gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
-    gchar * str = g_strconcat ("<b>", _("_Start recording"), "</b>", NULL);
+    gchar * str = g_strconcat ("<b>", _("_Start Recording"), "</b>", NULL);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
     g_free (str);
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
@@ -919,7 +919,7 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
       gtk_widget_set_sensitive (cheese_window->button_effects, FALSE);
       gtk_widget_set_sensitive (cheese_window->button_photo, FALSE);
       gtk_widget_set_sensitive (cheese_window->button_video, FALSE);
-      str = g_strconcat ("<b>", _("_Stop recording"), "</b>", NULL);
+      str = g_strconcat ("<b>", _("_Stop Recording"), "</b>", NULL);
       gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
       g_free (str);
       gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
@@ -941,12 +941,12 @@ static const GtkActionEntry action_entries_main[] = {
   {"Cheese", NULL, N_("_Cheese")},
 
   {"Edit", NULL, N_("_Edit")},
-  {"RemoveAll", NULL, N_("Move all to Trash"), NULL, NULL, G_CALLBACK (cheese_window_move_all_media_to_trash)},
+  {"RemoveAll", NULL, N_("Move All to Trash"), NULL, NULL, G_CALLBACK (cheese_window_move_all_media_to_trash)},
 
   {"Help", NULL, N_("_Help")},
 
   {"Quit", GTK_STOCK_QUIT, NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_close)},
-  {"HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Help on this application"), G_CALLBACK (cheese_window_cmd_help_contents)},
+  {"HelpContents", GTK_STOCK_HELP, N_("_Contents"), "F1", N_("Help on this Application"), G_CALLBACK (cheese_window_cmd_help_contents)},
   {"About", GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_about)},
 
 };
