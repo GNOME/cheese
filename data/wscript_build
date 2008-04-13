@@ -50,6 +50,7 @@ for i in ["16x16", "22x22", "24x24", "32x32", "48x48"]:
 	install_files('DATADIR', 'icons/hicolor/%s/apps' % i, 'icons/%s/cheese.png' % i)
 
 install_files('DATADIR', 'icons/hicolor/scalable/apps', 'icons/scalable/cheese.svg')
+install_files('DATADIR', 'icons/hicolor/16x16/actions', 'icons/16x16/actions/effects.png')
 
 # data/sounds
 install_files('PACKAGE_DATADIR', 'sounds', 'sounds/shutter*.ogg')
