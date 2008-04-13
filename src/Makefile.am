@@ -6,6 +6,7 @@ INCLUDES = 						\
 	-DLIBDIR=\""$(libdir)"\" 			\
 	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\"	\
 	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
+	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\"		\
 	$(CHEESE_CFLAGS)
 
 bin_PROGRAMS = cheese
