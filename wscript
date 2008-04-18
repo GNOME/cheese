@@ -67,6 +67,7 @@ def configure(conf):
 	else:
 		conf.define('PACKAGE_DATADIR', conf.env['DATADIR'] + '/cheese')
 
+	conf.define('APPNAME_DATA_DIR', conf.env['DATADIR'] + '/cheese')
 	conf.define('PACKAGE_DOCDIR', conf.env['DATADIR'] + '/share/doc/cheese')
 	conf.define('PACKAGE_LOCALEDIR', conf.env['DATADIR'] + '/locale')
 	conf.define('PACKAGE_LIBEXECDIR', conf.env['PREFIX'] + '/libexec/cheese')
