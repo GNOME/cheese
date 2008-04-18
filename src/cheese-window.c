@@ -429,6 +429,10 @@ cheese_window_move_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_windo
   filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
   g_return_if_fail (filename);
 
+  // return if the file does not exist, i.e. was already deleted
+  if (!g_file_test (filename, G_FILE_TEST_EXISTS)) 
+    return;
+
   file = g_file_new_for_path (filename);
   g_free(filename);
 
