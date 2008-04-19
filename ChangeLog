@@ -1,5 +1,10 @@
 2008-04-19  daniel g. siegel <dgsiegel@gmail.com>
 
+	* src/cheese-webcam.c: 
+	  when running without a webcam, the video_source element _could_ be NULL
+
+2008-04-19  daniel g. siegel <dgsiegel@gmail.com>
+
 	* AUTHORS,
 	  src/cheese-thumb-view.c: 
 	  fix regression of DnD, courtesy of Cosimo Cecchi, fixes bug #526398

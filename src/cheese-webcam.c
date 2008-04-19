@@ -641,6 +641,7 @@ fallback:
 
   priv->webcam_source_bin = gst_parse_bin_from_description ("videotestsrc name=video_source",
                                                               TRUE, &err);
+  priv->video_source = gst_bin_get_by_name (GST_BIN (priv->webcam_source_bin), "video_source");
   if (err != NULL)
   {
     g_error_free (err);
