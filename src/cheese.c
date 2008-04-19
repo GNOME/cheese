@@ -93,6 +93,8 @@ main (int argc, char **argv)
 
   gtk_init (&argc, &argv);
   gst_init (&argc, &argv);
+
+  /* Needed for gnome_thumbnail functions */
   gnome_vfs_init ();
 
   g_set_print_handler ((GPrintFunc) cheese_print_handler);
