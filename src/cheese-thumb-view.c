@@ -212,15 +212,19 @@ cheese_thumb_view_on_drag_data_get_cb (GtkIconView      *thumb_view,
     gtk_tree_model_get_iter (model, &iter, tree_path);
     gtk_tree_model_get (model, &iter, 1, &str, -1);
 
+    /* we always store local paths in the model, but DnD
+     * needs URIs, so we must add file:// to the path.
+     */
+
     /* build the "text/uri-list" string */
     if (uris) 
     {
-      tmp_str = g_strconcat (uris, str, "\r\n", NULL);
+      tmp_str = g_strconcat (uris, "file://", str, "\r\n", NULL);
       g_free (uris);
     } 
     else 
     { 
-      tmp_str = g_strconcat (str, "\r\n", NULL);
+      tmp_str = g_strconcat ("file://", str, "\r\n", NULL);
     }
     uris = tmp_str;
 
