@@ -36,7 +36,15 @@ cheese_SOURCES = \
 	gedit-message-area.c \
 	gedit-message-area.h \
 	cheese-no-camera.c \
-	cheese-no-camera.h
+	cheese-no-camera.h \
+	cheese-prefs-widget.h \
+	cheese-prefs-widget.c \
+	cheese-prefs-dialog-widgets.h \
+	cheese-prefs-dialog-widgets.c \
+	cheese-prefs-resolution-combo.h \
+	cheese-prefs-resolution-combo.c \
+	cheese-prefs-dialog.c \
+	cheese-prefs-dialog.h
 
 cheese_LDADD = \
 	$(CHEESE_LIBS)

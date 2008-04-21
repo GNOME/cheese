@@ -86,6 +86,16 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
       g_slist_free (list);
       g_slist_free (tmp);
       break;
+    case GCONF_PROP_X_RESOLUTION:
+      g_value_set_int (value, gconf_client_get_int (priv->client,
+                                                    CHEESE_GCONF_PREFIX "/x_resolution",
+                                                    NULL));
+      break;
+    case GCONF_PROP_Y_RESOLUTION:
+      g_value_set_int (value, gconf_client_get_int (priv->client,
+                                                    CHEESE_GCONF_PREFIX "/y_resolution",
+                                                    NULL));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -139,6 +149,18 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
       g_slist_free (list);
       g_strfreev (effects);
       break;
+    case GCONF_PROP_X_RESOLUTION:
+      gconf_client_set_int (priv->client,
+                            CHEESE_GCONF_PREFIX "/x_resolution",
+                            g_value_get_int (value),
+                            NULL);
+      break;
+    case GCONF_PROP_Y_RESOLUTION:
+      gconf_client_set_int (priv->client,
+                            CHEESE_GCONF_PREFIX "/y_resolution",
+                            g_value_get_int (value),
+                            NULL);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -183,8 +205,26 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                         NULL,
                                                         NULL,
                                                         "",
-                                                        G_PARAM_READWRITE));
-
+                                                        G_PARAM_READWRITE)); 
+    
+  g_object_class_install_property (object_class, GCONF_PROP_X_RESOLUTION,
+                                   g_param_spec_int ("gconf_prop_x_resolution",
+                                                     NULL,
+                                                     NULL,
+                                                     0,
+                                                     G_MAXINT,
+                                                     0,
+                                                     G_PARAM_READWRITE));
+    
+  g_object_class_install_property (object_class, GCONF_PROP_Y_RESOLUTION,
+                                   g_param_spec_int ("gconf_prop_y_resolution",
+                                                     NULL,
+                                                     NULL,
+                                                     0,
+                                                     G_MAXINT,
+                                                     0,
+                                                     G_PARAM_READWRITE));
+    
   g_type_class_add_private (klass, sizeof (CheeseGConfPrivate));
 }
 

@@ -13,7 +13,8 @@ schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 
 pkgdata_DATA =						\
 	cheese.ui					\
-	cheese-ui.xml
+	cheese-ui.xml \
+	cheese-prefs.ui
 
 EXTRA_DIST =						\
 	$(desktop_in_files)				\

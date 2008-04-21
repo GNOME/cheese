@@ -39,21 +39,6 @@ G_DEFINE_TYPE (CheeseWebcam, cheese_webcam, G_TYPE_OBJECT)
 
 #define CHEESE_WEBCAM_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_WEBCAM, CheeseWebcamPrivate))
 
-typedef struct 
-{
-  int numerator;
-  int denominator;
-} CheeseFramerate;
-
-typedef struct 
-{
-  char *mimetype;
-  int width;
-  int height;
-  int num_framerates;
-  CheeseFramerate *framerates; 
-} CheeseVideoFormat;
-
 typedef struct
 {
   char *video_device; 
@@ -78,6 +63,7 @@ typedef struct
   GstElement *video_save_bin;
 
   GstElement *video_source;
+  GstElement *capsfilter;
   GstElement *video_file_sink;
   GstElement *photo_sink;
   GstElement *audio_source;
@@ -98,13 +84,20 @@ typedef struct
   int num_webcam_devices;
   char *device_name;
   CheeseWebcamDevice *webcam_devices;
+  int x_resolution;
+  int y_resolution;
+  int selected_device;
+  CheeseVideoFormat *current_format;
+  GHashTable *supported_resolutions;
 } CheeseWebcamPrivate;
 
 enum 
 {
   PROP_0,
   PROP_VIDEO_WINDOW,
-  PROP_DEVICE_NAME
+  PROP_DEVICE_NAME,
+  PROP_X_RESOLUTION,
+  PROP_Y_RESOLUTION
 };
 
 enum 
@@ -240,6 +233,10 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   int i;
   int num_udis;
+  int num_devices;  /* Devices we actually create formats for; can either be the
+                     * number of webcams detected, or 1 if none were. The one
+                     * refers to a fake device so that resolution changing still
+                     * works even if the computer doesn't have a webcam. */
   char **udis;
   DBusError error;
   LibHalContext *hal_ctx;
@@ -283,9 +280,19 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   }
 
   /* Initialize webcam structures */
-  priv->num_webcam_devices = num_udis;
-  priv->webcam_devices = g_new0 (CheeseWebcamDevice, priv->num_webcam_devices);
-  for (i = 0; i < priv->num_webcam_devices; i++)
+    
+  if (num_udis > 0)
+        priv->num_webcam_devices = num_devices = num_udis;
+  else
+  {
+    num_devices = 1;
+    priv->num_webcam_devices = num_udis;  /* We don't have any real cameras-- 
+                                           * this is important when we create 
+                                           * the pipeline. */
+  }
+  
+  priv->webcam_devices = g_new0 (CheeseWebcamDevice, num_devices);
+  for (i = 0; i < num_devices; i++)
   {
     priv->webcam_devices[i].num_video_formats = 0;
     priv->webcam_devices[i].video_formats = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
@@ -456,8 +463,10 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
 }
 
 static void
-cheese_webcam_get_webcam_device_data (CheeseWebcamDevice *webcam_device)
+cheese_webcam_get_webcam_device_data (CheeseWebcam *webcam, 
+                                      CheeseWebcamDevice *webcam_device)
 {
+  CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   char *pipeline_desc;
   GstElement *pipeline;
   GError *err;
@@ -532,6 +541,12 @@ cheese_webcam_get_webcam_device_data (CheeseWebcamDevice *webcam_device)
     CheeseVideoFormat video_format;
    
     video_format = g_array_index (webcam_device->video_formats, CheeseVideoFormat, i);
+    g_hash_table_insert (priv->supported_resolutions, 
+                         g_strdup_printf ("%ix%i", video_format.width,
+                                          video_format.height), 
+                                          &g_array_index (webcam_device->video_formats, 
+                                                          CheeseVideoFormat, 
+                                                          i));
     g_print ("%s %d x %d num_framerates %d\n", video_format.mimetype, video_format.width, 
              video_format.height, video_format.num_framerates);
     for (j = 0; j < video_format.num_framerates; j++)
@@ -544,6 +559,26 @@ cheese_webcam_get_webcam_device_data (CheeseWebcamDevice *webcam_device)
 }
 
 static void
+cheese_webcam_create_fake_format (CheeseWebcam *webcam)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  CheeseVideoFormat format;
+    
+  /* Right now just emulate one format: video/x-raw-yuv, 320x240 @ 30 Hz */
+    
+  format.mimetype = g_strdup ("video/x-raw-yuv");
+  format.width = 320;
+  format.height = 240;
+  format.num_framerates = 1;
+  format.framerates = g_new0 (CheeseFramerate, 1);
+  format.framerates[0].numerator = 30;
+  format.framerates[0].denominator = 1;
+    
+  g_array_append_val (priv->webcam_devices[0].video_formats, format);
+  priv->current_format = &format;
+}
+
+static void
 cheese_webcam_detect_webcam_devices (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
@@ -552,8 +587,37 @@ cheese_webcam_detect_webcam_devices (CheeseWebcam *webcam)
   cheese_webcam_get_video_devices_from_hal (webcam);
   for (i = 0; i < priv->num_webcam_devices; i++) 
   {
-    cheese_webcam_get_webcam_device_data (&(priv->webcam_devices[i]));
+    cheese_webcam_get_webcam_device_data (webcam, &(priv->webcam_devices[i]));
   }
+    
+  if (priv->num_webcam_devices == 0)
+   cheese_webcam_create_fake_format (webcam);
+}
+
+static void
+find_highest_framerate (CheeseVideoFormat *format, int *numerator, 
+                        int *denominator)
+{
+  int framerate_numerator;
+  int framerate_denominator;
+  int i;
+    
+  /* Select the highest framerate up to 30 Hz*/
+  framerate_numerator = 1;
+  framerate_denominator = 1;
+  for (i = 0; i < format->num_framerates; i++)
+  {
+    float framerate = format->framerates[i].numerator / format->framerates[i].denominator;
+    if (framerate > ((float)framerate_numerator / framerate_denominator)
+        && framerate <= 30)
+    {
+      framerate_numerator = format->framerates[i].numerator;
+      framerate_denominator = format->framerates[i].denominator;        
+    }
+  }
+    
+  *numerator = framerate_numerator;
+  *denominator = framerate_denominator;
 }
 
 static gboolean 
@@ -565,53 +629,60 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
 
   if (priv->num_webcam_devices == 0)
   {
-    goto fallback;
+    priv->webcam_source_bin = gst_parse_bin_from_description ("videotestsrc name=video_source ! capsfilter name=capsfilter ! identity",
+                                                              TRUE, &err);
   }
   else
   {
     CheeseVideoFormat *format; 
     int i;
-    int selected_device;
     int framerate_numerator, framerate_denominator;
+    gchar *resolution;
 
     /* If we have a matching video device use that one, otherwise use the first */
-    selected_device = 0;
+    priv->selected_device = 0;
+    format = NULL;
     for (i = 1; i < priv->num_webcam_devices ; i++)
     {
 	    if (g_strcmp0 (priv->webcam_devices[i].video_device, priv->device_name) == 0)
-          selected_device = i;
+          priv->selected_device = i;
     }
-    CheeseWebcamDevice *selected_webcam = &(priv->webcam_devices[selected_device]);
+    CheeseWebcamDevice *selected_webcam = &(priv->webcam_devices[priv->selected_device]);
 
-    /* Select the highest resolution */
-    format = &(g_array_index (selected_webcam->video_formats, CheeseVideoFormat, 0));
-    for (i = 1; i < selected_webcam->num_video_formats; i++)
-    {
+    resolution = g_strdup_printf ("%ix%i", priv->x_resolution, 
+                                  priv->y_resolution);
 
-      if (g_array_index (selected_webcam->video_formats, CheeseVideoFormat, i).width >  format->width)
+    /* Use the previously set resolution from gconf if it is set and the 
+     * camera supports it. */
+    if (priv->x_resolution != 0 && priv->y_resolution != 0)
+      format = g_hash_table_lookup (priv->supported_resolutions, resolution);
+      
+    if (!format)
+    {  
+      /* Select the highest resolution */
+      format = &(g_array_index (selected_webcam->video_formats, 
+                                CheeseVideoFormat, 0));
+      for (i = 1; i < selected_webcam->num_video_formats; i++)
       {
-        format = &(g_array_index (selected_webcam->video_formats, CheeseVideoFormat, i));
+        if (g_array_index (selected_webcam->video_formats, 
+                           CheeseVideoFormat, i).width >  format->width)
+        {
+          format = &(g_array_index (selected_webcam->video_formats, 
+                                    CheeseVideoFormat, i));
+        }
       }
     }
-
+      
+    priv->current_format = format;
+    g_free (resolution);
+    
+    find_highest_framerate (format, &framerate_numerator, 
+                            &framerate_denominator);
+    
     if (format == NULL)
       goto fallback;
 
-    /* Select the highest framerate up to 30 Hz*/
-    framerate_numerator = 1;
-    framerate_denominator = 1;
-    for (i = 0; i < format->num_framerates; i++)
-    {
-      float framerate = format->framerates[i].numerator / format->framerates[i].denominator;
-      if (framerate > ((float)framerate_numerator / framerate_denominator)
-          && framerate <= 30)
-      {
-        framerate_numerator = format->framerates[i].numerator;
-        framerate_denominator = format->framerates[i].denominator;        
-      }
-    }
-
-    webcam_input = g_strdup_printf ("%s name=video_source device=%s ! %s,width=%d,height=%d,framerate=%d/%d ! identity",
+    webcam_input = g_strdup_printf ("%s name=video_source device=%s ! capsfilter name=capsfilter caps=%s,width=%d,height=%d,framerate=%d/%d ! identity",
                                     selected_webcam->gstreamer_src,
                                     selected_webcam->video_device,
                                     format->mimetype,
@@ -625,11 +696,13 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
                                                               TRUE, &err);
     g_free (webcam_input);
 
-    if ( priv->webcam_source_bin == NULL)
+    if (priv->webcam_source_bin == NULL)
       goto fallback;
   }
 
   priv->video_source = gst_bin_get_by_name (GST_BIN (priv->webcam_source_bin), "video_source");
+  priv->capsfilter = gst_bin_get_by_name (GST_BIN (priv->webcam_source_bin), 
+                                          "capsfilter");
   return TRUE;
 
 fallback:
@@ -647,6 +720,8 @@ fallback:
     g_error_free (err);
     return FALSE;
   }
+  priv->capsfilter = gst_bin_get_by_name (GST_BIN (priv->webcam_source_bin), 
+                                          "capsfilter");
   return TRUE;
 }
 
@@ -749,7 +824,6 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
   GstElement *mux;
   GstPad *pad;
   gboolean ok;
-  GstCaps *caps;
 
   priv->video_save_bin = gst_bin_new ("video_save_bin");
 
@@ -781,15 +855,8 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
   ok = gst_element_link_many (priv->audio_source, audio_queue, audio_convert, 
                               audio_enc, mux, priv->video_file_sink, NULL);
 
-  /* Record videos always in 320x240 */
-  ok &= gst_element_link (video_save_csp ,video_save_scale);
-  caps = gst_caps_new_simple ("video/x-raw-yuv",
-                              "width", G_TYPE_INT, 320,
-                              "height", G_TYPE_INT, 240,
-                              NULL);
-  ok &= gst_element_link_filtered (video_save_scale, video_enc, caps);
-  gst_caps_unref (caps);
-
+  ok &= gst_element_link_many (video_save_csp, video_save_scale, video_enc,
+                               NULL);
   ok &= gst_element_link (video_enc, mux);
 
   if (!ok)
@@ -1004,6 +1071,8 @@ cheese_webcam_finalize (GObject *object)
     g_array_free (priv->webcam_devices[i].video_formats, TRUE);
   }
   g_free (priv->webcam_devices);
+    
+  g_hash_table_destroy (priv->supported_resolutions);
 
   G_OBJECT_CLASS (cheese_webcam_parent_class)->finalize (object);
 }
@@ -1023,6 +1092,12 @@ cheese_webcam_get_property (GObject *object, guint prop_id, GValue *value,
       break;
     case PROP_DEVICE_NAME:
       g_value_set_string (value, priv->device_name);
+      break;
+    case PROP_X_RESOLUTION:
+      g_value_set_int (value, priv->x_resolution);
+      break;
+    case PROP_Y_RESOLUTION:
+      g_value_set_int (value, priv->y_resolution);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1049,6 +1124,12 @@ cheese_webcam_set_property (GObject *object, guint prop_id, const GValue *value,
       g_free (priv->device_name);
       priv->device_name = g_value_dup_string (value);
       break;
+    case PROP_X_RESOLUTION:
+      priv->x_resolution = g_value_get_int (value);
+      break;
+    case PROP_Y_RESOLUTION:
+      priv->y_resolution = g_value_get_int (value);
+      break; 
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1090,6 +1171,26 @@ cheese_webcam_class_init (CheeseWebcamClass *klass)
                                                          NULL,
 							 "",
                                                          G_PARAM_READWRITE));
+    
+   g_object_class_install_property (object_class, PROP_X_RESOLUTION,
+                                   g_param_spec_int ("x-resolution",
+                                                     NULL,
+                                                     NULL,
+                                                     0,
+                                                     G_MAXINT,
+                                                     0,
+                                                     G_PARAM_READWRITE |
+                                                     G_PARAM_CONSTRUCT_ONLY));
+    
+    g_object_class_install_property (object_class, PROP_Y_RESOLUTION,
+                                   g_param_spec_int ("y-resolution",
+                                                     NULL,
+                                                     NULL,
+                                                     0,
+                                                     G_MAXINT,
+                                                     0,
+                                                     G_PARAM_READWRITE |
+                                                     G_PARAM_CONSTRUCT_ONLY));
 
 
   g_type_class_add_private (klass, sizeof (CheeseWebcamPrivate));
@@ -1105,6 +1206,33 @@ cheese_webcam_init (CheeseWebcam *webcam)
   priv->photo_filename = NULL;
   priv->webcam_devices = NULL;
   priv->device_name = NULL;
+    
+  priv->supported_resolutions = g_hash_table_new_full (g_str_hash, 
+                                                       g_str_equal,
+                                                       g_free, NULL);
+}
+
+CheeseWebcam*
+cheese_webcam_new (GtkWidget* video_window, char *webcam_device_name, 
+                   int x_resolution, int y_resolution)
+{
+  CheeseWebcam *webcam;
+    
+  if (webcam_device_name)
+  {
+    webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, 
+                           "device_name", webcam_device_name, 
+                           "x-resolution", x_resolution, 
+                           "y-resolution", y_resolution, NULL);
+  }
+  else
+  {
+    webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, 
+                           "x-resolution", x_resolution, 
+                           "y-resolution", y_resolution, NULL);
+  }
+	
+  return webcam;
 }
 
 void
@@ -1139,20 +1267,46 @@ cheese_webcam_setup (CheeseWebcam *webcam)
   gdk_threads_leave();
 }
 
-
-CheeseWebcam*
-cheese_webcam_new (GtkWidget* video_window, char *webcam_device_name)
+GArray *
+cheese_webcam_get_video_formats (CheeseWebcam *webcam)
 {
-  CheeseWebcam *webcam;
-  if (webcam_device_name)
-  {
-    webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, 
-                           "device-name", webcam_device_name, NULL);
-  }
-  else
-  {
-    webcam = g_object_new (CHEESE_TYPE_WEBCAM, "video-window", video_window, NULL);
-  }
-  return webcam;
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam); 
+    
+  return priv->webcam_devices[priv->selected_device].video_formats;
+}
+
+void
+cheese_webcam_set_video_format (CheeseWebcam *webcam, CheeseVideoFormat *format)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  GstCaps *new_caps;
+  int framerate_numerator;
+  int framerate_denominator;
+    
+  find_highest_framerate (format, &framerate_numerator, &framerate_denominator);
+    
+  new_caps = gst_caps_new_simple (format->mimetype,
+                                  "width", G_TYPE_INT, 
+                                  format->width,
+                                  "height", G_TYPE_INT, 
+                                  format->height,
+                                  "framerate", GST_TYPE_FRACTION, 
+                                  framerate_numerator,
+                                  framerate_denominator,
+                                  NULL);
+    
+  priv->current_format = format;
+    
+  cheese_webcam_stop (webcam);
+  g_object_set (priv->capsfilter, "caps", new_caps, NULL);
+  cheese_webcam_play (webcam);
+}
+
+CheeseVideoFormat *
+cheese_webcam_get_current_video_format (CheeseWebcam *webcam)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+    
+  return priv->current_format;
 }
 

@@ -49,6 +49,7 @@
 #include "gst-audio-play.h"
 #include "gedit-message-area.h"
 #include "cheese-no-camera.h"
+#include "cheese-prefs-dialog.h"
 
 #define SHUTTER_SOUNDS 5
 
@@ -57,7 +58,6 @@ typedef enum
   WEBCAM_MODE_PHOTO,
   WEBCAM_MODE_VIDEO
 } WebcamMode;
-
 
 typedef struct 
 {
@@ -114,6 +114,7 @@ typedef struct
   GtkActionGroup *actions_account_photo;
   GtkActionGroup *actions_countdown;
   GtkActionGroup *actions_effects;
+  GtkActionGroup *actions_preferences;
   GtkActionGroup *actions_file;
   GtkActionGroup *actions_flickr;
   GtkActionGroup *actions_fspot;
@@ -234,6 +235,9 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_object_unref (cheese_window->actions_mail);
   g_object_unref (cheese_window->actions_photo);
   g_object_unref (cheese_window->actions_toggle);
+  g_object_unref (cheese_window->actions_effects);
+  g_object_unref (cheese_window->actions_preferences);
+  g_object_unref (cheese_window->actions_file);
   g_object_unref (cheese_window->actions_video);
   g_object_unref (cheese_window->ui_manager);
   g_object_unref (cheese_window->gconf);
@@ -941,6 +945,13 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
   }
 }
 
+static void 
+cheese_window_preferences_cb (GtkAction *action, CheeseWindow *cheese_window)
+{
+  cheese_prefs_dialog_run (cheese_window->window, cheese_window->gconf,
+                           cheese_window->webcam);
+}
+
 static const GtkActionEntry action_entries_main[] = {
   {"Cheese", NULL, N_("_Cheese")},
 
@@ -961,6 +972,10 @@ static const GtkToggleActionEntry action_entries_countdown[] = {
 
 static const GtkToggleActionEntry action_entries_effects[] = {
   {"Effects", NULL, N_("_Effects"), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb), FALSE},
+};
+
+static const GtkActionEntry action_entries_preferences[] = {
+  {"Preferences", GTK_STOCK_PREFERENCES, N_("Preferences"), NULL, NULL, G_CALLBACK (cheese_window_preferences_cb)},
 };
 
 static const GtkRadioActionEntry action_entries_toggle[] = {
@@ -1194,6 +1209,10 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                           "ActionsEffects", 
                                                                           action_entries_effects, 
                                                                           G_N_ELEMENTS (action_entries_effects));
+  cheese_window->actions_preferences = cheese_window_action_group_new (cheese_window, 
+                                                                       "ActionsPreferences", 
+                                                                       action_entries_preferences, 
+                                                                       G_N_ELEMENTS (action_entries_preferences));
   cheese_window->actions_file = cheese_window_action_group_new (cheese_window, 
                                                                 "ActionsFile", 
                                                                 action_entries_file, 
@@ -1306,11 +1325,16 @@ void
 setup_camera (CheeseWindow *cheese_window)
 {
   char *webcam_device = NULL;
+  int x_resolution;
+  int y_resolution;
   GtkWidget *message_area;
+  
+  g_object_get (cheese_window->gconf, "gconf_prop_x_resolution", &x_resolution,
+                "gconf_prop_y_resolution", &y_resolution, NULL);
 
-  g_object_get (cheese_window->gconf, "gconf_prop_webcam", &webcam_device, NULL);
-
-  cheese_window->webcam = cheese_webcam_new (cheese_window->screen, webcam_device);
+  cheese_window->webcam = cheese_webcam_new (cheese_window->screen, 
+                                             webcam_device, x_resolution,
+                                             y_resolution);
   g_free (webcam_device);
 
   cheese_webcam_setup (cheese_window->webcam);

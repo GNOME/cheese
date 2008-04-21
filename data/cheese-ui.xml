@@ -1,21 +1,23 @@
 <ui>
-  <menubar name="MainMenu">
-    <menu action="Cheese">
+  <menubar name="MainMenu" name="MainMenu">
+    <menu action="Cheese" name="Cheese">
       <menuitem name="CountdownToggle" action="Countdown" />
       <separator />
       <menuitem action="TakePhoto" />
       <menuitem action="TakeVideo" />
       <separator />
-      <menuitem action="Photo" />
-      <menuitem action="Video" />
+      <menuitem action="Photo" name="Photo" />
+      <menuitem action="Video" name="Video" />
       <separator />
       <menuitem action="Quit" />
     </menu>
-    <menu action="Edit">
+    <menu action="Edit" name="Edit">
       <menuitem action="Effects" />
       <separator />
       <menuitem action="MoveToTrash" />
       <menuitem action="RemoveAll" />
+      <separator />
+      <menuitem action="Preferences" />
     </menu>
     <menu action="Help">
       <menuitem action="HelpContents" />

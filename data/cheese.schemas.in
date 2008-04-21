@@ -10,7 +10,7 @@
 				<short>Use a countdown</short>
 				<long>Whether a countdown should be used, when taking a photo</long>
 			</locale>
-    		</schema>
+    	</schema>
 
 		<schema>
 			<key>/schemas/apps/cheese/webcam</key>
@@ -38,6 +38,30 @@
 				Shagadelic, Vertigo, Edge, Dice and Warp</long>
 			</locale>
 		</schema>
+		
+		<schema>
+			<key>/schemas/apps/cheese/x_resolution</key>
+			<applyto>/apps/cheese/x_resolution</applyto>
+			<owner>cheese</owner>
+			<type>int</type>
+			<default>0</default>
+			<locale name="C">
+				<short>X resolution</short>
+				<long>The X resolution of the image captured from the camera</long>
+			</locale>
+    	</schema>
+		
+		<schema>
+			<key>/schemas/apps/cheese/y_resolution</key>
+			<applyto>/apps/cheese/y_resolution</applyto>
+			<owner>cheese</owner>
+			<type>int</type>
+			<default>0</default>
+			<locale name="C">
+				<short>Y resolution</short>
+				<long>The Y resolution of the image captured from the camera</long>
+			</locale>
+    	</schema>
 
 	</schemalist>
 </gconfschemafile>

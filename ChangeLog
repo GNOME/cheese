@@ -1,5 +1,29 @@
 2008-04-21  daniel g. siegel <dgsiegel@gmail.com>
 
+	* AUTHORS,
+	  data/cheese-prefs.glade,
+	  data/cheese-prefs.ui,
+	  data/cheese.schemas.in,
+	  data/cheese-ui.xml,
+	  data/Makefile.am,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-prefs-dialog.c,
+	  src/cheese-prefs-dialog.h,
+	  src/cheese-prefs-dialog-widgets.c,
+	  src/cheese-prefs-dialog-widgets.h,
+	  src/cheese-prefs-resolution-combo.c,
+	  src/cheese-prefs-resolution-combo.h,
+	  src/cheese-prefs-widget.c,
+	  src/cheese-prefs-widget.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/Makefile.am: 
+	  add a preferences dialog with basic resolution changing, partially fixes #522200, courtesy of James Liggett
+
+2008-04-21  daniel g. siegel <dgsiegel@gmail.com>
+
 	* configure.ac,
 	  wscript: 
 	  post release version bump
