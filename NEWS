@@ -1,6 +1,36 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.1
+  - add cheese to sound & video in the application menu, fixes bug #519846
+  - add hildon support to cheese, fixes bug #519548, courtesy of Matthew Garret
+  - add menu entry for the countdown, fixes bug #511160
+  - add the gedit warning box when no camera is found, fixes bug #511945, courtesy of sebastian keller
+  - buttons and menu items should use Title Case
+  - change the theora file extension to .gov, fixes bug #524021
+  - cheese crashes if getting information from a webcam fails, courtesy of Sjoerd Simons, fixes bug #522197
+  - cheese did not choose the right thumbnails for already taken pictures, fixes bug #524814
+  - cheese does not list its gnome-vfs dependency, fixes bug #522152, courtesy of Alex Rostovtsev
+  - cheese doesn't open the webcam device set in gconf, courtesy of Sjoerd Simons, fixes bug #522198
+  - do not allow to take pictures, while the webcam is initializing, fixes bug #523121
+  - fix a crash while initializing webcam, fixes bug #522143, courtesy of Alex Rostovtsev
+  - fix a crash, when a file was deleted twice
+  - fix regression of gio, Dnd works again, courtesy of Cosimo Cecchi, fixes bug #526398
+  - set the max waiting time for detecting a camera to 10 seconds, fixes bug #520394
+  - show the pretty countdown widget by default
+  - use a better effects icon, partially fixes bug #511369, courtesy of baptiste mille-mathias
+  - use new cheese description, fixes bug #512091
+  - added/updated translations
+    - el, courtesy of Nick Paraschou
+    - en_GB, courtesy of Philip Withnall
+    - es, courtesy of Jorge González
+    - et, courtesy of Mattias Põldaru
+    - he, courtesy of Mark Krapivner
+    - nb, courtesy of Kjartan Maraas
+    - nn, courtesy of Eskild Hustvedt
+    - ru, courtesy of Vasiliy Faronov
+    - sl, courtesy of Matej Urbančič
+
 version 2.22.0
   - typo in the documentaton: ximageskink instead of ximagesink
   - menu entries for take a photo and recording never switched, fixes bug #516745
