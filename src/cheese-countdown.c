@@ -24,6 +24,7 @@
 #endif
 
 #include <stdlib.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
@@ -337,7 +338,11 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_set_source_rgba (pContext, priv->text[R], priv->text[G], priv->text[B], fAlpha3);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
-                       "3 ",
+                       /*
+                       	* this is the "3" on the countdown widget.
+                       	* please leave the space after the number
+                       	*/
+                       _("3 "),
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
@@ -348,7 +353,11 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_set_source_rgba (pContext, priv->text[R], priv->text[G], priv->text[B], fAlpha2);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
-                       "2 ",
+                       /*
+                       	* this is the "2" on the countdown widget.
+                       	* please leave the space after the number
+                       	*/
+                       _("2 "),
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
@@ -359,7 +368,11 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_set_source_rgba (pContext, priv->text[R], priv->text[G], priv->text[B], fAlpha1);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
-                       "1 ",
+                       /*
+                       	* this is the "1" on the countdown widget.
+                       	* please leave the space after the number
+                       	*/
+                       _("1 "),
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
