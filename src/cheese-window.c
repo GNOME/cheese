@@ -1362,8 +1362,8 @@ setup_camera (CheeseWindow *cheese_window)
 
     cheese_window_set_message_area (cheese_window, message_area);
   }
-  gdk_threads_leave ();
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), TRUE);
+  gdk_threads_leave ();
 }
 
 void

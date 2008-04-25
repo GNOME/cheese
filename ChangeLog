@@ -1,5 +1,10 @@
 2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
 
+	* src/cheese-window.c: 
+	  take picture button is enabled outside gtk thread lock, fixes bug #529789, courtesy of Gary Lasker
+
+2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
 	* data/pixmaps/camera-icon.svg,
 	  src/cheese-countdown.c: 
 	  use gtk theme colors for the countdown widget
