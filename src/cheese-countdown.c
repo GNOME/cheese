@@ -452,7 +452,7 @@ on_style_set_cb (GtkWidget *widget, GtkStyle *previous_style, gpointer data)
   CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (data);
 
   GdkColor *color_bg = &GTK_WIDGET(widget)->style->bg[GTK_STATE_SELECTED];
-  GdkColor *color_text = &GTK_WIDGET(widget)->style->text[GTK_STATE_SELECTED];
+  GdkColor *color_text = &GTK_WIDGET(widget)->style->fg[GTK_STATE_SELECTED];
   priv->bg[R] = ((double)color_bg->red) / 65535;
   priv->bg[G] = ((double)color_bg->green) / 65535;
   priv->bg[B] = ((double)color_bg->blue) / 65535;
