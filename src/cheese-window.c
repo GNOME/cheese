@@ -1205,7 +1205,7 @@ cheese_window_init ()
 {
   CheeseWindow *cheese_window;
 
-  cheese_window = g_new (CheeseWindow, 1);
+  cheese_window = g_new0 (CheeseWindow, 1);
 
   cheese_window->gconf = cheese_gconf_new ();
   cheese_window->audio_play_counter = 0;
