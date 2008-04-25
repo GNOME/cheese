@@ -1,3 +1,12 @@
+2008-04-26  Andrea Cimitan  <andrea.cimitan@gmail.com>
+
+	  * AUTHORS:
+	  * src/cheese-countdown.c (rgb_to_hls), (hls_to_rgb), (color_shade),
+	  (on_expose), (create_surface_from_svg), (on_style_set_cb):
+	  changed shading operations using a hls colorspace.
+	  drawing operation trough a cairo_pattern.
+	  added a border and a little highlight on it.
+
 2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
 
 	* po/POTFILES.in,

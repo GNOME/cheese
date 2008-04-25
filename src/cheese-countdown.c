@@ -2,6 +2,7 @@
  * Copyright (C) 2008 Mirco "MacSlow" Müller <macslow@bangang.de>
  * Copyright (C) 2008 daniel g. siegel <dgsiegel@gmail.com>
  * Copyright (C) 2008 Patryk Zawadzki <patrys@pld-linux.org>
+ * Copyright (C) 2008 Andrea Cimitan <andrea.cimitan@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -28,13 +29,9 @@
 #include <gtk/gtk.h>
 #include <librsvg/rsvg.h>
 #include <librsvg/rsvg-cairo.h>
+#include <math.h>
 
 #include "cheese-countdown.h"
-
-#define R 0
-#define G 1
-#define B 2
-#define A 3
 
 #define CHEESE_COUNTDOWN_GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_COUNTDOWN, CheeseCountdownPrivate))
@@ -49,106 +46,40 @@ G_DEFINE_TYPE (CheeseCountdown, cheese_countdown, GTK_TYPE_DRAWING_AREA);
 
 typedef struct
 {
+  gdouble r;
+  gdouble g;
+  gdouble b;
+  gdouble a;
+} CairoColor;
+
+typedef struct
+{
   gint iState;
   cairo_surface_t* pSurface;
   cheese_countdown_cb_t picture_callback;
   cheese_countdown_cb_t hide_callback;
   gpointer callback_data;
-  gdouble bg[3];
-  gdouble bg_light[3];
-  gdouble text[3];
+  CairoColor bg;
+  CairoColor text;
 } CheeseCountdownPrivate;
 
-/* copied from gtk/gtkhsv.c, released under GPL v2 */
-/* Converts from HSV to RGB */
+/* Converts from RGB TO HLS */
 static void
-hsv_to_rgb (gdouble *h,
-            gdouble *s,
-            gdouble *v)
-{
-  gdouble hue, saturation, value;
-  gdouble f, p, q, t;
-
-  if (*s <= 0.0)
-  {
-    *h = *v;
-    *s = *v;
-    *v = *v; /* heh */
-  }
-  else
-  {
-    hue = *h * 6.0;
-    saturation = *s;
-    value = *v;
-
-    if (hue >= 6.0)
-      hue = 0.0;
-
-    f = hue - (int) hue;
-    p = value * (1.0 - saturation);
-    q = value * (1.0 - saturation * f);
-    t = value * (1.0 - saturation * (1.0 - f));
-
-    switch ((int) hue)
-    {
-      case 0:
-        *h = value;
-        *s = t;
-        *v = p;
-        break;
-
-      case 1:
-        *h = q;
-        *s = value;
-        *v = p;
-        break;
-
-      case 2:
-        *h = p;
-        *s = value;
-        *v = t;
-        break;
-
-      case 3:
-        *h = p;
-        *s = q;
-        *v = value;
-        break;
-
-      case 4:
-        *h = t;
-        *s = p;
-        *v = value;
-        break;
-
-      case 5:
-        *h = value;
-        *s = p;
-        *v = q;
-        break;
-
-      default:
-        g_assert_not_reached ();
-    }
-  }
-}
-
-/* Converts from RGB to HSV */
-static void
-rgb_to_hsv (gdouble *r,
+rgb_to_hls (gdouble *r,
             gdouble *g,
             gdouble *b)
 {
-  gdouble red, green, blue;
-  gdouble h, s, v;
-  gdouble min, max;
+  gdouble min;
+  gdouble max;
+  gdouble red;
+  gdouble green;
+  gdouble blue;
+  gdouble h, l, s;
   gdouble delta;
 
   red = *r;
   green = *g;
   blue = *b;
-
-  h = 0.0;
 
   if (red > green)
   {
@@ -175,19 +106,20 @@ rgb_to_hsv (gdouble *r,
       min = blue;
   }
 
-  v = max;
-
-  if (max != 0.0)
-    s = (max - min) / max;
-  else
-    s = 0.0;
-
-  if (s <= 0.0)
-    h = 0.0;
+  l = (max + min) / 2;
+  if (fabs(max - min) < 0.0001)
+  {
+    h = 0;
+    s = 0;
+  }
   else
   {
-    delta = max - min;
+    if (l <= 0.5)
+      s = (max - min) / (max + min);
+    else
+      s = (max - min) / (2 - max - min);
 
+    delta = max -min;
     if (red == max)
       h = (green - blue) / delta;
     else if (green == max)
@@ -195,17 +127,139 @@ rgb_to_hsv (gdouble *r,
     else if (blue == max)
       h = 4 + (red - green) / delta;
 
-    h /= 6.0;
-
+    h *= 60;
     if (h < 0.0)
-      h += 1.0;
-    else if (h > 1.0)
-      h -= 1.0;
+      h += 360;
   }
 
   *r = h;
-  *g = s;
-  *b = v;
+  *g = l;
+  *b = s;
+}
+
+/* Converts from HLS to RGB */
+static void
+hls_to_rgb (gdouble *h,
+            gdouble *l,
+            gdouble *s)
+{
+  gdouble hue;
+  gdouble lightness;
+  gdouble saturation;
+  gdouble m1, m2;
+  gdouble r, g, b;
+
+  lightness = *l;
+  saturation = *s;
+
+  if (lightness <= 0.5)
+    m2 = lightness * (1 + saturation);
+  else
+    m2 = lightness + saturation - lightness * saturation;
+
+  m1 = 2 * lightness - m2;
+
+  if (saturation == 0)
+  {
+    *h = lightness;
+    *l = lightness;
+    *s = lightness;
+  }
+  else
+  {
+    hue = *h + 120;
+    while (hue > 360)
+      hue -= 360;
+    while (hue < 0)
+      hue += 360;
+
+    if (hue < 60)
+      r = m1 + (m2 - m1) * hue / 60;
+    else if (hue < 180)
+      r = m2;
+    else if (hue < 240)
+      r = m1 + (m2 - m1) * (240 - hue) / 60;
+    else
+      r = m1;
+
+    hue = *h;
+    while (hue > 360)
+      hue -= 360;
+    while (hue < 0)
+      hue += 360;
+
+    if (hue < 60)
+      g = m1 + (m2 - m1) * hue / 60;
+    else if (hue < 180)
+      g = m2;
+    else if (hue < 240)
+      g = m1 + (m2 - m1) * (240 - hue) / 60;
+    else
+      g = m1;
+
+    hue = *h - 120;
+    while (hue > 360)
+      hue -= 360;
+    while (hue < 0)
+      hue += 360;
+
+    if (hue < 60)
+      b = m1 + (m2 - m1) * hue / 60;
+    else if (hue < 180)
+      b = m2;
+    else if (hue < 240)
+      b = m1 + (m2 - m1) * (240 - hue) / 60;
+    else
+      b = m1;
+
+    *h = r;
+    *l = g;
+    *s = b;
+  }
+}
+
+/* Performs a color shading operation */
+static void
+color_shade (const CairoColor * a, float k, CairoColor * b)
+{
+  double red;
+  double green;
+  double blue;
+  double alpha;
+
+  red   = a->r;
+  green = a->g;
+  blue  = a->b;
+  alpha = a->a;
+
+  if (k == 1.0)
+  {
+    b->r = red;
+    b->g = green;
+    b->b = blue;
+    return;
+  }
+
+  rgb_to_hls (&red, &green, &blue);
+
+  green *= k;
+  if (green > 1.0)
+    green = 1.0;
+  else if (green < 0.0)
+    green = 0.0;
+
+  blue *= k;
+  if (blue > 1.0)
+    blue = 1.0;
+  else if (blue < 0.0)
+    blue = 0.0;
+
+  hls_to_rgb (&red, &green, &blue);
+
+  b->r = red;
+  b->g = green;
+  b->b = blue;
+  b->a = alpha;
 }
 
 static gint
@@ -281,6 +335,13 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
 {
   CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
   cairo_t  *pContext = NULL;
+  cairo_pattern_t *pattern;
+  CairoColor bgBorder;
+  CairoColor bgHighlight;
+  CairoColor bgShade1;
+  CairoColor bgShade2;
+  CairoColor bgShade3;
+  CairoColor bgShade4;
   gdouble   fWidth   = (gdouble) widget->allocation.width;
   gdouble   fHeight  = (gdouble) widget->allocation.height;
   gint      iOffsetX = (widget->allocation.width - 4 * 24) / 2;
@@ -308,8 +369,19 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   else
     fAlphaClick = 0.5f;
 
-  /* clear drawing-context */
+  /* shade the colors used in the pattern */
+  color_shade (&priv->bg, 0.65f, &bgBorder);
+  color_shade (&priv->bg, 1.26f, &bgHighlight);
+  color_shade (&priv->bg, 1.16f, &bgShade1);
+  color_shade (&priv->bg, 1.08f, &bgShade2);
+  color_shade (&priv->bg, 1.00f, &bgShade3);
+  color_shade (&priv->bg, 1.08f, &bgShade4);
+
+  /* create cairo context */
   pContext = gdk_cairo_create (widget->window);
+  cairo_set_line_width (pContext, 1.0f);
+
+  /* clear drawing-context */
   cairo_set_operator (pContext, CAIRO_OPERATOR_CLEAR);
   cairo_paint (pContext);
   cairo_set_operator (pContext, CAIRO_OPERATOR_OVER);
@@ -319,29 +391,41 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_clip (pContext);
 
   /* draw the color-ish background */
-  /* glossy version */
-  cairo_set_source_rgba (pContext, priv->bg_light[R], priv->bg_light[G], priv->bg_light[B], 1.0f);
   cairo_rectangle (pContext, 0.0f, 0.0f, fWidth, fHeight);
+  pattern = cairo_pattern_create_linear (0.0f, 0.0f, 0.0f, fHeight);
+  cairo_pattern_add_color_stop_rgba (pattern, 0.00f, bgShade1.r, bgShade1.g, bgShade1.b, 1.0f);
+  cairo_pattern_add_color_stop_rgba (pattern, 0.49f, bgShade2.r, bgShade2.g, bgShade2.b, 1.0f);
+  cairo_pattern_add_color_stop_rgba (pattern, 0.49f, bgShade3.r, bgShade3.g, bgShade3.b, 1.0f);
+  cairo_pattern_add_color_stop_rgba (pattern, 1.00f, bgShade4.r, bgShade4.g, bgShade4.b, 1.0f);
+  cairo_set_source (pContext, pattern);
+  cairo_pattern_destroy (pattern);
   cairo_fill (pContext);
 
-  cairo_set_source_rgba (pContext, priv->bg[R], priv->bg[G], priv->bg[B], 1.0f);
-  cairo_rectangle (pContext, 0.0f, fHeight / 2.0f, fWidth, fHeight / 2.0f);
-  cairo_fill (pContext);
+  /* draw border */
+  cairo_rectangle (pContext, 0.5f, 0.5f, fWidth-1.0f, fHeight-1.0f);
+  cairo_set_source_rgba (pContext, bgBorder.r, bgBorder.g, bgBorder.b, 0.6f);
+  cairo_stroke (pContext);
+
+  /* draw inner highlight */
+  cairo_rectangle (pContext, 1.5f, 1.5f, fWidth-3.0f, fHeight-3.0f);
+  cairo_set_source_rgba (pContext, bgHighlight.r, bgHighlight.g, bgHighlight.b, 0.5f);
+  cairo_stroke (pContext);
+
   /* plain version */
   /*
-  cairo_set_source_rgba (pContext, bg[R], bg[G], bg[B], 1.0f);
+  cairo_set_source_rgba (pContext, bg.r, bg.g, bg.b, 1.0f);
   cairo_rectangle (pContext, 0.0f, 0.0f, fWidth, fHeight);
   cairo_fill (pContext);
   */
 
   /* draw the 3 */
-  cairo_set_source_rgba (pContext, priv->text[R], priv->text[G], priv->text[B], fAlpha3);
+  cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha3);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
                        /*
-                       	* this is the "3" on the countdown widget.
-                       	* please leave the space after the number
-                       	*/
+                        * this is the "3" on the countdown widget.
+                        * please leave the space after the number
+                        */
                        _("3 "),
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
@@ -350,13 +434,13 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_fill (pContext);
 
   /* draw the 2 */
-  cairo_set_source_rgba (pContext, priv->text[R], priv->text[G], priv->text[B], fAlpha2);
+  cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha2);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
                        /*
-                       	* this is the "2" on the countdown widget.
-                       	* please leave the space after the number
-                       	*/
+                        * this is the "2" on the countdown widget.
+                        * please leave the space after the number
+                        */
                        _("2 "),
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
@@ -365,13 +449,13 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_fill (pContext);
 
   /* draw the 1 */
-  cairo_set_source_rgba (pContext, priv->text[R], priv->text[G], priv->text[B], fAlpha1);
+  cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha1);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
   iOffsetX += do_text (pContext,
                        /*
-                       	* this is the "1" on the countdown widget.
-                       	* please leave the space after the number
-                       	*/
+                        * this is the "1" on the countdown widget.
+                        * please leave the space after the number
+                        */
                        _("1 "),
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
@@ -444,7 +528,7 @@ create_surface_from_svg (GtkWidget *widget, gchar* pcFilename)
   }
 
   /* clear that context */
-  cairo_set_source_rgba (pContext, priv->text[R], priv->text[G], priv->text[B], 1.0f);
+  cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, 1.0f);
   cairo_set_operator (pContext, CAIRO_OPERATOR_XOR);
   cairo_paint (pContext);
 
@@ -466,31 +550,14 @@ on_style_set_cb (GtkWidget *widget, GtkStyle *previous_style, gpointer data)
 
   GdkColor *color_bg = &GTK_WIDGET(widget)->style->bg[GTK_STATE_SELECTED];
   GdkColor *color_text = &GTK_WIDGET(widget)->style->fg[GTK_STATE_SELECTED];
-  priv->bg[R] = ((double)color_bg->red) / 65535;
-  priv->bg[G] = ((double)color_bg->green) / 65535;
-  priv->bg[B] = ((double)color_bg->blue) / 65535;
-  priv->text[R] = ((double)color_text->red) / 65535;
-  priv->text[G] = ((double)color_text->green) / 65535;
-  priv->text[B] = ((double)color_text->blue) / 65535;
-  gdouble h, s, v;
-  gdouble s_mid, s_light, s_dark;
-
-  h = priv->bg[R]; s = priv->bg[G]; v = priv->bg[B];
-  rgb_to_hsv (&h, &s, &v);
-
-  s_mid = s;
-  if (s_mid <= 0.125)
-    s_mid = 0.125;
-  if (s_mid >= 0.875)
-    s_mid = 0.875;
-  s_dark = s_mid - 0.125;
-  s_light = s_mid + 0.125;
-
-  priv->bg[R] = h; priv->bg[G] = s_light; priv->bg[B] = v;
-  hsv_to_rgb (&priv->bg[R], &priv->bg[G], &priv->bg[B]);
-
-  priv->bg_light[R] = h; priv->bg_light[G] = s_dark; priv->bg_light[B] = v;
-  hsv_to_rgb (&priv->bg_light[R], &priv->bg_light[G], &priv->bg_light[B]);
+  priv->bg.r = ((double)color_bg->red) / 65535;
+  priv->bg.g = ((double)color_bg->green) / 65535;
+  priv->bg.b = ((double)color_bg->blue) / 65535;
+  priv->bg.a = 1.0f;
+  priv->text.r = ((double)color_text->red) / 65535;
+  priv->text.g = ((double)color_text->green) / 65535;
+  priv->text.b = ((double)color_text->blue) / 65535;
+  priv->text.a = 1.0f;
 
   /* create/load svg-icon */
   g_free(priv->pSurface);
