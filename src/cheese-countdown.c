@@ -446,7 +446,7 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
    * To enable to show the numbers in your own language, use %Id instead.
    * Please leave the additional whitespace after the number
    */
-  number = g_strdup_printf (_("%d "), 3);
+  number = g_strdup_printf (_("%d "), 2);
   iOffsetX += do_text (pContext,
                        number,
                        24 * PANGO_SCALE,
