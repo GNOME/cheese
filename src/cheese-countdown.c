@@ -344,7 +344,8 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   CairoColor bgShade4;
   gdouble   fWidth   = (gdouble) widget->allocation.width;
   gdouble   fHeight  = (gdouble) widget->allocation.height;
-  gint      iOffsetX = (widget->allocation.width - 4 * 24) / 2;
+  /* 3 * 26 are the three numbers, 30 is the width of camera-icon.svg */
+  gint      iOffsetX = (widget->allocation.width - 3 * 26 - 30) / 2;
   gint      iOffsetY = (widget->allocation.height - 30) / 2;
   gdouble   fAlpha1;
   gdouble   fAlpha2;
@@ -431,7 +432,7 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   number = g_strdup_printf (_("%d "), 3);
   iOffsetX += do_text (pContext,
                        number,
-                       24 * PANGO_SCALE,
+                       26 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
@@ -449,7 +450,7 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   number = g_strdup_printf (_("%d "), 2);
   iOffsetX += do_text (pContext,
                        number,
-                       24 * PANGO_SCALE,
+                       26 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
@@ -467,7 +468,7 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   number = g_strdup_printf (_("%d "), 1);
   iOffsetX += do_text (pContext,
                        number,
-                       24 * PANGO_SCALE,
+                       26 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
