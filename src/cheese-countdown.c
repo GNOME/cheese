@@ -418,15 +418,19 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_fill (pContext);
   */
 
+  char *number;
   /* draw the 3 */
   cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha3);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
+  /* TRANSLATORS:
+   * This is the countdown number when taking the photo.
+   * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+   * To enable to show the numbers in your own language, use %Id instead.
+   * Please leave the additional whitespace after the number
+   */
+  number = g_strdup_printf (_("%d "), 3);
   iOffsetX += do_text (pContext,
-                       /*
-                        * this is the "3" on the countdown widget.
-                        * please leave the space after the number
-                        */
-                       _("3 "),
+                       number,
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
@@ -436,12 +440,15 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   /* draw the 2 */
   cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha2);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
+  /* TRANSLATORS:
+   * This is the countdown number when taking the photo.
+   * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+   * To enable to show the numbers in your own language, use %Id instead.
+   * Please leave the additional whitespace after the number
+   */
+  number = g_strdup_printf (_("%d "), 3);
   iOffsetX += do_text (pContext,
-                       /*
-                        * this is the "2" on the countdown widget.
-                        * please leave the space after the number
-                        */
-                       _("2 "),
+                       number,
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
@@ -451,17 +458,21 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   /* draw the 1 */
   cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha1);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
+  /* TRANSLATORS:
+   * This is the countdown number when taking the photo.
+   * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+   * To enable to show the numbers in your own language, use %Id instead.
+   * Please leave the additional whitespace after the number
+   */
+  number = g_strdup_printf (_("%d "), 1);
   iOffsetX += do_text (pContext,
-                       /*
-                        * this is the "1" on the countdown widget.
-                        * please leave the space after the number
-                        */
-                       _("1 "),
+                       number,
                        24 * PANGO_SCALE,
                        "Bitstream Charter",
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
+  g_free(number);
 
   /* draw the camera */
   cairo_set_source_surface (pContext,
