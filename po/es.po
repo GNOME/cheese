@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-25 17:26+0000\n"
-"PO-Revision-Date: 2008-04-26 12:43+0200\n"
+"POT-Creation-Date: 2008-04-26 11:57+0000\n"
+"PO-Revision-Date: 2008-04-26 17:13+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -81,10 +81,6 @@ msgstr "<b>Resolución</b>"
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../data/cheese-prefs.glade.h:3
-msgid "gtk-close"
-msgstr "gtk-close"
-
 #: ../data/cheese.ui.h:2 ../src/cheese-window.c:691 ../src/cheese-window.c:974
 msgid "_Effects"
 msgstr "_Efectos"
@@ -149,29 +145,17 @@ msgstr "Pedazos"
 msgid "Warp"
 msgstr "Distorsión"
 
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
 #.
-#. * this is the "3" on the countdown widget.
-#. * please leave the space after the number
-#.
-#: ../src/cheese-countdown.c:345
-msgid "3 "
-msgstr "3 "
-
-#.
-#. * this is the "2" on the countdown widget.
-#. * please leave the space after the number
-#.
-#: ../src/cheese-countdown.c:360
-msgid "2 "
-msgstr "2 "
-
-#.
-#. * this is the "1" on the countdown widget.
-#. * please leave the space after the number
-#.
-#: ../src/cheese-countdown.c:375
-msgid "1 "
-msgstr "1 "
+#: ../src/cheese-countdown.c:431 ../src/cheese-countdown.c:449
+#: ../src/cheese-countdown.c:467
+#, c-format
+msgid "%d "
+msgstr "%Id "
 
 #: ../src/cheese-no-camera.c:96
 msgid "No camera found!"
