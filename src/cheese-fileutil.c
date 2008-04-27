@@ -23,6 +23,7 @@
 #endif
 
 #include <glib.h>
+#include <gio/gio.h>
 #include <stdlib.h>
 
 #include "cheese-fileutil.h"
@@ -55,35 +56,46 @@ cheese_fileutil_get_media_path ()
 char *
 cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
 {
-  static int filename_num = 0;
-  char *filename;
-  GDir *dir;
+  struct tm *ptr;
+  time_t tm;
+  char date[21];
   char *path;
-  const char *name;
+  char *filename;
+  GFile *file;
   int num;
-  
+
+  tm = time (NULL);
+  ptr = localtime (&tm);
+  strftime (date, 20, "%F-%H%M%S", ptr);
+
   path = cheese_fileutil_get_media_path ();
-  if (filename_num == 0)
-  { 
-    dir = g_dir_open (path, 0, NULL);
-    while ((name = g_dir_read_name (dir)) != NULL)
-    {
-      if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX) || 
-          g_str_has_suffix (name, VIDEO_NAME_SUFFIX))
-      {
-        num = atoi (name);
-        if (num > filename_num)
-          filename_num = num;
-      }
-    }
-    g_dir_close(dir); 
-  }
-  filename_num++;
 
   if (mode == CHEESE_MEDIA_MODE_PHOTO)
-    filename = g_strdup_printf ("%s%s%04d%s", path, G_DIR_SEPARATOR_S, filename_num, PHOTO_NAME_SUFFIX);
+    filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, PHOTO_NAME_SUFFIX);
   else
-    filename = g_strdup_printf ("%s%s%04d%s", path, G_DIR_SEPARATOR_S, filename_num, VIDEO_NAME_SUFFIX);
+    filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, VIDEO_NAME_SUFFIX);
+
+  file = g_file_new_for_path (filename);
+
+  if (g_file_query_exists (file, NULL)) {
+    num = 1;
+    if (mode == CHEESE_MEDIA_MODE_PHOTO)
+      filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, PHOTO_NAME_SUFFIX);
+    else
+      filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, VIDEO_NAME_SUFFIX);
+
+    file = g_file_new_for_path (filename);
+
+    while (g_file_query_exists (file, NULL)) {
+      num++;
+      if (mode == CHEESE_MEDIA_MODE_PHOTO)
+        filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, PHOTO_NAME_SUFFIX);
+      else
+        filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, VIDEO_NAME_SUFFIX);
+
+      file = g_file_new_for_path (filename);
+    }
+  }
 
   g_free (path);
   return filename;
