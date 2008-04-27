@@ -116,6 +116,7 @@ typedef struct
   GtkActionGroup *actions_effects;
   GtkActionGroup *actions_preferences;
   GtkActionGroup *actions_file;
+  GtkActionGroup *actions_sendto;
   GtkActionGroup *actions_flickr;
   GtkActionGroup *actions_fspot;
   GtkActionGroup *actions_mail;
@@ -230,6 +231,7 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_object_unref (cheese_window->actions_countdown);
   g_object_unref (cheese_window->actions_effects);
   g_object_unref (cheese_window->actions_file);
+  g_object_unref (cheese_window->actions_sendto);
   g_object_unref (cheese_window->actions_flickr);
   g_object_unref (cheese_window->actions_fspot);
   g_object_unref (cheese_window->actions_mail);
@@ -527,6 +529,10 @@ cheese_window_cmd_command_line (GtkAction *action, CheeseWindow *cheese_window)
     command_line = g_strdup_printf ("gnome-open mailto:?subject=%s&attachment=%s",
                                     basename, filename);
     g_free (basename);
+  }
+  if (strcmp (action_name, "SendTo") == 0)
+  {
+    command_line = g_strdup_printf ("nautilus-sendto %s", filename);
   }
   else if (strcmp (action_name, "ExportToFSpot") == 0)
   {
@@ -1005,6 +1011,10 @@ static const GtkActionEntry action_entries_mail[] = {
   {"SendByMail", NULL, N_("Send by _Mail"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
 };
 
+static const GtkActionEntry action_entries_sendto[] = {
+  {"SendTo", NULL, N_("Send _To"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
+};
+
 static const GtkActionEntry action_entries_fspot[] = {
   {"ExportToFSpot", NULL, N_("Export to F-_Spot"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
 };
@@ -1238,8 +1248,26 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                 "ActionsMail", 
                                                                 action_entries_mail, 
                                                                 G_N_ELEMENTS (action_entries_mail));
-  path = g_find_program_in_path ("gnome-open");
-  gtk_action_group_set_visible (cheese_window->actions_mail, path != NULL);
+  gboolean send_mail_imp_available = FALSE;
+  cheese_window->actions_sendto = cheese_window_action_group_new (cheese_window, 
+                                                                  "ActionsSendTo", 
+                                                                  action_entries_sendto, 
+                                                                  G_N_ELEMENTS (action_entries_sendto));
+
+  /* handling and activation of send to/send mail actions. We only show one send mail action */
+  path = g_find_program_in_path ("nautilus-sendto");
+  gboolean nautilus_sendto = (path != NULL);
+  if (nautilus_sendto)
+  {
+    gtk_action_group_set_visible (cheese_window->actions_sendto, TRUE);
+    gtk_action_group_set_visible (cheese_window->actions_mail, FALSE);
+  }
+  else
+  {
+    path = g_find_program_in_path ("gnome-open");
+    gtk_action_group_set_visible (cheese_window->actions_mail, path != NULL);
+    gtk_action_group_set_visible (cheese_window->actions_sendto, FALSE);
+  }
   g_free (path);
 
   cheese_window->actions_fspot = cheese_window_action_group_new (cheese_window, 
