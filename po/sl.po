@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-02-03 12:42+0000\n"
-"PO-Revision-Date: 2008-04-13 19:30+0100\n"
+"PO-Revision-Date: 2008-04-27 09:24+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:601
+#: ../src/cheese-window.c:615
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Zajem slik in posnetkov s spletno kamero ter veliko grafičnimi učinki"
 
@@ -41,39 +41,64 @@ msgid "Selected Effects"
 msgstr "Izbor učinkov"
 
 #: ../data/cheese.schemas.in.h:3
-msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr "Niz naprave ko določa mesto spletne kamere, na primer /dev/video0"
+msgid "The X resolution of the image captured from the camera"
+msgstr "Ločljivost osi X zajete slike s kamero"
 
 #: ../data/cheese.schemas.in.h:4
+msgid "The Y resolution of the image captured from the camera"
+msgstr "Ločljivost osi Y zajete slike s kamero"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "The device-string which points to the webcam, e.g. /dev/video0"
+msgstr "Niz naprave, ki določa mesto spletne kamere, na primer /dev/video0"
+
+#: ../data/cheese.schemas.in.h:6
 msgid "Use a countdown"
 msgstr "Uporabi odštevalnik"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:7
 msgid "Webcam device string indicator"
 msgstr "Določilo naprave spletne kamere"
 
-#: ../data/cheese.schemas.in.h:6
-msgid "Whether a countdown should be used, when taking a photo"
+#: ../data/cheese.schemas.in.h:8
+msgid "Whether a countdown should be used when taking a photo"
 msgstr "Ali naj bo uporabljen odštevalnik, kadar se zajemajo slike"
 
+#: ../data/cheese.schemas.in.h:9
+msgid "X resolution"
+msgstr "X ločljivost"
+
+#: ../data/cheese.schemas.in.h:10
+msgid "Y resolution"
+msgstr "Y ločljivost"
+
+#: ../data/cheese-prefs.glade.h:1
+msgid "<b>Resolution</b>"
+msgstr "<b>Ločljivost</b>"
+
+#: ../data/cheese-prefs.glade.h:2
+#: ../src/cheese-window.c:984
+msgid "Preferences"
+msgstr "Lastnosti"
+
 #: ../data/cheese.ui.h:2
-#: ../src/cheese-window.c:683
-#: ../src/cheese-window.c:959
+#: ../src/cheese-window.c:697
+#: ../src/cheese-window.c:980
 msgid "_Effects"
 msgstr "_Učinki"
 
 #: ../data/cheese.ui.h:3
-#: ../src/cheese-window.c:963
+#: ../src/cheese-window.c:988
 msgid "_Photo"
 msgstr "_Fotografija"
 
 #: ../data/cheese.ui.h:4
-#: ../src/cheese-window.c:785
+#: ../src/cheese-window.c:799
 msgid "_Take a Photo"
 msgstr "_Zajemi fotografijo"
 
 #: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:964
+#: ../src/cheese-window.c:989
 msgid "_Video"
 msgstr "_Video"
 
@@ -125,7 +150,32 @@ msgstr "Kockasto"
 msgid "Warp"
 msgstr "Warp"
 
-#: ../src/cheese-window.c:148
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:432
+#: ../src/cheese-countdown.c:450
+#: ../src/cheese-countdown.c:468
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "Ni mogoče najti kamere!"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "Za več podrobnosti si oglejte strani pomoči."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "Pomoč"
+
+#: ../src/cheese-window.c:150
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -134,7 +184,7 @@ msgstr ""
 "Napaka med odpiranjem brskalnika za prikaz:\n"
 "%s"
 
-#: ../src/cheese-window.c:172
+#: ../src/cheese-window.c:174
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -143,7 +193,7 @@ msgstr ""
 "Napaka med odpiranjem poštnega odjemalca za pošiljanje sporočila za:\n"
 "%s"
 
-#: ../src/cheese-window.c:265
+#: ../src/cheese-window.c:271
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -152,151 +202,155 @@ msgstr ""
 "Napaka med zaganjanjem programa za prikaz:\n"
 "%s"
 
-#: ../src/cheese-window.c:284
+#: ../src/cheese-window.c:290
 msgid "Save File"
 msgstr "Shrani datoteko"
 
-#: ../src/cheese-window.c:322
+#: ../src/cheese-window.c:328
 #, c-format
 msgid "Could not save %s"
 msgstr "Ni mogoče shraniti %s"
 
-#: ../src/cheese-window.c:351
+#: ../src/cheese-window.c:357
 msgid "Cannot move file to trash"
 msgstr "Ni mogoče premakniti datoteke v smeti"
 
-#: ../src/cheese-window.c:352
+#: ../src/cheese-window.c:358
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Datoteke \"%s\" ni mogoče premakniti v smeti. Podrobnosti: %s"
 
-#: ../src/cheese-window.c:384
+#: ../src/cheese-window.c:390
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Ali zares premaknem vse fotografije in posnetke v smeti?"
 
-#: ../src/cheese-window.c:392
+#: ../src/cheese-window.c:398
 msgid "_Move to Trash"
 msgstr "_Premakni v smeti"
 
-#: ../src/cheese-window.c:487
+#: ../src/cheese-window.c:497
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Ni mogoče nastaviti slike računa"
 
-#: ../src/cheese-window.c:562
-#: ../src/cheese-window.c:843
+#: ../src/cheese-window.c:576
+#: ../src/cheese-window.c:857
 msgid "Unable to open help file for Cheese"
 msgstr "Ni mogoče odpreti datoteke pomoči za Cheese"
 
-#: ../src/cheese-window.c:579
+#: ../src/cheese-window.c:593
 msgid "translator-credits"
 msgstr ""
 "Deni Bačić <baccic@gmail.com>,\n"
 "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: ../src/cheese-window.c:582
+#: ../src/cheese-window.c:596
 msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 msgstr "To je prosta programska oprema. Program lahko uporabljate v skladu z pogoji Splošne Javne Licence (GNU General Public License).\n"
 
-#: ../src/cheese-window.c:586
+#: ../src/cheese-window.c:600
 msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 msgstr "Program je na voljo v upanju, da bo komu koristen, vendar brez vsakršne garancije. Oglejte si Splošno javno licenco (GNU General Public License) za več podrobnosti.\n"
 
-#: ../src/cheese-window.c:590
+#: ../src/cheese-window.c:604
 msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr "Skupaj s programom bi morali dobiti tudi kopijo GNU splošne javne licence. V primeru, da je niste, si oglejte <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:605
+#: ../src/cheese-window.c:619
 msgid "Cheese Website"
 msgstr "Spletna stran Cheese"
 
-#: ../src/cheese-window.c:703
+#: ../src/cheese-window.c:717
 msgid "_Back"
 msgstr "_Nazaj"
 
-#: ../src/cheese-window.c:773
+#: ../src/cheese-window.c:787
 msgid "_Start recording"
 msgstr "_Začni s snemanjem"
 
-#: ../src/cheese-window.c:860
+#: ../src/cheese-window.c:874
 msgid "_Start Recording"
 msgstr "_Začni s snemanjem"
 
-#: ../src/cheese-window.c:922
+#: ../src/cheese-window.c:936
 msgid "_Stop Recording"
 msgstr "_Ustavi snemanje"
 
-#: ../src/cheese-window.c:941
+#: ../src/cheese-window.c:962
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:943
+#: ../src/cheese-window.c:964
 msgid "_Edit"
 msgstr "_Uredi"
 
-#: ../src/cheese-window.c:944
+#: ../src/cheese-window.c:965
 msgid "Move All to Trash"
 msgstr "Vse premakni v smeti"
 
-#: ../src/cheese-window.c:946
+#: ../src/cheese-window.c:967
 msgid "_Help"
 msgstr "Po_moč"
 
-#: ../src/cheese-window.c:949
+#: ../src/cheese-window.c:970
 msgid "_Contents"
 msgstr "_Vsebina"
 
-#: ../src/cheese-window.c:949
+#: ../src/cheese-window.c:970
 msgid "Help on this Application"
 msgstr "Pomoč za ta program"
 
-#: ../src/cheese-window.c:955
+#: ../src/cheese-window.c:976
 msgid "Countdown"
 msgstr "Odštevanje"
 
-#: ../src/cheese-window.c:968
+#: ../src/cheese-window.c:993
 msgid "_Open"
 msgstr "_Odpri"
 
-#: ../src/cheese-window.c:969
+#: ../src/cheese-window.c:994
 msgid "Save _As..."
 msgstr "Shrani _kot ..."
 
-#: ../src/cheese-window.c:970
+#: ../src/cheese-window.c:995
 msgid "Move to _Trash"
 msgstr "Premakni v smeti"
 
-#: ../src/cheese-window.c:974
-#: ../src/cheese-window.c:1145
+#: ../src/cheese-window.c:999
+#: ../src/cheese-window.c:1174
 msgid "_Take a photo"
 msgstr "_Zajemi fotografijo"
 
-#: ../src/cheese-window.c:978
+#: ../src/cheese-window.c:1003
 msgid "_Recording"
 msgstr "_Snemanje"
 
-#: ../src/cheese-window.c:982
+#: ../src/cheese-window.c:1007
 msgid "_Set As Account Photo"
 msgstr "Določi _sliko računa"
 
-#: ../src/cheese-window.c:986
+#: ../src/cheese-window.c:1011
 msgid "Send by _Mail"
 msgstr "Pošlji po _e-pošti"
 
-#: ../src/cheese-window.c:990
+#: ../src/cheese-window.c:1015
+msgid "Send _To"
+msgstr "Pošlji _na"
+
+#: ../src/cheese-window.c:1019
 msgid "Export to F-_Spot"
 msgstr "Izvozi v F-_Spot"
 
-#: ../src/cheese-window.c:994
+#: ../src/cheese-window.c:1023
 msgid "Export to _Flickr"
 msgstr "Izvozi v _Flickr"
 
-#: ../src/cheese-window.c:1257
+#: ../src/cheese-window.c:1308
 msgid "Quit"
 msgstr "Izhod"
 
-#: ../src/cheese-window.c:1263
+#: ../src/cheese-window.c:1314
 msgid "About"
 msgstr "O programu"
 
