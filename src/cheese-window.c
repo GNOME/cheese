@@ -1247,7 +1247,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                 "ActionsMail", 
                                                                 action_entries_mail, 
                                                                 G_N_ELEMENTS (action_entries_mail));
-  gboolean send_mail_imp_available = FALSE;
   cheese_window->actions_sendto = cheese_window_action_group_new (cheese_window, 
                                                                   "ActionsSendTo", 
                                                                   action_entries_sendto, 
