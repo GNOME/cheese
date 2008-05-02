@@ -22,7 +22,7 @@
 #define __CHEESE_FILE_UTIL_H__
 
 #define PHOTO_NAME_SUFFIX ".jpg"
-#define VIDEO_NAME_SUFFIX ".ogv"
+#define VIDEO_NAME_SUFFIX ".ogg"
 
 typedef enum
 {
