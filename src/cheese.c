@@ -46,7 +46,7 @@ void cheese_print_handler(char *string)
 
   if (fp == NULL)
   {
-    path = cheese_fileutil_get_path ();
+    path = cheese_fileutil_get_log_path ();
     dir = g_dir_open (path, 0, NULL);
     if (!dir)
       return;

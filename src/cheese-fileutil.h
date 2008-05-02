@@ -30,8 +30,9 @@ typedef enum
   CHEESE_MEDIA_MODE_VIDEO
 } CheeseMediaMode;
 
-char *cheese_fileutil_get_path(void);
-char *cheese_fileutil_get_media_path (void);
+char *cheese_fileutil_get_photo_path (void);
+char *cheese_fileutil_get_video_path (void);
+char *cheese_fileutil_get_log_path (void);
 char *cheese_fileutil_get_new_media_filename (CheeseMediaMode mode);
 
 #endif /* __CHEESE_FILE_UTIL_H__ */

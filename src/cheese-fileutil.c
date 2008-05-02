@@ -29,29 +29,53 @@
 #include "cheese-fileutil.h"
 
 char *
-cheese_fileutil_get_path ()
+cheese_fileutil_get_photo_path ()
 {
   char *path;
+  
 #ifdef HILDON
+  // TODO change HILDON to xdg as well?
   path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), "Mydocs", ".images", NULL);
 #else
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", NULL);
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
 #endif
+
   return path;
 }
 
 char *
-cheese_fileutil_get_media_path ()
+cheese_fileutil_get_video_path ()
 {
   char *path;
-  char *cheese_path;
-
-  cheese_path = cheese_fileutil_get_path ();
-  path = g_strjoin (G_DIR_SEPARATOR_S, cheese_path, "media", NULL);
-  g_free (cheese_path);
+  
+#ifdef HILDON
+  // TODO change HILDON to xdg as well?
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", "videos", NULL);
+#else
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
+#endif
 
   return path;
+
 }
+
+char *
+cheese_fileutil_get_log_path ()
+{
+  char *path;
+  
+#ifdef HILDON
+  // TODO change HILDON to xdg as well?
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", "cheese-log", NULL);
+#else
+  //path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_cache_dir(), NULL);
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", NULL);
+#endif
+
+  return path;
+
+}
+
 
 char *
 cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
@@ -68,8 +92,11 @@ cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
   ptr = localtime (&tm);
   strftime (date, 20, "%F-%H%M%S", ptr);
 
-  path = cheese_fileutil_get_media_path ();
-
+  if (mode == CHEESE_MEDIA_MODE_PHOTO)
+    path = cheese_fileutil_get_photo_path ();
+  else
+    path = cheese_fileutil_get_video_path ();
+    
   if (mode == CHEESE_MEDIA_MODE_PHOTO)
     filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, PHOTO_NAME_SUFFIX);
   else

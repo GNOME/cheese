@@ -42,7 +42,8 @@ G_DEFINE_TYPE (CheeseThumbView, cheese_thumb_view, GTK_TYPE_ICON_VIEW);
 typedef struct
 {
   GtkListStore *store;
-  GFileMonitor *file_monitor;
+  GFileMonitor *photo_file_monitor;
+  GFileMonitor *video_file_monitor;
 } CheeseThumbViewPrivate;
 
 enum
@@ -296,33 +297,52 @@ static void
 cheese_thumb_view_fill (CheeseThumbView *thumb_view)
 {
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
-  GDir *dir;
-  char *path;
+  GDir *dir_videos, *dir_photos;
+  char *path_videos, *path_photos;
   const char *name;
   char *filename;
   GFile *file;
 
   gtk_list_store_clear (priv->store);
 
-  path = cheese_fileutil_get_media_path ();
-  dir = g_dir_open (path, 0, NULL);
-  if (!dir)
+  path_videos = cheese_fileutil_get_video_path ();
+  path_photos = cheese_fileutil_get_photo_path ();
+  
+  dir_videos = g_dir_open (path_videos, 0, NULL);
+  dir_photos = g_dir_open (path_photos, 0, NULL);
+  
+  if (!dir_videos && !dir_photos)
     return;
 
-  while ((name = g_dir_read_name (dir)))
+  //read videos from the vid directory
+  while (name = g_dir_read_name (dir_videos))
   {
-    if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX) || g_str_has_suffix (name, VIDEO_NAME_SUFFIX)))
+    if (!(g_str_has_suffix (name, VIDEO_NAME_SUFFIX)))
       continue;
-
-    filename = g_build_filename (path, name, NULL);
+    
+    filename = g_build_filename (path_videos, name, NULL);
     file = g_file_new_for_path (filename);
     cheese_thumb_view_append_item (thumb_view, file);
     g_free (filename);
     g_object_unref (file);
   }
+  g_free (path_videos);
+  g_dir_close (dir_videos);
+  
+  //read photos from the photo directory
+  while (name = g_dir_read_name (dir_photos))
+  {
+    if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
+      continue;
 
-  g_free (path);
-  g_dir_close (dir);
+    filename = g_build_filename (path_photos, name, NULL);
+    file = g_file_new_for_path (filename);
+    cheese_thumb_view_append_item (thumb_view, file);
+    g_free (filename);
+    g_object_unref (file);
+  }
+  g_free (path_photos);
+  g_dir_close (dir_photos);
 }
 
 static void
@@ -334,7 +354,8 @@ cheese_thumb_view_finalize (GObject *object)
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);  
 
   g_object_unref (priv->store);
-  g_file_monitor_cancel (priv->file_monitor);
+  g_file_monitor_cancel (priv->photo_file_monitor);
+  g_file_monitor_cancel (priv->video_file_monitor);
 
   G_OBJECT_CLASS (cheese_thumb_view_parent_class)->finalize (object);
 }
@@ -353,7 +374,8 @@ static void
 cheese_thumb_view_init (CheeseThumbView *thumb_view)
 {
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
-  char *path = NULL;
+  char *path_videos = NULL, *path_photos = NULL;
+  
   GFile *file;  
   const int THUMB_VIEW_HEIGHT = 120;
 
@@ -365,15 +387,24 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   gtk_widget_set_size_request (GTK_WIDGET (thumb_view), -1, THUMB_VIEW_HEIGHT);
 
-  path = cheese_fileutil_get_media_path ();
+  path_videos = cheese_fileutil_get_video_path ();
+  path_photos = cheese_fileutil_get_photo_path ();
+  
+  g_mkdir_with_parents (path_videos, 0775);
+  g_mkdir_with_parents (path_photos, 0775);
 
-  g_mkdir_with_parents (path, 0775);
+  //connect signal to video path
+  file = g_file_new_for_path (path_videos);
+  priv->video_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+  g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
+  
+  //connect signal to photo path
+  file = g_file_new_for_path (path_photos);
+  priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+  g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
 
-  file = g_file_new_for_path (path);
-  priv->file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
-  g_signal_connect (priv->file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
-
-  g_free (path);
+  g_free (path_videos);
+  g_free (path_photos);
 
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
 #ifdef HILDON
@@ -388,7 +419,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   g_signal_connect (G_OBJECT (thumb_view), "drag-data-get",
                     G_CALLBACK (cheese_thumb_view_on_drag_data_get_cb), NULL);
 
-  gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE(priv->store),
+  gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE (priv->store),
                                        THUMBNAIL_URL_COLUMN, GTK_SORT_ASCENDING);
 
   cheese_thumb_view_fill (thumb_view);

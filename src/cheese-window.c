@@ -383,8 +383,8 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
   char *filename;
   GFile *file;
   GList *files_list = NULL;
-  GDir *dir;
-  char *path;
+  GDir *dir_videos, *dir_photos;
+  char *path_videos, *path_photos;
   const char *name;
 
   prompt = g_strdup_printf (_("Really move all photos and videos to the trash?"));
@@ -406,14 +406,14 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
   if (response !=  GTK_RESPONSE_OK)
     return;
 
-  path = cheese_fileutil_get_media_path ();
-  dir = g_dir_open (path, 0, NULL);
-  while ((name = g_dir_read_name (dir)) != NULL)
+  //delete all videos
+  path_videos = cheese_fileutil_get_video_path ();
+  dir_videos = g_dir_open (path_videos, 0, NULL);
+  while ((name = g_dir_read_name (dir_videos)) != NULL)
   {
-    if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX) || 
-        g_str_has_suffix (name, VIDEO_NAME_SUFFIX))
+    if (g_str_has_suffix (name, VIDEO_NAME_SUFFIX))
     {
-      filename = g_strjoin (G_DIR_SEPARATOR_S, path, name, NULL);
+      filename = g_strjoin (G_DIR_SEPARATOR_S, path_videos, name, NULL);
       file = g_file_new_for_path (filename);
 
       files_list = g_list_append (files_list, file);
@@ -422,7 +422,25 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
   }
   cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
   g_list_free (files_list);
-  g_dir_close(dir);
+  g_dir_close (dir_videos);
+  
+  //delete all videos
+  path_photos = cheese_fileutil_get_photo_path ();
+  dir_photos = g_dir_open (path_photos, 0, NULL);
+  while ((name = g_dir_read_name (dir_photos)) != NULL)
+  {
+    if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX))
+    {
+      filename = g_strjoin (G_DIR_SEPARATOR_S, path_photos, name, NULL);
+      file = g_file_new_for_path (filename);
+
+      files_list = g_list_append (files_list, file);
+      g_free (filename);
+    }
+  }
+  cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
+  g_list_free (files_list);
+  g_dir_close (dir_photos);
 }
 
 static void
@@ -440,7 +458,7 @@ cheese_window_move_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_windo
     return;
 
   file = g_file_new_for_path (filename);
-  g_free(filename);
+  g_free (filename);
 
   files_list = g_list_append (files_list, file);
   cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
@@ -506,7 +524,7 @@ cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_wi
       }
       g_free (*data);
     }
-    g_free(filename);
+    g_free (filename);
     g_object_unref (pixbuf);
   }
 }
@@ -574,9 +592,9 @@ cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
                                 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                 GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
                                 _("Unable to open help file for Cheese"));
-    gtk_dialog_run(GTK_DIALOG(d));
-    gtk_widget_destroy(d);
-    g_error_free(error);
+    gtk_dialog_run (GTK_DIALOG (d));
+    gtk_widget_destroy (d);
+    g_error_free (error);
   }
 }
 
