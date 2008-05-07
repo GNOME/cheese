@@ -1,3 +1,5 @@
+SUBDIRS = actions
+
 themedir = $(datadir)/icons/hicolor
 size = 32x32
 context = apps

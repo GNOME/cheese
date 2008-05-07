@@ -1,11 +1,11 @@
 themedir = $(pkgdatadir)/icons/hicolor
-size = 16x16
+size = scalable
 context = actions
 
 iconsdir = $(themedir)/$(size)/$(context)
 
 icons_DATA = \
-        browse-webcam-effects.png
+        browse-webcam-effects.svg
 
 EXTRA_DIST = \
         $(icons_DATA)
