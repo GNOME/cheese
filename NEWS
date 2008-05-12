@@ -1,6 +1,32 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.2
+  - use a better icon for the effects button, fixes bug #511369
+  - store photos and videos in xdg directories, fixes bug #509475, courtesy of Felix Kaser
+  - use a toggle button for the effects button, fixes bug #527870
+  - add support for nautilus send to. this replaces "send by email" where available, fixes bug #528249, courtesy of Jose Dapena Paz
+  - name the files to the date, when they were created, fixes bug #525739
+  - add a preferences dialog with basic resolution changing, partially fixes #522200, courtesy of James Liggett
+  - use gtk theme colors for the countdown widget
+  - align the numbers and the camera on the countdown widget, courtesy of Andrea Cimitan
+  - add a border, color shading and highlight to the countdown widget, to make it even more sexy, courtesy of Andrea Cimitan
+  - make the countdown numbers translatable the right way
+  - fix invalid free in cheese, fixes bug #529467, courtesy of Matthias Clasen
+  - take picture button is enabled outside gtk thread lock, fixes bug #529789, courtesy of Gary Lasker
+  - don't display the toplevel window by default, fixes bug #529276, courtesy of Loïc Minier
+  - added/updated translations
+    - en_GB, courtesy of Philip Withnall
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - gl, courtesy of Ignacio Casal Quinteiro
+    - he, courtesy of Mark Krapivner
+    - nb, courtesy of Kjartan Maraas
+    - nl, courtesy of Tino Meinen
+    - pt_BR, courtesy of Luis Motta.
+    - sl, courtesy of Matej Urbančič
+    - th, courtesy of Pornpimon Pradabsri 
+
 version 2.23.1
   - add cheese to sound & video in the application menu, fixes bug #519846
   - add hildon support to cheese, fixes bug #519548, courtesy of Matthew Garret
