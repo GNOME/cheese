@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
  * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
- *
+ * Copyright (C) 2008 Felix Kaser <f.kaser@gmx.net>
+ * 
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,64 +27,77 @@
 #include <gio/gio.h>
 #include <stdlib.h>
 
+#include <string.h>
+
 #include "cheese-fileutil.h"
+#include "cheese-gconf.h"
 
-char *
-cheese_fileutil_get_photo_path ()
+G_DEFINE_TYPE (CheeseFileUtil, cheese_fileutil, G_TYPE_OBJECT)
+
+#define CHEESE_FILEUTIL_GET_PRIVATE(o) \
+    (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_FILEUTIL, CheeseFileUtilPrivate))
+
+typedef struct{
+  gchar *video_path;
+  gchar *photo_path;
+  gchar *log_path;
+} CheeseFileUtilPrivate;
+
+gchar *
+cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 {
-  char *path;
+  gchar *path;
+  CheeseFileUtilPrivate* priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
   
 #ifdef HILDON
   // TODO change HILDON to xdg as well?
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), "Mydocs", ".images", NULL);
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", ".videos", NULL);
 #else
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
+  path = priv->video_path;
 #endif
 
   return path;
 }
 
-char *
-cheese_fileutil_get_video_path ()
+gchar *
+cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 {
-  char *path;
+  gchar *path;
+  CheeseFileUtilPrivate* priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
   
 #ifdef HILDON
   // TODO change HILDON to xdg as well?
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", "videos", NULL);
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", ".images", NULL);
 #else
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
+  path = priv->photo_path;
 #endif
 
   return path;
-
 }
 
-char *
-cheese_fileutil_get_log_path ()
+gchar *
+cheese_fileutil_get_log_path (CheeseFileUtil *fileutil)
 {
-  char *path;
+  gchar *path;
+  CheeseFileUtilPrivate* priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
   
 #ifdef HILDON
   // TODO change HILDON to xdg as well?
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", "cheese-log", NULL);
+  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", ".cheese-log", NULL);
 #else
-  //path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_cache_dir(), NULL);
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", NULL);
+  path = priv->log_path;
 #endif
 
   return path;
-
 }
 
-
-char *
-cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
+gchar *
+cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode)
 {
   struct tm *ptr;
   time_t tm;
   char date[21];
-  char *path;
+  gchar *path;
   char *filename;
   GFile *file;
   int num;
@@ -93,9 +107,9 @@ cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
   strftime (date, 20, "%F-%H%M%S", ptr);
 
   if (mode == CHEESE_MEDIA_MODE_PHOTO)
-    path = cheese_fileutil_get_photo_path ();
+    path = cheese_fileutil_get_photo_path (fileutil);
   else
-    path = cheese_fileutil_get_video_path ();
+    path = cheese_fileutil_get_video_path (fileutil);
     
   if (mode == CHEESE_MEDIA_MODE_PHOTO)
     filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, PHOTO_NAME_SUFFIX);
@@ -123,8 +137,79 @@ cheese_fileutil_get_new_media_filename (CheeseMediaMode mode)
       file = g_file_new_for_path (filename);
     }
   }
-
-  g_free (path);
+  
   return filename;
 }
 
+static void
+cheese_fileutil_finalize (GObject *object)
+{
+  CheeseFileUtil *fileutil;
+
+  fileutil = CHEESE_FILEUTIL (object);
+  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);  
+
+  g_free (priv->video_path);
+  g_free (priv->photo_path);
+  g_free (priv->log_path);
+  G_OBJECT_CLASS (cheese_fileutil_parent_class)->finalize (object);
+}
+
+static void
+cheese_fileutil_class_init (CheeseFileUtilClass *klass)
+{  
+  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+  object_class->finalize = cheese_fileutil_finalize;
+
+  g_type_class_add_private (klass, sizeof (CheeseFileUtilPrivate));
+}
+
+static void
+cheese_fileutil_init (CheeseFileUtil *fileutil)
+{
+  CheeseFileUtilPrivate* priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
+  gchar *v_path, *p_path;
+  CheeseGConf *gconf;
+  
+  gconf = cheese_gconf_new ();  
+  
+  //get the path from gconf, xdg or hardcoded
+  g_object_get (gconf, "gconf_prop_video_path", &v_path, NULL);
+  
+  if (strcmp (v_path, "") == 0){
+    //get xdg    
+    v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
+    if (strcmp (v_path, "") == 0){
+      //get "~/.gnome2/cheese/media"
+      
+      v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", "media", NULL);
+    }
+  }
+  priv->video_path = v_path;
+  
+  //get the path from gconf, xdg or hardcoded
+  g_object_get (gconf, "gconf_prop_photo_path", &p_path, NULL);
+  
+  if (strcmp (p_path, "") == 0){
+    //get xdg
+    p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
+    if (strcmp (p_path, "") == 0){
+      //get "~/.gnome2/cheese/media"
+      p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", "media", NULL);
+    }
+  }
+  priv->photo_path = p_path;
+  
+  priv->log_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", NULL);
+                     
+  g_object_unref (gconf);
+}
+
+CheeseFileUtil * 
+cheese_fileutil_new ()
+{
+  CheeseFileUtil *fileutil;
+
+  fileutil = g_object_new (CHEESE_TYPE_FILEUTIL, NULL);  
+  return fileutil;
+}

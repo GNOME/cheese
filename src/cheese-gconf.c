@@ -96,6 +96,16 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                     CHEESE_GCONF_PREFIX "/y_resolution",
                                                     NULL));
       break;
+    case GCONF_PROP_VIDEO_PATH:
+      g_value_set_string (value, gconf_client_get_string (priv->client,
+                                                    CHEESE_GCONF_PREFIX "/video_path",
+                                                    NULL));
+      break;
+    case GCONF_PROP_PHOTO_PATH:
+      g_value_set_string (value, gconf_client_get_string (priv->client,
+                                                    CHEESE_GCONF_PREFIX "/photo_path",
+                                                    NULL));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -161,6 +171,18 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                             g_value_get_int (value),
                             NULL);
       break;
+    case GCONF_PROP_VIDEO_PATH:
+      gconf_client_set_string (priv->client,
+                          CHEESE_GCONF_PREFIX "/video_path",
+                          g_value_get_string (value),
+                          NULL);
+      break;
+    case GCONF_PROP_PHOTO_PATH:
+      gconf_client_set_string (priv->client,
+                          CHEESE_GCONF_PREFIX "/photo_path",
+                          g_value_get_string (value),
+                          NULL);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -224,7 +246,21 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                      G_MAXINT,
                                                      0,
                                                      G_PARAM_READWRITE));
-    
+                                                     
+  g_object_class_install_property (object_class, GCONF_PROP_VIDEO_PATH,
+                                   g_param_spec_string ("gconf_prop_video_path",
+                                                        NULL,
+                                                        NULL,
+                                                        "",
+                                                        G_PARAM_READWRITE));
+  
+  g_object_class_install_property (object_class, GCONF_PROP_PHOTO_PATH,
+                                   g_param_spec_string ("gconf_prop_photo_path",
+                                                        NULL,
+                                                        NULL,
+                                                        "",
+                                                        G_PARAM_READWRITE));
+                                                          
   g_type_class_add_private (klass, sizeof (CheeseGConfPrivate));
 }
 

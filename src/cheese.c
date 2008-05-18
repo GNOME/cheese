@@ -43,31 +43,39 @@ void cheese_print_handler(char *string)
   static FILE *fp = NULL;
   GDir *dir;
   char *filename, *path;
+  
+  CheeseFileUtil *fileutil = cheese_fileutil_new ();
+  
 
   if (fp == NULL)
   {
-    path = cheese_fileutil_get_log_path ();
+    path = cheese_fileutil_get_log_path (fileutil);
+    g_object_unref (fileutil);
+    
     dir = g_dir_open (path, 0, NULL);
-    if (!dir)
+    if (!dir) {
       return;
-
+    }
+    
     filename = g_build_filename (path, "log", NULL);
-    fp = fopen(filename, "w");
+    fp = fopen (filename, "w");
 
-    g_free(filename);
+    g_free (filename);
   }
 
   if (fp)
-    fputs(string, fp);
+    fputs (string, fp);
 
   if (CheeseOptions.verbose)
     fprintf (stdout, "%s", string);
+    
 }
 
 int
 main (int argc, char **argv)
 {
   GOptionContext *context;
+  
   GOptionEntry options[] = {
     { "verbose", 'v', 0, G_OPTION_ARG_NONE, &CheeseOptions.verbose, _("Be verbose"), NULL},
     { "hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id, NULL, NULL},

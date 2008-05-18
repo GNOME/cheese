@@ -1,3 +1,15 @@
+2008-05-18  Felix Kaser <f.kaser@gmx.net>
+
+	* data/cheese.schemas.in,
+	  src/cheese.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-window.c: 
+	  Added support to set the video and photo path in gconf! First priority has gconf, if gconf setting is "" then use xdg, if xdg is "" as well, use "~/.gnome2/cheese/media"!
+
 2008-05-12  daniel g. siegel <dgsiegel@gmail.com>
 
 	* configure.ac,

@@ -42,6 +42,7 @@ G_DEFINE_TYPE (CheeseThumbView, cheese_thumb_view, GTK_TYPE_ICON_VIEW);
 typedef struct
 {
   GtkListStore *store;
+  CheeseFileUtil *fileutil;
   GFileMonitor *photo_file_monitor;
   GFileMonitor *video_file_monitor;
 } CheeseThumbViewPrivate;
@@ -305,8 +306,8 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
 
   gtk_list_store_clear (priv->store);
 
-  path_videos = cheese_fileutil_get_video_path ();
-  path_photos = cheese_fileutil_get_photo_path ();
+  path_videos = cheese_fileutil_get_video_path (priv->fileutil);
+  path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
   
   dir_videos = g_dir_open (path_videos, 0, NULL);
   dir_photos = g_dir_open (path_photos, 0, NULL);
@@ -326,7 +327,6 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     g_free (filename);
     g_object_unref (file);
   }
-  g_free (path_videos);
   g_dir_close (dir_videos);
   
   //read photos from the photo directory
@@ -341,7 +341,6 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     g_free (filename);
     g_object_unref (file);
   }
-  g_free (path_photos);
   g_dir_close (dir_photos);
 }
 
@@ -354,6 +353,7 @@ cheese_thumb_view_finalize (GObject *object)
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);  
 
   g_object_unref (priv->store);
+  g_object_unref (priv->fileutil);
   g_file_monitor_cancel (priv->photo_file_monitor);
   g_file_monitor_cancel (priv->video_file_monitor);
 
@@ -382,13 +382,15 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   eog_thumbnail_init ();
 
   priv->store = gtk_list_store_new (2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
+  
+  priv->fileutil = cheese_fileutil_new ();
 
   gtk_icon_view_set_model (GTK_ICON_VIEW (thumb_view), GTK_TREE_MODEL (priv->store));
 
   gtk_widget_set_size_request (GTK_WIDGET (thumb_view), -1, THUMB_VIEW_HEIGHT);
 
-  path_videos = cheese_fileutil_get_video_path ();
-  path_photos = cheese_fileutil_get_photo_path ();
+  path_videos = cheese_fileutil_get_video_path (priv->fileutil);
+  path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
   
   g_mkdir_with_parents (path_videos, 0775);
   g_mkdir_with_parents (path_photos, 0775);
@@ -398,14 +400,16 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   priv->video_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
   g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
   
-  //connect signal to photo path
-  file = g_file_new_for_path (path_photos);
-  priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
-  g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
-
-  g_free (path_videos);
-  g_free (path_photos);
-
+  //if both paths are the same, make only one file monitor and point twice to the file monitor (photo_file_monitor = video_file_monitor)
+  if (strcmp (path_videos, path_photos) != 0){
+    //connect signal to photo path
+    file = g_file_new_for_path (path_photos);
+    priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+    g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
+  }else{
+    priv->photo_file_monitor = priv->video_file_monitor;
+  }
+  
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
 #ifdef HILDON
   gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), -1);

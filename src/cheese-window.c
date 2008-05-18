@@ -71,6 +71,7 @@ typedef struct
   CheeseWebcam *webcam;
   WebcamMode webcam_mode;
   CheeseGConf *gconf;
+  CheeseFileUtil *fileutil;
 
   GtkWidget *window;
   GtkWidget *notebook;
@@ -407,7 +408,7 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
     return;
 
   //delete all videos
-  path_videos = cheese_fileutil_get_video_path ();
+  path_videos = cheese_fileutil_get_video_path (cheese_window->fileutil);
   dir_videos = g_dir_open (path_videos, 0, NULL);
   while ((name = g_dir_read_name (dir_videos)) != NULL)
   {
@@ -424,8 +425,8 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
   g_list_free (files_list);
   g_dir_close (dir_videos);
   
-  //delete all videos
-  path_photos = cheese_fileutil_get_photo_path ();
+  //delete all photos
+  path_photos = cheese_fileutil_get_photo_path (cheese_window->fileutil);
   dir_photos = g_dir_open (path_photos, 0, NULL);
   while ((name = g_dir_read_name (dir_photos)) != NULL)
   {
@@ -851,7 +852,7 @@ cheese_window_countdown_picture_cb (gpointer data)
 
   g_free (file);
 
-  cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_PHOTO);
+  cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, WEBCAM_MODE_PHOTO);
   cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
 }
 
@@ -922,6 +923,7 @@ static void
 cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   char *str;
+  
 
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
@@ -956,7 +958,7 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
       gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
       gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo), GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
 
-      cheese_window->video_filename = cheese_fileutil_get_new_media_filename (WEBCAM_MODE_VIDEO);
+      cheese_window->video_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, WEBCAM_MODE_VIDEO);
       cheese_webcam_start_video_recording (cheese_window->webcam, cheese_window->video_filename);
 
       cheese_window->recording = TRUE;
@@ -1420,6 +1422,7 @@ cheese_window_init ()
   cheese_window->gconf = cheese_gconf_new ();
   cheese_window->audio_play_counter = 0;
   cheese_window->rand = g_rand_new ();
+  cheese_window->fileutil = cheese_fileutil_new ();
 
   cheese_window_create_window (cheese_window);
  
