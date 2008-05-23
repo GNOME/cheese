@@ -6,23 +6,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-04-30 01:41+0200\n"
-"PO-Revision-Date: 2008-04-30 01:42+0200\n"
+"POT-Creation-Date: 2008-05-23 09:28+0200\n"
+"PO-Revision-Date: 2008-05-23 09:30+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:85
+#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:93
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:615
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:634
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ta bilder og ta opp video fra ditt webkamera med morsomme effekter"
 
 #: ../data/cheese.schemas.in.h:1
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr "Definerer stien til stedet bildene lagres. Hvis denne er tom vil «XDG_PHOTO/Webcam» brukes."
+
+#: ../data/cheese.schemas.in.h:2
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr "Definerer stien til stedet hvor videoer er lagret. Hvis den er tom vil «XDG_VIDEO/Webcam» brukes."
+
+#: ../data/cheese.schemas.in.h:3
 msgid ""
 "Effects, that are applied on startup. Possible values are: Mauve, Noir/"
 "Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
@@ -32,65 +44,73 @@ msgstr ""
 "Saturation, Hulk, Vertical Flip, Horisontal Flip, Shagadelic, Vertigo, Edge, "
 "Dice og Warp."
 
-#: ../data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:4
+msgid "Photo Path"
+msgstr "Sti til bilde"
+
+#: ../data/cheese.schemas.in.h:5
 msgid "Selected Effects"
 msgstr "Valgte effekter"
 
-#: ../data/cheese.schemas.in.h:3
+#: ../data/cheese.schemas.in.h:6
 msgid "The X resolution of the image captured from the camera"
 msgstr "X-oppløsning for bildet som hentes fra kameraet"
 
-#: ../data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:7
 msgid "The Y resolution of the image captured from the camera"
 msgstr "Y-oppløsning for bildet som blir hentet fra kameraet"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:8
 msgid "The device-string which points to the webcam, e.g. /dev/video0"
 msgstr "Enhetsstreng som peker til webkameraet. F.eks /dev/video0"
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:9
 msgid "Use a countdown"
 msgstr "Bruk nedtelling"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:10
+msgid "Video Path"
+msgstr "Sti til video"
+
+#: ../data/cheese.schemas.in.h:11
 msgid "Webcam device string indicator"
 msgstr "Enhetsstreng for webkamera"
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:12
 msgid "Whether a countdown should be used when taking a photo"
 msgstr "Om nedtelling skal brukes når et bilde tas"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:13
 msgid "X resolution"
 msgstr "X-oppløsning"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:14
 msgid "Y resolution"
 msgstr "Y-oppløsning"
 
-#: ../data/cheese-prefs.glade.h:1
-msgid "<b>Resolution</b>"
-msgstr "<b>Oppløsning</b>"
-
-#: ../data/cheese-prefs.glade.h:2 ../src/cheese-window.c:984
-msgid "Preferences"
-msgstr "Brukervalg"
-
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:697 ../src/cheese-window.c:980
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:716 ../src/cheese-window.c:999
 msgid "_Effects"
 msgstr "_Effekter"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:988
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1007
 msgid "_Photo"
 msgstr "_Bilde"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:799
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:817
 msgid "_Take a Photo"
 msgstr "_Ta et bilde"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:989
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1008
 msgid "_Video"
 msgstr "_Video"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Resolution</b>"
+msgstr "<b>Oppløsning</b>"
+
+#: ../data/cheese-prefs.ui.h:2 ../src/cheese-window.c:1003
+msgid "Preferences"
+msgstr "Brukervalg"
 
 #: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
@@ -164,7 +184,7 @@ msgstr "Vennligst se hjelp for mer informasjon."
 msgid "Help"
 msgstr "Hjelp"
 
-#: ../src/cheese-window.c:150
+#: ../src/cheese-window.c:151
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -173,7 +193,7 @@ msgstr ""
 "Klarte ikke å åpne leser for å vise:\n"
 "%s"
 
-#: ../src/cheese-window.c:174
+#: ../src/cheese-window.c:175
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -182,7 +202,7 @@ msgstr ""
 "Klarte ikke å åpne e-postprogram for å sende melding til:\n"
 "%s"
 
-#: ../src/cheese-window.c:271
+#: ../src/cheese-window.c:272
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -191,47 +211,47 @@ msgstr ""
 "Klarte ikke å starte program for å vise:\n"
 "%s"
 
-#: ../src/cheese-window.c:290
+#: ../src/cheese-window.c:291
 msgid "Save File"
 msgstr "Lagre fil"
 
-#: ../src/cheese-window.c:328
+#: ../src/cheese-window.c:329
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke lagre %s"
 
-#: ../src/cheese-window.c:357
+#: ../src/cheese-window.c:358
 msgid "Cannot move file to trash"
 msgstr "Kan ikke flytte filen til papirkurven"
 
-#: ../src/cheese-window.c:358
+#: ../src/cheese-window.c:359
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Filen «%s» kan ikke flyttes til papirkurven. Detaljer: %s"
 
-#: ../src/cheese-window.c:390
+#: ../src/cheese-window.c:391
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Vil du virkelig flytte alle bilder og videoer til papirkurven?"
 
-#: ../src/cheese-window.c:398
+#: ../src/cheese-window.c:399
 msgid "_Move to Trash"
 msgstr "Flytt til _papirkurven"
 
-#: ../src/cheese-window.c:497
+#: ../src/cheese-window.c:516
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kunne ikke sette bilde for konto"
 
-#: ../src/cheese-window.c:576 ../src/cheese-window.c:857
+#: ../src/cheese-window.c:595 ../src/cheese-window.c:875
 msgid "Unable to open help file for Cheese"
 msgstr "Kan ikke åpne hjelp for Cheese"
 
-#: ../src/cheese-window.c:593
+#: ../src/cheese-window.c:612
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/cheese-window.c:596
+#: ../src/cheese-window.c:615
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -243,7 +263,7 @@ msgstr ""
 "av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du "
 "ønsker det) enhver senere versjon.\n"
 
-#: ../src/cheese-window.c:600
+#: ../src/cheese-window.c:619
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -254,7 +274,7 @@ msgstr ""
 "NOEN GARANTI, ikke engang implisitt garanti om at det er SALGBART eller "
 "PASSER ET BESTEMT FORMÅL. Se GNU General Public License for detaljer.\n"
 
-#: ../src/cheese-window.c:604
+#: ../src/cheese-window.c:623
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -262,106 +282,102 @@ msgstr ""
 "Du skal ha mottatt en kopi av GNU General Public License sammen med "
 "Nautilus. Hvis dette ikke er tilfelle se på <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:619
+#: ../src/cheese-window.c:638
 msgid "Cheese Website"
 msgstr "Nettsted for Cheese"
 
-#: ../src/cheese-window.c:717
-msgid "_Back"
-msgstr "Til_bake"
-
-#: ../src/cheese-window.c:787
+#: ../src/cheese-window.c:805
 msgid "_Start recording"
 msgstr "_Start opptak"
 
-#: ../src/cheese-window.c:874
+#: ../src/cheese-window.c:892
 msgid "_Start Recording"
 msgstr "_Start opptak"
 
-#: ../src/cheese-window.c:936
+#: ../src/cheese-window.c:955
 msgid "_Stop Recording"
 msgstr "_Stopp opptak"
 
-#: ../src/cheese-window.c:962
+#: ../src/cheese-window.c:981
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:964
+#: ../src/cheese-window.c:983
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/cheese-window.c:965
+#: ../src/cheese-window.c:984
 msgid "Move All to Trash"
 msgstr "Flytt alle til papirkurven"
 
-#: ../src/cheese-window.c:967
+#: ../src/cheese-window.c:986
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../src/cheese-window.c:970
+#: ../src/cheese-window.c:989
 msgid "_Contents"
 msgstr "_Innhold"
 
-#: ../src/cheese-window.c:970
+#: ../src/cheese-window.c:989
 msgid "Help on this Application"
 msgstr "Hjelp for dette programmet"
 
-#: ../src/cheese-window.c:976
+#: ../src/cheese-window.c:995
 msgid "Countdown"
 msgstr "Nedtelling"
 
-#: ../src/cheese-window.c:993
+#: ../src/cheese-window.c:1012
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ../src/cheese-window.c:994
+#: ../src/cheese-window.c:1013
 msgid "Save _As..."
 msgstr "L_agre som..."
 
-#: ../src/cheese-window.c:995
+#: ../src/cheese-window.c:1014
 msgid "Move to _Trash"
 msgstr "Flytt til _papirkurv"
 
-#: ../src/cheese-window.c:999 ../src/cheese-window.c:1174
+#: ../src/cheese-window.c:1018 ../src/cheese-window.c:1193
 msgid "_Take a photo"
 msgstr "_Ta et bilde"
 
-#: ../src/cheese-window.c:1003
+#: ../src/cheese-window.c:1022
 msgid "_Recording"
 msgstr "_Opptak"
 
-#: ../src/cheese-window.c:1007
+#: ../src/cheese-window.c:1026
 msgid "_Set As Account Photo"
 msgstr "_Sett som bilde for konto"
 
-#: ../src/cheese-window.c:1011
+#: ../src/cheese-window.c:1030
 msgid "Send by _Mail"
 msgstr "Send via e-_post"
 
-#: ../src/cheese-window.c:1015
+#: ../src/cheese-window.c:1034
 msgid "Send _To"
 msgstr "Send _til"
 
-#: ../src/cheese-window.c:1019
+#: ../src/cheese-window.c:1038
 msgid "Export to F-_Spot"
 msgstr "Eksporter til F-_Spot"
 
-#: ../src/cheese-window.c:1023
+#: ../src/cheese-window.c:1042
 msgid "Export to _Flickr"
 msgstr "Eksporter til _Flickr"
 
-#: ../src/cheese-window.c:1308
+#: ../src/cheese-window.c:1326
 msgid "Quit"
 msgstr "Avslutt"
 
-#: ../src/cheese-window.c:1314
+#: ../src/cheese-window.c:1332
 msgid "About"
 msgstr "Om"
 
-#: ../src/cheese.c:72
+#: ../src/cheese.c:80
 msgid "Be verbose"
 msgstr "Gi mye informasjon"
 
-#: ../src/cheese.c:87
+#: ../src/cheese.c:95
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- Ta bilder og video fra ditt webkamera med morsomme grafiske effekter"
