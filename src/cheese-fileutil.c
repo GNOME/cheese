@@ -176,7 +176,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   //get the path from gconf, xdg or hardcoded
   g_object_get (gconf, "gconf_prop_video_path", &v_path, NULL);
   
-  if (strcmp (v_path, "") == 0){
+  if (!v_path || strcmp (v_path, "") == 0){
     //get xdg    
     v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
     if (strcmp (v_path, "") == 0){
@@ -190,7 +190,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   //get the path from gconf, xdg or hardcoded
   g_object_get (gconf, "gconf_prop_photo_path", &p_path, NULL);
   
-  if (strcmp (p_path, "") == 0){
+  if (!p_path || strcmp (p_path, "") == 0){
     //get xdg
     p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
     if (strcmp (p_path, "") == 0){
