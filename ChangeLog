@@ -1,3 +1,15 @@
+2008-05-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/Makefile.am: 
+	  Add new flash and remove changing gamma for simulating flash. The 
+	  new flash works best if you run a composited desktop. Patch by 
+	  Alex "weej" Jones. Fixes #526214
+
 2008-05-23  daniel g. siegel <dgsiegel@gmail.com>
 
 	* src/cheese-fileutil.c: 

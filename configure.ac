@@ -86,9 +86,7 @@ PKG_CHECK_MODULES(CHEESE, \
   hal >= $HAL_REQUIRED \
   dbus-glib-1 >= $DBUS_GLIB_REQUIRED \
   pangocairo >= $PANGOCAIRO_REQUIRED \
-  librsvg-2.0 >= $LIBRSVG_REQUIRED \
-  xxf86vm)
-
+  librsvg-2.0 >= $LIBRSVG_REQUIRED)
 AC_SUBST(CHEESE_CFLAGS)
 
 CHEESE_LIBS="$CHEESE_LIBS -lgstinterfaces-0.10"

@@ -44,8 +44,10 @@ cheese_SOURCES = \
 	cheese-prefs-resolution-combo.h \
 	cheese-prefs-resolution-combo.c \
 	cheese-prefs-dialog.c \
-	cheese-prefs-dialog.h
-
+	cheese-prefs-dialog.h \
+	cheese-flash.h \
+	cheese-flash.c
+	
 cheese_LDADD = \
 	$(CHEESE_LIBS)
 

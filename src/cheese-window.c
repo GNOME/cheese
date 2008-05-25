@@ -1378,9 +1378,12 @@ setup_camera (CheeseWindow *cheese_window)
   g_object_get (cheese_window->gconf, "gconf_prop_x_resolution", &x_resolution,
                 "gconf_prop_y_resolution", &y_resolution, NULL);
 
+  gdk_threads_enter ();
   cheese_window->webcam = cheese_webcam_new (cheese_window->screen, 
                                              webcam_device, x_resolution,
                                              y_resolution);
+  gdk_threads_leave ();
+
   g_free (webcam_device);
 
   cheese_webcam_setup (cheese_window->webcam);

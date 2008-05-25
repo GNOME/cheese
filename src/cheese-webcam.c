@@ -34,6 +34,7 @@
 #include <libhal.h>
 
 #include "cheese-webcam.h"
+#include "cheese-flash.h"
 
 G_DEFINE_TYPE (CheeseWebcam, cheese_webcam, G_TYPE_OBJECT)
 
@@ -77,9 +78,6 @@ typedef struct
   gboolean is_recording;
   gboolean pipeline_is_playing;
   char *photo_filename;
-    
-  XF86VidModeGamma normal_gamma;
-  float flash_intensity;
 
   int num_webcam_devices;
   char *device_name;
@@ -89,6 +87,8 @@ typedef struct
   int selected_device;
   CheeseVideoFormat *current_format;
   GHashTable *supported_resolutions;
+
+  CheeseFlash *flash;
 } CheeseWebcamPrivate;
 
 enum 
@@ -207,6 +207,8 @@ cheese_webcam_photo_data_cb (GstElement *element, GstBuffer *buffer,
 
   g_signal_handler_disconnect (G_OBJECT(priv->photo_sink), 
                                priv->photo_handler_signal_id);
+
+  g_signal_emit (webcam, webcam_signals[PHOTO_SAVED], 0);
 }
 
 static void
@@ -865,47 +867,6 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
   return TRUE;
 }
 
-static void
-cheese_webcam_flash_set_intensity (CheeseWebcam *webcam, float intensity)
-{
-  const float MAX_GAMMA = 10.0;
-  XF86VidModeGamma gamma;
-  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-
-  g_return_if_fail ((intensity >= 0.0) || (intensity <= 1.0));
-
-  gamma.red = MAX_GAMMA * intensity + priv->normal_gamma.red * (1.0 - intensity);
-  gamma.green = MAX_GAMMA * intensity + priv->normal_gamma.green * (1.0 - intensity);
-  gamma.blue = MAX_GAMMA * intensity + priv->normal_gamma.blue * (1.0 - intensity);
-
-  XF86VidModeSetGamma (GDK_DISPLAY (), 0, &gamma);
-
-  priv->flash_intensity = intensity;
-}
-
-static gboolean
-cheese_webcam_flash_dim_cb (CheeseWebcam *webcam)
-{
-  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-
-  priv->flash_intensity -= 0.1;
-  cheese_webcam_flash_set_intensity (webcam, priv->flash_intensity);
-
-  if (priv->flash_intensity <= 0.0)
-  {
-    g_signal_emit (webcam, webcam_signals [PHOTO_SAVED], 0);
-    return FALSE;
-  }
-  return TRUE;
-}
-
-static void
-cheese_webcam_flash (CheeseWebcam *webcam)
-{
-  cheese_webcam_flash_set_intensity (webcam, 1.0);
-  g_timeout_add (50, (GSourceFunc) cheese_webcam_flash_dim_cb, webcam);
-}
-
 int
 cheese_webcam_get_num_webcam_devices (CheeseWebcam *webcam)
 {
@@ -1036,9 +997,8 @@ cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename)
                                                     "handoff",
                                                     G_CALLBACK (cheese_webcam_photo_data_cb), 
                                                     webcam);
-  cheese_webcam_flash (webcam);
+  cheese_flash_fire (priv->flash);
 }
-
 
 static void
 cheese_webcam_finalize (GObject *object)
@@ -1210,6 +1170,8 @@ cheese_webcam_init (CheeseWebcam *webcam)
   priv->supported_resolutions = g_hash_table_new_full (g_str_hash, 
                                                        g_str_equal,
                                                        g_free, NULL);
+
+  priv->flash = cheese_flash_new ();
 }
 
 CheeseWebcam*
@@ -1262,9 +1224,6 @@ cheese_webcam_setup (CheeseWebcam *webcam)
   if (!ok)
     g_error ("Unable link pipeline for photo");
 
-  gdk_threads_enter();
-  XF86VidModeGetGamma (GDK_DISPLAY (), 0, &(priv->normal_gamma));
-  gdk_threads_leave();
 }
 
 GArray *
