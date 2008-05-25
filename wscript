@@ -46,7 +46,6 @@ def configure(conf):
 	conf.check_pkg('gstreamer-plugins-base-0.10', destvar='GSTREAMER_PLUGINS_BASE', vnum='0.10.15', mandatory=True)
 	conf.check_pkg('libgnomeui-2.0', destvar='LIBGNOMEUI', vnum='2.20.0', mandatory=True)
 	conf.check_pkg('libebook-1.2', destvar='LIBEBOOK', vnum='1.12.0', mandatory=True)
-	conf.check_pkg('xxf86vm', destvar='XXF86VM', vnum='1.0.0', mandatory=True)
 	conf.env['LIB_GSTREAMER'] += ['gstinterfaces-0.10']
 
 	conf.define('VERSION', VERSION)
