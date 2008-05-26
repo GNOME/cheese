@@ -1,6 +1,11 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.22.2
+	- cheese crashed, when a file was deleted twice
+	- fix regression of gio, which disabled DnD, courtesy of Cosimo Cecchi, fixes bug #526398
+	- fix invalid free in cheese, fixes bug #529467, courtesy of Matthias Clasen
+
 version 2.22.1
 	- cheese crashed while initializing webcam on some devices, fixes bug #522143, courtesy of Alex Rostovtsev
 	- cheese did not list its gnome-vfs dependency, fixes bug #522152, courtesy of Alex Rostovtsev
