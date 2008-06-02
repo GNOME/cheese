@@ -1,6 +1,22 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.3
+  - add new flash and remove changing gamma for simulating flash. the 
+    new flash works best if you run a composited desktop, fixes bug #526214,
+    courtesy of Alex Jones 
+  - fix segfault on startup if video or photo directory gconf setting is missing,
+  	fixes bug #534480, courtesy of Alexander Jones
+  - add support to set the video and photo path in gconf, courtesy of Felix Kaser
+  - added/updated translations
+    - ar, courtesy of Djihed Afifi. 
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - gl, courtesy of Ignacio Casal Quinteiro
+    - he, courtesy of Mark Krapivner
+    - hu, courtesy of Máté Őry.
+    - nb, courtesy of Kjartan Maraas
+
 version 2.23.2
   - use a better icon for the effects button, fixes bug #511369
   - store photos and videos in xdg directories, fixes bug #509475, courtesy of Felix Kaser
