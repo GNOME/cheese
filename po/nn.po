@@ -2,73 +2,104 @@
 # This file is distributed under the same license as the cheese package.
 # Kjartan Maraas <kmaraas@gnome.org>, 2005-2008.
 # Eskild Hustvedt <eskildh@gnome.org>, 2008
+# Eirik U. Birkeland <eirbir@gmail.com>, 2008
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-17 16:34+0100\n"
-"PO-Revision-Date: 2008-03-30 21:40+0200\n"
+"POT-Creation-Date: 2008-05-02 14:45+0000\n"
+"PO-Revision-Date: 2008-06-02 21:35+0200\n"
 "Last-Translator: Eskild Hustvedt <eskildh@gnome.org>\n"
-"Language-Team: Norsk nynorsk <i18n-no@lister.ping.uio.no>\n"
+"Language-Team: Norwegian Nynorsk <i18n-no@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:574
-msgid "A cheesy program to take photos and videos from your webcam"
-msgstr "Program for å ta bilete og film frå ditt vevkamera"
-
-#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
-#: ../src/cheese.c:84
+#: ../data/cheese.desktop.in.in.h:1
+#: ../data/cheese.ui.h:1
+#: ../src/cheese.c:85
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:656
-#: ../src/cheese-window.c:876
-msgid "_Effects"
-msgstr "_Effektar"
-
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:880
-msgid "_Photo"
-msgstr "_Bilete"
-
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:744
-#: ../src/cheese-window.c:891 ../src/cheese-window.c:1011
-msgid "_Take a photo"
-msgstr "_Ta eit bilete"
-
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:881
-msgid "_Video"
-msgstr "_Video"
+#: ../data/cheese.desktop.in.in.h:2
+#: ../src/cheese-window.c:615
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "- Ta bilete og video frå vevkameraet ditt, med morosame grafiske effektar"
 
 #: ../data/cheese.schemas.in.h:1
 msgid "Effects, that are applied on startup. Possible values are: Mauve, Noir/Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, Vertigo, Edge, Dice and Warp"
-msgstr "Effektar som brukast ved oppstart. Moglege verdiar er: Mauve, Noir/Blanc, Saturation, Hulk, Vertical Flip, Horisontal Flip, Shagadelic, Vertigo, Edge, Dice og Warp."
+msgstr "Effektar som vert brukte ved oppstart. Moglege verdiar er: Mauve, Noir/Blanc, Metting, Hulk, Snu loddrett, Snu vassrett, Shagadelic, Vertigo, Kant, Terning og Warp."
 
 #: ../data/cheese.schemas.in.h:2
 msgid "Selected Effects"
 msgstr "Valde effektar"
 
 #: ../data/cheese.schemas.in.h:3
-msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr "Enhetsstreng som peikar til vevkameraet. T.d. /dev/video0."
+msgid "The X resolution of the image captured from the camera"
+msgstr "X-oppløysinga til biletet frå kameraet"
 
 #: ../data/cheese.schemas.in.h:4
+msgid "The Y resolution of the image captured from the camera"
+msgstr "Y-oppløysinga til biletet frå kameraet"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "The device-string which points to the webcam, e.g. /dev/video0"
+msgstr "Einingsstrengen som peikar til vevkameraet, t.d. /dev/video0"
+
+#: ../data/cheese.schemas.in.h:6
 msgid "Use a countdown"
 msgstr "Bruk nedtelling"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:7
 msgid "Webcam device string indicator"
-msgstr "Enhetsstreng for vevkamera"
+msgstr "Einingsstreng til vevkameraet"
 
-#: ../data/cheese.schemas.in.h:6
-msgid "Whether a countdown should be used, when taking a photo"
-msgstr "Om nedtelling skal brukast når eit bilete tas."
+#: ../data/cheese.schemas.in.h:8
+msgid "Whether a countdown should be used when taking a photo"
+msgstr "Om nedteljing skal brukast når eit bilete vert teke."
+
+#: ../data/cheese.schemas.in.h:9
+msgid "X resolution"
+msgstr "X-oppløysing"
+
+#: ../data/cheese.schemas.in.h:10
+msgid "Y resolution"
+msgstr "Y-oppløysing"
+
+#: ../data/cheese-prefs.glade.h:1
+msgid "<b>Resolution</b>"
+msgstr "<b>Oppløysing</b>"
+
+#: ../data/cheese-prefs.glade.h:2
+#: ../src/cheese-window.c:983
+msgid "Preferences"
+msgstr "Innstillingar"
+
+#: ../data/cheese.ui.h:2
+#: ../src/cheese-window.c:697
+#: ../src/cheese-window.c:979
+msgid "_Effects"
+msgstr "_Effektar"
+
+#: ../data/cheese.ui.h:3
+#: ../src/cheese-window.c:987
+msgid "_Photo"
+msgstr "_Bilete"
+
+#: ../data/cheese.ui.h:4
+#: ../src/cheese-window.c:798
+msgid "_Take a Photo"
+msgstr "_Ta eit bilete"
+
+#: ../data/cheese.ui.h:5
+#: ../src/cheese-window.c:988
+msgid "_Video"
+msgstr "_Video"
 
 #: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
-msgstr "Inga effekt"
+msgstr "Ingen effekt"
 
 #: ../src/cheese-effect-chooser.c:63
 msgid "Mauve"
@@ -80,7 +111,7 @@ msgstr "Noir/Blanc"
 
 #: ../src/cheese-effect-chooser.c:67
 msgid "Saturation"
-msgstr "Metning"
+msgstr "Metting"
 
 #: ../src/cheese-effect-chooser.c:69
 msgid "Hulk"
@@ -88,11 +119,11 @@ msgstr "Hulk"
 
 #: ../src/cheese-effect-chooser.c:71
 msgid "Vertical Flip"
-msgstr "Vend vertikalt"
+msgstr "Snu loddrett"
 
 #: ../src/cheese-effect-chooser.c:73
 msgid "Horizontal Flip"
-msgstr "Vend horisontalt"
+msgstr "Snu vassrett"
 
 #: ../src/cheese-effect-chooser.c:75
 msgid "Shagadelic"
@@ -114,161 +145,217 @@ msgstr "Terning"
 msgid "Warp"
 msgstr "Warp"
 
-#: ../src/cheese-window.c:132
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:432
+#: ../src/cheese-countdown.c:450
+#: ../src/cheese-countdown.c:468
+#, c-format
+msgid "%d "
+msgstr "%d"
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "Fann ingen kamera"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "Sjå hjelpedokumenta for meir informasjon."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "Hjelp"
+
+#: ../src/cheese-window.c:150
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
 "%s"
 msgstr ""
-"Klarte ikkje å opna lesar for å visa:\n"
+"Klarte ikkje opna lesar for å visa:\n"
 "%s"
 
-#: ../src/cheese-window.c:155
+#: ../src/cheese-window.c:174
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
 "%s"
 msgstr ""
-"Klarte ikkje å opna e-postprogram for å sende melding til:\n"
+"Klarte ikkje opna e-postprogram for å senda melding til:\n"
 "%s"
 
-#: ../src/cheese-window.c:246
+#: ../src/cheese-window.c:271
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
 "%s"
 msgstr ""
-"Klarte ikkje å starta program for å visa:\n"
+"Klarte ikkje starta program for å visa:\n"
 "%s"
 
-#: ../src/cheese-window.c:265
+#: ../src/cheese-window.c:290
 msgid "Save File"
 msgstr "Lagra fil"
 
-#: ../src/cheese-window.c:303
+#: ../src/cheese-window.c:328
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikkje lagra %s"
 
-#: ../src/cheese-window.c:330
+#: ../src/cheese-window.c:357
 msgid "Cannot move file to trash"
 msgstr "Kan ikkje flytta fila til papirkorga"
 
-#: ../src/cheese-window.c:331
+#: ../src/cheese-window.c:358
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Fila «%s» kan ikkje flyttast til papirkorga. Detaljar: %s"
 
-#: ../src/cheese-window.c:363
+#: ../src/cheese-window.c:390
 #, c-format
 msgid "Really move all photos and videos to the trash?"
-msgstr "Vil du verkeleg flytta alle bileta og videoar til papirkorga?"
+msgstr "Vil du verkeleg flytta alle bileta og videoane til papirkorga?"
 
-#: ../src/cheese-window.c:371
+#: ../src/cheese-window.c:398
 msgid "_Move to Trash"
 msgstr "Flytt til _papirkorga"
 
-#: ../src/cheese-window.c:459
+#: ../src/cheese-window.c:497
 #, c-format
 msgid "Could not set the Account Photo"
-msgstr "Kunne ikkje setja bilete for konto"
+msgstr "Kunne ikkje velja bilete på kontoen"
 
-#: ../src/cheese-window.c:534
+#: ../src/cheese-window.c:576
+#: ../src/cheese-window.c:856
 msgid "Unable to open help file for Cheese"
 msgstr "Kan ikkje opna hjelp for Cheese"
 
-#: ../src/cheese-window.c:551
+#: ../src/cheese-window.c:593
 msgid "translator-credits"
-msgstr "Kjartan Maraas <kmaraas@gnome.org>\nEskild Hustvedt <eskildh@gnome.org>"
+msgstr ""
+"Kjartan Maraas <kmaraas@gnome.org>\n"
+"Eskild Hustvedt <eskildh@gnome.org>\n"
+"Eirik U. Birkeland <eirbir@gmail.com>"
 
-#: ../src/cheese-window.c:554
+#: ../src/cheese-window.c:596
 msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-msgstr "Dette programmet er fri programvare. Du kan redistribuere og/eller endra programmet under betingelsene gjeven i GNU General Public License som utgjeven av Free Software Foundation; anten versjon 2 av lisensen, eller (viss du ynskjer det) ein kvar seinare versjon.\n"
+msgstr "Dette programmet er fri programvare. Du kan vidaredistribuera og/eller endra programmet under vilkåra i GNU General Public License som utgjeven av Free Software Foundation; enten versjon 2 av lisensen, eller (dersom du ynskjer det) einkvar seinare versjon.\n"
 
-#: ../src/cheese-window.c:558
+#: ../src/cheese-window.c:600
 msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-msgstr "Dette programmet vert distribuert i håp om at programmet er nyttig, men utan NOKON GARANTI, ikkje eingong implisitt garanti om at det er SALGBART eller PASSER EIT BESTEMT FORMÅL. Sjå GNU General Public License for detaljar.\n"
+msgstr "Dette programmet er distribuert i håp om at det kan vera nyttig, men UTAN NOKON GARANTI, heller ikkje med den underforståtte garantien for KURANT KVALITET eller at han er BRUKBAR FOR EIT SPESIFIKT FORMÅL. SOM SKILDRA I ANSVARSFRÅSKRIVINGA.Sjå GNU General Public License for detaljar.\n"
 
-#: ../src/cheese-window.c:562
+#: ../src/cheese-window.c:604
 msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "Du skal ha motteken ein kopi av GNU General Public License saman med dette programmet. Viss dette ikkje er tilfelle sjå på <http://www.gnu.org/licenses/>."
+msgstr "Du skal ha fått ein kopi av GNU General Public License saman med dette programmet. Dersom dette ikkje er tilfelle sjå på <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:578
+#: ../src/cheese-window.c:619
 msgid "Cheese Website"
-msgstr "Nettsted for Cheese"
+msgstr "Nettstaden til Cheese"
 
-#: ../src/cheese-window.c:667
-msgid "_Back"
-msgstr "Til_bake"
-
-#: ../src/cheese-window.c:734 ../src/cheese-window.c:793
+#: ../src/cheese-window.c:786
 msgid "_Start recording"
 msgstr "_Start opptak"
 
-#: ../src/cheese-window.c:843
-msgid "_Stop recording"
+#: ../src/cheese-window.c:873
+msgid "_Start Recording"
+msgstr "_Start opptak"
+
+#: ../src/cheese-window.c:935
+msgid "_Stop Recording"
 msgstr "_Stopp opptak"
 
-#: ../src/cheese-window.c:862
+#: ../src/cheese-window.c:961
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:864
+#: ../src/cheese-window.c:963
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/cheese-window.c:865
-msgid "Move all to Trash"
+#: ../src/cheese-window.c:964
+msgid "Move All to Trash"
 msgstr "Flytt alle til papirkorga"
 
-#: ../src/cheese-window.c:867
+#: ../src/cheese-window.c:966
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../src/cheese-window.c:870
+#: ../src/cheese-window.c:969
 msgid "_Contents"
 msgstr "_Innhald"
 
-#: ../src/cheese-window.c:870
-msgid "Help on this application"
-msgstr "Hjelp for dette programmet"
+#: ../src/cheese-window.c:969
+msgid "Help on this Application"
+msgstr "Hjelp til dette programmet"
 
-#: ../src/cheese-window.c:885
+#: ../src/cheese-window.c:975
+msgid "Countdown"
+msgstr "Bruk nedteljing"
+
+#: ../src/cheese-window.c:992
 msgid "_Open"
 msgstr "_Opna"
 
-#: ../src/cheese-window.c:886
+#: ../src/cheese-window.c:993
 msgid "Save _As..."
-msgstr "L_agre som ..."
+msgstr "L_agra som ..."
 
-#: ../src/cheese-window.c:887
+#: ../src/cheese-window.c:994
 msgid "Move to _Trash"
-msgstr "Flytt til _papirkurv"
+msgstr "Flytt til _papirkorga"
 
-#: ../src/cheese-window.c:895
+#: ../src/cheese-window.c:998
+#: ../src/cheese-window.c:1173
+msgid "_Take a photo"
+msgstr "_Ta eit bilete"
+
+#: ../src/cheese-window.c:1002
 msgid "_Recording"
 msgstr "_Opptak"
 
-#: ../src/cheese-window.c:899
+#: ../src/cheese-window.c:1006
 msgid "_Set As Account Photo"
-msgstr "_Set som bilete for konto"
+msgstr "_Vel som bilete på konto"
 
-#: ../src/cheese-window.c:903
+#: ../src/cheese-window.c:1010
 msgid "Send by _Mail"
-msgstr "Send via e-_post"
+msgstr "Send med e-_post"
 
-#: ../src/cheese-window.c:907
+#: ../src/cheese-window.c:1014
+msgid "Send _To"
+msgstr "Send _til"
+
+#: ../src/cheese-window.c:1018
 msgid "Export to F-_Spot"
 msgstr "Eksporter til F-_Spot"
 
-#: ../src/cheese-window.c:911
+#: ../src/cheese-window.c:1022
 msgid "Export to _Flickr"
 msgstr "Eksporter til _Flickr"
 
-#: ../src/cheese.c:71
-msgid "Be verbose"
-msgstr "Gi mye informasjon"
+#: ../src/cheese-window.c:1307
+msgid "Quit"
+msgstr "Avslutt"
 
-#: ../src/cheese.c:86
-msgid "- Take photos and videos from your webcam"
-msgstr "- Ta bileta og video frå ditt vevkamera"
+#: ../src/cheese-window.c:1313
+msgid "About"
+msgstr "Om"
+
+#: ../src/cheese.c:72
+msgid "Be verbose"
+msgstr "Gje mykje informasjon"
+
+#: ../src/cheese.c:87
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr "- Ta bilete og video frå vevkameraet ditt, med morosame grafiske effektar"
+
+#~ msgid "A cheesy program to take photos and videos from your webcam"
+#~ msgstr "Program for å ta bilete og film frå ditt vevkamera"
+#~ msgid "_Back"
+#~ msgstr "Til_bake"
+
