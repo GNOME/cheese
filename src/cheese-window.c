@@ -1324,15 +1324,15 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 #ifdef HILDON
   menu = gtk_menu_new();
   menuitem = gtk_menu_item_new_with_label(_("Quit"));
-  g_signal_connect_swapped(menuitem,"activate",
-			   GTK_SIGNAL_FUNC(cheese_window_cmd_close),
-			   NULL);
+  g_signal_connect(menuitem,"activate",
+                   GTK_SIGNAL_FUNC(cheese_window_cmd_close),
+                   cheese_window);
   gtk_menu_append(menu, menuitem);
   
   menuitem = gtk_menu_item_new_with_label(_("About"));
-  g_signal_connect_swapped(menuitem,"activate",
-			   GTK_SIGNAL_FUNC(cheese_window_cmd_about), 
-			   cheese_window->window);
+  g_signal_connect(menuitem,"activate",
+                   GTK_SIGNAL_FUNC(cheese_window_cmd_about), 
+                   cheese_window);
   gtk_menu_append(menu, menuitem);
   
   hildon_window_set_menu (HILDON_WINDOW(cheese_window->window),GTK_MENU(menu));
