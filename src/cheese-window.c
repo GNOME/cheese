@@ -1375,6 +1375,8 @@ setup_camera (CheeseWindow *cheese_window)
   int y_resolution;
   GtkWidget *message_area;
   
+  GError *error;
+  
   g_object_get (cheese_window->gconf, "gconf_prop_x_resolution", &x_resolution,
                 "gconf_prop_y_resolution", &y_resolution, NULL);
 
@@ -1386,7 +1388,32 @@ setup_camera (CheeseWindow *cheese_window)
 
   g_free (webcam_device);
 
-  cheese_webcam_setup (cheese_window->webcam);
+  error = NULL;
+  cheese_webcam_setup (cheese_window->webcam, &error);
+
+  if (error != NULL)
+  {
+    GtkDialog *dialog;
+
+    gdk_threads_enter ();
+
+    dialog = gtk_message_dialog_new (NULL,
+                                     0,
+                                     GTK_MESSAGE_ERROR, 
+                                     GTK_BUTTONS_OK, 
+                                     error->message);
+
+    g_error_free(error);
+
+    g_signal_connect(dialog, "response", G_CALLBACK(gtk_widget_destroy), NULL);
+    gtk_window_set_title(GTK_WINDOW (dialog), "Critical Error");
+    gtk_dialog_run (dialog);
+
+    // Clean up and exit
+    cheese_window_cmd_close(NULL, cheese_window);
+
+    gdk_threads_leave ();
+  }
 
   g_signal_connect (cheese_window->webcam, "photo-saved",
                     G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);

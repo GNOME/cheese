@@ -85,7 +85,7 @@ CheeseWebcam 	*cheese_webcam_new 			(GtkWidget *video_window,
                                        char *webcam_device_name, 
                                        int x_resolution,
                                        int y_resolution);
-void 		 cheese_webcam_setup 			(CheeseWebcam *webcam);
+void 		 cheese_webcam_setup 			(CheeseWebcam *webcam, GError **error);
 void 		 cheese_webcam_play 			(CheeseWebcam *webcam);
 void 		 cheese_webcam_stop 			(CheeseWebcam *webcam);
 void 		 cheese_webcam_set_effect 		(CheeseWebcam *webcam, CheeseWebcamEffect effect);

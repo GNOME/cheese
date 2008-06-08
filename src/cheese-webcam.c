@@ -40,6 +40,14 @@ G_DEFINE_TYPE (CheeseWebcam, cheese_webcam, G_TYPE_OBJECT)
 
 #define CHEESE_WEBCAM_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_WEBCAM, CheeseWebcamPrivate))
 
+#define CHEESE_WEBCAM_ERROR cheese_webcam_error_quark ()
+
+enum CheeseWebcamError
+{
+  CHEESE_WEBCAM_ERROR_UNKNOWN,
+  CHEESE_WEBCAM_ERROR_ELEMENT_NOT_FOUND
+};
+
 typedef struct
 {
   char *video_device; 
@@ -141,7 +149,11 @@ static const EffectToPipelineDesc EFFECT_TO_PIPELINE_DESC [] =
 
 static const int NUM_EFFECTS = G_N_ELEMENTS (EFFECT_TO_PIPELINE_DESC);
 
-
+GQuark
+cheese_webcam_error_quark (void)
+{
+  return g_quark_from_static_string ("cheese-webcam-error-quark");
+}
 
 static void
 cheese_webcam_set_x_overlay (CheeseWebcam *webcam)
@@ -727,8 +739,14 @@ fallback:
   return TRUE;
 }
 
+static void 
+cheese_webcam_set_error_element_not_found (GError **error, const char *factoryname)
+{
+  g_set_error (error, CHEESE_WEBCAM_ERROR, CHEESE_WEBCAM_ERROR_ELEMENT_NOT_FOUND, "The element '%s' could not be found.", factoryname);
+}
+
 static gboolean
-cheese_webcam_create_video_display_bin (CheeseWebcam *webcam)
+cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   GstElement *tee, *video_display_queue, *video_scale, *video_sink, *save_queue;
@@ -740,20 +758,49 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam)
 
   cheese_webcam_create_webcam_source_bin (webcam);
 
-  priv->effect_filter = gst_element_factory_make ("identity", "effect");
-  priv->csp_post_effect = gst_element_factory_make ("ffmpegcolorspace", "csp_post_effect");
+  if ((priv->effect_filter = gst_element_factory_make ("identity", "effect")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "identity");
+    return FALSE;
+  }
+  if ((priv->csp_post_effect = gst_element_factory_make ("ffmpegcolorspace", "csp_post_effect")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "ffmpegcolorspace");
+    return FALSE;
+  }
 
-  tee = gst_element_factory_make ("tee", "tee");
+  if ((tee = gst_element_factory_make ("tee", "tee")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "tee");
+    return FALSE;
+  }
   
-  save_queue = gst_element_factory_make ("queue", "save_queue");
+  if ((save_queue = gst_element_factory_make ("queue", "save_queue")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "queue");
+    return FALSE;
+  }
 
-  video_display_queue = gst_element_factory_make ("queue", "video_display_queue");
+  if ((video_display_queue = gst_element_factory_make ("queue", "video_display_queue")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "queue");
+    return FALSE;
+  }
 
-  video_scale = gst_element_factory_make ("videoscale", "video_scale");
+  if ((video_scale = gst_element_factory_make ("videoscale", "video_scale")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "videoscale");
+    return FALSE;
+  }
+
   /* Use bilinear scaling */
   g_object_set (video_scale, "method", 1, NULL);
 
-  video_sink = gst_element_factory_make ("gconfvideosink", "video_sink");
+  if ((video_sink = gst_element_factory_make ("gconfvideosink", "video_sink")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "gconfvideosink");
+    return FALSE;
+  }
 
 
   gst_bin_add_many (GST_BIN (priv->video_display_bin), priv->webcam_source_bin, 
@@ -779,7 +826,7 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam)
 }
 
 static gboolean
-cheese_webcam_create_photo_save_bin (CheeseWebcam *webcam)
+cheese_webcam_create_photo_save_bin (CheeseWebcam *webcam, GError **error)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   GstElement *csp_photo_save_bin;
@@ -790,8 +837,16 @@ cheese_webcam_create_photo_save_bin (CheeseWebcam *webcam)
 
   priv->photo_save_bin = gst_bin_new ("photo_save_bin");
 
-  csp_photo_save_bin = gst_element_factory_make ("ffmpegcolorspace", "csp_photo_save_bin");
-  priv->photo_sink = gst_element_factory_make ("fakesink", "photo_sink");
+  if ((csp_photo_save_bin = gst_element_factory_make ("ffmpegcolorspace", "csp_photo_save_bin")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "ffmpegcolorspace");
+    return FALSE;
+  }
+  if ((priv->photo_sink = gst_element_factory_make ("fakesink", "photo_sink")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "fakesink");
+    return FALSE;
+  }
 
   gst_bin_add_many (GST_BIN (priv->photo_save_bin), csp_photo_save_bin,
                     priv->photo_sink, NULL);
@@ -817,7 +872,7 @@ cheese_webcam_create_photo_save_bin (CheeseWebcam *webcam)
 }
 
 static gboolean 
-cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
+cheese_webcam_create_video_save_bin (CheeseWebcam *webcam, GError **error)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
@@ -829,20 +884,56 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam)
 
   priv->video_save_bin = gst_bin_new ("video_save_bin");
 
-  priv->audio_source = gst_element_factory_make ("gconfaudiosrc", "audio_source");
-  audio_queue = gst_element_factory_make ("queue", "audio_queue");
-  audio_convert = gst_element_factory_make ("audioconvert", "audio_convert");
-  audio_enc = gst_element_factory_make ("vorbisenc", "audio_enc");
+  if ((priv->audio_source = gst_element_factory_make ("gconfaudiosrc", "audio_source")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "gconfaudiosrc");
+    return FALSE;
+  }
+  if ((audio_queue = gst_element_factory_make ("queue", "audio_queue")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "queue");
+    return FALSE;
+  }
+  if ((audio_convert = gst_element_factory_make ("audioconvert", "audio_convert")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "audioconvert");
+    return FALSE;
+  }
+  if ((audio_enc = gst_element_factory_make ("vorbisenc", "audio_enc")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "vorbisenc"); 
+    return FALSE;
+  }
 
-  video_save_csp = gst_element_factory_make ("ffmpegcolorspace", "video_save_csp");
-  video_enc = gst_element_factory_make ("theoraenc", "video_enc");
+  if ((video_save_csp = gst_element_factory_make ("ffmpegcolorspace", "video_save_csp")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "ffmpegcolorspace");
+    return FALSE;
+  }
+  if ((video_enc = gst_element_factory_make ("theoraenc", "video_enc")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "theoraenc");
+    return FALSE;
+  }
   g_object_set (video_enc, "keyframe-force", 1, NULL);
-  video_save_scale = gst_element_factory_make ("videoscale", "video_save_scale");
+  if ((video_save_scale = gst_element_factory_make ("videoscale", "video_save_scale")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "videoscale");
+    return FALSE;
+  }
   /* Use bilinear scaling */
   g_object_set (video_save_scale, "method", 1, NULL);
 
-  mux = gst_element_factory_make ("oggmux", "mux");
-  priv->video_file_sink = gst_element_factory_make ("filesink", "video_file_sink");
+  if ((mux = gst_element_factory_make ("oggmux", "mux")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "oggmux");
+    return FALSE;
+  }
+  if ((priv->video_file_sink = gst_element_factory_make ("filesink", "video_file_sink")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "filesink");
+    return FALSE;
+  }
 
   gst_bin_add_many (GST_BIN (priv->video_save_bin), priv->audio_source, audio_queue,
                     audio_convert, audio_enc, video_save_csp, video_save_scale, video_enc, 
@@ -1198,15 +1289,33 @@ cheese_webcam_new (GtkWidget* video_window, char *webcam_device_name,
 }
 
 void
-cheese_webcam_setup (CheeseWebcam *webcam)
+cheese_webcam_setup (CheeseWebcam *webcam, GError **error)
 {
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   gboolean ok = TRUE;
+  GError *tmp_error = NULL;
 
   cheese_webcam_detect_webcam_devices (webcam);
-  cheese_webcam_create_video_display_bin (webcam);
-  cheese_webcam_create_photo_save_bin (webcam);
-  cheese_webcam_create_video_save_bin (webcam);
+  cheese_webcam_create_video_display_bin (webcam, &tmp_error);
+  if (tmp_error != NULL)
+  {
+    g_propagate_error (error, tmp_error);
+    return;
+  }
+
+  cheese_webcam_create_photo_save_bin (webcam, &tmp_error);
+  if (tmp_error != NULL)
+  {
+    g_propagate_error (error, tmp_error);
+    return;
+  }
+
+  cheese_webcam_create_video_save_bin (webcam, &tmp_error);
+  if (tmp_error != NULL)
+  {
+    g_propagate_error (error, tmp_error);
+    return;
+  }
 
   priv->pipeline = gst_pipeline_new ("pipeline");
 
