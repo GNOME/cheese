@@ -1,6 +1,16 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.4
+  - fix a crash, when using about/quit menu items in hildon mode, fixes bug #535582, courtesy of Michael Terry
+  - Instead of crashing report when certain gstreamer are not found, fixes bug #522009, courtesy of Todd Eisenberger
+  - added/updated translations
+    - ar, courtesy of Khaled Hosny. 
+    - fi, courtesy of Tommi Vainikainen
+    - nn, courtesy of Eirik U. Birkeland
+    - vi, courtesy of Clytie Siddall
+    - zh_CN, courtesy of 甘露 (Lu Gan)
+
 version 2.23.3
   - add new flash and remove changing gamma for simulating flash. the 
     new flash works best if you run a composited desktop, fixes bug #526214,
