@@ -15,7 +15,7 @@ import os, sys
 import Common, Params, gnome, intltool, misc
 
 # the following two variables are used by the target "waf dist"
-VERSION='2.23.4'
+VERSION='2.23.5'
 APPNAME='cheese'
 
 # these variables are mandatory ('/' are converted automatically)
