@@ -79,7 +79,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   char *uri;
   char *filename;
 
-  info = g_file_query_info (file, "standard::content-type, time::modified", 0, NULL, NULL);
+  info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, NULL);
 
   if (!info)
   {
