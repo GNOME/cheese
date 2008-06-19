@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2008 Ryan Zeigler <zeiglerr@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -50,22 +51,11 @@ enum CheeseWebcamError
 
 typedef struct
 {
-  char *video_device; 
-  char *gstreamer_src;
-  char *product_name; 
-  int num_video_formats;
-  GArray *video_formats;
-} CheeseWebcamDevice;
-
-
-typedef struct
-{
   GtkWidget* video_window;
 
   GstElement *pipeline; 
   GstBus     *bus;
-  /* We build the active pipeline by linking the appropriate pipelines listed
-     below*/
+  /* We build the active pipeline by linking the appropriate pipelines listed below*/
   GstElement *webcam_source_bin;
   GstElement *video_display_bin;
   GstElement *photo_save_bin;
@@ -965,6 +955,63 @@ cheese_webcam_get_num_webcam_devices (CheeseWebcam *webcam)
   return priv->num_webcam_devices;
 }
 
+gboolean     
+cheese_webcam_switch_webcam_device (CheeseWebcam *webcam)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  gboolean was_recording = FALSE;
+  gboolean pipeline_was_playing = FALSE; 
+  gboolean disp_bin_created = FALSE;
+  gboolean disp_bin_added = FALSE;
+  gboolean disp_bin_linked = FALSE;
+  GError *error = NULL;
+    
+  if (priv->is_recording)
+  {
+    cheese_webcam_stop_video_recording (webcam);
+    was_recording = TRUE;
+  }
+  
+  if (priv->pipeline_is_playing)
+  {
+    cheese_webcam_stop (webcam);
+    pipeline_was_playing = TRUE;
+  }
+  
+  gst_bin_remove (GST_BIN (priv->pipeline), priv->video_display_bin);
+  
+  disp_bin_created = cheese_webcam_create_video_display_bin (webcam, &error);
+  if (!disp_bin_created)
+  {
+    return FALSE;
+  }
+  disp_bin_added = gst_bin_add (GST_BIN (priv->pipeline), priv->video_display_bin);
+  if (!disp_bin_added) 
+  {
+    gst_object_sink (priv->video_display_bin);
+    return FALSE;
+  }
+  
+  disp_bin_linked = gst_element_link (priv->video_display_bin, priv->photo_save_bin);
+  if (!disp_bin_linked)
+  {
+    gst_bin_remove (GST_BIN (priv->pipeline), priv->video_display_bin);
+    return FALSE;
+  }
+  
+  if (pipeline_was_playing)
+  {
+    cheese_webcam_play (webcam);
+  }
+  
+  /* if (was_recording)
+   {
+     Restart recording... ?
+   } */
+  
+  return TRUE;
+}
+
 void
 cheese_webcam_play (CheeseWebcam *webcam)
 {
@@ -1335,6 +1382,29 @@ cheese_webcam_setup (CheeseWebcam *webcam, GError **error)
 
 }
 
+int         
+cheese_webcam_get_selected_device (CheeseWebcam *webcam)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  return priv->selected_device;
+}
+
+GArray *
+cheese_webcam_get_webcam_devices (CheeseWebcam *webcam)
+{
+  GArray *devices_arr;
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+
+  devices_arr = g_array_sized_new (FALSE,
+                                   TRUE,
+                                   sizeof(CheeseWebcamDevice),
+                                   priv->num_webcam_devices);
+  devices_arr = g_array_append_vals (devices_arr,
+                                     priv->webcam_devices,
+                                     priv->num_webcam_devices);
+  return devices_arr;
+}
+
 GArray *
 cheese_webcam_get_video_formats (CheeseWebcam *webcam)
 {
@@ -1377,4 +1447,3 @@ cheese_webcam_get_current_video_format (CheeseWebcam *webcam)
     
   return priv->current_format;
 }
-

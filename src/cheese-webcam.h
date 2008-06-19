@@ -28,12 +28,12 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_WEBCAM		(cheese_webcam_get_type ())
-#define CHEESE_WEBCAM(o)		(G_TYPE_CHECK_INSTANCE_CAST ((o), CHEESE_TYPE_WEBCAM, CheeseWebcam))
-#define CHEESE_WEBCAM_CLASS(k)		(G_TYPE_CHECK_CLASS_CAST((k), CHEESE_TYPE_WEBCAM, CheeseWebcamClass))
-#define CHEESE_IS_WEBCAM(o)	 	(G_TYPE_CHECK_INSTANCE_TYPE ((o), CHEESE_TYPE_WEBCAM))
-#define CHEESE_IS_WEBCAM_CLASS(k)	(G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_WEBCAM))
-#define CHEESE_WEBCAM_GET_CLASS(o)	(G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_WEBCAM, CheeseWebcamClass))
+#define CHEESE_TYPE_WEBCAM (cheese_webcam_get_type ())
+#define CHEESE_WEBCAM(o) (G_TYPE_CHECK_INSTANCE_CAST ((o), CHEESE_TYPE_WEBCAM, CheeseWebcam))
+#define CHEESE_WEBCAM_CLASS(k) (G_TYPE_CHECK_CLASS_CAST((k), CHEESE_TYPE_WEBCAM, CheeseWebcamClass))
+#define CHEESE_IS_WEBCAM(o) (G_TYPE_CHECK_INSTANCE_TYPE ((o), CHEESE_TYPE_WEBCAM))
+#define CHEESE_IS_WEBCAM_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_WEBCAM))
+#define CHEESE_WEBCAM_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_WEBCAM, CheeseWebcamClass))
 
 typedef struct 
 {
@@ -49,6 +49,15 @@ typedef struct
   int num_framerates;
   CheeseFramerate *framerates; 
 } CheeseVideoFormat;
+
+typedef struct
+{
+  char *video_device; 
+  char *gstreamer_src;
+  char *product_name; 
+  int num_video_formats;
+  GArray *video_formats;
+} CheeseWebcamDevice;
 
 typedef enum
 {
@@ -80,24 +89,27 @@ typedef struct
 } CheeseWebcamClass;
 
 
-GType		 cheese_webcam_get_type			(void);
-CheeseWebcam 	*cheese_webcam_new 			(GtkWidget *video_window, 
-                                       char *webcam_device_name, 
-                                       int x_resolution,
-                                       int y_resolution);
-void 		 cheese_webcam_setup 			(CheeseWebcam *webcam, GError **error);
-void 		 cheese_webcam_play 			(CheeseWebcam *webcam);
-void 		 cheese_webcam_stop 			(CheeseWebcam *webcam);
-void 		 cheese_webcam_set_effect 		(CheeseWebcam *webcam, CheeseWebcamEffect effect);
-void 		 cheese_webcam_start_video_recording  	(CheeseWebcam *webcam, char *filename);
-void 	         cheese_webcam_stop_video_recording 	(CheeseWebcam *webcam);
-void 		 cheese_webcam_take_photo 		(CheeseWebcam *webcam, char *filename);
-gboolean	 cheese_webcam_has_webcam 		(CheeseWebcam *webcam);
-int            	 cheese_webcam_get_num_webcam_devices	(CheeseWebcam *webcam);
-GArray *cheese_webcam_get_video_formats (CheeseWebcam *webcam);
-void cheese_webcam_set_video_format (CheeseWebcam *webcam,
-                                     CheeseVideoFormat *format);
+GType              cheese_webcam_get_type (void);
+CheeseWebcam      *cheese_webcam_new (GtkWidget *video_window, 
+                                      char *webcam_device_name, 
+                                      int x_resolution,
+                                      int y_resolution);
 CheeseVideoFormat *cheese_webcam_get_current_video_format (CheeseWebcam *webcam);
+void               cheese_webcam_setup (CheeseWebcam *webcam, GError **error);
+void               cheese_webcam_play (CheeseWebcam *webcam);
+void               cheese_webcam_stop (CheeseWebcam *webcam);
+void               cheese_webcam_set_effect (CheeseWebcam *webcam, CheeseWebcamEffect effect);
+void               cheese_webcam_start_video_recording (CheeseWebcam *webcam, char *filename);
+void               cheese_webcam_stop_video_recording (CheeseWebcam *webcam);
+void               cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename);
+gboolean           cheese_webcam_has_webcam (CheeseWebcam *webcam);
+int                cheese_webcam_get_num_webcam_devices (CheeseWebcam *webcam);
+int                cheese_webcam_get_selected_device (CheeseWebcam *webcam);
+GArray            *cheese_webcam_get_webcam_devices (CheeseWebcam *webcam);
+gboolean           cheese_webcam_switch_webcam_device (CheeseWebcam *webcam);
+GArray            *cheese_webcam_get_video_formats (CheeseWebcam *webcam);
+void               cheese_webcam_set_video_format (CheeseWebcam *webcam,
+                                                   CheeseVideoFormat *format);
 G_END_DECLS
 
 #endif /* __CHEESE_WEBCAM_H__ */

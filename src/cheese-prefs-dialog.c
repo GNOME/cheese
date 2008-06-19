@@ -1,6 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: s; c-basic-offset: 2; tab-width: 2 -*- */
 /*
  * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
+ * Copyright (C) 2008 daniel g. siegel <dgsiegel@gmail.com>
  * 
  * Licensed under the GNU General Public License Version 2
  *
@@ -24,6 +24,7 @@ typedef struct
 {
   GtkWidget *cheese_prefs_dialog;
   GtkWidget *resolution_combo_box;
+  GtkWidget *webcam_combo_box;
   
   GtkWidget *parent;
   CheeseWebcam *webcam;
@@ -51,13 +52,14 @@ cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
                                                                           "cheese_prefs_dialog"));
   prefs_dialog->resolution_combo_box = GTK_WIDGET (gtk_builder_get_object (builder, 
                                                                            "resolution_combo_box"));
-  
+  prefs_dialog->webcam_combo_box = GTK_WIDGET (gtk_builder_get_object (builder,
+                                                                       "webcam_combo_box"));
   gtk_window_set_transient_for (GTK_WINDOW (prefs_dialog->cheese_prefs_dialog),
                                 GTK_WINDOW (prefs_dialog->parent));
 }
 
 static void
-on_resolution_changed (CheesePrefsWidget *widget, gpointer user_data)
+cheese_prefs_dialog_on_resolution_changed (CheesePrefsWidget *widget, gpointer user_data)
 {
   CheeseWebcam *webcam;
   CheeseVideoFormat *current_format;
@@ -73,21 +75,52 @@ on_resolution_changed (CheesePrefsWidget *widget, gpointer user_data)
 }
 
 static void
+cheese_prefs_dialog_on_device_changed (CheesePrefsWidget *widget, CheesePrefsDialog *prefs_dialog)
+{
+  CheeseWebcam *webcam;
+  char *new_device_name;
+  char *old_device_name;
+
+  g_object_get (widget, "webcam", &webcam, NULL);
+  g_object_get (webcam, "device_name", &old_device_name, NULL);
+
+  new_device_name = cheese_prefs_webcam_combo_get_selected_webcam (CHEESE_PREFS_WEBCAM_COMBO (widget));
+  g_object_set (webcam, "device_name", new_device_name, NULL);
+  g_free (new_device_name);
+  if (!cheese_webcam_switch_webcam_device (webcam))
+  {
+    g_warning ("Couldn't change webcam device.");
+    /* Revert to default device */
+    g_object_set (webcam, "device_name", old_device_name, NULL);
+  }
+  cheese_prefs_dialog_widgets_synchronize (prefs_dialog->widgets);
+  g_free (old_device_name);
+}
+
+static void
 cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
 {
-  CheesePrefsWidget *widget;
+  CheesePrefsWidget *resolution_widget;
+  CheesePrefsWidget *webcam_widget;
   
-  widget = CHEESE_PREFS_WIDGET (cheese_prefs_resolution_combo_new (prefs_dialog->resolution_combo_box,
-                                                                   prefs_dialog->webcam,
-                                                                   "gconf_prop_x_resolution",
-                                                                   "gconf_prop_y_resolution",
-                                                                   0, 0));
-  g_signal_connect (G_OBJECT (widget), "changed",
-                    G_CALLBACK (on_resolution_changed),
+  resolution_widget = CHEESE_PREFS_WIDGET (cheese_prefs_resolution_combo_new (prefs_dialog->resolution_combo_box,
+                                                                              prefs_dialog->webcam,
+                                                                              "gconf_prop_x_resolution",
+                                                                              "gconf_prop_y_resolution",
+                                                                              0, 0));
+  g_signal_connect (G_OBJECT (resolution_widget), "changed",
+                    G_CALLBACK (cheese_prefs_dialog_on_resolution_changed),
                     NULL);
-  
-  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, widget);
-  
+  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, resolution_widget);
+
+  webcam_widget = CHEESE_PREFS_WIDGET (cheese_prefs_webcam_combo_new (prefs_dialog->webcam_combo_box,
+                                                                      prefs_dialog->webcam,
+                                                                      "gconf_prop_webcam"));
+  g_signal_connect (G_OBJECT (webcam_widget), "changed",
+                    G_CALLBACK (cheese_prefs_dialog_on_device_changed),
+                    prefs_dialog);
+  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, webcam_widget);
+
   cheese_prefs_dialog_widgets_synchronize (prefs_dialog->widgets);
 }
 
@@ -102,8 +135,7 @@ cheese_prefs_dialog_destroy_dialog (CheesePrefsDialog *prefs_dialog)
 }
 
 void
-cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, 
-                         CheeseWebcam *webcam)
+cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseWebcam *webcam)
 {
   CheesePrefsDialog *prefs_dialog;
   

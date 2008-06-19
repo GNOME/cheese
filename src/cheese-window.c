@@ -1376,9 +1376,8 @@ setup_camera (CheeseWindow *cheese_window)
   GtkWidget *message_area;
   
   GError *error;
-  
   g_object_get (cheese_window->gconf, "gconf_prop_x_resolution", &x_resolution,
-                "gconf_prop_y_resolution", &y_resolution, NULL);
+                "gconf_prop_y_resolution", &y_resolution, "gconf_prop_webcam", &webcam_device, NULL);
 
   gdk_threads_enter ();
   cheese_window->webcam = cheese_webcam_new (cheese_window->screen, 

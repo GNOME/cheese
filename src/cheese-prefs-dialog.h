@@ -1,4 +1,3 @@
-/* -*- Mode: C; indent-tabs-mode: s; c-basic-offset: 2; tab-width: 2 -*- */
 /*
  * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
  * 
@@ -28,8 +27,8 @@
 #include "cheese-webcam.h"
 #include "cheese-prefs-dialog-widgets.h"
 #include "cheese-prefs-resolution-combo.h"
+#include "cheese-prefs-webcam-combo.h"
 
-void cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, 
-                              CheeseWebcam *webcam);
+void cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseWebcam *webcam);
 
 #endif /* _CHEESE_PREFS_DIALOG_H_ */
