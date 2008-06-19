@@ -1,3 +1,13 @@
+2008-06-19  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* src/cheese-countdown.c: (do_text):
+	* src/cheese-thumb-view.c: (cheese_thumb_view_fill):
+	* src/cheese-window.c: (cheese_window_cmd_save_as),
+	(cheese_window_cmd_move_file_to_trash),
+	(cheese_window_cmd_set_about_me_photo),
+	(cheese_window_countdown_picture_cb), (setup_camera):
+	Fix some gcc warnings. (#537490).
+
 2008-06-16  daniel g. siegel <dgsiegel@gmail.com>
 
 	* configure.ac,

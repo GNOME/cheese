@@ -316,7 +316,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     return;
 
   //read videos from the vid directory
-  while (name = g_dir_read_name (dir_videos))
+  while ((name = g_dir_read_name (dir_videos)))
   {
     if (!(g_str_has_suffix (name, VIDEO_NAME_SUFFIX)))
       continue;
@@ -330,7 +330,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
   g_dir_close (dir_videos);
   
   //read photos from the photo directory
-  while (name = g_dir_read_name (dir_photos))
+  while ((name = g_dir_read_name (dir_photos)))
   {
     if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
       continue;

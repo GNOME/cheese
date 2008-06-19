@@ -332,7 +332,7 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
                                     GTK_DIALOG_MODAL |
                                     GTK_DIALOG_DESTROY_WITH_PARENT,
                                     GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-                                    header);
+                                    "%s", header);
       gtk_dialog_run (GTK_DIALOG (dlg));
       gtk_widget_destroy (dlg);
       g_free (header);
@@ -361,9 +361,9 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 
       error_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
                                              GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                             GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, primary);
+                                             GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", primary);
       gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
-                                                secondary);
+                                                "%s", secondary);
       gtk_dialog_run (GTK_DIALOG (error_dialog));
       gtk_widget_destroy (error_dialog);
 
@@ -516,8 +516,8 @@ cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_wi
         header = g_strdup_printf (_("Could not set the Account Photo"));
         dlg = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
                                       GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                      GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, header);
-        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), error->message);
+                                      GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", header);
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), "%s", error->message);
         gtk_dialog_run (GTK_DIALOG (dlg));
         gtk_widget_destroy (dlg);
         g_free (header);
@@ -846,7 +846,7 @@ cheese_window_countdown_picture_cb (gpointer data)
   audio_play = gst_audio_play_file (file, &error);
   if (!audio_play) 
   {
-    g_warning (error ? error->message : "Unknown error");
+    g_warning ("%s", error ? error->message : "Unknown error");
     g_error_free (error);
   }
 
@@ -1393,7 +1393,7 @@ setup_camera (CheeseWindow *cheese_window)
 
   if (error != NULL)
   {
-    GtkDialog *dialog;
+    GtkWidget *dialog;
 
     gdk_threads_enter ();
 
@@ -1401,13 +1401,13 @@ setup_camera (CheeseWindow *cheese_window)
                                      0,
                                      GTK_MESSAGE_ERROR, 
                                      GTK_BUTTONS_OK, 
-                                     error->message);
+                                     "%s", error->message);
 
     g_error_free(error);
 
     g_signal_connect(dialog, "response", G_CALLBACK(gtk_widget_destroy), NULL);
     gtk_window_set_title(GTK_WINDOW (dialog), "Critical Error");
-    gtk_dialog_run (dialog);
+    gtk_dialog_run (GTK_DIALOG (dialog));
 
     // Clean up and exit
     cheese_window_cmd_close(NULL, cheese_window);

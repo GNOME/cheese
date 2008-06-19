@@ -314,7 +314,7 @@ do_text (cairo_t*    pContext,
   }
 
   /* print and layout string (pango-wise) */
-  g_string_printf (pTextString, pcText);
+  g_string_printf (pTextString, "%s", pcText);
   pango_layout_set_text (pLayout, pTextString->str, -1);
   g_string_free (pTextString, TRUE);
 
