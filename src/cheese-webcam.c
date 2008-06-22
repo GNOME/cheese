@@ -31,7 +31,6 @@
 #include <gst/gst.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <X11/Xlib.h>
-#include <X11/extensions/xf86vmode.h>
 #include <libhal.h>
 
 #include "cheese-webcam.h"
