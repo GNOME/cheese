@@ -107,7 +107,6 @@ typedef struct
   GtkWidget *take_picture;
 
 #ifdef HILDON
-   d
    GtkWidget *main_hbox;
    GtkWidget *subwindow;
 #endif      
