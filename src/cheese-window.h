@@ -23,6 +23,6 @@
 #include <gtk/gtk.h>
 
 
-void cheese_window_init (void);
+void cheese_window_init (char *hal_dev_udi);
 
 #endif /* __CHEESE_WINDOW_H__ */

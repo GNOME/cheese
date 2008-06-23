@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <string.h>
 #include <glib.h>
 
 #include "cheese-webcam.h"
@@ -99,6 +100,7 @@ cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
   int selected_device_ind;
   int num_devices;
   CheeseWebcamDevice *selected_device;
+  char *gconf_device_name;
   char *product_name;
   char *device_name;
   CheeseWebcamDevice *device_ptr;
@@ -118,10 +120,20 @@ cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
   
   webcam_devices = cheese_webcam_get_webcam_devices (priv->webcam);
-  selected_device_ind = cheese_webcam_get_selected_device (priv->webcam);
+  selected_device_ind = cheese_webcam_get_selected_device_index (priv->webcam);
   num_devices = cheese_webcam_get_num_webcam_devices (priv->webcam);
   
   selected_device = &g_array_index (webcam_devices, CheeseWebcamDevice, selected_device_ind);
+  
+  /* If the selected device is not the same device as the one in gconf, the
+  selected device isn't available or was set by --hal-device. Set it now.
+  Not sure if this is desired behavior */
+  g_object_get (prefs_widget->gconf, priv->webcam_device_key, &gconf_device_name, NULL);
+  if (strcmp(selected_device->video_device, gconf_device_name) != 0)
+  {
+    g_object_set(prefs_widget->gconf, priv->webcam_device_key, selected_device->video_device, NULL);
+  }
+  g_free(gconf_device_name);
   
   gtk_list_store_clear (priv->list_store);
   

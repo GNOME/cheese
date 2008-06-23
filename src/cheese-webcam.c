@@ -299,6 +299,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   {
     priv->webcam_devices[i].num_video_formats = 0;
     priv->webcam_devices[i].video_formats = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
+    priv->webcam_devices[i].hal_udi = g_strdup (udis[i]);
   }
 
   for (i = 0; i < priv->num_webcam_devices; i++) 
@@ -1165,6 +1166,7 @@ cheese_webcam_finalize (GObject *object)
       g_free (g_array_index (priv->webcam_devices[i].video_formats, CheeseVideoFormat, j).framerates);
       g_free (g_array_index (priv->webcam_devices[i].video_formats, CheeseVideoFormat, j).mimetype);
     }
+    g_free (priv->webcam_devices[i].hal_udi);
     g_array_free (priv->webcam_devices[i].video_formats, TRUE);
   }
   g_free (priv->webcam_devices);
@@ -1335,13 +1337,19 @@ cheese_webcam_new (GtkWidget* video_window, char *webcam_device_name,
 }
 
 void
-cheese_webcam_setup (CheeseWebcam *webcam, GError **error)
+cheese_webcam_setup (CheeseWebcam *webcam, char *hal_dev_udi, GError **error)
 {
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   gboolean ok = TRUE;
   GError *tmp_error = NULL;
 
   cheese_webcam_detect_webcam_devices (webcam);
+  
+  if (hal_dev_udi != NULL)
+  {
+    cheese_webcam_set_device_by_dev_udi (webcam, hal_dev_udi);
+  }
+
   cheese_webcam_create_video_display_bin (webcam, &tmp_error);
   if (tmp_error != NULL)
   {
@@ -1382,7 +1390,7 @@ cheese_webcam_setup (CheeseWebcam *webcam, GError **error)
 }
 
 int         
-cheese_webcam_get_selected_device (CheeseWebcam *webcam)
+cheese_webcam_get_selected_device_index (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
   return priv->selected_device;
@@ -1402,6 +1410,27 @@ cheese_webcam_get_webcam_devices (CheeseWebcam *webcam)
                                      priv->webcam_devices,
                                      priv->num_webcam_devices);
   return devices_arr;
+}
+
+void
+cheese_webcam_set_device_by_dev_file (CheeseWebcam *webcam, char *file)
+{
+  g_object_set(webcam, "device_name", file, NULL);
+}
+
+void
+cheese_webcam_set_device_by_dev_udi (CheeseWebcam *webcam, char *udi)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  int i;
+  for (i = 0; i < priv->num_webcam_devices; i++)
+  {
+    if (strcmp(priv->webcam_devices[i].hal_udi, udi) == 0)
+    {
+      g_object_set(webcam, "device_name", priv->webcam_devices[i].video_device, NULL);
+      break;
+    }
+  }
 }
 
 GArray *

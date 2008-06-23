@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright (C) 2008 Ryan zeigler <zeiglerr@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -53,6 +54,7 @@ typedef struct
 typedef struct
 {
   char *video_device; 
+  char *hal_udi;
   char *gstreamer_src;
   char *product_name; 
   int num_video_formats;
@@ -95,7 +97,7 @@ CheeseWebcam      *cheese_webcam_new (GtkWidget *video_window,
                                       int x_resolution,
                                       int y_resolution);
 CheeseVideoFormat *cheese_webcam_get_current_video_format (CheeseWebcam *webcam);
-void               cheese_webcam_setup (CheeseWebcam *webcam, GError **error);
+void               cheese_webcam_setup (CheeseWebcam *webcam, char *udi, GError **error);
 void               cheese_webcam_play (CheeseWebcam *webcam);
 void               cheese_webcam_stop (CheeseWebcam *webcam);
 void               cheese_webcam_set_effect (CheeseWebcam *webcam, CheeseWebcamEffect effect);
@@ -104,8 +106,10 @@ void               cheese_webcam_stop_video_recording (CheeseWebcam *webcam);
 void               cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename);
 gboolean           cheese_webcam_has_webcam (CheeseWebcam *webcam);
 int                cheese_webcam_get_num_webcam_devices (CheeseWebcam *webcam);
-int                cheese_webcam_get_selected_device (CheeseWebcam *webcam);
+int                cheese_webcam_get_selected_device_index (CheeseWebcam *webcam);
 GArray            *cheese_webcam_get_webcam_devices (CheeseWebcam *webcam);
+void              cheese_webcam_set_device_by_dev_file (CheeseWebcam *webcam, char *file);
+void              cheese_webcam_set_device_by_dev_udi (CheeseWebcam *webcam,  char *udi);
 gboolean           cheese_webcam_switch_webcam_device (CheeseWebcam *webcam);
 GArray            *cheese_webcam_get_video_formats (CheeseWebcam *webcam);
 void               cheese_webcam_set_video_format (CheeseWebcam *webcam,

@@ -2,6 +2,7 @@
  * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
  * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright (C) 2008 Patryk Zawadzki <patrys@pld-linux.org>
+ * Copyright (C) 2008 Ryan Zeigler <zeiglerr@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -63,6 +64,8 @@ typedef struct
 {
   gboolean recording;
 
+  /* UDI device requested on the command line */
+  char *startup_hal_dev_udi;
   char *video_filename;
   char *photo_filename;
 
@@ -1387,8 +1390,7 @@ setup_camera (CheeseWindow *cheese_window)
   g_free (webcam_device);
 
   error = NULL;
-  cheese_webcam_setup (cheese_window->webcam, &error);
-
+  cheese_webcam_setup (cheese_window->webcam, cheese_window->startup_hal_dev_udi, &error);
   if (error != NULL)
   {
     GtkWidget *dialog;
@@ -1441,12 +1443,13 @@ setup_camera (CheeseWindow *cheese_window)
 }
 
 void
-cheese_window_init ()
+cheese_window_init (char *hal_dev_udi)
 {
   CheeseWindow *cheese_window;
 
   cheese_window = g_new0 (CheeseWindow, 1);
 
+  cheese_window->startup_hal_dev_udi = hal_dev_udi;
   cheese_window->gconf = cheese_gconf_new ();
   cheese_window->audio_play_counter = 0;
   cheese_window->rand = g_rand_new ();

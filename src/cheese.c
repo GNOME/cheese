@@ -111,7 +111,7 @@ main (int argc, char **argv)
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
-  cheese_window_init ();
+  cheese_window_init (CheeseOptions.hal_device_id);
   
   gdk_threads_enter ();
   gtk_main ();
