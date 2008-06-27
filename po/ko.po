@@ -8,67 +8,116 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-25 00:14+0900\n"
-"PO-Revision-Date: 2008-02-25 04:23+0900\n"
+"POT-Creation-Date: 2008-06-27 11:09+0900\n"
+"PO-Revision-Date: 2008-06-27 11:21+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:574
-msgid "A cheesy program to take photos and videos from your webcam"
-msgstr "웹카메라에서 사진과 비디오를 찍는 프로그램"
-
-#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
-#: ../src/cheese.c:84
+#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:93
 msgid "Cheese"
 msgstr "치즈"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:656
-#: ../src/cheese-window.c:884
-msgid "_Effects"
-msgstr "효과(_E)"
-
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:888
-msgid "_Photo"
-msgstr "사진(_P)"
-
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:744
-#: ../src/cheese-window.c:899 ../src/cheese-window.c:1019
-msgid "_Take a photo"
-msgstr "사진 찍기(_T)"
-
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:889
-msgid "_Video"
-msgstr "비디오(_V)"
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:636
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "웹카메라에서 사진과 비디오를 찍고, 재미있는 그래픽 효과를 사용할 수도 있습니다"
 
 #: ../data/cheese.schemas.in.h:1
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr "사진을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_PHOTO/Webcam\"을 사용합니다."
+
+#: ../data/cheese.schemas.in.h:2
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr "동영상을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_VIDEO/Webcam\"을 사용합니다."
+
+#: ../data/cheese.schemas.in.h:3
 msgid ""
 "Effects, that are applied on startup. Possible values are: Mauve, Noir/"
 "Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
 "Vertigo, Edge, Dice and Warp"
-msgstr "시작할 때 적용할 효과. 가능한 값은 다음과 같습니다: Mauve, Noir/Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, Vertigo, Edge, Dice, Warp"
+msgstr ""
+"시작할 때 적용할 효과. 가능한 값은 다음과 같습니다: Mauve, Noir/Blanc, "
+"Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, Vertigo, Edge, "
+"Dice, Warp"
 
-#: ../data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:4
+msgid "Photo Path"
+msgstr "사진 경로"
+
+#: ../data/cheese.schemas.in.h:5
 msgid "Selected Effects"
 msgstr "선택한 효과"
 
-#: ../data/cheese.schemas.in.h:3
-msgid "The device-string, which points to the webcam, e.g. /dev/video0"
+#: ../data/cheese.schemas.in.h:6
+msgid "The X resolution of the image captured from the camera"
+msgstr "카메라에서 캡쳐할 그림의 가로 해상도"
+
+#: ../data/cheese.schemas.in.h:7
+msgid "The Y resolution of the image captured from the camera"
+msgstr "카메라에서 캡쳐할 그림의 세로 해상도"
+
+#: ../data/cheese.schemas.in.h:8
+msgid "The device-string which points to the webcam, e.g. /dev/video0"
 msgstr "웹카메라를 가리키는 장치 문자열, 예를 들어 /dev/video0"
 
-#: ../data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:9
 msgid "Use a countdown"
 msgstr "초읽기 사용"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:10
+msgid "Video Path"
+msgstr "동영상 경로"
+
+#: ../data/cheese.schemas.in.h:11
 msgid "Webcam device string indicator"
 msgstr "웹카메라 장치 문자열"
 
-#: ../data/cheese.schemas.in.h:6
-msgid "Whether a countdown should be used, when taking a photo"
+#: ../data/cheese.schemas.in.h:12
+msgid "Whether a countdown should be used when taking a photo"
 msgstr "사진을 찍을 때 초읽기를 사용할 지 여부"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "X resolution"
+msgstr "가로 해상도"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Y resolution"
+msgstr "세로 해상도"
+
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:718
+#: ../src/cheese-window.c:1001
+msgid "_Effects"
+msgstr "효과(_E)"
+
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1009
+msgid "_Photo"
+msgstr "사진(_P)"
+
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:819
+msgid "_Take a Photo"
+msgstr "사진 찍기(_T)"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1010
+msgid "_Video"
+msgstr "비디오(_V)"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>카메라</b>"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "<b>Resolution</b>"
+msgstr "<b>해상도</b>"
+
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1005
+msgid "Preferences"
+msgstr "기본 설정"
 
 #: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
@@ -76,49 +125,74 @@ msgstr "효과 없음"
 
 #: ../src/cheese-effect-chooser.c:63
 msgid "Mauve"
-msgstr ""
+msgstr "자주빛"
 
 #: ../src/cheese-effect-chooser.c:65
 msgid "Noir/Blanc"
-msgstr ""
+msgstr "느와르/흑백"
 
 #: ../src/cheese-effect-chooser.c:67
 msgid "Saturation"
-msgstr ""
+msgstr "색 조정"
 
 #: ../src/cheese-effect-chooser.c:69
 msgid "Hulk"
-msgstr ""
+msgstr "헐크"
 
 #: ../src/cheese-effect-chooser.c:71
 msgid "Vertical Flip"
-msgstr ""
+msgstr "상하 뒤집기"
 
 #: ../src/cheese-effect-chooser.c:73
 msgid "Horizontal Flip"
-msgstr ""
+msgstr "좌우 뒤집기"
 
+# 영화 오스틴파워에서 나오는 속어
 #: ../src/cheese-effect-chooser.c:75
 msgid "Shagadelic"
-msgstr ""
+msgstr "샤방"
 
 #: ../src/cheese-effect-chooser.c:77
 msgid "Vertigo"
-msgstr ""
+msgstr "현기증"
 
 #: ../src/cheese-effect-chooser.c:79
 msgid "Edge"
-msgstr ""
+msgstr "윤곽선"
 
 #: ../src/cheese-effect-chooser.c:81
 msgid "Dice"
-msgstr ""
+msgstr "격자"
 
 #: ../src/cheese-effect-chooser.c:83
 msgid "Warp"
-msgstr ""
+msgstr "일그러짐"
 
-#: ../src/cheese-window.c:132
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:432 ../src/cheese-countdown.c:450
+#: ../src/cheese-countdown.c:468
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "카메라가 없습니다!"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "더 자세한 정보는 도움말을 참고하십시오."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "도움말"
+
+#: ../src/cheese-window.c:153
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -127,7 +201,7 @@ msgstr ""
 "다음을 표시할 브라우저를 여는 데 실패했습니다:\n"
 "%s"
 
-#: ../src/cheese-window.c:155
+#: ../src/cheese-window.c:177
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -136,7 +210,7 @@ msgstr ""
 "다음에 메세지를 보낼 전자메일 클라이언트를 여는 데 실패했습니다:\n"
 "%s"
 
-#: ../src/cheese-window.c:246
+#: ../src/cheese-window.c:274
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -145,144 +219,174 @@ msgstr ""
 "다음을 표시할 프로그램을 실행하는 데 실패했습니다:\n"
 "%s"
 
-#: ../src/cheese-window.c:265
+#: ../src/cheese-window.c:293
 msgid "Save File"
 msgstr "파일 저장"
 
-#: ../src/cheese-window.c:303
+#: ../src/cheese-window.c:331
 #, c-format
 msgid "Could not save %s"
 msgstr "%s 파일을 저장할 수 없습니다"
 
-#: ../src/cheese-window.c:330
+#: ../src/cheese-window.c:360
 msgid "Cannot move file to trash"
 msgstr "파일을 휴지통에 옮길 수 없습니다"
 
-#: ../src/cheese-window.c:331
+#: ../src/cheese-window.c:361
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "\"%s\" 파일을 휴지통에 옮길 수 없습니다. 자세히: %s"
 
-#: ../src/cheese-window.c:363
+#: ../src/cheese-window.c:393
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "정말로 모든 사진과 비디오를 휴지통에 옮기시겠습니까?"
 
-#: ../src/cheese-window.c:371
+#: ../src/cheese-window.c:401
 msgid "_Move to Trash"
 msgstr "휴지통에 옮기기(_M)"
 
-#: ../src/cheese-window.c:459
+#: ../src/cheese-window.c:518
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "계정 사진을 설정할 수 없습니다"
 
-#: ../src/cheese-window.c:534
+#: ../src/cheese-window.c:597 ../src/cheese-window.c:877
 msgid "Unable to open help file for Cheese"
 msgstr "치즈의 도움말 파일을 열 수 없습니다"
 
-#: ../src/cheese-window.c:551
+#: ../src/cheese-window.c:614
 msgid "translator-credits"
 msgstr "류창우 <cwryu@debian.org>, 2008."
 
-#: ../src/cheese-window.c:554
+#: ../src/cheese-window.c:617
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
-msgstr "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+msgstr ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
 
-#: ../src/cheese-window.c:558
+#: ../src/cheese-window.c:621
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
-msgstr "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+msgstr ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
 
-#: ../src/cheese-window.c:562
+#: ../src/cheese-window.c:625
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:578
+#: ../src/cheese-window.c:640
 msgid "Cheese Website"
 msgstr "치즈 웹사이트"
 
-#: ../src/cheese-window.c:667
-msgid "_Back"
-msgstr "뒤로(_B)"
-
-#: ../src/cheese-window.c:734 ../src/cheese-window.c:793
+#: ../src/cheese-window.c:807
 msgid "_Start recording"
 msgstr "녹화 시작(_S)"
 
-#: ../src/cheese-window.c:851
-msgid "_Stop recording"
+#: ../src/cheese-window.c:894
+msgid "_Start Recording"
+msgstr "녹화 시작(_S)"
+
+#: ../src/cheese-window.c:957
+msgid "_Stop Recording"
 msgstr "녹화 중지(_S)"
 
-#: ../src/cheese-window.c:870
+#: ../src/cheese-window.c:983
 msgid "_Cheese"
 msgstr "치즈(_C)"
 
-#: ../src/cheese-window.c:872
+#: ../src/cheese-window.c:985
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../src/cheese-window.c:873
-msgid "Move all to Trash"
+#: ../src/cheese-window.c:986
+msgid "Move All to Trash"
 msgstr "모두 휴지통으로 옮기기"
 
-#: ../src/cheese-window.c:875
+#: ../src/cheese-window.c:988
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../src/cheese-window.c:878
+#: ../src/cheese-window.c:991
 msgid "_Contents"
 msgstr "차례(_C)"
 
-#: ../src/cheese-window.c:878
-msgid "Help on this application"
+#: ../src/cheese-window.c:991
+msgid "Help on this Application"
 msgstr "이 프로그램에 대한 도움말"
 
-#: ../src/cheese-window.c:893
+#: ../src/cheese-window.c:997
+msgid "Countdown"
+msgstr "초읽기"
+
+#: ../src/cheese-window.c:1014
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: ../src/cheese-window.c:894
+#: ../src/cheese-window.c:1015
 msgid "Save _As..."
 msgstr "다른 이름으로 저장(_A)..."
 
-#: ../src/cheese-window.c:895
+#: ../src/cheese-window.c:1016
 msgid "Move to _Trash"
 msgstr "휴지통으로 옮기기(_T)"
 
-#: ../src/cheese-window.c:903
+#: ../src/cheese-window.c:1020 ../src/cheese-window.c:1195
+msgid "_Take a photo"
+msgstr "사진 찍기(_T)"
+
+#: ../src/cheese-window.c:1024
 msgid "_Recording"
 msgstr "녹화(_R)"
 
-#: ../src/cheese-window.c:907
+#: ../src/cheese-window.c:1028
 msgid "_Set As Account Photo"
 msgstr "계정 사진으로 설정(_S)"
 
-#: ../src/cheese-window.c:911
+#: ../src/cheese-window.c:1032
 msgid "Send by _Mail"
 msgstr "메일로 보내기(_M)"
 
-#: ../src/cheese-window.c:915
+#: ../src/cheese-window.c:1036
+msgid "Send _To"
+msgstr "보내기(_T)"
+
+#: ../src/cheese-window.c:1040
 msgid "Export to F-_Spot"
 msgstr "F-Spot에 내보내기(_S)"
 
-#: ../src/cheese-window.c:919
+#: ../src/cheese-window.c:1044
 msgid "Export to _Flickr"
 msgstr "Flickr에 내보내기(_F)"
 
-#: ../src/cheese.c:71
+#: ../src/cheese-window.c:1328
+msgid "Quit"
+msgstr "끝내기"
+
+#: ../src/cheese-window.c:1334
+msgid "About"
+msgstr "정보"
+
+#: ../src/cheese.c:80
 msgid "Be verbose"
 msgstr "자세히 출력"
 
-#: ../src/cheese.c:86
-msgid "- Take photos and videos from your webcam"
-msgstr "- 웹카메라에서 사진과 비디오를 찍습니다"
+#: ../src/cheese.c:95
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr "- 웹카메라에서 사진과 비디오를 찍고, 재미있는 그래픽 효과를 사용할 수도 있습니다"
