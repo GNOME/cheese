@@ -401,12 +401,14 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
   
   //if both paths are the same, make only one file monitor and point twice to the file monitor (photo_file_monitor = video_file_monitor)
-  if (strcmp (path_videos, path_photos) != 0){
+  if (strcmp (path_videos, path_photos) != 0) {
     //connect signal to photo path
     file = g_file_new_for_path (path_photos);
     priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
     g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
-  }else{
+  }
+  else
+  {
     priv->photo_file_monitor = priv->video_file_monitor;
   }
   
