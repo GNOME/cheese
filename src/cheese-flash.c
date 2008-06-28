@@ -116,7 +116,6 @@ static void
 cheese_flash_class_init (CheeseFlashClass *klass)
 {
   GObjectClass* object_class = G_OBJECT_CLASS (klass);
-  GObjectClass* parent_class = G_OBJECT_CLASS (klass);
 
   g_type_class_add_private (klass, sizeof (CheeseFlashPrivate));
 
