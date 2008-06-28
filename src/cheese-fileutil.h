@@ -23,7 +23,7 @@
 #define __CHEESE_FILEUTIL_H__
 
 #define PHOTO_NAME_SUFFIX ".jpg"
-#define VIDEO_NAME_SUFFIX ".ogg"
+#define VIDEO_NAME_SUFFIX ".ogv"
 
 G_BEGIN_DECLS
 
