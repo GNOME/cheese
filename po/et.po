@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-05-18 16:27+0000\n"
-"PO-Revision-Date: 2008-05-27 16:47+0300\n"
+"POT-Creation-Date: 2008-06-19 21:37+0000\n"
+"PO-Revision-Date: 2008-06-24 17:27+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -33,12 +33,16 @@ msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
+"Fotode salvestamiseks kasutatav rada. Kui see on tühi, siis kasutatakse rada "
+"\"XDG_PHOTO/Webcam\"."
 
 #: ../data/cheese.schemas.in.h:2
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
+"Video salvestamiseks kasutatav rada. Kui see on tühi, siis kasutatakse rada "
+"\"XDG_VIDEO/Webcam\"."
 
 #: ../data/cheese.schemas.in.h:3
 msgid ""
@@ -62,11 +66,11 @@ msgstr "Valitud efektid"
 
 #: ../data/cheese.schemas.in.h:6
 msgid "The X resolution of the image captured from the camera"
-msgstr ""
+msgstr "Kaamerast salvestatud pildi X-telje lahutus"
 
 #: ../data/cheese.schemas.in.h:7
 msgid "The Y resolution of the image captured from the camera"
-msgstr ""
+msgstr "Kaamerast salvestatud pildi Y-telje lahutus"
 
 #: ../data/cheese.schemas.in.h:8
 msgid "The device-string which points to the webcam, e.g. /dev/video0"
@@ -113,10 +117,14 @@ msgid "_Video"
 msgstr "_Video"
 
 #: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>Kaamera</b>"
+
+#: ../data/cheese-prefs.ui.h:2
 msgid "<b>Resolution</b>"
 msgstr "<b>Ekraanilahutus</b>"
 
-#: ../data/cheese-prefs.ui.h:2 ../src/cheese-window.c:1003
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1003
 msgid "Preferences"
 msgstr "Eelistused"
 
@@ -367,7 +375,7 @@ msgstr "Saada _e-postiga"
 
 #: ../src/cheese-window.c:1034
 msgid "Send _To"
-msgstr ""
+msgstr "Saada _asukohta"
 
 #: ../src/cheese-window.c:1038
 msgid "Export to F-_Spot"
