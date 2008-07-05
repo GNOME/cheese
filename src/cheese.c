@@ -50,7 +50,6 @@ void cheese_print_handler(char *string)
   if (fp == NULL)
   {
     path = cheese_fileutil_get_log_path (fileutil);
-    g_object_unref (fileutil);
     
     dir = g_dir_open (path, 0, NULL);
     if (!dir) {
@@ -60,6 +59,7 @@ void cheese_print_handler(char *string)
     filename = g_build_filename (path, "log", NULL);
     fp = fopen (filename, "w");
 
+    g_object_unref (fileutil);
     g_free (filename);
   }
 

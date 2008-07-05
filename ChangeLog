@@ -1,3 +1,9 @@
+2008-07-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c: 
+	  fixes cheese_print_handler, path string was being used after
+	  unreferencing its owner (fileutil)
+
 2008-06-28  daniel g. siegel <dgsiegel@gmail.com>
 
 	* src/cheese-fileutil.h: 
