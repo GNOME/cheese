@@ -219,10 +219,9 @@ cheese_webcam_bus_message_cb (GstBus *bus, GstMessage *message, CheeseWebcam *we
 
   if (GST_MESSAGE_TYPE(message) == GST_MESSAGE_EOS)
   {
+    g_print ("Received EOS message\n");
     g_signal_emit (webcam, webcam_signals [VIDEO_SAVED], 0);
-
-    gst_element_set_locked_state (priv->video_source, FALSE);
-    gst_element_set_locked_state (priv->audio_source, FALSE);
+    
     cheese_webcam_change_sink (webcam, priv->video_display_bin, 
                                priv->photo_save_bin, priv->video_save_bin);
     priv->is_recording = FALSE;
@@ -1118,10 +1117,8 @@ cheese_webcam_stop_video_recording (CheeseWebcam *webcam)
   CheeseWebcamPrivate* priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
   /* Send EOS message down the pipeline by stopping video and audio source*/
-  gst_element_set_state (priv->video_source, GST_STATE_NULL);
-  gst_element_set_locked_state (priv->video_source, TRUE);
-  gst_element_set_state (priv->audio_source, GST_STATE_NULL);
-  gst_element_set_locked_state (priv->audio_source, TRUE);
+  gst_element_send_event (priv->video_source, gst_event_new_eos ());
+  gst_element_send_event (priv->audio_source, gst_event_new_eos ());
 }
 
 void

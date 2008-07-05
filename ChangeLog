@@ -1,5 +1,14 @@
 2008-07-05  Filippo Argiolas <filippo.argiolas@gmail.com>
 
+	* AUTHORS,
+	  configure.ac,
+	  src/cheese-webcam.c:
+	  Bump gstreamer requirements to 0.10.16.
+	  Use gst_element_send_event to cleanly shutdown video recording.
+	  Fixes #523475.
+
+2008-07-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
 	* src/cheese.c: 
 	  fixes cheese_print_handler, path string was being used after
 	  unreferencing its owner (fileutil)
