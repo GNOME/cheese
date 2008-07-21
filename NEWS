@@ -1,6 +1,30 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.5
+  - make recording of videos work again, fixes bug #523475, courtesy of Filippo Argiolas
+  - bump gstreamer requirements to 0.10.16
+  - fixes cheese_print_handler, which resulted in empty cheese logs, courtesy of Filippo Argiolas
+  - allow to choose the webcam using the preference dialog, fixes bug #522200, courtesy of Ryan Zeigler
+  - remove some gcc warnings, fixes bug #537490, courtesy of Cosimo Cecchi
+  - fixed typo, which prevented hildon mode to compile cleanly
+  - removed included <X11/extensions/xf86vmode.h>, fixes bug #539631, courtesy of Marc-Andre Lureau
+  - make hal-device-id command line option work, fixes bug #498023, courtesy of Ryan Zeigler
+  - use ogv as default video extension, fixes bug #524021
+  - added/updated translations
+    - es, courtesy of Jorge González
+    - sv, courtesy of Daniel Nylander
+    - nb, courtesy of Kjartan Maraas
+    - ko, courtesy of Changwoo Ryu
+    - bg, courtesy of Alexander Shopov
+    - oc, courtesy of Yannig Marchegay
+    - et, courtesy of Ivar Smolin
+    - pt_BR, courtesy of Fabrício Godoy and Ferreira Fontenelle
+    - ps, courtesy of Zabeeh Khan
+    - gl, courtesy of Ignacio Casal Quinteiro
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+
 version 2.23.4
   - fix a crash, when using about/quit menu items in hildon mode, fixes bug #535582, courtesy of Michael Terry
   - Instead of crashing report when certain gstreamer are not found, fixes bug #522009, courtesy of Todd Eisenberger
