@@ -1,3 +1,9 @@
+2008-07-22  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-prefs-webcam-combo.c: 
+	  Don't try to access selected_device->video_device if there is no
+	  device. Fixes bug #544062
+
 2008-07-21  daniel g. siegel <dgsiegel@gmail.com>
 
 	* configure.ac,
