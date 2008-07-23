@@ -219,7 +219,7 @@ cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
   // TODO look at this g_free
   g_free (cheese_window->video_filename);
   cheese_window->video_filename = NULL;
-  gtk_widget_set_sensitive (cheese_window->button_effects, TRUE);
+  gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
   gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
 }
 
@@ -888,7 +888,7 @@ cheese_window_stop_recording (CheeseWindow *cheese_window)
   if (cheese_window->recording)
   {
     cheese_webcam_stop_video_recording (cheese_window->webcam);
-    gtk_widget_set_sensitive (cheese_window->button_effects, TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
     gtk_widget_set_sensitive (cheese_window->button_photo, TRUE);
     gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
     gchar * str = g_strconcat ("<b>", _("_Start Recording"), "</b>", NULL);
@@ -951,7 +951,7 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
   {
     if (!cheese_window->recording)
     {
-      gtk_widget_set_sensitive (cheese_window->button_effects, FALSE);
+      gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
       gtk_widget_set_sensitive (cheese_window->button_photo, FALSE);
       gtk_widget_set_sensitive (cheese_window->button_video, FALSE);
       str = g_strconcat ("<b>", _("_Stop Recording"), "</b>", NULL);
@@ -1355,6 +1355,9 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
 
+  action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Edit/Effects");
+  gtk_action_connect_proxy (GTK_ACTION(action), GTK_WIDGET(cheese_window->button_effects));
+
   /* Default handlers for closing the application */
   g_signal_connect (cheese_window->window, "destroy",
                     G_CALLBACK (cheese_window_cmd_close), cheese_window);
@@ -1363,8 +1366,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   g_signal_connect (cheese_window->take_picture, "clicked",
                     G_CALLBACK (cheese_window_action_button_clicked_cb), cheese_window);
-  g_signal_connect (cheese_window->button_effects,
-                    "clicked", G_CALLBACK (cheese_window_effect_button_pressed_cb), cheese_window);
   g_signal_connect (cheese_window->thumb_view, "button_press_event",
                     G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 }
