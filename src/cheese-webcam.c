@@ -866,7 +866,7 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam, GError **error)
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
   GstElement *audio_queue, *audio_convert, *audio_enc;
-  GstElement *video_save_csp, *video_save_scale, *video_enc;
+  GstElement *video_save_csp, *video_save_rate, *video_save_scale, *video_enc;
   GstElement *mux;
   GstPad *pad;
   gboolean ok;
@@ -905,6 +905,11 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam, GError **error)
     return FALSE;
   }
   g_object_set (video_enc, "keyframe-force", 1, NULL);
+  if ((video_save_rate = gst_element_factory_make ("videorate", "video_save_rate")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "videorate");
+    return FALSE;
+  }
   if ((video_save_scale = gst_element_factory_make ("videoscale", "video_save_scale")) == NULL)
   {
     cheese_webcam_set_error_element_not_found(error, "videoscale");
@@ -925,7 +930,7 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam, GError **error)
   }
 
   gst_bin_add_many (GST_BIN (priv->video_save_bin), priv->audio_source, audio_queue,
-                    audio_convert, audio_enc, video_save_csp, video_save_scale, video_enc, 
+                    audio_convert, audio_enc, video_save_csp, video_save_rate, video_save_scale, video_enc, 
                     mux, priv->video_file_sink, NULL);
 
   /* add ghostpad */
@@ -937,7 +942,7 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam, GError **error)
   ok = gst_element_link_many (priv->audio_source, audio_queue, audio_convert, 
                               audio_enc, mux, priv->video_file_sink, NULL);
 
-  ok &= gst_element_link_many (video_save_csp, video_save_scale, video_enc,
+  ok &= gst_element_link_many (video_save_csp, video_save_rate, video_save_scale, video_enc,
                                NULL);
   ok &= gst_element_link (video_enc, mux);
 
