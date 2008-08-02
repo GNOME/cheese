@@ -348,7 +348,7 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
 static void
 cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 {
-  GError *error;
+  GError *error = NULL;
   GList *l;
   gchar *primary, *secondary;
   GtkWidget *error_dialog;
@@ -372,6 +372,7 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
       g_free (primary);
       g_free (secondary);
       g_error_free(error);
+      error = NULL;
       /*TODO if we can't move files to trash, maybe we should try to delete them....*/
     }
   }
