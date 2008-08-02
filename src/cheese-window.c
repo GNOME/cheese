@@ -481,7 +481,7 @@ cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_wi
 {
   EContact *contact;
   EBook *book;
-  GError *error;
+  GError *error = NULL;
   GdkPixbuf *pixbuf;
   const int MAX_PHOTO_HEIGHT = 150;
   const int MAX_PHOTO_WIDTH = 150;

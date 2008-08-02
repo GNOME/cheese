@@ -1,6 +1,11 @@
 2008-08-02  Filippo Argiolas <filippo.argiolas@gmail.com>
 
 	* src/cheese-window.c: 
+	  another uninitialized GError (see previous commit)
+
+2008-08-02  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
 	  initialize error in move_file_to_trash to NULL, fixes #545997
 
 2008-07-28  Filippo Argiolas <filippo.argiolas@gmail.com>
