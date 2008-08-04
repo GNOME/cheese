@@ -251,7 +251,7 @@ cheese_thumb_view_monitor_cb (GFileMonitor      *file_monitor,
     case G_FILE_MONITOR_EVENT_DELETED:
       cheese_thumb_view_remove_item (thumb_view, file);
       break;
-    case G_FILE_MONITOR_EVENT_CREATED:
+    case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT:
       cheese_thumb_view_append_item (thumb_view, file);
       break;
     default:
