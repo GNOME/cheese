@@ -1,6 +1,34 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.6
+  - add a fullscreen mode for kiosks, fixes #478852, courtesy of Felix Kaser
+  - wait until the video has been recorded, to add it to the thumbnail bar, partially fixes #545212
+  - move thumbnail generation to its own thread, displaying a loading icon while
+  	generating thumbnail and a fallback icon if thumbnail fails, fixes bug #545151, courtesy of Filippo Argiolas
+  - toggle effects button if effects is enabled using menu, fixes bug #539195, courtesy of Filippo Argiolas
+  - make cheese have a fullscreen mode for kiosks, fixes bug #478852
+  - resolve sluggish video and out-of-sync audio, fixes bug #542014, courtesy of Filippo Argiolas
+  - do not crash on preferences with no camera attached, fixes bug #544062, courtesy of Filippo Argiolas
+  - cheese should ask to delete files if moving to trash fails, fixes bug #545950, courtesy of Filippo Argiolas
+  - cheese crashed with move all to trash if no trash can be accessed, fixes bug #545997, courtesy of Filippo Argiolas
+  - added/updated translations
+    - ar, courtesy of Khaled Hosny
+    - ca, courtesy of Djihed Afifi <djihed@gmail.com>
+    - el, courtesy of Djihed Afifi <djihed@gmail.com>
+    - es, courtesy of Jorge González
+    - fr, courtesy of Bruno Brouard
+    - gl, courtesy of Ignacio Casal Quinteiro
+    - ja, courtesy of Takeshi Aihana
+    - mk, courtesy of Arangel Angov
+    - nl, courtesy of Wouter Bolsterlee
+    - oc, courtesy of Yannig Marchegay
+    - pl, courtesy of Tomasz Dominikowski
+    - pt, courtesy of Duarte Loreto
+    - th, courtesy of Akom C.
+    - zh_TW, courtesy of Chao-Hsiung Liao
+
+
 version 2.23.5
   - make recording of videos work again, fixes bug #523475, courtesy of Filippo Argiolas
   - bump gstreamer requirements to 0.10.16
