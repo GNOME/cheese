@@ -396,7 +396,9 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
     {
       g_print ("deleting %s\n", g_file_get_basename (l->data));
       if (!g_file_delete (l->data, NULL, &error)) {
-	cheese_window_delete_error_dialog (cheese_window, l->data, error->message);
+	cheese_window_delete_error_dialog (cheese_window, 
+					   l->data, 
+					   error != NULL ? error->message : _("Unknown Error"));
 	g_error_free(error);
 	error = NULL;
       } 
@@ -435,7 +437,9 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 	case GTK_RESPONSE_ACCEPT:
 	  g_print ("deleting %s\n", g_file_get_basename (l->data));
 	  if (!g_file_delete (l->data, NULL, &error)) {
-	    cheese_window_delete_error_dialog (cheese_window, l->data, error->message);
+	       cheese_window_delete_error_dialog (cheese_window, 
+						  l->data, 
+						  error != NULL ? error->message : _("Unknown Error"));
 	    g_error_free(error);
 	    error = NULL;
 	  }
@@ -452,6 +456,7 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 	}
       }
     }
+    g_object_unref (l->data);
   }
 }
   
@@ -487,7 +492,7 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
   if (response !=  GTK_RESPONSE_OK)
     return;
 
-  //delete all videos
+  //append all videos
   path_videos = cheese_fileutil_get_video_path (cheese_window->fileutil);
   dir_videos = g_dir_open (path_videos, 0, NULL);
   while ((name = g_dir_read_name (dir_videos)) != NULL)
@@ -501,11 +506,8 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
       g_free (filename);
     }
   }
-  cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
-  g_list_free (files_list);
   g_dir_close (dir_videos);
-  
-  //delete all photos
+  //append all photos
   path_photos = cheese_fileutil_get_photo_path (cheese_window->fileutil);
   dir_photos = g_dir_open (path_photos, 0, NULL);
   while ((name = g_dir_read_name (dir_photos)) != NULL)
@@ -519,6 +521,7 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
       g_free (filename);
     }
   }
+  //delete all items
   cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
   g_list_free (files_list);
   g_dir_close (dir_photos);

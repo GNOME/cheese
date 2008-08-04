@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
  * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright (C) 2008 Filippo Argiolas <filippo.argiolas@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -45,6 +46,7 @@ typedef struct
   CheeseFileUtil *fileutil;
   GFileMonitor *photo_file_monitor;
   GFileMonitor *video_file_monitor;
+  GnomeThumbnailFactory *factory;
 } CheeseThumbViewPrivate;
 
 enum
@@ -66,21 +68,30 @@ static GtkTargetEntry target_table[] =
   { "text/uri-list", 0, TARGET_URILIST },
 };
 
-static void
-cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
+typedef struct
 {
-  CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  CheeseThumbView *thumb_view;
+  GFile *file;
   GtkTreeIter iter;
+} CheeseThumbViewThreadData;
+
+static void
+cheese_thumb_view_thread_append_item (gpointer data) 
+{
+  CheeseThumbViewThreadData *item = data;
+  CheeseThumbView *thumb_view = item->thumb_view;
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  GnomeThumbnailFactory *factory = priv->factory;
+  GFile *file = item->file;
+  GtkTreeIter iter = item->iter;
   GdkPixbuf *pixbuf = NULL;
-  GnomeThumbnailFactory *factory;
   GFileInfo *info;
   char *thumb_loc;
-  GtkTreePath *path;
   GTimeVal mtime;
   const char *mime_type;
   char *uri;
   char *filename;
-
+  
   info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, NULL);
 
   if (!info)
@@ -89,9 +100,8 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
     return;
   }
   g_file_info_get_modification_time (info, &mtime);
-  mime_type = g_file_info_get_content_type (info);
-
-  factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+  mime_type = g_strdup (g_file_info_get_content_type (info));
+  
   uri = g_file_get_uri (file);
   filename = g_file_get_path (file);
 
@@ -102,28 +112,82 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
     pixbuf = gnome_thumbnail_factory_generate_thumbnail (factory, uri, mime_type);
     if (!pixbuf)
     {
-      g_warning ("could not load %s (%s)\n", filename, mime_type);
-      return;
+      g_warning ("could not generate thumbnail for %s (%s)\n", filename, mime_type);
     }
-    gnome_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, mtime.tv_sec);
   }
   else
   {
     pixbuf = gdk_pixbuf_new_from_file (thumb_loc, NULL);
     if (!pixbuf)
     {
-      g_warning ("could not load %s (%s)\n", filename, mime_type);
-      return;
+      g_warning ("could not load thumbnail %s (%s)\n", filename, mime_type);
     }
   }
   g_object_unref(info);
-  g_object_unref (factory);
   g_free (thumb_loc);
   g_free (uri);
 
-  eog_thumbnail_add_frame (&pixbuf);
+  if (!pixbuf) {
+    gchar *escape = NULL;
+    GError *error = NULL;
+    escape = g_strrstr (mime_type, "/");
+    if (escape != NULL) *escape = '-';
+    pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
+				       mime_type,
+				       96,
+				       GTK_ICON_LOOKUP_GENERIC_FALLBACK,
+				       &error);
+    if (error) {
+      g_warning ("%s", error->message);
+      return;
+    }
+  } else {
+    eog_thumbnail_add_frame (&pixbuf);
+  }
+  
+  gdk_threads_enter ();
+  
+  gtk_list_store_set (priv->store, &iter, THUMBNAIL_PIXBUF_COLUMN,
+                      pixbuf, THUMBNAIL_URL_COLUMN, filename, -1);
+  
+  gdk_threads_leave ();
 
+  g_free (filename);
+  
+  g_object_unref (pixbuf);
+}
+
+static void
+cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
+{
+  CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  GtkTreeIter iter;
+  GtkIconTheme *icon_theme;
+  GdkPixbuf *pixbuf = NULL;
+  GtkTreePath *path;
+  char *filename;
+  GError *error = NULL;
+
+  CheeseThumbViewThreadData *data;
+
+  data = g_new0(CheeseThumbViewThreadData, 1);
+  data->thumb_view = g_object_ref (thumb_view);
+  data->file = g_object_ref (file);
+
+  icon_theme = gtk_icon_theme_get_default ();
+  pixbuf = gtk_icon_theme_load_icon (icon_theme, "image-loading", 96, 0, &error);
+  if (!pixbuf)
+  {
+    g_warning ("Couldn't load icon: %s", error->message);
+    g_error_free (error);
+    error = NULL;
+    return;
+  }
+
+  filename = g_file_get_path (file);
+  
   gtk_list_store_append (priv->store, &iter);
+  data->iter = iter;
   gtk_list_store_set (priv->store, &iter, THUMBNAIL_PIXBUF_COLUMN,
                       pixbuf, THUMBNAIL_URL_COLUMN, filename, -1);
   g_free (filename);
@@ -132,6 +196,14 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
                                 TRUE, 1.0, 0.5);
 
   g_object_unref (pixbuf);
+
+  if (!g_thread_create ((GThreadFunc) cheese_thumb_view_thread_append_item,
+			data, FALSE, &error))
+  {
+    g_error ("Failed to create thumbnail thread: %s\n", error->message);
+    g_error_free (error);
+    return;
+  }
 }
 
 static void
@@ -354,6 +426,7 @@ cheese_thumb_view_finalize (GObject *object)
 
   g_object_unref (priv->store);
   g_object_unref (priv->fileutil);
+  g_object_unref (priv->factory);
   g_file_monitor_cancel (priv->photo_file_monitor);
   g_file_monitor_cancel (priv->video_file_monitor);
 
@@ -382,7 +455,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   eog_thumbnail_init ();
 
   priv->store = gtk_list_store_new (2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
-  
+
   priv->fileutil = cheese_fileutil_new ();
 
   gtk_icon_view_set_model (GTK_ICON_VIEW (thumb_view), GTK_TREE_MODEL (priv->store));
@@ -394,6 +467,8 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   
   g_mkdir_with_parents (path_videos, 0775);
   g_mkdir_with_parents (path_photos, 0775);
+  
+  priv->factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
 
   //connect signal to video path
   file = g_file_new_for_path (path_videos);

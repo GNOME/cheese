@@ -1,5 +1,16 @@
 2008-08-04  Filippo Argiolas <filippo.argiolas@gmail.com>
 
+	* src/cheese-thumb-view.c,
+	  src/cheese-window.c: 
+	  Move thumbnail generation to its own thread. 
+	  Display a loading icon while generating thumbnail.
+	  Display a fallaback icon if thumbnail generation fails.
+	  Fixes #545151. Partially fixes #545212.
+	  Fix a segfault in cheese-window while deleting both videos and
+	  photos.
+
+2008-08-04  Filippo Argiolas <filippo.argiolas@gmail.com>
+
 	* src/cheese-window.c: 
 	  Delete files if move_to_trash fails. Support for Skip, Skip All,
 	  Delete All to resemble common nautilus behavior. Fixes #545950
