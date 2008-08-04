@@ -75,6 +75,8 @@ typedef enum
 typedef struct 
 {
   gboolean recording;
+  
+  gboolean isFullscreen;
 
   /* UDI device requested on the command line */
   char *startup_hal_dev_udi;
@@ -139,6 +141,7 @@ typedef struct
   GtkActionGroup *actions_photo;
   GtkActionGroup *actions_toggle;
   GtkActionGroup *actions_video;
+  GtkActionGroup *actions_fullscreen;
 
   GtkUIManager *ui_manager;
 
@@ -217,12 +220,39 @@ cheese_window_delete_event_cb (GtkWidget *widget, GdkEvent event, gpointer data)
 }
 
 static void
-cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
+cheese_window_make_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
 {
+  GtkWidget *menubar;
+  menubar = gtk_ui_manager_get_widget (cheese_window->ui_manager, "/MainMenu");
+  
+  if (!cheese_window->isFullscreen)
+  {
+    gtk_widget_hide (cheese_window->thumb_view);
+    gtk_widget_hide (cheese_window->thumb_scrollwindow);
+    gtk_widget_hide (menubar);
+    
+    gtk_window_fullscreen (GTK_WINDOW (cheese_window->window));
+  }
+  else
+  {
+    gtk_widget_show_all (cheese_window->window);
+    gtk_window_unfullscreen ( GTK_WINDOW (cheese_window->window));
+  }
+  cheese_window->isFullscreen = !cheese_window->isFullscreen;
+}
+
+static void
+cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
+{  
   // TODO look at this g_free
   g_free (cheese_window->photo_filename);
   cheese_window->photo_filename = NULL;
   gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
+  
+  
+  //experimental fullscreen
+  //cheese_window->isFullscreen = !cheese_window->isFullscreen;
+  //cheese_window_make_fullscreen (cheese_window, cheese_window->isFullscreen);
 }
 
 static void
@@ -256,6 +286,7 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_object_unref (cheese_window->actions_preferences);
   g_object_unref (cheese_window->actions_file);
   g_object_unref (cheese_window->actions_video);
+  g_object_unref (cheese_window->actions_fullscreen);
   g_object_unref (cheese_window->ui_manager);
   g_object_unref (cheese_window->gconf);
 
@@ -1086,6 +1117,10 @@ static const GtkActionEntry action_entries_preferences[] = {
   {"Preferences", GTK_STOCK_PREFERENCES, N_("Preferences"), NULL, NULL, G_CALLBACK (cheese_window_preferences_cb)},
 };
 
+static const GtkToggleActionEntry action_entries_fullscreen[] = {
+  {"Fullscreen", NULL, N_("Fullscreen"), "F11", NULL, G_CALLBACK (cheese_window_make_fullscreen), FALSE},
+};
+
 static const GtkRadioActionEntry action_entries_toggle[] = {
   {"Photo", NULL, N_("_Photo"), NULL, NULL, 0},
   {"Video", NULL, N_("_Video"), NULL, NULL, 1},
@@ -1321,6 +1356,10 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                           "ActionsEffects", 
                                                                           action_entries_effects, 
                                                                           G_N_ELEMENTS (action_entries_effects));
+  cheese_window->actions_fullscreen = cheese_window_toggle_action_group_new (cheese_window, 
+                                                                             "ActionsFullscreen", 
+                                                                             action_entries_fullscreen, 
+                                                                             G_N_ELEMENTS (action_entries_fullscreen));
   cheese_window->actions_preferences = cheese_window_action_group_new (cheese_window, 
                                                                        "ActionsPreferences", 
                                                                        action_entries_preferences, 
@@ -1536,6 +1575,7 @@ cheese_window_init (char *hal_dev_udi)
   cheese_window->audio_play_counter = 0;
   cheese_window->rand = g_rand_new ();
   cheese_window->fileutil = cheese_fileutil_new ();
+  cheese_window->isFullscreen = FALSE;
 
   cheese_window_create_window (cheese_window);
  
