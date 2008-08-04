@@ -53,7 +53,7 @@ typedef enum
 } CheeseMediaMode;
 
 
-GType        cheese_fileutil_get_type(void);
+GType        cheese_fileutil_get_type (void);
 CheeseFileUtil  *cheese_fileutil_new (void);
 gchar *cheese_fileutil_get_video_path (CheeseFileUtil *fileutil);
 gchar *cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil);

@@ -123,25 +123,29 @@ cheese_thumb_view_thread_append_item (gpointer data)
       g_warning ("could not load thumbnail %s (%s)\n", filename, mime_type);
     }
   }
-  g_object_unref(info);
+  g_object_unref (info);
   g_free (thumb_loc);
   g_free (uri);
 
-  if (!pixbuf) {
+  if (!pixbuf)
+  {
     gchar *escape = NULL;
     GError *error = NULL;
     escape = g_strrstr (mime_type, "/");
     if (escape != NULL) *escape = '-';
     pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
-				       mime_type,
-				       96,
-				       GTK_ICON_LOOKUP_GENERIC_FALLBACK,
-				       &error);
-    if (error) {
+                                       mime_type,
+                                       96,
+                                       GTK_ICON_LOOKUP_GENERIC_FALLBACK,
+                                       &error);
+    if (error)
+    {
       g_warning ("%s", error->message);
       return;
     }
-  } else {
+  }
+  else
+  {
     eog_thumbnail_add_frame (&pixbuf);
   }
   
@@ -170,7 +174,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   CheeseThumbViewThreadData *data;
 
-  data = g_new0(CheeseThumbViewThreadData, 1);
+  data = g_new0 (CheeseThumbViewThreadData, 1);
   data->thumb_view = g_object_ref (thumb_view);
   data->file = g_object_ref (file);
 
@@ -235,7 +239,7 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
   {
     GtkTreePath *tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
     gtk_icon_view_select_path (GTK_ICON_VIEW (thumb_view), tree_path);
-    gtk_tree_path_free(tree_path);
+    gtk_tree_path_free (tree_path);
   }
 }
 
@@ -476,7 +480,8 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
   
   //if both paths are the same, make only one file monitor and point twice to the file monitor (photo_file_monitor = video_file_monitor)
-  if (strcmp (path_videos, path_photos) != 0) {
+  if (strcmp (path_videos, path_photos) != 0)
+  {
     //connect signal to photo path
     file = g_file_new_for_path (path_photos);
     priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
@@ -500,7 +505,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   g_signal_connect (G_OBJECT (thumb_view), "drag-data-get",
                     G_CALLBACK (cheese_thumb_view_on_drag_data_get_cb), NULL);
 
-  gtk_tree_sortable_set_sort_column_id(GTK_TREE_SORTABLE (priv->store),
+  gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (priv->store),
                                        THUMBNAIL_URL_COLUMN, GTK_SORT_ASCENDING);
 
   cheese_thumb_view_fill (thumb_view);

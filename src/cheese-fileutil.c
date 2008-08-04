@@ -118,7 +118,8 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
 
   file = g_file_new_for_path (filename);
 
-  if (g_file_query_exists (file, NULL)) {
+  if (g_file_query_exists (file, NULL))
+  {
     num = 1;
     if (mode == CHEESE_MEDIA_MODE_PHOTO)
       filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, PHOTO_NAME_SUFFIX);
@@ -127,7 +128,8 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
 
     file = g_file_new_for_path (filename);
 
-    while (g_file_query_exists (file, NULL)) {
+    while (g_file_query_exists (file, NULL))
+    {
       num++;
       if (mode == CHEESE_MEDIA_MODE_PHOTO)
         filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, PHOTO_NAME_SUFFIX);
@@ -176,13 +178,15 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   //get the path from gconf, xdg or hardcoded
   g_object_get (gconf, "gconf_prop_video_path", &v_path, NULL);
   
-  if (!v_path || strcmp (v_path, "") == 0){
+  if (!v_path || strcmp (v_path, "") == 0)
+  {
     //get xdg    
     v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
-    if (strcmp (v_path, "") == 0){
+    if (strcmp (v_path, "") == 0)
+    {
       //get "~/.gnome2/cheese/media"
       
-      v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", "media", NULL);
+      v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
     }
   }
   priv->video_path = v_path;
@@ -190,12 +194,14 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   //get the path from gconf, xdg or hardcoded
   g_object_get (gconf, "gconf_prop_photo_path", &p_path, NULL);
   
-  if (!p_path || strcmp (p_path, "") == 0){
+  if (!p_path || strcmp (p_path, "") == 0)
+  {
     //get xdg
     p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
-    if (strcmp (p_path, "") == 0){
+    if (strcmp (p_path, "") == 0)
+    {
       //get "~/.gnome2/cheese/media"
-      p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir(), ".gnome2", "cheese", "media", NULL);
+      p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
     }
   }
   priv->photo_path = p_path;

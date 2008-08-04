@@ -107,7 +107,7 @@ rgb_to_hls (gdouble *r,
   }
 
   l = (max + min) / 2;
-  if (fabs(max - min) < 0.0001)
+  if (fabs (max - min) < 0.0001)
   {
     h = 0;
     s = 0;
@@ -473,7 +473,7 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
-  g_free(number);
+  g_free (number);
 
   /* draw the camera */
   cairo_set_source_surface (pContext,
@@ -572,7 +572,7 @@ on_style_set_cb (GtkWidget *widget, GtkStyle *previous_style, gpointer data)
   priv->text.a = 1.0f;
 
   /* create/load svg-icon */
-  g_free(priv->pSurface);
+  g_free (priv->pSurface);
   priv->pSurface = create_surface_from_svg (widget, PACKAGE_DATADIR "/pixmaps/camera-icon.svg");
 }
 

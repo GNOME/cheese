@@ -51,7 +51,7 @@ enum
   GCONF_PROP_PHOTO_PATH
 };
 
-GType        cheese_gconf_get_type(void);
+GType        cheese_gconf_get_type (void);
 CheeseGConf  *cheese_gconf_new ();
 
 G_END_DECLS

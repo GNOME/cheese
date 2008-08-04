@@ -168,7 +168,7 @@ cheese_about_dialog_handle_url (GtkAboutDialog *dialog, const char *url, gpointe
                                            _("Failed to open browser to show:\n%s"), url); 
     gtk_dialog_run (GTK_DIALOG (error_dialog));
     gtk_widget_destroy (error_dialog);
-    g_error_free(error);
+    g_error_free (error);
   }
 }
 
@@ -192,7 +192,7 @@ cheese_about_dialog_handle_email (GtkAboutDialog *dialog, const char *email, gpo
                                            _("Failed to open email client to send message to:\n%s"), email); 
     gtk_dialog_run (GTK_DIALOG (error_dialog));
     gtk_widget_destroy (error_dialog);
-    g_error_free(error);
+    g_error_free (error);
   }
   g_free (uri);
 }
@@ -317,7 +317,7 @@ cheese_window_cmd_open (GtkWidget *widget, CheeseWindow *cheese_window)
                                      _("Failed to launch program to show:\n%s"), uri);
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
-    g_error_free(error);
+    g_error_free (error);
   }
   g_free (uri);
 }
@@ -382,9 +382,9 @@ cheese_window_cmd_save_as (GtkWidget *widget, CheeseWindow *cheese_window)
       gtk_widget_destroy (dlg);
       g_free (header);
     }
-    g_free(target_filename);
+    g_free (target_filename);
   }
-  g_free(filename);
+  g_free (filename);
   gtk_widget_destroy (dialog);
 }
 
@@ -426,12 +426,12 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
     if (delete_all) 
     {
       g_print ("deleting %s\n", g_file_get_basename (l->data));
-      if (!g_file_delete (l->data, NULL, &error)) {
-	cheese_window_delete_error_dialog (cheese_window, 
-					   l->data, 
-					   error != NULL ? error->message : _("Unknown Error"));
-	g_error_free(error);
-	error = NULL;
+      if (!g_file_delete (l->data, NULL, &error))
+      {
+        cheese_window_delete_error_dialog (cheese_window, l->data, 
+                                           error != NULL ? error->message : _("Unknown Error"));
+        g_error_free (error);
+        error = NULL;
       } 
     }
     else
@@ -447,7 +447,8 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (question_dialog),
 						  "%s", secondary);
 	gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL); 
-	if (list_length > 1) {
+	if (list_length > 1)
+	{
 	  /* no need for all those buttons we have a single file to delete */
 	  gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP, CHEESE_RESPONSE_SKIP); 
 	  gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP_ALL, CHEESE_RESPONSE_SKIP_ALL); 
@@ -458,7 +459,7 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 	gtk_widget_destroy (question_dialog);
 	g_free (primary);
 	g_free (secondary);
-	g_error_free(error);
+	g_error_free (error);
 	error = NULL;
 	switch (response) 
 	{
@@ -467,11 +468,12 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
 	  delete_all = TRUE;
 	case GTK_RESPONSE_ACCEPT:
 	  g_print ("deleting %s\n", g_file_get_basename (l->data));
-	  if (!g_file_delete (l->data, NULL, &error)) {
+	  if (!g_file_delete (l->data, NULL, &error))
+	  {
 	       cheese_window_delete_error_dialog (cheese_window, 
 						  l->data, 
 						  error != NULL ? error->message : _("Unknown Error"));
-	    g_error_free(error);
+	    g_error_free (error);
 	    error = NULL;
 	  }
 	  break;
@@ -603,7 +605,7 @@ cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_wi
   if (e_book_get_self (&contact, &book, NULL) && filename) 
   {
     char *name = e_contact_get (contact, E_CONTACT_FULL_NAME);
-    g_print("Setting Account Photo for %s\n", name);
+    g_print ("Setting Account Photo for %s\n", name);
 
     pixbuf = gdk_pixbuf_new_from_file_at_scale (filename, MAX_PHOTO_HEIGHT, 
                                                 MAX_PHOTO_WIDTH, TRUE, NULL);
@@ -622,7 +624,7 @@ cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_wi
                                  "compression", "9", NULL); 
       e_contact_set (contact, E_CONTACT_PHOTO, &photo);
 
-      if (!e_book_commit_contact(book, contact, &error)) 
+      if (!e_book_commit_contact (book, contact, &error)) 
       {
         char *header;
         GtkWidget *dlg;
@@ -826,7 +828,7 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
 {
   if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) == 1)
   {
-    gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 0);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Effects"));
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
@@ -945,7 +947,7 @@ void
 cheese_window_countdown_hide_cb (gpointer data)
 {
   CheeseWindow *cheese_window = (CheeseWindow *) data;
-  gtk_notebook_set_current_page(GTK_NOTEBOOK(cheese_window->notebook_bar), 0);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 0);
 }
 
 void
@@ -987,9 +989,9 @@ cheese_window_no_camera_message_area_response (GtkWidget *widget, gint response_
                                   GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
                                   GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, 
                                   _("Unable to open help file for Cheese"));
-      gtk_dialog_run(GTK_DIALOG(d));
-      gtk_widget_destroy(d);
-      g_error_free(error);
+      gtk_dialog_run (GTK_DIALOG (d));
+      gtk_widget_destroy (d);
+      g_error_free (error);
     }
   }
 }
@@ -1045,11 +1047,11 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
     g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
     if (countdown)
     {
-      cheese_countdown_start((CheeseCountdown *) cheese_window->countdown,
-                             cheese_window_countdown_picture_cb,
-                             cheese_window_countdown_hide_cb,
-                             (gpointer) cheese_window);
-      gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook_bar), 1);
+      cheese_countdown_start ((CheeseCountdown *) cheese_window->countdown,
+                              cheese_window_countdown_picture_cb,
+                              cheese_window_countdown_hide_cb,
+                              (gpointer) cheese_window);
+      gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 1);
     }
     else
     {
@@ -1236,7 +1238,7 @@ cheese_window_set_message_area (CheeseWindow *cheese_window,
     return;
 
   gtk_container_add (GTK_CONTAINER (cheese_window->message_area_frame), cheese_window->message_area);
-  gtk_widget_show (GTK_WIDGET(cheese_window->message_area));
+  gtk_widget_show (GTK_WIDGET (cheese_window->message_area));
 }
 
 static void
@@ -1247,7 +1249,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   GtkBuilder* builder;
 
 #ifdef HILDON
-  HildonProgram *program = hildon_program_get_instance();
+  HildonProgram *program = hildon_program_get_instance ();
   GtkWidget *menu;
   GtkWidget *menuitem;
 #else
@@ -1290,20 +1292,20 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   /* Reparent widgets in case we use hildon. This saves us maintaining two
      GtkBuilder ui files
   */
-  cheese_window->window = hildon_window_new();
-  cheese_window->main_hbox = gtk_hbox_new(FALSE, 0);
-  hildon_program_add_window (program, HILDON_WINDOW(cheese_window->window));
-  gtk_container_add (GTK_CONTAINER(cheese_window->window), cheese_window->main_hbox);  
-  gtk_widget_ref(cheese_window->thumb_scrollwindow);
-  gtk_widget_ref(cheese_window->video_vbox);
-  gtk_container_remove(GTK_CONTAINER(cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
-  gtk_container_remove(GTK_CONTAINER(cheese_window->main_vbox),cheese_window->video_vbox);
-  gtk_box_pack_start (GTK_BOX(cheese_window->main_hbox), cheese_window->video_vbox, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX(cheese_window->main_hbox), GTK_WIDGET(cheese_window->thumb_scrollwindow), FALSE, FALSE, 0);
-  gtk_widget_destroy(cheese_window->main_vbox);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW(cheese_window->thumb_scrollwindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-  gtk_widget_unref(cheese_window->thumb_scrollwindow);
-  gtk_widget_unref(cheese_window->video_vbox);
+  cheese_window->window = hildon_window_new ();
+  cheese_window->main_hbox = gtk_hbox_new (FALSE, 0);
+  hildon_program_add_window (program, HILDON_WINDOW (cheese_window->window));
+  gtk_container_add (GTK_CONTAINER (cheese_window->window), cheese_window->main_hbox);  
+  gtk_widget_ref (cheese_window->thumb_scrollwindow);
+  gtk_widget_ref (cheese_window->video_vbox);
+  gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
+  gtk_container_remove (GTK_CONTAINER (cheese_window->main_vbox),cheese_window->video_vbox);
+  gtk_box_pack_start (GTK_BOX (cheese_window->main_hbox), cheese_window->video_vbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (cheese_window->main_hbox), GTK_WIDGET (cheese_window->thumb_scrollwindow), FALSE, FALSE, 0);
+  gtk_widget_destroy (cheese_window->main_vbox);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (cheese_window->thumb_scrollwindow), GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+  gtk_widget_unref (cheese_window->thumb_scrollwindow);
+  gtk_widget_unref (cheese_window->video_vbox);
 #endif
 
   g_object_unref (builder);
@@ -1444,20 +1446,20 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   }
 
 #ifdef HILDON
-  menu = gtk_menu_new();
-  menuitem = gtk_menu_item_new_with_label(_("Quit"));
-  g_signal_connect(menuitem,"activate",
-                   GTK_SIGNAL_FUNC(cheese_window_cmd_close),
-                   cheese_window);
-  gtk_menu_append(menu, menuitem);
+  menu = gtk_menu_new ();
+  menuitem = gtk_menu_item_new_with_label (_("Quit"));
+  g_signal_connect (menuitem,"activate",
+                    GTK_SIGNAL_FUNC (cheese_window_cmd_close),
+                    cheese_window);
+  gtk_menu_append (menu, menuitem);
   
   menuitem = gtk_menu_item_new_with_label(_("About"));
-  g_signal_connect(menuitem,"activate",
-                   GTK_SIGNAL_FUNC(cheese_window_cmd_about), 
-                   cheese_window);
-  gtk_menu_append(menu, menuitem);
+  g_signal_connect (menuitem,"activate",
+                    GTK_SIGNAL_FUNC (cheese_window_cmd_about), 
+                    cheese_window);
+  gtk_menu_append (menu, menuitem);
   
-  hildon_window_set_menu (HILDON_WINDOW(cheese_window->window),GTK_MENU(menu));
+  hildon_window_set_menu (HILDON_WINDOW (cheese_window->window),GTK_MENU (menu));
 #else
   menubar = gtk_ui_manager_get_widget (cheese_window->ui_manager, "/MainMenu");
   gtk_box_pack_start (GTK_BOX (cheese_window->main_vbox), menubar, FALSE, FALSE, 0);
@@ -1476,13 +1478,13 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
 
   action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Edit/Effects");
-  gtk_action_connect_proxy (GTK_ACTION(action), GTK_WIDGET(cheese_window->button_effects));
+  gtk_action_connect_proxy (GTK_ACTION (action), GTK_WIDGET (cheese_window->button_effects));
 
   /* Default handlers for closing the application */
   g_signal_connect (cheese_window->window, "destroy",
                     G_CALLBACK (cheese_window_cmd_close), cheese_window);
   g_signal_connect (cheese_window->window, "delete_event", 
-                    G_CALLBACK(cheese_window_delete_event_cb), NULL);
+                    G_CALLBACK (cheese_window_delete_event_cb), NULL);
 
   g_signal_connect (cheese_window->take_picture, "clicked",
                     G_CALLBACK (cheese_window_action_button_clicked_cb), cheese_window);
@@ -1524,14 +1526,14 @@ setup_camera (CheeseWindow *cheese_window)
                                      GTK_BUTTONS_OK, 
                                      "%s", error->message);
 
-    g_error_free(error);
+    g_error_free (error);
 
-    g_signal_connect(dialog, "response", G_CALLBACK(gtk_widget_destroy), NULL);
-    gtk_window_set_title(GTK_WINDOW (dialog), "Critical Error");
+    g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
+    gtk_window_set_title (GTK_WINDOW (dialog), "Critical Error");
     gtk_dialog_run (GTK_DIALOG (dialog));
 
     // Clean up and exit
-    cheese_window_cmd_close(NULL, cheese_window);
+    cheese_window_cmd_close (NULL, cheese_window);
 
     gdk_threads_leave ();
   }
@@ -1546,11 +1548,11 @@ setup_camera (CheeseWindow *cheese_window)
 
   cheese_webcam_play (cheese_window->webcam);
   gdk_threads_enter ();
-  gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 0);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 0);
   ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
   if (cheese_webcam_get_num_webcam_devices (cheese_window->webcam) == 0)
   {
-    message_area = cheese_no_camera_message_area();
+    message_area = cheese_no_camera_message_area ();
 
     g_signal_connect (message_area,
                       "response",
@@ -1582,7 +1584,7 @@ cheese_window_init (char *hal_dev_udi)
   gtk_widget_show_all (cheese_window->window);
   ephy_spinner_start (EPHY_SPINNER (cheese_window->throbber));
 
-  gtk_notebook_set_current_page (GTK_NOTEBOOK(cheese_window->notebook), 2);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 2);
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording = FALSE;

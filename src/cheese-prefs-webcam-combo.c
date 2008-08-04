@@ -128,13 +128,14 @@ cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
   /* If the selected device is not the same device as the one in gconf, the
   selected device isn't available or was set by --hal-device. Set it now.
   Not sure if this is desired behavior */
-  if (num_devices > 0) {
+  if (num_devices > 0)
+  {
     g_object_get (prefs_widget->gconf, priv->webcam_device_key, &gconf_device_name, NULL);
-    if (strcmp(selected_device->video_device, gconf_device_name) != 0)
+    if (strcmp (selected_device->video_device, gconf_device_name) != 0)
     {
-      g_object_set(prefs_widget->gconf, priv->webcam_device_key, selected_device->video_device, NULL);
+      g_object_set (prefs_widget->gconf, priv->webcam_device_key, selected_device->video_device, NULL);
     }
-    g_free(gconf_device_name);
+    g_free (gconf_device_name);
   }
   gtk_list_store_clear (priv->list_store);
   

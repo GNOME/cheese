@@ -183,7 +183,7 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
       CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
 
   cairo_set_font_size (cr, 0.09);
-  gchar *name = gettext(card->name);
+  gchar *name = gettext (card->name);
   cairo_text_extents (cr, name, &extents);
   x = 0.5 - (extents.width / 2 + extents.x_bearing);
   y = 0.92 - (extents.height / 2 + extents.y_bearing);
@@ -307,7 +307,7 @@ cheese_effect_chooser_class_init (CheeseEffectChooserClass *klass)
 static void
 cheese_effect_chooser_init (CheeseEffectChooser *effect_chooser)
 {
-  gtk_widget_add_events (GTK_WIDGET(effect_chooser), GDK_BUTTON_PRESS_MASK);
+  gtk_widget_add_events (GTK_WIDGET (effect_chooser), GDK_BUTTON_PRESS_MASK);
 
   g_signal_connect (G_OBJECT (effect_chooser),"button_press_event", 
                     G_CALLBACK (cheese_effect_chooser_button_press_event_cb), NULL);

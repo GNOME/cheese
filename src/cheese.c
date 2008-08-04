@@ -38,7 +38,7 @@ struct _CheeseOptions
   char *hal_device_id;
 } CheeseOptions;
 
-void cheese_print_handler(char *string)
+void cheese_print_handler (char *string)
 {
   static FILE *fp = NULL;
   GDir *dir;
@@ -52,7 +52,8 @@ void cheese_print_handler(char *string)
     path = cheese_fileutil_get_log_path (fileutil);
     
     dir = g_dir_open (path, 0, NULL);
-    if (!dir) {
+    if (!dir)
+    {
       return;
     }
     
@@ -93,11 +94,11 @@ main (int argc, char **argv)
   g_set_application_name (_("Cheese"));
 
   context = g_option_context_new (N_("- Take photos and videos with your webcam, with fun graphical effects"));
-  g_option_context_add_main_entries(context, options, GETTEXT_PACKAGE);
+  g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
   g_option_context_add_group (context, gtk_get_option_group (TRUE));
   g_option_context_add_group (context, gst_init_get_option_group ());
-  g_option_context_parse(context, &argc, &argv, NULL);
-  g_option_context_free(context);
+  g_option_context_parse (context, &argc, &argv, NULL);
+  g_option_context_free (context);
 
   gtk_init (&argc, &argv);
   gst_init (&argc, &argv);

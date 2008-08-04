@@ -79,7 +79,7 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
         else
           effects = g_strjoin (",", effects, tmp->data, NULL);
 
-        tmp = g_slist_next(tmp);
+        tmp = g_slist_next (tmp);
       }
       g_value_set_string (value, effects);
 
@@ -140,12 +140,13 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
       break;
     case GCONF_PROP_SELECTED_EFFECTS:
 
-      if (g_value_get_string (value) == NULL) {
+      if (g_value_get_string (value) == NULL)
+      {
         list = NULL;
       }
       else
       {
-        effects = g_strsplit(g_value_get_string (value), ",", 12);
+        effects = g_strsplit (g_value_get_string (value), ",", 12);
         for (i = 0; effects[i] != NULL; i++)
         {
           list = g_slist_append (list, effects[i]);
@@ -268,7 +269,7 @@ static void
 cheese_gconf_init (CheeseGConf *gconf)
 {
   CheeseGConfPrivate* priv = CHEESE_GCONF_GET_PRIVATE (gconf);
-  priv->client = gconf_client_get_default();
+  priv->client = gconf_client_get_default ();
 }
 
 CheeseGConf * 
