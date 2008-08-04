@@ -1118,7 +1118,7 @@ static const GtkActionEntry action_entries_preferences[] = {
 };
 
 static const GtkToggleActionEntry action_entries_fullscreen[] = {
-  {"Fullscreen", NULL, N_("_Full Screen"), "F11", NULL, G_CALLBACK (cheese_window_make_fullscreen), FALSE},
+  {"Fullscreen", GTK_STOCK_FULLSCREEN , NULL, "F11", NULL, G_CALLBACK (cheese_window_make_fullscreen), FALSE},
 };
 
 static const GtkRadioActionEntry action_entries_toggle[] = {
