@@ -52,7 +52,8 @@ typedef struct
 enum
 {
   THUMBNAIL_PIXBUF_COLUMN,
-  THUMBNAIL_URL_COLUMN
+  THUMBNAIL_URL_COLUMN,
+  THUMBNAIL_BASENAME_URL_COLUMN
 };
 
 /* Drag 'n Drop */
@@ -90,7 +91,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   GTimeVal mtime;
   char *mime_type;
   char *uri;
-  char *filename;
+  char *filename, *basename;
   
   info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, NULL);
 
@@ -104,6 +105,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   
   uri = g_file_get_uri (file);
   filename = g_file_get_path (file);
+  basename = g_path_get_basename (filename);
 
   thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
 
@@ -151,13 +153,16 @@ cheese_thumb_view_thread_append_item (gpointer data)
   
   gdk_threads_enter ();
   
-  gtk_list_store_set (priv->store, &iter, THUMBNAIL_PIXBUF_COLUMN,
-                      pixbuf, THUMBNAIL_URL_COLUMN, filename, -1);
+  gtk_list_store_set (priv->store, &iter,
+                      THUMBNAIL_PIXBUF_COLUMN, pixbuf,
+                      THUMBNAIL_URL_COLUMN, filename,
+                      THUMBNAIL_BASENAME_URL_COLUMN, basename, -1);
   
   gdk_threads_leave ();
 
   g_free (mime_type);
   g_free (filename);
+  g_free (basename);
   
   g_object_unref (pixbuf);
 }
@@ -170,7 +175,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   GtkIconTheme *icon_theme;
   GdkPixbuf *pixbuf = NULL;
   GtkTreePath *path;
-  char *filename;
+  char *filename, *basename;
   GError *error = NULL;
 
   CheeseThumbViewThreadData *data;
@@ -190,12 +195,16 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   }
 
   filename = g_file_get_path (file);
+  basename = g_path_get_basename (filename);
   
   gtk_list_store_append (priv->store, &iter);
   data->iter = iter;
-  gtk_list_store_set (priv->store, &iter, THUMBNAIL_PIXBUF_COLUMN,
-                      pixbuf, THUMBNAIL_URL_COLUMN, filename, -1);
+  gtk_list_store_set (priv->store, &iter,
+                      THUMBNAIL_PIXBUF_COLUMN, pixbuf,
+                      THUMBNAIL_URL_COLUMN, filename,
+                      THUMBNAIL_BASENAME_URL_COLUMN, basename, -1);
   g_free (filename);
+  g_free (basename);
   path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
   gtk_icon_view_scroll_to_path (GTK_ICON_VIEW (thumb_view), path,
                                 TRUE, 1.0, 0.5);
@@ -459,7 +468,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   eog_thumbnail_init ();
 
-  priv->store = gtk_list_store_new (2, GDK_TYPE_PIXBUF, G_TYPE_STRING);
+  priv->store = gtk_list_store_new (3, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
 
   priv->fileutil = cheese_fileutil_new ();
 
@@ -507,7 +516,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
                     G_CALLBACK (cheese_thumb_view_on_drag_data_get_cb), NULL);
 
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (priv->store),
-                                       THUMBNAIL_URL_COLUMN, GTK_SORT_ASCENDING);
+                                        THUMBNAIL_BASENAME_URL_COLUMN, GTK_SORT_ASCENDING);
 
   cheese_thumb_view_fill (thumb_view);
 }
