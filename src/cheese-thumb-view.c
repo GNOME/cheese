@@ -91,7 +91,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   GTimeVal mtime;
   char *mime_type;
   char *uri;
-  char *filename, *basename;
+  char *filename;
   
   info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, NULL);
 
@@ -105,7 +105,6 @@ cheese_thumb_view_thread_append_item (gpointer data)
   
   uri = g_file_get_uri (file);
   filename = g_file_get_path (file);
-  basename = g_path_get_basename (filename);
 
   thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
 
@@ -156,17 +155,14 @@ cheese_thumb_view_thread_append_item (gpointer data)
   gdk_threads_enter ();
   
   gtk_list_store_set (priv->store, &iter,
-                      THUMBNAIL_PIXBUF_COLUMN, pixbuf,
-                      THUMBNAIL_URL_COLUMN, filename,
-                      THUMBNAIL_BASENAME_URL_COLUMN, basename, -1);
+                      THUMBNAIL_PIXBUF_COLUMN, pixbuf, -1);
   
   gdk_threads_leave ();
 
   g_free (mime_type);
   g_free (filename);
-  g_free (basename);
-  
   g_object_unref (pixbuf);
+  g_free (item);
 }
 
 static void
