@@ -1005,6 +1005,7 @@ cheese_window_stop_recording (CheeseWindow *cheese_window)
     gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
     gtk_widget_set_sensitive (cheese_window->button_photo, TRUE);
     gtk_widget_set_sensitive (cheese_window->button_video, TRUE);
+    gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
     gchar * str = g_strconcat ("<b>", _("_Start Recording"), "</b>", NULL);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
     g_free (str);

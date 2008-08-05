@@ -1,5 +1,11 @@
 2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
 
+	* src/cheese-window.c: 
+	  Disable "Start recording" button until the recording pipeline
+	  properly shuts down.
+
+2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
 	* src/cheese-thumb-view.c: 
 	  remove a dummy g_message I used for debug
 
@@ -74,7 +80,7 @@
 	  src/cheese-window.c: 
 	  Move thumbnail generation to its own thread. 
 	  Display a loading icon while generating thumbnail.
-	  Display a fallaback icon if thumbnail generation fails.
+	  Display a fallback icon if thumbnail generation fails.
 	  Fixes #545151. Partially fixes #545212.
 	  Fix a segfault in cheese-window while deleting both videos and
 	  photos.
