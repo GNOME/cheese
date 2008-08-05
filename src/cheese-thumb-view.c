@@ -109,8 +109,6 @@ cheese_thumb_view_thread_append_item (gpointer data)
 
   thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
 
-  if (!thumb_loc) g_message ("no thumbloc");
-
   if (!thumb_loc)
   {
     pixbuf = gnome_thumbnail_factory_generate_thumbnail (factory, uri, mime_type);
