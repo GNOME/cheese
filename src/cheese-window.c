@@ -146,8 +146,6 @@ typedef struct
   GtkUIManager *ui_manager;
 
   int audio_play_counter;
-  GRand *rand;
-
 } CheeseWindow;
 
 
@@ -203,7 +201,7 @@ audio_play_get_filename (CheeseWindow *cheese_window)
   char *filename;
   if (cheese_window->audio_play_counter > 21)
    filename = g_strdup_printf ("%s/sounds/shutter%i.ogg", PACKAGE_DATADIR,
-                               g_rand_int_range (cheese_window->rand, 1, SHUTTER_SOUNDS));
+                               g_random_int_range (0, SHUTTER_SOUNDS));
   else
    filename = g_strdup_printf ("%s/sounds/shutter0.ogg", PACKAGE_DATADIR);
 
@@ -269,7 +267,6 @@ cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 static void
 cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
 {
-  g_free (cheese_window->rand);
   g_object_unref (cheese_window->webcam);
   g_object_unref (cheese_window->actions_main);
   g_object_unref (cheese_window->actions_account_photo);
@@ -1576,7 +1573,6 @@ cheese_window_init (char *hal_dev_udi)
   cheese_window->startup_hal_dev_udi = hal_dev_udi;
   cheese_window->gconf = cheese_gconf_new ();
   cheese_window->audio_play_counter = 0;
-  cheese_window->rand = g_rand_new ();
   cheese_window->fileutil = cheese_fileutil_new ();
   cheese_window->isFullscreen = FALSE;
 
