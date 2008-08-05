@@ -47,6 +47,7 @@ typedef struct
   GFileMonitor *photo_file_monitor;
   GFileMonitor *video_file_monitor;
   GnomeThumbnailFactory *factory;
+  gboolean multiplex_thumbnail_generator;
 } CheeseThumbViewPrivate;
 
 enum
@@ -182,8 +183,20 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   data->thumb_view = g_object_ref (thumb_view);
   data->file = g_object_ref (file);
 
-  icon_theme = gtk_icon_theme_get_default ();
-  pixbuf = gtk_icon_theme_load_icon (icon_theme, "image-loading", 96, 0, &error);
+  if (priv->multiplex_thumbnail_generator)
+  {
+    char *f;
+    //f = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 3));
+    f = g_strdup_printf ("%s/pixmaps/cheese-1.svg", PACKAGE_DATADIR);
+    pixbuf = gdk_pixbuf_new_from_file (f, NULL);
+    g_free (f);
+  }
+  else
+  {
+    icon_theme = gtk_icon_theme_get_default ();
+    pixbuf = gtk_icon_theme_load_icon (icon_theme, "image-loading", 96, 0, &error);
+  }
+
   if (!pixbuf)
   {
     g_warning ("Couldn't load icon: %s", error->message);
@@ -209,12 +222,15 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   g_object_unref (pixbuf);
 
-  if (!g_thread_create ((GThreadFunc) cheese_thumb_view_thread_append_item,
-			data, FALSE, &error))
+  if (!priv->multiplex_thumbnail_generator)
   {
-    g_error ("Failed to create thumbnail thread: %s\n", error->message);
-    g_error_free (error);
-    return;
+    if (!g_thread_create ((GThreadFunc) cheese_thumb_view_thread_append_item,
+                          data, FALSE, &error))
+    {
+      g_error ("Failed to create thumbnail thread: %s\n", error->message);
+      g_error_free (error);
+      return;
+    }
   }
 }
 
@@ -384,6 +400,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
   GDir *dir_videos, *dir_photos;
   char *path_videos, *path_photos;
+  gboolean multiplex_thumbnail_generator;
   const char *name;
   char *filename;
   GFile *file;
@@ -419,6 +436,12 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
       continue;
 
+    if (g_ascii_strcasecmp (name, "cheese, cheese, cheese! all i want is cheese.jpg") == 0)
+    {
+      multiplex_thumbnail_generator = TRUE;
+      continue;
+    }
+
     filename = g_build_filename (path_photos, name, NULL);
     file = g_file_new_for_path (filename);
     cheese_thumb_view_append_item (thumb_view, file);
@@ -426,6 +449,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     g_object_unref (file);
   }
   g_dir_close (dir_photos);
+  priv->multiplex_thumbnail_generator = multiplex_thumbnail_generator;
 }
 
 static void
