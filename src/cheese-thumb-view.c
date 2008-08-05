@@ -88,7 +88,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   GFileInfo *info;
   char *thumb_loc;
   GTimeVal mtime;
-  const char *mime_type;
+  char *mime_type;
   char *uri;
   char *filename;
   
@@ -156,6 +156,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   
   gdk_threads_leave ();
 
+  g_free (mime_type);
   g_free (filename);
   
   g_object_unref (pixbuf);
