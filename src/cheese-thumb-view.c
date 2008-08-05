@@ -400,7 +400,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
   GDir *dir_videos, *dir_photos;
   char *path_videos, *path_photos;
-  gboolean multiplex_thumbnail_generator;
+  gboolean multiplex_thumbnail_generator = FALSE;
   const char *name;
   char *filename;
   GFile *file;
