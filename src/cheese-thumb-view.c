@@ -417,7 +417,6 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
 
   priv->multiplex_thumbnail_generator = FALSE;
   char *multiplex_file = g_build_filename (path_photos, "cheese, cheese, cheese! all i want is cheese", NULL);
-  printf("%s\n", multiplex_file);
   if (g_file_test (multiplex_file, G_FILE_TEST_EXISTS))
     priv->multiplex_thumbnail_generator = !priv->multiplex_thumbnail_generator;
   g_free (multiplex_file);
