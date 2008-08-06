@@ -400,7 +400,6 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
   GDir *dir_videos, *dir_photos;
   char *path_videos, *path_photos;
-  gboolean multiplex_thumbnail_generator = FALSE;
   const char *name;
   char *filename;
   GFile *file;
@@ -415,6 +414,13 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
   
   if (!dir_videos && !dir_photos)
     return;
+
+  priv->multiplex_thumbnail_generator = FALSE;
+  char *multiplex_file = g_build_filename (path_photos, "cheese, cheese, cheese! all i want is cheese", NULL);
+  printf("%s\n", multiplex_file);
+  if (g_file_test (multiplex_file, G_FILE_TEST_EXISTS))
+    priv->multiplex_thumbnail_generator = !priv->multiplex_thumbnail_generator;
+  g_free (multiplex_file);
 
   //read videos from the vid directory
   while ((name = g_dir_read_name (dir_videos)))
@@ -436,12 +442,6 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
       continue;
 
-    if (g_ascii_strcasecmp (name, "cheese, cheese, cheese! all i want is cheese.jpg") == 0)
-    {
-      multiplex_thumbnail_generator = TRUE;
-      continue;
-    }
-
     filename = g_build_filename (path_photos, name, NULL);
     file = g_file_new_for_path (filename);
     cheese_thumb_view_append_item (thumb_view, file);
@@ -449,7 +449,6 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     g_object_unref (file);
   }
   g_dir_close (dir_photos);
-  priv->multiplex_thumbnail_generator = multiplex_thumbnail_generator;
 }
 
 static void
