@@ -1603,20 +1603,26 @@ setup_camera (CheeseWindow *cheese_window)
   if (error != NULL)
   {
     GtkWidget *dialog;
+    gchar *primary, *secondary;
+    
+    primary = g_strdup (_("Check your gstreamer installation"));
+    secondary = g_strdup_printf (_("One or more needed gstreamer elements are missing:\n"
+				   "<i>%s</i>"), error->message);
 
     gdk_threads_enter ();
 
     dialog = gtk_message_dialog_new (NULL,
-                                     0,
-                                     GTK_MESSAGE_ERROR, 
-                                     GTK_BUTTONS_OK, 
-                                     "%s", error->message);
-
-    g_error_free (error);
-
-    g_signal_connect (dialog, "response", G_CALLBACK (gtk_widget_destroy), NULL);
-    gtk_window_set_title (GTK_WINDOW (dialog), "Critical Error");
+				     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+				     GTK_MESSAGE_ERROR, 
+				     GTK_BUTTONS_OK, 
+				     "%s", primary);
+    gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
+						secondary);
     gtk_dialog_run (GTK_DIALOG (dialog));
+    gtk_widget_destroy (dialog);
+    g_error_free (error);
+    g_free (primary);
+    g_free (secondary);
 
     // Clean up and exit
     cheese_window_cmd_close (NULL, cheese_window);
