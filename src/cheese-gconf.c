@@ -106,6 +106,11 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                     CHEESE_GCONF_PREFIX "/photo_path",
                                                     NULL));
       break;
+    case GCONF_PROP_ENABLE_DELETE:
+      g_value_set_boolean (value, gconf_client_get_bool (priv->client,
+							 CHEESE_GCONF_PREFIX "/enable_delete",
+							 NULL));
+      break;      
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -184,6 +189,12 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                           g_value_get_string (value),
                           NULL);
       break;
+    case GCONF_PROP_ENABLE_DELETE:
+      gconf_client_set_bool (priv->client,
+			     CHEESE_GCONF_PREFIX "/enable_delete",
+			     g_value_get_boolean (value),
+			     NULL);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -261,6 +272,14 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                         NULL,
                                                         "",
                                                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_ENABLE_DELETE,
+                                   g_param_spec_boolean ("gconf_prop_enable_delete",
+							 NULL,
+							 NULL,
+							 FALSE,
+							 G_PARAM_READWRITE));
+
                                                           
   g_type_class_add_private (klass, sizeof (CheeseGConfPrivate));
 }

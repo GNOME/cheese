@@ -1,3 +1,13 @@
+2008-08-07  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* data/cheese.schemas.in,
+	  data/cheese-ui.xml,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-window.c: 
+	  Add a Delete action to immediately delete files without moving to
+	  trash. It can be hidden with the new enable_delete gconf key.
+
 2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
 
 	* data/cheese.desktop.in.in: 
