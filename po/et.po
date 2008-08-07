@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-06-19 21:37+0000\n"
-"PO-Revision-Date: 2008-06-24 17:27+0300\n"
+"POT-Creation-Date: 2008-08-04 20:21+0000\n"
+"PO-Revision-Date: 2008-08-07 11:40+0300\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Cheese"
 msgstr "Juust"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:634
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:748
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Veebikaamerast fotode ja videote salvestamine, ka koos graafiliste efektidega"
@@ -100,19 +100,20 @@ msgstr "X-lahutus"
 msgid "Y resolution"
 msgstr "Y-lahutus"
 
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:716 ../src/cheese-window.c:999
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:830
+#: ../src/cheese-window.c:1113
 msgid "_Effects"
 msgstr "_Efektid"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1007
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1125
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:817
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:931
 msgid "_Take a Photo"
 msgstr "_Pildista"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1008
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1126
 msgid "_Video"
 msgstr "_Video"
 
@@ -124,7 +125,7 @@ msgstr "<b>Kaamera</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>Ekraanilahutus</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1003
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1117
 msgid "Preferences"
 msgstr "Eelistused"
 
@@ -200,7 +201,19 @@ msgstr "Täiendavate juhiste saamiseks vaata palun abiteavet."
 msgid "Help"
 msgstr "Abi"
 
-#: ../src/cheese-window.c:151
+#: ../src/cheese-window.c:71
+msgid "_Skip"
+msgstr "_Jäta vahele"
+
+#: ../src/cheese-window.c:72
+msgid "S_kip All"
+msgstr "Jäta _kõik vahele"
+
+#: ../src/cheese-window.c:73
+msgid "Delete _All"
+msgstr "Kus_tuta kõik"
+
+#: ../src/cheese-window.c:168
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -209,7 +222,7 @@ msgstr ""
 "Tõrge veebisirvija avamisel, et näidata:\n"
 "%s"
 
-#: ../src/cheese-window.c:175
+#: ../src/cheese-window.c:192
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -218,7 +231,7 @@ msgstr ""
 "Tõrge e-posti kliendi avamisel, et saata sõnum aadressile:\n"
 "%s"
 
-#: ../src/cheese-window.c:272
+#: ../src/cheese-window.c:317
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -227,49 +240,63 @@ msgstr ""
 "Tõrge programmi käivitamisel, et näidata:\n"
 "%s"
 
-#: ../src/cheese-window.c:291
+#: ../src/cheese-window.c:336
 msgid "Save File"
 msgstr "Faili salvestamine"
 
-#: ../src/cheese-window.c:329
+#: ../src/cheese-window.c:374
 #, c-format
 msgid "Could not save %s"
 msgstr "Faili %s pole võimalik salvestada"
 
-#: ../src/cheese-window.c:358
-msgid "Cannot move file to trash"
-msgstr "Faili pole võimalik prügikasti visata"
+#: ../src/cheese-window.c:396
+msgid "Error while deleting"
+msgstr "Viga kustutamisel"
 
-#: ../src/cheese-window.c:359
+#: ../src/cheese-window.c:397
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "Faili \"%s\" pole võimalik kustutada. Üksikasjad: %s"
+
+#: ../src/cheese-window.c:432 ../src/cheese-window.c:473
+msgid "Unknown Error"
+msgstr "Tundmatu viga"
+
+#: ../src/cheese-window.c:441
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr ""
+"Faili pole võimalik prügikasti visata, kas soovid seda lihtsalt kustutada?"
+
+#: ../src/cheese-window.c:442
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Faili \"%s\" pole võimalik prügikasti visata. Üksikasjad: %s"
 
-#: ../src/cheese-window.c:391
+#: ../src/cheese-window.c:507
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Kas eemaldada kõik prügikastis olevad fotod ja videod?"
 
-#: ../src/cheese-window.c:399
+#: ../src/cheese-window.c:515
 msgid "_Move to Trash"
 msgstr "Viska _prügikasti"
 
-#: ../src/cheese-window.c:516
+#: ../src/cheese-window.c:630
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kontopilti pole võimalik seada"
 
-#: ../src/cheese-window.c:595 ../src/cheese-window.c:875
+#: ../src/cheese-window.c:709 ../src/cheese-window.c:989
 msgid "Unable to open help file for Cheese"
 msgstr "Juustu abiteabe faili pole võimalik avada"
 
-#: ../src/cheese-window.c:612
+#: ../src/cheese-window.c:726
 msgid "translator-credits"
 msgstr ""
 "Ivar Smolin <okul@linux.ee>, 2008.\n"
 "Mattias Põldaru <mahfiaz@gmail.com>, 2008."
 
-#: ../src/cheese-window.c:615
+#: ../src/cheese-window.c:729
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -281,7 +308,7 @@ msgstr ""
 "Tarkvara Fondi poolt avaldatud; kas Litsentsi versioon number 2 või "
 "(vastavalt Teie valikule) ükskõik milline hilisem versioon.\n"
 
-#: ../src/cheese-window.c:619
+#: ../src/cheese-window.c:733
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -293,7 +320,7 @@ msgstr ""
 "TEATUD KINDLAKS EESMÄRGIKS. Üksikasjade suhtes vaata GNU Üldist Avalikku "
 "Litsentsi.\n"
 
-#: ../src/cheese-window.c:623
+#: ../src/cheese-window.c:737
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -301,95 +328,95 @@ msgstr ""
 "Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos selle "
 "programmiga; kui ei, siis vaadake aadressi <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:638
+#: ../src/cheese-window.c:752
 msgid "Cheese Website"
 msgstr "Juustu veebisait"
 
-#: ../src/cheese-window.c:805
+#: ../src/cheese-window.c:919
 msgid "_Start recording"
 msgstr "Alusta _salvestamist"
 
-#: ../src/cheese-window.c:892
+#: ../src/cheese-window.c:1006
 msgid "_Start Recording"
 msgstr "Alusta _salvestamist"
 
-#: ../src/cheese-window.c:955
+#: ../src/cheese-window.c:1069
 msgid "_Stop Recording"
 msgstr "Seiska _salvestamine"
 
-#: ../src/cheese-window.c:981
+#: ../src/cheese-window.c:1095
 msgid "_Cheese"
 msgstr "_Juust"
 
-#: ../src/cheese-window.c:983
+#: ../src/cheese-window.c:1097
 msgid "_Edit"
 msgstr "_Redaktor"
 
-#: ../src/cheese-window.c:984
+#: ../src/cheese-window.c:1098
 msgid "Move All to Trash"
 msgstr "Viska kõik prügikasti"
 
-#: ../src/cheese-window.c:986
+#: ../src/cheese-window.c:1100
 msgid "_Help"
 msgstr "A_bi"
 
-#: ../src/cheese-window.c:989
+#: ../src/cheese-window.c:1103
 msgid "_Contents"
 msgstr "_Sisukord"
 
-#: ../src/cheese-window.c:989
+#: ../src/cheese-window.c:1103
 msgid "Help on this Application"
 msgstr "Abiteave selle rakenduse kohta"
 
-#: ../src/cheese-window.c:995
+#: ../src/cheese-window.c:1109
 msgid "Countdown"
 msgstr "Loendur"
 
-#: ../src/cheese-window.c:1012
+#: ../src/cheese-window.c:1130
 msgid "_Open"
 msgstr "_Ava"
 
-#: ../src/cheese-window.c:1013
+#: ../src/cheese-window.c:1131
 msgid "Save _As..."
 msgstr "Salvesta _kui..."
 
-#: ../src/cheese-window.c:1014
+#: ../src/cheese-window.c:1132
 msgid "Move to _Trash"
 msgstr "Viska _prügikasti"
 
-#: ../src/cheese-window.c:1018 ../src/cheese-window.c:1193
+#: ../src/cheese-window.c:1136 ../src/cheese-window.c:1311
 msgid "_Take a photo"
 msgstr "_Pildista"
 
-#: ../src/cheese-window.c:1022
+#: ../src/cheese-window.c:1140
 msgid "_Recording"
 msgstr "_Salvesta"
 
-#: ../src/cheese-window.c:1026
+#: ../src/cheese-window.c:1144
 msgid "_Set As Account Photo"
 msgstr "Määra konto_pildiks"
 
-#: ../src/cheese-window.c:1030
+#: ../src/cheese-window.c:1148
 msgid "Send by _Mail"
 msgstr "Saada _e-postiga"
 
-#: ../src/cheese-window.c:1034
+#: ../src/cheese-window.c:1152
 msgid "Send _To"
 msgstr "Saada _asukohta"
 
-#: ../src/cheese-window.c:1038
+#: ../src/cheese-window.c:1156
 msgid "Export to F-_Spot"
 msgstr "Ekspordi F-_Spot'i"
 
-#: ../src/cheese-window.c:1042
+#: ../src/cheese-window.c:1160
 msgid "Export to _Flickr"
 msgstr "Ekspordi _Flickr'i saiti"
 
-#: ../src/cheese-window.c:1326
+#: ../src/cheese-window.c:1448
 msgid "Quit"
 msgstr "Lõpeta"
 
-#: ../src/cheese-window.c:1332
+#: ../src/cheese-window.c:1454
 msgid "About"
 msgstr "Programmist lähemalt"
 
@@ -402,6 +429,3 @@ msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- Veebikaamerast fotode ja videote salvestamine, ka koos graafiliste "
 "efektidega"
-
-#~ msgid "_Back"
-#~ msgstr "_Tagasi"
