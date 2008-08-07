@@ -1,5 +1,12 @@
 2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
 
+	* AUTHORS,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c: 
+	  correct critical warnings, if some gstreamer plugins arent available, fixes bug #522009, courtesy of Todd Eisenberger
+
+2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
+
 	* src/cheese-window.c: 
 	  remove useless g_free which produced a warning
 

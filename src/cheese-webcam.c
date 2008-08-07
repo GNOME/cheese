@@ -1352,6 +1352,8 @@ cheese_webcam_setup (CheeseWebcam *webcam, char *hal_dev_udi, GError **error)
     cheese_webcam_set_device_by_dev_udi (webcam, hal_dev_udi);
   }
 
+  priv->pipeline = gst_pipeline_new ("pipeline");
+
   cheese_webcam_create_video_display_bin (webcam, &tmp_error);
   if (tmp_error != NULL)
   {
@@ -1372,8 +1374,6 @@ cheese_webcam_setup (CheeseWebcam *webcam, char *hal_dev_udi, GError **error)
     g_propagate_error (error, tmp_error);
     return;
   }
-
-  priv->pipeline = gst_pipeline_new ("pipeline");
 
   gst_bin_add_many (GST_BIN (priv->pipeline), priv->video_display_bin, 
                     priv->photo_save_bin, NULL);

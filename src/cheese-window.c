@@ -1533,6 +1533,8 @@ setup_camera (CheeseWindow *cheese_window)
     cheese_window_cmd_close (NULL, cheese_window);
 
     gdk_threads_leave ();
+
+    return;
   }
 
   g_signal_connect (cheese_window->webcam, "photo-saved",
