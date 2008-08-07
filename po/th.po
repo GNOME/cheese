@@ -9,19 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-07-23 20:26+0700\n"
-"PO-Revision-Date: 2008-07-23 20:31+0700\n"
+"POT-Creation-Date: 2008-08-07 13:50+0700\n"
+"PO-Revision-Date: 2008-08-07 13:53+0700\n"
 "Last-Translator: Akom C. <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:93
+#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:94
 msgid "Cheese"
 msgstr "ชีส"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:636
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:746
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ พร้อมใส่ลูกเล่นสนุกๆ"
 
@@ -92,20 +92,20 @@ msgstr "ความละเอียดในแนว X"
 msgid "Y resolution"
 msgstr "ความละเอียดในแนว Y"
 
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:718
-#: ../src/cheese-window.c:1001
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:828
+#: ../src/cheese-window.c:1112
 msgid "_Effects"
 msgstr "ลูกเ_ล่น"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1009
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1124
 msgid "_Photo"
 msgstr "_ภาพ"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:819
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:929
 msgid "_Take a Photo"
 msgstr "_ถ่ายภาพ"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1010
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1125
 msgid "_Video"
 msgstr "_วีดิทัศน์"
 
@@ -117,7 +117,7 @@ msgstr "<b>กล้อง</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>ความละเอียด</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1005
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1116
 msgid "Preferences"
 msgstr "ความชอบ"
 
@@ -193,7 +193,19 @@ msgstr "กรุณาอ่านเพิ่มเติมได้จาก
 msgid "Help"
 msgstr "วิธีใช้"
 
-#: ../src/cheese-window.c:153
+#: ../src/cheese-window.c:71
+msgid "_Skip"
+msgstr "_ข้าม"
+
+#: ../src/cheese-window.c:72
+msgid "S_kip All"
+msgstr "ข้า_มทั้งหมด"
+
+#: ../src/cheese-window.c:73
+msgid "Delete _All"
+msgstr "ลบ_ทั้งหมด"
+
+#: ../src/cheese-window.c:166
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -202,7 +214,7 @@ msgstr ""
 "ไม่สามารถเปิดเบราว์เซอร์เพื่อแสดง:\n"
 "%s"
 
-#: ../src/cheese-window.c:177
+#: ../src/cheese-window.c:190
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -211,7 +223,7 @@ msgstr ""
 "ไม่สามารถเปิดโปรแกรมอีเมลเพื่อส่งข่าวสารถึง:\n"
 "%s"
 
-#: ../src/cheese-window.c:274
+#: ../src/cheese-window.c:313
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -220,47 +232,60 @@ msgstr ""
 "ไม่สามารถเรียกโปรแกรมเพื่อแสดง:\n"
 "%s"
 
-#: ../src/cheese-window.c:293
+#: ../src/cheese-window.c:332
 msgid "Save File"
 msgstr "บันทึกแฟ้ม"
 
-#: ../src/cheese-window.c:331
+#: ../src/cheese-window.c:370
 #, c-format
 msgid "Could not save %s"
 msgstr "ไม่สามารถบันทึก %s"
 
-#: ../src/cheese-window.c:360
-msgid "Cannot move file to trash"
-msgstr "ไม่สามารถย้ายแฟ้มไปยังถังขยะได้"
+#: ../src/cheese-window.c:392
+msgid "Error while deleting"
+msgstr "เกิดข้อผิดพลาดขณะลบ"
 
-#: ../src/cheese-window.c:361
+#: ../src/cheese-window.c:393
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "แฟ้ม \"%s\" ไม่สามารถลบได้ รายละเอียด: %s"
+
+#: ../src/cheese-window.c:428 ../src/cheese-window.c:471
+msgid "Unknown Error"
+msgstr "ข้อผิดพลาดไม่ทราบสาเหตุ"
+
+#: ../src/cheese-window.c:437
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "ไม่สามารถย้ายแฟ้มไปยังถังขยะได้ คุณต้องการลบทันทีหรือไม่?"
+
+#: ../src/cheese-window.c:438
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "แฟ้ม \"%s\" ไม่สามารถย้ายไปยังถังขยะได้ รายละเอียด: %s"
 
-#: ../src/cheese-window.c:393
+#: ../src/cheese-window.c:505
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "ย้ายภาพและวีดิทัศน์ทั้งหมดไปถังขยะหรือไม่?"
 
-#: ../src/cheese-window.c:401
+#: ../src/cheese-window.c:513
 msgid "_Move to Trash"
 msgstr "_ย้ายไปถังขยะ"
 
-#: ../src/cheese-window.c:518
+#: ../src/cheese-window.c:628
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "กำหนดเป็นภาพสำหรับบัญชีผู้ใช้ไม่ได้"
 
-#: ../src/cheese-window.c:597 ../src/cheese-window.c:877
+#: ../src/cheese-window.c:707 ../src/cheese-window.c:987
 msgid "Unable to open help file for Cheese"
 msgstr "ไม่สามารถเปิดแฟ้มวิธีใช้ของชีสได้"
 
-#: ../src/cheese-window.c:614
+#: ../src/cheese-window.c:724
 msgid "translator-credits"
 msgstr "Akom <knight2000@gmail.com>"
 
-#: ../src/cheese-window.c:617
+#: ../src/cheese-window.c:727
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -271,7 +296,7 @@ msgstr ""
 "GNU General Public License ที่เผยแพร่โดยมูลนิธิซอฟต์แวร์เสรี ไม่ว่าจะเป็นสัญญาอนุญาตรุ่นที่ 2 "
 "หรือรุ่นถัดมา (ตามแต่คุณจะเลือก)\n"
 
-#: ../src/cheese-window.c:621
+#: ../src/cheese-window.c:731
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -283,7 +308,7 @@ msgstr ""
 "*ความเหมาะสมสำหรับวัตถุประสงค์เฉพาะกิจใดๆ* กรุณาอ่าน GNU General Public License "
 "เพื่อดูรายละเอียดเพิ่มเติม\n"
 
-#: ../src/cheese-window.c:625
+#: ../src/cheese-window.c:735
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -291,105 +316,108 @@ msgstr ""
 "คุณควรจะได้รับสำเนาของ GNU General Public License มาพร้อมกับโปรแกรมนี้ ถ้าคุณไม่ได้รับ "
 "กรุณาดูได้ที่ <http://www.gnu.org/licenses/>"
 
-#: ../src/cheese-window.c:640
+#: ../src/cheese-window.c:750
 msgid "Cheese Website"
 msgstr "เว็บไซต์ของชีส"
 
-#: ../src/cheese-window.c:807
+#: ../src/cheese-window.c:917
 msgid "_Start recording"
 msgstr "เ_ริ่มอัด"
 
-#: ../src/cheese-window.c:894
+#: ../src/cheese-window.c:1005
 msgid "_Start Recording"
 msgstr "เ_ริ่มอัด"
 
-#: ../src/cheese-window.c:957
+#: ../src/cheese-window.c:1068
 msgid "_Stop Recording"
 msgstr "_หยุดอัด"
 
-#: ../src/cheese-window.c:983
+#: ../src/cheese-window.c:1094
 msgid "_Cheese"
 msgstr "_ชีส"
 
-#: ../src/cheese-window.c:985
+#: ../src/cheese-window.c:1096
 msgid "_Edit"
 msgstr "แ_ก้ไข"
 
-#: ../src/cheese-window.c:986
+#: ../src/cheese-window.c:1097
 msgid "Move All to Trash"
 msgstr "ย้ายทั้งหมดไปลงถังขยะ"
 
-#: ../src/cheese-window.c:988
+#: ../src/cheese-window.c:1099
 msgid "_Help"
 msgstr "_วิธีใช้"
 
-#: ../src/cheese-window.c:991
+#: ../src/cheese-window.c:1102
 msgid "_Contents"
 msgstr "เนื้อ_หา"
 
-#: ../src/cheese-window.c:991
+#: ../src/cheese-window.c:1102
 msgid "Help on this Application"
 msgstr "วิธีใช้โปรแกรมนี้"
 
-#: ../src/cheese-window.c:997
+#: ../src/cheese-window.c:1108
 msgid "Countdown"
 msgstr "นับถอยหลัง"
 
-#: ../src/cheese-window.c:1014
+#: ../src/cheese-window.c:1129
 msgid "_Open"
 msgstr "เ_ปิด"
 
-#: ../src/cheese-window.c:1015
+#: ../src/cheese-window.c:1130
 msgid "Save _As..."
 msgstr "บันทึกเป็_น..."
 
-#: ../src/cheese-window.c:1016
+#: ../src/cheese-window.c:1131
 msgid "Move to _Trash"
 msgstr "ย้ายไป_ถังขยะ"
 
-#: ../src/cheese-window.c:1020 ../src/cheese-window.c:1195
+#: ../src/cheese-window.c:1135 ../src/cheese-window.c:1310
 msgid "_Take a photo"
 msgstr "_ถ่ายภาพ"
 
-#: ../src/cheese-window.c:1024
+#: ../src/cheese-window.c:1139
 msgid "_Recording"
 msgstr "_กำลังอัด"
 
-#: ../src/cheese-window.c:1028
+#: ../src/cheese-window.c:1143
 msgid "_Set As Account Photo"
 msgstr "กำหนดเป็นภาพสำหรับ_บัญชี"
 
-#: ../src/cheese-window.c:1032
+#: ../src/cheese-window.c:1147
 msgid "Send by _Mail"
 msgstr "ส่งทางเ_มล"
 
-#: ../src/cheese-window.c:1036
+#: ../src/cheese-window.c:1151
 msgid "Send _To"
 msgstr "ส่ง_ถึง"
 
-#: ../src/cheese-window.c:1040
+#: ../src/cheese-window.c:1155
 msgid "Export to F-_Spot"
 msgstr "ส่งออกไปยัง F-_Spot"
 
-#: ../src/cheese-window.c:1044
+#: ../src/cheese-window.c:1159
 msgid "Export to _Flickr"
 msgstr "ส่งออกไปยัง _Flickr"
 
-#: ../src/cheese-window.c:1328
+#: ../src/cheese-window.c:1447
 msgid "Quit"
 msgstr "ออก"
 
-#: ../src/cheese-window.c:1334
+#: ../src/cheese-window.c:1453
 msgid "About"
 msgstr "เกี่ยวกับ"
 
-#: ../src/cheese.c:80
+#: ../src/cheese.c:81
 msgid "Be verbose"
 msgstr "แสดงข้อความอย่างละเอียด"
 
-#: ../src/cheese.c:95
+#: ../src/cheese.c:96
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ พร้อมใส่ลูกเล่นสนุกๆ"
+
+#~ msgid "Cannot move file to trash"
+#~ msgstr "ไม่สามารถย้ายแฟ้มไปยังถังขยะได้"
 
 #~ msgid "_Back"
 #~ msgstr "ย้อน_กลับ"
