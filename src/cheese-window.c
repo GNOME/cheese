@@ -422,6 +422,7 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
     if (delete_all) 
     {
       g_print ("deleting %s\n", g_file_get_basename (l->data));
+
       if (!g_file_delete (l->data, NULL, &error))
       {
         cheese_window_delete_error_dialog (cheese_window, l->data, 
@@ -434,55 +435,55 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
     {
       if (!g_file_trash (l->data, NULL, &error))
       {
-	primary = g_strdup (_("Cannot move file to trash, do you want to delete immediately?"));
-	secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
-				     g_file_get_basename (l->data), error->message);
-	question_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-						  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-						  GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", primary);
-	gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (question_dialog),
-						  "%s", secondary);
-	gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL); 
-	if (list_length > 1)
-	{
-	  /* no need for all those buttons we have a single file to delete */
-	  gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP, CHEESE_RESPONSE_SKIP); 
-	  gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP_ALL, CHEESE_RESPONSE_SKIP_ALL); 
-	  gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_DELETE_ALL, CHEESE_RESPONSE_DELETE_ALL); 
-	}
-	gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_DELETE, GTK_RESPONSE_ACCEPT); 
-	response = gtk_dialog_run (GTK_DIALOG (question_dialog));
-	gtk_widget_destroy (question_dialog);
-	g_free (primary);
-	g_free (secondary);
-	g_error_free (error);
-	error = NULL;
-	switch (response) 
-	{
-	case CHEESE_RESPONSE_DELETE_ALL:
-	  /* don't break so we delete the current item too */
-	  delete_all = TRUE;
-	case GTK_RESPONSE_ACCEPT:
-	  g_print ("deleting %s\n", g_file_get_basename (l->data));
-	  if (!g_file_delete (l->data, NULL, &error))
-	  {
-	       cheese_window_delete_error_dialog (cheese_window, 
-						  l->data, 
-						  error != NULL ? error->message : _("Unknown Error"));
-	    g_error_free (error);
-	    error = NULL;
-	  }
-	  break;
-	case CHEESE_RESPONSE_SKIP:
-	  /* do nothing, skip to the next item */
-	  break;
-	case CHEESE_RESPONSE_SKIP_ALL:
-	case GTK_RESPONSE_CANCEL:
-	case GTK_RESPONSE_DELETE_EVENT:
-	default:
-	  /* cancel the whole delete operation */
-	  return;
-	}
+        primary = g_strdup (_("Cannot move file to trash, do you want to delete immediately?"));
+        secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
+                                     g_file_get_basename (l->data), error->message);
+        question_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
+                                                  GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                  GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", primary);
+        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (question_dialog),
+                                                  "%s", secondary);
+        gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL); 
+        if (list_length > 1)
+        {
+          /* no need for all those buttons we have a single file to delete */
+          gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP, CHEESE_RESPONSE_SKIP); 
+          gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP_ALL, CHEESE_RESPONSE_SKIP_ALL); 
+          gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_DELETE_ALL, CHEESE_RESPONSE_DELETE_ALL); 
+        }
+        gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_DELETE, GTK_RESPONSE_ACCEPT); 
+        response = gtk_dialog_run (GTK_DIALOG (question_dialog));
+        gtk_widget_destroy (question_dialog);
+        g_free (primary);
+        g_free (secondary);
+        g_error_free (error);
+        error = NULL;
+        switch (response) 
+        {
+          case CHEESE_RESPONSE_DELETE_ALL:
+            /* don't break so we delete the current item too */
+            delete_all = TRUE;
+          case GTK_RESPONSE_ACCEPT:
+            g_print ("deleting %s\n", g_file_get_basename (l->data));
+            if (!g_file_delete (l->data, NULL, &error))
+            {
+              cheese_window_delete_error_dialog (cheese_window, 
+                                                 l->data, 
+                                                 error != NULL ? error->message : _("Unknown Error"));
+              g_error_free (error);
+              error = NULL;
+            }
+            break;
+          case CHEESE_RESPONSE_SKIP:
+            /* do nothing, skip to the next item */
+            break;
+          case CHEESE_RESPONSE_SKIP_ALL:
+          case GTK_RESPONSE_CANCEL:
+          case GTK_RESPONSE_DELETE_EVENT:
+          default:
+            /* cancel the whole delete operation */
+            return;
+        }
       }
     }
     g_object_unref (l->data);
@@ -559,21 +560,9 @@ cheese_window_move_all_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_w
 static void
 cheese_window_move_media_to_trash (GtkWidget *widget, CheeseWindow *cheese_window)
 {
-  char *filename;
-  GFile *file;
   GList *files_list = NULL;
+  files_list = cheese_thumb_view_get_selected_images_list (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
 
-  filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
-  g_return_if_fail (filename);
-
-  // return if the file does not exist, i.e. was already deleted
-  if (!g_file_test (filename, G_FILE_TEST_EXISTS)) 
-    return;
-
-  file = g_file_new_for_path (filename);
-  g_free (filename);
-
-  files_list = g_list_append (files_list, file);
   cheese_window_cmd_move_file_to_trash (cheese_window, files_list);
   g_list_free (files_list);
 }
@@ -649,21 +638,38 @@ cheese_window_cmd_command_line (GtkAction *action, CheeseWindow *cheese_window)
   GError *error = NULL;
   char *command_line;
   const char *action_name;
-  char *filename;
-  filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
-  g_return_if_fail (filename);
+  GList *files, *l;
+  files = cheese_thumb_view_get_selected_images_list (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
+  char *filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
 
   action_name = gtk_action_get_name (action);
   if (strcmp (action_name, "SendByMail") == 0)
   {
-    char *basename = g_path_get_basename (filename);
-    command_line = g_strdup_printf ("gnome-open mailto:?subject=%s&attachment=%s",
-                                    basename, filename);
-    g_free (basename);
+    char *path;
+    command_line = g_strdup_printf ("gnome-open mailto:?subject='%s'", _("Media files"));
+    for (l = files; l != NULL; l = l->next)
+    {
+      path = g_file_get_path (l->data);
+      command_line = g_strjoin ("&attachment=", command_line, path, NULL);
+      g_free (path);
+      g_object_unref (l->data);
+    }
+    g_list_free (l);
+    g_list_free (files);
   }
-  if (strcmp (action_name, "SendTo") == 0)
+  else if (strcmp (action_name, "SendTo") == 0)
   {
-    command_line = g_strdup_printf ("nautilus-sendto %s", filename);
+    char *path;
+    command_line = g_strdup_printf ("nautilus-sendto");
+    for (l = files; l != NULL; l = l->next)
+    {
+      path = g_file_get_path (l->data);
+      command_line = g_strjoin (" ", command_line, path, NULL);
+      g_free (path);
+      g_object_unref (l->data);
+    }
+    g_list_free (l);
+    g_list_free (files);
   }
   else if (strcmp (action_name, "ExportToFSpot") == 0)
   {
@@ -673,7 +679,17 @@ cheese_window_cmd_command_line (GtkAction *action, CheeseWindow *cheese_window)
   }
   else if (strcmp (action_name, "ExportToFlickr") == 0)
   {
-    command_line = g_strdup_printf ("postr %s", filename);
+    char *path;
+    command_line = g_strdup_printf ("postr");
+    for (l = files; l != NULL; l = l->next)
+    {
+      path = g_file_get_path (l->data);
+      command_line = g_strjoin (" ", command_line, path, NULL);
+      g_free (path);
+      g_object_unref (l->data);
+    }
+    g_list_free (l);
+    g_list_free (files);
   }
   else
   {
@@ -773,9 +789,15 @@ cheese_window_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
       return FALSE;
     }
 
-    gtk_icon_view_select_path (GTK_ICON_VIEW (cheese_window->thumb_view), path);
-
-    if (event->type == GDK_BUTTON_PRESS && event->button == 3)
+    if (event->type == GDK_BUTTON_PRESS && event->button == 1)
+    {
+      if (cheese_thumb_view_get_n_selected (CHEESE_THUMB_VIEW (cheese_window->thumb_view)) > 1) {
+        gtk_icon_view_unselect_all (GTK_ICON_VIEW (cheese_window->thumb_view));
+        gtk_icon_view_select_path (GTK_ICON_VIEW (cheese_window->thumb_view), path);
+        gtk_icon_view_set_cursor (GTK_ICON_VIEW (cheese_window->thumb_view), path, NULL, FALSE);
+      }
+    }
+    else if (event->type == GDK_BUTTON_PRESS && event->button == 3)
     {
       int button, event_time;
 
@@ -790,9 +812,30 @@ cheese_window_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
         event_time = gtk_get_current_event_time ();
       }
 
-      char *selected_file = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
+      if (!gtk_icon_view_path_is_selected (GTK_ICON_VIEW (cheese_window->thumb_view), path) ||
+          cheese_thumb_view_get_n_selected (CHEESE_THUMB_VIEW (cheese_window->thumb_view)) <= 1) {
+        gtk_icon_view_unselect_all (GTK_ICON_VIEW (cheese_window->thumb_view));
+        gtk_icon_view_select_path (GTK_ICON_VIEW (cheese_window->thumb_view), path);
+        gtk_icon_view_set_cursor (GTK_ICON_VIEW (cheese_window->thumb_view), path, NULL, FALSE);
+      }
 
-      if (g_str_has_suffix (selected_file, VIDEO_NAME_SUFFIX))
+      GList *l, *files;
+      gchar *file;
+      gboolean list_has_videos = FALSE;
+      files = cheese_thumb_view_get_selected_images_list (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
+
+      for (l = files; l != NULL; l = l->next) {
+        file = g_file_get_path (l->data);
+        if (g_str_has_suffix (file, VIDEO_NAME_SUFFIX)) {
+          list_has_videos = TRUE;
+        }
+        g_free (file);
+        g_object_unref (l->data);
+      }
+      g_list_free (l);
+      g_list_free (files);
+
+      if (list_has_videos)
       {
         gtk_action_group_set_sensitive (cheese_window->actions_flickr, FALSE);
         gtk_action_group_set_sensitive (cheese_window->actions_fspot, FALSE);
@@ -804,10 +847,10 @@ cheese_window_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
         gtk_action_group_set_sensitive (cheese_window->actions_fspot, TRUE);
         gtk_action_group_set_sensitive (cheese_window->actions_account_photo, TRUE);
       }
-      g_free (selected_file);
         
       gtk_menu_popup (GTK_MENU (cheese_window->thumb_view_popup_menu),
                       NULL, iconview, NULL, NULL, button, event_time);
+
       return TRUE;
     }
     else if (event->type == GDK_2BUTTON_PRESS && event->button == 1)

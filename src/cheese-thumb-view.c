@@ -376,6 +376,7 @@ cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view)
 {
   GList *l, *item;
   GList *list = NULL;
+  GFile *file;
 
   GtkTreePath *path;
 
@@ -384,7 +385,8 @@ cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view)
   for (item = l; item != NULL; item = item->next) 
   {
     path = (GtkTreePath *) item->data;
-    list = g_list_prepend (list, cheese_thumb_view_get_url_from_path (thumb_view, path));
+    file = g_file_new_for_path (cheese_thumb_view_get_url_from_path (thumb_view, path));
+    list = g_list_prepend (list, file);
     gtk_tree_path_free (path);
   }
 
@@ -392,6 +394,25 @@ cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view)
   list = g_list_reverse (list);
 
   return list;
+}
+
+static void
+cheese_thumb_view_get_n_selected_helper (GtkIconView *thumbview,
+                                         GtkTreePath *path,
+                                         gpointer data)
+{
+  /* data is of type (guint *) */
+  (*(guint *) data) ++;
+}
+
+guint
+cheese_thumb_view_get_n_selected (CheeseThumbView *thumbview)
+{
+  guint count = 0;
+  gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbview),
+                                  cheese_thumb_view_get_n_selected_helper,
+                                  (&count));
+  return count;
 }
 
 static void
@@ -532,6 +553,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   gtk_icon_view_enable_model_drag_source (GTK_ICON_VIEW (thumb_view), GDK_BUTTON1_MASK,
                                           target_table, G_N_ELEMENTS (target_table),
                                           GDK_ACTION_COPY);
+  gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (thumb_view), GTK_SELECTION_MULTIPLE);
   g_signal_connect (G_OBJECT (thumb_view), "drag-data-get",
                     G_CALLBACK (cheese_thumb_view_on_drag_data_get_cb), NULL);
 

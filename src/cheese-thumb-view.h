@@ -48,6 +48,7 @@ GType	           cheese_thumb_view_get_type (void);
 GtkWidget       *cheese_thumb_view_new ();
 GList           *cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view);
 char            *cheese_thumb_view_get_selected_image (CheeseThumbView *thumb_view);
+guint            cheese_thumb_view_get_n_selected (CheeseThumbView *thumbview);
 
 G_END_DECLS
 
