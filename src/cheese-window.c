@@ -284,7 +284,6 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_object_unref (cheese_window->actions_file);
   g_object_unref (cheese_window->actions_video);
   g_object_unref (cheese_window->actions_fullscreen);
-  g_object_unref (cheese_window->ui_manager);
   g_object_unref (cheese_window->gconf);
 
   g_free (cheese_window);
