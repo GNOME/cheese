@@ -8,7 +8,7 @@
 			<default>1</default>
 			<locale name="C">
 				<short>Use a countdown</short>
-				<long>Whether a countdown should be used when taking a photo</long>
+				<long>Set to True to show countdown when taking a photo</long>
 			</locale>
     	</schema>
 
@@ -20,7 +20,7 @@
 			<default></default>
 			<locale name="C">
 				<short>Webcam device string indicator</short>
-				<long>The device-string which points to the webcam, e.g. /dev/video0</long>
+				<long>The device which points to the webcam (e.g. /dev/video0)</long>
 			</locale>
 		</schema>
 
@@ -33,9 +33,9 @@
 			<default>[]</default>
 			<locale name="C">
 				<short>Selected Effects</short>
-				<long>Effects, that are applied on startup. Possible values are: Mauve,
-				Noir/Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip,
-				Shagadelic, Vertigo, Edge, Dice and Warp</long>
+				<long>A list of effects applied on startup. Possible values are: "mauve",
+				"noir_blanc", "saturation", "hulk", "vertical-flip", "horizontal-flip",
+				"shagadelic", "vertigo", "edge", "dice" and "warp"</long>
 			</locale>
 		</schema>
 		

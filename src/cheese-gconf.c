@@ -74,10 +74,26 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
       tmp = list;
       while (tmp != NULL)
       {
+        char *str = tmp->data;
+        int j;
+        str[0] = g_ascii_toupper (str[0]);
+        for (j = 1; j < g_utf8_strlen (str, -1); j++)
+        {
+          if (str[j] == '-')
+          {
+            str[j] = ' ';
+            str[j + 1] = g_ascii_toupper (str[j + 1]);
+          }
+          else if (str[j] == '_')
+          {
+            str[j] = '/';
+            str[j + 1] = g_ascii_toupper (str[j + 1]);
+          }
+        }
         if (effects == NULL)
-          effects = tmp->data;
+          effects = str;
         else
-          effects = g_strjoin (",", effects, tmp->data, NULL);
+          effects = g_strjoin (",", effects, str, NULL);
 
         tmp = g_slist_next (tmp);
       }
@@ -151,11 +167,29 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
       }
       else
       {
-        effects = g_strsplit (g_value_get_string (value), ",", 12);
+        char *str = g_value_dup_string (value);
+        int j;
+        for (j = 0; j < g_utf8_strlen (str, -1); j++)
+        {
+          if (g_ascii_isupper (str[j]))
+          {
+            str[j] = g_ascii_tolower (str[j]);
+          }
+          else if (str[j] == ' ')
+          {
+            str[j] = '-';
+          }
+          else if (str[j] == '/')
+          {
+            str[j] = '_';
+          }
+        }
+        effects = g_strsplit (str, ",", 12);
         for (i = 0; effects[i] != NULL; i++)
         {
           list = g_slist_append (list, effects[i]);
         }
+        g_free (str);
       }
       gconf_client_set_list (priv->client,
                                CHEESE_GCONF_PREFIX "/selected_effects",
