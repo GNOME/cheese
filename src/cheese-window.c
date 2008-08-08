@@ -812,23 +812,29 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
   g_free (license_trans);
 }
 
+static void
+cheese_window_selection_changed_cb (GtkIconView *iconview, 
+				    CheeseWindow *cheese_window)
+{
+  if (cheese_thumb_view_get_n_selected (CHEESE_THUMB_VIEW (cheese_window->thumb_view)) > 0) {
+    gtk_action_group_set_sensitive (cheese_window->actions_file, TRUE);
+  } else {
+    gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
+  }
+}
+
 static gboolean
 cheese_window_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
                                      CheeseWindow *cheese_window)
 {
   GtkTreePath *path;
 
-  gtk_action_group_set_sensitive (cheese_window->actions_file, TRUE);
   if (event->type == GDK_BUTTON_PRESS || event->type == GDK_2BUTTON_PRESS)
   {
     path = gtk_icon_view_get_path_at_pos (GTK_ICON_VIEW (iconview),
                                           (int) event->x, (int) event->y);
-    if (path == NULL)
-    {
-      gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
-      return FALSE;
-    }
-
+    if (path == NULL) return FALSE;
+ 
     if (event->type == GDK_BUTTON_PRESS && event->button == 1)
     {
       if (cheese_thumb_view_get_n_selected (CHEESE_THUMB_VIEW (cheese_window->thumb_view)) > 1) {
@@ -1574,6 +1580,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   g_signal_connect (cheese_window->take_picture, "clicked",
                     G_CALLBACK (cheese_window_action_button_clicked_cb), cheese_window);
+  g_signal_connect (cheese_window->thumb_view, "selection_changed",
+		    G_CALLBACK (cheese_window_selection_changed_cb), cheese_window);
   g_signal_connect (cheese_window->thumb_view, "button_press_event",
                     G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 }
