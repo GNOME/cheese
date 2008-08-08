@@ -679,11 +679,11 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
     priv->current_format = format;
     g_free (resolution);
     
-    find_highest_framerate (format, &framerate_numerator, 
-                            &framerate_denominator);
-    
     if (format == NULL)
       goto fallback;
+
+    find_highest_framerate (format, &framerate_numerator, 
+                            &framerate_denominator);
 
     webcam_input = g_strdup_printf ("%s name=video_source device=%s ! capsfilter name=capsfilter caps=%s,width=%d,height=%d,framerate=%d/%d ! identity",
                                     selected_webcam->gstreamer_src,
