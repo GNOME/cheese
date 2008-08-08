@@ -9,103 +9,121 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 13:50+0700\n"
-"PO-Revision-Date: 2008-08-07 13:53+0700\n"
+"POT-Creation-Date: 2008-08-08 22:34+0700\n"
+"PO-Revision-Date: 2008-08-08 23:23+0700\n"
 "Last-Translator: Akom C. <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:94
-msgid "Cheese"
-msgstr "ชีส"
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "บูธเว็บแคมชีส"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:746
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:802
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ พร้อมใส่ลูกเล่นสนุกๆ"
 
 #: ../data/cheese.schemas.in.h:1
 msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"รายชื่อลูกเล่นจะใช้ขณะเริ่มการทำงาน ค่าที่เป็นไปได้คือ: \"mauve\" (ย้อมสีม่วง), "
+"\"noir_blanc\" (ขาวดำ), \"saturation\" (สีจัดจ้าน), \"hulk\" (หน้าเขียว), "
+"\"vertical-flip\" (กลับหัว), \"horizontal-flip\" (ส่องกระจก), \"shagadelic\" "
+"(จิ๊กโก๋), \"vertigo\" (ภวังค์), \"edge\" (ตัดเส้น), \"dice\" (เกล็ดกระจก) และ "
+"\"warp\" (บิดเบี้ยว)"
+
+#: ../data/cheese.schemas.in.h:2
+msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr "กำหนดที่เก็บภาพ ถ้าไม่กำหนดไว้จะใช้ \"XDG_PHOTO/Webcam\" แทน"
 
-#: ../data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:3
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr "กำหนดที่เก็บวีดิทัศน์ ถ้าไม่กำหนดไว้จะใช้ \"XDG_VIDEO/Webcam\" แทน"
 
-#: ../data/cheese.schemas.in.h:3
-msgid ""
-"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
-"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
-"Vertigo, Edge, Dice and Warp"
-msgstr ""
-"ลูกเล่นจะใช้ขณะเริ่มการทำงาน ค่าที่เป็นไปได้คือ: Mauve (ย้อมสีม่วง), Noir/Blanc (ขาวดำ), "
-"Saturation (สีจัดจ้าน), Hulk (หน้าเขียว), Vertical Flip (กลับหัว), Horizontal Flip "
-"(ส่องกระจก), Shagadelic, Vertigo (ภวังค์), Edge (ตัดเส้น), Dice (เกล็ดกระจก) และ "
-"Warp (บิดเบี้ยว)"
-
 #: ../data/cheese.schemas.in.h:4
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"ถ้ากำหนดเป็นค่าจริง ชีสจะสามารถให้คุณลบแฟ้มแบบทันทีทันใด ณ ที่เก็บ แทนการย้ายไปทิ้งลงถังขยะ "
+"ความสามารถนี้ค่อนข้างอันตราย ฉะนั้น กรุณาใช้ด้วยความระมัดระวัง"
+
+#: ../data/cheese.schemas.in.h:5
 msgid "Photo Path"
 msgstr "ที่เก็บภาพ"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:6
 msgid "Selected Effects"
 msgstr "ลูกเล่นที่เลือก"
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:7
+msgid "Set to True to show countdown when taking a photo"
+msgstr "กำหนดเป็นค่าจริงถ้าต้องการนับถอยหลังเมื่อถ่ายภาพ"
+
+#: ../data/cheese.schemas.in.h:8
 msgid "The X resolution of the image captured from the camera"
 msgstr "ความละเอียดในแนว X ของภาพที่จับจากกล้อง"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:9
 msgid "The Y resolution of the image captured from the camera"
 msgstr "ความละเอียดในแนว Y ของภาพที่จับจากกล้อง"
 
-#: ../data/cheese.schemas.in.h:8
-msgid "The device-string which points to the webcam, e.g. /dev/video0"
-msgstr "ชื่อแฟ้มอุปกรณ์ที่ชี้ไปที่เว็บแคม เช่น /dev/video0"
+#: ../data/cheese.schemas.in.h:10
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "ชื่อแฟ้มอุปกรณ์ที่ชี้ไปที่เว็บแคม (เช่น /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:11
 msgid "Use a countdown"
 msgstr "ใช้การนับถอยหลัง"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:12
 msgid "Video Path"
 msgstr "ที่เก็บวีดิทัศน์"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:13
 msgid "Webcam device string indicator"
 msgstr "ชื่อแฟ้มอุปกรณ์เว็บแคม"
 
-#: ../data/cheese.schemas.in.h:12
-msgid "Whether a countdown should be used when taking a photo"
-msgstr "กำหนดว่าจะนับถอยหลังเมื่อถ่ายภาพหรือไม่"
+#: ../data/cheese.schemas.in.h:14
+msgid "Whether to enable immediate deletion"
+msgstr "จะเปิดการใช้งานการลบอย่างทันทีทันใดหรือไม่"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:15
 msgid "X resolution"
 msgstr "ความละเอียดในแนว X"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:16
 msgid "Y resolution"
 msgstr "ความละเอียดในแนว Y"
 
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:828
-#: ../src/cheese-window.c:1112
+#: ../data/cheese.ui.h:1 ../src/cheese.c:94
+msgid "Cheese"
+msgstr "ชีส"
+
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:917
+#: ../src/cheese-window.c:1201
 msgid "_Effects"
 msgstr "ลูกเ_ล่น"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1124
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1213
 msgid "_Photo"
 msgstr "_ภาพ"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:929
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:1018
 msgid "_Take a Photo"
 msgstr "_ถ่ายภาพ"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1125
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1214
 msgid "_Video"
 msgstr "_วีดิทัศน์"
 
@@ -117,7 +135,7 @@ msgstr "<b>กล้อง</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>ความละเอียด</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1116
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1205
 msgid "Preferences"
 msgstr "ความชอบ"
 
@@ -151,7 +169,7 @@ msgstr "ส่องกระจก"
 
 #: ../src/cheese-effect-chooser.c:75
 msgid "Shagadelic"
-msgstr "Shagadelic"
+msgstr "จิ๊กโก๋"
 
 #: ../src/cheese-effect-chooser.c:77
 msgid "Vertigo"
@@ -250,42 +268,61 @@ msgstr "เกิดข้อผิดพลาดขณะลบ"
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "แฟ้ม \"%s\" ไม่สามารถลบได้ รายละเอียด: %s"
 
-#: ../src/cheese-window.c:428 ../src/cheese-window.c:471
+#: ../src/cheese-window.c:418
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected items?"
+msgstr "ยืนยันว่าต้องการลบ %'d รายการที่เลือกอย่างถาวรหรือไม่?"
+
+#: ../src/cheese-window.c:421
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "ยืนยันว่าต้องการลบ \"%s\" ถาวรหรือไม่?"
+
+#: ../src/cheese-window.c:424
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "ถ้าคุณลบ รายการนี้จะหายไปถาวร"
+
+#: ../src/cheese-window.c:446
 msgid "Unknown Error"
 msgstr "ข้อผิดพลาดไม่ทราบสาเหตุ"
 
-#: ../src/cheese-window.c:437
+#: ../src/cheese-window.c:472
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "ไม่สามารถย้ายแฟ้มไปยังถังขยะได้ คุณต้องการลบทันทีหรือไม่?"
 
-#: ../src/cheese-window.c:438
+#: ../src/cheese-window.c:473
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "แฟ้ม \"%s\" ไม่สามารถย้ายไปยังถังขยะได้ รายละเอียด: %s"
 
-#: ../src/cheese-window.c:505
+#: ../src/cheese-window.c:535
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "ย้ายภาพและวีดิทัศน์ทั้งหมดไปถังขยะหรือไม่?"
 
-#: ../src/cheese-window.c:513
+#: ../src/cheese-window.c:543
 msgid "_Move to Trash"
 msgstr "_ย้ายไปถังขยะ"
 
-#: ../src/cheese-window.c:628
+#: ../src/cheese-window.c:657
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "กำหนดเป็นภาพสำหรับบัญชีผู้ใช้ไม่ได้"
 
-#: ../src/cheese-window.c:707 ../src/cheese-window.c:987
+#: ../src/cheese-window.c:689
+msgid "Media files"
+msgstr "แฟ้มสื่อ"
+
+#: ../src/cheese-window.c:763 ../src/cheese-window.c:1076
 msgid "Unable to open help file for Cheese"
 msgstr "ไม่สามารถเปิดแฟ้มวิธีใช้ของชีสได้"
 
-#: ../src/cheese-window.c:724
+#: ../src/cheese-window.c:780
 msgid "translator-credits"
 msgstr "Akom <knight2000@gmail.com>"
 
-#: ../src/cheese-window.c:727
+#: ../src/cheese-window.c:783
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -296,7 +333,7 @@ msgstr ""
 "GNU General Public License ที่เผยแพร่โดยมูลนิธิซอฟต์แวร์เสรี ไม่ว่าจะเป็นสัญญาอนุญาตรุ่นที่ 2 "
 "หรือรุ่นถัดมา (ตามแต่คุณจะเลือก)\n"
 
-#: ../src/cheese-window.c:731
+#: ../src/cheese-window.c:787
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -308,7 +345,7 @@ msgstr ""
 "*ความเหมาะสมสำหรับวัตถุประสงค์เฉพาะกิจใดๆ* กรุณาอ่าน GNU General Public License "
 "เพื่อดูรายละเอียดเพิ่มเติม\n"
 
-#: ../src/cheese-window.c:735
+#: ../src/cheese-window.c:791
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -316,97 +353,114 @@ msgstr ""
 "คุณควรจะได้รับสำเนาของ GNU General Public License มาพร้อมกับโปรแกรมนี้ ถ้าคุณไม่ได้รับ "
 "กรุณาดูได้ที่ <http://www.gnu.org/licenses/>"
 
-#: ../src/cheese-window.c:750
+#: ../src/cheese-window.c:806
 msgid "Cheese Website"
 msgstr "เว็บไซต์ของชีส"
 
-#: ../src/cheese-window.c:917
+#: ../src/cheese-window.c:1006
 msgid "_Start recording"
 msgstr "เ_ริ่มอัด"
 
-#: ../src/cheese-window.c:1005
+#: ../src/cheese-window.c:1094
 msgid "_Start Recording"
 msgstr "เ_ริ่มอัด"
 
-#: ../src/cheese-window.c:1068
+#: ../src/cheese-window.c:1157
 msgid "_Stop Recording"
 msgstr "_หยุดอัด"
 
-#: ../src/cheese-window.c:1094
+#: ../src/cheese-window.c:1183
 msgid "_Cheese"
 msgstr "_ชีส"
 
-#: ../src/cheese-window.c:1096
+#: ../src/cheese-window.c:1185
 msgid "_Edit"
 msgstr "แ_ก้ไข"
 
-#: ../src/cheese-window.c:1097
+#: ../src/cheese-window.c:1186
 msgid "Move All to Trash"
 msgstr "ย้ายทั้งหมดไปลงถังขยะ"
 
-#: ../src/cheese-window.c:1099
+#: ../src/cheese-window.c:1188
 msgid "_Help"
 msgstr "_วิธีใช้"
 
-#: ../src/cheese-window.c:1102
+#: ../src/cheese-window.c:1191
 msgid "_Contents"
 msgstr "เนื้อ_หา"
 
-#: ../src/cheese-window.c:1102
+#: ../src/cheese-window.c:1191
 msgid "Help on this Application"
 msgstr "วิธีใช้โปรแกรมนี้"
 
-#: ../src/cheese-window.c:1108
+#: ../src/cheese-window.c:1197
 msgid "Countdown"
 msgstr "นับถอยหลัง"
 
-#: ../src/cheese-window.c:1129
+#: ../src/cheese-window.c:1218
 msgid "_Open"
 msgstr "เ_ปิด"
 
-#: ../src/cheese-window.c:1130
+#: ../src/cheese-window.c:1219
 msgid "Save _As..."
 msgstr "บันทึกเป็_น..."
 
-#: ../src/cheese-window.c:1131
+#: ../src/cheese-window.c:1220
 msgid "Move to _Trash"
 msgstr "ย้ายไป_ถังขยะ"
 
-#: ../src/cheese-window.c:1135 ../src/cheese-window.c:1310
+#: ../src/cheese-window.c:1221
+msgid "Delete"
+msgstr "ลบ"
+
+#: ../src/cheese-window.c:1225 ../src/cheese-window.c:1400
 msgid "_Take a photo"
 msgstr "_ถ่ายภาพ"
 
-#: ../src/cheese-window.c:1139
+#: ../src/cheese-window.c:1229
 msgid "_Recording"
 msgstr "_กำลังอัด"
 
-#: ../src/cheese-window.c:1143
+#: ../src/cheese-window.c:1233
 msgid "_Set As Account Photo"
 msgstr "กำหนดเป็นภาพสำหรับ_บัญชี"
 
-#: ../src/cheese-window.c:1147
+#: ../src/cheese-window.c:1237
 msgid "Send by _Mail"
 msgstr "ส่งทางเ_มล"
 
-#: ../src/cheese-window.c:1151
+#: ../src/cheese-window.c:1241
 msgid "Send _To"
 msgstr "ส่ง_ถึง"
 
-#: ../src/cheese-window.c:1155
+#: ../src/cheese-window.c:1245
 msgid "Export to F-_Spot"
 msgstr "ส่งออกไปยัง F-_Spot"
 
-#: ../src/cheese-window.c:1159
+#: ../src/cheese-window.c:1249
 msgid "Export to _Flickr"
 msgstr "ส่งออกไปยัง _Flickr"
 
-#: ../src/cheese-window.c:1447
+#: ../src/cheese-window.c:1542
 msgid "Quit"
 msgstr "ออก"
 
-#: ../src/cheese-window.c:1453
+#: ../src/cheese-window.c:1548
 msgid "About"
 msgstr "เกี่ยวกับ"
+
+#: ../src/cheese-window.c:1616
+msgid "Check your gstreamer installation"
+msgstr "ตรวจสอบการติดตั้ง gstreamer ของคุณ"
+
+#: ../src/cheese-window.c:1617
+#, c-format
+msgid ""
+"One or more needed gstreamer elements are missing:\n"
+"<i>%s</i>"
+msgstr ""
+"องค์ประกอบของ gstreamer ที่ต้องการอย่างน้อยหนึ่งอย่างหายไป:\n"
+"<i>%s</i>"
 
 #: ../src/cheese.c:81
 msgid "Be verbose"
