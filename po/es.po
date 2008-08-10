@@ -9,12 +9,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-07 12:17+0000\n"
-"PO-Revision-Date: 2008-08-07 15:05+0200\n"
+"POT-Creation-Date: 2008-08-10 21:17+0000\n"
+"PO-Revision-Date: 2008-08-10 23:44+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type:  text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
@@ -25,10 +25,11 @@ msgstr "Fotomatón de cámara web Cheese"
 
 #: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:802
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
-"Tome fotografías y vídeos con su cámara web, con divertidos efectos gráficos"
+msgstr "Tome fotografías y vídeos con su cámara web, con divertidos efectos gráficos"
 
-#: ../data/cheese.schemas.in.h:1
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
 msgid ""
 "A list of effects applied on startup. Possible values are: \"mauve\", "
 "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
@@ -38,7 +39,7 @@ msgstr ""
 "y negro», «saturación», «hulk», «giro vertical», «giro horizontal», "
 "«psicodélico», «vértigo», «contornos», «pedazos» y «distorsión»."
 
-#: ../data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:4
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
@@ -46,7 +47,7 @@ msgstr ""
 "Define la ruta donde se almacenarán las fotos, si está vacío se usará "
 "\"XDG_PHOTO/Webcam\"."
 
-#: ../data/cheese.schemas.in.h:3
+#: ../data/cheese.schemas.in.h:5
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
@@ -54,7 +55,11 @@ msgstr ""
 "Define la ruta donde se almacenarán los vídeos, si está vacío se usará "
 "\"XDG_VIDEO/Webcam\"."
 
-#: ../data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "Resolución de la altura"
+
+#: ../data/cheese.schemas.in.h:7
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
@@ -64,72 +69,68 @@ msgstr ""
 "borrar un archivo inmediatamente, en lugar de moverlo a la papelera. Esta "
 "característica puede ser peligrosa, úsela con precaución."
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:8
 msgid "Photo Path"
 msgstr "Ruta de las fotos"
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:9
 msgid "Selected Effects"
 msgstr "Efectos seleccionados"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:10
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Establecer a «true» para mostrar la cuenta atrás al tomar una foto"
 
-#: ../data/cheese.schemas.in.h:8
-msgid "The X resolution of the image captured from the camera"
-msgstr "La resolución X de la imagen capturada de la cámara"
-
-#: ../data/cheese.schemas.in.h:9
-msgid "The Y resolution of the image captured from the camera"
-msgstr "La resolución Y de la imagen capturada de la cámara"
-
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:11
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "El dispositivo que apunta a la cámara web (ej. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "La resolución de la altura de la imagen capturada por la cámara"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "La resolución de la anchura de la imagen capturada por la cámara"
+
+#: ../data/cheese.schemas.in.h:14
 msgid "Use a countdown"
 msgstr "Usar cuenta atrás"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:15
 msgid "Video Path"
 msgstr "Ruta de los vídeos"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:16
 msgid "Webcam device string indicator"
 msgstr "Indicador de la cadena de dispositivo de la cámara web"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:17
 msgid "Whether to enable immediate deletion"
 msgstr "Indica si se debe activar el borrado inmediato"
 
-#: ../data/cheese.schemas.in.h:15
-msgid "X resolution"
-msgstr "Resolución X"
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Y resolution"
-msgstr "Resolución Y"
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "Resolución de la anchura"
 
 #: ../data/cheese.ui.h:1 ../src/cheese.c:94
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:911
-#: ../src/cheese-window.c:1195
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:917
+#: ../src/cheese-window.c:1111
 msgid "_Effects"
 msgstr "_Efectos"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1207
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1123
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:1012
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:1169
 msgid "_Take a Photo"
 msgstr "_Tomar una foto"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1208
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1124
 msgid "_Video"
 msgstr "_Vídeo"
 
@@ -141,7 +142,7 @@ msgstr "<b>Cámara</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>Resolución</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1199
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1115
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -297,8 +298,7 @@ msgstr "Error desconocido"
 
 #: ../src/cheese-window.c:472
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr ""
-"No se puede mover el archivo a la papelera, ¿quiere borrarlo inmediatamente?"
+msgstr "No se puede mover el archivo a la papelera, ¿quiere borrarlo inmediatamente?"
 
 #: ../src/cheese-window.c:473
 #, c-format
@@ -323,7 +323,7 @@ msgstr "No se pudo establecer la foto de la cuenta"
 msgid "Media files"
 msgstr "Archivos multimedia"
 
-#: ../src/cheese-window.c:763 ../src/cheese-window.c:1070
+#: ../src/cheese-window.c:763 ../src/cheese-window.c:988
 msgid "Unable to open help file for Cheese"
 msgstr "No se pudo abrir el archivo de ayuda para Cheese"
 
@@ -370,103 +370,103 @@ msgstr ""
 msgid "Cheese Website"
 msgstr "Página web de Cheese"
 
-#: ../src/cheese-window.c:1000
-msgid "_Start recording"
-msgstr "_Comenzar a grabar"
-
-#: ../src/cheese-window.c:1088
+#: ../src/cheese-window.c:1005
 msgid "_Start Recording"
 msgstr "_Comenzar a grabar"
 
-#: ../src/cheese-window.c:1151
+#: ../src/cheese-window.c:1067
 msgid "_Stop Recording"
 msgstr "_Parar de grabar"
 
-#: ../src/cheese-window.c:1177
+#: ../src/cheese-window.c:1093
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1179
+#: ../src/cheese-window.c:1095
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/cheese-window.c:1180
+#: ../src/cheese-window.c:1096
 msgid "Move All to Trash"
 msgstr "Mover todos a la papelera"
 
-#: ../src/cheese-window.c:1182
+#: ../src/cheese-window.c:1098
 msgid "_Help"
 msgstr "Ay_uda"
 
-#: ../src/cheese-window.c:1185
+#: ../src/cheese-window.c:1101
 msgid "_Contents"
 msgstr "_Índice"
 
-#: ../src/cheese-window.c:1185
+#: ../src/cheese-window.c:1101
 msgid "Help on this Application"
 msgstr "Ayuda sobre esta aplicación"
 
-#: ../src/cheese-window.c:1191
+#: ../src/cheese-window.c:1107
 msgid "Countdown"
 msgstr "Cuenta atrás"
 
-#: ../src/cheese-window.c:1212
+#: ../src/cheese-window.c:1128
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/cheese-window.c:1213
+#: ../src/cheese-window.c:1129
 msgid "Save _As..."
 msgstr "Guardar _como…"
 
-#: ../src/cheese-window.c:1214
+#: ../src/cheese-window.c:1130
 msgid "Move to _Trash"
 msgstr "Mover a la _papelera"
 
-#: ../src/cheese-window.c:1215
+#: ../src/cheese-window.c:1131
 msgid "Delete"
 msgstr "Borrar"
 
-#: ../src/cheese-window.c:1219 ../src/cheese-window.c:1394
+#: ../src/cheese-window.c:1135 ../src/cheese-window.c:1323
 msgid "_Take a photo"
 msgstr "_Tomar una foto"
 
-#: ../src/cheese-window.c:1223
+#: ../src/cheese-window.c:1139
 msgid "_Recording"
 msgstr "G_rabar"
 
-#: ../src/cheese-window.c:1227
+#: ../src/cheese-window.c:1143
 msgid "_Set As Account Photo"
 msgstr "E_stablecer como foto de la cuenta"
 
-#: ../src/cheese-window.c:1231
+#: ../src/cheese-window.c:1147
 msgid "Send by _Mail"
 msgstr "Enviar por correo-_e"
 
-#: ../src/cheese-window.c:1235
+#: ../src/cheese-window.c:1151
 msgid "Send _To"
 msgstr "Enviar _a"
 
-#: ../src/cheese-window.c:1239
+#: ../src/cheese-window.c:1155
 msgid "Export to F-_Spot"
 msgstr "Exportar a F-_Spot"
 
-#: ../src/cheese-window.c:1243
+#: ../src/cheese-window.c:1159
 msgid "Export to _Flickr"
 msgstr "Exportar a _Flickr"
 
-#: ../src/cheese-window.c:1536
+#: ../src/cheese-window.c:1179
+msgid "_Start recording"
+msgstr "_Comenzar a grabar"
+
+#: ../src/cheese-window.c:1457
 msgid "Quit"
 msgstr "Salir"
 
-#: ../src/cheese-window.c:1542
+#: ../src/cheese-window.c:1463
 msgid "About"
 msgstr "Acerca de"
 
-#: ../src/cheese-window.c:1608
+#: ../src/cheese-window.c:1536
 msgid "Check your gstreamer installation"
 msgstr "Compruebe su instalación de gstreamer"
 
-#: ../src/cheese-window.c:1609
+#: ../src/cheese-window.c:1537
 #, c-format
 msgid ""
 "One or more needed gstreamer elements are missing:\n"
@@ -485,5 +485,3 @@ msgstr ""
 "- Tome fotografías y vídeos con su cámara web, con divertidos efectos "
 "gráficos"
 
-#~ msgid "_Full Screen"
-#~ msgstr "_Pantalla completa"
