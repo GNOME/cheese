@@ -1534,8 +1534,7 @@ setup_camera (CheeseWindow *cheese_window)
     gchar *primary, *secondary;
     
     primary = g_strdup (_("Check your gstreamer installation"));
-    secondary = g_strdup_printf (_("One or more needed gstreamer elements are missing:\n"
-				   "<i>%s</i>"), error->message);
+    secondary = g_strdup (error->message);
 
     gdk_threads_enter ();
 
