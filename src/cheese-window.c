@@ -773,6 +773,40 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
   static const char *authors[] = {
     "daniel g. siegel <dgsiegel@gmail.com>",
     "Jaap A. Haitsma <jaap@haitsma.org>",
+    "",
+    "Alex \"weej\" Jones <alex@weej.com>",
+    "Andrea Cimitan <andrea.cimitan@gmail.com>",
+    "Baptiste Mille-Mathias <bmm80@free.fr>",
+    "Cosimo Cecchi <anarki@lilik.it>",
+    "Diego Escalante Urrelo <dieguito@gmail.com>",
+    "Felix Kaser <f.kaser@gmx.net>",
+    "Filippo Argiolas <filippo.argiolas@gmail.com>",
+    "Gintautas Miliauskas <gintas@akl.lt>",
+    "James Liggett <jrliggett@cox.net>",
+    "Luca Ferretti <elle.uca@libero.it>",
+    "Mirco \"MacSlow\" Müller <macslow@bangang.de>",
+    "Patryk Zawadzki <patrys@pld-linux.org>",
+    "Ryan Zeigler <zeiglerr@gmail.com>",
+    "Sebastian Keller <sebastian-keller@gmx.de>",
+    "Steve Magoun <steve.magoun@canonical.com>",
+    "Thomas Perl <thp@perli.ne>",
+    "Tim Philipp Müller <tim@centricular.net>",
+    "Todd Eisenberger <teisenberger@gmail.com>",
+    "Tommi Vainikainen <thv@iki.fi>",
+    NULL
+  };
+
+  static const char *artists[] = {
+    "Andreas Nilsson <andreas@andreasn.se>",
+    "Josef Vybíral <josef.vybiral@gmail.com>",
+    "Kalle Persson <kalle@kallepersson.se>",
+    "Lapo Calamandrei <calamandrei@gmail.com>",
+    "Or Dvory <gnudles@nana.co.il>",
+    NULL
+  };
+
+  static const char *documenters[] = {
+    "Joshua Henderson <joshhendo@gmail.com>",
     NULL
   };
 
@@ -802,6 +836,8 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
                          "comments", _("Take photos and videos with your webcam, with fun graphical effects"),
                          "authors", authors,
                          "translator-credits", translators,
+                         "artists", artists,
+                         "documenters", documenters,
                          "website", "http://www.gnome.org/projects/cheese",
                          "website-label", _("Cheese Website"),
                          "logo-icon-name", "cheese",
