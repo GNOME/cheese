@@ -1619,6 +1619,7 @@ setup_camera (CheeseWindow *cheese_window)
     cheese_window_set_message_area (cheese_window, message_area);
   }
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), TRUE);
+  gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
   gdk_threads_leave ();
 }
 
@@ -1636,7 +1637,8 @@ cheese_window_init (char *hal_dev_udi)
   cheese_window->isFullscreen = FALSE;
 
   cheese_window_create_window (cheese_window);
- 
+  gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
+   
   gtk_widget_show_all (cheese_window->window);
   ephy_spinner_start (EPHY_SPINNER (cheese_window->throbber));
 
