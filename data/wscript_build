@@ -16,6 +16,7 @@ env = bld.env()
 install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
 install_files('PACKAGE_DATADIR', '', 'cheese.ui')
 install_files('PACKAGE_DATADIR', '', 'cheese-bugreport.sh')
+install_files('PACKAGE_DATADIR', '', 'gtkrc')
 
 # process schemas.in file
 obj=bld.create_obj('intltool_in')

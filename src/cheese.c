@@ -88,6 +88,8 @@ main (int argc, char **argv)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
+  gtk_rc_parse (APPNAME_DATA_DIR G_DIR_SEPARATOR_S "gtkrc");
+
   g_thread_init (NULL);
   gdk_threads_init ();
 

@@ -46,6 +46,7 @@
 #include "cheese-fileutil.h"
 #include "cheese-gconf.h"
 #include "cheese-thumb-view.h"
+#include "eog-thumb-nav.h"
 #include "cheese-window.h"
 #include "ephy-spinner.h"
 #include "gst-audio-play.h"
@@ -117,6 +118,7 @@ typedef struct
   GtkWidget *label_video;
 
   GtkWidget *thumb_scrollwindow;
+  GtkWidget *thumb_nav;
   GtkWidget *thumb_view;
   GtkWidget *thumb_view_popup_menu;
 
@@ -1363,7 +1365,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), FALSE);
 
   cheese_window->thumb_view = cheese_thumb_view_new ();
-  gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_view);
+  cheese_window->thumb_nav = eog_thumb_nav_new (cheese_window->thumb_view, TRUE);
+  gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_nav);
 
   char *gconf_effects;
   g_object_get (cheese_window->gconf, "gconf_prop_selected_effects", &gconf_effects, NULL);

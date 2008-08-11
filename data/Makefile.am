@@ -10,6 +10,8 @@ schemadir = $(sysconfdir)/gconf/schemas
 schema_in_files = cheese.schemas.in
 schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 
+gtkrcdir = $(pkgdatadir)
+gtkrc_DATA = gtkrc
 
 pkgdata_DATA =						\
 	cheese.ui					\
@@ -20,6 +22,7 @@ EXTRA_DIST =						\
 	$(desktop_in_files)				\
 	$(schema_in_files)				\
 	$(pkgdata_DATA)				\
+	$(gtkrc_DATA)					\
 	$(bugreport_SCRIPTS)
 
 bugreportdir      = $(libexecdir)/cheese
