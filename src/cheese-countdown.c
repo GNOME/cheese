@@ -54,7 +54,7 @@ typedef struct
 
 typedef struct
 {
-  gint iState;
+  int iState;
   cairo_surface_t* pSurface;
   cheese_countdown_cb_t picture_callback;
   cheese_countdown_cb_t hide_callback;
@@ -262,10 +262,10 @@ color_shade (const CairoColor * a, float k, CairoColor * b)
   b->a = alpha;
 }
 
-static gint
+static int
 do_text (cairo_t*    pContext,
          gchar*      pcText,
-         gint        iFontSize,
+         int         iFontSize,
          gchar*      pcFontFamily,
          PangoWeight fontWeight,
          PangoStyle  fontStyle)
@@ -274,7 +274,7 @@ do_text (cairo_t*    pContext,
   PangoLayout*          pLayout     = NULL;
   GString*              pTextString = NULL;
   PangoRectangle        logicalRect;
-  gint                  iAdvanceWidth;
+  int                   iAdvanceWidth;
 
   /* setup a new pango-layout based on the source-context */
   pLayout = pango_cairo_create_layout (pContext);
@@ -345,8 +345,8 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   gdouble   fWidth   = (gdouble) widget->allocation.width;
   gdouble   fHeight  = (gdouble) widget->allocation.height;
   /* 3 * 26 are the three numbers, 30 is the width of camera-icon.svg */
-  gint      iOffsetX = (widget->allocation.width - 3 * 26 - 30) / 2;
-  gint      iOffsetY = (widget->allocation.height - 30) / 2;
+  int       iOffsetX = (widget->allocation.width - 3 * 26 - 30) / 2;
+  int       iOffsetY = (widget->allocation.height - 30) / 2;
   gdouble   fAlpha1;
   gdouble   fAlpha2;
   gdouble   fAlpha3;
@@ -630,6 +630,13 @@ cheese_countdown_cancel (CheeseCountdown *countdown)
 {
   CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
   priv->iState = STATE_OFF;
+}
+
+int
+cheese_countdown_get_state (CheeseCountdown *countdown)
+{
+  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+  return priv->iState;
 }
 
 static void
