@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-11 08:09+0200\n"
-"PO-Revision-Date: 2008-08-11 08:10+0200\n"
+"POT-Creation-Date: 2008-08-12 08:43+0200\n"
+"PO-Revision-Date: 2008-08-12 08:43+0200\n"
 "Last-Translator: Ignacio Casal Quinteiro <icq@svn.gnome.org>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "Cheese Webcam Booth"
 msgstr "Aplicación para cámaras web Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:802
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:838
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Sacar fotografías e vídeos desde a súa cámara web, con efectos gráficos "
@@ -116,24 +116,24 @@ msgstr "Indica se se activa eliminación inmediata"
 msgid "Width resolution"
 msgstr "Resolución da largura"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:94
+#: ../data/cheese.ui.h:1 ../src/cheese.c:96
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:917
-#: ../src/cheese-window.c:1111
+#: ../data/cheese.ui.h:2 ../src/cheese-window.c:955
+#: ../src/cheese-window.c:1149
 msgid "_Effects"
 msgstr "_Efectos"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1123
+#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1161
 msgid "_Photo"
 msgstr "_Fotografía"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:1169
+#: ../data/cheese.ui.h:4 ../src/cheese-window.c:1207
 msgid "_Take a Photo"
 msgstr "_Sacar unha fotografía"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1124
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1162
 msgid "_Video"
 msgstr "_Vídeo"
 
@@ -145,7 +145,7 @@ msgstr "<b>Cámara</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>Resolución</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1115
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1153
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -221,19 +221,23 @@ msgstr "Para obter máis información vexa a axuda."
 msgid "Help"
 msgstr "Axuda"
 
-#: ../src/cheese-window.c:71
+#: ../src/cheese-webcam.c:1391
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "Faltan un ou máis elementos necesarios de gstreamer: "
+
+#: ../src/cheese-window.c:72
 msgid "_Skip"
 msgstr "_Saltar"
 
-#: ../src/cheese-window.c:72
+#: ../src/cheese-window.c:73
 msgid "S_kip All"
 msgstr "Sal_tar todo"
 
-#: ../src/cheese-window.c:73
+#: ../src/cheese-window.c:74
 msgid "Delete _All"
 msgstr "Eliminar t_odo"
 
-#: ../src/cheese-window.c:166
+#: ../src/cheese-window.c:168
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -242,7 +246,7 @@ msgstr ""
 "Fallou ao abrir o navegador para mostrar:\n"
 "%s"
 
-#: ../src/cheese-window.c:190
+#: ../src/cheese-window.c:192
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -251,7 +255,7 @@ msgstr ""
 "Fallou ao abrir o cliente de correo para enviar a mensaxe a:\n"
 "%s"
 
-#: ../src/cheese-window.c:313
+#: ../src/cheese-window.c:315
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -260,83 +264,83 @@ msgstr ""
 "Fallou ao lanzar o programa para mostrar:\n"
 "%s"
 
-#: ../src/cheese-window.c:332
+#: ../src/cheese-window.c:334
 msgid "Save File"
 msgstr "Gardar ficheiro"
 
-#: ../src/cheese-window.c:370
+#: ../src/cheese-window.c:372
 #, c-format
 msgid "Could not save %s"
 msgstr "Non se puido gardar %s"
 
-#: ../src/cheese-window.c:392
+#: ../src/cheese-window.c:394
 msgid "Error while deleting"
 msgstr "Erro ao eliminar"
 
-#: ../src/cheese-window.c:393
+#: ../src/cheese-window.c:395
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "O ficheiro \"%s\" non se pode eliminar. Detalles: %s"
 
-#: ../src/cheese-window.c:418
+#: ../src/cheese-window.c:420
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected items?"
 msgstr ""
 "Está seguro de que quere eliminar permanentemente %'d elementos "
 "seleccionados?"
 
-#: ../src/cheese-window.c:421
+#: ../src/cheese-window.c:423
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Está seguro de que quere eliminar \"%s\" permanentemente?"
 
-#: ../src/cheese-window.c:424
+#: ../src/cheese-window.c:426
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Se elimina un elemento, pérdese permanentemente."
 
-#: ../src/cheese-window.c:446
+#: ../src/cheese-window.c:448
 msgid "Unknown Error"
 msgstr "Erro descoñecido"
 
-#: ../src/cheese-window.c:472
+#: ../src/cheese-window.c:474
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Non se pode mover o ficheiro ao lixo, quere eliminalo inmediatamente?"
 
-#: ../src/cheese-window.c:473
+#: ../src/cheese-window.c:475
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Non se pode mover ao lixo o ficheiro \"%s\". Detalles: %s"
 
-#: ../src/cheese-window.c:535
+#: ../src/cheese-window.c:537
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Está seguro de que quere mover todas as fotos e vídeos ao lixo?"
 
-#: ../src/cheese-window.c:543
+#: ../src/cheese-window.c:545
 msgid "_Move to Trash"
 msgstr "_Mover ao lixo"
 
-#: ../src/cheese-window.c:657
+#: ../src/cheese-window.c:659
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Non se puido configurar a conta para fotografias"
 
-#: ../src/cheese-window.c:689
+#: ../src/cheese-window.c:691
 msgid "Media files"
 msgstr "Ficheiros multimedia"
 
-#: ../src/cheese-window.c:763 ../src/cheese-window.c:988
+#: ../src/cheese-window.c:765 ../src/cheese-window.c:1026
 msgid "Unable to open help file for Cheese"
 msgstr "Non se puido abrir o ficheiro de axuda para Cheese"
 
-#: ../src/cheese-window.c:780
+#: ../src/cheese-window.c:816
 msgid "translator-credits"
 msgstr ""
 "Ricardo González Castro <rick@jinlabs.com>\n"
 "Ignacio Casal Quinteiro <nacho.resa@gmail.com>"
 
-#: ../src/cheese-window.c:783
+#: ../src/cheese-window.c:819
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -348,7 +352,7 @@ msgstr ""
 "Foundation; xa sexa na versión 2 da Licenza como (segundo a súa escolla) en "
 "calquera versión posterior.\n"
 
-#: ../src/cheese-window.c:787
+#: ../src/cheese-window.c:823
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -360,7 +364,7 @@ msgstr ""
 "PARA UN PROPÓSITO PARTICULAR. Para máis detalles vexa a Licenza Pública "
 "Xeral de GNU.\n"
 
-#: ../src/cheese-window.c:791
+#: ../src/cheese-window.c:827
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -368,120 +372,111 @@ msgstr ""
 "Debeu recibir unha copia da Licenza Pública Xeral de GNU xunto con este "
 "programa. Se non, vexa <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:806
+#: ../src/cheese-window.c:844
 msgid "Cheese Website"
 msgstr "Sitio web de Cheese"
 
-#: ../src/cheese-window.c:1005
+#: ../src/cheese-window.c:1043
 msgid "_Start Recording"
 msgstr "_Empezar a gravar"
 
-#: ../src/cheese-window.c:1067
+#: ../src/cheese-window.c:1105
 msgid "_Stop Recording"
 msgstr "_Parar de gravar"
 
-#: ../src/cheese-window.c:1093
+#: ../src/cheese-window.c:1131
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1095
+#: ../src/cheese-window.c:1133
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../src/cheese-window.c:1096
+#: ../src/cheese-window.c:1134
 msgid "Move All to Trash"
 msgstr "Mover todo ao lixo"
 
-#: ../src/cheese-window.c:1098
+#: ../src/cheese-window.c:1136
 msgid "_Help"
 msgstr "_Axuda"
 
-#: ../src/cheese-window.c:1101
+#: ../src/cheese-window.c:1139
 msgid "_Contents"
 msgstr "_Contidos"
 
-#: ../src/cheese-window.c:1101
+#: ../src/cheese-window.c:1139
 msgid "Help on this Application"
 msgstr "Axuda nesta aplicación"
 
-#: ../src/cheese-window.c:1107
+#: ../src/cheese-window.c:1145
 msgid "Countdown"
 msgstr "Conta atrás"
 
-#: ../src/cheese-window.c:1128
+#: ../src/cheese-window.c:1166
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/cheese-window.c:1129
+#: ../src/cheese-window.c:1167
 msgid "Save _As..."
 msgstr "Gardar _como..."
 
-#: ../src/cheese-window.c:1130
+#: ../src/cheese-window.c:1168
 msgid "Move to _Trash"
 msgstr "Mover ao _lixo"
 
-#: ../src/cheese-window.c:1131
+#: ../src/cheese-window.c:1169
 msgid "Delete"
 msgstr "Eliminar"
 
-#: ../src/cheese-window.c:1135 ../src/cheese-window.c:1323
+#: ../src/cheese-window.c:1173 ../src/cheese-window.c:1361
 msgid "_Take a photo"
 msgstr "_Sacar unha fotografía"
 
-#: ../src/cheese-window.c:1139
+#: ../src/cheese-window.c:1177
 msgid "_Recording"
 msgstr "_Gravando"
 
-#: ../src/cheese-window.c:1143
+#: ../src/cheese-window.c:1181
 msgid "_Set As Account Photo"
 msgstr "_Establecer como conta para fotografías"
 
-#: ../src/cheese-window.c:1147
+#: ../src/cheese-window.c:1185
 msgid "Send by _Mail"
 msgstr "Enviar por _correo"
 
-#: ../src/cheese-window.c:1151
+#: ../src/cheese-window.c:1189
 msgid "Send _To"
 msgstr "Enviar _a"
 
-#: ../src/cheese-window.c:1155
+#: ../src/cheese-window.c:1193
 msgid "Export to F-_Spot"
 msgstr "Exportar a F-_Spot"
 
-#: ../src/cheese-window.c:1159
+#: ../src/cheese-window.c:1197
 msgid "Export to _Flickr"
 msgstr "Exportar a _Flickr"
 
-#: ../src/cheese-window.c:1179
+#: ../src/cheese-window.c:1217
 msgid "_Start recording"
 msgstr "_Empezar a gravar"
 
-#: ../src/cheese-window.c:1457
+#: ../src/cheese-window.c:1496
 msgid "Quit"
 msgstr "Saír"
 
-#: ../src/cheese-window.c:1463
+#: ../src/cheese-window.c:1502
 msgid "About"
 msgstr "Sobre"
 
-#: ../src/cheese-window.c:1536
+#: ../src/cheese-window.c:1575
 msgid "Check your gstreamer installation"
 msgstr "Verifique a súa instalación de gstreamer"
-
-#: ../src/cheese-window.c:1537
-#, c-format
-msgid ""
-"One or more needed gstreamer elements are missing:\n"
-"<i>%s</i>"
-msgstr ""
-"Faltan un ou máis elementos necesarios de gstreamer:\n"
-"<i>%s</i>"
 
 #: ../src/cheese.c:81
 msgid "Be verbose"
 msgstr "Ser detallado"
 
-#: ../src/cheese.c:96
+#: ../src/cheese.c:98
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- Sacar fotografías e vídeos desde a súa cámara web, con efectos gráficos "
