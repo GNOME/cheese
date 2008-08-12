@@ -270,12 +270,18 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
   if (!found) return;
 
   gboolean valid = gtk_list_store_remove (priv->store, &iter);
-  if (valid)
+  if (!valid)
   {
-    GtkTreePath *tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
-    gtk_icon_view_select_path (GTK_ICON_VIEW (thumb_view), tree_path);
-    gtk_tree_path_free (tree_path);
+    int len = gtk_tree_model_iter_n_children (GTK_TREE_MODEL (priv->store), NULL);
+    if (len <= 0)
+      return;
+
+    valid = gtk_tree_model_iter_nth_child (GTK_TREE_MODEL (priv->store), &iter, NULL, len - 1);
   }
+  GtkTreePath *tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
+  gtk_icon_view_select_path (GTK_ICON_VIEW (thumb_view), tree_path);
+  gtk_tree_path_free (tree_path);
+
 }
 
 static void
