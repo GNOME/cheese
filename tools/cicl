@@ -38,6 +38,7 @@
 #
 # Changelog
 # =========
+# 2008-08-12  add the fmt command to the Changelog message, in order to truncate long lines
 # 2008-06-29  set the EDITOR variable if not available
 # 2007-10-27  new option: possibility to put Changelog in the list of modified files
 # 2007-09-18  initial release
@@ -208,7 +209,7 @@ E=$(echo -e "$FILES" | sed -e "s/ /,/g")
 E=$(echo $E | sed -e "s/,$/:/")
 E=$(echo $E | sed -e "s/,/,\n\t  /g")
 
-LOGMSG=$(echo "$MESSAGE" | sed -e "s/^/\n\t  /")
+LOGMSG=$(echo "$MESSAGE" | sed -e "s/^/\n\t  /" | fmt)
 ENTRY="$ENTRY $E $LOGMSG\n"
 
 echo -e "$ENTRY" >> $TMPFILE
