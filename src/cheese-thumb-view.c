@@ -25,7 +25,6 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <gio/gio.h>
 #include <libgnomeui/libgnomeui.h>
 
 #include "cheese-fileutil.h"
@@ -234,17 +233,22 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   }
 }
 
-static void
+void
 cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
 {
   CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
   char *path;
   GtkTreeIter iter;
   char *filename;
+  gboolean found = FALSE;
 
   filename = g_file_get_path (file);
 
-  gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter);
+  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter)) {
+    /* a single item was on the thumbview but it's been already removed */
+    return;
+  }
+
   /* check if the selected item is the first, else go through the store */
   gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &path, -1);
   if (g_ascii_strcasecmp (path, filename)) 
@@ -252,12 +256,19 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
     while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter))
     {
       gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &path, -1);
-      if (!g_ascii_strcasecmp (path, filename))
+      if (!g_ascii_strcasecmp (path, filename)) {
+        found = TRUE;
         break;
+      }
     }
+  } else {
+    found = TRUE;
   }
   g_free (path);
   g_free (filename);
+
+  if (!found) return;
+
   gboolean valid = gtk_list_store_remove (priv->store, &iter);
   if (valid)
   {

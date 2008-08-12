@@ -393,12 +393,12 @@ cheese_window_delete_error_dialog (CheeseWindow *cheese_window, GFile *file, gch
   GtkWidget *error_dialog;
   primary = g_strdup (_("Error while deleting"));
   secondary = g_strdup_printf (_("The file \"%s\" cannot be deleted. Details: %s"),
-			       g_file_get_basename (file), message);
+                               g_file_get_basename (file), message);
   error_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-					 GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-					 GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", primary);
+                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                         GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", primary);
   gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (error_dialog),
-					    "%s", secondary);
+                                            "%s", secondary);
   gtk_dialog_run (GTK_DIALOG (error_dialog));
   gtk_widget_destroy (error_dialog);
   g_free (primary);
@@ -418,17 +418,17 @@ cheese_window_cmd_delete_file (CheeseWindow *cheese_window, GList *files, gboole
   if (batch == FALSE) {
     if (list_length > 1) {
       primary = g_strdup_printf (_("Are you sure you want to permanently delete the %'d selected items?"),
-				 list_length);
+                                 list_length);
     } else {
       primary = g_strdup_printf (_("Are you sure you want to permanently delete \"%s\"?"),
-				 g_file_get_basename (files->data));
+                                 g_file_get_basename (files->data));
     }
     secondary = g_strdup_printf (_("If you delete an item, it will be permanently lost."));
     question_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-					      GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-					      GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", primary);
+                                              GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                              GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", primary);
     gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (question_dialog),
-					      "%s", secondary);
+                                              "%s", secondary);
     gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL); 
     gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_DELETE, GTK_RESPONSE_ACCEPT); 
     response = gtk_dialog_run (GTK_DIALOG (question_dialog));
@@ -445,7 +445,7 @@ cheese_window_cmd_delete_file (CheeseWindow *cheese_window, GList *files, gboole
     if (!g_file_delete (l->data, NULL, &error))
     {
       cheese_window_delete_error_dialog (cheese_window, l->data, 
-					 error != NULL ? error->message : _("Unknown Error"));
+                                         error != NULL ? error->message : _("Unknown Error"));
       g_error_free (error);
       error = NULL;
     } 
@@ -468,24 +468,28 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
   g_print ("received %d items to delete\n", list_length);
 
   for (l = files; l != NULL; l = l->next)
-  {
+  { 
+    if (!g_file_test (g_file_get_path (l->data), G_FILE_TEST_EXISTS)) {
+      g_object_unref (l->data);
+      break;
+    }
     if (!g_file_trash (l->data, NULL, &error))
     {
       primary = g_strdup (_("Cannot move file to trash, do you want to delete immediately?"));
       secondary = g_strdup_printf (_("The file \"%s\" cannot be moved to the trash. Details: %s"),
-				   g_file_get_basename (l->data), error->message);
+                                   g_file_get_basename (l->data), error->message);
       question_dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-						GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-						GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", primary);
+                                                GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                                GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", primary);
       gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (question_dialog),
-						"%s", secondary);
+                                                "%s", secondary);
       gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL); 
       if (list_length > 1)
       {
-	/* no need for all those buttons we have a single file to delete */
-	gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP, CHEESE_RESPONSE_SKIP); 
-	gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP_ALL, CHEESE_RESPONSE_SKIP_ALL); 
-	gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_DELETE_ALL, CHEESE_RESPONSE_DELETE_ALL); 
+        /* no need for all those buttons we have a single file to delete */
+        gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP, CHEESE_RESPONSE_SKIP); 
+        gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_SKIP_ALL, CHEESE_RESPONSE_SKIP_ALL); 
+        gtk_dialog_add_button (GTK_DIALOG (question_dialog), CHEESE_BUTTON_DELETE_ALL, CHEESE_RESPONSE_DELETE_ALL); 
       }
       gtk_dialog_add_button (GTK_DIALOG (question_dialog), GTK_STOCK_DELETE, GTK_RESPONSE_ACCEPT); 
       response = gtk_dialog_run (GTK_DIALOG (question_dialog));
@@ -497,25 +501,27 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
       switch (response) 
       {
       case CHEESE_RESPONSE_DELETE_ALL:
-	/* forward the list to cmd_delete */
-	cheese_window_cmd_delete_file (cheese_window, l, TRUE);
-	return;
+        /* forward the list to cmd_delete */
+        cheese_window_cmd_delete_file (cheese_window, l, TRUE);
+        return;
       case GTK_RESPONSE_ACCEPT:
-	/* create a single file list for cmd_delete */
-	d = g_list_append (d, g_object_ref(l->data));
-	cheese_window_cmd_delete_file (cheese_window, d, TRUE);
-	g_list_free (d);
-	break;
+        /* create a single file list for cmd_delete */
+        d = g_list_append (d, g_object_ref(l->data));
+        cheese_window_cmd_delete_file (cheese_window, d, TRUE);
+        g_list_free (d);
+        break;
       case CHEESE_RESPONSE_SKIP:
-	/* do nothing, skip to the next item */
-	break;
+        /* do nothing, skip to the next item */
+        break;
       case CHEESE_RESPONSE_SKIP_ALL:
       case GTK_RESPONSE_CANCEL:
       case GTK_RESPONSE_DELETE_EVENT:
       default:
-	/* cancel the whole delete operation */
-	return;
+        /* cancel the whole delete operation */
+        return;
       }
+    } else {
+      cheese_thumb_view_remove_item (CHEESE_THUMB_VIEW (cheese_window->thumb_view), l->data);
     }
     g_object_unref (l->data);
   }
@@ -852,7 +858,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
 
 static void
 cheese_window_selection_changed_cb (GtkIconView *iconview, 
-				    CheeseWindow *cheese_window)
+                                    CheeseWindow *cheese_window)
 {
   if (cheese_thumb_view_get_n_selected (CHEESE_THUMB_VIEW (cheese_window->thumb_view)) > 0) {
     gtk_action_group_set_sensitive (cheese_window->actions_file, TRUE);
@@ -1540,7 +1546,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   g_signal_connect (cheese_window->take_picture, "clicked",
                     G_CALLBACK (cheese_window_action_button_clicked_cb), cheese_window);
   g_signal_connect (cheese_window->thumb_view, "selection_changed",
-		    G_CALLBACK (cheese_window_selection_changed_cb), cheese_window);
+                    G_CALLBACK (cheese_window_selection_changed_cb), cheese_window);
   g_signal_connect (cheese_window->thumb_view, "button_press_event",
                     G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 }
@@ -1578,12 +1584,12 @@ setup_camera (CheeseWindow *cheese_window)
     gdk_threads_enter ();
 
     dialog = gtk_message_dialog_new (NULL,
-				     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-				     GTK_MESSAGE_ERROR, 
-				     GTK_BUTTONS_OK, 
-				     "%s", primary);
+                                     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
+                                     GTK_MESSAGE_ERROR, 
+                                     GTK_BUTTONS_OK, 
+                                     "%s", primary);
     gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
-						secondary);
+                                                secondary);
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
     g_error_free (error);

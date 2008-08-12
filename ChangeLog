@@ -1,3 +1,12 @@
+2008-08-12   Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-window.c: 
+	  Test for file existence before moving to trash. Remove item
+	  from thumbview if trashing succeeds (don't wait for monitor
+	  to notice). Untabify cheese-window.c
+
 2008-08-12  daniel g. siegel <dgsiegel@gmail.com>
 
 	* tools/cicl: 
