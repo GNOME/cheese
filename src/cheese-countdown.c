@@ -616,6 +616,7 @@ cheese_countdown_start (CheeseCountdown *countdown, cheese_countdown_cb_t pictur
   if (priv->iState != STATE_OFF)
   {
     g_print ("Should not happen, state is not off.\n");
+    return;
   }
   priv->iState = STATE_3;
   priv->picture_callback = picture_cb;
