@@ -7,74 +7,160 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eu\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-08 17:47+0100\n"
-"PO-Revision-Date: 2008-02-08 17:49+0100\n"
+"POT-Creation-Date: 2008-08-13 18:43+0200\n"
+"PO-Revision-Date: 2008-08-13 19:48+0200\n"
 "Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>\n"
 "Language-Team: Basque <itzulpena@euskalgnu.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:576
-msgid "A cheesy program to take photos and videos from your webcam"
-msgstr "Cheese programa web kameratik argazkiak eta bideoak hartzeko"
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "Cheese-ren web kameraren kabina"
 
-#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
-#: ../src/cheese.c:84
-msgid "Cheese"
-msgstr "Cheese"
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:980
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "Hartu argazkiak eta bideoak web kameratik, efektu grafiko dibertigarriekin"
 
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:658
-#: ../src/cheese-window.c:878
-msgid "_Effects"
-msgstr "_Efektuak"
-
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:882
-msgid "_Photo"
-msgstr "_Argazkia"
-
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:746
-#: ../src/cheese-window.c:893 ../src/cheese-window.c:999
-msgid "_Take a photo"
-msgstr "_Hartu argazki bat"
-
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:883
-msgid "_Video"
-msgstr "_Bideoa"
-
-#: ../data/cheese.schemas.in.h:1
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
 msgid ""
-"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
-"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
-"Vertigo, Edge, Dice and Warp"
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
-"Abioan aplikatzen diren efektuak. Balio erabilgarriak: \"Mauve\" (purpura "
-"argia), \"Noir/Blanc\" (beltza/zuria), \"Saturation\" (saturazioa), \"Hulk"
-"\" (erraldoia), \"Vertical Flip\" (irauli bertikalki), \"Horizontal Flip"
-"\" (irauli horizontalki), \"Shagadelic\" (psikodelikoa), \"Vertigo"
-"\" (zorabioa), \"Edge\" (ertza), \"Dice\" (dadoak) eta \"Warp\" (okertu)."
+"Abioan aplikatzen diren efektuen zerrenda. Balio erabilgarriak: "
+"\"mauve\" (purpura argia), \"noir_blanc\" (beltza/zuria), \"saturation\" (saturazioa), "
+"\"hulk\" (erraldoia), \"vertical-flip\" (irauli bertikalki), \"horizontal-flip\" (irauli horizontalki), "
+"\"shagadelic\" (psikodelikoa), \"vertigo\" (zorabioa), \"edge\" (ertza), "
+"\"dice\" (dadoak) eta \"warp\" (okertu)."
 
-#: ../data/cheese.schemas.in.h:2
+#: ../data/cheese.schemas.in.h:4
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Argazkiak gordetzen diren bide-izena definitzen du, hutsa bada \"XDG_PHOTO/Webcam\" "
+"erabiliko da."
+
+#: ../data/cheese.schemas.in.h:5
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Bideoak gordetzen diren bide-izena definitzen du, hutsa bada \"XDG_VIDEO/Webcam\" "
+"erabiliko da."
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "Altueraren bereizmena"
+
+#: ../data/cheese.schemas.in.h:7
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"EGIA bezala ezartzen bada, Cheese-ek fitxategi bat zuzenean ezabatzeko aukera eskainiko "
+"dizu, zakarrontzira bota beharrean. Eginbide hau arriskutsua izan daiteke, kontu "
+"handiarekin erabili behar da."
+
+#: ../data/cheese.schemas.in.h:8
+msgid "Photo Path"
+msgstr "Argazkiaren bide-izena"
+
+#: ../data/cheese.schemas.in.h:9
 msgid "Selected Effects"
 msgstr "Hautatutako efektuak"
 
-#: ../data/cheese.schemas.in.h:3
-msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr "Gailu-katea, web kamera adierazteko. Adib: /dev/video0"
+#: ../data/cheese.schemas.in.h:10
+msgid "Set to True to show countdown when taking a photo"
+msgstr "EGIA bezala ezartzen bada, argazki bat hartzean atzekoz aurrerako zenbaketa erakutsiko du"
 
-#: ../data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:11
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "Web kamera adierazten duen gailua (adib: /dev/video0)"
+
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "Kamerak kapturatutako irudiaren altueraren bereizmena"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "Kamerak kapturatutako irudiaren zabaleraren bereizmena"
+
+#: ../data/cheese.schemas.in.h:14
 msgid "Use a countdown"
 msgstr "Erabili atzekoz aurrera zenbatzea"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:15
+msgid "Video Path"
+msgstr "Bideoaren bide-izena"
+
+#: ../data/cheese.schemas.in.h:16
 msgid "Webcam device string indicator"
 msgstr "Web kameraren gailu-kate adierazlea"
 
-#: ../data/cheese.schemas.in.h:6
-msgid "Whether a countdown should be used, when taking a photo"
-msgstr "Argazki bat hartzean atzekoz aurrera zenbatuko den ala ez"
+#: ../data/cheese.schemas.in.h:17
+msgid "Whether to enable immediate deletion"
+msgstr "Berehala ezabatzea gaitu ala ez adierazten du"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "Zabaleraren bereizmena"
+
+#: ../data/cheese.ui.h:1 ../src/cheese.c:96
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "Aldatu argazki modura"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "Aldatu bideo modura"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "Aldatu efektuen hautatzailera"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1104
+#: ../src/cheese-window.c:1105 ../src/cheese-window.c:1336
+msgid "_Effects"
+msgstr "_Efektuak"
+
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "_Irten pantaila osotik"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1348
+msgid "_Photo"
+msgstr "_Argazkia"
+
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1394
+msgid "_Take a Photo"
+msgstr "_Hartu argazki bat"
+
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1349
+msgid "_Video"
+msgstr "_Bideoa"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>Kamera</b>"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "<b>Resolution</b>"
+msgstr "<b>Bereizmena</b>"
+
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1340
+msgid "Preferences"
+msgstr "Hobespenak"
 
 #: ../src/cheese-effect-chooser.c:61
 msgid "No Effect"
@@ -124,7 +210,47 @@ msgstr "Dadoak"
 msgid "Warp"
 msgstr "Okertu"
 
-#: ../src/cheese-window.c:134
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:432 ../src/cheese-countdown.c:450
+#: ../src/cheese-countdown.c:468
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "Ez da kamerarik aurkitu!"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "Irakurri laguntza informazio gehiagorako."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "Laguntza"
+
+#: ../src/cheese-webcam.c:1391
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "Gstreamer-en beharrezko elementu bat (edo gehiago) falta da:"
+
+#: ../src/cheese-window.c:76
+msgid "_Skip"
+msgstr "_Saltatu"
+
+#: ../src/cheese-window.c:77
+msgid "S_kip All"
+msgstr "Saltatu _guztiak"
+
+#: ../src/cheese-window.c:78
+msgid "Delete _All"
+msgstr "Ezabatu _denak"
+
+#: ../src/cheese-window.c:188
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -133,7 +259,7 @@ msgstr ""
 "Huts egin du arakatzailea irekitzean hau erakusteko:\n"
 "%s"
 
-#: ../src/cheese-window.c:157
+#: ../src/cheese-window.c:212
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -142,7 +268,7 @@ msgstr ""
 "Huts egin du posta-bezeroa irekitzean mezua honi bidaltzeko:\n"
 "%s"
 
-#: ../src/cheese-window.c:248
+#: ../src/cheese-window.c:444
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -151,45 +277,79 @@ msgstr ""
 "Huts egin du programa abiaraztean hau erakusteko:\n"
 "%s"
 
-#: ../src/cheese-window.c:267
+#: ../src/cheese-window.c:463
 msgid "Save File"
 msgstr "Gorde fitxategia"
 
-#: ../src/cheese-window.c:305
+#: ../src/cheese-window.c:501
 #, c-format
 msgid "Could not save %s"
 msgstr "Ezin izan da %s gorde"
 
-#: ../src/cheese-window.c:332
-msgid "Cannot move file to trash"
-msgstr "Ezin da fitxategia zakarrontzira bota"
+#: ../src/cheese-window.c:523
+msgid "Error while deleting"
+msgstr "Errorea ezabatzean"
 
-#: ../src/cheese-window.c:333
+#: ../src/cheese-window.c:524
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "\"%s\" fitxategia ezin da ezabatu. Xehetasunak: %s"
+
+#: ../src/cheese-window.c:551
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected items?"
+msgstr "Ziur zaude hautatutako %'d elementu betirako ezabatzea nahi dituzula?"
+
+#: ../src/cheese-window.c:556
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "Ziur zaude \"%s\" betirako ezabatzea nahi duzula?"
+
+#: ../src/cheese-window.c:559
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Elementu bat ezabatzen baduzu, betirako galduko da."
+
+#: ../src/cheese-window.c:581
+msgid "Unknown Error"
+msgstr "Errore ezezaguna"
+
+#: ../src/cheese-window.c:612
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "Ezin da fitxategia zakarrontzira bota, nahi duzu berehala ezabatzea?"
+
+#: ../src/cheese-window.c:613
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "\"%s\" fitxategia ezin da zakarrontzira bota. Xehetasunak: %s"
 
-#: ../src/cheese-window.c:365
+#: ../src/cheese-window.c:679
+#, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Ziur zaude argazki eta bideo guztiak zakarrontzira bota nahi dituzula?"
 
-#: ../src/cheese-window.c:373
+#: ../src/cheese-window.c:687
 msgid "_Move to Trash"
 msgstr "_Bota zakarrontzira"
 
-#: ../src/cheese-window.c:461
+#: ../src/cheese-window.c:801
+#, c-format
 msgid "Could not set the Account Photo"
 msgstr "Ezin izan da argazkien kontua konfiguratu"
 
-#: ../src/cheese-window.c:536
+#: ../src/cheese-window.c:833
+msgid "Media files"
+msgstr "Multimediako fitxategiak"
+
+#: ../src/cheese-window.c:907 ../src/cheese-window.c:1179
 msgid "Unable to open help file for Cheese"
 msgstr "Ezin da Cheese-ren laguntzako fitxategia ireki"
 
-#: ../src/cheese-window.c:553
+#: ../src/cheese-window.c:958
 msgid "translator-credits"
 msgstr "Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>"
 
-#: ../src/cheese-window.c:556
+#: ../src/cheese-window.c:961
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -200,7 +360,7 @@ msgstr ""
 "Foundation-ek argitaratutako GNU Lizentzia Publiko Orokorraren 2. bertsioan, "
 "edo (nahiago baduzu) beste berriago batean, jasotako baldintzak betez gero.\n"
 
-#: ../src/cheese-window.c:560
+#: ../src/cheese-window.c:965
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -212,7 +372,7 @@ msgstr ""
 "MERKATURATZEKO edo HELBURU PARTIKULARRETARAKO ERABILTZEKO. Argibide gehiago "
 "nahi izanez gero, ikus GNU Lizentzia Publiko Orokorra.\n"
 
-#: ../src/cheese-window.c:564
+#: ../src/cheese-window.c:969
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -220,83 +380,111 @@ msgstr ""
 "Programa honekin batera GNU Lizentzia Publiko Orokorraren kopia bat jasoko "
 "zenuen. Bestela, ikusi <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:580
+#: ../src/cheese-window.c:986
 msgid "Cheese Website"
 msgstr "Cheese-ren web gunea"
 
-#: ../src/cheese-window.c:669
-msgid "_Back"
-msgstr "_Atzera"
-
-#: ../src/cheese-window.c:736 ../src/cheese-window.c:795
-msgid "_Start recording"
+#: ../src/cheese-window.c:1196
+msgid "_Start Recording"
 msgstr "_Hasi grabazioa"
 
-#: ../src/cheese-window.c:845
-msgid "_Stop recording"
+#: ../src/cheese-window.c:1289
+msgid "_Stop Recording"
 msgstr "_Utzi grabatzeari"
 
-#: ../src/cheese-window.c:864
+#: ../src/cheese-window.c:1318
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:866
+#: ../src/cheese-window.c:1320
 msgid "_Edit"
 msgstr "_Editatu"
 
-#: ../src/cheese-window.c:867
-msgid "Move all to Trash"
+#: ../src/cheese-window.c:1321
+msgid "Move All to Trash"
 msgstr "Bota denak zakarrontzira"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:1323
 msgid "_Help"
 msgstr "_Laguntza"
 
-#: ../src/cheese-window.c:872
+#: ../src/cheese-window.c:1326
 msgid "_Contents"
 msgstr "_Edukia"
 
-#: ../src/cheese-window.c:872
-msgid "Help on this application"
+#: ../src/cheese-window.c:1326
+msgid "Help on this Application"
 msgstr "Aplikazioaren laguntza"
 
-#: ../src/cheese-window.c:887
+#: ../src/cheese-window.c:1332
+msgid "Countdown"
+msgstr "Atzekoz aurrera zenbatzea"
+
+#: ../src/cheese-window.c:1353
 msgid "_Open"
 msgstr "_Ireki"
 
-#: ../src/cheese-window.c:888
+#: ../src/cheese-window.c:1354
 msgid "Save _As..."
 msgstr "Gorde _honela..."
 
-#: ../src/cheese-window.c:889
+#: ../src/cheese-window.c:1355
 msgid "Move to _Trash"
 msgstr "Bota _zakarrontzira"
 
-#: ../src/cheese-window.c:897
+#: ../src/cheese-window.c:1356
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: ../src/cheese-window.c:1360 ../src/cheese-window.c:1581
+msgid "_Take a photo"
+msgstr "_Hartu argazki bat"
+
+#: ../src/cheese-window.c:1364
 msgid "_Recording"
 msgstr "_Grabazioa"
 
-#: ../src/cheese-window.c:901
+#: ../src/cheese-window.c:1368
 msgid "_Set As Account Photo"
 msgstr "_Ezarri argazki-kontu gisa"
 
-#: ../src/cheese-window.c:905
+#: ../src/cheese-window.c:1372
 msgid "Send by _Mail"
 msgstr "Bidali posta _elektronikoz"
 
-#: ../src/cheese-window.c:909
+#: ../src/cheese-window.c:1376
+msgid "Send _To"
+msgstr "Bidali _honi"
+
+#: ../src/cheese-window.c:1380
 msgid "Export to F-_Spot"
 msgstr "Esportatu 'F-_Spot'-era"
 
-#: ../src/cheese-window.c:913
+#: ../src/cheese-window.c:1384
 msgid "Export to _Flickr"
 msgstr "Esportatu '_Flickr'-ra"
 
-#: ../src/cheese.c:71
+#: ../src/cheese-window.c:1406
+msgid "_Start recording"
+msgstr "_Hasi grabazioa"
+
+#: ../src/cheese-window.c:1724
+msgid "Quit"
+msgstr "Irten"
+
+#: ../src/cheese-window.c:1730
+msgid "About"
+msgstr "Honi buruz"
+
+#: ../src/cheese-window.c:1810
+msgid "Check your gstreamer installation"
+msgstr "Egiaztatu Gstreamer-en instalazioa"
+
+#: ../src/cheese.c:81
 msgid "Be verbose"
 msgstr "Hitzez hitz"
 
-#: ../src/cheese.c:86
-msgid "- Take photos and videos from your webcam"
-msgstr "_ Hartu argazkiak eta bideoak zure web kameratik"
+#: ../src/cheese.c:98
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr "- Hartu argazkiak eta bideoak web kameratik, efektu grafiko dibertigarriekin"
 
