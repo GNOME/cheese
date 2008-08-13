@@ -127,7 +127,6 @@ typedef struct
   GtkWidget *image_take_photo;
   GtkWidget *image_take_photo_fullscreen;
   GtkWidget *label_effects;
-  GtkWidget *label_effects_fullscreen;
   GtkWidget *label_photo;
   GtkWidget *label_photo_fullscreen;
   GtkWidget *label_take_photo;
@@ -1102,7 +1101,6 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
   {
     gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 0);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Effects"));
-    gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects_fullscreen), _("_Effects"));
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
     if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
@@ -1536,7 +1534,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->take_picture_fullscreen       = GTK_WIDGET (gtk_builder_get_object (builder, "take_picture_fullscreen"));
   cheese_window->label_take_photo_fullscreen   = GTK_WIDGET (gtk_builder_get_object (builder, "label_take_photo_fullscreen"));
   cheese_window->image_take_photo_fullscreen   = GTK_WIDGET (gtk_builder_get_object (builder, "image_take_photo_fullscreen"));
-  cheese_window->label_effects_fullscreen      = GTK_WIDGET (gtk_builder_get_object (builder, "label_effects_fullscreen"));
   cheese_window->label_photo_fullscreen        = GTK_WIDGET (gtk_builder_get_object (builder, "label_photo_fullscreen"));
   cheese_window->label_video_fullscreen        = GTK_WIDGET (gtk_builder_get_object (builder, "label_video_fullscreen"));
   cheese_window->countdown_frame_fullscreen    = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame_fullscreen"));
