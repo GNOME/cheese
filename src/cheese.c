@@ -102,9 +102,6 @@ main (int argc, char **argv)
   g_option_context_parse (context, &argc, &argv, NULL);
   g_option_context_free (context);
 
-  gtk_init (&argc, &argv);
-  gst_init (&argc, &argv);
-
   /* Needed for gnome_thumbnail functions */
   gnome_vfs_init ();
 

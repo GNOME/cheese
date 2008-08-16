@@ -1,3 +1,9 @@
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c: 
+	  remove gtk_init and gst_init, according to the docs these are not
+	  needed if we use gtk_get_option_group and gst_init_get_option_group
+
 2008-08-13  daniel g. siegel <dgsiegel@gmail.com>
 
 	* src/cheese-window.c: 
