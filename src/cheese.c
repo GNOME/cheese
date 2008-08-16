@@ -106,8 +106,8 @@ main (int argc, char **argv)
   g_option_context_free (context);
 
   dbus_server = cheese_dbus_new ();
-  if (dbus_server == NULL)
-  {
+  if (dbus_server == NULL) {
+    gdk_notify_startup_complete ();
     return -1;
   }
 

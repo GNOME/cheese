@@ -1,5 +1,12 @@
 2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
 
+	* src/cheese.c: 
+	  notify startup if another istance is found (normally that would be
+	  done by gtk when opening the window but we exit without create any
+	  window so we have to do it manually)
+
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
 	* configure.ac,
 	  data/Makefile.am,
 	  data/org.gnome.Cheese.service,
