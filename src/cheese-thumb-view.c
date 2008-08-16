@@ -244,7 +244,8 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
 
   filename = g_file_get_path (file);
 
-  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter)) {
+  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
+  {
     /* a single item was on the thumbview but it's been already removed */
     return;
   }
@@ -256,7 +257,8 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
     while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter))
     {
       gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &path, -1);
-      if (!g_ascii_strcasecmp (path, filename)) {
+      if (!g_ascii_strcasecmp (path, filename))
+      {
         found = TRUE;
         break;
       }
