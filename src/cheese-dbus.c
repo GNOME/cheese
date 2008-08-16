@@ -63,7 +63,7 @@ cheese_dbus_class_init (CheeseDbusClass *klass)
   klass->connection = dbus_g_bus_get (DBUS_BUS_SESSION, &error);
   if (klass->connection == NULL)
   {
-    g_warning("Unable to connect to dbus: %s", error->message);
+    g_warning ("Unable to connect to dbus: %s", error->message);
     g_error_free (error);
     return;
   }
@@ -100,12 +100,12 @@ cheese_dbus_new ()
                                      DBUS_PATH_DBUS,
                                      DBUS_INTERFACE_DBUS);
   
-  if(!org_freedesktop_DBus_request_name (proxy,
-                                         "org.gnome.Cheese",
-                                         0, &request_ret,    /* See tutorial for more infos about these */
-                                         &error))
+  if (!org_freedesktop_DBus_request_name (proxy,
+                                          "org.gnome.Cheese",
+                                          0, &request_ret,
+                                          &error))
   {
-    g_warning("Unable to register service: %s", error->message);
+    g_warning ("Unable to register service: %s", error->message);
     g_error_free (error);
   }
 	
@@ -113,8 +113,6 @@ cheese_dbus_new ()
   if (request_ret == DBUS_REQUEST_NAME_REPLY_EXISTS ||
       request_ret == DBUS_REQUEST_NAME_REPLY_IN_QUEUE)
   {
-    gboolean return_value;
-	  
     g_warning ("Another instance of cheese is already running!");
 	  
     /*notify the other instance of cheese*/
@@ -123,7 +121,7 @@ cheese_dbus_new ()
                                        "/org/gnome/cheese",
                                        "org.gnome.Cheese");
       
-    if(!dbus_g_proxy_call (proxy, "notify", &error, G_TYPE_INVALID, G_TYPE_INVALID))
+    if (!dbus_g_proxy_call (proxy, "notify", &error, G_TYPE_INVALID, G_TYPE_INVALID))
     {
       /* Method failed, the GError is set, let's warn everyone */
       g_warning ("Notifying the other cheese instance failed: %s", error->message);

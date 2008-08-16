@@ -31,11 +31,11 @@ typedef struct
 {
   GObjectClass parent_class;
   DBusGConnection *connection;
-}CheeseDbusClass;
+} CheeseDbusClass;
 
-typedef struct _CheeseDbus{
+typedef struct _CheeseDbus {
   GObject parent;
-}CheeseDbus;
+} CheeseDbus;
 
 
 #define CHEESE_TYPE_DBUS            (cheese_dbus_get_type ())
@@ -45,15 +45,10 @@ typedef struct _CheeseDbus{
 #define CHEESE_IS_DBUS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  CHEESE_TYPE_DBUS))
 #define CHEESE_DBUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  CHEESE_TYPE_DBUS, CheeseDbusClass))
 
-
-GType
-cheese_dbus_get_type (void);
-CheeseDbus *
-cheese_dbus_new (void);
-void
-cheese_dbus_set_window (gpointer);
-gboolean
-cheese_dbus_notify (void);
+GType cheese_dbus_get_type (void);
+CheeseDbus * cheese_dbus_new (void);
+void cheese_dbus_set_window (gpointer);
+gboolean cheese_dbus_notify (void);
 
 G_END_DECLS
 
