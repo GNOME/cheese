@@ -94,6 +94,8 @@ typedef struct
   WebcamMode webcam_mode;
   CheeseGConf *gconf;
   CheeseFileUtil *fileutil;
+  
+  CheeseDbus *server;
 
   GtkWidget *window;
   GtkWidget *fullscreen_popup;
@@ -169,6 +171,13 @@ typedef struct
 
   int audio_play_counter;
 } CheeseWindow;
+
+void
+cheese_window_bring_to_front (gpointer data)
+{
+  CheeseWindow *cheese_window = data;
+  gtk_window_present (GTK_WINDOW (cheese_window->window));
+}
 
 /* Make url in about dialog clickable */
 static void
@@ -1860,7 +1869,7 @@ setup_camera (CheeseWindow *cheese_window)
 }
 
 void
-cheese_window_init (char *hal_dev_udi)
+cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
 {
   CheeseWindow *cheese_window;
 
@@ -1871,6 +1880,10 @@ cheese_window_init (char *hal_dev_udi)
   cheese_window->audio_play_counter = 0;
   cheese_window->fileutil = cheese_fileutil_new ();
   cheese_window->isFullscreen = FALSE;
+  
+  cheese_window->server = dbus_server;
+  //save a pointer to the cheese window in cheese dbus
+  cheese_dbus_set_window (cheese_window);
   
   cheese_window->fullscreen_timeout_source = NULL;
 

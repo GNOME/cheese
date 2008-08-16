@@ -1,5 +1,20 @@
 2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
 
+	* configure.ac,
+	  data/Makefile.am,
+	  data/org.gnome.Cheese.service,
+	  src/cheese.c,
+	  src/cheese-dbus.c,
+	  src/cheese-dbus.h,
+	  src/cheese-dbus-infos.xml,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/Makefile.am: 
+	  Don't start cheese twice if another instance is running. First part
+	  of Felix Kaser's work with cheese and dbus. Fixes bug #527736.
+
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
 	* src/cheese.c: 
 	  remove gtk_init and gst_init, according to the docs these are not
 	  needed if we use gtk_get_option_group and gst_init_get_option_group

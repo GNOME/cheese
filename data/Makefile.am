@@ -28,6 +28,15 @@ EXTRA_DIST =						\
 bugreportdir      = $(libexecdir)/cheese
 bugreport_SCRIPTS = cheese-bugreport.sh
 
+# Dbus service file
+servicedir = $(DBUS_SERVICES_DIR)
+service_in_files = org.gnome.Cheese.service.in
+service_DATA = $(service_in_files:.service.in=.service)
+
+# Rule to make the service file with bindir expanded
+$(service_DATA): $(service_in_files) Makefile
+	@sed -e "s|@bindir@|$(bindir)|" $<> $@
+
 if GCONF_SCHEMAS_INSTALL
 install-data-local:
 	-GCONF_CONFIG_SOURCE=$(GCONF_SCHEMA_CONFIG_SOURCE) \

@@ -35,6 +35,13 @@ AC_DEFUN([CHEESE_FULLPATH], [
   $3=`eval echo [$]ac_expand`
 ])
 
+#dbus
+AS_AC_EXPAND(DATADIR, $datadir)
+
+DBUS_SERVICES_DIR="$DATADIR/dbus-1/services"
+AC_SUBST(DBUS_SERVICES_DIR)
+AC_DEFINE_UNQUOTED(DBUS_SERVICES_DIR, "$DBUS_SERVICES_DIR", [Where services dir for DBUS is])
+
 # FULL_LIBEXECDIR is used for X-GNOME-Bugzilla-ExtraInfoScript expansion
 # in data/cheese.desktop.in.in
 CHEESE_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)

@@ -15,6 +15,8 @@ cheese_SOURCES = \
 	cheese.c \
 	cheese-countdown.c \
 	cheese-countdown.h \
+	cheese-dbus.c \
+	cheese-dbus.h \
 	cheese-effect-chooser.c \
 	cheese-effect-chooser.h \
 	cheese-fileutil.c \
@@ -59,4 +61,17 @@ if WITH_HILDON
   INCLUDES += $(HILDON_CFLAGS) -DHILDON
   cheese_LDADD += $(HILDON_LIBS)
 endif
+
+#dbus
+BUILT_SOURCES = cheese-dbus-glue.h
+# We don't want to install this header
+noinst_HEADERS = $(BUILT_SOURCES)
+
+# Correctly clean the generated headers, but keep the xml description
+CLEANFILES = $(BUILT_SOURCES)
+EXTRA_DIST = cheese-dbus-infos.xml
+
+#Rule to generate the binding headers
+cheese-dbus-glue.h:  cheese-dbus-infos.xml
+	dbus-binding-tool --prefix=cheese_dbus --mode=glib-server $<> $@
 

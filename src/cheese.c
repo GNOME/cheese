@@ -1,6 +1,7 @@
 /*
  * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
  * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright (C) 2008 Felix Kaser <f.kaser@gmx.net>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -31,6 +32,7 @@
 
 #include "cheese-fileutil.h"
 #include "cheese-window.h"
+#include "cheese-dbus.h"
 
 struct _CheeseOptions
 {
@@ -76,6 +78,7 @@ int
 main (int argc, char **argv)
 {
   GOptionContext *context;
+  CheeseDbus *dbus_server;
   
   GOptionEntry options[] = {
     { "verbose", 'v', 0, G_OPTION_ARG_NONE, &CheeseOptions.verbose, _("Be verbose"), NULL},
@@ -83,7 +86,7 @@ main (int argc, char **argv)
     { NULL }
   };
   CheeseOptions.hal_device_id = NULL;
-
+  
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
@@ -102,6 +105,12 @@ main (int argc, char **argv)
   g_option_context_parse (context, &argc, &argv, NULL);
   g_option_context_free (context);
 
+  dbus_server = cheese_dbus_new ();
+  if (dbus_server == NULL)
+  {
+    return -1;
+  }
+
   /* Needed for gnome_thumbnail functions */
   gnome_vfs_init ();
 
@@ -111,7 +120,7 @@ main (int argc, char **argv)
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
-  cheese_window_init (CheeseOptions.hal_device_id);
+  cheese_window_init (CheeseOptions.hal_device_id, dbus_server);
   
   gdk_threads_enter ();
   gtk_main ();
