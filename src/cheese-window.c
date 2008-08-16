@@ -30,6 +30,7 @@
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <gdk/gdkkeysyms.h>
+#include <gdk/gdkx.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
@@ -176,6 +177,9 @@ void
 cheese_window_bring_to_front (gpointer data)
 {
   CheeseWindow *cheese_window = data;
+  guint32 startup_timestamp = gdk_x11_get_server_time (GTK_WIDGET (cheese_window->window)->window);
+  gdk_x11_window_set_user_time (GTK_WIDGET (cheese_window->window)->window, startup_timestamp);
+
   gtk_window_present (GTK_WINDOW (cheese_window->window));
 }
 
@@ -250,13 +254,13 @@ cheese_window_delete_event_cb (GtkWidget *widget, GdkEvent event, gpointer data)
 static void
 cheese_window_fullscreen_clear_timeout (CheeseWindow *cheese_window)
 {
-	if (cheese_window->fullscreen_timeout_source != NULL)
-	{
-		g_source_unref (cheese_window->fullscreen_timeout_source);
-		g_source_destroy (cheese_window->fullscreen_timeout_source);
-	}
+  if (cheese_window->fullscreen_timeout_source != NULL)
+  {
+    g_source_unref (cheese_window->fullscreen_timeout_source);
+    g_source_destroy (cheese_window->fullscreen_timeout_source);
+  }
 
-	cheese_window->fullscreen_timeout_source = NULL;
+  cheese_window->fullscreen_timeout_source = NULL;
 }
 
 static gboolean 
@@ -265,28 +269,28 @@ cheese_window_fullscreen_timeout_cb (gpointer data)
   CheeseWindow *cheese_window = data;
   gtk_widget_hide_all (cheese_window->fullscreen_popup);
 
-	cheese_window_fullscreen_clear_timeout (cheese_window);
+  cheese_window_fullscreen_clear_timeout (cheese_window);
 
-	return FALSE;
+  return FALSE;
 }
 
 static void
 cheese_window_fullscreen_set_timeout (CheeseWindow *cheese_window)
 {
-	GSource *source;
-	
-	cheese_window_fullscreen_clear_timeout (cheese_window);
+  GSource *source;
+
+  cheese_window_fullscreen_clear_timeout (cheese_window);
 
   //make a difference between effects page and video preview
   if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) == 0)
-	  source = g_timeout_source_new (FULLSCREEN_TIMEOUT);
+    source = g_timeout_source_new (FULLSCREEN_TIMEOUT);
   else
     source = g_timeout_source_new (FULLSCREEN_EFFECTS_TIMEOUT);
-    
-	g_source_set_callback (source, cheese_window_fullscreen_timeout_cb, cheese_window, NULL);
-	g_source_attach (source, NULL);
 
-	cheese_window->fullscreen_timeout_source = source;
+  g_source_set_callback (source, cheese_window_fullscreen_timeout_cb, cheese_window, NULL);
+  g_source_attach (source, NULL);
+
+  cheese_window->fullscreen_timeout_source = source;
 }
 
 static void
@@ -299,9 +303,9 @@ cheese_window_fullscreen_show_bar (CheeseWindow *cheese_window)
 }
 
 static gboolean
-cheese_window_fullscreen_motion_notify_cb (GtkWidget      *widget,
-			     GdkEventMotion *event,
-			     CheeseWindow *cheese_window)
+cheese_window_fullscreen_motion_notify_cb (GtkWidget *widget,
+                                           GdkEventMotion *event,
+                                           CheeseWindow *cheese_window)
 {
   if (cheese_window->isFullscreen)
   {
@@ -338,12 +342,12 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
     gtk_widget_add_events (cheese_window->screen, GDK_POINTER_MOTION_MASK);
     
     g_signal_connect (cheese_window->window, "motion-notify-event",
-			  G_CALLBACK (cheese_window_fullscreen_motion_notify_cb),
-			  cheese_window);
-		g_signal_connect (cheese_window->screen, "motion-notify-event",
-			  G_CALLBACK (cheese_window_fullscreen_motion_notify_cb),
-			  cheese_window);
-			  
+                      G_CALLBACK (cheese_window_fullscreen_motion_notify_cb),
+                      cheese_window);
+    g_signal_connect (cheese_window->screen, "motion-notify-event",
+                      G_CALLBACK (cheese_window_fullscreen_motion_notify_cb),
+                      cheese_window);
+
     gtk_window_fullscreen (GTK_WINDOW (cheese_window->window));
     cheese_window->isFullscreen = TRUE;
   }
@@ -368,17 +372,17 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
 static void
 cheese_window_exit_fullscreen_button_clicked_cb (GtkWidget *button, CheeseWindow *cheese_window)
 {
-	GtkAction *action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/Fullscreen");
+  GtkAction *action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/Fullscreen");
   gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), FALSE);
 }
 
 static gboolean
 cheese_window_fullscreen_leave_notify_cb (GtkWidget *widget,
-			    GdkEventCrossing *event,
-			    CheeseWindow *cheese_window)
+                                          GdkEventCrossing *event,
+                                          CheeseWindow *cheese_window)
 {
-	cheese_window_fullscreen_clear_timeout (cheese_window);
-	return FALSE;
+  cheese_window_fullscreen_clear_timeout (cheese_window);
+  return FALSE;
 }
 
 static void
@@ -1554,14 +1558,14 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_window_move (GTK_WINDOW (cheese_window->fullscreen_popup), 0, gdk_screen_get_height (screen) - FULLSCREEN_POPUP_HEIGHT);
 
   g_signal_connect (cheese_window->fullscreen_popup,
-			  "enter-notify-event",
-			  G_CALLBACK (cheese_window_fullscreen_leave_notify_cb),
-			  cheese_window);
-			  
+                    "enter-notify-event",
+                    G_CALLBACK (cheese_window_fullscreen_leave_notify_cb),
+                    cheese_window);
+
   g_signal_connect (cheese_window->button_exit_fullscreen, "clicked",
-			  G_CALLBACK (cheese_window_exit_fullscreen_button_clicked_cb),
-			  cheese_window);
-			  
+                    G_CALLBACK (cheese_window_exit_fullscreen_button_clicked_cb),
+                    cheese_window);
+
 #ifdef HILDON
   /* Reparent widgets in case we use hildon. This saves us maintaining two
      GtkBuilder ui files
