@@ -1,6 +1,57 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.90
+  - call gdk_x11_window_set_user_time to raise the cheese window if its called twice
+  - don't start cheese twice if another instance is running, fixes bug #527736, courtesy of Felix Kaser
+  - remove gtk_init and gst_init, according to the docs these are not needed if we use gtk_get_option_group and gst_init_get_option_group
+  - align the buttons with the thumbnail bar
+  - improve the fullscreen mode, fixes bug #547405, courtesy of Felix Kaser
+  - select the last thumbnail item, if the last one was deleted 
+  - hitting space when the countdown has already begun, distorts no more the countdown, fixes bug #547403
+  - remove a thumbnail item immidiately from the thumbnail row if it was deleted
+  - use the eog scrollbar for cheese media, fixes bug #511916, courtesy of Patryk Zawadzki
+  - disable action_effects while setup_camera is running, fixes bug #547313
+  - add people who contributed to cheese to the cheese about window 
+  - give a detailed error message if some gstreamer element is missing, fixes bug #522009, courtesy of Todd Eisenberger
+  - add some gconf translation improvements, fixes bug #547168 
+  - connect button_photo and button_video as proxy widgets for relative RadioActions
+  - change action_files sensitiveness on "selection-changed" event, fixes bug 546918
+  - don't try to find highest framerate if format is NULL, courtesy of Todd Eisenberger
+  - selected effects gconf key values are now standardized, fixes bug #513776
+  - add a better hig compliant alert for missing gstreamer elements, fixes bug #522009
+  - added a delete action to immediately delete files and a gconf key to show/hide it
+  - use "Cheese Webcam Booth" instead of "Cheese" as the desktop entry name, fixes bug #543976
+  - add multiple selection in the picture listing pane, fixes bug #481405
+  - correct critical warnings, if some gstreamer plugins arent available, fixes bug #522009, courtesy of Todd Eisenberger
+  - add several g_free functions to prevent memory leaks 
+  - use g_random_int instead of g_rand_int
+  - add the multiplex thumbnail generator algorithm
+  - disable "Start recording" button until the recording pipeline properly shuts down
+  - save generated thumbnails, it seems to have vanished some time ago
+  - resolve wrong sorting issue of the thumbnails, fixes bug #546390
+  - added/updated translations
+    - ar, courtesy of Youssef Chahibi 
+    - bn_IN, courtesy of Runa Bhattacharjee 
+    - ca, courtesy of Gil Forcada 
+    - es, courtesy of Jorge González 
+    - et, courtesy of Ivar Smolin 
+    - eu, courtesy of Iñaki Larrañaga Murgoitio 
+    - fi, courtesy of Ilkka Tuohela 
+    - fr, courtesy of Robert-André Mauchin 
+    - gl, courtesy of Ignacio Casal Quinteiro 
+    - he, courtesy of Mark Krapivner 
+    - ja, courtesy of Takeshi AIHANA 
+    - kn, courtesy of Shankar Prasad 
+    - mk, courtesy of Arangel Angov 
+    - ml, courtesy of Manu S Madhav
+    - nb, courtesy of Kjartan Maraas 
+    - pt_BR, courtesy of Fábio Nogueira 
+    - sv, courtesy of Daniel Nylander 
+    - th, courtesy of Akom C. 
+    - zh_HK, courtesy of Chao-Hsiung Liao 
+    - zh_TW, courtesy of Chao-Hsiung Liao 
+
 version 2.23.6
   - add a fullscreen mode for kiosks, fixes #478852, courtesy of Felix Kaser
   - wait until the video has been recorded, to add it to the thumbnail bar, partially fixes #545212
@@ -14,8 +65,8 @@ version 2.23.6
   - cheese crashed with move all to trash if no trash can be accessed, fixes bug #545997, courtesy of Filippo Argiolas
   - added/updated translations
     - ar, courtesy of Khaled Hosny
-    - ca, courtesy of Djihed Afifi <djihed@gmail.com>
-    - el, courtesy of Djihed Afifi <djihed@gmail.com>
+    - ca, courtesy of Gil Forcada
+    - el, courtesy of Simos Xenitellis
     - es, courtesy of Jorge González
     - fr, courtesy of Bruno Brouard
     - gl, courtesy of Ignacio Casal Quinteiro
