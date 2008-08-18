@@ -13,29 +13,30 @@ schema_DATA = $(schema_in_files:.schemas.in=.schemas)
 gtkrcdir = $(pkgdatadir)
 gtkrc_DATA = gtkrc
 
-pkgdata_DATA =						\
-	cheese.ui					\
+# Dbus service file
+servicedir = $(datadir)/dbus-1/services
+service_in_files = org.gnome.Cheese.service.in
+service_DATA = $(service_in_files:.service.in=.service)
+ 
+# Rule to make the service file with bindir expanded
+$(service_DATA): $(service_in_files) Makefile
+	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
+
+pkgdata_DATA = \
+	cheese.ui	\
 	cheese-ui.xml \
 	cheese-prefs.ui
 
-EXTRA_DIST =						\
-	$(desktop_in_files)				\
-	$(schema_in_files)				\
-	$(pkgdata_DATA)				\
-	$(gtkrc_DATA)					\
+EXTRA_DIST = \
+	$(desktop_in_files) \
+	$(schema_in_files) \
+	$(service_in_files) \
+	$(pkgdata_DATA) \
+	$(gtkrc_DATA) \
 	$(bugreport_SCRIPTS)
 
 bugreportdir      = $(libexecdir)/cheese
 bugreport_SCRIPTS = cheese-bugreport.sh
-
-# Dbus service file
-servicedir = $(DBUS_SERVICES_DIR)
-service_in_files = org.gnome.Cheese.service.in
-service_DATA = $(service_in_files:.service.in=.service)
-
-# Rule to make the service file with bindir expanded
-$(service_DATA): $(service_in_files) Makefile
-	@sed -e "s|@bindir@|$(bindir)|" $<> $@
 
 if GCONF_SCHEMAS_INSTALL
 install-data-local:
@@ -52,7 +53,7 @@ endif
 clean-local :
 	rm -f *~
 
-DISTCLEANFILES =					\
-	cheese.desktop  				\
-	cheese.schemas
-
+DISTCLEANFILES = \
+	cheese.desktop \
+	cheese.schemas \
+	org.gnome.Cheese.service
