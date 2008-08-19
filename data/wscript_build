@@ -17,6 +17,7 @@ install_files('PACKAGE_DATADIR', '', 'cheese-ui.xml')
 install_files('PACKAGE_DATADIR', '', 'cheese.ui')
 install_files('PACKAGE_DATADIR', '', 'cheese-bugreport.sh')
 install_files('PACKAGE_DATADIR', '', 'gtkrc')
+install_files('DATADIR', 'dbus-1/services', 'org.gnome.Cheese.service')
 
 # process schemas.in file
 obj=bld.create_obj('intltool_in')
@@ -42,6 +43,13 @@ obj.subdir  = 'share/applications'
 obj.podir   = '../po'
 obj.flags   = '-d'
 
+# process org.gnome.Cheese.service.in file
+obj = bld.create_obj('subst')
+obj.source = 'org.gnome.Cheese.service.in'
+obj.target = 'org.gnome.Cheese.service'
+obj.dict = {'bindir': env['BINDIR']}
+obj.fun = misc.subst_func
+
 # data/effects
 install_files('PACKAGE_DATADIR', 'effects', 'effects/*.png')
 install_files('PACKAGE_DATADIR', 'pixmaps', 'pixmaps/*.png')
@@ -52,7 +60,10 @@ for i in ["16x16", "22x22", "24x24", "32x32", "48x48"]:
 	install_files('DATADIR', 'icons/hicolor/%s/apps' % i, 'icons/%s/cheese.png' % i)
 
 install_files('DATADIR', 'icons/hicolor/scalable/apps', 'icons/scalable/cheese.svg')
-install_files('DATADIR', 'icons/hicolor/16x16/actions', 'icons/16x16/actions/effects.png')
+
+for i in ["16x16", "22x22", "24x24", "32x32", "48x48"]:
+	install_files('PACKAGE_DATADIR', 'icons/hicolor/%s/actions' % i, 'icons/%s/actions/browse-webcam-effects.png' % i)
+install_files('PACKAGE_DATADIR', 'icons/hicolor/scalable/actions', 'icons/scalable/actions/browse-webcam-effects.svg')
 
 # data/sounds
 install_files('PACKAGE_DATADIR', 'sounds', 'sounds/shutter*.ogg')
