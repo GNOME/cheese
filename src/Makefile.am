@@ -63,7 +63,7 @@ if WITH_HILDON
 endif
 
 #dbus
-BUILT_SOURCES = cheese-dbus-glue.h
+BUILT_SOURCES = cheese-dbus-infos.h
 # We don't want to install this header
 noinst_HEADERS = $(BUILT_SOURCES)
 
@@ -72,6 +72,6 @@ CLEANFILES = $(BUILT_SOURCES)
 EXTRA_DIST = cheese-dbus-infos.xml
 
 #Rule to generate the binding headers
-cheese-dbus-glue.h:  cheese-dbus-infos.xml
+cheese-dbus-infos.h:  cheese-dbus-infos.xml
 	dbus-binding-tool --prefix=cheese_dbus --mode=glib-server $<> $@
 

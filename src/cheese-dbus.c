@@ -28,7 +28,7 @@
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus.h>
 #include "cheese-dbus.h"
-#include "cheese-dbus-glue.h"
+#include "cheese-dbus-infos.h"
 #include <glib.h>
 #include <glib-object.h>
 #include <unistd.h>
