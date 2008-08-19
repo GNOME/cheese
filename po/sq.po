@@ -1,0 +1,492 @@
+# Përkthimi i cheese në shqip.
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# This file is distributed under the same license as the cheese package.
+# Laurent Dhima <laurenti@alblinux.net>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: cheese HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-08-19 09:34+0200\n"
+"PO-Revision-Date: 2008-08-18 20:12+0200\n"
+"Last-Translator: Laurent Dhima <laurenti@alblinux.net>\n"
+"Language-Team: albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "Kabina e kamerës web Cheese"
+
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:992
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"Bëj foto dhe regjistro video me kamerën tënde web, me efekte të këndshme "
+"grafike."
+
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Një listë efektesh aplikuar në nisje. Vlerat e mundshme janë: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" dhe \"warp\""
+
+#: ../data/cheese.schemas.in.h:4
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Përcakton pozicionin ku vendosen fotot, nëse bosh, do të përdoret "
+"\"XDG_PHOTO/Webcam\"."
+
+#: ../data/cheese.schemas.in.h:5
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Përcakton pozicionin ku vendosen video-t, nëse bosh, do të përdoret "
+"\"XDG_VIDEO/Webcam\"."
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "Kualiteti i lartësisë"
+
+#: ../data/cheese.schemas.in.h:7
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Nëse caktuar tek «true», Cheese do t'ju mundësojë fshirjen direkte dhe të "
+"menjëherëshme të file, pa e kaluar nëpër kosh. Ky funksion mund të jetë i "
+"rrezikshëm, prandaj kini kujdes."
+
+#: ../data/cheese.schemas.in.h:8
+msgid "Photo Path"
+msgstr "Shtegu i fotografive"
+
+#: ../data/cheese.schemas.in.h:9
+msgid "Selected Effects"
+msgstr "Efektet e zgjedhur"
+
+#: ../data/cheese.schemas.in.h:10
+msgid "Set to True to show countdown when taking a photo"
+msgstr ""
+"Caktoje në «true» për të shfaqur një numërim në zbritje kur bëhet një foto"
+
+#: ../data/cheese.schemas.in.h:11
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "Dispozitivi që punton tek kamera web (p.sh. /dev/video0)"
+
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "Kualiteti i lartësisë së figurës së marrë me kamër"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "Kualiteti i gjerësisë së figurës së marrë me kamër"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Use a countdown"
+msgstr "Përdor një numërim në zbritje"
+
+#: ../data/cheese.schemas.in.h:15
+msgid "Video Path"
+msgstr "Shtegu i video-ve"
+
+#: ../data/cheese.schemas.in.h:16
+msgid "Webcam device string indicator"
+msgstr "Treguesi i dispozitivit të kamerës web"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Whether to enable immediate deletion"
+msgstr "Se duhet të aktivoj eleminimin e menjëhershëm"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "Kualiteti i gjerësisë"
+
+#: ../data/cheese.ui.h:1 ../src/cheese.c:99
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "Kalo në modalitetin foto"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "Kalo në modalitetin video"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "Kalo tek zgjedhësi i efekteve"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1116
+#: ../src/cheese-window.c:1347
+msgid "_Effects"
+msgstr "_Efekte"
+
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "_Dil nga modaliteti me ekran të plotë"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1359
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1405
+msgid "_Take a Photo"
+msgstr "_Bëj një foto"
+
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1360
+msgid "_Video"
+msgstr "_Video"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>Kamera</b>"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "<b>Resolution</b>"
+msgstr "<b>Kualiteti</b>"
+
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1351
+msgid "Preferences"
+msgstr "Preferimet"
+
+#: ../src/cheese-effect-chooser.c:61
+msgid "No Effect"
+msgstr "Asnjë efekt"
+
+#: ../src/cheese-effect-chooser.c:63
+msgid "Mauve"
+msgstr "Violet"
+
+#: ../src/cheese-effect-chooser.c:65
+msgid "Noir/Blanc"
+msgstr "Bardhë e zi"
+
+#: ../src/cheese-effect-chooser.c:67
+msgid "Saturation"
+msgstr "Ngopje"
+
+#: ../src/cheese-effect-chooser.c:69
+msgid "Hulk"
+msgstr "Hulk"
+
+#: ../src/cheese-effect-chooser.c:71
+msgid "Vertical Flip"
+msgstr "Reflekto vertikalisht"
+
+#: ../src/cheese-effect-chooser.c:73
+msgid "Horizontal Flip"
+msgstr "Reflekto horizontalisht"
+
+#: ../src/cheese-effect-chooser.c:75
+msgid "Shagadelic"
+msgstr "Psikodelike"
+
+#: ../src/cheese-effect-chooser.c:77
+msgid "Vertigo"
+msgstr "Vertigo"
+
+#: ../src/cheese-effect-chooser.c:79
+msgid "Edge"
+msgstr "Kornizë"
+
+#: ../src/cheese-effect-chooser.c:81
+msgid "Dice"
+msgstr "Me kuadrate"
+
+#: ../src/cheese-effect-chooser.c:83
+msgid "Warp"
+msgstr "Shtrembërime"
+
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:432 ../src/cheese-countdown.c:450
+#: ../src/cheese-countdown.c:468
+#, c-format
+msgid "%d "
+msgstr "%Id "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "Nuk u gjet asnjë kamër!"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "Për informacione më të hollësishme, lexo ndihmën."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "Ndihmë"
+
+#: ../src/cheese-webcam.c:1391
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "Mungon një apo më shumë elementë gstreamer: "
+
+#: ../src/cheese-window.c:77
+msgid "_Skip"
+msgstr "_Kapërce"
+
+#: ../src/cheese-window.c:78
+msgid "S_kip All"
+msgstr "Kapërce gjithç_ka"
+
+#: ../src/cheese-window.c:79
+msgid "Delete _All"
+msgstr "Elemino gjithçk_a"
+
+#: ../src/cheese-window.c:200
+#, c-format
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"Dështoi hapja e shfletuesit për të shfaqur:\n"
+"%s"
+
+#: ../src/cheese-window.c:224
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"Dështoi hapja e klientit email për të dërguar një meszh tek:\n"
+"%s"
+
+#: ../src/cheese-window.c:456
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"Dështoi nisja e programit për të shfaqur:\n"
+"%s"
+
+#: ../src/cheese-window.c:475
+msgid "Save File"
+msgstr "Ruaj file"
+
+#: ../src/cheese-window.c:513
+#, c-format
+msgid "Could not save %s"
+msgstr "E pamundur ruajtja e %s"
+
+#: ../src/cheese-window.c:535
+msgid "Error while deleting"
+msgstr "Gabim gjatë fshirjes"
+
+#: ../src/cheese-window.c:536
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "E pamundur fshirja e file \"%s\". Detaje: %s"
+
+#: ../src/cheese-window.c:563
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected items?"
+msgstr ""
+"Jeni i sigurt që dëshironi të eleminoni përgjithmonë %'d elementët e "
+"zgjedhur?"
+
+#: ../src/cheese-window.c:568
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "Jeni i sigurt që dëshironi të eleminoni përgjithmonë \"%s\"?"
+
+#: ../src/cheese-window.c:571
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Nëse eleminoni një element, ai do të humbasë përgjithmonë."
+
+#: ../src/cheese-window.c:593
+msgid "Unknown Error"
+msgstr "Gabim i panjohur"
+
+#: ../src/cheese-window.c:624
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "File nuk mund të çohet në kosh, dëshironi ta eleminoni menjëherë?"
+
+#: ../src/cheese-window.c:625
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "File \"%s\" nuk mund të hidhet në kosh. Detaje: %s"
+
+#: ../src/cheese-window.c:691
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "Me të vërtetë hedh në kosh të gjitha fotot dhe video-t?"
+
+#: ../src/cheese-window.c:699
+msgid "_Move to Trash"
+msgstr "_Hidh në kosh"
+
+#: ../src/cheese-window.c:813
+#, c-format
+msgid "Could not set the Account Photo"
+msgstr "I pamundur përcaktimi i fotos së përdoruesit"
+
+#: ../src/cheese-window.c:845
+msgid "Media files"
+msgstr "File multimedialë"
+
+#: ../src/cheese-window.c:919 ../src/cheese-window.c:1190
+msgid "Unable to open help file for Cheese"
+msgstr "E pamundur hapja e file me udhëzuesin e Cheese"
+
+#: ../src/cheese-window.c:970
+msgid "translator-credits"
+msgstr "Laurent Dhima <laurenti@alblinux.net>"
+
+#: ../src/cheese-window.c:973
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"Ky program është software i lirë; mund ta rishpërndani apo/dhe ndryshoni nën "
+"kushtet e Liçencës Publike të Përgjithshme GNU sikurse publikuar nga "
+"Fondacioni Free Software; duke zgjedhur midis versionit 2 të Liçencës, ose "
+"(sipas dëshirës suaj) çdo versioni tjetër më të përditësuar.\n"
+
+#: ../src/cheese-window.c:977
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Ky program shpërndahet me dëshirën që të jetë i vlefshëm për ju, por PA "
+"ASNJË LLOJ GARANCIE; bile as pa garancinë e TREGTIMIT apo PËRDORIMIT PËR "
+"QËLLIME TË VEÇANTA.  Shiko Liçencën Publike të Përgjithshme GNU për hollësi "
+"të mëtejshme.\n"
+
+#: ../src/cheese-window.c:981
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Së bashku me këtë program duhet të keni marrë edhe një kopje të Liçencës "
+"Publike të Përgjithshme GNU. Nëse jo, shiko <http://www.gnu.org/licenses/>."
+
+#: ../src/cheese-window.c:998
+msgid "Cheese Website"
+msgstr "Siti web i Cheese"
+
+#: ../src/cheese-window.c:1207
+msgid "_Start Recording"
+msgstr "_Fillo regjistrimin"
+
+#: ../src/cheese-window.c:1300
+msgid "_Stop Recording"
+msgstr "_Ndalo regjistrimin"
+
+#: ../src/cheese-window.c:1329
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../src/cheese-window.c:1331
+msgid "_Edit"
+msgstr "_Ndrysho"
+
+#: ../src/cheese-window.c:1332
+msgid "Move All to Trash"
+msgstr "Hidh gjithëka në kosh"
+
+#: ../src/cheese-window.c:1334
+msgid "_Help"
+msgstr "_Ndihmë"
+
+#: ../src/cheese-window.c:1337
+msgid "_Contents"
+msgstr "_Përmbajtja"
+
+#: ../src/cheese-window.c:1337
+msgid "Help on this Application"
+msgstr "Ndihmë në këtë aplikativ"
+
+#: ../src/cheese-window.c:1343
+msgid "Countdown"
+msgstr "Numërim mbrapsht"
+
+#: ../src/cheese-window.c:1364
+msgid "_Open"
+msgstr "_Hap"
+
+#: ../src/cheese-window.c:1365
+msgid "Save _As..."
+msgstr "Ruaje _si..."
+
+#: ../src/cheese-window.c:1366
+msgid "Move to _Trash"
+msgstr "Hidh në _kosh"
+
+#: ../src/cheese-window.c:1367
+msgid "Delete"
+msgstr "Elemino"
+
+#: ../src/cheese-window.c:1371 ../src/cheese-window.c:1591
+msgid "_Take a photo"
+msgstr "_Bëj një foto"
+
+#: ../src/cheese-window.c:1375
+msgid "_Recording"
+msgstr "_Regjistrimi"
+
+#: ../src/cheese-window.c:1379
+msgid "_Set As Account Photo"
+msgstr "Vendo_se si foto e përdoruesit"
+
+#: ../src/cheese-window.c:1383
+msgid "Send by _Mail"
+msgstr "Dërgo me _mail"
+
+#: ../src/cheese-window.c:1387
+msgid "Send _To"
+msgstr "Dërgo _tek"
+
+#: ../src/cheese-window.c:1391
+msgid "Export to F-_Spot"
+msgstr "Eksporto në F-_Spot"
+
+#: ../src/cheese-window.c:1395
+msgid "Export to _Flickr"
+msgstr "Eksporto në _Flickr"
+
+#: ../src/cheese-window.c:1417
+msgid "_Start recording"
+msgstr "_Fillo regjistrimin"
+
+#: ../src/cheese-window.c:1734
+msgid "Quit"
+msgstr "Dalja"
+
+#: ../src/cheese-window.c:1740
+msgid "About"
+msgstr "Informacione"
+
+#: ../src/cheese-window.c:1820
+msgid "Check your gstreamer installation"
+msgstr "Kontrollo instalimin e gstreamer"
+
+#: ../src/cheese.c:84
+msgid "Be verbose"
+msgstr "Më shumë detaje në mesazhe"
+
+#: ../src/cheese.c:101
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"- Bëj foto dhe video me kamerën tënde web, me efekte të këndshme grafike"
