@@ -1,8 +1,8 @@
 /*
- * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
- * Copyright (C) 2008 Ryan Zeigler <zeiglerr@gmail.com> 
- * Copyright (C) 2008 daniel g. siegel <dgsiegel@gmail.com>
- * 
+ * Copyright © 2008 James Liggett <jrliggett@cox.net>
+ * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,11 +25,11 @@
 #include "cheese-webcam.h"
 #include "cheese-prefs-widget.h"
 #include "cheese-prefs-webcam-combo.h"
+
 enum
 {
   PRODUCT_NAME,
   DEVICE_NAME,
-  
   NUM_COLS
 };
 
@@ -49,7 +49,7 @@ typedef struct CheesePrefsWebcamComboPrivate
                                     * sets webcam on construction. */
 } CheesePrefsWebcamComboPrivate;
 
-#define CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE(o) \
+#define CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE(o)                     \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_PREFS_WEBCAM_COMBO, \
                                 CheesePrefsWebcamComboPrivate))
 
@@ -59,75 +59,78 @@ static void
 cheese_prefs_webcam_combo_init (CheesePrefsWebcamCombo *self)
 {
   CheesePrefsWebcamComboPrivate *priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (self);
-  
+
   priv->has_been_synchronized = FALSE;
-  priv->webcam = NULL;
-  priv->webcam_device_key = NULL;
-  priv->list_store = gtk_list_store_new (NUM_COLS, G_TYPE_STRING, G_TYPE_STRING);
+  priv->webcam                = NULL;
+  priv->webcam_device_key     = NULL;
+  priv->list_store            = gtk_list_store_new (NUM_COLS, G_TYPE_STRING, G_TYPE_STRING);
 }
 
 static void
 cheese_prefs_webcam_combo_finalize (GObject *object)
 {
-  CheesePrefsWebcamCombo *self = CHEESE_PREFS_WEBCAM_COMBO (object);
+  CheesePrefsWebcamCombo        *self = CHEESE_PREFS_WEBCAM_COMBO (object);
   CheesePrefsWebcamComboPrivate *priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (self);
-  
+
   g_free (priv->webcam_device_key);
   g_object_unref (priv->list_store);
-  
-  G_OBJECT_CLASS (cheese_prefs_webcam_combo_parent_class)->finalize (object);  
+
+  G_OBJECT_CLASS (cheese_prefs_webcam_combo_parent_class)->finalize (object);
 }
 
 static void
 cheese_prefs_webcam_combo_selection_changed (GtkComboBox *combo_box, CheesePrefsWebcamCombo *self)
 {
   CheesePrefsWebcamComboPrivate *priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (self);
+
   /* Put it into gconf */
   char *new_device = cheese_prefs_webcam_combo_get_selected_webcam (self);
+
   g_object_set (CHEESE_PREFS_WIDGET (self)->gconf, priv->webcam_device_key, new_device, NULL);
   g_free (new_device);
-  
+
   cheese_prefs_widget_notify_changed (CHEESE_PREFS_WIDGET (self));
 }
 
 static void
 cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
 {
-  CheesePrefsWebcamCombo *self = CHEESE_PREFS_WEBCAM_COMBO (prefs_widget);
+  CheesePrefsWebcamCombo        *self = CHEESE_PREFS_WEBCAM_COMBO (prefs_widget);
   CheesePrefsWebcamComboPrivate *priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (self);
-  GtkWidget *combo_box;
-  GArray *webcam_devices;
-  int selected_device_ind;
-  int num_devices;
+
+  GtkWidget          *combo_box;
+  GArray             *webcam_devices;
+  int                 selected_device_ind;
+  int                 num_devices;
   CheeseWebcamDevice *selected_device;
-  char *gconf_device_name;
-  char *product_name;
-  char *device_name;
+  char               *gconf_device_name;
+  char               *product_name;
+  char               *device_name;
   CheeseWebcamDevice *device_ptr;
-  GtkTreeIter iter;
-  GtkTreeIter active_iter;
-  int i;
-  
+  GtkTreeIter         iter;
+  GtkTreeIter         active_iter;
+  int                 i;
+
   gboolean found_same_device = FALSE;
-  
-  g_object_get (prefs_widget, "widget", &combo_box, NULL);  
+
+  g_object_get (prefs_widget, "widget", &combo_box, NULL);
+
   /* Disconnect to prevent a whole bunch of changed notifications */
-  g_signal_handlers_disconnect_by_func (combo_box, cheese_prefs_webcam_combo_selection_changed, 
-                                        prefs_widget);
-  
+  g_signal_handlers_disconnect_by_func (combo_box, cheese_prefs_webcam_combo_selection_changed, prefs_widget);
+
   g_object_ref (priv->list_store);
-  
+
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
-  
-  webcam_devices = cheese_webcam_get_webcam_devices (priv->webcam);
+
+  webcam_devices      = cheese_webcam_get_webcam_devices (priv->webcam);
   selected_device_ind = cheese_webcam_get_selected_device_index (priv->webcam);
-  num_devices = cheese_webcam_get_num_webcam_devices (priv->webcam);
-  
+  num_devices         = cheese_webcam_get_num_webcam_devices (priv->webcam);
+
   selected_device = &g_array_index (webcam_devices, CheeseWebcamDevice, selected_device_ind);
-  
+
   /* If the selected device is not the same device as the one in gconf, the
-  selected device isn't available or was set by --hal-device. Set it now.
-  Not sure if this is desired behavior */
+   * selected device isn't available or was set by --hal-device. Set it now.
+   * Not sure if this is desired behavior */
   if (num_devices > 0)
   {
     g_object_get (prefs_widget->gconf, priv->webcam_device_key, &gconf_device_name, NULL);
@@ -138,13 +141,13 @@ cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
     g_free (gconf_device_name);
   }
   gtk_list_store_clear (priv->list_store);
-  
+
   for (i = 0; i < num_devices; i++)
   {
-    device_ptr = &g_array_index (webcam_devices, CheeseWebcamDevice, i);
+    device_ptr   = &g_array_index (webcam_devices, CheeseWebcamDevice, i);
     product_name = g_strdup_printf ("%s (%s)", device_ptr->product_name, device_ptr->video_device);
-    device_name = g_strdup (device_ptr->video_device);
-    
+    device_name  = g_strdup (device_ptr->video_device);
+
     gtk_list_store_append (priv->list_store, &iter);
     gtk_list_store_set (priv->list_store, &iter, PRODUCT_NAME, product_name,
                         DEVICE_NAME, device_name,
@@ -153,39 +156,40 @@ cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
     g_free (device_name);
     if (device_ptr == selected_device)
     {
-      active_iter = iter;
+      active_iter       = iter;
       found_same_device = TRUE;
     }
   }
-  
+
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box),
                            GTK_TREE_MODEL (priv->list_store));
-   
+
   g_object_unref (priv->list_store);
-  
+
   if (found_same_device)
     gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combo_box), &active_iter);
   else
     gtk_combo_box_set_active (GTK_COMBO_BOX (combo_box), 0);
-  
+
   g_signal_connect (G_OBJECT (combo_box), "changed",
                     G_CALLBACK (cheese_prefs_webcam_combo_selection_changed),
                     self);
-  
-  /* Set sensitive or not depending on whether or not there are webcam devices 
-   available */
+
+  /* Set sensitive or not depending on whether or not there are webcam devices
+   * available */
   gtk_widget_set_sensitive (combo_box, num_devices > 0);
-  
+
   g_array_free (webcam_devices, TRUE);
 }
 
 static void
-cheese_prefs_webcam_combo_set_property (GObject *object, guint prop_id, 
-                                        const GValue *value, 
+cheese_prefs_webcam_combo_set_property (GObject *object, guint prop_id,
+                                        const GValue *value,
                                         GParamSpec *pspec)
 {
   CheesePrefsWebcamComboPrivate *priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (object);
-  switch (prop_id) 
+
+  switch (prop_id)
   {
     case PROP_WEBCAM_DEVICE_KEY:
       priv->webcam_device_key = g_value_dup_string (value);
@@ -198,17 +202,17 @@ cheese_prefs_webcam_combo_set_property (GObject *object, guint prop_id,
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
-    }
+  }
 }
 
 static void
-cheese_prefs_webcam_combo_get_property (GObject *object, guint prop_id, 
+cheese_prefs_webcam_combo_get_property (GObject *object, guint prop_id,
                                         GValue *value, GParamSpec *pspec)
 {
   CheesePrefsWebcamComboPrivate *priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (object);
-  
+
   g_return_if_fail (CHEESE_IS_PREFS_WEBCAM_COMBO (object));
-  
+
   switch (prop_id)
   {
     case PROP_WEBCAM_DEVICE_KEY:
@@ -226,16 +230,16 @@ cheese_prefs_webcam_combo_get_property (GObject *object, guint prop_id,
 static void
 cheese_prefs_webcam_combo_class_init (CheesePrefsWebcamComboClass *klass)
 {
-  GObjectClass* object_class = G_OBJECT_CLASS (klass);
-  CheesePrefsWidgetClass* parent_class = CHEESE_PREFS_WIDGET_CLASS (klass);
-  
+  GObjectClass           *object_class = G_OBJECT_CLASS (klass);
+  CheesePrefsWidgetClass *parent_class = CHEESE_PREFS_WIDGET_CLASS (klass);
+
   g_type_class_add_private (klass, sizeof (CheesePrefsWebcamComboPrivate));
-  
-  object_class->finalize = cheese_prefs_webcam_combo_finalize;
+
+  object_class->finalize     = cheese_prefs_webcam_combo_finalize;
   object_class->set_property = cheese_prefs_webcam_combo_set_property;
   object_class->get_property = cheese_prefs_webcam_combo_get_property;
-  parent_class->synchronize = cheese_prefs_webcam_combo_synchronize;
-  
+  parent_class->synchronize  = cheese_prefs_webcam_combo_synchronize;
+
   g_object_class_install_property (object_class,
                                    PROP_WEBCAM_DEVICE_KEY,
                                    g_param_spec_string ("webcam_device_key",
@@ -243,8 +247,8 @@ cheese_prefs_webcam_combo_class_init (CheesePrefsWebcamComboClass *klass)
                                                         "Webcam device gconf key",
                                                         "",
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
-  
-  g_object_class_install_property (object_class, 
+
+  g_object_class_install_property (object_class,
                                    PROP_WEBCAM,
                                    g_param_spec_object ("webcam",
                                                         "",
@@ -253,30 +257,29 @@ cheese_prefs_webcam_combo_class_init (CheesePrefsWebcamComboClass *klass)
                                                         G_PARAM_READWRITE));
 }
 
-
 CheesePrefsWebcamCombo *
-cheese_prefs_webcam_combo_new (GtkWidget *combo_box, CheeseWebcam *webcam, 
+cheese_prefs_webcam_combo_new (GtkWidget *combo_box, CheeseWebcam *webcam,
                                const gchar *webcam_device_key)
 {
-  CheesePrefsWebcamCombo *self;
-  GtkCellRenderer *renderer;
-  CheesePrefsWebcamComboPrivate *priv; 
-  
-  self = g_object_new (CHEESE_TYPE_PREFS_WEBCAM_COMBO, 
-                       "widget", combo_box, 
+  CheesePrefsWebcamCombo        *self;
+  GtkCellRenderer               *renderer;
+  CheesePrefsWebcamComboPrivate *priv;
+
+  self = g_object_new (CHEESE_TYPE_PREFS_WEBCAM_COMBO,
+                       "widget", combo_box,
                        "webcam", webcam,
                        "webcam_device_key", webcam_device_key,
                        NULL);
-  
+
   priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (self);
-  
+
   renderer = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box), renderer, FALSE);
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box), renderer, "text",
                                  PRODUCT_NAME);
-  gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), 
+  gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box),
                            GTK_TREE_MODEL (priv->list_store));
-  
+
   return self;
 }
 
@@ -284,12 +287,13 @@ char *
 cheese_prefs_webcam_combo_get_selected_webcam (CheesePrefsWebcamCombo *webcam)
 {
   CheesePrefsWebcamComboPrivate *priv = CHEESE_PREFS_WEBCAM_COMBO_GET_PRIVATE (webcam);
+
   GtkTreeIter active_iter;
-  GtkWidget *combo_box;
-  char *device;
-  
+  GtkWidget  *combo_box;
+  char       *device;
+
   g_object_get (webcam, "widget", &combo_box, NULL);
-  
+
   gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combo_box), &active_iter);
   gtk_tree_model_get (GTK_TREE_MODEL (priv->list_store), &active_iter, DEVICE_NAME, &device, -1);
 

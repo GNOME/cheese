@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -19,7 +19,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <cheese-config.h>
+  #include <cheese-config.h>
 #endif
 
 #include <string.h>
@@ -31,14 +31,14 @@
 #include "cheese-effect-chooser.h"
 #include "cheese-webcam.h"
 
-#define BOARD_COLS 4
-#define BOARD_ROWS 3
+#define BOARD_COLS  4
+#define BOARD_ROWS  3
 #define NUM_EFFECTS (BOARD_ROWS * BOARD_COLS)
 
-#define SHRINK(cr, x) cairo_translate (cr, (1-(x))/2.0, (1-(x))/2.0); cairo_scale (cr, (x), (x))
+#define SHRINK(cr, x) cairo_translate (cr, (1 - (x)) / 2.0, (1 - (x)) / 2.0); cairo_scale (cr, (x), (x))
 
 #define CHEESE_EFFECT_CHOOSER_GET_PRIVATE(o) \
-	(G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_EFFECT_CHOOSER, CheeseEffectChooserPrivate))
+  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_EFFECT_CHOOSER, CheeseEffectChooserPrivate))
 
 G_DEFINE_TYPE (CheeseEffectChooser, cheese_effect_chooser, GTK_TYPE_DRAWING_AREA);
 
@@ -48,7 +48,7 @@ typedef struct
 } CheeseEffectChooserPrivate;
 
 
-typedef struct 
+typedef struct
 {
   CheeseWebcamEffect effect;
   char *name;
@@ -56,37 +56,36 @@ typedef struct
   gboolean is_black;
 } GstEffect;
 
-static const GstEffect GST_EFFECT[] = 
-{
-  {CHEESE_WEBCAM_EFFECT_NO_EFFECT, N_("No Effect"),
+static const GstEffect GST_EFFECT[] = {
+  {CHEESE_WEBCAM_EFFECT_NO_EFFECT,       N_("No Effect"),
    PACKAGE_DATADIR "/effects/identity.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_MAUVE, N_("Mauve"), 
+  {CHEESE_WEBCAM_EFFECT_MAUVE,           N_("Mauve"),
    PACKAGE_DATADIR "/effects/Mauve.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_NOIR_BLANC, N_("Noir/Blanc"), 
+  {CHEESE_WEBCAM_EFFECT_NOIR_BLANC,      N_("Noir/Blanc"),
    PACKAGE_DATADIR "/effects/NoirBlanc.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_SATURATION, N_("Saturation"),
+  {CHEESE_WEBCAM_EFFECT_SATURATION,      N_("Saturation"),
    PACKAGE_DATADIR "/effects/Saturation.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_HULK, N_("Hulk"),
+  {CHEESE_WEBCAM_EFFECT_HULK,            N_("Hulk"),
    PACKAGE_DATADIR "/effects/Hulk.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_VERTICAL_FLIP, N_("Vertical Flip"),
+  {CHEESE_WEBCAM_EFFECT_VERTICAL_FLIP,   N_("Vertical Flip"),
    PACKAGE_DATADIR "/effects/videoflip_v.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_HORIZONTAL_FLIP, N_("Horizontal Flip"), 
+  {CHEESE_WEBCAM_EFFECT_HORIZONTAL_FLIP, N_("Horizontal Flip"),
    PACKAGE_DATADIR "/effects/videoflip_h.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_SHAGADELIC, N_("Shagadelic"),
+  {CHEESE_WEBCAM_EFFECT_SHAGADELIC,      N_("Shagadelic"),
    PACKAGE_DATADIR "/effects/shagadelictv.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_VERTIGO, N_("Vertigo"),
+  {CHEESE_WEBCAM_EFFECT_VERTIGO,         N_("Vertigo"),
    PACKAGE_DATADIR "/effects/vertigotv.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_EDGE, N_("Edge"),
+  {CHEESE_WEBCAM_EFFECT_EDGE,            N_("Edge"),
    PACKAGE_DATADIR "/effects/edgetv.png", TRUE},
-  {CHEESE_WEBCAM_EFFECT_DICE, N_("Dice"),
+  {CHEESE_WEBCAM_EFFECT_DICE,            N_("Dice"),
    PACKAGE_DATADIR "/effects/dicetv.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_WARP, N_("Warp"), 
+  {CHEESE_WEBCAM_EFFECT_WARP,            N_("Warp"),
    PACKAGE_DATADIR "/effects/warptv.png", FALSE}
 };
 
 
 static void
-cheese_cairo_rectangle_round (cairo_t * cr,
+cheese_cairo_rectangle_round (cairo_t *cr,
                               double x0, double y0,
                               double width, double height, double radius)
 {
@@ -147,6 +146,9 @@ cheese_cairo_rectangle_round (cairo_t * cr,
 static void
 cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 {
+  int              w, h;
+  cairo_surface_t *image;
+
   cairo_save (cr);
 
   SHRINK (cr, .9);
@@ -156,15 +158,13 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 
   cairo_save (cr);
 
-  int w, h;
-  cairo_surface_t *image;
   cheese_cairo_rectangle_round (cr, 0, 0, 1.0, 1.0, 0.1);
   cairo_clip (cr);
   cairo_new_path (cr);
 
   image = cairo_image_surface_create_from_png (card->filename);
-  w = cairo_image_surface_get_width (image);
-  h = cairo_image_surface_get_height (image);
+  w     = cairo_image_surface_get_width (image);
+  h     = cairo_image_surface_get_height (image);
 
   cairo_scale (cr, 1.0 / w, 1.0 / h);
 
@@ -180,7 +180,7 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 
   double x, y;
   cairo_select_font_face (cr, "Sans",
-      CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
+                          CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
 
   cairo_set_font_size (cr, 0.09);
   gchar *name = gettext (card->name);
@@ -203,12 +203,13 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
 static void
 cheese_effect_chooser_expose_cb (GtkWidget *widget, GdkEventExpose *expose_event, gpointer data)
 {
-  CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (widget);
-  int width, height;
-  int i;
+  CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (widget);
+
+  int      width, height;
+  int      i;
   cairo_t *cr;
 
-  width = widget->allocation.width;
+  width  = widget->allocation.width;
   height = widget->allocation.height;
 
   cr = gdk_cairo_create (widget->window);
@@ -232,13 +233,14 @@ cheese_effect_chooser_expose_cb (GtkWidget *widget, GdkEventExpose *expose_event
 static gboolean
 cheese_effect_chooser_button_press_event_cb (GtkWidget *widget, GdkEventButton *button_event, gpointer data)
 {
-  CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (widget);
+  CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (widget);
+
   int i;
-  int col = (int) (button_event->x / widget->allocation.width * BOARD_COLS);
-  int row = (int) (button_event->y / widget->allocation.height * BOARD_ROWS);
+  int col  = (int) (button_event->x / widget->allocation.width * BOARD_COLS);
+  int row  = (int) (button_event->y / widget->allocation.height * BOARD_ROWS);
   int slot = (row * BOARD_COLS + col);
 
-  priv->selected [slot] = !priv->selected [slot];
+  priv->selected[slot] = !priv->selected[slot];
 
   if (priv->selected[0] == TRUE)
   {
@@ -254,8 +256,9 @@ cheese_effect_chooser_button_press_event_cb (GtkWidget *widget, GdkEventButton *
 CheeseWebcamEffect
 cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser)
 {
-  CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
-  int i;
+  CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
+
+  int                i;
   CheeseWebcamEffect effect = 0;
 
   for (i = 0; i < NUM_EFFECTS; i++)
@@ -271,8 +274,9 @@ cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser)
 char *
 cheese_effect_chooser_get_selection_string (CheeseEffectChooser *effect_chooser)
 {
-  CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
-  int i;
+  CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
+
+  int   i;
   char *effects = NULL;
 
   for (i = 0; i < NUM_EFFECTS; i++)
@@ -298,31 +302,32 @@ static void
 cheese_effect_chooser_class_init (CheeseEffectChooserClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   object_class->finalize = cheese_effect_chooser_finalize;
 
   g_type_class_add_private (klass, sizeof (CheeseEffectChooserPrivate));
 }
-
 
 static void
 cheese_effect_chooser_init (CheeseEffectChooser *effect_chooser)
 {
   gtk_widget_add_events (GTK_WIDGET (effect_chooser), GDK_BUTTON_PRESS_MASK);
 
-  g_signal_connect (G_OBJECT (effect_chooser),"button_press_event", 
+  g_signal_connect (G_OBJECT (effect_chooser), "button_press_event",
                     G_CALLBACK (cheese_effect_chooser_button_press_event_cb), NULL);
-  g_signal_connect (G_OBJECT (effect_chooser), "expose-event", 
+  g_signal_connect (G_OBJECT (effect_chooser), "expose-event",
                     G_CALLBACK (cheese_effect_chooser_expose_cb), NULL);
 }
 
-GtkWidget * 
-cheese_effect_chooser_new (char* selected_effects)
+GtkWidget *
+cheese_effect_chooser_new (char *selected_effects)
 {
   CheeseEffectChooser *effect_chooser;
-  effect_chooser = g_object_new (CHEESE_TYPE_EFFECT_CHOOSER, NULL);  
+  int                  i;
 
-  CheeseEffectChooserPrivate* priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
-  int i;
+  effect_chooser = g_object_new (CHEESE_TYPE_EFFECT_CHOOSER, NULL);
+
+  CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
 
   if (selected_effects != NULL)
   {

@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
- * 
+ * Copyright © 2008 James Liggett <jrliggett@cox.net>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@
 #define _CHEESE_PREFS_DIALOG_H_
 
 #ifdef HAVE_CONFIG_H
-#include "cheese-config.h"
+  #include "cheese-config.h"
 #endif
 
 #include "cheese-webcam.h"

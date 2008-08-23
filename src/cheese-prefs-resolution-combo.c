@@ -1,7 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: s; c-basic-offset: 2; tab-width: 2 -*- */
 /*
- * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
- * 
+ * Copyright © 2008 James Liggett <jrliggett@cox.net>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -33,14 +32,14 @@ typedef struct
                                     * sets webcam on construction. */
 } CheesePrefsResolutionComboPrivate;
 
-#define CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE(o) \
+#define CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE(o)                     \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_PREFS_RESOLUTION_COMBO, \
-   CheesePrefsResolutionComboPrivate))
+                                CheesePrefsResolutionComboPrivate))
 
 enum
 {
   PROP_0,
-  
+
   PROP_X_RESOLUTION_KEY,
   PROP_Y_RESOLUTION_KEY,
   PROP_MAX_X_RESOLUTION,
@@ -61,132 +60,132 @@ static void
 cheese_prefs_resolution_combo_init (CheesePrefsResolutionCombo *self)
 {
   CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self);
-  
-  priv->x_resolution_key = NULL;
-  priv->y_resolution_key = NULL;
-  priv->max_x_resolution = G_MAXUINT;
-  priv->max_y_resolution = G_MAXUINT;
-  priv->list_store = gtk_list_store_new (NUM_COLS, G_TYPE_STRING, G_TYPE_POINTER);
-  priv->webcam = NULL;
-  priv->selected_format = NULL;
+
+  priv->x_resolution_key      = NULL;
+  priv->y_resolution_key      = NULL;
+  priv->max_x_resolution      = G_MAXUINT;
+  priv->max_y_resolution      = G_MAXUINT;
+  priv->list_store            = gtk_list_store_new (NUM_COLS, G_TYPE_STRING, G_TYPE_POINTER);
+  priv->webcam                = NULL;
+  priv->selected_format       = NULL;
   priv->has_been_synchronized = FALSE;
 }
 
 static void
 cheese_prefs_resolution_combo_finalize (GObject *object)
 {
-  CheesePrefsResolutionCombo *self = CHEESE_PREFS_RESOLUTION_COMBO (object);
+  CheesePrefsResolutionCombo        *self = CHEESE_PREFS_RESOLUTION_COMBO (object);
   CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self);
-  
+
   g_free (priv->x_resolution_key);
   g_free (priv->y_resolution_key);
   g_object_unref (priv->list_store);
-  
+
   G_OBJECT_CLASS (cheese_prefs_resolution_combo_parent_class)->finalize (object);
 }
 
 static void
-combo_selection_changed (GtkComboBox *combo_box, 
+combo_selection_changed (GtkComboBox                *combo_box,
                          CheesePrefsResolutionCombo *self)
 {
-  CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self); 
-  GtkTreeIter iter;
+  CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self);
+
+  GtkTreeIter        iter;
   CheeseVideoFormat *format;
-  
+
   gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combo_box), &iter);
-  gtk_tree_model_get (GTK_TREE_MODEL (priv->list_store), &iter, COL_FORMAT, 
+  gtk_tree_model_get (GTK_TREE_MODEL (priv->list_store), &iter, COL_FORMAT,
                       &format, -1);
-  
+
   g_object_set (CHEESE_PREFS_WIDGET (self)->gconf, priv->x_resolution_key,
                 format->width, priv->y_resolution_key, format->height, NULL);
-  
+
   priv->selected_format = format;
-  
+
   cheese_prefs_widget_notify_changed (CHEESE_PREFS_WIDGET (self));
 }
 
 static void
 cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
 {
-  CheesePrefsResolutionCombo *self = CHEESE_PREFS_RESOLUTION_COMBO (prefs_widget);
-  CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self); 
-  GtkWidget *combo_box;
+  CheesePrefsResolutionCombo        *self = CHEESE_PREFS_RESOLUTION_COMBO (prefs_widget);
+  CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self);
+
+  GtkWidget         *combo_box;
   CheeseVideoFormat *current_format;
-  GArray *formats;
-  int i;
+  GArray            *formats;
+  int                i;
   CheeseVideoFormat *format;
-  gchar *format_name;
-  GtkTreeIter iter;
-  GtkTreeIter active_iter;
-  gboolean found_resolution;
-  
+  gchar             *format_name;
+  GtkTreeIter        iter;
+  GtkTreeIter        active_iter;
+  gboolean           found_resolution;
+
   priv->has_been_synchronized = TRUE;
-  found_resolution = FALSE;
-  
+  found_resolution            = FALSE;
+
   /* Don't generate spurious changed events when we set the active resolution */
   g_object_get (prefs_widget, "widget", &combo_box, NULL);
-  g_signal_handlers_disconnect_by_func (combo_box, combo_selection_changed, 
+  g_signal_handlers_disconnect_by_func (combo_box, combo_selection_changed,
                                         prefs_widget);
-  
+
   g_object_ref (priv->list_store);
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
-  
+
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
   current_format = cheese_webcam_get_current_video_format (priv->webcam);
-  
+
   gtk_list_store_clear (priv->list_store);
   formats = cheese_webcam_get_video_formats (priv->webcam);
-  
+
   for (i = 0; i < formats->len; i++)
   {
-    format = &g_array_index (formats, CheeseVideoFormat, i);
+    format      = &g_array_index (formats, CheeseVideoFormat, i);
     format_name = g_strdup_printf ("%i x %i", format->width, format->height);
-    
-    
-    if (format->width <= priv->max_x_resolution && 
+
+
+    if (format->width <= priv->max_x_resolution &&
         format->height <= priv->max_y_resolution)
     {
       gtk_list_store_append (priv->list_store, &iter);
-      gtk_list_store_set (priv->list_store, &iter, 
+      gtk_list_store_set (priv->list_store, &iter,
                           COL_NAME, format_name,
-                          COL_FORMAT, format, 
+                          COL_FORMAT, format,
                           -1);
-      
+
       g_free (format_name);
-      
+
       if (format == current_format)
       {
-        active_iter = iter;
+        active_iter      = iter;
         found_resolution = TRUE;
       }
-
     }
   }
-  
-  gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), 
+
+  gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box),
                            GTK_TREE_MODEL (priv->list_store));
   g_object_unref (priv->list_store);
-  
+
   if (found_resolution)
     gtk_combo_box_set_active_iter (GTK_COMBO_BOX (combo_box), &active_iter);
   else
     gtk_combo_box_set_active (GTK_COMBO_BOX (combo_box), 0);
-  
+
   g_signal_connect (G_OBJECT (combo_box), "changed",
                     G_CALLBACK (combo_selection_changed),
                     self);
-  
 }
 
 static void
-cheese_prefs_resolution_combo_set_property (GObject *object, guint prop_id, 
-                                            const GValue *value, 
+cheese_prefs_resolution_combo_set_property (GObject *object, guint prop_id,
+                                            const GValue *value,
                                             GParamSpec *pspec)
 {
   CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (object);
-  
+
   g_return_if_fail (CHEESE_IS_PREFS_RESOLUTION_COMBO (object));
-  
+
   switch (prop_id)
   {
     case PROP_X_RESOLUTION_KEY:
@@ -203,14 +202,14 @@ cheese_prefs_resolution_combo_set_property (GObject *object, guint prop_id,
       break;
     case PROP_WEBCAM:
       priv->webcam = CHEESE_WEBCAM (g_value_get_object (value));
-      
+
       /* If the webcam changes the resolutions change too. But only change the
        * data if we've been synchronized once already. If this property is set
        * on construction, we would synchronize twice--once when the property is
        * set, and again when the dialog syncs when it's created. */
       if (priv->has_been_synchronized)
         cheese_prefs_resolution_combo_synchronize (CHEESE_PREFS_WIDGET (object));
-      
+
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -219,13 +218,13 @@ cheese_prefs_resolution_combo_set_property (GObject *object, guint prop_id,
 }
 
 static void
-cheese_prefs_resolution_combo_get_property (GObject *object, guint prop_id, 
+cheese_prefs_resolution_combo_get_property (GObject *object, guint prop_id,
                                             GValue *value, GParamSpec *pspec)
 {
   CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (object);
-  
+
   g_return_if_fail (CHEESE_IS_PREFS_RESOLUTION_COMBO (object));
-  
+
   switch (prop_id)
   {
     case PROP_X_RESOLUTION_KEY:
@@ -252,16 +251,16 @@ cheese_prefs_resolution_combo_get_property (GObject *object, guint prop_id,
 static void
 cheese_prefs_resolution_combo_class_init (CheesePrefsResolutionComboClass *klass)
 {
-  GObjectClass* object_class = G_OBJECT_CLASS (klass);
-  CheesePrefsWidgetClass* parent_class = CHEESE_PREFS_WIDGET_CLASS (klass);
-  
+  GObjectClass           *object_class = G_OBJECT_CLASS (klass);
+  CheesePrefsWidgetClass *parent_class = CHEESE_PREFS_WIDGET_CLASS (klass);
+
   g_type_class_add_private (klass, sizeof (CheesePrefsResolutionComboPrivate));
-  
-  object_class->finalize = cheese_prefs_resolution_combo_finalize;
+
+  object_class->finalize     = cheese_prefs_resolution_combo_finalize;
   object_class->set_property = cheese_prefs_resolution_combo_set_property;
   object_class->get_property = cheese_prefs_resolution_combo_get_property;
-  parent_class->synchronize = cheese_prefs_resolution_combo_synchronize;
-  
+  parent_class->synchronize  = cheese_prefs_resolution_combo_synchronize;
+
   g_object_class_install_property (object_class,
                                    PROP_X_RESOLUTION_KEY,
                                    g_param_spec_string ("x_resolution_key",
@@ -269,7 +268,7 @@ cheese_prefs_resolution_combo_class_init (CheesePrefsResolutionComboClass *klass
                                                         "GConf key for X resolution",
                                                         "",
                                                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-  
+
   g_object_class_install_property (object_class,
                                    PROP_Y_RESOLUTION_KEY,
                                    g_param_spec_string ("y_resolution_key",
@@ -277,28 +276,28 @@ cheese_prefs_resolution_combo_class_init (CheesePrefsResolutionComboClass *klass
                                                         "GConf key for Y resolution",
                                                         "",
                                                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
-  
+
   g_object_class_install_property (object_class,
                                    PROP_MAX_X_RESOLUTION,
                                    g_param_spec_uint ("max_x_resolution",
                                                       "",
                                                       "Maximum supported X resolution",
-                                                      0, 
-                                                      G_MAXUINT, 
+                                                      0,
+                                                      G_MAXUINT,
                                                       G_MAXUINT,
                                                       G_PARAM_READABLE | G_PARAM_WRITABLE));
-  
+
   g_object_class_install_property (object_class,
                                    PROP_MAX_Y_RESOLUTION,
                                    g_param_spec_uint ("max_y_resolution",
                                                       "",
                                                       "Maximum supported Y resolution",
-                                                      0, 
-                                                      G_MAXUINT, 
+                                                      0,
+                                                      G_MAXUINT,
                                                       G_MAXUINT,
                                                       G_PARAM_READABLE | G_PARAM_WRITABLE));
-  
-  g_object_class_install_property (object_class, 
+
+  g_object_class_install_property (object_class,
                                    PROP_WEBCAM,
                                    g_param_spec_object ("webcam",
                                                         "",
@@ -308,51 +307,48 @@ cheese_prefs_resolution_combo_class_init (CheesePrefsResolutionComboClass *klass
 }
 
 CheesePrefsResolutionCombo *
-cheese_prefs_resolution_combo_new (GtkWidget *combo_box, CheeseWebcam *webcam, 
-                                   const gchar *x_resolution_key, 
+cheese_prefs_resolution_combo_new (GtkWidget *combo_box, CheeseWebcam *webcam,
+                                   const gchar *x_resolution_key,
                                    const gchar *y_resolution_key,
                                    unsigned int max_x_resolution,
                                    unsigned int max_y_resolution)
 {
-  CheesePrefsResolutionCombo *self;
-  GtkCellRenderer *renderer;
-  CheesePrefsResolutionComboPrivate *priv; 
-  
-  self = g_object_new (CHEESE_TYPE_PREFS_RESOLUTION_COMBO, 
-                       "widget", combo_box, 
+  CheesePrefsResolutionCombo        *self;
+  GtkCellRenderer                   *renderer;
+  CheesePrefsResolutionComboPrivate *priv;
+
+  self = g_object_new (CHEESE_TYPE_PREFS_RESOLUTION_COMBO,
+                       "widget", combo_box,
                        "webcam", webcam,
                        "x_resolution_key", x_resolution_key,
                        "y_resolution_key", y_resolution_key,
                        NULL);
-  
+
   if (max_x_resolution > 0 &&
       max_y_resolution > 0)
   {
-    g_object_set (self, 
-                  "max_x_resolution", max_x_resolution, 
-                  "max_y_resolution", max_y_resolution, 
+    g_object_set (self,
+                  "max_x_resolution", max_x_resolution,
+                  "max_y_resolution", max_y_resolution,
                   NULL);
   }
-  
+
   priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self);
-  
+
   renderer = gtk_cell_renderer_text_new ();
   gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (combo_box), renderer, FALSE);
   gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box), renderer, "text",
                                  COL_NAME);
-  gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), 
+  gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box),
                            GTK_TREE_MODEL (priv->list_store));
-  
+
   return self;
-  
 }
 
 CheeseVideoFormat *
 cheese_prefs_resolution_combo_get_selected_format (CheesePrefsResolutionCombo *resolution_combo)
 {
-  CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (resolution_combo); 
-  
+  CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (resolution_combo);
+
   return priv->selected_format;
 }
-
-

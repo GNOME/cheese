@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
- * Copyright (C) 2008 Felix Kaser <f.kaser@gmx.net>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright © 2008 Felix Kaser <f.kaser@gmx.net>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -20,7 +20,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <cheese-config.h>
+  #include <cheese-config.h>
 #endif
 
 #include <stdio.h>
@@ -40,27 +40,28 @@ struct _CheeseOptions
   char *hal_device_id;
 } CheeseOptions;
 
-void cheese_print_handler (char *string)
+void
+cheese_print_handler (char *string)
 {
   static FILE *fp = NULL;
-  GDir *dir;
-  char *filename, *path;
-  
+  GDir        *dir;
+  char        *filename, *path;
+
   CheeseFileUtil *fileutil = cheese_fileutil_new ();
-  
+
 
   if (fp == NULL)
   {
     path = cheese_fileutil_get_log_path (fileutil);
-    
+
     dir = g_dir_open (path, 0, NULL);
     if (!dir)
     {
       return;
     }
-    
+
     filename = g_build_filename (path, "log", NULL);
-    fp = fopen (filename, "w");
+    fp       = fopen (filename, "w");
 
     g_object_unref (fileutil);
     g_free (filename);
@@ -71,22 +72,22 @@ void cheese_print_handler (char *string)
 
   if (CheeseOptions.verbose)
     fprintf (stdout, "%s", string);
-    
 }
 
 int
 main (int argc, char **argv)
 {
   GOptionContext *context;
-  CheeseDbus *dbus_server;
-  
+  CheeseDbus     *dbus_server;
+
   GOptionEntry options[] = {
-    { "verbose", 'v', 0, G_OPTION_ARG_NONE, &CheeseOptions.verbose, _("Be verbose"), NULL},
-    { "hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id, NULL, NULL},
-    { NULL }
+    {"verbose",    'v', 0,                    G_OPTION_ARG_NONE,   &CheeseOptions.verbose,       _("Be verbose"), NULL},
+    {"hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id, NULL,            NULL},
+    {NULL}
   };
+
   CheeseOptions.hal_device_id = NULL;
-  
+
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
@@ -122,7 +123,7 @@ main (int argc, char **argv)
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
   cheese_window_init (CheeseOptions.hal_device_id, dbus_server);
-  
+
   gdk_threads_enter ();
   gtk_main ();
   gdk_threads_leave ();

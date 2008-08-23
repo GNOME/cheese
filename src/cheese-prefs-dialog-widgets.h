@@ -1,7 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: s; c-basic-offset: 2; tab-width: 2 -*- */
 /*
- * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
- * 
+ * Copyright © 2008 James Liggett <jrliggett@cox.net>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -26,12 +25,17 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_PREFS_DIALOG_WIDGETS             (cheese_prefs_dialog_widgets_get_type ())
-#define CHEESE_PREFS_DIALOG_WIDGETS(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_PREFS_DIALOG_WIDGETS, CheesePrefsDialogWidgets))
-#define CHEESE_PREFS_DIALOG_WIDGETS_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_PREFS_DIALOG_WIDGETS, CheesePrefsDialogWidgetsClass))
-#define CHEESE_IS_PREFS_DIALOG_WIDGETS(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_PREFS_DIALOG_WIDGETS))
-#define CHEESE_IS_PREFS_DIALOG_WIDGETS_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_PREFS_DIALOG_WIDGETS))
-#define CHEESE_PREFS_DIALOG_WIDGETS_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_PREFS_DIALOG_WIDGETS, CheesePrefsDialogWidgetsClass))
+#define CHEESE_TYPE_PREFS_DIALOG_WIDGETS (cheese_prefs_dialog_widgets_get_type ())
+#define CHEESE_PREFS_DIALOG_WIDGETS(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj),                            \
+                                                                                 CHEESE_TYPE_PREFS_DIALOG_WIDGETS, \
+                                                                                 CheesePrefsDialogWidgets))
+#define CHEESE_PREFS_DIALOG_WIDGETS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_PREFS_DIALOG_WIDGETS, \
+                                                                              CheesePrefsDialogWidgetsClass))
+#define CHEESE_IS_PREFS_DIALOG_WIDGETS(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), \
+                                                                                 CHEESE_TYPE_PREFS_DIALOG_WIDGETS))
+#define CHEESE_IS_PREFS_DIALOG_WIDGETS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_PREFS_DIALOG_WIDGETS))
+#define CHEESE_PREFS_DIALOG_WIDGETS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_PREFS_DIALOG_WIDGETS, \
+                                                                                CheesePrefsDialogWidgetsClass))
 
 typedef struct _CheesePrefsDialogWidgetsClass CheesePrefsDialogWidgetsClass;
 typedef struct _CheesePrefsDialogWidgets CheesePrefsDialogWidgets;
@@ -46,10 +50,11 @@ struct _CheesePrefsDialogWidgets
   GObject parent_instance;
 };
 
-GType cheese_prefs_dialog_widgets_get_type (void) G_GNUC_CONST;
+GType                     cheese_prefs_dialog_widgets_get_type (void) G_GNUC_CONST;
 CheesePrefsDialogWidgets *cheese_prefs_dialog_widgets_new (CheeseGConf *gconf);
-void cheese_prefs_dialog_widgets_add (CheesePrefsDialogWidgets *prefs_widgets, 
-                                      CheesePrefsWidget *widget);
+
+void cheese_prefs_dialog_widgets_add (CheesePrefsDialogWidgets *prefs_widgets,
+                                      CheesePrefsWidget        *widget);
 void cheese_prefs_dialog_widgets_synchronize (CheesePrefsDialogWidgets *prefs_widgets);
 
 G_END_DECLS

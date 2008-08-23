@@ -1,6 +1,6 @@
 /*
  * Copyright © 2008 Alexander “weej” Jones <alex@weej.com>
- * 
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -24,26 +24,27 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_FLASH             (cheese_flash_get_type ())
-#define CHEESE_FLASH(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_FLASH, CheeseFlash))
-#define CHEESE_FLASH_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_FLASH, CheeseFlashClass))
-#define CHEESE_IS_FLASH(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_FLASH))
-#define CHEESE_IS_FLASH_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FLASH))
-#define CHEESE_FLASH_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FLASH, CheeseFlashClass))
+#define CHEESE_TYPE_FLASH (cheese_flash_get_type ())
+#define CHEESE_FLASH(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_FLASH, CheeseFlash))
+#define CHEESE_FLASH_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_FLASH, CheeseFlashClass))
+#define CHEESE_IS_FLASH(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_FLASH))
+#define CHEESE_IS_FLASH_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FLASH))
+#define CHEESE_FLASH_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FLASH, CheeseFlashClass))
 
 typedef struct
 {
   GObjectClass parent_class;
 } CheeseFlashClass;
 
-typedef struct 
+typedef struct
 {
   GObject parent_instance;
 } CheeseFlash;
 
-GType cheese_flash_get_type (void) G_GNUC_CONST;
-void cheese_flash_fire (CheeseFlash* flash);
-CheeseFlash* cheese_flash_new (void);
+GType        cheese_flash_get_type (void) G_GNUC_CONST;
+CheeseFlash *cheese_flash_new (void);
+
+void cheese_flash_fire (CheeseFlash *flash);
 
 G_END_DECLS
 

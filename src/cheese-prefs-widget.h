@@ -1,7 +1,6 @@
-/* -*- Mode: C; indent-tabs-mode: s; c-basic-offset: 2; tab-width: 2 -*- */
 /*
- * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
- * 
+ * Copyright © 2008 James Liggett <jrliggett@cox.net>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -27,12 +26,15 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_PREFS_WIDGET             (cheese_prefs_widget_get_type ())
-#define CHEESE_PREFS_WIDGET(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_PREFS_WIDGET, CheesePrefsWidget))
-#define CHEESE_PREFS_WIDGET_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_PREFS_WIDGET, CheesePrefsWidgetClass))
-#define CHEESE_IS_PREFS_WIDGET(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_PREFS_WIDGET))
-#define CHEESE_IS_PREFS_WIDGET_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_PREFS_WIDGET))
-#define CHEESE_PREFS_WIDGET_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_PREFS_WIDGET, CheesePrefsWidgetClass))
+#define CHEESE_TYPE_PREFS_WIDGET (cheese_prefs_widget_get_type ())
+#define CHEESE_PREFS_WIDGET(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_PREFS_WIDGET, \
+                                                                         CheesePrefsWidget))
+#define CHEESE_PREFS_WIDGET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_PREFS_WIDGET, \
+                                                                      CheesePrefsWidgetClass))
+#define CHEESE_IS_PREFS_WIDGET(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_PREFS_WIDGET))
+#define CHEESE_IS_PREFS_WIDGET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_PREFS_WIDGET))
+#define CHEESE_PREFS_WIDGET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_PREFS_WIDGET, \
+                                                                        CheesePrefsWidgetClass))
 
 typedef struct _CheesePrefsWidgetClass CheesePrefsWidgetClass;
 typedef struct _CheesePrefsWidget CheesePrefsWidget;
@@ -40,10 +42,10 @@ typedef struct _CheesePrefsWidget CheesePrefsWidget;
 struct _CheesePrefsWidgetClass
 {
   GObjectClass parent_class;
-  
+
   /* Signals */
   void (*changed) (CheesePrefsWidget *self);
-  
+
   /* Virtual methods */
   void (*synchronize) (CheesePrefsWidget *self);
 };
@@ -51,11 +53,12 @@ struct _CheesePrefsWidgetClass
 struct _CheesePrefsWidget
 {
   GObject parent_instance;
-  
+
   CheeseGConf *gconf;
 };
 
 GType cheese_prefs_widget_get_type (void) G_GNUC_CONST;
+
 void cheese_prefs_widget_synchronize (CheesePrefsWidget *prefs_widget);
 void cheese_prefs_widget_notify_changed (CheesePrefsWidget *prefs_widget);
 

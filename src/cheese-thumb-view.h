@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -27,30 +27,33 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_THUMB_VIEW            (cheese_thumb_view_get_type ())
+#define CHEESE_TYPE_THUMB_VIEW (cheese_thumb_view_get_type ())
 #define CHEESE_THUMB_VIEW(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_THUMB_VIEW, CheeseThumbView))
-#define CHEESE_THUMB_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  CHEESE_TYPE_THUMB_VIEW, CheeseThumbViewClass))
+#define CHEESE_THUMB_VIEW_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_THUMB_VIEW, \
+                                                                    CheeseThumbViewClass))
 #define CHEESE_IS_THUMB_VIEW(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_THUMB_VIEW))
-#define CHEESE_IS_THUMB_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  CHEESE_TYPE_THUMB_VIEW))
-#define CHEESE_THUMB_VIEW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  CHEESE_TYPE_THUMB_VIEW, CheeseThumbViewClass))
+#define CHEESE_IS_THUMB_VIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_THUMB_VIEW))
+#define CHEESE_THUMB_VIEW_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_THUMB_VIEW, \
+                                                                      CheeseThumbViewClass))
 
-typedef struct 
+typedef struct
 {
   GtkIconView parent;
 } CheeseThumbView;
 
-typedef struct 
+typedef struct
 {
   GtkIconViewClass parent_class;
 } CheeseThumbViewClass;
 
 
-GType	         cheese_thumb_view_get_type (void);
-GtkWidget       *cheese_thumb_view_new ();
-GList           *cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view);
-char            *cheese_thumb_view_get_selected_image (CheeseThumbView *thumb_view);
-guint            cheese_thumb_view_get_n_selected (CheeseThumbView *thumbview);
-void             cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file);
+GType      cheese_thumb_view_get_type (void);
+GtkWidget *cheese_thumb_view_new ();
+
+GList *cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view);
+char * cheese_thumb_view_get_selected_image (CheeseThumbView *thumb_view);
+guint  cheese_thumb_view_get_n_selected (CheeseThumbView *thumbview);
+void   cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file);
 
 G_END_DECLS
 

@@ -1,8 +1,8 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
- * Copyright (C) 2008 Felix Kaser <f.kaser@gmx.net>
- * 
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright © 2008 Felix Kaser <f.kaser@gmx.net>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -33,21 +33,23 @@ typedef struct
   DBusGConnection *connection;
 } CheeseDbusClass;
 
-typedef struct _CheeseDbus {
+typedef struct _CheeseDbus
+{
   GObject parent;
 } CheeseDbus;
 
 
-#define CHEESE_TYPE_DBUS            (cheese_dbus_get_type ())
+#define CHEESE_TYPE_DBUS (cheese_dbus_get_type ())
 #define CHEESE_DBUS(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_DBUS, CheeseDbus))
-#define CHEESE_DBUS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  CHEESE_TYPE_DBUS, CheeseDbusClass))
+#define CHEESE_DBUS_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_DBUS, CheeseDbusClass))
 #define CHEESE_IS_DBUS(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_DBUS))
-#define CHEESE_IS_DBUS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  CHEESE_TYPE_DBUS))
-#define CHEESE_DBUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  CHEESE_TYPE_DBUS, CheeseDbusClass))
+#define CHEESE_IS_DBUS_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_DBUS))
+#define CHEESE_DBUS_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_DBUS, CheeseDbusClass))
 
-GType cheese_dbus_get_type (void);
-CheeseDbus * cheese_dbus_new (void);
-void cheese_dbus_set_window (gpointer);
+GType       cheese_dbus_get_type (void);
+CheeseDbus *cheese_dbus_new (void);
+
+void     cheese_dbus_set_window (gpointer);
 gboolean cheese_dbus_notify (void);
 
 G_END_DECLS

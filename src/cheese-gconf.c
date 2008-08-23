@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -18,7 +18,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <cheese-config.h>
+  #include <cheese-config.h>
 #endif
 
 #include <glib.h>
@@ -29,17 +29,16 @@
 
 #include "cheese-gconf.h"
 
-#define CHEESE_GCONF_PREFIX   "/apps/cheese"
+#define CHEESE_GCONF_PREFIX "/apps/cheese"
 
 G_DEFINE_TYPE (CheeseGConf, cheese_gconf, G_TYPE_OBJECT)
 
 #define CHEESE_GCONF_GET_PRIVATE(o) \
-    (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_GCONF, CheeseGConfPrivate))
+  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_GCONF, CheeseGConfPrivate))
 
 typedef struct
 {
   GConfClient *client;
-
 } CheeseGConfPrivate;
 
 static void
@@ -47,13 +46,14 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                            GParamSpec *pspec)
 {
   CheeseGConf *self;
+
   self = CHEESE_GCONF (object);
   CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (self);
 
-  char *effects;
+  char   *effects;
   GSList *list, *tmp;
 
-  switch (prop_id) 
+  switch (prop_id)
   {
     case GCONF_PROP_COUNTDOWN:
       g_value_set_boolean (value, gconf_client_get_bool (priv->client,
@@ -67,26 +67,26 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
       break;
     case GCONF_PROP_SELECTED_EFFECTS:
       effects = NULL;
-      list = gconf_client_get_list (priv->client,
-                                    CHEESE_GCONF_PREFIX "/selected_effects",
-                                    GCONF_VALUE_STRING,
-                                    NULL);
+      list    = gconf_client_get_list (priv->client,
+                                       CHEESE_GCONF_PREFIX "/selected_effects",
+                                       GCONF_VALUE_STRING,
+                                       NULL);
       tmp = list;
       while (tmp != NULL)
       {
         char *str = tmp->data;
-        int j;
+        int   j;
         str[0] = g_ascii_toupper (str[0]);
         for (j = 1; j < g_utf8_strlen (str, -1); j++)
         {
           if (str[j] == '-')
           {
-            str[j] = ' ';
+            str[j]     = ' ';
             str[j + 1] = g_ascii_toupper (str[j + 1]);
           }
           else if (str[j] == '_')
           {
-            str[j] = '/';
+            str[j]     = '/';
             str[j + 1] = g_ascii_toupper (str[j + 1]);
           }
         }
@@ -114,19 +114,19 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
       break;
     case GCONF_PROP_VIDEO_PATH:
       g_value_set_string (value, gconf_client_get_string (priv->client,
-                                                    CHEESE_GCONF_PREFIX "/video_path",
-                                                    NULL));
+                                                          CHEESE_GCONF_PREFIX "/video_path",
+                                                          NULL));
       break;
     case GCONF_PROP_PHOTO_PATH:
       g_value_set_string (value, gconf_client_get_string (priv->client,
-                                                    CHEESE_GCONF_PREFIX "/photo_path",
-                                                    NULL));
+                                                          CHEESE_GCONF_PREFIX "/photo_path",
+                                                          NULL));
       break;
     case GCONF_PROP_ENABLE_DELETE:
       g_value_set_boolean (value, gconf_client_get_bool (priv->client,
-							 CHEESE_GCONF_PREFIX "/enable_delete",
-							 NULL));
-      break;      
+                                                         CHEESE_GCONF_PREFIX "/enable_delete",
+                                                         NULL));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -138,14 +138,15 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                            GParamSpec *pspec)
 {
   CheeseGConf *self;
+
   self = CHEESE_GCONF (object);
   CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (self);
 
   gchar **effects = NULL;
-  GSList *list = NULL;
-  int i;
+  GSList *list    = NULL;
+  int     i;
 
-  switch (prop_id) 
+  switch (prop_id)
   {
     case GCONF_PROP_COUNTDOWN:
       gconf_client_set_bool (priv->client,
@@ -168,7 +169,7 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
       else
       {
         char *str = g_value_dup_string (value);
-        int j;
+        int   j;
         for (j = 0; j < g_utf8_strlen (str, -1); j++)
         {
           if (g_ascii_isupper (str[j]))
@@ -192,10 +193,10 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
         g_free (str);
       }
       gconf_client_set_list (priv->client,
-                               CHEESE_GCONF_PREFIX "/selected_effects",
-                               GCONF_VALUE_STRING,
-                               list,
-                               NULL);
+                             CHEESE_GCONF_PREFIX "/selected_effects",
+                             GCONF_VALUE_STRING,
+                             list,
+                             NULL);
       g_slist_free (list);
       g_strfreev (effects);
       break;
@@ -213,21 +214,21 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
       break;
     case GCONF_PROP_VIDEO_PATH:
       gconf_client_set_string (priv->client,
-                          CHEESE_GCONF_PREFIX "/video_path",
-                          g_value_get_string (value),
-                          NULL);
+                               CHEESE_GCONF_PREFIX "/video_path",
+                               g_value_get_string (value),
+                               NULL);
       break;
     case GCONF_PROP_PHOTO_PATH:
       gconf_client_set_string (priv->client,
-                          CHEESE_GCONF_PREFIX "/photo_path",
-                          g_value_get_string (value),
-                          NULL);
+                               CHEESE_GCONF_PREFIX "/photo_path",
+                               g_value_get_string (value),
+                               NULL);
       break;
     case GCONF_PROP_ENABLE_DELETE:
       gconf_client_set_bool (priv->client,
-			     CHEESE_GCONF_PREFIX "/enable_delete",
-			     g_value_get_boolean (value),
-			     NULL);
+                             CHEESE_GCONF_PREFIX "/enable_delete",
+                             g_value_get_boolean (value),
+                             NULL);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -241,7 +242,7 @@ cheese_gconf_finalize (GObject *object)
   CheeseGConf *gconf;
 
   gconf = CHEESE_GCONF (object);
-  CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (gconf);  
+  CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (gconf);
 
   g_object_unref (priv->client);
   G_OBJECT_CLASS (cheese_gconf_parent_class)->finalize (object);
@@ -251,6 +252,7 @@ static void
 cheese_gconf_class_init (CheeseGConfClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   object_class->finalize = cheese_gconf_finalize;
 
   object_class->get_property = cheese_gconf_get_property;
@@ -273,8 +275,8 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                         NULL,
                                                         NULL,
                                                         "",
-                                                        G_PARAM_READWRITE)); 
-    
+                                                        G_PARAM_READWRITE));
+
   g_object_class_install_property (object_class, GCONF_PROP_X_RESOLUTION,
                                    g_param_spec_int ("gconf_prop_x_resolution",
                                                      NULL,
@@ -283,7 +285,7 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                      G_MAXINT,
                                                      0,
                                                      G_PARAM_READWRITE));
-    
+
   g_object_class_install_property (object_class, GCONF_PROP_Y_RESOLUTION,
                                    g_param_spec_int ("gconf_prop_y_resolution",
                                                      NULL,
@@ -292,14 +294,14 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                      G_MAXINT,
                                                      0,
                                                      G_PARAM_READWRITE));
-                                                     
+
   g_object_class_install_property (object_class, GCONF_PROP_VIDEO_PATH,
                                    g_param_spec_string ("gconf_prop_video_path",
                                                         NULL,
                                                         NULL,
                                                         "",
                                                         G_PARAM_READWRITE));
-  
+
   g_object_class_install_property (object_class, GCONF_PROP_PHOTO_PATH,
                                    g_param_spec_string ("gconf_prop_photo_path",
                                                         NULL,
@@ -309,27 +311,28 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
 
   g_object_class_install_property (object_class, GCONF_PROP_ENABLE_DELETE,
                                    g_param_spec_boolean ("gconf_prop_enable_delete",
-							 NULL,
-							 NULL,
-							 FALSE,
-							 G_PARAM_READWRITE));
+                                                         NULL,
+                                                         NULL,
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
 
-                                                          
+
   g_type_class_add_private (klass, sizeof (CheeseGConfPrivate));
 }
 
 static void
 cheese_gconf_init (CheeseGConf *gconf)
 {
-  CheeseGConfPrivate* priv = CHEESE_GCONF_GET_PRIVATE (gconf);
+  CheeseGConfPrivate *priv = CHEESE_GCONF_GET_PRIVATE (gconf);
+
   priv->client = gconf_client_get_default ();
 }
 
-CheeseGConf * 
+CheeseGConf *
 cheese_gconf_new ()
 {
   CheeseGConf *gconf;
 
-  gconf = g_object_new (CHEESE_TYPE_GCONF, NULL);  
+  gconf = g_object_new (CHEESE_TYPE_GCONF, NULL);
   return gconf;
 }

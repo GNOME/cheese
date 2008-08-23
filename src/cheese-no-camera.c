@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2005 Paolo Maggi
- * Copyright (C) 2008 Sebastian Keller <sebastian-keller@gmx.de>
- * Copyright (C) 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2005 Paolo Maggi
+ * Copyright © 2008 Sebastian Keller <sebastian-keller@gmx.de>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -38,8 +38,8 @@ cheese_no_camera_set_message_area_text_and_icon (GeditMessageArea *message_area,
   GtkWidget *hbox_content;
   GtkWidget *image;
   GtkWidget *vbox;
-  gchar *primary_markup;
-  gchar *secondary_markup;
+  gchar     *primary_markup;
+  gchar     *secondary_markup;
   GtkWidget *primary_label;
   GtkWidget *secondary_label;
 
@@ -56,7 +56,7 @@ cheese_no_camera_set_message_area_text_and_icon (GeditMessageArea *message_area,
   gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
 
   primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
-  primary_label = gtk_label_new (primary_markup);
+  primary_label  = gtk_label_new (primary_markup);
   g_free (primary_markup);
   gtk_widget_show (primary_label);
   gtk_box_pack_start (GTK_BOX (vbox), primary_label, TRUE, TRUE, 0);
@@ -97,8 +97,8 @@ cheese_no_camera_message_area ()
                                                    _("Please refer to the help for further information."));
 
   gedit_message_area_add_stock_button_with_text (GEDIT_MESSAGE_AREA (message_area),
-                                                 _("Help"),
-                                                 GTK_STOCK_HELP, GTK_RESPONSE_HELP);
+                                                 _("Help"), GTK_STOCK_HELP,
+                                                 GTK_RESPONSE_HELP);
 
   return message_area;
 }

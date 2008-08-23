@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -26,28 +26,32 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_EFFECT_CHOOSER            (cheese_effect_chooser_get_type ())
-#define CHEESE_EFFECT_CHOOSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_EFFECT_CHOOSER, CheeseEffectChooser))
-#define CHEESE_EFFECT_CHOOSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  CHEESE_TYPE_EFFECT_CHOOSER, CheeseEffectChooserClass))
+#define CHEESE_TYPE_EFFECT_CHOOSER (cheese_effect_chooser_get_type ())
+#define CHEESE_EFFECT_CHOOSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_EFFECT_CHOOSER, \
+                                                                           CheeseEffectChooser))
+#define CHEESE_EFFECT_CHOOSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_EFFECT_CHOOSER, \
+                                                                        CheeseEffectChooserClass))
 #define CHEESE_IS_EFFECT_CHOOSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_EFFECT_CHOOSER))
-#define CHEESE_IS_EFFECT_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  CHEESE_TYPE_EFFECT_CHOOSER))
-#define CHEESE_EFFECT_CHOOSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  CHEESE_TYPE_EFFECT_CHOOSER, CheeseEffectChooserClass))
+#define CHEESE_IS_EFFECT_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_EFFECT_CHOOSER))
+#define CHEESE_EFFECT_CHOOSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_EFFECT_CHOOSER, \
+                                                                          CheeseEffectChooserClass))
 
-typedef struct 
+typedef struct
 {
   GtkDrawingArea parent;
 } CheeseEffectChooser;
 
-typedef struct 
+typedef struct
 {
   GtkDrawingAreaClass parent_class;
 } CheeseEffectChooserClass;
 
 
-GType		   cheese_effect_chooser_get_type (void);
-GtkWidget         *cheese_effect_chooser_new (char* selected_effects);
+GType      cheese_effect_chooser_get_type (void);
+GtkWidget *cheese_effect_chooser_new (char *selected_effects);
+
 CheeseWebcamEffect cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser);
-char              *cheese_effect_chooser_get_selection_string (CheeseEffectChooser *effect_chooser);
+char *             cheese_effect_chooser_get_selection_string (CheeseEffectChooser *effect_chooser);
 void               cheese_effect_chooser_unselect_all (CheeseEffectChooser *effect_chooser);
 
 G_END_DECLS

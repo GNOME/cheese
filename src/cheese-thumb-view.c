@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
- * Copyright (C) 2008 Filippo Argiolas <filippo.argiolas@gmail.com>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright © 2008 Filippo Argiolas <filippo.argiolas@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -20,7 +20,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include "cheese-config.h"
+  #include "cheese-config.h"
 #endif
 
 #include <glib.h>
@@ -34,7 +34,7 @@
 
 
 #define CHEESE_THUMB_VIEW_GET_PRIVATE(o) \
-	(G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_THUMB_VIEW, CheeseThumbViewPrivate))
+  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_THUMB_VIEW, CheeseThumbViewPrivate))
 
 G_DEFINE_TYPE (CheeseThumbView, cheese_thumb_view, GTK_TYPE_ICON_VIEW);
 
@@ -43,8 +43,8 @@ typedef struct
 {
   GtkListStore *store;
   CheeseFileUtil *fileutil;
-  GFileMonitor *photo_file_monitor;
-  GFileMonitor *video_file_monitor;
+  GFileMonitor   *photo_file_monitor;
+  GFileMonitor   *video_file_monitor;
   GnomeThumbnailFactory *factory;
   gboolean multiplex_thumbnail_generator;
 } CheeseThumbViewPrivate;
@@ -57,16 +57,15 @@ enum
 };
 
 /* Drag 'n Drop */
-enum 
+enum
 {
   TARGET_PLAIN,
   TARGET_PLAIN_UTF8,
   TARGET_URILIST,
 };
 
-static GtkTargetEntry target_table[] = 
-{
-  { "text/uri-list", 0, TARGET_URILIST },
+static GtkTargetEntry target_table[] = {
+  {"text/uri-list", 0, TARGET_URILIST},
 };
 
 typedef struct
@@ -77,22 +76,23 @@ typedef struct
 } CheeseThumbViewThreadData;
 
 static void
-cheese_thumb_view_thread_append_item (gpointer data) 
+cheese_thumb_view_thread_append_item (gpointer data)
 {
-  CheeseThumbViewThreadData *item = data;
-  CheeseThumbView *thumb_view = item->thumb_view;
-  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  CheeseThumbViewThreadData *item       = data;
+  CheeseThumbView           *thumb_view = item->thumb_view;
+  CheeseThumbViewPrivate    *priv       = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
   GnomeThumbnailFactory *factory = priv->factory;
-  GFile *file = item->file;
-  GtkTreeIter iter = item->iter;
-  GdkPixbuf *pixbuf = NULL;
-  GFileInfo *info;
-  char *thumb_loc;
-  GTimeVal mtime;
-  char *mime_type;
-  char *uri;
-  char *filename;
-  
+  GFile                 *file    = item->file;
+  GtkTreeIter            iter    = item->iter;
+  GdkPixbuf             *pixbuf  = NULL;
+  GFileInfo             *info;
+  char                  *thumb_loc;
+  GTimeVal               mtime;
+  char                  *mime_type;
+  char                  *uri;
+  char                  *filename;
+
   info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, NULL);
 
   if (!info)
@@ -102,8 +102,8 @@ cheese_thumb_view_thread_append_item (gpointer data)
   }
   g_file_info_get_modification_time (info, &mtime);
   mime_type = g_strdup (g_file_info_get_content_type (info));
-  
-  uri = g_file_get_uri (file);
+
+  uri      = g_file_get_uri (file);
   filename = g_file_get_path (file);
 
   thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
@@ -114,7 +114,9 @@ cheese_thumb_view_thread_append_item (gpointer data)
     if (!pixbuf)
     {
       g_warning ("could not generate thumbnail for %s (%s)\n", filename, mime_type);
-    } else {
+    }
+    else
+    {
       gnome_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, mtime.tv_sec);
     }
   }
@@ -132,8 +134,8 @@ cheese_thumb_view_thread_append_item (gpointer data)
 
   if (!pixbuf)
   {
-    gchar *escape = NULL;
-    GError *error = NULL;
+    gchar  *escape = NULL;
+    GError *error  = NULL;
     escape = g_strrstr (mime_type, "/");
     if (escape != NULL) *escape = '-';
     pixbuf = gtk_icon_theme_load_icon (gtk_icon_theme_get_default (),
@@ -151,12 +153,12 @@ cheese_thumb_view_thread_append_item (gpointer data)
   {
     eog_thumbnail_add_frame (&pixbuf);
   }
-  
+
   gdk_threads_enter ();
-  
+
   gtk_list_store_set (priv->store, &iter,
                       THUMBNAIL_PIXBUF_COLUMN, pixbuf, -1);
-  
+
   gdk_threads_leave ();
 
   g_free (mime_type);
@@ -168,32 +170,34 @@ cheese_thumb_view_thread_append_item (gpointer data)
 static void
 cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 {
-  CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
-  GtkTreeIter iter;
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  GtkTreeIter   iter;
   GtkIconTheme *icon_theme;
-  GdkPixbuf *pixbuf = NULL;
-  GtkTreePath *path;
-  char *filename, *basename;
-  GError *error = NULL;
+  GdkPixbuf    *pixbuf = NULL;
+  GtkTreePath  *path;
+  char         *filename, *basename;
+  GError       *error = NULL;
 
   CheeseThumbViewThreadData *data;
 
-  data = g_new0 (CheeseThumbViewThreadData, 1);
+  data             = g_new0 (CheeseThumbViewThreadData, 1);
   data->thumb_view = g_object_ref (thumb_view);
-  data->file = g_object_ref (file);
+  data->file       = g_object_ref (file);
 
   if (priv->multiplex_thumbnail_generator)
   {
     char *f;
-    //f = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 3));
-    f = g_strdup_printf ("%s/pixmaps/cheese-1.svg", PACKAGE_DATADIR);
+
+    /* f = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 3)); */
+    f      = g_strdup_printf ("%s/pixmaps/cheese-1.svg", PACKAGE_DATADIR);
     pixbuf = gdk_pixbuf_new_from_file (f, NULL);
     g_free (f);
   }
   else
   {
     icon_theme = gtk_icon_theme_get_default ();
-    pixbuf = gtk_icon_theme_load_icon (icon_theme, "image-loading", 96, 0, &error);
+    pixbuf     = gtk_icon_theme_load_icon (icon_theme, "image-loading", 96, 0, &error);
   }
 
   if (!pixbuf)
@@ -206,7 +210,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   filename = g_file_get_path (file);
   basename = g_path_get_basename (filename);
-  
+
   gtk_list_store_append (priv->store, &iter);
   data->iter = iter;
   gtk_list_store_set (priv->store, &iter,
@@ -236,11 +240,12 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 void
 cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
 {
-  CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
-  char *path;
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  char       *path;
   GtkTreeIter iter;
-  char *filename;
-  gboolean found = FALSE;
+  char       *filename;
+  gboolean    found = FALSE;
 
   filename = g_file_get_path (file);
 
@@ -252,7 +257,7 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
 
   /* check if the selected item is the first, else go through the store */
   gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &path, -1);
-  if (g_ascii_strcasecmp (path, filename)) 
+  if (g_ascii_strcasecmp (path, filename))
   {
     while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter))
     {
@@ -263,7 +268,9 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
         break;
       }
     }
-  } else {
+  }
+  else
+  {
     found = TRUE;
   }
   g_free (path);
@@ -283,15 +290,14 @@ cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
   GtkTreePath *tree_path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
   gtk_icon_view_select_path (GTK_ICON_VIEW (thumb_view), tree_path);
   gtk_tree_path_free (tree_path);
-
 }
 
 static void
-cheese_thumb_view_monitor_cb (GFileMonitor      *file_monitor,
-                              GFile             *file,
-                              GFile             *other_file,
-                              GFileMonitorEvent  event_type,
-                              CheeseThumbView   *thumb_view)
+cheese_thumb_view_monitor_cb (GFileMonitor     *file_monitor,
+                              GFile            *file,
+                              GFile            *other_file,
+                              GFileMonitorEvent event_type,
+                              CheeseThumbView  *thumb_view)
 {
   switch (event_type)
   {
@@ -306,7 +312,6 @@ cheese_thumb_view_monitor_cb (GFileMonitor      *file_monitor,
   }
 }
 
-
 static void
 cheese_thumb_view_on_drag_data_get_cb (GtkIconView      *thumb_view,
                                        GdkDragContext   *drag_context,
@@ -315,16 +320,16 @@ cheese_thumb_view_on_drag_data_get_cb (GtkIconView      *thumb_view,
                                        guint             time,
                                        gpointer          user_data)
 {
-  GList *list;
-  GtkTreePath *tree_path = NULL;
-  GtkTreeIter iter;
+  GList        *list;
+  GtkTreePath  *tree_path = NULL;
+  GtkTreeIter   iter;
   GtkTreeModel *model;
-  char *str;
-  char *uris = NULL;
-  char *tmp_str;
-  gint i;
+  char         *str;
+  char         *uris = NULL;
+  char         *tmp_str;
+  gint          i;
 
-  list = gtk_icon_view_get_selected_items (thumb_view);
+  list  = gtk_icon_view_get_selected_items (thumb_view);
   model = gtk_icon_view_get_model (thumb_view);
 
   for (i = 0; i < g_list_length (list); i++)
@@ -338,13 +343,13 @@ cheese_thumb_view_on_drag_data_get_cb (GtkIconView      *thumb_view,
      */
 
     /* build the "text/uri-list" string */
-    if (uris) 
+    if (uris)
     {
       tmp_str = g_strconcat (uris, "file://", str, "\r\n", NULL);
       g_free (uris);
-    } 
-    else 
-    { 
+    }
+    else
+    {
       tmp_str = g_strconcat ("file://", str, "\r\n", NULL);
     }
     uris = tmp_str;
@@ -352,24 +357,23 @@ cheese_thumb_view_on_drag_data_get_cb (GtkIconView      *thumb_view,
     g_free (str);
   }
   gtk_selection_data_set (data, data->target, 8,
-                          (guchar*) uris, strlen (uris));
+                          (guchar *) uris, strlen (uris));
   g_free (uris);
   g_list_free (list);
 }
-
 
 static char *
 cheese_thumb_view_get_url_from_path (CheeseThumbView *thumb_view, GtkTreePath *path)
 {
   GtkTreeModel *model;
-  GtkTreeIter iter;
-  char *file;
+  GtkTreeIter   iter;
+  char         *file;
 
   model = gtk_icon_view_get_model (GTK_ICON_VIEW (thumb_view));
   gtk_tree_model_get_iter (model, &iter, path);
 
   gtk_tree_model_get (model, &iter, THUMBNAIL_URL_COLUMN, &file, -1);
-			    
+
   return file;
 }
 
@@ -377,13 +381,13 @@ char *
 cheese_thumb_view_get_selected_image (CheeseThumbView *thumb_view)
 {
   GList *list;
-  char *filename = NULL;
+  char  *filename = NULL;
 
   list = gtk_icon_view_get_selected_items (GTK_ICON_VIEW (thumb_view));
   if (list)
   {
     filename = cheese_thumb_view_get_url_from_path (thumb_view, (GtkTreePath *) list->data);
-    g_list_foreach (list, (GFunc)gtk_tree_path_free, NULL);
+    g_list_foreach (list, (GFunc) gtk_tree_path_free, NULL);
     g_list_free (list);
   }
 
@@ -401,7 +405,7 @@ cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view)
 
   l = gtk_icon_view_get_selected_items (GTK_ICON_VIEW (thumb_view));
 
-  for (item = l; item != NULL; item = item->next) 
+  for (item = l; item != NULL; item = item->next)
   {
     path = (GtkTreePath *) item->data;
     file = g_file_new_for_path (cheese_thumb_view_get_url_from_path (thumb_view, path));
@@ -418,16 +422,17 @@ cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view)
 static void
 cheese_thumb_view_get_n_selected_helper (GtkIconView *thumbview,
                                          GtkTreePath *path,
-                                         gpointer data)
+                                         gpointer     data)
 {
   /* data is of type (guint *) */
-  (*(guint *) data) ++;
+  (*(guint *) data)++;
 }
 
 guint
 cheese_thumb_view_get_n_selected (CheeseThumbView *thumbview)
 {
   guint count = 0;
+
   gtk_icon_view_selected_foreach (GTK_ICON_VIEW (thumbview),
                                   cheese_thumb_view_get_n_selected_helper,
                                   (&count));
@@ -437,21 +442,22 @@ cheese_thumb_view_get_n_selected (CheeseThumbView *thumbview)
 static void
 cheese_thumb_view_fill (CheeseThumbView *thumb_view)
 {
-  CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
-  GDir *dir_videos, *dir_photos;
-  char *path_videos, *path_photos;
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  GDir       *dir_videos, *dir_photos;
+  char       *path_videos, *path_photos;
   const char *name;
-  char *filename;
-  GFile *file;
+  char       *filename;
+  GFile      *file;
 
   gtk_list_store_clear (priv->store);
 
   path_videos = cheese_fileutil_get_video_path (priv->fileutil);
   path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
-  
+
   dir_videos = g_dir_open (path_videos, 0, NULL);
   dir_photos = g_dir_open (path_photos, 0, NULL);
-  
+
   if (!dir_videos && !dir_photos)
     return;
 
@@ -461,28 +467,28 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     priv->multiplex_thumbnail_generator = !priv->multiplex_thumbnail_generator;
   g_free (multiplex_file);
 
-  //read videos from the vid directory
+  /* read videos from the vid directory */
   while ((name = g_dir_read_name (dir_videos)))
   {
     if (!(g_str_has_suffix (name, VIDEO_NAME_SUFFIX)))
       continue;
-    
+
     filename = g_build_filename (path_videos, name, NULL);
-    file = g_file_new_for_path (filename);
+    file     = g_file_new_for_path (filename);
     cheese_thumb_view_append_item (thumb_view, file);
     g_free (filename);
     g_object_unref (file);
   }
   g_dir_close (dir_videos);
-  
-  //read photos from the photo directory
+
+  /* read photos from the photo directory */
   while ((name = g_dir_read_name (dir_photos)))
   {
     if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
       continue;
 
     filename = g_build_filename (path_photos, name, NULL);
-    file = g_file_new_for_path (filename);
+    file     = g_file_new_for_path (filename);
     cheese_thumb_view_append_item (thumb_view, file);
     g_free (filename);
     g_object_unref (file);
@@ -496,7 +502,7 @@ cheese_thumb_view_finalize (GObject *object)
   CheeseThumbView *thumb_view;
 
   thumb_view = CHEESE_THUMB_VIEW (object);
-  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);  
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
   g_object_unref (priv->store);
   g_object_unref (priv->fileutil);
@@ -511,19 +517,20 @@ static void
 cheese_thumb_view_class_init (CheeseThumbViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   object_class->finalize = cheese_thumb_view_finalize;
 
   g_type_class_add_private (klass, sizeof (CheeseThumbViewPrivate));
 }
 
-
 static void
 cheese_thumb_view_init (CheeseThumbView *thumb_view)
 {
-  CheeseThumbViewPrivate* priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
   char *path_videos = NULL, *path_photos = NULL;
-  
-  GFile *file;  
+
+  GFile    *file;
   const int THUMB_VIEW_HEIGHT = 120;
 
   eog_thumbnail_init ();
@@ -538,22 +545,22 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   path_videos = cheese_fileutil_get_video_path (priv->fileutil);
   path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
-  
+
   g_mkdir_with_parents (path_videos, 0775);
   g_mkdir_with_parents (path_photos, 0775);
-  
+
   priv->factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
 
-  //connect signal to video path
-  file = g_file_new_for_path (path_videos);
+  /* connect signal to video path */
+  file                     = g_file_new_for_path (path_videos);
   priv->video_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
   g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
-  
-  //if both paths are the same, make only one file monitor and point twice to the file monitor (photo_file_monitor = video_file_monitor)
+
+  /* if both paths are the same, make only one file monitor and point twice to the file monitor (photo_file_monitor = video_file_monitor) */
   if (strcmp (path_videos, path_photos) != 0)
   {
-    //connect signal to photo path
-    file = g_file_new_for_path (path_photos);
+    /* connect signal to photo path */
+    file                     = g_file_new_for_path (path_photos);
     priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
     g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
   }
@@ -561,7 +568,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   {
     priv->photo_file_monitor = priv->video_file_monitor;
   }
-  
+
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
 #ifdef HILDON
   gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), -1);
@@ -582,11 +589,11 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   cheese_thumb_view_fill (thumb_view);
 }
 
-GtkWidget * 
+GtkWidget *
 cheese_thumb_view_new ()
 {
   CheeseThumbView *thumb_view;
 
-  thumb_view = g_object_new (CHEESE_TYPE_THUMB_VIEW, NULL);  
+  thumb_view = g_object_new (CHEESE_TYPE_THUMB_VIEW, NULL);
   return GTK_WIDGET (thumb_view);
 }

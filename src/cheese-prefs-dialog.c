@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2008 James Liggett <jrliggett@cox.net>
- * Copyright (C) 2008 daniel g. siegel <dgsiegel@gmail.com>
- * 
+ * Copyright © 2008 James Liggett <jrliggett@cox.net>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -25,10 +25,10 @@ typedef struct
   GtkWidget *cheese_prefs_dialog;
   GtkWidget *resolution_combo_box;
   GtkWidget *webcam_combo_box;
-  
+
   GtkWidget *parent;
   CheeseWebcam *webcam;
-  
+
   CheesePrefsDialogWidgets *widgets;
 } CheesePrefsDialog;
 
@@ -36,21 +36,21 @@ static void
 cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
 {
   GtkBuilder *builder;
-  GError *error;
-  
-  error = NULL;
+  GError     *error;
+
+  error   = NULL;
   builder = gtk_builder_new ();
-  gtk_builder_add_from_file (builder, PACKAGE_DATADIR"/cheese-prefs.ui", &error);
+  gtk_builder_add_from_file (builder, PACKAGE_DATADIR "/cheese-prefs.ui", &error);
 
   if (error)
   {
-    g_error ("building ui from %s failed: %s", PACKAGE_DATADIR"/cheese-prefs.ui", error->message);
+    g_error ("building ui from %s failed: %s", PACKAGE_DATADIR "/cheese-prefs.ui", error->message);
     g_clear_error (&error);
   }
-  
-  prefs_dialog->cheese_prefs_dialog = GTK_WIDGET (gtk_builder_get_object (builder, 
+
+  prefs_dialog->cheese_prefs_dialog = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                           "cheese_prefs_dialog"));
-  prefs_dialog->resolution_combo_box = GTK_WIDGET (gtk_builder_get_object (builder, 
+  prefs_dialog->resolution_combo_box = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                            "resolution_combo_box"));
   prefs_dialog->webcam_combo_box = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                        "webcam_combo_box"));
@@ -61,15 +61,15 @@ cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
 static void
 cheese_prefs_dialog_on_resolution_changed (CheesePrefsWidget *widget, gpointer user_data)
 {
-  CheeseWebcam *webcam;
+  CheeseWebcam      *webcam;
   CheeseVideoFormat *current_format;
   CheeseVideoFormat *new_format;
-  
+
   g_object_get (widget, "webcam", &webcam, NULL);
-  
+
   current_format = cheese_webcam_get_current_video_format (webcam);
-  new_format = cheese_prefs_resolution_combo_get_selected_format (CHEESE_PREFS_RESOLUTION_COMBO (widget));
-  
+  new_format     = cheese_prefs_resolution_combo_get_selected_format (CHEESE_PREFS_RESOLUTION_COMBO (widget));
+
   if (new_format != current_format)
     cheese_webcam_set_video_format (webcam, new_format);
 }
@@ -78,8 +78,8 @@ static void
 cheese_prefs_dialog_on_device_changed (CheesePrefsWidget *widget, CheesePrefsDialog *prefs_dialog)
 {
   CheeseWebcam *webcam;
-  char *new_device_name;
-  char *old_device_name;
+  char         *new_device_name;
+  char         *old_device_name;
 
   g_object_get (widget, "webcam", &webcam, NULL);
   g_object_get (webcam, "device_name", &old_device_name, NULL);
@@ -90,6 +90,7 @@ cheese_prefs_dialog_on_device_changed (CheesePrefsWidget *widget, CheesePrefsDia
   if (!cheese_webcam_switch_webcam_device (webcam))
   {
     g_warning ("Couldn't change webcam device.");
+
     /* Revert to default device */
     g_object_set (webcam, "device_name", old_device_name, NULL);
   }
@@ -102,7 +103,7 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
 {
   CheesePrefsWidget *resolution_widget;
   CheesePrefsWidget *webcam_widget;
-  
+
   resolution_widget = CHEESE_PREFS_WIDGET (cheese_prefs_resolution_combo_new (prefs_dialog->resolution_combo_box,
                                                                               prefs_dialog->webcam,
                                                                               "gconf_prop_x_resolution",
@@ -128,9 +129,9 @@ static void
 cheese_prefs_dialog_destroy_dialog (CheesePrefsDialog *prefs_dialog)
 {
   gtk_widget_destroy (prefs_dialog->cheese_prefs_dialog);
-  
+
   g_object_unref (prefs_dialog->widgets);
-  
+
   g_free (prefs_dialog);
 }
 
@@ -138,17 +139,17 @@ void
 cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseWebcam *webcam)
 {
   CheesePrefsDialog *prefs_dialog;
-  
+
   prefs_dialog = g_new0 (CheesePrefsDialog, 1);
-  
-  prefs_dialog->parent = parent;
-  prefs_dialog->webcam = webcam;
+
+  prefs_dialog->parent  = parent;
+  prefs_dialog->webcam  = webcam;
   prefs_dialog->widgets = cheese_prefs_dialog_widgets_new (gconf);
-  
+
   cheese_prefs_dialog_create_dialog (prefs_dialog);
   cheese_prefs_dialog_setup_widgets (prefs_dialog);
-  
+
   gtk_dialog_run (GTK_DIALOG (prefs_dialog->cheese_prefs_dialog));
-  
+
   cheese_prefs_dialog_destroy_dialog (prefs_dialog);
 }

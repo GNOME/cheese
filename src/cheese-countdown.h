@@ -1,6 +1,6 @@
 /*
- * Copyright (C) 2008 Mirco "MacSlow" Müller <macslow@bangang.de>
- * Copyright (C) 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2008 Mirco "MacSlow" Müller <macslow@bangang.de>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -23,31 +23,34 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_COUNTDOWN              (cheese_countdown_get_type ())
-#define CHEESE_COUNTDOWN(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_COUNTDOWN, CheeseCountdown))
-#define CHEESE_COUNTDOWN_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass),  CHEESE_TYPE_COUNTDOWN, CheeseCountdownClass))
-#define CHEESE_IS_COUNTDOWN(obj)           (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_COUNTDOWN))
-#define CHEESE_IS_COUNTDOWN_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass),  CHEESE_TYPE_COUNTDOWN))
-#define CHEESE_COUNTDOWN_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj),  CHEESE_TYPE_COUNTDOWN, CheeseCountdownClass))
+#define CHEESE_TYPE_COUNTDOWN (cheese_countdown_get_type ())
+#define CHEESE_COUNTDOWN(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_COUNTDOWN, CheeseCountdown))
+#define CHEESE_COUNTDOWN_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_COUNTDOWN, CheeseCountdownClass))
+#define CHEESE_IS_COUNTDOWN(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_COUNTDOWN))
+#define CHEESE_IS_COUNTDOWN_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_COUNTDOWN))
+#define CHEESE_COUNTDOWN_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_COUNTDOWN, CheeseCountdownClass))
 
-typedef struct 
+typedef struct
 {
   GtkDrawingArea parent;
 } CheeseCountdown;
 
-typedef struct 
+typedef struct
 {
   GtkDrawingAreaClass parent_class;
 } CheeseCountdownClass;
 
-typedef void (* cheese_countdown_cb_t) (gpointer data);
+typedef void (*cheese_countdown_cb_t)(gpointer data);
 
-GType              cheese_countdown_get_type (void);
-GtkWidget         *cheese_countdown_new ();
+GType      cheese_countdown_get_type (void);
+GtkWidget *cheese_countdown_new ();
 
-void cheese_countdown_start (CheeseCountdown *countdown, cheese_countdown_cb_t picture_cb, cheese_countdown_cb_t hide_cb, gpointer data);
+void cheese_countdown_start (CheeseCountdown      *countdown,
+                             cheese_countdown_cb_t picture_cb,
+                             cheese_countdown_cb_t hide_cb,
+                             gpointer              data);
 void cheese_countdown_cancel (CheeseCountdown *countdown);
-int cheese_countdown_get_state (CheeseCountdown *countdown);
+int  cheese_countdown_get_state (CheeseCountdown *countdown);
 
 G_END_DECLS
 

@@ -1,8 +1,8 @@
 /*
- * Copyright (C) 2008 Mirco "MacSlow" Müller <macslow@bangang.de>
- * Copyright (C) 2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2008 Patryk Zawadzki <patrys@pld-linux.org>
- * Copyright (C) 2008 Andrea Cimitan <andrea.cimitan@gmail.com>
+ * Copyright © 2008 Mirco "MacSlow" Müller <macslow@bangang.de>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2008 Patryk Zawadzki <patrys@pld-linux.org>
+ * Copyright © 2008 Andrea Cimitan <andrea.cimitan@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -21,7 +21,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-#include <cheese-config.h>
+  #include <cheese-config.h>
 #endif
 
 #include <stdlib.h>
@@ -55,7 +55,7 @@ typedef struct
 typedef struct
 {
   int iState;
-  cairo_surface_t* pSurface;
+  cairo_surface_t *pSurface;
   cheese_countdown_cb_t picture_callback;
   cheese_countdown_cb_t hide_callback;
   gpointer callback_data;
@@ -77,9 +77,9 @@ rgb_to_hls (gdouble *r,
   gdouble h, l, s;
   gdouble delta;
 
-  red = *r;
+  red   = *r;
   green = *g;
-  blue = *b;
+  blue  = *b;
 
   if (red > green)
   {
@@ -119,7 +119,7 @@ rgb_to_hls (gdouble *r,
     else
       s = (max - min) / (2 - max - min);
 
-    delta = max -min;
+    delta = max - min;
     if (red == max)
       h = (green - blue) / delta;
     else if (green == max)
@@ -149,7 +149,7 @@ hls_to_rgb (gdouble *h,
   gdouble m1, m2;
   gdouble r, g, b;
 
-  lightness = *l;
+  lightness  = *l;
   saturation = *s;
 
   if (lightness <= 0.5)
@@ -220,7 +220,7 @@ hls_to_rgb (gdouble *h,
 
 /* Performs a color shading operation */
 static void
-color_shade (const CairoColor * a, float k, CairoColor * b)
+color_shade (const CairoColor *a, float k, CairoColor *b)
 {
   double red;
   double green;
@@ -263,16 +263,16 @@ color_shade (const CairoColor * a, float k, CairoColor * b)
 }
 
 static int
-do_text (cairo_t*    pContext,
-         gchar*      pcText,
+do_text (cairo_t    *pContext,
+         gchar      *pcText,
          int         iFontSize,
-         gchar*      pcFontFamily,
+         gchar      *pcFontFamily,
          PangoWeight fontWeight,
          PangoStyle  fontStyle)
 {
-  PangoFontDescription* pDesc       = NULL;
-  PangoLayout*          pLayout     = NULL;
-  GString*              pTextString = NULL;
+  PangoFontDescription *pDesc       = NULL;
+  PangoLayout          *pLayout     = NULL;
+  GString              *pTextString = NULL;
   PangoRectangle        logicalRect;
   int                   iAdvanceWidth;
 
@@ -331,26 +331,27 @@ do_text (cairo_t*    pContext,
 }
 
 static gboolean
-on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
+on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
 {
-  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
-  cairo_t  *pContext = NULL;
-  cairo_pattern_t *pattern;
-  CairoColor bgBorder;
-  CairoColor bgHighlight;
-  CairoColor bgShade1;
-  CairoColor bgShade2;
-  CairoColor bgShade3;
-  CairoColor bgShade4;
-  gdouble   fWidth   = (gdouble) widget->allocation.width;
-  gdouble   fHeight  = (gdouble) widget->allocation.height;
+  CheeseCountdownPrivate *priv     = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
+  cairo_t                *pContext = NULL;
+  cairo_pattern_t        *pattern;
+  CairoColor              bgBorder;
+  CairoColor              bgHighlight;
+  CairoColor              bgShade1;
+  CairoColor              bgShade2;
+  CairoColor              bgShade3;
+  CairoColor              bgShade4;
+  gdouble                 fWidth  = (gdouble) widget->allocation.width;
+  gdouble                 fHeight = (gdouble) widget->allocation.height;
+
   /* 3 * 26 are the three numbers, 30 is the width of camera-icon.svg */
-  int       iOffsetX = (widget->allocation.width - 3 * 26 - 30) / 2;
-  int       iOffsetY = (widget->allocation.height - 30) / 2;
-  gdouble   fAlpha1;
-  gdouble   fAlpha2;
-  gdouble   fAlpha3;
-  gdouble   fAlphaClick;
+  int     iOffsetX = (widget->allocation.width - 3 * 26 - 30) / 2;
+  int     iOffsetY = (widget->allocation.height - 30) / 2;
+  gdouble fAlpha1;
+  gdouble fAlpha2;
+  gdouble fAlpha3;
+  gdouble fAlphaClick;
 
   /* deal with the timing stuff */
   if (priv->iState == STATE_3)
@@ -403,33 +404,36 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   cairo_fill (pContext);
 
   /* draw border */
-  cairo_rectangle (pContext, 0.5f, 0.5f, fWidth-1.0f, fHeight-1.0f);
+  cairo_rectangle (pContext, 0.5f, 0.5f, fWidth - 1.0f, fHeight - 1.0f);
   cairo_set_source_rgba (pContext, bgBorder.r, bgBorder.g, bgBorder.b, 0.6f);
   cairo_stroke (pContext);
 
   /* draw inner highlight */
-  cairo_rectangle (pContext, 1.5f, 1.5f, fWidth-3.0f, fHeight-3.0f);
+  cairo_rectangle (pContext, 1.5f, 1.5f, fWidth - 3.0f, fHeight - 3.0f);
   cairo_set_source_rgba (pContext, bgHighlight.r, bgHighlight.g, bgHighlight.b, 0.5f);
   cairo_stroke (pContext);
 
   /* plain version */
+
   /*
-  cairo_set_source_rgba (pContext, bg.r, bg.g, bg.b, 1.0f);
-  cairo_rectangle (pContext, 0.0f, 0.0f, fWidth, fHeight);
-  cairo_fill (pContext);
-  */
+   * cairo_set_source_rgba (pContext, bg.r, bg.g, bg.b, 1.0f);
+   * cairo_rectangle (pContext, 0.0f, 0.0f, fWidth, fHeight);
+   * cairo_fill (pContext);
+   */
 
   char *number;
+
   /* draw the 3 */
   cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha3);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
+
   /* TRANSLATORS:
    * This is the countdown number when taking the photo.
    * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
    * To enable to show the numbers in your own language, use %Id instead.
    * Please leave the additional whitespace after the number
    */
-  number = g_strdup_printf (_("%d "), 3);
+  number    = g_strdup_printf (_("%d "), 3);
   iOffsetX += do_text (pContext,
                        number,
                        26 * PANGO_SCALE,
@@ -441,13 +445,14 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   /* draw the 2 */
   cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha2);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
+
   /* TRANSLATORS:
    * This is the countdown number when taking the photo.
    * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
    * To enable to show the numbers in your own language, use %Id instead.
    * Please leave the additional whitespace after the number
    */
-  number = g_strdup_printf (_("%d "), 2);
+  number    = g_strdup_printf (_("%d "), 2);
   iOffsetX += do_text (pContext,
                        number,
                        26 * PANGO_SCALE,
@@ -459,13 +464,14 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
   /* draw the 1 */
   cairo_set_source_rgba (pContext, priv->text.r, priv->text.g, priv->text.b, fAlpha1);
   cairo_move_to (pContext, (gdouble) iOffsetX, (gdouble) iOffsetY);
+
   /* TRANSLATORS:
    * This is the countdown number when taking the photo.
    * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
    * To enable to show the numbers in your own language, use %Id instead.
    * Please leave the additional whitespace after the number
    */
-  number = g_strdup_printf (_("%d "), 1);
+  number    = g_strdup_printf (_("%d "), 1);
   iOffsetX += do_text (pContext,
                        number,
                        26 * PANGO_SCALE,
@@ -490,22 +496,22 @@ on_expose (GtkWidget* widget, GdkEventExpose* pEvent, gpointer data)
 static gboolean
 redraw_handler (gpointer data)
 {
-  GtkWidget* widget = (GtkWidget*) data;
+  GtkWidget *widget = (GtkWidget *) data;
 
   gtk_widget_queue_draw (widget);
   return TRUE;
 }
 
-static cairo_surface_t*
-create_surface_from_svg (GtkWidget *widget, gchar* pcFilename)
+static cairo_surface_t *
+create_surface_from_svg (GtkWidget *widget, gchar *pcFilename)
 {
-  cairo_surface_t*  pSurface   = NULL;
-  RsvgHandle*       pSvgHandle = NULL;
-  GError*           pError     = NULL;
-  cairo_t*          pContext   = NULL;
+  cairo_surface_t  *pSurface   = NULL;
+  RsvgHandle       *pSvgHandle = NULL;
+  GError           *pError     = NULL;
+  cairo_t          *pContext   = NULL;
   RsvgDimensionData dimension;
 
-  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
 
   rsvg_init ();
 
@@ -558,17 +564,18 @@ create_surface_from_svg (GtkWidget *widget, gchar* pcFilename)
 static void
 on_style_set_cb (GtkWidget *widget, GtkStyle *previous_style, gpointer data)
 {
-  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (data);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (data);
 
-  GdkColor *color_bg = &GTK_WIDGET (widget)->style->bg[GTK_STATE_SELECTED];
+  GdkColor *color_bg   = &GTK_WIDGET (widget)->style->bg[GTK_STATE_SELECTED];
   GdkColor *color_text = &GTK_WIDGET (widget)->style->fg[GTK_STATE_SELECTED];
-  priv->bg.r = ((double)color_bg->red) / 65535;
-  priv->bg.g = ((double)color_bg->green) / 65535;
-  priv->bg.b = ((double)color_bg->blue) / 65535;
-  priv->bg.a = 1.0f;
-  priv->text.r = ((double)color_text->red) / 65535;
-  priv->text.g = ((double)color_text->green) / 65535;
-  priv->text.b = ((double)color_text->blue) / 65535;
+
+  priv->bg.r   = ((double) color_bg->red) / 65535;
+  priv->bg.g   = ((double) color_bg->green) / 65535;
+  priv->bg.b   = ((double) color_bg->blue) / 65535;
+  priv->bg.a   = 1.0f;
+  priv->text.r = ((double) color_text->red) / 65535;
+  priv->text.g = ((double) color_text->green) / 65535;
+  priv->text.b = ((double) color_text->blue) / 65535;
   priv->text.a = 1.0f;
 
   /* create/load svg-icon */
@@ -579,11 +586,12 @@ on_style_set_cb (GtkWidget *widget, GtkStyle *previous_style, gpointer data)
 static gboolean
 cheese_countdown_cb (gpointer countdown)
 {
-  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
 
   switch (priv->iState)
   {
     case STATE_OFF:
+
       /* Countdown was cancelled */
       return FALSE;
 
@@ -610,32 +618,38 @@ cheese_countdown_cb (gpointer countdown)
 }
 
 void
-cheese_countdown_start (CheeseCountdown *countdown, cheese_countdown_cb_t picture_cb, cheese_countdown_cb_t hide_cb, gpointer data)
+cheese_countdown_start (CheeseCountdown      *countdown,
+                        cheese_countdown_cb_t picture_cb,
+                        cheese_countdown_cb_t hide_cb,
+                        gpointer              data)
 {
-  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+
   if (priv->iState != STATE_OFF)
   {
     g_print ("Should not happen, state is not off.\n");
     return;
   }
-  priv->iState = STATE_3;
+  priv->iState           = STATE_3;
   priv->picture_callback = picture_cb;
-  priv->hide_callback = hide_cb;
-  priv->callback_data = data;
+  priv->hide_callback    = hide_cb;
+  priv->callback_data    = data;
   g_timeout_add_seconds (1, cheese_countdown_cb, (gpointer) countdown);
 }
 
 void
 cheese_countdown_cancel (CheeseCountdown *countdown)
 {
-  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+
   priv->iState = STATE_OFF;
 }
 
 int
 cheese_countdown_get_state (CheeseCountdown *countdown)
 {
-  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+
   return priv->iState;
 }
 
@@ -649,6 +663,7 @@ static void
 cheese_countdown_class_init (CheeseCountdownClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
+
   object_class->finalize = cheese_countdown_finalize;
 
   g_type_class_add_private (klass, sizeof (CheeseCountdownPrivate));
@@ -657,11 +672,11 @@ cheese_countdown_class_init (CheeseCountdownClass *klass)
 static void
 cheese_countdown_init (CheeseCountdown *countdown)
 {
-  CheeseCountdownPrivate* priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (countdown);
 
-  priv->iState = STATE_OFF;
+  priv->iState           = STATE_OFF;
   priv->picture_callback = NULL;
-  priv->hide_callback = NULL;
+  priv->hide_callback    = NULL;
 
   g_signal_connect (G_OBJECT (countdown), "expose-event",
                     G_CALLBACK (on_expose), NULL);
@@ -671,11 +686,12 @@ cheese_countdown_init (CheeseCountdown *countdown)
   g_timeout_add (100, redraw_handler, (gpointer) countdown);
 }
 
-GtkWidget * 
+GtkWidget *
 cheese_countdown_new ()
 {
   CheeseCountdown *countdown;
-  countdown = g_object_new (CHEESE_TYPE_COUNTDOWN, NULL);  
+
+  countdown = g_object_new (CHEESE_TYPE_COUNTDOWN, NULL);
 
   return GTK_WIDGET (countdown);
 }

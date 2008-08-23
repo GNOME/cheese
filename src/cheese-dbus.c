@@ -1,8 +1,8 @@
 /*
- * Copyright (C) 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
- * Copyright (C) 2007,2008 Jaap Haitsma <jaap@haitsma.org>
- * Copyright (C) 2008 Felix Kaser <f.kaser@gmx.net>
- * 
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
+ * Copyright © 2008 Felix Kaser <f.kaser@gmx.net>
+ *
  * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
@@ -21,7 +21,7 @@
 
 
 #ifdef HAVE_CONFIG_H
-#include <cheese-config.h>
+  #include <cheese-config.h>
 #endif
 
 #include <dbus/dbus-glib-bindings.h>
@@ -67,7 +67,7 @@ cheese_dbus_class_init (CheeseDbusClass *klass)
     g_error_free (error);
     return;
   }
-                                               
+
   dbus_g_object_type_install_info (CHEESE_TYPE_DBUS, &dbus_glib_cheese_dbus_object_info);
 }
 
@@ -85,21 +85,22 @@ cheese_dbus_init (CheeseDbus *server)
 CheeseDbus *
 cheese_dbus_new ()
 {
-  CheeseDbus *server;
-  GError *error = NULL;
-  DBusGProxy *proxy;
-  guint request_ret;
+  CheeseDbus      *server;
+  GError          *error = NULL;
+  DBusGProxy      *proxy;
+  guint            request_ret;
   CheeseDbusClass *klass;
-	
+
   server = g_object_new (CHEESE_TYPE_DBUS, NULL);
-  
+
   klass = CHEESE_DBUS_GET_CLASS (server);
+
   /* Register the service name, the constant here are defined in dbus-glib-bindings.h */
   proxy = dbus_g_proxy_new_for_name (klass->connection,
                                      DBUS_SERVICE_DBUS,
                                      DBUS_PATH_DBUS,
                                      DBUS_INTERFACE_DBUS);
-  
+
   if (!org_freedesktop_DBus_request_name (proxy,
                                           "org.gnome.Cheese",
                                           0, &request_ret,
@@ -108,31 +109,31 @@ cheese_dbus_new ()
     g_warning ("Unable to register service: %s", error->message);
     g_error_free (error);
   }
-	
-  /*check if there is already a instance running -> exit*/
+
+  /* check if there is already a instance running -> exit*/
   if (request_ret == DBUS_REQUEST_NAME_REPLY_EXISTS ||
       request_ret == DBUS_REQUEST_NAME_REPLY_IN_QUEUE)
   {
     g_warning ("Another instance of cheese is already running!");
-	  
-    /*notify the other instance of cheese*/
+
+    /* notify the other instance of cheese*/
     proxy = dbus_g_proxy_new_for_name (klass->connection,
                                        "org.gnome.Cheese",
                                        "/org/gnome/cheese",
                                        "org.gnome.Cheese");
-      
+
     if (!dbus_g_proxy_call (proxy, "notify", &error, G_TYPE_INVALID, G_TYPE_INVALID))
     {
       /* Method failed, the GError is set, let's warn everyone */
       g_warning ("Notifying the other cheese instance failed: %s", error->message);
       g_error_free (error);
     }
-    
+
     g_object_unref (server);
     server = NULL;
   }
 
   g_object_unref (proxy);
-	
+
   return server;
 }
