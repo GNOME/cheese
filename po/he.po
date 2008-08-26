@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-04 20:21+0000\n"
+"POT-Creation-Date: 2008-08-12 14:11+0000\n"
 "PO-Revision-Date: 2008-03-31 18:56+0000\n"
 "Last-Translator: Mark Krapivner <mark125@gmail.com>\n"
 "Language-Team: he\n"
@@ -15,98 +15,134 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:93
-msgid "Cheese"
-msgstr "‏Cheese"
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "תא הצילום של Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:748
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:980
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "צלם תמונות וסרטים בעזרת מצלמת האינטרנט שלך ואפקטים גרפיים משעשעים"
 
-#: ../data/cheese.schemas.in.h:1
-msgid ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-
-#: ../data/cheese.schemas.in.h:2
-msgid ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
 #: ../data/cheese.schemas.in.h:3
 msgid ""
-"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
-"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
-"Vertigo, Edge, Dice and Warp"
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
-"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
-"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
-"Vertigo, Edge, Dice and Warp"
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 
 #: ../data/cheese.schemas.in.h:4
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+
+#: ../data/cheese.schemas.in.h:5
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "Height resolution"
+
+#: ../data/cheese.schemas.in.h:7
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+
+#: ../data/cheese.schemas.in.h:8
 msgid "Photo Path"
 msgstr "Photo Path"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:9
 msgid "Selected Effects"
 msgstr "Selected Effects"
 
-#: ../data/cheese.schemas.in.h:6
-msgid "The X resolution of the image captured from the camera"
-msgstr "The X resolution of the image captured from the camera"
+#: ../data/cheese.schemas.in.h:10
+msgid "Set to True to show countdown when taking a photo"
+msgstr "Set to True to show countdown when taking a photo"
 
-#: ../data/cheese.schemas.in.h:7
-msgid "The Y resolution of the image captured from the camera"
-msgstr "The Y resolution of the image captured from the camera"
+#: ../data/cheese.schemas.in.h:11
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "The device which points to the webcam (e.g. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:8
-msgid "The device-string which points to the webcam, e.g. /dev/video0"
-msgstr "The device-string which points to the webcam, e.g. /dev/video0"
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "The height resolution of the image captured from the camera"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "The width resolution of the image captured from the camera"
+
+#: ../data/cheese.schemas.in.h:14
 msgid "Use a countdown"
 msgstr "Use a countdown"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:15
 msgid "Video Path"
 msgstr "Video Path"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:16
 msgid "Webcam device string indicator"
 msgstr "Webcam device string indicator"
 
-#: ../data/cheese.schemas.in.h:12
-msgid "Whether a countdown should be used when taking a photo"
-msgstr "Whether a countdown should be used when taking a photo"
+#: ../data/cheese.schemas.in.h:17
+msgid "Whether to enable immediate deletion"
+msgstr "Whether to enable immediate deletion"
 
-#: ../data/cheese.schemas.in.h:13
-msgid "X resolution"
-msgstr "X resolution"
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "Width resolution"
 
-#: ../data/cheese.schemas.in.h:14
-msgid "Y resolution"
-msgstr "Y resolution"
+#: ../data/cheese.ui.h:1 ../src/cheese.c:96
+msgid "Cheese"
+msgstr "‏Cheese"
 
-#: ../data/cheese.ui.h:2 ../src/cheese-window.c:830
-#: ../src/cheese-window.c:1113
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "עבור למצב צילום תמונות"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "עבור למצב צילום וידאו"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "עבור לבחירת האפקטים"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1104
+#: ../src/cheese-window.c:1105 ../src/cheese-window.c:1336
 msgid "_Effects"
 msgstr "_אפקטים"
 
-#: ../data/cheese.ui.h:3 ../src/cheese-window.c:1125
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "_צא ממסך מלא"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1348
 msgid "_Photo"
 msgstr "_תמונה"
 
-#: ../data/cheese.ui.h:4 ../src/cheese-window.c:931
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1394
 msgid "_Take a Photo"
 msgstr "_צלם תמונה"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1126
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1349
 msgid "_Video"
 msgstr "_וידאו"
 
@@ -118,7 +154,7 @@ msgstr "<b>מצלמה</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>הפרדה</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1117
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1340
 msgid "Preferences"
 msgstr "העדפות"
 
@@ -194,19 +230,23 @@ msgstr "אנא פנה לעזרה עבור מידע נוסף"
 msgid "Help"
 msgstr "עזרה"
 
-#: ../src/cheese-window.c:71
+#: ../src/cheese-webcam.c:1391
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "אלמנט אחד או יותר של gstreamer חסר: "
+
+#: ../src/cheese-window.c:76
 msgid "_Skip"
 msgstr "_דלג"
 
-#: ../src/cheese-window.c:72
+#: ../src/cheese-window.c:77
 msgid "S_kip All"
 msgstr "דלג על ה_כל"
 
-#: ../src/cheese-window.c:73
+#: ../src/cheese-window.c:78
 msgid "Delete _All"
 msgstr "_מחק את הכל"
 
-#: ../src/cheese-window.c:168
+#: ../src/cheese-window.c:188
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -215,7 +255,7 @@ msgstr ""
 "נכשל בפתיחת דפדפן על מנת להציג את:\n"
 "%s"
 
-#: ../src/cheese-window.c:192
+#: ../src/cheese-window.c:212
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -224,7 +264,7 @@ msgstr ""
 "נכשל בפתיחת לקוח דוא\"ל על מנת לשלוח הודעה ל:\n"
 "%s"
 
-#: ../src/cheese-window.c:317
+#: ../src/cheese-window.c:444
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -233,57 +273,77 @@ msgstr ""
 "נכשל בפתיחת תוכנית על מנת להציג את:\n"
 "%s"
 
-#: ../src/cheese-window.c:336
+#: ../src/cheese-window.c:463
 msgid "Save File"
 msgstr "שמור קובץ"
 
-#: ../src/cheese-window.c:374
+#: ../src/cheese-window.c:501
 #, c-format
 msgid "Could not save %s"
 msgstr "לא ניתן לשמור את %s"
 
-#: ../src/cheese-window.c:396
+#: ../src/cheese-window.c:523
 msgid "Error while deleting"
 msgstr "שגיאה במהלך המחיקה"
 
-#: ../src/cheese-window.c:397
+#: ../src/cheese-window.c:524
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr ""
-"לא ניתן למחוק את הקובץ \"%s\". פרטים: %s"
+msgstr "לא ניתן למחוק את הקובץ \"%s\". פרטים: %s"
 
-#: ../src/cheese-window.c:432 ../src/cheese-window.c:473
+#: ../src/cheese-window.c:551
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected items?"
+msgstr ""
+"למחוק לצמיתות את %'d הפריטים הנבחרים?"
+
+#: ../src/cheese-window.c:556
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr ""
+"למחוק לצמיתות את \"%s\"?"
+
+#: ../src/cheese-window.c:559
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "אם אתה מוחק פריט, הוא יאבד לצמיתות."
+
+#: ../src/cheese-window.c:581
 msgid "Unknown Error"
 msgstr "שגיאה לא ידועה"
 
-#: ../src/cheese-window.c:441
+#: ../src/cheese-window.c:612
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "לא ניתן למחוק את הקובץ, למחוק אותו מיידית?"
 
-#: ../src/cheese-window.c:442
+#: ../src/cheese-window.c:613
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "לא ניתן להעביר את \"%s\" לאשפה. פרטים: %s"
 
-#: ../src/cheese-window.c:507
+#: ../src/cheese-window.c:679
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "להעביר את כל התמונות והסרטים לאשפה?"
 
-#: ../src/cheese-window.c:515
+#: ../src/cheese-window.c:687
 msgid "_Move to Trash"
 msgstr "_העבר לאשפה"
 
-#: ../src/cheese-window.c:630
+#: ../src/cheese-window.c:801
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "לא ניתן לקבוע את תמונת החשבון"
 
-#: ../src/cheese-window.c:709 ../src/cheese-window.c:989
+#: ../src/cheese-window.c:833
+msgid "Media files"
+msgstr "קבצי מדיה"
+
+#: ../src/cheese-window.c:907 ../src/cheese-window.c:1179
 msgid "Unable to open help file for Cheese"
 msgstr "לא ניתן לפתוח את קבצי העזרה"
 
-#: ../src/cheese-window.c:726
+#: ../src/cheese-window.c:958
 msgid "translator-credits"
 msgstr ""
 "יאיר הרשקוביץ <yairhr@gmail.com>\n"
@@ -292,7 +352,7 @@ msgstr ""
 "פרוייקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/cheese-window.c:729
+#: ../src/cheese-window.c:961
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -304,7 +364,7 @@ msgstr ""
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
 
-#: ../src/cheese-window.c:733
+#: ../src/cheese-window.c:965
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -316,7 +376,7 @@ msgstr ""
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
 
-#: ../src/cheese-window.c:737
+#: ../src/cheese-window.c:969
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -324,105 +384,119 @@ msgstr ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:752
+#: ../src/cheese-window.c:986
 msgid "Cheese Website"
 msgstr "אתר האינטרנט של Cheese"
 
-#: ../src/cheese-window.c:919
-msgid "_Start recording"
-msgstr "_התחל הקלטה"
-
-#: ../src/cheese-window.c:1006
+#: ../src/cheese-window.c:1196
 msgid "_Start Recording"
 msgstr "_התחל הקלטה"
 
-#: ../src/cheese-window.c:1069
+#: ../src/cheese-window.c:1289
 msgid "_Stop Recording"
 msgstr "ה_פסק הקלטה"
 
-#: ../src/cheese-window.c:1095
+#: ../src/cheese-window.c:1318
 msgid "_Cheese"
 msgstr "_חייך"
 
-#: ../src/cheese-window.c:1097
+#: ../src/cheese-window.c:1320
 msgid "_Edit"
 msgstr "_עריכה"
 
-#: ../src/cheese-window.c:1098
+#: ../src/cheese-window.c:1321
 msgid "Move All to Trash"
 msgstr "העבר הכל לאשפה"
 
-#: ../src/cheese-window.c:1100
+#: ../src/cheese-window.c:1323
 msgid "_Help"
 msgstr "_עזרה"
 
-#: ../src/cheese-window.c:1103
+#: ../src/cheese-window.c:1326
 msgid "_Contents"
 msgstr "_תכנים"
 
-#: ../src/cheese-window.c:1103
+#: ../src/cheese-window.c:1326
 msgid "Help on this Application"
 msgstr "עזרה עבור יישום זה"
 
-#: ../src/cheese-window.c:1109
+#: ../src/cheese-window.c:1332
 msgid "Countdown"
 msgstr "ספירה לאחור"
 
-#: ../src/cheese-window.c:1130
+#: ../src/cheese-window.c:1353
 msgid "_Open"
 msgstr "_פתח"
 
-#: ../src/cheese-window.c:1131
+#: ../src/cheese-window.c:1354
 msgid "Save _As..."
 msgstr "_שמור בשם..."
 
-#: ../src/cheese-window.c:1132
+#: ../src/cheese-window.c:1355
 msgid "Move to _Trash"
 msgstr "העבר ל_אשפה"
 
-#: ../src/cheese-window.c:1136 ../src/cheese-window.c:1311
+#: ../src/cheese-window.c:1356
+msgid "Delete"
+msgstr "מחק"
+
+#: ../src/cheese-window.c:1360 ../src/cheese-window.c:1581
 msgid "_Take a photo"
 msgstr "_צלם תמונה"
 
-#: ../src/cheese-window.c:1140
+#: ../src/cheese-window.c:1364
 msgid "_Recording"
 msgstr "_הקלטה"
 
-#: ../src/cheese-window.c:1144
+#: ../src/cheese-window.c:1368
 msgid "_Set As Account Photo"
 msgstr "קבע כ_תמונת החשבון"
 
-#: ../src/cheese-window.c:1148
+#: ../src/cheese-window.c:1372
 msgid "Send by _Mail"
 msgstr "שלח ב_דואר"
 
-#: ../src/cheese-window.c:1152
+#: ../src/cheese-window.c:1376
 msgid "Send _To"
 msgstr "שלח _ל"
 
-#: ../src/cheese-window.c:1156
+#: ../src/cheese-window.c:1380
 msgid "Export to F-_Spot"
 msgstr "ייצא ל-F-_Spot"
 
-#: ../src/cheese-window.c:1160
+#: ../src/cheese-window.c:1384
 msgid "Export to _Flickr"
 msgstr "ייצא ל-_Flickr"
 
-#: ../src/cheese-window.c:1448
+#: ../src/cheese-window.c:1406
+msgid "_Start recording"
+msgstr "_התחל הקלטה"
+
+#: ../src/cheese-window.c:1724
 msgid "Quit"
 msgstr "יציאה"
 
-#: ../src/cheese-window.c:1454
+#: ../src/cheese-window.c:1730
 msgid "About"
 msgstr "אודות"
 
-#: ../src/cheese.c:80
+#: ../src/cheese-window.c:1810
+msgid "Check your gstreamer installation"
+msgstr "בדוק את התקנת ה-gstreamer שלך"
+
+#: ../src/cheese.c:81
 msgid "Be verbose"
 msgstr "Be verbose"
 
-#: ../src/cheese.c:95
+#: ../src/cheese.c:98
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- Take photos and videos with your webcam, with fun graphical effects"
+
+#~ msgid "The Y resolution of the image captured from the camera"
+#~ msgstr "The Y resolution of the image captured from the camera"
+
+#~ msgid "Y resolution"
+#~ msgstr "Y resolution"
 
 #~ msgid "Cannot move file to trash"
 #~ msgstr "לא ניתן להעביר קובץ לאשפה"
