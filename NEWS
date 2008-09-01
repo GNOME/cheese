@@ -1,6 +1,32 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.91
+  - cheese.desktop file now respects freedesktop SPEC, fixes bug #550195, courtesy of Pacho Ramos
+  - a small syntax cleanup made with uncrustify
+  - waf did not install the files properly, now it does
+  - add the dynamic bindir to the dbus file
+  - update waf to 1.4.3 and make it working again
+  - added/updated translations
+    - ar, courtesy of Youssef Chahibi
+    - dz, courtesy of Dawa pemo
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - ga, courtesy of Seán de Búrca
+    - he, courtesy of Mark Krapivner
+    - ja, courtesy of Takeshi AIHANA
+    - mk, courtesy of Arangel Angov
+    - or, courtesy of Manoj Kumar Giri
+    - pa, courtesy of Amanpreet Singh Alam
+    - pl, courtesy of Tomasz Dominikowski
+    - pt_BR, courtesy of Rodrigo Flores
+    - sq, courtesy of Laurent Dhima
+    - sv, courtesy of Daniel Nylander
+    - te, courtesy of Krishna Babu K
+    - vi, courtesy of Clytie Siddall
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+
 version 2.23.90
   - call gdk_x11_window_set_user_time to raise the cheese window if its called twice
   - don't start cheese twice if another instance is running, fixes bug #527736, courtesy of Felix Kaser
