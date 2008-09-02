@@ -134,7 +134,7 @@ cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
   if (num_devices > 0)
   {
     g_object_get (prefs_widget->gconf, priv->webcam_device_key, &gconf_device_name, NULL);
-    if (strcmp (selected_device->video_device, gconf_device_name) != 0)
+    if (!gconf_device_name || strcmp (selected_device->video_device, gconf_device_name) != 0)
     {
       g_object_set (prefs_widget->gconf, priv->webcam_device_key, selected_device->video_device, NULL);
     }
