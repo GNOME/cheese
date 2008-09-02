@@ -354,6 +354,10 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
                       cheese_window);
 
     gtk_window_fullscreen (GTK_WINDOW (cheese_window->window));
+    
+    cheese_window_fullscreen_show_bar (cheese_window);
+    cheese_window_fullscreen_set_timeout (cheese_window);
+    
     cheese_window->isFullscreen = TRUE;
   }
   else
