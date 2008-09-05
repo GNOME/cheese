@@ -59,6 +59,9 @@ typedef struct
   char *product_name;
   int   num_video_formats;
   GArray *video_formats;
+
+  /* Hash table for resolution based lookup of video_formats */
+  GHashTable *supported_resolutions;
 } CheeseWebcamDevice;
 
 typedef enum

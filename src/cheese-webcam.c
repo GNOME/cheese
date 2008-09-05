@@ -34,6 +34,12 @@
 #include <X11/Xlib.h>
 #include <libhal.h>
 
+/* for ioctl query */
+#include <fcntl.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
+#include <linux/videodev.h>
+
 #include "cheese-webcam.h"
 #include "cheese-flash.h"
 
@@ -85,7 +91,6 @@ typedef struct
   int y_resolution;
   int selected_device;
   CheeseVideoFormat *current_format;
-  GHashTable *supported_resolutions;
 
   CheeseFlash *flash;
 } CheeseWebcamPrivate;
@@ -235,16 +240,13 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
-  int i;
-  int num_udis;
-  int num_devices;                  /* Devices we actually create formats for; can either be the
-                                     * number of webcams detected, or 1 if none were. The one
-                                     * refers to a fake device so that resolution changing still
-                                     * works even if the computer doesn't have a webcam. */
+  int            i, fd, ok;
+  int            num_udis = 0;
   char         **udis;
   DBusError      error;
   LibHalContext *hal_ctx;
 
+  priv->num_webcam_devices = 0;
 
   dbus_error_init (&error);
   hal_ctx = libhal_ctx_new ();
@@ -252,14 +254,14 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   {
     g_error ("error: libhal_ctx_new");
     dbus_error_free (&error);
-    return;
+    goto fallback;
   }
 
   if (!libhal_ctx_set_dbus_connection (hal_ctx, dbus_bus_get (DBUS_BUS_SYSTEM, &error)))
   {
     g_error ("error: libhal_ctx_set_dbus_connection: %s: %s", error.name, error.message);
     dbus_error_free (&error);
-    return;
+    goto fallback;
   }
 
   if (!libhal_ctx_init (hal_ctx, &error))
@@ -271,53 +273,117 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
     }
     g_error ("Could not initialise connection to hald.\n"
              "Normally this means the HAL daemon (hald) is not running or not ready");
-    return;
+    goto fallback;
   }
 
   udis = libhal_find_device_by_capability (hal_ctx, "video4linux", &num_udis, &error);
 
   if (dbus_error_is_set (&error))
   {
-    g_error ("error: %s: %s\n", error.name, error.message);
+    g_error ("error: libhal_find_device_by_capability: %s: %s\n", error.name, error.message);
     dbus_error_free (&error);
-    return;
+    goto fallback;
   }
 
   /* Initialize webcam structures */
+  priv->webcam_devices = g_new0 (CheeseWebcamDevice, num_udis);
 
-  if (num_udis > 0)
-    priv->num_webcam_devices = num_devices = num_udis;
-  else
+  for (i = 0; i < num_udis; i++)
   {
-    num_devices              = 1;
-    priv->num_webcam_devices = num_udis;  /* We don't have any real cameras--
-                                           * this is important when we create
-                                           * the pipeline. */
-  }
-
-  priv->webcam_devices = g_new0 (CheeseWebcamDevice, num_devices);
-  for (i = 0; i < num_devices; i++)
-  {
-    priv->webcam_devices[i].num_video_formats = 0;
-    priv->webcam_devices[i].video_formats     = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
-    priv->webcam_devices[i].hal_udi           = g_strdup (udis[i]);
-  }
-
-  for (i = 0; i < priv->num_webcam_devices; i++)
-  {
-    char *device;
+    char                   *device;
+    char                   *gstreamer_src, *product_name;
+    struct v4l2_capability  v2cap;
+    struct video_capability v1cap;
 
     device = libhal_device_get_property_string (hal_ctx, udis[i], "video4linux.device", &error);
     if (dbus_error_is_set (&error))
     {
-      g_error ("error: %s: %s\n", error.name, error.message);
+      g_error ("error geting device for %s: %s: %s\n", udis[i], error.name, error.message);
       dbus_error_free (&error);
-      return;
+      continue;
     }
-    priv->webcam_devices[i].video_device = g_strdup (device);
+
+    /* vbi devices support capture capability too, but cannot be used,
+     * so detect them by device name */
+    if (strstr (device, "vbi"))
+    {
+      g_print ("Skipping vbi device: %s\n", device);
+      libhal_free_string (device);
+      continue;
+    }
+
+    if ((fd = open (device, O_RDONLY | O_NONBLOCK)) < 0)
+    {
+      g_error ("Failed to open %s: %s\n", device, strerror (errno));
+      libhal_free_string (device);
+      continue;
+    }
+    ok = ioctl (fd, VIDIOC_QUERYCAP, &v2cap);
+    if (ok < 0)
+    {
+      ok = ioctl (fd, VIDIOCGCAP, &v1cap);
+      if (ok < 0)
+      {
+        g_error ("Error while probing v4l capabilities for %s: %s\n",
+                 device, strerror (errno));
+        libhal_free_string (device);
+        close (fd);
+        continue;
+      }
+      g_print ("Detected v4l device: %s\n", v1cap.name);
+      g_print ("Device type: %d\n", v1cap.type);
+      gstreamer_src = "v4lsrc";
+      product_name  = v1cap.name;
+    }
+    else
+    {
+      guint cap = v2cap.capabilities;
+      g_print ("Detected v4l2 device: %s\n", v2cap.card);
+      g_print ("Driver: %s, version: %d\n", v2cap.driver, v2cap.version);
+      g_print ("Bus info: %s\n", v2cap.bus_info);
+      g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
+      if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
+      {
+        g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
+                 "Removing it from device list.\n", device);
+        libhal_free_string (device);
+        close (fd);
+        continue;
+      }
+      gstreamer_src = "v4l2src";
+      product_name  = (char *) v2cap.card;
+    }
+
+    priv->webcam_devices[priv->num_webcam_devices].hal_udi           = g_strdup (udis[i]);
+    priv->webcam_devices[priv->num_webcam_devices].video_device      = g_strdup (device);
+    priv->webcam_devices[priv->num_webcam_devices].gstreamer_src     = g_strdup (gstreamer_src);
+    priv->webcam_devices[priv->num_webcam_devices].product_name      = g_strdup (product_name);
+    priv->webcam_devices[priv->num_webcam_devices].num_video_formats = 0;
+    priv->webcam_devices[priv->num_webcam_devices].video_formats     =
+      g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
+    priv->webcam_devices[priv->num_webcam_devices].supported_resolutions =
+      g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+    priv->num_webcam_devices++;
+
     libhal_free_string (device);
+    close (fd);
   }
   libhal_free_string_array (udis);
+
+  if (priv->num_webcam_devices == 0)
+  {
+    /* Create a fake device so that resolution changing stil works even if the
+     * computer doesn't have a webcam. */
+fallback:
+    if (num_udis == 0)
+    {
+      priv->webcam_devices = g_new0 (CheeseWebcamDevice, 1);
+    }
+    priv->webcam_devices[0].num_video_formats = 0;
+    priv->webcam_devices[0].video_formats     =
+      g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
+    priv->webcam_devices[0].hal_udi = g_strdup ("cheese_fake_videodevice");
+  }
 }
 
 static void
@@ -471,27 +537,17 @@ static void
 cheese_webcam_get_webcam_device_data (CheeseWebcam       *webcam,
                                       CheeseWebcamDevice *webcam_device)
 {
-  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-
   char                *pipeline_desc;
   GstElement          *pipeline;
   GError              *err;
   GstStateChangeReturn ret;
   GstMessage          *msg;
   GstBus              *bus;
-  gboolean             pipeline_works = FALSE;
   int                  i, j;
 
-  static const char *GSTREAMER_VIDEO_SOURCES[] = {
-    "v4l2src",
-    "v4lsrc"
-  };
-
-  i = 0;
-  while (!pipeline_works && (i < G_N_ELEMENTS (GSTREAMER_VIDEO_SOURCES)))
   {
     pipeline_desc = g_strdup_printf ("%s name=source device=%s ! fakesink",
-                                     GSTREAMER_VIDEO_SOURCES[i],
+                                     webcam_device->gstreamer_src,
                                      webcam_device->video_device);
     err      = NULL;
     pipeline = gst_parse_launch (pipeline_desc, &err);
@@ -513,20 +569,17 @@ cheese_webcam_get_webcam_device_data (CheeseWebcam       *webcam,
         char       *name;
         GstCaps    *caps;
 
-        pipeline_works = TRUE;
         gst_element_set_state (pipeline, GST_STATE_PAUSED);
 
-        webcam_device->gstreamer_src = g_strdup (GSTREAMER_VIDEO_SOURCES[i]);
-        src                          = gst_bin_get_by_name (GST_BIN (pipeline), "source");
+        src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
 
         g_object_get (G_OBJECT (src), "device-name", &name, NULL);
         if (name == NULL)
           name = "Unknown";
 
         g_print ("Detected webcam: %s\n", name);
-        webcam_device->product_name = g_strdup (name);
-        pad                         = gst_element_get_pad (src, "src");
-        caps                        = gst_pad_get_caps (pad);
+        pad  = gst_element_get_pad (src, "src");
+        caps = gst_pad_get_caps (pad);
         gst_object_unref (pad);
         cheese_webcam_get_supported_video_formats (webcam_device, caps);
         gst_caps_unref (caps);
@@ -538,15 +591,15 @@ cheese_webcam_get_webcam_device_data (CheeseWebcam       *webcam,
       g_error_free (err);
 
     g_free (pipeline_desc);
-    i++;
   }
+
   g_print ("device: %s\n", webcam_device->video_device);
   for (i = 0; i < webcam_device->num_video_formats; i++)
   {
     CheeseVideoFormat video_format;
 
     video_format = g_array_index (webcam_device->video_formats, CheeseVideoFormat, i);
-    g_hash_table_insert (priv->supported_resolutions,
+    g_hash_table_insert (webcam_device->supported_resolutions,
                          g_strdup_printf ("%ix%i", video_format.width,
                                           video_format.height),
                          &g_array_index (webcam_device->video_formats,
@@ -664,7 +717,7 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
     /* Use the previously set resolution from gconf if it is set and the
      * camera supports it. */
     if (priv->x_resolution != 0 && priv->y_resolution != 0)
-      format = g_hash_table_lookup (priv->supported_resolutions, resolution);
+      format = g_hash_table_lookup (selected_webcam->supported_resolutions, resolution);
 
     if (!format)
     {
@@ -692,10 +745,13 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
                             &framerate_denominator);
 
     webcam_input = g_strdup_printf (
-      "%s name=video_source device=%s ! capsfilter name=capsfilter caps=%s,width=%d,height=%d,framerate=%d/%d ! identity",
+      "%s name=video_source device=%s ! capsfilter name=capsfilter caps=video/x-raw-rgb,width=%d,height=%d,framerate=%d/%d;video/x-raw-yuv,width=%d,height=%d,framerate=%d/%d ! identity",
       selected_webcam->gstreamer_src,
       selected_webcam->video_device,
-      format->mimetype,
+      format->width,
+      format->height,
+      framerate_numerator,
+      framerate_denominator,
       format->width,
       format->height,
       framerate_numerator,
@@ -1209,12 +1265,14 @@ cheese_webcam_finalize (GObject *object)
       g_free (g_array_index (priv->webcam_devices[i].video_formats, CheeseVideoFormat, j).framerates);
       g_free (g_array_index (priv->webcam_devices[i].video_formats, CheeseVideoFormat, j).mimetype);
     }
+    g_free (priv->webcam_devices[i].video_device);
     g_free (priv->webcam_devices[i].hal_udi);
+    g_free (priv->webcam_devices[i].gstreamer_src);
+    g_free (priv->webcam_devices[i].product_name);
     g_array_free (priv->webcam_devices[i].video_formats, TRUE);
+    g_hash_table_destroy (priv->webcam_devices[i].supported_resolutions);
   }
   g_free (priv->webcam_devices);
-
-  g_hash_table_destroy (priv->supported_resolutions);
 
   G_OBJECT_CLASS (cheese_webcam_parent_class)->finalize (object);
 }
@@ -1351,10 +1409,6 @@ cheese_webcam_init (CheeseWebcam *webcam)
   priv->photo_filename      = NULL;
   priv->webcam_devices      = NULL;
   priv->device_name         = NULL;
-
-  priv->supported_resolutions = g_hash_table_new_full (g_str_hash,
-                                                       g_str_equal,
-                                                       g_free, NULL);
 
   priv->flash = cheese_flash_new ();
 }
@@ -1493,7 +1547,7 @@ cheese_webcam_set_video_format (CheeseWebcam *webcam, CheeseVideoFormat *format)
 
   find_highest_framerate (format, &framerate_numerator, &framerate_denominator);
 
-  new_caps = gst_caps_new_simple (format->mimetype,
+  new_caps = gst_caps_new_simple ("video/x-raw-rgb",
                                   "width", G_TYPE_INT,
                                   format->width,
                                   "height", G_TYPE_INT,
@@ -1502,6 +1556,16 @@ cheese_webcam_set_video_format (CheeseWebcam *webcam, CheeseVideoFormat *format)
                                   framerate_numerator,
                                   framerate_denominator,
                                   NULL);
+
+  gst_caps_append (new_caps, gst_caps_new_simple ("video/x-raw-yuv",
+                                                  "width", G_TYPE_INT,
+                                                  format->width,
+                                                  "height", G_TYPE_INT,
+                                                  format->height,
+                                                  "framerate", GST_TYPE_FRACTION,
+                                                  framerate_numerator,
+                                                  framerate_denominator,
+                                                  NULL));
 
   priv->current_format = format;
 
