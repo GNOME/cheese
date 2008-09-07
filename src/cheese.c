@@ -60,8 +60,9 @@ cheese_print_handler (char *string)
       return;
     }
 
-    filename = g_build_filename (path, "log", NULL);
+    filename = g_build_filename (path, "log.txt", NULL);
     fp       = fopen (filename, "w");
+    fputs ("Cheese " VERSION "\n\n", fp);
 
     g_object_unref (fileutil);
     g_free (filename);
