@@ -1,3 +1,10 @@
+2008-09-08  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c:
+	  set take_picture sensitiveness before webcam_stop_video_recording
+	  since this emits a signal that would lead to another
+	  sensitiveness change. see comments on bug #547422
+
 2008-09-08  daniel g. siegel <dgsiegel@gmail.com>
 
 	* data/cheese.glade,

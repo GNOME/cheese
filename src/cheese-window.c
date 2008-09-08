@@ -1215,7 +1215,6 @@ cheese_window_stop_recording (CheeseWindow *cheese_window)
 {
   if (cheese_window->recording)
   {
-    cheese_webcam_stop_video_recording (cheese_window->webcam);
     gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_toggle, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
@@ -1229,6 +1228,7 @@ cheese_window_stop_recording (CheeseWindow *cheese_window)
     gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo_fullscreen),
                               GTK_STOCK_MEDIA_RECORD, GTK_ICON_SIZE_BUTTON);
 
+    cheese_webcam_stop_video_recording (cheese_window->webcam);
     cheese_window->recording = FALSE;
   }
 }
