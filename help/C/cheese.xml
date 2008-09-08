@@ -30,7 +30,7 @@
       </para>
     </abstract>
     <copyright>
-      <year>2007</year>
+      <year>2007,2008</year>
       <holder>daniel g. siegel (dgsiegel@gmail.com)</holder>
       <holder>Jaap A. Haitsma (jaap@haitsma.org)</holder>
     </copyright>
@@ -58,14 +58,14 @@
 
     <authorgroup>
       <author>
-        <firstname>Jaap</firstname>
-        <surname>Haitsma</surname>
-	<email>jaap@haitsma.org</email>
-      </author>
-      <author>
         <firstname>Joshua</firstname>
         <surname>Henderson</surname>
 	<email>joshhendo@gmail.com</email>
+      </author>
+      <author>
+        <firstname>Jaap</firstname>
+        <surname>Haitsma</surname>
+	<email>jaap@haitsma.org</email>
       </author>
 
 <!-- This is appropriate place for other contributors: translators,
@@ -98,6 +98,20 @@
       <revision>
         <revnumber>0.2</revnumber>
         <date>2008-01-12</date>
+        <revdescription>
+          <para role="author">Jaap A. Haitsma
+            <email>jaap@haitsma.org</email>
+          </para>
+          <para role="author">Joshua Henderson
+            <email>joshhendo@gmail.com</email>
+          </para>
+          <para role="publisher">Jaap A. Haitsma</para>
+        </revdescription>
+      </revision>
+
+      <revision>
+        <revnumber>0.3</revnumber>
+        <date>2008-08-20</date>
         <revdescription>
           <para role="author">Jaap A. Haitsma
             <email>jaap@haitsma.org</email>
@@ -190,21 +204,22 @@
       </figure>
 
     </para>
-    
+
     <para>
       You are able to select numerous effects to apply to your photo. To apply
-      an effect, just click on the name or image above, and the button will turn
-      to a blue shade. Selecting multiple effects will apply all the effects to
+      an effect, just click on the effect that you want. The button will appear highlighted.
+      Selecting multiple effects will apply all the effects to
       your image (for example, if you apply “Hulk” and “Horizontal Flip”, the
       input from the webcam will be altered to have a green shade and be up side down).
+      To disable all effects, just click on the “No Effect” button.
     </para>
   </section>
-  
+
   <section id="using-photomode">
     <title>Photo Mode</title>
     <para>
       Photo mode is the default mode that &app; opens in. When not in photo mode,
-      click the button labelled “Photo” or press Alt – P to change to photo mode.
+      click the button labelled “Photo”, press Alt + P or Menu: Cheese - Photo to change to photo mode.
       Photo mode will take a single photo every time the button labelled “Take a
       photo” or the Spacebar is pressed, and will save to disk.
     </para>
@@ -214,7 +229,7 @@
     <title>Video Mode</title>
     <para>
       Video mode is a mode that allows you to take short videos using the webcam.
-      When not in video mode, click the button labelled “Video” or press Alt – V to
+      When not in video mode, click the button labelled “Video”, press Alt – V or Menu: Cheese - Video to
       change to video mode. Video mode will start recording a video every time the
       button labelled “Start Recording” or the Spacebar is pressed. The video will stop
       recording and save to disk when the button labelled “Stop Recording”
@@ -224,7 +239,7 @@
     <para>
       The video mode does look any different to the screen shot of photo mode,
       except that the button labelled “Take a photo” will be either “Start Recording”
-      or “Stop Recording” (depends if you are currently recording or not),
+      or “Stop Recording”,
       and the button labelled “Video” is greyed out, whereas the button
       labelled “Photo” is not.
     </para>
@@ -247,8 +262,8 @@
     </para>
 
     <para>
-      To take the photo, press the button labelled “Take a photo”. You will then
-      see &application; count down from 3. At the end of the count, your entire screen
+      To take the photo, press the button labelled “Take a photo” or press the spacebar. You will then
+      see &application; count down from 3 or instantly take the photo, depending on your settings. When the photo is taken, your entire screen
       will flash white, and the photo that was just taken will appear in the photo
       stream at the bottom of the program window.
     </para>
@@ -261,7 +276,7 @@
     </para>
 
     <para>
-      To start recording a video, press the button labelled “Start Recording” or press the Spacebar.
+      To start recording a video, press the button labelled “Start Recording” or press the spacebar.
       The time of how much video has been recorded will appear in the bottom right
       hand corner.
     </para>
@@ -269,11 +284,8 @@
     <note>
       <para>
         If your video appears to be jerky or have a low
-        frame rate (only updating the picture every few seconds), it does not mean
-        that the original recording is also of bad quality. It has probably a more 
-        constant and higher frame rate than what you see.
-        To stop recording, press the button labelled “Stop Recording”.
-        The video recorded will appear in the photo stream at the bottom of the program.
+        frame rate (only updating the picture every few seconds), it does not mean that the recording
+        has a similar frame rate. In many cases, the recorded file will have a better frame rate.
       </para>
     </note>
   </section>
@@ -316,7 +328,7 @@
 
     <note>
       <para>
-        This will only move the image to the trash/garbage bin, as well as remove from
+        This will only move the image to the "trash", as well as remove from
         your photo stream. This will not remove the photo from your computer. To remove
         it from your trash, you will need to empty your trash.
       </para>
@@ -451,6 +463,29 @@
     </para>
   </section>
 
+  <section id="faq-no-camera-found">
+    <title>"No Camera Found" Error Message</title>
+    <para>
+      "When I launch &app;, I get the message "No Camera Found" but I have my webcam plugged into my computer".
+
+      There are many situations this can happen in, and the exact problem that is causing this needs to be isolated.
+      If possible, try each of the following to try and get your webcam working.
+        1. Plug your webcam into another computer. If it works there, then it is a problem with
+           with the connection to your computer, or the operating system if it was a different
+           one on the other computer. Check the ports on your computer (try another one) and
+           consult support personel for your particular operating system.
+        2. See if your camera is being detected by your computer, on Linux, open up the terminal or console and type
+           "dmesg" before you plug in your webcam. Notice the most recent entries, and then plug in your webcam. Type
+           "dmesg" again and see if the most recent entries differ. If the message mentions a USB device being detected,
+           and your webcam is the only USB device that has been changed, then your computer is detecting your webcam
+           fine. If not, then test to see if the webcam is working on another computer. This may only work with USB
+           webcams.
+        3. As &app; uses the gstreamer backend, it is most likely because gstreamer is not detecting the webcam (or
+           gstreamer has become corrupt). Please contact support personel for the particular operating system that
+           you are running with as many details as possible. For Ubuntu, please use the <ulink url="http://ubuntuforums.org/" type="http">Ubuntu Forums</ulink>.
+    </para>
+  </section>
+
   <section id="faq-supported-webcams">
     <title>Which cameras are supported</title>
     <para>
@@ -466,7 +501,7 @@
   <para>
     &app; was initially written by daniel g. siegel <email>dgsiegel@gmail.com</email>.
     as a Google Summer of Code project. Later Jaap A. Haitsma <email>jaap@haitsma.org</email> and also 
-    others joined daniel in improving Cheese.
+    others joined daniel in improving &app;.
     To find more information about &app;, please visit the
     <ulink url="http://www.gnome.org/projects/cheese" type="http">
     &application; web page</ulink>.
