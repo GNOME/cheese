@@ -79,6 +79,12 @@ cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 }
 
 gchar *
+cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
+{
+  return g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
+}
+
+gchar *
 cheese_fileutil_get_log_path (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
@@ -177,41 +183,37 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
   CheeseGConf *gconf;
-  gchar       *v_path, *p_path;
 
   gconf = cheese_gconf_new ();
 
-  /* get the path from gconf, xdg or hardcoded */
-  g_object_get (gconf, "gconf_prop_video_path", &v_path, NULL);
+  g_object_get (gconf, "gconf_prop_video_path", &priv->video_path, NULL);
+  g_object_get (gconf, "gconf_prop_photo_path", &priv->photo_path, NULL);
 
-  if (!v_path || strcmp (v_path, "") == 0)
+  /* get the video path from gconf, xdg or hardcoded */
+  if (!priv->video_path || strcmp (priv->video_path, "") == 0)
   {
     /* get xdg */
-    v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
-    if (strcmp (v_path, "") == 0)
+    priv->video_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
+    if (strcmp (priv->video_path, "") == 0)
     {
       /* get "~/.gnome2/cheese/media" */
-
-      v_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
+      priv->video_path = cheese_fileutil_get_path_before_224 (fileutil);
     }
   }
-  priv->video_path = v_path;
 
-  /* get the path from gconf, xdg or hardcoded */
-  g_object_get (gconf, "gconf_prop_photo_path", &p_path, NULL);
-
-  if (!p_path || strcmp (p_path, "") == 0)
+  /* get the photo path from gconf, xdg or hardcoded */
+  if (!priv->photo_path || strcmp (priv->photo_path, "") == 0)
   {
     /* get xdg */
-    p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
-    if (strcmp (p_path, "") == 0)
+    priv->photo_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
+    if (strcmp (priv->photo_path, "") == 0)
     {
       /* get "~/.gnome2/cheese/media" */
-      p_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
+      priv->photo_path = cheese_fileutil_get_path_before_224 (fileutil);
     }
   }
-  priv->photo_path = p_path;
 
+  /* FIXME: use the xdg log path */
   priv->log_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", NULL);
 
   g_object_unref (gconf);
