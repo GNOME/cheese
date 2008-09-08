@@ -1,6 +1,40 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.23.92
+  - documentation update (not yet finished), courtesy of joshua henderson
+  - old photos and videos (before 2.24) are now available in cheese 2.24, fixes bug #547290
+  - sort videoformat array and resolution hashtable, courtesy of Hans de Goede
+  - dont save duplicated videoformats abut only keep the one with the maximum
+    framerate if it provides the same resolution. add correspondent entry only
+    once to the resolution hashtable so that we have no more duplicated
+    resolutions on preferences dialog. fixes bugs #547144 and #547140,
+    courtesy of Hans de Goede
+  - remove the old log file if it exists
+  - send eos event only if the pipeline was playing, otherwise force
+    shutdown. Start a timeout to force unclean shutdown if eos takes
+    to much to propagate or doesnt propagate at all, probably fixes bug #547422
+  - set take_picture sensitiveness before webcam_stop_video_recording since this
+    emits a signal that would lead to another sensitiveness change. see comments on bug #547422
+  - set the utility hint for the fullscreen toolbar, partially fixes #548546
+  - rename the log file to "log.txt" and prepend it with the running cheese version
+  - cheese crashes no more when no device is set in gconf, partially fixes bug #546868, courtesy of Hans de Goede
+  - display toolbar when entering into fullscreen mode, fixes bug #548546, courtesy of Felix Kaser
+  - added/updated translations
+    - bg, courtesy of Alexander Shopov
+    - de, courtesy of Wolfgang Stoeggl
+    - el, courtesy of Athanasios Lefteris
+    - en_GB, courtesy of Philip Withnall
+    - gu, courtesy of Sweta Kothari
+    - hi, courtesy of Rajesh Ranjan
+    - hr, courtesy of "Last-Translator: \n"
+    - it, courtesy of Alessandro Falappa
+    - ko, courtesy of Changwoo Ryu
+    - nl, courtesy of Wouter Bolsterlee
+    - pt, courtesy of Duarte Loreto
+    - sl, courtesy of Matej Urbančič
+    - zh_CN, courtesy of 甘露 (Lu Gan)
+
 version 2.23.91
   - cheese.desktop file now respects freedesktop SPEC, fixes bug #550195, courtesy of Pacho Ramos
   - a small syntax cleanup made with uncrustify
