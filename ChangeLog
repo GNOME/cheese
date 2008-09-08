@@ -1,5 +1,13 @@
 2008-09-08  Filippo Argiolas <filippo.argiolas@gmail.com>
 
+	* src/cheese-webcam.c:
+	  send eos event only if the pipeline was playing, otherwise force
+	  shutdown. Start a timeout to force unclean shutdown if eos takes
+	  to much to propagate or doesnt propagate at all. Probably fixes
+	  bug #547422
+
+2008-09-08  Filippo Argiolas <filippo.argiolas@gmail.com>
+
 	* src/cheese-window.c:
 	  set take_picture sensitiveness before webcam_stop_video_recording
 	  since this emits a signal that would lead to another

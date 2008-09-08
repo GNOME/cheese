@@ -93,6 +93,8 @@ typedef struct
   CheeseVideoFormat *current_format;
 
   CheeseFlash *flash;
+
+  guint eos_timeout_id;
 } CheeseWebcamPrivate;
 
 enum
@@ -226,12 +228,17 @@ cheese_webcam_bus_message_cb (GstBus *bus, GstMessage *message, CheeseWebcam *we
 
   if (GST_MESSAGE_TYPE (message) == GST_MESSAGE_EOS)
   {
-    g_print ("Received EOS message\n");
-    g_signal_emit (webcam, webcam_signals[VIDEO_SAVED], 0);
+    if (priv->is_recording) {
+      g_print ("Received EOS message\n");
 
-    cheese_webcam_change_sink (webcam, priv->video_display_bin,
-                               priv->photo_save_bin, priv->video_save_bin);
-    priv->is_recording = FALSE;
+      g_source_remove (priv->eos_timeout_id);
+
+      g_signal_emit (webcam, webcam_signals[VIDEO_SAVED], 0);
+
+      cheese_webcam_change_sink (webcam, priv->video_display_bin,
+                                 priv->photo_save_bin, priv->video_save_bin);
+      priv->is_recording = FALSE;
+    }
   }
 }
 
@@ -1211,14 +1218,41 @@ cheese_webcam_start_video_recording (CheeseWebcam *webcam, char *filename)
   priv->is_recording = TRUE;
 }
 
+static gboolean
+cheese_webcam_force_stop_video_recording (gpointer data)
+{
+  CheeseWebcam *webcam = CHEESE_WEBCAM (data);
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+
+  if (priv->is_recording) {
+    g_print ("Cannot cleanly shutdown recording pipeline, forcing\n");
+    g_signal_emit (webcam, webcam_signals[VIDEO_SAVED], 0);
+
+    cheese_webcam_change_sink (webcam, priv->video_display_bin,
+                               priv->photo_save_bin, priv->video_save_bin);
+    priv->is_recording = FALSE;
+  }
+
+  return FALSE;
+}
+
 void
 cheese_webcam_stop_video_recording (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  GstState state;
 
-  /* Send EOS message down the pipeline by stopping video and audio source*/
-  gst_element_send_event (priv->video_source, gst_event_new_eos ());
-  gst_element_send_event (priv->audio_source, gst_event_new_eos ());
+  gst_element_get_state (priv->pipeline, &state, NULL, 0);
+
+  if (state == GST_STATE_PLAYING) {
+    /* Send EOS message down the pipeline by stopping video and audio source*/
+    g_print ("Sending EOS event down the recording pipeline\n");
+    gst_element_send_event (priv->video_source, gst_event_new_eos ());
+    gst_element_send_event (priv->audio_source, gst_event_new_eos ());
+    priv->eos_timeout_id = g_timeout_add (3000, cheese_webcam_force_stop_video_recording, webcam);
+  } else {
+    cheese_webcam_force_stop_video_recording (webcam);
+  }
 }
 
 void
