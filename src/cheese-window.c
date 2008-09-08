@@ -354,10 +354,10 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
                       cheese_window);
 
     gtk_window_fullscreen (GTK_WINDOW (cheese_window->window));
-    
+
     cheese_window_fullscreen_show_bar (cheese_window);
     cheese_window_fullscreen_set_timeout (cheese_window);
-    
+
     cheese_window->isFullscreen = TRUE;
   }
   else
@@ -1286,7 +1286,9 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
         gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->fullscreen_bar), 1);
 
         /* show bar, start timeout
-         * ATTENTION: if the countdown is longer than FULLSCREEN_TIMEOUT, the bar will disapear before the countdown ends */
+         * ATTENTION: if the countdown is longer than FULLSCREEN_TIMEOUT,
+         * the bar will disapear before the countdown ends
+         */
         cheese_window_fullscreen_show_bar (cheese_window);
         cheese_window_fullscreen_set_timeout (cheese_window);
       }
@@ -1346,18 +1348,18 @@ cheese_window_preferences_cb (GtkAction *action, CheeseWindow *cheese_window)
 }
 
 static const GtkActionEntry action_entries_main[] = {
-  {"Cheese",       NULL,                   N_("_Cheese")                                  },
+  {"Cheese",       NULL,            N_("_Cheese")                       },
 
-  {"Edit",         NULL,                   N_("_Edit")                                    },
-  {"RemoveAll",    NULL,                   N_("Move All to Trash"), NULL, NULL,
+  {"Edit",         NULL,            N_("_Edit")                         },
+  {"RemoveAll",    NULL,            N_("Move All to Trash"), NULL, NULL,
    G_CALLBACK (cheese_window_move_all_media_to_trash)},
 
-  {"Help",         NULL,                   N_("_Help")                                    },
+  {"Help",         NULL,            N_("_Help")                         },
 
-  {"Quit",         GTK_STOCK_QUIT,         NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_close)},
-  {"HelpContents", GTK_STOCK_HELP,         N_("_Contents"), "F1", N_("Help on this Application"),
+  {"Quit",         GTK_STOCK_QUIT,  NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_close)},
+  {"HelpContents", GTK_STOCK_HELP,  N_("_Contents"), "F1", N_("Help on this Application"),
    G_CALLBACK (cheese_window_cmd_help_contents)},
-  {"About",        GTK_STOCK_ABOUT,        NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_about)},
+  {"About",        GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_about)},
 };
 
 static const GtkToggleActionEntry action_entries_countdown[] = {
@@ -1382,13 +1384,13 @@ static const GtkRadioActionEntry action_entries_toggle[] = {
 };
 
 static const GtkActionEntry action_entries_file[] = {
-  {"Open",        GTK_STOCK_OPEN,         N_("_Open"),               "<control>O",            NULL,
+  {"Open",        GTK_STOCK_OPEN,    N_("_Open"),          "<control>O",    NULL,
    G_CALLBACK (cheese_window_cmd_open)},
-  {"SaveAs",      GTK_STOCK_SAVE_AS,      N_("Save _As..."),         "<control>S",            NULL,
+  {"SaveAs",      GTK_STOCK_SAVE_AS, N_("Save _As..."),    "<control>S",    NULL,
    G_CALLBACK (cheese_window_cmd_save_as)},
-  {"MoveToTrash", "user-trash",           N_("Move to _Trash"),      "Delete",                NULL,
+  {"MoveToTrash", "user-trash",      N_("Move to _Trash"), "Delete",        NULL,
    G_CALLBACK (cheese_window_move_media_to_trash)},
-  {"Delete",      NULL,                   N_("Delete"),              "<shift>Delete",         NULL,
+  {"Delete",      NULL,              N_("Delete"),         "<shift>Delete", NULL,
    G_CALLBACK (cheese_window_delete_media)},
 };
 
