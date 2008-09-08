@@ -60,6 +60,16 @@ cheese_print_handler (char *string)
       return;
     }
 
+    // remove the old logfile if it exists
+    filename = g_build_filename (path, "log", NULL);
+    if (g_file_test (filename, G_FILE_TEST_EXISTS))
+    {
+      GFile *old = g_file_new_for_path (filename);
+      g_file_delete (old, NULL, NULL);
+      g_object_unref(old);
+    }
+    g_free (filename);
+
     filename = g_build_filename (path, "log.txt", NULL);
     fp       = fopen (filename, "w");
     fputs ("Cheese " VERSION "\n\n", fp);
