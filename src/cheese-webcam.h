@@ -49,6 +49,7 @@ typedef struct
   int   height;
   int   num_framerates;
   CheeseFramerate *framerates;
+  CheeseFramerate highest_framerate;
 } CheeseVideoFormat;
 
 typedef struct

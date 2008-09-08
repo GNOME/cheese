@@ -1,3 +1,13 @@
+2008-09-09  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c,
+	  src/cheese-webcam.h:
+	  dont save duplicated videoformats abut only keep the one with the
+	  maximum framerate if it provides the same resolution. add
+	  correspondent entry only once to the resolution hashtable so that
+	  we have no more duplicated resolutions on preferences dialog.
+	  Fixes bugs #547144 and #547140, courtesy of Hans de Goede
+
 2008-09-08  daniel g. siegel <dgsiegel@gmail.com>
 
 	* src/cheese.c: 
