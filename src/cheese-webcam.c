@@ -504,6 +504,17 @@ cheese_webcam_add_video_format (CheeseWebcamDevice *webcam_device,
   webcam_device->num_video_formats++;
 }
 
+static gint cheese_resolution_compare(gconstpointer _a, gconstpointer _b)
+{
+  const CheeseVideoFormat *a = _a;
+  const CheeseVideoFormat *b = _b;
+
+  if (a->width == b->width)
+    return a->height - b->height;
+
+  return a->width - b->width;
+}
+
 static void
 cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, GstCaps *caps)
 {
@@ -581,6 +592,20 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
     {
       g_critical ("GValue type %s, cannot be handled for resolution width", G_VALUE_TYPE_NAME (width));
     }
+  }
+  
+  /* Sort the format array (so that it will show sorted in the resolution
+     selection GUI), and rebuild the hashtable (as that will be invalid after
+     the sorting) */
+  g_array_sort (webcam_device->video_formats, cheese_resolution_compare);
+  g_hash_table_remove_all (webcam_device->supported_resolutions);
+  for (i = 0; i < webcam_device->num_video_formats; i++) {
+    CheeseVideoFormat *format = &g_array_index(webcam_device->video_formats,
+                                               CheeseVideoFormat, i);
+    g_hash_table_insert (webcam_device->supported_resolutions, 
+                         g_strdup_printf ("%ix%i", format->width,
+                                          format->height), 
+                         GINT_TO_POINTER(i + 1));
   }
 }
 
