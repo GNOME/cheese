@@ -366,6 +366,7 @@
   </object>
   <object class="GtkWindow" id="fullscreen_popup">
     <property name="type">GTK_WINDOW_POPUP</property>
+    <property name="type_hint">GDK_WINDOW_TYPE_HINT_UTILITY</property>
     <child>
       <object class="GtkNotebook" id="fullscreen_notebook_bar">
         <property name="visible">True</property>
