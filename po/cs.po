@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the cheese package.
 # Vítězslav Kotrla <vitko@post.cz>, 2007.
 # Petr Kovar <pknbe@volny.cz>, 2008.
+# Kamil Páral <ripper42@gmail.com>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-02-13 18:29+0100\n"
-"PO-Revision-Date: 2008-02-13 18:26+0100\n"
+"POT-Creation-Date: 2008-09-12 00:35+0200\n"
+"PO-Revision-Date: 2008-09-12 00:30+0200\n"
 "Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,113 +18,241 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-window.c:576
-msgid "A cheesy program to take photos and videos from your webcam"
-msgstr "Vykutálený program pro snímání obrázků a videoklipů z webové kamery"
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "Fotobudka Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2 ../data/cheese.glade.h:1
-#: ../src/cheese.c:84
-msgid "Cheese"
-msgstr "Cheese"
-
-#: ../data/cheese.glade.h:2 ../src/cheese-window.c:658
-#: ../src/cheese-window.c:878
-msgid "_Effects"
-msgstr "_Efekty"
-
-#: ../data/cheese.glade.h:3 ../src/cheese-window.c:882
-msgid "_Photo"
-msgstr "_Snímek"
-
-#: ../data/cheese.glade.h:4 ../src/cheese-window.c:746
-#: ../src/cheese-window.c:893 ../src/cheese-window.c:999
-msgid "_Take a photo"
-msgstr "Pořídi_t snímek"
-
-#: ../data/cheese.glade.h:5 ../src/cheese-window.c:883
-msgid "_Video"
-msgstr "_Video"
-
-#: ../data/cheese.schemas.in.h:1
-msgid ""
-"Effects, that are applied on startup. Possible values are: Mauve, Noir/"
-"Blanc, Saturation, Hulk, Vertical Flip, Horizontal Flip, Shagadelic, "
-"Vertigo, Edge, Dice and Warp"
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1007
+msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
-"Efekty, které budou použity při spuštění programu. Možné hodnoty jsou: "
-"Růžová (lila), Černá a bílá, Syté barvy, Hulk, Svislé překlopení, Vodorovné "
-"překlopení, Shagadelic, Vír, Zvýraznění hran, Kostičky a Deformace"
+"Snímejte obrázky a videoklipy svou webovou kamerou, se zábavnými grafickými "
+"efekty"
 
-#: ../data/cheese.schemas.in.h:2
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Seznam efektů použitých při spuštění programu. Možné hodnoty jsou: \"mauve"
+"\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", "
+"\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" a \"warp"
+"\""
+
+#: ../data/cheese.schemas.in.h:4
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Určuje cestu, kde budou uloženy snímky. Pokud prázdné, tak je použito "
+"\"XDG_PHOTO/Webcam\"."
+
+#: ../data/cheese.schemas.in.h:5
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Určuje cestu, kde budou uložena videa. Pokud prázdné, tak je použito "
+"\"XDG_PHOTO/Webcam\"."
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "Výška rozlišení"
+
+#: ../data/cheese.schemas.in.h:7
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Pokud povoleno, tak Cheese bude obsahovat možnost smazání souboru okamžitě "
+"na místě místo přesunu souboru do koše. Tato funkce může být nebezpečná, "
+"proto buďte opatrní."
+
+#: ../data/cheese.schemas.in.h:8
+msgid "Photo Path"
+msgstr "Cesta ke snímku"
+
+#: ../data/cheese.schemas.in.h:9
 msgid "Selected Effects"
 msgstr "Vybrané efekty"
 
-#: ../data/cheese.schemas.in.h:3
-msgid "The device-string, which points to the webcam, e.g. /dev/video0"
-msgstr ""
-"Název zařízení, které označuje vaši webovou kameru, například /dev/video0"
+#: ../data/cheese.schemas.in.h:10
+msgid "Set to True to show countdown when taking a photo"
+msgstr "Při povolení bude při pořízení snímku použito odpočítávání času"
 
-#: ../data/cheese.schemas.in.h:4
+#: ../data/cheese.schemas.in.h:11
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "Zařízení, které označuje webovou kameru (např. /dev/video0)"
+
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "Výška rozlišení obrázku zachyceného kamerou"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "Šířka rozlišení obrázku zachyceného kamerou"
+
+#: ../data/cheese.schemas.in.h:14
 msgid "Use a countdown"
 msgstr "Použít odpočítávání"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:15
+msgid "Video Path"
+msgstr "Cesta k videu"
+
+#: ../data/cheese.schemas.in.h:16
 msgid "Webcam device string indicator"
 msgstr "Název zařízení webové kamery"
 
-#: ../data/cheese.schemas.in.h:6
-msgid "Whether a countdown should be used, when taking a photo"
-msgstr "Zda má být při pořízení snímku použito odpočítávání času"
+#: ../data/cheese.schemas.in.h:17
+msgid "Whether to enable immediate deletion"
+msgstr "Zda povolit okamžité smazání"
 
-#: ../src/cheese-effect-chooser.c:61
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "Šířka rozlišení"
+
+#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "Přepnout do režimu snímků"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "Přepnout do režimu videa"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "Přepnout do výběru efektů"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1131
+#: ../src/cheese-window.c:1370
+msgid "_Effects"
+msgstr "_Efekty"
+
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "Opustit režim ce_lé obrazovky"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1382
+msgid "_Photo"
+msgstr "_Snímek"
+
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1434
+msgid "_Take a Photo"
+msgstr "Pořídi_t snímek"
+
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1383
+msgid "_Video"
+msgstr "_Video"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>Kamera</b>"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "<b>Resolution</b>"
+msgstr "<b>Rozlišení</b>"
+
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1374
+msgid "Preferences"
+msgstr "Nastavení"
+
+#: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
 msgstr "Bez efektů"
 
-#: ../src/cheese-effect-chooser.c:63
+#: ../src/cheese-effect-chooser.c:62
 msgid "Mauve"
 msgstr "Růžová (lila)"
 
-#: ../src/cheese-effect-chooser.c:65
+#: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Černá a bílá"
 
-#: ../src/cheese-effect-chooser.c:67
+#: ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "Syté barvy"
 
-#: ../src/cheese-effect-chooser.c:69
+#: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
 msgstr "Hulk"
 
-#: ../src/cheese-effect-chooser.c:71
+#: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
 msgstr "Svislé překlopení"
 
-#: ../src/cheese-effect-chooser.c:73
+#: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
 msgstr "Vodorovné překlopení"
 
-#: ../src/cheese-effect-chooser.c:75
+#: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
 msgstr "Shagadelic"
 
-#: ../src/cheese-effect-chooser.c:77
+#: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
 msgstr "Vír"
 
-#: ../src/cheese-effect-chooser.c:79
+#: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
 msgstr "Zvýraznění hran"
 
-#: ../src/cheese-effect-chooser.c:81
+#: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
 msgstr "Kostičky"
 
-#: ../src/cheese-effect-chooser.c:83
+#: ../src/cheese-effect-chooser.c:82
 msgid "Warp"
 msgstr "Deformace"
 
-#: ../src/cheese-window.c:134
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:474
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "Nenalezena žádná kamera!"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "Prosím zobrazte si nápovědu, chcete-li dodatečné informace."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "Nápověda"
+
+#: ../src/cheese-webcam.c:1546
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "Jeden nebo více potřebných gstreamer elementů chybí: "
+
+#: ../src/cheese-window.c:77
+msgid "_Skip"
+msgstr "Pře_skočit"
+
+#: ../src/cheese-window.c:78
+msgid "S_kip All"
+msgstr "Přes_kočit vše"
+
+#: ../src/cheese-window.c:79
+msgid "Delete _All"
+msgstr "Sm_azat vše"
+
+#: ../src/cheese-window.c:201
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -132,7 +261,7 @@ msgstr ""
 "Selhalo spuštění prohlížeče k zobrazení:\n"
 "%s"
 
-#: ../src/cheese-window.c:157
+#: ../src/cheese-window.c:225
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -141,7 +270,7 @@ msgstr ""
 "Selhalo spuštění poštovního programu k zaslání zprávy pro:\n"
 "%s"
 
-#: ../src/cheese-window.c:248
+#: ../src/cheese-window.c:465
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -150,47 +279,81 @@ msgstr ""
 "Selhalo spuštění programu k zobrazení:\n"
 "%s"
 
-#: ../src/cheese-window.c:267
+#: ../src/cheese-window.c:484
 msgid "Save File"
 msgstr "Uložit soubor"
 
-#: ../src/cheese-window.c:305
+#: ../src/cheese-window.c:522
 #, c-format
 msgid "Could not save %s"
 msgstr "Nepodařilo se uložit %s"
 
-#: ../src/cheese-window.c:332
-msgid "Cannot move file to trash"
-msgstr "Soubor nelze přesunout do koše"
+#: ../src/cheese-window.c:545
+msgid "Error while deleting"
+msgstr "Chyba při odstraňování"
 
-#: ../src/cheese-window.c:333
+#: ../src/cheese-window.c:546
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "Soubor \"%s\" nemůže být smazán. Podrobnosti: %s"
+
+#: ../src/cheese-window.c:573
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected items?"
+msgstr "Jste si jisti, že chcete trvale odstranit %'d vybraných položek?"
+
+#: ../src/cheese-window.c:578
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "Jste si jisti, že chcete trvale odstranit \"%s\"?"
+
+#: ../src/cheese-window.c:581
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Pokud odstraníte položku, bude natrvalo ztracena."
+
+#: ../src/cheese-window.c:602
+msgid "Unknown Error"
+msgstr "Neznámá chyba"
+
+#: ../src/cheese-window.c:632
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "Nelze přesunout soubory do koše, chcete je rovnou odstranit?"
+
+#: ../src/cheese-window.c:633
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Soubor \"%s\" nemůže být přesunut do koše. Detaily: %s"
 
-#: ../src/cheese-window.c:365
+#: ../src/cheese-window.c:702
+#, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Opravdu přesunout všechny obrázky a videoklipy do koše?"
 
-#: ../src/cheese-window.c:373
+#: ../src/cheese-window.c:710
 msgid "_Move to Trash"
 msgstr "_Přesunout do koše"
 
-#: ../src/cheese-window.c:461
+#: ../src/cheese-window.c:828
+#, c-format
 msgid "Could not set the Account Photo"
 msgstr "Nelze nastavit fotografii účtu"
 
-#: ../src/cheese-window.c:536
+#: ../src/cheese-window.c:860
+msgid "Media files"
+msgstr "Multimediální soubory"
+
+#: ../src/cheese-window.c:933 ../src/cheese-window.c:1205
 msgid "Unable to open help file for Cheese"
 msgstr "Nelze otevřít nápovědu pro Cheese"
 
-#: ../src/cheese-window.c:553
+#: ../src/cheese-window.c:985
 msgid "translator-credits"
 msgstr ""
 "Vítězslav Kotrla <vitko@post.cz>\n"
 "Petr Kovář <pknbe@volny.cz>"
 
-#: ../src/cheese-window.c:556
+#: ../src/cheese-window.c:988
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -202,7 +365,7 @@ msgstr ""
 "to buď verze 2 této licence anebo (podle vlastního uvážení) kterékoliv "
 "pozdější verze.\n"
 
-#: ../src/cheese-window.c:560
+#: ../src/cheese-window.c:992
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -213,7 +376,7 @@ msgstr ""
 "ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO "
 "URČITÝ ÚČEL. Další podrobnosti hledejte v GNU General Public License.\n"
 
-#: ../src/cheese-window.c:564
+#: ../src/cheese-window.c:996
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -222,82 +385,112 @@ msgstr ""
 "programem; pokud se tak nestalo, naleznete ji na adrese <http://www.gnu.org/"
 "licenses/>."
 
-#: ../src/cheese-window.c:580
+#: ../src/cheese-window.c:1013
 msgid "Cheese Website"
 msgstr "Domovská stránka projektu Cheese"
 
-#: ../src/cheese-window.c:669
-msgid "_Back"
-msgstr "_Zpět"
-
-#: ../src/cheese-window.c:736 ../src/cheese-window.c:795
-msgid "_Start recording"
+#: ../src/cheese-window.c:1221
+msgid "_Start Recording"
 msgstr "_Spustit nahrávání"
 
-#: ../src/cheese-window.c:845
-msgid "_Stop recording"
+#: ../src/cheese-window.c:1320
+msgid "_Stop Recording"
 msgstr "Za_stavit nahrávání"
 
-#: ../src/cheese-window.c:864
+#: ../src/cheese-window.c:1351
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:866
+#: ../src/cheese-window.c:1353
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../src/cheese-window.c:867
-msgid "Move all to Trash"
+#: ../src/cheese-window.c:1354
+msgid "Move All to Trash"
 msgstr "Přesunout vše do koše"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:1357
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../src/cheese-window.c:872
+#: ../src/cheese-window.c:1360
 msgid "_Contents"
 msgstr "O_bsah"
 
-#: ../src/cheese-window.c:872
-msgid "Help on this application"
+#: ../src/cheese-window.c:1360
+msgid "Help on this Application"
 msgstr "Nápověda k tomuto programu"
 
-#: ../src/cheese-window.c:887
+#: ../src/cheese-window.c:1366
+msgid "Countdown"
+msgstr "Odpočet"
+
+#: ../src/cheese-window.c:1387
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: ../src/cheese-window.c:888
+#: ../src/cheese-window.c:1389
 msgid "Save _As..."
 msgstr "Uložit j_ako..."
 
-#: ../src/cheese-window.c:889
+#: ../src/cheese-window.c:1391
 msgid "Move to _Trash"
 msgstr "Přesunou_t do koše"
 
-#: ../src/cheese-window.c:897
+#: ../src/cheese-window.c:1393
+msgid "Delete"
+msgstr "Smazat"
+
+#: ../src/cheese-window.c:1398 ../src/cheese-window.c:1626
+msgid "_Take a photo"
+msgstr "Pořídi_t snímek"
+
+#: ../src/cheese-window.c:1402
 msgid "_Recording"
 msgstr "Nah_rávání"
 
-#: ../src/cheese-window.c:901
+#: ../src/cheese-window.c:1406
 msgid "_Set As Account Photo"
 msgstr "Na_stavit jako fotografii účtu"
 
-#: ../src/cheese-window.c:905
+#: ../src/cheese-window.c:1410
 msgid "Send by _Mail"
 msgstr "Poslat pošto_u"
 
-#: ../src/cheese-window.c:909
+#: ../src/cheese-window.c:1414
+msgid "Send _To"
+msgstr "Odesla_t"
+
+#: ../src/cheese-window.c:1418
 msgid "Export to F-_Spot"
 msgstr "Export do programu F-_Spot"
 
-#: ../src/cheese-window.c:913
+#: ../src/cheese-window.c:1422
 msgid "Export to _Flickr"
 msgstr "Export do služby _Flickr"
 
-#: ../src/cheese.c:71
+#: ../src/cheese-window.c:1446
+msgid "_Start recording"
+msgstr "_Spustit nahrávání"
+
+#: ../src/cheese-window.c:1769
+msgid "Quit"
+msgstr "Ukončit"
+
+#: ../src/cheese-window.c:1775
+msgid "About"
+msgstr "O programu"
+
+#: ../src/cheese-window.c:1856
+msgid "Check your gstreamer installation"
+msgstr "Zkontrolujte svoji instalaci gstreameru"
+
+#: ../src/cheese.c:161
 msgid "Be verbose"
 msgstr "Podrobné informace"
 
-#: ../src/cheese.c:86
-msgid "- Take photos and videos from your webcam"
-msgstr "- snímání obrázků a videoklipů z webové kamery"
+#: ../src/cheese.c:179
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"- snímejte obrázky a videoklipy svou webovou kamerou, se zábavnými "
+"grafickými efekty"
