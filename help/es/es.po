@@ -3,19 +3,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.help.HEAD\n"
-"POT-Creation-Date: 2008-03-11 04:15+0000\n"
-"PO-Revision-Date: 2008-08-22 14:34+0200\n"
+"POT-Creation-Date: 2008-09-08 22:41+0000\n"
+"PO-Revision-Date: 2008-09-11 09:21+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type:  text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
-#: C/cheese.xml:164(None)
+#: C/cheese.xml:178(None)
 msgid ""
 "@@image: 'figures/cheese-screenshot.jpg'; "
 "md5=e24f99c6208e8556528e347fcf730554"
@@ -25,7 +25,7 @@ msgstr ""
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
-#: C/cheese.xml:186(None)
+#: C/cheese.xml:200(None)
 msgid ""
 "@@image: 'figures/cheese-effects-screenshot.jpg'; "
 "md5=0a773e6a421f02d6dbf53259c63a34b0"
@@ -47,8 +47,8 @@ msgstr ""
 "interesantes"
 
 #: C/cheese.xml:33(year)
-msgid "2007"
-msgstr "2007"
+msgid "2007,2008"
+msgstr "2007, 2008"
 
 #: C/cheese.xml:34(holder)
 msgid "daniel g. siegel (dgsiegel@gmail.com)"
@@ -168,28 +168,28 @@ msgstr ""
 "(GFDL) Y TENIENDO EN CUENTA QUE: <placeholder-1/>"
 
 #: C/cheese.xml:61(firstname)
-msgid "Jaap"
-msgstr "Jaap"
-
-#: C/cheese.xml:62(surname)
-msgid "Haitsma"
-msgstr "Haitsma"
-
-#: C/cheese.xml:63(email)
-msgid "jaap@haitsma.org"
-msgstr "jaap@haitsma.org"
-
-#: C/cheese.xml:66(firstname)
 msgid "Joshua"
 msgstr "Joshua"
 
-#: C/cheese.xml:67(surname)
+#: C/cheese.xml:62(surname)
 msgid "Henderson"
 msgstr "Henderson"
 
-#: C/cheese.xml:68(email)
+#: C/cheese.xml:63(email)
 msgid "joshhendo@gmail.com"
 msgstr "joshhendo@gmail.com"
+
+#: C/cheese.xml:66(firstname)
+msgid "Jaap"
+msgstr "Jaap"
+
+#: C/cheese.xml:67(surname)
+msgid "Haitsma"
+msgstr "Haitsma"
+
+#: C/cheese.xml:68(email)
+msgid "jaap@haitsma.org"
+msgstr "jaap@haitsma.org"
 
 #: C/cheese.xml:88(revnumber)
 msgid "0.1"
@@ -199,11 +199,11 @@ msgstr "0.1"
 msgid "2007-12-04"
 msgstr "2007-12-04"
 
-#: C/cheese.xml:91(para) C/cheese.xml:102(para)
+#: C/cheese.xml:91(para) C/cheese.xml:102(para) C/cheese.xml:116(para)
 msgid "Jaap A. Haitsma <email>jaap@haitsma.org</email>"
 msgstr "Jaap A. Haitsma <email>jaap@haitsma.org</email>"
 
-#: C/cheese.xml:94(para) C/cheese.xml:108(para)
+#: C/cheese.xml:94(para) C/cheese.xml:108(para) C/cheese.xml:122(para)
 msgid "Jaap A. Haitsma"
 msgstr "Jaap A. Haitsma"
 
@@ -215,15 +215,23 @@ msgstr "0.2"
 msgid "2008-01-12"
 msgstr "2008-01-12"
 
-#: C/cheese.xml:105(para)
+#: C/cheese.xml:105(para) C/cheese.xml:119(para)
 msgid "Joshua Henderson <email>joshhendo@gmail.com</email>"
 msgstr "Joshua Henderson <email>joshhendo@gmail.com</email>"
 
-#: C/cheese.xml:115(title)
+#: C/cheese.xml:113(revnumber)
+msgid "0.3"
+msgstr "0.3"
+
+#: C/cheese.xml:114(date)
+msgid "2008-08-20"
+msgstr "2008-08-20"
+
+#: C/cheese.xml:129(title)
 msgid "Feedback"
 msgstr "Comentarios"
 
-#: C/cheese.xml:116(para)
+#: C/cheese.xml:130(para)
 msgid ""
 "To report a bug or make a suggestion regarding the Cheese application or "
 "this manual, follow the directions in the <ulink url=\"http://www.gnome.org/"
@@ -239,19 +247,19 @@ msgstr ""
 msgid "Cheese"
 msgstr "Cheese"
 
-#: C/cheese.xml:130(primary) C/cheese.xml:143(tertiary)
+#: C/cheese.xml:144(primary) C/cheese.xml:157(tertiary)
 msgid "cheese"
 msgstr "cheese"
 
-#: C/cheese.xml:136(title)
+#: C/cheese.xml:150(title)
 msgid "Introduction"
 msgstr "Introducción"
 
-#: C/cheese.xml:142(secondary)
+#: C/cheese.xml:156(secondary)
 msgid "Manual"
 msgstr "Manual"
 
-#: C/cheese.xml:146(para)
+#: C/cheese.xml:160(para)
 msgid ""
 "Cheese is a video and photo shoot application with cool effects for the "
 "<systemitem>GNOME desktop</systemitem>"
@@ -259,19 +267,20 @@ msgstr ""
 "Cheese es una aplicación para grabar vídeo y tomar fotografías con efectos "
 "interesantes para el <systemitem>Escritorio GNOME</systemitem>."
 
-#: C/cheese.xml:154(title)
+#: C/cheese.xml:168(title)
 msgid "Usage"
 msgstr "Uso"
 
-#: C/cheese.xml:155(para)
+#: C/cheese.xml:169(para)
 msgid "The main screen of Cheese looks like the screen shot below"
-msgstr "La pantalla principal de Cheese es la que se presenta en una captura debajo"
+msgstr ""
+"La pantalla principal de Cheese es la que se presenta en una captura debajo"
 
-#: C/cheese.xml:160(title)
+#: C/cheese.xml:174(title)
 msgid "Cheese screenshot"
 msgstr "Captura de pantalla de Cheese"
 
-#: C/cheese.xml:170(para)
+#: C/cheese.xml:184(para)
 msgid ""
 "Cheese defaults to photo mode, and needs to be changed to video mode if "
 "desired."
@@ -279,15 +288,15 @@ msgstr ""
 "El modo predeterminado de Cheese es el de fotografía y se puede cambiar a "
 "vídeo si se desea."
 
-#: C/cheese.xml:176(title)
+#: C/cheese.xml:190(title)
 msgid "Effects"
 msgstr "Efectos"
 
-#: C/cheese.xml:182(title)
+#: C/cheese.xml:196(title)
 msgid "Cheese effects screenshot"
 msgstr "Captura de pantalla de los efectos de Cheese"
 
-#: C/cheese.xml:177(para)
+#: C/cheese.xml:191(para)
 msgid ""
 "To apply effects to the input of your webcam, click the button labelled "
 "Effects. When you go to the effects window, you will see a window similar to "
@@ -297,84 +306,87 @@ msgstr ""
 "etiquetado como Efectos. Cuando vaya a la ventana de efectos, verá una "
 "ventana similar a la imagen de abajo <placeholder-1/>."
 
-#: C/cheese.xml:194(para)
+#: C/cheese.xml:208(para)
 msgid ""
 "You are able to select numerous effects to apply to your photo. To apply an "
-"effect, just click on the name or image above, and the button will turn to a "
-"blue shade. Selecting multiple effects will apply all the effects to your "
+"effect, just click on the effect that you want. The button will appear "
+"highlighted. Selecting multiple effects will apply all the effects to your "
 "image (for example, if you apply “Hulk” and “Horizontal Flip”, the input "
-"from the webcam will be altered to have a green shade and be up side down)."
+"from the webcam will be altered to have a green shade and be up side down). "
+"To disable all effects, just click on the “No Effect” button."
 msgstr ""
 "Puede seleccionar numerosos efectos para aplicar a su foto. Para aplicar un "
 "efecto, simplemente pulse en el nombre o imagen encima y el botón se "
 "adquirirá una sombra azul. Si selecciona múltiples efectos, entonces todos "
 "se aplicarán a su imagen (por ejemplo, si aplica «Hulk» y «Giro horizontal», "
 "la entrada de la cámara web se alterará para tener una sombra verde y estará "
-"boca arriba)."
+"boca arriba). Para desactivar todos los efectos simplemente pulse el botón "
+"«Sin efectos»."
 
-#: C/cheese.xml:204(title)
+#: C/cheese.xml:219(title)
 msgid "Photo Mode"
 msgstr "Modo foto"
 
-#: C/cheese.xml:205(para)
+#: C/cheese.xml:220(para)
 msgid ""
 "Photo mode is the default mode that Cheese opens in. When not in photo mode, "
-"click the button labelled “Photo” or press Alt – P to change to photo mode. "
-"Photo mode will take a single photo every time the button labelled “Take a "
-"photo” or the Spacebar is pressed, and will save to disk."
+"click the button labelled “Photo”, press Alt + P or Menu: Cheese - Photo to "
+"change to photo mode. Photo mode will take a single photo every time the "
+"button labelled “Take a photo” or the Spacebar is pressed, and will save to "
+"disk."
 msgstr ""
-"Cuando se abre Cheese, el modo foto es el predeterminado. Cuando no se esté "
-"en modo foto, pulse el botón etiquetado como «Foto» o pulse Alt+F para "
-"cambiar al modo de fotografía. El modo de fotografía tomará una sola foto "
-"cada vez que se pulse el botón «Tomar una foto» o se pulse la barra "
-"espaciadora, además las fotos se guardarán al disco."
+"El modo foto es el predeterminado al abrir Cheese. Cuando no se esté en modo "
+"foto, pulse el botón etiquetado como «Foto» o pulse Alt+P para cambiar al "
+"modo de fotografía. El modo de fotografía tomará una sola foto cada vez que "
+"se pulse el botón «Tomar una foto» o se pulse la barra espaciadora, además "
+"las fotos se guardarán al disco."
 
-#: C/cheese.xml:214(title)
+#: C/cheese.xml:229(title)
 msgid "Video Mode"
 msgstr "Modo vídeo"
 
-#: C/cheese.xml:215(para)
+#: C/cheese.xml:230(para)
 msgid ""
 "Video mode is a mode that allows you to take short videos using the webcam. "
-"When not in video mode, click the button labelled “Video” or press Alt – V "
-"to change to video mode. Video mode will start recording a video every time "
-"the button labelled “Start Recording” or the Spacebar is pressed. The video "
-"will stop recording and save to disk when the button labelled “Stop "
-"Recording” or the Spacebar is pressed."
+"When not in video mode, click the button labelled “Video”, press Alt – V or "
+"Menu: Cheese - Video to change to video mode. Video mode will start "
+"recording a video every time the button labelled “Start Recording” or the "
+"Spacebar is pressed. The video will stop recording and save to disk when the "
+"button labelled “Stop Recording” or the Spacebar is pressed."
 msgstr ""
 "El modo de vídeo le permite grabar vídeos cortos usando la cámara web. "
 "Cuando no esté en el modo de vídeo, pulse el botón etiquetado como «Vídeo» o "
 "pulse Alt+V para cambiar al modo de vídeo. El modo de vídeo comenzará a "
-"grabar vídeo cada vez que pulse el botón «Comenzar a grabar» o pulse la "
-"barra espaciadora. El vídeo dejará de grabar y se guardará al disco cuando "
-"pulse el botón «Parar de grabar» o la barra espaciadora."
+"grabar vídeo cada vez que pulse el botón «Comenzar a grabar» o pulse la barra "
+"espaciadora. El vídeo dejará de grabar y se guardará al disco cuando pulse "
+"el botón «Parar de grabar» o la barra espaciadora."
 
-#: C/cheese.xml:224(para)
+#: C/cheese.xml:239(para)
 msgid ""
 "The video mode does look any different to the screen shot of photo mode, "
 "except that the button labelled “Take a photo” will be either “Start "
-"Recording” or “Stop Recording” (depends if you are currently recording or "
-"not), and the button labelled “Video” is greyed out, whereas the button "
-"labelled “Photo” is not."
+"Recording” or “Stop Recording”, and the button labelled “Video” is greyed "
+"out, whereas the button labelled “Photo” is not."
 msgstr ""
-"La pantalla del modo de vídeo es igual que la del modo fotografía, excepto "
-"por el botón «Tomar una foto» que será «Comenzar a grabar» o «Parar de "
-"grabar» (depende de si está grabando o no), además el botón «Vídeo» está "
-"desactivado y en gris, mientras que el botón «Foto» no."
+"El modo de vídeo es igual que la del modo fotografía, excepto por el botón "
+"«Tomar una foto» que será «Comenzar a grabar» o «Parar de grabar» (depende de "
+"si está grabando o no), además el botón «Vídeo» está desactivado y en gris, "
+"mientras que el botón «Foto» no."
 
-#: C/cheese.xml:235(title)
+#: C/cheese.xml:250(title)
 msgid "Working with photos and videos"
 msgstr "Trabajar con fotos y vídeos"
 
-#: C/cheese.xml:237(title)
+#: C/cheese.xml:252(title)
 msgid "Taking a photo"
 msgstr "Tomar una foto"
 
-#: C/cheese.xml:238(para)
+#: C/cheese.xml:253(para)
 msgid "To take a photo in Cheese, be sure to be in “Photo” mode."
-msgstr "Para sacar una fotografía en Cheese, asegúrese de estar en el modo «Foto»."
+msgstr ""
+"Para sacar una fotografía en Cheese, asegúrese de estar en el modo «Foto»."
 
-#: C/cheese.xml:242(para)
+#: C/cheese.xml:257(para)
 msgid ""
 "To take a photo, apply the effects that you wish by clicking the button "
 "labelled “Effects”, click on the effects desired as described in a previous "
@@ -382,16 +394,18 @@ msgid ""
 "effects that you clicked on applied to the webcam input."
 msgstr ""
 "Para tomar una foto, aplique los efectos que desee pulsando el botón "
-"«Efectos», pulse sobre los efectos que quiera como se describió en la "
-"sección anterior y pulse el botón «Volver». Ahora tendrá aplicados a la "
-"entrada de cámara web los efectos que haya pulsado."
+"«Efectos», pulse sobre los efectos que quiera como se describió en la sección "
+"anterior y pulse el botón «Volver». Ahora tendrá aplicados a la entrada de "
+"cámara web los efectos que haya pulsado."
 
-#: C/cheese.xml:249(para)
+#: C/cheese.xml:264(para)
 msgid ""
-"To take the photo, press the button labelled “Take a photo”. You will then "
-"see <application>Cheese</application> count down from 3. At the end of the "
-"count, your entire screen will flash white, and the photo that was just "
-"taken will appear in the photo stream at the bottom of the program window."
+"To take the photo, press the button labelled “Take a photo” or press the "
+"spacebar. You will then see <application>Cheese</application> count down "
+"from 3 or instantly take the photo, depending on your settings. When the "
+"photo is taken, your entire screen will flash white, and the photo that was "
+"just taken will appear in the photo stream at the bottom of the program "
+"window."
 msgstr ""
 "Para tomar una foto pulse el botón «Tomar una foto». Entonces verá en "
 "<application>Cheese</application> una cuenta atrás desde 3. Al terminar la "
@@ -399,49 +413,47 @@ msgstr ""
 "flash, y la foto que se tomó aparecerá en la galería de fotos en la parte "
 "inferior de la ventana del programa."
 
-#: C/cheese.xml:258(title)
+#: C/cheese.xml:273(title)
 msgid "Taking a video"
 msgstr "Grabar un vídeo"
 
-#: C/cheese.xml:259(para)
-msgid "To take a video in Cheese, make sure that the “Video” button has been pressed"
-msgstr "Para grabar un vídeo en Cheese, asegúrese de haber pulsado el botón «Vídeo»"
+#: C/cheese.xml:274(para)
+msgid ""
+"To take a video in Cheese, make sure that the “Video” button has been pressed"
+msgstr ""
+"Para grabar un vídeo en Cheese, asegúrese de haber pulsado el botón «Vídeo»"
 
-#: C/cheese.xml:263(para)
+#: C/cheese.xml:278(para)
 msgid ""
 "To start recording a video, press the button labelled “Start Recording” or "
-"press the Spacebar. The time of how much video has been recorded will appear "
+"press the spacebar. The time of how much video has been recorded will appear "
 "in the bottom right hand corner."
 msgstr ""
-"Para comenzar a grabar un vídeo pulse el botón «Comenzar a grabar» o pulse "
-"la barra espaciadora. En la esquina inferior derecha aparecerá el tiempo "
+"Para comenzar a grabar un vídeo pulse el botón «Comenzar a grabar» o pulse la "
+"barra espaciadora. En la esquina inferior derecha aparecerá el tiempo "
 "transcurrido desde el comienzo de la grabación."
 
-#: C/cheese.xml:270(para)
+#: C/cheese.xml:285(para)
 msgid ""
 "If your video appears to be jerky or have a low frame rate (only updating "
-"the picture every few seconds), it does not mean that the original recording "
-"is also of bad quality. It has probably a more constant and higher frame "
-"rate than what you see. To stop recording, press the button labelled “Stop "
-"Recording”. The video recorded will appear in the photo stream at the bottom "
-"of the program."
+"the picture every few seconds), it does not mean that the recording has a "
+"similar frame rate. In many cases, the recorded file will have a better "
+"frame rate."
 msgstr ""
 "Si parece que su vídeo funciona a saltos o tiene una tasa de fotogramas baja "
 "(sólo actualiza la imagen cada unos pocos segundos), no significa que la "
 "grabación original también sea de baja calidad. Es muy probable que la tasa "
-"de fotogramas sea mayor y más constante de lo que ve. Para dejar de grabar "
-"pulse el botón «Parar de grabar». El vídeo grabado aparecerá en la galería "
-"de fotos en la parte inferior de la ventana del programa."
+"de fotogramas sea mayor y más constante de lo que ve."
 
-#: C/cheese.xml:283(title)
+#: C/cheese.xml:295(title)
 msgid "Sharing Photos and Videos"
 msgstr "Compartir fotos y vídeos"
 
-#: C/cheese.xml:285(title)
+#: C/cheese.xml:297(title)
 msgid "Viewing a photo or video"
 msgstr "Ver una foto o un vídeo"
 
-#: C/cheese.xml:286(para)
+#: C/cheese.xml:298(para)
 msgid ""
 "To view a video or photo that has been taken, locate it in the photo stream "
 "and double click on it. Alternatively, you can right click on it and select "
@@ -453,11 +465,11 @@ msgstr ""
 "el botón derecho y seleccionar «Abrir». Esto abrirá el archivo en la "
 "aplicación predeterminada para ese tipo de arhcivo."
 
-#: C/cheese.xml:294(title)
+#: C/cheese.xml:306(title)
 msgid "Saving photos and videos to an alternate location"
 msgstr "Guardar las fotos y vídeos en una ubicación alternativa"
 
-#: C/cheese.xml:295(para)
+#: C/cheese.xml:307(para)
 msgid ""
 "To save a photo to an alternate place on your hard drive where you can "
 "easily find them, find the photo or video that you wish to save in the photo "
@@ -471,11 +483,11 @@ msgstr ""
 "menú emergente. Esto mostrará un diálogo estándar «Guardar archivo» que le "
 "permitirá renombrar la foto y elegir una ubicación."
 
-#: C/cheese.xml:305(title)
+#: C/cheese.xml:317(title)
 msgid "Deleting a photo"
 msgstr "Borrar una foto"
 
-#: C/cheese.xml:306(para)
+#: C/cheese.xml:318(para)
 msgid ""
 "To delete a photo from the photo stream, locate the photo you wish to delete "
 "in the photo stream, left click on it once and press the delete button on "
@@ -486,7 +498,7 @@ msgstr ""
 "teclado. Alternativamente puede pulsar con el botón derecho del ratón y "
 "seleccionar «Borrar»."
 
-#: C/cheese.xml:312(para)
+#: C/cheese.xml:324(para)
 msgid ""
 "You will be prompted if you wish to delete it from the photo stream. To "
 "confirm, press the button labelled “Move to Trash”."
@@ -494,21 +506,21 @@ msgstr ""
 "Se le preguntará si quiere borrar la foto de la galería. Para confirmarlo, "
 "pulse el botón «Mover a la papelera»."
 
-#: C/cheese.xml:318(para)
+#: C/cheese.xml:330(para)
 msgid ""
-"This will only move the image to the trash/garbage bin, as well as remove "
-"from your photo stream. This will not remove the photo from your computer. "
-"To remove it from your trash, you will need to empty your trash."
+"This will only move the image to the \"trash\", as well as remove from your "
+"photo stream. This will not remove the photo from your computer. To remove "
+"it from your trash, you will need to empty your trash."
 msgstr ""
 "Esto sólo moverá la imagen a la papelera de reciclaje, además de quitar la "
-"foto de la galería. Est acción no borra la foto de su equipo. Para "
-"eliminarla de la papelera deberá vaciar la papelera."
+"foto de la galería. Ésto no borra la foto de su equipo. Para eliminarla de "
+"la papelera deberá vaciar la papelera."
 
-#: C/cheese.xml:327(title)
+#: C/cheese.xml:339(title)
 msgid "Send a photo by e-mail"
 msgstr "Enviar una foto por correo-e"
 
-#: C/cheese.xml:328(para)
+#: C/cheese.xml:340(para)
 msgid ""
 "Photos can be directly emailed from Cheese. You will need to have the "
 "default mail client set up with an email account, otherwise you will need to "
@@ -521,7 +533,7 @@ msgstr ""
 "seleccione en la galería la foto que quiere enviar, pulse con el botón "
 "derecho del ratón sobre ella y seleccione «Enviar por correo-e»."
 
-#: C/cheese.xml:335(para)
+#: C/cheese.xml:347(para)
 msgid ""
 "This will open the default mail client (for example, Evolution) and a new "
 "email message with the photo as an attachment."
@@ -529,11 +541,11 @@ msgstr ""
 "Esto abrirá el cliente de correo predeterminado (Evolution, por ejemplo) con "
 "un nuevo mensaje de correo-e y la foto adjunta."
 
-#: C/cheese.xml:342(title)
+#: C/cheese.xml:354(title)
 msgid "Set as Account Photo"
 msgstr "Establecer como foto de la cuenta"
 
-#: C/cheese.xml:343(para)
+#: C/cheese.xml:355(para)
 msgid ""
 "To set a photo as your account photo (which can be viewed from System -&gt; "
 "Preferences -&gt; About Me, and which will also appear if the login window "
@@ -546,11 +558,11 @@ msgstr ""
 "la foto que quiere usar, pulse con el botón derecho del ratón y seleccione "
 "«Establecer como foto de la cuenta»."
 
-#: C/cheese.xml:352(title)
+#: C/cheese.xml:364(title)
 msgid "Export a photo to F-Spot"
 msgstr "Exportar una foto a F-Spot"
 
-#: C/cheese.xml:353(para)
+#: C/cheese.xml:365(para)
 msgid ""
 "To export a photo to F-Sport, locate the photo that you wish to export in "
 "your photo stream, right click on it and select “Export to F-Spot”. You will "
@@ -562,7 +574,7 @@ msgstr ""
 "Spot». Entonces F-Spot le preguntará F-Spot si quiere importar todas las "
 "fotos que se le envían."
 
-#: C/cheese.xml:360(para)
+#: C/cheese.xml:372(para)
 msgid ""
 "Depending on the version of Cheese that you are currently using, F-Spot may "
 "prompt you to import the entire photo stream."
@@ -570,15 +582,15 @@ msgstr ""
 "Dependiendo de la versión de Cheese que esté usando actualmente, F-Spot "
 "puede preguntarle si quiere importar el conjunto de fotos completo."
 
-#: C/cheese.xml:377(title)
+#: C/cheese.xml:389(title)
 msgid "Frequently Asked Questions"
 msgstr "Preguntas más frecuentes"
 
-#: C/cheese.xml:383(title)
+#: C/cheese.xml:395(title)
 msgid "The video is sluggish/has a slow response. What can I do?"
 msgstr "El vídeo se entrecorta o tiene una respuesta lenta. ¿Qué puedo hacer?"
 
-#: C/cheese.xml:384(para)
+#: C/cheese.xml:396(para)
 msgid ""
 "You may have set \"ximagesink\" (\"X Window System (No Xv)\") as video-"
 "output. This means, that your cpu is doing all the work. Change it to "
@@ -590,7 +602,7 @@ msgstr ""
 "trbajo. Cámbielo a \"xvimagesink\" (\"X Window System (X11/XShm/Xv)\") para "
 "que la tarjeta gráfica haga el trabajo."
 
-#: C/cheese.xml:390(para)
+#: C/cheese.xml:402(para)
 msgid ""
 "To change the settings, run \"gstreamer-properties\", click the Video tab "
 "and change the appropriate settings."
@@ -598,11 +610,13 @@ msgstr ""
 "Para cambiar los ajustes ejecute \"gstreamer-properties\", pulse la solapa "
 "de vídeo y cambie los ajustes apropiados."
 
-#: C/cheese.xml:397(title)
-msgid "I have a Mac with iSight and a ATI graphics card, and the colors are weird."
-msgstr "Tengo un Mac con iSight y una tarjeta gráfica ATI y los colores se ven raros."
+#: C/cheese.xml:409(title)
+msgid ""
+"I have a Mac with iSight and a ATI graphics card, and the colors are weird."
+msgstr ""
+"Tengo un Mac con iSight y una tarjeta gráfica ATI y los colores se ven raros."
 
-#: C/cheese.xml:398(para)
+#: C/cheese.xml:410(para)
 msgid ""
 "This is a problem with the ATI graphics card, though there is a work around. "
 "Change the video-output to custom and insert the following: "
@@ -614,7 +628,7 @@ msgstr ""
 "\"ffmpegcolorspace ! video/x-raw-yuv,format=(fourcc)YV12 ! "
 "ffmpegcolorspace ! xvimagesink\"."
 
-#: C/cheese.xml:404(para)
+#: C/cheese.xml:416(para)
 msgid ""
 "To change the settings, run \"gstreamer-properties\", click the Video tab "
 "and select custom from the drop down menu."
@@ -622,7 +636,7 @@ msgstr ""
 "Para cambiar los ajustes, ejecute \"gstreamer-properties\", pulse la solapa "
 "de vídeo y seleccione personalizado del menú desplegable."
 
-#: C/cheese.xml:411(title)
+#: C/cheese.xml:423(title)
 msgid ""
 "My webcam works with gstreamer, but does not work with <application>Cheese</"
 "application>. What's wrong?"
@@ -630,7 +644,7 @@ msgstr ""
 "Mi cámara web funciona bien con GStreamer pero no funciona con "
 "<application>Cheese</application>. ¿Cuál es el problema?"
 
-#: C/cheese.xml:412(para)
+#: C/cheese.xml:424(para)
 msgid ""
 "Using \"gstreamer-properties\" mentioned in the above question, try changing "
 "from xvimagesink to ximagesink or vice-versa. If this still does not work "
@@ -645,7 +659,7 @@ msgstr ""
 "browse.cgi?product=cheese\" type=\"http\">página de seguimiento de errores</"
 "ulink>."
 
-#: C/cheese.xml:422(title)
+#: C/cheese.xml:434(title)
 msgid ""
 "My webcam works with other programs such as Ekiga, Camorama, but not with "
 "<application>Cheese</application>. What's wrong?"
@@ -653,7 +667,7 @@ msgstr ""
 "Mi cámara web funciona con otros programas como Ekiga, Camorama pero no con "
 "<application>Cheese</application>. ¿Qué funciona mal?"
 
-#: C/cheese.xml:423(para)
+#: C/cheese.xml:435(para)
 msgid ""
 "See if your webcam works when testing it in \"gstreamer-properties\". If it "
 "works there, but not in <application>Cheese</application>, please file a bug "
@@ -666,11 +680,11 @@ msgstr ""
 "org/browse.cgi?product=cheese\" type=\"http\">página de seguimiento de "
 "errores</ulink>."
 
-#: C/cheese.xml:432(title)
+#: C/cheese.xml:444(title)
 msgid "Where does <application>Cheese</application> store my photos?"
 msgstr "¿Dónde almacena <application>Cheese</application> mis fotos?"
 
-#: C/cheese.xml:433(para)
+#: C/cheese.xml:445(para)
 msgid ""
 "Your photos are stored in ~/.gnome2/cheese/media. You can also save them to "
 "an alternate location from within Cheese. Please see the help topic titled "
@@ -682,11 +696,13 @@ msgstr ""
 "«Guardar las fotos y vídeos en una ubicación alternativa» para obtener más "
 "información."
 
-#: C/cheese.xml:442(title)
-msgid "My Quickcam Express doesn't work with <application>Cheese</application>..."
-msgstr "Mi QuickCam Express no funciona con <application>Cheese</application>..."
+#: C/cheese.xml:454(title)
+msgid ""
+"My Quickcam Express doesn't work with <application>Cheese</application>..."
+msgstr ""
+"Mi QuickCam Express no funciona con <application>Cheese</application>..."
 
-#: C/cheese.xml:443(para)
+#: C/cheese.xml:455(para)
 msgid ""
 "or gstreamer, and I see errors like \"Not enough buffers. We got 1, we want "
 "at least 2\" in the <application>Cheese</application> output. With driver "
@@ -696,7 +712,7 @@ msgstr ""
 "se necesitan al menos 2\" en la salida de <application>Cheese</application>. "
 "Con el controlador \"qc-usb\"."
 
-#: C/cheese.xml:448(para)
+#: C/cheese.xml:460(para)
 msgid ""
 "Try running \"qcset /dev/video0 compat=dblbuf\" to enable double buffer "
 "compatibility mode, then restart <application>Cheese</application>"
@@ -705,11 +721,62 @@ msgstr ""
 "de compatibilidad de búfer doble, después reinicie <application>Cheese</"
 "application>."
 
-#: C/cheese.xml:455(title)
+#: C/cheese.xml:467(title)
+msgid "\"No Camera Found\" Error Message"
+msgstr "Mensaje de error \"No Camera Found\""
+
+#: C/cheese.xml:468(para)
+msgid ""
+"\"When I launch Cheese, I get the message \"No Camera Found\" but I have my "
+"webcam plugged into my computer\". There are many situations this can happen "
+"in, and the exact problem that is causing this needs to be isolated. If "
+"possible, try each of the following to try and get your webcam working. 1. "
+"Plug your webcam into another computer. If it works there, then it is a "
+"problem with with the connection to your computer, or the operating system "
+"if it was a different one on the other computer. Check the ports on your "
+"computer (try another one) and consult support personel for your particular "
+"operating system. 2. See if your camera is being detected by your computer, "
+"on Linux, open up the terminal or console and type \"dmesg\" before you plug "
+"in your webcam. Notice the most recent entries, and then plug in your "
+"webcam. Type \"dmesg\" again and see if the most recent entries differ. If "
+"the message mentions a USB device being detected, and your webcam is the "
+"only USB device that has been changed, then your computer is detecting your "
+"webcam fine. If not, then test to see if the webcam is working on another "
+"computer. This may only work with USB webcams. 3. As Cheese uses the "
+"gstreamer backend, it is most likely because gstreamer is not detecting the "
+"webcam (or gstreamer has become corrupt). Please contact support personel "
+"for the particular operating system that you are running with as many "
+"details as possible. For Ubuntu, please use the <ulink url=\"http://"
+"ubuntuforums.org/\" type=\"http\">Ubuntu Forums</ulink>."
+msgstr ""
+"«Cuando lanzo Cheese obtengo el mensaje \"No se encontró ninguna cámara\" "
+"pero tengo mi cámara conectada en mi equipo». Existen muchas situaciones en "
+"las que esto puede ocurrir, y el problema exacto que lo está causando debe "
+"ser aislado. Si es posible, pruebe cada uno de los pasos siguientes para "
+"intentar que funcione su cámara web. 1. Conecte su cámara web en otro "
+"equipo. Si funciona allí, entonces es un problema con la conexión de su "
+"equipo o con el sistema operativo, si el del otro equipo es diferente. "
+"Compruebe los puertos de su equipo (pruebe con otro) y consulte el soporte "
+"personal para su sistema operativo en particular. 2. Compruebe si su equipo "
+"está detectando su cámara, en GNU/Linux, abra una consola de terminal y "
+"escriba «dmesg» antes de conectar su cámara web. Tenga en cuenta las entradas "
+"más recientes y después conecte su cámara web. Escriba «dmesg» de nuevo y "
+"compruebe si las entradas más recientes difieren. Si el mensaje menciona un "
+"dispositivo USB detectado, y su cámara web es el único dispositivo que ha "
+"cambiado, entonces su equipo está detectando su cámara web sin problemas. De "
+"lo contrario, intente comprobar si la cámara web funciona en otro equipo. "
+"Esto puede que sólo funcione con cámaras web USB. 3. Ya que Cheese usa el "
+"«backend» GStreamer, es probable que GStreamer no esté detectando su cámara "
+"web (o GStreamer está corrupto). Contacte con el soporte personal para su "
+"sistema operativo en particular, proporcionando tantos detalles como sea "
+"posible. Para Ubuntu consulte los <ulink url=\"http://ubuntuforums.org/\" "
+"type=\"http\">foros de Ubuntu</ulink>."
+
+#: C/cheese.xml:490(title)
 msgid "Which cameras are supported"
 msgstr "Qué cámaras están soportadas"
 
-#: C/cheese.xml:456(para)
+#: C/cheese.xml:491(para)
 msgid ""
 "Cheese uses gstreamer for video grabbing. So in principle Cheese supports "
 "any camera that works with GStreamer. In principle that should be any camera "
@@ -719,11 +786,11 @@ msgstr ""
 "soporta cualquier cámara que funcione con GStreamer, así como cualquier "
 "cámara soportada por video4linux y video4linux2."
 
-#: C/cheese.xml:465(title)
+#: C/cheese.xml:500(title)
 msgid "About"
 msgstr "Acerca de"
 
-#: C/cheese.xml:466(para)
+#: C/cheese.xml:501(para)
 msgid ""
 "Cheese was initially written by daniel g. siegel <email>dgsiegel@gmail.com</"
 "email>. as a Google Summer of Code project. Later Jaap A. Haitsma "
@@ -739,7 +806,7 @@ msgstr ""
 "\"http://www.gnome.org/projects/cheese\" type=\"http\">página web de "
 "<application>Cheese</application></ulink>."
 
-#: C/cheese.xml:474(para)
+#: C/cheese.xml:509(para)
 msgid ""
 "To report a bug or make a suggestion regarding this application you can file "
 "a bug in our <ulink url=\"http://bugzilla.gnome.org/browse.cgi?product=cheese"
@@ -750,7 +817,7 @@ msgstr ""
 "org/browse.cgi?product=cheese\" type=\"http\">página de seguimiento de "
 "errores</ulink>."
 
-#: C/cheese.xml:480(para)
+#: C/cheese.xml:515(para)
 msgid ""
 "This program is distributed under the terms of the GNU General Public "
 "license as published by the Free Software Foundation; either version 2 of "
@@ -770,3 +837,6 @@ msgstr ""
 #: C/cheese.xml:0(None)
 msgid "translator-credits"
 msgstr "Jorge González <jorgegonz@svn.gnome.org>, 2007-2008"
+
+#~ msgid "2007"
+#~ msgstr "2007"
