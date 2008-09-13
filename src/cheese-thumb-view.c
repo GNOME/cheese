@@ -176,10 +176,46 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   GtkIconTheme *icon_theme;
   GdkPixbuf    *pixbuf = NULL;
   GtkTreePath  *path;
-  char         *filename, *basename;
+  char         *filename, *basename, *col_filename;
   GError       *error = NULL;
+  gboolean      skip = FALSE;
 
   CheeseThumbViewThreadData *data;
+
+  filename = g_file_get_path (file);
+
+  if (!(g_str_has_suffix (filename, PHOTO_NAME_SUFFIX)) && !(g_str_has_suffix (filename, VIDEO_NAME_SUFFIX)))
+  {
+    g_free (filename);
+    return;
+  }
+
+  if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
+  {
+
+    /* check if the selected item is the first, else go through the store */
+    gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &col_filename, -1);
+    if (g_ascii_strcasecmp (col_filename, filename))
+    {
+      while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter))
+      {
+        gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &col_filename, -1);
+        if (!g_ascii_strcasecmp (col_filename, filename))
+        {
+          skip = TRUE;
+          break;
+        }
+      }
+    }
+    else
+    {
+      skip = TRUE;
+    }
+    g_free (col_filename);
+    g_free (filename);
+
+    if (skip) return;
+  }
 
   data             = g_new0 (CheeseThumbViewThreadData, 1);
   data->thumb_view = g_object_ref (thumb_view);
