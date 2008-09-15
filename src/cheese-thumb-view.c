@@ -225,8 +225,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   {
     char *f;
 
-    /* f = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 3)); */
-    f      = g_strdup_printf ("%s/pixmaps/cheese-1.svg", PACKAGE_DATADIR);
+    f = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 4));
     pixbuf = gdk_pixbuf_new_from_file (f, NULL);
     g_free (f);
   }
