@@ -1,0 +1,490 @@
+# translation of cheese.HEAD.po to
+# Tamil translation for GNOME Cheese.
+# Copyright (C) 2008 Project Cheese.
+# This file is distributed under the same license as the Cheese package.
+# Kannan Subramanian <skmessage@gmail.com>, 2008.
+# Shakthi Kannan <shakthimaan@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cheese.HEAD\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2008-09-10 09:09+0000\n"
+"PO-Revision-Date: 2008-09-15 11:38+0530\n"
+"Last-Translator: Shakthi kannan\n"
+"Language-Team:  <ta@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.11.4\n"
+
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "சீஸ் வெப்கேம் பூத்"
+
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1007
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "வெப்கேம் மூலம் வேடிக்கையான பட அமைப்பு விளைவுகளுடன் போட்டோ மற்றும் வீடீயோ எடுங்கள்"
+
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"தொடங்களில் செயல்படுத்தப்படும் விளைவுகளின் பட்டியல். சாத்தியமான மதிப்புகள்: \"மாவ்\","
+"\"நாய்ர்_பிளான்க்\", \"ஸாச்சுரேஷன்\", \"ஹல்க்\", \"வெர்ட்டிகல் பிளிப்\", \"ஹரிஸான்ட்டல்,"
+"பிளிப்\", \"ஷாகடெலிக்\", \"வெர்ட்டிகோ\", \"எட்ஜ்\", \"டைஸ்\", மற்றும் \"வார்ப்\""
+
+#: ../data/cheese.schemas.in.h:4
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"போட்டோக்கள் சேமித்து வைப்பதற்கான பாதையை விளக்குகிறது. காலியாக இருந்தால் \"XDG_PHOTO/வெப்கேம்\""
+"பயன்படுத்தப்படும். "
+
+#: ../data/cheese.schemas.in.h:5
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\""
+"will be used."
+msgstr ""
+"வீடியோக்கள் சேமித்து வைப்பதற்கான பாதையை விளக்குகிறது. காலியாக இருந்தால் \"XDG_VIDEO/வெப்கேம்\""
+"பயன்படுத்தப்படும்."
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "உயரச் செறிவு"
+
+#: ../data/cheese.schemas.in.h:7
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"உண்மைக்கு அமைக்கப்பட்டிருந்தால், கோப்பு ஒன்றைக் குப்பைத் தொட்டிக்கு நகர்த்துவதற்கு பதிலாக,"
+"உடனடியாகவும் ஓர் இடத்திலும் நீக்குவதற்கு அனுமதிப்பதற்கான ஓர் அம்சத்தை சீஸ் கொண்டிருக்கும்."
+"இந்த அம்சம் அபாயகரமானது. எனவே கவனமாகப் பயன்படுத்த வேண்டும்."
+
+#: ../data/cheese.schemas.in.h:8
+msgid "Photo Path"
+msgstr "போட்டோ பாதை"
+
+#: ../data/cheese.schemas.in.h:9
+msgid "Selected Effects"
+msgstr "தேர்ந்தெடுக்கப்பட்ட விளைவுகள்"
+
+#: ../data/cheese.schemas.in.h:10
+msgid "Set to True to show countdown when taking a photo"
+msgstr "போட்டோ எடுக்கும்போது இறங்குமுகக் கணிப்பைக் காட்டுவதற்கு, உண்மைக்கு அமைக்கவும்"
+
+#: ../data/cheese.schemas.in.h:11
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "வெப்கேமுக்குச் சுட்டிக் காட்டும் சாதனம் (உ-ம். /dev/video0)"
+
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "கேமிராவிலிருந்து பெறப்பட்ட உருவத்தின் உயரச் செறிவு"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "கேமிராவிலிருந்து பெறப்பட்ட உருவத்தின் அகலச் செறிவு"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Use a countdown"
+msgstr "இறங்குமுகக் கணிப்பைப் பயன்படுத்தவும்"
+
+#: ../data/cheese.schemas.in.h:15
+msgid "Video Path"
+msgstr "வீடியோ பாதை"
+
+#: ../data/cheese.schemas.in.h:16
+msgid "Webcam device string indicator"
+msgstr "வெப்கேம் சாதனம் சரம் சுட்டிக்காட்டி"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Whether to enable immediate deletion"
+msgstr "உடனடி நீக்கத்திற்கு வழிவகுக்க வேண்டுமா"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "அகலச் செறிவு"
+
+#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+msgid "Cheese"
+msgstr "சீஸ்"
+
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "போட்டோ செயல்முறைக்கு நிலை மாற்றவும்"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "வீடியோ செயல்முறைக்கு நிலை மாற்றவும்"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "விளைவுகள் தேர்ந்தெடுப்பானுக்கு நிலை மாற்றவும்"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1131
+#: ../src/cheese-window.c:1370
+msgid "_Effects"
+msgstr "விளைவுகள் (_E)"
+
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "முழுத் திரையைலிருந்து வெளியேரவும் (_L)"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1382
+msgid "_Photo"
+msgstr "போட்டோ (_P)"
+
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1434
+msgid "_Take a Photo"
+msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
+
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1383
+msgid "_Video"
+msgstr "வீடியோ (_V)"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>கேமிரா</b>"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "<b>Resolution</b>"
+msgstr "<b>செறிவு</b>"
+
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1374
+msgid "Preferences"
+msgstr "முன்னுரிமைகள்"
+
+#: ../src/cheese-effect-chooser.c:60
+msgid "No Effect"
+msgstr "விளைவு எதுவும் இல்லை"
+
+#: ../src/cheese-effect-chooser.c:62
+msgid "Mauve"
+msgstr "மாவ்"
+
+#: ../src/cheese-effect-chooser.c:64
+msgid "Noir/Blanc"
+msgstr "நாய்ர்/பிளான்க்"
+
+#: ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "ஸாச்சுரேஷன்"
+
+#: ../src/cheese-effect-chooser.c:68
+msgid "Hulk"
+msgstr "ஹல்க்"
+
+#: ../src/cheese-effect-chooser.c:70
+msgid "Vertical Flip"
+msgstr "வெர்ட்டிக்கல் பிளிப்"
+
+#: ../src/cheese-effect-chooser.c:72
+msgid "Horizontal Flip"
+msgstr "ஹரிஸான்ட்டல் பிளிப்"
+
+#: ../src/cheese-effect-chooser.c:74
+msgid "Shagadelic"
+msgstr "ஷாகடெலிக்"
+
+#: ../src/cheese-effect-chooser.c:76
+msgid "Vertigo"
+msgstr "வெர்ட்டிகோ"
+
+#: ../src/cheese-effect-chooser.c:78
+msgid "Edge"
+msgstr "எட்ஜ்"
+
+#: ../src/cheese-effect-chooser.c:80
+msgid "Dice"
+msgstr "டைஸ்"
+
+#: ../src/cheese-effect-chooser.c:82
+msgid "Warp"
+msgstr "வார்ப்"
+
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:474
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "கேமிரா இல்லை!"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "மேலும் விவரங்களுக்கு உதவியைப் பார்க்கவும்."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "உதவி"
+
+#: ../src/cheese-webcam.c:1546
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "தேவைப்படும் ஜீஸ்டரீமர் அம்சங்களில் ஒன்று அல்லது அதற்கு மேற்பட்டவை காணவில்லை: "
+
+#: ../src/cheese-window.c:77
+msgid "_Skip"
+msgstr "விட்டு விடவும் (_S)"
+
+#: ../src/cheese-window.c:78
+msgid "S_kip All"
+msgstr "அனைத்தையும் விட்டு விடவும் (_k)"
+
+#: ../src/cheese-window.c:79
+msgid "Delete _All"
+msgstr "அனைத்தையும் நீக்கி விடவும் (_A)"
+
+#: ../src/cheese-window.c:201
+#, c-format
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"காட்டுவதற்கான உலாவியைத் திறக்கத் தவறிவிட்டது:\n"
+"%s"
+
+#: ../src/cheese-window.c:225
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"தகவல் அனுப்புவதற்கு மின்னஞ்சல் கிளையனைத் திறக்கத் தவறிவிட்டது:\n"
+"%s"
+
+#: ../src/cheese-window.c:465
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"காட்டுவதற்கான நிரலைத் தொடங்கத் தவறிவிட்டது:\n"
+"%s"
+
+#: ../src/cheese-window.c:484
+msgid "Save File"
+msgstr "கோப்பையை சேமித்து வைக்கவும்"
+
+#: ../src/cheese-window.c:522
+#, c-format
+msgid "Could not save %s"
+msgstr "சேமித்து வைக்க முடியவில்லை %s"
+
+#: ../src/cheese-window.c:545
+msgid "Error while deleting"
+msgstr "நீக்கும்போது பிழை"
+
+#: ../src/cheese-window.c:546
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "\"%s\" கோப்பை நீக்க முடியாது. விவரங்கள்: %s"
+
+#: ../src/cheese-window.c:573
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected items?"
+msgstr "நிச்சயமாக %'d தேர்ந்தெடுத்த இனங்களை நீக்க வேண்டுமா?"
+
+#: ../src/cheese-window.c:578
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "நிச்சயமாக \"%s\" என்பதை நிரந்தரமாக நீக்க வேண்டுமா?"
+
+#: ../src/cheese-window.c:581
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "ஓர் இனத்தை நீக்கி விட்டால், அது நிரந்தரமாக இழக்கப்பட்டுவிடும்."
+
+#: ../src/cheese-window.c:602
+msgid "Unknown Error"
+msgstr "தெரியாத பிழை"
+
+#: ../src/cheese-window.c:632
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "குப்பைத் தொட்டிக்குக் கோப்பையை நகர்த்த முடியாது. உடனடியாக நீக்க வேண்டுமா?"
+
+#: ../src/cheese-window.c:633
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "குப்பைத் தொட்டிக்கு \"%s\" கோப்பை நகர்த்த முடியாது. விவரங்கள்: %s"
+
+#: ../src/cheese-window.c:702
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "எல்லா போட்டோக்கள் மற்றும் வீடியோக்களை நிச்சயமாகக் குப்பைத் தொட்டிக்கு நகர்த்த வேண்டுமா?"
+
+#: ../src/cheese-window.c:710
+msgid "_Move to Trash"
+msgstr "குப்பைத் தொட்டிக்கு நகர்த்தவும் (_M)"
+
+#: ../src/cheese-window.c:828
+#, c-format
+msgid "Could not set the Account Photo"
+msgstr "கணக்கியல் போட்டோவை அமைக்க முடியவில்லை"
+
+#: ../src/cheese-window.c:860
+msgid "Media files"
+msgstr "ஊடகக் கோப்புகள்"
+
+#: ../src/cheese-window.c:933 ../src/cheese-window.c:1205
+msgid "Unable to open help file for Cheese"
+msgstr "சீஸூக்கு உடைய உதவி கோப்பையைத் திறக்க முடியவில்லை"
+
+#: ../src/cheese-window.c:985
+msgid "translator-credits"
+msgstr "மொழிபெயர்ப்பாளர் - நன்றிக் குறிப்புகள்"
+
+#: ../src/cheese-window.c:988
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"இந்த நிரல், கட்டற்ற மென்பொருள் ஆகும். கட்டற்ற மென்பொருள் அறக்கட்டளை வெளியிட்டபடி,"
+"குனு பொது பொதுவுடைமை உரிமத்தின் விதிமுறைகளின்கீழ், உரிமத்தின் பதிப்பு 2 அல்லது,"
+"(உங்கள் விருப்பத்தின்படி) அதற்கு மேற்பட்ட ஏதேனும் பதிப்பு ஆகியவற்றை நீங்கள் மறுவிநியோகம் "
+"செய்யலாம மற்றும்/அல்லது மாற்றி அமைக்கலாம்.\n"
+
+#: ../src/cheese-window.c:992
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"இந்த நிரல், பயன் உள்ளதாக இருக்கும் என்ற நம்பிக்கையுடன் விநியோகிக்கப்படுகிறது. ஆனால்"
+"இதற்கு எந்தவோர் உத்தரவாதமும் கிடையாது. வர்த்தகம் செய்யக் கூடிய தன்மை அல்லது குறிப்பிட்ட"
+"ஒரு நோக்கத்திற்கான தகுதி என்பதைச் சுட்டிக் காட்டக் கூடிய உத்தரவாதமும் இல்லை. மேலும்"
+"விவரங்களுக்கு குனு பொது பொதுவுடைமை உரிமத்தைப் பார்க்கவும்.\n"
+
+#: ../src/cheese-window.c:996
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"இந்த நிரலுடன் குனு பொது பொதுவுடைமை உரிமத்தின் பிரதி ஒன்று தங்களுக்குக் கிடைத்திருக்க வேண்டும்."
+"இல்லை என்றால் <http://www.gnu.org/licenses/> பார்க்வும்."
+
+#: ../src/cheese-window.c:1013
+msgid "Cheese Website"
+msgstr "சீஸ் இணைய தளம்"
+
+#: ../src/cheese-window.c:1221
+msgid "_Start Recording"
+msgstr "பதிவைத் தொடங்கவும் (_S)"
+
+#: ../src/cheese-window.c:1320
+msgid "_Stop Recording"
+msgstr "பதிவை நிறுத்தவும் (_S)"
+
+#: ../src/cheese-window.c:1351
+msgid "_Cheese"
+msgstr "சீஸ் (_C)"
+
+#: ../src/cheese-window.c:1353
+msgid "_Edit"
+msgstr "திருத்தி அமைக்கவும் (_E)"
+
+#: ../src/cheese-window.c:1354
+msgid "Move All to Trash"
+msgstr "எல்லவற்றையும் குப்பைத் தொட்டிக்கு நகர்த்தவும்"
+
+#: ../src/cheese-window.c:1357
+msgid "_Help"
+msgstr "உதவி (_H)"
+
+#: ../src/cheese-window.c:1360
+msgid "_Contents"
+msgstr "பொருளடக்கம் (_C)"
+
+#: ../src/cheese-window.c:1360
+msgid "Help on this Application"
+msgstr "இந்த செயல்பாட்டில் உதவி"
+
+#: ../src/cheese-window.c:1366
+msgid "Countdown"
+msgstr "இறங்குமுகக் கணிப்பு"
+
+#: ../src/cheese-window.c:1387
+msgid "_Open"
+msgstr "திறக்கவும் (_O)"
+
+#: ../src/cheese-window.c:1389
+msgid "Save _As..."
+msgstr " என்று சேமித்து வைக்கவும் (_A)"
+
+#: ../src/cheese-window.c:1391
+msgid "Move to _Trash"
+msgstr "குப்பைத் தொட்டிக்கு நகர்த்தவும் (_T)"
+
+#: ../src/cheese-window.c:1393
+msgid "Delete"
+msgstr "நீக்கவும்"
+
+#: ../src/cheese-window.c:1398 ../src/cheese-window.c:1626
+msgid "_Take a photo"
+msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
+
+#: ../src/cheese-window.c:1402
+msgid "_Recording"
+msgstr "பதிவு செய்யப்படுகிறது (_R)"
+
+#: ../src/cheese-window.c:1406
+msgid "_Set As Account Photo"
+msgstr "கணக்கியல் போட்டோவாக அமைக்கவும் (_S)"
+
+#: ../src/cheese-window.c:1410
+msgid "Send by _Mail"
+msgstr "அஞ்சல் மூலம் அனுப்பவும் (_M)"
+
+#: ../src/cheese-window.c:1414
+msgid "Send _To"
+msgstr "என்பதற்கு அனுப்பவும் (_T)"
+
+#: ../src/cheese-window.c:1418
+msgid "Export to F-_Spot"
+msgstr "F-ஸ்பாட்டுக்கு ஏற்றுமதி செய்யவும் (_S)"
+
+#: ../src/cheese-window.c:1422
+msgid "Export to _Flickr"
+msgstr "பிளிக்கருக்கு ஏற்றுமதி செய்யவும் (_F)"
+
+#: ../src/cheese-window.c:1446
+msgid "_Start recording"
+msgstr "பதிவு செய்யத் தொடங்கவும் (_S)"
+
+#: ../src/cheese-window.c:1769
+msgid "Quit"
+msgstr "வெளியேறவும்"
+
+#: ../src/cheese-window.c:1775
+msgid "About"
+msgstr "பற்றி"
+
+#: ../src/cheese-window.c:1856
+msgid "Check your gstreamer installation"
+msgstr "உங்களுடைய ஜீஸ்டரீமர் நிறுவுதலைச் சரிபார்க்கவும்"
+
+#: ../src/cheese.c:161
+msgid "Be verbose"
+msgstr "நீள் விளக்கமாக இருக்கவும்"
+
+#: ../src/cheese.c:179
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr "வெப்கேம் மூலம் வேடிக்கையான பட அமைப்பு விளைவுகளுடன் போட்டோ மற்றும் வீடியோ எடுங்கள்"
+
