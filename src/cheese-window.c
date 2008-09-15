@@ -570,7 +570,9 @@ cheese_window_cmd_delete_file (CheeseWindow *cheese_window, GList *files, gboole
   {
     if (list_length > 1)
     {
-      primary = g_strdup_printf (_("Are you sure you want to permanently delete the %'d selected items?"),
+      primary = g_strdup_printf (ngettext ("Are you sure you want to permanently delete the %'d selected item?",
+                                           "Are you sure you want to permanently delete the %'d selected items?",
+                                           list_length),
                                  list_length);
     }
     else
@@ -658,6 +660,7 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
           /* forward the list to cmd_delete */
           cheese_window_cmd_delete_file (cheese_window, l, TRUE);
           return;
+
         case GTK_RESPONSE_ACCEPT:
 
           /* create a single file list for cmd_delete */
@@ -665,10 +668,12 @@ cheese_window_cmd_move_file_to_trash (CheeseWindow *cheese_window, GList *files)
           cheese_window_cmd_delete_file (cheese_window, d, TRUE);
           g_list_free (d);
           break;
+
         case CHEESE_RESPONSE_SKIP:
 
           /* do nothing, skip to the next item */
           break;
+
         case CHEESE_RESPONSE_SKIP_ALL:
         case GTK_RESPONSE_CANCEL:
         case GTK_RESPONSE_DELETE_EVENT:
