@@ -8,19 +8,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-04 21:42+0900\n"
-"PO-Revision-Date: 2008-09-04 21:55+0900\n"
+"POT-Creation-Date: 2008-09-17 01:45+0900\n"
+"PO-Revision-Date: 2008-09-17 01:46+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr-hackers@lists.kldp.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
 msgstr "치즈 웹카메라 사진 찍기"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1007
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1012
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "웹카메라에서 사진과 비디오를 찍고, 재미있는 그래픽 효과를 사용할 수도 있습니"
@@ -33,7 +34,10 @@ msgid ""
 "A list of effects applied on startup. Possible values are: \"mauve\", "
 "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
 "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr "시작할 때 적용할 효과. 가능한 값은 다음과 같습니다: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\", \"warp\""
+msgstr ""
+"시작할 때 적용할 효과. 가능한 값은 다음과 같습니다: \"mauve\", \"noir_blanc"
+"\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", "
+"\"shagadelic\", \"vertigo\", \"edge\", \"dice\", \"warp\""
 
 #: ../data/cheese.schemas.in.h:4
 msgid ""
@@ -60,7 +64,9 @@ msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
 "feature can be dangerous, so use caution."
-msgstr "참이면 치즈에서 파일을 휴지통에 옮기지 않고 바로 지울 수 있는 인터페이스가 생깁니다. 이 기능은 위험할 수도 있으니 주의해서 사용해야 합니다."
+msgstr ""
+"참이면 치즈에서 파일을 휴지통에 옮기지 않고 바로 지울 수 있는 인터페이스가 생"
+"깁니다. 이 기능은 위험할 수도 있으니 주의해서 사용해야 합니다."
 
 #: ../data/cheese.schemas.in.h:8
 msgid "Photo Path"
@@ -106,7 +112,7 @@ msgstr "즉시 지우기를 사용할 지 여부"
 msgid "Width resolution"
 msgstr "가로 해상도"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:100
+#: ../data/cheese.ui.h:1 ../src/cheese.c:177
 msgid "Cheese"
 msgstr "치즈"
 
@@ -122,8 +128,8 @@ msgstr "비디오 모드로 전환"
 msgid "Switch to the Effects Selector"
 msgstr "효과 선택 창으로 전환"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1131
-#: ../src/cheese-window.c:1368
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1136
+#: ../src/cheese-window.c:1375
 msgid "_Effects"
 msgstr "효과(_E)"
 
@@ -131,15 +137,15 @@ msgstr "효과(_E)"
 msgid "_Leave Fullscreen"
 msgstr "전체 화면 나가기(_L)"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1380
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1387
 msgid "_Photo"
 msgstr "사진(_P)"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1432
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1439
 msgid "_Take a Photo"
 msgstr "사진 찍기(_T)"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1381
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1388
 msgid "_Video"
 msgstr "비디오(_V)"
 
@@ -151,7 +157,7 @@ msgstr "<b>카메라</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>해상도</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1372
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1379
 msgid "Preferences"
 msgstr "기본 설정"
 
@@ -228,7 +234,7 @@ msgstr "더 자세한 정보는 도움말을 참고하십시오."
 msgid "Help"
 msgstr "도움말"
 
-#: ../src/cheese-webcam.c:1410
+#: ../src/cheese-webcam.c:1546
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "필요한 gstreamer 엘리먼트가 없습니다: "
 
@@ -291,59 +297,61 @@ msgstr "\"%s\" 파일을 지울 수 없습니다. 자세히: %s"
 
 #: ../src/cheese-window.c:573
 #, c-format
-msgid "Are you sure you want to permanently delete the %'d selected items?"
-msgstr "정말로 선택한 %'d개 항목을 완전히 지우시겠습니까?"
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "정말로 선택한 %'d개 항목을 완전히 지우시겠습니까?"
 
-#: ../src/cheese-window.c:578
+#: ../src/cheese-window.c:580
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "정말로 \"%s\" 항목을 완전히 지우시겠습니까?"
 
-#: ../src/cheese-window.c:581
+#: ../src/cheese-window.c:583
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "항목을 지우면 되살릴 수 없게 됩니다."
 
-#: ../src/cheese-window.c:602
+#: ../src/cheese-window.c:604
 msgid "Unknown Error"
 msgstr "알 수 없는 오류"
 
-#: ../src/cheese-window.c:632
+#: ../src/cheese-window.c:634
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "파일을 휴지통에 옮길 수 없습니다. 바로 지우시겠습니까?"
 
-#: ../src/cheese-window.c:633
+#: ../src/cheese-window.c:635
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "\"%s\" 파일을 휴지통에 옮길 수 없습니다. 자세히: %s"
 
-#: ../src/cheese-window.c:702
+#: ../src/cheese-window.c:707
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "정말로 모든 사진과 비디오를 휴지통에 옮기시겠습니까?"
 
-#: ../src/cheese-window.c:710
+#: ../src/cheese-window.c:715
 msgid "_Move to Trash"
 msgstr "휴지통에 옮기기(_M)"
 
-#: ../src/cheese-window.c:828
+#: ../src/cheese-window.c:833
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "계정 사진을 설정할 수 없습니다"
 
-#: ../src/cheese-window.c:860
+#: ../src/cheese-window.c:865
 msgid "Media files"
 msgstr "미디어 파일"
 
-#: ../src/cheese-window.c:933 ../src/cheese-window.c:1205
+#: ../src/cheese-window.c:938 ../src/cheese-window.c:1210
 msgid "Unable to open help file for Cheese"
 msgstr "치즈의 도움말 파일을 열 수 없습니다"
 
-#: ../src/cheese-window.c:985
+#: ../src/cheese-window.c:990
 msgid "translator-credits"
 msgstr "류창우 <cwryu@debian.org>, 2008."
 
-#: ../src/cheese-window.c:988
+#: ../src/cheese-window.c:993
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -355,7 +363,7 @@ msgstr ""
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
 
-#: ../src/cheese-window.c:992
+#: ../src/cheese-window.c:997
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -367,7 +375,7 @@ msgstr ""
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
 
-#: ../src/cheese-window.c:996
+#: ../src/cheese-window.c:1001
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -375,111 +383,111 @@ msgstr ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1013
+#: ../src/cheese-window.c:1018
 msgid "Cheese Website"
 msgstr "치즈 웹사이트"
 
-#: ../src/cheese-window.c:1222
+#: ../src/cheese-window.c:1226
 msgid "_Start Recording"
 msgstr "녹화 시작(_S)"
 
-#: ../src/cheese-window.c:1318
+#: ../src/cheese-window.c:1325
 msgid "_Stop Recording"
 msgstr "녹화 중지(_S)"
 
-#: ../src/cheese-window.c:1349
+#: ../src/cheese-window.c:1356
 msgid "_Cheese"
 msgstr "치즈(_C)"
 
-#: ../src/cheese-window.c:1351
+#: ../src/cheese-window.c:1358
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../src/cheese-window.c:1352
+#: ../src/cheese-window.c:1359
 msgid "Move All to Trash"
 msgstr "모두 휴지통으로 옮기기"
 
-#: ../src/cheese-window.c:1355
+#: ../src/cheese-window.c:1362
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../src/cheese-window.c:1358
+#: ../src/cheese-window.c:1365
 msgid "_Contents"
 msgstr "차례(_C)"
 
-#: ../src/cheese-window.c:1358
+#: ../src/cheese-window.c:1365
 msgid "Help on this Application"
 msgstr "이 프로그램에 대한 도움말"
 
-#: ../src/cheese-window.c:1364
+#: ../src/cheese-window.c:1371
 msgid "Countdown"
 msgstr "초읽기"
 
-#: ../src/cheese-window.c:1385
+#: ../src/cheese-window.c:1392
 msgid "_Open"
 msgstr "열기(_O)"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1394
 msgid "Save _As..."
 msgstr "다른 이름으로 저장(_A)..."
 
-#: ../src/cheese-window.c:1389
+#: ../src/cheese-window.c:1396
 msgid "Move to _Trash"
 msgstr "휴지통으로 옮기기(_T)"
 
-#: ../src/cheese-window.c:1391
+#: ../src/cheese-window.c:1398
 msgid "Delete"
 msgstr "지우기"
 
-#: ../src/cheese-window.c:1396 ../src/cheese-window.c:1624
+#: ../src/cheese-window.c:1403 ../src/cheese-window.c:1631
 msgid "_Take a photo"
 msgstr "사진 찍기(_T)"
 
-#: ../src/cheese-window.c:1400
+#: ../src/cheese-window.c:1407
 msgid "_Recording"
 msgstr "녹화(_R)"
 
-#: ../src/cheese-window.c:1404
+#: ../src/cheese-window.c:1411
 msgid "_Set As Account Photo"
 msgstr "계정 사진으로 설정(_S)"
 
-#: ../src/cheese-window.c:1408
+#: ../src/cheese-window.c:1415
 msgid "Send by _Mail"
 msgstr "메일로 보내기(_M)"
 
-#: ../src/cheese-window.c:1412
+#: ../src/cheese-window.c:1419
 msgid "Send _To"
 msgstr "보내기(_T)"
 
-#: ../src/cheese-window.c:1416
+#: ../src/cheese-window.c:1423
 msgid "Export to F-_Spot"
 msgstr "F-Spot에 내보내기(_S)"
 
-#: ../src/cheese-window.c:1420
+#: ../src/cheese-window.c:1427
 msgid "Export to _Flickr"
 msgstr "Flickr에 내보내기(_F)"
 
-#: ../src/cheese-window.c:1444
+#: ../src/cheese-window.c:1451
 msgid "_Start recording"
 msgstr "녹화 시작(_S)"
 
-#: ../src/cheese-window.c:1767
+#: ../src/cheese-window.c:1774
 msgid "Quit"
 msgstr "끝내기"
 
-#: ../src/cheese-window.c:1773
+#: ../src/cheese-window.c:1780
 msgid "About"
 msgstr "정보"
 
-#: ../src/cheese-window.c:1854
+#: ../src/cheese-window.c:1861
 msgid "Check your gstreamer installation"
 msgstr "gstreamer를 올바르게 설치했는지 확인하십시오"
 
-#: ../src/cheese.c:84
+#: ../src/cheese.c:161
 msgid "Be verbose"
 msgstr "자세히 출력"
 
-#: ../src/cheese.c:102
+#: ../src/cheese.c:179
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- 웹카메라에서 사진과 비디오를 찍고, 재미있는 그래픽 효과를 사용할 수도 있습"
