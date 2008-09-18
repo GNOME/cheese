@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-13 05:37+0300\n"
+"POT-Creation-Date: 2008-09-18 07:35+0300\n"
 "PO-Revision-Date: 2008-09-10 23:14+0300\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Cheese Webcam Booth"
 msgstr "Peynir Web Kamerası Standı"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1007
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1012
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Web kameranızdan fotoğraflar ve videolar çekip bunlara grafiksel etkiler "
@@ -128,8 +128,8 @@ msgstr "Video Kipine Geç"
 msgid "Switch to the Effects Selector"
 msgstr "Etki Seçiciye Geç"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1131
-#: ../src/cheese-window.c:1370
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1136
+#: ../src/cheese-window.c:1375
 msgid "_Effects"
 msgstr "_Etkiler"
 
@@ -137,15 +137,15 @@ msgstr "_Etkiler"
 msgid "_Leave Fullscreen"
 msgstr "_Tam Ekranı Terket"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1382
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1387
 msgid "_Photo"
 msgstr "_Fotoğraf"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1434
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1439
 msgid "_Take a Photo"
 msgstr "_Fotoğraf Çek"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1383
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1388
 msgid "_Video"
 msgstr "_Video"
 
@@ -157,7 +157,7 @@ msgstr "<b>Fotoğraf Makinesi</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>Çözünürlük</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1374
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1379
 msgid "Preferences"
 msgstr "Tercihler"
 
@@ -297,59 +297,61 @@ msgstr "Dosya \"%s\" silinemiyor. Ayrıntılar: %s"
 
 #: ../src/cheese-window.c:573
 #, c-format
-msgid "Are you sure you want to permanently delete the %'d selected items?"
-msgstr "%'d seçili öğeyi kalıcı olarak silmek istediğinizden emin misiniz?"
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "%'d seçili öğeyi kalıcı olarak silmek istediğinizden emin misiniz?"
 
-#: ../src/cheese-window.c:578
+#: ../src/cheese-window.c:580
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Kalıcı olarak \"%s\" öğesini silmek istediğinizden emin misiniz?"
 
-#: ../src/cheese-window.c:581
+#: ../src/cheese-window.c:583
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Eğer bir öğeyi silerseniz, kalıcı olarak kaybolacak."
 
-#: ../src/cheese-window.c:602
+#: ../src/cheese-window.c:604
 msgid "Unknown Error"
 msgstr "Bilinmeyen Hata"
 
-#: ../src/cheese-window.c:632
+#: ../src/cheese-window.c:634
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Dosya çöpe taşınamıyor, anında silmek ister misiniz?"
 
-#: ../src/cheese-window.c:633
+#: ../src/cheese-window.c:635
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Dosya \"%s\" çöpe taşınamıyor. Ayrıntılar: %s"
 
-#: ../src/cheese-window.c:702
+#: ../src/cheese-window.c:707
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Gerçekten tüm fotoğraflar ve videolar çöpe taşınsın mı?"
 
-#: ../src/cheese-window.c:710
+#: ../src/cheese-window.c:715
 msgid "_Move to Trash"
 msgstr "Çöp'e _Taşı"
 
-#: ../src/cheese-window.c:828
+#: ../src/cheese-window.c:833
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Hesap Fotoğrafı atanamadı"
 
-#: ../src/cheese-window.c:860
+#: ../src/cheese-window.c:865
 msgid "Media files"
 msgstr "Ortam dosyaları"
 
-#: ../src/cheese-window.c:933 ../src/cheese-window.c:1205
+#: ../src/cheese-window.c:938 ../src/cheese-window.c:1210
 msgid "Unable to open help file for Cheese"
 msgstr "Peynir için yardım dosyası açılamadı"
 
-#: ../src/cheese-window.c:985
+#: ../src/cheese-window.c:990
 msgid "translator-credits"
 msgstr "Barış Çiçek <baris@teamforce.name.tr>"
 
-#: ../src/cheese-window.c:988
+#: ../src/cheese-window.c:993
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -360,7 +362,7 @@ msgstr ""
 "yayınlanan GNU Genel Kamu Lisansı sürüm 2 ya da (tercihen) daha sonraki "
 "sürümleri altında tekrar dağıtabilir ya da değiştirebilirsiniz\n"
 
-#: ../src/cheese-window.c:992
+#: ../src/cheese-window.c:997
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -372,7 +374,7 @@ msgstr ""
 "de bulunmamaktadır.  Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na "
 "bakın.\n"
 
-#: ../src/cheese-window.c:996
+#: ../src/cheese-window.c:1001
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -380,103 +382,103 @@ msgstr ""
 "GNU Genel Kamu Lisansı'nın bir kopyasını bu program ile almış olmalısınız. "
 "Eğer almadıysanız <http://www.gnu.org/licenses/> adresine bakın."
 
-#: ../src/cheese-window.c:1013
+#: ../src/cheese-window.c:1018
 msgid "Cheese Website"
 msgstr "Peynir Web Sitesi"
 
-#: ../src/cheese-window.c:1221
+#: ../src/cheese-window.c:1226
 msgid "_Start Recording"
 msgstr "_Kayda Başla"
 
-#: ../src/cheese-window.c:1320
+#: ../src/cheese-window.c:1325
 msgid "_Stop Recording"
 msgstr "_Kaydı Durdur"
 
-#: ../src/cheese-window.c:1351
+#: ../src/cheese-window.c:1356
 msgid "_Cheese"
 msgstr "_Peynir"
 
-#: ../src/cheese-window.c:1353
+#: ../src/cheese-window.c:1358
 msgid "_Edit"
 msgstr "_Düzenle"
 
-#: ../src/cheese-window.c:1354
+#: ../src/cheese-window.c:1359
 msgid "Move All to Trash"
 msgstr "Hepsini Çöpe Taşı"
 
-#: ../src/cheese-window.c:1357
+#: ../src/cheese-window.c:1362
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../src/cheese-window.c:1360
+#: ../src/cheese-window.c:1365
 msgid "_Contents"
 msgstr "İçi_ndekiler"
 
-#: ../src/cheese-window.c:1360
+#: ../src/cheese-window.c:1365
 msgid "Help on this Application"
 msgstr "Bu uygualama hakkında yardım"
 
-#: ../src/cheese-window.c:1366
+#: ../src/cheese-window.c:1371
 msgid "Countdown"
 msgstr "Geri Sayım"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1392
 msgid "_Open"
 msgstr "_Aç"
 
-#: ../src/cheese-window.c:1389
+#: ../src/cheese-window.c:1394
 msgid "Save _As..."
 msgstr "Farklı _Kaydet..."
 
-#: ../src/cheese-window.c:1391
+#: ../src/cheese-window.c:1396
 msgid "Move to _Trash"
 msgstr "Çöp'e _Taşı"
 
-#: ../src/cheese-window.c:1393
+#: ../src/cheese-window.c:1398
 msgid "Delete"
 msgstr "Sil"
 
-#: ../src/cheese-window.c:1398 ../src/cheese-window.c:1626
+#: ../src/cheese-window.c:1403 ../src/cheese-window.c:1631
 msgid "_Take a photo"
 msgstr "_Fotoğraf çek"
 
-#: ../src/cheese-window.c:1402
+#: ../src/cheese-window.c:1407
 msgid "_Recording"
 msgstr "_Kayıt"
 
-#: ../src/cheese-window.c:1406
+#: ../src/cheese-window.c:1411
 msgid "_Set As Account Photo"
 msgstr "_Hesap Fotoğrafı Olarak Ata"
 
-#: ../src/cheese-window.c:1410
+#: ../src/cheese-window.c:1415
 msgid "Send by _Mail"
 msgstr "_Mektup ile Gönder"
 
-#: ../src/cheese-window.c:1414
+#: ../src/cheese-window.c:1419
 msgid "Send _To"
 msgstr "_Gönder"
 
-#: ../src/cheese-window.c:1418
+#: ../src/cheese-window.c:1423
 msgid "Export to F-_Spot"
 msgstr "F-_Spot'a Aktar"
 
-#: ../src/cheese-window.c:1422
+#: ../src/cheese-window.c:1427
 msgid "Export to _Flickr"
 msgstr "_Flickr'a Aktar"
 
-#: ../src/cheese-window.c:1446
+#: ../src/cheese-window.c:1451
 msgid "_Start recording"
 msgstr "_Kayda başla"
 
-#: ../src/cheese-window.c:1769
+#: ../src/cheese-window.c:1774
 msgid "Quit"
 msgstr "Çık"
 
-#: ../src/cheese-window.c:1775
+#: ../src/cheese-window.c:1780
 msgid "About"
 msgstr "Hakkında"
 
-#: ../src/cheese-window.c:1856
+#: ../src/cheese-window.c:1861
 msgid "Check your gstreamer installation"
 msgstr "Gstreamer kurulumunu kontrol edin"
 
