@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-14 11:07+0100\n"
+"POT-Creation-Date: 2008-09-18 02:35+0100\n"
 "PO-Revision-Date: 2008-08-04 13:26-0000\n"
 "Last-Translator: Youssef Chahibi <chahibi@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Cheese Webcam Booth"
 msgstr "موقع شيز"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1007
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1012
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "التقط صور و فيديو من كاميرا الوب، مع مؤثرات رسومية"
 
@@ -133,8 +133,8 @@ msgstr ""
 msgid "Switch to the Effects Selector"
 msgstr ""
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1131
-#: ../src/cheese-window.c:1370
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1136
+#: ../src/cheese-window.c:1375
 msgid "_Effects"
 msgstr "المؤث_رات"
 
@@ -142,15 +142,15 @@ msgstr "المؤث_رات"
 msgid "_Leave Fullscreen"
 msgstr ""
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1382
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1387
 msgid "_Photo"
 msgstr "_صورة"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1434
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1439
 msgid "_Take a Photo"
 msgstr "ال_تقط صورة"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1383
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1388
 msgid "_Video"
 msgstr "_فيديو"
 
@@ -162,7 +162,7 @@ msgstr "<b>الكاميرا</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>الدقة</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1374
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1379
 msgid "Preferences"
 msgstr "التفضيلات"
 
@@ -301,62 +301,69 @@ msgstr "تعذّر نقل الملف \"%s\" إلى المهملات. التفا�
 
 #: ../src/cheese-window.c:573
 #, c-format
-msgid "Are you sure you want to permanently delete the %'d selected items?"
-msgstr ""
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-#: ../src/cheese-window.c:578
+#: ../src/cheese-window.c:580
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr ""
 
-#: ../src/cheese-window.c:581
+#: ../src/cheese-window.c:583
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr ""
 
-#: ../src/cheese-window.c:602
+#: ../src/cheese-window.c:604
 msgid "Unknown Error"
 msgstr ""
 
-#: ../src/cheese-window.c:632
+#: ../src/cheese-window.c:634
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr ""
 
-#: ../src/cheese-window.c:633
+#: ../src/cheese-window.c:635
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "تعذّر نقل الملف \"%s\" إلى المهملات. التفاصيل: %s "
 
-#: ../src/cheese-window.c:702
+#: ../src/cheese-window.c:707
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "أأنقل فعلا كل الصور والفيديو إلى المهملات؟"
 
-#: ../src/cheese-window.c:710
+#: ../src/cheese-window.c:715
 msgid "_Move to Trash"
 msgstr "ا_نقل إلى المهملات"
 
-#: ../src/cheese-window.c:828
+#: ../src/cheese-window.c:833
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "تعذّر وضع صورة الحساب"
 
-#: ../src/cheese-window.c:860
+#: ../src/cheese-window.c:865
 msgid "Media files"
 msgstr ""
 
-#: ../src/cheese-window.c:933 ../src/cheese-window.c:1205
+#: ../src/cheese-window.c:938 ../src/cheese-window.c:1210
 msgid "Unable to open help file for Cheese"
 msgstr "تعذّر فتح ملف المساعدة"
 
-#: ../src/cheese-window.c:985
+#: ../src/cheese-window.c:990
 msgid "translator-credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
 "جهاد عفيفي\t<djihed@gmail.com>\n"
 "خالد حسني\t<khaledhosny@eglug.org>"
 
-#: ../src/cheese-window.c:988
+#: ../src/cheese-window.c:993
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -367,7 +374,7 @@ msgstr ""
 "العامة لجنو والتي نشرتها منظمة البرمجيات الحرة؛ سواء الإصدارة 2 من الرخصة أو "
 "أي إصدارة بعدها حسب رغبتك.\n"
 
-#: ../src/cheese-window.c:992
+#: ../src/cheese-window.c:997
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -378,7 +385,7 @@ msgstr ""
 "حتى أي ضمان يضمن صلاحية العرض في السوق أو توافقه مع أي استخدام محدد. يمكنك "
 "مراجعة الرخصة العمومية العامة لجنو لمزيد من التفاصيل.\n"
 
-#: ../src/cheese-window.c:996
+#: ../src/cheese-window.c:1001
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -386,103 +393,103 @@ msgstr ""
 "من المفترض أن تكون قد استلمت نسخة من رخصة جنو العامة مع البرنامج؛ في حال عدم "
 "استلامك لذلك، يمكنك تصفح <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1013
+#: ../src/cheese-window.c:1018
 msgid "Cheese Website"
 msgstr "موقع شيز"
 
-#: ../src/cheese-window.c:1221
+#: ../src/cheese-window.c:1226
 msgid "_Start Recording"
 msgstr "ا_بدأ التسجيل"
 
-#: ../src/cheese-window.c:1320
+#: ../src/cheese-window.c:1325
 msgid "_Stop Recording"
 msgstr "أو_قف التسجيل"
 
-#: ../src/cheese-window.c:1351
+#: ../src/cheese-window.c:1356
 msgid "_Cheese"
 msgstr "_شيز"
 
-#: ../src/cheese-window.c:1353
+#: ../src/cheese-window.c:1358
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../src/cheese-window.c:1354
+#: ../src/cheese-window.c:1359
 msgid "Move All to Trash"
 msgstr "انقل الكل إلى المهملات"
 
-#: ../src/cheese-window.c:1357
+#: ../src/cheese-window.c:1362
 msgid "_Help"
 msgstr "م_ساعدة"
 
-#: ../src/cheese-window.c:1360
+#: ../src/cheese-window.c:1365
 msgid "_Contents"
 msgstr "الم_حتويات"
 
-#: ../src/cheese-window.c:1360
+#: ../src/cheese-window.c:1365
 msgid "Help on this Application"
 msgstr "مساعدة حول هذا البرنامج"
 
-#: ../src/cheese-window.c:1366
+#: ../src/cheese-window.c:1371
 msgid "Countdown"
 msgstr "العد التنازلي"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1392
 msgid "_Open"
 msgstr "ا_فتح"
 
-#: ../src/cheese-window.c:1389
+#: ../src/cheese-window.c:1394
 msgid "Save _As..."
 msgstr "احفظ با_سم..."
 
-#: ../src/cheese-window.c:1391
+#: ../src/cheese-window.c:1396
 msgid "Move to _Trash"
 msgstr "انقل إلى ال_مهملات"
 
-#: ../src/cheese-window.c:1393
+#: ../src/cheese-window.c:1398
 msgid "Delete"
 msgstr ""
 
-#: ../src/cheese-window.c:1398 ../src/cheese-window.c:1626
+#: ../src/cheese-window.c:1403 ../src/cheese-window.c:1631
 msgid "_Take a photo"
 msgstr "ا_لتقط صورة"
 
-#: ../src/cheese-window.c:1402
+#: ../src/cheese-window.c:1407
 msgid "_Recording"
 msgstr "الت_سجيل"
 
-#: ../src/cheese-window.c:1406
+#: ../src/cheese-window.c:1411
 msgid "_Set As Account Photo"
 msgstr "ا_جعلها صورة الحساب"
 
-#: ../src/cheese-window.c:1410
+#: ../src/cheese-window.c:1415
 msgid "Send by _Mail"
 msgstr "أرسِل بال_بريد"
 
-#: ../src/cheese-window.c:1414
+#: ../src/cheese-window.c:1419
 msgid "Send _To"
 msgstr "أرسل _إلى"
 
-#: ../src/cheese-window.c:1418
+#: ../src/cheese-window.c:1423
 msgid "Export to F-_Spot"
 msgstr "_صدّر إلى F-Spot"
 
-#: ../src/cheese-window.c:1422
+#: ../src/cheese-window.c:1427
 msgid "Export to _Flickr"
 msgstr "صدّر إلى _فليكر"
 
-#: ../src/cheese-window.c:1446
+#: ../src/cheese-window.c:1451
 msgid "_Start recording"
 msgstr "ا_بدأ التسجيل"
 
-#: ../src/cheese-window.c:1769
+#: ../src/cheese-window.c:1774
 msgid "Quit"
 msgstr "اخرج"
 
-#: ../src/cheese-window.c:1775
+#: ../src/cheese-window.c:1780
 msgid "About"
 msgstr "عنْ"
 
-#: ../src/cheese-window.c:1856
+#: ../src/cheese-window.c:1861
 msgid "Check your gstreamer installation"
 msgstr ""
 
