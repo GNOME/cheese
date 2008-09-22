@@ -1,6 +1,51 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.24.0
+  - correct an error in the help file, which prevented the document to be valid
+  - update the cheese dependencies, fixes bug #547203
+  - use the correct translated plural form when deleting more than one item from
+    the thumbnail bar, fixes bug #552290, courtesy of Yuriy Penkin
+  - do not add a new item to the thumbnail bar, if its already there, fixes bug #549804
+  - update documentation, courtesy of Joshua Henderson
+  - include gio header in cheese.c
+  - added/updated translations
+    - ar, courtesy of Usama Akkad
+    - bg, courtesy of Alexander Shopov
+    - ca, courtesy of Gil Forcada
+    - cs, courtesy of Petr Kovar
+    - da, courtesy of Kenneth Nielsen
+    - de, courtesy of Hendrik Richter
+    - en_GB, courtesy of Philip Withnall
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fi, courtesy of Ilkka Tuohela
+    - fr, courtesy of Robert-André Mauchin
+    - gl, courtesy of Ignacio Casal Quinteiro
+    - gu, courtesy of Sweta Kothari
+    - hu, courtesy of Gabor Kelemen
+    - it, courtesy of Alessandro Falappa
+    - ja, courtesy of Takeshi AIHANA
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Gintautas Miliauskas
+    - ml, courtesy of പ്രവീണ്‍ അരിമ്പ്രത്തൊടിയില്‍
+    - mr, courtesy of Sandeep Shedmake
+    - nb, courtesy of Kjartan Maraas
+    - nl, courtesy of Wouter Bolsterlee
+    - pl, courtesy of Tomasz Dominikowski
+    - pt_BR, courtesy of Og Maciel
+    - pt, courtesy of Duarte Loreto
+    - ru, courtesy of Alexandre Prokoudine
+    - sl, courtesy of Matej Urbančič
+    - sq, courtesy of Laurent Dhima
+    - sr, courtesy of Горан Ракић
+    - sr@latin, courtesy of Goran Rakić
+    - sv, courtesy of Daniel Nylander
+    - ta, courtesy of I. Felix
+    - th, courtesy of Theppitak Karoonboonyanan
+    - tr, courtesy of Baris Cicek
+
 version 2.23.92
   - documentation update (not yet finished), courtesy of joshua henderson
   - old photos and videos (before 2.24) are now available in cheese 2.24, fixes bug #547290
