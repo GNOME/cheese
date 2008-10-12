@@ -109,6 +109,7 @@ typedef struct
   GtkWidget *video_vbox;
 
   GtkWidget *effect_frame;
+  GtkWidget *effect_alignment;
   GtkWidget *effect_chooser;
   GtkWidget *throbber_frame;
   GtkWidget *throbber;
@@ -283,12 +284,8 @@ cheese_window_fullscreen_set_timeout (CheeseWindow *cheese_window)
   GSource *source;
 
   cheese_window_fullscreen_clear_timeout (cheese_window);
-
-  /* make a difference between effects page and video preview */
-  if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) == 0)
-    source = g_timeout_source_new (FULLSCREEN_TIMEOUT);
-  else
-    source = g_timeout_source_new (FULLSCREEN_EFFECTS_TIMEOUT);
+  
+  source = g_timeout_source_new (FULLSCREEN_TIMEOUT);
 
   g_source_set_callback (source, cheese_window_fullscreen_timeout_cb, cheese_window, NULL);
   g_source_attach (source, NULL);
@@ -321,8 +318,10 @@ cheese_window_fullscreen_motion_notify_cb (GtkWidget      *widget,
     {
       cheese_window_fullscreen_show_bar (cheese_window);
     }
-
-    cheese_window_fullscreen_set_timeout (cheese_window);
+    
+    //don't set the timeout in effect-chooser mode
+    if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) != 1)
+      cheese_window_fullscreen_set_timeout (cheese_window);
   }
   return FALSE;
 }
@@ -354,9 +353,13 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
                       cheese_window);
 
     gtk_window_fullscreen (GTK_WINDOW (cheese_window->window));
-
+    
+    gtk_widget_set_size_request (cheese_window->effect_alignment, -1, FULLSCREEN_POPUP_HEIGHT);
     cheese_window_fullscreen_show_bar (cheese_window);
-    cheese_window_fullscreen_set_timeout (cheese_window);
+    
+    //don't set the timeout in effect-chooser mode
+    if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) != 1)
+      cheese_window_fullscreen_set_timeout (cheese_window);
 
     cheese_window->isFullscreen = TRUE;
   }
@@ -365,13 +368,14 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
     gtk_widget_show_all (cheese_window->window);
     gtk_widget_hide_all (cheese_window->fullscreen_popup);
     gtk_widget_modify_bg (cheese_window->window, GTK_STATE_NORMAL, NULL);
-
+    
     g_signal_handlers_disconnect_by_func (cheese_window->window,
                                           (gpointer) cheese_window_fullscreen_motion_notify_cb, cheese_window);
     g_signal_handlers_disconnect_by_func (cheese_window->screen,
                                           (gpointer) cheese_window_fullscreen_motion_notify_cb, cheese_window);
 
     gtk_window_unfullscreen (GTK_WINDOW (cheese_window->window));
+    gtk_widget_set_size_request (cheese_window->effect_alignment, -1, -1);
     cheese_window->isFullscreen = FALSE;
 
     cheese_window_fullscreen_clear_timeout (cheese_window);
@@ -1571,6 +1575,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->throbber_frame              = GTK_WIDGET (gtk_builder_get_object (builder, "throbber_frame"));
   cheese_window->countdown_frame             = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
   cheese_window->effect_frame                = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
+  cheese_window->effect_alignment            = GTK_WIDGET (gtk_builder_get_object (builder, "effect_alignment"));
   cheese_window->message_area_frame          = GTK_WIDGET (gtk_builder_get_object (builder, "message_area_frame"));
   cheese_window->fullscreen_popup            = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_popup"));
   cheese_window->fullscreen_bar              = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_notebook_bar"));
