@@ -183,7 +183,7 @@ main (int argc, char **argv)
   g_option_context_add_group (context, gst_init_get_option_group ());
   if (g_option_context_parse (context, &argc, &argv, &error) == FALSE) {
     gchar *help_text = g_option_context_get_help (context, TRUE, NULL);
-    g_print ("%s", help_text);
+    g_print ("%s\n\n%s", error->message, help_text);
     g_free (help_text);
     g_error_free (error);
     g_option_context_free (context);
