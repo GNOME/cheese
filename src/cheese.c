@@ -156,6 +156,7 @@ main (int argc, char **argv)
 {
   GOptionContext *context;
   CheeseDbus     *dbus_server;
+  GError *error = NULL;
 
   GOptionEntry options[] = {
     {"verbose",    'v', 0,                    G_OPTION_ARG_NONE,   &CheeseOptions.verbose,       _("Be verbose"), NULL},
@@ -180,7 +181,12 @@ main (int argc, char **argv)
   g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
   g_option_context_add_group (context, gtk_get_option_group (TRUE));
   g_option_context_add_group (context, gst_init_get_option_group ());
-  g_option_context_parse (context, &argc, &argv, NULL);
+  if (g_option_context_parse (context, &argc, &argv, &error) == FALSE) {
+    g_print (_("%s\nRun '%s --help' to see a full list of available command line options.\n"), error->message, argv[0]);
+    g_error_free (error);
+    g_option_context_free (context);
+    return -1;
+  }
   g_option_context_free (context);
 
   dbus_server = cheese_dbus_new ();
