@@ -45,7 +45,7 @@ def configure(conf):
 	conf.check_pkg('gnome-vfs-2.0', destvar='GNOMEVFS', vnum='2.18.0', mandatory=True)
 	conf.check_pkg('libebook-1.2', destvar='LIBEBOOK', vnum='1.12.0', mandatory=True)
 	conf.check_pkg('cairo', destvar='CAIRO', vnum='1.4.0', mandatory=True)
-	conf.check_pkg('dbus', destvar='DBUS', vnum='1.0', mandatory=True)
+	conf.check_pkg('dbus-1', destvar='DBUS', vnum='1.0', mandatory=True)
 	conf.check_pkg('dbus-glib-1', destvar='DBUSGLIB', vnum='0.7', mandatory=True)
 	conf.check_pkg('hal', destvar='HAL', vnum='0.5.9', mandatory=True)
 	conf.check_pkg('pangocairo', destvar='PANGOCAIRO', vnum='1.18.0', mandatory=True)
