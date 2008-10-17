@@ -29,7 +29,6 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
-#include <libgnomevfs/gnome-vfs.h>
 
 #include "cheese-fileutil.h"
 #include "cheese-window.h"
@@ -197,9 +196,6 @@ main (int argc, char **argv)
     gdk_notify_startup_complete ();
     return -1;
   }
-
-  /* Needed for gnome_thumbnail functions */
-  gnome_vfs_init ();
 
   g_set_print_handler ((GPrintFunc) cheese_print_handler);
 

@@ -25,7 +25,8 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <libgnomeui/libgnomeui.h>
+#include <libgnomeui/gnome-desktop-thumbnail.h>
+#include <string.h>
 
 #include "cheese-fileutil.h"
 #include "eog-thumbnail.h"
@@ -45,7 +46,7 @@ typedef struct
   CheeseFileUtil *fileutil;
   GFileMonitor   *photo_file_monitor;
   GFileMonitor   *video_file_monitor;
-  GnomeThumbnailFactory *factory;
+  GnomeDesktopThumbnailFactory *factory;
   gboolean multiplex_thumbnail_generator;
 } CheeseThumbViewPrivate;
 
@@ -82,7 +83,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   CheeseThumbView           *thumb_view = item->thumb_view;
   CheeseThumbViewPrivate    *priv       = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
-  GnomeThumbnailFactory *factory = priv->factory;
+  GnomeDesktopThumbnailFactory *factory = priv->factory;
   GFile                 *file    = item->file;
   GtkTreeIter            iter    = item->iter;
   GdkPixbuf             *pixbuf  = NULL;
@@ -106,18 +107,18 @@ cheese_thumb_view_thread_append_item (gpointer data)
   uri      = g_file_get_uri (file);
   filename = g_file_get_path (file);
 
-  thumb_loc = gnome_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
+  thumb_loc = gnome_desktop_thumbnail_factory_lookup (factory, uri, mtime.tv_sec);
 
   if (!thumb_loc)
   {
-    pixbuf = gnome_thumbnail_factory_generate_thumbnail (factory, uri, mime_type);
+    pixbuf = gnome_desktop_thumbnail_factory_generate_thumbnail (factory, uri, mime_type);
     if (!pixbuf)
     {
       g_warning ("could not generate thumbnail for %s (%s)\n", filename, mime_type);
     }
     else
     {
-      gnome_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, mtime.tv_sec);
+      gnome_desktop_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, mtime.tv_sec);
     }
   }
   else
@@ -584,7 +585,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   g_mkdir_with_parents (path_videos, 0775);
   g_mkdir_with_parents (path_photos, 0775);
 
-  priv->factory = gnome_thumbnail_factory_new (GNOME_THUMBNAIL_SIZE_NORMAL);
+  priv->factory = gnome_desktop_thumbnail_factory_new (GNOME_DESKTOP_THUMBNAIL_SIZE_NORMAL);
 
   /* connect signal to video path */
   file                     = g_file_new_for_path (path_videos);

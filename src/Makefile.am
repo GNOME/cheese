@@ -7,6 +7,7 @@ INCLUDES = 						\
 	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\"	\
 	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
 	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\"		\
+	-DGNOME_DESKTOP_USE_UNSTABLE_API=1		\
 	$(CHEESE_CFLAGS)
 
 bin_PROGRAMS = cheese

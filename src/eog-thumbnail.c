@@ -29,8 +29,6 @@
 #include <cheese-config.h>
 #endif
 
-#include <libart_lgpl/art_rgb.h>
-
 #include "eog-thumbnail.h"
 
 
@@ -100,6 +98,25 @@ draw_frame_column (GdkPixbuf *frame_image,
 
 		remaining_height -= slab_height;
 		v_offset += slab_height; 
+	}
+}
+
+/* copied from libart_lgpl/art_rgb.c */
+
+static void
+art_rgb_run_alpha (guint8 *buf, guint8 r, guint8 g, guint8 b, int alpha, int n)
+{
+	int i;
+	int v;
+
+	for (i = 0; i < n; i++)
+	{
+		v = *buf;
+		*buf++ = v + (((r - v) * alpha + 0x80) >> 8);
+		v = *buf;
+		*buf++ = v + (((g - v) * alpha + 0x80) >> 8);
+		v = *buf;
+		*buf++ = v + (((b - v) * alpha + 0x80) >> 8);
 	}
 }
 
