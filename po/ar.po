@@ -10,14 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD.ar.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-18 02:35+0100\n"
+"POT-Creation-Date: 2008-10-19 12:04+0100\n"
 "PO-Revision-Date: 2008-09-19 00:37+0300\n"
 "Last-Translator: Usama Akkad <uak@aya.sy>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/cheese.desktop.in.in.h:1
@@ -38,20 +39,23 @@ msgid ""
 "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
 "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
-"قائمة من المؤثرات تطبق عند البدء. القيم الممكنة هي: \"بنفسجي\", "
-"\"أسود_أبيض\", \"إشباع\", \"هيكل\", \"قلب-رأسي\", \"قلب-أفقي\", \"أشعث\", \"دُوار\", \"حافة\", \"نرد\" و \"التفاف\""
+"قائمة من المؤثرات تطبق عند البدء. القيم الممكنة هي: \"بنفسجي\", \"أسود_أبيض"
+"\", \"إشباع\", \"هيكل\", \"قلب-رأسي\", \"قلب-أفقي\", \"أشعث\", \"دُوار\", "
+"\"حافة\", \"نرد\" و \"التفاف\""
 
 #: ../data/cheese.schemas.in.h:4
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
-msgstr "يحدّد المسار الذي تخزن فيه الصور, إن تُرك فارغا سيستخدم \"XDG_PHOTO/Webcam\"."
+msgstr ""
+"يحدّد المسار الذي تخزن فيه الصور, إن تُرك فارغا سيستخدم \"XDG_PHOTO/Webcam\"."
 
 #: ../data/cheese.schemas.in.h:5
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
-msgstr "يعرف المسار الذي يخزن فيه الصور، إذا كان فارغا سيستخدم \"XDG_VIDEO/Webcam\"."
+msgstr ""
+"يعرف المسار الذي يخزن فيه الصور، إذا كان فارغا سيستخدم \"XDG_VIDEO/Webcam\"."
 
 #: ../data/cheese.schemas.in.h:6
 msgid "Height resolution"
@@ -62,7 +66,9 @@ msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
 "feature can be dangerous, so use caution."
-msgstr "إن عُيّن كصحيح, سيمكنك تشيز من حذف الملف مباشرة و في مكانه, بدلا من نقله إلى المهملات. هذه الميزة خطرة, لذا استعملها بحذر."
+msgstr ""
+"إن عُيّن كصحيح, سيمكنك تشيز من حذف الملف مباشرة و في مكانه, بدلا من نقله إلى "
+"المهملات. هذه الميزة خطرة, لذا استعملها بحذر."
 
 #: ../data/cheese.schemas.in.h:8
 msgid "Photo Path"
@@ -108,7 +114,7 @@ msgstr "إذا ما سيفعّل الحذف الفوري"
 msgid "Width resolution"
 msgstr "ميز العرض"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:178
 msgid "Cheese"
 msgstr "شيز"
 
@@ -293,7 +299,8 @@ msgstr "لا يمكن حذف الملف \"%s\". تفاصيل: %s"
 #: ../src/cheese-window.c:573
 #, fuzzy, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "أمتاكد من رغبتك بحذف %'d العنصر المحدد؟"
 msgstr[1] "أمتاكد من رغبتك بحذف %'d العناصر المحددة؟"
 msgstr[2] ""
@@ -483,12 +490,11 @@ msgstr "عنْ"
 msgid "Check your gstreamer installation"
 msgstr "تحقق من تثبيتك لـ gstreamer"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:162
 #, fuzzy
 msgid "Be verbose"
 msgstr "كُن مسهِبا"
 
-#: ../src/cheese.c:179
+#: ../src/cheese.c:180
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- التقط صورا وفيديو بكاميرا الوب، مع تأثيرات رسومية مرحة"
-
