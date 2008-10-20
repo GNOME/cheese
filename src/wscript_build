@@ -13,10 +13,10 @@
 obj = bld.create_obj('cc', 'program')
 obj.find_sources_in_dirs('.') # take the sources in the current folder
 obj.includes='.'
-obj.uselib='''GLIB GOBJECT GTK LIBGLADE GDK HAL
-              GSTREAMER GSTREAMER_PLUGINS_BASE 
-              GNOME_VFS CAIRO PANGOCAIRO LIBRSVG
-              LIBGNOMEUI LIBEBOOK XXF86VM'''
+obj.uselib='''GLIB GOBJECT GIO GTK GDK
+              LIBGNOMEDESKTOP GCONF GSTREAMER
+              GSTREAMER_PLUGINS_BASE LIBEBOOK
+              CAIRO DBUS DBUSGLIB HAL PANGOCAIRO LIBRSVG'''
 
 obj.target='cheese'
 obj.add_dbus_file('cheese-dbus-infos.xml', 'cheese_dbus', 'glib-server')

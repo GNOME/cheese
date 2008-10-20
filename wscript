@@ -38,11 +38,10 @@ def configure(conf):
 	conf.check_pkg('gio-2.0', destvar='GIO', vnum='2.16.0', mandatory=True)
 	conf.check_pkg('gtk+-2.0', destvar='GTK', vnum='2.10.0', mandatory=True)
 	conf.check_pkg('gdk-2.0', destvar='GDK', vnum='2.12.0', mandatory=True)
-	conf.check_pkg('libgnomeui-2.0', destvar='LIBGNOMEUI', vnum='2.20.0', mandatory=True)
+	conf.check_pkg('gnome-desktop-2.0', destvar='LIBGNOMEDESKTOP', vnum='2.25.1', mandatory=True)
 	conf.check_pkg('gconf-2.0', destvar='GCONF', vnum='2.16.0', mandatory=True)
 	conf.check_pkg('gstreamer-0.10', destvar='GSTREAMER', vnum='0.10.20', mandatory=True)
 	conf.check_pkg('gstreamer-plugins-base-0.10', destvar='GSTREAMER_PLUGINS_BASE', vnum='0.10.20', mandatory=True)
-	conf.check_pkg('gnome-vfs-2.0', destvar='GNOMEVFS', vnum='2.18.0', mandatory=True)
 	conf.check_pkg('libebook-1.2', destvar='LIBEBOOK', vnum='1.12.0', mandatory=True)
 	conf.check_pkg('cairo', destvar='CAIRO', vnum='1.4.0', mandatory=True)
 	conf.check_pkg('dbus-1', destvar='DBUS', vnum='1.0', mandatory=True)
@@ -76,6 +75,7 @@ def configure(conf):
 	conf.define('PACKAGE_LIBEXECDIR', conf.env['PREFIX'] + '/libexec/cheese')
 	conf.define('BINDIR', conf.env['PREFIX'] + '/bin')
 	conf.env.append_value('CCFLAGS', '-DHAVE_CONFIG_H')
+	conf.env.append_value('CCFLAGS', '-DGNOME_DESKTOP_USE_UNSTABLE_API=1')
 
 	conf.write_config_header('cheese-config.h')
 
