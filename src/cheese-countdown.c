@@ -437,7 +437,7 @@ on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
   iOffsetX += do_text (pContext,
                        number,
                        26 * PANGO_SCALE,
-                       "Bitstream Charter",
+                       "Bitstream Vera Sans Bold",
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
@@ -456,7 +456,7 @@ on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
   iOffsetX += do_text (pContext,
                        number,
                        26 * PANGO_SCALE,
-                       "Bitstream Charter",
+                       "Bitstream Vera Sans Bold",
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
@@ -475,7 +475,7 @@ on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
   iOffsetX += do_text (pContext,
                        number,
                        26 * PANGO_SCALE,
-                       "Bitstream Charter",
+                       "Bitstream Vera Sans Bold",
                        PANGO_WEIGHT_BOLD,
                        PANGO_STYLE_NORMAL);
   cairo_fill (pContext);
