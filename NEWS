@@ -1,6 +1,27 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.25.1
+
+  - change the default font of the countdown widget to bitstream vera sans bold
+  - drop libgnome/libgnome-vfs dependencies, fixes bug #556580, courtesy of Cosimo Cecchi
+  - exit correctly with unknown command line arguments, fixes bug #556084.
+  - change the ui behaviour of the fullscreen toolbar, to show always when in
+    effects chooser mode, fixes bug #548546
+  - added/updated translations
+    - ca, courtesy of Gil Forcada
+    - de, courtesy of Hendrik Richter
+    - es, courtesy of Jorge González
+    - fr, courtesy of Robert-André Mauchin
+    - he, courtesy of Mark Krapivner
+    - nb, courtesy of Kjartan Maraas
+    - nl, courtesy of Wouter Bolsterlee
+    - pt_BR, courtesy of Vladimir Melo
+    - sr, courtesy of Горан Ракић
+    - sr@latin, courtesy of Goran Rakić
+    - th, courtesy of Theppitak Karoonboonyanan
+    - uk, courtesy of Maxim V. Dziumanenko
+
 version 2.24.0
   - correct an error in the help file, which prevented the document to be valid
   - update the cheese dependencies, fixes bug #547203
