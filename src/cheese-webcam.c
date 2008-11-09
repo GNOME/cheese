@@ -562,7 +562,9 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
 
       cur_width  = min_width;
       cur_height = min_height;
-      while (cur_width < max_width && cur_height < max_height)
+      /* Gstreamer will sometimes give us a range with min_xxx == max_xxx,
+         we use <= here (and not below) to make this work */
+      while (cur_width <= max_width && cur_height <= max_height)
       {
         CheeseVideoFormat video_format;
 
