@@ -95,6 +95,7 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
         else
           effects = g_strjoin (",", effects, str, NULL);
 
+        g_free (tmp->data);
         tmp = g_slist_next (tmp);
       }
       g_value_set_string (value, effects);
