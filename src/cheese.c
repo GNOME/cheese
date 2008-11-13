@@ -198,6 +198,7 @@ main (int argc, char **argv)
   }
 
   g_set_print_handler ((GPrintFunc) cheese_print_handler);
+  g_print ("Cheese " VERSION " \n");
 
   gtk_window_set_default_icon_name ("cheese");
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
