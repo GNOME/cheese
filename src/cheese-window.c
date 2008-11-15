@@ -191,10 +191,11 @@ cheese_about_dialog_handle_url (GtkAboutDialog *dialog, const char *url, gpointe
 {
   GError    *error = NULL;
   GtkWidget *error_dialog;
-  gboolean   ret;
+  GdkScreen *screen;
 
-  ret = g_app_info_launch_default_for_uri (url, NULL, &error);
-  if (ret == FALSE)
+  screen = gtk_widget_get_screen (GTK_WIDGET (dialog));
+  gtk_show_uri (screen, url, gtk_get_current_event_time (), &error);
+  if (error != NULL)
   {
     error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog),
                                            GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -213,12 +214,13 @@ cheese_about_dialog_handle_email (GtkAboutDialog *dialog, const char *email, gpo
   char      *uri;
   GError    *error = NULL;
   GtkWidget *error_dialog;
-  gboolean   ret;
+  GdkScreen *screen;
 
   uri = g_strconcat ("mailto:", email, NULL);
 
-  ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
-  if (ret == FALSE)
+  screen = gtk_widget_get_screen (GTK_WIDGET (dialog));
+  gtk_show_uri (screen, uri, gtk_get_current_event_time (), &error);
+  if (error != NULL)
   {
     error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog),
                                            GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -451,17 +453,19 @@ cheese_window_cmd_open (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   char      *uri;
   char      *filename;
-  gboolean   ret;
   GError    *error = NULL;
   GtkWidget *dialog;
+  GdkScreen *screen;
 
   filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
   g_return_if_fail (filename);
   uri = g_filename_to_uri (filename, NULL, NULL);
   g_free (filename);
 
-  ret = g_app_info_launch_default_for_uri (uri, NULL, &error);
-  if (ret == FALSE)
+  screen = gtk_widget_get_screen (GTK_WIDGET (cheese_window->window));
+  gtk_show_uri (screen, uri, gtk_get_current_event_time (), &error);
+
+  if (error != NULL)
   {
     dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
                                      GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -866,7 +870,7 @@ cheese_window_cmd_command_line (GtkAction *action, CheeseWindow *cheese_window)
   if (strcmp (action_name, "SendByMail") == 0)
   {
     char *path;
-    command_line = g_strdup_printf ("gnome-open mailto:?subject='%s'", _("Media files"));
+    command_line = g_strdup_printf ("xdg-open mailto:?subject='%s'", _("Media files"));
     for (l = files; l != NULL; l = l->next)
     {
       path         = g_file_get_path (l->data);
@@ -929,11 +933,12 @@ static void
 cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
 {
   GError  *error = NULL;
-  gboolean ret;
+  GdkScreen *screen;
 
-  ret = g_app_info_launch_default_for_uri ("ghelp:cheese", NULL, &error);
+  screen = gtk_widget_get_screen (GTK_WIDGET (cheese_window));
+  gtk_show_uri (screen, "ghelp:cheese", gtk_get_current_event_time (), &error);
 
-  if (ret == FALSE)
+  if (error != NULL)
   {
     GtkWidget *d;
     d = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
@@ -1730,7 +1735,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   }
   else
   {
-    path = g_find_program_in_path ("gnome-open");
+    path = g_find_program_in_path ("xdg-open");
     gtk_action_group_set_visible (cheese_window->actions_mail, path != NULL);
     gtk_action_group_set_visible (cheese_window->actions_sendto, FALSE);
   }
