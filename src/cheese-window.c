@@ -1874,7 +1874,7 @@ setup_camera (CheeseWindow *cheese_window)
                                      GTK_BUTTONS_OK,
                                      "%s", primary);
     gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
-                                                secondary);
+                                                "%s", secondary);
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
     g_error_free (error);
