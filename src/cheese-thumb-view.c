@@ -355,23 +355,21 @@ cheese_thumb_view_on_drag_data_get_cb (GtkIconView      *thumb_view,
                                        guint             time,
                                        gpointer          user_data)
 {
-  GList        *list;
-  GtkTreePath  *tree_path = NULL;
+  GList        *list, *l;
   GtkTreeIter   iter;
   GtkTreeModel *model;
   char         *str;
   char         *uris = NULL;
   char         *tmp_str;
-  gint          i;
 
   list  = gtk_icon_view_get_selected_items (thumb_view);
   model = gtk_icon_view_get_model (thumb_view);
 
-  for (i = 0; i < g_list_length (list); i++)
+  for (l = list; l != NULL; l = l->next)
   {
-    tree_path = g_list_nth_data (list, i);
-    gtk_tree_model_get_iter (model, &iter, tree_path);
+    gtk_tree_model_get_iter (model, &iter, l->data);
     gtk_tree_model_get (model, &iter, 1, &str, -1);
+    gtk_tree_path_free (l->data);
 
     /* we always store local paths in the model, but DnD
      * needs URIs, so we must add file:// to the path.
