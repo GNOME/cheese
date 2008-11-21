@@ -25,7 +25,6 @@
 #include <string.h>
 #include <glib-object.h>
 #include <glib.h>
-#include <glib/gstring.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gdk/gdkx.h>

@@ -27,14 +27,13 @@
 #include <dbus/dbus-glib-bindings.h>
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus.h>
-#include "cheese-dbus.h"
-#include "cheese-dbus-infos.h"
 #include <glib.h>
-#include <glib-object.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <gtk/gtk.h>
+#include "cheese-dbus.h"
 #include "cheese-window.h"
+#include "cheese-dbus-infos.h"
 
 gpointer window_pointer;
 

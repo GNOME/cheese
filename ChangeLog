@@ -1,3 +1,13 @@
+2008-11-21  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c,
+	  src/cheese-dbus.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-webcam.c: 
+	  Remove unnecesary include files, to meet GnomeGoal
+	  http://live.gnome.org/GnomeGoals/CleanupGTKIncludes
+	  Don't know if I completed in entirely because make CFLAGS+="-DG_DISABLE_SINGLE_INCLUDES -DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES" somehow fails somewhere on includes done by gtk files themselves :-(
+
 2008-11-16  Filippo Argiolas <filippo.argiolas@gmail.com>
 
 	* src/cheese-thumb-view.c:

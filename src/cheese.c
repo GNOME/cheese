@@ -23,7 +23,6 @@
   #include <cheese-config.h>
 #endif
 
-#include <stdio.h>
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gio/gio.h>
@@ -132,7 +131,7 @@ cheese_handle_files_from_before_224 (void)
       source_filename = g_build_filename (path_from_before_224, name, NULL);
       source          = g_file_new_for_path (source_filename);
       target          = g_file_new_for_path (target_filename);
-      printf ("copying %s to %s\n", source_filename, target_filename);
+      g_print ("copying %s to %s\n", source_filename, target_filename);
       g_file_move (source, target, G_FILE_COPY_OVERWRITE, NULL, NULL, NULL, NULL);
       g_free (source_filename);
       g_free (target_filename);
