@@ -257,6 +257,8 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
 
   priv->num_webcam_devices = 0;
 
+  g_print ("Probing devices with HAL...\n");
+
   dbus_error_init (&error);
   hal_ctx = libhal_ctx_new ();
   if (hal_ctx == NULL)
@@ -300,9 +302,45 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   for (i = 0; i < num_udis; i++)
   {
     char                   *device;
+    char                   *parent_udi = NULL;
+    char                   *subsystem = NULL;
     char                   *gstreamer_src, *product_name;
     struct v4l2_capability  v2cap;
     struct video_capability v1cap;
+    gint vendor_id = 0;
+    gint product_id = 0;
+    gchar *property_name = NULL;
+
+    parent_udi = libhal_device_get_property_string (hal_ctx, udis[i], "info.parent", &error);
+    if (dbus_error_is_set (&error))
+    {
+      g_warning ("error getting parent for %s: %s: %s\n", udis[i], error.name, error.message);
+      dbus_error_free (&error);
+    }
+
+    if (parent_udi != NULL) {
+      subsystem = libhal_device_get_property_string (hal_ctx, parent_udi, "info.subsystem", NULL);
+      if (subsystem == NULL) continue;
+      property_name = g_strjoin (".", subsystem, "vendor_id", NULL);
+      vendor_id = libhal_device_get_property_int (hal_ctx, parent_udi, property_name , &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("error getting vendor id: %s: %s\n", error.name, error.message);
+        dbus_error_free (&error);
+      }
+      g_free (property_name);
+
+      property_name = g_strjoin (".", subsystem, "product_id", NULL);
+      product_id = libhal_device_get_property_int (hal_ctx, parent_udi, property_name, &error);
+      if (dbus_error_is_set (&error)) {
+        g_warning ("error getting product id: %s: %s\n", error.name, error.message);
+        dbus_error_free (&error);
+      }
+      g_free (property_name);
+      libhal_free_string (subsystem);
+      libhal_free_string (parent_udi);
+    }
+
+    g_print ("Found device %04x:%04x, getting capabilities...\n", vendor_id, product_id);
 
     device = libhal_device_get_property_string (hal_ctx, udis[i], "video4linux.device", &error);
     if (dbus_error_is_set (&error))
@@ -349,8 +387,8 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       guint cap = v2cap.capabilities;
       g_print ("Detected v4l2 device: %s\n", v2cap.card);
       g_print ("Driver: %s, version: %d\n", v2cap.driver, v2cap.version);
-      g_print ("Bus info: %s\n", v2cap.bus_info);
-      g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
+      /* g_print ("Bus info: %s\n", v2cap.bus_info); */ /* Doesn't seem anything useful */
+     g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
       if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
       {
         g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
@@ -362,6 +400,8 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       gstreamer_src = "v4l2src";
       product_name  = (char *) v2cap.card;
     }
+
+    g_print ("\n");
 
     priv->webcam_devices[priv->num_webcam_devices].hal_udi           = g_strdup (udis[i]);
     priv->webcam_devices[priv->num_webcam_devices].video_device      = g_strdup (device);
@@ -654,8 +694,7 @@ cheese_webcam_get_webcam_device_data (CheeseWebcam       *webcam,
         if (name == NULL)
           name = "Unknown";
 
-        g_print ("Detected webcam: %s\n", name);
-        g_print ("device: %s\n", webcam_device->video_device);
+        g_print ("Device: %s (%s)\n", name, webcam_device->video_device);
         pad  = gst_element_get_pad (src, "src");
         caps = gst_pad_get_caps (pad);
         gst_object_unref (pad);
@@ -701,9 +740,12 @@ cheese_webcam_detect_webcam_devices (CheeseWebcam *webcam)
   int i;
 
   cheese_webcam_get_video_devices_from_hal (webcam);
+
+  g_print ("Probing supported video formats...\n");
   for (i = 0; i < priv->num_webcam_devices; i++)
   {
     cheese_webcam_get_webcam_device_data (webcam, &(priv->webcam_devices[i]));
+    g_print ("\n");
   }
 
   if (priv->num_webcam_devices == 0)
