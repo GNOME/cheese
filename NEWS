@@ -1,6 +1,20 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.24.2
+- print vendor and product id while probing devices. provide some more device informations for easier bug triaging.
+- don't use random access glist methods when accessing a list sequentially.
+  properly free list elements after use, fixes bug #560514, courtesy of Giuseppe Fuggiano
+- print the cheese version if the -v flag is set
+- free gslist properly without a memory leak, fixes bug #560347, courtesy of Giuseppe Fuggiano
+- cheese now supports webcams which support only one resolution, fixes bug #560032, courtesy of Hans de Goede
+- change the default font of the countdown widget to bitstream vera sans bold
+  - added/updated translations
+    - pt_BR, courtesy of Joao Emanuel
+    - de, courtesy of Hendrik Richter
+    - uk, courtesy of Maxim V. Dziumanenko
+    - ca, courtesy of Joan Duran
+
 version 2.24.1
   - exit correctly with unknown command line arguments, fixes bug #556084
   - added/updated translations
