@@ -1,6 +1,20 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.25.2
+
+  - print vendor and product id while probing devices. provide some more device informations for easier bug triaging.
+  - remove unnecesary include files, to meet GnomeGoal http://live.gnome.org/GnomeGoals/CleanupGTKIncludes
+  - don't use random access glist methods when accessing a list sequentially
+    and properly free list elements after use, fixes bug #560514 and #560347, courtesy of Giuseppe Fuggiano
+  - Use gtk_show_uri to open files and xdg-open i.s.o. gnome-open
+  - Use gtk_message_dialog_format_secondary_markup correctly
+  - print the cheese version if the -v flag is set
+  - add support for cams which support only one resolution, fixes bug #560032, courtesy of Hans de Goede
+  - added/updated translations
+    - es, courtesy of Jorge González
+    - ku, courtesy of Erdal Ronahi
+
 version 2.25.1
 
   - change the default font of the countdown widget to bitstream vera sans bold
