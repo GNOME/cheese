@@ -32,9 +32,7 @@
 #define STOP_PROFILER(name)
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
-#include <gtk/gtkicontheme.h>
-#include <gtk/gtkiconfactory.h>
-#include <gtk/gtksettings.h>
+#include <gtk/gtk.h>
 
 /* Spinner cache implementation */
 
