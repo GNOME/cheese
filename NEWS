@@ -1,13 +1,18 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.25.4
+  - added/updated translations
+    - be@latin, courtesy of Ihar Hrachyshka
+    - lv, courtesy of Raivis Dejus
+    - pt_BR, courtesy of Leonardo Ferreira Fontenelle
+
 version 2.25.3
   - single includes fix, fixes bug #563537, courtesy of Pedro Fragoso
   - added/updated translations
     - pa, courtesy of Amanpreet Singh Alam
 
 version 2.25.2
-
   - print vendor and product id while probing devices. provide some more device informations for easier bug triaging.
   - remove unnecesary include files, to meet GnomeGoal http://live.gnome.org/GnomeGoals/CleanupGTKIncludes
   - don't use random access glist methods when accessing a list sequentially
@@ -21,7 +26,6 @@ version 2.25.2
     - ku, courtesy of Erdal Ronahi
 
 version 2.25.1
-
   - change the default font of the countdown widget to bitstream vera sans bold
   - drop libgnome/libgnome-vfs dependencies, fixes bug #556580, courtesy of Cosimo Cecchi
   - exit correctly with unknown command line arguments, fixes bug #556084.
