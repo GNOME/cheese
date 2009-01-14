@@ -97,11 +97,13 @@ eog_thumb_nav_adj_changed (GtkAdjustment *adj, gpointer user_data)
 {
 	EogThumbNav *nav;
 	EogThumbNavPrivate *priv;
+	gboolean ltr;
 
 	nav = EOG_THUMB_NAV (user_data);
 	priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
+	ltr = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
-	gtk_widget_set_sensitive (priv->button_right,
+	gtk_widget_set_sensitive (ltr ? priv->button_right : priv->button_left,
 				  adj->value < adj->upper - adj->page_size);
 }
 
@@ -110,13 +112,15 @@ eog_thumb_nav_adj_value_changed (GtkAdjustment *adj, gpointer user_data)
 {
 	EogThumbNav *nav;
 	EogThumbNavPrivate *priv;
+	gboolean ltr;
 
 	nav = EOG_THUMB_NAV (user_data);
 	priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
+	ltr = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
-	gtk_widget_set_sensitive (priv->button_left, adj->value > 0);
+	gtk_widget_set_sensitive (ltr ? priv->button_left : priv->button_right, adj->value > 0);
 
-	gtk_widget_set_sensitive (priv->button_right, 
+	gtk_widget_set_sensitive (ltr ? priv->button_right : priv->button_left,
 				  adj->value < adj->upper - adj->page_size);
 }
 
@@ -164,7 +168,9 @@ eog_thumb_nav_button_clicked (GtkButton *button, EogThumbNav *nav)
 {
 	nav->priv->scroll_pos = 0;
 
-	nav->priv->scroll_dir = (GTK_WIDGET (button) == nav->priv->button_right);
+	nav->priv->scroll_dir = gtk_widget_get_direction (GTK_WIDGET (button)) == GTK_TEXT_DIR_LTR ?
+		GTK_WIDGET (button) == nav->priv->button_right :
+		GTK_WIDGET (button) == nav->priv->button_left;
 
 	eog_thumb_nav_scroll_step (nav);
 }
@@ -172,7 +178,9 @@ eog_thumb_nav_button_clicked (GtkButton *button, EogThumbNav *nav)
 static void
 eog_thumb_nav_start_scroll (GtkButton *button, EogThumbNav *nav)
 {
-	nav->priv->scroll_dir = (GTK_WIDGET (button) == nav->priv->button_right);
+	nav->priv->scroll_dir = gtk_widget_get_direction (GTK_WIDGET (button)) == GTK_TEXT_DIR_LTR ?
+		GTK_WIDGET (button) == nav->priv->button_right :
+		GTK_WIDGET (button) == nav->priv->button_left;
 
 	nav->priv->scroll_id = g_timeout_add (EOG_THUMB_NAV_SCROLL_TIMEOUT, 
 					      eog_thumb_nav_scroll_step, 
