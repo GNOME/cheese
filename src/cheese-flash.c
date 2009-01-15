@@ -1,6 +1,6 @@
 /*
  * Copyright © 2008 Alexander “weej” Jones <alex@weej.com>
- * Copyright © 2008 Thomas Perl <thp@perli.net>
+ * Copyright © 2008 Thomas Perl <thp@thpinfo.com>
  *
  * Licensed under the GNU General Public License Version 2
  *

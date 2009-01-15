@@ -973,7 +973,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
     "Ryan Zeigler <zeiglerr@gmail.com>",
     "Sebastian Keller <sebastian-keller@gmx.de>",
     "Steve Magoun <steve.magoun@canonical.com>",
-    "Thomas Perl <thp@perli.ne>",
+    "Thomas Perl <thp@thpinfo.com>",
     "Tim Philipp Müller <tim@centricular.net>",
     "Todd Eisenberger <teisenberger@gmail.com>",
     "Tommi Vainikainen <thv@iki.fi>",
