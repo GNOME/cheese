@@ -5,21 +5,22 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese 2.23.91\n"
+"Project-Id-Version: cheese 2.25.91\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-08-21 18:52+0800\n"
-"PO-Revision-Date: 2008-08-21 18:53+0800\n"
+"POT-Creation-Date: 2009-02-03 07:15+0800\n"
+"PO-Revision-Date: 2009-02-03 07:15+0800\n"
 "Last-Translator: Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>\n"
 "Language-Team: Chinese (Hong Kong) <community@linuxhall.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
 msgstr "Cheese 網絡攝影鋪"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:992
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1021
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "從你的網絡攝影機擷取相片與影片，並加入有趣的圖片特效"
 
@@ -99,7 +100,7 @@ msgstr "是否啟用立即刪除功能"
 msgid "Width resolution"
 msgstr "闊度解像度"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:99
+#: ../data/cheese.ui.h:1 ../src/cheese.c:176
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -115,24 +116,24 @@ msgstr "切換為視像模式"
 msgid "Switch to the Effects Selector"
 msgstr "切換為效果選擇器"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1116
-#: ../src/cheese-window.c:1347
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1145
+#: ../src/cheese-window.c:1384
 msgid "_Effects"
 msgstr "效果(_E)"
 
 #: ../data/cheese.ui.h:6
 msgid "_Leave Fullscreen"
-msgstr "保持全螢幕(_L)"
+msgstr "取消全螢幕(_L)"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1359
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1396
 msgid "_Photo"
 msgstr "相片(_P)"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1405
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1448
 msgid "_Take a Photo"
 msgstr "照相(_T)"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1360
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1397
 msgid "_Video"
 msgstr "影片(_V)"
 
@@ -144,55 +145,55 @@ msgstr "<b>攝影機</b>"
 msgid "<b>Resolution</b>"
 msgstr "<b>解像度</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1351
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1388
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: ../src/cheese-effect-chooser.c:61
+#: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
 msgstr "無效果"
 
-#: ../src/cheese-effect-chooser.c:63
+#: ../src/cheese-effect-chooser.c:62
 msgid "Mauve"
 msgstr "紫紅"
 
-#: ../src/cheese-effect-chooser.c:65
+#: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "黑白"
 
-#: ../src/cheese-effect-chooser.c:67
+#: ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "飽和度"
 
-#: ../src/cheese-effect-chooser.c:69
+#: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
 msgstr "綠化"
 
-#: ../src/cheese-effect-chooser.c:71
+#: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
 msgstr "垂直翻轉"
 
-#: ../src/cheese-effect-chooser.c:73
+#: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
 msgstr "水平翻轉"
 
-#: ../src/cheese-effect-chooser.c:75
+#: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
 msgstr "七彩"
 
-#: ../src/cheese-effect-chooser.c:77
+#: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
 msgstr "光暈"
 
-#: ../src/cheese-effect-chooser.c:79
+#: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
 msgstr "銳化"
 
-#: ../src/cheese-effect-chooser.c:81
+#: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
 msgstr "馬賽克"
 
-#: ../src/cheese-effect-chooser.c:83
+#: ../src/cheese-effect-chooser.c:82
 msgid "Warp"
 msgstr "扭曲"
 
@@ -202,8 +203,8 @@ msgstr "扭曲"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../src/cheese-countdown.c:432 ../src/cheese-countdown.c:450
-#: ../src/cheese-countdown.c:468
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:474
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -220,7 +221,7 @@ msgstr "請參考求助以取得進一步資訊。"
 msgid "Help"
 msgstr "求助"
 
-#: ../src/cheese-webcam.c:1391
+#: ../src/cheese-webcam.c:1589
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "遺失一或多個需要的 gstreamer 元件："
 
@@ -234,9 +235,9 @@ msgstr "略過全部(_K)"
 
 #: ../src/cheese-window.c:79
 msgid "Delete _All"
-msgstr "刪除全部(_A)"
+msgstr "全部刪除(_A)"
 
-#: ../src/cheese-window.c:200
+#: ../src/cheese-window.c:203
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -245,7 +246,7 @@ msgstr ""
 "開啟瀏覽器來顯示時失敗：\n"
 "%s"
 
-#: ../src/cheese-window.c:224
+#: ../src/cheese-window.c:228
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -254,7 +255,7 @@ msgstr ""
 "開啟電子郵件程式傳送郵件時失敗：\n"
 "%s"
 
-#: ../src/cheese-window.c:456
+#: ../src/cheese-window.c:473
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -263,84 +264,86 @@ msgstr ""
 "執行程式以顯示時失敗：\n"
 "%s"
 
-#: ../src/cheese-window.c:475
+#: ../src/cheese-window.c:492
 msgid "Save File"
 msgstr "儲存檔案"
 
-#: ../src/cheese-window.c:513
+#: ../src/cheese-window.c:530
 #, c-format
 msgid "Could not save %s"
 msgstr "無法儲存 %s"
 
-#: ../src/cheese-window.c:535
+#: ../src/cheese-window.c:553
 msgid "Error while deleting"
 msgstr "刪除時發生錯誤"
 
-#: ../src/cheese-window.c:536
+#: ../src/cheese-window.c:554
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "檔案「%s」不能刪除。詳細資訊：%s"
 
-#: ../src/cheese-window.c:563
+#: ../src/cheese-window.c:581
 #, c-format
-msgid "Are you sure you want to permanently delete the %'d selected items?"
-msgstr "確定要永遠刪除 %'d 個選取的項目？"
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "確定要永遠刪除 %'d 個選取的項目？"
 
-#: ../src/cheese-window.c:568
+#: ../src/cheese-window.c:588
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "確定要永遠刪除「%s」？"
 
-#: ../src/cheese-window.c:571
+#: ../src/cheese-window.c:591
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
-msgstr "如果你刪除了某個項目，它將會永遠消失。"
+msgstr "如果直接刪除本項目，它會無法還原。"
 
-#: ../src/cheese-window.c:593
+#: ../src/cheese-window.c:612
 msgid "Unknown Error"
-msgstr "未知的錯誤"
+msgstr "不明的錯誤"
 
-#: ../src/cheese-window.c:624
+#: ../src/cheese-window.c:642
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "不能將檔案移動至回收筒，是否要立刻刪除？"
+msgstr "不能將檔案移到回收筒。要立刻刪除嗎？"
 
-#: ../src/cheese-window.c:625
+#: ../src/cheese-window.c:643
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "不能將檔案「%s」移至回收筒。詳細資訊：%s"
 
-#: ../src/cheese-window.c:691
+#: ../src/cheese-window.c:715
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "確定要將所有的相片和影片移至回收筒？"
 
-#: ../src/cheese-window.c:699
+#: ../src/cheese-window.c:723
 msgid "_Move to Trash"
 msgstr "移至回收筒(_M)"
 
-#: ../src/cheese-window.c:813
+#: ../src/cheese-window.c:841
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "無法設定帳號相片"
 
-#: ../src/cheese-window.c:845
+#: ../src/cheese-window.c:873
 msgid "Media files"
 msgstr "媒體檔案"
 
-#: ../src/cheese-window.c:919 ../src/cheese-window.c:1190
+#: ../src/cheese-window.c:947 ../src/cheese-window.c:1219
 msgid "Unable to open help file for Cheese"
 msgstr "無法開啟 Cheese 的說明檔案"
 
-#: ../src/cheese-window.c:970
+#: ../src/cheese-window.c:999
 msgid "translator-credits"
 msgstr ""
 "如對翻譯有任何意見，請送一封電子郵件給\n"
 "以下地址，GNOME 翻譯隊伍會盡快回覆你：\n"
-"community@linuxhall.org\n"
+"zh-l10n@lists.linux.org.tw\n"
 "\n"
 "Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2008"
 
-#: ../src/cheese-window.c:973
+#: ../src/cheese-window.c:1002
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -348,7 +351,7 @@ msgid ""
 "any later version.\n"
 msgstr "本程式是自由軟件，你可以遵照自由軟件基金會 (Free Software Foundation) 出版的 GNU 通用公共許可證條款 (GNU General Public License) 第二版來修改和重新發佈這一程式，或者自由選擇使用任何更新的版本。\n"
 
-#: ../src/cheese-window.c:977
+#: ../src/cheese-window.c:1006
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -356,117 +359,117 @@ msgid ""
 "more details.\n"
 msgstr "發佈這一程式的目的是希望它有用，但沒有任何擔保。甚至沒有適合特定目的而隱含的擔保。更詳細的情況請參閱 GNU 通用公共許可證。\n"
 
-#: ../src/cheese-window.c:981
+#: ../src/cheese-window.c:1010
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr "你應該已經和程式一起收到一份 GNU 通用公共許可證的副本。如果還沒有，請參訪 <http://www.gnu.org/licenses/>。"
 
-#: ../src/cheese-window.c:998
+#: ../src/cheese-window.c:1027
 msgid "Cheese Website"
 msgstr "Cheese 網站"
 
-#: ../src/cheese-window.c:1207
+#: ../src/cheese-window.c:1235
 msgid "_Start Recording"
 msgstr "開始錄影(_S)"
 
-#: ../src/cheese-window.c:1300
+#: ../src/cheese-window.c:1334
 msgid "_Stop Recording"
 msgstr "停止錄影(_S)"
 
-#: ../src/cheese-window.c:1329
+#: ../src/cheese-window.c:1365
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1331
+#: ../src/cheese-window.c:1367
 msgid "_Edit"
 msgstr "編輯(_E)"
 
-#: ../src/cheese-window.c:1332
+#: ../src/cheese-window.c:1368
 msgid "Move All to Trash"
 msgstr "全部丟進回收筒"
 
-#: ../src/cheese-window.c:1334
+#: ../src/cheese-window.c:1371
 msgid "_Help"
 msgstr "求助(_H)"
 
-#: ../src/cheese-window.c:1337
+#: ../src/cheese-window.c:1374
 msgid "_Contents"
 msgstr "內容(_C)"
 
-#: ../src/cheese-window.c:1337
+#: ../src/cheese-window.c:1374
 msgid "Help on this Application"
 msgstr "顯示本程式的說明文件"
 
-#: ../src/cheese-window.c:1343
+#: ../src/cheese-window.c:1380
 msgid "Countdown"
 msgstr "倒數計時"
 
-#: ../src/cheese-window.c:1364
+#: ../src/cheese-window.c:1401
 msgid "_Open"
 msgstr "開啟(_O)"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1403
 msgid "Save _As..."
 msgstr "另存新檔(_A)..."
 
-#: ../src/cheese-window.c:1366
+#: ../src/cheese-window.c:1405
 msgid "Move to _Trash"
 msgstr "移至回收筒(_T)"
 
-#: ../src/cheese-window.c:1367
+#: ../src/cheese-window.c:1407
 msgid "Delete"
 msgstr "刪除"
 
-#: ../src/cheese-window.c:1371 ../src/cheese-window.c:1591
+#: ../src/cheese-window.c:1412 ../src/cheese-window.c:1641
 msgid "_Take a photo"
 msgstr "照相(_T)"
 
-#: ../src/cheese-window.c:1375
+#: ../src/cheese-window.c:1416
 msgid "_Recording"
 msgstr "錄影(_R)"
 
-#: ../src/cheese-window.c:1379
+#: ../src/cheese-window.c:1420
 msgid "_Set As Account Photo"
 msgstr "設為帳號相片(_S)"
 
-#: ../src/cheese-window.c:1383
+#: ../src/cheese-window.c:1424
 msgid "Send by _Mail"
 msgstr "以郵件傳送(_M)"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1428
 msgid "Send _To"
 msgstr "傳送給(_T)"
 
-#: ../src/cheese-window.c:1391
+#: ../src/cheese-window.c:1432
 msgid "Export to F-_Spot"
 msgstr "匯出至 F-_Spot"
 
-#: ../src/cheese-window.c:1395
+#: ../src/cheese-window.c:1436
 msgid "Export to _Flickr"
 msgstr "匯出至 _Flickr"
 
-#: ../src/cheese-window.c:1417
+#: ../src/cheese-window.c:1460
 msgid "_Start recording"
 msgstr "開始錄影(_S)"
 
-#: ../src/cheese-window.c:1734
+#: ../src/cheese-window.c:1784
 msgid "Quit"
-msgstr "離開"
+msgstr "結束"
 
-#: ../src/cheese-window.c:1740
+#: ../src/cheese-window.c:1790
 msgid "About"
 msgstr "關於"
 
-#: ../src/cheese-window.c:1820
+#: ../src/cheese-window.c:1871
 msgid "Check your gstreamer installation"
 msgstr "檢查你的 gstreamer 安裝"
 
-#: ../src/cheese.c:84
+#: ../src/cheese.c:160
 msgid "Be verbose"
 msgstr "詳細模式"
 
-#: ../src/cheese.c:101
+#: ../src/cheese.c:178
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- 從你的網絡攝影機擷取相片與影片，並加入有趣的圖片特效"
 
