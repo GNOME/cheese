@@ -1622,8 +1622,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->main_hbox = gtk_hbox_new (FALSE, 0);
   hildon_program_add_window (program, HILDON_WINDOW (cheese_window->window));
   gtk_container_add (GTK_CONTAINER (cheese_window->window), cheese_window->main_hbox);
-  gtk_widget_ref (cheese_window->thumb_scrollwindow);
-  gtk_widget_ref (cheese_window->video_vbox);
+  g_object_ref (cheese_window->thumb_scrollwindow);
+  g_object_ref (cheese_window->video_vbox);
   gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
   gtk_container_remove (GTK_CONTAINER (cheese_window->main_vbox), cheese_window->video_vbox);
   gtk_box_pack_start (GTK_BOX (cheese_window->main_hbox), cheese_window->video_vbox, TRUE, TRUE, 0);
@@ -1632,8 +1632,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_widget_destroy (cheese_window->main_vbox);
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (cheese_window->thumb_scrollwindow),
                                   GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-  gtk_widget_unref (cheese_window->thumb_scrollwindow);
-  gtk_widget_unref (cheese_window->video_vbox);
+  g_object_unref (cheese_window->thumb_scrollwindow);
+  g_object_unref (cheese_window->video_vbox);
 #endif
 
   g_object_unref (builder);
@@ -1783,15 +1783,15 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   menu     = gtk_menu_new ();
   menuitem = gtk_menu_item_new_with_label (_("Quit"));
   g_signal_connect (menuitem, "activate",
-                    GTK_SIGNAL_FUNC (cheese_window_cmd_close),
+                    G_CALLBACK (cheese_window_cmd_close),
                     cheese_window);
-  gtk_menu_append (menu, menuitem);
+  gtk_menu_shell_append (menu, menuitem);
 
   menuitem = gtk_menu_item_new_with_label (_("About"));
   g_signal_connect (menuitem, "activate",
-                    GTK_SIGNAL_FUNC (cheese_window_cmd_about),
+                    G_CALLBACK (cheese_window_cmd_about),
                     cheese_window);
-  gtk_menu_append (menu, menuitem);
+  gtk_menu_shell_append (menu, menuitem);
 
   hildon_window_set_menu (HILDON_WINDOW (cheese_window->window), GTK_MENU (menu));
 #else
