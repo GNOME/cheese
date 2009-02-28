@@ -48,6 +48,9 @@ cheese_print_handler (char *string)
 
   CheeseFileUtil *fileutil = cheese_fileutil_new ();
 
+  if (CheeseOptions.verbose)
+    fprintf (stdout, "%s", string);
+
   if (fp == NULL)
   {
     path = cheese_fileutil_get_log_path (fileutil);
@@ -78,9 +81,6 @@ cheese_print_handler (char *string)
 
   if (fp)
     fputs (string, fp);
-
-  if (CheeseOptions.verbose)
-    fprintf (stdout, "%s", string);
 }
 
 void
