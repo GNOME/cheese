@@ -262,14 +262,14 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   hal_ctx = libhal_ctx_new ();
   if (hal_ctx == NULL)
   {
-    g_error ("error: libhal_ctx_new");
+    g_warning ("Could not create libhal context");
     dbus_error_free (&error);
     goto fallback;
   }
 
   if (!libhal_ctx_set_dbus_connection (hal_ctx, dbus_bus_get (DBUS_BUS_SYSTEM, &error)))
   {
-    g_error ("error: libhal_ctx_set_dbus_connection: %s: %s", error.name, error.message);
+    g_warning ("libhal_ctx_set_dbus_connection: %s: %s", error.name, error.message);
     dbus_error_free (&error);
     goto fallback;
   }
@@ -278,11 +278,11 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   {
     if (dbus_error_is_set (&error))
     {
-      g_error ("error: libhal_ctx_init: %s: %s\n", error.name, error.message);
+      g_warning ("libhal_ctx_init: %s: %s", error.name, error.message);
       dbus_error_free (&error);
     }
-    g_error ("Could not initialise connection to hald.\n"
-             "Normally this means the HAL daemon (hald) is not running or not ready");
+    g_warning ("Could not initialise connection to hald.\n"
+               "Normally this means the HAL daemon (hald) is not running or not ready");
     goto fallback;
   }
 
@@ -290,7 +290,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
 
   if (dbus_error_is_set (&error))
   {
-    g_error ("error: libhal_find_device_by_capability: %s: %s\n", error.name, error.message);
+    g_warning ("libhal_find_device_by_capability: %s: %s", error.name, error.message);
     dbus_error_free (&error);
     goto fallback;
   }
@@ -313,7 +313,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
     parent_udi = libhal_device_get_property_string (hal_ctx, udis[i], "info.parent", &error);
     if (dbus_error_is_set (&error))
     {
-      g_warning ("error getting parent for %s: %s: %s\n", udis[i], error.name, error.message);
+      g_warning ("error getting parent for %s: %s: %s", udis[i], error.name, error.message);
       dbus_error_free (&error);
     }
 
@@ -323,7 +323,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       property_name = g_strjoin (".", subsystem, "vendor_id", NULL);
       vendor_id = libhal_device_get_property_int (hal_ctx, parent_udi, property_name , &error);
       if (dbus_error_is_set (&error)) {
-        g_warning ("error getting vendor id: %s: %s\n", error.name, error.message);
+        g_warning ("error getting vendor id: %s: %s", error.name, error.message);
         dbus_error_free (&error);
       }
       g_free (property_name);
@@ -331,7 +331,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       property_name = g_strjoin (".", subsystem, "product_id", NULL);
       product_id = libhal_device_get_property_int (hal_ctx, parent_udi, property_name, &error);
       if (dbus_error_is_set (&error)) {
-        g_warning ("error getting product id: %s: %s\n", error.name, error.message);
+        g_warning ("error getting product id: %s: %s", error.name, error.message);
         dbus_error_free (&error);
       }
       g_free (property_name);
@@ -344,7 +344,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
     device = libhal_device_get_property_string (hal_ctx, udis[i], "video4linux.device", &error);
     if (dbus_error_is_set (&error))
     {
-      g_error ("error geting device for %s: %s: %s\n", udis[i], error.name, error.message);
+      g_warning ("error getting V4L device for %s: %s: %s", udis[i], error.name, error.message);
       dbus_error_free (&error);
       continue;
     }
@@ -360,7 +360,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
 
     if ((fd = open (device, O_RDONLY | O_NONBLOCK)) < 0)
     {
-      g_error ("Failed to open %s: %s\n", device, strerror (errno));
+      g_warning ("Failed to open %s: %s", device, strerror (errno));
       libhal_free_string (device);
       continue;
     }
@@ -370,7 +370,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       ok = ioctl (fd, VIDIOCGCAP, &v1cap);
       if (ok < 0)
       {
-        g_error ("Error while probing v4l capabilities for %s: %s\n",
+        g_warning ("Error while probing v4l capabilities for %s: %s",
                  device, strerror (errno));
         libhal_free_string (device);
         close (fd);

@@ -1,3 +1,10 @@
+2009-03-01  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c:
+	  Remove g_error calls where the error is not supposed to abort
+	  execution. Replace them with more suited g_warnings.
+	  Fixes bug #562179
+
 2009-02-28  Filippo Argiolas <filippo.argiolas@gmail.com>
 
 	* src/cheese.c:
