@@ -1,6 +1,14 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.25.92
+  - Remove g_error calls where the error is not supposed to abort execution.
+    Replace them with more suited g_warnings, fixes bug #562179
+  - Print cheese verbose messages even if log dir doesn't exist, fixes bug #573573
+  - added/updated translations
+    - ro, courtesy of Adi Roiban
+    - sv, courtesy of Daniel Nylander
+
 version 2.25.91
   - replace deprecated gtk symbols inside hildon code, fixes bug #571383, courtesy of Thomas Andersen
   - added/updated translations
