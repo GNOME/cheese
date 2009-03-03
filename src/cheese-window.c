@@ -1818,16 +1818,16 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_action_group_set_sensitive (cheese_window->actions_file, FALSE);
 
   action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Edit/Effects");
-  gtk_action_connect_proxy (GTK_ACTION (action), GTK_WIDGET (cheese_window->button_effects));
-  gtk_action_connect_proxy (GTK_ACTION (action), GTK_WIDGET (cheese_window->button_effects_fullscreen));
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_effects), action);
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_effects_fullscreen), action);
 
   action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/Photo");
-  gtk_action_connect_proxy (GTK_ACTION (action), GTK_WIDGET (cheese_window->button_photo));
-  gtk_action_connect_proxy (GTK_ACTION (action), GTK_WIDGET (cheese_window->button_photo_fullscreen));
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_photo), action);
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_photo_fullscreen), action);
 
   action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/Video");
-  gtk_action_connect_proxy (GTK_ACTION (action), GTK_WIDGET (cheese_window->button_video));
-  gtk_action_connect_proxy (GTK_ACTION (action), GTK_WIDGET (cheese_window->button_video_fullscreen));
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_video), action);
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_video_fullscreen), action);
 
 
   /* Default handlers for closing the application */
