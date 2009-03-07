@@ -404,22 +404,28 @@ cheese_window_fullscreen_leave_notify_cb (GtkWidget        *widget,
 static void
 cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 {
+  gdk_threads_enter ();
   /* TODO look at this g_free */
   g_free (cheese_window->photo_filename);
   cheese_window->photo_filename = NULL;
   gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
   gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
+  gdk_flush ();
+  gdk_threads_leave ();
 }
 
 static void
 cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 {
+  gdk_threads_enter ();
   /* TODO look at this g_free */
   g_free (cheese_window->video_filename);
   cheese_window->video_filename = NULL;
   gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
   gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
   gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
+  gdk_flush ();
+  gdk_threads_leave ();
 }
 
 static void

@@ -1,3 +1,13 @@
+2009-03-07  Filippo Argiolas <filippo.argiolas@gmail.co>
+
+	* src/cheese-window.c:
+	  Lock gdk mutex in photo-saved and video-saved callbacks
+	  Those signals are emitted within a gstreamer callback so outside the
+	  mainloop, hence the need for locking.
+	  This fixes the flash locking issue and also the one about the grey
+	  thumbview right after the flash.
+	  Fixes bug #566098
+
 2009-03-02  daniel g. siegel <dgsiegel@gmail.com>
 
 	* configure.ac,
