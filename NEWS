@@ -1,6 +1,25 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.26.0
+  - Lock gdk mutex in photo-saved and video-saved callbacks Those signals are emitted
+    within a gstreamer callback so outside the mainloop, hence the need for locking.
+    This fixes the flash locking issue and also the one about the grey thumbview
+    right after the flash, fixes bug #566098
+  - added/updated translations
+    - as, courtesy of Amitakhya Phukan
+    - bn_IN, courtesy of Runa Bhattacharjee
+    - ca, courtesy of Joan Duran
+    - cs, courtesy of Lucas Lommer
+    - de, courtesy of Mario Blättermann
+    - el, courtesy of Jennie Petoumenou
+    - fr, courtesy of Robert-André Mauchin
+    - gl, courtesy of Suso Baleato
+    - lt, courtesy of Vytautas Rėkus
+    - or, courtesy of Manoj Kumar Giri
+    - te, courtesy of Krishna Babu K
+    - th, courtesy of Theppitak Karoonboonyanan
+
 version 2.25.92
   - Remove g_error calls where the error is not supposed to abort execution.
     Replace them with more suited g_warnings, fixes bug #562179
