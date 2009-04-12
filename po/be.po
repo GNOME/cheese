@@ -1,0 +1,503 @@
+# Belarusian translation of cheese.
+# Copyright (C) 2009 THE cheese'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the cheese package.
+# Ягор Кур'яновіч <me@sontan.name>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cheese 2.26\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-04-12 10:25+0300\n"
+"PO-Revision-Date: 2009-04-12 10:25+0300\n"
+"Last-Translator: Ягор Кур'яновіч <me@sontan.name>\n"
+"Language-Team: Belarusian <i18n@mova.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
+"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "Cheese Webcam Booth"
+
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1027
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"Рабі здымкі й відэа з сваёй ўэб-камэры, зь цікавымі графічнымі эфэктамі"
+
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Сьпіс эфэктаў, якія прымяняюцца пры ўключэньні. Магчымыя значэньні: \"mauve"
+"\" (\"ліловасьць\"), \"noir_blanc\" (\"чорна-белы\"), \"saturation"
+"\" (\"насычанасьць\"), \"hulk\" (\"зомбі\"), \"vertical-flip\" (\"люстэрка"
+"\"), \"horizontal-flip\" (\"дагары нагамі\"), \"shagadelic\" (\"псыхадэлія"
+"\"), \"vertigo\" (\"кружэньне галавы\"), \"edge\" (\"межы\"), \"dice"
+"\" (\"кавалкі\") i \"warp\" (\"скрыўленьне\")"
+
+#: ../data/cheese.schemas.in.h:4
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Вызначае шлях, дзе будуць захоўвацца фатаграфіі, калі ён пусты, будзе "
+"выкарыстаны \"XDG_PHOTO/Webcam\"."
+
+#: ../data/cheese.schemas.in.h:5
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Вызначае шлях, дзе будзе захоўвацца відэа, калі ён пусты, будзе выкарыстаны "
+"\"XDG_VIDEO/Webcam\"."
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "Разрозненьне ў вышыню"
+
+#: ../data/cheese.schemas.in.h:7
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Калі гэты ключ усталяваны, Cheese будзе дазваляць вам выдаляць файлы адразу, "
+"абмінаючы сьметніцу. Гэтая магчымасьць можа быць небясьпечная, "
+"выкарыстоўвайце яе зь вялікай асьцярожнасьцю."
+
+#: ../data/cheese.schemas.in.h:8
+msgid "Photo Path"
+msgstr "Шлях да здымкаў"
+
+#: ../data/cheese.schemas.in.h:9
+msgid "Selected Effects"
+msgstr "Вылучаныя эфэкты"
+
+#: ../data/cheese.schemas.in.h:10
+msgid "Set to True to show countdown when taking a photo"
+msgstr "Уключыце дзеля выяўленьня зваротнага адліку пры фатаграфаваньні"
+
+#: ../data/cheese.schemas.in.h:11
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "Прыстасаванне, якое ўказвае на ўэб-камэру (напрыклад, /dev/video0)"
+
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "Разрозьненьне ў вышыню відарыса, які захопвае камэра"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "Разрозьненьне ў шырыню відарыса, які захопвае камэра"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Use a countdown"
+msgstr "Выкарыстоўваць зваротны адлік"
+
+#: ../data/cheese.schemas.in.h:15
+msgid "Video Path"
+msgstr "Шлях да відэа"
+
+#: ../data/cheese.schemas.in.h:16
+msgid "Webcam device string indicator"
+msgstr "Радок-індыкатар прыстасаваньня ўэб-камэры"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Whether to enable immediate deletion"
+msgstr "Уключыць неадкладнае выдаленьне"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "Разрозьненьне ў шырыню"
+
+#: ../data/cheese.ui.h:1 ../src/cheese.c:176
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "Пераключыць у рэжым здыманьня фота"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "Пераключыць у рэжым відэазапісу"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "Пераключыцца да выбару эфэктаў"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1151
+#: ../src/cheese-window.c:1390
+msgid "_Effects"
+msgstr "_Эфэкты"
+
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "_Пакінуць поўнаэкранны рэжым"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1402
+msgid "_Photo"
+msgstr "_Фота"
+
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1454
+msgid "_Take a Photo"
+msgstr "_Сфатаграфаваць"
+
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1403
+msgid "_Video"
+msgstr "_Відэа"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>Камэра</b>"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "<b>Resolution</b>"
+msgstr "<b>Разрозьненьне</b>"
+
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1394
+msgid "Preferences"
+msgstr "Перавагі"
+
+#: ../src/cheese-effect-chooser.c:60
+msgid "No Effect"
+msgstr "Без эфэктаў"
+
+#: ../src/cheese-effect-chooser.c:62
+msgid "Mauve"
+msgstr "Ліловасьць"
+
+#: ../src/cheese-effect-chooser.c:64
+msgid "Noir/Blanc"
+msgstr "Чорна-белы"
+
+#: ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Насычанасьць"
+
+#: ../src/cheese-effect-chooser.c:68
+msgid "Hulk"
+msgstr "Зомбі"
+
+#: ../src/cheese-effect-chooser.c:70
+msgid "Vertical Flip"
+msgstr "Люстэрка"
+
+#: ../src/cheese-effect-chooser.c:72
+msgid "Horizontal Flip"
+msgstr "Дагары нагамі"
+
+#: ../src/cheese-effect-chooser.c:74
+msgid "Shagadelic"
+msgstr "Псыхадэлія"
+
+#: ../src/cheese-effect-chooser.c:76
+msgid "Vertigo"
+msgstr "Кружэньне галавы"
+
+#: ../src/cheese-effect-chooser.c:78
+msgid "Edge"
+msgstr "Межы"
+
+#: ../src/cheese-effect-chooser.c:80
+msgid "Dice"
+msgstr "Кавалкі"
+
+#: ../src/cheese-effect-chooser.c:82
+msgid "Warp"
+msgstr "Скрыўленьне"
+
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:474
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "Камэра ня знойдзеная!"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "За дадатковай інфармацыяй зьвяртайцеся да даведкі."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "Даведка"
+
+#: ../src/cheese-webcam.c:1589
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "Адзін ці больш элемэнтаў GStreamer адсутнічаюць: "
+
+#: ../src/cheese-window.c:77
+msgid "_Skip"
+msgstr "_Прапусьціць"
+
+#: ../src/cheese-window.c:78
+msgid "S_kip All"
+msgstr "П_рапусьціць усё"
+
+#: ../src/cheese-window.c:79
+msgid "Delete _All"
+msgstr "_Выдаліць усё"
+
+#: ../src/cheese-window.c:203
+#, c-format
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"Немагчыма адкрыць вандроўнік, каб паказаць:\n"
+"%s"
+
+#: ../src/cheese-window.c:228
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"Немагчыма адкрыць паштовы кліент, каб даслаць паведамленьне да:\n"
+"%s"
+
+#: ../src/cheese-window.c:479
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"Немагчыма запусьціць праграму, каб паказаць:\n"
+"%s"
+
+#: ../src/cheese-window.c:498
+msgid "Save File"
+msgstr "Захаваць файл"
+
+#: ../src/cheese-window.c:536
+#, c-format
+msgid "Could not save %s"
+msgstr "Немагчыма захаваць файл %s"
+
+#: ../src/cheese-window.c:559
+msgid "Error while deleting"
+msgstr "Памылка падчас выдаленьня"
+
+#: ../src/cheese-window.c:560
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "Немагчыма выдаліць файл \"%s\". Падрабязнасьці: %s"
+
+#: ../src/cheese-window.c:587
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "Вы сапраўды жадаеце назаўжды выдаліць %'d вылучаны элемэнт?"
+msgstr[1] "Вы сапраўды жадаеце назаўжды выдаліць %'d вылучаныя элемэнты?"
+msgstr[2] "Вы сапраўды жадаеце назаўжды выдаліць %'d вылучаных элемэнтаў?"
+
+#: ../src/cheese-window.c:594
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "Вы сапраўды жадаеце назаўжды выдаліць \"%s\"?"
+
+#: ../src/cheese-window.c:597
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Калі вы выдаліце элемэнт, ён будзе страчаны назаўжды."
+
+#: ../src/cheese-window.c:618
+msgid "Unknown Error"
+msgstr "Невядомая памылка"
+
+#: ../src/cheese-window.c:648
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "Немагчыма перанесьці файл у сьметніцу. Жадаеце выдаліць неадкладна?"
+
+#: ../src/cheese-window.c:649
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "Немагчыма перанесьці файл \"%s\" у сьметніцу. Падрабязнасьці: %s"
+
+#: ../src/cheese-window.c:721
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "Сапраўды перанесьці ўсе фотаздымкі і відэа ў сьметніцу?"
+
+#: ../src/cheese-window.c:729
+msgid "_Move to Trash"
+msgstr "Перанесьці ў _сьметніцу"
+
+#: ../src/cheese-window.c:847
+#, c-format
+msgid "Could not set the Account Photo"
+msgstr "Немагчыма ўсталяваць здымак дзеля рахунку"
+
+#: ../src/cheese-window.c:879
+msgid "Media files"
+msgstr "Мэдыя-файлы"
+
+#: ../src/cheese-window.c:953 ../src/cheese-window.c:1225
+msgid "Unable to open help file for Cheese"
+msgstr "Немагчыма адкрыць файл даведкі Cheese"
+
+#: ../src/cheese-window.c:1005
+msgid "translator-credits"
+msgstr "Ягор Кур'яновіч <me@sontan.name>"
+
+#: ../src/cheese-window.c:1008
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"Гэтая праграма - вольнае праграмнае забесьпячэньне; вы можаце распаўсюджваць "
+"і/альбо зьмяняць яе ў адпаведнасьці з умовамі \"GNU General Public License"
+"\", якую выдала Фундацыя вольнага праграмнага забесьпячэньня, альбо вэрсіі 2 "
+"гэтае ліцэнзіі, альбо (на ваш выбар) навейшай вэрсіі.\n"
+
+#: ../src/cheese-window.c:1012
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Гэтая праграма распаўсюджваецца з надзеяй, што яна будзе карысная, але БЕЗЬ "
+"НІЯКАЙ ГАРАНТЫІ; нават без гарантыі ПРЫДАТНАСЦІ ДА КАНКРЭТНАГА ВЫКАРЫСТАНЬНЯ."
+"За падрабязнасьцямі зьвяртайцеся да тэксту \"GNU General Public License\"\n"
+
+#: ../src/cheese-window.c:1016
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Вы павінны былі атрымаць копію GNU General Public License разам з гэтай "
+"праграмаю. Калі гэта ня так, глядзіце <http://www.gnu.org/licenses/>."
+
+#: ../src/cheese-window.c:1033
+msgid "Cheese Website"
+msgstr "Інтэрнэт-пляцоўка Cheese"
+
+#: ../src/cheese-window.c:1241
+msgid "_Start Recording"
+msgstr "_Пачаць запіс"
+
+#: ../src/cheese-window.c:1340
+msgid "_Stop Recording"
+msgstr "_Спыніць запіс"
+
+#: ../src/cheese-window.c:1371
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../src/cheese-window.c:1373
+msgid "_Edit"
+msgstr "_Рэдагаваць"
+
+#: ../src/cheese-window.c:1374
+msgid "Move All to Trash"
+msgstr "Перамясьціць усё ў сьметніцу"
+
+#: ../src/cheese-window.c:1377
+msgid "_Help"
+msgstr "_Даведка"
+
+#: ../src/cheese-window.c:1380
+msgid "_Contents"
+msgstr "_Зьмест"
+
+#: ../src/cheese-window.c:1380
+msgid "Help on this Application"
+msgstr "Даведка для гэтай праграмы"
+
+#: ../src/cheese-window.c:1386
+msgid "Countdown"
+msgstr "Зваротны адлік"
+
+#: ../src/cheese-window.c:1407
+msgid "_Open"
+msgstr "_Адкрыць"
+
+#: ../src/cheese-window.c:1409
+msgid "Save _As..."
+msgstr "Захаваць _як..."
+
+#: ../src/cheese-window.c:1411
+msgid "Move to _Trash"
+msgstr "Перамясьціць у _сьметніцу"
+
+#: ../src/cheese-window.c:1413
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: ../src/cheese-window.c:1418 ../src/cheese-window.c:1647
+msgid "_Take a photo"
+msgstr "_Сфатаграфаваць"
+
+#: ../src/cheese-window.c:1422
+msgid "_Recording"
+msgstr "_Запіс"
+
+#: ../src/cheese-window.c:1426
+msgid "_Set As Account Photo"
+msgstr "_Зрабіць здымкам рахунку"
+
+#: ../src/cheese-window.c:1430
+msgid "Send by _Mail"
+msgstr "Даслаць _поштай"
+
+#: ../src/cheese-window.c:1434
+msgid "Send _To"
+msgstr "Даслаць _да"
+
+#: ../src/cheese-window.c:1438
+msgid "Export to F-_Spot"
+msgstr "Экспартаваць у F-_Spot"
+
+#: ../src/cheese-window.c:1442
+msgid "Export to _Flickr"
+msgstr "Экспартаваць у _Flickr"
+
+#: ../src/cheese-window.c:1466
+msgid "_Start recording"
+msgstr "Пачаць _запіс"
+
+#: ../src/cheese-window.c:1790
+msgid "Quit"
+msgstr "Выйсьці"
+
+#: ../src/cheese-window.c:1796
+msgid "About"
+msgstr "Аб праграме"
+
+#: ../src/cheese-window.c:1877
+msgid "Check your gstreamer installation"
+msgstr "Праверце ўсталёўку GStreamer"
+
+#: ../src/cheese.c:160
+msgid "Be verbose"
+msgstr "Будзь падрабязным"
+
+#: ../src/cheese.c:178
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"- Рабі здымкі і відэа з сваёй ўэб-камэры, зь цікавымі графічнымі эфэктамі"
+
+#~ msgid ""
+#~ "Are you sure you want to permanently delete the %'d selected item?Are you "
+#~ "sure you want to permanently delete the %'d selected items?"
+#~ msgstr ""
+#~ "Вы сапраўды жадаеце назаўжды выдаліць %'d вылучаны элемэнт?Вы сапраўды "
+#~ "жадаеце назаўжды выдаліць %'d вылучаныя элемэнты?"
