@@ -1,0 +1,40 @@
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <!--
+  This is a DOAP template file.  It contains Pulse's best guesses at
+  some basic content.  You should verify the information in this file
+  and modify anything that isn't right.  Add the corrected file to your
+  source code repository to help tools better understand your project.
+  -->
+
+  <name xml:lang="en">Cheese</name>
+  <shortdesc xml:lang="en">Take photos and videos with your webcam, with fun graphical effects</shortdesc>
+  <homepage rdf:resource="http://projects.gnome.org/cheese" />
+  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/cheese-list" />
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>daniel g. siegel</foaf:name>
+      <foaf:mbox rdf:resource="dgsiegel@gmail.com" />
+      <gnome:userid>dgsiegel</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Filippo Argiolas</foaf:name>
+      <foaf:mbox rdf:resource="filippo.argiolas@gmail.com" />
+      <gnome:userid>fargiolas</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Jaap A. Haitsma</foaf:name>
+      <foaf:mbox rdf:resource="jaap@haitsma.org" />
+      <gnome:userid>jhaitsma</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+</Project>
