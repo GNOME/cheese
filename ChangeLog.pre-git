@@ -1,0 +1,4761 @@
+2009-03-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* MAINTAINERS: 
+	  added filippo to MAINTAINERS, welcome!
+
+2009-03-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2009-03-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2009-03-07  Filippo Argiolas <filippo.argiolas@gmail.co>
+
+	* src/cheese-window.c:
+	  Lock gdk mutex in photo-saved and video-saved callbacks
+	  Those signals are emitted within a gstreamer callback so outside the
+	  mainloop, hence the need for locking.
+	  This fixes the flash locking issue and also the one about the grey
+	  thumbview right after the flash.
+	  Fixes bug #566098
+
+2009-03-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2009-03-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2009-03-01  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c:
+	  Remove g_error calls where the error is not supposed to abort
+	  execution. Replace them with more suited g_warnings.
+	  Fixes bug #562179
+
+2009-02-28  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c:
+	  Print cheese verbose messages even if log dir doesn't exist.
+	  Fixes bug #573573
+
+2009-02-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2009-02-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2009-02-16  Thomas H.P. Andersen <phomes@gmail.com>
+
+	* src/cheese-window.c: 
+	  Replace deprecated gtk symbols with hildon. Bug #571383
+
+2009-02-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2009-02-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS,
+	  configure.ac,
+	  wscript: 
+	  update NEWS file, correct release version
+
+2009-01-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  src/cheese-flash.c,
+	  src/cheese-window.c: 
+	  changed thomas perls mail address
+
+2009-01-14  Yair Hershkovitz  <yairhr@gmail.com>
+
+	* src/eog-thumb-nav.c:
+	Reverse icon view scroll buttons scroll direction for RTL locales.
+	Closes bug #566197.
+
+2009-01-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2009-01-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-12-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-12-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-12-10  Kjartan Maraas  <kmaraas@gnome.org>
+
+	* src/ephy-spinner.c:
+	* src/ephy-spinner.h:
+	* src/gedit-message-area.h:
+	Single includes fix. Patch from Pedro Fragoso.
+	Closes bug #563537.
+
+2008-12-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-12-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-11-23  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c:
+	  Print Vendor and Product Id while probing devices. Provide some more
+	  device informations for easier bug triaging.
+
+2008-11-21  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c,
+	  src/cheese-dbus.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-webcam.c: 
+	  Remove unnecesary include files, to meet GnomeGoal
+	  http://live.gnome.org/GnomeGoals/CleanupGTKIncludes
+	  Don't know if I completed in entirely because make CFLAGS+="-DG_DISABLE_SINGLE_INCLUDES -DGDK_PIXBUF_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES" somehow fails somewhere on includes done by gtk files themselves :-(
+
+2008-11-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c:
+	  Don't use random access GList methods when accessing a list
+	  sequentially. Properly free list elements after use.
+	  Fixes bug #560514, courtesy of Giuseppe Fuggiano
+
+2008-11-15  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-window.c,
+	  wscript: 
+	  Use gtk_show_uri to open files and xdg-open i.s.o. gnome-open which 
+	  is part of libgnome and is deprecated
+
+2008-11-15  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Use gtk_message_dialog_format_secondary_markup correctly
+
+2008-11-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c: 
+	  print the cheese version if the -v flag is set
+
+2008-11-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README,
+	  src/cheese-window.c: 
+	  change the cheese homepage to projects.gnome.org
+
+2008-11-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-gconf.c: 
+	  free gslist properly without a memory leak, fixes bug #560347,
+	  courtesy of Giuseppe Fuggiano
+
+2008-11-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  cheese now works for cams which support only one resolution,
+	  fixes bug #560032, courtesy of Hans de Goede
+
+2008-11-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-11-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-11-02  Felix Kaser <f.kaser@gmx.net>
+
+	* ChangeLog: 
+	  changed the ChangeLog file, because of an error in a previous changelog entry (no name/email)
+	  
+2008-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c: 
+	  change the default font of the countdown widget to bitstream
+	  vera sans bold
+
+2008-10-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/wscript_build,
+	  wscript: 
+	  remove gnome-vfs dependency from waf
+
+2008-10-17  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* configure.ac:
+	* src/Makefile.am:
+	* src/cheese-thumb-view.c: (cheese_thumb_view_thread_append_item),
+	(cheese_thumb_view_init):
+	* src/cheese.c: (main):
+	* src/eog-thumbnail.c: (art_rgb_run_alpha):
+	Drop libgnome/libgnome-vfs dependencies (#556580).
+
+2008-10-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c: 
+	  enhance the previous patch
+
+2008-10-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* wscript: 
+	  change the dependency of dbus to dbus-1
+
+2008-10-13  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c:
+	  Exit correctly with unknown command line arguments, fixes bug
+	  #556084.
+
+2008-10-12  Felix Kaser <f.kaser@gmx.net>
+
+	* data/cheese.glade,
+	  data/cheese.ui,
+	  src/cheese-window.c: 
+	  Some ui changes to solve bug #548546! When in fullscreen
+	  and effects chooser mode the fullscreen toolbar will remain
+	  visible! This has been considered the best way.
+
+2008-09-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-09-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-09-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  README,
+	  wscript: 
+	  update the cheese dependencies, fixes bug #547203
+
+2008-09-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/pixmaps/Makefile.am,
+	  data/pixmaps/cheese-2.svg,
+	  data/pixmaps/cheese-3.svg,
+	  src/cheese-thumb-view.c: 
+	  nothing ;)
+
+2008-09-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  use the correct translated plural form when deleting more than
+	  one item from the thumbnail bar, fixes bug #552290, courtesy
+	  of Yuriy Penkin
+
+2008-09-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  do not add a new item to the thumbnail bar, if its already
+	  there, fixes bug #549804
+
+2008-09-10  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c:
+	  include gio header in cheese.c
+
+2008-09-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-09-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-09-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese.c: 
+	  old photos and videos (before 2.24) are now available in cheese
+	  2.24, fixes bug #547290
+
+2008-09-09  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c:
+	  sort videoformat array and resolution hashtable, courtesy of Hans
+	  de Goede
+
+2008-09-09  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c,
+	  src/cheese-webcam.h:
+	  dont save duplicated videoformats abut only keep the one with the
+	  maximum framerate if it provides the same resolution. add
+	  correspondent entry only once to the resolution hashtable so that
+	  we have no more duplicated resolutions on preferences dialog.
+	  Fixes bugs #547144 and #547140, courtesy of Hans de Goede
+
+2008-09-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c: 
+	  remove the old log file if it exists
+
+2008-09-08  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c:
+	  send eos event only if the pipeline was playing, otherwise force
+	  shutdown. Start a timeout to force unclean shutdown if eos takes
+	  to much to propagate or doesnt propagate at all. Probably fixes
+	  bug #547422
+
+2008-09-08  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c:
+	  set take_picture sensitiveness before webcam_stop_video_recording
+	  since this emits a signal that would lead to another
+	  sensitiveness change. see comments on bug #547422
+
+2008-09-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  data/cheese.ui: 
+	  set the utility hint for the fullscreen toolbar, partially
+	  fixes #548546
+
+2008-09-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  small indenting change
+
+2008-09-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-bugreport.sh,
+	  src/cheese.c: 
+	  rename the log file to "log.txt" and prepend it with the
+	  running cheese version
+
+2008-09-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c,
+	  src/cheese-webcam.h: 
+	  fix various issues with cheese, tv-cards and other strange
+	  devices, fixes bug #546868, courtesy of Hans de Goede
+
+2008-09-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  src/cheese-prefs-webcam-combo.c: 
+	  cheese crashes no more when no device is set in gconf, partially
+	  fixes bug #546868, courtesy of Hans de Goede
+
+2008-09-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  display toolbar when entering into fullscreen mode, fixes bug
+	  #548546, courtesy of Felix Kaser
+
+2008-09-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-09-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-09-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.desktop.in.in: 
+	  cheese.desktop file now respects freedesktop SPEC, fixes bug
+	  #550195, courtesy of Pacho Ramos
+
+2008-08-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c,
+	  src/cheese-countdown.h,
+	  src/cheese-dbus.c,
+	  src/cheese-dbus.h,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-no-camera.c,
+	  src/cheese-no-camera.h,
+	  src/cheese-prefs-dialog-widgets.c,
+	  src/cheese-prefs-dialog-widgets.h,
+	  src/cheese-prefs-dialog.c,
+	  src/cheese-prefs-dialog.h,
+	  src/cheese-prefs-resolution-combo.c,
+	  src/cheese-prefs-resolution-combo.h,
+	  src/cheese-prefs-webcam-combo.c,
+	  src/cheese-prefs-webcam-combo.h,
+	  src/cheese-prefs-widget.c,
+	  src/cheese-prefs-widget.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  tools/cheese-indent.cfg: 
+	  a small syntax cleanup made with uncrustify
+
+2008-08-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* tools/cheese-indent.cfg: 
+	  uncrustify config update
+
+2008-08-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* tools/cheese-indent.cfg,
+	  tools/indent.sh: 
+	  add the uncrustify indenting config
+
+2008-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/wscript_build,
+	  help/wscript_build,
+	  waf,
+	  wscript: 
+	  waf did not install the files properly, now it does
+
+2008-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/org.gnome.Cheese.service.in: 
+	  add the dynamic bindir to the dbus file
+
+2008-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/Makefile.am,
+	  src/cheese-dbus.c,
+	  src/wscript_build,
+	  waf: 
+	  update waf to 1.4.3 and make it working again
+
+2008-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* acinclude.m4,
+	  configure.ac,
+	  data/Makefile.am: 
+	  fix some dbus-autotool regression, which prevented building
+	  cheese correctly
+
+2008-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  data/cheese.ui: 
+	  change order of buttons in fullscreen mode
+
+2008-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese.c: 
+	  small syntax cleanup
+
+2008-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  call gdk_x11_window_set_user_time to raise the cheese window
+	  if its called twice
+
+2008-08-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* acinclude.m4: 
+	  fix messed up acinclude.m4
+
+2008-08-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/org.gnome.Cheese.service.in: 
+	  fix messed up dbus service file
+
+2008-08-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-dbus.c,
+	  src/cheese-dbus.h: 
+	  small syntax cleanup and removing of an unneeded variable
+
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* data/org.gnome.Cheese.service,
+	  data/org.gnome.Cheese.service.in: 
+	  another one, sorry :)
+
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* acinclude.m4: 
+	  I forgot to add acinclude.m4, sorry.
+
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c: 
+	  notify startup if another istance is found (normally that would be
+	  done by gtk when opening the window but we exit without create any
+	  window so we have to do it manually)
+
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* configure.ac,
+	  data/Makefile.am,
+	  data/org.gnome.Cheese.service,
+	  src/cheese.c,
+	  src/cheese-dbus.c,
+	  src/cheese-dbus.h,
+	  src/cheese-dbus-infos.xml,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/Makefile.am: 
+	  Don't start cheese twice if another instance is running. First part
+	  of Felix Kaser's work with cheese and dbus. Fixes bug #527736.
+
+2008-08-16  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c: 
+	  remove gtk_init and gst_init, according to the docs these are not
+	  needed if we use gtk_get_option_group and gst_init_get_option_group
+
+2008-08-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  remove unneeded gtkwidget label_effects_fullscreen
+
+2008-08-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  data/cheese.ui: 
+	  align the buttons with the thumbnail bar
+
+2008-08-13  Patryk Zawadzki <patrys@pld-linux.org>
+
+	* src/eog-thumb-nav.c: 
+	  hide scrollbar when not needed
+
+2008-08-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  data/cheese.ui: 
+	  remove the relief of all buttons in the fullscreen toolbar
+
+2008-08-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  data/cheese.ui,
+	  src/cheese-countdown.c,
+	  src/cheese-countdown.h,
+	  src/cheese-window.c: 
+	  improve the fullscreen mode, fixes bug #547405, courtesy of
+	  Felix Kaser
+
+2008-08-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  select the last thumbnail item, if the last one was deleted
+
+2008-08-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c: 
+	  hitting space when the countdown has already begun, distorts
+	  the countdown, fixes bug #547403
+
+2008-08-12   Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-window.c: 
+	  Test for file existence before moving to trash. Remove item
+	  from thumbview if trashing succeeds (don't wait for monitor
+	  to notice). Untabify cheese-window.c
+
+2008-08-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* tools/cicl: 
+	  update cicl
+
+2008-08-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/gtkrc: 
+	  a dynamic growing slider length is much better than a static one
+
+2008-08-11  Patryk Zawadzki <patrys@pld-linux.org>
+	* src/cheese-window.c,
+	  src/cheese.c,
+	  src/eog-thumb-nav.c,
+	  src/eog-thumb-nav.h,
+	  src/Makefile.am,
+	  data/cheese.ui,
+	  data/Makefile.am,
+	  data/wscript_build,
+	  data/gtkrc: 
+	  Use eog's thumbnail browser widget. Fixes bug #511916.
+
+2008-08-11  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  Disable action_effects while setup_camera is running. Fixes bug
+	  #547313
+
+2008-08-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  add people who contributed to cheese to the cheese about window
+
+2008-08-11  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c,
+	  src/cheese-window.c: 
+	  Give a detailed error message if some gstreamer element is missing.
+	  Patch from Todd Eisenberger (slightly modified). Fixes bug #522009.
+
+2008-08-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in: 
+	  some gconf translation improvements, fixes bug #547168
+
+2008-08-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in: 
+	  add a translator comment to our schema file
+
+2008-08-10  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  Connect button_photo and button_video as proxy widgets for relative
+	  RadioActions. This makes the code more simple and clean.
+
+2008-08-08  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  Change action_files sensitiveness on "selection-changed" event.
+	  Fixes bug 546918
+
+2008-08-08  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  don't try to find highest framerate if format is NULL, courtesy of
+	  Todd Eisenberger
+
+2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in,
+	  src/cheese-gconf.c: 
+	  selected effects gconf key values are now standardized, fixes bug #513776 
+
+2008-08-07  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  Better hig compliant alert for missing gstreamer elements. Patch
+	  from bug #522009
+
+2008-08-07  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* data/cheese.schemas.in,
+	  data/cheese-ui.xml,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-window.c: 
+	  Add a Delete action to immediately delete files without moving to
+	  trash. It can be hidden with the new enable_delete gconf key.
+
+2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.desktop.in.in: 
+	  use "Cheese Webcam Booth" instead of "Cheese" as the desktop entry name, fixes bug #543976
+
+2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-window.c: 
+	  add multiple selection in the picture listing pane, fixes bug #481405 
+
+2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c: 
+	  correct critical warnings, if some gstreamer plugins arent available, fixes bug #522009, courtesy of Todd Eisenberger
+
+2008-08-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  remove useless g_free which produced a warning
+
+2008-08-06  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  remove a useless printf
+
+2008-08-06  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  Chuck Norris doesn't play god. Playing is for children. 
+
+2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  don't trust a gboolean to be false
+
+2008-08-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  use g_random_int instead of g_rand_int
+
+2008-08-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/pixmaps/Makefile.am,
+	  data/wscript_build: 
+	  add missing icons to waf and autotools
+
+2008-08-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  data/pixmaps/cheese-1.svg,
+	  src/cheese-thumb-view.c: 
+	  add the multiplex thumbnail generator algorithm
+
+2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  Free ThumbViewThreadData. Remove redundant setting for url and
+	  basename column.
+
+2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  Disable "Start recording" button until the recording pipeline
+	  properly shuts down.
+
+2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  remove a dummy g_message I used for debug
+
+2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  Save generated thumbnails. It seems I removed it without notice,
+	  sorry.
+
+2008-08-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  resolve wrong sorting issue of the thumbnails, fixes bug #546390
+
+2008-08-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  free a strdup-ed string
+
+2008-08-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-08-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-08-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-no-camera.h,
+	  src/cheese-prefs-webcam-combo.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/cheese.c: 
+	  small syntax cleanup
+
+2008-08-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  use gtk stock for fullscreen
+
+2008-08-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  add a mnemonic and the correct spelling to the fullscreen option
+
+2008-08-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  add a fullscreen mode for kiosks, fixes #478852, courtesy of Felix Kaser
+
+2008-08-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  wait until the video has been recorded, to add it to the thumbnail bar, partially fixes #545212
+
+2008-08-04  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-thumb-view.c,
+	  src/cheese-window.c: 
+	  Move thumbnail generation to its own thread. 
+	  Display a loading icon while generating thumbnail.
+	  Display a fallback icon if thumbnail generation fails.
+	  Fixes #545151. Partially fixes #545212.
+	  Fix a segfault in cheese-window while deleting both videos and
+	  photos.
+
+2008-08-04  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  Delete files if move_to_trash fails. Support for Skip, Skip All,
+	  Delete All to resemble common nautilus behavior. Fixes #545950
+
+2008-08-02  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  another uninitialized GError (see previous commit)
+
+2008-08-02  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  initialize error in move_file_to_trash to NULL, fixes #545997
+
+2008-07-28  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  add a videorate element to video_save_bin, fixes (partially?) #542014
+
+2008-07-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* tools/cicl: 
+	  add the cicl script to cheese, and try to gain the world domination with this first step
+
+2008-07-23  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-window.c: 
+	  connect button_effects as a proxy widget for Effects ToggleAction so
+	  they behave coherently. Fixes bug #539195
+
+2008-07-22  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese-prefs-webcam-combo.c: 
+	  Don't try to access selected_device->video_device if there is no
+	  device. Fixes bug #544062
+
+2008-07-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-07-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  NEWS: 
+	  update NEWS and AUTHOR file
+
+2008-07-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* wscript: 
+	  bump waf requirements
+
+2008-07-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* AUTHORS,
+	  configure.ac,
+	  src/cheese-webcam.c:
+	  Bump gstreamer requirements to 0.10.16.
+	  Use gst_element_send_event to cleanly shutdown video recording.
+	  Fixes #523475.
+
+2008-07-05  Filippo Argiolas <filippo.argiolas@gmail.com>
+
+	* src/cheese.c: 
+	  fixes cheese_print_handler, path string was being used after
+	  unreferencing its owner (fileutil)
+
+2008-06-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.h: 
+	  use ogv as default video extension, fixes bug #524021
+
+2008-06-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  small syntax cleanup
+
+2008-06-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-flash.c: 
+	  remove a unused variable, which produced a warning
+
+2008-06-23  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c,
+	  src/cheese-prefs-webcam-combo.c,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h: 
+	  Make hal-device-id command line option work
+	  Fixes bug #498023. Patch by zeiglerr at gmail dot com
+
+2008-06-22  Marc-Andre Lureau  <marcandre.lureau@gmail.com>
+
+	* src/cheese-webcam.c: Removed include <X11/extensions/xf86vmode.h>
+	Fixes bug #539631.
+
+2008-06-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  fix typo, which prevented hildon mode to compile cleanly
+
+2008-06-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  data/cheese-prefs.glade,
+	  data/cheese-prefs.ui,
+	  src/Makefile.am,
+	  src/cheese-prefs-dialog.c,
+	  src/cheese-prefs-dialog.h,
+	  src/cheese-prefs-webcam-combo.c,
+	  src/cheese-prefs-webcam-combo.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c: 
+	  allow to choose the webcam using the preference dialog, fixes bug #522200, courtesy of Ryan Zeigler
+
+2008-06-19  Cosimo Cecchi  <cosimoc@gnome.org>
+
+	* src/cheese-countdown.c: (do_text):
+	* src/cheese-thumb-view.c: (cheese_thumb_view_fill):
+	* src/cheese-window.c: (cheese_window_cmd_save_as),
+	(cheese_window_cmd_move_file_to_trash),
+	(cheese_window_cmd_set_about_me_photo),
+	(cheese_window_countdown_picture_cb), (setup_camera):
+	Fix some gcc warnings. (#537490).
+
+2008-06-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-06-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS
+
+2008-06-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile.am,
+	  autogen.sh,
+	  configure.ac: 
+	  use intltool > 0.40 for autotools
+
+2008-06-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-06-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  release version bump
+
+2008-06-08  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c: 
+	  Instead of crashing report when certain gstreamer are not found. 
+	  Fixes bug #522009. Patch by Todd Eisenberger
+
+2008-06-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  fix a crash, when using about/quit menu items in hildon mode, fixes bug #535582, courtesy of Michael Terry
+
+2008-06-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-05-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* AUTHORS: 
+	  Add Alex and Thomas to the AUTHORS file
+
+2008-05-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-flash.c,
+	  src/cheese-flash.h: 
+	  Forgot to add cheese-flash.[ch] to SVN
+
+2008-05-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* wscript: 
+	  Also remove xxf86vm from wscript
+
+2008-05-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/Makefile.am: 
+	  Add new flash and remove changing gamma for simulating flash. The 
+	  new flash works best if you run a composited desktop. Patch by 
+	  Alex "weej" Jones and Thomas Perl. Fixes #526214
+
+2008-05-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.c: 
+	  fix segfault on startup if video or photo directory gconf setting is missing, fixes bug #534480, courtesy of Alexander Jones
+
+2008-05-18  Felix Kaser <f.kaser@gmx.net>
+
+	* data/cheese.schemas.in,
+	  src/cheese.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-window.c: 
+	  Added support to set the video and photo path in gconf! First priority has gconf, if gconf setting is "" then use xdg, if xdg is "" as well, use "~/.gnome2/cheese/media"!
+
+2008-05-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-05-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/POTFILES.in,
+	  po/POTFILES.skip: 
+	  add and remove some translatable files
+
+2008-05-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update the NEWS file
+
+2008-05-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  data/cheese.glade,
+	  data/cheese.ui,
+	  data/icons/16x16/actions/Makefile.am,
+	  data/icons/16x16/actions/browse-webcam-effects.png,
+	  data/icons/16x16/actions/effects.png,
+	  data/icons/22x22/Makefile.am,
+	  data/icons/22x22/actions,
+	  data/icons/22x22/actions/Makefile.am,
+	  data/icons/22x22/actions/browse-webcam-effects.png,
+	  data/icons/24x24/Makefile.am,
+	  data/icons/24x24/actions,
+	  data/icons/24x24/actions/Makefile.am,
+	  data/icons/24x24/actions/browse-webcam-effects.png,
+	  data/icons/32x32/Makefile.am,
+	  data/icons/32x32/actions,
+	  data/icons/32x32/actions/Makefile.am,
+	  data/icons/32x32/actions/browse-webcam-effects.png,
+	  data/icons/48x48/Makefile.am,
+	  data/icons/48x48/actions,
+	  data/icons/48x48/actions/Makefile.am,
+	  data/icons/48x48/actions/browse-webcam-effects.png,
+	  data/icons/scalable/Makefile.am,
+	  data/icons/scalable/actions,
+	  data/icons/scalable/actions/Makefile.am,
+	  data/icons/scalable/actions/browse-webcam-effects.svg: 
+	  better effects icon, fixes bug #511369
+
+2008-05-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-window.c,
+	  src/cheese.c: 
+	  store photos and videos in xdg directories, fixes bug #509475, courtesy of Felix Kaser
+
+2008-05-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.h: 
+	  change the default video extension to .ogg until the mime types are supported properly on the gnome desktop
+
+2008-05-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  remove a useless variable
+
+2008-05-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  data/cheese.ui,
+	  src/cheese-window.c: 
+	  change the effects button to a toggle button, fixes bug #527870
+
+2008-04-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  added support for nautilus send to. this replaces "send by email" where
+
+	  available, fixes bug #528249, courtesy of Jose Dapena Paz
+
+2008-04-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.c: 
+	  name the files to the date, when they were created, fixes bug #525739
+
+2008-04-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in: 
+	  remove extraneous commas in strings, fixes bug #529445
+
+2008-04-26  Andrea Cimitan  <andrea.cimitan@gmail.com>
+
+	* src/cheese-countdown.c (on_expose):
+	  the numbers are now aligned (increased size from 24 to 26)
+
+2008-04-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c: 
+	  second number on the countdown widget is 2 not 3
+
+2008-04-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c: 
+	  make the countdown numbers translatable the right way
+
+2008-04-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-prefs.glade,
+	  data/cheese-prefs.ui: 
+	  "gtk-close" should not be translated, fixes bug #530026
+
+2008-04-26  Andrea Cimitan  <andrea.cimitan@gmail.com>
+
+	  * AUTHORS:
+	  * src/cheese-countdown.c (rgb_to_hls), (hls_to_rgb), (color_shade),
+	  (on_expose), (create_surface_from_svg), (on_style_set_cb):
+	  changed shading operations using a hls colorspace.
+	  drawing operation trough a cairo_pattern.
+	  added a border and a little highlight on it.
+
+2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/POTFILES.in,
+	  src/cheese-countdown.c: 
+	  make the 3 2 1 on the countdown widget translatable
+
+2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-countdown.c: 
+	  use fg[SELECTED] instead of text[SELECTED] for the countdown widget
+
+2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  fix invalid free in cheese, fixes bug #529467, courtesy of Matthias Clasen
+
+2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  take picture button is enabled outside gtk thread lock, fixes bug #529789, courtesy of Gary Lasker
+
+2008-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/pixmaps/camera-icon.svg,
+	  src/cheese-countdown.c: 
+	  use gtk theme colors for the countdown widget
+
+2008-04-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade: 
+	  Don't display the toplevel window by default (it's shown explicitely
+	  in pure-Gtk+ mode); fixes superfluous window in Hildon mode,
+	  fixes bug #529276, courtesy of Loïc Minier
+
+2008-04-22  Loïc Minier  <lool@dooz.org>
+
+	* data/cheese.ui:
+	  Don't display the toplevel window by default (it's shown explicitely
+	  in pure-Gtk+ mode); fixes superfluous window in Hildon mode.
+	  Fixes bug #529276.
+
+2008-04-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  data/cheese-prefs.glade,
+	  data/cheese-prefs.ui,
+	  data/cheese.schemas.in,
+	  data/cheese-ui.xml,
+	  data/Makefile.am,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-prefs-dialog.c,
+	  src/cheese-prefs-dialog.h,
+	  src/cheese-prefs-dialog-widgets.c,
+	  src/cheese-prefs-dialog-widgets.h,
+	  src/cheese-prefs-resolution-combo.c,
+	  src/cheese-prefs-resolution-combo.h,
+	  src/cheese-prefs-widget.c,
+	  src/cheese-prefs-widget.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/Makefile.am: 
+	  add a preferences dialog with basic resolution changing, partially fixes #522200, courtesy of James Liggett
+
+2008-04-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-04-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update the NEWS file
+
+2008-04-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  version bump
+
+2008-04-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  when running without a webcam, the video_source element _could_ be NULL
+
+2008-04-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  src/cheese-thumb-view.c: 
+	  fix regression of DnD, courtesy of Cosimo Cecchi, fixes bug #526398
+
+2008-04-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.h: 
+	  the default theora file extension is .gov, fixes bug #524021
+
+2008-04-19  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c: 
+	  Add comment that gnome_vfs_init is still needed as long as we use 
+	  gnome_thumbnail functions. Fixes #522189
+
+2008-04-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  cheese crashed, when a file was deleted twice
+
+2008-04-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* wscript: 
+	  add the APPNAME_DATA_DIR variable to waf
+
+2008-04-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/wscript_build: 
+	  install effects.png with waf too
+
+2008-04-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  configure.ac,
+	  data/cheese.glade,
+	  data/cheese.ui,
+	  data/icons/16x16/actions,
+	  data/icons/16x16/actions/effects.png,
+	  data/icons/16x16/actions/Makefile.am,
+	  data/icons/16x16/Makefile.am,
+	  src/cheese.c,
+	  src/Makefile.am: 
+	  better effects icon, fixes bug #511369, courtesy of baptiste mille-mathias
+
+2008-04-12  Jaap Haitsma <jaap@haitsma.org>
+
+	* help/wscript_build,
+	  po/wscript_build,
+	  src/wscript_build,
+	  waf,
+	  wscript: 
+	  Update to waf from SVN and finally process help files :-)
+
+2008-04-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  data/cheese.ui,
+	  src/cheese-window.c: 
+	  Buttons and menu items should use Title Case
+
+2008-04-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/Makefile.am: 
+	  fix the mix-up with the filenames of cheese-no-camera.c/.h in Makefile.am, courtesy of James Liggett
+
+2008-04-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README: 
+	  add the new cheese description to the README
+
+2008-04-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  cheese did not choose the right thumbnails for already taken pictures, fixes bug #524814
+
+2008-04-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.desktop.in.in,
+	  src/cheese.c,
+	  src/cheese-window.c: 
+	  use new cheese description, fixes bug #512091
+
+2008-04-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  data/cheese.glade,
+	  data/cheese.ui,
+	  src/cheese-no-camera.c,
+	  src/cheese-no-camera.h,
+	  src/cheese-window.c,
+	  src/gedit-message-area.c,
+	  src/gedit-message-area.h,
+	  src/Makefile.am: 
+	  add the gedit warning box when no camera is found, fixes bug #511945, courtesy of sebastian keller
+
+2008-03-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in: 
+	  show the countdown widget by default
+
+2008-03-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  do not allow to take pictures, while the webcam is initialising, fixes bug #523121
+
+2008-03-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  set the max waiting time for detecting a camera to 10 seconds, fixes bug #520394
+
+2008-03-14  Jaap Haitsma <jaap@haitsma.org>
+ 
+ 	* configure.ac,
+ 	  src/cheese-fileutil.c,
+ 	  src/cheese-thumb-view.c,
+ 	  src/cheese-window.c,
+ 	  src/Makefile.am: 
+ 	  Add a patch of Matthew Garret <mjg59-gnomebugzilla@40srcf.ucam.org>
+ 	  to add support for building cheese on the hildon desktop. Fixes 
+ 	  bug #519548
+
+2008-03-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.desktop.in.in: 
+	  add cheese to sound & video in the application menu, fixes bug #519846
+
+2008-03-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  cheese crashes if getting information from a webcam fails, courtesy of Sjoerd Simons, fixes bug #522197
+
+2008-03-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c: 
+	  cheese doesn't open the webcam device set in gconf, courtesy of Sjoerd Simons, fixes bug #522198
+
+2008-03-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  README: 
+	  cheese does not list its gnome-vfs dependency, fixes bug #522152, courtesy of Alex Rostovtsev
+
+2008-03-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  cheese crashes while initializing webcam, does strcmp on NULL, fixes bug #522143, courtesy of Alex Rostovtsev
+
+2008-03-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  add menu entry for countdown, fixes bug #511160
+
+2008-03-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  reformat the NEWS file
+
+2008-03-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  post release version bump
+
+2008-03-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* help/Makefile.am: 
+	  image in doc is JPG not PNG
+
+2008-03-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  bump the version to 2.22
+
+2008-03-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-03-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* help/C/cheese.xml,
+	  help/C/figures/cheese-effects-screenshot.jpg,
+	  help/C/figures/cheese-effects-screenshot.png,
+	  help/C/figures/cheese-screenshot.jpg: 
+	  update the screenshots as they were outdated
+
+2008-03-04  Wouter Bolsterlee  <wbolster@svn.gnome.org>
+
+	* po/POTFILES.skip: Add data/cheese.glade, since it is
+	not used anymore (why is it still in SVN?)
+
+2008-03-02  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-fileutil.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese-window.c,
+	  src/Makefile.am: 
+	  Revert hildon support patch (commit 545). It adds new strings and 
+	  we are in string freeze
+
+2008-03-02  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-fileutil.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese-window.c,
+	  src/Makefile.am: 
+	  Add a patch of Matthew Garret <mjg59-gnomebugzilla@40srcf.ucam.org>
+	  to add support for building cheese on the hildon desktop. Fixes 
+	  bug #519548
+
+2008-03-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  menu entries for take a photo and recording never switched, fixes bug #516745
+
+2008-03-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  select a thumb near the deleted item, fixes bug #505442
+
+2008-02-28  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c,
+	  src/cheese-countdown.c,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/gst-audio-play.h: 
+	  Identation fixes of Daniel whos internet connection at home has been cut
+
+2008-02-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effect-chooser.h: 
+	  Make sure we have the right prototype definition. Fixes bug #519030
+
+2008-02-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* po/POTFILES.in: 
+	  Make sure that .ui file gets localized
+
+2008-02-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac: 
+	  Don't compile with -Werror
+
+2008-02-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/POTFILES.in: 
+	  as we dont use glade anymore, we dont need it in POTFILES.in
+
+2008-02-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-02-24  Jaap Haitsma <jaap@haitsma.org>
+
+	* MAINTAINERS: 
+	  Add myself to maintainers file
+
+2008-02-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  make use of the gconf countdown setting and show or hide the countdown depending on that
+
+2008-02-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/wscript_build,
+	  wscript: 
+	  make waf work again with cheese.desktop.in.in
+
+2008-02-17  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  data/cheese.ui,
+	  data/Makefile.am,
+	  data/wscript_build,
+	  README,
+	  src/cheese-thumb-view.c,
+	  src/cheese-window.c,
+	  wscript: 
+	  Drop libglade and use GtkBuilder instead. Yay one dependency less again
+
+2008-02-15  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Put gtk calls in critical section in thread
+	  Fixes bug #516697. Patch by Mathias Clasen <mclasen@redhat.com>
+
+2008-02-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  bump version to 2.21.92
+
+2008-02-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  src/cheese-window.c,
+	  wscript: 
+	  revert rev #491 as glib 2.15.5 was released
+
+2008-02-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-02-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  NEWS,
+	  README: 
+	  update NEWS, AUTHORS and README
+
+2008-02-09  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  wscript: 
+	  We jumped the gun. Set version to 2.21.91 again
+
+2008-02-09  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  wscript: 
+	  Post release bump to 2.21.92
+
+2008-02-09  Jaap Haitsma <jaap@haitsma.org>
+
+	* help/C/cheese.xml: 
+	  Correct xml error in manual. I'm starting to like
+	  make distcheck
+
+2008-02-09  Jaap Haitsma <jaap@haitsma.org>
+
+	* po/POTFILES.skip: 
+	  Add POTFILES.skip to please make distcheck
+
+2008-02-09  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-window.c,
+	  wscript: 
+	  Use xdg-open instead of g_app_info_launch_default_for_uri because for
+	  that gtk 2.16 is necessary. Bump back glib requirement to 2.15.4
+
+2008-02-07  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  data/cheese.desktop.in.in,
+	  data/Makefile.am: 
+	  Install bugreport script in libexec instead of lib
+	  Fixes bug #514833
+
+2008-02-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c,
+	  src/cheese-countdown.h,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  wscript: 
+	  update copyright to 2008 
+
+2008-02-03  Tommi Vainikainen  <thv@iki.fi>
+
+	* src/cheese-effect-chooser.c (cheese_cairo_draw_card): Re-apply
+	effect names gettext call as per discussions with daniel g. siegel.
+
+	* src/cheese-window.c, src/cheese-countdown.h,
+	src/cheese-countdown.c: Pressing 'Esc' cancels countdown/stop video
+	recording.
+	* src/, help/, data/: Updated svn:ignore property for each dir to
+	include autogenerated files.
+
+2008-02-03  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Simplify launching of help by using g_app_info_launch_default_for_uri
+
+2008-02-03  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-effect-chooser.c: 
+	  undoing r467. effect names are already translated
+
+2008-02-03  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  wscript: 
+	  Bump glib and gio requirement to 2.15.5
+
+2008-02-02  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Use g_app_info_launch_default_for_uri for opening links and files.
+	  Improve error messages
+
+2008-02-02  Tommi Vainikainen  <thv@iki.fi>
+
+	* src/cheese-effect-chooser.c: Use translations for effect names.
+
+2008-02-02  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c: 
+	  Call gnome_vfs_init again because GnomeThumbnail uses gnome_vfs
+
+2008-02-01  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-thumb-view.c: 
+	  Make sure that filename variable is set before printing it
+	  Fixes bug #513573. Patch by Simon Holm Thogersen <odie@cs.aau.dk> and 
+	  Luca Ferretti <elle.uca@libero.it>
+
+2008-01-31  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese.c,
+	  src/eog-thumbnail.c,
+	  src/eog-thumbnail.h,
+	  wscript: 
+	  Now all gnome-vfs calls in cheese have been replaced by gio
+
+2008-01-30  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-thumb-view.c: 
+	  Use GIO instead of gnome-vfs in cheese-thumb-view.c
+
+2008-01-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  bump version number to 2.21.91
+
+2008-01-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  update NEWS file
+
+2008-01-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  prepare for the emergency release 2.21.90.1
+
+2008-01-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  data/effects/dicetv.png,
+	  data/effects/edgetv.png,
+	  data/effects/Hulk.png,
+	  data/effects/identity.png,
+	  data/effects/Mauve.png,
+	  data/effects/NoirBlanc.png,
+	  data/effects/Saturation.png,
+	  data/effects/shagadelictv.png,
+	  data/effects/vertigotv.png,
+	  data/effects/videoflip_h.png,
+	  data/effects/videoflip_v.png,
+	  data/effects/warptv.png,
+	  src/cheese-effect-chooser.c: 
+	  add the right icons by Lapo Calamandrei and Or Dvory
+
+2008-01-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/Makefile.am: 
+	  the bugreport script didnt get copied on make dist
+
+2008-01-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  NEWS: 
+	  forgot to update NEWS and AUTHORS
+
+2008-01-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  bump version to 2.21.91
+
+2008-01-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  data/effects/dicetv.png,
+	  data/effects/edgetv.png,
+	  data/effects/Hulk.png,
+	  data/effects/identity.png,
+	  data/effects/Mauve.png,
+	  data/effects/NoirBlanc.png,
+	  data/effects/Saturation.png,
+	  data/effects/shagadelictv.png,
+	  data/effects/vertigotv.png,
+	  data/effects/videoflip_h.png,
+	  data/effects/videoflip_v.png,
+	  data/effects/warptv.png: 
+	  new effect images by Lapo Calamandrei and gidesa
+
+2008-01-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/wscript_build: 
+	  waf support for the bug report script
+
+2008-01-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Remove gnome-vfs completely from cheese-window.c
+
+2008-01-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Use gio instead of gnome-vfs for file copy
+
+2008-01-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Make Save dialog title localizable
+
+2008-01-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Don't use gnome-vfs for opening links in about dialog
+
+2008-01-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  data/cheese-bugreport.sh,
+	  data/cheese.desktop.in.in,
+	  data/Makefile.am,
+	  src/cheese.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h: 
+	  Write logging to file ~/.gnome2/cheese/log and send this along in 
+	  bug-buddy reports. Patch by <ruledbyfaith@gmail.com>. Fixes 
+	  http://code.google.com/p/google-highly-open-participation-gnome/issues/detail?id=108 
+	  and bug #510270
+
+2008-01-22  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Also unref gconf object
+
+2008-01-22  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-countdown.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c: 
+	  Plug some leaks. Apply patches of Mauro <mukadr@gmail.com>
+	  of GHOP project. Bug #505441
+
+2008-01-22  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese.c,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c: 
+	  Run webcam detection in background thread. Fixes bug #505553.
+	  Patch by Steve Magoun <steve.magoun@canonical.com>
+
+2008-01-18  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/wscript_build: 
+	  Use more elegant way to obtain version
+
+2008-01-18  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/wscript_build,
+	  wscript: 
+	  Process desktop.in.in with waf
+
+2008-01-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* wscript: 
+	  add gio support to waf
+
+2008-01-17  Luca Ferretti  <elle.uca@libero.it>
+
+	* configure.ac:
+	Check for gio-2.0 and update glib required to 2.15.2.
+	
+	* src/cheese-fileutil.c: (cheese_fileutil_get_media_path):
+	Use G_DIR_SEPARATOR_S, not "/".
+	
+	* src/cheese-window.c: (cheese_window_cmd_move_file_to_trash),
+	(cheese_window_move_all_media_to_trash),
+	(cheese_window_move_media_to_trash):
+	Uso GIO g_file_trash() to trash files, change
+	cheese_window_cmd_move_file_to_trash() second argument to GList (the
+	list of files to trash) plus mimor stuff. See bug #509327 comment 3.
+
+2008-01-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* help/C/cheese.xml,
+	  help/C/figures/cheese-effects-screenshot.png,
+	  help/Makefile.am: 
+	  Update to new manual provided by Joshua Henderson as part of GHOP
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  remove the queue-size=2, this should fix bug #507416 - iSight camera does not work in gstreamer
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  bump the version to 2.21.90
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/sounds/Makefile.am: 
+	  one shutter sound was excluded in autotools
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  data/sounds/Makefile.am,
+	  NEWS,
+	  README: 
+	  populating release notes
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/sounds/shutter1.ogg,
+	  data/sounds/shutter2.ogg,
+	  data/sounds/shutter3.ogg,
+	  data/sounds/shutter4.ogg,
+	  src/cheese-window.c: 
+	  small cleanup
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  wscript: 
+	  bump version to 2.21.5
+
+2008-01-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  data/cheese.glade,
+	  data/pixmaps/camera-icon.svg,
+	  data/pixmaps/Makefile.am,
+	  data/wscript_build,
+	  src/cheese-countdown.c,
+	  src/cheese-countdown.h,
+	  src/cheese-window.c,
+	  src/Makefile.am,
+	  src/wscript_build,
+	  wscript: 
+	  add the stylish countdown widget by Mirco "MacSlow" Müller. the patch 
+	  was provided by Patryk Zawadzki
+
+2008-01-13  Luca Ferretti  <elle.uca@libero.it>
+
+	reviewed by: Daniel G. Siegel and Jaap A. Haitsma
+
+	* configure.ac:
+	* data/cheese.desktop.in:
+	* data/cheese.desktop.in.in:
+	Add X-GNOME-Bugzilla-* keys and validate .desktop file.
+	Fix bug #508910 when waf will be able to generate .in from .in.in
+
+2008-01-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* waf: 
+	  update to waf 1.3.1
+
+2008-01-12  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  v4lsrc does not have a queue-size property. Only set queue-size when 
+	  we have a v4l2src. Probably fixes #508912
+
+2008-01-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/effects/videoflip_h.png,
+	  data/effects/videoflip_v.png,
+	  src/cheese-webcam.c: 
+	  vertical and horizontal flip options were
+	  switched (again). patch by Steve Magoun
+
+2008-01-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README: 
+	  the latest gst-good package is 0.10.6
+
+2008-01-05  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c,
+	  src/gst-audio-play.c,
+	  src/gst-audio-play.h,
+	  src/gst-player.c,
+	  src/gst-player.h,
+	  src/Makefile.am: 
+	  Rename gst-player to gst-audio-play as that seems more appropriate
+	  Update Makefile.am
+
+2008-01-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-audio-play.c,
+	  src/cheese-audio-play.h,
+	  src/cheese-window.c,
+	  src/gst-player.c,
+	  src/gst-player.h,
+	  wscript: 
+	  use the gst-player by Mathias Hasselman for playing the shutter sound
+
+2008-01-05  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  wscript: 
+	  Oops we forgot the post release bump. Bumped version to 0.4.0
+
+2008-01-05  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Force queue-size=2 to make cheese work for some cameras which in
+	  gst-plugins-good 0.10.6 have a bug and queue-size is set to 0. 
+	  This is fixed in gstreamer CVS already, but no release has been made
+	  yet. This patch fixes cheese bug #503503
+
+2008-01-04  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Color forcing not needed anymore. This has been fixed in gstreamer
+	  http://webcvs.freedesktop.org/gstreamer/gst-plugins-base/sys/v4l/gstv4lsrc.c?revision=1.107&view=markup
+
+2008-01-04  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Do not crash when Trash directory is not present.
+	  Fixes bug #507071
+
+2007-12-29  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  src/cheese-audio-play.c,
+	  src/cheese.c,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-gconf.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/eog-thumbnail.c,
+	  wscript: 
+	  Make cheese build against uninstalled gstreamer
+	  Fixes bug #479259. Patch by Tim Philip Muller 
+
+2007-12-27  Leonardo Ferreira Fontenelle  <leonardof@svn.gnome.org>
+
+	* AUTHORS: Added Rodrigo Flores (Brazilian Portuguese translation).
+
+2007-12-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* NEWS: 
+	  add the latest news
+
+2007-12-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-audio-play.c: 
+	  add a "/" to find the real shutter files
+
+2007-12-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-audio-play.c,
+	  src/cheese-window.c: 
+	  use a playbin instead of a hackish pipeline. thanks jaap for the hint
+
+2007-12-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumb-view.c: 
+	  sort the thumbnail chronologically/alphabetically
+
+2007-12-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/sounds/Makefile.am,
+	  data/sounds/shutter1.ogg,
+	  data/sounds/shutter2.ogg,
+	  data/sounds/shutter3.ogg,
+	  src/cheese-audio-play.c,
+	  src/cheese-audio-play.h,
+	  src/cheese-window.c,
+	  src/Makefile.am: 
+	  add more shutter sounds
+
+2007-12-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.ac,
+	  src/cheese-gconf.c,
+	  src/cheese-window.c: 
+	  fix some autofoo issues
+
+2007-12-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/Makefile.am,
+	  data/sounds,
+	  data/sounds/Makefile.am,
+	  data/sounds/shutter0.ogg,
+	  data/wscript_build,
+	  src/cheese-window.c: 
+	  add a shutter sound, when taking a photo
+
+2007-12-23  Benjamin Berg  <benjamin@sipsolutions.net>
+
+	* wscript:
+	  Add -g to the CCFLAGS in maintainer mode
+
+2007-12-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-gconf.c: 
+	  fix segfault, when no effects were chosen
+
+2007-12-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c: 
+	  the print handler shouldnt print an additional newline
+
+2007-12-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  po/README.translators,
+	  README,
+	  TODO,
+	  wscript: 
+	  fix bug #498609 - authors and credit
+	  furtherone update the other info files
+
+2007-12-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  small indentation tango
+
+2007-12-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  synchronize the toggle buttons and the radio buttons in the menu, but this patch is pure crap!
+
+2007-12-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-webcam.c: 
+	  cheese wont compile if string.h isnt included in cheese-webcam.c
+
+2007-12-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* wscript: 
+	  -Wall was never added to the CCFLAGS. adding -Werror if maintainer mode is enabled
+
+2007-12-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c: 
+	  add a hidden hal-device command line option
+
+2007-12-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c: 
+	  add --verbose command line option, fixes bug #499399 - Add --verbose option
+
+2007-12-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-gconf.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c: 
+	  Read webcam device from gconf and use it in cheese-webcam.c
+	  Now we still need a preference dialog
+
+2007-12-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c: 
+	  add a basic print handler
+
+2007-12-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/cheese-window.c: 
+	  store the selected effects in gconf, fixes bug #488834
+
+2007-12-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  use radio buttons in the menu to change between photo and video mode
+
+2007-12-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  from now on, you can record videos from the menu
+
+2007-12-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  use a toggle instead of two menu entries for the effects chooser
+
+2007-12-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-effect-chooser.c: 
+	  make the effect chooser look a bit nicer
+
+2007-12-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  provide access to the effect chooser using the menu
+
+2007-12-08  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  data/Makefile.am,
+	  data/pixmaps,
+	  data/pixmaps/Makefile.am,
+	  data/pixmaps/thumbnail-frame.png,
+	  data/wscript_build,
+	  src/cheese-thumb-view.c,
+	  src/eog-thumbnail.c,
+	  src/eog-thumbnail.h,
+	  src/eog-thumb-shadow.c,
+	  src/eog-thumb-shadow.h,
+	  src/Makefile.am: 
+	  Give thumbnails frame like in nautilus and eog
+	  Fixes bug #500819 Patch by  Diego Escalante Urrelo <diegoe@gnome.org>
+
+2007-12-06  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Only use raw video formats. Fixes bug #502174. 
+	  Patch by Tim Philipp Muller <tim at centricular dot net>
+
+2007-12-06  Tim-Philipp Müller  <tim at centricular dot net>
+
+	* src/cheese-window.c: (cheese_window_cmd_set_about_me_photo):
+	  fix compiler warning on ubuntu gutsy.
+
+2007-12-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  use "move all to trash" instead of "remove all media"
+
+2007-12-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  remove the trash icon from "remove all media"
+
+2007-12-04  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.ac,
+	  data/cheese-ui.xml,
+	  help,
+	  help/C,
+	  help/C/cheese.xml,
+	  help/C/figures,
+	  help/C/figures/cheese-screenshot.jpg,
+	  help/ChangeLog,
+	  help/cheese.omf.in,
+	  help/C/legal.xml,
+	  help/Makefile.am,
+	  Makefile.am,
+	  src/cheese-window.c: 
+	  Add boilerplate for manual in cheese. Still need to add waf support.
+	  Going to add that now
+
+
+2007-12-03  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  the "take a photo" button text should be bold
+
+2007-12-03  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  add a "remove all media" option
+
+2007-12-02  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Give website a label in about dialog
+
+2007-12-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  translate menu items created by gtkuimanager,
+	  fixes bug #500821 - Menus are not translated
+
+2007-12-02  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/Makefile.am: 
+	  Add ephy-spinner.[ch] 
+
+2007-12-02  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/wscript_build,
+	  po/wscript_build,
+	  waf,
+	  wscript: 
+	  Update to waf from svn
+	  Do translations via intltool module of waf
+
+2007-12-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  src/cheese-window.c,
+	  src/ephy-spinner.c,
+	  src/ephy-spinner.h: 
+	  use a throbber, when the camera is loading
+
+2007-12-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h: 
+	  we dont want to store our media-path in gconf
+
+2007-11-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.desktop.in,
+	  data/cheese.glade,
+	  po/de.po,
+	  src/cheese-window.c: 
+	  update translations and a bit the german one
+
+2007-11-29  Jaap Haitsma <jaap@haitsma.org>
+
+	* waf: 
+	  Update to waf from svn to process *.po files correctly
+
+2007-11-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in,
+	  wscript: 
+	  clean up and indent correctly, spring-cleaning
+
+2007-11-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* waf: 
+	  fresh waf from svn: translate desktop and schema file correctly
+
+2007-11-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  me stupid, undone stuff was commited. sorry!
+
+2007-11-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  use the real link to the cheese homepage
+
+2007-11-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Remove commented code
+	  Make links on about dialog clickable. Fixes bug #499425
+
+2007-11-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  the about window should point to the right homepage
+
+2007-11-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* waf: 
+	  update waf to svn: prints warning if you install
+	  cheese to a destdir and gtk-update-icon-cache and
+	  install-schema cant be executed
+
+2007-11-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/wscript_build: 
+	  Minor python cleanup
+
+2007-11-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/cheese-window.c: 
+	  Make video and photo button toggle button
+	  Original patch of daniel siegel
+	  Fixes bug #498022
+
+2007-11-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/effects/wscript_build,
+	  data/icons/16x16/wscript_build,
+	  data/icons/22x22/wscript_build,
+	  data/icons/24x24/wscript_build,
+	  data/icons/32x32/wscript_build,
+	  data/icons/48x48/wscript_build,
+	  data/icons/scalable/wscript_build,
+	  data/icons/wscript_build,
+	  data/wscript_build: 
+	  use just one wscript for effects and icons
+
+2007-11-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-gconf.c: 
+	  dont print the gconf warning, which is stupid anyway
+
+2007-11-25  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.desktop.in: 
+	  Specify icon and update name to Cheese. Somehow this got lost
+
+2007-11-24  Jaap Haitsma <jaap@haitsma.org>
+
+	* wscript: 
+	  Minor cleanup
+
+2007-11-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/effects/wscript_build,
+	  data/icons/16x16/wscript_build,
+	  data/icons/22x22/wscript_build,
+	  data/icons/24x24/wscript_build,
+	  data/icons/32x32/wscript_build,
+	  data/icons/48x48/wscript_build,
+	  data/icons/scalable/wscript_build,
+	  data/wscript_build,
+	  wscript: 
+	  Common is imported now in the top-wscript, no need to import
+	  it in every file
+
+2007-11-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/effects/wscript_build,
+	  data/icons/16x16/wscript_build,
+	  data/icons/22x22/wscript_build,
+	  data/icons/24x24/wscript_build,
+	  data/icons/32x32/wscript_build,
+	  data/icons/48x48/wscript_build,
+	  data/icons/scalable/wscript_build,
+	  data/wscript_build,
+	  src/wscript_build,
+	  waf,
+	  wscript: 
+	  update waf to svn,
+	  exit, when a needed pkg wasnt found,
+	  print the md5sum, when doing a make dist,
+	  create a tar.gz when doing a make dist,
+	  install schemas and icons correctly,
+	  just update the icons and add the schema
+	  file if cheese isnt installed to a DESTDIR,
+	  and a small cleanup.
+
+2007-11-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/wscript_build,
+	  src/cheese-config.h.at,
+	  wscript: 
+	  install glade file, add maintainer mode, remove toc2 carcass
+
+2007-11-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  enable shortcuts if the mouse pointer is over the xoverlay.
+	  fixes bug #493196 - Keyboard shortcuts don't work when the
+	  mouse cursor is on the video window
+
+2007-11-22  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/wscript_build,
+	  wscript: 
+	  Also install cheese-ui.xml and documentation for waf build
+
+2007-11-21  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/Makefile.am: 
+	  Also install cheese-ui.xml. Still need to add that and gconf and glade file to waf build
+
+2007-11-21  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/effects/wscript_build,
+	  data/icons/16x16/wscript_build,
+	  data/icons/22x22/wscript_build,
+	  data/icons/24x24/wscript_build,
+	  data/icons/32x32/wscript_build,
+	  data/icons/48x48/wscript_build,
+	  data/icons/scalable/wscript_build,
+	  data/icons/wscript_build,
+	  data/wscript_build,
+	  po/wscript_build,
+	  src/wscript_build,
+	  waf,
+	  wscript:
+
+	  Add also a waf build frontend to trunk as a special gift to daniel
+	  This makes life easier as we don't have to maintain two branches. Yay
+
+2007-11-21  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/icons/icons.make,
+	  src/cheese.c,
+	  src/Makefile.am: 
+	  Rename PACKAGE_DATA_DIR to PACKAGE_DATADIR for consistency
+	  Remove icons.make 
+
+2007-11-20  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-gconf.c: 
+	  We now installed the schema so no need for message to set gconf keys
+
+2007-11-20  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Make sure that webcam has a variable type CheeseWebcam
+
+2007-11-20  Jaap Haitsma <jaap@haitsma.org>
+
+	* po/ca.po,
+	  po/cs.po,
+	  po/da.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/ja.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po,
+	  po/ro.po,
+	  po/sl.po,
+	  po/sv.po: 
+	  Make sure that po files are all up to date with the latest code again
+
+2007-11-19  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.desktop,
+	  data/cheese.desktop.in,
+	  po/POTFILES.in: 
+	  Now really add cheese.desktop.in
+	  Update POTFILES.in so it contains all the files that need to be 
+	  localized
+	  Tip for daniel: you can check if this file is complete by running 
+	  ../intltool-update -m
+
+2007-11-19  Jaap Haitsma <jaap@haitsma.org>
+
+	* autogen.sh,
+	  configure,
+	  configure.ac,
+	  configure.cheese,
+	  data/cheese.desktop,
+	  data/cheese.schemas.in,
+	  data/effects/Makefile,
+	  data/effects/Makefile.am,
+	  data/icons/16x16/Makefile,
+	  data/icons/16x16/Makefile.am,
+	  data/icons/22x22/Makefile,
+	  data/icons/22x22/Makefile.am,
+	  data/icons/24x24/Makefile,
+	  data/icons/24x24/Makefile.am,
+	  data/icons/32x32/Makefile,
+	  data/icons/32x32/Makefile.am,
+	  data/icons/48x48/Makefile,
+	  data/icons/48x48/Makefile.am,
+	  data/icons/icons.make,
+	  data/icons/Makefile,
+	  data/icons/Makefile.am,
+	  data/icons/scalable/Makefile,
+	  data/icons/scalable/Makefile.am,
+	  data/Makefile,
+	  data/Makefile.am,
+	  INSTALL,
+	  Makefile,
+	  Makefile.am,
+	  po/ChangeLog,
+	  po/cheese.pot,
+	  po/LINGUAS,
+	  po/Makefile,
+	  po/POTFILES.in,
+	  src/cheese.c,
+	  src/cheese-config.h.at,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-gconf.c,
+	  src/cheese-thumb-view.c,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/eog-thumb-shadow.c,
+	  src/Makefile,
+	  src/Makefile.am,
+	  Remove toc2 build system. Use autotools instead.
+	  This also makes the desktop file also localizable. Fixes bug #489570
+	  Install and localize the schema file
+	  On the cheese-waf branch we'll try to show that waf can fully
+	  replace autotools
+
+2007-11-18  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Enable audio for video recording. It was my setup that had a problem
+
+2007-11-18  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Make cheese-webcam work again with many more cameras.
+	  This code works on Philips 740 Webcam (v4l2src) and Logitech Orbicam 
+	  (v4lsrc)
+
+2007-11-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-gconf.c: 
+	  dont exit, if the gconf keys arent set
+
+2007-11-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.schemas.in,
+	  data/eog.schemas.in,
+	  src/cheese-gconf.c: 
+	  fixing some small and really stupid things
+
+2007-11-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c,
+	  src/cheese-gconf.c,
+	  src/cheese-window.c: 
+	  the cheese-gconf object should be a member of cheese-window
+
+2007-11-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/eog.schemas.in: 
+	  add a basic schema-file for gconf
+
+2007-11-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c,
+	  src/cheese-gconf.c,
+	  src/cheese-gconf.h,
+	  src/Makefile: 
+	  add a very basic and ugly gconf backend
+
+2007-11-17  Jaap Haitsma <jaap@haitsma.org>
+
+	* fix_perms.sh: 
+	  SVN remembers file permissions so no need to keep fix_perms.sh
+
+2007-11-14  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c: 
+	  Fix a bug where the framerates were not counted correctly.
+	  Add some logging so we can fix cheese for cameras that do not work
+	  It's still not working for daniels webcam, but we'll figure out 
+	  what's wrong :-)
+
+2007-11-12  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  configure,
+	  configure.cheese,
+	  data/cheese.glade,
+	  data/cheese-ui.xml,
+	  data/Makefile,
+	  src/cheese.c,
+	  src/cheese-cairo-custom.c,
+	  src/cheese-cairo-custom.h,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-pipeline-video.c,
+	  src/cheese-pipeline-video.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/eog-thumb-shadow.c,
+	  src/Makefile: 
+	  Merged back the cheese_0_2_4_refactor branch
+
+2007-11-11  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure,
+	  configure.cheese,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/Makefile: 
+	  Use HAL to detect webcams
+	  Use gstreamer to get capabilities of webcams
+	  Bump version of Cheese to 0.3.0. 0.2.4 was already released
+
+2007-11-04  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/cheese-effect-chooser.c,
+	  src/cheese-effect-chooser.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-window.c,
+	  src/Makefile: 
+	  Change cheese-effects-widget to a real GtkWidget and rename it to
+	  cheese-effect-chooser
+
+2007-11-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  small cosmetic cleanup and removing of key press events (they are handled now by gtkuimanager)
+
+2007-11-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  fixed a segfault, which happend when an item was activated
+
+2007-11-03  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-thumb-view.c,
+	  src/cheese-thumb-view.h,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/Makefile: 
+	  Change cheese-thumbnails to cheese-thumb-view and make a GtkWidget
+	  out of it
+	  Remove comments from cheese-webcam.c
+
+2007-11-03  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-fileutil.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-webcam.c,
+	  src/cheese-window.c,
+	  src/eog-thumb-shadow.c: 
+	  replace all gchar's by char and all gint's by int
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  some actions for photos do not work for videos, splitted up
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  if no photo is selected, no file-action should be possible
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h: 
+	  return value should be gchar* not char*
+
+2007-11-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  split the gtkactionentries into actions_file, which is open, save as and move to trash
+
+2007-11-01  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Check if filename is not NULL in all the callbacks
+
+2007-10-31  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.cheese: 
+	  toc2 did not check for libebook >= 1.12.0
+
+2007-10-31  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.cheese,
+	  data/cheese-ui.xml,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c: 
+	  bump ebook requirement to 1.12
+	  Remove cheese_window global variable
+	  Use GtkUIManager also for thumbnail menu
+	  Move thumbnail code from cheese_window to cheese_thumbnail
+	  Make Space accelerator for take picture
+	  Other cleanups
+	  Remove leaks
+
+2007-10-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c: 
+	  translating the same strings twice is too much work for the translators ;)
+
+2007-10-28  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c: 
+	  Pass cheese_window to about dialog
+
+2007-10-28  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  Use gtkuimanager in a cleaner way without a callback
+	  Do not place a menubar in the glade file. Otherwise we have 2 and
+	  leak one
+	  Sorry I accidently checked in space as an accelerator. Space is not 
+	  allowed as accelerator. Reverting back to Ctrl+T
+
+2007-10-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-window.c: 
+	  Space isnt an accelerator, space is ;)
+
+2007-10-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c: 
+	  Move thumbnail drag and drop code to cheese-thumbnails
+	  Add some TODOs in cheese-window.c
+
+2007-10-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  First item in menu is not "File" but "Cheese"
+
+2007-10-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-window.c: 
+	  a user shouldnt be able to switch to photo-mode while recording a video
+
+2007-10-23  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  data/cheese-menu.xml,
+	  data/cheese-ui.xml,
+	  src/cheese-window.c: 
+	  Renaming cheese-menu.xml to cheese-ui.xml as that's the convention in other
+
+	  gnome projects
+
+2007-10-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  data/cheese-menu.xml,
+	  data/Makefile,
+	  src/cheese-window.c: 
+	  i removed some memory leaks, sorry jaap ;)
+
+	  then i moved the ui-manager-menu to an extra file and did a small cleanup
+
+2007-10-22  Jaap Haitsma <jaap@haitsma.org>
+
+	* ChangeLog,
+	  src/cheese-webcam.c: 
+	  Make sure that higher resolution cameras work in higher resolution.
+
+	  Following step will be to build in autodetection
+
+	  Make sure that video recording works again by using an audiotestsrc i.s.o
+
+	  gconfaudiosrc. (Still needs to be fixed)
+
+	  Make sure that unreffing works
+
+2007-10-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog: 
+	  update the changelog file. please use it from now on, even if we are in a branch
+
+2007-10-21  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-window.c,
+	  src/cheese.c:
+	  Add myself as copyright owner to files I contributed significantly
+	  
+	  Add a TODO so that I remember to implement toggle button behavior correctly for
+	  photo and video toggle button
+
+2007-10-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c:
+	  add drag and drop support to the iconview
+
+2007-10-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  src/cheese-window.c:
+	  use gtkuimanager for the menu
+
+2007-10-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-window.c,
+	  src/cheese.c:
+	  fix the copyright
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-fileutil.h:
+	  more minor cleanups
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-fileutil.c:
+	  more minor cleanups
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-fileutil.c,
+	  src/cheese-webcam.c:
+	  minor cleanups
+
+2007-10-16  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-webcam.c:
+	  gstreamer queue bug 486758 got fixed in CVS.  No need for work around anymore
+
+2007-10-10  Jaap Haitsma <jaap@haitsma.org>
+
+	* configure.cheese,
+	  src/cheese-webcam.c:
+	  Bump required CVS version to current head (=0.10.14.1)
+	  
+	  Insert workaround for queue element which has a bug when imagesink gets rescaled
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-window.c:
+	  Fix crasher in cheese-window
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-thumbnails.c:
+	  removed g_array from effects-widget
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-cairo-custom.c,
+	  src/cheese-cairo-custom.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-window.c:
+	  cleanups
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c:
+	  added comment
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c:
+	  more cleanups
+
+2007-09-27  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c:
+	  minor cleanups
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c:
+	  Thumbnails is not a global variable anymore
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c:
+	  Just use gtk_widget_show_all on main widget instead of gtk_widget_show on each widget
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-window.c:
+	  Pass cheese_window as a parameter to cheese-effects widget in order to remove
+	  global cheese_window variable in following commits
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/Makefile,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-pipeline-video.c,
+	  src/cheese-pipeline-video.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-webcam.c,
+	  src/cheese-webcam.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese.h:
+	  First step of major refactoring. Introduced a cheese-webcam class
+	  Also refactored a bit of the rest. Still quite some stuff to refactor
+	  
+	  Also some features which are in HEAD are still missing
+
+2007-09-26  Jaap Haitsma <jaap@haitsma.org>
+
+	* .:
+	  Branched to allow major refactoring
+
+2007-10-20  daniel g. siegel  <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  NEWS,
+	  po/Makefile,
+	  po/sl.po: 
+	  add slovenian, thanks to Deni Bačić
+
+2007-10-03  daniel g. siegel  <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  NEWS,
+	  po/ca.po,
+	  po/Makefile: 
+	  add catalan, thanks to Carlos Garcia Porcel
+
+2007-09-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-window.c: 
+	  removed some memory leaks, part 2
+
+2007-09-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  NEWS,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/da.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/ja.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po,
+	  po/ro.po,
+	  po/sv.po,
+	  src/cheese-effects-widget.c: 
+	  fix #479238 - vertical and horizontal flip are switched
+
+2007-09-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-command-handler.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-window.c: 
+	  removed some memory leaks
+
+2007-09-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  configure: 
+	  why is there junk in my files???
+
+2007-09-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  Makefile,
+	  configure: 
+	  the NEWS file shall not be forgotten in a dist
+
+2007-09-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog: 
+	  adding the _real_ changelog file
+
+2007-09-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  NEWS: 
+	  my changelog is a NEWS-file, actually
+
+2007-09-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/ro.po:
+	  forgot to set charset to utf8 on ro.po
+
+2007-09-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure,
+	  toc2/bin/atsign_parse,
+	  toc2/bin/cleanup_vars,
+	  toc2/bin/create_makefile_stubs.sh,
+	  toc2/bin/create_project_skeleton.sh,
+	  toc2/bin/install-sh,
+	  toc2/bin/makedist,
+	  toc2/bin/removeDupeArgs,
+	  toc2/sbin/toc2_core.sh,
+	  toc2/sbin/toconfigure:
+	  reset permissions on executable files
+
+2007-09-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* MAINTAINERS,
+	  README.darcs:
+	  first svn commit, yeah! add MAINTAINERS file and remove README.darcs
+
+2007-09-10  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/Makefile,
+	  po/sv.po:
+	  add sv, thanks to Daniel Nylander
+
+2007-09-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/Makefile,
+	  po/ro.po:
+	  add ro, courtesy of Anastase Valentin
+
+2007-09-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline.c:
+	  video did not work with videotestsrc
+
+2007-09-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-thumbnails.c:
+	  fix #472576 - cheese takes longer to start as more pictures are stored
+
+2007-09-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/de.po:
+	  translation error in de
+
+2007-09-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  configure,
+	  src/cheese-pipeline.c:
+	  fix #473560 - v4l-recorded videos are zero byte big, courtesy of Patryk Zawadzki
+
+2007-08-31  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-flash.o,
+	  src/cheese-flash.o.d:
+	  ups.. a binary was in version control
+
+2007-08-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  update changelog
+
+2007-08-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-window.c:
+	  add enter and doubleclick to the view
+
+2007-08-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-window.c:
+	  minor cleanups
+
+2007-08-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README:
+	  add dependeny in the readme file
+
+2007-08-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-window.c:
+	  add some keystrokes
+
+2007-08-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/Makefile,
+	  src/cheese-command-handler.h,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.h,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.h:
+	  some minor cleanups
+
+2007-08-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  configure,
+	  configure.cheese,
+	  src/Makefile,
+	  src/cheese-flash.c,
+	  src/cheese-flash.h,
+	  src/cheese-flash.o,
+	  src/cheese-flash.o.d,
+	  src/cheese-pipeline-photo.c:
+	  add a flash, when taking photos, courtesy of Patryk Zawadzki
+
+2007-08-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-video.c:
+	  use 25fps for video recording
+
+2007-08-26  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  update changelog
+
+2007-08-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-video.c:
+	  cleanup video pipeline
+
+2007-08-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  some cleanup in the photo pipeline
+
+2007-08-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/da.po:
+	  add da
+
+2007-08-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-video.c:
+	  fix video recording.. i _hate_ those bugs
+
+2007-08-23  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/Makefile,
+	  po/es.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/ja.po,
+	  po/pl.po:
+	  update es, gl, it, ja, pl
+
+2007-08-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-photo.c:
+	  make ximagesink work with the photo pipeline
+
+2007-08-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  configure:
+	  version bump
+
+2007-08-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-photo.c:
+	  workaround on a gstreamer-bug, which made the colors look wrong
+	  with v4l-devices, courtesy of Patryk Zawadzki
+
+2007-08-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-window.c:
+	  activate countdown by default
+
+2007-08-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-window.c:
+	  the countdown is not available in video and segfaultet. fixed
+
+2007-08-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-photo.c:
+	  use g_timeout_add instead of g_timeout_add_seconds
+
+2007-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/cs.po,
+	  po/fr.po,
+	  po/nl.po,
+	  po/pt.po:
+	  update cs, fr, nl, pt
+
+2007-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* INSTALL:
+	  some minor changes in the install file
+
+2007-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README:
+	  some minor changes to the readme
+
+2007-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  some minor changes in the changelog
+
+2007-08-20  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-video.c:
+	  improvement of the video pipeline. and i mean a LOT of
+	  improvement. thanks to Diego Escalante Urrelo
+
+2007-08-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c,
+	  src/cheese-window.c:
+	  fix 2 stupid bugs
+
+2007-08-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po,
+	  src/cheese-pipeline-photo.c:
+	  update translations
+
+2007-08-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h:
+	  add a countdown, when taking a photo
+
+2007-08-19  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-video.c:
+	  add a time counter to the video recording
+
+2007-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/fr.po,
+	  po/it.po:
+	  update fr
+
+2007-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po:
+	  update cs
+
+2007-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-thumbnails.c:
+	  the first item in the iconbar wasnt deleted. fixed
+
+2007-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c:
+	  cheese is a better description than file in the menubar
+
+2007-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.cheese,
+	  src/cheese-command-handler.c,
+	  src/cheese-config.h.at:
+	  check for evolution 1.12, as the api isnt compatible
+
+2007-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po:
+	  update de
+
+2007-08-18  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  README,
+	  configure.cheese,
+	  src/Makefile,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-window.c:
+	  possiblity to use taken photos as account photos
+
+2007-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/fr.po:
+	  update fr
+
+2007-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README:
+	  add missing dependencies in the readme
+
+2007-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po,
+	  src/cheese-command-handler.c,
+	  src/cheese-window.c:
+	  update translations, de, it
+
+2007-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-cairo-custom.c,
+	  src/cheese-cairo-custom.h,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-pipeline-video.c,
+	  src/cheese-pipeline-video.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese.h,
+	  src/eog-thumb-shadow.c,
+	  src/eog-thumb-shadow.h:
+	  massive cleanup and indent change
+
+2007-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/Makefile,
+	  src/cheese-command-handler.c,
+	  src/cheese-command-handler.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h:
+	  added some export methods/capabilities to the iconbar
+
+2007-08-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po:
+	  translations-update
+
+2007-08-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  src/cheese-pipeline.c:
+	  we found the bug! v4l works now, courtesy of Patryk Zawadzki
+
+2007-08-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/Makefile,
+	  src/cheese-fileutil.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/eog-thumb-shadow.c,
+	  src/eog-thumb-shadow.h:
+	  add the iconview from eye of gnome and add a small popup menu to it
+
+2007-08-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure:
+	  prepare next release
+
+2007-08-16  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-effects-widget.c:
+	  if the same effects were chosen in photo and video, they wont apply. fixed
+
+2007-08-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure:
+	  tagged 0.2.0
+
+2007-08-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-pipeline-video.c:
+	  resizing and removing some frames should make video recording more usable
+
+2007-08-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/fr.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po:
+	  update translations fr, nl, pl, pt
+
+2007-08-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-video.c:
+	  add movies manually to the iconview
+
+2007-08-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.c,
+	  src/cheese-thumbnails.c:
+	  ignore gnomevfs notification about new movies
+
+2007-08-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-thumbnails.c:
+	  when loading the thumbnails, we got the wrong mtime.. fixed
+
+2007-08-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po,
+	  src/cheese-window.c:
+	  update translations and changelog
+
+2007-08-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.c,
+	  src/cheese-thumbnails.c:
+	  gnomevfsfileinfo got the wrong thumbnail. fixed
+
+2007-08-13  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  configure.cheese,
+	  data/cheese.glade,
+	  src/Makefile,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-video.c,
+	  src/cheese-pipeline-video.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese.h:
+	  add working video support. now cheese can record a video with
+	  audio taken from any source
+
+2007-08-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-video.c,
+	  src/cheese-pipeline-video.h:
+	  add video class
+
+2007-08-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/Makefile,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-pipeline.c,
+	  src/cheese-pipeline.h,
+	  src/cheese-window.c,
+	  src/cheese.c:
+	  restructuring and pseudo-video support
+
+2007-08-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  people thought the probing messages are errors.. now no more
+
+2007-08-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po:
+	  add mnemonics to translation. updated german and italian translation
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  me stupid git.. i left ffmpegcolorspace in the probing test
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c:
+	  change the startup order
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* COPYING,
+	  ChangeLog,
+	  src/cheese-cairo-custom.c,
+	  src/cheese-cairo-custom.h,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese.h:
+	  probably the dumbest change ever: the fsf has changed its address
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  prepare changelog for the next version
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  src/cheese-window.c:
+	  add mnemonics for the ui
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  update changelog
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese.h:
+	  remove photos from the thumbnail row if they were removed on the filesystem
+
+2007-08-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-thumbnails.c:
+	  add only valid jpeg to the thumbnail row
+
+2007-08-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po,
+	  src/cheese-pipeline-photo.c:
+	  update translations
+
+2007-08-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  we dont need a ffmpegcolorspace when probing
+
+2007-08-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  probe v4lsrc without any resolution or format at last
+
+2007-08-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  try 640x480 before 230x240 and print the result
+
+2007-08-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  update changelog
+
+2007-08-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-fileutil.c,
+	  src/cheese.c:
+	  store photos under ~/.gnome2/cheese/images
+
+2007-08-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  adding a device probe, which automatically checks whether to use
+	  v4l2 or v4l (with specific resolutions). fallback is videotestsrc
+
+2007-07-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  finally calling caps_unref when exiting and some other small cleanups
+
+2007-07-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  src/cheese-thumbnails.c:
+	  sort thumbnails before adding them
+
+2007-07-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese.h:
+	  refactoring, part2
+
+2007-07-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  INSTALL,
+	  README,
+	  TODO,
+	  configure:
+	  prepare for release 0.1.4
+
+2007-07-29  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  rewrite of the last patch. v4l works (hopefully) ;)
+
+2007-07-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  UNDO: add a videoscale to resize all webcam videos to 640x460.
+	  hopefully this works on the v4l-thingies...
+
+2007-07-28  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  add a videoscale to resize all webcam videos to 640x460.
+	  hopefully this works on the v4l-thingies...
+
+2007-07-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c:
+	  print the resolution
+
+2007-07-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  v4l works! really? thanks to diego escallante urrelo
+
+2007-07-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  some cleanup
+
+2007-07-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pl.po,
+	  po/pt.po:
+	  update translation, second shot
+
+2007-07-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/pl.po,
+	  po/pt.po:
+	  update translations
+
+2007-07-17  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  po/nl.po:
+	  updated dutch translation, thanks to Wouter Bolsterlee
+
+2007-07-15  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-pipeline-photo.c:
+	  i dont know if the xv-output problem is fixed with this..
+
+2007-07-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.h:
+	  and same in cheese-window.h
+
+2007-07-14  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese-window.c:
+	  wo dont need set_effects_label() anymore
+
+2007-07-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade:
+	  window.height-10px
+
+2007-07-09  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade:
+	  set the default size back to 670x710
+
+2007-07-08  Jaap Haitsma <jaap@haitsma.org>
+
+	* data/cheese.glade,
+	  src/cheese-effects-widget.c,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese.h:
+	  make window resizeable and store image in native resolution
+
+2007-07-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.cheese, src/Makefile,
+	  src/cairo-custom.c,
+	  src/cairo-custom.h,
+	  src/cheese-cairo-custom.c,
+	  src/cheese-cairo-custom.h,
+	  src/cheese-config.h.at,
+	  src/cheese-effects-widget.c,
+	  src/cheese-effects-widget.h,
+	  src/cheese-fileutil.c,
+	  src/cheese-fileutil.h,
+	  src/cheese-pipeline-photo.c,
+	  src/cheese-pipeline-photo.h,
+	  src/cheese-thumbnails.c,
+	  src/cheese-thumbnails.h,
+	  src/cheese-window.c,
+	  src/cheese-window.h,
+	  src/cheese.c,
+	  src/cheese_config.h.at,
+	  src/effects-widget.c,
+	  src/effects-widget.h,
+	  src/fileutil.c,
+	  src/fileutil.h,
+	  src/pipeline-photo.c,
+	  src/pipeline-photo.h,
+	  src/thumbnails.c,
+	  src/thumbnails.h,
+	  src/window.c,
+	  src/window.h:
+	  prepend a cheese ;)
+
+2007-07-07  Jaap Haitsma <jaap@haitsma.org>
+
+	* src/pipeline-photo.c:
+	  pipeline-photo.c cleanup
+
+2007-07-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/effects-widget.c,
+	  src/pipeline-photo.c:
+	  forgot some of g18n, thanks to Jaap Haitsma
+
+2007-07-07  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cairo-custom.h,
+	  src/cheese.c, src/cheese.h,
+	  src/effects-widget.h,
+	  src/fileutil.c,
+	  src/fileutil.h,
+	  src/pipeline-photo.h,
+	  src/thumbnails.h,
+	  src/window.c,
+	  src/window.h:
+	  various cleanup patches and licences in the header files, thanks to Jaap Haitsma
+
+2007-07-06  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c,
+	  src/pipeline-photo.h:
+	  some various fixes
+
+2007-07-06  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/window.c:
+	  update license
+
+2007-07-06  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cheese.c:
+	  set icon name
+
+2007-07-06  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/window.c:
+	  use g18n for translation
+
+2007-07-06  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/Makefile,
+	  src/cheese.c,
+	  src/effects-widget.c,
+	  src/effects-widget.h,
+	  src/pipeline-photo.c,
+	  src/pipeline-photo.h,
+	  src/window.c,
+	  src/window.h:
+	  refactoring: moving effects into effects-widget
+
+2007-07-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  update changelog
+
+2007-07-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cairo-custom.h,
+	  src/cheese.c,
+	  src/cheese.h,
+	  src/fileutil.h,
+	  src/pipeline-photo.c,
+	  src/thumbnails.h,
+	  src/window.c,
+	  src/window.h:
+	  new about-window and various fixes, thanks to Jaap Haitsma
+
+2007-07-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/cairo-custom.c,
+	  src/cheese.c,
+	  src/fileutil.c,
+	  src/pipeline-photo.c,
+	  src/thumbnails.c,
+	  src/window.c:
+	  licences --verbose
+
+2007-07-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* toc2/make/toc2-install.make:
+	  update toc2-install.make to not use cmp
+
+2007-07-05  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile:
+	  add icon-update support for the makefile
+
+2007-07-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  data/icons/icons.make:
+	  icons-perms-and-post-install-message
+	  1) Adds permissions -m 0644 to the icons files.
+	  2) Adds a post- installation message in the top-most makefile (please
+	  re-implement the postinstall-message target!)
+
+2007-07-04  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/Makefile,
+	  po/pl.po:
+	  add polish translation, thanks to Tomasz Domikowski
+
+2007-07-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  update changelog
+
+2007-07-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure:
+	  change version to 0.1.3
+
+2007-07-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  toc2/doc:
+	  remove the toc2-doc-dir as we dont need it
+
+2007-07-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  po/Makefile,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/fr.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/nl.po,
+	  po/pt.po,
+	  src/window.c:
+	  update translations to include the glade-file too
+
+2007-07-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.cheese,
+	  src/cheese.c,
+	  src/cheese_config.h.at:
+	  hups.. i forgot to set the textdomain,
+	  so translations would not
+	  have been working
+
+2007-07-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/Makefile,
+	  po/nl.po:
+	  add dutch translation, thanks to Max Beauchez
+
+2007-07-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.desktop:
+	  add icon to the desktop file and some small fixes there
+
+2007-07-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/Makefile,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/pt.po:
+	  some small fixes in the language building and in the AUTHORS-file
+
+2007-07-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/Makefile,
+	  po/fr.po:
+	  add french translation, thanks to Pierre Slamich
+
+2007-07-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade:
+	  the window was not in the tasklist. fixed
+
+2007-07-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  data/icons/Makefile,
+	  fix_perms.sh,
+	  po/Makefile,
+	  toc2.cheese.help:
+	  some minor changes in the buildsystem
+
+2007-07-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* configure.cheese,
+	  toc2/tests/pkg-config-exists.sh:
+	  fix some silly bug, which prevented configure to check if the
+	  needed version is available
+
+2007-07-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* src/window.c:
+	  set icon on the about-window
+
+2007-07-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README:
+	  update dependencies in the README
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog,
+	  INSTALL:
+	  update README and changelog
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/icons/16x16/cheeese.svg,
+	  data/icons/16x16/cheese.svg:
+	  rename-cheeese.svg, File name was spelled wrong
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README.darcs:
+	  add darcs-README
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/cheese.glade,
+	  src/window.c:
+	  add the new, shiny icon to the window and aboutdialog
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS:
+	  update AUTHORS
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/Makefile,
+	  data/icons/16x16/Makefile,
+	  data/icons/22x22/Makefile,
+	  data/icons/24x24/Makefile,
+	  data/icons/32x32/Makefile,
+	  data/icons/48x48/Makefile,
+	  data/icons/Makefile,
+	  data/icons/icons.make,
+	  data/icons/scalable/Makefile,
+	  toc2/make/toc2-install.make:
+	  icons are now installed properly, thanks to stephan beal
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* data/Makefile,
+	  po/Makefile:
+	  po-changes
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* toc2/make/toc2-install.make:
+	  toc2-install: refactored the processed needed to install custom rules.
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* toc2/tests/toc2_make.sh:
+	  remove _darcs and svn-files from toc2make
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* toc2/make/pomo.make:
+	  pomo.make
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* toc2/doc/toc2.make:
+	  we dont need any toc2.make-files as they will be generated
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* fix_perms.sh:
+	  added fix_perms.sh-script in order to have the right permissions on executables
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  data/icons,
+	  data/icons/16x16,
+	  data/icons/16x16/cheeese.svg,
+	  data/icons/16x16/cheese.png,
+	  data/icons/22x22,
+	  data/icons/22x22/cheese.png,
+	  data/icons/22x22/cheese.svg,
+	  data/icons/24x24,
+	  data/icons/24x24/cheese.png,
+	  data/icons/32x32,
+	  data/icons/32x32/cheese.png,
+	  data/icons/32x32/cheese.svg,
+	  data/icons/48x48,
+	  data/icons/48x48/cheese.png,
+	  data/icons/scalable,
+	  data/icons/scalable/cheese.svg:
+	  add the new cheese icon, thanks to Andreas Nilsson and Josef Vybíral
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  toc2/make/toc2-dist.make:
+	  now make dist works ;)
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  toc2/make/toc2-dist.make:
+	  fixes a make dist behaviour
+
+2007-06-30  daniel g. siegel <dgsiegel@gmail.com>
+
+	* INSTALL,
+	  Makefile,
+	  README,
+	  cairo-custom.c,
+	  cairo-custom.h,
+	  cheese.c,
+	  cheese.desktop,
+	  cheese.glade,
+	  cheese.h,
+	  configure,
+	  configure.cheese,
+	  data,
+	  data/Makefile,
+	  data/cheese.desktop,
+	  data/cheese.glade,
+	  data/effects,
+	  data/effects/Hulk.png,
+	  data/effects/Makefile,
+	  data/effects/Mauve.png,
+	  data/effects/NoirBlanc.png,
+	  data/effects/Saturation.png,
+	  data/effects/dicetv.png,
+	  data/effects/edgetv.png,
+	  data/effects/identity.png,
+	  data/effects/shagadelictv.png,
+	  data/effects/vertigotv.png,
+	  data/effects/videoflip_h.png,
+	  data/effects/videoflip_v.png,
+	  data/effects/warptv.png,
+	  effects,
+	  fileutil.c,
+	  fileutil.h,
+	  pipeline-photo.c,
+	  pipeline-photo.h,
+	  po/Makefile,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po,
+	  po/es.po,
+	  po/gl.po,
+	  po/it.po,
+	  po/pt.po,
+	  src,
+	  src/Makefile,
+	  src/cairo-custom.c,
+	  src/cairo-custom.h,
+	  src/cheese.c,
+	  src/cheese.h,
+	  src/cheese_config.h.at,
+	  src/fileutil.c,
+	  src/fileutil.h,
+	  src/pipeline-photo.c,
+	  src/pipeline-photo.h,
+	  src/thumbnails.c,
+	  src/thumbnails.h,
+	  src/window.c,
+	  src/window.h,
+	  thumbnails.c,
+	  thumbnails.h,
+	  toc2,
+	  toc2.cheese.help,
+	  toc2.cheese.make.at,
+	  toc2/Makefile,
+	  toc2/bin,
+	  toc2/bin/Makefile,
+	  toc2/bin/atsign_parse,
+	  toc2/bin/cleanup_vars,
+	  toc2/bin/create_makefile_stubs.sh,
+	  toc2/bin/create_project_skeleton.sh,
+	  toc2/bin/install-sh,
+	  toc2/bin/makedist,
+	  toc2/bin/mkdep-toc2.c,
+	  toc2/bin/removeDupeArgs,
+	  toc2/doc,
+	  toc2/doc/Makefile,
+	  toc2/doc/naming-conventions.txt,
+	  toc2/doc/toc2-manual.odt,
+	  toc2/doc/toc2.make,
+	  toc2/make,
+	  toc2/make/Makefile,
+	  toc2/make/c-bins.make,
+	  toc2/make/c-dlls.make,
+	  toc2/make/doxygen.make,
+	  toc2/make/file-filters.make,
+	  toc2/make/makerules.c-bins,
+	  toc2/make/makerules.c-dlls,
+	  toc2/make/makerules.file-filters,
+	  toc2/make/scratchpad.make,
+	  toc2/make/symlink-files.make,
+	  toc2/make/toc2-c.make,
+	  toc2/make/toc2-cleanup.make,
+	  toc2/make/toc2-dist.make,
+	  toc2/make/toc2-functions-core.make,
+	  toc2/make/toc2-install.make,
+	  toc2/make/toc2-subdirs.make,
+	  toc2/make/toc2.make.at,
+	  toc2/sbin,
+	  toc2/sbin/Makefile,
+	  toc2/sbin/configure.sample,
+	  toc2/sbin/toc2_core.sh,
+	  toc2/sbin/toconfigure,
+	  toc2/tests,
+	  toc2/tests/Makefile,
+	  toc2/tests/PACKAGE_NAME-config.at,
+	  toc2/tests/PACKAGE_NAME-config.sh,
+	  toc2/tests/atfilter_file.sh,
+	  toc2/tests/awk.sh,
+	  toc2/tests/c,
+	  toc2/tests/c/Makefile,
+	  toc2/tests/c/check_for_dlopen_and_friends.c,
+	  toc2/tests/c/check_for_ltdlopen_and_friends.c,
+	  toc2/tests/c/check_for_pthread.c,
+	  toc2/tests/cpp,
+	  toc2/tests/cpp/Makefile,
+	  toc2/tests/cpp/check_setenv_in_cpp.cpp,
+	  toc2/tests/cpp/check_stl_newstyle.cpp,
+	  toc2/tests/cpp/gcc_2_95_typename_problem.cpp,
+	  toc2/tests/create_pkg-config_data.sh,
+	  toc2/tests/doxygen.sh,
+	  toc2/tests/find_appconfig.sh,
+	  toc2/tests/find_header.sh,
+	  toc2/tests/gcc_build_and_run.sh,
+	  toc2/tests/gcc_try_compile.sh,
+	  toc2/tests/gnu_cpp_tools.sh,
+	  toc2/tests/gnu_find.sh,
+	  toc2/tests/gnu_make.sh,
+	  toc2/tests/gnu_tar.sh,
+	  toc2/tests/libdl.sh,
+	  toc2/tests/libexpat.sh,
+	  toc2/tests/libltdl.sh,
+	  toc2/tests/pkg-config-exists.sh,
+	  toc2/tests/toc2_core_tests.sh,
+	  toc2/tests/toc2_make.sh,
+	  toc2/tests/toc2_project_makefile.sh,
+	  toc2/tests/toc2_running_under_cygwin.sh,
+	  toc2/tests/toc2_tests_help.sh,
+	  toc2/tests/user_is_stephan_beal.sh,
+	  window.c,
+	  window.h:
+	  new build system! yeah!
+
+2007-06-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile:
+	  add the other languages to the makefile
+
+2007-06-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/it.po:
+	  add italian translation,
+	  thanks to Alessandro Falappa
+
+2007-06-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  ChangeLog,
+	  po/es.po,
+	  po/gl.po:
+	  add galician translation,
+	  thanks to Ricardo González Castro
+
+2007-06-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  changelog update
+
+2007-06-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  po/es.po:
+	  add spanish translation,
+	  thanks to Ricardo González Castro
+
+2007-06-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  po/de.po,
+	  po/pt.po:
+	  add portuguese translation,
+	  thanks to Miguel Rosa
+
+2007-06-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  po/cheese.pot,
+	  po/cs.po,
+	  po/de.po:
+	  add czech translation,
+	  thanks to Vítězslav Kotrla
+
+2007-06-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README,
+	  TODO,
+	  cairo-custom.c:
+	  update TODO and README,
+	  add dependency cairo and update a licence
+
+2007-06-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  update changelog
+
+2007-06-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* README:
+	  enhance README
+
+2007-06-24  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  README,
+	  po,
+	  po/cheese.pot,
+	  po/de.po,
+	  window.c,
+	  window.h:
+	  add translation (german)
+
+2007-06-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  cairo-custom.c,
+	  cairo-custom.h:
+	  add round corners for the effect-dialog
+
+2007-06-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.glade:
+	  set the main window to !resizable
+
+2007-06-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* TODO,
+	  cheese.c,
+	  cheese.glade,
+	  window.c,
+	  window.h:
+	  add multi-effect support and new effect-dialog
+
+2007-06-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ChangeLog:
+	  add ChangeLog
+
+2007-06-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* effects,
+	  effects/Hulk.png,
+	  effects/Mauve.png,
+	  effects/NoirBlanc.png,
+	  effects/Saturation.png,
+	  effects/dicetv.png,
+	  effects/edgetv.png,
+	  effects/identity.png,
+	  effects/mouse_events,
+	  effects/shagadelictv.png,
+	  effects/vertigotv.png,
+	  effects/videoflip_h.png,
+	  effects/videoflip_v.png,
+	  effects/warptv.png:
+	  adding preview-pictures for effects
+
+2007-06-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* window.h:
+	  small fixes for the release
+
+2007-06-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* AUTHORS,
+	  README,
+	  TODO:
+	  add AUTHORS,
+	  README and update TODO
+
+2007-06-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.desktop:
+	  add desktop file
+
+2007-06-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* TODO:
+	  modifying todo-file
+
+2007-06-12  daniel g. siegel <dgsiegel@gmail.com>
+
+	* COPYING:
+	  add copyright
+
+2007-06-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* window.c:
+	  remove a useless printf
+
+2007-06-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* thumbnails.c,
+	  window.c:
+	  yay, showing photos anyhow works
+
+2007-06-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* TODO,
+	  cheese.glade,
+	  cheese.h,
+	  thumbnails.c,
+	  window.c,
+	  window.h:
+	  add menu and some iconbar improvements
+
+2007-06-08  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.c,
+	  cheese.glade,
+	  cheese.h,
+	  window.c,
+	  window.h:
+	  implementing effects
+
+2007-05-31  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  cheese.c,
+	  cheese.h,
+	  fileutil.c,
+	  fileutil.h,
+	  gst-pipeline.c,
+	  gst-pipeline.h,
+	  pipeline-photo.c,
+	  pipeline-photo.h,
+	  thumbnails.c,
+	  thumbnails.h,
+	  window.c,
+	  window.h:
+	  cleanup, objectification and arrangement of the code ;) (took pretty long, huh?)
+
+2007-05-03  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  cheese.c,
+	  cheese.h,
+	  fileutil.c,
+	  fileutil.h,
+	  gst-pipeline.c,
+	  gst-pipeline.h:
+	  splitting a bit up
+
+2007-05-03  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.c:
+	  add file-monitoring
+
+2007-05-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* TODO,
+	  cheese.c:
+	  add thumbnailing
+
+2007-05-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  cheese.c:
+	  remove jpeg-support
+
+2007-05-02  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.glade:
+	  enhance gui
+
+2007-05-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.c:
+	  outsource gst-state-functions
+
+2007-05-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.c:
+	  maemo-code isnt used anymore
+
+2007-05-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.c:
+	  fix jpeg-handling
+
+2007-05-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.glade:
+	  fix glade-file
+
+2007-05-01  daniel g. siegel <dgsiegel@gmail.com>
+
+	* camera.py:
+	  remove raphaels python code
+
+2007-04-27  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese.c:
+	  use gdk-pixbuf to save photos
+
+2007-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese:
+	  remove binary
+
+2007-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ROADMAP,
+	  TODO:
+	  update todo
+
+2007-04-25  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese,
+	  cheese.c:
+	  use gconf to get gstreamer-properties
+
+2007-04-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* ROADMAP,
+	  cheese:
+	  added roadmap
+
+2007-04-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese,
+	  cheese.c:
+	  cleanup
+
+2007-04-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese,
+	  cheese.c:
+	  fixing picture-saving
+
+2007-04-22  daniel g. siegel <dgsiegel@gmail.com>
+
+	* cheese,
+	  cheese.c,
+	  cheese.glade:
+	  added picture saving
+
+2007-04-21  daniel g. siegel <dgsiegel@gmail.com>
+
+	* Makefile,
+	  camera.py,
+	  cheese,
+	  cheese.c,
+	  cheese.glade,
+	  cheese.h:
+	  initial import
+
+2007-09-11  daniel g. siegel <dgsiegel@gmail.com>
+
+	* .:
+	  Initial project roots
+
