@@ -25,6 +25,7 @@ typedef struct
   GtkWidget *cheese_prefs_dialog;
   GtkWidget *resolution_combo_box;
   GtkWidget *webcam_combo_box;
+  GtkWidget *brightness_scale;
 
   GtkWidget *parent;
   CheeseWebcam *webcam;
@@ -54,6 +55,9 @@ cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
                                                                            "resolution_combo_box"));
   prefs_dialog->webcam_combo_box = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                        "webcam_combo_box"));
+  prefs_dialog->brightness_scale = GTK_WIDGET (gtk_builder_get_object (builder,
+                                                                       "brightness_scale"));
+
   gtk_window_set_transient_for (GTK_WINDOW (prefs_dialog->cheese_prefs_dialog),
                                 GTK_WINDOW (prefs_dialog->parent));
 }
@@ -103,6 +107,7 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
 {
   CheesePrefsWidget *resolution_widget;
   CheesePrefsWidget *webcam_widget;
+  CheesePrefsWidget *brightness_widget;
 
   resolution_widget = CHEESE_PREFS_WIDGET (cheese_prefs_resolution_combo_new (prefs_dialog->resolution_combo_box,
                                                                               prefs_dialog->webcam,
@@ -117,10 +122,16 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
   webcam_widget = CHEESE_PREFS_WIDGET (cheese_prefs_webcam_combo_new (prefs_dialog->webcam_combo_box,
                                                                       prefs_dialog->webcam,
                                                                       "gconf_prop_webcam"));
+
   g_signal_connect (G_OBJECT (webcam_widget), "changed",
                     G_CALLBACK (cheese_prefs_dialog_on_device_changed),
                     prefs_dialog);
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, webcam_widget);
+
+  brightness_widget = CHEESE_PREFS_WIDGET (cheese_prefs_brightness_scale_new (prefs_dialog->brightness_scale,
+                                                                              prefs_dialog->webcam));
+
+  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, brightness_widget);
 
   cheese_prefs_dialog_widgets_synchronize (prefs_dialog->widgets);
 }

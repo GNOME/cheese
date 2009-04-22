@@ -955,7 +955,6 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
     return FALSE;
   }
 
-
   if ((tee = gst_element_factory_make ("tee", "tee")) == NULL)
   {
     cheese_webcam_set_error_element_not_found (error, "tee");
@@ -1717,4 +1716,30 @@ cheese_webcam_get_current_video_format (CheeseWebcam *webcam)
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
   return priv->current_format;
+}
+
+void
+cheese_webcam_get_brightness_range (CheeseWebcam *webcam,
+                                    gdouble *min, gdouble *max, gdouble *def)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  GParamSpec *pspec;
+  
+  *min = 0.0;
+  *max = 0.0;
+  *def = 0.0;
+
+  pspec = g_object_class_find_property (
+    G_OBJECT_GET_CLASS (G_OBJECT (priv->video_balance)), "brightness");
+
+  *min = G_PARAM_SPEC_DOUBLE (pspec)->minimum;
+  *max = G_PARAM_SPEC_DOUBLE (pspec)->maximum;
+  *def = G_PARAM_SPEC_DOUBLE (pspec)->default_value;
+}
+
+void
+cheese_webcam_set_brightness (CheeseWebcam *webcam, gdouble value)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  g_object_set (G_OBJECT (priv->video_balance), "brightness", value, NULL);
 }
