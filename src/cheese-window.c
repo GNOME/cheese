@@ -1852,12 +1852,16 @@ setup_camera (CheeseWindow *cheese_window)
   char      *webcam_device = NULL;
   int        x_resolution;
   int        y_resolution;
+  gdouble    brightness;
   GtkWidget *message_area;
 
   GError *error;
 
-  g_object_get (cheese_window->gconf, "gconf_prop_x_resolution", &x_resolution,
-                "gconf_prop_y_resolution", &y_resolution, "gconf_prop_webcam", &webcam_device, NULL);
+  g_object_get (cheese_window->gconf,
+                "gconf_prop_x_resolution", &x_resolution,
+                "gconf_prop_y_resolution", &y_resolution,
+                "gconf_prop_webcam", &webcam_device,
+                "gconf_prop_brightness", &brightness, NULL);
 
   gdk_threads_enter ();
   cheese_window->webcam = cheese_webcam_new (cheese_window->screen,
@@ -1907,6 +1911,8 @@ setup_camera (CheeseWindow *cheese_window)
 
   cheese_webcam_set_effect (cheese_window->webcam,
                             cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
+
+  cheese_webcam_set_brightness (cheese_window->webcam, brightness);
 
   cheese_webcam_play (cheese_window->webcam);
   gdk_threads_enter ();

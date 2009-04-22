@@ -51,7 +51,8 @@ struct _CheesePrefsBrightnessScale
 
 GType                 cheese_prefs_brightness_scale_get_type (void) G_GNUC_CONST;
 CheesePrefsBrightnessScale *cheese_prefs_brightness_scale_new (GtkWidget    *scale,
-                                                   CheeseWebcam *webcam);
+                                                               CheeseWebcam *webcam,
+                                                               const gchar *brightness_key);
 
 char *cheese_prefs_brightness_scale_get_selected_webcam (CheesePrefsBrightnessScale *webcam);
 

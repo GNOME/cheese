@@ -26,15 +26,18 @@
 #include "cheese-prefs-widget.h"
 #include "cheese-prefs-brightness-scale.h"
 
+#define STEPS 20.0
+
 enum
 {
   PROP_0,
+  PROP_BRIGHTNESS_KEY,
   PROP_WEBCAM
 };
 
 typedef struct CheesePrefsBrightnessScalePrivate
 {
-  gdouble brightness;
+  gchar *brightness_key;
   CheeseWebcam *webcam;
   gboolean has_been_synchronized;  /* Make sure we don't synchronize if client
                                     * sets webcam on construction. */
@@ -50,7 +53,7 @@ static void
 cheese_prefs_brightness_scale_init (CheesePrefsBrightnessScale *self)
 {
   CheesePrefsBrightnessScalePrivate *priv = CHEESE_PREFS_BRIGHTNESS_SCALE_GET_PRIVATE (self);
-
+  priv->brightness_key = NULL;
   priv->has_been_synchronized = FALSE;
 }
 
@@ -59,6 +62,9 @@ cheese_prefs_brightness_scale_finalize (GObject *object)
 {
   CheesePrefsBrightnessScale        *self = CHEESE_PREFS_BRIGHTNESS_SCALE (object);
   CheesePrefsBrightnessScalePrivate *priv = CHEESE_PREFS_BRIGHTNESS_SCALE_GET_PRIVATE (self);
+
+  g_free (priv->brightness_key);
+
   G_OBJECT_CLASS (cheese_prefs_brightness_scale_parent_class)->finalize (object);
 }
 
@@ -68,12 +74,9 @@ cheese_prefs_brightness_scale_value_changed (GtkRange *scale, CheesePrefsBrightn
   CheesePrefsBrightnessScalePrivate *priv = CHEESE_PREFS_BRIGHTNESS_SCALE_GET_PRIVATE (self);
   gdouble value = gtk_range_get_value (scale);
   cheese_webcam_set_brightness (priv->webcam, value);
-#if 0
 
   g_object_set (CHEESE_PREFS_WIDGET (self)->gconf, priv->brightness_key, value, NULL);
-  g_free (new_device);
 
-#endif
   cheese_prefs_widget_notify_changed (CHEESE_PREFS_WIDGET (self));
 }
 
@@ -86,14 +89,18 @@ cheese_prefs_brightness_scale_synchronize (CheesePrefsWidget *prefs_widget)
   GtkWidget          *scale;
   GtkAdjustment      *adj;
   gdouble min, max, def;
+  gdouble stored_value;
 
   g_object_get (prefs_widget, "widget", &scale, NULL);
-  
-  cheese_webcam_get_brightness_range (priv->webcam, &min, &max, &def);
-  g_message ("synchronize %f %f %f", min, max, def);
 
-  adj = gtk_adjustment_new (def, min, max, (max - min)/100.0, 0.0, 0.0);
+  cheese_webcam_get_brightness_range (priv->webcam, &min, &max, &def);
+
+  adj = GTK_ADJUSTMENT (gtk_adjustment_new (def, min, max, (max - min)/STEPS, 0.0, 0.0));
   gtk_range_set_adjustment (GTK_RANGE (scale), adj);
+
+  g_object_get (CHEESE_PREFS_WIDGET (self)->gconf, priv->brightness_key, &stored_value, NULL);
+
+  gtk_range_set_value (GTK_RANGE (scale), stored_value);
   
   /* Disconnect to prevent a whole bunch of changed notifications */
   g_signal_handlers_disconnect_by_func (scale, cheese_prefs_brightness_scale_value_changed, prefs_widget);
@@ -112,6 +119,9 @@ cheese_prefs_brightness_scale_set_property (GObject *object, guint prop_id,
 
   switch (prop_id)
   {
+    case PROP_BRIGHTNESS_KEY:
+      priv->brightness_key = g_value_dup_string (value);
+      break;
     case PROP_WEBCAM:
       priv->webcam = CHEESE_WEBCAM (g_value_get_object (value));
       if (priv->has_been_synchronized)
@@ -133,6 +143,9 @@ cheese_prefs_brightness_scale_get_property (GObject *object, guint prop_id,
 
   switch (prop_id)
   {
+    case PROP_BRIGHTNESS_KEY:
+      g_value_set_string (value, priv->brightness_key);
+      break;
     case PROP_WEBCAM:
       g_value_set_object (value, priv->webcam);
       break;
@@ -156,6 +169,14 @@ cheese_prefs_brightness_scale_class_init (CheesePrefsBrightnessScaleClass *klass
   parent_class->synchronize  = cheese_prefs_brightness_scale_synchronize;
 
   g_object_class_install_property (object_class,
+                                   PROP_BRIGHTNESS_KEY,
+                                   g_param_spec_string ("brightness_key",
+                                                        "",
+                                                        "GConf key for brightness",
+                                                        "",
+                                                        G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
+
+  g_object_class_install_property (object_class,
                                    PROP_WEBCAM,
                                    g_param_spec_object ("webcam",
                                                         "webcam",
@@ -165,7 +186,9 @@ cheese_prefs_brightness_scale_class_init (CheesePrefsBrightnessScaleClass *klass
 }
 
 CheesePrefsBrightnessScale *
-cheese_prefs_brightness_scale_new (GtkWidget *scale, CheeseWebcam *webcam)
+cheese_prefs_brightness_scale_new (GtkWidget *scale,
+                                   CheeseWebcam *webcam,
+                                   const gchar *brightness_key)
 {
   CheesePrefsBrightnessScale        *self;
   CheesePrefsBrightnessScalePrivate *priv;
@@ -173,6 +196,7 @@ cheese_prefs_brightness_scale_new (GtkWidget *scale, CheeseWebcam *webcam)
   self = g_object_new (CHEESE_TYPE_PREFS_BRIGHTNESS_SCALE,
                        "widget", scale,
                        "webcam", webcam,
+                       "brightness_key", brightness_key,
                        NULL);
 
   priv = CHEESE_PREFS_BRIGHTNESS_SCALE_GET_PRIVATE (self);
