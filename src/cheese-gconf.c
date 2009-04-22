@@ -113,6 +113,11 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                     CHEESE_GCONF_PREFIX "/y_resolution",
                                                     NULL));
       break;
+    case GCONF_PROP_BRIGHTNESS:
+      g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                         CHEESE_GCONF_PREFIX "/brightness",
+                                                         NULL));
+      break;
     case GCONF_PROP_VIDEO_PATH:
       g_value_set_string (value, gconf_client_get_string (priv->client,
                                                           CHEESE_GCONF_PREFIX "/video_path",
@@ -213,6 +218,12 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                             g_value_get_int (value),
                             NULL);
       break;
+    case GCONF_PROP_BRIGHTNESS:
+      gconf_client_set_float (priv->client,
+                              CHEESE_GCONF_PREFIX "/brightness",
+                              g_value_get_double (value),
+                              NULL);
+      break;
     case GCONF_PROP_VIDEO_PATH:
       gconf_client_set_string (priv->client,
                                CHEESE_GCONF_PREFIX "/video_path",
@@ -295,6 +306,15 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                      G_MAXINT,
                                                      0,
                                                      G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_BRIGHTNESS,
+                                   g_param_spec_double ("gconf_prop_brightness",
+                                                        NULL,
+                                                        NULL,
+                                                        -G_MAXFLOAT,
+                                                        G_MAXFLOAT,
+                                                        0.0,
+                                                        G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class, GCONF_PROP_VIDEO_PATH,
                                    g_param_spec_string ("gconf_prop_video_path",
