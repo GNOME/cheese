@@ -78,6 +78,7 @@ typedef struct
   GstElement *video_enc;
 
   GstElement *effect_filter, *csp_post_effect;
+  GstElement *video_balance, *csp_post_balance;
 
   gulong photo_handler_signal_id;
 
@@ -943,6 +944,17 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
   {
     cheese_webcam_set_error_element_not_found (error, "ffmpegcolorspace");
   }
+  if ((priv->video_balance = gst_element_factory_make ("videobalance", "video_balance")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "videobalance");
+    return FALSE;
+  }
+  if ((priv->csp_post_balance = gst_element_factory_make ("ffmpegcolorspace", "csp_post_balance")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "ffmpegcolorspace");
+    return FALSE;
+  }
+
 
   if ((tee = gst_element_factory_make ("tee", "tee")) == NULL)
   {
@@ -978,11 +990,15 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
     return FALSE;
 
   gst_bin_add_many (GST_BIN (priv->video_display_bin), priv->webcam_source_bin,
-                    priv->effect_filter, priv->csp_post_effect, tee, save_queue,
+                    priv->effect_filter, priv->csp_post_effect,
+                    priv->video_balance, priv->csp_post_balance,
+                    tee, save_queue,
                     video_display_queue, video_scale, video_sink, NULL);
 
   ok = gst_element_link_many (priv->webcam_source_bin, priv->effect_filter,
-                              priv->csp_post_effect, tee, NULL);
+                              priv->csp_post_effect, 
+                              priv->video_balance, priv->csp_post_balance,
+                              tee, NULL);
 
   ok &= gst_element_link_many (tee, save_queue, NULL);
   ok &= gst_element_link_many (tee, video_display_queue, video_scale, video_sink, NULL);
