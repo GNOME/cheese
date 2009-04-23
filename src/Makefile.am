@@ -48,8 +48,8 @@ cheese_SOURCES = \
 	cheese-prefs-dialog-widgets.c \
 	cheese-prefs-resolution-combo.h \
 	cheese-prefs-resolution-combo.c \
-	cheese-prefs-brightness-scale.c \
-	cheese-prefs-brightness-scale.h \
+	cheese-prefs-balance-scale.c \
+	cheese-prefs-balance-scale.h \
 	cheese-prefs-dialog.c \
 	cheese-prefs-dialog.h \
 	cheese-flash.h \

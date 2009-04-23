@@ -1912,7 +1912,7 @@ setup_camera (CheeseWindow *cheese_window)
   cheese_webcam_set_effect (cheese_window->webcam,
                             cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
 
-  cheese_webcam_set_brightness (cheese_window->webcam, brightness);
+  cheese_webcam_set_balance_property (cheese_window->webcam, "brightness", brightness);
 
   cheese_webcam_play (cheese_window->webcam);
   gdk_threads_enter ();

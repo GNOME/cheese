@@ -128,8 +128,9 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
                     prefs_dialog);
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, webcam_widget);
 
-  brightness_widget = CHEESE_PREFS_WIDGET (cheese_prefs_brightness_scale_new (prefs_dialog->brightness_scale,
-                                                                              prefs_dialog->webcam,"gconf_prop_brightness"));
+  brightness_widget = CHEESE_PREFS_WIDGET (cheese_prefs_balance_scale_new (prefs_dialog->brightness_scale,
+																																					 prefs_dialog->webcam, "brightness",
+																																					 "gconf_prop_brightness"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, brightness_widget);
 
