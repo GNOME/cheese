@@ -1732,6 +1732,8 @@ cheese_webcam_get_brightness_range (CheeseWebcam *webcam,
   pspec = g_object_class_find_property (
     G_OBJECT_GET_CLASS (G_OBJECT (priv->video_balance)), "brightness");
 
+  g_return_if_fail (pspec != NULL);
+
   *min = G_PARAM_SPEC_DOUBLE (pspec)->minimum;
   *max = G_PARAM_SPEC_DOUBLE (pspec)->maximum;
   *def = G_PARAM_SPEC_DOUBLE (pspec)->default_value;
@@ -1741,5 +1743,6 @@ void
 cheese_webcam_set_brightness (CheeseWebcam *webcam, gdouble value)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+
   g_object_set (G_OBJECT (priv->video_balance), "brightness", value, NULL);
 }
