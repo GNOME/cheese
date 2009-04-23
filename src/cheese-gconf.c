@@ -114,19 +114,34 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                     NULL));
       break;
     case GCONF_PROP_BRIGHTNESS:
-      g_value_set_double (value, gconf_client_get_float (priv->client,
-                                                         CHEESE_GCONF_PREFIX "/brightness",
-                                                         NULL));
+      if (!gconf_client_get (priv->client,
+                             CHEESE_GCONF_PREFIX "/brightness",
+                             NULL))
+        g_value_set_double (value, G_PARAM_SPEC_DOUBLE (pspec)->default_value);
+      else
+        g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                           CHEESE_GCONF_PREFIX "/brightness",
+                                                           NULL));
       break;
     case GCONF_PROP_CONTRAST:
-      g_value_set_double (value, gconf_client_get_float (priv->client,
-                                                         CHEESE_GCONF_PREFIX "/contrast",
-                                                         NULL));
+      if (!gconf_client_get (priv->client,
+                             CHEESE_GCONF_PREFIX "/contrast",
+                             NULL))
+        g_value_set_double (value, G_PARAM_SPEC_DOUBLE (pspec)->default_value);
+      else
+        g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                           CHEESE_GCONF_PREFIX "/contrast",
+                                                           NULL));
       break;
     case GCONF_PROP_SATURATION:
-      g_value_set_double (value, gconf_client_get_float (priv->client,
-                                                         CHEESE_GCONF_PREFIX "/saturation",
-                                                         NULL));
+      if (!gconf_client_get (priv->client,
+                             CHEESE_GCONF_PREFIX "/saturation",
+                             NULL))
+        g_value_set_double (value, G_PARAM_SPEC_DOUBLE (pspec)->default_value);
+      else
+        g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                           CHEESE_GCONF_PREFIX "/saturation",
+                                                           NULL));
       break;
     case GCONF_PROP_VIDEO_PATH:
       g_value_set_string (value, gconf_client_get_string (priv->client,
