@@ -102,6 +102,8 @@ cheese_prefs_balance_scale_synchronize (CheesePrefsWidget *prefs_widget)
   adj = GTK_ADJUSTMENT (gtk_adjustment_new (def, min, max, (max - min)/STEPS, 0.0, 0.0));
   gtk_range_set_adjustment (GTK_RANGE (scale), adj);
 
+  gtk_scale_add_mark (GTK_SCALE (scale), def, GTK_POS_BOTTOM, NULL);
+
   g_object_get (CHEESE_PREFS_WIDGET (self)->gconf, priv->gconf_key, &stored_value, NULL);
 
   gtk_range_set_value (GTK_RANGE (scale), stored_value);
