@@ -27,6 +27,7 @@ typedef struct
   GtkWidget *webcam_combo_box;
   GtkWidget *brightness_scale;
   GtkWidget *contrast_scale;
+  GtkWidget *saturation_scale;
 
   GtkWidget *parent;
   CheeseWebcam *webcam;
@@ -59,7 +60,9 @@ cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
   prefs_dialog->brightness_scale = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                        "brightness_scale"));
   prefs_dialog->contrast_scale = GTK_WIDGET (gtk_builder_get_object (builder,
-                                                                       "contrast_scale"));
+																																		 "contrast_scale"));
+  prefs_dialog->saturation_scale = GTK_WIDGET (gtk_builder_get_object (builder,
+																																			 "saturation_scale"));
 
   gtk_window_set_transient_for (GTK_WINDOW (prefs_dialog->cheese_prefs_dialog),
                                 GTK_WINDOW (prefs_dialog->parent));
@@ -111,7 +114,8 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
   CheesePrefsWidget *resolution_widget;
   CheesePrefsWidget *webcam_widget;
   CheesePrefsWidget *brightness_widget;
-  CheesePrefsWidget *contrast_widget;
+	CheesePrefsWidget *contrast_widget;
+  CheesePrefsWidget *saturation_widget;
 
   resolution_widget = CHEESE_PREFS_WIDGET (cheese_prefs_resolution_combo_new (prefs_dialog->resolution_combo_box,
                                                                               prefs_dialog->webcam,
@@ -143,6 +147,13 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
 																																				 "gconf_prop_contrast"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, contrast_widget);
+
+	saturation_widget = CHEESE_PREFS_WIDGET (cheese_prefs_balance_scale_new (prefs_dialog->saturation_scale,
+																																					 prefs_dialog->webcam, "saturation",
+																																					 "gconf_prop_saturation"));
+
+  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, saturation_widget);
+
 
   cheese_prefs_dialog_widgets_synchronize (prefs_dialog->widgets);
 }
