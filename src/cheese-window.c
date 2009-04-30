@@ -1023,7 +1023,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
 
   gtk_show_about_dialog (GTK_WINDOW (cheese_window->window),
                          "version", VERSION,
-                         "copyright", "Copyright \xc2\xa9 2007 - 2008\n daniel g. siegel <dgsiegel@gmail.com>",
+                         "copyright", "Copyright \xc2\xa9 2007 - 2009\n daniel g. siegel <dgsiegel@gnome.org>",
                          "comments", _("Take photos and videos with your webcam, with fun graphical effects"),
                          "authors", authors,
                          "translator-credits", translators,
