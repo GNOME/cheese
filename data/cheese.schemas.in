@@ -64,7 +64,55 @@
 				<long>The height resolution of the image captured from the camera</long>
 			</locale>
     </schema>
-    	
+
+		<schema>
+			<key>/schemas/apps/cheese/brightness</key>
+			<applyto>/apps/cheese/brightness</applyto>
+			<owner>cheese</owner>
+			<type>float</type>
+			<default>0</default>
+			<locale name="C">
+				<short>Picture brightness</short>
+				<long>Adjusts brightness level of the picture coming from the webcam</long>
+			</locale>
+    </schema>
+
+		<schema>
+			<key>/schemas/apps/cheese/contrast</key>
+			<applyto>/apps/cheese/contrast</applyto>
+			<owner>cheese</owner>
+			<type>float</type>
+			<default>1</default>
+			<locale name="C">
+				<short>Picture contrast</short>
+				<long>Adjusts contrast level of the picture coming from the webcam</long>
+			</locale>
+    </schema>
+
+		<schema>
+			<key>/schemas/apps/cheese/saturation</key>
+			<applyto>/apps/cheese/saturation</applyto>
+			<owner>cheese</owner>
+			<type>float</type>
+			<default>1</default>
+			<locale name="C">
+				<short>Picture saturation</short>
+				<long>Adjusts saturation level of the picture coming from the webcam</long>
+			</locale>
+    </schema>
+
+		<schema>
+			<key>/schemas/apps/cheese/hue</key>
+			<applyto>/apps/cheese/hue</applyto>
+			<owner>cheese</owner>
+			<type>float</type>
+			<default>0</default>
+			<locale name="C">
+				<short>Picture hue</short>
+				<long>Adjusts hue level of the picture coming from the webcam</long>
+			</locale>
+    </schema>
+
     <schema>
 			<key>/schemas/apps/cheese/video_path</key>
 			<applyto>/apps/cheese/video_path</applyto>

@@ -119,6 +119,10 @@ gboolean           cheese_webcam_switch_webcam_device (CheeseWebcam *webcam);
 GArray *           cheese_webcam_get_video_formats (CheeseWebcam *webcam);
 void               cheese_webcam_set_video_format (CheeseWebcam      *webcam,
                                                    CheeseVideoFormat *format);
+void               cheese_webcam_get_balance_property_range (CheeseWebcam *webcam,
+                                                             gchar *property,
+                                                             gdouble *min, gdouble *max, gdouble *def);
+void               cheese_webcam_set_balance_property (CheeseWebcam *webcam, gchar *property, gdouble value);
 G_END_DECLS
 
 #endif /* __CHEESE_WEBCAM_H__ */

@@ -113,6 +113,46 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                     CHEESE_GCONF_PREFIX "/y_resolution",
                                                     NULL));
       break;
+    case GCONF_PROP_BRIGHTNESS:
+      if (!gconf_client_get (priv->client,
+                             CHEESE_GCONF_PREFIX "/brightness",
+                             NULL))
+        g_value_set_double (value, G_PARAM_SPEC_DOUBLE (pspec)->default_value);
+      else
+        g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                           CHEESE_GCONF_PREFIX "/brightness",
+                                                           NULL));
+      break;
+    case GCONF_PROP_CONTRAST:
+      if (!gconf_client_get (priv->client,
+                             CHEESE_GCONF_PREFIX "/contrast",
+                             NULL))
+        g_value_set_double (value, G_PARAM_SPEC_DOUBLE (pspec)->default_value);
+      else
+        g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                           CHEESE_GCONF_PREFIX "/contrast",
+                                                           NULL));
+      break;
+    case GCONF_PROP_SATURATION:
+      if (!gconf_client_get (priv->client,
+                             CHEESE_GCONF_PREFIX "/saturation",
+                             NULL))
+        g_value_set_double (value, G_PARAM_SPEC_DOUBLE (pspec)->default_value);
+      else
+        g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                           CHEESE_GCONF_PREFIX "/saturation",
+                                                           NULL));
+      break;
+    case GCONF_PROP_HUE:
+      if (!gconf_client_get (priv->client,
+                             CHEESE_GCONF_PREFIX "/hue",
+                             NULL))
+        g_value_set_double (value, G_PARAM_SPEC_DOUBLE (pspec)->default_value);
+      else
+        g_value_set_double (value, gconf_client_get_float (priv->client,
+                                                           CHEESE_GCONF_PREFIX "/hue",
+                                                           NULL));
+      break;
     case GCONF_PROP_VIDEO_PATH:
       g_value_set_string (value, gconf_client_get_string (priv->client,
                                                           CHEESE_GCONF_PREFIX "/video_path",
@@ -213,6 +253,30 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                             g_value_get_int (value),
                             NULL);
       break;
+    case GCONF_PROP_BRIGHTNESS:
+      gconf_client_set_float (priv->client,
+                              CHEESE_GCONF_PREFIX "/brightness",
+                              g_value_get_double (value),
+                              NULL);
+      break;
+    case GCONF_PROP_CONTRAST:
+      gconf_client_set_float (priv->client,
+                              CHEESE_GCONF_PREFIX "/contrast",
+                              g_value_get_double (value),
+                              NULL);
+      break;
+    case GCONF_PROP_SATURATION:
+      gconf_client_set_float (priv->client,
+                              CHEESE_GCONF_PREFIX "/saturation",
+                              g_value_get_double (value),
+                              NULL);
+      break;
+    case GCONF_PROP_HUE:
+      gconf_client_set_float (priv->client,
+                              CHEESE_GCONF_PREFIX "/hue",
+                              g_value_get_double (value),
+                              NULL);
+      break;
     case GCONF_PROP_VIDEO_PATH:
       gconf_client_set_string (priv->client,
                                CHEESE_GCONF_PREFIX "/video_path",
@@ -295,6 +359,42 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                      G_MAXINT,
                                                      0,
                                                      G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_BRIGHTNESS,
+                                   g_param_spec_double ("gconf_prop_brightness",
+                                                        NULL,
+                                                        NULL,
+                                                        -G_MAXFLOAT,
+                                                        G_MAXFLOAT,
+                                                        0.0,
+                                                        G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_CONTRAST,
+                                   g_param_spec_double ("gconf_prop_contrast",
+                                                        NULL,
+                                                        NULL,
+                                                        0,
+                                                        G_MAXFLOAT,
+                                                        1.0,
+                                                        G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_SATURATION,
+                                   g_param_spec_double ("gconf_prop_saturation",
+                                                        NULL,
+                                                        NULL,
+                                                        0,
+                                                        G_MAXFLOAT,
+                                                        1.0,
+                                                        G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_HUE,
+                                   g_param_spec_double ("gconf_prop_hue",
+                                                        NULL,
+                                                        NULL,
+                                                        -G_MAXFLOAT,
+                                                        G_MAXFLOAT,
+                                                        0.0,
+                                                        G_PARAM_READWRITE));
 
   g_object_class_install_property (object_class, GCONF_PROP_VIDEO_PATH,
                                    g_param_spec_string ("gconf_prop_video_path",

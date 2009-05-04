@@ -78,6 +78,7 @@ typedef struct
   GstElement *video_enc;
 
   GstElement *effect_filter, *csp_post_effect;
+  GstElement *video_balance, *csp_post_balance;
 
   gulong photo_handler_signal_id;
 
@@ -943,6 +944,16 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
   {
     cheese_webcam_set_error_element_not_found (error, "ffmpegcolorspace");
   }
+  if ((priv->video_balance = gst_element_factory_make ("videobalance", "video_balance")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "videobalance");
+    return FALSE;
+  }
+  if ((priv->csp_post_balance = gst_element_factory_make ("ffmpegcolorspace", "csp_post_balance")) == NULL)
+  {
+    cheese_webcam_set_error_element_not_found(error, "ffmpegcolorspace");
+    return FALSE;
+  }
 
   if ((tee = gst_element_factory_make ("tee", "tee")) == NULL)
   {
@@ -978,11 +989,15 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
     return FALSE;
 
   gst_bin_add_many (GST_BIN (priv->video_display_bin), priv->webcam_source_bin,
-                    priv->effect_filter, priv->csp_post_effect, tee, save_queue,
+                    priv->effect_filter, priv->csp_post_effect,
+                    priv->video_balance, priv->csp_post_balance,
+                    tee, save_queue,
                     video_display_queue, video_scale, video_sink, NULL);
 
   ok = gst_element_link_many (priv->webcam_source_bin, priv->effect_filter,
-                              priv->csp_post_effect, tee, NULL);
+                              priv->csp_post_effect, 
+                              priv->video_balance, priv->csp_post_balance,
+                              tee, NULL);
 
   ok &= gst_element_link_many (tee, save_queue, NULL);
   ok &= gst_element_link_many (tee, video_display_queue, video_scale, video_sink, NULL);
@@ -1701,4 +1716,34 @@ cheese_webcam_get_current_video_format (CheeseWebcam *webcam)
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
   return priv->current_format;
+}
+
+void
+cheese_webcam_get_balance_property_range (CheeseWebcam *webcam,
+                                          gchar *property,
+                                          gdouble *min, gdouble *max, gdouble *def)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  GParamSpec *pspec;
+  
+  *min = 0.0;
+  *max = 0.0;
+  *def = 0.0;
+
+  pspec = g_object_class_find_property (
+    G_OBJECT_GET_CLASS (G_OBJECT (priv->video_balance)), property);
+
+  g_return_if_fail (pspec != NULL);
+
+  *min = G_PARAM_SPEC_DOUBLE (pspec)->minimum;
+  *max = G_PARAM_SPEC_DOUBLE (pspec)->maximum;
+  *def = G_PARAM_SPEC_DOUBLE (pspec)->default_value;
+}
+
+void
+cheese_webcam_set_balance_property (CheeseWebcam *webcam, gchar *property, gdouble value)
+{
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+
+  g_object_set (G_OBJECT (priv->video_balance), property, value, NULL);
 }

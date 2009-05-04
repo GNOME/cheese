@@ -28,6 +28,7 @@
 #include "cheese-prefs-dialog-widgets.h"
 #include "cheese-prefs-resolution-combo.h"
 #include "cheese-prefs-webcam-combo.h"
+#include "cheese-prefs-balance-scale.h"
 
 void cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseWebcam *webcam);
 
