@@ -1,6 +1,24 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.27.1
+  - Improve preferences dialog making it more consistent with other GNOME
+    applications.
+  - Add support for brightness, contrast, saturation and hue adjustments,
+    fixes bug #558970.
+  - Replace deprecated gtk_action_connect_proxy calls with
+    gtk_activatable_set_related_action, fixes bug #571383.
+  - Bump gtk+ dependency to 2.16 (needed for gtk_scale_add_mark and
+    gtk_activatable_set_related_action).
+  - Archive old ChangeLog and autogenerate it on distribution from git log.
+  - Added cheese.doap file
+  - Added Filippo Argiolas to MAINTAINERS
+  - added/updated translations
+    - ar, courtesy of Khaled Hosny
+    - be, courtesy of Ягор Кур'яновіч
+    - es, courtesy of Jorge González
+    - kn, courtesy of Shankar Prasad
+
 version 2.26.0
   - Lock gdk mutex in photo-saved and video-saved callbacks Those signals are emitted
     within a gstreamer callback so outside the mainloop, hence the need for locking.
