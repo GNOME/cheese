@@ -4,14 +4,14 @@
 # This file is distributed under the same license as cheese
 #
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 200, 2009.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2009-04-16 21:35+0000\n"
-"PO-Revision-Date: 2009-04-23 18:17+0200\n"
+"POT-Creation-Date: 2009-05-04 22:26+0000\n"
+"PO-Revision-Date: 2009-05-08 20:01+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -44,6 +44,25 @@ msgstr ""
 "\" (contornos), \"dice\" (pedazos) y \"wrap\" (distorsión)."
 
 #: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "Ajusta el nivel de brillo de la imagen que proviene de la cámara web"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr ""
+"Ajusta el nivel de contraste de la imagen que proviene de la cámara web"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "Ajusta el nivel del tono de la imagen que proviene de la cámara web"
+
+#: ../data/cheese.schemas.in.h:7
+#| msgid "The width resolution of the image captured from the camera"
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr ""
+"Ajusta el nivel de saturación de la imagen que proviene de la cámara web"
+
+#: ../data/cheese.schemas.in.h:8
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
@@ -51,7 +70,7 @@ msgstr ""
 "Define la ruta donde se almacenarán las fotos, si está vacío se usará "
 "\"XDG_PHOTO/Webcam\"."
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
@@ -59,11 +78,11 @@ msgstr ""
 "Define la ruta donde se almacenarán los vídeos, si está vacío se usará "
 "\"XDG_VIDEO/Webcam\"."
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "Resolución de la altura"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:11
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
@@ -73,47 +92,64 @@ msgstr ""
 "borrar un archivo inmediatamente, en lugar de moverlo a la papelera. Esta "
 "característica puede ser peligrosa, úsela con precaución."
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:12
 msgid "Photo Path"
 msgstr "Ruta de las fotos"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:13
+msgid "Picture brightness"
+msgstr "Brillo de la imagen"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Picture contrast"
+msgstr "Contraste de la imagen"
+
+#: ../data/cheese.schemas.in.h:15
+msgid "Picture hue"
+msgstr "Todo de la imagen"
+
+#: ../data/cheese.schemas.in.h:16
+#| msgid "Saturation"
+msgid "Picture saturation"
+msgstr "Saturación de la imagen"
+
+#: ../data/cheese.schemas.in.h:17
 msgid "Selected Effects"
 msgstr "Efectos seleccionados"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:18
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Establecer a «true» para mostrar la cuenta atrás al tomar una foto"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:19
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "El dispositivo que apunta a la cámara web (ej. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:20
 msgid "The height resolution of the image captured from the camera"
 msgstr "La resolución de la altura de la imagen capturada por la cámara"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:21
 msgid "The width resolution of the image captured from the camera"
 msgstr "La resolución de la anchura de la imagen capturada por la cámara"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:22
 msgid "Use a countdown"
 msgstr "Usar cuenta atrás"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:23
 msgid "Video Path"
 msgstr "Ruta de los vídeos"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:24
 msgid "Webcam device string indicator"
 msgstr "Indicador de la cadena de dispositivo de la cámara web"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:25
 msgid "Whether to enable immediate deletion"
 msgstr "Indica si se debe activar el borrado inmediato"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:26
 msgid "Width resolution"
 msgstr "Resolución de la anchura"
 
@@ -155,16 +191,43 @@ msgid "_Video"
 msgstr "_Vídeo"
 
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>Cámara</b>"
+msgid "<b>Image properties</b>"
+msgstr "<b>Propiedades de la imagen</b>"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>Resolución</b>"
+#| msgid "<b>Camera</b>"
+msgid "<b>Webcam</b>"
+msgstr "<b>Cámara web</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1394
+#: ../data/cheese-prefs.ui.h:3
+msgid "Brightness"
+msgstr "Brillo"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Contrast"
+msgstr "Contraste"
+
+#: ../data/cheese-prefs.ui.h:5
+#| msgid "Dice"
+msgid "Device"
+msgstr "Dispositivo"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Tono"
+
+#: ../data/cheese-prefs.ui.h:7 ../src/cheese-window.c:1394
 msgid "Preferences"
 msgstr "Preferencias"
+
+#: ../data/cheese-prefs.ui.h:8
+#| msgid "<b>Resolution</b>"
+msgid "Resolution"
+msgstr "Resolución"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Saturación"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -177,10 +240,6 @@ msgstr "Malva"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Blanco y negro"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Saturación"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -238,7 +297,7 @@ msgstr "Para obtener más información consulte la ayuda."
 msgid "Help"
 msgstr "Ayuda"
 
-#: ../src/cheese-webcam.c:1589
+#: ../src/cheese-webcam.c:1604
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de gstreamer: "
 
@@ -492,7 +551,7 @@ msgstr "Salir"
 msgid "About"
 msgstr "Acerca de"
 
-#: ../src/cheese-window.c:1877
+#: ../src/cheese-window.c:1888
 msgid "Check your gstreamer installation"
 msgstr "Compruebe su instalación de gstreamer"
 
