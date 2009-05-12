@@ -233,7 +233,11 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   else
   {
     icon_theme = gtk_icon_theme_get_default ();
-    pixbuf     = gtk_icon_theme_load_icon (icon_theme, "image-loading", 96, 0, &error);
+    pixbuf     = gtk_icon_theme_load_icon (icon_theme,
+                                           "image-loading",
+                                           96,
+                                           GTK_ICON_LOOKUP_GENERIC_FALLBACK,
+                                           &error);
   }
 
   if (!pixbuf)
@@ -241,7 +245,6 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
     g_warning ("Couldn't load icon: %s", error->message);
     g_error_free (error);
     error = NULL;
-    return;
   }
 
   filename = g_file_get_path (file);
@@ -259,7 +262,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   gtk_icon_view_scroll_to_path (GTK_ICON_VIEW (thumb_view), path,
                                 TRUE, 1.0, 0.5);
 
-  g_object_unref (pixbuf);
+  if (pixbuf) g_object_unref (pixbuf);
 
   if (!priv->multiplex_thumbnail_generator)
   {
