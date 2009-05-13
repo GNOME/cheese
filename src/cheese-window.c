@@ -476,7 +476,9 @@ cheese_window_cmd_open (GtkWidget *widget, CheeseWindow *cheese_window)
     dialog = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
                                      GTK_DIALOG_DESTROY_WITH_PARENT,
                                      GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE,
-                                     _("Failed to launch program to show:\n%s"), uri);
+                                     _("Failed to launch program to show:\n"
+                                       "%s\n"
+                                       "%s"), uri, error->message);
     gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
     g_error_free (error);
