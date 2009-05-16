@@ -165,6 +165,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   g_free (mime_type);
   g_free (filename);
   g_object_unref (pixbuf);
+  g_object_unref (file);
   g_free (item);
 }
 
@@ -218,10 +219,6 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
     if (skip) return;
   }
 
-  data             = g_new0 (CheeseThumbViewThreadData, 1);
-  data->thumb_view = g_object_ref (thumb_view);
-  data->file       = g_object_ref (file);
-
   if (priv->multiplex_thumbnail_generator)
   {
     char *f;
@@ -251,7 +248,6 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   basename = g_path_get_basename (filename);
 
   gtk_list_store_append (priv->store, &iter);
-  data->iter = iter;
   gtk_list_store_set (priv->store, &iter,
                       THUMBNAIL_PIXBUF_COLUMN, pixbuf,
                       THUMBNAIL_URL_COLUMN, filename,
@@ -266,6 +262,11 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   if (!priv->multiplex_thumbnail_generator)
   {
+    data             = g_new0 (CheeseThumbViewThreadData, 1);
+    data->thumb_view = g_object_ref (thumb_view);
+    data->file       = g_object_ref (file);
+    data->iter       = iter;
+
     if (!g_thread_create ((GThreadFunc) cheese_thumb_view_thread_append_item,
                           data, FALSE, &error))
     {
