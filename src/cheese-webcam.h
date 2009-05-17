@@ -108,7 +108,7 @@ void               cheese_webcam_stop (CheeseWebcam *webcam);
 void               cheese_webcam_set_effect (CheeseWebcam *webcam, CheeseWebcamEffect effect);
 void               cheese_webcam_start_video_recording (CheeseWebcam *webcam, char *filename);
 void               cheese_webcam_stop_video_recording (CheeseWebcam *webcam);
-void               cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename);
+gboolean            cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename);
 gboolean           cheese_webcam_has_webcam (CheeseWebcam *webcam);
 int                cheese_webcam_get_num_webcam_devices (CheeseWebcam *webcam);
 int                cheese_webcam_get_selected_device_index (CheeseWebcam *webcam);

@@ -40,7 +40,6 @@
 #include <linux/videodev.h>
 
 #include "cheese-webcam.h"
-#include "cheese-flash.h"
 
 G_DEFINE_TYPE (CheeseWebcam, cheese_webcam, G_TYPE_OBJECT)
 
@@ -92,8 +91,6 @@ typedef struct
   int y_resolution;
   int selected_device;
   CheeseVideoFormat *current_format;
-
-  CheeseFlash *flash;
 
   guint eos_timeout_id;
 } CheeseWebcamPrivate;
@@ -218,6 +215,7 @@ cheese_webcam_photo_data_cb (GstElement *element, GstBuffer *buffer,
 
   g_signal_handler_disconnect (G_OBJECT (priv->photo_sink),
                                priv->photo_handler_signal_id);
+  priv->photo_handler_signal_id = 0;
 
   g_signal_emit (webcam, webcam_signals[PHOTO_SAVED], 0);
 }
@@ -1346,10 +1344,15 @@ cheese_webcam_stop_video_recording (CheeseWebcam *webcam)
   }
 }
 
-void
+gboolean
 cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+
+  if (priv->photo_handler_signal_id != 0) {
+    g_print ("Still waiting for previous photo data, ignoring new request\n");
+    return FALSE;
+  }
 
   g_free (priv->photo_filename);
   priv->photo_filename = g_strdup (filename);
@@ -1359,7 +1362,7 @@ cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename)
                                                     "handoff",
                                                     G_CALLBACK (cheese_webcam_photo_data_cb),
                                                     webcam);
-  cheese_flash_fire (priv->flash);
+  return TRUE;
 }
 
 static void
@@ -1534,8 +1537,7 @@ cheese_webcam_init (CheeseWebcam *webcam)
   priv->photo_filename      = NULL;
   priv->webcam_devices      = NULL;
   priv->device_name         = NULL;
-
-  priv->flash = cheese_flash_new ();
+  priv->photo_handler_signal_id = 0;
 }
 
 CheeseWebcam *
