@@ -55,6 +55,7 @@
 #include "gedit-message-area.h"
 #include "cheese-no-camera.h"
 #include "cheese-prefs-dialog.h"
+#include "cheese-flash.h"
 
 #define SHUTTER_SOUNDS             5
 #define FULLSCREEN_POPUP_HEIGHT    40
@@ -87,7 +88,6 @@ typedef struct
   /* UDI device requested on the command line */
   char *startup_hal_dev_udi;
   char *video_filename;
-  char *photo_filename;
 
   int counter;
 
@@ -172,6 +172,8 @@ typedef struct
   GSource *fullscreen_timeout_source;
 
   int audio_play_counter;
+
+  CheeseFlash *flash;
 } CheeseWindow;
 
 void
@@ -405,14 +407,12 @@ static void
 cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 {
   gdk_threads_enter ();
-  /* TODO look at this g_free */
-  g_free (cheese_window->photo_filename);
-  cheese_window->photo_filename = NULL;
   gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
   gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
   gdk_flush ();
   gdk_threads_leave ();
 }
+
 
 static void
 cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
@@ -1192,20 +1192,23 @@ cheese_window_countdown_picture_cb (gpointer data)
   CheeseWindow *cheese_window = (CheeseWindow *) data;
   GError       *error         = NULL;
   GstAudioPlay *audio_play;
-  char         *file;
+  char         *shutter_filename;
+  char         *photo_filename;
 
-  file       = audio_play_get_filename (cheese_window);
-  audio_play = gst_audio_play_file (file, &error);
-  if (!audio_play)
+  photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, WEBCAM_MODE_PHOTO);
+  if (cheese_webcam_take_photo (cheese_window->webcam, photo_filename))
   {
-    g_warning ("%s", error ? error->message : "Unknown error");
-    g_error_free (error);
+    cheese_flash_fire (cheese_window->flash);
+    shutter_filename = audio_play_get_filename (cheese_window);
+    audio_play = gst_audio_play_file (shutter_filename, &error);
+    if (!audio_play)
+    {
+      g_warning ("%s", error ? error->message : "Unknown error");
+      g_error_free (error);
+    }
+    g_free (shutter_filename);
   }
-
-  g_free (file);
-
-  cheese_window->photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, WEBCAM_MODE_PHOTO);
-  cheese_webcam_take_photo (cheese_window->webcam, cheese_window->photo_filename);
+  g_free (photo_filename);
 }
 
 static void
@@ -1956,8 +1959,9 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
 
   cheese_window->startup_hal_dev_udi = hal_dev_udi;
   cheese_window->gconf               = cheese_gconf_new ();
-  cheese_window->audio_play_counter  = 0;
   cheese_window->fileutil            = cheese_fileutil_new ();
+  cheese_window->flash               = cheese_flash_new ();
+  cheese_window->audio_play_counter  = 0;
   cheese_window->isFullscreen        = FALSE;
 
   cheese_window->server = dbus_server;
