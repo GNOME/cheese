@@ -1,6 +1,22 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.26.2
+  - Don't take new photo while waiting for the previous
+    Ignore new photo requests if we are still waiting for an "handoff"
+    signal for the previous one, fixes bug #582902
+  - Fix a couple of trivial memory leaks in the thumbnail generator code, fixes bug #578289
+  - Don't return if "image-loading" icon is not found, we will have an empty
+    pixbuf while the thumbnail thread is running but it is surely better than
+    no thumbnail at all. Try to fallback to generic "image" icon before giving up,
+    fixes (at least it should) bug #582240.
+  - added/updated translations
+    - ar, courtesy of Khaled Hosny
+    - be, courtesy of Ягор Кур'яновіч
+    - el, courtesy of Simos Xenitellis
+    - es, courtesy of Jorge González
+    - kn, courtesy of Shankar Prasad
+
 version 2.26.0
   - Lock gdk mutex in photo-saved and video-saved callbacks Those signals are emitted
     within a gstreamer callback so outside the mainloop, hence the need for locking.
