@@ -1,200 +1,213 @@
 # Juustu eesti keele tõlge.
 # Estonian translation of Cheese.
 #
-# Copyright (C) 2008 The GNOME Project.
+# Copyright (C) 2008, 2009 The GNOME Project.
 # This file is distributed under the same license as the Cheese package.
 #
-# Ivar Smolin <okul@linux.ee>, 2008.
+# Ivar Smolin <okul@linux.ee>, 2008, 2009.
 # Mattias Põldaru <mahfiaz@gmail.com>, 2008, 2009.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 08:46+0100\n"
-"PO-Revision-Date: 2009-02-09 00:30+0300\n"
-"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&component=general\n"
+"POT-Creation-Date: 2009-05-13 18:00+0000\n"
+"PO-Revision-Date: 2009-05-20 09:28+0300\n"
+"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
 msgstr "Juustu veebikaamera kabiin"
 
-#: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1016
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Veebikaamerast fotode ja videote salvestamine, ka koos graafiliste efektidega"
+msgstr ""
+"Veebikaamerast fotode ja videote salvestamine, ka koos graafiliste efektidega"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid "A list of effects applied on startup. Possible values are: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr "Käivitamisel rakendatavad efektid. Võimalikud väärtused on: \"mauve\" (lillakas), \"noir_blanc\" (sünge), \"saturation\" (küllastamine), \"hulk\" (rohenägu), \"vertical-flip\" (püstine peegeldus), \"horizontal-flip\" (rõhtne peegeldus), \"shagadelic\" (pööriseline), \"vertigo\" (ähmane), \"edge\" (serv), \"dice\" (hakitud) ja \"warp\" (kõverpeegel)"
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Käivitamisel rakendatavad efektid. Võimalikud väärtused on: \"mauve"
+"\" (lillakas), \"noir_blanc\" (sünge), \"saturation\" (küllastamine), \"hulk"
+"\" (rohenägu), \"vertical-flip\" (püstine peegeldus), \"horizontal-flip"
+"\" (rõhtne peegeldus), \"shagadelic\" (pööriseline), \"vertigo\" (ähmane), "
+"\"edge\" (serv), \"dice\" (hakitud) ja \"warp\" (kõverpeegel)"
 
-#: ../data/cheese.schemas.in.h:4
-msgid "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Fotode salvestamiseks kasutatav rada. Kui see on tühi, siis kasutatakse rada \"XDG_PHOTO/Webcam\"."
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "Kaamerast tuleva pildi heledusastme määramine"
 
-#: ../data/cheese.schemas.in.h:5
-msgid "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Video salvestamiseks kasutatav rada. Kui see on tühi, siis kasutatakse rada \"XDG_VIDEO/Webcam\"."
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "Kaamerast tuleva pildi kontrasti astme määramine"
 
-#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "Kaamerast tuleva pildi toonimisastme määramine"
+
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "Kaamerast tuleva pildi küllastumisastme määramine"
+
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Fotode salvestamiseks kasutatav rada. Kui see on tühi, siis kasutatakse rada "
+"\"XDG_PHOTO/Webcam\"."
+
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Video salvestamiseks kasutatav rada. Kui see on tühi, siis kasutatakse rada "
+"\"XDG_VIDEO/Webcam\"."
+
 msgid "Height resolution"
 msgstr "Pildi kõrgus"
 
-#: ../data/cheese.schemas.in.h:7
-msgid "If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution."
-msgstr "Kui märgitud, siis lubab Juust faili kustutada nii, et seda ei visata prügikasti. See valik võib olla ohtlik, enne selle kasutamist mõtle hästi järele."
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Kui märgitud, siis lubab Juust faili kustutada nii, et seda ei visata "
+"prügikasti. See valik võib olla ohtlik, enne selle kasutamist mõtle hästi "
+"järele."
 
-#: ../data/cheese.schemas.in.h:8
 msgid "Photo Path"
 msgstr "Fotode rada"
 
-#: ../data/cheese.schemas.in.h:9
+msgid "Picture brightness"
+msgstr "Pildi heledus"
+
+msgid "Picture contrast"
+msgstr "Pildi kontrast"
+
+msgid "Picture hue"
+msgstr "Pildi toon"
+
+msgid "Picture saturation"
+msgstr "Pildi küllastamine"
+
 msgid "Selected Effects"
 msgstr "Valitud efektid"
 
-#: ../data/cheese.schemas.in.h:10
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Kui märgitud, siis kasutatakse pildistamise ajastamiseks loendurit"
 
-#: ../data/cheese.schemas.in.h:11
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "Veebikaamera seadmele osutav string (näiteks /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:12
 msgid "The height resolution of the image captured from the camera"
 msgstr "Kaamera salvestatud pildi püstlahutus"
 
-#: ../data/cheese.schemas.in.h:13
 msgid "The width resolution of the image captured from the camera"
 msgstr "Kaamera salvestatud pildi rõhtlahutus"
 
-#: ../data/cheese.schemas.in.h:14
 msgid "Use a countdown"
 msgstr "Loenduri kasutamine"
 
-#: ../data/cheese.schemas.in.h:15
 msgid "Video Path"
 msgstr "Videode rada"
 
-#: ../data/cheese.schemas.in.h:16
 msgid "Webcam device string indicator"
 msgstr "Veebikaamera seade"
 
-#: ../data/cheese.schemas.in.h:17
 msgid "Whether to enable immediate deletion"
 msgstr "Kas vahetu kustutamine on lubatud või mitte"
 
-#: ../data/cheese.schemas.in.h:18
 msgid "Width resolution"
 msgstr "Pildi laius"
 
-#: ../data/cheese.ui.h:1
-#: ../src/cheese.c:177
 msgid "Cheese"
 msgstr "Juust"
 
-#: ../data/cheese.ui.h:2
 msgid "Switch to Photo Mode"
 msgstr "Lülitumine fotorežiimile"
 
-#: ../data/cheese.ui.h:3
 msgid "Switch to Video Mode"
 msgstr "Lülitumine videorežiimile"
 
-#: ../data/cheese.ui.h:4
 msgid "Switch to the Effects Selector"
 msgstr "Lülitumine efektivalijale"
 
-#: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:1140
-#: ../src/cheese-window.c:1379
 msgid "_Effects"
 msgstr "_Efektid"
 
-#: ../data/cheese.ui.h:6
 msgid "_Leave Fullscreen"
 msgstr "_Lahku täisekraanist"
 
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-window.c:1391
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1443
 msgid "_Take a Photo"
 msgstr "_Pildista"
 
-#: ../data/cheese.ui.h:9
-#: ../src/cheese-window.c:1392
 msgid "_Video"
 msgstr "_Video"
 
-#: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>Kaamera</b>"
+msgid "<b>Image properties</b>"
+msgstr "<b>Pildi omadused</b>"
 
-#: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>Ekraanilahutus</b>"
+msgid "<b>Webcam</b>"
+msgstr "<b>Veebikaamera</b>"
 
-#: ../data/cheese-prefs.ui.h:3
-#: ../src/cheese-window.c:1383
+msgid "Brightness"
+msgstr "Heledus"
+
+msgid "Contrast"
+msgstr "Kontrast"
+
+msgid "Device"
+msgstr "Seade"
+
+msgid "Hue"
+msgstr "Toon"
+
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: ../src/cheese-effect-chooser.c:60
-msgid "No Effect"
-msgstr "Efekt puudub"
+msgid "Resolution"
+msgstr "Lahutus"
 
-#: ../src/cheese-effect-chooser.c:62
-msgid "Mauve"
-msgstr "Lillakas"
-
-#: ../src/cheese-effect-chooser.c:64
-msgid "Noir/Blanc"
-msgstr "Sünge"
-
-#: ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "Küllastamine"
 
-#: ../src/cheese-effect-chooser.c:68
+msgid "No Effect"
+msgstr "Efekt puudub"
+
+msgid "Mauve"
+msgstr "Lillakas"
+
+msgid "Noir/Blanc"
+msgstr "Sünge"
+
 msgid "Hulk"
 msgstr "Rohenägu"
 
-#: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
 msgstr "Püstine peegeldus"
 
-#: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
 msgstr "Rõhtne peegeldus"
 
-#: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
 msgstr "Pööriseline"
 
-#: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
 msgstr "Ähmane"
 
-#: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
 msgstr "Serv"
 
-#: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
 msgstr "Hakitud"
 
-#: ../src/cheese-effect-chooser.c:82
 msgid "Warp"
 msgstr "Kõverpeegel"
 
@@ -204,42 +217,31 @@ msgstr "Kõverpeegel"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../src/cheese-countdown.c:436
-#: ../src/cheese-countdown.c:455
-#: ../src/cheese-countdown.c:474
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
 msgid "No camera found!"
 msgstr "Kaamerat ei leitud!"
 
-#: ../src/cheese-no-camera.c:97
 msgid "Please refer to the help for further information."
 msgstr "Täiendavate juhiste saamiseks vaata palun abiteavet."
 
-#: ../src/cheese-no-camera.c:100
 msgid "Help"
 msgstr "Abi"
 
-#: ../src/cheese-webcam.c:1546
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "Üks või rohkem gstreameri elemente on puudu: "
 
-#: ../src/cheese-window.c:77
 msgid "_Skip"
 msgstr "_Jäta vahele"
 
-#: ../src/cheese-window.c:78
 msgid "S_kip All"
 msgstr "Jäta _kõik vahele"
 
-#: ../src/cheese-window.c:79
 msgid "Delete _All"
 msgstr "Kus_tuta kõik"
 
-#: ../src/cheese-window.c:202
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -248,7 +250,6 @@ msgstr ""
 "Tõrge veebisirvija avamisel, et näidata:\n"
 "%s"
 
-#: ../src/cheese-window.c:226
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -257,210 +258,186 @@ msgstr ""
 "Tõrge e-posti kliendi avamisel, et saata sõnum aadressile:\n"
 "%s"
 
-#: ../src/cheese-window.c:469
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "Tõrge programmi käivitamisel, et näidata:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:488
 msgid "Save File"
 msgstr "Faili salvestamine"
 
-#: ../src/cheese-window.c:526
 #, c-format
 msgid "Could not save %s"
 msgstr "Faili %s pole võimalik salvestada"
 
-#: ../src/cheese-window.c:549
 msgid "Error while deleting"
 msgstr "Viga kustutamisel"
 
-#: ../src/cheese-window.c:550
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Faili \"%s\" pole võimalik kustutada. Üksikasjad: %s"
 
-#: ../src/cheese-window.c:577
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "Kas soovid %'d valitud kirje jäädavalt kustutada?"
 msgstr[1] "Kas soovid %'d valitud kirjet jäädavalt kustutada?"
 
-#: ../src/cheese-window.c:584
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Kas soovid \"%s\" jäädavalt kustutada?"
 
-#: ../src/cheese-window.c:587
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Kui sa kirje kustutad, siis läheb see jäädavalt kaotsi."
 
-#: ../src/cheese-window.c:608
 msgid "Unknown Error"
 msgstr "Tundmatu viga"
 
-#: ../src/cheese-window.c:638
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Faili pole võimalik prügikasti visata, kas soovid seda lihtsalt kustutada?"
+msgstr ""
+"Faili pole võimalik prügikasti visata, kas soovid seda lihtsalt kustutada?"
 
-#: ../src/cheese-window.c:639
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Faili \"%s\" pole võimalik prügikasti visata. Üksikasjad: %s"
 
-#: ../src/cheese-window.c:711
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Kas eemaldada kõik prügikastis olevad fotod ja videod?"
 
-#: ../src/cheese-window.c:719
 msgid "_Move to Trash"
 msgstr "Viska _prügikasti"
 
-#: ../src/cheese-window.c:837
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kontopilti pole võimalik seada"
 
-#: ../src/cheese-window.c:869
 msgid "Media files"
 msgstr "Meediafailid"
 
-#: ../src/cheese-window.c:942
-#: ../src/cheese-window.c:1214
 msgid "Unable to open help file for Cheese"
 msgstr "Juustu abiteabe faili pole võimalik avada"
 
-#: ../src/cheese-window.c:994
 msgid "translator-credits"
 msgstr ""
-"Ivar Smolin <okul@linux.ee>, 2008.\n"
-"Mattias Põldaru <mahfiaz@gmail.com>, 2008."
+"Ivar Smolin <okul@linux.ee>, 2008, 2009.\n"
+"Mattias Põldaru <mahfiaz@gmail.com>, 2008, 2009."
 
-#: ../src/cheese-window.c:997
-msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-msgstr "See programm on vaba tarkvara. Te võite seda edasi levitada ja/või muuta vastavalt GNU Üldise Avaliku Litsentsi tingimustele, nagu need on Vaba Tarkvara Fondi poolt avaldatud; kas Litsentsi versioon number 2 või (vastavalt Teie valikule) ükskõik milline hilisem versioon.\n"
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"See programm on vaba tarkvara. Te võite seda edasi levitada ja/või muuta "
+"vastavalt GNU Üldise Avaliku Litsentsi tingimustele, nagu need on Vaba "
+"Tarkvara Fondi poolt avaldatud; kas Litsentsi versioon number 2 või "
+"(vastavalt Teie valikule) ükskõik milline hilisem versioon.\n"
 
-#: ../src/cheese-window.c:1001
-msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-msgstr "Seda programmi levitatakse lootuses, et see on kasulik, kuid ILMA IGASUGUSE GARANTIITA; isegi KESKMISE/TAVALISE KVALITEEDIGARANTIITA või SOBIVUSELE TEATUD KINDLAKS EESMÄRGIKS. Üksikasjade suhtes vaata GNU Üldist Avalikku Litsentsi.\n"
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Seda programmi levitatakse lootuses, et see on kasulik, kuid ILMA IGASUGUSE "
+"GARANTIITA; isegi KESKMISE/TAVALISE KVALITEEDIGARANTIITA või SOBIVUSELE "
+"TEATUD KINDLAKS EESMÄRGIKS. Üksikasjade suhtes vaata GNU Üldist Avalikku "
+"Litsentsi.\n"
 
-#: ../src/cheese-window.c:1005
-msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos selle programmiga; kui ei, siis vaadake aadressi <http://www.gnu.org/licenses/>."
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Te peaks olema saanud GNU Üldise Avaliku Litsentsi koopia koos selle "
+"programmiga; kui ei, siis vaadake aadressi <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1022
 msgid "Cheese Website"
 msgstr "Juustu veebisait"
 
-#: ../src/cheese-window.c:1230
 msgid "_Start Recording"
 msgstr "Alusta _salvestamist"
 
-#: ../src/cheese-window.c:1329
 msgid "_Stop Recording"
 msgstr "Seiska _salvestamine"
 
-#: ../src/cheese-window.c:1360
 msgid "_Cheese"
 msgstr "_Juust"
 
-#: ../src/cheese-window.c:1362
 msgid "_Edit"
 msgstr "_Redaktor"
 
-#: ../src/cheese-window.c:1363
 msgid "Move All to Trash"
 msgstr "Viska kõik prügikasti"
 
-#: ../src/cheese-window.c:1366
 msgid "_Help"
 msgstr "A_bi"
 
-#: ../src/cheese-window.c:1369
 msgid "_Contents"
 msgstr "_Sisukord"
 
-#: ../src/cheese-window.c:1369
 msgid "Help on this Application"
 msgstr "Abiteave selle rakenduse kohta"
 
-#: ../src/cheese-window.c:1375
 msgid "Countdown"
 msgstr "Loendur"
 
-#: ../src/cheese-window.c:1396
 msgid "_Open"
 msgstr "_Ava"
 
-#: ../src/cheese-window.c:1398
 msgid "Save _As..."
 msgstr "Salvesta _kui..."
 
-#: ../src/cheese-window.c:1400
 msgid "Move to _Trash"
 msgstr "Viska _prügikasti"
 
-#: ../src/cheese-window.c:1402
 msgid "Delete"
 msgstr "Kustuta"
 
-#: ../src/cheese-window.c:1407
-#: ../src/cheese-window.c:1636
 msgid "_Take a photo"
 msgstr "_Pildista"
 
-#: ../src/cheese-window.c:1411
 msgid "_Recording"
 msgstr "_Salvesta"
 
-#: ../src/cheese-window.c:1415
 msgid "_Set As Account Photo"
 msgstr "Määra konto_pildiks"
 
-#: ../src/cheese-window.c:1419
 msgid "Send by _Mail"
 msgstr "Saada _e-postiga"
 
-#: ../src/cheese-window.c:1423
 msgid "Send _To"
 msgstr "Saada _asukohta"
 
-#: ../src/cheese-window.c:1427
 msgid "Export to F-_Spot"
 msgstr "Ekspordi F-_Spot'i"
 
-#: ../src/cheese-window.c:1431
 msgid "Export to _Flickr"
 msgstr "Ekspordi _Flickr'i saiti"
 
-#: ../src/cheese-window.c:1455
 msgid "_Start recording"
 msgstr "Alusta _salvestamist"
 
-#: ../src/cheese-window.c:1779
 msgid "Quit"
 msgstr "Lõpeta"
 
-#: ../src/cheese-window.c:1785
 msgid "About"
 msgstr "Programmist lähemalt"
 
-#: ../src/cheese-window.c:1866
 msgid "Check your gstreamer installation"
 msgstr "Kontrolli oma gstreameri paigaldust"
 
-#: ../src/cheese.c:161
 msgid "Be verbose"
 msgstr "Teaberohke väljundi lubamine"
 
-#: ../src/cheese.c:179
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr "- Veebikaamerast fotode ja videote salvestamine, ka koos graafiliste efektidega"
-
+msgstr ""
+"- Veebikaamerast fotode ja videote salvestamine, ka koos graafiliste "
+"efektidega"
