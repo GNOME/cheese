@@ -189,7 +189,12 @@ cheese_webcam_change_sink (CheeseWebcam *webcam, GstElement *src,
 static gboolean
 cheese_webcam_expose_cb (GtkWidget *widget, GdkEventExpose *event, CheeseWebcam *webcam)
 {
-  cheese_webcam_set_x_overlay (webcam);
+  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+
+  GstXOverlay *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
+                                                                  GST_TYPE_X_OVERLAY));
+
+  gst_x_overlay_expose (overlay);
   return FALSE;
 }
 
