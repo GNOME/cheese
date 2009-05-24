@@ -159,6 +159,10 @@ cheese_webcam_set_x_overlay (CheeseWebcam *webcam)
   GstXOverlay *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
                                                                   GST_TYPE_X_OVERLAY));
 
+  if (g_object_class_find_property (G_OBJECT_GET_CLASS (overlay),
+                                    "force-aspect-ratio"))
+    g_object_set (G_OBJECT (overlay), "force-aspect-ratio", TRUE, NULL);
+
   gst_x_overlay_set_xwindow_id (overlay, GDK_WINDOW_XWINDOW (priv->video_window->window));
 }
 
