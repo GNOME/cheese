@@ -1680,6 +1680,10 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->countdown_fullscreen = cheese_countdown_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->countdown_frame_fullscreen), cheese_window->countdown_fullscreen);
 
+  gtk_widget_realize (cheese_window->screen);
+  gdk_window_set_back_pixmap (cheese_window->screen->window, NULL, FALSE);
+  gtk_widget_set_app_paintable (cheese_window->screen, TRUE);
+  gtk_widget_set_double_buffered (cheese_window->screen, FALSE);
   gtk_widget_add_events (cheese_window->screen, GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
 
   cheese_window->ui_manager = gtk_ui_manager_new ();
