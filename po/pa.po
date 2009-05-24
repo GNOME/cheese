@@ -3,25 +3,27 @@
 #
 # Amanpreet Singh Alam <apreet.alam@gmail.com>, 2008.
 # Amanpreet Singh Alam <aalam@users.sf.net>, 2008.
+# A S Alam <aalam@users.sf.net>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 08:46+0100\n"
-"PO-Revision-Date: 2008-12-11 08:34+0530\n"
-"Last-Translator: Amanpreet Singh Alam <aalam@users.sf.net>\n"
-"Language-Team: Punjabi/Panjabi <punjab-l10n@list.sf.net>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2009-05-13 18:00+0000\n"
+"PO-Revision-Date: 2009-05-24 19:53+0530\n"
+"Last-Translator: A S Alam <aalam@users.sf.net>\n"
+"Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
 msgstr "ਚੀਜ਼ ਵੈੱਬ-ਕੈਮ ਬੂਥ"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1016
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1029
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ਆਪਣੇ ਵੈੱਬ-ਕੈਮ ਨਾਲ ਫੋਟੋ ਲਵੋ ਅਤੇ ਵੀਡਿਓ ਬਣਾਓ ਅਤੇ ਗਰਾਫਿਕਸ ਪਰਭਾਵ ਨਾਲ ਮੌਜਾਂ ਲੁੱਟੋ"
 
@@ -33,85 +35,118 @@ msgid ""
 "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
 "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
-"ਸ਼ੁਰੂ ਸਮੇਂ ਲਾਗੂ ਕਰਨ ਲਈ ਪਰਭਾਵਾਂ ਦੀ ਲਿਸਟ ਹੈ। ਸੰਭਵ ਮੁੱਲ ਹਨ: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" ਅਤੇ \"warp\""
+"ਸ਼ੁਰੂ ਸਮੇਂ ਲਾਗੂ ਕਰਨ ਲਈ ਪਰਭਾਵਾਂ ਦੀ ਲਿਸਟ ਹੈ। ਸੰਭਵ ਮੁੱਲ ਹਨ: \"mauve\", \"noir_blanc\", "
+"\"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", "
+"\"shagadelic\", \"vertigo\", \"edge\", \"dice\" ਅਤੇ \"warp\""
 
 #: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "ਵੈੱਬਕੈਮ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਚਮਕ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "ਵੈੱਬਕੈਮ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਕੰਟਰਾਸਟ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "ਵੈੱਬਕੈਮ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਆਭਾ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#: ../data/cheese.schemas.in.h:7
+#| msgid "The width resolution of the image captured from the camera"
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "ਵੈੱਬਕੈਮ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਸੰਤ੍ਰਿਪਤਾ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#: ../data/cheese.schemas.in.h:8
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
-"ਪਾਥ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਫੋਟੋ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_PHOTO/Webcam\" "
-"ਵਰਤਿਆ ਜਾਵੇਗਾ।"
+"ਪਾਥ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਫੋਟੋ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_PHOTO/Webcam\" ਵਰਤਿਆ "
+"ਜਾਵੇਗਾ।"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
-"ਪਾਥ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਵੀਡਿਓ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_VIDEO/Webcam\" "
-"ਵਰਤਿਆ ਜਾਵੇਗਾ।"
+"ਪਾਥ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਵੀਡਿਓ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_VIDEO/Webcam\" ਵਰਤਿਆ "
+"ਜਾਵੇਗਾ।"
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "ਉਚਾਈ ਰੈਜ਼ੋਲੂਸ਼ਨ"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:11
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
 "feature can be dangerous, so use caution."
 msgstr ""
-"ਜੇ ਚੋਣ ਕੀਤੀ ਤਾਂ ਚੀਜ਼ ਵਿੱਚ ਮੌਜੂਦ ਇੱਕ ਫੀਚਰ ਤੁਹਾਨੂੰ ਇੱਕ ਫਾਇਲ ਤੁਰੰਤ ਹਟਾਉਣ ਵਿੱਚ "
-"ਮੱਦਦ ਕਰੇਗਾ, ਤਾਂ ਕਿ ਰੱਦੀ ਵਿੱਚ ਭੇਜਣਾ ਨਾ ਪਵੇ। ਇਹ ਫੀਚਰ ਖਤਰਨਾਕ ਹੋ ਸਕਦਾ ਹੈ, ਸੋ "
-"ਜ਼ਰਾ ਧਿਆਨ ਨਾਲ।"
+"ਜੇ ਚੋਣ ਕੀਤੀ ਤਾਂ ਚੀਜ਼ ਵਿੱਚ ਮੌਜੂਦ ਇੱਕ ਫੀਚਰ ਤੁਹਾਨੂੰ ਇੱਕ ਫਾਇਲ ਤੁਰੰਤ ਹਟਾਉਣ ਵਿੱਚ ਮੱਦਦ ਕਰੇਗਾ, ਤਾਂ ਕਿ "
+"ਰੱਦੀ ਵਿੱਚ ਭੇਜਣਾ ਨਾ ਪਵੇ। ਇਹ ਫੀਚਰ ਖਤਰਨਾਕ ਹੋ ਸਕਦਾ ਹੈ, ਸੋ ਜ਼ਰਾ ਧਿਆਨ ਨਾਲ।"
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:12
 msgid "Photo Path"
 msgstr "ਫੋਟੋ ਪਾਥ"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:13
+msgid "Picture brightness"
+msgstr "ਤਸਵੀਰ ਚਮਕ"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Picture contrast"
+msgstr "ਚਿੱਤਰ ਕੰਟਰਾਸਟ"
+
+#: ../data/cheese.schemas.in.h:15
+msgid "Picture hue"
+msgstr "ਚਿੱਤਰ ਆਭਾ"
+
+#: ../data/cheese.schemas.in.h:16
+#| msgid "Saturation"
+msgid "Picture saturation"
+msgstr "ਤਸਵੀਰ ਸੰਤ੍ਰਿਪਤਾ"
+
+#: ../data/cheese.schemas.in.h:17
 msgid "Selected Effects"
 msgstr "ਚੁਣੇ ਪਰਭਾਵ"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:18
 msgid "Set to True to show countdown when taking a photo"
 msgstr "ਫੋਟੋ ਲੈਣ ਦੌਰਾਨ ਪੁੱਠੀ ਗਿਣਤੀ ਵੇਖਾਉਣ ਲਈ ਚੋਣ ਕਰੋ"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:19
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "ਜੰਤਰ, ਜੋ ਕਿ ਵੈੱਬਕੈਮ ਦਰਸਾਉਦਾ ਹੈ (ਜਿਵੇਂ ਕਿ /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:20
 msgid "The height resolution of the image captured from the camera"
 msgstr "ਕੈਮਰੇ ਤੋਂ ਚਿੱਤਰ ਲੈਣ ਲੀ ਉਚਾਈ ਰੈਜ਼ੁਲੋਸ਼ਨ"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:21
 msgid "The width resolution of the image captured from the camera"
-msgstr "ਕੈਮਰੇ ਤੋਂ ਚਿੱਤਰ ਲੈਣ ਲੀ ਚੌੜਾਈ ਰੈਜ਼ੁਲੋਸ਼ਨ"
+msgstr "ਕੈਮਰੇ ਤੋਂ ਚਿੱਤਰ ਲੈਣ ਲਈ ਚੌੜਾਈ ਰੈਜ਼ੂਲੋਸ਼ਨ"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:22
 msgid "Use a countdown"
 msgstr "ਉਲਟੀ-ਗਿਣਤੀ ਵਰਤੋਂ"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:23
 msgid "Video Path"
 msgstr "ਵੀਡਿਓ ਪਾਥ"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:24
 msgid "Webcam device string indicator"
 msgstr "ਵੈੱਬਕੈਮ ਜੰਤਰ ਲਾਈਨ ਸੰਕੇਤ"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:25
 msgid "Whether to enable immediate deletion"
 msgstr "ਕੀ ਤੁਰੰਤ ਹਟਾਉਣਾ ਯੋਗ ਰੱਖਣਾ ਹੈ"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:26
 msgid "Width resolution"
 msgstr "ਚੌੜਾਈ ਰੈਜ਼ੋਲੂਸ਼ਨ"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:176
 msgid "Cheese"
 msgstr "ਚੀਜ਼"
 
@@ -127,8 +162,8 @@ msgstr "ਵੀਡਿਓ ਮੋਡ ਲਈ ਬਦਲੋ"
 msgid "Switch to the Effects Selector"
 msgstr "ਪਰਭਾਵ ਚੋਣਕਾਰ ਲਈ ਸਵਿੱਚ ਕਰੋ"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1140
-#: ../src/cheese-window.c:1379
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1153
+#: ../src/cheese-window.c:1392
 msgid "_Effects"
 msgstr "ਪਰਭਾਵ(_E)"
 
@@ -136,29 +171,56 @@ msgstr "ਪਰਭਾਵ(_E)"
 msgid "_Leave Fullscreen"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ ਛੱਡੋ(_L)"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1391
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1404
 msgid "_Photo"
 msgstr "ਫੋਟੋ(_P)"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1443
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1456
 msgid "_Take a Photo"
 msgstr "ਇੱਕ ਫੋਟੋ ਲਵੋ(_T)"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1392
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1405
 msgid "_Video"
 msgstr "ਵੀਡਿਓ(_V)"
 
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>ਕੈਮਰਾ</b>"
+msgid "<b>Image properties</b>"
+msgstr "<b>ਚਿੱਤਰ ਵਿਸ਼ੇਸ਼ਤਾ</b>"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>ਰੈਜੋਲੂਸ਼ਨ</b>"
+#| msgid "<b>Camera</b>"
+msgid "<b>Webcam</b>"
+msgstr "<b>ਵੈੱਬਕੈਮ</b>"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1383
+#: ../data/cheese-prefs.ui.h:3
+msgid "Brightness"
+msgstr "ਚਮਕ"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Contrast"
+msgstr "ਕੰਟਰਾਸਟ"
+
+#: ../data/cheese-prefs.ui.h:5
+#| msgid "Dice"
+msgid "Device"
+msgstr "ਜੰਤਰ"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "ਆਭਾ"
+
+#: ../data/cheese-prefs.ui.h:7 ../src/cheese-window.c:1396
 msgid "Preferences"
 msgstr "ਮੇਰੀ ਪਸੰਦ"
+
+#: ../data/cheese-prefs.ui.h:8
+#| msgid "<b>Resolution</b>"
+msgid "Resolution"
+msgstr "ਰੈਜੋਲੂਸ਼ਨ"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "ਸੰਤ੍ਰਿਪਤਾ"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -171,10 +233,6 @@ msgstr "ਮਾਉਵੀ"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "ਨੋਈਰ/ਬਲਾਂਕ"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "ਸੰਤ੍ਰਿਪਤਾ"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -232,7 +290,7 @@ msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਮੱਦਦ ਨੂੰ �
 msgid "Help"
 msgstr "ਮੱਦਦ"
 
-#: ../src/cheese-webcam.c:1546
+#: ../src/cheese-webcam.c:1604
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "ਲੋੜੀਦੇ ਇੱਕ ਜਾਂ ਹੋਰ ਜੀ-ਸਟਰੀਮਰ ਭਾਗ ਗੁੰਮ ਹਨ:"
 
@@ -248,7 +306,7 @@ msgstr "ਸਭ ਛੱਡੋ(_k)"
 msgid "Delete _All"
 msgstr "ਸਭ ਚੁਣੋ(_A)"
 
-#: ../src/cheese-window.c:202
+#: ../src/cheese-window.c:203
 #, c-format
 msgid ""
 "Failed to open browser to show:\n"
@@ -257,7 +315,7 @@ msgstr ""
 "ਵੇਖਾਉਣ ਵਾਸਤੇ ਬਰਾਊਜ਼ਰ ਖੋਲ੍ਹਣ ਲਈ ਫੇਲ੍ਹ:\n"
 "%s"
 
-#: ../src/cheese-window.c:226
+#: ../src/cheese-window.c:228
 #, c-format
 msgid ""
 "Failed to open email client to send message to:\n"
@@ -266,229 +324,232 @@ msgstr ""
 "ਸੁਨੇਹਾ ਭੇਜਣ ਲਈ ਈਮੇਲ ਕਲਾਇਟ ਖੋਲ੍ਹਣ ਲਈ ਫੇਲ੍ਹ:\n"
 "%s"
 
-#: ../src/cheese-window.c:469
-#, c-format
+#: ../src/cheese-window.c:479, c-format
+#| msgid ""
+#| "Failed to launch program to show:\n"
+#| "%s"
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "ਵੇਖਾਉਣ ਵਾਸਤੇ ਪਰੋਗਰਾਮ ਸ਼ੁਰੂ ਕਰਨ ਲਈ ਫੇਲ੍ਹ:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:488
+#: ../src/cheese-window.c:500
 msgid "Save File"
 msgstr "ਫਾਇਲ ਸੰਭਾਲੋ"
 
-#: ../src/cheese-window.c:526
+#: ../src/cheese-window.c:538
 #, c-format
 msgid "Could not save %s"
 msgstr "%s ਨੂੰ ਸੰਭਾਲਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
 
-#: ../src/cheese-window.c:549
+#: ../src/cheese-window.c:561
 msgid "Error while deleting"
 msgstr "ਹਟਾਉਣ ਦੌਰਾਨ ਗਲਤੀ"
 
-#: ../src/cheese-window.c:550
+#: ../src/cheese-window.c:562
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "ਫਾਇਲ \"%s\" ਹਟਾਈ ਨਹੀਂ ਜਾ ਸਕਦੀ ਹੈ। ਵੇਰਵਾ: %s"
 
-#: ../src/cheese-window.c:577
+#: ../src/cheese-window.c:589
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "ਕੀ ਤੁਸੀਂ ਚੁਣੀਆਂ %'d ਆਈਟਮਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 msgstr[1] "ਕੀ ਤੁਸੀਂ ਚੁਣੀਆਂ %'d ਆਈਟਮਾਂ ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../src/cheese-window.c:584
+#: ../src/cheese-window.c:596
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "ਕੀ ਤੁਸੀਂ \"%s\" ਨੂੰ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../src/cheese-window.c:587
+#: ../src/cheese-window.c:599
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "ਜੇ ਤੁਸੀਂ ਇੱਕ ਆਈਟਮ ਹਟਾ ਦਿੱਤਾ ਤਾਂ ਪੱਕੇ ਤੌਰ ਉੱਤੇ ਖਤਮ ਹੋ ਜਾਵੇਗੀ।"
 
-#: ../src/cheese-window.c:608
+#: ../src/cheese-window.c:620
 msgid "Unknown Error"
 msgstr "ਅਣਜਾਣ ਗਲਤੀ"
 
-#: ../src/cheese-window.c:638
+#: ../src/cheese-window.c:650
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "ਫਾਇਲ ਰੱਦੀ 'ਚ ਨਹੀਂ ਭੇਜੀ ਨਹੀਂ ਜਾ ਸਕਦੀ, ਕੀ ਤੁਸੀਂ ਤੁਰੰਤ ਹਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../src/cheese-window.c:639
+#: ../src/cheese-window.c:651
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "ਫਾਇਲ \"%s\" ਰੱਦੀ 'ਚ ਨਹੀਂ ਭੇਜੀ ਜਾ ਸਕਦੀ ਹੈ। ਵੇਰਵਾ: %s"
 
-#: ../src/cheese-window.c:711
+#: ../src/cheese-window.c:723
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "ਕੀ ਸਭ ਫੋਟੋ ਅਤੇ ਵੀਡਿਓ ਨੂੰ ਰੱਦੀ 'ਚ ਭੇਜਣਾ ਚਾਹੁੰਦੇ ਹੋ?"
 
-#: ../src/cheese-window.c:719
+#: ../src/cheese-window.c:731
 msgid "_Move to Trash"
 msgstr "ਰੱਦੀ ਵਿੱਚ ਸੁੱਟੋ(_M)"
 
-#: ../src/cheese-window.c:837
+#: ../src/cheese-window.c:849
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "ਅਕਾਊਂਟ ਫੋਟੋ ਸੈੱਟ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:881
 msgid "Media files"
 msgstr "ਮੀਡਿਆ ਫਾਇਲਾਂ"
 
-#: ../src/cheese-window.c:942 ../src/cheese-window.c:1214
+#: ../src/cheese-window.c:955 ../src/cheese-window.c:1227
 msgid "Unable to open help file for Cheese"
 msgstr "ਚੀਜ਼ ਲਈ ਮੱਦਦ ਫਾਇਲ ਖੋਲ੍ਹਣ ਲਈ ਅਸਮਰੱਥ"
 
-#: ../src/cheese-window.c:994
+#: ../src/cheese-window.c:1007
 msgid "translator-credits"
 msgstr ""
 "ਅਮਨਪਰੀਤ ਸਿੰਘ ਆਲਮ\n"
 "ਪੰਜਾਬੀ ਓਪਨ ਸੋਰਸ ਟੀਮ"
 
-#: ../src/cheese-window.c:997
+#: ../src/cheese-window.c:1010
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
 "Software Foundation; either version 2 of the License, or (at your option) "
 "any later version.\n"
 msgstr ""
-"ਇਹ ਪਰੋਗਰਾਮ ਮੁਫ਼ਤ/ਮੁਕਤ ਸਾਫਟਵੇਅਰ ਹੈ; ਤੁਸੀਂ ਇਸ ਨੂੰ ਮੁੜ-ਵੰਡ ਸਕਦੇ ਹੋ, ਇਸ ਨੂੰ "
-"ਗਨੂ GNU ਜਰਨਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ, ਜੋ ਕਿ ਫਰੀ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਵਲੋਂ ਦਿੱਤਾ ਗਿਆ "
-"ਹੈ, ਦੇ ਵਰਜਨ 2, ਜਾਂ (ਤੁਹਾਡੀ ਮਰਜ਼ੀ ਮੁਤਾਬਕ) ਨਵੇਂ ਅਧੀਨ ਸੋਧ ਵੀ ਸਕਦੇ ਹੋ।\n"
+"ਇਹ ਪਰੋਗਰਾਮ ਮੁਫ਼ਤ/ਮੁਕਤ ਸਾਫਟਵੇਅਰ ਹੈ; ਤੁਸੀਂ ਇਸ ਨੂੰ ਮੁੜ-ਵੰਡ ਸਕਦੇ ਹੋ, ਇਸ ਨੂੰ ਗਨੂ GNU ਜਰਨਲ ਪਬਲਿਕ "
+"ਲਾਈਸੈਂਸ, ਜੋ ਕਿ ਫਰੀ ਸਾਫਟਵੇਅਰ ਫਾਊਂਡੇਸ਼ਨ ਵਲੋਂ ਦਿੱਤਾ ਗਿਆ ਹੈ, ਦੇ ਵਰਜਨ 2, ਜਾਂ (ਤੁਹਾਡੀ ਮਰਜ਼ੀ "
+"ਮੁਤਾਬਕ) ਨਵੇਂ ਅਧੀਨ ਸੋਧ ਵੀ ਸਕਦੇ ਹੋ।\n"
 
-#: ../src/cheese-window.c:1001
+#: ../src/cheese-window.c:1014
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
 "more details.\n"
 msgstr ""
-"ਇਹ ਪਰੋਗਰਾਮ ਨੂੰ ਇਹ ਉਮੀਦ ਵਿੱਚ ਹੀ ਵੰਡਿਆ ਜਾ ਜਾਂਦਾ ਹੈ ਕਿ ਇਹ ਫਾਇਦੇਮੰਦ ਹੋਵੇਗਾ, "
-"ਪਰ ਵਾਰੰਟੀ ਕੋਈ ਨਹੀਂ ਹੈ; ਕਿਸੇ ਖਾਸ ਮਕਸਦ ਲਈ ਫਿੱਟ ਹੋਣ ਜਾਂ ਯੋਗ ਹੋਣ ਦੀ ਸੀਮਿਤ ਵਾਰੰਟੀ "
-"ਵੀ ਨਹੀਂ ਹੈ। ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਗਨੂ ਜਰਨਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਨੂੰ ਵੇਖੋ।\n"
+"ਇਹ ਪਰੋਗਰਾਮ ਨੂੰ ਇਹ ਉਮੀਦ ਵਿੱਚ ਹੀ ਵੰਡਿਆ ਜਾ ਜਾਂਦਾ ਹੈ ਕਿ ਇਹ ਫਾਇਦੇਮੰਦ ਹੋਵੇਗਾ, ਪਰ ਵਾਰੰਟੀ ਕੋਈ ਨਹੀਂ "
+"ਹੈ; ਕਿਸੇ ਖਾਸ ਮਕਸਦ ਲਈ ਫਿੱਟ ਹੋਣ ਜਾਂ ਯੋਗ ਹੋਣ ਦੀ ਸੀਮਿਤ ਵਾਰੰਟੀ ਵੀ ਨਹੀਂ ਹੈ। ਹੋਰ ਜਾਣਕਾਰੀ ਲਈ ਗਨੂ "
+"ਜਰਨਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਨੂੰ ਵੇਖੋ।\n"
 
-#: ../src/cheese-window.c:1005
+#: ../src/cheese-window.c:1018
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"ਤੁਸੀਂ ਇਸ ਪਰੋਗਰਾਮ ਨਾਲ ਗਨੂ ਜਰਨਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਦੀ ਕਾਪੀ ਵੀ ਲਵੋਗੇ। ਜੇ "
-"ਨਹੀਂ ਤਾਂ <http://www.gnu.org/licenses/> ਉੱਤੇ ਵੇਖੋ।"
+"ਤੁਸੀਂ ਇਸ ਪਰੋਗਰਾਮ ਨਾਲ ਗਨੂ ਜਰਨਲ ਪਬਲਿਕ ਲਾਈਸੈਂਸ ਦੀ ਕਾਪੀ ਵੀ ਲਵੋਗੇ। ਜੇ ਨਹੀਂ ਤਾਂ <http://www."
+"gnu.org/licenses/> ਉੱਤੇ ਵੇਖੋ।"
 
-#: ../src/cheese-window.c:1022
+#: ../src/cheese-window.c:1035
 msgid "Cheese Website"
 msgstr "ਚੀਜ਼ ਵੈੱਬਸਾਇਟ"
 
-#: ../src/cheese-window.c:1230
+#: ../src/cheese-window.c:1243
 msgid "_Start Recording"
 msgstr "ਰਿਕਾਰਡ ਸਟਾਰਟ(_S)"
 
-#: ../src/cheese-window.c:1329
+#: ../src/cheese-window.c:1342
 msgid "_Stop Recording"
 msgstr "ਰਿਕਾਰਡਿੰਗ ਖਤਮ(_S)"
 
-#: ../src/cheese-window.c:1360
+#: ../src/cheese-window.c:1373
 msgid "_Cheese"
 msgstr "ਚੀਜ਼(_C)"
 
-#: ../src/cheese-window.c:1362
+#: ../src/cheese-window.c:1375
 msgid "_Edit"
 msgstr "ਸੋਧ(_E)"
 
-#: ../src/cheese-window.c:1363
+#: ../src/cheese-window.c:1376
 msgid "Move All to Trash"
 msgstr "ਸਭ ਰੱਦੀ 'ਚ ਸੁੱਟੋ"
 
-#: ../src/cheese-window.c:1366
+#: ../src/cheese-window.c:1379
 msgid "_Help"
 msgstr "ਮੱਦਦ(_H)"
 
-#: ../src/cheese-window.c:1369
+#: ../src/cheese-window.c:1382
 msgid "_Contents"
 msgstr "ਸਮੱਗਰੀ(_C)"
 
-#: ../src/cheese-window.c:1369
+#: ../src/cheese-window.c:1382
 msgid "Help on this Application"
 msgstr "ਇਹ ਐਪਲੀਕੇਸ਼ਨ ਬਾਰੇ ਮੱਦਦ"
 
-#: ../src/cheese-window.c:1375
+#: ../src/cheese-window.c:1388
 msgid "Countdown"
 msgstr "ਉਲਟੀ-ਗਿਣਤੀ"
 
-#: ../src/cheese-window.c:1396
+#: ../src/cheese-window.c:1409
 msgid "_Open"
 msgstr "ਖੋਲ੍ਹੋ(_O)"
 
-#: ../src/cheese-window.c:1398
+#: ../src/cheese-window.c:1411
 msgid "Save _As..."
 msgstr "ਇੰਝ ਸੰਭਾਲੋ(_A)..."
 
-#: ../src/cheese-window.c:1400
+#: ../src/cheese-window.c:1413
 msgid "Move to _Trash"
 msgstr "ਰੱਦੀ 'ਚ ਸੁੱਟੋ(_T)"
 
-#: ../src/cheese-window.c:1402
+#: ../src/cheese-window.c:1415
 msgid "Delete"
 msgstr "ਹਟਾਓ"
 
-#: ../src/cheese-window.c:1407 ../src/cheese-window.c:1636
+#: ../src/cheese-window.c:1420 ../src/cheese-window.c:1649
 msgid "_Take a photo"
 msgstr "ਇੱਕ ਫੋਟੋ ਲਵੋ(_T)"
 
-#: ../src/cheese-window.c:1411
+#: ../src/cheese-window.c:1424
 msgid "_Recording"
 msgstr "ਰਿਕਾਰਡਿੰਗ(_R)"
 
-#: ../src/cheese-window.c:1415
+#: ../src/cheese-window.c:1428
 msgid "_Set As Account Photo"
 msgstr "ਫੋਟੋ ਅਕਾਊਂਟ ਵਾਂਗ ਸੈੱਟ ਕਰੋ(_S)"
 
-#: ../src/cheese-window.c:1419
+#: ../src/cheese-window.c:1432
 msgid "Send by _Mail"
 msgstr "ਮੇਲ ਰਾਹੀ ਭੇਜੋ(_M)"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1436
 msgid "Send _To"
 msgstr "ਭੇਜੋ(_T)"
 
-#: ../src/cheese-window.c:1427
+#: ../src/cheese-window.c:1440
 msgid "Export to F-_Spot"
 msgstr "F-_Spot ਲਈ ਐਕਸਪੋਰਟ"
 
-#: ../src/cheese-window.c:1431
+#: ../src/cheese-window.c:1444
 msgid "Export to _Flickr"
 msgstr "ਫਲਿੱਕਰ ਲਈ ਐਕਸਪੋਰਟ(_F)"
 
-#: ../src/cheese-window.c:1455
+#: ../src/cheese-window.c:1468
 msgid "_Start recording"
 msgstr "ਰਿਕਾਰਡ ਸਟਾਰਟ(_S)"
 
-#: ../src/cheese-window.c:1779
+#: ../src/cheese-window.c:1792
 msgid "Quit"
 msgstr "ਬੰਦ ਕਰੋ"
 
-#: ../src/cheese-window.c:1785
+#: ../src/cheese-window.c:1798
 msgid "About"
 msgstr "ਇਸ ਬਾਰੇ"
 
-#: ../src/cheese-window.c:1866
+#: ../src/cheese-window.c:1890
 msgid "Check your gstreamer installation"
 msgstr "ਆਪਣੀ ਜੀਸਟਰੀਮਰ ਇੰਸਟਾਲੇਸ਼ਨ ਚੈੱਕ ਕਰੋ"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:160
 msgid "Be verbose"
 msgstr "ਜਾਣਕਾਰੀ ਵਧਾਓ"
 
-#: ../src/cheese.c:179
+#: ../src/cheese.c:178
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- ਆਪਣੇ ਵੈੱਬਕੈਮ ਨਾਲ ਫੋਟੋ ਅਤੇ ਵੀਡਿਓ ਬਣਾਓ, ਗਰਾਫਿਕਲ ਪਰਭਾਵ ਲਾਓ"
 
 #~ msgid "_Back"
 #~ msgstr "ਪਿੱਛੇ(_B)"
-
