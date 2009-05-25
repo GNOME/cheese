@@ -1,6 +1,24 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.27.2
+  - Ignore new photo requests if we are still waiting for an "handoff" signal
+    for the previous one, fixes bug #582902
+  - Fix a couple of trivial memory leaks in the thumbnail generator code, fixes
+    bug #578289
+  - Don't return if "image-loading" icon is not found, we will have an empty
+    pixbuf while the thumbnail thread is running but it is surely better than
+    no thumbnail at all, fixes bug #582240
+  - Added/Updated Translations
+    - de, courtesy of Nathan-J. Hirschauer
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - or, courtesy of Manoj Kumar Giri
+    - pa, courtesy of A S Alam
+    - th, courtesy of Akom C.
+  - Added/Updated Documentation
+    - el, courtesy of Simos Xenitellis
+
 version 2.27.1
   - Improve preferences dialog making it more consistent with other GNOME
     applications.
