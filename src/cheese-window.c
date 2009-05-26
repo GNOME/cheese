@@ -61,6 +61,8 @@
 #define FULLSCREEN_POPUP_HEIGHT    40
 #define FULLSCREEN_TIMEOUT         5 * 1000
 #define FULLSCREEN_EFFECTS_TIMEOUT 15
+#define DEFAULT_WINDOW_WIDTH 600
+#define DEFAULT_WINDOW_HEIGHT 450
 
 typedef enum
 {
@@ -1661,6 +1663,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->thumb_view = cheese_thumb_view_new ();
   cheese_window->thumb_nav  = eog_thumb_nav_new (cheese_window->thumb_view, TRUE);
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_nav);
+  /* show the scroll window to get it included in the size requisition done later */
+  gtk_widget_show_all (cheese_window->thumb_scrollwindow);
 
   char *gconf_effects;
   g_object_get (cheese_window->gconf, "gconf_prop_selected_effects", &gconf_effects, NULL);
@@ -1951,6 +1955,7 @@ setup_camera (CheeseWindow *cheese_window)
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), TRUE);
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture_fullscreen), TRUE);
   gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
+
   gdk_threads_leave ();
 }
 
@@ -1978,13 +1983,23 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
   cheese_window_create_window (cheese_window);
   gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
 
-  gtk_widget_show_all (cheese_window->window);
   ephy_spinner_start (EPHY_SPINNER (cheese_window->throbber));
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 2);
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording   = FALSE;
+
+  /* handy trick to set default size of the drawing area while not
+   * limiting its minimum size, thanks Owen! */
+  GtkRequisition req;
+  gtk_widget_set_size_request (cheese_window->screen,
+                               DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
+  gtk_widget_size_request (cheese_window->window, &req);
+  gtk_window_set_default_size (GTK_WINDOW (cheese_window->window), req.width, req.height);
+  gtk_widget_set_size_request (cheese_window->screen, -1, -1);
+
+  gtk_widget_show_all (cheese_window->window);
 
   /* Run cam setup in its own thread */
   GError *error = NULL;
