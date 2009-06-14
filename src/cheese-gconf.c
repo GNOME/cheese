@@ -91,7 +91,7 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
           }
         }
         if (effects == NULL)
-          effects = str;
+          effects = g_strdup (str);
         else
           effects = g_strjoin (",", effects, str, NULL);
 
