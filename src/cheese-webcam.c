@@ -1129,7 +1129,12 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam, GError **error)
   if ((mux = gst_element_factory_make ("oggmux", "mux")) == NULL)
   {
     cheese_webcam_set_error_element_not_found (error, "oggmux");
+  } else {
+    g_object_set (G_OBJECT (mux),
+                  "max-delay", (guint64) 10000000,
+                  "max-page-delay", (guint64) 10000000, NULL);
   }
+
   if ((priv->video_file_sink = gst_element_factory_make ("filesink", "video_file_sink")) == NULL)
   {
     cheese_webcam_set_error_element_not_found (error, "filesink");
