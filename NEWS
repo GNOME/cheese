@@ -1,6 +1,39 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.27.3
+  - Set default resolution to the highest one with a non jerky (higher than
+    15fps) framerate, fixes bug #585857
+  - Lower max-delay and max-page-delay oggmux properties from 5 to 0.5
+    seconds. Should prevent out of sync audio in recorded videos and
+    hopefully fix bug #585761
+  - Don't access effects string after free. This was causing the first effect
+    stored in gconf to not be restored at startup, fixes bug 584186
+  - Get rid of GtkAspectFrame, it doesn't really suit our needs, it hardcodes
+    an aspect ratio that obviously cannot be valid for every format webcams
+    support. Render the video directly to the drawing area with no external
+    aspect ratio restriction. Eventually fixes bug #559188 since the
+    aspectframe was adding some extra padding between the video and the window
+    border.
+  - Almost every available gstreamer videosink can display black bars around
+    the video keeping its aspect ratio. Enable it if available.
+    Black bars look a lot nicer than the grey color of the underlying
+    gtkwindow displayed with the aspectframe.
+  - Properly forward expose events to GstXOverlay.
+  - Avoid ugly flickering on window resize. Let gstxoverlay take full control
+    of the drawing area window. Prevent gtk from drawing the background and
+    remove the flickering caused by its internal double buffering.
+  - Remove initial black bars (at least for 4:3 webcams). Set a default window
+    size that fits nicely the video aspect ratio so that black bars are not
+    drawn until a manual resize.
+  - Added/Updated Translations
+    - ca, courtesy of Gil Forcada
+    - nb, courtesy of Kjartan Maraas
+    - sv, courtesy of Daniel Nylander
+    - ta, courtesy of Dr.T.Vasudevan
+  - Added/Updated Documentation
+    - el, courtesy of Simos Xenitellis
+
 version 2.27.2
   - Ignore new photo requests if we are still waiting for an "handoff" signal
     for the previous one, fixes bug #582902
