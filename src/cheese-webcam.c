@@ -47,6 +47,8 @@ G_DEFINE_TYPE (CheeseWebcam, cheese_webcam, G_TYPE_OBJECT)
 
 #define CHEESE_WEBCAM_ERROR cheese_webcam_error_quark ()
 
+#define MIN_DEFAULT_RATE 15.0
+
 static void find_highest_framerate (CheeseVideoFormat *format);
 
 enum CheeseWebcamError
@@ -835,11 +837,14 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
                                 CheeseVideoFormat, 0));
       for (i = 1; i < selected_webcam->num_video_formats; i++)
       {
-        if (g_array_index (selected_webcam->video_formats,
-                           CheeseVideoFormat, i).width > format->width)
+        CheeseVideoFormat *new = &g_array_index (selected_webcam->video_formats,
+                                                 CheeseVideoFormat, i);
+        gfloat newrate = new->highest_framerate.numerator /
+          new->highest_framerate.denominator;
+        if ((new->width+new->height) > (format->width+format->height) &&
+            (newrate >= MIN_DEFAULT_RATE))
         {
-          format = &(g_array_index (selected_webcam->video_formats,
-                                    CheeseVideoFormat, i));
+          format = new;
         }
       }
     }
