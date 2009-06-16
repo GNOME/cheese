@@ -115,14 +115,16 @@
                 <property name="show_tabs">False</property>
                 <property name="show_border">False</property>
                 <child>
-                  <object class="GtkHBox" id="hbox1">
+                  <object class="GtkHBox" id="toolbar_hbox">
                     <property name="visible">True</property>
                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                     <property name="homogeneous">True</property>
                     <child>
-                      <object class="GtkAlignment" id="alignment3">
+                      <object class="GtkAlignment" id="togglegroup_alignment">
                         <property name="visible">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                        <property name="xalign">0</property>
+                        <property name="xscale">0</property>
                         <property name="left_padding">24</property>
                         <child>
                           <object class="GtkHBox" id="hbox2">
@@ -236,43 +238,47 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton" id="take_picture">
+                      <object class="GtkAlignment" id="take_picture_alignment">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
                         <child>
-                          <object class="GtkAlignment" id="alignment1">
+                          <object class="GtkButton" id="take_picture">
                             <property name="visible">True</property>
-                            <property name="xscale">0</property>
-                            <property name="yscale">0</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">True</property>
                             <child>
-                              <object class="GtkHBox" id="hbox3">
+                              <object class="GtkAlignment" id="alignment3">
                                 <property name="visible">True</property>
-                                <property name="spacing">2</property>
+                                <property name="xscale">0</property>
+                                <property name="yscale">0</property>
                                 <child>
-                                  <object class="GtkImage" id="image_take_photo">
+                                  <object class="GtkHBox" id="hbox3">
                                     <property name="visible">True</property>
-                                    <property name="stock">gtk-media-record</property>
+                                    <property name="spacing">2</property>
+                                    <child>
+                                      <object class="GtkImage" id="image_take_photo">
+                                        <property name="visible">True</property>
+                                        <property name="stock">gtk-media-record</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkLabel" id="label_take_photo">
+                                        <property name="visible">True</property>
+                                        <property name="label" translatable="yes">_Take a Photo</property>
+                                        <property name="use_markup">True</property>
+                                        <property name="use_underline">True</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
                                   </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">False</property>
-                                    <property name="position">0</property>
-                                  </packing>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="label_take_photo">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">_Take a Photo</property>
-                                    <property name="use_markup">True</property>
-                                    <property name="use_underline">True</property>
-                                    <property name="mnemonic_widget">take_picture</property>
-                                  </object>
-                                  <packing>
-                                    <property name="expand">False</property>
-                                    <property name="fill">False</property>
-                                    <property name="position">1</property>
-                                  </packing>
                                 </child>
                               </object>
                             </child>
@@ -286,8 +292,11 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox4">
+                      <object class="GtkAlignment" id="effect_button_alignment">
                         <property name="visible">True</property>
+                        <property name="xalign">1</property>
+                        <property name="xscale">0</property>
+                        <property name="right_padding">24</property>
                         <child>
                           <object class="GtkToggleButton" id="button_effects">
                             <property name="visible">True</property>
@@ -295,50 +304,36 @@
                             <property name="receives_default">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                             <child>
-                              <object class="GtkAlignment" id="alignment2">
+                              <object class="GtkHBox" id="hbox15">
                                 <property name="visible">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                <property name="spacing">2</property>
                                 <child>
-                                  <object class="GtkHBox" id="hbox15">
+                                  <object class="GtkImage" id="image2">
                                     <property name="visible">True</property>
                                     <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                    <property name="spacing">2</property>
-                                    <child>
-                                      <object class="GtkImage" id="image2">
-                                        <property name="visible">True</property>
-                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                        <property name="icon_name">browse-webcam-effects</property>
-                                        <property name="icon-size">3</property>
-                                      </object>
-                                      <packing>
-                                        <property name="position">0</property>
-                                      </packing>
-                                    </child>
-                                    <child>
-                                      <object class="GtkLabel" id="label_effects">
-                                        <property name="visible">True</property>
-                                        <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                        <property name="label" translatable="yes">_Effects</property>
-                                        <property name="use_markup">True</property>
-                                        <property name="use_underline">True</property>
-                                        <property name="mnemonic_widget">button_effects</property>
-                                      </object>
-                                      <packing>
-                                        <property name="position">1</property>
-                                      </packing>
-                                    </child>
+                                    <property name="icon_name">browse-webcam-effects</property>
+                                    <property name="icon-size">3</property>
                                   </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label_effects">
+                                    <property name="visible">True</property>
+                                    <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                                    <property name="label" translatable="yes">_Effects</property>
+                                    <property name="use_markup">True</property>
+                                    <property name="use_underline">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
                                 </child>
                               </object>
                             </child>
                           </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="padding">24</property>
-                            <property name="pack_type">end</property>
-                            <property name="position">0</property>
-                          </packing>
                         </child>
                       </object>
                       <packing>
@@ -580,7 +575,6 @@
                             <property name="label" translatable="yes">_Take a Photo</property>
                             <property name="use_markup">True</property>
                             <property name="use_underline">True</property>
-                            <property name="mnemonic_widget">take_picture</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -647,7 +641,6 @@
                                 <property name="label" translatable="yes">_Leave Fullscreen</property>
                                 <property name="use_markup">True</property>
                                 <property name="use_underline">True</property>
-                                <property name="mnemonic_widget">button_effects</property>
                               </object>
                               <packing>
                                 <property name="position">1</property>
