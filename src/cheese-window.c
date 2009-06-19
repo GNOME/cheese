@@ -39,6 +39,8 @@
 #include <gtk/gtk.h>
 #include <libebook/e-book.h>
 
+#include <X11/XF86keysym.h>
+
 #ifdef HILDON
   #include <hildon/hildon-program.h>
 #endif
@@ -178,6 +180,8 @@ typedef struct
   CheeseFlash *flash;
 } CheeseWindow;
 
+static void cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window);
+
 void
 cheese_window_bring_to_front (gpointer data)
 {
@@ -257,6 +261,30 @@ audio_play_get_filename (CheeseWindow *cheese_window)
 static int
 cheese_window_delete_event_cb (GtkWidget *widget, GdkEvent event, gpointer data)
 {
+  return FALSE;
+}
+
+static gboolean
+cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWindow *cheese_window)
+{
+  /* If we have modifiers, and either Ctrl, Mod1 (Alt), or any
+   * of Mod3 to Mod5 (Mod2 is num-lock...) are pressed, we
+   * let Gtk+ handle the key */
+  if (event->state != 0
+      && ((event->state & GDK_CONTROL_MASK)
+	  || (event->state & GDK_MOD1_MASK)
+	  || (event->state & GDK_MOD3_MASK)
+	  || (event->state & GDK_MOD4_MASK)
+	  || (event->state & GDK_MOD5_MASK)))
+    return FALSE;
+
+  switch (event->keyval) {
+  case XF86XK_WebCam:
+    /* do stuff */
+    cheese_window_action_button_clicked_cb (NULL, cheese_window);
+    return TRUE;
+  }
+
   return FALSE;
 }
 
@@ -1848,6 +1876,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                     G_CALLBACK (cheese_window_cmd_close), cheese_window);
   g_signal_connect (cheese_window->window, "delete_event",
                     G_CALLBACK (cheese_window_delete_event_cb), NULL);
+
+  /* Listen for key presses */
+  gtk_widget_add_events (cheese_window->window, GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
+  g_signal_connect (cheese_window->window, "key_press_event",
+		    G_CALLBACK (cheese_window_key_press_event_cb), cheese_window);
 
   g_signal_connect (cheese_window->take_picture, "clicked",
                     G_CALLBACK (cheese_window_action_button_clicked_cb), cheese_window);
