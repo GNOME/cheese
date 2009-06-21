@@ -39,7 +39,9 @@
 #include <gtk/gtk.h>
 #include <libebook/e-book.h>
 
+#ifdef HAVE_MMKEYS
 #include <X11/XF86keysym.h>
+#endif /* HAVE_MMKEYS */
 
 #ifdef HILDON
   #include <hildon/hildon-program.h>
@@ -267,6 +269,9 @@ cheese_window_delete_event_cb (GtkWidget *widget, GdkEvent event, gpointer data)
 static gboolean
 cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWindow *cheese_window)
 {
+#ifndef HAVE_MMKEYS
+  return FALSE;
+#else
   /* If we have modifiers, and either Ctrl, Mod1 (Alt), or any
    * of Mod3 to Mod5 (Mod2 is num-lock...) are pressed, we
    * let Gtk+ handle the key */
@@ -286,6 +291,7 @@ cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWind
   }
 
   return FALSE;
+#endif /* !HAVE_MMKEYS */
 }
 
 static void

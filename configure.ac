@@ -105,6 +105,33 @@ fi
 
 AM_CONDITIONAL(WITH_HILDON, test "x$enable_hildon" = "xyes")
 
+dnl Multimedia keys
+have_xfree=no
+AC_COMPILE_IFELSE([
+	#include <X11/XF86keysym.h>
+        int main(int argc,char **argv) {
+          return 0;
+        }
+], have_xfree=yes)
+AC_MSG_CHECKING(for XFree86 headers)
+AC_MSG_RESULT($have_xfree)
+if test x"$have_xfree" = "xyes" ; then
+	AC_DEFINE(HAVE_XFREE, 1, [defined if you have X11/XF86keysym.h])
+fi
+
+AC_ARG_ENABLE(mmkeys, AC_HELP_STRING([--disable-mmkeys],
+					[don't build with Multimedia Keys support]))
+if test x"$have_xfree" = xyes; then
+	if test x"$enable_mmkeys" != xno; then
+		enable_mmkeys=yes
+		AC_DEFINE(HAVE_MMKEYS, 1, [define if Multimedia Keys are enabled])
+	fi
+else
+	if test x"$enable_mmkeys" = xyes; then
+		AC_MSG_ERROR([Multimedia keys explicitly requested but no support found])
+	fi
+fi
+
 AC_PATH_PROG(GCONFTOOL, gconftool-2)
 AM_GCONF_SOURCE_2
 
