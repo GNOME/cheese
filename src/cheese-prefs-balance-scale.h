@@ -28,12 +28,13 @@ G_BEGIN_DECLS
 
 #define CHEESE_TYPE_PREFS_BALANCE_SCALE (cheese_prefs_balance_scale_get_type ())
 #define CHEESE_PREFS_BALANCE_SCALE(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_PREFS_BALANCE_SCALE, \
-                                                                             CheesePrefsBalanceScale))
+                                                                                CheesePrefsBalanceScale))
 #define CHEESE_PREFS_BALANCE_SCALE_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_PREFS_BALANCE_SCALE, \
-                                                                          CheesePrefsBalanceScaleClass))
+                                                                             CheesePrefsBalanceScaleClass))
 #define CHEESE_IS_PREFS_BALANCE_SCALE(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_PREFS_BALANCE_SCALE))
 #define CHEESE_IS_PREFS_BALANCE_SCALE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_PREFS_BALANCE_SCALE))
-#define CHEESE_PREFS_BALANCE_SCALE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_PREFS_BALANCE_SCALE, CheesePrefsBalanceScaleClass))
+#define CHEESE_PREFS_BALANCE_SCALE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_PREFS_BALANCE_SCALE, \
+                                                                               CheesePrefsBalanceScaleClass))
 
 typedef struct _CheesePrefsBalanceScaleClass CheesePrefsBalanceScaleClass;
 typedef struct _CheesePrefsBalanceScale CheesePrefsBalanceScale;
@@ -48,10 +49,10 @@ struct _CheesePrefsBalanceScale
   CheesePrefsWidget parent_instance;
 };
 
-GType                 cheese_prefs_balance_scale_get_type (void) G_GNUC_CONST;
+GType                    cheese_prefs_balance_scale_get_type (void) G_GNUC_CONST;
 CheesePrefsBalanceScale *cheese_prefs_balance_scale_new (GtkWidget    *scale,
                                                          CheeseWebcam *webcam,
-                                                         const gchar *property,
-                                                         const gchar *balance_key);
+                                                         const gchar  *property,
+                                                         const gchar  *balance_key);
 
 #endif /* _CHEESE_PREFS_BALANCE_SCALE_H_ */

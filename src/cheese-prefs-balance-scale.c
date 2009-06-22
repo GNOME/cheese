@@ -54,8 +54,8 @@ cheese_prefs_balance_scale_init (CheesePrefsBalanceScale *self)
 {
   CheesePrefsBalanceScalePrivate *priv = CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE (self);
 
-  priv->property_name = NULL;
-  priv->gconf_key = NULL;
+  priv->property_name         = NULL;
+  priv->gconf_key             = NULL;
   priv->has_been_synchronized = FALSE;
 }
 
@@ -74,8 +74,9 @@ cheese_prefs_balance_scale_finalize (GObject *object)
 static void
 cheese_prefs_balance_scale_value_changed (GtkRange *scale, CheesePrefsBalanceScale *self)
 {
-  CheesePrefsBalanceScalePrivate *priv = CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE (self);
-  gdouble value = gtk_range_get_value (scale);
+  CheesePrefsBalanceScalePrivate *priv  = CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE (self);
+  gdouble                         value = gtk_range_get_value (scale);
+
   cheese_webcam_set_balance_property (priv->webcam, priv->property_name, value);
 
   g_object_set (CHEESE_PREFS_WIDGET (self)->gconf, priv->gconf_key, value, NULL);
@@ -89,17 +90,17 @@ cheese_prefs_balance_scale_synchronize (CheesePrefsWidget *prefs_widget)
   CheesePrefsBalanceScale        *self = CHEESE_PREFS_BALANCE_SCALE (prefs_widget);
   CheesePrefsBalanceScalePrivate *priv = CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE (self);
 
-  GtkWidget          *scale;
-  GtkAdjustment      *adj;
-  gdouble min, max, def;
-  gdouble stored_value;
+  GtkWidget     *scale;
+  GtkAdjustment *adj;
+  gdouble        min, max, def;
+  gdouble        stored_value;
 
   g_object_get (prefs_widget, "widget", &scale, NULL);
 
-  cheese_webcam_get_balance_property_range (priv->webcam, 
+  cheese_webcam_get_balance_property_range (priv->webcam,
                                             priv->property_name, &min, &max, &def);
 
-  adj = GTK_ADJUSTMENT (gtk_adjustment_new (def, min, max, (max - min)/STEPS, 0.0, 0.0));
+  adj = GTK_ADJUSTMENT (gtk_adjustment_new (def, min, max, (max - min) / STEPS, 0.0, 0.0));
   gtk_range_set_adjustment (GTK_RANGE (scale), adj);
 
   gtk_scale_add_mark (GTK_SCALE (scale), def, GTK_POS_BOTTOM, NULL);
@@ -107,7 +108,7 @@ cheese_prefs_balance_scale_synchronize (CheesePrefsWidget *prefs_widget)
   g_object_get (CHEESE_PREFS_WIDGET (self)->gconf, priv->gconf_key, &stored_value, NULL);
 
   gtk_range_set_value (GTK_RANGE (scale), stored_value);
-  
+
   /* Disconnect to prevent a whole bunch of changed notifications */
   g_signal_handlers_disconnect_by_func (scale, cheese_prefs_balance_scale_value_changed, prefs_widget);
 
@@ -118,8 +119,8 @@ cheese_prefs_balance_scale_synchronize (CheesePrefsWidget *prefs_widget)
 
 static void
 cheese_prefs_balance_scale_set_property (GObject *object, guint prop_id,
-                                        const GValue *value,
-                                        GParamSpec *pspec)
+                                         const GValue *value,
+                                         GParamSpec *pspec)
 {
   CheesePrefsBalanceScalePrivate *priv = CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE (object);
 
@@ -144,7 +145,7 @@ cheese_prefs_balance_scale_set_property (GObject *object, guint prop_id,
 
 static void
 cheese_prefs_balance_scale_get_property (GObject *object, guint prop_id,
-                                        GValue *value, GParamSpec *pspec)
+                                         GValue *value, GParamSpec *pspec)
 {
   CheesePrefsBalanceScalePrivate *priv = CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE (object);
 
@@ -206,10 +207,10 @@ cheese_prefs_balance_scale_class_init (CheesePrefsBalanceScaleClass *klass)
 }
 
 CheesePrefsBalanceScale *
-cheese_prefs_balance_scale_new (GtkWidget *scale,
+cheese_prefs_balance_scale_new (GtkWidget    *scale,
                                 CheeseWebcam *webcam,
-                                const gchar *property,
-                                const gchar *gconf_key)
+                                const gchar  *property,
+                                const gchar  *gconf_key)
 {
   CheesePrefsBalanceScale        *self;
   CheesePrefsBalanceScalePrivate *priv;

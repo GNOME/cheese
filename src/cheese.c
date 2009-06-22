@@ -154,7 +154,7 @@ main (int argc, char **argv)
 {
   GOptionContext *context;
   CheeseDbus     *dbus_server;
-  GError *error = NULL;
+  GError         *error = NULL;
 
   GOptionEntry options[] = {
     {"verbose",    'v', 0,                    G_OPTION_ARG_NONE,   &CheeseOptions.verbose,       _("Be verbose"), NULL},
@@ -179,7 +179,8 @@ main (int argc, char **argv)
   g_option_context_add_main_entries (context, options, GETTEXT_PACKAGE);
   g_option_context_add_group (context, gtk_get_option_group (TRUE));
   g_option_context_add_group (context, gst_init_get_option_group ());
-  if (g_option_context_parse (context, &argc, &argv, &error) == FALSE) {
+  if (g_option_context_parse (context, &argc, &argv, &error) == FALSE)
+  {
     gchar *help_text = g_option_context_get_help (context, TRUE, NULL);
     g_print ("%s\n\n%s", error->message, help_text);
     g_free (help_text);

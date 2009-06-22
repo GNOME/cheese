@@ -236,8 +236,8 @@ cheese_effect_chooser_button_press_event_cb (GtkWidget *widget, GdkEventButton *
   CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (widget);
 
   int i;
-  int col = (int) (button_event->x / widget->allocation.width * BOARD_COLS);
-  int row = (int) (button_event->y / widget->allocation.height * BOARD_ROWS);
+  int col  = (int) (button_event->x / widget->allocation.width * BOARD_COLS);
+  int row  = (int) (button_event->y / widget->allocation.height * BOARD_ROWS);
   int slot = (row * BOARD_COLS + col);
 
   priv->selected[slot] = !priv->selected[slot];

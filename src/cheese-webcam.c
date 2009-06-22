@@ -240,7 +240,8 @@ cheese_webcam_bus_message_cb (GstBus *bus, GstMessage *message, CheeseWebcam *we
 
   if (GST_MESSAGE_TYPE (message) == GST_MESSAGE_EOS)
   {
-    if (priv->is_recording) {
+    if (priv->is_recording)
+    {
       g_print ("Received EOS message\n");
 
       g_source_remove (priv->eos_timeout_id);
@@ -313,13 +314,13 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
   {
     char                   *device;
     char                   *parent_udi = NULL;
-    char                   *subsystem = NULL;
+    char                   *subsystem  = NULL;
     char                   *gstreamer_src, *product_name;
     struct v4l2_capability  v2cap;
     struct video_capability v1cap;
-    gint vendor_id = 0;
-    gint product_id = 0;
-    gchar *property_name = NULL;
+    gint                    vendor_id     = 0;
+    gint                    product_id    = 0;
+    gchar                  *property_name = NULL;
 
     parent_udi = libhal_device_get_property_string (hal_ctx, udis[i], "info.parent", &error);
     if (dbus_error_is_set (&error))
@@ -328,20 +329,23 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       dbus_error_free (&error);
     }
 
-    if (parent_udi != NULL) {
+    if (parent_udi != NULL)
+    {
       subsystem = libhal_device_get_property_string (hal_ctx, parent_udi, "info.subsystem", NULL);
       if (subsystem == NULL) continue;
       property_name = g_strjoin (".", subsystem, "vendor_id", NULL);
-      vendor_id = libhal_device_get_property_int (hal_ctx, parent_udi, property_name , &error);
-      if (dbus_error_is_set (&error)) {
+      vendor_id     = libhal_device_get_property_int (hal_ctx, parent_udi, property_name, &error);
+      if (dbus_error_is_set (&error))
+      {
         g_warning ("error getting vendor id: %s: %s", error.name, error.message);
         dbus_error_free (&error);
       }
       g_free (property_name);
 
       property_name = g_strjoin (".", subsystem, "product_id", NULL);
-      product_id = libhal_device_get_property_int (hal_ctx, parent_udi, property_name, &error);
-      if (dbus_error_is_set (&error)) {
+      product_id    = libhal_device_get_property_int (hal_ctx, parent_udi, property_name, &error);
+      if (dbus_error_is_set (&error))
+      {
         g_warning ("error getting product id: %s: %s", error.name, error.message);
         dbus_error_free (&error);
       }
@@ -382,7 +386,7 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       if (ok < 0)
       {
         g_warning ("Error while probing v4l capabilities for %s: %s",
-                 device, strerror (errno));
+                   device, strerror (errno));
         libhal_free_string (device);
         close (fd);
         continue;
@@ -397,8 +401,9 @@ cheese_webcam_get_video_devices_from_hal (CheeseWebcam *webcam)
       guint cap = v2cap.capabilities;
       g_print ("Detected v4l2 device: %s\n", v2cap.card);
       g_print ("Driver: %s, version: %d\n", v2cap.driver, v2cap.version);
+
       /* g_print ("Bus info: %s\n", v2cap.bus_info); */ /* Doesn't seem anything useful */
-     g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
+      g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
       if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
       {
         g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
@@ -507,36 +512,38 @@ cheese_webcam_get_supported_framerates (CheeseVideoFormat *video_format, GstStru
 
 static void
 cheese_webcam_add_video_format (CheeseWebcamDevice *webcam_device,
-  CheeseVideoFormat *video_format, GstStructure *format_structure)
+                                CheeseVideoFormat *video_format, GstStructure *format_structure)
 {
-  int i;
+  int    i;
   gchar *resolution;
 
   cheese_webcam_get_supported_framerates (video_format, format_structure);
   find_highest_framerate (video_format);
 
-  g_print ("%s %d x %d num_framerates %d\n", video_format->mimetype, video_format->width, 
+  g_print ("%s %d x %d num_framerates %d\n", video_format->mimetype, video_format->width,
            video_format->height, video_format->num_framerates);
   for (i = 0; i < video_format->num_framerates; i++)
   {
     g_print ("%d/%d ", video_format->framerates[i].numerator,
              video_format->framerates[i].denominator);
   }
-  
+
   resolution = g_strdup_printf ("%ix%i", video_format->width,
                                 video_format->height);
-  i = GPOINTER_TO_INT(g_hash_table_lookup (
-                                     webcam_device->supported_resolutions,
-                                     resolution));
-  if (i) { /* Resolution already added ? */
-    CheeseVideoFormat *curr_format = &g_array_index(
-                                                webcam_device->video_formats,
-                                                CheeseVideoFormat, i - 1);
-    float new_framerate = (float)video_format->highest_framerate.numerator /
-                                 video_format->highest_framerate.denominator;
-    float curr_framerate = (float)curr_format->highest_framerate.numerator /
-                                  curr_format->highest_framerate.denominator;
-    if (new_framerate > curr_framerate) {
+  i = GPOINTER_TO_INT (g_hash_table_lookup (
+                         webcam_device->supported_resolutions,
+                         resolution));
+  if (i)   /* Resolution already added ? */
+  {
+    CheeseVideoFormat *curr_format = &g_array_index (
+      webcam_device->video_formats,
+      CheeseVideoFormat, i - 1);
+    float new_framerate = (float) video_format->highest_framerate.numerator /
+                          video_format->highest_framerate.denominator;
+    float curr_framerate = (float) curr_format->highest_framerate.numerator /
+                           curr_format->highest_framerate.denominator;
+    if (new_framerate > curr_framerate)
+    {
       g_print ("higher framerate replacing existing format\n");
       *curr_format = *video_format;
     }
@@ -549,12 +556,13 @@ cheese_webcam_add_video_format (CheeseWebcamDevice *webcam_device,
 
   g_array_append_val (webcam_device->video_formats, *video_format);
   g_hash_table_insert (webcam_device->supported_resolutions, resolution,
-                       GINT_TO_POINTER(webcam_device->num_video_formats + 1));
+                       GINT_TO_POINTER (webcam_device->num_video_formats + 1));
 
   webcam_device->num_video_formats++;
 }
 
-static gint cheese_resolution_compare(gconstpointer _a, gconstpointer _b)
+static gint
+cheese_resolution_compare (gconstpointer _a, gconstpointer _b)
 {
   const CheeseVideoFormat *a = _a;
   const CheeseVideoFormat *b = _b;
@@ -598,7 +606,7 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
       video_format.mimetype = g_strdup (gst_structure_get_name (structure));
       gst_structure_get_int (structure, "width", &(video_format.width));
       gst_structure_get_int (structure, "height", &(video_format.height));
-      cheese_webcam_add_video_format(webcam_device, &video_format, structure);
+      cheese_webcam_add_video_format (webcam_device, &video_format, structure);
     }
     else if (GST_VALUE_HOLDS_INT_RANGE (width))
     {
@@ -612,8 +620,9 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
 
       cur_width  = min_width;
       cur_height = min_height;
+
       /* Gstreamer will sometimes give us a range with min_xxx == max_xxx,
-         we use <= here (and not below) to make this work */
+       * we use <= here (and not below) to make this work */
       while (cur_width <= max_width && cur_height <= max_height)
       {
         CheeseVideoFormat video_format;
@@ -621,7 +630,7 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
         video_format.mimetype = g_strdup (gst_structure_get_name (structure));
         video_format.width    = cur_width;
         video_format.height   = cur_height;
-        cheese_webcam_add_video_format(webcam_device, &video_format, structure);
+        cheese_webcam_add_video_format (webcam_device, &video_format, structure);
         cur_width  *= 2;
         cur_height *= 2;
       }
@@ -635,7 +644,7 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
         video_format.mimetype = g_strdup (gst_structure_get_name (structure));
         video_format.width    = cur_width;
         video_format.height   = cur_height;
-        cheese_webcam_add_video_format(webcam_device, &video_format, structure);
+        cheese_webcam_add_video_format (webcam_device, &video_format, structure);
         cur_width  /= 2;
         cur_height /= 2;
       }
@@ -645,19 +654,20 @@ cheese_webcam_get_supported_video_formats (CheeseWebcamDevice *webcam_device, Gs
       g_critical ("GValue type %s, cannot be handled for resolution width", G_VALUE_TYPE_NAME (width));
     }
   }
-  
+
   /* Sort the format array (so that it will show sorted in the resolution
-     selection GUI), and rebuild the hashtable (as that will be invalid after
-     the sorting) */
+   * selection GUI), and rebuild the hashtable (as that will be invalid after
+   * the sorting) */
   g_array_sort (webcam_device->video_formats, cheese_resolution_compare);
   g_hash_table_remove_all (webcam_device->supported_resolutions);
-  for (i = 0; i < webcam_device->num_video_formats; i++) {
-    CheeseVideoFormat *format = &g_array_index(webcam_device->video_formats,
-                                               CheeseVideoFormat, i);
-    g_hash_table_insert (webcam_device->supported_resolutions, 
+  for (i = 0; i < webcam_device->num_video_formats; i++)
+  {
+    CheeseVideoFormat *format = &g_array_index (webcam_device->video_formats,
+                                                CheeseVideoFormat, i);
+    g_hash_table_insert (webcam_device->supported_resolutions,
                          g_strdup_printf ("%ix%i", format->width,
-                                          format->height), 
-                         GINT_TO_POINTER(i + 1));
+                                          format->height),
+                         GINT_TO_POINTER (i + 1));
   }
 }
 
@@ -783,7 +793,7 @@ find_highest_framerate (CheeseVideoFormat *format)
     }
   }
 
-  format->highest_framerate.numerator = framerate_numerator;
+  format->highest_framerate.numerator   = framerate_numerator;
   format->highest_framerate.denominator = framerate_denominator;
 }
 
@@ -825,7 +835,7 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
      * camera supports it. */
     if (priv->x_resolution != 0 && priv->y_resolution != 0)
     {
-      i = GPOINTER_TO_INT(g_hash_table_lookup (selected_webcam->supported_resolutions, resolution));
+      i = GPOINTER_TO_INT (g_hash_table_lookup (selected_webcam->supported_resolutions, resolution));
       if (i)
         format = &g_array_index (selected_webcam->video_formats,
                                  CheeseVideoFormat, i - 1);
@@ -841,8 +851,8 @@ cheese_webcam_create_webcam_source_bin (CheeseWebcam *webcam)
         CheeseVideoFormat *new = &g_array_index (selected_webcam->video_formats,
                                                  CheeseVideoFormat, i);
         gfloat newrate = new->highest_framerate.numerator /
-          new->highest_framerate.denominator;
-        if ((new->width+new->height) > (format->width+format->height) &&
+                         new->highest_framerate.denominator;
+        if ((new->width + new->height) > (format->width + format->height) &&
             (newrate >= MIN_DEFAULT_RATE))
         {
           format = new;
@@ -959,12 +969,12 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
   }
   if ((priv->video_balance = gst_element_factory_make ("videobalance", "video_balance")) == NULL)
   {
-    cheese_webcam_set_error_element_not_found(error, "videobalance");
+    cheese_webcam_set_error_element_not_found (error, "videobalance");
     return FALSE;
   }
   if ((priv->csp_post_balance = gst_element_factory_make ("ffmpegcolorspace", "csp_post_balance")) == NULL)
   {
-    cheese_webcam_set_error_element_not_found(error, "ffmpegcolorspace");
+    cheese_webcam_set_error_element_not_found (error, "ffmpegcolorspace");
     return FALSE;
   }
 
@@ -1008,7 +1018,7 @@ cheese_webcam_create_video_display_bin (CheeseWebcam *webcam, GError **error)
                     video_display_queue, video_scale, video_sink, NULL);
 
   ok = gst_element_link_many (priv->webcam_source_bin, priv->effect_filter,
-                              priv->csp_post_effect, 
+                              priv->csp_post_effect,
                               priv->video_balance, priv->csp_post_balance,
                               tee, NULL);
 
@@ -1135,7 +1145,9 @@ cheese_webcam_create_video_save_bin (CheeseWebcam *webcam, GError **error)
   if ((mux = gst_element_factory_make ("oggmux", "mux")) == NULL)
   {
     cheese_webcam_set_error_element_not_found (error, "oggmux");
-  } else {
+  }
+  else
+  {
     g_object_set (G_OBJECT (mux),
                   "max-delay", (guint64) 10000000,
                   "max-page-delay", (guint64) 10000000, NULL);
@@ -1345,10 +1357,11 @@ cheese_webcam_start_video_recording (CheeseWebcam *webcam, char *filename)
 static gboolean
 cheese_webcam_force_stop_video_recording (gpointer data)
 {
-  CheeseWebcam *webcam = CHEESE_WEBCAM (data);
-  CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  CheeseWebcam        *webcam = CHEESE_WEBCAM (data);
+  CheeseWebcamPrivate *priv   = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
-  if (priv->is_recording) {
+  if (priv->is_recording)
+  {
     g_print ("Cannot cleanly shutdown recording pipeline, forcing\n");
     g_signal_emit (webcam, webcam_signals[VIDEO_SAVED], 0);
 
@@ -1364,17 +1377,20 @@ void
 cheese_webcam_stop_video_recording (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-  GstState state;
+  GstState             state;
 
   gst_element_get_state (priv->pipeline, &state, NULL, 0);
 
-  if (state == GST_STATE_PLAYING) {
+  if (state == GST_STATE_PLAYING)
+  {
     /* Send EOS message down the pipeline by stopping video and audio source*/
     g_print ("Sending EOS event down the recording pipeline\n");
     gst_element_send_event (priv->video_source, gst_event_new_eos ());
     gst_element_send_event (priv->audio_source, gst_event_new_eos ());
     priv->eos_timeout_id = g_timeout_add (3000, cheese_webcam_force_stop_video_recording, webcam);
-  } else {
+  }
+  else
+  {
     cheese_webcam_force_stop_video_recording (webcam);
   }
 }
@@ -1384,7 +1400,8 @@ cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
-  if (priv->photo_handler_signal_id != 0) {
+  if (priv->photo_handler_signal_id != 0)
+  {
     g_print ("Still waiting for previous photo data, ignoring new request\n");
     return FALSE;
   }
@@ -1567,11 +1584,11 @@ cheese_webcam_init (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
-  priv->is_recording        = FALSE;
-  priv->pipeline_is_playing = FALSE;
-  priv->photo_filename      = NULL;
-  priv->webcam_devices      = NULL;
-  priv->device_name         = NULL;
+  priv->is_recording            = FALSE;
+  priv->pipeline_is_playing     = FALSE;
+  priv->photo_filename          = NULL;
+  priv->webcam_devices          = NULL;
+  priv->device_name             = NULL;
   priv->photo_handler_signal_id = 0;
 }
 
@@ -1746,8 +1763,8 @@ cheese_webcam_get_balance_property_range (CheeseWebcam *webcam,
                                           gdouble *min, gdouble *max, gdouble *def)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-  GParamSpec *pspec;
-  
+  GParamSpec          *pspec;
+
   *min = 0.0;
   *max = 0.0;
   *def = 0.0;

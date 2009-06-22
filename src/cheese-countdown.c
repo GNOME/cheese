@@ -564,8 +564,8 @@ create_surface_from_svg (GtkWidget *widget, gchar *pcFilename)
 static void
 on_style_set_cb (GtkWidget *widget, GtkStyle *previous_style, gpointer data)
 {
-  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (data);
-  GtkStyle *style = gtk_widget_get_style (GTK_WIDGET (widget));
+  CheeseCountdownPrivate *priv  = CHEESE_COUNTDOWN_GET_PRIVATE (data);
+  GtkStyle               *style = gtk_widget_get_style (GTK_WIDGET (widget));
 
   GdkColor *color_bg   = &style->bg[GTK_STATE_SELECTED];
   GdkColor *color_text = &style->fg[GTK_STATE_SELECTED];

@@ -84,15 +84,15 @@ cheese_thumb_view_thread_append_item (gpointer data)
   CheeseThumbViewPrivate    *priv       = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
   GnomeDesktopThumbnailFactory *factory = priv->factory;
-  GFile                 *file    = item->file;
-  GtkTreeIter            iter    = item->iter;
-  GdkPixbuf             *pixbuf  = NULL;
-  GFileInfo             *info;
-  char                  *thumb_loc;
-  GTimeVal               mtime;
-  char                  *mime_type;
-  char                  *uri;
-  char                  *filename;
+  GFile                        *file    = item->file;
+  GtkTreeIter                   iter    = item->iter;
+  GdkPixbuf                    *pixbuf  = NULL;
+  GFileInfo                    *info;
+  char                         *thumb_loc;
+  GTimeVal                      mtime;
+  char                         *mime_type;
+  char                         *uri;
+  char                         *filename;
 
   info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, NULL);
 
@@ -180,7 +180,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   GtkTreePath  *path;
   char         *filename, *basename, *col_filename;
   GError       *error = NULL;
-  gboolean      skip = FALSE;
+  gboolean      skip  = FALSE;
 
   CheeseThumbViewThreadData *data;
 
@@ -194,7 +194,6 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
   {
-
     /* check if the selected item is the first, else go through the store */
     gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &col_filename, -1);
     if (g_ascii_strcasecmp (col_filename, filename))
@@ -223,7 +222,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   {
     char *f;
 
-    f = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 4));
+    f      = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 4));
     pixbuf = gdk_pixbuf_new_from_file (f, NULL);
     g_free (f);
   }

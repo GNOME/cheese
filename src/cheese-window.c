@@ -40,7 +40,7 @@
 #include <libebook/e-book.h>
 
 #ifdef HAVE_MMKEYS
-#include <X11/XF86keysym.h>
+  #include <X11/XF86keysym.h>
 #endif /* HAVE_MMKEYS */
 
 #ifdef HILDON
@@ -65,8 +65,8 @@
 #define FULLSCREEN_POPUP_HEIGHT    40
 #define FULLSCREEN_TIMEOUT         5 * 1000
 #define FULLSCREEN_EFFECTS_TIMEOUT 15
-#define DEFAULT_WINDOW_WIDTH 600
-#define DEFAULT_WINDOW_HEIGHT 450
+#define DEFAULT_WINDOW_WIDTH       600
+#define DEFAULT_WINDOW_HEIGHT      450
 
 typedef enum
 {
@@ -277,17 +277,19 @@ cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWind
    * let Gtk+ handle the key */
   if (event->state != 0
       && ((event->state & GDK_CONTROL_MASK)
-	  || (event->state & GDK_MOD1_MASK)
-	  || (event->state & GDK_MOD3_MASK)
-	  || (event->state & GDK_MOD4_MASK)
-	  || (event->state & GDK_MOD5_MASK)))
+          || (event->state & GDK_MOD1_MASK)
+          || (event->state & GDK_MOD3_MASK)
+          || (event->state & GDK_MOD4_MASK)
+          || (event->state & GDK_MOD5_MASK)))
     return FALSE;
 
-  switch (event->keyval) {
-  case XF86XK_WebCam:
-    /* do stuff */
-    cheese_window_action_button_clicked_cb (NULL, cheese_window);
-    return TRUE;
+  switch (event->keyval)
+  {
+    case XF86XK_WebCam:
+
+      /* do stuff */
+      cheese_window_action_button_clicked_cb (NULL, cheese_window);
+      return TRUE;
   }
 
   return FALSE;
@@ -324,7 +326,7 @@ cheese_window_fullscreen_set_timeout (CheeseWindow *cheese_window)
   GSource *source;
 
   cheese_window_fullscreen_clear_timeout (cheese_window);
-  
+
   source = g_timeout_source_new (FULLSCREEN_TIMEOUT);
 
   g_source_set_callback (source, cheese_window_fullscreen_timeout_cb, cheese_window, NULL);
@@ -358,8 +360,8 @@ cheese_window_fullscreen_motion_notify_cb (GtkWidget      *widget,
     {
       cheese_window_fullscreen_show_bar (cheese_window);
     }
-    
-    //don't set the timeout in effect-chooser mode
+
+    /* don't set the timeout in effect-chooser mode */
     if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) != 1)
       cheese_window_fullscreen_set_timeout (cheese_window);
   }
@@ -393,11 +395,11 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
                       cheese_window);
 
     gtk_window_fullscreen (GTK_WINDOW (cheese_window->window));
-    
+
     gtk_widget_set_size_request (cheese_window->effect_alignment, -1, FULLSCREEN_POPUP_HEIGHT);
     cheese_window_fullscreen_show_bar (cheese_window);
-    
-    //don't set the timeout in effect-chooser mode
+
+    /* don't set the timeout in effect-chooser mode */
     if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) != 1)
       cheese_window_fullscreen_set_timeout (cheese_window);
 
@@ -408,7 +410,7 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
     gtk_widget_show_all (cheese_window->window);
     gtk_widget_hide_all (cheese_window->fullscreen_popup);
     gtk_widget_modify_bg (cheese_window->window, GTK_STATE_NORMAL, NULL);
-    
+
     g_signal_handlers_disconnect_by_func (cheese_window->window,
                                           (gpointer) cheese_window_fullscreen_motion_notify_cb, cheese_window);
     g_signal_handlers_disconnect_by_func (cheese_window->screen,
@@ -449,11 +451,11 @@ cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
   gdk_threads_leave ();
 }
 
-
 static void
 cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 {
   gdk_threads_enter ();
+
   /* TODO look at this g_free */
   g_free (cheese_window->video_filename);
   cheese_window->video_filename = NULL;
@@ -976,7 +978,7 @@ cheese_window_cmd_command_line (GtkAction *action, CheeseWindow *cheese_window)
 static void
 cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
 {
-  GError  *error = NULL;
+  GError    *error = NULL;
   GdkScreen *screen;
 
   screen = gtk_widget_get_screen (GTK_WIDGET (cheese_window));
@@ -1236,7 +1238,7 @@ cheese_window_countdown_picture_cb (gpointer data)
   {
     cheese_flash_fire (cheese_window->flash);
     shutter_filename = audio_play_get_filename (cheese_window);
-    audio_play = gst_audio_play_file (shutter_filename, &error);
+    audio_play       = gst_audio_play_file (shutter_filename, &error);
     if (!audio_play)
     {
       g_warning ("%s", error ? error->message : "Unknown error");
@@ -1697,6 +1699,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->thumb_view = cheese_thumb_view_new ();
   cheese_window->thumb_nav  = eog_thumb_nav_new (cheese_window->thumb_view, TRUE);
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_nav);
+
   /* show the scroll window to get it included in the size requisition done later */
   gtk_widget_show_all (cheese_window->thumb_scrollwindow);
 
@@ -1886,7 +1889,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   /* Listen for key presses */
   gtk_widget_add_events (cheese_window->window, GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
   g_signal_connect (cheese_window->window, "key_press_event",
-		    G_CALLBACK (cheese_window_key_press_event_cb), cheese_window);
+                    G_CALLBACK (cheese_window_key_press_event_cb), cheese_window);
 
   g_signal_connect (cheese_window->take_picture, "clicked",
                     G_CALLBACK (cheese_window_action_button_clicked_cb), cheese_window);

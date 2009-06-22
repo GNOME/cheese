@@ -49,7 +49,7 @@ typedef struct
   int   height;
   int   num_framerates;
   CheeseFramerate *framerates;
-  CheeseFramerate highest_framerate;
+  CheeseFramerate  highest_framerate;
 } CheeseVideoFormat;
 
 typedef struct
@@ -108,7 +108,7 @@ void               cheese_webcam_stop (CheeseWebcam *webcam);
 void               cheese_webcam_set_effect (CheeseWebcam *webcam, CheeseWebcamEffect effect);
 void               cheese_webcam_start_video_recording (CheeseWebcam *webcam, char *filename);
 void               cheese_webcam_stop_video_recording (CheeseWebcam *webcam);
-gboolean            cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename);
+gboolean           cheese_webcam_take_photo (CheeseWebcam *webcam, char *filename);
 gboolean           cheese_webcam_has_webcam (CheeseWebcam *webcam);
 int                cheese_webcam_get_num_webcam_devices (CheeseWebcam *webcam);
 int                cheese_webcam_get_selected_device_index (CheeseWebcam *webcam);
@@ -119,10 +119,10 @@ gboolean           cheese_webcam_switch_webcam_device (CheeseWebcam *webcam);
 GArray *           cheese_webcam_get_video_formats (CheeseWebcam *webcam);
 void               cheese_webcam_set_video_format (CheeseWebcam      *webcam,
                                                    CheeseVideoFormat *format);
-void               cheese_webcam_get_balance_property_range (CheeseWebcam *webcam,
-                                                             gchar *property,
-                                                             gdouble *min, gdouble *max, gdouble *def);
-void               cheese_webcam_set_balance_property (CheeseWebcam *webcam, gchar *property, gdouble value);
+void cheese_webcam_get_balance_property_range (CheeseWebcam *webcam,
+                                               gchar *property,
+                                               gdouble *min, gdouble *max, gdouble *def);
+void cheese_webcam_set_balance_property (CheeseWebcam *webcam, gchar *property, gdouble value);
 G_END_DECLS
 
 #endif /* __CHEESE_WEBCAM_H__ */
