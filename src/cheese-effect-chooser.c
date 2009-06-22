@@ -212,7 +212,7 @@ cheese_effect_chooser_expose_cb (GtkWidget *widget, GdkEventExpose *expose_event
   width  = widget->allocation.width;
   height = widget->allocation.height;
 
-  cr = gdk_cairo_create (widget->window);
+  cr = gdk_cairo_create (gtk_widget_get_window (widget));
 
   cairo_save (cr);
   cairo_scale (cr, width, height);
@@ -236,8 +236,8 @@ cheese_effect_chooser_button_press_event_cb (GtkWidget *widget, GdkEventButton *
   CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (widget);
 
   int i;
-  int col  = (int) (button_event->x / widget->allocation.width * BOARD_COLS);
-  int row  = (int) (button_event->y / widget->allocation.height * BOARD_ROWS);
+  int col = (int) (button_event->x / widget->allocation.width * BOARD_COLS);
+  int row = (int) (button_event->y / widget->allocation.height * BOARD_ROWS);
   int slot = (row * BOARD_COLS + col);
 
   priv->selected[slot] = !priv->selected[slot];

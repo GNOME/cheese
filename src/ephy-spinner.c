@@ -664,8 +664,8 @@ ephy_spinner_expose (GtkWidget *widget,
 		return FALSE;
 	}
 
-	gc = gdk_gc_new (widget->window);
-	gdk_draw_pixbuf (widget->window, gc, pixbuf,
+	gc = gdk_gc_new (gtk_widget_get_window (widget));
+	gdk_draw_pixbuf (gtk_widget_get_window (widget), gc, pixbuf,
 			 dest.x - x_offset - widget->allocation.x,
 			 dest.y - y_offset - widget->allocation.y,
 			 dest.x, dest.y,

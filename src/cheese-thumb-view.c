@@ -394,8 +394,8 @@ cheese_thumb_view_on_drag_data_get_cb (GtkIconView      *thumb_view,
 
     g_free (str);
   }
-  gtk_selection_data_set (data, data->target, 8,
-                          (guchar *) uris, strlen (uris));
+  gtk_selection_data_set (data, gtk_selection_data_get_target (data),
+                          8, (guchar *) uris, strlen (uris));
   g_free (uris);
   g_list_free (list);
 }

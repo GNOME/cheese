@@ -380,7 +380,7 @@ on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
   color_shade (&priv->bg, 1.08f, &bgShade4);
 
   /* create cairo context */
-  pContext = gdk_cairo_create (widget->window);
+  pContext = gdk_cairo_create (gtk_widget_get_window (widget));
   cairo_set_line_width (pContext, 1.0f);
 
   /* clear drawing-context */
@@ -565,9 +565,10 @@ static void
 on_style_set_cb (GtkWidget *widget, GtkStyle *previous_style, gpointer data)
 {
   CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (data);
+  GtkStyle *style = gtk_widget_get_style (GTK_WIDGET (widget));
 
-  GdkColor *color_bg   = &GTK_WIDGET (widget)->style->bg[GTK_STATE_SELECTED];
-  GdkColor *color_text = &GTK_WIDGET (widget)->style->fg[GTK_STATE_SELECTED];
+  GdkColor *color_bg   = &style->bg[GTK_STATE_SELECTED];
+  GdkColor *color_text = &style->fg[GTK_STATE_SELECTED];
 
   priv->bg.r   = ((double) color_bg->red) / 65535;
   priv->bg.g   = ((double) color_bg->green) / 65535;

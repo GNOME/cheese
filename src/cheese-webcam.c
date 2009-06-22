@@ -165,7 +165,8 @@ cheese_webcam_set_x_overlay (CheeseWebcam *webcam)
                                     "force-aspect-ratio"))
     g_object_set (G_OBJECT (overlay), "force-aspect-ratio", TRUE, NULL);
 
-  gst_x_overlay_set_xwindow_id (overlay, GDK_WINDOW_XWINDOW (priv->video_window->window));
+  gst_x_overlay_set_xwindow_id (overlay,
+                                GDK_WINDOW_XWINDOW (gtk_widget_get_window (priv->video_window)));
 }
 
 static void

@@ -142,8 +142,8 @@ paint_message_area (GtkWidget      *widget,
                     GdkEventExpose *event,
                     gpointer        user_data)
 {
-  gtk_paint_flat_box (widget->style,
-                      widget->window,
+  gtk_paint_flat_box (gtk_widget_get_style (widget),
+                      gtk_widget_get_window (widget),
                       GTK_STATE_NORMAL,
                       GTK_SHADOW_OUT,
                       NULL,

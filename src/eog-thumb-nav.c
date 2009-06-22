@@ -66,6 +66,7 @@ eog_thumb_nav_scroll_event (GtkWidget *widget, GdkEventScroll *event, gpointer u
 {
 	EogThumbNav *nav = EOG_THUMB_NAV (user_data);
 	gint inc = EOG_THUMB_NAV_SCROLL_INC * 3;
+	gdouble value, upper, page_size;
 
 	switch (event->direction) {
 	case GDK_SCROLL_UP:
@@ -82,10 +83,14 @@ eog_thumb_nav_scroll_event (GtkWidget *widget, GdkEventScroll *event, gpointer u
 		return FALSE;
 	}
 
+	value = gtk_adjustment_get_value (nav->priv->adj);
 	if (inc < 0)
-		nav->priv->adj->value = MAX (0, nav->priv->adj->value + inc);
-	else
-		nav->priv->adj->value = MIN (nav->priv->adj->upper - nav->priv->adj->page_size, nav->priv->adj->value + inc);
+		gtk_adjustment_set_value (nav->priv->adj, MAX (0, value + inc));
+	else {
+	        upper = gtk_adjustment_get_upper (nav->priv->adj);
+		page_size = gtk_adjustment_get_page_size (nav->priv->adj);
+		gtk_adjustment_set_value (nav->priv->adj, MIN (upper - page_size, value + inc));
+                                          }
 
 	gtk_adjustment_value_changed (nav->priv->adj);
 
@@ -98,13 +103,20 @@ eog_thumb_nav_adj_changed (GtkAdjustment *adj, gpointer user_data)
 	EogThumbNav *nav;
 	EogThumbNavPrivate *priv;
 	gboolean ltr;
+	gdouble value, upper, page_size;
 
 	nav = EOG_THUMB_NAV (user_data);
 	priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
 	ltr = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
+	g_object_get (adj,
+		      "value", &value,
+		      "upper", &upper,
+		      "page_size", &page_size,
+		      NULL);
+
 	gtk_widget_set_sensitive (ltr ? priv->button_right : priv->button_left,
-				  adj->value < adj->upper - adj->page_size);
+				  value < upper - page_size);
 }
 
 static void
@@ -113,15 +125,22 @@ eog_thumb_nav_adj_value_changed (GtkAdjustment *adj, gpointer user_data)
 	EogThumbNav *nav;
 	EogThumbNavPrivate *priv;
 	gboolean ltr;
+	gdouble value, upper, page_size;
 
 	nav = EOG_THUMB_NAV (user_data);
 	priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
 	ltr = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
-	gtk_widget_set_sensitive (ltr ? priv->button_left : priv->button_right, adj->value > 0);
+	g_object_get (adj,
+		      "value", &value,
+		      "upper", &upper,
+		      "page_size", &page_size,
+		      NULL);
+
+	gtk_widget_set_sensitive (ltr ? priv->button_left : priv->button_right, value > 0);
 
 	gtk_widget_set_sensitive (ltr ? priv->button_right : priv->button_left,
-				  adj->value < adj->upper - adj->page_size);
+				  value < upper - page_size);
 }
 
 static gboolean
@@ -129,6 +148,7 @@ eog_thumb_nav_scroll_step (gpointer user_data)
 {
 	EogThumbNav *nav = EOG_THUMB_NAV (user_data);
 	gint delta;
+	gdouble value, upper, page_size;
 
 	if (nav->priv->scroll_pos < 10)
 		delta = EOG_THUMB_NAV_SCROLL_INC;
@@ -142,16 +162,22 @@ eog_thumb_nav_scroll_step (gpointer user_data)
 	if (!nav->priv->scroll_dir)
 		delta *= -1;
 
-	if ((gint) (nav->priv->adj->value + (gdouble) delta) >= 0 &&
-	    (gint) (nav->priv->adj->value + (gdouble) delta) <= nav->priv->adj->upper - nav->priv->adj->page_size) {
-		nav->priv->adj->value += (gdouble) delta; 
+	g_object_get (nav->priv->adj,
+		      "value", &value,
+		      "upper", &upper,
+		      "page_size", &page_size,
+		      NULL);
+
+	if ((gint) (value + (gdouble) delta) >= 0 &&
+	    (gint) (value + (gdouble) delta) <= upper - page_size) {
+		gtk_adjustment_set_value (nav->priv->adj, value + (gdouble) delta);
 		nav->priv->scroll_pos++;
 		gtk_adjustment_value_changed (nav->priv->adj);
 	} else {
 		if (delta > 0)
-		      nav->priv->adj->value = nav->priv->adj->upper - nav->priv->adj->page_size;
+		      gtk_adjustment_set_value (nav->priv->adj, upper - page_size);
 		else
-		      nav->priv->adj->value = 0;
+		      gtk_adjustment_set_value (nav->priv->adj, 0);
 
 		nav->priv->scroll_pos = 0;
 		
@@ -330,7 +356,7 @@ eog_thumb_nav_init (EogThumbNav *nav)
 
 	priv->sw = gtk_scrolled_window_new (NULL, NULL);
 
-	gtk_widget_set_name (GTK_SCROLLED_WINDOW (priv->sw)->hscrollbar, 
+	gtk_widget_set_name (gtk_scrolled_window_get_hscrollbar (GTK_SCROLLED_WINDOW (priv->sw)),
 			     "eog-image-collection-scrollbar");
 
 	gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->sw), 

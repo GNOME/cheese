@@ -54,7 +54,7 @@ cheese_flash_window_expose_event_cb (GtkWidget *widget, GdkEventExpose *event, g
 {
   cairo_t *cr;
 
-  cr = gdk_cairo_create (widget->window);
+  cr = gdk_cairo_create (gtk_widget_get_window (widget));
   cairo_set_source_rgb (cr, 1, 1, 1);
   cairo_rectangle (cr, event->area.x, event->area.y, event->area.width, event->area.height);
   cairo_fill (cr);
@@ -89,7 +89,7 @@ cheese_flash_init (CheeseFlash *self)
   gtk_widget_realize (GTK_WIDGET (window));
   GdkRegion *input_region;
   input_region = gdk_region_new ();
-  gdk_window_input_shape_combine_region (GTK_WIDGET (window)->window, input_region, 0, 0);
+  gdk_window_input_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)), input_region, 0, 0);
   gdk_region_destroy (input_region);
 
   g_signal_connect (G_OBJECT (window), "expose-event", G_CALLBACK (cheese_flash_window_expose_event_cb), NULL);

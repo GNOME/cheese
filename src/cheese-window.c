@@ -188,9 +188,9 @@ void
 cheese_window_bring_to_front (gpointer data)
 {
   CheeseWindow *cheese_window     = data;
-  guint32       startup_timestamp = gdk_x11_get_server_time (GTK_WIDGET (cheese_window->window)->window);
+  guint32       startup_timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (cheese_window->window)));
 
-  gdk_x11_window_set_user_time (GTK_WIDGET (cheese_window->window)->window, startup_timestamp);
+  gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (cheese_window->window)), startup_timestamp);
 
   gtk_window_present (GTK_WINDOW (cheese_window->window));
 }
@@ -1248,7 +1248,7 @@ cheese_window_countdown_picture_cb (gpointer data)
 }
 
 static void
-cheese_window_no_camera_message_area_response (GtkWidget *widget, gint response_id, GtkWidget *cheese_window)
+cheese_window_no_camera_message_area_response (GtkWidget *widget, gint response_id, CheeseWindow *cheese_window)
 {
   GError  *error = NULL;
   gboolean ret;
@@ -1719,7 +1719,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_container_add (GTK_CONTAINER (cheese_window->countdown_frame_fullscreen), cheese_window->countdown_fullscreen);
 
   gtk_widget_realize (cheese_window->screen);
-  gdk_window_set_back_pixmap (cheese_window->screen->window, NULL, FALSE);
+  gdk_window_set_back_pixmap (gtk_widget_get_window (cheese_window->screen), NULL, FALSE);
   gtk_widget_set_app_paintable (cheese_window->screen, TRUE);
   gtk_widget_set_double_buffered (cheese_window->screen, FALSE);
   gtk_widget_add_events (cheese_window->screen, GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
