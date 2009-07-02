@@ -56,7 +56,6 @@
 #include "cheese-window.h"
 #include "ephy-spinner.h"
 #include "gst-audio-play.h"
-#include "gedit-message-area.h"
 #include "cheese-no-camera.h"
 #include "cheese-prefs-dialog.h"
 #include "cheese-flash.h"
@@ -123,8 +122,8 @@ typedef struct
   GtkWidget *countdown_frame_fullscreen;
   GtkWidget *countdown;
   GtkWidget *countdown_fullscreen;
-  GtkWidget *message_area_frame;
-  GtkWidget *message_area;
+  GtkWidget *info_bar_frame;
+  GtkWidget *info_bar;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -1250,7 +1249,7 @@ cheese_window_countdown_picture_cb (gpointer data)
 }
 
 static void
-cheese_window_no_camera_message_area_response (GtkWidget *widget, gint response_id, CheeseWindow *cheese_window)
+cheese_window_no_camera_info_bar_response (GtkWidget *widget, gint response_id, CheeseWindow *cheese_window)
 {
   GError  *error = NULL;
   gboolean ret;
@@ -1565,22 +1564,22 @@ cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name,
 }
 
 static void
-cheese_window_set_message_area (CheeseWindow *cheese_window,
-                                GtkWidget    *message_area)
+cheese_window_set_info_bar (CheeseWindow *cheese_window,
+                                GtkWidget    *info_bar)
 {
-  if (cheese_window->message_area == message_area)
+  if (cheese_window->info_bar == info_bar)
     return;
 
-  if (cheese_window->message_area != NULL)
-    gtk_widget_destroy (cheese_window->message_area);
+  if (cheese_window->info_bar != NULL)
+    gtk_widget_destroy (cheese_window->info_bar);
 
-  cheese_window->message_area = message_area;
+  cheese_window->info_bar = info_bar;
 
-  if (message_area == NULL)
+  if (info_bar == NULL)
     return;
 
-  gtk_container_add (GTK_CONTAINER (cheese_window->message_area_frame), cheese_window->message_area);
-  gtk_widget_show (GTK_WIDGET (cheese_window->message_area));
+  gtk_container_add (GTK_CONTAINER (cheese_window->info_bar_frame), cheese_window->info_bar);
+  gtk_widget_show (GTK_WIDGET (cheese_window->info_bar));
 }
 
 static void
@@ -1599,7 +1598,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 #endif
 
 
-  cheese_window->message_area = NULL;
+  cheese_window->info_bar = NULL;
 
   builder = gtk_builder_new ();
   gtk_builder_add_from_file (builder, PACKAGE_DATADIR "/cheese.ui", &error);
@@ -1630,7 +1629,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->countdown_frame             = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
   cheese_window->effect_frame                = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
   cheese_window->effect_alignment            = GTK_WIDGET (gtk_builder_get_object (builder, "effect_alignment"));
-  cheese_window->message_area_frame          = GTK_WIDGET (gtk_builder_get_object (builder, "message_area_frame"));
+  cheese_window->info_bar_frame              = GTK_WIDGET (gtk_builder_get_object (builder, "info_bar_frame"));
   cheese_window->fullscreen_popup            = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_popup"));
   cheese_window->fullscreen_bar              = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_notebook_bar"));
   cheese_window->button_effects_fullscreen   = GTK_WIDGET (gtk_builder_get_object (builder, "button_effects_fullscreen"));
@@ -1911,7 +1910,7 @@ setup_camera (CheeseWindow *cheese_window)
   gdouble    contrast;
   gdouble    saturation;
   gdouble    hue;
-  GtkWidget *message_area;
+  GtkWidget *info_bar;
 
   GError *error;
 
@@ -1985,14 +1984,14 @@ setup_camera (CheeseWindow *cheese_window)
   ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
   if (cheese_webcam_get_num_webcam_devices (cheese_window->webcam) == 0)
   {
-    message_area = cheese_no_camera_message_area ();
+    info_bar = cheese_no_camera_info_bar_new ();
 
-    g_signal_connect (message_area,
+    g_signal_connect (info_bar,
                       "response",
-                      G_CALLBACK (cheese_window_no_camera_message_area_response),
+                      G_CALLBACK (cheese_window_no_camera_info_bar_response),
                       cheese_window);
 
-    cheese_window_set_message_area (cheese_window, message_area);
+    cheese_window_set_info_bar (cheese_window, info_bar);
   }
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), TRUE);
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture_fullscreen), TRUE);

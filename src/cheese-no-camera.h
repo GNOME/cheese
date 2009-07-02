@@ -23,7 +23,7 @@
 
 G_BEGIN_DECLS
 
-GtkWidget *cheese_no_camera_message_area (void);
+GtkWidget *cheese_no_camera_info_bar_new (void);
 
 G_END_DECLS
 

@@ -38,8 +38,6 @@ cheese_SOURCES = \
 	ephy-spinner.h \
 	gst-audio-play.c \
 	gst-audio-play.h \
-	gedit-message-area.c \
-	gedit-message-area.h \
 	cheese-no-camera.c \
 	cheese-no-camera.h \
 	cheese-prefs-widget.h \

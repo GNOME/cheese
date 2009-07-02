@@ -26,16 +26,15 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n.h>
 
-#include "gedit-message-area.h"
 #include "cheese-no-camera.h"
 
 static void
-cheese_no_camera_set_message_area_text_and_icon (GeditMessageArea *message_area,
+cheese_no_camera_set_info_bar_text_and_icon (GtkInfoBar       *info_bar,
                                                  const gchar      *icon_stock_id,
                                                  const gchar      *primary_text,
                                                  const gchar      *secondary_text)
 {
-  GtkWidget *hbox_content;
+  GtkWidget *content_area;
   GtkWidget *image;
   GtkWidget *vbox;
   gchar     *primary_markup;
@@ -43,17 +42,16 @@ cheese_no_camera_set_message_area_text_and_icon (GeditMessageArea *message_area,
   GtkWidget *primary_label;
   GtkWidget *secondary_label;
 
-  hbox_content = gtk_hbox_new (FALSE, 8);
-  gtk_widget_show (hbox_content);
+  content_area = gtk_info_bar_get_content_area (GTK_INFO_BAR (info_bar));
 
   image = gtk_image_new_from_stock (icon_stock_id, GTK_ICON_SIZE_DIALOG);
   gtk_widget_show (image);
-  gtk_box_pack_start (GTK_BOX (hbox_content), image, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (content_area), image, FALSE, FALSE, 0);
   gtk_misc_set_alignment (GTK_MISC (image), 0.5, 0);
 
   vbox = gtk_vbox_new (FALSE, 6);
   gtk_widget_show (vbox);
-  gtk_box_pack_start (GTK_BOX (hbox_content), vbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (content_area), vbox, TRUE, TRUE, 0);
 
   primary_markup = g_strdup_printf ("<b>%s</b>", primary_text);
   primary_label  = gtk_label_new (primary_markup);
@@ -80,25 +78,20 @@ cheese_no_camera_set_message_area_text_and_icon (GeditMessageArea *message_area,
     gtk_label_set_selectable (GTK_LABEL (secondary_label), TRUE);
     gtk_misc_set_alignment (GTK_MISC (secondary_label), 0, 0.5);
   }
-
-  gedit_message_area_set_contents (GEDIT_MESSAGE_AREA (message_area),
-                                   hbox_content);
 }
 
 GtkWidget *
-cheese_no_camera_message_area ()
+cheese_no_camera_info_bar_new ()
 {
-  GtkWidget *message_area;
+  GtkWidget *info_bar;
 
-  message_area = gedit_message_area_new ();
-  cheese_no_camera_set_message_area_text_and_icon (GEDIT_MESSAGE_AREA (message_area),
+  info_bar = gtk_info_bar_new_with_buttons (GTK_STOCK_HELP, GTK_RESPONSE_HELP, NULL);
+  gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar),
+                                 GTK_MESSAGE_ERROR);
+  cheese_no_camera_set_info_bar_text_and_icon (GTK_INFO_BAR (info_bar),
                                                    "gtk-dialog-error",
                                                    _("No camera found!"),
                                                    _("Please refer to the help for further information."));
 
-  gedit_message_area_add_stock_button_with_text (GEDIT_MESSAGE_AREA (message_area),
-                                                 _("Help"), GTK_STOCK_HELP,
-                                                 GTK_RESPONSE_HELP);
-
-  return message_area;
+  return info_bar;
 }
