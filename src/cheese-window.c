@@ -194,54 +194,6 @@ cheese_window_bring_to_front (gpointer data)
   gtk_window_present (GTK_WINDOW (cheese_window->window));
 }
 
-/* Make url in about dialog clickable */
-static void
-cheese_about_dialog_handle_url (GtkAboutDialog *dialog, const char *url, gpointer data)
-{
-  GError    *error = NULL;
-  GtkWidget *error_dialog;
-  GdkScreen *screen;
-
-  screen = gtk_widget_get_screen (GTK_WIDGET (dialog));
-  gtk_show_uri (screen, url, gtk_get_current_event_time (), &error);
-  if (error != NULL)
-  {
-    error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog),
-                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-                                           GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-                                           _("Failed to open browser to show:\n%s"), url);
-    gtk_dialog_run (GTK_DIALOG (error_dialog));
-    gtk_widget_destroy (error_dialog);
-    g_error_free (error);
-  }
-}
-
-/* Make email in about dialog clickable */
-static void
-cheese_about_dialog_handle_email (GtkAboutDialog *dialog, const char *email, gpointer data)
-{
-  char      *uri;
-  GError    *error = NULL;
-  GtkWidget *error_dialog;
-  GdkScreen *screen;
-
-  uri = g_strconcat ("mailto:", email, NULL);
-
-  screen = gtk_widget_get_screen (GTK_WIDGET (dialog));
-  gtk_show_uri (screen, uri, gtk_get_current_event_time (), &error);
-  if (error != NULL)
-  {
-    error_dialog = gtk_message_dialog_new (GTK_WINDOW (dialog),
-                                           GTK_DIALOG_DESTROY_WITH_PARENT,
-                                           GTK_MESSAGE_ERROR, GTK_BUTTONS_OK,
-                                           _("Failed to open email client to send message to:\n%s"), email);
-    gtk_dialog_run (GTK_DIALOG (error_dialog));
-    gtk_widget_destroy (error_dialog);
-    g_error_free (error);
-  }
-  g_free (uri);
-}
-
 static char *
 audio_play_get_filename (CheeseWindow *cheese_window)
 {
@@ -2050,8 +2002,4 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
     g_error_free (error);
     return;
   }
-
-  /* Make URLs and email clickable in about dialog */
-  gtk_about_dialog_set_url_hook (cheese_about_dialog_handle_url, NULL, NULL);
-  gtk_about_dialog_set_email_hook (cheese_about_dialog_handle_email, NULL, NULL);
 }
