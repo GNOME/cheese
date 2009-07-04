@@ -203,11 +203,18 @@ static gboolean
 cheese_webcam_expose_cb (GtkWidget *widget, GdkEventExpose *event, CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-
+  GstState state;
   GstXOverlay *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
                                                                   GST_TYPE_X_OVERLAY));
 
-  gst_x_overlay_expose (overlay);
+  gst_element_get_state (priv->pipeline, &state, NULL, 0);
+
+  if ((state < GST_STATE_PLAYING) || (overlay == NULL)) {
+    gdk_draw_rectangle (widget->window, widget->style->black_gc, TRUE,
+                        0, 0, widget->allocation.width, widget->allocation.height);
+  } else {
+    gst_x_overlay_expose (overlay);
+  }
 
   return FALSE;
 }
