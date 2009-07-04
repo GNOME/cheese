@@ -153,13 +153,19 @@ cheese_webcam_error_quark (void)
   return g_quark_from_static_string ("cheese-webcam-error-quark");
 }
 
-static void
-cheese_webcam_set_x_overlay (CheeseWebcam *webcam)
+static GstBusSyncReply
+cheese_webcam_bus_sync_handler (GstBus * bus, GstMessage * message, CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
+  GstXOverlay *overlay;
 
-  GstXOverlay *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
-                                                                  GST_TYPE_X_OVERLAY));
+  if (GST_MESSAGE_TYPE (message) != GST_MESSAGE_ELEMENT)
+    return GST_BUS_PASS;
+
+  if (!gst_structure_has_name (message->structure, "prepare-xwindow-id"))
+    return GST_BUS_PASS;
+
+  overlay = GST_X_OVERLAY (GST_MESSAGE_SRC (message));
 
   if (g_object_class_find_property (G_OBJECT_GET_CLASS (overlay),
                                     "force-aspect-ratio"))
@@ -167,6 +173,10 @@ cheese_webcam_set_x_overlay (CheeseWebcam *webcam)
 
   gst_x_overlay_set_xwindow_id (overlay,
                                 GDK_WINDOW_XWINDOW (gtk_widget_get_window (priv->video_window)));
+
+  gst_message_unref (message);
+
+  return GST_BUS_DROP;
 }
 
 static void
@@ -198,6 +208,7 @@ cheese_webcam_expose_cb (GtkWidget *widget, GdkEventExpose *event, CheeseWebcam 
                                                                   GST_TYPE_X_OVERLAY));
 
   gst_x_overlay_expose (overlay);
+
   return FALSE;
 }
 
@@ -1255,11 +1266,7 @@ cheese_webcam_play (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
-  GstStateChangeReturn ret;
-
-  ret = gst_element_set_state (priv->pipeline, GST_STATE_PLAYING);
-  cheese_webcam_set_x_overlay (webcam);
-
+  gst_element_set_state (priv->pipeline, GST_STATE_PLAYING);
   priv->pipeline_is_playing = TRUE;
 }
 
@@ -1654,6 +1661,8 @@ cheese_webcam_setup (CheeseWebcam *webcam, char *hal_dev_udi, GError **error)
 
   g_signal_connect (G_OBJECT (priv->bus), "message",
                     G_CALLBACK (cheese_webcam_bus_message_cb), webcam);
+
+  gst_bus_set_sync_handler (priv->bus, (GstBusSyncHandler) cheese_webcam_bus_sync_handler, webcam);
 
   if (!ok)
     g_error ("Unable link pipeline for photo");
