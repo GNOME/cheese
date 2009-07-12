@@ -1673,6 +1673,13 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_container_add (GTK_CONTAINER (cheese_window->countdown_frame_fullscreen), cheese_window->countdown_fullscreen);
 
   gtk_widget_realize (cheese_window->screen);
+  GdkWindow *win = gtk_widget_get_window (cheese_window->screen);
+  if (!gdk_window_ensure_native (win)) {
+    /* FIXME: this breaks offscreen stuff, we should really find
+     * another way to embed video that doesn't require an XID */
+    /* abort: no native window, no xoverlay, no cheese. */
+    g_error ("Could not create a native X11 window for the drawing area");
+  }
   gdk_window_set_back_pixmap (gtk_widget_get_window (cheese_window->screen), NULL, FALSE);
   gtk_widget_set_app_paintable (cheese_window->screen, TRUE);
   gtk_widget_set_double_buffered (cheese_window->screen, FALSE);
