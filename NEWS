@@ -1,6 +1,61 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.27.4
+  - bump gtk+ requirement to 2.17.3
+  - ensure the drawing area has a native X11 window
+    With the new client-side-window gtk+ widgets do not always have a
+    native window anymore. We need an XID to give to GstXOverlay and embed
+    video into the application. This temporarily works around the issue
+    forcing a native window. Works around bug 588357
+  - use the camera-web icon instead of camera-video
+    we are using camera-web in the project logo/icon but camera-video for the
+    UI. it is more appropriate to use the camera-web icon as it's a) less
+    likely people will use camcorders with cheese b) there is bigger visual
+    distinction between camera-photo and camera-web than camera-photo and
+    camera-video.
+  - manually expose the window if not PLAYING
+    Draw a black background if the pipeline is starting up and the overlay
+    is still not ready to expose the drawing area.
+  - fix broken xoverlay management
+    For some reason this went unnoticed for a long time. We were calling
+    set_x_overlay right after setting PLAYING state (with no warranty that
+    the state change succeeded nor that an overlay was really there). The
+    only right way to do this is to wait for prepare-xwindow-id message. It
+    worked until now just because we've been extremely lucky.
+  - drop url and email handlers
+    Drop url and email handlers used in the about dialog since gtk+ 2.17.2
+    already provides that functionality built in.
+  - drop GEditMessageArea in favor of GtkInfoBar
+    Drop GEditMessageArea since it recently entered gtk+. Fixes bug #586545
+  - use AM_SILENT_RULES if available, fixes bug #587581
+  - Use accessor functions instead direct access, fixes bug #585210
+  - remove markup from translatable strings
+  - keybindings: add configure checks for needed X11 stuff
+    Check for XF86keysym.h availability and add a configure option to
+    disable Webcam Button listening. Copied from rhythmbox.
+  - add little program to emit fake webcam button events
+  - capture webcam buttons
+    Listen to XF86Webcam keypresses to capture webcam buttons. Should
+    work with every driver that correctly binds the input device to
+    KEY_CAMERA events. Fixes bug #521551
+  - remove padding from the take_picture button
+    Use alignment xscale property instead of padding in the take_picture
+    button. Doesn't fix but at least partly works around bug #573301 (the
+    button can now grow up and fill the whole free space with no padding
+    constraint).
+  - sanitize main toolbar structure
+    No real change, just some little restructuring of the glade toolbar
+    definition to make it easier to hack on.
+  - Added/Updated Translations
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - fr, courtesy of Jonathan Ernst
+    - he, courtesy of Yaron Shahrabani
+    - uk, courtesy of Maxim V. Dziumanenko
+  - Added/Updated Documentation
+    - it, courtesy of Rita Bandiera
+
 version 2.27.3
   - Set default resolution to the highest one with a non jerky (higher than
     15fps) framerate, fixes bug #585857
