@@ -36,7 +36,7 @@ def configure(conf):
 	conf.check_pkg('glib-2.0', destvar='GLIB', vnum='2.16.0', mandatory=True)
 	conf.check_pkg('gobject-2.0', destvar='GOBJECT', vnum='2.12.0', mandatory=True)
 	conf.check_pkg('gio-2.0', destvar='GIO', vnum='2.16.0', mandatory=True)
-	conf.check_pkg('gtk+-2.0', destvar='GTK', vnum='2.14.0', mandatory=True)
+	conf.check_pkg('gtk+-2.0', destvar='GTK', vnum='2.17.3', mandatory=True)
 	conf.check_pkg('gdk-2.0', destvar='GDK', vnum='2.14.0', mandatory=True)
 	conf.check_pkg('gnome-desktop-2.0', destvar='LIBGNOMEDESKTOP', vnum='2.25.1', mandatory=True)
 	conf.check_pkg('gconf-2.0', destvar='GCONF', vnum='2.16.0', mandatory=True)
