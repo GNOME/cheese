@@ -1,85 +1,101 @@
-# Kurdish translation of Cheese.
-# Copyright (C) 2008 THE Cheese'S COPYRIGHT HOLDER
+# Kurdish Team http://pckurd.net translation of Cheese.
+# Copyright (C) 2009 THE Cheese'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Cheese package.
-# Erdal Ronahi <erdal.ronahi.nospam@gmail.com>, 2008.
-# , fuzzy
-#
-#
+# Erdal <erdal.ronahi@gmail.com>, 2009
+# Erdal <erdal.ronahi@gmail.com>, 2009.
+# 
+# 
 msgid ""
 msgstr ""
-"Project-Id-Version: Cheese HEAD\n"
+"Project-Id-Version: Cheese 2.28\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2008-11-12 03:13+0100\n"
-"PO-Revision-Date: 2008-11-23 20:51+0200\n"
+"PO-Revision-Date: 2009-07-15 02:43+0200\n"
 "Last-Translator: Erdal Ronahi <erdal.ronahi@gmail.com>\n"
 "Language-Team: Kurdish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!= 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);"
 
 #: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
-msgstr ""
+msgstr "Bernameya Webcam'an Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1016
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1016
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
+msgstr "Bi webcama xwe wêne û vîdyoyan bikişînin, bi efektên seyr."
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
 #: ../data/cheese.schemas.in.h:3
-msgid "A list of effects applied on startup. Possible values are: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
+"Di destpêkê de hinek efekt tên sepandin. Nirxên pêkan ev in: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" û \"warp\""
 
 #: ../data/cheese.schemas.in.h:4
-msgid "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" will be used."
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
 msgstr ""
+"Diyar dike ka wêne li ku tên tomarkirin, ger vala bimîne \"XDG_PHOTO/Webcam"
+"\" wê were bikaranîn."
 
 #: ../data/cheese.schemas.in.h:5
-msgid "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" will be used."
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
 msgstr ""
+"Diyar dike ka vîdyo li ku tên tomarkirin, ger vala bimîne, ger vala bimîne "
+"wê \"XDG_VIDEO/Webcam\" were bikaranîn."
 
 #: ../data/cheese.schemas.in.h:6
 msgid "Height resolution"
-msgstr ""
+msgstr "Hûrbûna Bilindahiyê"
 
 #: ../data/cheese.schemas.in.h:7
-msgid "If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution."
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
 msgstr ""
 
 #: ../data/cheese.schemas.in.h:8
 msgid "Photo Path"
-msgstr ""
+msgstr "Riya Wêneyê"
 
 #: ../data/cheese.schemas.in.h:9
 msgid "Selected Effects"
-msgstr ""
+msgstr "Efektên Bijartî"
 
 #: ../data/cheese.schemas.in.h:10
 msgid "Set to True to show countdown when taking a photo"
-msgstr ""
+msgstr "Ji bo ku dema wêne bê kişandin yek du sê bêjmêre, çalak bikin"
 
 #: ../data/cheese.schemas.in.h:11
 msgid "The device which points to the webcam (e.g. /dev/video0)"
-msgstr ""
+msgstr "Amûra ku webcamê nîşan dide (mînak. /dev/video0)"
 
 #: ../data/cheese.schemas.in.h:12
 msgid "The height resolution of the image captured from the camera"
-msgstr ""
+msgstr "Hûrbûna bilindahiya wêneya ku bi kamerayê tê kişandin"
 
 #: ../data/cheese.schemas.in.h:13
 msgid "The width resolution of the image captured from the camera"
-msgstr ""
+msgstr "Hûrbûna firehiya wêneya ku bi kamerayê tê kişandin"
 
 #: ../data/cheese.schemas.in.h:14
 msgid "Use a countdown"
-msgstr ""
+msgstr "Jimertina yek du sê bi kar bîne"
 
 #: ../data/cheese.schemas.in.h:15
 msgid "Video Path"
-msgstr ""
+msgstr "Riya Vîdyoyê"
 
 #: ../data/cheese.schemas.in.h:16
 msgid "Webcam device string indicator"
@@ -91,110 +107,104 @@ msgstr ""
 
 #: ../data/cheese.schemas.in.h:18
 msgid "Width resolution"
-msgstr ""
+msgstr "Hûrbûna Firehiyê"
 
-#: ../data/cheese.ui.h:1
-#: ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:177
 msgid "Cheese"
-msgstr ""
+msgstr "Cheese"
 
 #: ../data/cheese.ui.h:2
 msgid "Switch to Photo Mode"
-msgstr ""
+msgstr "Biguhere li Moda Wêneyê"
 
 #: ../data/cheese.ui.h:3
 msgid "Switch to Video Mode"
-msgstr ""
+msgstr "Biguhere li Moda Vîdyoyê"
 
 #: ../data/cheese.ui.h:4
 msgid "Switch to the Effects Selector"
-msgstr ""
+msgstr "Biguhere li Bijartina Efektan"
 
-#: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:1140
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1140
 #: ../src/cheese-window.c:1379
 msgid "_Effects"
-msgstr ""
+msgstr "_Efekt"
 
 #: ../data/cheese.ui.h:6
 msgid "_Leave Fullscreen"
-msgstr ""
+msgstr "Ji dîmender tije der_keve"
 
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-window.c:1391
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1391
 msgid "_Photo"
-msgstr "_Foto"
+msgstr "_Wêne"
 
-#: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1443
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1443
 msgid "_Take a Photo"
-msgstr ""
+msgstr "Wêneyek bi_kişîne"
 
-#: ../data/cheese.ui.h:9
-#: ../src/cheese-window.c:1392
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1392
 msgid "_Video"
-msgstr "_Vîdeo"
+msgstr "_Vîdyo"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "<b>Camera</b>"
-msgstr ""
+msgstr "<b>Kamera</b>"
 
 #: ../data/cheese-prefs.ui.h:2
 msgid "<b>Resolution</b>"
-msgstr ""
+msgstr "<b>Hûrbûn</b>"
 
-#: ../data/cheese-prefs.ui.h:3
-#: ../src/cheese-window.c:1383
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1383
 msgid "Preferences"
-msgstr ""
+msgstr "Vebijêrk"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
-msgstr ""
+msgstr "Efekt tune"
 
 #: ../src/cheese-effect-chooser.c:62
 msgid "Mauve"
-msgstr ""
+msgstr "Mauve"
 
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
-msgstr ""
+msgstr "Noir/Blanc"
 
 #: ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
-msgstr ""
+msgstr "Satûrasyon"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
-msgstr ""
+msgstr "Hulk"
 
 #: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
-msgstr ""
+msgstr "Vajîkirina Tîkane"
 
 #: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
-msgstr ""
+msgstr "Vajîkirina Berwarî"
 
 #: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
-msgstr ""
+msgstr "Shagadelic"
 
 #: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
-msgstr ""
+msgstr "Şaşwaz"
 
 #: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
-msgstr ""
+msgstr "Sînor"
 
 #: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
-msgstr ""
+msgstr "Dice"
 
 #: ../src/cheese-effect-chooser.c:82
 msgid "Warp"
-msgstr ""
+msgstr "Xwar"
 
 #. TRANSLATORS:
 #. * This is the countdown number when taking the photo.
@@ -202,8 +212,7 @@ msgstr ""
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../src/cheese-countdown.c:436
-#: ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
 #: ../src/cheese-countdown.c:474
 #, c-format
 msgid "%d "
@@ -211,11 +220,11 @@ msgstr "%d "
 
 #: ../src/cheese-no-camera.c:96
 msgid "No camera found!"
-msgstr ""
+msgstr "Tu kamera nehat dîtin!"
 
 #: ../src/cheese-no-camera.c:97
 msgid "Please refer to the help for further information."
-msgstr ""
+msgstr "Ji bo zêdetir agahiyan serî li alîkariyê bidin."
 
 #: ../src/cheese-no-camera.c:100
 msgid "Help"
@@ -223,19 +232,19 @@ msgstr "Alîkarî"
 
 #: ../src/cheese-webcam.c:1548
 msgid "One or more needed gstreamer elements are missing: "
-msgstr ""
+msgstr "Yek an jî zêdetir elementên gstreamer ên pêwist wenda ne:"
 
 #: ../src/cheese-window.c:77
 msgid "_Skip"
-msgstr ""
+msgstr "Derbasbe"
 
 #: ../src/cheese-window.c:78
 msgid "S_kip All"
-msgstr ""
+msgstr "Hemûyan Derbasbe"
 
 #: ../src/cheese-window.c:79
 msgid "Delete _All"
-msgstr ""
+msgstr "Hemûyan Jê Bibe"
 
 #: ../src/cheese-window.c:202
 #, c-format
@@ -243,6 +252,8 @@ msgid ""
 "Failed to open browser to show:\n"
 "%s"
 msgstr ""
+"Vekirina gerokê pêk nehat ji bo nîşandana:\n"
+"%s"
 
 #: ../src/cheese-window.c:226
 #, c-format
@@ -250,6 +261,8 @@ msgid ""
 "Failed to open email client to send message to:\n"
 "%s"
 msgstr ""
+"Vekirina daxwazkera emailê pêk nehat ji bo şandina peyamê li:\n"
+"%s"
 
 #: ../src/cheese-window.c:469
 #, c-format
@@ -257,107 +270,124 @@ msgid ""
 "Failed to launch program to show:\n"
 "%s"
 msgstr ""
+"Sepandina bernameyê pêk nehat ji bo nîşandana:\n"
+"%s"
 
 #: ../src/cheese-window.c:488
 msgid "Save File"
-msgstr "Pelî Tomar Bike"
+msgstr "Pelî Tomarke"
 
 #: ../src/cheese-window.c:526
 #, c-format
 msgid "Could not save %s"
-msgstr ""
+msgstr "Tomarkirina %s pêk nehat"
 
 #: ../src/cheese-window.c:549
 msgid "Error while deleting"
-msgstr ""
+msgstr "Di jêbirinê de çewtî"
 
 #: ../src/cheese-window.c:550
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr ""
+msgstr "Pela \"%s\" nayê jêbirin. Berfirehî: %s"
 
 #: ../src/cheese-window.c:577
 #, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?Are you sure you want to permanently delete the %'d selected items?"
+msgid ""
+"Are you sure you want to permanently delete the %'d selected item?Are you "
+"sure you want to permanently delete the %'d selected items?"
 msgstr ""
 
 #: ../src/cheese-window.c:584
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr ""
+msgstr "Ji dil dixwazî  \"%s\" bi temamî jê bibî?"
 
 #: ../src/cheese-window.c:587
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
-msgstr ""
+msgstr "Ger hûn hêmanekê jê bibî, wê bi temamî wenda bibe."
 
 #: ../src/cheese-window.c:608
 msgid "Unknown Error"
-msgstr ""
+msgstr "Çewtiya Nenas"
 
 #: ../src/cheese-window.c:638
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr ""
+msgstr "Nikare bavêje sergoyê, dixwazî bi temamî û yekcarê jê bibim?"
 
 #: ../src/cheese-window.c:639
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr ""
+msgstr "Pela \"%s\" nayê avêtin li sergoyê. Berfirehî: %s"
 
 #: ../src/cheese-window.c:711
 #, c-format
 msgid "Really move all photos and videos to the trash?"
-msgstr ""
+msgstr "Bi rastî hemû vîdyo û wêneyan bavêjim sergoyê?"
 
 #: ../src/cheese-window.c:719
 msgid "_Move to Trash"
-msgstr "Bişî_ne Çopê"
+msgstr "Ba_vêje Çopê"
 
 #: ../src/cheese-window.c:837
 #, c-format
 msgid "Could not set the Account Photo"
-msgstr ""
+msgstr "Mîhengkirina weke Wêneya Hesabê pêk nehat"
 
 #: ../src/cheese-window.c:869
 msgid "Media files"
-msgstr ""
+msgstr "Pelên Medya"
 
-#: ../src/cheese-window.c:942
-#: ../src/cheese-window.c:1214
+#: ../src/cheese-window.c:942 ../src/cheese-window.c:1214
 msgid "Unable to open help file for Cheese"
-msgstr ""
+msgstr "Ji bo Cheeseê vekirina pela alîkariyê çênebû"
 
 #: ../src/cheese-window.c:994
 msgid "translator-credits"
-msgstr ""
+msgstr "Sîmurg56 <simurg56 at gmail dot com>"
 
 #: ../src/cheese-window.c:997
-msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
 msgstr ""
+"Ev nivîsbariye azad e; you can redistribute it and/or modify it under the "
+"terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
 
 #: ../src/cheese-window.c:1001
-msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
 msgstr ""
 
 #: ../src/cheese-window.c:1005
-msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
 #: ../src/cheese-window.c:1022
 msgid "Cheese Website"
-msgstr ""
+msgstr "Malpera Cheese"
 
 #: ../src/cheese-window.c:1230
 msgid "_Start Recording"
-msgstr ""
+msgstr "_Dest bi tomarkirinê bike"
 
 #: ../src/cheese-window.c:1329
 msgid "_Stop Recording"
-msgstr ""
+msgstr "Tomarkirinê bi_qedîne"
 
 #: ../src/cheese-window.c:1360
 msgid "_Cheese"
-msgstr ""
+msgstr "_Cheese"
 
 #: ../src/cheese-window.c:1362
 msgid "_Edit"
@@ -365,7 +395,7 @@ msgstr "_Sererastkirin"
 
 #: ../src/cheese-window.c:1363
 msgid "Move All to Trash"
-msgstr ""
+msgstr "Hemûyan Bavêje Çopê"
 
 #: ../src/cheese-window.c:1366
 msgid "_Help"
@@ -377,11 +407,11 @@ msgstr "_Naverok"
 
 #: ../src/cheese-window.c:1369
 msgid "Help on this Application"
-msgstr ""
+msgstr "Ji bo vê sepanê alîkarî"
 
 #: ../src/cheese-window.c:1375
 msgid "Countdown"
-msgstr ""
+msgstr "Jimartina yek du sê"
 
 #: ../src/cheese-window.c:1396
 msgid "_Open"
@@ -389,60 +419,59 @@ msgstr "_Vekirin"
 
 #: ../src/cheese-window.c:1398
 msgid "Save _As..."
-msgstr "Tomar Bike _Wekî..."
+msgstr "Tomarke _weke..."
 
 #: ../src/cheese-window.c:1400
 msgid "Move to _Trash"
-msgstr ""
+msgstr "Bavêje Sergoyê"
 
 #: ../src/cheese-window.c:1402
 msgid "Delete"
-msgstr "Jêbirin"
+msgstr "Jê Bibe"
 
-#: ../src/cheese-window.c:1407
-#: ../src/cheese-window.c:1636
+#: ../src/cheese-window.c:1407 ../src/cheese-window.c:1636
 msgid "_Take a photo"
-msgstr ""
+msgstr "Wêneyek Bi_kişîne"
 
 #: ../src/cheese-window.c:1411
 msgid "_Recording"
-msgstr ""
+msgstr "_Tomarkirin"
 
 #: ../src/cheese-window.c:1415
 msgid "_Set As Account Photo"
-msgstr ""
+msgstr "Bike Wêneya _Hesabê"
 
 #: ../src/cheese-window.c:1419
 msgid "Send by _Mail"
-msgstr ""
+msgstr "Bi _mailê bişîne"
 
 #: ../src/cheese-window.c:1423
 msgid "Send _To"
-msgstr ""
+msgstr "Bişîne _li"
 
 #: ../src/cheese-window.c:1427
 msgid "Export to F-_Spot"
-msgstr ""
+msgstr "Derxe li F-spot"
 
 #: ../src/cheese-window.c:1431
 msgid "Export to _Flickr"
-msgstr ""
+msgstr "Derxe li _Flickr"
 
 #: ../src/cheese-window.c:1455
 msgid "_Start recording"
-msgstr ""
+msgstr "_Dest bi tomarkirinê bike"
 
 #: ../src/cheese-window.c:1779
 msgid "Quit"
-msgstr "Derketin"
+msgstr "Derkeve"
 
 #: ../src/cheese-window.c:1785
 msgid "About"
-msgstr "Der barê de"
+msgstr "Dermafê de"
 
 #: ../src/cheese-window.c:1866
 msgid "Check your gstreamer installation"
-msgstr "Sazkirina xwe ya gstreamer kontrol bike"
+msgstr "Sazkirina xwe ya gstreamer kontrol bikin"
 
 #: ../src/cheese.c:161
 msgid "Be verbose"
@@ -450,5 +479,46 @@ msgstr ""
 
 #: ../src/cheese.c:179
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
+msgstr "- Bi webcama xwe wêne û vîdyoyan bikişînin, bi efektên seyr."
 
+#~ msgid "Adjusts brightness level of the picture coming from the webcam"
+#~ msgstr "Asta Ronahiya wêneya ku ji webcamê tê, mîheng bikin"
+
+#~ msgid "Adjusts contrast level of the picture coming from the webcam"
+#~ msgstr "Asta tûjbûna wêneya ku ji webcamê tê, mîheng bikin"
+
+#~ msgid "Adjusts hue level of the picture coming from the webcam"
+#~ msgstr "Asta hue a wêneya ku ji webcamê tê, mîheng bikin"
+
+#~ msgid "Adjusts saturation level of the picture coming from the webcam"
+#~ msgstr "Asta satûrasyona wêneya ku ji webcamê tê, mîheng bikin"
+
+#~ msgid "Picture brightness"
+#~ msgstr "Ronahiya Wêneyê"
+
+#~ msgid "Picture contrast"
+#~ msgstr "Tûjbûna wêneyê"
+
+#~ msgid "Picture hue"
+#~ msgstr "Hue a wêneyê"
+
+#~ msgid "Picture saturation"
+#~ msgstr "Satûrasyona wêneyê"
+
+#~ msgid "Brightness"
+#~ msgstr "Ronahî"
+
+#~ msgid "Contrast"
+#~ msgstr "Tûjbûn"
+
+#~ msgid "Device"
+#~ msgstr "Amûr"
+
+#~ msgid "Hue"
+#~ msgstr "Hue"
+
+#~ msgid "Image properties"
+#~ msgstr "Taybetiyên Wêneyê"
+
+#~ msgid "Webcam"
+#~ msgstr "Webcam"
