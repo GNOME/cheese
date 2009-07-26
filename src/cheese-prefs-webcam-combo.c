@@ -177,7 +177,7 @@ cheese_prefs_webcam_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
   /* Set sensitive or not depending on whether or not there are webcam devices
    * available */
-  gtk_widget_set_sensitive (combo_box, num_devices > 0);
+  gtk_widget_set_sensitive (GTK_COMBO_BOX (combo_box), num_devices > 1);
 
   g_array_free (webcam_devices, TRUE);
 }

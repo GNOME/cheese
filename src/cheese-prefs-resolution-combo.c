@@ -175,6 +175,8 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
   g_signal_connect (G_OBJECT (combo_box), "changed",
                     G_CALLBACK (combo_selection_changed),
                     self);
+
+  gtk_widget_set_sensitive (GTK_COMBO_BOX (combo_box), formats->len > 1);
 }
 
 static void
