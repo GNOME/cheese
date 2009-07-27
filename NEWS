@@ -1,6 +1,25 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.27.5
+  - add new photo and burst icons, courtesy of Ulisse Perusin
+  - remove the label of the photo and video modes
+  - support taking a series of photos, fixes bug #581997
+    this introduces the burst mode in cheese.
+    the burst mode allows to take a series of photos
+    with a configurable delay and number of photos
+  - Make webcam and resolution settings not sensitive if just 1 option
+    is available. If there are no options to choose, make the webcam and
+    resolution combo box insensitive, fixes bug #588353
+  - Added/Updated Translations
+    - it, courtesy of Alessandro Falappa
+    - ku, courtesy of Erdal Ronahi
+    - pt_BR, courtesy of Djavan Fagundes
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - es, courtesy of Jorge González
+
 version 2.27.4
   - bump gtk+ requirement to 2.17.3
   - ensure the drawing area has a native X11 window
