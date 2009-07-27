@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-06-14 11:13+0200\n"
-"PO-Revision-Date: 2009-06-14 11:16+0100\n"
+"POT-Creation-Date: 2009-07-28 01:56+0200\n"
+"PO-Revision-Date: 2009-07-28 01:58+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgid "Cheese Webcam Booth"
 msgstr "Webbkamerabåset Cheese"
 
 #: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1031
+#: ../src/cheese-window.c:1025
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ta bilder och videor från din webbkamera med roliga grafiska effekter"
 
@@ -64,62 +64,78 @@ msgid "If set to true, then Cheese will have a feature allowing you to delete a 
 msgstr "Om inställd till sant kommer Cheese att ha en funktion som låter dig ta bort en fil omedelbart, istället för att flytta den till papperskorgen. Denna funktion kan vara farlig så använd den med försiktighet."
 
 #: ../data/cheese.schemas.in.h:12
+msgid "Milliseconds between photos in burst mode."
+msgstr "Millisekunder mellan foton i multipelt läge."
+
+#: ../data/cheese.schemas.in.h:13
+msgid "Number of photos in burst mode."
+msgstr "Antal foton i multipelt läge."
+
+#: ../data/cheese.schemas.in.h:14
 msgid "Photo Path"
 msgstr "Fotosökväg"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:15
 msgid "Picture brightness"
 msgstr "Bildens ljusstyrka"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:16
 msgid "Picture contrast"
 msgstr "Bildkontrast"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:17
 msgid "Picture hue"
 msgstr "Bildens färgnyans"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:18
 msgid "Picture saturation"
 msgstr "Bildens färgmättnad"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:19
 msgid "Selected Effects"
 msgstr "Valda effekter"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:20
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Ställ in till sant för att visa nedräkning när ett foto tas"
 
-#: ../data/cheese.schemas.in.h:19
+#: ../data/cheese.schemas.in.h:21
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "Enheten som pekar till webbkameran (t.ex. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:20
+#: ../data/cheese.schemas.in.h:22
 msgid "The height resolution of the image captured from the camera"
 msgstr "Höjdupplösningen för bilden som fångas med kameran"
 
-#: ../data/cheese.schemas.in.h:21
+#: ../data/cheese.schemas.in.h:23
+msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos."
+msgstr "Längden i tid, i millisekunder, att vänta mellan varje fototagning i en multipel fotosekvens."
+
+#: ../data/cheese.schemas.in.h:24
+msgid "The number of photos to take in a single burst."
+msgstr "Antalet foton att ta i en enda multipel tagning."
+
+#: ../data/cheese.schemas.in.h:25
 msgid "The width resolution of the image captured from the camera"
 msgstr "Breddupplösningen för bilden som fångas med kameran"
 
-#: ../data/cheese.schemas.in.h:22
+#: ../data/cheese.schemas.in.h:26
 msgid "Use a countdown"
 msgstr "Använd en nedräknare"
 
-#: ../data/cheese.schemas.in.h:23
+#: ../data/cheese.schemas.in.h:27
 msgid "Video Path"
 msgstr "Videosökväg"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:28
 msgid "Webcam device string indicator"
 msgstr "Strängindikator för webbkameraenhet"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:29
 msgid "Whether to enable immediate deletion"
 msgstr "Huruvida omedelbar borttagning ska aktiveras"
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:30
 msgid "Width resolution"
 msgstr "Upplösning för bredd"
 
@@ -129,79 +145,74 @@ msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/cheese.ui.h:2
+msgid "Switch to Burst Mode"
+msgstr "Växla till multipelt läge"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "Växla till fotoläge"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "Växla till videoläge"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "Växla till effektväljaren"
 
-#: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:1155
-#: ../src/cheese-window.c:1397
+#: ../data/cheese.ui.h:6
+#: ../src/cheese-window.c:1149
+#: ../src/cheese-window.c:1430
 msgid "_Effects"
 msgstr "_Effekter"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "_Lämna helskärmsläge"
 
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-window.c:1409
-msgid "_Photo"
-msgstr "_Foto"
-
 #: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1461
+#: ../src/cheese-window.c:1459
+#: ../src/cheese-window.c:1499
 msgid "_Take a Photo"
 msgstr "_Ta ett foto"
 
-#: ../data/cheese.ui.h:9
-#: ../src/cheese-window.c:1410
-msgid "_Video"
-msgstr "_Video"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Image properties</b>"
-msgstr "<b>Bildegenskaper</b>"
-
-#: ../data/cheese-prefs.ui.h:2
-msgid "<b>Webcam</b>"
-msgstr "<b>Webbkamera</b>"
-
-#: ../data/cheese-prefs.ui.h:3
 msgid "Brightness"
 msgstr "Ljusstyrka"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:2
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:3
 msgid "Device"
 msgstr "Enhet"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:4
 msgid "Hue"
 msgstr "Nyans"
 
-#: ../data/cheese-prefs.ui.h:7
-#: ../src/cheese-window.c:1401
+#: ../data/cheese-prefs.ui.h:5
+msgid "Image properties"
+msgstr "Bildegenskaper"
+
+#: ../data/cheese-prefs.ui.h:6
+#: ../src/cheese-window.c:1434
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:7
 msgid "Resolution"
 msgstr "Upplösning"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:8
 #: ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "Mättnad"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Webcam"
+msgstr "Webbkamera"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -260,53 +271,31 @@ msgstr "Vrid"
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "Ingen kamera hittades!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "Referera till hjälpen för ytterligare information."
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "Hjälp"
-
-#: ../src/cheese-webcam.c:1615
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga gstreamer-element saknas: "
 
-#: ../src/cheese-window.c:80
+#: ../src/cheese-window.c:84
 msgid "_Skip"
 msgstr "_Hoppa över"
 
-#: ../src/cheese-window.c:81
+#: ../src/cheese-window.c:85
 msgid "S_kip All"
 msgstr "Ho_ppa över alla"
 
-#: ../src/cheese-window.c:82
+#: ../src/cheese-window.c:86
 msgid "Delete _All"
 msgstr "Ta bort _alla"
 
-#: ../src/cheese-window.c:207
-#, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"Misslyckades med att öppna webbläsare för att visa:\n"
-"%s"
-
-#: ../src/cheese-window.c:232
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"Misslyckades med att öppna e-postklient för att skicka meddelande till:\n"
-"%s"
-
-#: ../src/cheese-window.c:481
+#: ../src/cheese-window.c:475
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -317,78 +306,78 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: ../src/cheese-window.c:502
+#: ../src/cheese-window.c:496
 msgid "Save File"
 msgstr "Spara fil"
 
-#: ../src/cheese-window.c:540
+#: ../src/cheese-window.c:534
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunde inte spara %s"
 
-#: ../src/cheese-window.c:563
+#: ../src/cheese-window.c:557
 msgid "Error while deleting"
 msgstr "Fel vid borttagning"
 
-#: ../src/cheese-window.c:564
+#: ../src/cheese-window.c:558
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Filen \"%s\" kan inte tas bort. Detaljer: %s"
 
-#: ../src/cheese-window.c:591
+#: ../src/cheese-window.c:585
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "Är du säker på att du vill permanent ta bort %'d markerat objekt?"
 msgstr[1] "Är du säker på att du vill permanent ta bort %'d markerade objekt?"
 
-#: ../src/cheese-window.c:598
+#: ../src/cheese-window.c:592
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Är du säker på att du vill permanent ta bort \"%s\"?"
 
-#: ../src/cheese-window.c:601
+#: ../src/cheese-window.c:595
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Om du tar bort ett objekt kommer det att försvinna för alltid."
 
-#: ../src/cheese-window.c:622
+#: ../src/cheese-window.c:616
 msgid "Unknown Error"
 msgstr "Okänt fel"
 
-#: ../src/cheese-window.c:652
+#: ../src/cheese-window.c:646
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Kan inte flytta filen till papperskorgen. Vill du ta bort den omedelbart?"
 
-#: ../src/cheese-window.c:653
+#: ../src/cheese-window.c:647
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Filen \"%s\" kan inte flyttas till papperskorgen. Detaljer: %s"
 
-#: ../src/cheese-window.c:725
+#: ../src/cheese-window.c:719
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Verkligen flytta alla foton och videor till papperskorgen?"
 
-#: ../src/cheese-window.c:733
+#: ../src/cheese-window.c:727
 msgid "_Move to Trash"
 msgstr "Flytta till _papperskorgen"
 
-#: ../src/cheese-window.c:851
+#: ../src/cheese-window.c:845
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kunde inte ställa in kontofotot"
 
-#: ../src/cheese-window.c:883
+#: ../src/cheese-window.c:877
 msgid "Media files"
 msgstr "Mediafiler"
 
-#: ../src/cheese-window.c:957
-#: ../src/cheese-window.c:1232
+#: ../src/cheese-window.c:951
+#: ../src/cheese-window.c:1231
 msgid "Unable to open help file for Cheese"
 msgstr "Kunde inte öppna hjälpfilen för Cheese"
 
-#: ../src/cheese-window.c:1009
+#: ../src/cheese-window.c:1003
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -396,118 +385,134 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/cheese-window.c:1012
+#: ../src/cheese-window.c:1006
 msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 msgstr ""
 "Följande text är en informell översättning som enbart tillhandahålls i informativt syfte. För alla juridiska tolkningar gäller den engelska originaltexten.\n"
 "Detta program är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.\n"
 
-#: ../src/cheese-window.c:1016
+#: ../src/cheese-window.c:1010
 msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 msgstr "Detta program distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för ytterligare information.\n"
 
-#: ../src/cheese-window.c:1020
+#: ../src/cheese-window.c:1014
 msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr "Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1037
+#: ../src/cheese-window.c:1031
 msgid "Cheese Website"
 msgstr "Webbplats för Cheese"
 
-#: ../src/cheese-window.c:1248
+#: ../src/cheese-window.c:1247
 msgid "_Start Recording"
 msgstr "_Starta inspelning"
 
-#: ../src/cheese-window.c:1347
+#: ../src/cheese-window.c:1380
 msgid "_Stop Recording"
 msgstr "_Stoppa inspelning"
 
-#: ../src/cheese-window.c:1378
+#: ../src/cheese-window.c:1411
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1380
+#: ../src/cheese-window.c:1413
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: ../src/cheese-window.c:1381
+#: ../src/cheese-window.c:1414
 msgid "Move All to Trash"
 msgstr "Flytta allt till papperskorgen"
 
-#: ../src/cheese-window.c:1384
+#: ../src/cheese-window.c:1417
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1420
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1420
 msgid "Help on this Application"
 msgstr "Hjälp för detta program"
 
-#: ../src/cheese-window.c:1393
+#: ../src/cheese-window.c:1426
 msgid "Countdown"
 msgstr "Nedräkning"
 
-#: ../src/cheese-window.c:1414
+#: ../src/cheese-window.c:1442
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../src/cheese-window.c:1443
+msgid "_Video"
+msgstr "_Video"
+
+#: ../src/cheese-window.c:1444
+msgid "_Burst"
+msgstr "_Multipelt"
+
+#: ../src/cheese-window.c:1448
 msgid "_Open"
 msgstr "_Öppna"
 
-#: ../src/cheese-window.c:1416
+#: ../src/cheese-window.c:1450
 msgid "Save _As..."
 msgstr "Spara s_om..."
 
-#: ../src/cheese-window.c:1418
+#: ../src/cheese-window.c:1452
 msgid "Move to _Trash"
 msgstr "Flytta till _papperskorgen"
 
-#: ../src/cheese-window.c:1420
+#: ../src/cheese-window.c:1454
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../src/cheese-window.c:1425
-#: ../src/cheese-window.c:1654
-msgid "_Take a photo"
-msgstr "_Ta ett foto"
-
-#: ../src/cheese-window.c:1429
+#: ../src/cheese-window.c:1463
 msgid "_Recording"
 msgstr "_Inspelning"
 
-#: ../src/cheese-window.c:1433
+#: ../src/cheese-window.c:1467
+#: ../src/cheese-window.c:1512
+msgid "_Take multiple Photos"
+msgstr "_Ta flera foton"
+
+#: ../src/cheese-window.c:1471
 msgid "_Set As Account Photo"
 msgstr "Ställ in som konto_foto"
 
-#: ../src/cheese-window.c:1437
+#: ../src/cheese-window.c:1475
 msgid "Send by _Mail"
 msgstr "Skicka via e_-post"
 
-#: ../src/cheese-window.c:1441
+#: ../src/cheese-window.c:1479
 msgid "Send _To"
 msgstr "Skicka _till"
 
-#: ../src/cheese-window.c:1445
+#: ../src/cheese-window.c:1483
 msgid "Export to F-_Spot"
 msgstr "Exportera till F-_Spot"
 
-#: ../src/cheese-window.c:1449
+#: ../src/cheese-window.c:1487
 msgid "Export to _Flickr"
 msgstr "Exportera till _Flickr"
 
-#: ../src/cheese-window.c:1473
+#: ../src/cheese-window.c:1525
 msgid "_Start recording"
 msgstr "_Starta inspelning"
 
-#: ../src/cheese-window.c:1803
+#: ../src/cheese-window.c:1709
+msgid "_Take a photo"
+msgstr "_Ta ett foto"
+
+#: ../src/cheese-window.c:1873
 msgid "Quit"
 msgstr "Avsluta"
 
-#: ../src/cheese-window.c:1809
+#: ../src/cheese-window.c:1879
 msgid "About"
 msgstr "Om"
 
-#: ../src/cheese-window.c:1901
+#: ../src/cheese-window.c:1980
 msgid "Check your gstreamer installation"
 msgstr "Kontrollera din gstreamer-installation"
 
@@ -519,6 +524,20 @@ msgstr "Var informativ"
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- Ta bilder och videor från din webbkamera med roliga grafiska effekter"
 
+#~ msgid "Help"
+#~ msgstr "Hjälp"
+#~ msgid ""
+#~ "Failed to open browser to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Misslyckades med att öppna webbläsare för att visa:\n"
+#~ "%s"
+#~ msgid ""
+#~ "Failed to open email client to send message to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Misslyckades med att öppna e-postklient för att skicka meddelande till:\n"
+#~ "%s"
 #~ msgid "<b>Resolution</b>"
 #~ msgstr "<b>Upplösning</b>"
 #~ msgid "The Y resolution of the image captured from the camera"
