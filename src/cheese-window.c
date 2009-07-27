@@ -1295,49 +1295,50 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
 static gboolean
 cheese_window_take_burst_photo (gpointer data)
 {
-    gboolean countdown;
-    CheeseWindow *cheese_window = (CheeseWindow *) data;
-    g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
-    if (countdown)
-    {
-      if (cheese_window->isFullscreen)
-      {
-        cheese_countdown_start ((CheeseCountdown *) cheese_window->countdown_fullscreen,
-                                cheese_window_countdown_picture_cb,
-                                cheese_window_countdown_hide_cb,
-                                (gpointer) cheese_window);
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->fullscreen_bar), 1);
+  gboolean      countdown;
+  CheeseWindow *cheese_window = (CheeseWindow *) data;
 
-        /* show bar, start timeout
-         * ATTENTION: if the countdown is longer than FULLSCREEN_TIMEOUT,
-         * the bar will disapear before the countdown ends
-         */
-        cheese_window_fullscreen_show_bar (cheese_window);
-        cheese_window_fullscreen_set_timeout (cheese_window);
-      }
-      else
-      {
-        cheese_countdown_start ((CheeseCountdown *) cheese_window->countdown,
-                                cheese_window_countdown_picture_cb,
-                                cheese_window_countdown_hide_cb,
-                                (gpointer) cheese_window);
-        gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 1);
-      }
+  g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
+  if (countdown)
+  {
+    if (cheese_window->isFullscreen)
+    {
+      cheese_countdown_start ((CheeseCountdown *) cheese_window->countdown_fullscreen,
+                              cheese_window_countdown_picture_cb,
+                              cheese_window_countdown_hide_cb,
+                              (gpointer) cheese_window);
+      gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->fullscreen_bar), 1);
+
+      /* show bar, start timeout
+       * ATTENTION: if the countdown is longer than FULLSCREEN_TIMEOUT,
+       * the bar will disapear before the countdown ends
+       */
+      cheese_window_fullscreen_show_bar (cheese_window);
+      cheese_window_fullscreen_set_timeout (cheese_window);
     }
     else
     {
-      cheese_window_countdown_picture_cb (cheese_window);
+      cheese_countdown_start ((CheeseCountdown *) cheese_window->countdown,
+                              cheese_window_countdown_picture_cb,
+                              cheese_window_countdown_hide_cb,
+                              (gpointer) cheese_window);
+      gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 1);
     }
+  }
+  else
+  {
+    cheese_window_countdown_picture_cb (cheese_window);
+  }
 
-    gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
-    gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, FALSE);
+  gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
+  gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, FALSE);
 
-    cheese_window->repeat_count--;
-    if (cheese_window->repeat_count <= 0)
-    {
-      return FALSE;
-    }
-    return TRUE;
+  cheese_window->repeat_count--;
+  if (cheese_window->repeat_count <= 0)
+  {
+    return FALSE;
+  }
+  return TRUE;
 }
 
 static void
@@ -1348,13 +1349,13 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
     cheese_window->repeat_count = 1;
-    cheese_window_take_burst_photo(cheese_window);
+    cheese_window_take_burst_photo (cheese_window);
 
     /* FIXME: set menu inactive */
   }
   else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
   {
-    guint repeat_delay = 1000;
+    guint    repeat_delay = 1000;
     gboolean countdown;
 
     g_object_get (cheese_window->gconf, "gconf_prop_burst_delay", &repeat_delay, NULL);
@@ -1363,13 +1364,12 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
     if (countdown && repeat_delay < 5000)
     {
-      // A countdown takes 4 seconds, leave some headroom before repeating it.
-      // Magic number chosen via expiriment on Netbook
+      /* A countdown takes 4 seconds, leave some headroom before repeating it.
+       * Magic number chosen via expiriment on Netbook */
       repeat_delay = 5000;
     }
 
     g_timeout_add (repeat_delay, &cheese_window_take_burst_photo, cheese_window);
-
   }
   else if (cheese_window->webcam_mode == WEBCAM_MODE_VIDEO)
   {
@@ -1583,7 +1583,7 @@ cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name,
 
 static void
 cheese_window_set_info_bar (CheeseWindow *cheese_window,
-                                GtkWidget    *info_bar)
+                            GtkWidget    *info_bar)
 {
   if (cheese_window->info_bar == info_bar)
     return;
@@ -1742,9 +1742,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   gtk_widget_realize (cheese_window->screen);
   GdkWindow *win = gtk_widget_get_window (cheese_window->screen);
-  if (!gdk_window_ensure_native (win)) {
+  if (!gdk_window_ensure_native (win))
+  {
     /* FIXME: this breaks offscreen stuff, we should really find
      * another way to embed video that doesn't require an XID */
+
     /* abort: no native window, no xoverlay, no cheese. */
     g_error ("Could not create a native X11 window for the drawing area");
   }

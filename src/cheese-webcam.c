@@ -154,10 +154,10 @@ cheese_webcam_error_quark (void)
 }
 
 static GstBusSyncReply
-cheese_webcam_bus_sync_handler (GstBus * bus, GstMessage * message, CheeseWebcam *webcam)
+cheese_webcam_bus_sync_handler (GstBus *bus, GstMessage *message, CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-  GstXOverlay *overlay;
+  GstXOverlay         *overlay;
 
   if (GST_MESSAGE_TYPE (message) != GST_MESSAGE_ELEMENT)
     return GST_BUS_PASS;
@@ -203,16 +203,19 @@ static gboolean
 cheese_webcam_expose_cb (GtkWidget *widget, GdkEventExpose *event, CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
-  GstState state;
-  GstXOverlay *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
-                                                                  GST_TYPE_X_OVERLAY));
+  GstState             state;
+  GstXOverlay         *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
+                                                                          GST_TYPE_X_OVERLAY));
 
   gst_element_get_state (priv->pipeline, &state, NULL, 0);
 
-  if ((state < GST_STATE_PLAYING) || (overlay == NULL)) {
+  if ((state < GST_STATE_PLAYING) || (overlay == NULL))
+  {
     gdk_draw_rectangle (widget->window, widget->style->black_gc, TRUE,
                         0, 0, widget->allocation.width, widget->allocation.height);
-  } else {
+  }
+  else
+  {
     gst_x_overlay_expose (overlay);
   }
 

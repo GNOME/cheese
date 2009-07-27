@@ -447,7 +447,7 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                    g_param_spec_int ("gconf_prop_burst_delay",
                                                      NULL,
                                                      NULL,
-                                                     200,  // based on some experiments
+                                                     200,  /* based on some experiments */
                                                      G_MAXINT,
                                                      1000,
                                                      G_PARAM_READWRITE));

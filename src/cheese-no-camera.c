@@ -29,10 +29,10 @@
 #include "cheese-no-camera.h"
 
 static void
-cheese_no_camera_set_info_bar_text_and_icon (GtkInfoBar       *info_bar,
-                                                 const gchar      *icon_stock_id,
-                                                 const gchar      *primary_text,
-                                                 const gchar      *secondary_text)
+cheese_no_camera_set_info_bar_text_and_icon (GtkInfoBar  *info_bar,
+                                             const gchar *icon_stock_id,
+                                             const gchar *primary_text,
+                                             const gchar *secondary_text)
 {
   GtkWidget *content_area;
   GtkWidget *image;
@@ -89,9 +89,9 @@ cheese_no_camera_info_bar_new ()
   gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar),
                                  GTK_MESSAGE_ERROR);
   cheese_no_camera_set_info_bar_text_and_icon (GTK_INFO_BAR (info_bar),
-                                                   "gtk-dialog-error",
-                                                   _("No camera found!"),
-                                                   _("Please refer to the help for further information."));
+                                               "gtk-dialog-error",
+                                               _("No camera found!"),
+                                               _("Please refer to the help for further information."));
 
   return info_bar;
 }
