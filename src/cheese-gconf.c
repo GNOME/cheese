@@ -174,13 +174,13 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
       break;
     case GCONF_PROP_BURST_DELAY:
       g_value_set_int (value, gconf_client_get_int (priv->client,
-						    CHEESE_GCONF_PREFIX "/burst_mode_delay",
-						    NULL));
+                                                    CHEESE_GCONF_PREFIX "/burst_delay",
+                                                    NULL));
       break;
     case GCONF_PROP_BURST_REPEAT:
       g_value_set_int (value, gconf_client_get_int (priv->client,
-						    CHEESE_GCONF_PREFIX "/burst_mode_repeat",
-						    NULL));
+                                                    CHEESE_GCONF_PREFIX "/burst_repeat",
+                                                    NULL));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -311,15 +311,15 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
       break;
     case GCONF_PROP_BURST_DELAY:
       gconf_client_set_int (priv->client,
-			    CHEESE_GCONF_PREFIX "/burst_mode_delay",
-			    g_value_get_int (value),
-			    NULL);
+                            CHEESE_GCONF_PREFIX "/burst_delay",
+                            g_value_get_int (value),
+                            NULL);
       break;
     case GCONF_PROP_BURST_REPEAT:
       gconf_client_set_int (priv->client,
-			    CHEESE_GCONF_PREFIX "/burst_mode_repeat",
-			    g_value_get_int (value),
-			    NULL);
+                            CHEESE_GCONF_PREFIX "/burst_repeat",
+                            g_value_get_int (value),
+                            NULL);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);

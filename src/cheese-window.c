@@ -129,9 +129,11 @@ typedef struct
   GtkWidget *button_effects;
   GtkWidget *button_photo;
   GtkWidget *button_video;
+  GtkWidget *button_burst;
   GtkWidget *button_effects_fullscreen;
   GtkWidget *button_photo_fullscreen;
   GtkWidget *button_video_fullscreen;
+  GtkWidget *button_burst_fullscreen;
   GtkWidget *button_exit_fullscreen;
 
   GtkWidget *image_take_photo;
@@ -171,6 +173,7 @@ typedef struct
   GtkActionGroup *actions_photo;
   GtkActionGroup *actions_toggle;
   GtkActionGroup *actions_video;
+  GtkActionGroup *actions_burst;
   GtkActionGroup *actions_fullscreen;
 
   GtkUIManager *ui_manager;
@@ -439,6 +442,7 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
   g_object_unref (cheese_window->actions_preferences);
   g_object_unref (cheese_window->actions_file);
   g_object_unref (cheese_window->actions_video);
+  g_object_unref (cheese_window->actions_burst);
   g_object_unref (cheese_window->actions_fullscreen);
   g_object_unref (cheese_window->gconf);
 
@@ -1149,6 +1153,10 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     {
       gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
     }
+    else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+    {
+      gtk_action_group_set_sensitive (cheese_window->actions_burst, TRUE);
+    }
     else
     {
       gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
@@ -1166,6 +1174,7 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture_fullscreen), FALSE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
     gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_burst, FALSE);
   }
 }
 
@@ -1324,7 +1333,7 @@ cheese_window_take_burst_photo (gpointer data)
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, FALSE);
 
     cheese_window->repeat_count--;
-    if(0 >= cheese_window->repeat_count)
+    if (cheese_window->repeat_count <= 0)
     {
       return FALSE;
     }
@@ -1338,14 +1347,14 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
   if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
   {
-    cheese_window->repeat_count=1;
+    cheese_window->repeat_count = 1;
     cheese_window_take_burst_photo(cheese_window);
 
     /* FIXME: set menu inactive */
   }
   else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
   {
-    guint repeat_delay=1000;
+    guint repeat_delay = 1000;
     gboolean countdown;
 
     g_object_get (cheese_window->gconf, "gconf_prop_burst_delay", &repeat_delay, NULL);
@@ -1432,6 +1441,7 @@ static const GtkToggleActionEntry action_entries_fullscreen[] = {
 static const GtkRadioActionEntry action_entries_toggle[] = {
   {"Photo", NULL, N_("_Photo"), NULL, NULL, 0},
   {"Video", NULL, N_("_Video"), NULL, NULL, 1},
+  {"Burst", NULL, N_("_Burst"), NULL, NULL, 2},
 };
 
 static const GtkActionEntry action_entries_file[] = {
@@ -1446,11 +1456,15 @@ static const GtkActionEntry action_entries_file[] = {
 };
 
 static const GtkActionEntry action_entries_photo[] = {
-  {"TakePhoto", NULL, N_("_Take a photo"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb)},
+  {"TakePhoto", NULL, N_("_Take a Photo"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb)},
 };
 
 static const GtkToggleActionEntry action_entries_video[] = {
   {"TakeVideo", NULL, N_("_Recording"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb), FALSE},
+};
+
+static const GtkActionEntry action_entries_burst[] = {
+  {"TakeBurst", NULL, N_("_Take multiple Photos"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb)},
 };
 
 static const GtkActionEntry action_entries_account_photo[] = {
@@ -1489,6 +1503,20 @@ cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current,
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo_fullscreen), TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_burst, FALSE);
+  }
+  else if (strcmp (gtk_action_get_name (GTK_ACTION (current)), "Burst") == 0)
+  {
+    cheese_window->webcam_mode = WEBCAM_MODE_BURST;
+
+    str = g_strconcat ("<b>", _("_Take multiple Photos"), "</b>", NULL);
+    gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), g_strdup (str));
+    gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
+    gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo_fullscreen), g_strdup (str));
+    gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo_fullscreen), TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_burst, TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
   }
   else
   {
@@ -1501,6 +1529,7 @@ cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current,
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo_fullscreen), TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
     gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_burst, FALSE);
   }
   g_free (str);
 }
@@ -1602,6 +1631,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->button_effects              = GTK_WIDGET (gtk_builder_get_object (builder, "button_effects"));
   cheese_window->button_photo                = GTK_WIDGET (gtk_builder_get_object (builder, "button_photo"));
   cheese_window->button_video                = GTK_WIDGET (gtk_builder_get_object (builder, "button_video"));
+  cheese_window->button_burst                = GTK_WIDGET (gtk_builder_get_object (builder, "button_burst"));
   cheese_window->image_take_photo            = GTK_WIDGET (gtk_builder_get_object (builder, "image_take_photo"));
   cheese_window->label_effects               = GTK_WIDGET (gtk_builder_get_object (builder, "label_effects"));
   cheese_window->label_photo                 = GTK_WIDGET (gtk_builder_get_object (builder, "label_photo"));
@@ -1624,6 +1654,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->button_effects_fullscreen   = GTK_WIDGET (gtk_builder_get_object (builder, "button_effects_fullscreen"));
   cheese_window->button_photo_fullscreen     = GTK_WIDGET (gtk_builder_get_object (builder, "button_photo_fullscreen"));
   cheese_window->button_video_fullscreen     = GTK_WIDGET (gtk_builder_get_object (builder, "button_video_fullscreen"));
+  cheese_window->button_burst_fullscreen     = GTK_WIDGET (gtk_builder_get_object (builder, "button_burst_fullscreen"));
   cheese_window->take_picture_fullscreen     = GTK_WIDGET (gtk_builder_get_object (builder, "take_picture_fullscreen"));
   cheese_window->label_take_photo_fullscreen =
     GTK_WIDGET (gtk_builder_get_object (builder, "label_take_photo_fullscreen"));
@@ -1763,6 +1794,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                         action_entries_video,
                                                                         G_N_ELEMENTS (action_entries_video));
   gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
+  cheese_window->actions_burst = cheese_window_action_group_new (cheese_window,
+                                                                 "ActionsBurst",
+                                                                 action_entries_burst,
+                                                                 G_N_ELEMENTS (action_entries_burst));
+  gtk_action_group_set_sensitive (cheese_window->actions_burst, FALSE);
   cheese_window->actions_account_photo = cheese_window_action_group_new (cheese_window,
                                                                          "ActionsAccountPhoto",
                                                                          action_entries_account_photo,
@@ -1873,6 +1909,10 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/Video");
   gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_video), action);
   gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_video_fullscreen), action);
+
+  action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/Burst");
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_burst), action);
+  gtk_activatable_set_related_action (GTK_ACTIVATABLE (cheese_window->button_burst_fullscreen), action);
 
 
   /* Default handlers for closing the application */
