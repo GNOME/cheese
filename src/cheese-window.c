@@ -70,7 +70,8 @@
 typedef enum
 {
   WEBCAM_MODE_PHOTO,
-  WEBCAM_MODE_VIDEO
+  WEBCAM_MODE_VIDEO,
+  WEBCAM_MODE_BURST
 } WebcamMode;
 
 typedef enum
@@ -177,6 +178,8 @@ typedef struct
   GSource *fullscreen_timeout_source;
 
   int audio_play_counter;
+
+  gint repeat_count;
 
   CheeseFlash *flash;
 } CheeseWindow;
@@ -1280,14 +1283,11 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
   return TRUE;
 }
 
-static void
-cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
+static gboolean
+cheese_window_take_burst_photo (gpointer data)
 {
-  char *str;
-
-  if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
-  {
     gboolean countdown;
+    CheeseWindow *cheese_window = (CheeseWindow *) data;
     g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
     if (countdown)
     {
@@ -1323,7 +1323,44 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
     gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, FALSE);
 
+    cheese_window->repeat_count--;
+    if(0 >= cheese_window->repeat_count)
+    {
+      return FALSE;
+    }
+    return TRUE;
+}
+
+static void
+cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
+{
+  char *str;
+
+  if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
+  {
+    cheese_window->repeat_count=1;
+    cheese_window_take_burst_photo(cheese_window);
+
     /* FIXME: set menu inactive */
+  }
+  else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  {
+    guint repeat_delay=1000;
+    gboolean countdown;
+
+    g_object_get (cheese_window->gconf, "gconf_prop_burst_delay", &repeat_delay, NULL);
+    g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL);
+    g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
+
+    if (countdown && repeat_delay < 5000)
+    {
+      // A countdown takes 4 seconds, leave some headroom before repeating it.
+      // Magic number chosen via expiriment on Netbook
+      repeat_delay = 5000;
+    }
+
+    g_timeout_add (repeat_delay, &cheese_window_take_burst_photo, cheese_window);
+
   }
   else if (cheese_window->webcam_mode == WEBCAM_MODE_VIDEO)
   {

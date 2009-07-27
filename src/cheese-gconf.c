@@ -172,6 +172,16 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                          CHEESE_GCONF_PREFIX "/enable_delete",
                                                          NULL));
       break;
+    case GCONF_PROP_BURST_DELAY:
+      g_value_set_int (value, gconf_client_get_int (priv->client,
+						    CHEESE_GCONF_PREFIX "/burst_mode_delay",
+						    NULL));
+      break;
+    case GCONF_PROP_BURST_REPEAT:
+      g_value_set_int (value, gconf_client_get_int (priv->client,
+						    CHEESE_GCONF_PREFIX "/burst_mode_repeat",
+						    NULL));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -299,6 +309,18 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                              g_value_get_boolean (value),
                              NULL);
       break;
+    case GCONF_PROP_BURST_DELAY:
+      gconf_client_set_int (priv->client,
+			    CHEESE_GCONF_PREFIX "/burst_mode_delay",
+			    g_value_get_int (value),
+			    NULL);
+      break;
+    case GCONF_PROP_BURST_REPEAT:
+      gconf_client_set_int (priv->client,
+			    CHEESE_GCONF_PREFIX "/burst_mode_repeat",
+			    g_value_get_int (value),
+			    NULL);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -421,6 +443,23 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                          FALSE,
                                                          G_PARAM_READWRITE));
 
+  g_object_class_install_property (object_class, GCONF_PROP_BURST_DELAY,
+                                   g_param_spec_int ("gconf_prop_burst_delay",
+                                                     NULL,
+                                                     NULL,
+                                                     200,  // based on some experiments
+                                                     G_MAXINT,
+                                                     1000,
+                                                     G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_BURST_REPEAT,
+                                   g_param_spec_int ("gconf_prop_burst_repeat",
+                                                     NULL,
+                                                     NULL,
+                                                     1,
+                                                     G_MAXINT,
+                                                     4,
+                                                     G_PARAM_READWRITE));
 
   g_type_class_add_private (klass, sizeof (CheeseGConfPrivate));
 }
