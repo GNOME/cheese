@@ -66,6 +66,8 @@ for i in ["16x16", "22x22", "24x24", "32x32", "48x48"]:
 	install_files('PACKAGE_DATADIR', 'icons/hicolor/%s/actions' % i, 'icons/%s/actions/cheese-take-burst.png' % i)
 	install_files('PACKAGE_DATADIR', 'icons/hicolor/%s/actions' % i, 'icons/%s/actions/cheese-take-photo.png' % i)
 install_files('PACKAGE_DATADIR', 'icons/hicolor/scalable/actions', 'icons/scalable/actions/browse-webcam-effects.svg')
+install_files('PACKAGE_DATADIR', 'icons/hicolor/scalable/actions', 'icons/scalable/actions/cheese-take-photo.svg')
+install_files('PACKAGE_DATADIR', 'icons/hicolor/scalable/actions', 'icons/scalable/actions/cheese-take-burst.svg')
 
 # data/sounds
 install_files('PACKAGE_DATADIR', 'sounds', 'sounds/shutter*.ogg')
