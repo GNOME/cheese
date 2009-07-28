@@ -37,6 +37,7 @@ struct _CheeseOptions
 {
   gboolean verbose;
   char *hal_device_id;
+  gboolean version;
 } CheeseOptions;
 
 void
@@ -157,8 +158,13 @@ main (int argc, char **argv)
   GError         *error = NULL;
 
   GOptionEntry options[] = {
-    {"verbose",    'v', 0,                    G_OPTION_ARG_NONE,   &CheeseOptions.verbose,       _("Be verbose"), NULL},
-    {"hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id, NULL,            NULL},
+    {"verbose",    'v',    0,                    G_OPTION_ARG_NONE,                    &CheeseOptions.verbose,
+     _("Be verbose"),
+     NULL},
+    {"hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id, NULL,
+     NULL},
+    {"version",    0,   0,                    G_OPTION_ARG_NONE,   &CheeseOptions.version,
+     _("output version information and exit"), NULL},
     {NULL}
   };
 
@@ -189,6 +195,12 @@ main (int argc, char **argv)
     return -1;
   }
   g_option_context_free (context);
+
+  if (CheeseOptions.version)
+  {
+    g_print ("Cheese " VERSION " \n");
+    return 0;
+  }
 
   dbus_server = cheese_dbus_new ();
   if (dbus_server == NULL)
