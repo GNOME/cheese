@@ -14,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-05-29 16:55+0530\n"
-"PO-Revision-Date: 2009-05-29 16:56+0530\n"
+"POT-Creation-Date: 2009-07-29 07:32+0530\n"
+"PO-Revision-Date: 2009-07-29 07:42+0530\n"
 "Last-Translator: Dr.T.Vasudevan <agnihot3@gmail.com>\n"
 "Language-Team: American English <Ubuntu-l10n-tam@lists.ubuntu.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\\n"
 "\n"
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "Cheese Webcam Booth"
 msgstr "சீஸ் வெப்கேம் பூத்"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1031
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1025
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "வெப்கேம் மூலம் வேடிக்கையான பட அமைப்பு விளைவுகளுடன் போட்டோ மற்றும் வீடீயோ எடுங்கள்"
 
@@ -92,137 +92,152 @@ msgstr ""
 "அம்சம் அபாயகரமானது. எனவே கவனமாகப் பயன்படுத்த வேண்டும்."
 
 #: ../data/cheese.schemas.in.h:12
+msgid "Milliseconds between photos in burst mode."
+msgstr "தொடர் படமெடுப்பில் படங்களுக்கிடையே இடைவெளி மில்லி வினாடிகளில்."
+
+#: ../data/cheese.schemas.in.h:13
+msgid "Number of photos in burst mode."
+msgstr "தொடர் படமெடுப்பில் எடுக்க வேண்டிய படங்களின் எண்ணிக்கை"
+
+#: ../data/cheese.schemas.in.h:14
 msgid "Photo Path"
 msgstr "போட்டோ பாதை"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:15
 msgid "Picture brightness"
 msgstr "பட வெளிச்சம்"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:16
 msgid "Picture contrast"
 msgstr "பட மாறுபாடு"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:17
 msgid "Picture hue"
 msgstr "பட சாயல்"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:18
 msgid "Picture saturation"
 msgstr "பட தெவிட்டம் "
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:19
 msgid "Selected Effects"
 msgstr "தேர்ந்தெடுக்கப்பட்ட விளைவுகள்"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:20
 msgid "Set to True to show countdown when taking a photo"
 msgstr "போட்டோ எடுக்கும்போது இறங்குமுகக் கணிப்பைக் காட்டுவதற்கு, உண்மைக்கு அமைக்கவும்"
 
-#: ../data/cheese.schemas.in.h:19
+#: ../data/cheese.schemas.in.h:21
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "வெப்கேமுக்குச் சுட்டிக் காட்டும் சாதனம் (உ-ம். /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:20
+#: ../data/cheese.schemas.in.h:22
 msgid "The height resolution of the image captured from the camera"
 msgstr "கேமிராவிலிருந்து பெறப்பட்ட உருவத்தின் உயரச் செறிவு"
 
-#: ../data/cheese.schemas.in.h:21
+#: ../data/cheese.schemas.in.h:23
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr "ஒரு தொடர் படமெடுப்பில் படம் எடுக்க வேண்டிய இடைவெளி மில்லி வினாடிகளில்."
+
+#: ../data/cheese.schemas.in.h:24
+msgid "The number of photos to take in a single burst."
+msgstr "ஒரு தொடர் படமெடுப்பில் எடுக்க வேண்டிய படங்களின் எண்ணிக்கை"
+
+#: ../data/cheese.schemas.in.h:25
 msgid "The width resolution of the image captured from the camera"
 msgstr "கேமிராவிலிருந்து பெறப்பட்ட உருவத்தின் அகலச் செறிவு"
 
-#: ../data/cheese.schemas.in.h:22
+#: ../data/cheese.schemas.in.h:26
 msgid "Use a countdown"
 msgstr "இறங்குமுகக் கணிப்பைப் பயன்படுத்தவும்"
 
-#: ../data/cheese.schemas.in.h:23
+#: ../data/cheese.schemas.in.h:27
 msgid "Video Path"
 msgstr "வீடியோ பாதை"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:28
 msgid "Webcam device string indicator"
 msgstr "வெப்கேம் சாதனம் சரம் சுட்டிக்காட்டி"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:29
 msgid "Whether to enable immediate deletion"
 msgstr "உடனடி நீக்கத்திற்கு வழிவகுக்க வேண்டுமா"
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:30
 msgid "Width resolution"
 msgstr "அகலச் செறிவு"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:176
+#: ../data/cheese.ui.h:1 ../src/cheese.c:182
 msgid "Cheese"
 msgstr "சீஸ்"
 
 #: ../data/cheese.ui.h:2
+msgid "Switch to Burst Mode"
+msgstr "தொடர் படமெடுப்பு செயல்முறைக்கு நிலை மாற்றவும்"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "போட்டோ செயல்முறைக்கு நிலை மாற்றவும்"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "வீடியோ செயல்முறைக்கு நிலை மாற்றவும்"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "விளைவுகள் தேர்ந்தெடுப்பானுக்கு நிலை மாற்றவும்"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1155
-#: ../src/cheese-window.c:1397
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1149
+#: ../src/cheese-window.c:1430
 msgid "_Effects"
 msgstr "விளைவுகள் (_E)"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "முழுத் திரையைலிருந்து வெளியேரவும் (_L)"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1409
-msgid "_Photo"
-msgstr "போட்டோ (_P)"
-
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1461
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1459
+#: ../src/cheese-window.c:1499
 msgid "_Take a Photo"
 msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1410
-msgid "_Video"
-msgstr "வீடியோ (_V)"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Image properties</b>"
-msgstr "<b> பிம்ப பண்புகள் </b>"
-
-#: ../data/cheese-prefs.ui.h:2
-msgid "<b>Webcam</b>"
-msgstr "<b>வலை கேமிரா</b>"
-
-#: ../data/cheese-prefs.ui.h:3
 msgid "Brightness"
 msgstr "வெளிச்சம்"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:2
 msgid "Contrast"
 msgstr "வேறுபாடு"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:3
 msgid "Device"
 msgstr "சாதனம்"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:4
 msgid "Hue"
 msgstr "சாயல்"
 
-#: ../data/cheese-prefs.ui.h:7 ../src/cheese-window.c:1401
+#: ../data/cheese-prefs.ui.h:5
+msgid "Image properties"
+msgstr " பிம்ப பண்புகள்"
+
+#: ../data/cheese-prefs.ui.h:6 ../src/cheese-window.c:1434
 msgid "Preferences"
 msgstr "முன்னுரிமைகள்"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:7
 msgid "Resolution"
 msgstr "தெளிதிறன் "
 
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-effect-chooser.c:66
+#: ../data/cheese-prefs.ui.h:8 ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "ஸாச்சுரேஷன்"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Webcam"
+msgstr "வலை கேமிரா"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -280,53 +295,31 @@ msgstr "வார்ப்"
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "கேமிரா இல்லை!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "மேலும் விவரங்களுக்கு உதவியைப் பார்க்கவும்."
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "உதவி"
-
-#: ../src/cheese-webcam.c:1615
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "தேவைப்படும் ஜீஸ்டரீமர் அம்சங்களில் ஒன்று அல்லது அதற்கு மேற்பட்டவை காணவில்லை: "
 
-#: ../src/cheese-window.c:80
+#: ../src/cheese-window.c:84
 msgid "_Skip"
 msgstr "விட்டு விடவும் (_S)"
 
-#: ../src/cheese-window.c:81
+#: ../src/cheese-window.c:85
 msgid "S_kip All"
 msgstr "அனைத்தையும் விட்டு விடவும் (_k)"
 
-#: ../src/cheese-window.c:82
+#: ../src/cheese-window.c:86
 msgid "Delete _All"
 msgstr "அனைத்தையும் நீக்கி விடவும் (_A)"
 
-#: ../src/cheese-window.c:207
-#, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"காட்டுவதற்கான உலாவியைத் திறக்கத் தவறிவிட்டது:\n"
-"%s"
-
-#: ../src/cheese-window.c:232
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"தகவல் அனுப்புவதற்கு மின்னஞ்சல் கிளையனைத் திறக்கத் தவறிவிட்டது:\n"
-"%s"
-
-#: ../src/cheese-window.c:481
+#: ../src/cheese-window.c:475
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -337,81 +330,81 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: ../src/cheese-window.c:502
+#: ../src/cheese-window.c:496
 msgid "Save File"
 msgstr "கோப்பையை சேமித்து வைக்கவும்"
 
-#: ../src/cheese-window.c:540
+#: ../src/cheese-window.c:534
 #, c-format
 msgid "Could not save %s"
 msgstr "சேமித்து வைக்க முடியவில்லை %s"
 
-#: ../src/cheese-window.c:563
+#: ../src/cheese-window.c:557
 msgid "Error while deleting"
 msgstr "நீக்கும்போது பிழை"
 
-#: ../src/cheese-window.c:564
+#: ../src/cheese-window.c:558
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "\"%s\" கோப்பை நீக்க முடியாது. விவரங்கள்: %s"
 
-#: ../src/cheese-window.c:591
+#: ../src/cheese-window.c:585
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "நிச்சயமாக %'d தேர்ந்தெடுத்த உருப்படியை அழிக்க வேண்டுமா?"
 msgstr[1] "நிச்சயமாக %'d தேர்ந்தெடுத்த உருப்படிகளை அழிக்க வேண்டுமா?"
 
-#: ../src/cheese-window.c:598
+#: ../src/cheese-window.c:592
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "நிச்சயமாக \"%s\" என்பதை நிரந்தரமாக நீக்க வேண்டுமா?"
 
-#: ../src/cheese-window.c:601
+#: ../src/cheese-window.c:595
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "ஓர் இனத்தை நீக்கி விட்டால், அது நிரந்தரமாக இழக்கப்பட்டுவிடும்."
 
-#: ../src/cheese-window.c:622
+#: ../src/cheese-window.c:616
 msgid "Unknown Error"
 msgstr "தெரியாத பிழை"
 
-#: ../src/cheese-window.c:652
+#: ../src/cheese-window.c:646
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "குப்பைத் தொட்டிக்குக் கோப்பையை நகர்த்த முடியாது. உடனடியாக நீக்க வேண்டுமா?"
 
-#: ../src/cheese-window.c:653
+#: ../src/cheese-window.c:647
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "குப்பைத் தொட்டிக்கு \"%s\" கோப்பை நகர்த்த முடியாது. விவரங்கள்: %s"
 
-#: ../src/cheese-window.c:725
+#: ../src/cheese-window.c:719
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "எல்லா போட்டோக்கள் மற்றும் வீடியோக்களை நிச்சயமாகக் குப்பைத் தொட்டிக்கு நகர்த்த வேண்டுமா?"
 
-#: ../src/cheese-window.c:733
+#: ../src/cheese-window.c:727
 msgid "_Move to Trash"
 msgstr "குப்பைத் தொட்டிக்கு நகர்த்தவும் (_M)"
 
-#: ../src/cheese-window.c:851
+#: ../src/cheese-window.c:845
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "கணக்கியல் போட்டோவை அமைக்க முடியவில்லை"
 
-#: ../src/cheese-window.c:883
+#: ../src/cheese-window.c:877
 msgid "Media files"
 msgstr "ஊடகக் கோப்புகள்"
 
-#: ../src/cheese-window.c:957 ../src/cheese-window.c:1232
+#: ../src/cheese-window.c:951 ../src/cheese-window.c:1231
 msgid "Unable to open help file for Cheese"
 msgstr "சீஸூக்கு உடைய உதவி கோப்பையைத் திறக்க முடியவில்லை"
 
-#: ../src/cheese-window.c:1009
+#: ../src/cheese-window.c:1003
 msgid "translator-credits"
 msgstr "மொழிபெயர்ப்பாளர் - நன்றிக் குறிப்புகள்"
 
-#: ../src/cheese-window.c:1012
+#: ../src/cheese-window.c:1006
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -423,7 +416,7 @@ msgstr ""
 "விருப்பத்தின்படி) அதற்கு மேற்பட்ட ஏதேனும் பதிப்பு ஆகியவற்றை நீங்கள் மறுவிநியோகம் செய்யலாம "
 "மற்றும்/அல்லது மாற்றி அமைக்கலாம்.\n"
 
-#: ../src/cheese-window.c:1016
+#: ../src/cheese-window.c:1010
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -435,7 +428,7 @@ msgstr ""
 "நோக்கத்திற்கான தகுதி என்பதைச் சுட்டிக் காட்டக் கூடிய உத்தரவாதமும் இல்லை. "
 "மேலும்விவரங்களுக்கு குனு பொது பொதுவுடைமை உரிமத்தைப் பார்க்கவும்.\n"
 
-#: ../src/cheese-window.c:1020
+#: ../src/cheese-window.c:1014
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -443,111 +436,147 @@ msgstr ""
 "இந்த நிரலுடன் குனு பொது பொதுவுடைமை உரிமத்தின் பிரதி ஒன்று தங்களுக்குக் கிடைத்திருக்க "
 "வேண்டும்.இல்லை என்றால் <http://www.gnu.org/licenses/> பார்க்வும்."
 
-#: ../src/cheese-window.c:1037
+#: ../src/cheese-window.c:1031
 msgid "Cheese Website"
 msgstr "சீஸ் இணைய தளம்"
 
-#: ../src/cheese-window.c:1248
+#: ../src/cheese-window.c:1247
 msgid "_Start Recording"
 msgstr "பதிவைத் தொடங்கவும் (_S)"
 
-#: ../src/cheese-window.c:1347
+#: ../src/cheese-window.c:1380
 msgid "_Stop Recording"
 msgstr "பதிவை நிறுத்தவும் (_S)"
 
-#: ../src/cheese-window.c:1378
+#: ../src/cheese-window.c:1411
 msgid "_Cheese"
 msgstr "சீஸ் (_C)"
 
-#: ../src/cheese-window.c:1380
+#: ../src/cheese-window.c:1413
 msgid "_Edit"
 msgstr "திருத்தி அமைக்கவும் (_E)"
 
-#: ../src/cheese-window.c:1381
+#: ../src/cheese-window.c:1414
 msgid "Move All to Trash"
 msgstr "எல்லவற்றையும் குப்பைத் தொட்டிக்கு நகர்த்தவும்"
 
-#: ../src/cheese-window.c:1384
+#: ../src/cheese-window.c:1417
 msgid "_Help"
 msgstr "உதவி (_H)"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1420
 msgid "_Contents"
 msgstr "பொருளடக்கம் (_C)"
 
-#: ../src/cheese-window.c:1387
+#: ../src/cheese-window.c:1420
 msgid "Help on this Application"
 msgstr "இந்த செயல்பாட்டில் உதவி"
 
-#: ../src/cheese-window.c:1393
+#: ../src/cheese-window.c:1426
 msgid "Countdown"
 msgstr "இறங்குமுகக் கணிப்பு"
 
-#: ../src/cheese-window.c:1414
+#: ../src/cheese-window.c:1442
+msgid "_Photo"
+msgstr "போட்டோ (_P)"
+
+#: ../src/cheese-window.c:1443
+msgid "_Video"
+msgstr "வீடியோ (_V)"
+
+#: ../src/cheese-window.c:1444
+msgid "_Burst"
+msgstr "_B தொடர் படமெடுப்பு"
+
+#: ../src/cheese-window.c:1448
 msgid "_Open"
 msgstr "திறக்கவும் (_O)"
 
-#: ../src/cheese-window.c:1416
+#: ../src/cheese-window.c:1450
 msgid "Save _As..."
 msgstr " என்று சேமித்து வைக்கவும் (_A)"
 
-#: ../src/cheese-window.c:1418
+#: ../src/cheese-window.c:1452
 msgid "Move to _Trash"
 msgstr "குப்பைத் தொட்டிக்கு நகர்த்தவும் (_T)"
 
-#: ../src/cheese-window.c:1420
+#: ../src/cheese-window.c:1454
 msgid "Delete"
 msgstr "நீக்கவும்"
 
-#: ../src/cheese-window.c:1425 ../src/cheese-window.c:1654
-msgid "_Take a photo"
-msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
-
-#: ../src/cheese-window.c:1429
+#: ../src/cheese-window.c:1463
 msgid "_Recording"
 msgstr "பதிவு செய்யப்படுகிறது (_R)"
 
-#: ../src/cheese-window.c:1433
+#: ../src/cheese-window.c:1467 ../src/cheese-window.c:1512
+msgid "_Take multiple Photos"
+msgstr "பல படங்கள் எடுக்கவும் (_T)"
+
+#: ../src/cheese-window.c:1471
 msgid "_Set As Account Photo"
 msgstr "கணக்கியல் போட்டோவாக அமைக்கவும் (_S)"
 
-#: ../src/cheese-window.c:1437
+#: ../src/cheese-window.c:1475
 msgid "Send by _Mail"
 msgstr "அஞ்சல் மூலம் அனுப்பவும் (_M)"
 
-#: ../src/cheese-window.c:1441
+#: ../src/cheese-window.c:1479
 msgid "Send _To"
 msgstr "என்பதற்கு அனுப்பவும் (_T)"
 
-#: ../src/cheese-window.c:1445
+#: ../src/cheese-window.c:1483
 msgid "Export to F-_Spot"
 msgstr "F-ஸ்பாட்டுக்கு ஏற்றுமதி செய்யவும் (_S)"
 
-#: ../src/cheese-window.c:1449
+#: ../src/cheese-window.c:1487
 msgid "Export to _Flickr"
 msgstr "பிளிக்கருக்கு ஏற்றுமதி செய்யவும் (_F)"
 
-#: ../src/cheese-window.c:1473
+#: ../src/cheese-window.c:1525
 msgid "_Start recording"
 msgstr "பதிவு செய்யத் தொடங்கவும் (_S)"
 
-#: ../src/cheese-window.c:1803
+#: ../src/cheese-window.c:1709
+msgid "_Take a photo"
+msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
+
+#: ../src/cheese-window.c:1873
 msgid "Quit"
 msgstr "வெளியேறவும்"
 
-#: ../src/cheese-window.c:1809
+#: ../src/cheese-window.c:1879
 msgid "About"
 msgstr "பற்றி"
 
-#: ../src/cheese-window.c:1901
+#: ../src/cheese-window.c:1980
 msgid "Check your gstreamer installation"
 msgstr "உங்களுடைய ஜீஸ்டரீமர் நிறுவுதலைச் சரிபார்க்கவும்"
 
-#: ../src/cheese.c:160
+#: ../src/cheese.c:162
 msgid "Be verbose"
 msgstr "நீள் விளக்கமாக இருக்கவும்"
 
-#: ../src/cheese.c:178
+#: ../src/cheese.c:167
+msgid "output version information and exit"
+msgstr "பதிப்பு தகவல் தந்து வெளியேறவும்"
+
+#: ../src/cheese.c:184
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- வெப்கேம் மூலம் வேடிக்கையான பட அமைப்பு விளைவுகளுடன் போட்டோ மற்றும் வீடியோ எடுங்கள்"
 
+#~ msgid "Help"
+#~ msgstr "உதவி"
+
+#~ msgid ""
+#~ "Failed to open browser to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "காட்டுவதற்கான உலாவியைத் திறக்கத் தவறிவிட்டது:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to open email client to send message to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "தகவல் அனுப்புவதற்கு மின்னஞ்சல் கிளையனைத் திறக்கத் தவறிவிட்டது:\n"
+#~ "%s"
