@@ -1,4 +1,4 @@
-/* Eye Of Gnome - Thumbnail Navigator 
+/* Eye Of Gnome - Thumbnail Navigator
  *
  * Copyright (C) 2006 The Free Software Foundation
  *
@@ -42,23 +42,23 @@ typedef struct _EogThumbNavPrivate EogThumbNavPrivate;
 #define EOG_THUMB_NAV_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  EOG_TYPE_THUMB_NAV, EogThumbNavClass))
 
 struct _EogThumbNav {
-	GtkHBox base_instance;
+        GtkHBox base_instance;
 
-	EogThumbNavPrivate *priv;
+        EogThumbNavPrivate *priv;
 };
 
 struct _EogThumbNavClass {
-	GtkHBoxClass parent_class;
+        GtkHBoxClass parent_class;
 };
 
-GType	         eog_thumb_nav_get_type          (void) G_GNUC_CONST;
+GType            eog_thumb_nav_get_type          (void) G_GNUC_CONST;
 
 GtkWidget       *eog_thumb_nav_new               (GtkWidget         *thumbview,
-	             			          gboolean           show_buttons);
+                                                  gboolean           show_buttons);
 
 gboolean         eog_thumb_nav_get_show_buttons  (EogThumbNav       *nav);
 
-void             eog_thumb_nav_set_show_buttons  (EogThumbNav       *nav, 
+void             eog_thumb_nav_set_show_buttons  (EogThumbNav       *nav,
                                                   gboolean           show_buttons);
 
 G_END_DECLS
