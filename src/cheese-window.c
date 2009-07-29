@@ -1843,25 +1843,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   g_object_get (cheese_window->gconf, "gconf_prop_enable_delete", &enable_delete, NULL);
   gtk_action_set_visible (GTK_ACTION (action), enable_delete);
 
-#ifdef HILDON
-  menu     = gtk_menu_new ();
-  menuitem = gtk_menu_item_new_with_label (_("Quit"));
-  g_signal_connect (menuitem, "activate",
-                    G_CALLBACK (cheese_window_cmd_close),
-                    cheese_window);
-  gtk_menu_shell_append (menu, menuitem);
-
-  menuitem = gtk_menu_item_new_with_label (_("About"));
-  g_signal_connect (menuitem, "activate",
-                    G_CALLBACK (cheese_window_cmd_about),
-                    cheese_window);
-  gtk_menu_shell_append (menu, menuitem);
-
-  hildon_window_set_menu (HILDON_WINDOW (cheese_window->window), GTK_MENU (menu));
-#else
   menubar = gtk_ui_manager_get_widget (cheese_window->ui_manager, "/MainMenu");
   gtk_box_pack_start (GTK_BOX (cheese_window->main_vbox), menubar, FALSE, FALSE, 0);
-#endif
 
   cheese_window->thumb_view_popup_menu = gtk_ui_manager_get_widget (cheese_window->ui_manager,
                                                                     "/ThumbnailPopup");
