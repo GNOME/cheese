@@ -43,10 +43,6 @@
   #include <X11/XF86keysym.h>
 #endif /* HAVE_MMKEYS */
 
-#ifdef HILDON
-  #include <hildon/hildon-program.h>
-#endif
-
 #include "cheese-countdown.h"
 #include "cheese-effect-chooser.h"
 #include "cheese-fileutil.h"
@@ -112,6 +108,7 @@ typedef struct
   GtkWidget *fullscreen_bar;
 
   GtkWidget *main_vbox;
+  GtkWidget *netbook_alignment;
   GtkWidget *video_vbox;
 
   GtkWidget *effect_frame;
@@ -154,11 +151,6 @@ typedef struct
   GtkWidget *screen;
   GtkWidget *take_picture;
   GtkWidget *take_picture_fullscreen;
-
-#ifdef HILDON
-  GtkWidget *main_hbox;
-  GtkWidget *subwindow;
-#endif
 
   GtkActionGroup *actions_account_photo;
   GtkActionGroup *actions_countdown;
@@ -1618,15 +1610,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   GError     *error = NULL;
   char       *path;
   GtkBuilder *builder;
-
-#ifdef HILDON
-  HildonProgram *program = hildon_program_get_instance ();
-  GtkWidget     *menu;
-  GtkWidget     *menuitem;
-#else
   GtkWidget *menubar;
-#endif
-
 
   cheese_window->info_bar = NULL;
 
@@ -1650,6 +1634,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->label_take_photo            = GTK_WIDGET (gtk_builder_get_object (builder, "label_take_photo"));
   cheese_window->label_video                 = GTK_WIDGET (gtk_builder_get_object (builder, "label_video"));
   cheese_window->main_vbox                   = GTK_WIDGET (gtk_builder_get_object (builder, "main_vbox"));
+  cheese_window->netbook_alignment           = GTK_WIDGET (gtk_builder_get_object (builder, "netbook_alignment"));
   cheese_window->video_vbox                  = GTK_WIDGET (gtk_builder_get_object (builder, "video_vbox"));
   cheese_window->notebook                    = GTK_WIDGET (gtk_builder_get_object (builder, "notebook"));
   cheese_window->notebook_bar                = GTK_WIDGET (gtk_builder_get_object (builder, "notebook_bar"));
@@ -1678,6 +1663,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
     GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame_fullscreen"));
   cheese_window->button_exit_fullscreen = GTK_WIDGET (gtk_builder_get_object (builder, "button_exit_fullscreen"));
 
+  g_object_unref (builder);
+
   /* configure the popup position and size */
   GdkScreen *screen = gtk_window_get_screen (GTK_WINDOW (cheese_window->fullscreen_popup));
   gtk_window_set_default_size (GTK_WINDOW (cheese_window->fullscreen_popup),
@@ -1694,30 +1681,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                     G_CALLBACK (cheese_window_exit_fullscreen_button_clicked_cb),
                     cheese_window);
 
-#ifdef HILDON
-  /* Reparent widgets in case we use hildon. This saves us maintaining two
-   * GtkBuilder ui files
-   */
-  cheese_window->window    = hildon_window_new ();
-  cheese_window->main_hbox = gtk_hbox_new (FALSE, 0);
-  hildon_program_add_window (program, HILDON_WINDOW (cheese_window->window));
-  gtk_container_add (GTK_CONTAINER (cheese_window->window), cheese_window->main_hbox);
-  g_object_ref (cheese_window->thumb_scrollwindow);
-  g_object_ref (cheese_window->video_vbox);
-  gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
-  gtk_container_remove (GTK_CONTAINER (cheese_window->main_vbox), cheese_window->video_vbox);
-  gtk_box_pack_start (GTK_BOX (cheese_window->main_hbox), cheese_window->video_vbox, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (cheese_window->main_hbox), GTK_WIDGET (cheese_window->thumb_scrollwindow),
-                      FALSE, FALSE, 0);
-  gtk_widget_destroy (cheese_window->main_vbox);
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (cheese_window->thumb_scrollwindow),
-                                  GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
-  g_object_unref (cheese_window->thumb_scrollwindow);
-  g_object_unref (cheese_window->video_vbox);
-#endif
-
-  g_object_unref (builder);
-
   char *str = g_strconcat ("<b>", _("_Take a photo"), "</b>", NULL);
   gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
   gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo_fullscreen), str);
@@ -1728,7 +1691,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture_fullscreen), FALSE);
 
   cheese_window->thumb_view = cheese_thumb_view_new ();
-  cheese_window->thumb_nav  = eog_thumb_nav_new (cheese_window->thumb_view, TRUE);
+  cheese_window->thumb_nav  = eog_thumb_nav_new (cheese_window->thumb_view, FALSE);
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_nav);
 
   /* show the scroll window to get it included in the size requisition done later */
@@ -2081,6 +2044,13 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording   = FALSE;
+
+#ifdef NETBOOK
+  g_object_ref (cheese_window->thumb_scrollwindow);
+  gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
+  gtk_container_add (GTK_CONTAINER (cheese_window->netbook_alignment), cheese_window->thumb_scrollwindow);
+  g_object_unref (cheese_window->thumb_scrollwindow);
+#endif
 
   /* handy trick to set default size of the drawing area while not
    * limiting its minimum size, thanks Owen! */
