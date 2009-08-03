@@ -53,7 +53,9 @@ cheese_SOURCES = \
 	cheese-flash.h \
 	cheese-flash.c \
 	cheese-prefs-webcam-combo.c \
-	cheese-prefs-webcam-combo.h
+	cheese-prefs-webcam-combo.h \
+	cheese-prefs-burst-spinbox.h \
+	cheese-prefs-burst-spinbox.c
 	
 cheese_LDADD = \
 	$(CHEESE_LIBS)

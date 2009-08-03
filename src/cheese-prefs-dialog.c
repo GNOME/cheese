@@ -1,6 +1,6 @@
 /*
  * Copyright © 2008 James Liggett <jrliggett@cox.net>
- * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2008, 2009 daniel g. siegel <dgsiegel@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -29,6 +29,8 @@ typedef struct
   GtkWidget *contrast_scale;
   GtkWidget *saturation_scale;
   GtkWidget *hue_scale;
+  GtkWidget *burst_repeat;
+  GtkWidget *burst_delay;
 
   GtkWidget *parent;
   CheeseWebcam *webcam;
@@ -66,6 +68,9 @@ cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
                                                                        "saturation_scale"));
   prefs_dialog->hue_scale = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                 "hue_scale"));
+  prefs_dialog->burst_repeat = GTK_WIDGET (gtk_builder_get_object (builder, "burst_repeat"));
+
+  prefs_dialog->burst_delay = GTK_WIDGET (gtk_builder_get_object (builder, "burst_delay"));
 
   gtk_window_set_transient_for (GTK_WINDOW (prefs_dialog->cheese_prefs_dialog),
                                 GTK_WINDOW (prefs_dialog->parent));
@@ -120,6 +125,8 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
   CheesePrefsWidget *contrast_widget;
   CheesePrefsWidget *saturation_widget;
   CheesePrefsWidget *hue_widget;
+  CheesePrefsWidget *burst_delay_widget;
+  CheesePrefsWidget *burst_repeat_widget;
 
   resolution_widget = CHEESE_PREFS_WIDGET (cheese_prefs_resolution_combo_new (prefs_dialog->resolution_combo_box,
                                                                               prefs_dialog->webcam,
@@ -163,6 +170,16 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
                                                                     "gconf_prop_hue"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, hue_widget);
+
+  burst_repeat_widget = CHEESE_PREFS_WIDGET (cheese_prefs_burst_spinbox_new (prefs_dialog->burst_repeat,
+                                                                    "gconf_prop_burst_repeat"));
+
+  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, burst_repeat_widget);
+
+  burst_delay_widget = CHEESE_PREFS_WIDGET (cheese_prefs_burst_spinbox_new (prefs_dialog->burst_delay,
+                                                                    "gconf_prop_burst_delay"));
+
+  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, burst_delay_widget);
 
 
   cheese_prefs_dialog_widgets_synchronize (prefs_dialog->widgets);
