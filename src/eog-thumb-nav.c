@@ -54,11 +54,15 @@ struct _EogThumbNavPrivate {
   gint              scroll_pos;
   gint              scroll_id;
 
+  GtkWidget        *button_up;
+  GtkWidget        *button_down;
   GtkWidget        *button_left;
   GtkWidget        *button_right;
   GtkWidget        *sw;
   GtkWidget        *thumbview;
-  GtkAdjustment    *adj;
+  GtkWidget        *vbox;
+  GtkAdjustment    *hadj;
+  GtkAdjustment    *vadj;
 };
 
 static gboolean
@@ -83,22 +87,22 @@ eog_thumb_nav_scroll_event (GtkWidget *widget, GdkEventScroll *event, gpointer u
     return FALSE;
   }
 
-  value = gtk_adjustment_get_value (nav->priv->adj);
+  value = gtk_adjustment_get_value (nav->priv->hadj);
   if (inc < 0)
-    gtk_adjustment_set_value (nav->priv->adj, MAX (0, value + inc));
+    gtk_adjustment_set_value (nav->priv->hadj, MAX (0, value + inc));
   else {
-    upper = gtk_adjustment_get_upper (nav->priv->adj);
-    page_size = gtk_adjustment_get_page_size (nav->priv->adj);
-    gtk_adjustment_set_value (nav->priv->adj, MIN (upper - page_size, value + inc));
+    upper = gtk_adjustment_get_upper (nav->priv->hadj);
+    page_size = gtk_adjustment_get_page_size (nav->priv->hadj);
+    gtk_adjustment_set_value (nav->priv->hadj, MIN (upper - page_size, value + inc));
   }
 
-  gtk_adjustment_value_changed (nav->priv->adj);
+  gtk_adjustment_value_changed (nav->priv->hadj);
 
   return TRUE;
 }
 
 static void
-eog_thumb_nav_adj_changed (GtkAdjustment *adj, gpointer user_data)
+eog_thumb_nav_adj_changed (GtkAdjustment *hadj, gpointer user_data)
 {
   EogThumbNav *nav;
   EogThumbNavPrivate *priv;
@@ -109,7 +113,7 @@ eog_thumb_nav_adj_changed (GtkAdjustment *adj, gpointer user_data)
   priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
   ltr = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
-  g_object_get (adj,
+  g_object_get (hadj,
                 "value", &value,
                 "upper", &upper,
                 "page_size", &page_size,
@@ -120,7 +124,7 @@ eog_thumb_nav_adj_changed (GtkAdjustment *adj, gpointer user_data)
 }
 
 static void
-eog_thumb_nav_adj_value_changed (GtkAdjustment *adj, gpointer user_data)
+eog_thumb_nav_adj_value_changed (GtkAdjustment *hadj, gpointer user_data)
 {
   EogThumbNav *nav;
   EogThumbNavPrivate *priv;
@@ -131,7 +135,7 @@ eog_thumb_nav_adj_value_changed (GtkAdjustment *adj, gpointer user_data)
   priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
   ltr = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
-  g_object_get (adj,
+  g_object_get (hadj,
                 "value", &value,
                 "upper", &upper,
                 "page_size", &page_size,
@@ -162,7 +166,7 @@ eog_thumb_nav_scroll_step (gpointer user_data)
   if (!nav->priv->scroll_dir)
     delta *= -1;
 
-  g_object_get (nav->priv->adj,
+  g_object_get (nav->priv->hadj,
                 "value", &value,
                 "upper", &upper,
                 "page_size", &page_size,
@@ -170,18 +174,18 @@ eog_thumb_nav_scroll_step (gpointer user_data)
 
   if ((gint) (value + (gdouble) delta) >= 0 &&
       (gint) (value + (gdouble) delta) <= upper - page_size) {
-    gtk_adjustment_set_value (nav->priv->adj, value + (gdouble) delta);
+    gtk_adjustment_set_value (nav->priv->hadj, value + (gdouble) delta);
     nav->priv->scroll_pos++;
-    gtk_adjustment_value_changed (nav->priv->adj);
+    gtk_adjustment_value_changed (nav->priv->hadj);
   } else {
     if (delta > 0)
-      gtk_adjustment_set_value (nav->priv->adj, upper - page_size);
+      gtk_adjustment_set_value (nav->priv->hadj, upper - page_size);
     else
-      gtk_adjustment_set_value (nav->priv->adj, 0);
+      gtk_adjustment_set_value (nav->priv->hadj, 0);
 
     nav->priv->scroll_pos = 0;
 
-    gtk_adjustment_value_changed (nav->priv->adj);
+    gtk_adjustment_value_changed (nav->priv->hadj);
 
     return FALSE;
   }
@@ -337,7 +341,28 @@ eog_thumb_nav_init (EogThumbNav *nav)
 
   gtk_widget_set_size_request (GTK_WIDGET (priv->button_left), 25, 0);
 
-  gtk_box_pack_start (GTK_BOX (nav), priv->button_left, FALSE, FALSE, 0);
+  g_signal_connect (priv->button_left,
+                    "clicked",
+                    G_CALLBACK (eog_thumb_nav_button_clicked),
+                    nav);
+
+  g_signal_connect (priv->button_left,
+                    "pressed",
+                    G_CALLBACK (eog_thumb_nav_start_scroll),
+                    nav);
+
+  g_signal_connect (priv->button_left,
+                    "released",
+                    G_CALLBACK (eog_thumb_nav_stop_scroll),
+                    nav);
+
+  priv->button_left = gtk_button_new ();
+  gtk_button_set_relief (GTK_BUTTON (priv->button_left), GTK_RELIEF_NONE);
+
+  arrow = gtk_arrow_new (GTK_ARROW_LEFT, GTK_SHADOW_ETCHED_IN);
+  gtk_container_add (GTK_CONTAINER (priv->button_left), arrow);
+
+  gtk_widget_set_size_request (GTK_WIDGET (priv->button_left), 25, 0);
 
   g_signal_connect (priv->button_left,
                     "clicked",
@@ -353,6 +378,8 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     "released",
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
+
+  priv->vbox = gtk_vbox_new (FALSE, 0);
 
   priv->sw = gtk_scrolled_window_new (NULL, NULL);
 
@@ -371,19 +398,17 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     G_CALLBACK (eog_thumb_nav_scroll_event),
                     nav);
 
-  priv->adj = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (priv->sw));
+  priv->hadj = gtk_scrolled_window_get_hadjustment (GTK_SCROLLED_WINDOW (priv->sw));
 
-  g_signal_connect (priv->adj,
+  g_signal_connect (priv->hadj,
                     "changed",
                     G_CALLBACK (eog_thumb_nav_adj_changed),
                     nav);
 
-  g_signal_connect (priv->adj,
+  g_signal_connect (priv->hadj,
                     "value-changed",
                     G_CALLBACK (eog_thumb_nav_adj_value_changed),
                     nav);
-
-  gtk_box_pack_start (GTK_BOX (nav), priv->sw, TRUE, TRUE, 0);
 
   priv->button_right = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (priv->button_right), GTK_RELIEF_NONE);
@@ -392,8 +417,6 @@ eog_thumb_nav_init (EogThumbNav *nav)
   gtk_container_add (GTK_CONTAINER (priv->button_right), arrow);
 
   gtk_widget_set_size_request (GTK_WIDGET (priv->button_right), 25, 0);
-
-  gtk_box_pack_start (GTK_BOX (nav), priv->button_right, FALSE, FALSE, 0);
 
   g_signal_connect (priv->button_right,
                     "clicked",
@@ -410,7 +433,61 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
-  gtk_adjustment_value_changed (priv->adj);
+  gtk_box_pack_start (GTK_BOX (nav), priv->button_left, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (nav), priv->vbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (nav), priv->button_right, FALSE, FALSE, 0);
+
+  priv->button_down = gtk_button_new ();
+  gtk_button_set_relief (GTK_BUTTON (priv->button_down), GTK_RELIEF_NONE);
+
+  arrow = gtk_arrow_new (GTK_ARROW_DOWN, GTK_SHADOW_NONE);
+  gtk_container_add (GTK_CONTAINER (priv->button_down), arrow);
+
+  gtk_widget_set_size_request (GTK_WIDGET (priv->button_down), 0, 25);
+
+  g_signal_connect (priv->button_down,
+                    "clicked",
+                    G_CALLBACK (eog_thumb_nav_button_clicked),
+                    nav);
+
+  g_signal_connect (priv->button_down,
+                    "pressed",
+                    G_CALLBACK (eog_thumb_nav_start_scroll),
+                    nav);
+
+  g_signal_connect (priv->button_down,
+                    "released",
+                    G_CALLBACK (eog_thumb_nav_stop_scroll),
+                    nav);
+
+  priv->button_up = gtk_button_new ();
+  gtk_button_set_relief (GTK_BUTTON (priv->button_up), GTK_RELIEF_NONE);
+
+  arrow = gtk_arrow_new (GTK_ARROW_UP, GTK_SHADOW_NONE);
+  gtk_container_add (GTK_CONTAINER (priv->button_up), arrow);
+
+  gtk_widget_set_size_request (GTK_WIDGET (priv->button_up), 0, 25);
+
+  g_signal_connect (priv->button_up,
+                    "clicked",
+                    G_CALLBACK (eog_thumb_nav_button_clicked),
+                    nav);
+
+  g_signal_connect (priv->button_up,
+                    "pressed",
+                    G_CALLBACK (eog_thumb_nav_start_scroll),
+                    nav);
+
+  g_signal_connect (priv->button_up,
+                    "released",
+                    G_CALLBACK (eog_thumb_nav_stop_scroll),
+                    nav);
+
+  gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_up, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), priv->sw, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_down, FALSE, FALSE, 0);
+
+  gtk_adjustment_value_changed (priv->hadj);
 }
 
 /**
