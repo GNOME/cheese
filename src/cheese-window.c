@@ -1344,20 +1344,17 @@ cheese_window_take_burst_photo (gpointer data)
 static void
 cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
 {
-  char *str;
+  char     *str;
+  guint    repeat_delay = 1000;
+  gboolean countdown;
 
-  if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
-  {
+  switch (cheese_window->webcam_mode) {
+  case WEBCAM_MODE_PHOTO:
     cheese_window->repeat_count = 1;
     cheese_window_take_burst_photo (cheese_window);
-
     /* FIXME: set menu inactive */
-  }
-  else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
-  {
-    guint    repeat_delay = 1000;
-    gboolean countdown;
-
+    break;
+  case WEBCAM_MODE_BURST:
     g_object_get (cheese_window->gconf, "gconf_prop_burst_delay", &repeat_delay, NULL);
     g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL);
     g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
@@ -1370,9 +1367,8 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
     }
 
     g_timeout_add (repeat_delay, &cheese_window_take_burst_photo, cheese_window);
-  }
-  else if (cheese_window->webcam_mode == WEBCAM_MODE_VIDEO)
-  {
+    break;
+  case WEBCAM_MODE_VIDEO:
     if (!cheese_window->recording)
     {
       gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
@@ -1397,6 +1393,10 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
     {
       cheese_window_stop_recording (cheese_window);
     }
+    break;
+  default:
+    g_assert_not_reached ();
+    break;
   }
 }
 
