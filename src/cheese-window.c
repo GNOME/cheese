@@ -183,6 +183,7 @@ typedef struct
   int audio_play_counter;
 
   gint repeat_count;
+  gboolean bursting;
 
   CheeseFlash *flash;
 } CheeseWindow;
@@ -1293,7 +1294,7 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
 }
 
 static gboolean
-cheese_window_take_burst_photo (gpointer data)
+cheese_window_take_photo (gpointer data)
 {
   gboolean      countdown;
   CheeseWindow *cheese_window = (CheeseWindow *) data;
@@ -1333,30 +1334,11 @@ cheese_window_take_burst_photo (gpointer data)
   gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
   gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, FALSE);
 
-  cheese_window->repeat_count--;
-  if (cheese_window->repeat_count <= 0)
-  {
-    return FALSE;
-  }
-  return TRUE;
-}
+  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST) {
+    guint repeat_delay = 1000;
+    gboolean countdown = FALSE;
 
-static void
-cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
-{
-  char     *str;
-  guint    repeat_delay = 1000;
-  gboolean countdown;
-
-  switch (cheese_window->webcam_mode) {
-  case WEBCAM_MODE_PHOTO:
-    cheese_window->repeat_count = 1;
-    cheese_window_take_burst_photo (cheese_window);
-    /* FIXME: set menu inactive */
-    break;
-  case WEBCAM_MODE_BURST:
     g_object_get (cheese_window->gconf, "gconf_prop_burst_delay", &repeat_delay, NULL);
-    g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL);
     g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
 
     if (countdown && repeat_delay < 5000)
@@ -1365,8 +1347,31 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
        * Magic number chosen via expiriment on Netbook */
       repeat_delay = 5000;
     }
+    if (!cheese_window->bursting) {
+      g_timeout_add (repeat_delay, cheese_window_take_photo, cheese_window);
+      cheese_window->bursting = TRUE;
+    }
+    cheese_window->repeat_count--;
+    if (cheese_window->repeat_count > 0)
+    {
+      return TRUE;
+    }
+  }
+  cheese_window->bursting = FALSE;
 
-    g_timeout_add (repeat_delay, &cheese_window_take_burst_photo, cheese_window);
+  return FALSE;
+}
+
+static void
+cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
+{
+  char     *str;
+
+  switch (cheese_window->webcam_mode) {
+  case WEBCAM_MODE_BURST:
+    g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL); /* reset burst counter */
+  case WEBCAM_MODE_PHOTO:
+    cheese_window_take_photo (cheese_window);
     break;
   case WEBCAM_MODE_VIDEO:
     if (!cheese_window->recording)
@@ -2051,6 +2056,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
   cheese_window->flash               = cheese_flash_new ();
   cheese_window->audio_play_counter  = 0;
   cheese_window->isFullscreen        = FALSE;
+  cheese_window->bursting            = FALSE;
 
   cheese_window->server = dbus_server;
 
