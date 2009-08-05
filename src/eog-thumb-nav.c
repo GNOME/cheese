@@ -519,7 +519,7 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     nav);
 
   gtk_box_pack_start (GTK_BOX (nav), priv->button_left, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (nav), priv->vbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (nav), priv->vbox, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (nav), priv->button_right, FALSE, FALSE, 0);
 
   priv->button_down = gtk_button_new ();
@@ -569,7 +569,7 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     nav);
 
   gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_up, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (priv->vbox), priv->sw, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (priv->vbox), priv->sw, TRUE, TRUE, 0);
   gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_down, FALSE, FALSE, 0);
 
   gtk_adjustment_value_changed (priv->hadj);

@@ -607,10 +607,10 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   }
 
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
-#ifdef HILDON
+#ifdef NETBOOK
   gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), -1);
 #else
-  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), 10); /* FIXME ASAP */
+  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), G_MAX_INT);
 #endif
 
   gtk_icon_view_enable_model_drag_source (GTK_ICON_VIEW (thumb_view), GDK_BUTTON1_MASK,
