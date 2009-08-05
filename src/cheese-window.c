@@ -183,7 +183,7 @@ typedef struct
   int audio_play_counter;
 
   gint repeat_count;
-  gboolean bursting;
+  gboolean is_bursting;
 
   CheeseFlash *flash;
 } CheeseWindow;
@@ -403,8 +403,12 @@ static void
 cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 {
   gdk_threads_enter ();
-  gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
-  gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
+  if (!cheese_window->is_bursting) {
+    gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_toggle, TRUE);
+    gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
+    gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
+  }
   gdk_flush ();
   gdk_threads_leave ();
 }
@@ -1347,9 +1351,10 @@ cheese_window_take_photo (gpointer data)
        * Magic number chosen via expiriment on Netbook */
       repeat_delay = 5000;
     }
-    if (!cheese_window->bursting) {
+    /* start burst mode phot series */
+    if (!cheese_window->is_bursting) {
       g_timeout_add (repeat_delay, cheese_window_take_photo, cheese_window);
-      cheese_window->bursting = TRUE;
+      cheese_window->is_bursting = TRUE;
     }
     cheese_window->repeat_count--;
     if (cheese_window->repeat_count > 0)
@@ -1357,7 +1362,7 @@ cheese_window_take_photo (gpointer data)
       return TRUE;
     }
   }
-  cheese_window->bursting = FALSE;
+  cheese_window->is_bursting = FALSE;
 
   return FALSE;
 }
@@ -1369,6 +1374,8 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 
   switch (cheese_window->webcam_mode) {
   case WEBCAM_MODE_BURST:
+    gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_toggle, FALSE);
     g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL); /* reset burst counter */
   case WEBCAM_MODE_PHOTO:
     cheese_window_take_photo (cheese_window);
@@ -2056,7 +2063,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
   cheese_window->flash               = cheese_flash_new ();
   cheese_window->audio_play_counter  = 0;
   cheese_window->isFullscreen        = FALSE;
-  cheese_window->bursting            = FALSE;
+  cheese_window->is_bursting         = FALSE;
 
   cheese_window->server = dbus_server;
 
