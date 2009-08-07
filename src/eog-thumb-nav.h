@@ -60,6 +60,8 @@ gboolean         eog_thumb_nav_get_show_buttons  (EogThumbNav       *nav);
 
 void             eog_thumb_nav_set_show_buttons  (EogThumbNav       *nav,
                                                   gboolean           show_buttons);
+void             eog_thumb_nav_set_vertical      (EogThumbNav       *nav,
+                                                  gboolean           vertical);
 
 G_END_DECLS
 

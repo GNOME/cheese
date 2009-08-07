@@ -50,6 +50,7 @@ enum
 
 struct _EogThumbNavPrivate {
   gboolean          show_buttons;
+  gboolean          vertical;
   gboolean          scroll_dir;
   gint              scroll_pos;
   gint              scroll_id;
@@ -405,6 +406,7 @@ eog_thumb_nav_init (EogThumbNav *nav)
   priv = nav->priv;
 
   priv->show_buttons = TRUE;
+  priv->vertical = FALSE;
 
   priv->button_left = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (priv->button_left), GTK_RELIEF_NONE);
@@ -464,7 +466,7 @@ eog_thumb_nav_init (EogThumbNav *nav)
 
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
                                   GTK_POLICY_AUTOMATIC,
-                                  GTK_POLICY_AUTOMATIC);
+                                  GTK_POLICY_NEVER);
 
   g_signal_connect (priv->sw,
                     "scroll-event",
@@ -518,10 +520,6 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
-  gtk_box_pack_start (GTK_BOX (nav), priv->button_left, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (nav), priv->vbox, FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (nav), priv->button_right, FALSE, FALSE, 0);
-
   priv->button_down = gtk_button_new ();
   gtk_button_set_relief (GTK_BUTTON (priv->button_down), GTK_RELIEF_NONE);
 
@@ -568,9 +566,13 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
-  gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_up, FALSE, FALSE, 0);
+
+  g_object_ref (priv->button_up);
+  g_object_ref (priv->button_down);
+  gtk_box_pack_start (GTK_BOX (nav), priv->button_left, FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (nav), priv->vbox, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (nav), priv->button_right, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (priv->vbox), priv->sw, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_down, FALSE, FALSE, 0);
 
   gtk_adjustment_value_changed (priv->hadj);
 }
@@ -603,7 +605,7 @@ eog_thumb_nav_new (GtkWidget       *thumbview,
 
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
                                   GTK_POLICY_AUTOMATIC,
-                                  GTK_POLICY_AUTOMATIC);
+                                  GTK_POLICY_NEVER);
 
   eog_thumb_nav_set_show_buttons (nav, priv->show_buttons);
 
@@ -651,4 +653,66 @@ eog_thumb_nav_set_show_buttons (EogThumbNav *nav, gboolean show_buttons)
     gtk_widget_hide_all (nav->priv->button_left);
     gtk_widget_hide_all (nav->priv->button_right);
   }
+}
+
+
+void
+eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
+{
+  EogThumbNavPrivate *priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
+
+  g_return_if_fail (EOG_IS_THUMB_NAV (nav));
+  g_return_if_fail (priv->button_left  != NULL);
+  g_return_if_fail (priv->button_right != NULL);
+  g_return_if_fail (priv->vbox != NULL);
+  g_return_if_fail (priv->sw != NULL);
+
+  if (vertical == priv->vertical) return;
+
+  /* show/hide doesn't work because of a mandatory show_all in cheese-window */
+
+  if (vertical) {
+    g_print ("setting vertical mode\n");
+    g_return_if_fail (!gtk_widget_get_parent (priv->button_up));
+    g_return_if_fail (!gtk_widget_get_parent (priv->button_down));
+    g_return_if_fail (gtk_widget_get_parent (priv->button_left));
+    g_return_if_fail (gtk_widget_get_parent (priv->button_right));
+
+    gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_up, FALSE, FALSE, 0);
+    gtk_box_reorder_child (GTK_BOX (priv->vbox), priv->button_up, 0);
+    gtk_box_pack_start (GTK_BOX (priv->vbox), priv->button_down, FALSE, FALSE, 0);
+    g_object_unref (priv->button_up);
+    g_object_unref (priv->button_down);
+
+    g_object_ref (priv->button_left);
+    gtk_container_remove (GTK_CONTAINER (nav), priv->button_left);
+    g_object_ref (priv->button_right);
+    gtk_container_remove (GTK_CONTAINER (nav), priv->button_right);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
+                                    GTK_POLICY_NEVER,
+                                    GTK_POLICY_AUTOMATIC);
+    priv->vertical = TRUE;
+  } else {
+    g_print ("setting horizontal mode\n");
+    g_return_if_fail (!gtk_widget_get_parent (priv->button_left));
+    g_return_if_fail (!gtk_widget_get_parent (priv->button_right));
+    g_return_if_fail (gtk_widget_get_parent (priv->button_up));
+    g_return_if_fail (gtk_widget_get_parent (priv->button_down));
+
+    gtk_box_pack_start (GTK_BOX (nav), priv->button_left, FALSE, FALSE, 0);
+    gtk_box_reorder_child (GTK_BOX (nav), priv->button_left, 0);
+    gtk_box_pack_start (GTK_BOX (nav), priv->button_right, FALSE, FALSE, 0);
+    g_object_unref (priv->button_left);
+    g_object_unref (priv->button_right);
+
+    g_object_ref (priv->button_up);
+    gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->button_up);
+    g_object_ref (priv->button_down);
+    gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->button_down);
+    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
+                                    GTK_POLICY_AUTOMATIC,
+                                    GTK_POLICY_NEVER);
+    priv->vertical = FALSE;
+  }
+  gtk_widget_show_all (GTK_WIDGET (nav));
 }
