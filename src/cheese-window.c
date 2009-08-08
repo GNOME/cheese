@@ -108,8 +108,12 @@ typedef struct
   GtkWidget *fullscreen_bar;
 
   GtkWidget *main_vbox;
-  GtkWidget *netbook_alignment;
   GtkWidget *video_vbox;
+
+  GtkWidget *netbook_alignment;
+  GtkWidget *toolbar_alignment;
+  GtkWidget *effect_button_alignment;
+  GtkWidget *togglegroup_alignment;
 
   GtkWidget *effect_frame;
   GtkWidget *effect_alignment;
@@ -167,6 +171,7 @@ typedef struct
   GtkActionGroup *actions_video;
   GtkActionGroup *actions_burst;
   GtkActionGroup *actions_fullscreen;
+  GtkActionGroup *actions_wide_mode;
 
   GtkUIManager *ui_manager;
 
@@ -316,6 +321,60 @@ cheese_window_fullscreen_motion_notify_cb (GtkWidget      *widget,
       cheese_window_fullscreen_set_timeout (cheese_window);
   }
   return FALSE;
+}
+
+static void
+cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
+{
+  gboolean toggled = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (widget));
+
+  gtk_icon_view_set_columns (GTK_ICON_VIEW (cheese_window->thumb_view), toggled ? 1 : G_MAXINT);
+  eog_thumb_nav_set_vertical (cheese_window->thumb_nav, toggled);
+  g_object_ref (cheese_window->thumb_scrollwindow);
+  if (toggled) {
+    gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
+    gtk_container_add (GTK_CONTAINER (cheese_window->netbook_alignment), cheese_window->thumb_scrollwindow);
+    g_object_unref (cheese_window->thumb_scrollwindow);
+  } else {
+    gtk_container_remove (GTK_CONTAINER (cheese_window->netbook_alignment), cheese_window->thumb_scrollwindow);
+    gtk_box_pack_end (GTK_BOX (cheese_window->video_vbox), cheese_window->thumb_scrollwindow, FALSE, FALSE, 0);
+    g_object_unref (cheese_window->thumb_scrollwindow);
+  }
+
+  /* update spacing */
+  /* NOTE: be really carefull when changing the ui file to update spacing
+   * values here too! */
+  if (toggled) {
+    g_object_set (G_OBJECT (cheese_window->toolbar_alignment),
+                  "bottom-padding", 10, NULL);
+    g_object_set (G_OBJECT (cheese_window->togglegroup_alignment),
+                  "left-padding", 6, NULL);
+    g_object_set (G_OBJECT (cheese_window->effect_button_alignment),
+                  "right-padding", 0, NULL);
+    g_object_set (G_OBJECT (cheese_window->netbook_alignment),
+                  "left-padding", 6, NULL);
+  } else {
+    g_object_set (G_OBJECT (cheese_window->toolbar_alignment),
+                  "bottom-padding", 6, NULL);
+    g_object_set (G_OBJECT (cheese_window->togglegroup_alignment),
+                  "left-padding", 24, NULL);
+    g_object_set (G_OBJECT (cheese_window->effect_button_alignment),
+                  "right-padding", 24, NULL);
+    g_object_set (G_OBJECT (cheese_window->netbook_alignment),
+                  "left-padding", 0, NULL);
+  }
+
+  /* try to keep video screen size while switching to and from wide mode */
+  /* ugly and doesn't always work, look for a better way */
+  GtkRequisition req;
+  gint w, h;
+  gdk_drawable_get_size (gtk_widget_get_window (cheese_window->screen), &w, &h);
+  gtk_widget_set_size_request (cheese_window->screen,
+                               w, h);
+  gtk_window_resize (cheese_window->window, 1, 1);
+  gtk_widget_size_request (cheese_window->window, &req);
+  gtk_window_resize (GTK_WINDOW (cheese_window->window), req.width, req.height);
+  gtk_widget_set_size_request (cheese_window->screen, -1, -1);
 }
 
 static void
@@ -1442,6 +1501,10 @@ static const GtkToggleActionEntry action_entries_fullscreen[] = {
   {"Fullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11", NULL, G_CALLBACK (cheese_window_toggle_fullscreen), FALSE},
 };
 
+static const GtkToggleActionEntry action_entries_wide_mode[] = {
+  {"WideMode", NULL, N_("_Wide mode"), "<Super>W", NULL, G_CALLBACK (cheese_window_toggle_wide_mode), FALSE},
+};
+
 static const GtkRadioActionEntry action_entries_toggle[] = {
   {"Photo", NULL, N_("_Photo"), NULL, NULL, 0},
   {"Video", NULL, N_("_Video"), NULL, NULL, 1},
@@ -1635,6 +1698,9 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->label_video                 = GTK_WIDGET (gtk_builder_get_object (builder, "label_video"));
   cheese_window->main_vbox                   = GTK_WIDGET (gtk_builder_get_object (builder, "main_vbox"));
   cheese_window->netbook_alignment           = GTK_WIDGET (gtk_builder_get_object (builder, "netbook_alignment"));
+  cheese_window->togglegroup_alignment       = GTK_WIDGET (gtk_builder_get_object (builder, "togglegroup_alignment"));
+  cheese_window->effect_button_alignment     = GTK_WIDGET (gtk_builder_get_object (builder, "effect_button_alignment"));
+  cheese_window->toolbar_alignment           = GTK_WIDGET (gtk_builder_get_object (builder, "toolbar_alignment"));
   cheese_window->video_vbox                  = GTK_WIDGET (gtk_builder_get_object (builder, "video_vbox"));
   cheese_window->notebook                    = GTK_WIDGET (gtk_builder_get_object (builder, "notebook"));
   cheese_window->notebook_bar                = GTK_WIDGET (gtk_builder_get_object (builder, "notebook_bar"));
@@ -1749,6 +1815,11 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                              "ActionsFullscreen",
                                                                              action_entries_fullscreen,
                                                                              G_N_ELEMENTS (action_entries_fullscreen));
+
+  cheese_window->actions_wide_mode = cheese_window_toggle_action_group_new (cheese_window,
+                                                                            "ActionsWideMode",
+                                                                            action_entries_wide_mode,
+                                                                            G_N_ELEMENTS (action_entries_fullscreen));
 
   cheese_window->actions_preferences = cheese_window_action_group_new (cheese_window,
                                                                        "ActionsPreferences",
@@ -2027,13 +2098,6 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording   = FALSE;
-
-#ifdef NETBOOK
-  g_object_ref (cheese_window->thumb_scrollwindow);
-  gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
-  gtk_container_add (GTK_CONTAINER (cheese_window->netbook_alignment), cheese_window->thumb_scrollwindow);
-  g_object_unref (cheese_window->thumb_scrollwindow);
-#endif
 
   /* handy trick to set default size of the drawing area while not
    * limiting its minimum size, thanks Owen! */
