@@ -569,6 +569,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   GFile    *file;
   const int THUMB_VIEW_HEIGHT = 120;
+  const int THUMB_VIEW_WIDTH  = 172;
 
   eog_thumbnail_init ();
 
@@ -578,7 +579,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   gtk_icon_view_set_model (GTK_ICON_VIEW (thumb_view), GTK_TREE_MODEL (priv->store));
 
-  gtk_widget_set_size_request (GTK_WIDGET (thumb_view), -1, THUMB_VIEW_HEIGHT);
+  gtk_widget_set_size_request (GTK_WIDGET (thumb_view), THUMB_VIEW_WIDTH, THUMB_VIEW_HEIGHT);
 
   path_videos = cheese_fileutil_get_video_path (priv->fileutil);
   path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
@@ -607,11 +608,8 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   }
 
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
-#ifdef NETBOOK
-  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), -1);
-#else
-  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), G_MAX_INT);
-#endif
+
+  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), G_MAXINT);
 
   gtk_icon_view_enable_model_drag_source (GTK_ICON_VIEW (thumb_view), GDK_BUTTON1_MASK,
                                           target_table, G_N_ELEMENTS (target_table),
