@@ -369,13 +369,13 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
   GtkRequisition req;
   gint w, h;
 
-  gtk_widget_set_size_request (cheese_window->screen,
-                               GTK_WIDGET (cheese_window->screen)->allocation.width,
-                               GTK_WIDGET (cheese_window->screen)->allocation.height);
+  gtk_widget_set_size_request (cheese_window->notebook,
+                               GTK_WIDGET (cheese_window->notebook)->allocation.width,
+                               GTK_WIDGET (cheese_window->notebook)->allocation.height);
   gtk_window_resize (cheese_window->window, 1, 1);
   gtk_widget_size_request (cheese_window->window, &req);
   gtk_window_resize (GTK_WINDOW (cheese_window->window), req.width, req.height);
-  gtk_widget_set_size_request (cheese_window->screen, -1, -1);
+  gtk_widget_set_size_request (cheese_window->notebook, -1, -1);
 }
 
 static void
