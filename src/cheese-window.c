@@ -365,12 +365,13 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
   }
 
   /* try to keep video screen size while switching to and from wide mode */
-  /* ugly and doesn't always work, look for a better way */
+
   GtkRequisition req;
   gint w, h;
-  gdk_drawable_get_size (gtk_widget_get_window (cheese_window->screen), &w, &h);
+
   gtk_widget_set_size_request (cheese_window->screen,
-                               w, h);
+                               GTK_WIDGET (cheese_window->screen)->allocation.width,
+                               GTK_WIDGET (cheese_window->screen)->allocation.height);
   gtk_window_resize (cheese_window->window, 1, 1);
   gtk_widget_size_request (cheese_window->window, &req);
   gtk_window_resize (GTK_WINDOW (cheese_window->window), req.width, req.height);
