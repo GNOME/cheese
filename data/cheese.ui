@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <interface>
-  <!-- interface-requires gtk+ 2.16 -->
+  <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkWindow" id="cheese_window">
     <property name="title" translatable="yes">Cheese</property>
@@ -82,6 +82,9 @@
                       </packing>
                     </child>
                   </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
                 <child type="tab">
                   <placeholder/>
@@ -98,6 +101,9 @@
                       <placeholder/>
                     </child>
                   </object>
+                  <packing>
+                    <property name="position">2</property>
+                  </packing>
                 </child>
                 <child type="tab">
                   <placeholder/>
@@ -136,7 +142,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="tooltip-text" translatable="yes">Switch to Photo Mode</property>
+                                <property name="tooltip_text" translatable="yes">Switch to Photo Mode</property>
                                 <child>
                                   <object class="GtkAlignment" id="alignment4">
                                     <property name="visible">True</property>
@@ -163,7 +169,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="tooltip-text" translatable="yes">Switch to Video Mode</property>
+                                <property name="tooltip_text" translatable="yes">Switch to Video Mode</property>
                                 <child>
                                   <object class="GtkAlignment" id="alignment5">
                                     <property name="visible">True</property>
@@ -190,7 +196,7 @@
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                                <property name="tooltip-text" translatable="yes">Switch to Burst Mode</property>
+                                <property name="tooltip_text" translatable="yes">Switch to Burst Mode</property>
                                 <child>
                                   <object class="GtkAlignment" id="alignment12">
                                     <property name="visible">True</property>
@@ -334,6 +340,9 @@
                       <placeholder/>
                     </child>
                   </object>
+                  <packing>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
                 <child type="tab">
                   <placeholder/>
@@ -397,7 +406,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="tooltip-text" translatable="yes">Switch to the Effects Selector</property>
+                        <property name="tooltip_text" translatable="yes">Switch to the Effects Selector</property>
                         <property name="relief">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment10">
@@ -435,7 +444,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="tooltip-text" translatable="yes">Switch to Photo Mode</property>
+                        <property name="tooltip_text" translatable="yes">Switch to Photo Mode</property>
                         <property name="relief">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment7">
@@ -473,7 +482,7 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                        <property name="tooltip-text" translatable="yes">Switch to Video Mode</property>
+                        <property name="tooltip_text" translatable="yes">Switch to Video Mode</property>
                         <property name="relief">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment8">
@@ -512,7 +521,7 @@
                         <property name="receives_default">True</property>
                         <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                         <property name="has_tooltip">True</property>
-                        <property name="tooltip-text" translatable="yes">Switch to Burst Mode</property>
+                        <property name="tooltip_text" translatable="yes">Switch to Burst Mode</property>
                         <property name="relief">none</property>
                         <child>
                           <object class="GtkAlignment" id="alignment1">
@@ -691,6 +700,9 @@
               <placeholder/>
             </child>
           </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
         </child>
         <child type="tab">
           <placeholder/>
