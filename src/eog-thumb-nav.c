@@ -74,21 +74,16 @@ eog_thumb_nav_scroll_event (GtkWidget *widget, GdkEventScroll *event, gpointer u
   gint inc = EOG_THUMB_NAV_SCROLL_INC * 3;
   gdouble value, upper, page_size;
 
+  nav->priv->adj = nav->priv->vertical ? nav->priv->vadj : nav->priv->hadj;
+
   switch (event->direction) {
   case GDK_SCROLL_UP:
-    nav->priv->adj = nav->priv->vadj;
-    inc *= -1;
-    break;
   case GDK_SCROLL_LEFT:
-    nav->priv->adj = nav->priv->hadj;
     inc *= -1;
     break;
 
   case GDK_SCROLL_DOWN:
-    nav->priv->adj = nav->priv->vadj;
-    break;
   case GDK_SCROLL_RIGHT:
-    nav->priv->adj = nav->priv->hadj;
     break;
 
   default:
