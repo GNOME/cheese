@@ -1,0 +1,528 @@
+# Traducció del Cheese al Català
+# Copyright (C) 2008 Free Software Foundation, Inc.
+# This file is distributed under the same license as the Cheese package.
+# Gil Forcada <gilforcada@guifi.net>, 2008.
+msgid ""
+msgstr ""
+"Project-Id-Version: cheese\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-08-09 11:51+0200\n"
+"PO-Revision-Date: 2009-06-09 19:24+0200\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
+"Language-Team: Catalan <tradgnome@softcatala.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: ../data/cheese.desktop.in.in.h:1
+msgid "Cheese Webcam Booth"
+msgstr "Cabina de fotografia del Cheese"
+
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1027
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "Feu fotos i vídeos amb la càmera web, amb efectes gràfics divertits"
+
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Efectes que s'apliquen a l'inici. Els valors possibles són: «mauve» (malva), "
+"«noir_blanc» (blanc/negre), «saturation» (saturació), «hulk», «vertical-"
+"flip» (Gir vertical), «horitzontal-flip» (Gir horitzontal), "
+"«shagadelic» (psicodèlic), «vertigo» (vertigen), «edge» (contorns), "
+"«dice» (trossos) i «warp» (distorsió)"
+
+#: ../data/cheese.schemas.in.h:4
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Defineix el camí a on s'alcen les fotos, si és buit s'utilitzarà «XDG_PHOTO/"
+"Webcam»."
+
+#: ../data/cheese.schemas.in.h:5
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Defineix el camí a on s'alcen els vídeos, si és buit s'utilitzarà «XDG_VIDEO/"
+"Webcam»."
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Height resolution"
+msgstr "Resolució de l'alçada"
+
+#: ../data/cheese.schemas.in.h:7
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Si s'estableix a «True» (cert), el Cheese permetrà suprimir un fitxer "
+"immediatament sense moure'l primer a la paperera. Esta funcionalitat pot ser "
+"perillosa, aneu amb compte."
+
+#: ../data/cheese.schemas.in.h:8
+msgid "Photo Path"
+msgstr "Camí de la foto"
+
+#: ../data/cheese.schemas.in.h:9
+msgid "Selected Effects"
+msgstr "Efectes seleccionats"
+
+#: ../data/cheese.schemas.in.h:10
+msgid "Set to True to show countdown when taking a photo"
+msgstr ""
+"Establiu-lo a «True» (cert) perquè es mostre un temporitzador quan es facen "
+"fotos"
+
+#: ../data/cheese.schemas.in.h:11
+msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgstr "El dispositiu que fa referència a la càmera (p. e. /dev/video0)"
+
+#: ../data/cheese.schemas.in.h:12
+msgid "The height resolution of the image captured from the camera"
+msgstr "La resolució de l'alçada de la imatge creada amb la càmera"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "The width resolution of the image captured from the camera"
+msgstr "La resolució de l'amplada de la imatge creada amb la càmera"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Use a countdown"
+msgstr "Utilitza un temporitzador"
+
+#: ../data/cheese.schemas.in.h:15
+msgid "Video Path"
+msgstr "Camí del vídeo"
+
+#: ../data/cheese.schemas.in.h:16
+msgid "Webcam device string indicator"
+msgstr "Cadena que indica el dispositiu de la càmera web"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Whether to enable immediate deletion"
+msgstr "Si s'ha d'habilitar la supressió immediata"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Width resolution"
+msgstr "Resolució de l'amplada"
+
+#: ../data/cheese.ui.h:1 ../src/cheese.c:176
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "Canvia al mode foto"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "Canvia al mode vídeo"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "Canvia al selector d'efectes"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1151
+#: ../src/cheese-window.c:1393
+msgid "_Effects"
+msgstr "E_fectes"
+
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "I_x de la pantalla completa"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1405
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1457
+msgid "_Take a Photo"
+msgstr "Fes una f_oto"
+
+#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1406
+msgid "_Video"
+msgstr "_Vídeo"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "<b>Camera</b>"
+msgstr "<b>Càmera</b>"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "<b>Resolution</b>"
+msgstr "<b>Resolució</b>"
+
+#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1397
+msgid "Preferences"
+msgstr "Preferències"
+
+#: ../src/cheese-effect-chooser.c:60
+msgid "No Effect"
+msgstr "Sense efectes"
+
+#: ../src/cheese-effect-chooser.c:62
+msgid "Mauve"
+msgstr "Malva"
+
+#: ../src/cheese-effect-chooser.c:64
+msgid "Noir/Blanc"
+msgstr "Blanc/Negre"
+
+#: ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Saturació"
+
+#: ../src/cheese-effect-chooser.c:68
+msgid "Hulk"
+msgstr "Hulk"
+
+#: ../src/cheese-effect-chooser.c:70
+msgid "Vertical Flip"
+msgstr "Gir vertical"
+
+#: ../src/cheese-effect-chooser.c:72
+msgid "Horizontal Flip"
+msgstr "Gir horitzontal"
+
+#: ../src/cheese-effect-chooser.c:74
+msgid "Shagadelic"
+msgstr "Psicodèlic"
+
+#: ../src/cheese-effect-chooser.c:76
+msgid "Vertigo"
+msgstr "Vertigen"
+
+#: ../src/cheese-effect-chooser.c:78
+msgid "Edge"
+msgstr "Contorns"
+
+#: ../src/cheese-effect-chooser.c:80
+msgid "Dice"
+msgstr "Trossos"
+
+#: ../src/cheese-effect-chooser.c:82
+msgid "Warp"
+msgstr "Distorsió"
+
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:474
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-no-camera.c:96
+msgid "No camera found!"
+msgstr "No s'ha trobat cap càmera"
+
+#: ../src/cheese-no-camera.c:97
+msgid "Please refer to the help for further information."
+msgstr "Per a obtindre més informació, consulteu l'ajuda."
+
+#: ../src/cheese-no-camera.c:100
+msgid "Help"
+msgstr "Ajuda"
+
+#: ../src/cheese-webcam.c:1591
+msgid "One or more needed gstreamer elements are missing: "
+msgstr "Manquen un o més elements necessaris del gstreamer: "
+
+#: ../src/cheese-window.c:78
+msgid "_Skip"
+msgstr "_Omet"
+
+#: ../src/cheese-window.c:79
+msgid "S_kip All"
+msgstr "O_met-les totes"
+
+#: ../src/cheese-window.c:80
+msgid "Delete _All"
+msgstr "Suprimeix-les _totes"
+
+#: ../src/cheese-window.c:205
+#, c-format
+msgid ""
+"Failed to open browser to show:\n"
+"%s"
+msgstr ""
+"No s'ha pogut obrir el navegador per a mostrar:\n"
+"%s"
+
+#: ../src/cheese-window.c:230
+#, c-format
+msgid ""
+"Failed to open email client to send message to:\n"
+"%s"
+msgstr ""
+"No s'ha pogut obrir el client de correu electrònic per a enviar el missatge "
+"a:\n"
+"%s"
+
+#: ../src/cheese-window.c:479
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s"
+msgstr ""
+"No s'ha pogut executar el programa per a mostrar:\n"
+"%s"
+
+#: ../src/cheese-window.c:498
+msgid "Save File"
+msgstr "Alça el fitxer"
+
+#: ../src/cheese-window.c:536
+#, c-format
+msgid "Could not save %s"
+msgstr "No s'ha pogut alçar %s"
+
+#: ../src/cheese-window.c:559
+msgid "Error while deleting"
+msgstr "S'ha produït un error en suprimir"
+
+#: ../src/cheese-window.c:560
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "No s'ha pogut suprimir el fitxer «%s». Detalls: %s"
+
+#: ../src/cheese-window.c:587
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "Segur que voleu suprimir permanentment %'d element seleccionat?"
+msgstr[1] ""
+"Segur que voleu suprimir permanentment els %'d elements seleccionats?"
+
+#: ../src/cheese-window.c:594
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "Segur que voleu suprimir permanentment «%s»?"
+
+#: ../src/cheese-window.c:597
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Si suprimiu un element, es perdrà per sempre."
+
+#: ../src/cheese-window.c:618
+msgid "Unknown Error"
+msgstr "Error desconegut"
+
+#: ../src/cheese-window.c:648
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr ""
+"No s'ha pogut moure el fitxer a la paperera, voleu suprimir-lo immediatament?"
+
+#: ../src/cheese-window.c:649
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "No es pot moure el fitxer «%s» a la paperera. Detalls: %s"
+
+#: ../src/cheese-window.c:721
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "Segur que voleu moure totes les fotos i els vídeos a la paperera?"
+
+#: ../src/cheese-window.c:729
+msgid "_Move to Trash"
+msgstr "_Mou a la paperera"
+
+#: ../src/cheese-window.c:847
+#, c-format
+msgid "Could not set the Account Photo"
+msgstr "No s'ha pogut establir la foto del compte"
+
+#: ../src/cheese-window.c:879
+msgid "Media files"
+msgstr "Fitxers multimèdia"
+
+#: ../src/cheese-window.c:953 ../src/cheese-window.c:1228
+msgid "Unable to open help file for Cheese"
+msgstr "No s'ha pogut obrir el fitxer d'ajuda del Cheese"
+
+#: ../src/cheese-window.c:1005
+msgid "translator-credits"
+msgstr "Gil Forcada <gilforcada@guifi.net>"
+
+#: ../src/cheese-window.c:1008
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"Este programari és programari lliure; podeu redistribuir-lo i/o modificar-lo "
+"sota els termes de la Llicència Pública General GNU tal com ha estat "
+"publicada per la Free Software Foundation; ja siga la versió 2 de la "
+"Llicència o bé (si ho preferiu) qualsevol altra versió posterior.\n"
+
+#: ../src/cheese-window.c:1012
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Este programari es distribueix amb l'expectativa que serà útil, però SENSE "
+"CAP GARANTIA; ni tan sols la garantia implícita de COMERCIABILITAT o "
+"ADEQUACIÓ PER UN PROPÒSIT PARTICULAR. Vegeu la Llicència Pública General GNU "
+"per obtindre'n més detalls.\n"
+
+#: ../src/cheese-window.c:1016
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Hauríeu d'haver rebut una còpia de la Llicència Pública General GNU "
+"juntament amb este programari. En cas contrari, vegeu <http://www.gnu.org/"
+"licenses/>."
+
+#: ../src/cheese-window.c:1033
+msgid "Cheese Website"
+msgstr "Lloc web del Cheese"
+
+#: ../src/cheese-window.c:1244
+msgid "_Start Recording"
+msgstr "_Comença l'enregistrament"
+
+#: ../src/cheese-window.c:1343
+msgid "_Stop Recording"
+msgstr "Atura l'e_nregistrament"
+
+#: ../src/cheese-window.c:1374
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../src/cheese-window.c:1376
+msgid "_Edit"
+msgstr "_Edita"
+
+#: ../src/cheese-window.c:1377
+msgid "Move All to Trash"
+msgstr "Mou-ho tot a la paperera"
+
+#: ../src/cheese-window.c:1380
+msgid "_Help"
+msgstr "_Ajuda"
+
+#: ../src/cheese-window.c:1383
+msgid "_Contents"
+msgstr "_Continguts"
+
+#: ../src/cheese-window.c:1383
+msgid "Help on this Application"
+msgstr "Ajuda per a esta aplicació"
+
+#: ../src/cheese-window.c:1389
+msgid "Countdown"
+msgstr "Temporitzador"
+
+#: ../src/cheese-window.c:1410
+msgid "_Open"
+msgstr "_Obri"
+
+#: ../src/cheese-window.c:1412
+msgid "Save _As..."
+msgstr "_Anomena i alça..."
+
+#: ../src/cheese-window.c:1414
+msgid "Move to _Trash"
+msgstr "Mou a la _paperera"
+
+#: ../src/cheese-window.c:1416
+msgid "Delete"
+msgstr "Suprimeix"
+
+#: ../src/cheese-window.c:1421 ../src/cheese-window.c:1650
+msgid "_Take a photo"
+msgstr "Fes una f_oto"
+
+#: ../src/cheese-window.c:1425
+msgid "_Recording"
+msgstr "E_nregistrament"
+
+#: ../src/cheese-window.c:1429
+msgid "_Set As Account Photo"
+msgstr "_Estableix-la com a foto del compte"
+
+#: ../src/cheese-window.c:1433
+msgid "Send by _Mail"
+msgstr "Envia-la per _correu electrònic"
+
+#: ../src/cheese-window.c:1437
+msgid "Send _To"
+msgstr "Envia-la _a"
+
+#: ../src/cheese-window.c:1441
+msgid "Export to F-_Spot"
+msgstr "Exporta-la a l'F-_Spot"
+
+#: ../src/cheese-window.c:1445
+msgid "Export to _Flickr"
+msgstr "Exporta-la al _Flickr"
+
+#: ../src/cheese-window.c:1469
+msgid "_Start recording"
+msgstr "Comença l'e_nregistrament"
+
+#: ../src/cheese-window.c:1793
+msgid "Quit"
+msgstr "Ix"
+
+#: ../src/cheese-window.c:1799
+msgid "About"
+msgstr "Quant a"
+
+#: ../src/cheese-window.c:1880
+msgid "Check your gstreamer installation"
+msgstr "Comproveu la instal·lació del gstreamer"
+
+#: ../src/cheese.c:160
+msgid "Be verbose"
+msgstr "Sigues detallat"
+
+#: ../src/cheese.c:178
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr "- Feu fotos i vídeos amb la càmera web, amb efectes gràfics divertits"
+
+#~ msgid "The Y resolution of the image captured from the camera"
+#~ msgstr "La resolució Y de la imatge creada amb la càmera"
+
+#~ msgid "Y resolution"
+#~ msgstr "Resolució Y"
+
+#~ msgid "Cannot move file to trash"
+#~ msgstr "No s'ha pogut moure el fitxer a la paperera"
+
+#~ msgid "A cheesy program to take photos and videos from your webcam"
+#~ msgstr "Un programa per a fer fotos i vídeos amb la càmera web"
+
+#~ msgid "_Back"
+#~ msgstr "_Enrere"
+
+#~ msgid "Could not find the Trash"
+#~ msgstr "No s'ha pogut trobar la paperera"
+
+#~ msgid "A cheesy program to take photos from your webcam"
+#~ msgstr "Un programa per a fer fotos i vídeos amb la teva càmera web"
+
+#, fuzzy
+#~ msgid "Cheese Camera"
+#~ msgstr "Cheese"
+
+#~ msgid "Unable to find a webcam, SORRY!"
+#~ msgstr "No s'ha pogut trobar la càmara web."
+
+#~ msgid "Cheese!"
+#~ msgstr "Cheese!"
