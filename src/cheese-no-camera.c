@@ -87,7 +87,7 @@ cheese_no_camera_info_bar_new ()
 
   info_bar = gtk_info_bar_new_with_buttons (GTK_STOCK_HELP, GTK_RESPONSE_HELP, NULL);
   gtk_info_bar_set_message_type (GTK_INFO_BAR (info_bar),
-                                 GTK_MESSAGE_ERROR);
+                                 GTK_MESSAGE_WARNING);
   cheese_no_camera_set_info_bar_text_and_icon (GTK_INFO_BAR (info_bar),
                                                "gtk-dialog-error",
                                                _("No camera found!"),
