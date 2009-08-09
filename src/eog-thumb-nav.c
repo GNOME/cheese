@@ -123,7 +123,9 @@ eog_thumb_nav_vadj_changed (GtkAdjustment *vadj, gpointer user_data)
                 "page_size", &page_size,
                 NULL);
 
-  gtk_widget_set_sensitive (ltr ? priv->button_right : priv->button_left,
+  gtk_widget_set_sensitive (priv->button_up, value > 0);
+
+  gtk_widget_set_sensitive (priv->button_down,
                             value < upper - page_size);
 }
 
@@ -686,6 +688,7 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
                                     GTK_POLICY_NEVER,
                                     GTK_POLICY_AUTOMATIC);
+    gtk_adjustment_value_changed (priv->vadj);
     priv->vertical = TRUE;
   } else {
     g_print ("setting horizontal mode\n");
@@ -707,6 +710,7 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_NEVER);
+    gtk_adjustment_value_changed (priv->hadj);
     priv->vertical = FALSE;
   }
   gtk_widget_show_all (GTK_WIDGET (nav));
