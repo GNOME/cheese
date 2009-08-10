@@ -1,6 +1,82 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.27.90
+  - Drop HILDON mode. We used to have HILDON support once but it has
+    been broken for several major releases now. Better no support than
+    a partial and broken one.
+
+  - Merge netbook-mode branch. Introduces a new horizontal mode that
+    fits nicely in small screens where the vertical real estate is
+    limited (like netbooks). Commits summary follows.
+  - Enable wide mode at startup if enabled in gconf or if forced
+    through -w/--wide command line option. Save wide mode
+    state in a gconf key.
+  - Prevent icon view to shrink down when empty.
+  - Let the thumbview pick up its optimal size. Remove hard coded size
+    constraints for the icon view so that it picks up the best size
+    for the current children (i.e. centered items, even with no
+    selection, with every thumbnail size). Remove also extra
+    spacing between and around thumbnails.
+  - Correctly update thumbnav button sensitiveness. Force an update on
+    up and down button sensitiveness while switching mode.
+  - Keep size of the video preview area while switching mode. This way
+    the icon view moves from the bottom to the right side while the
+    rest of the window remains still.
+  - Add UI for dynamically switching to and from wide mode.
+    Add a WideMode action that triggers widget reparenting and changes
+    spacing the vertical mode.
+  - Add a function that sets the ThumbNav in vertical mode reparenting
+    widgets on the fly.
+  - Add a vertical mode for the ThumbNav. Add up and down buttons and
+    implement vertical scrolling logic.
+  - Reparent the icon view into the right aligment. First experiment
+    of an horizontal mode suited for netbooks.
+  - Make room for a vertical icon view in the right side. Add an hbox
+    and an alignment to contain the icon view in the yet to come
+    netbook mode.
+
+  - Set WARNING MessageType for the InfoBar.
+    Warning is certainly more suited since the missing webcam is not a fatal
+    error. Also, the red color for the error type is really ugly. This
+    lovely orange is much better.
+  - Remove *.glade files.
+    It is not recommended to use gtk-builder-convert anymore but to use
+    glade-3 directly on the .ui files
+  - Insensitize buttons and actions while "bursting".
+  - Take the first photo of a burst right after button press. Rework a
+    little bit burst mode to allow this.
+  - Add 256x256 Cheese icons, courtesy of Ulisse Perusin.
+  - Add tooltips to the buttons. Now that toolbar buttons have no
+    labels tooltips can be helpful to identify each button role.
+  - Add burst mode settings to preferences dialog. Allow to configure
+    amount of photos to take in a burst and delay between each one.
+  - Remove icon-size attribute of button icons. All icons have now the
+    same size and honour gtk theme settings.
+  - Add the scalable version of the take photo and burst icons.
+  - Add --version command line flag.
+
+  - post release version bump
+  - Added/Updated Translations
+    - ast, courtesy of astur
+    - ca@valencia, courtesy of Gil Forcada
+    - de, courtesy of Michael Kanis
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fr, courtesy of Nicolas Repentin
+    - ga, courtesy of Seán de Búrca
+    - gl, courtesy of Antón Méixome
+    - nb, courtesy of Kjartan Maraas
+    - pl, courtesy of Tomasz Dominikowski
+    - sv, courtesy of Daniel Nylander
+    - ta, courtesy of Dr.T.Vasudevan
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - de, courtesy of Mario Blättermann
+    - fr, courtesy of Laurent Coudeur
+
 version 2.27.5
   - add new photo and burst icons, courtesy of Ulisse Perusin
   - remove the label of the photo and video modes
