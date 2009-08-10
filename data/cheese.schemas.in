@@ -148,6 +148,20 @@
       </locale>
     </schema>
 
+      <key>/schemas/apps/cheese/wide_mode</key>
+      <applyto>/apps/cheese/wide_mode</applyto>
+      <owner>cheese</owner>
+      <type>bool</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Whether to start in wide mode</short>
+        <long>If set to true, Cheese will startup in a wide mode with
+        the image collection placed on the right side. Useful with
+        small screens.</long>
+      </locale>
+    </schema>
+
+
     <schema>
       <key>/schemas/apps/cheese/burst_delay</key>
       <applyto>/apps/cheese/burst_delay</applyto>

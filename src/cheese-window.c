@@ -448,6 +448,8 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
     g_object_set (G_OBJECT (cheese_window->netbook_alignment),
                   "left-padding", 0, NULL);
   }
+
+  g_object_set (cheese_window->gconf, "gconf_prop_wide_mode", toggled, NULL);
 }
 
 static void
@@ -2145,6 +2147,7 @@ void
 cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup_in_wide_mode)
 {
   CheeseWindow *cheese_window;
+  gboolean startup_in_wide_mode_saved;
 
   cheese_window = g_new0 (CheeseWindow, 1);
 
@@ -2173,6 +2176,13 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording   = FALSE;
+
+  g_object_get (cheese_window->gconf,
+                "gconf_prop_wide_mode",
+                &startup_in_wide_mode_saved,
+                NULL);
+
+  startup_in_wide_mode = startup_in_wide_mode_saved ? TRUE : startup_in_wide_mode;
 
   if (startup_in_wide_mode) {
     GtkAction *action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/WideMode");

@@ -172,6 +172,11 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                          CHEESE_GCONF_PREFIX "/enable_delete",
                                                          NULL));
       break;
+    case GCONF_PROP_WIDE_MODE:
+      g_value_set_boolean (value, gconf_client_get_bool (priv->client,
+                                                         CHEESE_GCONF_PREFIX "/wide_mode",
+                                                         NULL));
+      break;
     case GCONF_PROP_BURST_DELAY:
       g_value_set_int (value, gconf_client_get_int (priv->client,
                                                     CHEESE_GCONF_PREFIX "/burst_delay",
@@ -309,6 +314,12 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                              g_value_get_boolean (value),
                              NULL);
       break;
+    case GCONF_PROP_WIDE_MODE:
+      gconf_client_set_bool (priv->client,
+                             CHEESE_GCONF_PREFIX "/wide_mode",
+                             g_value_get_boolean (value),
+                             NULL);
+      break;
     case GCONF_PROP_BURST_DELAY:
       gconf_client_set_int (priv->client,
                             CHEESE_GCONF_PREFIX "/burst_delay",
@@ -438,6 +449,13 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
 
   g_object_class_install_property (object_class, GCONF_PROP_ENABLE_DELETE,
                                    g_param_spec_boolean ("gconf_prop_enable_delete",
+                                                         NULL,
+                                                         NULL,
+                                                         FALSE,
+                                                         G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_WIDE_MODE,
+                                   g_param_spec_boolean ("gconf_prop_wide_mode",
                                                          NULL,
                                                          NULL,
                                                          FALSE,
