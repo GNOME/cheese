@@ -122,7 +122,6 @@ eog_thumb_nav_vadj_changed (GtkAdjustment *vadj, gpointer user_data)
                 "upper", &upper,
                 "page_size", &page_size,
                 NULL);
-
   gtk_widget_set_sensitive (priv->button_up, value > 0);
 
   gtk_widget_set_sensitive (priv->button_down,
@@ -347,17 +346,23 @@ eog_thumb_nav_constructor (GType type,
                            GObjectConstructParam *construct_params)
 {
   GObject *object;
+  EogThumbNav *nav;
   EogThumbNavPrivate *priv;
 
   object = G_OBJECT_CLASS (eog_thumb_nav_parent_class)->constructor
     (type, n_construct_properties, construct_params);
 
-  priv = EOG_THUMB_NAV (object)->priv;
+  nav = EOG_THUMB_NAV (object);
+  priv = EOG_THUMB_NAV_GET_PRIVATE (object);
 
   if (priv->thumbview != NULL) {
     gtk_container_add (GTK_CONTAINER (priv->sw), priv->thumbview);
     gtk_widget_show_all (priv->sw);
   }
+
+   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
+                                   GTK_POLICY_AUTOMATIC,
+                                   GTK_POLICY_NEVER);
 
   return object;
 }
@@ -461,9 +466,7 @@ eog_thumb_nav_init (EogThumbNav *nav)
   gtk_scrolled_window_set_shadow_type (GTK_SCROLLED_WINDOW (priv->sw),
                                        GTK_SHADOW_IN);
 
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
-                                  GTK_POLICY_AUTOMATIC,
-                                  GTK_POLICY_NEVER);
+
 
   g_signal_connect (priv->sw,
                     "scroll-event",
@@ -600,12 +603,6 @@ eog_thumb_nav_new (GtkWidget       *thumbview,
 
   priv = nav->priv;
 
-  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
-                                  GTK_POLICY_AUTOMATIC,
-                                  GTK_POLICY_NEVER);
-
-  eog_thumb_nav_set_show_buttons (nav, priv->show_buttons);
-
   return GTK_WIDGET (nav);
 }
 
@@ -669,7 +666,6 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
   /* show/hide doesn't work because of a mandatory show_all in cheese-window */
 
   if (vertical) {
-    g_print ("setting vertical mode\n");
     g_return_if_fail (!gtk_widget_get_parent (priv->button_up));
     g_return_if_fail (!gtk_widget_get_parent (priv->button_down));
     g_return_if_fail (gtk_widget_get_parent (priv->button_left));
@@ -685,13 +681,12 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     gtk_container_remove (GTK_CONTAINER (nav), priv->button_left);
     g_object_ref (priv->button_right);
     gtk_container_remove (GTK_CONTAINER (nav), priv->button_right);
+    gtk_adjustment_value_changed (priv->vadj);
+    priv->vertical = TRUE;
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
                                     GTK_POLICY_NEVER,
                                     GTK_POLICY_AUTOMATIC);
-    gtk_adjustment_value_changed (priv->vadj);
-    priv->vertical = TRUE;
   } else {
-    g_print ("setting horizontal mode\n");
     g_return_if_fail (!gtk_widget_get_parent (priv->button_left));
     g_return_if_fail (!gtk_widget_get_parent (priv->button_right));
     g_return_if_fail (gtk_widget_get_parent (priv->button_up));
@@ -707,11 +702,12 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->button_up);
     g_object_ref (priv->button_down);
     gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->button_down);
+    gtk_adjustment_value_changed (priv->hadj);
+    priv->vertical = FALSE;
     gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
                                     GTK_POLICY_AUTOMATIC,
                                     GTK_POLICY_NEVER);
-    gtk_adjustment_value_changed (priv->hadj);
-    priv->vertical = FALSE;
   }
   gtk_widget_show_all (GTK_WIDGET (nav));
 }
+

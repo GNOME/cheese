@@ -181,6 +181,7 @@ typedef struct
 
   gint repeat_count;
   gboolean is_bursting;
+  gboolean needs_resizing;
 
   CheeseFlash *flash;
 } CheeseWindow;
@@ -324,12 +325,71 @@ cheese_window_fullscreen_motion_notify_cb (GtkWidget      *widget,
 }
 
 static void
+cheese_window_queue_size_negotiation (CheeseWindow *cheese_window)
+{
+  gtk_widget_queue_resize_no_redraw (GTK_WIDGET (cheese_window->thumb_view));
+  cheese_window->needs_resizing = TRUE;
+}
+
+static void
+cheese_window_window_size_req_cb (GtkWidget      *widget,
+                                  GtkRequisition *req,
+                                  CheeseWindow   *cheese_window)
+{
+  gtk_window_resize (widget, req->width, req->height);
+  g_signal_handlers_disconnect_by_func (widget, G_CALLBACK (cheese_window_window_size_req_cb), cheese_window);
+  gtk_widget_set_size_request (cheese_window->notebook, -1, -1);
+}
+
+static void
+cheese_window_thumb_view_size_req_cb (GtkWidget      *widget,
+                                      GtkRequisition *req,
+                                      CheeseWindow   *cheese_window)
+{
+
+  CheeseThumbView *thumbview = CHEESE_THUMB_VIEW (widget);
+
+  /* at this time the toplevel window has still no size requisition,
+   * wait for its next size-request */
+  if (cheese_window->needs_resizing) {
+    g_signal_connect (G_OBJECT (cheese_window->window),
+                      "size-request",
+                      G_CALLBACK (cheese_window_window_size_req_cb),
+                      cheese_window);
+    cheese_window->needs_resizing = FALSE;
+  }
+}
+
+static void
 cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   gboolean toggled = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (widget));
 
+  /* 1. set a size request on the notebook to keep the video area size
+   *    while switching mode. So it feels like the thumbview is moving
+   *    from the bottom to the left (well it actually is..)
+   *
+   * 2. trigger a resize on the thumbview and set needs_resizing
+   *
+   * 3. wait for next icon view size-request, at this time the icon view
+   *    has reached its definitive size and we can:
+   *    - resize the window to its minimum requisition
+   *    - remove size contraints on the netbook
+   *
+   * This eventually works for setting default window size at startup
+   * too since it prevents the video screen to shrink down without any
+   * need of a permanent size request
+   */
+  gtk_widget_set_size_request (cheese_window->notebook, GTK_WIDGET
+                               (cheese_window->notebook)->allocation.width,
+                               GTK_WIDGET (cheese_window->notebook)->allocation.height);
+  cheese_window_queue_size_negotiation (cheese_window);
+
+  /* set a single column in wide mode */
   gtk_icon_view_set_columns (GTK_ICON_VIEW (cheese_window->thumb_view), toggled ? 1 : G_MAXINT);
+  /* switch thumb_nav mode */
   eog_thumb_nav_set_vertical (cheese_window->thumb_nav, toggled);
+  /* reparent thumb_view */
   g_object_ref (cheese_window->thumb_scrollwindow);
   if (toggled) {
     gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
@@ -363,19 +423,6 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
     g_object_set (G_OBJECT (cheese_window->netbook_alignment),
                   "left-padding", 0, NULL);
   }
-
-  /* try to keep video screen size while switching to and from wide mode */
-
-  GtkRequisition req;
-  gint w, h;
-
-  gtk_widget_set_size_request (cheese_window->notebook,
-                               GTK_WIDGET (cheese_window->notebook)->allocation.width,
-                               GTK_WIDGET (cheese_window->notebook)->allocation.height);
-  gtk_window_resize (cheese_window->window, 1, 1);
-  gtk_widget_size_request (cheese_window->window, &req);
-  gtk_window_resize (GTK_WINDOW (cheese_window->window), req.width, req.height);
-  gtk_widget_set_size_request (cheese_window->notebook, -1, -1);
 }
 
 static void
@@ -1759,6 +1806,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   cheese_window->thumb_view = cheese_thumb_view_new ();
   cheese_window->thumb_nav  = eog_thumb_nav_new (cheese_window->thumb_view, FALSE);
+
   gtk_container_add (GTK_CONTAINER (cheese_window->thumb_scrollwindow), cheese_window->thumb_nav);
 
   /* show the scroll window to get it included in the size requisition done later */
@@ -2082,6 +2130,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
   cheese_window->audio_play_counter  = 0;
   cheese_window->isFullscreen        = FALSE;
   cheese_window->is_bursting         = FALSE;
+  cheese_window->needs_resizing      = FALSE;
 
   cheese_window->server = dbus_server;
 
@@ -2101,13 +2150,15 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
   cheese_window->recording   = FALSE;
 
   /* handy trick to set default size of the drawing area while not
-   * limiting its minimum size, thanks Owen! */
-  GtkRequisition req;
-  gtk_widget_set_size_request (cheese_window->screen,
+   * limiting its minimum size, thanks Owen! -- slightly modified, see
+   * comment in toggle_wide_mode to understand how it works -- */
+
+  g_signal_connect (cheese_window->thumb_view, "size-request",
+                    G_CALLBACK (cheese_window_thumb_view_size_req_cb),
+                    cheese_window);
+  gtk_widget_set_size_request (cheese_window->notebook,
                                DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
-  gtk_widget_size_request (cheese_window->window, &req);
-  gtk_window_set_default_size (GTK_WINDOW (cheese_window->window), req.width, req.height);
-  gtk_widget_set_size_request (cheese_window->screen, -1, -1);
+  cheese_window_queue_size_negotiation (cheese_window);
 
   gtk_widget_show_all (cheese_window->window);
 

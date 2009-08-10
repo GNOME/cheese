@@ -39,7 +39,6 @@
 
 G_DEFINE_TYPE (CheeseThumbView, cheese_thumb_view, GTK_TYPE_ICON_VIEW);
 
-
 typedef struct
 {
   GtkListStore *store;
@@ -536,9 +535,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
 static void
 cheese_thumb_view_finalize (GObject *object)
 {
-  CheeseThumbView *thumb_view;
-
-  thumb_view = CHEESE_THUMB_VIEW (object);
+  CheeseThumbView *thumb_view = CHEESE_THUMB_VIEW (object);
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
   g_object_unref (priv->store);
@@ -568,8 +565,6 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   char *path_videos = NULL, *path_photos = NULL;
 
   GFile    *file;
-  const int THUMB_VIEW_HEIGHT = 120;
-  const int THUMB_VIEW_WIDTH  = 172;
 
   eog_thumbnail_init ();
 
@@ -579,7 +574,9 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   gtk_icon_view_set_model (GTK_ICON_VIEW (thumb_view), GTK_TREE_MODEL (priv->store));
 
-  gtk_widget_set_size_request (GTK_WIDGET (thumb_view), THUMB_VIEW_WIDTH, THUMB_VIEW_HEIGHT);
+  gtk_icon_view_set_margin (GTK_ICON_VIEW (thumb_view), 0);
+  gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (thumb_view), 0);
+  gtk_icon_view_set_column_spacing (GTK_ICON_VIEW (thumb_view), 0);
 
   path_videos = cheese_fileutil_get_video_path (priv->fileutil);
   path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
