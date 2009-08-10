@@ -360,9 +360,9 @@ eog_thumb_nav_constructor (GType type,
     gtk_widget_show_all (priv->sw);
   }
 
-   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
-                                   GTK_POLICY_AUTOMATIC,
-                                   GTK_POLICY_NEVER);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
+                                  GTK_POLICY_NEVER,
+                                  GTK_POLICY_NEVER);
 
   return object;
 }
@@ -649,6 +649,23 @@ eog_thumb_nav_set_show_buttons (EogThumbNav *nav, gboolean show_buttons)
   }
 }
 
+void
+eog_thumb_nav_set_policy (EogThumbNav *nav,
+                          GtkPolicyType hscrollbar_policy,
+                          GtkPolicyType vscrollbar_policy)
+{
+  EogThumbNavPrivate *priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
+  gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
+                                  hscrollbar_policy,
+                                  vscrollbar_policy);
+}
+
+gboolean
+eog_thumb_nav_is_vertical (EogThumbNav *nav)
+{
+  EogThumbNavPrivate *priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
+  return priv->vertical;
+}
 
 void
 eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
@@ -683,9 +700,6 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     gtk_container_remove (GTK_CONTAINER (nav), priv->button_right);
     gtk_adjustment_value_changed (priv->vadj);
     priv->vertical = TRUE;
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
-                                    GTK_POLICY_NEVER,
-                                    GTK_POLICY_AUTOMATIC);
   } else {
     g_return_if_fail (!gtk_widget_get_parent (priv->button_left));
     g_return_if_fail (!gtk_widget_get_parent (priv->button_right));
@@ -704,9 +718,6 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->button_down);
     gtk_adjustment_value_changed (priv->hadj);
     priv->vertical = FALSE;
-    gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
-                                    GTK_POLICY_AUTOMATIC,
-                                    GTK_POLICY_NEVER);
   }
   gtk_widget_show_all (GTK_WIDGET (nav));
 }

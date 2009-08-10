@@ -60,8 +60,15 @@ gboolean         eog_thumb_nav_get_show_buttons  (EogThumbNav       *nav);
 
 void             eog_thumb_nav_set_show_buttons  (EogThumbNav       *nav,
                                                   gboolean           show_buttons);
+
+gboolean         eog_thumb_nav_is_vertical       (EogThumbNav       *nav);
+
 void             eog_thumb_nav_set_vertical      (EogThumbNav       *nav,
                                                   gboolean           vertical);
+
+void            eog_thumb_nav_set_policy         (EogThumbNav *nav,
+                                                  GtkPolicyType hscrollbar_policy,
+                                                  GtkPolicyType vscrollbar_policy);
 
 G_END_DECLS
 

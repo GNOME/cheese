@@ -359,6 +359,21 @@ cheese_window_thumb_view_size_req_cb (GtkWidget      *widget,
     gtk_widget_set_size_request (widget, -1, -1);
   }
 
+  /* set scrollbar policy. Can't be done in the
+   * eog_thumb_nav_set_vertical because the icon view relayouts on
+   * idle after changing the "column" property. So if you set NEVER
+   * policy before the relayout the window gets as bigger as many
+   * items you've got */
+  if (eog_thumb_nav_is_vertical (cheese_window->thumb_nav)) {
+    eog_thumb_nav_set_policy (EOG_THUMB_NAV (cheese_window->thumb_nav),
+                              GTK_POLICY_NEVER,
+                              GTK_POLICY_AUTOMATIC);
+  } else {
+    eog_thumb_nav_set_policy (EOG_THUMB_NAV (cheese_window->thumb_nav),
+                              GTK_POLICY_AUTOMATIC,
+                              GTK_POLICY_NEVER);
+  }
+
   /* at this time the toplevel window has still no size requisition,
    * wait for its next size-request */
   if (cheese_window->needs_resizing) {
