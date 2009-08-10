@@ -349,6 +349,16 @@ cheese_window_thumb_view_size_req_cb (GtkWidget      *widget,
 
   CheeseThumbView *thumbview = CHEESE_THUMB_VIEW (widget);
 
+  /* every time this shit runs a sweet lovely puppy dies somewhere in
+   * the world, please spend some time and save them! */
+  /* the thing is: how to keep the icon view to a minimum size without
+     setting a permanent size request? */
+  if ((req->width == 0) && (req->height == 0)) {
+    gtk_widget_set_size_request (widget, 140, 100);
+  } else {
+    gtk_widget_set_size_request (widget, -1, -1);
+  }
+
   /* at this time the toplevel window has still no size requisition,
    * wait for its next size-request */
   if (cheese_window->needs_resizing) {
