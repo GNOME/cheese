@@ -49,12 +49,7 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 
   gchar *path;
 
-#ifdef HILDON
-  /* TODO change HILDON to xdg as well? */
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", ".videos", NULL);
-#else
   path = priv->video_path;
-#endif
 
   return path;
 }
@@ -66,12 +61,7 @@ cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 
   gchar *path;
 
-#ifdef HILDON
-  /* TODO change HILDON to xdg as well? */
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", ".images", NULL);
-#else
   path = priv->photo_path;
-#endif
 
   return path;
 }
@@ -89,12 +79,7 @@ cheese_fileutil_get_log_path (CheeseFileUtil *fileutil)
 
   gchar *path;
 
-#ifdef HILDON
-  /* TODO change HILDON to xdg as well? */
-  path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), "Mydocs", ".cheese-log", NULL);
-#else
   path = priv->log_path;
-#endif
 
   return path;
 }

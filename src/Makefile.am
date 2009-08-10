@@ -60,11 +60,6 @@ cheese_SOURCES = \
 cheese_LDADD = \
 	$(CHEESE_LIBS)
 
-if WITH_HILDON
-  INCLUDES += $(HILDON_CFLAGS) -DHILDON
-  cheese_LDADD += $(HILDON_LIBS)
-endif
-
 #dbus
 BUILT_SOURCES = cheese-dbus-infos.h
 # We don't want to install this header
