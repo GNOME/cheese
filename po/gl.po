@@ -1,4 +1,4 @@
-# translation of cheese-master-po-gl.po to Galician
+# translation of cheese.master.po to Galician
 # Cheese Galician translation
 # Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
 # This file is distributed under the same license as cheese
@@ -7,14 +7,14 @@
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Suso Baleato <suso.baleato@xunta.es>, 2009.
-# Fran Diéguez <fran.dieguez@glug.es>
 # Antón Méixome <meixome@mancomun.org>, 2009.
+# Fran Diéguez <fran.dieguez@glug.es>
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese-master-po-gl\n"
+"Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-06 19:19+0200\n"
-"PO-Revision-Date: 2009-07-01 10:13+0200\n"
+"POT-Creation-Date: 2009-08-10 16:23+0200\n"
+"PO-Revision-Date: 2009-08-07 14:41+0200\n"
 "Last-Translator: Antón Méixome <meixome@mancomun.org>\n"
 "Language-Team: Galician <gnome@mancomun.org>\n"
 "MIME-Version: 1.0\n"
@@ -94,11 +94,11 @@ msgstr ""
 
 #: ../data/cheese.schemas.in.h:12
 msgid "Milliseconds between photos in burst mode."
-msgstr ""
+msgstr "Milisegundos entre fotos no modo explosión"
 
 #: ../data/cheese.schemas.in.h:13
 msgid "Number of photos in burst mode."
-msgstr ""
+msgstr "Número de fotos no modo explosión"
 
 #: ../data/cheese.schemas.in.h:14
 msgid "Photo Path"
@@ -141,10 +141,12 @@ msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
 msgstr ""
+"O tamaño do tempo, en milisegundos, de retardo entre a toma de cada foto "
+"nunha secuencia de explosión de fotos."
 
 #: ../data/cheese.schemas.in.h:24
 msgid "The number of photos to take in a single burst."
-msgstr ""
+msgstr "O número de fotos para tomar en cada explosión."
 
 #: ../data/cheese.schemas.in.h:25
 msgid "The width resolution of the image captured from the camera"
@@ -175,9 +177,8 @@ msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/cheese.ui.h:2
-#, fuzzy
 msgid "Switch to Burst Mode"
-msgstr "Cambiar ao modo de fotografía"
+msgstr "Cambiar ao modo explosión"
 
 #: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
@@ -206,54 +207,55 @@ msgid "_Take a Photo"
 msgstr "_Tirar unha foto"
 
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Burst mode</b>"
-msgstr ""
-
-#: ../data/cheese-prefs.ui.h:2
-#, fuzzy
-msgid "<b>Image properties</b>"
-msgstr "Propiedades da imaxe"
-
-#: ../data/cheese-prefs.ui.h:3
-#, fuzzy
-msgid "<b>Webcam</b>"
-msgstr "Cámara Web"
-
-#: ../data/cheese-prefs.ui.h:4
 msgid "Brightness"
 msgstr "Brillo"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:2
+#, fuzzy
+msgid "Burst mode"
+msgstr "<b>Modo explosión</b>"
+
+#: ../data/cheese-prefs.ui.h:3
 msgid "Contrast"
 msgstr "Contraste"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:4
 msgid "Delay between photos (secs.)"
-msgstr ""
+msgstr "Atraso entre fotos (seg.)"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:5
 msgid "Device"
 msgstr "Dispositivo"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:6
 msgid "Hue"
 msgstr "Ton"
 
-#: ../data/cheese-prefs.ui.h:9
-msgid "Number of photos"
-msgstr ""
+#: ../data/cheese-prefs.ui.h:7
+#, fuzzy
+msgid "Image properties"
+msgstr "<b>Propiedades da imaxe</b>"
 
-#: ../data/cheese-prefs.ui.h:10 ../src/cheese-window.c:1446
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Número de fotos"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1446
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:10
 msgid "Resolution"
 msgstr "Resolución"
 
-#: ../data/cheese-prefs.ui.h:12 ../src/cheese-effect-chooser.c:66
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "Saturación"
+
+#: ../data/cheese-prefs.ui.h:12
+#, fuzzy
+msgid "Webcam"
+msgstr "<b>Cámara web</b>"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -507,7 +509,7 @@ msgstr "_Vídeo"
 
 #: ../src/cheese-window.c:1456
 msgid "_Burst"
-msgstr ""
+msgstr "_Explosión"
 
 #: ../src/cheese-window.c:1460
 msgid "_Open"
@@ -530,7 +532,6 @@ msgid "_Recording"
 msgstr "G_ravar"
 
 #: ../src/cheese-window.c:1479 ../src/cheese-window.c:1524
-#, fuzzy
 msgid "_Take multiple Photos"
 msgstr "_Tirar unha foto"
 
@@ -581,28 +582,10 @@ msgstr "Saída detallada"
 
 #: ../src/cheese.c:167
 msgid "output version information and exit"
-msgstr ""
+msgstr "sacar información de versión e saír"
 
 #: ../src/cheese.c:184
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- Tire fotografías e vídeos coa súa cámara web, con efectos gráficos "
 "divertidos"
-
-#~ msgid "Help"
-#~ msgstr "Axuda"
-
-#~ msgid ""
-#~ "Failed to open browser to show:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Fallou ao abrir o navegador para mostrar:\n"
-#~ "%s"
-
-#~ msgid ""
-#~ "Failed to open email client to send message to:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Fallou ao abrir o enderezo electrónico do cliente para enviar unha "
-#~ "mensaxe a:\n"
-#~ "%s"
