@@ -336,8 +336,10 @@ cheese_window_window_size_req_cb (GtkWidget      *widget,
                                   GtkRequisition *req,
                                   CheeseWindow   *cheese_window)
 {
-  gtk_window_resize (widget, req->width, req->height);
+  /* resize to minimum allowed by current constraints */
+  gtk_window_resize (GTK_WINDOW (widget), req->width, req->height);
   g_signal_handlers_disconnect_by_func (widget, G_CALLBACK (cheese_window_window_size_req_cb), cheese_window);
+  /* remove constraints */
   gtk_widget_set_size_request (cheese_window->notebook, -1, -1);
 }
 
@@ -346,9 +348,6 @@ cheese_window_thumb_view_size_req_cb (GtkWidget      *widget,
                                       GtkRequisition *req,
                                       CheeseWindow   *cheese_window)
 {
-
-  CheeseThumbView *thumbview = CHEESE_THUMB_VIEW (widget);
-
   /* every time this shit runs a sweet lovely puppy dies somewhere in
    * the world, please spend some time and save them! */
   /* the thing is: how to keep the icon view to a minimum size without
@@ -364,7 +363,8 @@ cheese_window_thumb_view_size_req_cb (GtkWidget      *widget,
    * idle after changing the "column" property. So if you set NEVER
    * policy before the relayout the window gets as bigger as many
    * items you've got */
-  if (eog_thumb_nav_is_vertical (cheese_window->thumb_nav)) {
+  if (eog_thumb_nav_is_vertical (EOG_THUMB_NAV (cheese_window->thumb_nav)))
+  {
     eog_thumb_nav_set_policy (EOG_THUMB_NAV (cheese_window->thumb_nav),
                               GTK_POLICY_NEVER,
                               GTK_POLICY_AUTOMATIC);
@@ -413,7 +413,7 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
   /* set a single column in wide mode */
   gtk_icon_view_set_columns (GTK_ICON_VIEW (cheese_window->thumb_view), toggled ? 1 : G_MAXINT);
   /* switch thumb_nav mode */
-  eog_thumb_nav_set_vertical (cheese_window->thumb_nav, toggled);
+  eog_thumb_nav_set_vertical (EOG_THUMB_NAV (cheese_window->thumb_nav), toggled);
   /* reparent thumb_view */
   g_object_ref (cheese_window->thumb_scrollwindow);
   if (toggled) {
