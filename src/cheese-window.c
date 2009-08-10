@@ -1575,7 +1575,7 @@ static const GtkToggleActionEntry action_entries_fullscreen[] = {
 };
 
 static const GtkToggleActionEntry action_entries_wide_mode[] = {
-  {"WideMode", NULL, N_("_Wide mode"), "<Super>W", NULL, G_CALLBACK (cheese_window_toggle_wide_mode), FALSE},
+  {"WideMode", NULL, N_("_Wide mode"), NULL, NULL, G_CALLBACK (cheese_window_toggle_wide_mode), FALSE},
 };
 
 static const GtkRadioActionEntry action_entries_toggle[] = {
