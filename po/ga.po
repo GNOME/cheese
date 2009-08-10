@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-08 18:10-0600\n"
-"PO-Revision-Date: 2009-08-08 18:10-0600\n"
+"POT-Creation-Date: 2009-08-10 17:51-0600\n"
+"PO-Revision-Date: 2009-08-10 17:53-0600\n"
 "Last-Translator: Seán de Búrca <leftmostcat@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Cheese Webcam Booth"
 msgstr "Both Cheamara Greásáin Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1030
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1156
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Tóg grianghraif agus físeáin le do cheamara gréasáin, le maisíochtaí "
@@ -85,6 +85,14 @@ msgstr "Taifeach airde"
 
 #: ../data/cheese.schemas.in.h:11
 msgid ""
+"If set to true, Cheese will startup in a wide mode with the image collection "
+"placed on the right side. Useful with small screens."
+msgstr ""
+"Má socraithe go fíor, tosóidh Cheese i mód leathan agus an bailiúchán "
+"íomhánna ar an taobh deas. Tá sé sin úsáideach do scáileáin beaga."
+
+#: ../data/cheese.schemas.in.h:12
+msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
 "feature can be dangerous, so use caution."
@@ -93,53 +101,53 @@ msgstr ""
 "láithreach agus ina ionad, seachas é a bhogadh go dtí an bruscar. Is féidir "
 "go bhfuil an ghné seo contúirteach, mar sin bí cúramach."
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:13
 msgid "Milliseconds between photos in burst mode."
 msgstr "Milleasoicindí idir ghrianghraif i mód rúisce."
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:14
 msgid "Number of photos in burst mode."
 msgstr "Líon na pictiúr i mód rúisce."
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "Conair Ghrianghraf"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:16
 msgid "Picture brightness"
 msgstr "Gile phictiúir"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:17
 msgid "Picture contrast"
 msgstr "Codarsnacht phictiúir"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:18
 msgid "Picture hue"
 msgstr "Lí phictiúir"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:19
 msgid "Picture saturation"
 msgstr "Sáithiú pictiúir"
 
-#: ../data/cheese.schemas.in.h:19
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "Maisíochtaí Roghnaithe"
 
-#: ../data/cheese.schemas.in.h:20
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
 msgstr ""
 "Socraigh go Fíor chun comhaireamh síos a thaispeáint agus grianghraf á "
 "thógáil"
 
-#: ../data/cheese.schemas.in.h:21
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "An gléas a dhíríonn ar an gceamara gréasáin (m.sh. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:22
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
 msgstr "Taifeach airde na híomhá gafa ón gceamara"
 
-#: ../data/cheese.schemas.in.h:23
+#: ../data/cheese.schemas.in.h:24
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
@@ -147,35 +155,39 @@ msgstr ""
 "Fad ama, i milleasoicindí, le moilliú idir thógáil gach grianghraf i "
 "seicheamh rúisce grianghraf."
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid "The number of photos to take in a single burst."
 msgstr "Líon na pictiúr le tógáil i rúisc amháin."
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
 msgstr "Taifeach leithid na híomhá gafa ón gceamara"
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
 msgstr "Úsáid comhaireamh síos"
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "Conair Fhíseán"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Webcam device string indicator"
 msgstr "Táscaire teaghráin gléas an cheamara gréasáin"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "Cé acu a chumasófar, nó nach cumasófar, scriosadh láithreach"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "Cé acu a thosófar, nó nach tosófar, i mód leathan"
+
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "Taifeach leithid"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:182
+#: ../data/cheese.ui.h:1 ../src/cheese.c:184
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -195,8 +207,8 @@ msgstr "Athraigh go Mód Físeán"
 msgid "Switch to the Effects Selector"
 msgstr "Athraigh go dtí an Roghnóir Maisíochtaí"
 
-#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1154
-#: ../src/cheese-window.c:1442
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1280
+#: ../src/cheese-window.c:1568
 msgid "_Effects"
 msgstr "_Maisíochtaí"
 
@@ -204,8 +216,8 @@ msgstr "_Maisíochtaí"
 msgid "_Leave Fullscreen"
 msgstr "_Fág Lánscáileán"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1471
-#: ../src/cheese-window.c:1511
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1601
+#: ../src/cheese-window.c:1641
 msgid "_Take a Photo"
 msgstr "_Tóg Grianghraf"
 
@@ -241,7 +253,7 @@ msgstr "Airíonna íomhá"
 msgid "Number of photos"
 msgstr "Líon na pictiúr"
 
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1446
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1572
 msgid "Preferences"
 msgstr "Sainroghanna"
 
@@ -326,19 +338,19 @@ msgid "One or more needed gstreamer elements are missing: "
 msgstr ""
 "Tá ceann amháin nó níos mó d'eilimintí gstreamer de dhíth ar iarraidh: "
 
-#: ../src/cheese-window.c:84
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "_Scipeáil"
 
-#: ../src/cheese-window.c:85
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "S_cipeáil Gach Rud"
 
-#: ../src/cheese-window.c:86
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "Scrios _Gach Rud"
 
-#: ../src/cheese-window.c:480
+#: ../src/cheese-window.c:606
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -349,25 +361,25 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: ../src/cheese-window.c:501
+#: ../src/cheese-window.c:627
 msgid "Save File"
 msgstr "Sábháil Comhad"
 
-#: ../src/cheese-window.c:539
+#: ../src/cheese-window.c:665
 #, c-format
 msgid "Could not save %s"
 msgstr "Níorbh fhéidir %s a shábháil"
 
-#: ../src/cheese-window.c:562
+#: ../src/cheese-window.c:688
 msgid "Error while deleting"
 msgstr "Earráid agus á scriosadh"
 
-#: ../src/cheese-window.c:563
+#: ../src/cheese-window.c:689
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Ní féidir an comhad \"%s\" a scriosadh. Sonraí: %s"
 
-#: ../src/cheese-window.c:590
+#: ../src/cheese-window.c:716
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural ""
@@ -388,58 +400,58 @@ msgstr[4] ""
 "An bhfuil tú cinnte gur mhaith leat an %'d mír roghnaithe a scriosadh go "
 "buan?"
 
-#: ../src/cheese-window.c:597
+#: ../src/cheese-window.c:723
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "An bhfuil tú cinnte gur mhaith leat \"%s\" a scriosadh go buan?"
 
-#: ../src/cheese-window.c:600
+#: ../src/cheese-window.c:726
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Má scriosann tú mír, beidh sí caillte go buan."
 
-#: ../src/cheese-window.c:621
+#: ../src/cheese-window.c:747
 msgid "Unknown Error"
 msgstr "Earráid Anaithnid"
 
-#: ../src/cheese-window.c:651
+#: ../src/cheese-window.c:777
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr ""
 "Ní féidir comhad a bhogadh go dtí an bruscar, ar mhaith leat é a scriosadh "
 "láithreach?"
 
-#: ../src/cheese-window.c:652
+#: ../src/cheese-window.c:778
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Ní féidir an comhad \"%s\" a bhogadh go dtí an bruscar. Sonraí: %s"
 
-#: ../src/cheese-window.c:724
+#: ../src/cheese-window.c:850
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Bog gach grianghraf agus físeán go dtí an bruscar i ndáiríre?"
 
-#: ../src/cheese-window.c:732
+#: ../src/cheese-window.c:858
 msgid "_Move to Trash"
 msgstr "_Bog go Bruscar"
 
-#: ../src/cheese-window.c:850
+#: ../src/cheese-window.c:976
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Níorbh fhéidir an Grianghraf Cuntais a shocrú"
 
-#: ../src/cheese-window.c:882
+#: ../src/cheese-window.c:1008
 msgid "Media files"
 msgstr "Comhaid meán"
 
-#: ../src/cheese-window.c:956 ../src/cheese-window.c:1236
+#: ../src/cheese-window.c:1082 ../src/cheese-window.c:1362
 msgid "Unable to open help file for Cheese"
 msgstr "Ní féidir comhad cabhrach do Cheese a oscailt"
 
-#: ../src/cheese-window.c:1008
+#: ../src/cheese-window.c:1134
 msgid "translator-credits"
 msgstr "Seán de Búrca <leftmostcat@gmail.com>"
 
-#: ../src/cheese-window.c:1011
+#: ../src/cheese-window.c:1137
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -451,7 +463,7 @@ msgstr ""
 "Software Foundation; leagan 2 an License, nó (de do rogha) aon leagan níos "
 "déanaí.\n"
 
-#: ../src/cheese-window.c:1015
+#: ../src/cheese-window.c:1141
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -462,7 +474,7 @@ msgstr ""
 "gan an baránta intuigthe INDÍOLTÓIREACHTA nó OIRIÚNACHTA D'FHEIDHM ÁIRITHE "
 "fiú. Féach an GNU General Public License le haghaidh tuilleadh mionsonraí.\n"
 
-#: ../src/cheese-window.c:1019
+#: ../src/cheese-window.c:1145
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -470,131 +482,131 @@ msgstr ""
 "Ba chóir go bhfuair tú cóip an GNU General Public License in éineacht leis "
 "an gclár seo. Mura bhfuair tú é, féach <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1036
+#: ../src/cheese-window.c:1162
 msgid "Cheese Website"
 msgstr "Suíomh Gréasáin Cheese"
 
-#: ../src/cheese-window.c:1252
+#: ../src/cheese-window.c:1378
 msgid "_Start Recording"
 msgstr "_Tosaigh Taifeadadh"
 
-#: ../src/cheese-window.c:1388
+#: ../src/cheese-window.c:1514
 msgid "_Stop Recording"
 msgstr "_Stad Taifeadadh"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1549
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1425
+#: ../src/cheese-window.c:1551
 msgid "_Edit"
 msgstr "_Eagar"
 
-#: ../src/cheese-window.c:1426
+#: ../src/cheese-window.c:1552
 msgid "Move All to Trash"
 msgstr "Bog Gach Rud go Bruscar"
 
-#: ../src/cheese-window.c:1429
+#: ../src/cheese-window.c:1555
 msgid "_Help"
 msgstr "Cab_hair"
 
-#: ../src/cheese-window.c:1432
+#: ../src/cheese-window.c:1558
 msgid "_Contents"
 msgstr "_Inneachar"
 
-#: ../src/cheese-window.c:1432
+#: ../src/cheese-window.c:1558
 msgid "Help on this Application"
 msgstr "Cabhair leis an feidhmchlár seo"
 
-#: ../src/cheese-window.c:1438
+#: ../src/cheese-window.c:1564
 msgid "Countdown"
 msgstr "Comhaireamh Síos"
 
-#: ../src/cheese-window.c:1454
+#: ../src/cheese-window.c:1580
+msgid "_Wide mode"
+msgstr "Mód _leathan"
+
+#: ../src/cheese-window.c:1584
 msgid "_Photo"
 msgstr "_Grianghraf"
 
-#: ../src/cheese-window.c:1455
+#: ../src/cheese-window.c:1585
 msgid "_Video"
 msgstr "_Físeán"
 
-#: ../src/cheese-window.c:1456
+#: ../src/cheese-window.c:1586
 msgid "_Burst"
 msgstr "_Rúisc"
 
-#: ../src/cheese-window.c:1460
+#: ../src/cheese-window.c:1590
 msgid "_Open"
 msgstr "_Oscail"
 
-#: ../src/cheese-window.c:1462
+#: ../src/cheese-window.c:1592
 msgid "Save _As..."
 msgstr "Sábháil _Mar..."
 
-#: ../src/cheese-window.c:1464
+#: ../src/cheese-window.c:1594
 msgid "Move to _Trash"
 msgstr "Bog go _Bruscar"
 
-#: ../src/cheese-window.c:1466
+#: ../src/cheese-window.c:1596
 msgid "Delete"
 msgstr "Scrios"
 
-#: ../src/cheese-window.c:1475
+#: ../src/cheese-window.c:1605
 msgid "_Recording"
 msgstr "Á Thaifea_dadh"
 
-#: ../src/cheese-window.c:1479 ../src/cheese-window.c:1524
+#: ../src/cheese-window.c:1609 ../src/cheese-window.c:1654
 msgid "_Take multiple Photos"
 msgstr "_Tóg Grianghraif iomadúla"
 
-#: ../src/cheese-window.c:1483
+#: ../src/cheese-window.c:1613
 msgid "_Set As Account Photo"
 msgstr "_Socraigh Mar Ghrianghraf Cuntais"
 
-#: ../src/cheese-window.c:1487
+#: ../src/cheese-window.c:1617
 msgid "Send by _Mail"
 msgstr "Seol trí _Ríomhphost"
 
-#: ../src/cheese-window.c:1491
+#: ../src/cheese-window.c:1621
 msgid "Send _To"
 msgstr "Seol _Chuig"
 
-#: ../src/cheese-window.c:1495
+#: ../src/cheese-window.c:1625
 msgid "Export to F-_Spot"
 msgstr "Easpórtáil go F-_Spot"
 
-#: ../src/cheese-window.c:1499
+#: ../src/cheese-window.c:1629
 msgid "Export to _Flickr"
 msgstr "Easpórtáil go _Flickr"
 
-#: ../src/cheese-window.c:1537
+#: ../src/cheese-window.c:1667
 msgid "_Start recording"
 msgstr "_Tosaigh Taifeadadh"
 
-#: ../src/cheese-window.c:1721
+#: ../src/cheese-window.c:1825
 msgid "_Take a photo"
 msgstr "_Tóg Grianghraf"
 
-#: ../src/cheese-window.c:1885
-msgid "Quit"
-msgstr "Scoir"
-
-#: ../src/cheese-window.c:1891
-msgid "About"
-msgstr "Maidir Leis Seo"
-
-#: ../src/cheese-window.c:1992
+#: ../src/cheese-window.c:2085
 msgid "Check your gstreamer installation"
 msgstr "Seiceáil do shuiteáil gstreamer"
 
-#: ../src/cheese.c:162
+#: ../src/cheese.c:163
 msgid "Be verbose"
 msgstr "Bí foclach"
 
-#: ../src/cheese.c:167
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "Cumasaigh mód leathan"
+
+#: ../src/cheese.c:169
 msgid "output version information and exit"
 msgstr "aschuir eolas leagain agus scoir"
 
-#: ../src/cheese.c:184
+#: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- Tóg grianghraif agus físeáin le do cheamara gréasáin, le maisíochtaí "
