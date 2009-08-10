@@ -24,7 +24,7 @@
 #include "cheese-dbus.h"
 
 
-void cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server);
+void cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup_in_wide_mode);
 void cheese_window_bring_to_front (gpointer data);
 
 #endif /* __CHEESE_WINDOW_H__ */

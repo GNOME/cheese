@@ -36,6 +36,7 @@
 struct _CheeseOptions
 {
   gboolean verbose;
+  gboolean wide_mode;
   char *hal_device_id;
   gboolean version;
 } CheeseOptions;
@@ -158,12 +159,13 @@ main (int argc, char **argv)
   GError         *error = NULL;
 
   GOptionEntry options[] = {
-    {"verbose",    'v',    0,                    G_OPTION_ARG_NONE,                    &CheeseOptions.verbose,
-     _("Be verbose"),
-     NULL},
-    {"hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id, NULL,
-     NULL},
-    {"version",    0,   0,                    G_OPTION_ARG_NONE,   &CheeseOptions.version,
+    {"verbose",    'v', 0, G_OPTION_ARG_NONE, &CheeseOptions.verbose,
+     _("Be verbose"), NULL},
+    {"wide",       'w', 0, G_OPTION_ARG_NONE, &CheeseOptions.wide_mode,
+     _("Enable wide mode"), NULL},
+    {"hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id,
+     NULL, NULL},
+    {"version", 0, 0, G_OPTION_ARG_NONE,   &CheeseOptions.version,
      _("output version information and exit"), NULL},
     {NULL}
   };
@@ -217,7 +219,7 @@ main (int argc, char **argv)
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
   cheese_handle_files_from_before_224 ();
-  cheese_window_init (CheeseOptions.hal_device_id, dbus_server);
+  cheese_window_init (CheeseOptions.hal_device_id, dbus_server, CheeseOptions.wide_mode);
 
   gdk_threads_enter ();
   gtk_main ();

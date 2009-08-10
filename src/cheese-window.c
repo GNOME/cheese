@@ -2142,7 +2142,7 @@ setup_camera (CheeseWindow *cheese_window)
 }
 
 void
-cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
+cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup_in_wide_mode)
 {
   CheeseWindow *cheese_window;
 
@@ -2173,6 +2173,11 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server)
 
   cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
   cheese_window->recording   = FALSE;
+
+  if (startup_in_wide_mode) {
+    GtkAction *action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/WideMode");
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+  }
 
   /* handy trick to set default size of the drawing area while not
    * limiting its minimum size, thanks Owen! -- slightly modified, see
