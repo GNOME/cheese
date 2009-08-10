@@ -1,174 +1,174 @@
 <gconfschemafile>
-	<schemalist>
-		<schema>
-			<key>/schemas/apps/cheese/countdown</key>
-			<applyto>/apps/cheese/countdown</applyto>
-			<owner>cheese</owner>
-			<type>bool</type>
-			<default>1</default>
-			<locale name="C">
-				<short>Use a countdown</short>
-				<long>Set to True to show countdown when taking a photo</long>
-			</locale>
-    	</schema>
-
-		<schema>
-			<key>/schemas/apps/cheese/webcam</key>
-			<applyto>/apps/cheese/webcam</applyto>
-			<owner>cheese</owner>
-			<type>string</type>
-			<default></default>
-			<locale name="C">
-				<short>Webcam device string indicator</short>
-				<long>The device which points to the webcam (e.g. /dev/video0)</long>
-			</locale>
-		</schema>
-
-		<schema>
-			<key>/schemas/apps/cheese/selected_effects</key>
-			<applyto>/apps/cheese/selected_effects</applyto>
-			<owner>cheese</owner>
-			<type>list</type>
-			<list_type>string</list_type>
-			<default>[]</default>
-			<locale name="C">
-				<short>Selected Effects</short>
-				<long><!-- Translators: please note, that the effect names are
-				standarized and should not be translated -->
-				A list of effects applied on startup. Possible values are: "mauve",
-				"noir_blanc", "saturation", "hulk", "vertical-flip", "horizontal-flip",
-				"shagadelic", "vertigo", "edge", "dice" and "warp"</long>
-			</locale>
-		</schema>
-		
-		<schema>
-			<key>/schemas/apps/cheese/x_resolution</key>
-			<applyto>/apps/cheese/x_resolution</applyto>
-			<owner>cheese</owner>
-			<type>int</type>
-			<default>0</default>
-			<locale name="C">
-				<short>Width resolution</short>
-				<long>The width resolution of the image captured from the camera</long>
-			</locale>
-    </schema>
-		
-		<schema>
-			<key>/schemas/apps/cheese/y_resolution</key>
-			<applyto>/apps/cheese/y_resolution</applyto>
-			<owner>cheese</owner>
-			<type>int</type>
-			<default>0</default>
-			<locale name="C">
-				<short>Height resolution</short>
-				<long>The height resolution of the image captured from the camera</long>
-			</locale>
-    </schema>
-
-		<schema>
-			<key>/schemas/apps/cheese/brightness</key>
-			<applyto>/apps/cheese/brightness</applyto>
-			<owner>cheese</owner>
-			<type>float</type>
-			<default>0</default>
-			<locale name="C">
-				<short>Picture brightness</short>
-				<long>Adjusts brightness level of the picture coming from the webcam</long>
-			</locale>
-    </schema>
-
-		<schema>
-			<key>/schemas/apps/cheese/contrast</key>
-			<applyto>/apps/cheese/contrast</applyto>
-			<owner>cheese</owner>
-			<type>float</type>
-			<default>1</default>
-			<locale name="C">
-				<short>Picture contrast</short>
-				<long>Adjusts contrast level of the picture coming from the webcam</long>
-			</locale>
-    </schema>
-
-		<schema>
-			<key>/schemas/apps/cheese/saturation</key>
-			<applyto>/apps/cheese/saturation</applyto>
-			<owner>cheese</owner>
-			<type>float</type>
-			<default>1</default>
-			<locale name="C">
-				<short>Picture saturation</short>
-				<long>Adjusts saturation level of the picture coming from the webcam</long>
-			</locale>
-    </schema>
-
-		<schema>
-			<key>/schemas/apps/cheese/hue</key>
-			<applyto>/apps/cheese/hue</applyto>
-			<owner>cheese</owner>
-			<type>float</type>
-			<default>0</default>
-			<locale name="C">
-				<short>Picture hue</short>
-				<long>Adjusts hue level of the picture coming from the webcam</long>
-			</locale>
+  <schemalist>
+    <schema>
+      <key>/schemas/apps/cheese/countdown</key>
+      <applyto>/apps/cheese/countdown</applyto>
+      <owner>cheese</owner>
+      <type>bool</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Use a countdown</short>
+        <long>Set to True to show countdown when taking a photo</long>
+      </locale>
     </schema>
 
     <schema>
-			<key>/schemas/apps/cheese/video_path</key>
-			<applyto>/apps/cheese/video_path</applyto>
-			<owner>cheese</owner>
-			<type>string</type>
-			<default></default>
-			<locale name="C">
-				<short>Video Path</short>
-				<long>Defines the path where the videos are stored, if empty "XDG_VIDEO/Webcam" will be used.</long>
-			</locale>
-    </schema>
-    
-    <schema>
-			<key>/schemas/apps/cheese/photo_path</key>
-			<applyto>/apps/cheese/photo_path</applyto>
-			<owner>cheese</owner>
-			<type>string</type>
-			<default></default>
-			<locale name="C">
-				<short>Photo Path</short>
-				<long>Defines the path where the photos are stored, if empty "XDG_PHOTO/Webcam" will be used.</long>
-			</locale>
-    </schema>
-    <schema>
-			<key>/schemas/apps/cheese/enable_delete</key>
-			<applyto>/apps/cheese/enable_delete</applyto>
-			<owner>cheese</owner>
-			<type>bool</type>
-			<default>0</default>
-			<locale name="C">
- 			         <short>Whether to enable immediate deletion</short>
- 				 <long>If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution.</long>
-			</locale>
+      <key>/schemas/apps/cheese/webcam</key>
+      <applyto>/apps/cheese/webcam</applyto>
+      <owner>cheese</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Webcam device string indicator</short>
+        <long>The device which points to the webcam (e.g. /dev/video0)</long>
+      </locale>
     </schema>
 
     <schema>
-			<key>/schemas/apps/cheese/burst_delay</key>
-			<applyto>/apps/cheese/burst_delay</applyto>
-			<owner>cheese</owner>
-			<type>int</type>
-			<default>1000</default>
-			<locale name="C">
-				<short>Milliseconds between photos in burst mode.</short>
-				<long>The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos.</long>
-			</locale>
+      <key>/schemas/apps/cheese/selected_effects</key>
+      <applyto>/apps/cheese/selected_effects</applyto>
+      <owner>cheese</owner>
+      <type>list</type>
+      <list_type>string</list_type>
+      <default>[]</default>
+      <locale name="C">
+        <short>Selected Effects</short>
+        <long><!-- Translators: please note, that the effect names are
+                   standarized and should not be translated -->
+          A list of effects applied on startup. Possible values are: "mauve",
+          "noir_blanc", "saturation", "hulk", "vertical-flip", "horizontal-flip",
+          "shagadelic", "vertigo", "edge", "dice" and "warp"</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/x_resolution</key>
+      <applyto>/apps/cheese/x_resolution</applyto>
+      <owner>cheese</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Width resolution</short>
+        <long>The width resolution of the image captured from the camera</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/y_resolution</key>
+      <applyto>/apps/cheese/y_resolution</applyto>
+      <owner>cheese</owner>
+      <type>int</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Height resolution</short>
+        <long>The height resolution of the image captured from the camera</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/brightness</key>
+      <applyto>/apps/cheese/brightness</applyto>
+      <owner>cheese</owner>
+      <type>float</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Picture brightness</short>
+        <long>Adjusts brightness level of the picture coming from the webcam</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/contrast</key>
+      <applyto>/apps/cheese/contrast</applyto>
+      <owner>cheese</owner>
+      <type>float</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Picture contrast</short>
+        <long>Adjusts contrast level of the picture coming from the webcam</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/saturation</key>
+      <applyto>/apps/cheese/saturation</applyto>
+      <owner>cheese</owner>
+      <type>float</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Picture saturation</short>
+        <long>Adjusts saturation level of the picture coming from the webcam</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/hue</key>
+      <applyto>/apps/cheese/hue</applyto>
+      <owner>cheese</owner>
+      <type>float</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Picture hue</short>
+        <long>Adjusts hue level of the picture coming from the webcam</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/video_path</key>
+      <applyto>/apps/cheese/video_path</applyto>
+      <owner>cheese</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Video Path</short>
+        <long>Defines the path where the videos are stored, if empty "XDG_VIDEO/Webcam" will be used.</long>
+      </locale>
+    </schema>
+
+    <schema>
+      <key>/schemas/apps/cheese/photo_path</key>
+      <applyto>/apps/cheese/photo_path</applyto>
+      <owner>cheese</owner>
+      <type>string</type>
+      <default></default>
+      <locale name="C">
+        <short>Photo Path</short>
+        <long>Defines the path where the photos are stored, if empty "XDG_PHOTO/Webcam" will be used.</long>
+      </locale>
     </schema>
     <schema>
-			<key>/schemas/apps/cheese/burst_repeat</key>
-			<applyto>/apps/cheese/burst_repeat</applyto>
-			<owner>cheese</owner>
-			<type>int</type>
-			<default>4</default>
-			<locale name="C">
-				<short>Number of photos in burst mode.</short>
-				<long>The number of photos to take in a single burst.</long>
-			</locale>
+      <key>/schemas/apps/cheese/enable_delete</key>
+      <applyto>/apps/cheese/enable_delete</applyto>
+      <owner>cheese</owner>
+      <type>bool</type>
+      <default>0</default>
+      <locale name="C">
+        <short>Whether to enable immediate deletion</short>
+        <long>If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution.</long>
+      </locale>
     </schema>
-	</schemalist>
+
+    <schema>
+      <key>/schemas/apps/cheese/burst_delay</key>
+      <applyto>/apps/cheese/burst_delay</applyto>
+      <owner>cheese</owner>
+      <type>int</type>
+      <default>1000</default>
+      <locale name="C">
+        <short>Milliseconds between photos in burst mode.</short>
+        <long>The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos.</long>
+      </locale>
+    </schema>
+    <schema>
+      <key>/schemas/apps/cheese/burst_repeat</key>
+      <applyto>/apps/cheese/burst_repeat</applyto>
+      <owner>cheese</owner>
+      <type>int</type>
+      <default>4</default>
+      <locale name="C">
+        <short>Number of photos in burst mode.</short>
+        <long>The number of photos to take in a single burst.</long>
+      </locale>
+    </schema>
+  </schemalist>
 </gconfschemafile>
