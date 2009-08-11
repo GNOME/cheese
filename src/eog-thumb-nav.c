@@ -361,7 +361,7 @@ eog_thumb_nav_constructor (GType type,
   }
 
   gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (priv->sw),
-                                  GTK_POLICY_NEVER,
+                                  GTK_POLICY_AUTOMATIC,
                                   GTK_POLICY_NEVER);
 
   return object;
@@ -699,6 +699,10 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     g_object_ref (priv->button_right);
     gtk_container_remove (GTK_CONTAINER (nav), priv->button_right);
     gtk_adjustment_value_changed (priv->vadj);
+
+    eog_thumb_nav_set_policy (nav,
+                              GTK_POLICY_NEVER,
+                              GTK_POLICY_AUTOMATIC);
     priv->vertical = TRUE;
   } else {
     g_return_if_fail (!gtk_widget_get_parent (priv->button_left));
@@ -717,6 +721,10 @@ eog_thumb_nav_set_vertical (EogThumbNav *nav, gboolean vertical)
     g_object_ref (priv->button_down);
     gtk_container_remove (GTK_CONTAINER (priv->vbox), priv->button_down);
     gtk_adjustment_value_changed (priv->hadj);
+
+    eog_thumb_nav_set_policy (nav,
+                              GTK_POLICY_AUTOMATIC,
+                              GTK_POLICY_NEVER);
     priv->vertical = FALSE;
   }
   gtk_widget_show_all (GTK_WIDGET (nav));
