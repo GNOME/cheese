@@ -33,6 +33,8 @@
 
 #include "cheese-thumb-view.h"
 
+#define THUMB_VIEW_MINIMUM_WIDTH 140
+#define THUMB_VIEW_MINIMUM_HEIGHT 100
 
 #define CHEESE_THUMB_VIEW_GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_THUMB_VIEW, CheeseThumbViewPrivate))
@@ -47,6 +49,7 @@ typedef struct
   GFileMonitor   *video_file_monitor;
   GnomeDesktopThumbnailFactory *factory;
   gboolean multiplex_thumbnail_generator;
+  guint n_items;
 } CheeseThumbViewPrivate;
 
 enum
@@ -558,6 +561,32 @@ cheese_thumb_view_class_init (CheeseThumbViewClass *klass)
 }
 
 static void
+cheese_thumb_view_row_inserted_cb (GtkTreeModel *tree_model,
+                                   GtkTreePath  *path,
+                                   GtkTreeIter  *iter,
+                                   CheeseThumbView *thumb_view)
+{
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  priv->n_items++;
+  gtk_widget_set_size_request (GTK_WIDGET (thumb_view), -1, -1);
+}
+
+static void
+cheese_thumb_view_row_deleted_cb (GtkTreeModel *tree_model,
+                                   GtkTreePath  *path,
+                                   CheeseThumbView *thumb_view)
+{
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  priv->n_items--;
+  if (priv->n_items == 0)
+    gtk_widget_set_size_request (GTK_WIDGET (thumb_view),
+                                 THUMB_VIEW_MINIMUM_WIDTH,
+                                 THUMB_VIEW_MINIMUM_HEIGHT);
+}
+
+static void
 cheese_thumb_view_init (CheeseThumbView *thumb_view)
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
@@ -569,10 +598,24 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   eog_thumbnail_init ();
 
   priv->store = gtk_list_store_new (3, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+  priv->n_items = 0;
+
+  g_signal_connect (G_OBJECT (priv->store),
+                    "row-inserted",
+                    G_CALLBACK (cheese_thumb_view_row_inserted_cb),
+                    thumb_view);
+  g_signal_connect (G_OBJECT (priv->store),
+                    "row-deleted",
+                    G_CALLBACK (cheese_thumb_view_row_deleted_cb),
+                    thumb_view);
 
   priv->fileutil = cheese_fileutil_new ();
 
   gtk_icon_view_set_model (GTK_ICON_VIEW (thumb_view), GTK_TREE_MODEL (priv->store));
+
+  gtk_widget_set_size_request (GTK_WIDGET (thumb_view),
+                               THUMB_VIEW_MINIMUM_WIDTH,
+                               THUMB_VIEW_MINIMUM_HEIGHT);
 
   gtk_icon_view_set_margin (GTK_ICON_VIEW (thumb_view), 0);
   gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (thumb_view), 0);
