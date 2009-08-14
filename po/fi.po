@@ -1,17 +1,17 @@
 # Finnish translations for cheese package.
 # Copyright (C) 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the cheese package.
-# Tommi Vainikainen <Tommi.Vainikainen@iki.fi>, 2008.
+# Tommi Vainikainen <Tommi.Vainikainen@iki.fi>, 2008-2009.
 # Ilkka Tuohela <hile@iki.fi>, 2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-18 13:38+0300\n"
-"PO-Revision-Date: 2008-09-13 13:00+0300\n"
-"Last-Translator: Ilkka Tuohela <hile@iki.fi>\n"
-"Language-Team: Finnish\n"
+"POT-Creation-Date: 2009-08-14 14:30+0300\n"
+"PO-Revision-Date: 2009-08-14 14:40+0300\n"
+"Last-Translator: Tommi Vainikainen <thv@iki.fi>\n"
+"Language-Team: Finnish <gnome-fi-laatu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Cheese Webcam Booth"
 msgstr "Muikku-valokuvakoppi"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1012
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1089
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ota valokuvia ja videoita webikamerallasi hauskojen tehosteiden kera"
 
@@ -39,6 +39,22 @@ msgstr ""
 "\"warp\"."
 
 #: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "Säätää webikameraltasi tulevan kuvan kirkkaustasoa"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "Säätää webikameraltasi tulevan kuvan kontrastitasoa"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "Säätää webikameraltasi tulevan kuvan värisävyä"
+
+#: ../data/cheese.schemas.in.h:7
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "Säätää webikameraltasi tulevan kuvan saturaatiotasoa"
+
+#: ../data/cheese.schemas.in.h:8
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
@@ -46,7 +62,7 @@ msgstr ""
 "Määrittää polun minne valokuvat tallennetaan, mikäli tyhjä niin käytetään "
 "polkua \"XDG_PHOTO/Webcam\"."
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
@@ -54,11 +70,17 @@ msgstr ""
 "Määrittää polun minne videot tallennetaan, mikäli tyhjä niin käytetään "
 "polkua \"XDG_VIDEO/Webcam\"."
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "Korkeuden tarkkuus"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:11
+msgid ""
+"If set to true, Cheese will startup in a wide mode with the image collection "
+"placed on the right side. Useful with small screens."
+msgstr "Jos tosi, Muikki käynnistyy leveässä tilassa, jossa kuvakokoelma on sijoitettunaoikealle sivulle. Hyödyllinen pienillä ruuduilla."
+
+#: ../data/cheese.schemas.in.h:12
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
@@ -68,98 +90,169 @@ msgstr ""
 "heti käyttämättä roskakoria. Tämä ominaisuus voi olla vaarallinen, joten "
 "käytä sitä varoen."
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:13
+msgid "Milliseconds between photos in burst mode."
+msgstr "Millisekunteja valokuvien välillä pursketilassa."
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Number of photos in burst mode."
+msgstr "Valokuvien määrä pursketilassa."
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "Valokuvapolku"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:16
+msgid "Picture brightness"
+msgstr "Kuvan kirkkaus"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture contrast"
+msgstr "Kuvan kontrasti"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture hue"
+msgstr "Kuvan värisävy"
+
+#: ../data/cheese.schemas.in.h:19
+msgid "Picture saturation"
+msgstr "Kuvan saturaatio"
+
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "Valitut tehosteet"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Aseta todeksi, jos haluat käyttää lähtölaskentaa otettaessa valokuvaa"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "Webcamiin liittyvä laitenimi, esim. /dev/video0"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
 msgstr "Kameran kaappaaman kuvan pystysuuntainen tarkkuus"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:24
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr "Ajan pituus millisekunteina, joka odotetaan jokaisen valokuvan ottamisen välillä purskejaksossa."
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The number of photos to take in a single burst."
+msgstr "Valokuvien määrä, joka otetaan yksittäisessä purskeessa."
+
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
 msgstr "Kameran kaappaaman kuvan vaakasuuntainen tarkkuus"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
 msgstr "Käytä lähtölaskentaa"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "Videopolku"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:29
 msgid "Webcam device string indicator"
 msgstr "Webcamin laitenimen indikaattori"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "Poistetaanko tiedostot heti"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "Käynnistetäänkö leveässä tilassa"
+
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "Leveyden tarkkuus"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:184
 msgid "Cheese"
 msgstr "Muikku"
 
 #: ../data/cheese.ui.h:2
+msgid "Switch to Burst Mode"
+msgstr "Siirry pursketilaan"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "Siirry valokuvatilaan"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "Siirry videotilaan"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "Siirry tehostevalitsimeen"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1136
-#: ../src/cheese-window.c:1375
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1213
+#: ../src/cheese-window.c:1501
 msgid "_Effects"
 msgstr "_Tehosteet"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "Lopeta _kokoruututila"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1387
-msgid "_Photo"
-msgstr "_Valokuva"
-
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1439
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1534
+#: ../src/cheese-window.c:1574
 msgid "_Take a Photo"
 msgstr "_Ota kuva"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1388
-msgid "_Video"
-msgstr "_Video"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>Kamera</b>"
+msgid "Brightness"
+msgstr "Kirkkaus"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>Tarkkuus</b>"
+msgid "Burst mode"
+msgstr "Pursketila"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1379
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "Kontrasti"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (secs.)"
+msgstr "Viime valokuvien välissä (sekuntia)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Laite"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Värisävy"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Kuvan ominaisuudet"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Valokuvien määrä"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1505
 msgid "Preferences"
 msgstr "Asetukset"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "Tarkkuus"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Saturaatio"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Webikamera"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -172,10 +265,6 @@ msgstr "mauve"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "mustavalkoinen"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "saturaatio"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -221,81 +310,60 @@ msgstr "warp"
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "Kameraa ei löytynyt!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "Katso ohjeesta lisätietoja."
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "Ohje"
-
-#: ../src/cheese-webcam.c:1546
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "Yksi tai useampi vaadituista gstreamer-osista puuttuu: "
 
-#: ../src/cheese-window.c:77
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "_Ohita"
 
-#: ../src/cheese-window.c:78
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "O_hita kaikki"
 
-#: ../src/cheese-window.c:79
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "Poista k_aikki"
 
-#: ../src/cheese-window.c:201
-#, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"Selaimen käynnistys epäonnistui sivun avaamiseksi:\n"
-"%s"
-
-#: ../src/cheese-window.c:225
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"Sähköpostisovelluksen käynnistys epäonnistui viestin lähettämiseksi "
-"osoitteesen:\n"
-"%s"
-
-#: ../src/cheese-window.c:465
+#: ../src/cheese-window.c:539
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "Ohjelman käynnistys epäonnistui tiedoston näyttämiseksi:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:484
+#: ../src/cheese-window.c:560
 msgid "Save File"
 msgstr "Tallenna tiedosto"
 
-#: ../src/cheese-window.c:522
+#: ../src/cheese-window.c:598
 #, c-format
 msgid "Could not save %s"
 msgstr "Ei voitu tallentaa %s"
 
-#: ../src/cheese-window.c:545
+#: ../src/cheese-window.c:621
 msgid "Error while deleting"
 msgstr "Virhe poistettaessa"
 
-#: ../src/cheese-window.c:546
+#: ../src/cheese-window.c:622
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Tiedostoa \"%s\" ei voi poistaa. Yksityiskohdat: %s"
 
-#: ../src/cheese-window.c:573
+#: ../src/cheese-window.c:649
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural ""
@@ -303,52 +371,52 @@ msgid_plural ""
 msgstr[0] "Haluatko varmasti poistaa %d valitun kohteen?"
 msgstr[1] "Haluatko varmasti poistaa %d valittua kohdetta?"
 
-#: ../src/cheese-window.c:580
+#: ../src/cheese-window.c:656
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Haluatko varmasti poistaa tiedoston \"%s\"?"
 
-#: ../src/cheese-window.c:583
+#: ../src/cheese-window.c:659
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Jos poistat tiedoston, se hukataan pysyvästi."
 
-#: ../src/cheese-window.c:604
+#: ../src/cheese-window.c:680
 msgid "Unknown Error"
 msgstr "Tuntematon virhe"
 
-#: ../src/cheese-window.c:634
+#: ../src/cheese-window.c:710
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Tiedostoa ei voi siirtää roskakoriin, haluatko poistaa sen pysyvästi?"
 
-#: ../src/cheese-window.c:635
+#: ../src/cheese-window.c:711
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Tiedostoa \"%s\" ei voitu siirtää roskakoriin. Yksityiskohdat: %s"
 
-#: ../src/cheese-window.c:707
+#: ../src/cheese-window.c:783
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Haluatko varmasti siirtää kaikki valokuvat ja videot roskakoriin?"
 
-#: ../src/cheese-window.c:715
+#: ../src/cheese-window.c:791
 msgid "_Move to Trash"
 msgstr "Siirrä _roskakoriin"
 
-#: ../src/cheese-window.c:833
+#: ../src/cheese-window.c:909
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Ei voitu asettaa tilin valokuvaa"
 
-#: ../src/cheese-window.c:865
+#: ../src/cheese-window.c:941
 msgid "Media files"
 msgstr "Mediatiedostot"
 
-#: ../src/cheese-window.c:938 ../src/cheese-window.c:1210
+#: ../src/cheese-window.c:1015 ../src/cheese-window.c:1295
 msgid "Unable to open help file for Cheese"
 msgstr "Muikun ohjetiedostoa ei voitu avata"
 
-#: ../src/cheese-window.c:990
+#: ../src/cheese-window.c:1067
 msgid "translator-credits"
 msgstr ""
 "Ilkka Tuohela, 2008.\n"
@@ -356,7 +424,7 @@ msgstr ""
 "\n"
 "http://gnome.fi/"
 
-#: ../src/cheese-window.c:993
+#: ../src/cheese-window.c:1070
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -368,7 +436,7 @@ msgstr ""
 "Free Software Foundation on ne julkaissut; joko Lisenssin version 2, tai "
 "(valinnan mukaan) minkä tahansa myöhemmän version mukaisesti.\n"
 
-#: ../src/cheese-window.c:997
+#: ../src/cheese-window.c:1074
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -380,7 +448,7 @@ msgstr ""
 "hyväksyttävästä laadusta tai soveltuvuudesta tiettyyn tarkoitukseen. Katso "
 "GNU-GPL-lisenssistä lisää yksityiskohtia.\n"
 
-#: ../src/cheese-window.c:1001
+#: ../src/cheese-window.c:1078
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -388,119 +456,166 @@ msgstr ""
 "Tämän ohjelman mukana pitäisi tulla kopio GPL lisenssistä; jos näin ei ole, "
 "katso <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1018
+#: ../src/cheese-window.c:1095
 msgid "Cheese Website"
 msgstr "Muikun www-sivusto"
 
-#: ../src/cheese-window.c:1226
+#: ../src/cheese-window.c:1311
 msgid "_Start Recording"
 msgstr "Aloita _nauhoitus"
 
-#: ../src/cheese-window.c:1325
+#: ../src/cheese-window.c:1447
 msgid "_Stop Recording"
 msgstr "Lopeta _nauhoitus"
 
-#: ../src/cheese-window.c:1356
+#: ../src/cheese-window.c:1482
 msgid "_Cheese"
 msgstr "_Muikku"
 
-#: ../src/cheese-window.c:1358
+#: ../src/cheese-window.c:1484
 msgid "_Edit"
 msgstr "_Muokkaa"
 
-#: ../src/cheese-window.c:1359
+#: ../src/cheese-window.c:1485
 msgid "Move All to Trash"
 msgstr "Siirrä kaikki roskakoriin"
 
-#: ../src/cheese-window.c:1362
+#: ../src/cheese-window.c:1488
 msgid "_Help"
 msgstr "O_hje"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1491
 msgid "_Contents"
 msgstr "_Sisältö"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1491
 msgid "Help on this Application"
 msgstr "Ohjeita tämän sovelluksen käytöstä"
 
-#: ../src/cheese-window.c:1371
+#: ../src/cheese-window.c:1497
 msgid "Countdown"
 msgstr "Lähtölaskenta"
 
-#: ../src/cheese-window.c:1392
+#: ../src/cheese-window.c:1513
+msgid "_Wide mode"
+msgstr "_Leveä tila"
+
+#: ../src/cheese-window.c:1517
+msgid "_Photo"
+msgstr "_Valokuva"
+
+#: ../src/cheese-window.c:1518
+msgid "_Video"
+msgstr "_Video"
+
+#: ../src/cheese-window.c:1519
+msgid "_Burst"
+msgstr "_Purske"
+
+#: ../src/cheese-window.c:1523
 msgid "_Open"
 msgstr "_Avaa"
 
-#: ../src/cheese-window.c:1394
+#: ../src/cheese-window.c:1525
 msgid "Save _As..."
 msgstr "Tallenna _nimellä..."
 
-#: ../src/cheese-window.c:1396
+#: ../src/cheese-window.c:1527
 msgid "Move to _Trash"
 msgstr "Siirrä _roskakoriin"
 
-#: ../src/cheese-window.c:1398
+#: ../src/cheese-window.c:1529
 msgid "Delete"
 msgstr "Poista"
 
-#: ../src/cheese-window.c:1403 ../src/cheese-window.c:1631
-msgid "_Take a photo"
-msgstr "_Ota kuva"
-
-#: ../src/cheese-window.c:1407
+#: ../src/cheese-window.c:1538
 msgid "_Recording"
 msgstr "_Nauhoitus"
 
-#: ../src/cheese-window.c:1411
+#: ../src/cheese-window.c:1542 ../src/cheese-window.c:1587
+msgid "_Take multiple Photos"
+msgstr "_Ota useita kuvia"
+
+#: ../src/cheese-window.c:1546
 msgid "_Set As Account Photo"
 msgstr "_Aseta tilin valokuvaksi"
 
-#: ../src/cheese-window.c:1415
+#: ../src/cheese-window.c:1550
 msgid "Send by _Mail"
 msgstr "Lähetä _sähköpostitse"
 
-#: ../src/cheese-window.c:1419
+#: ../src/cheese-window.c:1554
 msgid "Send _To"
 msgstr "_Lähetä"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1558
 msgid "Export to F-_Spot"
 msgstr "Vie F-_Spotiin"
 
-#: ../src/cheese-window.c:1427
+#: ../src/cheese-window.c:1562
 msgid "Export to _Flickr"
 msgstr "View _Flickriin"
 
-#: ../src/cheese-window.c:1451
+#: ../src/cheese-window.c:1600
 msgid "_Start recording"
 msgstr "Aloita _nauhoitus"
 
-#: ../src/cheese-window.c:1774
-msgid "Quit"
-msgstr "Lopeta"
+#: ../src/cheese-window.c:1758
+msgid "_Take a photo"
+msgstr "_Ota kuva"
 
-#: ../src/cheese-window.c:1780
-msgid "About"
-msgstr "Tietoja"
-
-#: ../src/cheese-window.c:1861
+#: ../src/cheese-window.c:2018
 msgid "Check your gstreamer installation"
 msgstr "Tarkista gstreamer-asennuksesi"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:163
 msgid "Be verbose"
 msgstr "Toimi suulaasti"
 
-#: ../src/cheese.c:179
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "Ota leveä tila käyttöön"
+
+#: ../src/cheese.c:169
+msgid "output version information and exit"
+msgstr "tulosta versiotiedot ja poistu"
+
+#: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- Ota valokuvia ja videoita webcamillasi, hauskojen tehosteiden kera"
 
+#~ msgid "<b>Camera</b>"
+#~ msgstr "<b>Kamera</b>"
+
+#~ msgid "<b>Resolution</b>"
+#~ msgstr "<b>Tarkkuus</b>"
+
+#~ msgid "Help"
+#~ msgstr "Ohje"
+
+#~ msgid ""
+#~ "Failed to open browser to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Selaimen käynnistys epäonnistui sivun avaamiseksi:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to open email client to send message to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Sähköpostisovelluksen käynnistys epäonnistui viestin lähettämiseksi "
+#~ "osoitteesen:\n"
+#~ "%s"
+
+#~ msgid "Quit"
+#~ msgstr "Lopeta"
+
+#~ msgid "About"
+#~ msgstr "Tietoja"
+
 #~ msgid "The Y resolution of the image captured from the camera"
 #~ msgstr "Kamerasta kaapattujen kuvien Y-tarkkuus"
-
-#~ msgid "Y resolution"
-#~ msgstr "Y-tarkkuus"
 
 #~ msgid "Cannot move file to trash"
 #~ msgstr "Tiedostoja ei voitu siirtää roskakoriin"
