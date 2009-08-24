@@ -1,6 +1,36 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.27.91
+  - Restore default window size that was changed with the netbook-mode
+    merge.
+  - Prevent the thumbview to shrink down to nothing when there are no
+    items. Keep track of current items number and set a size request when
+    it reaches zero.
+  - Remove a bunch of hacks used in wide-mode switching to keep the video
+    area size constant. Do everything in a more proper, non hackish, way.
+    Fixes window "flickering" when switching to Wide Mode.
+  - Restore a <schema> keyword that got lost in the gconf schema, fixes
+    bug #591389, courtesy of Koop Mast
+  - Added/Updated Translations
+    - af, courtesy of F Wolff
+    - bg, courtesy of Alexander Shopov
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fi, courtesy of Tommi Vainikainen
+    - ga, courtesy of Seán de Búrca
+    - gl, courtesy of Antón Méixome
+    - he, courtesy of Yaron Shahrabani
+    - hi, courtesy of Rajesh Ranjan
+    - nb, courtesy of Kjartan Maraas
+    - or, courtesy of Manoj Kumar Giri
+    - pl, courtesy of Piotr Drąg
+    - sv, courtesy of Daniel Nylander
+    - th, courtesy of Akom C.
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+
 version 2.27.90
   - Drop HILDON mode. We used to have HILDON support once but it has
     been broken for several major releases now. Better no support than
