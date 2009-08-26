@@ -1,4 +1,4 @@
-# translation of cheese.HEAD.ml.po to Malayalam
+# translation of cheese.master.ml.po to
 # Copyright (C) 2008 THE cheese' COPYRIGHT HOLDER
 # This file is distributed under the same license as the cheese package.
 #
@@ -7,23 +7,23 @@
 # പ്രവീണ്‍ അരിമ്പ്രത്തൊടിയില്‍ <pravi.a@gmail.com>, 2008.
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese.HEAD.ml\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-16 01:26+0000\n"
-"PO-Revision-Date: 2008-09-15 23:13-0500\n"
-"Last-Translator: പ്രവീണ്‍ അരിമ്പ്രത്തൊടിയില്‍ <pravi.a@gmail.com>\n"
-"Language-Team: Malayalam <smc-discuss@googlegroups.com>\n"
+"Project-Id-Version: cheese.master.ml\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2009-08-10 20:00+0000\n"
+"PO-Revision-Date: 2009-08-26 14:02+0530\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 0.2\n"
+"X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
 msgstr "ചീസിന്റെ വെബ്കാം ബൂത്ത്"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1012
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1156
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "നിങ്ങളുടെ വെബ്കാം ഉപയോഗിച്ചു് നല്ല രസമുള്ള ഗ്രാഫിക്കല്‍ എഫക്ടുകളോടുകൂടിയ ഫോട്ടോകളും വീഡിയോകളും "
@@ -42,6 +42,23 @@ msgstr ""
 "\"വെര്‍ട്ടിഗോ\", \"എഡ്ജ്\", \"ഡൈസ്\", \"വാര്‍പ്പ്\""
 
 #: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "വെബ്കാമില്‍ നിന്നുള്ള ചിത്രത്തിന്റെ തെളിച്ചം സജ്ജമാക്കുന്നു"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "വെബ്കാമില്‍ നിന്നുള്ള ചിത്രത്തിന്റെ അന്തരം സജ്ജമാക്കുന്നു"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "വെബ്കാമില്‍ നിന്നുള്ള ചിത്രത്തിന്റെ നിറക്കൂട്ട് സജ്ജമാക്കുന്നു"
+
+#: ../data/cheese.schemas.in.h:7
+#| msgid "The width resolution of the image captured from the camera"
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "ക്യാമറയില്‍നിന്നു പകര്‍ത്തിയ ചിത്രത്തിന്റെ സാച്ചുറേഷന്‍ ലവല്‍ സജ്ജമാക്കുന്നു"
+
+#: ../data/cheese.schemas.in.h:8
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
@@ -49,7 +66,7 @@ msgstr ""
 "ഫോട്ടോകള്‍ സൂക്ഷിച്ചിരിക്കുന്ന പാതയെ നിര്‍വ്വചിക്കുന്നു, കാലിയാണെങ്കില്‍ \"XDG_PHOTO/Webcam\" "
 "ഉപയോഗിക്കപ്പെടും."
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
@@ -57,11 +74,19 @@ msgstr ""
 "വീഡിയോകള്‍ സൂക്ഷിച്ചിരിക്കുന്ന പാതയെ നിര്‍വ്വചിക്കുന്നു, കാലിയാണെങ്കില്‍ \"XDG_VIDEO/Webcam\" "
 "ഉപയോഗിക്കപ്പെടും."
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "ഏറ്റവും കൂടിയ ദൃശ്യസൂക്ഷ്മത"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:11
+msgid ""
+"If set to true, Cheese will startup in a wide mode with the image collection "
+"placed on the right side. Useful with small screens."
+msgstr ""
+"true ആയി സജ്ജമെങ്കില്‍, ചിത്ര ശേഖരണം വലത്തു് വശത്തു് ലഭ്യമാക്കി ചീസ് "
+"വീതിയുള്ള മോഡില്‍ ആരംഭിക്കുന്നു. ചെറിയ സ്ക്രീനുകള്‍ക്കു് കൂടുതല്‍ ഉപയോഗപ്പെടുന്നു."
+
+#: ../data/cheese.schemas.in.h:12
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
@@ -70,98 +95,175 @@ msgstr ""
 "ശരിയെന്നു് സജ്ജീകരിച്ചാല്‍ ചീസിനു് ചവറ്റുകുട്ടയിലേയ്ക്കു് മാറ്റാതെ തന്നെ ഒരു ഫയല്‍ ഇവിടെ വച്ചു് തന്നെ "
 "തത്സമയം നീക്കം ചെയ്യാന്‍ കഴിവുണ്ടാകും. ഇതു് അപകടകരമായേയ്ക്കാം, അതു് കൊണ്ടു് തന്നെ സൂക്ഷിയ്ക്കുക."
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:13
+msgid "Milliseconds between photos in burst mode."
+msgstr "ബേസ്റ്റ് മോഡിലുള്ള ഫോട്ടോകളുടെ ഇടയിലുള്ള സമയം മില്ലിസെക്കന്‍ഡുകളില്‍."
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Number of photos in burst mode."
+msgstr "ബേസ്റ്റ് മോഡിലുള്ള ഫോട്ടോകളുടെ എണ്ണം"
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "ഫോട്ടോ പാത"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:16
+msgid "Picture brightness"
+msgstr "ചിത്രത്തിന്റെ തെളിച്ചം"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture contrast"
+msgstr "ചിത്രത്തിനുള്ള അന്തരം"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture hue"
+msgstr "ചിത്രത്തിനുള്ള നിറക്കൂട്ട്"
+
+#: ../data/cheese.schemas.in.h:19
+#| msgid "Saturation"
+msgid "Picture saturation"
+msgstr "ചിത്രത്തിന്റെ സാച്ചുറേഷന്‍"
+
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "തെരഞ്ഞെടുത്ത പ്രഭാവങ്ങള്‍"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
 msgstr "ഒരു ഫോട്ടോ എടുക്കുമ്പോള്‍ കൌണ്ട്ഡൌണ്‍ കാണിയ്ക്കാന്‍ ശരിയെന്നു് സജ്ജീകരിയ്ക്കുക"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "വെബ്കാമിനെ സൂചിപ്പിക്കുന്ന ഉപകരണം, ഉദാ. /dev/video0"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
 msgstr "ക്യാമറയില്‍നിന്നു പകര്‍ത്തിയ ചിത്രത്തിന്റെ ഉയരത്തിന്റെ സൂക്ഷ്മത"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:24
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr ""
+"ഫോട്ടോകളുടെ ബേസ്റ്റ് ക്രമത്തില്‍ ഓരോ ഫോട്ടോയും എടുക്കുന്നതിനുള്ള താമസം, "
+"മില്ലിസെക്കന്‍ഡുകളില്‍."
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The number of photos to take in a single burst."
+msgstr "ഒറ്റ ബേസ്റ്റില്‍ എടുക്കേണ്ട ഫോട്ടോകളുടെ എണ്ണം"
+
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
 msgstr "ക്യാമറയില്‍നിന്നു പകര്‍ത്തിയ ചിത്രത്തിന്റെ വീതി സൂക്ഷ്മത"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
 msgstr "കൌണ്ട്ഡൌണ്‍ ഉപയോഗിക്കുക"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "വീഡിയോ പാത"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:29
 msgid "Webcam device string indicator"
 msgstr "വെബ്കാം ഡിവൈസ് സ്ട്രിങ് സൂചകം"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "തത്സമയമുള്ള നീക്കം ചെയ്യല്‍ പ്രാവര്‍ത്തികമാക്കണോ എന്നു്"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "വീതിയുള്ള മോഡില്‍ ആരംഭിക്കണമോ എന്നു്"
+
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "വീതി സൂക്ഷ്മത"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:184
 msgid "Cheese"
 msgstr "ചീസ്"
 
 #: ../data/cheese.ui.h:2
+#| msgid "Switch to Photo Mode"
+msgid "Switch to Burst Mode"
+msgstr "ബേസ്റ്റ് മോഡിലേക്ക് മാറുക"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "ഫോട്ടോ ദശയിലേയ്ക്കു് മാറുക"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "ചലച്ചിത്ര ദശയിലേയ്ക്കു് മാറുക"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "പ്രഭാവങ്ങള്‍ തെരഞ്ഞെടുക്കുന്നതിലേയ്ക്കു് മാറുക"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1136
-#: ../src/cheese-window.c:1375
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1280
+#: ../src/cheese-window.c:1568
 msgid "_Effects"
 msgstr "_പ്രഭാവങ്ങള്‍"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "മുഴുവന്‍ സ്ക്രീനില്‍ നിന്നും _പുറത്തിറങ്ങുക"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1387
-msgid "_Photo"
-msgstr "_ഫോട്ടോ"
-
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1439
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1601
+#: ../src/cheese-window.c:1641
 msgid "_Take a Photo"
 msgstr "ഒരു ഫോട്ടോ _എടുക്കുക"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1388
-msgid "_Video"
-msgstr "_ചലച്ചിത്രം"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>ക്യാമറ</b>"
+msgid "Brightness"
+msgstr "തെളിച്ചം"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>സൂക്ഷ്മത</b>"
+msgid "Burst mode"
+msgstr "ബോസ്റ്റ് മോഡ്"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1379
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "താരതമ്യം"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (secs.)"
+msgstr "ഫോട്ടോകള്‍ക്കിടയിലുള്ള താമസം (സെക്കന്‍ഡുകളില്‍)"
+
+#: ../data/cheese-prefs.ui.h:5
+#| msgid "Dice"
+msgid "Device"
+msgstr "ഡിവൈസ്"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "നിറക്കൂട്ട്"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "ചിത്രത്തിന്റെ ഗുണഗണങ്ങള്‍"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "ഫോട്ടോകളുടെ എണ്ണം"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1572
 msgid "Preferences"
 msgstr "മുന്‍ഗണനകള്‍"
+
+#: ../data/cheese-prefs.ui.h:10
+#| msgid "<b>Resolution</b>"
+msgid "Resolution"
+msgstr "സൂക്ഷ്മത"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "സാച്ചുറേഷന്‍"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "വെബ്കാം"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -174,10 +276,6 @@ msgstr "മോവ്"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "നൊയര്‍/ബ്ളാങ്ക്"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "സാച്ചുറേഷന്‍"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -223,139 +321,122 @@ msgstr "വാര്‍പ്പ്"
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "ക്യാമറയൊന്നും കണ്ടില്ല!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "കൂടുതല്‍ വിവരങ്ങള്‍ക്കായി സഹായം നോക്കുക."
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "സഹായം"
-
-#: ../src/cheese-webcam.c:1546
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "ഒന്നോ അതിലധികമോ ജിസ്ട്രീമര്‍ മൂലകങ്ങള്‍ ലഭ്യമല്ല:"
 
-#: ../src/cheese-window.c:77
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "_ഒഴിവാക്കുക"
 
-#: ../src/cheese-window.c:78
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "എല്ലാം ഒ_ഴിവാക്കുക"
 
-#: ../src/cheese-window.c:79
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "_എല്ലാം നീക്കം ചെയ്യുക"
 
-#: ../src/cheese-window.c:201
+#: ../src/cheese-window.c:606
 #, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"കാണിക്കുന്നതിനായി ബ്രൌസര്‍ തുറക്കുന്നതില്‍ പരാജയപ്പെട്ടു:\n"
-"%s"
-
-#: ../src/cheese-window.c:225
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"ഇമെയില്‍ ക്ലയന്റ് വഴി സന്ദേശം അയയ്ക്കുന്നതില്‍ പരാജയപ്പെട്ടു:\n"
-"%s"
-
-#: ../src/cheese-window.c:465
-#, c-format
+#| msgid ""
+#| "Failed to launch program to show:\n"
+#| "%s"
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "കാണിക്കുന്നതിനുള്ള പ്രോഗ്രാം തുടങ്ങുന്നതില്‍ പരാജയപ്പെട്ടു:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:484
+#: ../src/cheese-window.c:627
 msgid "Save File"
 msgstr "ഫയല്‍ സൂക്ഷിക്കുക"
 
-#: ../src/cheese-window.c:522
+#: ../src/cheese-window.c:665
 #, c-format
 msgid "Could not save %s"
 msgstr "%s സൂക്ഷിക്കുവാന്‍ സാധിച്ചില്ല"
 
-#: ../src/cheese-window.c:545
+#: ../src/cheese-window.c:688
 msgid "Error while deleting"
 msgstr "നീക്കം ചെയ്യുന്നതില്‍ പിഴവു്"
 
-#: ../src/cheese-window.c:546
+#: ../src/cheese-window.c:689
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "\"%s\" എന്ന ഫയല്‍ നീക്കം ചെയ്യുവാന്‍ സാധ്യമായില്ല. വിശദാംശങ്ങള്‍: %s"
 
-#: ../src/cheese-window.c:573
+#: ../src/cheese-window.c:716
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "തെരഞ്ഞെടുത്ത %'d ഇനം എന്നെന്നേയ്ക്കുമായി നീക്കം ചെയ്യണമെന്നു് നിങ്ങള്‍ക്കുറപ്പുണ്ടോ?"
 msgstr[1] "തെരഞ്ഞെടുത്ത %'d ഇനങ്ങളും എന്നെന്നേയ്ക്കുമായി നീക്കം ചെയ്യണമെന്നു് നിങ്ങള്‍ക്കുറപ്പുണ്ടോ?"
 
-#: ../src/cheese-window.c:580
+#: ../src/cheese-window.c:723
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "\"%s\" എന്നെന്നേയ്ക്കുമായി നീക്കം ചെയ്യണമെന്നു് നിങ്ങള്‍ക്കുറപ്പുണ്ടോ?"
 
-#: ../src/cheese-window.c:583
+#: ../src/cheese-window.c:726
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "നിങ്ങളവയെ നീക്കം ചെയ്യുകയാണെങ്കില്‍ അവ എന്നെന്നേയ്ക്കുമായി നഷ്ടപ്പെടുന്നതായിരിയ്ക്കും."
 
-#: ../src/cheese-window.c:604
+#: ../src/cheese-window.c:747
 msgid "Unknown Error"
 msgstr "അപരിചിതമായ പിശകു്"
 
-#: ../src/cheese-window.c:634
+#: ../src/cheese-window.c:777
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "ചവറ്റുകുട്ടയിലേയ്ക്കു് മാറ്റുവാന്‍ സാധ്യമായില്ല, തത്സമയം നീക്കം ചെയ്യാന്‍ നിങ്ങള്‍ക്കാഗ്രഹമുണ്ടോ?"
 
-#: ../src/cheese-window.c:635
+#: ../src/cheese-window.c:778
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "\"%s\" എന്ന ഫയല്‍ ചവറ്റുകുട്ടയിലേക്കു് നീക്കുവാന്‍ സാധ്യമായില്ല. വിശദാംശങ്ങള്‍: %s"
 
-#: ../src/cheese-window.c:707
+#: ../src/cheese-window.c:850
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "എല്ലാം വീഡിയോകളും ഫോട്ടോകളും ചവറ്റുകുട്ടയിലേക്കു് നീക്കണമോ?"
 
-#: ../src/cheese-window.c:715
+#: ../src/cheese-window.c:858
 msgid "_Move to Trash"
 msgstr "ചവറ്റുകുട്ടയിലേക്കു് _നീക്കുക"
 
-#: ../src/cheese-window.c:833
+#: ../src/cheese-window.c:976
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "അക്കൌണ്ട് ഫോട്ടോ ക്രമികരിക്കുവാന്‍ സാധ്യമായില്ല"
 
-#: ../src/cheese-window.c:865
+#: ../src/cheese-window.c:1008
 msgid "Media files"
 msgstr "മാധ്യമ ഫയലുകള്‍"
 
-#: ../src/cheese-window.c:938 ../src/cheese-window.c:1210
+#: ../src/cheese-window.c:1082 ../src/cheese-window.c:1362
 msgid "Unable to open help file for Cheese"
 msgstr "ചീസിനുള്ള സഹായ ഫയല്‍ തുറക്കുവാന്‍ സാധ്യമായില്ല"
 
-#: ../src/cheese-window.c:990
+#: ../src/cheese-window.c:1134
 msgid "translator-credits"
 msgstr ""
 "അനി പീറ്റര്‍ <peter.ani@gmail.com>\n"
 "മനു എസ് മാധവ് <manusmad@gmail.com>\n"
 "പ്രവീണ്‍ അരിമ്പ്രത്തൊടിയില്‍ <pravi.a@gmail.com>"
 
-#: ../src/cheese-window.c:993
+#: ../src/cheese-window.c:1137
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -367,7 +448,7 @@ msgstr ""
 "വരുത്താവുന്നതുമാണു്; ലൈസന്‍സിന്റെ ലക്കം 2 അല്ലെങ്കില്‍ (നിങ്ങള്‍ തിരഞ്ഞെടുക്കുന്ന) അതിനു് ശേഷമുള്ള "
 "ഏതെങ്കിലും ലക്കമോ ഉപയോഗിക്കാം.\n"
 
-#: ../src/cheese-window.c:997
+#: ../src/cheese-window.c:1141
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -378,7 +459,7 @@ msgstr ""
 "വാറണ്ടിയും ലഭ്യമല്ല; വ്യാപാരയോഗ്യതയോ ഒരു പ്രത്യേക കാര്യത്തിനു് ചേരുന്നതാണെന്നോ പരോക്ഷമായി "
 "ഉള്‍‌ക്കൊള്ളുന്ന വാറണ്ടി പോലും ഇല്ല. കൂടുതല്‍ വിവരങ്ങള്‍ക്കു് ഗ്നു ജനറല്‍ പബ്ലിക് ലൈസന്‍സ് കാണുക.\n"
 
-#: ../src/cheese-window.c:1001
+#: ../src/cheese-window.c:1145
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -386,111 +467,133 @@ msgstr ""
 "ഈ പ്രോഗ്രാമിനൊപ്പം നിങ്ങള്‍ക്കു് ഗ്നു ജനറല്‍ പബ്ളിക് ലൈസന്‍സിന്റെ ഒരു പകര്‍പ്പും ലഭിച്ചിരിക്കണം, "
 "ഇല്ലായെങ്കില്‍,  <http://www.gnu.org/licenses/> കാണുക."
 
-#: ../src/cheese-window.c:1018
+#: ../src/cheese-window.c:1162
 msgid "Cheese Website"
 msgstr "ചീസിന്റെ വെബ്സൈറ്റ്"
 
-#: ../src/cheese-window.c:1226
+#: ../src/cheese-window.c:1378
 msgid "_Start Recording"
 msgstr "റിക്കോര്‍ഡിങ് _ആരംഭിക്കുക"
 
-#: ../src/cheese-window.c:1325
+#: ../src/cheese-window.c:1514
 msgid "_Stop Recording"
 msgstr "റിക്കോര്‍ഡിങ് _നിര്‍ത്തുക"
 
-#: ../src/cheese-window.c:1356
+#: ../src/cheese-window.c:1549
 msgid "_Cheese"
 msgstr "_ചീസ്"
 
-#: ../src/cheese-window.c:1358
+#: ../src/cheese-window.c:1551
 msgid "_Edit"
 msgstr "_ചിട്ടപ്പെടുത്തുക"
 
-#: ../src/cheese-window.c:1359
+#: ../src/cheese-window.c:1552
 msgid "Move All to Trash"
 msgstr "എല്ലാം ചവറ്റുകുട്ടയിലേക്കു് നീക്കുക"
 
-#: ../src/cheese-window.c:1362
+#: ../src/cheese-window.c:1555
 msgid "_Help"
 msgstr "_സഹായം"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1558
 msgid "_Contents"
 msgstr "_ഉള്ളടക്കം"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1558
 msgid "Help on this Application"
 msgstr "ഈ പ്രയോഗത്തിനുള്ള സഹായം"
 
-#: ../src/cheese-window.c:1371
+#: ../src/cheese-window.c:1564
 msgid "Countdown"
 msgstr "കൌണ്ട്ഡൌണ്‍"
 
-#: ../src/cheese-window.c:1392
+#: ../src/cheese-window.c:1580
+#| msgid "_Video"
+msgid "_Wide mode"
+msgstr "_വീതിയുള്ള മോഡ്"
+
+#: ../src/cheese-window.c:1584
+msgid "_Photo"
+msgstr "_ഫോട്ടോ"
+
+#: ../src/cheese-window.c:1585
+msgid "_Video"
+msgstr "_ചലച്ചിത്രം"
+
+#: ../src/cheese-window.c:1586
+msgid "_Burst"
+msgstr "_ബേസ്റ്റ്"
+
+#: ../src/cheese-window.c:1590
 msgid "_Open"
 msgstr "_തുറക്കുക"
 
-#: ../src/cheese-window.c:1394
+#: ../src/cheese-window.c:1592
 msgid "Save _As..."
 msgstr "പേരു് _മാറ്റി സൂക്ഷിയ്ക്കുക..."
 
-#: ../src/cheese-window.c:1396
+#: ../src/cheese-window.c:1594
 msgid "Move to _Trash"
 msgstr "_ചവറ്റുകുട്ടയിലേയ്ക്കു് മാറ്റുക"
 
-#: ../src/cheese-window.c:1398
+#: ../src/cheese-window.c:1596
 msgid "Delete"
 msgstr "നീക്കം ചെയ്യുക"
 
-#: ../src/cheese-window.c:1403 ../src/cheese-window.c:1631
-msgid "_Take a photo"
-msgstr "ഒരു ഫോട്ടോ _എടുക്കുക"
-
-#: ../src/cheese-window.c:1407
+#: ../src/cheese-window.c:1605
 msgid "_Recording"
 msgstr "_റിക്കോര്‍ഡിങ്"
 
-#: ../src/cheese-window.c:1411
+#: ../src/cheese-window.c:1609 ../src/cheese-window.c:1654
+#| msgid "_Take a Photo"
+msgid "_Take multiple Photos"
+msgstr "അനവധി ഫോട്ടോകള്‍ _എടുക്കുക"
+
+#: ../src/cheese-window.c:1613
 msgid "_Set As Account Photo"
 msgstr "അക്കൌണ്ട് ഫോട്ടോ ആയി _ക്രമികരിക്കുക"
 
-#: ../src/cheese-window.c:1415
+#: ../src/cheese-window.c:1617
 msgid "Send by _Mail"
 msgstr "_മെയില്‍ വഴി അയയ്ക്കുക"
 
-#: ../src/cheese-window.c:1419
+#: ../src/cheese-window.c:1621
 msgid "Send _To"
 msgstr "_അയയ്ക്കുക"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1625
 msgid "Export to F-_Spot"
 msgstr "എഫ്-_സ്പോട്ടിലേയ്ക്കു് വയ്ക്കുക"
 
-#: ../src/cheese-window.c:1427
+#: ../src/cheese-window.c:1629
 msgid "Export to _Flickr"
 msgstr "_ഫ്ലിക്കറിലേക്കു് വയ്ക്കുക"
 
-#: ../src/cheese-window.c:1451
+#: ../src/cheese-window.c:1667
 msgid "_Start recording"
 msgstr "റിക്കോര്‍ഡിങ് _ആരംഭിയ്ക്കുക"
 
-#: ../src/cheese-window.c:1774
-msgid "Quit"
-msgstr "അവസാനിപ്പിക്കുക"
+#: ../src/cheese-window.c:1825
+msgid "_Take a photo"
+msgstr "ഒരു ഫോട്ടോ _എടുക്കുക"
 
-#: ../src/cheese-window.c:1780
-msgid "About"
-msgstr "കുറിച്ചു്"
-
-#: ../src/cheese-window.c:1861
+#: ../src/cheese-window.c:2085
 msgid "Check your gstreamer installation"
 msgstr "നിങ്ങളുടെ ജിസ്ട്രീമര്‍ ഇന്‍സ്റ്റളേഷന്‍ പരിശോദിയ്ക്കുക"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:163
 msgid "Be verbose"
 msgstr "വെര്‍ബോസ് ആകുക"
 
-#: ../src/cheese.c:179
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "വീതിയിലുള്ള മോഡ് സജ്ജമാക്കുക"
+
+#: ../src/cheese.c:169
+msgid "output version information and exit"
+msgstr "പതിപ്പിന്റെ വിവരം ലഭ്യമാക്കി പുറത്തു് കടക്കുക"
+
+#: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- നിങ്ങളുടെ വെബ്കാം ഉപയോഗിച്ചു് നല്ല രസമുള്ള ഗ്രാഫിക്കല്‍ എഫക്ടുകളോടുകൂടിയ ഫോട്ടോകളും വീഡിയോകളും "
