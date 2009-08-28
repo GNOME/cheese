@@ -3,24 +3,25 @@
 # This file is distributed under the same license as the cheese package.
 #
 # Baris Cicek <baris@teamforce.name.tr>, 2008.
+# Baris Cicek <baris@teamforce.name.tr>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-18 07:35+0300\n"
-"PO-Revision-Date: 2008-09-10 23:14+0300\n"
+"POT-Creation-Date: 2009-08-28 22:36+0300\n"
+"PO-Revision-Date: 2009-08-28 22:35+0300\n"
 "Last-Translator: Baris Cicek <baris@teamforce.name.tr>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type:  text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms:  nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
 msgstr "Peynir Web Kamerası Standı"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1012
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1089
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Web kameranızdan fotoğraflar ve videolar çekip bunlara grafiksel etkiler "
@@ -39,6 +40,22 @@ msgstr ""
 "\"shagadelic\", \"vertigo\", \"edge\", \"dice\" ve \"warp\""
 
 #: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "Web kamerasından yakalanacak resmin parlaklık seviyesi"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "Web kamerasından yakalanacak resmin zıtlık seviyesi"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "Web kamerasından yakalanacak resmin renk tonu seviyesi"
+
+#: ../data/cheese.schemas.in.h:7
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "Fotoğraf makinesinden yakalanacak resmin dolgunluk seviyesi"
+
+#: ../data/cheese.schemas.in.h:8
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
@@ -46,7 +63,7 @@ msgstr ""
 "Fotoğrafların saklanacağı yolu belirti, eğer boş ise \"XDG_PHOTO/Webcam\" "
 "kullanılacak."
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
@@ -54,11 +71,19 @@ msgstr ""
 "Videoların saklanacağı yolu belirtir, eğer boşsa \"XDG_VIDEO/Webcam\" "
 "kullanılacak."
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "Yükseklik çözünürlüğü"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:11
+msgid ""
+"If set to true, Cheese will startup in a wide mode with the image collection "
+"placed on the right side. Useful with small screens."
+msgstr ""
+"Eğer doğru ise, Cheese resim koleksiyonu sağ kenara yerleştirilecek biçimde "
+"geniş kipte başlatılacak. Küçük ekranlar için faydalıdır."
+
+#: ../data/cheese.schemas.in.h:12
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
@@ -68,98 +93,171 @@ msgstr ""
 "silmeye olanak sağlayacak bir özellik kullanır. Bu özellik tehlikeli "
 "olabilir o yüzden dikkatli kullanın."
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:13
+msgid "Milliseconds between photos in burst mode."
+msgstr "Patlama kipinde fotoğraflar arasındaki milisaniye."
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Number of photos in burst mode."
+msgstr "Patlama kipinde fotoğraf sayısı."
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "Fotoğraf Yolu"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:16
+msgid "Picture brightness"
+msgstr "Resim parlaklığı"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture contrast"
+msgstr "Resim zıtlığı"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture hue"
+msgstr "Resim tonu"
+
+#: ../data/cheese.schemas.in.h:19
+msgid "Picture saturation"
+msgstr "Resim dolgunluğu"
+
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "Seçili Etkiler"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Fotoğraf çekerken geri sayımın kullanılması için True atayın"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "Bir web kamerasını belirten aygıt (örn. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
 msgstr "Fotoğraf makinesinden yakalanacak resmin yükseklik çözünürlüğü"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:24
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr ""
+"Fotoğraf patlama sırasında her fotoğraf arasında geçecek zamanın milisaniye "
+"cinsinden uzunluğu."
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The number of photos to take in a single burst."
+msgstr "Tek bir patlamada çekilecek fotoğraf sayısı."
+
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
 msgstr "Fotoğraf makinesinden yakalanacak resmin genişlik çözünürlüğü"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
 msgstr "Geri sayım kullan"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "Video Yolu"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:29
 msgid "Webcam device string indicator"
 msgstr "Web kamerası aygıt dizgisi belirteci"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "Anında silmenin etkinleştirilmesi"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "Geniş kipte başlatılması"
+
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "Genişlik çözünürlüğü"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:184
 msgid "Cheese"
 msgstr "Peynir"
 
 #: ../data/cheese.ui.h:2
+msgid "Switch to Burst Mode"
+msgstr "Şipşak Kipine Geç"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "Fotoğraf Kipine Geç"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "Video Kipine Geç"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "Etki Seçiciye Geç"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1136
-#: ../src/cheese-window.c:1375
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1213
+#: ../src/cheese-window.c:1501
 msgid "_Effects"
 msgstr "_Etkiler"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "_Tam Ekranı Terket"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1387
-msgid "_Photo"
-msgstr "_Fotoğraf"
-
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1439
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1534
+#: ../src/cheese-window.c:1574
 msgid "_Take a Photo"
 msgstr "_Fotoğraf Çek"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1388
-msgid "_Video"
-msgstr "_Video"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>Fotoğraf Makinesi</b>"
+msgid "Brightness"
+msgstr "Parlaklık"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>Çözünürlük</b>"
+msgid "Burst mode"
+msgstr "Şipşak kipi"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1379
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "Zıtlık"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (secs.)"
+msgstr "Fotoğraflar arasındaki bekleme (saniye)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Aygıt"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Ton"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Resim özellikleri"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Fotoğraf sayısı"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1505
 msgid "Preferences"
 msgstr "Tercihler"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "<b>Çözünürlük</b>"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Dolgunluk"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Web kamerası"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -172,10 +270,6 @@ msgstr "Ebegümeci"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Kara"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Dolgunluk"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -221,137 +315,116 @@ msgstr "Eğri Büğrü"
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "Hiçbir fotoğraf makinesi bulunmadı!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "Lütfen daha fazla bilgi için yardıma başvurun."
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "Yardım"
-
-#: ../src/cheese-webcam.c:1546
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "Bir ya da daha fazla gerekli gstreamer öğesi eksik: "
 
-#: ../src/cheese-window.c:77
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "_Geç"
 
-#: ../src/cheese-window.c:78
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "Hepsini _Geç"
 
-#: ../src/cheese-window.c:79
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "Hepsini _Sil"
 
-#: ../src/cheese-window.c:201
-#, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"Aşağıdaki adresi göstermek için tarayıcı açılırken başarısız olundu:\n"
-"%s"
-
-#: ../src/cheese-window.c:225
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"Aşağıdaki iletiyi göndermek için e-posta istemcisi açılırken başarısız "
-"olundu:\n"
-"%s"
-
-#: ../src/cheese-window.c:465
+#: ../src/cheese-window.c:539
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "Aşağıdakini göstermek için program başlatılırken başarısız olundu:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:484
+#: ../src/cheese-window.c:560
 msgid "Save File"
 msgstr "Dosyayı Kaydet"
 
-#: ../src/cheese-window.c:522
+#: ../src/cheese-window.c:598
 #, c-format
 msgid "Could not save %s"
 msgstr "%s kaydedilemedi"
 
-#: ../src/cheese-window.c:545
+#: ../src/cheese-window.c:621
 msgid "Error while deleting"
 msgstr "Silerken hata"
 
-#: ../src/cheese-window.c:546
+#: ../src/cheese-window.c:622
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Dosya \"%s\" silinemiyor. Ayrıntılar: %s"
 
-#: ../src/cheese-window.c:573
+#: ../src/cheese-window.c:649
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural ""
 "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "%'d seçili öğeyi kalıcı olarak silmek istediğinizden emin misiniz?"
 
-#: ../src/cheese-window.c:580
+#: ../src/cheese-window.c:656
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Kalıcı olarak \"%s\" öğesini silmek istediğinizden emin misiniz?"
 
-#: ../src/cheese-window.c:583
+#: ../src/cheese-window.c:659
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Eğer bir öğeyi silerseniz, kalıcı olarak kaybolacak."
 
-#: ../src/cheese-window.c:604
+#: ../src/cheese-window.c:680
 msgid "Unknown Error"
 msgstr "Bilinmeyen Hata"
 
-#: ../src/cheese-window.c:634
+#: ../src/cheese-window.c:710
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Dosya çöpe taşınamıyor, anında silmek ister misiniz?"
 
-#: ../src/cheese-window.c:635
+#: ../src/cheese-window.c:711
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Dosya \"%s\" çöpe taşınamıyor. Ayrıntılar: %s"
 
-#: ../src/cheese-window.c:707
+#: ../src/cheese-window.c:783
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Gerçekten tüm fotoğraflar ve videolar çöpe taşınsın mı?"
 
-#: ../src/cheese-window.c:715
+#: ../src/cheese-window.c:791
 msgid "_Move to Trash"
 msgstr "Çöp'e _Taşı"
 
-#: ../src/cheese-window.c:833
+#: ../src/cheese-window.c:909
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Hesap Fotoğrafı atanamadı"
 
-#: ../src/cheese-window.c:865
+#: ../src/cheese-window.c:941
 msgid "Media files"
 msgstr "Ortam dosyaları"
 
-#: ../src/cheese-window.c:938 ../src/cheese-window.c:1210
+#: ../src/cheese-window.c:1015 ../src/cheese-window.c:1295
 msgid "Unable to open help file for Cheese"
 msgstr "Peynir için yardım dosyası açılamadı"
 
-#: ../src/cheese-window.c:990
+#: ../src/cheese-window.c:1067
 msgid "translator-credits"
 msgstr "Barış Çiçek <baris@teamforce.name.tr>"
 
-#: ../src/cheese-window.c:993
+#: ../src/cheese-window.c:1070
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -362,7 +435,7 @@ msgstr ""
 "yayınlanan GNU Genel Kamu Lisansı sürüm 2 ya da (tercihen) daha sonraki "
 "sürümleri altında tekrar dağıtabilir ya da değiştirebilirsiniz\n"
 
-#: ../src/cheese-window.c:997
+#: ../src/cheese-window.c:1074
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -374,7 +447,7 @@ msgstr ""
 "de bulunmamaktadır.  Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na "
 "bakın.\n"
 
-#: ../src/cheese-window.c:1001
+#: ../src/cheese-window.c:1078
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -382,114 +455,161 @@ msgstr ""
 "GNU Genel Kamu Lisansı'nın bir kopyasını bu program ile almış olmalısınız. "
 "Eğer almadıysanız <http://www.gnu.org/licenses/> adresine bakın."
 
-#: ../src/cheese-window.c:1018
+#: ../src/cheese-window.c:1095
 msgid "Cheese Website"
 msgstr "Peynir Web Sitesi"
 
-#: ../src/cheese-window.c:1226
+#: ../src/cheese-window.c:1311
 msgid "_Start Recording"
 msgstr "_Kayda Başla"
 
-#: ../src/cheese-window.c:1325
+#: ../src/cheese-window.c:1447
 msgid "_Stop Recording"
 msgstr "_Kaydı Durdur"
 
-#: ../src/cheese-window.c:1356
+#: ../src/cheese-window.c:1482
 msgid "_Cheese"
 msgstr "_Peynir"
 
-#: ../src/cheese-window.c:1358
+#: ../src/cheese-window.c:1484
 msgid "_Edit"
 msgstr "_Düzenle"
 
-#: ../src/cheese-window.c:1359
+#: ../src/cheese-window.c:1485
 msgid "Move All to Trash"
 msgstr "Hepsini Çöpe Taşı"
 
-#: ../src/cheese-window.c:1362
+#: ../src/cheese-window.c:1488
 msgid "_Help"
 msgstr "_Yardım"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1491
 msgid "_Contents"
 msgstr "İçi_ndekiler"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1491
 msgid "Help on this Application"
-msgstr "Bu uygualama hakkında yardım"
+msgstr "Bu uygulama hakkında yardım"
 
-#: ../src/cheese-window.c:1371
+#: ../src/cheese-window.c:1497
 msgid "Countdown"
 msgstr "Geri Sayım"
 
-#: ../src/cheese-window.c:1392
+#: ../src/cheese-window.c:1513
+msgid "_Wide mode"
+msgstr "_Geniş kip"
+
+#: ../src/cheese-window.c:1517
+msgid "_Photo"
+msgstr "_Fotoğraf"
+
+#: ../src/cheese-window.c:1518
+msgid "_Video"
+msgstr "_Video"
+
+#: ../src/cheese-window.c:1519
+msgid "_Burst"
+msgstr "Ş_ipşak"
+
+#: ../src/cheese-window.c:1523
 msgid "_Open"
 msgstr "_Aç"
 
-#: ../src/cheese-window.c:1394
+#: ../src/cheese-window.c:1525
 msgid "Save _As..."
 msgstr "Farklı _Kaydet..."
 
-#: ../src/cheese-window.c:1396
+#: ../src/cheese-window.c:1527
 msgid "Move to _Trash"
 msgstr "Çöp'e _Taşı"
 
-#: ../src/cheese-window.c:1398
+#: ../src/cheese-window.c:1529
 msgid "Delete"
 msgstr "Sil"
 
-#: ../src/cheese-window.c:1403 ../src/cheese-window.c:1631
-msgid "_Take a photo"
-msgstr "_Fotoğraf çek"
-
-#: ../src/cheese-window.c:1407
+#: ../src/cheese-window.c:1538
 msgid "_Recording"
 msgstr "_Kayıt"
 
-#: ../src/cheese-window.c:1411
+#: ../src/cheese-window.c:1542 ../src/cheese-window.c:1587
+msgid "_Take multiple Photos"
+msgstr "_Çoklu Fotoğraf Çek"
+
+#: ../src/cheese-window.c:1546
 msgid "_Set As Account Photo"
 msgstr "_Hesap Fotoğrafı Olarak Ata"
 
-#: ../src/cheese-window.c:1415
+#: ../src/cheese-window.c:1550
 msgid "Send by _Mail"
 msgstr "_Mektup ile Gönder"
 
-#: ../src/cheese-window.c:1419
+#: ../src/cheese-window.c:1554
 msgid "Send _To"
 msgstr "_Gönder"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1558
 msgid "Export to F-_Spot"
 msgstr "F-_Spot'a Aktar"
 
-#: ../src/cheese-window.c:1427
+#: ../src/cheese-window.c:1562
 msgid "Export to _Flickr"
 msgstr "_Flickr'a Aktar"
 
-#: ../src/cheese-window.c:1451
+#: ../src/cheese-window.c:1600
 msgid "_Start recording"
 msgstr "_Kayda başla"
 
-#: ../src/cheese-window.c:1774
-msgid "Quit"
-msgstr "Çık"
+#: ../src/cheese-window.c:1758
+msgid "_Take a photo"
+msgstr "_Fotoğraf çek"
 
-#: ../src/cheese-window.c:1780
-msgid "About"
-msgstr "Hakkında"
-
-#: ../src/cheese-window.c:1861
+#: ../src/cheese-window.c:2018
 msgid "Check your gstreamer installation"
 msgstr "Gstreamer kurulumunu kontrol edin"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:163
 msgid "Be verbose"
 msgstr "Detaylı ol"
 
-#: ../src/cheese.c:179
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "Geniş kipi etkinleştir"
+
+#: ../src/cheese.c:169
+msgid "output version information and exit"
+msgstr "sürüm bilgisini yazdır ve çık"
+
+#: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- Web kameranızdan fotoğraflar ve videolar çeker ve grafiksel etkiler uygular"
+
+#~ msgid "Help"
+#~ msgstr "Yardım"
+
+#~ msgid ""
+#~ "Failed to open browser to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Aşağıdaki adresi göstermek için tarayıcı açılırken başarısız olundu:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to open email client to send message to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Aşağıdaki iletiyi göndermek için e-posta istemcisi açılırken başarısız "
+#~ "olundu:\n"
+#~ "%s"
+
+#~ msgid "Quit"
+#~ msgstr "Çık"
+
+#~ msgid "About"
+#~ msgstr "Hakkında"
+
+#~ msgid "<b>Camera</b>"
+#~ msgstr "<b>Fotoğraf Makinesi</b>"
 
 #~ msgid "A cheesy program to take photos and videos from your webcam"
 #~ msgstr ""
