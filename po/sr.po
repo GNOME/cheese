@@ -3,150 +3,261 @@
 #
 # This file is distributed under the same license as the cheese package.
 #
-# Горан Ракић <grakic@devbase.net>
 #
+# Горан Ракић <grakic@devbase.net>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-09-22 01:21+0200\n"
-"PO-Revision-Date: 2008-09-23 17:03+0100\n"
-"Last-Translator: Горан Ракић <grakic@devbase.net>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&component=general\n"
+"POT-Creation-Date: 2009-08-28 19:37+0000\n"
+"PO-Revision-Date: 2009-08-30 14:29+0200\n"
+"Last-Translator: Бранко Кокановић <branko.kokanovic@gmail.com>\n"
 "Language-Team: Serbian (sr) <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4;    plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=4;    plural=n==1? 3 : n%10==1 && n%100!=11 ? 0 :    n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 #: ../data/cheese.desktop.in.in.h:1
 msgid "Cheese Webcam Booth"
 msgstr "Фоторадња „Птичица“"
 
-#: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1012
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1089
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Направи фотке и снимке веб камерицом, уз забавне ефекте"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
 #: ../data/cheese.schemas.in.h:3
-msgid "A list of effects applied on startup. Possible values are: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr "Списак ефеката који се примењују по покретању. Могуће вредности су: „mauve“ (лаванда), „noir_blanc“ (тамна ноћ), „saturation“ (презасићено), „hulk“ (халк), „vertical-flip“ (обрни усправно), „horizontal-flip“ (обрни водоравно), „shagadelic“ (перверзија), „vertigo“ (вртоглавица), „edge“ (ивице), „dice“ (коцкица) и „warp“ (витопереност)"
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Списак ефеката који се примењују по покретању. Могуће вредности су: "
+"„mauve“ (лаванда), „noir_blanc“ (тамна ноћ), „saturation“ (презасићено), "
+"„hulk“ (халк), „vertical-flip“ (обрни усправно), „horizontal-flip“ (обрни "
+"водоравно), „shagadelic“ (перверзија), „vertigo“ (вртоглавица), "
+"„edge“ (ивице), „dice“ (коцкица) и „warp“ (витопереност)"
 
 #: ../data/cheese.schemas.in.h:4
-msgid "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Одређује путању где ће бити сачуване фотке. Ако је празно биће коришћен „$XDG_PHOTO/Webcam“"
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "Прилагођава осветљеност слике која долази са веб камерице"
 
 #: ../data/cheese.schemas.in.h:5
-msgid "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Одређује путању где ће бити сачувани снимци. Ако је празно биће коришћен „$XDG_VIDEO/Webcam“"
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "Прилагођава контраст слике која долази са веб камерице"
 
 #: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "Прилагођава нијансу слике која долази са веб камерице"
+
+#: ../data/cheese.schemas.in.h:7
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "Прилагоди засићеност слике која долази са веб камерице"
+
+#: ../data/cheese.schemas.in.h:8
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Одређује путању где ће бити сачуване фотке. Ако је празно биће коришћен "
+"„$XDG_PHOTO/Webcam“"
+
+#: ../data/cheese.schemas.in.h:9
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Одређује путању где ће бити сачувани снимци. Ако је празно биће коришћен "
+"„$XDG_VIDEO/Webcam“"
+
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "Резолуција по висини"
 
-#: ../data/cheese.schemas.in.h:7
-msgid "If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution."
-msgstr "Ако је укључено, Птичица омогућава трајно брисање уместо премештања у смеће. Опрезно, ово може бити опасно."
+#: ../data/cheese.schemas.in.h:11
+msgid ""
+"If set to true, Cheese will startup in a wide mode with the image collection "
+"placed on the right side. Useful with small screens."
+msgstr ""
+"Ако је постављено на „true“, Птичица ће бити покренута у широком режиму рада "
+"где је збирка слика смештена са десне стране. Корисно за мале екране."
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:12
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Ако је укључено, Птичица омогућава трајно брисање уместо премештања у смеће. "
+"Опрезно, ово може бити опасно."
+
+#: ../data/cheese.schemas.in.h:13
+msgid "Milliseconds between photos in burst mode."
+msgstr "Број милисекунди између слику у рафалном режиму."
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Number of photos in burst mode."
+msgstr "Број слика у рафалном режиму"
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "Путања за фотке"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:16
+msgid "Picture brightness"
+msgstr "Осветљеност слике"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture contrast"
+msgstr "Контраст слике"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture hue"
+msgstr "Нијанса слике"
+
+#: ../data/cheese.schemas.in.h:19
+msgid "Picture saturation"
+msgstr "Засићеност слике"
+
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "Одабрани ефекти"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Ако је укључено бројач ће бити приказан при снимању фотке"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "Уређај који води до веб камерицу (нпр. „/dev/video0“)"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
 msgstr "Резолуција слике са веб камере по висини"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:24
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr "Временски размак, у милисекундама, за снимање фотки у рафалном режиму."
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The number of photos to take in a single burst."
+msgstr "Број слика које се снимају у једном рафалу."
+
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
 msgstr "Резолуција слике са веб камере по ширини"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
 msgstr "Користи бројач"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "Путања за снимке"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:29
 msgid "Webcam device string indicator"
 msgstr "Облеживач уређаја веб камерица"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "Да ли треба омогућити тренутно брисање"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "Да ли да се покрене у широком режиму"
+
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "Резолуција по ширини"
 
-#: ../data/cheese.ui.h:1
-#: ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:184
 msgid "Cheese"
 msgstr "Птичица"
 
 #: ../data/cheese.ui.h:2
+msgid "Switch to Burst Mode"
+msgstr "Пребаци у рафални режим"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "Пребаци у режим за фотке"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "Пребаци у режим снимања"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "Пребаци на одабир ефеката"
 
-#: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:1136
-#: ../src/cheese-window.c:1375
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1213
+#: ../src/cheese-window.c:1501
 msgid "_Effects"
 msgstr "_Ефекти"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "_Напусти цео екран"
 
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-window.c:1387
-msgid "_Photo"
-msgstr "_Фотка"
-
-#: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1439
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1534
+#: ../src/cheese-window.c:1574
 msgid "_Take a Photo"
 msgstr "_Сними фотку"
 
-#: ../data/cheese.ui.h:9
-#: ../src/cheese-window.c:1388
-msgid "_Video"
-msgstr "_Снимак"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>Камера</b>"
+msgid "Brightness"
+msgstr "Осветљеност"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>Резолуција</b>"
+msgid "Burst mode"
+msgstr "Рафални режим"
 
 #: ../data/cheese-prefs.ui.h:3
-#: ../src/cheese-window.c:1379
+msgid "Contrast"
+msgstr "Контраст"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (secs.)"
+msgstr "Размак између слика (сек.)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Уређај"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Нијанса"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Особине слике"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Број слика"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1505
 msgid "Preferences"
 msgstr "Поставке"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "Резолуција"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Презасићено"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Веб камерица"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -159,10 +270,6 @@ msgstr "Лаванда"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Тамна ноћ"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Презасићено"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -202,263 +309,284 @@ msgstr "Витопереност"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../src/cheese-countdown.c:436
-#: ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
 #: ../src/cheese-countdown.c:474
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "Није пронађена камерица!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "Погледај помоћ за више информација."
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "Помоћ"
-
-#: ../src/cheese-webcam.c:1546
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "Недостаје један или више елемената Гстримера:"
 
-#: ../src/cheese-window.c:77
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "_Прескочи"
 
-#: ../src/cheese-window.c:78
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "П_рескочи све"
 
-#: ../src/cheese-window.c:79
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "Обриши _све"
 
-#: ../src/cheese-window.c:201
-#, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"Не могу да отворим прегледник да прикажем:\n"
-"%s"
-
-#: ../src/cheese-window.c:225
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"Не могу да отворим клијент за е-пошту да пошљем на:\n"
-"%s"
-
-#: ../src/cheese-window.c:465
+#: ../src/cheese-window.c:539
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "Не могу да покренем програм да прикажем:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:484
+#: ../src/cheese-window.c:560
 msgid "Save File"
 msgstr "Сачувај датотеку"
 
-#: ../src/cheese-window.c:522
+#: ../src/cheese-window.c:598
 #, c-format
 msgid "Could not save %s"
 msgstr "Не могу да сачувам %s"
 
-#: ../src/cheese-window.c:545
+#: ../src/cheese-window.c:621
 msgid "Error while deleting"
 msgstr "Грешка при брисању"
 
-#: ../src/cheese-window.c:546
+#: ../src/cheese-window.c:622
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Датотека „%s“ не може бити обрисана. Детаљи: %s"
 
-#: ../src/cheese-window.c:573
+#: ../src/cheese-window.c:649
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "Да ли сигурно желиш да неповратно обришеш %'d одабрану ставку?"
 msgstr[1] "Да ли сигурно желиш да неповратно обришеш %'d одабране ставке?"
 msgstr[2] "Да ли сигурно желиш да неповратно обришеш %'d одабраних ставки?"
 msgstr[3] "Да ли сигурно желиш да неповратно обришешодабрану ставку?"
 
-#: ../src/cheese-window.c:580
+#: ../src/cheese-window.c:656
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Да ли сигурно желиш да неповратно обришеш „%s“?"
 
-#: ../src/cheese-window.c:583
+#: ../src/cheese-window.c:659
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Ако обришеш ставку, она ће бити неповратно изгубљена."
 
-#: ../src/cheese-window.c:604
+#: ../src/cheese-window.c:680
 msgid "Unknown Error"
 msgstr "Непозната грешка"
 
-#: ../src/cheese-window.c:634
+#: ../src/cheese-window.c:710
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Не могу да преместим у смеће, да ли желиш да је одмах обришеш?"
 
-#: ../src/cheese-window.c:635
+#: ../src/cheese-window.c:711
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Датотека „%s“ не може бити премештена у смеће. Детаљи: %s"
 
-#: ../src/cheese-window.c:707
+#: ../src/cheese-window.c:783
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Да ли сигурно желиш да преместиш све фотке и снимке у смеће?"
 
-#: ../src/cheese-window.c:715
+#: ../src/cheese-window.c:791
 msgid "_Move to Trash"
 msgstr "_Премести у смеће"
 
-#: ../src/cheese-window.c:833
+#: ../src/cheese-window.c:909
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Не могу да поставим слику за налог"
 
-#: ../src/cheese-window.c:865
+#: ../src/cheese-window.c:941
 msgid "Media files"
 msgstr "Мултимедијалне датотеке"
 
-#: ../src/cheese-window.c:938
-#: ../src/cheese-window.c:1210
+#: ../src/cheese-window.c:1015 ../src/cheese-window.c:1295
 msgid "Unable to open help file for Cheese"
 msgstr "Не могу да отворим птичицину датотеку помоћи"
 
-#: ../src/cheese-window.c:990
+#: ../src/cheese-window.c:1067
 msgid "translator-credits"
-msgstr "Горан Ракић <grakic@devbase.net>Превод.орг — превод програма на српски."
+msgstr ""
+"Горан Ракић <grakic@devbase.net>\n"
+"Бранко Кокановић <branko.kokanovic@gmail.com>\n"
+"Превод.орг — превод програма на српски."
 
-#: ../src/cheese-window.c:993
-msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-msgstr "Овај програм је слободан софтвер; можете га прослеђивати другима и/или га преправљати под условима ГНУ Опште јавне лиценце (GNU General Public License) коју објављује Фондација за слободни софтвер (Free Software Foundation); и то верзије 2 ове лиценце или, по вашем мишљењу, било које новије верзије.\n"
+#: ../src/cheese-window.c:1070
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"Овај програм је слободан софтвер; можете га прослеђивати другима и/или га "
+"преправљати под условима ГНУ Опште јавне лиценце (GNU General Public "
+"License) коју објављује Фондација за слободни софтвер (Free Software "
+"Foundation); и то верзије 2 ове лиценце или, по вашем мишљењу, било које "
+"новије верзије.\n"
 
-#: ../src/cheese-window.c:997
-msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-msgstr "Овај програм се дистрибуира у нади да ће бити користан, али НЕМА НИКАКВИХ ГАРАНЦИЈА; чак ни имплицитних гаранција за УПОТРЕБНУ ВРЕДНОСТ или НАМЕНЕ У ОДРЕЂЕНЕ СВРХЕ. Погледајте Гнуову општу јавну лиценцу ( GNU General Public Licensе) за више информација.\n"
+#: ../src/cheese-window.c:1074
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Овај програм се дистрибуира у нади да ће бити користан, али НЕМА НИКАКВИХ "
+"ГАРАНЦИЈА; чак ни имплицитних гаранција за УПОТРЕБНУ ВРЕДНОСТ или НАМЕНЕ У "
+"ОДРЕЂЕНЕ СВРХЕ. Погледајте Гнуову општу јавну лиценцу ( GNU General Public "
+"Licensе) за више информација.\n"
 
-#: ../src/cheese-window.c:1001
-msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "Требало би да сте заједно са овим програмом примили и копију Гнуове опште јавне лиценце. Ако нисте, погледајте <http://www.gnu.org/licenses/>."
+#: ../src/cheese-window.c:1078
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Требало би да сте заједно са овим програмом примили и копију Гнуове опште "
+"јавне лиценце. Ако нисте, погледајте <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1018
+#: ../src/cheese-window.c:1095
 msgid "Cheese Website"
 msgstr "Веб страна Птичице (енгл.)"
 
-#: ../src/cheese-window.c:1226
+#: ../src/cheese-window.c:1311
 msgid "_Start Recording"
 msgstr "_Започни снимање"
 
-#: ../src/cheese-window.c:1325
+#: ../src/cheese-window.c:1447
 msgid "_Stop Recording"
 msgstr "_Заустави снимање"
 
-#: ../src/cheese-window.c:1356
+#: ../src/cheese-window.c:1482
 msgid "_Cheese"
 msgstr "_Птичица"
 
-#: ../src/cheese-window.c:1358
+#: ../src/cheese-window.c:1484
 msgid "_Edit"
 msgstr "_Уређивање"
 
-#: ../src/cheese-window.c:1359
+#: ../src/cheese-window.c:1485
 msgid "Move All to Trash"
 msgstr "Премести све у смеће"
 
-#: ../src/cheese-window.c:1362
+#: ../src/cheese-window.c:1488
 msgid "_Help"
 msgstr "_Помоћ"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1491
 msgid "_Contents"
 msgstr "_Садржај"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1491
 msgid "Help on this Application"
 msgstr "Помоћ о овом програму"
 
-#: ../src/cheese-window.c:1371
+#: ../src/cheese-window.c:1497
 msgid "Countdown"
 msgstr "Бројач"
 
-#: ../src/cheese-window.c:1392
+#: ../src/cheese-window.c:1513
+msgid "_Wide mode"
+msgstr "Широки _режим"
+
+#: ../src/cheese-window.c:1517
+msgid "_Photo"
+msgstr "_Фотка"
+
+#: ../src/cheese-window.c:1518
+msgid "_Video"
+msgstr "_Снимак"
+
+#: ../src/cheese-window.c:1519
+msgid "_Burst"
+msgstr "_Рафал"
+
+#: ../src/cheese-window.c:1523
 msgid "_Open"
 msgstr "_Отвори"
 
-#: ../src/cheese-window.c:1394
+#: ../src/cheese-window.c:1525
 msgid "Save _As..."
 msgstr "Сачувај _као..."
 
-#: ../src/cheese-window.c:1396
+#: ../src/cheese-window.c:1527
 msgid "Move to _Trash"
 msgstr "Премести у _смеће"
 
-#: ../src/cheese-window.c:1398
+#: ../src/cheese-window.c:1529
 msgid "Delete"
 msgstr "Обриши"
 
-#: ../src/cheese-window.c:1403
-#: ../src/cheese-window.c:1631
-msgid "_Take a photo"
-msgstr "_Сними фотку"
-
-#: ../src/cheese-window.c:1407
+#: ../src/cheese-window.c:1538
 msgid "_Recording"
 msgstr "_Снимање"
 
-#: ../src/cheese-window.c:1411
+#: ../src/cheese-window.c:1542 ../src/cheese-window.c:1587
+msgid "_Take multiple Photos"
+msgstr "_Сними више фотки"
+
+#: ../src/cheese-window.c:1546
 msgid "_Set As Account Photo"
 msgstr "_Постави слику уз налог"
 
-#: ../src/cheese-window.c:1415
+#: ../src/cheese-window.c:1550
 msgid "Send by _Mail"
 msgstr "Пошаљи _е-поштом"
 
-#: ../src/cheese-window.c:1419
+#: ../src/cheese-window.c:1554
 msgid "Send _To"
 msgstr "Пошаљи _као"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1558
 msgid "Export to F-_Spot"
 msgstr "Извези у _Ф-број"
 
-#: ../src/cheese-window.c:1427
+#: ../src/cheese-window.c:1562
 msgid "Export to _Flickr"
 msgstr "Извези на _Фликр"
 
-#: ../src/cheese-window.c:1451
+#: ../src/cheese-window.c:1600
 msgid "_Start recording"
 msgstr "_Започни снимање"
 
-#: ../src/cheese-window.c:1774
-msgid "Quit"
-msgstr "Напусти"
+#: ../src/cheese-window.c:1758
+msgid "_Take a photo"
+msgstr "_Сними фотку"
 
-#: ../src/cheese-window.c:1780
-msgid "About"
-msgstr "О програму"
-
-#: ../src/cheese-window.c:1861
+#: ../src/cheese-window.c:2018
 msgid "Check your gstreamer installation"
 msgstr "Провери инсталацију Гстримера"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:163
 msgid "Be verbose"
 msgstr "Речити режим"
 
-#: ../src/cheese.c:179
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "Омогући широки режим"
+
+#: ../src/cheese.c:169
+msgid "output version information and exit"
+msgstr "испиши податке о издању и изађи"
+
+#: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "— направи фотке и снимке веб камерицом, уз забавне ефекте "
-
