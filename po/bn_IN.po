@@ -8,11 +8,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: bn_IN\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 08:46+0100\n"
-"PO-Revision-Date: 2009-03-09 13:39+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2009-08-10 20:00+0000\n"
+"PO-Revision-Date: 2009-08-31 17:13+0530\n"
 "Last-Translator: Runa Bhattacharjee <runab@redhat.com>\n"
-"Language-Team: Bengali INDIA <discuss@lists.ankur.org.in>\n"
+"Language-Team: Bengali INDIA <anubad@lists.ankur.org.in>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "Cheese Webcam Booth"
 msgstr "Cheese-র ওয়েবক্যাম বুথ"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1016
+#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1156
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ওয়েবক্যামের সাহায্যে মজাদার গ্র্যাফিক্স সহ ফটো তুলুন ও ভিডিও তৈরি করুন"
 
@@ -42,6 +42,23 @@ msgstr ""
 "(টুকরো)\" এবং \"warp (প্যাঁচানো)\""
 
 #: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "ওয়েব-ক্যাম থেকে প্রাপ্ত ছবির উজ্জ্বলতার মাত্রা পরিবর্তন করতে ব্যবহৃত"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "ওয়েব-ক্যাম থেকে প্রাপ্ত ছবির বৈপরিত্যের মাত্রা পরিবর্তন করতে ব্যবহৃত"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "ওয়েব-ক্যাম থেকে প্রাপ্ত ছবির হিউয়ের মাত্রা পরিবর্তন করতে ব্যবহৃত"
+
+#: ../data/cheese.schemas.in.h:7
+#| msgid "The width resolution of the image captured from the camera"
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "ওয়েব-ক্যাম থেকে প্রাপ্ত ছবির স্যাচুরেশনের মাত্রা পরিবর্তন করতে ব্যবহৃত"
+
+#: ../data/cheese.schemas.in.h:8
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
@@ -49,7 +66,7 @@ msgstr ""
 "ফটো সংরক্ষণের পাথ নির্ধারণ করতে ব্যবহৃত হয়। কোনো মান লেখা না হলে \"XDG_PHOTO/"
 "Webcam\" প্রয়োগ করা হবে।"
 
-#: ../data/cheese.schemas.in.h:5
+#: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
@@ -57,11 +74,17 @@ msgstr ""
 "ভিডিও সংরক্ষণের পাথ নির্ধারণ করতে ব্যবহৃত হয়। কোনো মান লেখা না হলে \"XDG_VIDEO/"
 "Webcam\" প্রয়োগ করা হবে।"
 
-#: ../data/cheese.schemas.in.h:6
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "উচ্চতার রেসোলিউশন"
 
-#: ../data/cheese.schemas.in.h:7
+#: ../data/cheese.schemas.in.h:11
+msgid ""
+"If set to true, Cheese will startup in a wide mode with the image collection "
+"placed on the right side. Useful with small screens."
+msgstr "মান true (সত্য) হলে, প্রসস্ত মোডে Cheese আরম্ভ করা হবে ও ছবির সংকলন ডানদিকে প্রদর্শিত হবে। ছোট মাপের পর্দার ক্ষেত্রে সুবিধাজনক।"
+
+#: ../data/cheese.schemas.in.h:12
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
@@ -71,98 +94,173 @@ msgstr ""
 "না করে ফাইল তৎক্ষনাৎ মুছে ফেলা যাবে। এই বৈশিষ্ট্যের ব্যবহার বিপজ্জনক হতে পারে এবং "
 "ব্যবহারকালে সতর্কতা অবলম্বন করা অত্যন্ত আবশ্যক।"
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:13
+msgid "Milliseconds between photos in burst mode."
+msgstr "বার্স্ট মোডে ছবির মধ্যে অন্তর্বর্তী মিলিসেকেন্ডের ব্যবধান।"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Number of photos in burst mode."
+msgstr "বার্স্ট মোডে ছবির সংখ্যা।"
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "ফটোর পাথ"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:16
+msgid "Picture brightness"
+msgstr "ছবির উজ্জ্বলতা"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture contrast"
+msgstr "ছবিট বৈপরিত্য"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture hue"
+msgstr "ছবির হিউ"
+
+#: ../data/cheese.schemas.in.h:19
+#| msgid "Saturation"
+msgid "Picture saturation"
+msgstr "ছবির স্যাচুরেশন"
+
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "নির্বাচিত ইফেক্ট"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
 msgstr "ফটো নেওয়ার সময় উল্টোগণনা করার জন্য মান True (সত্য) নির্ধারণ করুন"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "ওয়েব-ক্যাম নির্দেশকারী ডিভাইস (উদাহরণস্বরূপ, /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
 msgstr "ক্যামেরা থেকে প্রাপ্ত ছবির উচ্চতার রেসোলিউশন"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:24
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr "বার্স্ট অনুক্রমে ফটো নেওয়ার সময় দুটি ফটোর মধ্যে অন্তর্বতী সময়ের ব্যবধান, মিলিসেকেন্ডে ব্যক্ত।"
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The number of photos to take in a single burst."
+msgstr "একটি বার্স্টে যে সংখ্যক ফটো নেওয়া হবে।"
+
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
 msgstr "ক্যামেরা থেকে প্রাপ্ত ছবির প্রস্থের রেসোলিউশন"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
 msgstr "উল্টোগণনা করা হবে"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "ভিডিও পাথ"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:29
 msgid "Webcam device string indicator"
 msgstr "ওয়েব-ক্যাম device-string নির্দেশক"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "বিলা বিলম্বে বর্জন প্রক্রিয়া সক্রিয় করা হবে কি না"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "প্রসস্ত মোডে আরম্ভ করা হবে কি না"
+
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "প্রস্থের রোসোলিউশন"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:177
+#: ../data/cheese.ui.h:1 ../src/cheese.c:184
 msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/cheese.ui.h:2
+#| msgid "Switch to Photo Mode"
+msgid "Switch to Burst Mode"
+msgstr "বার্স্ট মোডে পরিবর্তন করুন"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "ফটো মোডে পরিবর্তন করুন"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "ভিডিও মোডে পরিবর্তন করুন"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "ইফেক্ট নির্বাচন ব্যবস্থায় পরিবর্তন করুন"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-window.c:1140
-#: ../src/cheese-window.c:1379
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1280
+#: ../src/cheese-window.c:1568
 msgid "_Effects"
 msgstr "ইফেক্ট (_E)"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "সম্পূর্ণ পর্দায় প্রদর্শন বন্ধ করা হবে (_L)"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-window.c:1391
-msgid "_Photo"
-msgstr "ফটো (_P)"
-
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1443
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1601
+#: ../src/cheese-window.c:1641
 msgid "_Take a Photo"
 msgstr "একটি ফটো নিন (_T)"
 
-#: ../data/cheese.ui.h:9 ../src/cheese-window.c:1392
-msgid "_Video"
-msgstr "ভিডিও (_V)"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>ক্যামেরা</b>"
+msgid "Brightness"
+msgstr "উজ্জ্বলতা"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>রোসোলিউশন</b>"
+msgid "Burst mode"
+msgstr "বার্স্ট মোড"
 
-#: ../data/cheese-prefs.ui.h:3 ../src/cheese-window.c:1383
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "বৈপরিত্য"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (secs.)"
+msgstr "ফটোর মধ্যে অন্তর্বর্তী বিরতি (সেকেন্ডে)"
+
+#: ../data/cheese-prefs.ui.h:5
+#| msgid "Dice"
+msgid "Device"
+msgstr "ডিভাইস"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "হিউ"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "ছবির বৈশিষ্ট্য"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "ফটোর সংখ্যা"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1572
 msgid "Preferences"
 msgstr "পছন্দ"
+
+#: ../data/cheese-prefs.ui.h:10
+#| msgid "<b>Resolution</b>"
+msgid "Resolution"
+msgstr "রেজোলিউশন"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "স্যাচুরেশন"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "ওয়েব-ক্যাম"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -175,10 +273,6 @@ msgstr "বেগুনি"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "কালো/সাদা"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "স্যাচুরেশন"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -224,137 +318,120 @@ msgstr "পেঁচানো"
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "কোনো ক্যামেরা সনাক্ত হয়নি!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "অধিক বিবরণের জন্য অনুগ্রহ করে সহায়তা দেখুন।"
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "সাহায্য"
-
-#: ../src/cheese-webcam.c:1546
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
 msgstr "এক অথবা অধিক আবশ্যক gstreamer সামগ্রী অনুপস্থিত রয়েছে: "
 
-#: ../src/cheese-window.c:77
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "উপেক্ষা করা হবে (_S)"
 
-#: ../src/cheese-window.c:78
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "সকল উপেক্ষা করা হবে (_k)"
 
-#: ../src/cheese-window.c:79
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "সকল মুছে ফেলা হবে (_A)"
 
-#: ../src/cheese-window.c:202
+#: ../src/cheese-window.c:606
 #, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"চিহ্নিত বস্তু প্রদর্শনের উদ্দেশ্যে ব্রাউজার আরম্ভ করতে ব্যর্থ:\n"
-"%s"
-
-#: ../src/cheese-window.c:226
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"চিহ্নিত স্থানে বার্তা পাঠানোর জন্য ই-মেইল ক্লায়েন্ট আরম্ভ করতে ব্যর্থ:\n"
-"%s"
-
-#: ../src/cheese-window.c:469
-#, c-format
+#| msgid ""
+#| "Failed to launch program to show:\n"
+#| "%s"
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "চিহ্নিত বস্তু প্রদর্শনের জন্য প্রোগ্রাম আরম্ভ করতে ব্যর্থ:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:488
+#: ../src/cheese-window.c:627
 msgid "Save File"
 msgstr "ফাইল সংরক্ষণ করুন"
 
-#: ../src/cheese-window.c:526
+#: ../src/cheese-window.c:665
 #, c-format
 msgid "Could not save %s"
 msgstr "%s সংরক্ষণ করতে ব্যর্থ"
 
-#: ../src/cheese-window.c:549
+#: ../src/cheese-window.c:688
 msgid "Error while deleting"
 msgstr "মুছে ফেলার সময় সমস্যা"
 
-#: ../src/cheese-window.c:550
+#: ../src/cheese-window.c:689
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "\"%s\" ফাইলটি মুছে ফেলা যাবে না। বিবরণ: %s"
 
 # %'d is used to denote the thousands breakup (bug 547548)
-#: ../src/cheese-window.c:577
+#: ../src/cheese-window.c:716
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "আপনি কি নিশ্চিতরূপে %'d-টি বস্তু স্থায়ীভাবে মুছে ফেলতে ইচ্ছুক?"
 msgstr[1] "আপনি কি নিশ্চিতরূপে %'d-টি বস্তু স্থায়ীভাবে মুছে ফেলতে ইচ্ছুক?"
 
-#: ../src/cheese-window.c:584
+#: ../src/cheese-window.c:723
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "আপনি কি নিশ্চিতরূপে \"%s\"-কে স্থায়ীভাবে মুছে ফেলতে ইচ্ছুক?"
 
-#: ../src/cheese-window.c:587
+#: ../src/cheese-window.c:726
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "কোনো সামগ্রী মুছে ফেলা হলে, সেটি পুনরুদ্ধার করা সম্ভব হবে না।"
 
-#: ../src/cheese-window.c:608
+#: ../src/cheese-window.c:747
 msgid "Unknown Error"
 msgstr "অজানা ত্রুটি"
 
-#: ../src/cheese-window.c:638
+#: ../src/cheese-window.c:777
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "ফাইলটি আবর্জনার বাক্স সরিয়ে ফেলা সম্ভব নয়, এটি বিনা বিলম্বে মুছে ফেলা হবে কি?"
 
-#: ../src/cheese-window.c:639
+#: ../src/cheese-window.c:778
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "\"%s\" ফাইলটি আবর্জনার বাক্সে সরিয়ে ফেলা যাবে না। বিবরণ: %s"
 
-#: ../src/cheese-window.c:711
+#: ../src/cheese-window.c:850
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "সব ফটো ও ভিডিও কি নিশ্চিতরূপে আবর্জনার বাক্সে সরিয়ে নেওয়া হবে?"
 
-#: ../src/cheese-window.c:719
+#: ../src/cheese-window.c:858
 msgid "_Move to Trash"
 msgstr "আবর্জনার বাক্সে সরিয়ে নিন (_M)"
 
-#: ../src/cheese-window.c:837
+#: ../src/cheese-window.c:976
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "অ্যাকাউন্টের ফটো নির্ধারণ করতে ব্যর্থ"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:1008
 msgid "Media files"
 msgstr "মিডিয়া ফাইল"
 
-#: ../src/cheese-window.c:942 ../src/cheese-window.c:1214
+#: ../src/cheese-window.c:1082 ../src/cheese-window.c:1362
 msgid "Unable to open help file for Cheese"
 msgstr "Cheese সম্বন্ধীয় সহায়িকা প্রদর্শন করতে ব্যর্থ"
 
-#: ../src/cheese-window.c:994
+#: ../src/cheese-window.c:1134
 msgid "translator-credits"
 msgstr "রুণা ভট্টাচার্য্য (runabh@gmail.com)"
 
-#: ../src/cheese-window.c:997
+#: ../src/cheese-window.c:1137
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -365,7 +442,7 @@ msgstr ""
 "Public License-র শর্তানুযায়ী এটি বিতরণ ও পরিবর্তন করা যাবে; লাইসেন্সের সংস্করণ ২ "
 "অথবা (আপনার সুবিধানুযায়ী) ঊর্ধ্বতন কোনো সংস্করণের অধীন।\n"
 
-#: ../src/cheese-window.c:1001
+#: ../src/cheese-window.c:1141
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -376,7 +453,7 @@ msgstr ""
 "কোনো সুস্পষ্ট ওয়ারেন্টি উপস্থিত নেই; বাণিজ্যিক ও কোনো সুনির্দিষ্ট কর্ম সাধনের জন্য "
 "অন্তর্নিহীত ওয়ারেন্টিও অনুপস্থিত। অধিক জানতে GNU General Public License পড়ুন।\n"
 
-#: ../src/cheese-window.c:1005
+#: ../src/cheese-window.c:1145
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -384,111 +461,133 @@ msgstr ""
 "এই প্রোগ্রামের সাথে GNU General Public License-র একটি প্রতিলিপি উপলব্ধ হওয়া "
 "উচিত; না থাকলে <http://www.gnu.org/licenses/> পৃষ্ঠা দেখুন।"
 
-#: ../src/cheese-window.c:1022
+#: ../src/cheese-window.c:1162
 msgid "Cheese Website"
 msgstr "Cheese-র ওয়েব-সাইট"
 
-#: ../src/cheese-window.c:1230
+#: ../src/cheese-window.c:1378
 msgid "_Start Recording"
 msgstr "রেকর্ডিং আরম্ভ করুন (_S)"
 
-#: ../src/cheese-window.c:1329
+#: ../src/cheese-window.c:1514
 msgid "_Stop Recording"
 msgstr "রেকর্ডিং বন্ধ করুন (_S)"
 
-#: ../src/cheese-window.c:1360
+#: ../src/cheese-window.c:1549
 msgid "_Cheese"
 msgstr "Cheese (_C)"
 
-#: ../src/cheese-window.c:1362
+#: ../src/cheese-window.c:1551
 msgid "_Edit"
 msgstr "সম্পাদনা (_E)"
 
-#: ../src/cheese-window.c:1363
+#: ../src/cheese-window.c:1552
 msgid "Move All to Trash"
 msgstr "আবর্জনার বাক্সে সমস্ত সরিয়ে নিন"
 
-#: ../src/cheese-window.c:1366
+#: ../src/cheese-window.c:1555
 msgid "_Help"
 msgstr "সাহায্য (_H)"
 
-#: ../src/cheese-window.c:1369
+#: ../src/cheese-window.c:1558
 msgid "_Contents"
 msgstr "বিষয়বস্তু (_C)"
 
-#: ../src/cheese-window.c:1369
+#: ../src/cheese-window.c:1558
 msgid "Help on this Application"
 msgstr "এই অ্যাপ্লিকেশনের জন্য উপলব্ধ সহায়তা"
 
-#: ../src/cheese-window.c:1375
+#: ../src/cheese-window.c:1564
 msgid "Countdown"
 msgstr "উল্টোগণনা"
 
-#: ../src/cheese-window.c:1396
+#: ../src/cheese-window.c:1580
+#| msgid "_Video"
+msgid "_Wide mode"
+msgstr "প্রসস্ত মোড (_W)"
+
+#: ../src/cheese-window.c:1584
+msgid "_Photo"
+msgstr "ফটো (_P)"
+
+#: ../src/cheese-window.c:1585
+msgid "_Video"
+msgstr "ভিডিও (_V)"
+
+#: ../src/cheese-window.c:1586
+msgid "_Burst"
+msgstr "বার্স্ট (_B)"
+
+#: ../src/cheese-window.c:1590
 msgid "_Open"
 msgstr "খুলুন (_O)"
 
-#: ../src/cheese-window.c:1398
+#: ../src/cheese-window.c:1592
 msgid "Save _As..."
 msgstr "নতুন রূপে সংরক্ষণ...(_A)"
 
-#: ../src/cheese-window.c:1400
+#: ../src/cheese-window.c:1594
 msgid "Move to _Trash"
 msgstr "আবর্জনার বাক্সে সরিয়ে নিন (_T)"
 
-#: ../src/cheese-window.c:1402
+#: ../src/cheese-window.c:1596
 msgid "Delete"
 msgstr "মুছে ফেলুন"
 
-#: ../src/cheese-window.c:1407 ../src/cheese-window.c:1636
-msgid "_Take a photo"
-msgstr "একটি ফটো নিন (_T)"
-
-#: ../src/cheese-window.c:1411
+#: ../src/cheese-window.c:1605
 msgid "_Recording"
 msgstr "রেকর্ডিং (_R)"
 
-#: ../src/cheese-window.c:1415
+#: ../src/cheese-window.c:1609 ../src/cheese-window.c:1654
+#| msgid "_Take a Photo"
+msgid "_Take multiple Photos"
+msgstr "একাধিক ফটো নিন (_T)"
+
+#: ../src/cheese-window.c:1613
 msgid "_Set As Account Photo"
 msgstr "অ্যাকাউন্টের ফটো রূপে নির্ধারণ করুন (_S)"
 
-#: ../src/cheese-window.c:1419
+#: ../src/cheese-window.c:1617
 msgid "Send by _Mail"
 msgstr "মেইলের মাধ্যমে পাঠানো হবে (_M)"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1621
 msgid "Send _To"
 msgstr "চিহ্নিত স্থানে পাঠানো হবে (_T)"
 
-#: ../src/cheese-window.c:1427
+#: ../src/cheese-window.c:1625
 msgid "Export to F-_Spot"
 msgstr "F-Spot-এ এক্সপোর্ট করুন (_S)"
 
-#: ../src/cheese-window.c:1431
+#: ../src/cheese-window.c:1629
 msgid "Export to _Flickr"
 msgstr "Flickr-এ এক্সপোর্ট করুন (_F)"
 
-#: ../src/cheese-window.c:1455
+#: ../src/cheese-window.c:1667
 msgid "_Start recording"
 msgstr "রেকর্ডিং আরম্ভ করুন (_S)"
 
-#: ../src/cheese-window.c:1779
-msgid "Quit"
-msgstr "প্রস্থান"
+#: ../src/cheese-window.c:1825
+msgid "_Take a photo"
+msgstr "একটি ফটো নিন (_T)"
 
-#: ../src/cheese-window.c:1785
-msgid "About"
-msgstr "পরিচিতি"
-
-#: ../src/cheese-window.c:1866
+#: ../src/cheese-window.c:2085
 msgid "Check your gstreamer installation"
 msgstr "gstreamer ইনস্টলেশন পরীক্ষা করুন"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:163
 msgid "Be verbose"
 msgstr "ভার্বোস হবে"
 
-#: ../src/cheese.c:179
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "প্রসস্ত মোড সক্রিয় করুন"
+
+#: ../src/cheese.c:169
+msgid "output version information and exit"
+msgstr "সংস্করণের তথ্য প্রদর্শন করে প্রস্থান করা হবে"
+
+#: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- ওয়েবক্যামের সাহায্যে মজাদার গ্র্যাফিক্স সহ ফটো তুলুন ও ভিডিও তৈরি করুন"
 
