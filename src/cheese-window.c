@@ -1025,15 +1025,17 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
   static const char *authors[] = {
     "daniel g. siegel <dgsiegel@gmail.com>",
     "Jaap A. Haitsma <jaap@haitsma.org>",
+    "Filippo Argiolas <fargiolas@gnome.org>",
     "",
+    "Aidan Delaney <a.j.delaney@brighton.ac.uk>",
     "Alex \"weej\" Jones <alex@weej.com>",
     "Andrea Cimitan <andrea.cimitan@gmail.com>",
     "Baptiste Mille-Mathias <bmm80@free.fr>",
     "Cosimo Cecchi <anarki@lilik.it>",
     "Diego Escalante Urrelo <dieguito@gmail.com>",
     "Felix Kaser <f.kaser@gmx.net>",
-    "Filippo Argiolas <filippo.argiolas@gmail.com>",
     "Gintautas Miliauskas <gintas@akl.lt>",
+    "Hans de Goede <jwrdegoede@fedoraproject.org>",
     "James Liggett <jrliggett@cox.net>",
     "Luca Ferretti <elle.uca@libero.it>",
     "Mirco \"MacSlow\" Müller <macslow@bangang.de>",
@@ -1054,11 +1056,13 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
     "Kalle Persson <kalle@kallepersson.se>",
     "Lapo Calamandrei <calamandrei@gmail.com>",
     "Or Dvory <gnudles@nana.co.il>",
+    "Ulisse Perusin <ulisail@yahoo.it>",
     NULL
   };
 
   static const char *documenters[] = {
     "Joshua Henderson <joshhendo@gmail.com>",
+    "Jaap A. Haitsma <jaap@haitsma.org>",
     NULL
   };
 
