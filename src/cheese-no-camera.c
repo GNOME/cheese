@@ -1,7 +1,7 @@
 /*
  * Copyright © 2005 Paolo Maggi
  * Copyright © 2008 Sebastian Keller <sebastian-keller@gmx.de>
- * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gnome.org>
  *
  * Licensed under the GNU General Public License Version 2
  *

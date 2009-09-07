@@ -1,6 +1,6 @@
 /*
  * Copyright © 2008 Mirco "MacSlow" Müller <macslow@bangang.de>
- * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Patryk Zawadzki <patrys@pld-linux.org>
  * Copyright © 2008 Andrea Cimitan <andrea.cimitan@gmail.com>
  *

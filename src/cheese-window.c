@@ -1,5 +1,5 @@
 /*
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2008 Patryk Zawadzki <patrys@pld-linux.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
@@ -1023,7 +1023,7 @@ static void
 cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
 {
   static const char *authors[] = {
-    "daniel g. siegel <dgsiegel@gmail.com>",
+    "daniel g. siegel <dgsiegel@gnome.org>",
     "Jaap A. Haitsma <jaap@haitsma.org>",
     "Filippo Argiolas <fargiolas@gnome.org>",
     "",

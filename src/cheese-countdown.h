@@ -1,6 +1,6 @@
 /*
  * Copyright © 2008 Mirco "MacSlow" Müller <macslow@bangang.de>
- * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gnome.org>
  *
  * Licensed under the GNU General Public License Version 2
  *

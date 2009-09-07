@@ -1,6 +1,6 @@
 /*
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2

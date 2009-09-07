@@ -1,7 +1,7 @@
 /*
  * Copyright © 2008 James Liggett <jrliggett@cox.net>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
- * Copyright © 2008 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2008 daniel g. siegel <dgsiegel@gnome.org>
  *
  * Licensed under the GNU General Public License Version 2
  *

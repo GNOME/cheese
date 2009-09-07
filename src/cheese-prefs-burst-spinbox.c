@@ -1,6 +1,6 @@
 /*
  * Copyright © 2009 Aidan Delaney <a.j.delaney@brighton.ac.uk>
- * Copyright © 2009 daniel g. siegel <dgsiegel@gmail.com>
+ * Copyright © 2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2009 Filippo Argiolas <filippo.argiolas@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
