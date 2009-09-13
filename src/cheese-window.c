@@ -1353,6 +1353,20 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
   }
+  else  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  {
+    cheese_window->repeat_count = 0;
+    cheese_window->is_bursting = FALSE;
+
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 0);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->fullscreen_bar), 0);
+
+    gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
+    gtk_action_group_set_sensitive (cheese_window->actions_toggle, TRUE);
+
+    gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
+    gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
+  }
   else
   {
     cheese_window_stop_recording (cheese_window);
@@ -1365,6 +1379,11 @@ cheese_window_take_photo (gpointer data)
 {
   gboolean      countdown;
   CheeseWindow *cheese_window = (CheeseWindow *) data;
+
+  // return if burst mode was cancelled
+  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST && !cheese_window->is_bursting && cheese_window->repeat_count <= 0) {
+    return FALSE;
+  }
 
   g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
   if (countdown)
@@ -1433,45 +1452,49 @@ cheese_window_take_photo (gpointer data)
 static void
 cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window)
 {
-  char     *str;
+  char *str;
 
   switch (cheese_window->webcam_mode) {
-  case WEBCAM_MODE_BURST:
-    gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
-    gtk_action_group_set_sensitive (cheese_window->actions_toggle, FALSE);
-    g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL); /* reset burst counter */
-  case WEBCAM_MODE_PHOTO:
-    cheese_window_take_photo (cheese_window);
-    break;
-  case WEBCAM_MODE_VIDEO:
-    if (!cheese_window->recording)
-    {
+    case WEBCAM_MODE_BURST:
+      // ignore keybindings and other while bursting
+      if (cheese_window->is_bursting) {
+        break;
+      }
       gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
       gtk_action_group_set_sensitive (cheese_window->actions_toggle, FALSE);
-      str = g_strconcat ("<b>", _("_Stop Recording"), "</b>", NULL);
-      gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
-      gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo_fullscreen), str);
-      g_free (str);
-      gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
-      gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo), GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
-      gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo_fullscreen), TRUE);
-      gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo_fullscreen),
-                                GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
+      g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL); /* reset burst counter */
+    case WEBCAM_MODE_PHOTO:
+      cheese_window_take_photo (cheese_window);
+      break;
+    case WEBCAM_MODE_VIDEO:
+      if (!cheese_window->recording)
+      {
+        gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
+        gtk_action_group_set_sensitive (cheese_window->actions_toggle, FALSE);
+        str = g_strconcat ("<b>", _("_Stop Recording"), "</b>", NULL);
+        gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), str);
+        gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo_fullscreen), str);
+        g_free (str);
+        gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
+        gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo), GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
+        gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo_fullscreen), TRUE);
+        gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo_fullscreen),
+                                  GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
 
-      cheese_window->video_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil,
-                                                                              WEBCAM_MODE_VIDEO);
-      cheese_webcam_start_video_recording (cheese_window->webcam, cheese_window->video_filename);
+        cheese_window->video_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil,
+                                                                                WEBCAM_MODE_VIDEO);
+        cheese_webcam_start_video_recording (cheese_window->webcam, cheese_window->video_filename);
 
-      cheese_window->recording = TRUE;
-    }
-    else
-    {
-      cheese_window_stop_recording (cheese_window);
-    }
-    break;
-  default:
-    g_assert_not_reached ();
-    break;
+        cheese_window->recording = TRUE;
+      }
+      else
+      {
+        cheese_window_stop_recording (cheese_window);
+      }
+      break;
+    default:
+      g_assert_not_reached ();
+      break;
   }
 }
 
@@ -1593,9 +1616,9 @@ cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current,
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo_fullscreen), g_strdup (str));
     gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo_fullscreen), TRUE);
-    gtk_action_group_set_sensitive (cheese_window->actions_burst, TRUE);
-    gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_video, FALSE);
+    gtk_action_group_set_sensitive (cheese_window->actions_burst, TRUE);
   }
   else
   {

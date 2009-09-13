@@ -84,6 +84,7 @@ cheese_flash_init (CheeseFlash *self)
 
   /* Don't take focus */
   gtk_window_set_accept_focus (window, FALSE);
+  gtk_window_set_focus_on_map (window, FALSE);
 
   /* Don't consume input */
   gtk_widget_realize (GTK_WIDGET (window));
