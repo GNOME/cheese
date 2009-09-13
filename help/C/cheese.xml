@@ -5,8 +5,8 @@
   <!ENTITY GFDL  SYSTEM "fdl-appendix.xml">
   <!ENTITY app "Cheese">
   <!ENTITY application "<application>&app;</application>">
-  <!ENTITY appversion "2.22">
-  <!ENTITY manrevision "2.22">
+  <!ENTITY appversion "2.28">
+  <!ENTITY manrevision "2.28">
 ]>
 <!--
       (Do not remove this comment block.)
@@ -144,6 +144,17 @@
           <para role="publisher">Jaap A. Haitsma</para>
         </revdescription>
       </revision>
+			
+			<revision>
+        <revnumber>0.5</revnumber>
+        <date>2009-09-14</date>
+        <revdescription>
+          <para role="author">Felix Kaser
+            <email>f.kaser@gmx.net</email>
+          </para>
+          <para role="publisher">Felix Kaser</para>
+        </revdescription>
+      </revision>
 
     </revhistory>
 
@@ -189,7 +200,9 @@
 <section id="using">
   <title>Usage</title>
   <para>
-    The main screen of &app; looks like the screenshot below.
+    The main screen of &app; supports two different layouts at the moment.
+		The default looks like the screenshot below, it has the preview image centered and
+		the thumbnail slideshow below.
   </para>
 
   <figure>
@@ -197,15 +210,32 @@
     <screenshot>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="figures/cheese-screenshot.jpg" format="JPG"/>
+          <imagedata fileref="figures/cheese-2.28.0-main.jpg" format="JPG"/>
+        </imageobject>
+      </mediaobject>
+    </screenshot>
+  </figure>
+	
+	<para>
+		Especially for &app;-users with small displays like the ones in netbooks we have designed
+		another view. The more horizontally aligned, so it does fit better on small widescreen displays.
+		The wide-view is showed in the screenshot below.
+	</para>
+	
+	<figure>
+  <title>&app; wide screenshot</title>
+    <screenshot>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="figures/cheese-2.28.0-wide.jpg" format="JPG"/>
         </imageobject>
       </mediaobject>
     </screenshot>
   </figure>
 
   <para>
-    &app; defaults to photo mode, and needs to be changed to video mode if
-    desired.
+    &app; defaults to photo mode, and needs to be changed to another mode like
+		video or burst mode if desired.
   </para>
 
   <section id="using-effects">
@@ -219,7 +249,7 @@
         <screenshot>
           <mediaobject>
             <imageobject>
-              <imagedata fileref="figures/cheese-effects-screenshot.jpg" format="JPG"/>
+              <imagedata fileref="figures/cheese-2.28.0-effects.jpg" format="JPG"/>
             </imageobject>
           </mediaobject>
        </screenshot>
@@ -237,14 +267,18 @@
       To disable all effects, just click on the
       <guibutton>No Effect</guibutton> button.
     </para>
+		
+		<para>
+			To return to the preview of your webcam just push the button labelled <guibutton>Effects</guibutton> again,
+			this will toggle the Effects menu and the normal view reappears.
+		</para>
   </section>
 
   <section id="using-photomode">
     <title>Photo Mode</title>
     <para>
       Photo mode is the default mode that &app; opens in. When not in photo mode,
-      click the button labelled <guibutton>Photo</guibutton>, press
-      <keycombo><keycap>Alt</keycap><keycap>P</keycap></keycombo> or Menu:
+      click the button that shows the icon of a single photo or select in the menu:
       <menuchoice><guimenu>Cheese</guimenu><guimenuitem>Photo</guimenuitem></menuchoice>
       to change to photo mode.
       Photo mode will take a single photo every time the button labelled
@@ -257,9 +291,7 @@
     <title>Video Mode</title>
     <para>
       Video mode is a mode that allows you to take short videos using the webcam.
-      When not in video mode, click the button labelled
-      <guibutton>Video</guibutton>, press
-      <keycombo><keycap>Alt</keycap><keycap>V</keycap></keycombo> or Menu:
+      When not in video mode, click the button that shows the icon of a film roll or select in the menu:
       <menuchoice><guimenu>Cheese</guimenu><guimenuitem>Video</guimenuitem></menuchoice> to
       change to video mode. Video mode will start recording a video every time the
       the button labelled <guibutton>Start Recording</guibutton> or the
@@ -273,20 +305,43 @@
       except that the button labelled <guibutton>Take a photo</guibutton> will
       be either <guibutton>Start Recording</guibutton>
       or <guibutton>Stop Recording</guibutton>,
-      and the button labelled <guibutton>Video</guibutton> is greyed out, whereas the button
-      labelled <guibutton>Photo</guibutton> is not.
+      and the button with the film roll icon is pushed in, whereas the other mode buttons (photo and burst) are not.
+    </para>
+	</section>
+	
+	<section id="using-burstmode">
+    <title>Burst Mode</title>
+    <para>
+      In burst mode you can take more pictures in a row. It works exactly like the photo mode, except that it
+			takes a series of pictures. When you are not in burst mode, click the button that shows the icon of several pictures in a row
+			or select in the menu: <menuchoice><guimenu>Cheese</guimenu><guimenuitem>Burst</guimenuitem></menuchoice> to
+      change to burst mode. Burst mode will start to take a series of pictures in a distance of some seconds
+			when the button labelled <guibutton>Take multiple Photos</guibutton> or the <keycap>Spacebar</keycap> is pressed.
+			The delay and amount of pictures to take can be set in the preferences dialog, for more information please
+			see <xref linkend="preferences"/>.
     </para>
 
     <note>
       <para>
-        You can use both photo and video mode in Fullscreen. To do this, just click
+        You can use all modes in Fullscreen. To do this, just click
         <menuchoice><guimenu>Cheese</guimenu><guimenuitem>Fullscreen</guimenuitem></menuchoice> to
         enter Fullscreen mode, or press <keycap>F11</keycap>. To exit Fullscreen
         mode, press <keycap>Esc</keycap> or <keycap>F11</keycap>.
       </para>
     </note>
-
-  </section>
+		
+		<figure>
+    <title>&app; fullscreen screenshot</title>
+    	<screenshot>
+      	<mediaobject>
+        	<imageobject>
+          	<imagedata fileref="figures/cheese-2.28.0-fullscreen.jpg" format="JPG"/>
+          </imageobject>
+        </mediaobject>
+     	</screenshot>
+    </figure>
+	</section>
+  
 </section>
 
 <section id="working-with">
@@ -300,17 +355,19 @@
     <para>
       To take a photo, apply the effects that you wish by clicking the button
       labelled <guibutton>Effects</guibutton>, click on the effects desired as
-      described in a previous section and press the button labelled
-      <guibutton>Back</guibutton>. You should now have the effects that
+      described in <xref linkend="using-effects"/> and press the effects button
+			again to get back to the normal view. You should now have the effects that
       you clicked on applied to the webcam input.
     </para>
 
     <para>
       To take the photo, press the button labelled <guibutton>Take a photo</guibutton>
-      or press the <keycap>spacebar</keycap>. You will then
+      or press the <keycap>spacebar</keycap>. Alternatively you can also use the webcam capture button,
+			if your webcam has one. You will then
       see &application; count down from 3 or instantly take the photo, depending on your settings. When the photo is taken, your entire screen
       will flash white, and the photo that was just taken will appear in the photo
-      stream at the bottom of the program window.
+      stream at the bottom of the program window. To abort the countdown you can use the
+			<keycap>Esc</keycap> key.
     </para>
   </section>
 
@@ -323,9 +380,10 @@
 
     <para>
       To start recording a video, press the button labelled <guibutton>Start
-      Recording</guibutton> or press the <keycap>spacebar</keycap>.
-      The time of how much video has been recorded will appear in the bottom right
-      hand corner.
+      Recording</guibutton> or press the <keycap>spacebar</keycap>. Alternatively you can also use the webcam capture button,
+			if your webcam has one.
+      To stop recording just press the same button, now labelled <guibutton>Stop
+      Recording</guibutton>, again and the recording will be stopped and saved.
     </para>
 
     <note>
@@ -336,6 +394,71 @@
       </para>
     </note>
   </section>
+	
+	<section id="takingburst">
+    <title>Taking a series of pictures in burst mode</title>
+    <para>
+      To take more than one picture over some time you can use burst mode.
+			Burst mode can be set up in the preferences dialog where you can set the
+			amount of pictures you want to take when starting burst mode and the delay between them.
+			You can find more information about that in <xref linkend="preferences"/>.
+    </para>
+
+    <para>
+      To start the burst mode, press the button labelled <guibutton>Take multiple Photos</guibutton>
+			or press the <keycap>spacebar</keycap>. Alternatively you can also use the webcam capture button,
+			if your webcam has one. To stop the burst capture you can use the
+			<keycap>Esc</keycap> key.
+    </para>
+  </section>
+</section>
+
+<section id="setting-up">
+  <title>Setting up &app;</title>
+	
+	<section id="preferences">
+    <title>The preferences dialog</title>
+    <para>
+      The preferences dialog allows you to set up some webcam specific parameters and
+			burst mode specific parameters. If you have more than one webcam or video device attached
+			the preferences dialog allows you to choose which one you would like to use for cheese and
+			what resolution the image should have. With the sliders you can play around with the
+			brithness, contrast, saturation and hue values to find the best for your webcam.
+    </para>
+		
+		<figure>
+			<title>&app; preferences screenshot</title>
+			<screenshot>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="figures/cheese-2.28.0-preferences.jpg" format="JPG"/>
+					</imageobject>
+				</mediaobject>
+		 </screenshot>
+		</figure>
+
+    <para>
+      The parameters for the burst mode can be set in the preferences dialog as well. You only
+			have to adjust the values for the number of photos you wish to take and the delay that should be
+			between the single photos.
+    </para>
+  </section>
+	
+	<section id="gconf">
+		<title>GConf settings</title>
+		<para>
+			It's possible to define where &app; should store the media (photos and videos). These
+			settings are stored in GConf. You can change the settings with <command>gconf-editor</command>,
+			there you have to select /apps/cheese in the tree on the left. Now you can set the <guilabel>video_path</guilabel> and
+      <guilabel>photo_path</guilabel> to a location you prefer. There you can set also other parameters
+			for &app;, but you should use the preferences dialog for a controlled access.
+    </para>
+		
+		<warning>
+      <para>Attention: Be careful with the settings in GConf, if you are not completely sure about what
+			you are doing you should ask someone who knows!</para>
+    </warning>
+	</section>
 </section>
 
 <section id="sharing">
@@ -423,6 +546,17 @@
       </para>
     </note>
   </section>
+	
+	<figure>
+		<title>&app; sharing screenshot</title>
+		<screenshot>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="figures/cheese-2.28.0-share.jpg" format="JPG"/>
+				</imageobject>
+			</mediaobject>
+	 </screenshot>
+	</figure>
 </section>
 
 <!--<section id="preferences">
@@ -509,10 +643,7 @@
     </para>
     
     <para>
-      It's also possible to set the location where cheese stores the media yourself,
-      the settings are stored in GConf. To change the settings use <command>gconf-editor</command>
-      and select /apps/cheese in the tree on the left. Now you can set the <guilabel>video_path</guilabel> and
-      <guilabel>photo_path</guilabel> to a location you prefer.
+      How to set an alternate path ist described in <xref linkend="gconf"/>.
     </para>
     
     <warning>
