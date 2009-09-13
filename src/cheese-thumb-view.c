@@ -33,7 +33,7 @@
 
 #include "cheese-thumb-view.h"
 
-#define THUMB_VIEW_MINIMUM_WIDTH 140
+#define THUMB_VIEW_MINIMUM_WIDTH  140
 #define THUMB_VIEW_MINIMUM_HEIGHT 100
 
 #define CHEESE_THUMB_VIEW_GET_PRIVATE(o) \
@@ -538,8 +538,8 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
 static void
 cheese_thumb_view_finalize (GObject *object)
 {
-  CheeseThumbView *thumb_view = CHEESE_THUMB_VIEW (object);
-  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  CheeseThumbView        *thumb_view = CHEESE_THUMB_VIEW (object);
+  CheeseThumbViewPrivate *priv       = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
   g_object_unref (priv->store);
   g_object_unref (priv->fileutil);
@@ -561,9 +561,9 @@ cheese_thumb_view_class_init (CheeseThumbViewClass *klass)
 }
 
 static void
-cheese_thumb_view_row_inserted_cb (GtkTreeModel *tree_model,
-                                   GtkTreePath  *path,
-                                   GtkTreeIter  *iter,
+cheese_thumb_view_row_inserted_cb (GtkTreeModel    *tree_model,
+                                   GtkTreePath     *path,
+                                   GtkTreeIter     *iter,
                                    CheeseThumbView *thumb_view)
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
@@ -573,9 +573,9 @@ cheese_thumb_view_row_inserted_cb (GtkTreeModel *tree_model,
 }
 
 static void
-cheese_thumb_view_row_deleted_cb (GtkTreeModel *tree_model,
-                                   GtkTreePath  *path,
-                                   CheeseThumbView *thumb_view)
+cheese_thumb_view_row_deleted_cb (GtkTreeModel    *tree_model,
+                                  GtkTreePath     *path,
+                                  CheeseThumbView *thumb_view)
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
@@ -593,11 +593,11 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   char *path_videos = NULL, *path_photos = NULL;
 
-  GFile    *file;
+  GFile *file;
 
   eog_thumbnail_init ();
 
-  priv->store = gtk_list_store_new (3, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
+  priv->store   = gtk_list_store_new (3, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   priv->n_items = 0;
 
   g_signal_connect (G_OBJECT (priv->store),

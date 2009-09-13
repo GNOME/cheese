@@ -172,12 +172,12 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, hue_widget);
 
   burst_repeat_widget = CHEESE_PREFS_WIDGET (cheese_prefs_burst_spinbox_new (prefs_dialog->burst_repeat,
-                                                                    "gconf_prop_burst_repeat"));
+                                                                             "gconf_prop_burst_repeat"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, burst_repeat_widget);
 
   burst_delay_widget = CHEESE_PREFS_WIDGET (cheese_prefs_burst_spinbox_new (prefs_dialog->burst_delay,
-                                                                    "gconf_prop_burst_delay"));
+                                                                            "gconf_prop_burst_delay"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, burst_delay_widget);
 

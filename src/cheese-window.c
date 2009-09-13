@@ -334,16 +334,20 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
 
   /* set a single column in wide mode */
   gtk_icon_view_set_columns (GTK_ICON_VIEW (cheese_window->thumb_view), toggled ? 1 : G_MAXINT);
+
   /* switch thumb_nav mode */
   eog_thumb_nav_set_vertical (EOG_THUMB_NAV (cheese_window->thumb_nav), toggled);
 
   /* reparent thumb_view */
   g_object_ref (cheese_window->thumb_scrollwindow);
-  if (toggled) {
+  if (toggled)
+  {
     gtk_container_remove (GTK_CONTAINER (cheese_window->video_vbox), cheese_window->thumb_scrollwindow);
     gtk_container_add (GTK_CONTAINER (cheese_window->netbook_alignment), cheese_window->thumb_scrollwindow);
     g_object_unref (cheese_window->thumb_scrollwindow);
-  } else {
+  }
+  else
+  {
     gtk_container_remove (GTK_CONTAINER (cheese_window->netbook_alignment), cheese_window->thumb_scrollwindow);
     gtk_box_pack_end (GTK_BOX (cheese_window->video_vbox), cheese_window->thumb_scrollwindow, FALSE, FALSE, 0);
     g_object_unref (cheese_window->thumb_scrollwindow);
@@ -353,9 +357,11 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
   }
 
   /* update spacing */
+
   /* NOTE: be really carefull when changing the ui file to update spacing
    * values here too! */
-  if (toggled) {
+  if (toggled)
+  {
     g_object_set (G_OBJECT (cheese_window->toolbar_alignment),
                   "bottom-padding", 10, NULL);
     g_object_set (G_OBJECT (cheese_window->togglegroup_alignment),
@@ -364,7 +370,9 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
                   "right-padding", 0, NULL);
     g_object_set (G_OBJECT (cheese_window->netbook_alignment),
                   "left-padding", 6, NULL);
-  } else {
+  }
+  else
+  {
     g_object_set (G_OBJECT (cheese_window->toolbar_alignment),
                   "bottom-padding", 6, NULL);
     g_object_set (G_OBJECT (cheese_window->togglegroup_alignment),
@@ -462,7 +470,8 @@ static void
 cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 {
   gdk_threads_enter ();
-  if (!cheese_window->is_bursting) {
+  if (!cheese_window->is_bursting)
+  {
     gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
     gtk_action_group_set_sensitive (cheese_window->actions_toggle, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
@@ -1353,10 +1362,10 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
   }
-  else  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
   {
     cheese_window->repeat_count = 0;
-    cheese_window->is_bursting = FALSE;
+    cheese_window->is_bursting  = FALSE;
 
     gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 0);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->fullscreen_bar), 0);
@@ -1380,8 +1389,10 @@ cheese_window_take_photo (gpointer data)
   gboolean      countdown;
   CheeseWindow *cheese_window = (CheeseWindow *) data;
 
-  // return if burst mode was cancelled
-  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST && !cheese_window->is_bursting && cheese_window->repeat_count <= 0) {
+  /* return if burst mode was cancelled */
+  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST &&
+      !cheese_window->is_bursting && cheese_window->repeat_count <= 0)
+  {
     return FALSE;
   }
 
@@ -1420,9 +1431,10 @@ cheese_window_take_photo (gpointer data)
   gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
   gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, FALSE);
 
-  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST) {
-    guint repeat_delay = 1000;
-    gboolean countdown = FALSE;
+  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  {
+    guint    repeat_delay = 1000;
+    gboolean countdown    = FALSE;
 
     g_object_get (cheese_window->gconf, "gconf_prop_burst_delay", &repeat_delay, NULL);
     g_object_get (cheese_window->gconf, "gconf_prop_countdown", &countdown, NULL);
@@ -1433,8 +1445,10 @@ cheese_window_take_photo (gpointer data)
        * Magic number chosen via expiriment on Netbook */
       repeat_delay = 5000;
     }
+
     /* start burst mode phot series */
-    if (!cheese_window->is_bursting) {
+    if (!cheese_window->is_bursting)
+    {
       g_timeout_add (repeat_delay, cheese_window_take_photo, cheese_window);
       cheese_window->is_bursting = TRUE;
     }
@@ -1454,10 +1468,13 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 {
   char *str;
 
-  switch (cheese_window->webcam_mode) {
+  switch (cheese_window->webcam_mode)
+  {
     case WEBCAM_MODE_BURST:
-      // ignore keybindings and other while bursting
-      if (cheese_window->is_bursting) {
+
+      /* ignore keybindings and other while bursting */
+      if (cheese_window->is_bursting)
+      {
         break;
       }
       gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
@@ -1476,7 +1493,8 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
         gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo_fullscreen), str);
         g_free (str);
         gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo), TRUE);
-        gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo), GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
+        gtk_image_set_from_stock (GTK_IMAGE (
+                                    cheese_window->image_take_photo), GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
         gtk_label_set_use_markup (GTK_LABEL (cheese_window->label_take_photo_fullscreen), TRUE);
         gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo_fullscreen),
                                   GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
@@ -1708,7 +1726,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   GError     *error = NULL;
   char       *path;
   GtkBuilder *builder;
-  GtkWidget *menubar;
+  GtkWidget  *menubar;
 
   cheese_window->info_bar = NULL;
 
@@ -2107,7 +2125,7 @@ void
 cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup_in_wide_mode)
 {
   CheeseWindow *cheese_window;
-  gboolean startup_in_wide_mode_saved;
+  gboolean      startup_in_wide_mode_saved;
 
   cheese_window = g_new0 (CheeseWindow, 1);
 
@@ -2143,7 +2161,8 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
 
   startup_in_wide_mode = startup_in_wide_mode_saved ? TRUE : startup_in_wide_mode;
 
-  if (startup_in_wide_mode) {
+  if (startup_in_wide_mode)
+  {
     GtkAction *action = gtk_ui_manager_get_action (cheese_window->ui_manager, "/MainMenu/Cheese/WideMode");
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
   }

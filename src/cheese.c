@@ -159,13 +159,13 @@ main (int argc, char **argv)
   GError         *error = NULL;
 
   GOptionEntry options[] = {
-    {"verbose",    'v', 0, G_OPTION_ARG_NONE, &CheeseOptions.verbose,
+    {"verbose",    'v', 0,                    G_OPTION_ARG_NONE,   &CheeseOptions.verbose,
      _("Be verbose"), NULL},
-    {"wide",       'w', 0, G_OPTION_ARG_NONE, &CheeseOptions.wide_mode,
+    {"wide",       'w', 0,                    G_OPTION_ARG_NONE,   &CheeseOptions.wide_mode,
      _("Enable wide mode"), NULL},
     {"hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id,
      NULL, NULL},
-    {"version", 0, 0, G_OPTION_ARG_NONE,   &CheeseOptions.version,
+    {"version",    0,   0,                    G_OPTION_ARG_NONE,   &CheeseOptions.version,
      _("output version information and exit"), NULL},
     {NULL}
   };
