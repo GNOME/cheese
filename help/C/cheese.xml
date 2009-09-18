@@ -431,7 +431,7 @@
 			parameters specific to the burst mode. If you have more than one webcam or video device attached
 			to your system, the preferences dialog allows you to choose which one you would like to use for Cheese and
 			what resolution the image should have. Use the sliders to play around with the
-			brithness, contrast, saturation and hue values to find the best for your webcam.
+			brightness, contrast, saturation and hue values to find the best for your webcam.
     </para>
 		
 		<figure>
@@ -586,7 +586,7 @@
     <title>The video is sluggish/has a slow response. What can I do?</title>
     <para>
       You may have set "<literal>ximagesink</literal>" (<guilabel>X Window System (No Xv)</guilabel>) as video-output.
-      This means that your cpu is doing all the work. Change it to "<literal>xvimagesink</literal>"
+      This means that your CPU is doing all the work. Change it to "<literal>xvimagesink</literal>"
       (<guilabel>X Window System (X11/XShm/Xv)</guilabel>) in order to let your graphics card do the work.
     </para>
 
