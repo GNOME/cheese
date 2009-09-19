@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese-help.master\n"
 "POT-Creation-Date: 2009-09-19 13:33+0000\n"
-"PO-Revision-Date: 2009-09-19 16:11+0200\n"
+"PO-Revision-Date: 2009-09-19 21:56+0200\n"
 "Last-Translator: Jorge Gonzalez <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -1024,7 +1024,6 @@ msgid "Export a photo to F-Spot"
 msgstr "Exportar una foto a F-Spot"
 
 #: C/cheese.xml:545(para)
-#, fuzzy
 #| msgid ""
 #| "To export a photo to F-Sport, locate the photo that you wish to export in "
 #| "your photo stream, right click on it and select <guimenuitem>Export to F-"
@@ -1062,7 +1061,6 @@ msgid "The video is sluggish/has a slow response. What can I do?"
 msgstr "El vídeo se entrecorta o tiene una respuesta lenta. ¿Qué puedo hacer?"
 
 #: C/cheese.xml:587(para)
-#, fuzzy
 #| msgid ""
 #| "You may have set \"<literal>ximagesink</literal>\" (<guilabel>X Window "
 #| "System (No Xv)</guilabel>) as video-output. This means, that your cpu is "
@@ -1076,14 +1074,13 @@ msgid ""
 "\" (<guilabel>X Window System (X11/XShm/Xv)</guilabel>) in order to let your "
 "graphics card do the work."
 msgstr ""
-"Puede que haya establecido <literal>ximagesink</literal> (<guilabel>X Window "
+"Puede que haya establecido «<literal>ximagesink</literal>» (<guilabel>X Window "
 "System (No Xv)</guilabel>) como la salida de vídeo. Esto significa que su "
-"CPU está realizando todo el trabajo. Cámbielo a <literal>xvimagesink</"
-"literal> (<guilabel>X Window System (X11/XShm/Xv)</guilabel>) para que la "
+"CPU está realizando todo el trabajo. Cámbielo a «<literal>xvimagesink</"
+"literal>» (<guilabel>X Window System (X11/XShm/Xv)</guilabel>) para que la "
 "tarjeta gráfica haga el trabajo."
 
 #: C/cheese.xml:593(para)
-#, fuzzy
 #| msgid ""
 #| "To change the settings, run <command>gstreamer-properties</command>, "
 #| "click the <guilabel>Video</guilabel> tab and change the appropriate "
@@ -1093,7 +1090,7 @@ msgid ""
 "command, click the <guilabel>Video</guilabel> tab and change the appropriate "
 "setting."
 msgstr ""
-"Para cambiar los ajustes ejecute <command>gstreamer-properties</command>, "
+"Para cambiar los ajustes ejecute el comando <command>gstreamer-properties</command>, "
 "pulse la solapa <guilabel>Vídeo</guilabel> y cambie los ajustes apropiados."
 
 #: C/cheese.xml:601(title)
@@ -1113,7 +1110,6 @@ msgstr ""
 "ffmpegcolorspace ! xvimagesink</literal>\"."
 
 #: C/cheese.xml:608(para)
-#, fuzzy
 #| msgid ""
 #| "To change the settings, run <command>gstreamer-properties</command>, "
 #| "click the <guilabel>Video</guilabel> tab and select custom from the drop "
@@ -1124,7 +1120,7 @@ msgid ""
 "drop down menu."
 msgstr ""
 "Para cambiar los ajustes, ejecute <command>gstreamer-properties</command>, "
-"pulse la solapa <guilabel>Vídeo</guilabel> y seleccione personalizado del "
+"pulse la solapa <guilabel>Vídeo</guilabel> y seleccione Personalizado del "
 "menú desplegable."
 
 #: C/cheese.xml:616(title)
@@ -1136,7 +1132,6 @@ msgstr ""
 "<application>Cheese</application>. ¿Cuál es el problema?"
 
 #: C/cheese.xml:617(para)
-#, fuzzy
 #| msgid ""
 #| "Using <command>gstreamer-properties</command> mentioned in the above "
 #| "question, try changing from <guilabel>xvimagesink</guilabel> to "
@@ -1156,8 +1151,8 @@ msgstr ""
 "anterior, pruebe cambiando de <guilabel>xvimagesink</guilabel> a "
 "<guilabel>ximagesink</guilabel> o viceversa. Si nada de esto funciona, "
 "ejecute <command>cheese --verbose</command> en la línea de comandos y pegue "
-"la salida en un informe de error en la <ulink url=\"http://bugzilla.gnome."
-"org/browse.cgi?product=cheese\" type=\"http\">página de seguimiento de "
+"la salida en un informe de error en la <ulink url=\"http://bugzilla.gnome.org/"
+"browse.cgi?product=cheese\" type=\"http\">página de seguimiento de "
 "errores</ulink>."
 
 #: C/cheese.xml:628(title)
@@ -1186,7 +1181,6 @@ msgid "Where does <application>Cheese</application> store my photos and videos?"
 msgstr "¿Dónde almacena <application>Cheese</application> mis fotos y vídeos?"
 
 #: C/cheese.xml:640(para)
-#, fuzzy
 #| msgid ""
 #| "Cheese stores your Pictures in a folder called Webcam inside the XDG-"
 #| "Directory set for Pictures (in most distributions its ~/Pictures/Webcam). "
@@ -1211,7 +1205,6 @@ msgstr ""
 "html\" type=\"http\">aquí</ulink>."
 
 #: C/cheese.xml:648(para)
-#, fuzzy
 #| msgid ""
 #| "If the XDG-Path is not set on your System, cheese has a fallback "
 #| "solution: it will store your both your pictures and your videos in ~/."
@@ -1225,8 +1218,8 @@ msgid ""
 msgstr ""
 "Si la ruta XDG-Path no está establecida en su sistema, Cheese usa una "
 "solución de respaldo: almacenará tanto sus imágenes como sus vídeos en ~/."
-"gnome2/cheese/media. Era la carpeta predeterminada para sus archivos "
-"multimedia en las anteriores versiones de <application>Cheese</application>."
+"gnome2/cheese/media. Este es el directorio predeterminado para sus archivos "
+"multimedia si tiene una versión anterior de <application>Cheese</application>."
 
 #: C/cheese.xml:654(para)
 msgid "How to set an alternate path is described in <xref linkend=\"gconf\"/>."
@@ -1277,7 +1270,7 @@ msgstr ""
 
 #: C/cheese.xml:684(title)
 msgid "\"No Camera Found\" Error Message"
-msgstr "Mensaje de error \"No Camera Found\""
+msgstr "Mensaje de error «No Camera Found»"
 
 #: C/cheese.xml:685(para)
 #, fuzzy
@@ -1354,7 +1347,6 @@ msgid "Which cameras are supported?"
 msgstr "¿Qué cámaras están soportadas?"
 
 #: C/cheese.xml:708(para)
-#, fuzzy
 #| msgid ""
 #| "Cheese uses gstreamer for video grabbing. So in principle Cheese supports "
 #| "any camera that works with GStreamer. In principle that should be any "
@@ -1373,7 +1365,6 @@ msgid "About"
 msgstr "Acerca de"
 
 #: C/cheese.xml:718(para)
-#, fuzzy
 #| msgid ""
 #| "Cheese was initially written by daniel g. siegel <email>dgsiegel@gnome."
 #| "org</email>. as a Google Summer of Code project. Later Jaap A. Haitsma "
@@ -1391,13 +1382,12 @@ msgid ""
 msgstr ""
 "Daniel G. Siegel <email>dgsiegel@gnome.org</email> escribió inicialmente "
 "Cheese como parte del proyecto Google Summer of Code. Más tarde Jaap A. "
-"Haitsma <email>jaap@haitsma.org</email> y otros ayudaron a Daniel a mejorar "
-"Cheese. Para obtener más información acerca de Cheese, visite la <ulink url="
-"\"http://projects.gnome.org/cheese\" type=\"http\">página web de "
+"Haitsma <email>jaap@haitsma.org</email> y otros ayudaron a Daniel a mejorarlo. "
+"Para obtener más información acerca de Cheese, visite la <ulink url=\"http://"
+"projects.gnome.org/cheese\" type=\"http\">página web de "
 "<application>Cheese</application></ulink>."
 
 #: C/cheese.xml:726(para)
-#, fuzzy
 #| msgid ""
 #| "To report a bug or make a suggestion regarding this application you can "
 #| "file a bug in our <ulink url=\"http://bugzilla.gnome.org/browse.cgi?"
@@ -1408,8 +1398,8 @@ msgid ""
 "product=cheese\" type=\"http\"> bug tracker</ulink>."
 msgstr ""
 "Para informar de un error o hacer una sugerencia acerca de esta aplicación, "
-"puede rellenar un informe de error en la <ulink url=\"http://bugzilla.gnome."
-"org/browse.cgi?product=cheese\" type=\"http\">página de seguimiento de "
+"puede rellenar un informe de error en la <ulink url=\"http://bugzilla.gnome.org/browse.cgi?"
+"product=cheese\" type=\"http\">página de seguimiento de "
 "errores</ulink>."
 
 #: C/cheese.xml:732(para)
