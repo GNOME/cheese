@@ -1,6 +1,56 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.28.0
+
+  - use _X-GNOME-FullName inside the .desktop file, fixes bug #590182
+  - fix the abortion of burst mode with the escape key, fixes bug #595073
+    burst mode can now be aborted with the Escape key, no matter if
+    the countdown is active or not.
+    when burst mode is running you could start it again with spacebar,
+    this has been disabled during the burst session.
+  - updated the dependencies
+  - Added/Updated Translations
+    - as, courtesy of Amitakhya Phukan
+    - ca, courtesy of Gil Forcada
+    - cs, courtesy of Lucas Lommer
+    - da, courtesy of Kenneth Nielsen
+    - de, courtesy of Mario Blättermann
+    - el, courtesy of Kostas Papadimas
+    - en_GB, courtesy of Bruce Cowan
+    - es, courtesy of Jorge González
+    - fr, courtesy of Claude Paroz
+    - gl, courtesy of Antón Méixome
+    - hi, courtesy of Rajesh Ranjan
+    - it, courtesy of Alessandro Falappa
+    - ja, courtesy of Takeshi AIHANA
+    - lt, courtesy of Gintautas Miliauskas
+    - mai, courtesy of Sangeeta Kumari
+    - mr, courtesy of Sandeep Shedmake
+    - oc, courtesy of Yannig Marchegay (Kokoyaya)
+    - pa, courtesy of A S Alam
+    - ro, courtesy of Adi Roiban
+    - sl, courtesy of Matej Urbančič
+    - te, courtesy of Krishna Babu K
+    - uk, courtesy of Maxim V. Dziumanenko
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - ca, courtesy of Joan Duran
+    - de, courtesy of Christian Kirbach
+    - el, courtesy of Μάριος Ζηντίλης
+    - en_GB, courtesy of Philip Withnall
+    - es, courtesy of Jorge Gonzalez
+    - fr, courtesy of Laurent Coudeur
+    - it, courtesy of RITA BANDIERA
+    - nl, courtesy of Sander Pientka
+    - oc, courtesy of Yannig Marchegay (Kokoyaya)
+    - pt_BR, courtesy of Leonardo Ferreira Fontenelle
+    - ru, courtesy of Vasiliy Faronov
+    - sv, courtesy of Daniel Nylander
+    - th, courtesy of Theppitak Karoonboonyanan
+    - zh_CN, courtesy of ccrecall
+
 version 2.27.92
   - Added/Updated Translations
     - ar, courtesy of Khaled Hosny
