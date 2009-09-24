@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-15 02:41+0300\n"
-"PO-Revision-Date: 2009-09-15 02:41+0300\n"
+"POT-Creation-Date: 2009-09-24 10:55+0300\n"
+"PO-Revision-Date: 2009-09-24 10:53+0300\n"
 "Last-Translator: Gintautas Miliauskas <gintautas@miliauskas.lt>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,15 @@ msgstr ""
 "100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../data/cheese.desktop.in.in.h:1
+#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:184
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese internetinės kameros programa"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1102
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1102
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Fotografuokite ir filmuokite internetine kamera, su įdomiais efektais"
 
@@ -35,42 +39,41 @@ msgid ""
 "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
 "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
-"Efektai, įjungiami paleidžiant programą. Galimos reikšmės: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" ir \"warp\""
+"Efektai, įjungiami paleidžiant programą. Galimos reikšmės: „mauve“, "
+"„noir_blanc“, „saturation“, „hulk“, „vertical-flip“, „horizontal-flip“, "
+"„shagadelic“, „vertigo“, „edge“, „dice“ ir „warp“"
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Adjusts brightness level of the picture coming from the webcam"
-msgstr ""
+msgstr "Keičia kamera nufotografuoto vaizdo skaistį"
 
 #: ../data/cheese.schemas.in.h:5
 msgid "Adjusts contrast level of the picture coming from the webcam"
-msgstr ""
+msgstr "Keičia kamera nufotografuoto vaizdo kontrastą"
 
 #: ../data/cheese.schemas.in.h:6
 msgid "Adjusts hue level of the picture coming from the webcam"
-msgstr ""
+msgstr "Keičia kamera nufotografuoto vaizdo atspalvį"
 
 #: ../data/cheese.schemas.in.h:7
-#, fuzzy
 msgid "Adjusts saturation level of the picture coming from the webcam"
-msgstr "Vaizdo, nufotografuoto kamera, pločio skiriamoji geba."
+msgstr "Keičia kamera nufotografuoto vaizdo grynį"
 
 #: ../data/cheese.schemas.in.h:8
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
-"Nurodo kelią, kur bus saugomos nuotraukos, jei bus naudojamas tuščias "
-"\"XDG_PHOTO/Webcam\"."
+"Nurodo kelią, kur bus saugomos nuotraukos. Nenurodžius, bus naudojamas "
+"„XDG_PHOTO/Webcam“."
 
 #: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
-"Nurodo kelią, kur bus saugomi vaizdo įrašai, jei bus naudojamas tuščias "
-"\"XDG_VIDEO/Webcam\"."
+"Nurodo kelią, kur bus saugomi vaizdo įrašai. Nenurodžius, bus naudojamas "
+"„XDG_VIDEO/Webcam“."
 
 #: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
@@ -81,6 +84,8 @@ msgid ""
 "If set to true, Cheese will startup in a wide mode with the image collection "
 "placed on the right side. Useful with small screens."
 msgstr ""
+"Pažymėjus šią nuostatą, „Cheese“ visuomet pasileis plačiojoje veiksenoje (su "
+"paveikslėlių galerija dešinėje pusėje). Tai patogu mažesniuose ekranuose."
 
 #: ../data/cheese.schemas.in.h:12
 msgid ""
@@ -93,11 +98,11 @@ msgstr ""
 
 #: ../data/cheese.schemas.in.h:13
 msgid "Milliseconds between photos in burst mode."
-msgstr ""
+msgstr "Tarpas milisekundėmis tarp nuotraukų pliūpsnyje."
 
 #: ../data/cheese.schemas.in.h:14
 msgid "Number of photos in burst mode."
-msgstr ""
+msgstr "Nuotraukų kiekis pliūpsnyje."
 
 #: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
@@ -105,11 +110,11 @@ msgstr "Nuotraukų kelias"
 
 #: ../data/cheese.schemas.in.h:16
 msgid "Picture brightness"
-msgstr ""
+msgstr "Nuotraukos skaistis"
 
 #: ../data/cheese.schemas.in.h:17
 msgid "Picture contrast"
-msgstr ""
+msgstr "Nuotraukos kontrastas"
 
 #: ../data/cheese.schemas.in.h:18
 msgid "Picture hue"
@@ -140,10 +145,11 @@ msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
 msgstr ""
+"Laiko tarpas tarp dviejų nuotraukų pliūpsnio serijoje (milisekundėmis)."
 
 #: ../data/cheese.schemas.in.h:25
 msgid "The number of photos to take in a single burst."
-msgstr ""
+msgstr "Nuotraukų skaičius viename pliūpsnyje."
 
 #: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
@@ -167,20 +173,15 @@ msgstr "Ar įjungti neatidėliotiną pašalinimą"
 
 #: ../data/cheese.schemas.in.h:31
 msgid "Whether to start in wide mode"
-msgstr ""
+msgstr "Ar pradėti darbą plačiojoje veiksenoje"
 
 #: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "Pločio geba"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:184
-msgid "Cheese"
-msgstr "Cheese"
-
 #: ../data/cheese.ui.h:2
-#, fuzzy
 msgid "Switch to Burst Mode"
-msgstr "Perjungti į nuotraukų veikseną"
+msgstr "Perjungti į pliūpsninę veikseną"
 
 #: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
@@ -214,7 +215,7 @@ msgstr "Šviesumas"
 
 #: ../data/cheese-prefs.ui.h:2
 msgid "Burst mode"
-msgstr ""
+msgstr "Pliūpsninė veiksena"
 
 #: ../data/cheese-prefs.ui.h:3
 msgid "Contrast"
@@ -222,7 +223,7 @@ msgstr "Kontrastas"
 
 #: ../data/cheese-prefs.ui.h:4
 msgid "Delay between photos (secs.)"
-msgstr ""
+msgstr "Laiko tarpas tarp nuotraukų (sek.)"
 
 #: ../data/cheese-prefs.ui.h:5
 msgid "Device"
@@ -254,7 +255,7 @@ msgstr "Ryškumas"
 
 #: ../data/cheese-prefs.ui.h:12
 msgid "Webcam"
-msgstr ""
+msgstr "Internetinė kamera"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -510,7 +511,7 @@ msgstr "_Video"
 
 #: ../src/cheese-window.c:1564
 msgid "_Burst"
-msgstr ""
+msgstr "_Pliūpsnis"
 
 #: ../src/cheese-window.c:1568
 msgid "_Open"
@@ -574,11 +575,11 @@ msgstr "Išsamūs pranešimai"
 
 #: ../src/cheese.c:165
 msgid "Enable wide mode"
-msgstr ""
+msgstr "Įjungti plačiąją veikseną"
 
 #: ../src/cheese.c:169
 msgid "output version information and exit"
-msgstr ""
+msgstr "parodyti informaciją apie programos laidą ir baigti darbą"
 
 #: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
