@@ -1567,7 +1567,7 @@ static const GtkRadioActionEntry action_entries_toggle[] = {
 static const GtkActionEntry action_entries_file[] = {
   {"Open",        GTK_STOCK_OPEN,    N_("_Open"),          "<control>O",    NULL,
    G_CALLBACK (cheese_window_cmd_open)},
-  {"SaveAs",      GTK_STOCK_SAVE_AS, N_("Save _As..."),    "<control>S",    NULL,
+  {"SaveAs",      GTK_STOCK_SAVE_AS, N_("Save _As…"),    "<control>S",    NULL,
    G_CALLBACK (cheese_window_cmd_save_as)},
   {"MoveToTrash", "user-trash",      N_("Move to _Trash"), "Delete",        NULL,
    G_CALLBACK (cheese_window_move_media_to_trash)},
@@ -2060,7 +2060,7 @@ setup_camera (CheeseWindow *cheese_window)
     GtkWidget *dialog;
     gchar     *primary, *secondary;
 
-    primary   = g_strdup (_("Check your gstreamer installation"));
+    primary   = g_strdup (_("Check your GStreamer installation"));
     secondary = g_strdup (error->message);
 
     gdk_threads_enter ();

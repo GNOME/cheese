@@ -1657,7 +1657,7 @@ cheese_webcam_setup (CheeseWebcam *webcam, char *hal_dev_udi, GError **error)
   if (tmp_error != NULL)
   {
     g_propagate_error (error, tmp_error);
-    g_prefix_error (error, _("One or more needed gstreamer elements are missing: "));
+    g_prefix_error (error, _("One or more needed GStreamer elements are missing: "));
     return;
   }
 
