@@ -49,7 +49,8 @@ typedef struct
 typedef enum
 {
   CHEESE_MEDIA_MODE_PHOTO,
-  CHEESE_MEDIA_MODE_VIDEO
+  CHEESE_MEDIA_MODE_VIDEO,
+  CHEESE_MEDIA_MODE_BURST
 } CheeseMediaMode;
 
 
@@ -61,6 +62,7 @@ gchar *cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil);
 gchar *cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
 gchar *cheese_fileutil_get_log_path (CheeseFileUtil *fileutil);
 gchar *cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode);
+void cheese_fileutil_reset_burst(CheeseFileUtil *fileutil);
 
 G_END_DECLS
 

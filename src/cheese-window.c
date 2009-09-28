@@ -91,8 +91,6 @@ typedef struct
   char *startup_hal_dev_udi;
   char *video_filename;
 
-  int counter;
-
   CheeseWebcam *webcam;
   WebcamMode webcam_mode;
   CheeseGConf *gconf;
@@ -1072,6 +1070,7 @@ cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
   static const char *documenters[] = {
     "Joshua Henderson <joshhendo@gmail.com>",
     "Jaap A. Haitsma <jaap@haitsma.org>",
+    "Felix Kaser <f.kaser@gmx.net>",
     NULL
   };
 
@@ -1273,7 +1272,13 @@ cheese_window_countdown_picture_cb (gpointer data)
   char         *shutter_filename;
   char         *photo_filename;
 
-  photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, WEBCAM_MODE_PHOTO);
+  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  {
+    photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, CHEESE_MEDIA_MODE_BURST);
+  }else{
+    photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, CHEESE_MEDIA_MODE_PHOTO);		
+  }
+	
   if (cheese_webcam_take_photo (cheese_window->webcam, photo_filename))
   {
     cheese_flash_fire (cheese_window->flash);
@@ -1446,7 +1451,7 @@ cheese_window_take_photo (gpointer data)
       repeat_delay = 5000;
     }
 
-    /* start burst mode phot series */
+    /* start burst mode photo series */
     if (!cheese_window->is_bursting)
     {
       g_timeout_add (repeat_delay, cheese_window_take_photo, cheese_window);
@@ -1480,6 +1485,7 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
       gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
       gtk_action_group_set_sensitive (cheese_window->actions_toggle, FALSE);
       g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL); /* reset burst counter */
+      cheese_fileutil_reset_burst(cheese_window->fileutil); /* reset filename counter */
     case WEBCAM_MODE_PHOTO:
       cheese_window_take_photo (cheese_window);
       break;
