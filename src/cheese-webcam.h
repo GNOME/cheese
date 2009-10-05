@@ -90,8 +90,8 @@ typedef struct
 typedef struct
 {
   GObjectClass parent_class;
-  void (*photo_saved) (CheeseWebcam *webcam);
-  void (*video_saved) (CheeseWebcam *webcam);
+  void (*photo_saved)(CheeseWebcam *webcam);
+  void (*video_saved)(CheeseWebcam *webcam);
 } CheeseWebcamClass;
 
 

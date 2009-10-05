@@ -1275,10 +1275,12 @@ cheese_window_countdown_picture_cb (gpointer data)
   if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
   {
     photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, CHEESE_MEDIA_MODE_BURST);
-  }else{
-    photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, CHEESE_MEDIA_MODE_PHOTO);		
   }
-	
+  else
+  {
+    photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, CHEESE_MEDIA_MODE_PHOTO);
+  }
+
   if (cheese_webcam_take_photo (cheese_window->webcam, photo_filename))
   {
     cheese_flash_fire (cheese_window->flash);
@@ -1485,7 +1487,7 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
       gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
       gtk_action_group_set_sensitive (cheese_window->actions_toggle, FALSE);
       g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL); /* reset burst counter */
-      cheese_fileutil_reset_burst(cheese_window->fileutil); /* reset filename counter */
+      cheese_fileutil_reset_burst (cheese_window->fileutil); /* reset filename counter */
     case WEBCAM_MODE_PHOTO:
       cheese_window_take_photo (cheese_window);
       break;

@@ -44,10 +44,10 @@ struct _CheesePrefsWidgetClass
   GObjectClass parent_class;
 
   /* Signals */
-  void (*changed) (CheesePrefsWidget *self);
+  void (*changed)(CheesePrefsWidget *self);
 
   /* Virtual methods */
-  void (*synchronize) (CheesePrefsWidget *self);
+  void (*synchronize)(CheesePrefsWidget *self);
 };
 
 struct _CheesePrefsWidget

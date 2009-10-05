@@ -40,7 +40,7 @@ typedef struct
   gchar *video_path;
   gchar *photo_path;
   gchar *log_path;
-  gint burst_count;
+  gint   burst_count;
   gchar *burst_raw_name;
 } CheeseFileUtilPrivate;
 
@@ -98,10 +98,11 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
   int        num;
 
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
+
   tm  = time (NULL);
   ptr = localtime (&tm);
   strftime (date, 20, "%F-%H%M%S", ptr);
-	
+
   if ((mode == CHEESE_MEDIA_MODE_PHOTO) || (mode == CHEESE_MEDIA_MODE_BURST))
     path = cheese_fileutil_get_photo_path (fileutil);
   else
@@ -110,17 +111,20 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
   if (mode == CHEESE_MEDIA_MODE_PHOTO)
   {
     filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, PHOTO_NAME_SUFFIX);
-  }else if (mode == CHEESE_MEDIA_MODE_BURST)
+  }
+  else if (mode == CHEESE_MEDIA_MODE_BURST)
   {
     priv->burst_count++;
-    if (strlen(priv->burst_raw_name)==0)
+    if (strlen (priv->burst_raw_name) == 0)
       priv->burst_raw_name = g_strdup_printf ("%s%s%s", path, G_DIR_SEPARATOR_S, date);
-				
+
     filename = g_strdup_printf ("%s_%d%s", priv->burst_raw_name, priv->burst_count, PHOTO_NAME_SUFFIX);
-  }else{
+  }
+  else
+  {
     filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, VIDEO_NAME_SUFFIX);
   }
-	
+
   file = g_file_new_for_path (filename);
 
   if (g_file_query_exists (file, NULL))
@@ -153,11 +157,11 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
 }
 
 void
-cheese_fileutil_reset_burst(CheeseFileUtil *fileutil)
+cheese_fileutil_reset_burst (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
-  priv->burst_count = 0;
+  priv->burst_count    = 0;
   priv->burst_raw_name = "";
 }
 
@@ -190,9 +194,9 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
-  priv->burst_count = 0;
+  priv->burst_count    = 0;
   priv->burst_raw_name = "";
-	
+
   CheeseGConf *gconf;
 
   gconf = cheese_gconf_new ();
