@@ -543,7 +543,7 @@
   <section id="fspot">
     <title>Export a photo to F-Spot</title>
     <para>
-      To export a photo to F-Sport, locate the photo in your photo
+      To export a photo to F-Spot, locate the photo in your photo
       stream, right click on it and select <guimenuitem>Export to F-Spot</guimenuitem>. You will then be prompted by
       F-Spot if you wish to import the photos that are being sent to it.
     </para>
@@ -684,23 +684,39 @@
     <title>"No Camera Found" Error Message</title>
     <para>
       "When I launch &app;, I get the message 'No Camera Found' but I have my webcam plugged into my computer".
-
+    </para>
+    <para>
       There are many situations that can cause this, and the exact problem that is causing it needs to be isolated.
       If possible, try each of the following to try and get your webcam working:
-        1. Plug your webcam into another computer. If it works there, then it is a problem 
+    </para>
+    <orderedlist>
+        <listitem>
+          <para>
+           Plug your webcam into another computer. If it works there, then it is a problem 
            with the connection to your computer, or the operating system if it was a different
            one on the other computer. Check the ports on your computer (try another one) and
            consult support for your particular operating system.
-        2. See if your camera is being detected by your computer. On Linux, open up the terminal or console and type
-           "dmesg" before you plug in your webcam. Notice the most recent entries, and then plug in your webcam. Type
-           "dmesg" again and see if the most recent entries differ. If the message mentions a USB device being detected,
-           and your webcam is the only USB device that has been changed, then your computer is detecting your webcam
-           fine. If not, then test to see if the webcam is working on another computer. This may only work with USB
-           webcams.
-        3. As &app; uses the gstreamer backend, it is most likely because gstreamer is not detecting the webcam (or
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+           See if your camera is being detected by your computer. On Linux, open up the terminal or console
+           and type "dmesg" before you plug in your webcam. Notice the most recent entries, and then plug in
+           your webcam. Type "dmesg" again and see if the most recent entries differ. If the message mentions
+           a USB device being detected, and your webcam is the only USB device that has been changed, then
+           your computer is detecting your webcam fine. If not, then test to see if the webcam is working on
+           another computer. This may only work with USB webcams.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+           As &app; uses the gstreamer backend, it is most likely because gstreamer is not detecting the webcam (or
            gstreamer has become corrupt). Please contact support for the particular operating system that
-           you are running with as many details as possible. For Ubuntu, please use the <ulink url="http://ubuntuforums.org/" type="http">Ubuntu Forums</ulink>.
-    </para>
+           you are running with as many details as possible. For Ubuntu, please use the
+           <ulink url="http://ubuntuforums.org/" type="http">Ubuntu Forums</ulink>.
+          </para>
+        </listitem>
+    </orderedlist>
   </section>
 
   <section id="faq-supported-webcams">
