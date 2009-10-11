@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese 2.27.x\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-21 14:08+0200\n"
-"PO-Revision-Date: 2009-08-21 14:16+0200\n"
+"Project-Id-Version: cheese 2.28.x\n"
+"Report-Msgid-Bugs-To:\n"
+"POT-Creation-Date: 2009-10-11 12:47+0200\n"
+"PO-Revision-Date: 2009-10-11 15:24+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -15,11 +15,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1
+#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:184
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese webkamera"
 
-#: ../data/cheese.desktop.in.in.h:2 ../src/cheese-window.c:1089
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1102
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ta bilder og ta opp video fra ditt webkamera med morsomme effekter"
 
@@ -75,7 +79,7 @@ msgstr "Høydeoppløsning"
 msgid ""
 "If set to true, Cheese will startup in a wide mode with the image collection "
 "placed on the right side. Useful with small screens."
-msgstr ""
+msgstr "Hvis denne er satt til «true» vil Cheese starte i et bredere vindu med bildesamlingen plassert til høyre. Nyttig på mindre skjermer."
 
 #: ../data/cheese.schemas.in.h:12
 msgid ""
@@ -88,11 +92,11 @@ msgstr ""
 
 #: ../data/cheese.schemas.in.h:13
 msgid "Milliseconds between photos in burst mode."
-msgstr ""
+msgstr "Millisekunder mellom bilder i sekvensmodus."
 
 #: ../data/cheese.schemas.in.h:14
 msgid "Number of photos in burst mode."
-msgstr ""
+msgstr "Antall bilder i sekvensmodus."
 
 #: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
@@ -134,11 +138,11 @@ msgstr "Høydeoppløsning for bildet som hentes fra kameraet"
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
-msgstr ""
+msgstr "Tid i millisekunder for pause mellom bilder i sekvensmodus."
 
 #: ../data/cheese.schemas.in.h:25
 msgid "The number of photos to take in a single burst."
-msgstr ""
+msgstr "Antal bilder som skal tas i en enkelt sekvens."
 
 #: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
@@ -168,14 +172,9 @@ msgstr "Om programmet skal startes i bred modus"
 msgid "Width resolution"
 msgstr "Breddeoppløsning"
 
-#: ../data/cheese.ui.h:1 ../src/cheese.c:184
-msgid "Cheese"
-msgstr "Cheese"
-
 #: ../data/cheese.ui.h:2
-#, fuzzy
 msgid "Switch to Burst Mode"
-msgstr "Bytt til fotomodus"
+msgstr "Bytt til sekvensmodus"
 
 #: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
@@ -189,8 +188,8 @@ msgstr "Bytt til videomodus"
 msgid "Switch to the Effects Selector"
 msgstr "Bytt til effektvalg"
 
-#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1213
-#: ../src/cheese-window.c:1501
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1226
+#: ../src/cheese-window.c:1546
 msgid "_Effects"
 msgstr "_Effekter"
 
@@ -198,8 +197,8 @@ msgstr "_Effekter"
 msgid "_Leave Fullscreen"
 msgstr "For_lat fullskjerm"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1534
-#: ../src/cheese-window.c:1574
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1579
+#: ../src/cheese-window.c:1619
 msgid "_Take a Photo"
 msgstr "_Ta et bilde"
 
@@ -208,9 +207,8 @@ msgid "Brightness"
 msgstr "Lysstyrke"
 
 #: ../data/cheese-prefs.ui.h:2
-#, fuzzy
 msgid "Burst mode"
-msgstr "Bytt til fotomodus"
+msgstr "Sekvensmodus"
 
 #: ../data/cheese-prefs.ui.h:3
 msgid "Contrast"
@@ -236,7 +234,7 @@ msgstr "Egenskaper for bilde"
 msgid "Number of photos"
 msgstr "Antall bilder"
 
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1505
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1550
 msgid "Preferences"
 msgstr "Brukervalg"
 
@@ -332,7 +330,7 @@ msgstr "H_opp over alle"
 msgid "Delete _All"
 msgstr "Slett _alle"
 
-#: ../src/cheese-window.c:539
+#: ../src/cheese-window.c:548
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -343,25 +341,25 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: ../src/cheese-window.c:560
+#: ../src/cheese-window.c:569
 msgid "Save File"
 msgstr "Lagre fil"
 
-#: ../src/cheese-window.c:598
+#: ../src/cheese-window.c:607
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke lagre %s"
 
-#: ../src/cheese-window.c:621
+#: ../src/cheese-window.c:630
 msgid "Error while deleting"
 msgstr "Feil under sletting"
 
-#: ../src/cheese-window.c:622
+#: ../src/cheese-window.c:631
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Filen «%s» kan ikke slettes. Detaljer: %s"
 
-#: ../src/cheese-window.c:649
+#: ../src/cheese-window.c:658
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural ""
@@ -369,56 +367,56 @@ msgid_plural ""
 msgstr[0] "Er du sikker på at du vil slette %'d valgte oppføring permanent?"
 msgstr[1] "Er du sikker på at du vil slette %'d valgte oppføringer permanent?"
 
-#: ../src/cheese-window.c:656
+#: ../src/cheese-window.c:665
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Er du sikker på at du vil slette «%s» permanent?"
 
-#: ../src/cheese-window.c:659
+#: ../src/cheese-window.c:668
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Hvis du sletter en oppføring vil den bli borte for godt."
 
-#: ../src/cheese-window.c:680
+#: ../src/cheese-window.c:689
 msgid "Unknown Error"
 msgstr "Ukjent feil"
 
-#: ../src/cheese-window.c:710
+#: ../src/cheese-window.c:719
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Kan ikke flytte filen til papirkurven. Vil du slette filen i stedet?"
 
-#: ../src/cheese-window.c:711
+#: ../src/cheese-window.c:720
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Filen «%s» kan ikke flyttes til papirkurven. Detaljer: %s"
 
-#: ../src/cheese-window.c:783
+#: ../src/cheese-window.c:792
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Vil du virkelig flytte alle bilder og videoer til papirkurven?"
 
-#: ../src/cheese-window.c:791
+#: ../src/cheese-window.c:800
 msgid "_Move to Trash"
 msgstr "Flytt til _papirkurven"
 
-#: ../src/cheese-window.c:909
+#: ../src/cheese-window.c:918
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kunne ikke sette bilde for konto"
 
-#: ../src/cheese-window.c:941
+#: ../src/cheese-window.c:950
 msgid "Media files"
 msgstr "Mediefiler"
 
-#: ../src/cheese-window.c:1015 ../src/cheese-window.c:1295
+#: ../src/cheese-window.c:1024 ../src/cheese-window.c:1308
 msgid "Unable to open help file for Cheese"
 msgstr "Kan ikke åpne hjelp for Cheese"
 
-#: ../src/cheese-window.c:1067
+#: ../src/cheese-window.c:1080
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/cheese-window.c:1070
+#: ../src/cheese-window.c:1083
 msgid ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -430,7 +428,7 @@ msgstr ""
 "av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du "
 "ønsker det) enhver senere versjon.\n"
 
-#: ../src/cheese-window.c:1074
+#: ../src/cheese-window.c:1087
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -441,7 +439,7 @@ msgstr ""
 "NOEN GARANTI, ikke engang implisitt garanti om at det er SALGBART eller "
 "PASSER ET BESTEMT FORMÅL. Se GNU General Public License for detaljer.\n"
 
-#: ../src/cheese-window.c:1078
+#: ../src/cheese-window.c:1091
 msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>."
@@ -449,115 +447,115 @@ msgstr ""
 "Du skal ha mottatt en kopi av GNU General Public License sammen med "
 "Nautilus. Hvis dette ikke er tilfelle se på <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1095
+#: ../src/cheese-window.c:1108
 msgid "Cheese Website"
 msgstr "Nettsted for Cheese"
 
-#: ../src/cheese-window.c:1311
+#: ../src/cheese-window.c:1324
 msgid "_Start Recording"
 msgstr "_Start opptak"
 
-#: ../src/cheese-window.c:1447
+#: ../src/cheese-window.c:1491
 msgid "_Stop Recording"
 msgstr "_Stopp opptak"
 
-#: ../src/cheese-window.c:1482
+#: ../src/cheese-window.c:1527
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1484
+#: ../src/cheese-window.c:1529
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../src/cheese-window.c:1485
+#: ../src/cheese-window.c:1530
 msgid "Move All to Trash"
 msgstr "Flytt alle til papirkurven"
 
-#: ../src/cheese-window.c:1488
+#: ../src/cheese-window.c:1533
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../src/cheese-window.c:1491
+#: ../src/cheese-window.c:1536
 msgid "_Contents"
 msgstr "_Innhold"
 
-#: ../src/cheese-window.c:1491
+#: ../src/cheese-window.c:1536
 msgid "Help on this Application"
 msgstr "Hjelp for dette programmet"
 
-#: ../src/cheese-window.c:1497
+#: ../src/cheese-window.c:1542
 msgid "Countdown"
 msgstr "Nedtelling"
 
-#: ../src/cheese-window.c:1513
+#: ../src/cheese-window.c:1558
 msgid "_Wide mode"
 msgstr "_Bred modus"
 
-#: ../src/cheese-window.c:1517
+#: ../src/cheese-window.c:1562
 msgid "_Photo"
 msgstr "_Bilde"
 
-#: ../src/cheese-window.c:1518
+#: ../src/cheese-window.c:1563
 msgid "_Video"
 msgstr "_Video"
 
-#: ../src/cheese-window.c:1519
+#: ../src/cheese-window.c:1564
 msgid "_Burst"
-msgstr ""
+msgstr "_Sekvens"
 
-#: ../src/cheese-window.c:1523
+#: ../src/cheese-window.c:1568
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ../src/cheese-window.c:1525
+#: ../src/cheese-window.c:1570
 msgid "Save _As..."
 msgstr "L_agre som..."
 
-#: ../src/cheese-window.c:1527
+#: ../src/cheese-window.c:1572
 msgid "Move to _Trash"
 msgstr "Flytt til _papirkurv"
 
-#: ../src/cheese-window.c:1529
+#: ../src/cheese-window.c:1574
 msgid "Delete"
 msgstr "Slett"
 
-#: ../src/cheese-window.c:1538
+#: ../src/cheese-window.c:1583
 msgid "_Recording"
 msgstr "_Opptak"
 
-#: ../src/cheese-window.c:1542 ../src/cheese-window.c:1587
+#: ../src/cheese-window.c:1587 ../src/cheese-window.c:1632
 msgid "_Take multiple Photos"
 msgstr "_Ta flere bilder"
 
-#: ../src/cheese-window.c:1546
+#: ../src/cheese-window.c:1591
 msgid "_Set As Account Photo"
 msgstr "_Sett som bilde for konto"
 
-#: ../src/cheese-window.c:1550
+#: ../src/cheese-window.c:1595
 msgid "Send by _Mail"
 msgstr "Send via e-_post"
 
-#: ../src/cheese-window.c:1554
+#: ../src/cheese-window.c:1599
 msgid "Send _To"
 msgstr "Send _til"
 
-#: ../src/cheese-window.c:1558
+#: ../src/cheese-window.c:1603
 msgid "Export to F-_Spot"
 msgstr "Eksporter til F-_Spot"
 
-#: ../src/cheese-window.c:1562
+#: ../src/cheese-window.c:1607
 msgid "Export to _Flickr"
 msgstr "Eksporter til _Flickr"
 
-#: ../src/cheese-window.c:1600
+#: ../src/cheese-window.c:1645
 msgid "_Start recording"
 msgstr "_Start opptak"
 
-#: ../src/cheese-window.c:1758
+#: ../src/cheese-window.c:1803
 msgid "_Take a photo"
 msgstr "_Ta et bilde"
 
-#: ../src/cheese-window.c:2018
+#: ../src/cheese-window.c:2063
 msgid "Check your gstreamer installation"
 msgstr "Sjekk din GStreamer-installasjon"
 
