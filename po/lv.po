@@ -4,150 +4,268 @@
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 # Raivis Dejus <orvils@gmail.com>, 2009.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2009.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&amp;component=general\n"
-"POT-Creation-Date: 2008-12-19 22:09+0000\n"
-"PO-Revision-Date: 2009-01-04 20:43+0300\n"
-"Last-Translator: Raivis Dejus <orvils@gmail.com>\n"
-"Language-Team: en_US <locale@laka.lv>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2009-09-21 17:50+0000\n"
+"PO-Revision-Date: 2009-11-04 00:18+0200\n"
+"Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
+"Language-Team: Latviešu <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2009-01-04 12:24+0000\n"
-"X-Generator: Lokalize 0.2\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
 
-#: ../data/cheese.desktop.in.in.h:1
-msgid "Cheese Webcam Booth"
-msgstr "Cheese foto būda"
+#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:184
+msgid "Cheese"
+msgstr "Cheese"
 
 #: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1021
+msgid "Cheese Webcam Booth"
+msgstr "Cheese foto būdiņa"
+
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1102
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Uzņemiet fotogrāfijas un video ar savu tīmekļa kameru"
+msgstr ""
+"Uzņemiet fotogrāfijas un video ar savu tīmekļa kameru ar jautriem efektiem"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
 #: ../data/cheese.schemas.in.h:3
-msgid "A list of effects applied on startup. Possible values are: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr "Efekti, kas tiek izmantoti palaižot programmu. Iespējamās vērtības: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" un \"warp\""
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Efekti, kas tiek izmantoti palaižot programmu. Iespējamās vērtības: \"mauve"
+"\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", "
+"\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" un "
+"\"warp\""
 
 #: ../data/cheese.schemas.in.h:4
-msgid "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Definē vietu, kur tiks glabātas fotogrāfijas, ja tukša tiks izmantota \"XDG_PHOTO/Webcam\"."
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "Noregulē gaišuma līmeni bildei, kura nāk no tīmekļa kameras"
 
 #: ../data/cheese.schemas.in.h:5
-msgid "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Definē vietu, kur tiks glabāti video, ja tukša tiks izmantota \"XDG_VIDEO/Webcam\"."
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "Noregulē kontrasta līmeni bildei, kura nāk no tīmekļa kameras"
 
 #: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "Noregulē nokrāsas līmeni bildei, kura nāk no tīmekļa kameras"
+
+#: ../data/cheese.schemas.in.h:7
+#| msgid "The width resolution of the image captured from the camera"
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "Noregulē piesātinājuma līmeni bildei, kura nāk no tīmekļa kameras"
+
+#: ../data/cheese.schemas.in.h:8
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Definē vietu, kur tiks glabātas fotogrāfijas, ja tukša tiks izmantota "
+"\"XDG_PHOTO/Webcam\"."
+
+#: ../data/cheese.schemas.in.h:9
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Definē vietu, kur tiks glabāti video, ja tukša tiks izmantota \"XDG_VIDEO/"
+"Webcam\"."
+
+#: ../data/cheese.schemas.in.h:10
 msgid "Height resolution"
 msgstr "Augsta izšķirtspēja"
 
-#: ../data/cheese.schemas.in.h:7
-msgid "If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution."
-msgstr "Ja izvēlēts, Cheese būs pieejama iespēja dzēst failus pa tiešo, tā vietā, lai pārvietotu tos uz miskasti. Šī iespēja var būt bīstama, esiet uzmanīgi."
+#: ../data/cheese.schemas.in.h:11
+msgid ""
+"If set to true, Cheese will startup in a wide mode with the image collection "
+"placed on the right side. Useful with small screens."
+msgstr ""
+"Ja izvēlēts, Cheese tiks palaists platā režīmā, novietojot bilžu "
+"kolekciju labajā pusē. Noderīgs maziem ekrāniem."
 
-#: ../data/cheese.schemas.in.h:8
+#: ../data/cheese.schemas.in.h:12
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Ja izvēlēts, Cheese būs pieejama iespēja dzēst failus pavisam, nevis "
+"pārvietotu tos uz miskasti. Šī iespēja var būt bīstama, esiet uzmanīgi."
+
+#: ../data/cheese.schemas.in.h:13
+msgid "Milliseconds between photos in burst mode."
+msgstr "Milisekundes starp bildēm šalts režīmā"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Number of photos in burst mode."
+msgstr "Bilžu skaits šalts režīmā"
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "Foto ceļš"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:16
+msgid "Picture brightness"
+msgstr "Bilžu gaišums"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture contrast"
+msgstr "Bilžu kontrasts"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture hue"
+msgstr "Bilžu nokrāsa"
+
+#: ../data/cheese.schemas.in.h:19
+#| msgid "Saturation"
+msgid "Picture saturation"
+msgstr "Bilžu piesātinājums"
+
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "Izvēlētie efekti"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
-msgstr "Vai uzņemot foto jāizmanto atskaite"
+msgstr "Vai uzņemot foto jāizmanto laika skaitīšana atpakaļ"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
-msgstr "Ierīces apzīmējums, kas norāda uz jūsu vebkameru (piem. /dev/video0)"
+msgstr ""
+"Ierīces apzīmējums, kas norāda uz jūsu tīmekļa kameru (piem. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
 msgstr "Augstuma izšķirtspēja no kameras iegūtajiem attēliem"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:24
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr "Laiks milisekundēs, kuru ieturēt starp bilžu uzņemšanu šalts režīmā."
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The number of photos to take in a single burst."
+msgstr "Bilžu skaits, kuru uzņemt vienā šaltī."
+
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
 msgstr "Platuma izšķirtspēja no kameras iegūtajiem attēliem"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
-msgstr "Izmantot atskaiti"
+msgstr "Izmantot laika atskaitīšanu atpakaļ"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "Video ceļš"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:29
 msgid "Webcam device string indicator"
-msgstr "Vebkameras ierīces virkne"
+msgstr "Tīmekļa kameras ierīces virkne"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "Vai aktivizēt tūlītēju dzēšanu"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "Vai sākt platajā režīmā"
+
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "Platuma izšķirtspēja"
 
-#: ../data/cheese.ui.h:1
-#: ../src/cheese.c:176
-msgid "Cheese"
-msgstr "Cheese"
-
 #: ../data/cheese.ui.h:2
+#| msgid "Switch to Photo Mode"
+msgid "Switch to Burst Mode"
+msgstr "Pārslēgties uz šalts režīmu"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "Pārslēgties uz foto režīmu"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "Pārslēgties uz video režīmu"
 
-#: ../data/cheese.ui.h:4
-msgid "Switch to the Effects Selector"
-msgstr "Pārslēgties uz Efektu galeriju"
-
 #: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:1145
-#: ../src/cheese-window.c:1384
+msgid "Switch to the Effects Selector"
+msgstr "Pārslēgties uz efektu galeriju"
+
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1226
+#: ../src/cheese-window.c:1546
 msgid "_Effects"
 msgstr "_Efekti"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "Pamest pi_lnekrānu"
 
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-window.c:1396
-msgid "_Photo"
-msgstr "_Foto"
-
-#: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1448
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1579
+#: ../src/cheese-window.c:1619
 msgid "_Take a Photo"
 msgstr "_Uzņemt foto"
 
-#: ../data/cheese.ui.h:9
-#: ../src/cheese-window.c:1397
-msgid "_Video"
-msgstr "_Video"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>Kamera</b>"
+msgid "Brightness"
+msgstr "Gaišums"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>Izšķirtspēja</b>"
+msgid "Burst mode"
+msgstr "Šalts režīms"
 
 #: ../data/cheese-prefs.ui.h:3
-#: ../src/cheese-window.c:1388
+msgid "Contrast"
+msgstr "Kontrasts"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (secs.)"
+msgstr "Aizture starp bildēm (sec.)"
+
+#: ../data/cheese-prefs.ui.h:5
+#| msgid "Dice"
+msgid "Device"
+msgstr "Ierīce"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Nokrāsa"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Bildes īpašības"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Bilžu skaits"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1550
 msgid "Preferences"
 msgstr "Iestatījumi"
+
+#: ../data/cheese-prefs.ui.h:10
+#| msgid "<b>Resolution</b>"
+msgid "Resolution"
+msgstr "Izšķirtspēja"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Piesātinājums"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Tīmekļa kamera"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -160,10 +278,6 @@ msgstr "Violets"
 #: ../src/cheese-effect-chooser.c:64
 msgid "Noir/Blanc"
 msgstr "Melnbalts"
-
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Piesātinājums"
 
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
@@ -179,15 +293,15 @@ msgstr "Horizontāli apgriezts"
 
 #: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
-msgstr "Hipnotisks"
+msgstr "Psihodēlisks"
 
 #: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
-msgstr "Vertigo"
+msgstr "Reibonis"
 
 #: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
-msgstr "Robežas"
+msgstr "Kontūras"
 
 #: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
@@ -203,273 +317,328 @@ msgstr "Izplūdis"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../src/cheese-countdown.c:436
-#: ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
 #: ../src/cheese-countdown.c:474
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
 msgstr "Kamera nav atrasta!"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
-msgstr "Lūdzu izmantojiet dokumentāciju, la iiegūtu papildus informāciju."
+msgstr "Lūdzu izmantojiet dokumentāciju, lai iegūtu papildus informāciju."
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "Palīdzība"
-
-#: ../src/cheese-webcam.c:1589
+#: ../src/cheese-webcam.c:1660
 msgid "One or more needed gstreamer elements are missing: "
-msgstr "Trūkst viens vai vairāki no nepieciešamajiem gstreamer elementiem"
+msgstr "Trūkst viens vai vairāki no nepieciešamajiem gstreamer elementiem: "
 
-#: ../src/cheese-window.c:77
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "Izlai_st"
 
-#: ../src/cheese-window.c:78
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "Izlaist _visus"
 
-#: ../src/cheese-window.c:79
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "Dzēst _visus"
 
-#: ../src/cheese-window.c:203
-#, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"Neizdevās atvērt pārlūku, lai parādītu:\n"
-"%s"
-
-#: ../src/cheese-window.c:228
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"Neizdevās atvērt e-pasta klientu, lai nosūtītu ziņojumu:\n"
-"%s"
-
-#: ../src/cheese-window.c:473
-#, c-format
+#: ../src/cheese-window.c:548, c-format
+#| msgid ""
+#| "Failed to launch program to show:\n"
+#| "%s"
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "Neizdevās atvērt programmu, lai parādītu:\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:492
+#: ../src/cheese-window.c:569
 msgid "Save File"
 msgstr "Saglabāt failu"
 
-#: ../src/cheese-window.c:530
+#: ../src/cheese-window.c:607
 #, c-format
 msgid "Could not save %s"
 msgstr "Nevar saglabāt %s"
 
-#: ../src/cheese-window.c:553
+#: ../src/cheese-window.c:630
 msgid "Error while deleting"
 msgstr "Kļūda dzēšot"
 
-#: ../src/cheese-window.c:554
+#: ../src/cheese-window.c:631
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Failu \"%s\" nevar pārvietot uz miskasti. Sīkāka informācija: %s"
 
-#: ../src/cheese-window.c:581
+#: ../src/cheese-window.c:658
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "Vai esat pārliecināti, ka vēlaties neatgriezeniski izdzēst %d izvēlēto vienību?"
-msgstr[1] "Vai esat pārliecināti, ka vēlaties neatgriezeniski izdzēst %d izvēlētās vienības?"
-msgstr[2] "Vai esat pārliecināti, ka vēlaties neatgriezeniski izdzēst %d izvēlētās vienības?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] ""
+"Vai esat pārliecināti, ka vēlaties neatgriezeniski izdzēst %d izvēlēto "
+"vienību?"
+msgstr[1] ""
+"Vai esat pārliecināti, ka vēlaties neatgriezeniski izdzēst %d izvēlētās "
+"vienības?"
+msgstr[2] ""
+"Vai esat pārliecināti, ka vēlaties neatgriezeniski izdzēst %d izvēlētās "
+"vienības?"
 
-#: ../src/cheese-window.c:588
+#: ../src/cheese-window.c:665
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Vai tiešām vēlaties neatgriezeniski izdzēst \"%s\"?"
 
-#: ../src/cheese-window.c:591
+#: ../src/cheese-window.c:668
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Ja jūs izdzēsīsiet kādu vienību, tā būs neatgriezeniski zudusi."
 
-#: ../src/cheese-window.c:612
+#: ../src/cheese-window.c:689
 msgid "Unknown Error"
 msgstr "Nezināma kļūda"
 
-#: ../src/cheese-window.c:642
+#: ../src/cheese-window.c:719
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Nevar pārvietot failu uz miskasti, vai vēlaties to neatgriezeniski izdzēst?"
+msgstr ""
+"Nevar pārvietot failu uz miskasti, vai vēlaties to neatgriezeniski izdzēst?"
 
-#: ../src/cheese-window.c:643
+#: ../src/cheese-window.c:720
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Failu \"%s\" nevar pārvietot uz miskasti. Sīkāka informācija: %s"
 
-#: ../src/cheese-window.c:715
+#: ../src/cheese-window.c:792
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Vai tiešām pārvietot visus foto un video uz miskasti?"
 
-#: ../src/cheese-window.c:723
+#: ../src/cheese-window.c:800
 msgid "_Move to Trash"
 msgstr "Pārvietot uz _miskasti"
 
-#: ../src/cheese-window.c:841
+#: ../src/cheese-window.c:918
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Nevar uzstādīt konta foto"
 
-#: ../src/cheese-window.c:873
+#: ../src/cheese-window.c:950
 msgid "Media files"
-msgstr "Mēdiju faili"
+msgstr "Mediju faili"
 
-#: ../src/cheese-window.c:947
-#: ../src/cheese-window.c:1219
+#: ../src/cheese-window.c:1024 ../src/cheese-window.c:1308
 msgid "Unable to open help file for Cheese"
 msgstr "Nevar atvērt Cheese palīdzību"
 
-#: ../src/cheese-window.c:999
+#: ../src/cheese-window.c:1080
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Mārtiņš Bruņenieks https://launchpad.net/~papuass\n"
 "  Raivis Dejus https://launchpad.net/~orvils"
 
-#: ../src/cheese-window.c:1002
-msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-msgstr "Šī ir brīva programmatūra; jūs varat to brīvi modificēt unvai izplatīt saskaņā ar Free Software Foundation GNU Vispārējās publiskās licences 2 vai kādas brīvi izvēlētas vēlākas versijas noteikumiem\n"
+#: ../src/cheese-window.c:1083
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"Šī ir brīva programmatūra; jūs varat to brīvi modificēt un/vai izplatīt "
+"saskaņā ar Free Software Foundation GNU Vispārējās publiskās licences 2 vai "
+"kādas brīvi izvēlētas vēlākas versijas noteikumiem\n"
 
-#: ../src/cheese-window.c:1006
-msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-msgstr "Šī programma tiek izplatīta ar cerību, ka tā būs noderīga, tā tiek izplatīta BEZ JEBKĀDAS GARANTIJAS vai DERĪBAS KĀDAM MĒRĶIM. Sīkāku informāciju meklējiet GNU Vispārējās publiskās licences tekstā.\n"
+#: ../src/cheese-window.c:1087
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Šī programma tiek izplatīta ar cerību, ka tā būs noderīga, tā tiek izplatīta "
+"BEZ JEBKĀDAS GARANTIJAS vai DERĪBAS KĀDAM MĒRĶIM. Sīkāku informāciju "
+"meklējiet GNU Vispārējās publiskās licences tekstā.\n"
 
-#: ../src/cheese-window.c:1010
-msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "Jums bija jāsaņem GNU Vispārējās publiskās licences teksts kopā ar šo programmu. Ja tā nav noticis, meklējiet to  <http://www.gnu.org/licenses/>."
+#: ../src/cheese-window.c:1091
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Jums bija jāsaņem GNU Vispārējās publiskās licences teksts kopā ar šo "
+"programmu. Ja tā nav noticis, meklējiet to  <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1027
+#: ../src/cheese-window.c:1108
 msgid "Cheese Website"
 msgstr "Cheese mājas lapa"
 
-#: ../src/cheese-window.c:1235
+#: ../src/cheese-window.c:1324
 msgid "_Start Recording"
 msgstr "_Sākt ierakstu"
 
-#: ../src/cheese-window.c:1334
+#: ../src/cheese-window.c:1491
 msgid "_Stop Recording"
 msgstr "Pārtraukt ierak_stu"
 
-#: ../src/cheese-window.c:1365
+#: ../src/cheese-window.c:1527
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1367
+#: ../src/cheese-window.c:1529
 msgid "_Edit"
 msgstr "R_ediģēt"
 
-#: ../src/cheese-window.c:1368
+#: ../src/cheese-window.c:1530
 msgid "Move All to Trash"
 msgstr "Pārvietot visu uz miskasti"
 
-#: ../src/cheese-window.c:1371
+#: ../src/cheese-window.c:1533
 msgid "_Help"
 msgstr "_Palīdzība"
 
-#: ../src/cheese-window.c:1374
+#: ../src/cheese-window.c:1536
 msgid "_Contents"
 msgstr "Palīdzības Saturs"
 
-#: ../src/cheese-window.c:1374
+#: ../src/cheese-window.c:1536
 msgid "Help on this Application"
 msgstr "Šīs programma palīdzība"
 
-#: ../src/cheese-window.c:1380
+#: ../src/cheese-window.c:1542
 msgid "Countdown"
-msgstr "Atskaite"
+msgstr "Laika skaitīšana atpakaļ"
 
-#: ../src/cheese-window.c:1401
+#: ../src/cheese-window.c:1558
+#| msgid "_Video"
+msgid "_Wide mode"
+msgstr "_Platais režīms"
+
+#: ../src/cheese-window.c:1562
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../src/cheese-window.c:1563
+msgid "_Video"
+msgstr "_Video"
+
+#: ../src/cheese-window.c:1564
+msgid "_Burst"
+msgstr "Ša_lts"
+
+#: ../src/cheese-window.c:1568
 msgid "_Open"
 msgstr "_Atvērt"
 
-#: ../src/cheese-window.c:1403
+#: ../src/cheese-window.c:1570
 msgid "Save _As..."
 msgstr "Saglabāt _kā..."
 
-#: ../src/cheese-window.c:1405
+#: ../src/cheese-window.c:1572
 msgid "Move to _Trash"
 msgstr "Pārvie_tot uz miskasti"
 
-#: ../src/cheese-window.c:1407
+#: ../src/cheese-window.c:1574
 msgid "Delete"
 msgstr "Dzēst"
 
-#: ../src/cheese-window.c:1412
-#: ../src/cheese-window.c:1641
-msgid "_Take a photo"
-msgstr "_Uzņemt foto"
-
-#: ../src/cheese-window.c:1416
+#: ../src/cheese-window.c:1583
 msgid "_Recording"
 msgstr "Ie_raksta"
 
-#: ../src/cheese-window.c:1420
+#: ../src/cheese-window.c:1587 ../src/cheese-window.c:1632
+#| msgid "_Take a Photo"
+msgid "_Take multiple Photos"
+msgstr "_Uzņemt vairākus foto"
+
+#: ../src/cheese-window.c:1591
 msgid "_Set As Account Photo"
 msgstr "Uz_stādīt kā konta bildi"
 
-#: ../src/cheese-window.c:1424
+#: ../src/cheese-window.c:1595
 msgid "Send by _Mail"
 msgstr "Sūtīt pa _pastu"
 
-#: ../src/cheese-window.c:1428
+#: ../src/cheese-window.c:1599
 msgid "Send _To"
-msgstr "Nosūtīt _uz"
+msgstr "Sūtīt _uz"
 
-#: ../src/cheese-window.c:1432
+#: ../src/cheese-window.c:1603
 msgid "Export to F-_Spot"
 msgstr "Eksportēt uz F-_Spot"
 
-#: ../src/cheese-window.c:1436
+#: ../src/cheese-window.c:1607
 msgid "Export to _Flickr"
 msgstr "Eksportēt uz _Flickr"
 
-#: ../src/cheese-window.c:1460
+#: ../src/cheese-window.c:1645
 msgid "_Start recording"
 msgstr "_Sākt ierakstu"
 
-#: ../src/cheese-window.c:1784
-msgid "Quit"
-msgstr "Iziet"
+#: ../src/cheese-window.c:1803
+msgid "_Take a photo"
+msgstr "_Uzņemt foto"
 
-#: ../src/cheese-window.c:1790
-msgid "About"
-msgstr "Par programmu"
-
-#: ../src/cheese-window.c:1871
+#: ../src/cheese-window.c:2063
 msgid "Check your gstreamer installation"
 msgstr "Pārbaudiet savu gstreamer instalāciju"
 
-#: ../src/cheese.c:160
+#: ../src/cheese.c:163
 msgid "Be verbose"
-msgstr "Esi runīgs"
+msgstr "Būt detalizētam"
 
-#: ../src/cheese.c:178
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "Ieslēgt plato režīmu"
+
+#: ../src/cheese.c:169
+msgid "output version information and exit"
+msgstr "izdrukāt versijas informāciju un iziet"
+
+#: ../src/cheese.c:186
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr "- Uzņemiet fotogrāfijas un video ar savu tīmekļa kameru"
+msgstr ""
+"- Uzņemiet fotogrāfijas un video ar savu tīmekļa kameru ar jautriem efektiem"
+
+#~ msgid "<b>Camera</b>"
+#~ msgstr "<b>Kamera</b>"
+
+#~ msgid "Help"
+#~ msgstr "Palīdzība"
+
+#~ msgid ""
+#~ "Failed to open browser to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Neizdevās atvērt pārlūku, lai parādītu:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to open email client to send message to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Neizdevās atvērt e-pasta klientu, lai nosūtītu ziņojumu:\n"
+#~ "%s"
+
+#~ msgid "Quit"
+#~ msgstr "Iziet"
+
+#~ msgid "About"
+#~ msgstr "Par programmu"
 
 #~ msgid "A cheesy program to take photos and videos from your webcam"
 #~ msgstr ""
 #~ "Smaidīga programma, lai fotografētu un filmētu izmantojot jūsu vebkameru"
+
 #~ msgid "Cannot move file to trash"
 #~ msgstr "Nevar pārvietot uz miskasti"
+
 #~ msgid "_Back"
 #~ msgstr "_Atpakaļ"
-
