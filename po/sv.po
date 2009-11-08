@@ -7,21 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-08-12 09:54+0200\n"
-"PO-Revision-Date: 2009-08-12 09:56+0100\n"
+"POT-Creation-Date: 2009-11-08 21:25+0100\n"
+"PO-Revision-Date: 2009-11-08 21:59+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/cheese.desktop.in.in.h:1
+#: ../data/cheese.ui.h:1
+#: ../src/cheese.c:184
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Webbkamerabåset Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1089
+#: ../data/cheese.desktop.in.in.h:3
+#: ../src/cheese-window.c:1101
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ta bilder och videor från din webbkamera med roliga grafiska effekter"
 
@@ -60,7 +66,7 @@ msgid "Height resolution"
 msgstr "Upplösning för höjd"
 
 #: ../data/cheese.schemas.in.h:11
-msgid "If set to true, Cheese will startup in a wide mode with the image collection placed on the right side. Useful with small screens."
+msgid "If set to true, Cheese will start up in a wide mode with the image collection placed on the right-hand side. Useful with small screens."
 msgstr "Om inställd till true så kommer Cheese att starta upp i bredläge med bildsamlingspanelen placerad på högra sidan. Användbart för mindre skärmar."
 
 #: ../data/cheese.schemas.in.h:12
@@ -147,11 +153,6 @@ msgstr "Huruvida uppstart i bredläge ska ske"
 msgid "Width resolution"
 msgstr "Upplösning för bredd"
 
-#: ../data/cheese.ui.h:1
-#: ../src/cheese.c:184
-msgid "Cheese"
-msgstr "Cheese"
-
 #: ../data/cheese.ui.h:2
 msgid "Switch to Burst Mode"
 msgstr "Växla till multipelt läge"
@@ -169,8 +170,8 @@ msgid "Switch to the Effects Selector"
 msgstr "Växla till effektväljaren"
 
 #: ../data/cheese.ui.h:6
-#: ../src/cheese-window.c:1213
-#: ../src/cheese-window.c:1501
+#: ../src/cheese-window.c:1225
+#: ../src/cheese-window.c:1554
 msgid "_Effects"
 msgstr "_Effekter"
 
@@ -179,8 +180,8 @@ msgid "_Leave Fullscreen"
 msgstr "_Lämna helskärmsläge"
 
 #: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1534
-#: ../src/cheese-window.c:1574
+#: ../src/cheese-window.c:1587
+#: ../src/cheese-window.c:1627
 msgid "_Take a Photo"
 msgstr "_Ta ett foto"
 
@@ -197,8 +198,8 @@ msgid "Contrast"
 msgstr "Kontrast"
 
 #: ../data/cheese-prefs.ui.h:4
-msgid "Delay between photos (secs.)"
-msgstr "Fördröjning mellan foton (i sekunder)"
+msgid "Delay between photos (seconds)"
+msgstr "Fördröjning mellan foton (sekunder)"
 
 #: ../data/cheese-prefs.ui.h:5
 msgid "Device"
@@ -217,7 +218,7 @@ msgid "Number of photos"
 msgstr "Antal foton"
 
 #: ../data/cheese-prefs.ui.h:9
-#: ../src/cheese-window.c:1505
+#: ../src/cheese-window.c:1558
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -300,8 +301,8 @@ msgid "Please refer to the help for further information."
 msgstr "Referera till hjälpen för ytterligare information."
 
 #: ../src/cheese-webcam.c:1660
-msgid "One or more needed gstreamer elements are missing: "
-msgstr "Ett eller flera nödvändiga gstreamer-element saknas: "
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 
 #: ../src/cheese-window.c:80
 msgid "_Skip"
@@ -315,7 +316,7 @@ msgstr "Ho_ppa över alla"
 msgid "Delete _All"
 msgstr "Ta bort _alla"
 
-#: ../src/cheese-window.c:539
+#: ../src/cheese-window.c:546
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
@@ -326,78 +327,78 @@ msgstr ""
 "%s\n"
 "%s"
 
-#: ../src/cheese-window.c:560
+#: ../src/cheese-window.c:567
 msgid "Save File"
 msgstr "Spara fil"
 
-#: ../src/cheese-window.c:598
+#: ../src/cheese-window.c:605
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunde inte spara %s"
 
-#: ../src/cheese-window.c:621
+#: ../src/cheese-window.c:628
 msgid "Error while deleting"
 msgstr "Fel vid borttagning"
 
-#: ../src/cheese-window.c:622
+#: ../src/cheese-window.c:629
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
 msgstr "Filen \"%s\" kan inte tas bort. Detaljer: %s"
 
-#: ../src/cheese-window.c:649
+#: ../src/cheese-window.c:656
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "Är du säker på att du vill permanent ta bort %'d markerat objekt?"
 msgstr[1] "Är du säker på att du vill permanent ta bort %'d markerade objekt?"
 
-#: ../src/cheese-window.c:656
+#: ../src/cheese-window.c:663
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "Är du säker på att du vill permanent ta bort \"%s\"?"
 
-#: ../src/cheese-window.c:659
+#: ../src/cheese-window.c:666
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "Om du tar bort ett objekt kommer det att försvinna för alltid."
 
-#: ../src/cheese-window.c:680
+#: ../src/cheese-window.c:687
 msgid "Unknown Error"
 msgstr "Okänt fel"
 
-#: ../src/cheese-window.c:710
+#: ../src/cheese-window.c:717
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "Kan inte flytta filen till papperskorgen. Vill du ta bort den omedelbart?"
 
-#: ../src/cheese-window.c:711
+#: ../src/cheese-window.c:718
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
 msgstr "Filen \"%s\" kan inte flyttas till papperskorgen. Detaljer: %s"
 
-#: ../src/cheese-window.c:783
+#: ../src/cheese-window.c:790
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "Verkligen flytta alla foton och videor till papperskorgen?"
 
-#: ../src/cheese-window.c:791
+#: ../src/cheese-window.c:798
 msgid "_Move to Trash"
 msgstr "Flytta till _papperskorgen"
 
-#: ../src/cheese-window.c:909
+#: ../src/cheese-window.c:916
 #, c-format
 msgid "Could not set the Account Photo"
 msgstr "Kunde inte ställa in kontofotot"
 
-#: ../src/cheese-window.c:941
+#: ../src/cheese-window.c:948
 msgid "Media files"
 msgstr "Mediafiler"
 
-#: ../src/cheese-window.c:1015
-#: ../src/cheese-window.c:1295
+#: ../src/cheese-window.c:1022
+#: ../src/cheese-window.c:1315
 msgid "Unable to open help file for Cheese"
 msgstr "Kunde inte öppna hjälpfilen för Cheese"
 
-#: ../src/cheese-window.c:1067
+#: ../src/cheese-window.c:1079
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander\n"
@@ -405,132 +406,132 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "tp-sv@listor.tp-sv.se"
 
-#: ../src/cheese-window.c:1070
+#: ../src/cheese-window.c:1082
 msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 msgstr ""
 "Följande text är en informell översättning som enbart tillhandahålls i informativt syfte. För alla juridiska tolkningar gäller den engelska originaltexten.\n"
 "Detta program är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.\n"
 
-#: ../src/cheese-window.c:1074
+#: ../src/cheese-window.c:1086
 msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 msgstr "Detta program distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för ytterligare information.\n"
 
-#: ../src/cheese-window.c:1078
+#: ../src/cheese-window.c:1090
 msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr "Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se <http://www.gnu.org/licenses/>."
 
-#: ../src/cheese-window.c:1095
+#: ../src/cheese-window.c:1107
 msgid "Cheese Website"
 msgstr "Webbplats för Cheese"
 
-#: ../src/cheese-window.c:1311
+#: ../src/cheese-window.c:1331
 msgid "_Start Recording"
 msgstr "_Starta inspelning"
 
-#: ../src/cheese-window.c:1447
+#: ../src/cheese-window.c:1499
 msgid "_Stop Recording"
 msgstr "_Stoppa inspelning"
 
-#: ../src/cheese-window.c:1482
+#: ../src/cheese-window.c:1535
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1484
+#: ../src/cheese-window.c:1537
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: ../src/cheese-window.c:1485
+#: ../src/cheese-window.c:1538
 msgid "Move All to Trash"
 msgstr "Flytta allt till papperskorgen"
 
-#: ../src/cheese-window.c:1488
+#: ../src/cheese-window.c:1541
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/cheese-window.c:1491
+#: ../src/cheese-window.c:1544
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/cheese-window.c:1491
+#: ../src/cheese-window.c:1544
 msgid "Help on this Application"
 msgstr "Hjälp för detta program"
 
-#: ../src/cheese-window.c:1497
+#: ../src/cheese-window.c:1550
 msgid "Countdown"
 msgstr "Nedräkning"
 
-#: ../src/cheese-window.c:1513
+#: ../src/cheese-window.c:1566
 msgid "_Wide mode"
 msgstr "_Bredläge"
 
-#: ../src/cheese-window.c:1517
+#: ../src/cheese-window.c:1570
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../src/cheese-window.c:1518
+#: ../src/cheese-window.c:1571
 msgid "_Video"
 msgstr "_Video"
 
-#: ../src/cheese-window.c:1519
+#: ../src/cheese-window.c:1572
 msgid "_Burst"
 msgstr "_Multipelt"
 
-#: ../src/cheese-window.c:1523
+#: ../src/cheese-window.c:1576
 msgid "_Open"
 msgstr "_Öppna"
 
-#: ../src/cheese-window.c:1525
-msgid "Save _As..."
+#: ../src/cheese-window.c:1578
+msgid "Save _As…"
 msgstr "Spara s_om..."
 
-#: ../src/cheese-window.c:1527
+#: ../src/cheese-window.c:1580
 msgid "Move to _Trash"
 msgstr "Flytta till _papperskorgen"
 
-#: ../src/cheese-window.c:1529
+#: ../src/cheese-window.c:1582
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../src/cheese-window.c:1538
+#: ../src/cheese-window.c:1591
 msgid "_Recording"
 msgstr "_Inspelning"
 
-#: ../src/cheese-window.c:1542
-#: ../src/cheese-window.c:1587
+#: ../src/cheese-window.c:1595
+#: ../src/cheese-window.c:1640
 msgid "_Take multiple Photos"
 msgstr "_Ta flera foton"
 
-#: ../src/cheese-window.c:1546
+#: ../src/cheese-window.c:1599
 msgid "_Set As Account Photo"
 msgstr "Ställ in som konto_foto"
 
-#: ../src/cheese-window.c:1550
+#: ../src/cheese-window.c:1603
 msgid "Send by _Mail"
 msgstr "Skicka via e_-post"
 
-#: ../src/cheese-window.c:1554
+#: ../src/cheese-window.c:1607
 msgid "Send _To"
 msgstr "Skicka _till"
 
-#: ../src/cheese-window.c:1558
+#: ../src/cheese-window.c:1611
 msgid "Export to F-_Spot"
 msgstr "Exportera till F-_Spot"
 
-#: ../src/cheese-window.c:1562
+#: ../src/cheese-window.c:1615
 msgid "Export to _Flickr"
 msgstr "Exportera till _Flickr"
 
-#: ../src/cheese-window.c:1600
+#: ../src/cheese-window.c:1653
 msgid "_Start recording"
 msgstr "_Starta inspelning"
 
-#: ../src/cheese-window.c:1758
+#: ../src/cheese-window.c:1811
 msgid "_Take a photo"
 msgstr "_Ta ett foto"
 
-#: ../src/cheese-window.c:2018
-msgid "Check your gstreamer installation"
-msgstr "Kontrollera din gstreamer-installation"
+#: ../src/cheese-window.c:2071
+msgid "Check your GStreamer installation"
+msgstr "Kontrollera din GStreamer-installation"
 
 #: ../src/cheese.c:163
 msgid "Be verbose"
