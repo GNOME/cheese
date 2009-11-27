@@ -89,7 +89,8 @@ PKG_CHECK_MODULES(CHEESE, \
   dbus-glib-1 >= $DBUS_GLIB_REQUIRED \
   hal >= $HAL_REQUIRED \
   pangocairo >= $PANGOCAIRO_REQUIRED \
-  librsvg-2.0 >= $LIBRSVG_REQUIRED)
+  librsvg-2.0 >= $LIBRSVG_REQUIRED
+  libcanberra-gtk)
 AC_SUBST(CHEESE_CFLAGS)
 
 CHEESE_LIBS="$CHEESE_LIBS -lgstinterfaces-0.10"
@@ -148,7 +149,6 @@ data/icons/32x32/actions/Makefile
 data/icons/48x48/actions/Makefile
 data/icons/scalable/actions/Makefile
 data/pixmaps/Makefile
-data/sounds/Makefile
 help/Makefile
 src/Makefile
 po/Makefile.in

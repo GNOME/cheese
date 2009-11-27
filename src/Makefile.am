@@ -36,8 +36,6 @@ cheese_SOURCES = \
 	eog-thumb-nav.h \
 	ephy-spinner.c \
 	ephy-spinner.h \
-	gst-audio-play.c \
-	gst-audio-play.h \
 	cheese-no-camera.c \
 	cheese-no-camera.h \
 	cheese-prefs-widget.h \

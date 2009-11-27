@@ -38,6 +38,7 @@
 #include <gst/interfaces/xoverlay.h>
 #include <gtk/gtk.h>
 #include <libebook/e-book.h>
+#include <canberra-gtk.h>
 
 #ifdef HAVE_MMKEYS
   #include <X11/XF86keysym.h>
@@ -51,12 +52,10 @@
 #include "eog-thumb-nav.h"
 #include "cheese-window.h"
 #include "ephy-spinner.h"
-#include "gst-audio-play.h"
 #include "cheese-no-camera.h"
 #include "cheese-prefs-dialog.h"
 #include "cheese-flash.h"
 
-#define SHUTTER_SOUNDS             5
 #define FULLSCREEN_POPUP_HEIGHT    40
 #define FULLSCREEN_TIMEOUT         5 * 1000
 #define FULLSCREEN_EFFECTS_TIMEOUT 15
@@ -175,8 +174,6 @@ typedef struct
 
   GSource *fullscreen_timeout_source;
 
-  int audio_play_counter;
-
   gint repeat_count;
   gboolean is_bursting;
 
@@ -194,22 +191,6 @@ cheese_window_bring_to_front (gpointer data)
   gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (cheese_window->window)), startup_timestamp);
 
   gtk_window_present (GTK_WINDOW (cheese_window->window));
-}
-
-static char *
-audio_play_get_filename (CheeseWindow *cheese_window)
-{
-  char *filename;
-
-  if (cheese_window->audio_play_counter > 21)
-    filename = g_strdup_printf ("%s/sounds/shutter%i.ogg", PACKAGE_DATADIR,
-                                g_random_int_range (0, SHUTTER_SOUNDS));
-  else
-    filename = g_strdup_printf ("%s/sounds/shutter0.ogg", PACKAGE_DATADIR);
-
-  cheese_window->audio_play_counter++;
-
-  return filename;
 }
 
 /* standard event handler */
@@ -1267,9 +1248,6 @@ void
 cheese_window_countdown_picture_cb (gpointer data)
 {
   CheeseWindow *cheese_window = (CheeseWindow *) data;
-  GError       *error         = NULL;
-  GstAudioPlay *audio_play;
-  char         *shutter_filename;
   char         *photo_filename;
 
   if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
@@ -1284,14 +1262,11 @@ cheese_window_countdown_picture_cb (gpointer data)
   if (cheese_webcam_take_photo (cheese_window->webcam, photo_filename))
   {
     cheese_flash_fire (cheese_window->flash);
-    shutter_filename = audio_play_get_filename (cheese_window);
-    audio_play       = gst_audio_play_file (shutter_filename, &error);
-    if (!audio_play)
-    {
-      g_warning ("%s", error ? error->message : "Unknown error");
-      g_error_free (error);
-    }
-    g_free (shutter_filename);
+    ca_gtk_play_for_widget (cheese_window->screen, 0,
+                            CA_PROP_EVENT_ID, "camera-shutter",
+                            CA_PROP_MEDIA_ROLE, "event",
+                            CA_PROP_EVENT_DESCRIPTION, _("Shutter sound"),
+                            NULL);
   }
   g_free (photo_filename);
 }
@@ -2141,7 +2116,6 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
   cheese_window->gconf               = cheese_gconf_new ();
   cheese_window->fileutil            = cheese_fileutil_new ();
   cheese_window->flash               = cheese_flash_new ();
-  cheese_window->audio_play_counter  = 0;
   cheese_window->isFullscreen        = FALSE;
   cheese_window->is_bursting         = FALSE;
 
