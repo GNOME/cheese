@@ -205,8 +205,13 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
 CheeseFileUtil *
 cheese_fileutil_new ()
 {
-  CheeseFileUtil *fileutil;
+  static CheeseFileUtil *fileutil = NULL;
+
+  if (fileutil != NULL)
+    return g_object_ref (fileutil);
 
   fileutil = g_object_new (CHEESE_TYPE_FILEUTIL, NULL);
+  g_object_add_weak_pointer (G_OBJECT (fileutil),
+			     (gpointer) &fileutil);
   return fileutil;
 }
