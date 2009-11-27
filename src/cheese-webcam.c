@@ -1285,7 +1285,8 @@ cheese_webcam_stop (CheeseWebcam *webcam)
 {
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
-  gst_element_set_state (priv->pipeline, GST_STATE_NULL);
+  if (priv->pipeline != NULL)
+    gst_element_set_state (priv->pipeline, GST_STATE_NULL);
   priv->pipeline_is_playing = FALSE;
 }
 
@@ -1444,11 +1445,12 @@ cheese_webcam_finalize (GObject *object)
   CheeseWebcamPrivate *priv = CHEESE_WEBCAM_GET_PRIVATE (webcam);
 
   cheese_webcam_stop (webcam);
-  gst_object_unref (priv->pipeline);
+  if (priv->pipeline != NULL)
+    gst_object_unref (priv->pipeline);
 
-  if (priv->is_recording)
+  if (priv->is_recording && priv->photo_save_bin != NULL)
     gst_object_unref (priv->photo_save_bin);
-  else
+  else if (priv->video_save_bin != NULL)
     gst_object_unref (priv->video_save_bin);
 
   g_free (priv->photo_filename);
