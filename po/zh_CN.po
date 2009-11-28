@@ -4,148 +4,255 @@
 # This file is distributed under the same license as the PACKAGE package.
 # YangZhang <zyangmath@gmail.com>, 2008.
 # 甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009
+# arccos (L.Q) <boyermoore@gmail.com>, 2009
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese trunk\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 08:46+0100\n"
-"PO-Revision-Date: 2009-01-09 14:25+0700\n"
-"Last-Translator: 甘露(Gan Lu) <rhythm.gan@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&component=general\n"
+"POT-Creation-Date: 2009-11-17 07:24+0000\n"
+"PO-Revision-Date: 2009-11-19 23:42+0800\n"
+"Last-Translator: arccos (L.Q) <boyermoore@gmail.com>\n"
 "Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/cheese.desktop.in.in.h:1
+#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:184
+msgid "Cheese"
+msgstr "茄子"
+
+#: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "茄子大头贴"
 
-#: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1016
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1101
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "使用摄像头拍照或录像，并加上有趣的图像效果"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
 #: ../data/cheese.schemas.in.h:3
-msgid "A list of effects applied on startup. Possible values are: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr "在启动时应用的特效。可选择的值有：“mauve”、“noir_blanc”、“saturation”、“hulk”、“vertical-flip”、“horizontal-flip”、“shagadelic”、“vertigo”、“edge”、“dice”和“warp”"
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"在启动时应用的特效。可选择的值"
+"有：“mauve”、“noir_blanc”、“saturation”、“hulk”、“vertical-"
+"flip”、“horizontal-flip”、“shagadelic”、“vertigo”、“edge”、“dice”和“warp”"
 
 #: ../data/cheese.schemas.in.h:4
-msgid "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" will be used."
-msgstr "设置照片保存的路径，为空则使用“XDG_PHOTO/Webcam”。"
+msgid "Adjusts brightness level of the picture coming from the webcam"
+msgstr "调整摄像头图像的亮度"
 
 #: ../data/cheese.schemas.in.h:5
-msgid "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" will be used."
-msgstr "设置视频保存的路径，为空则使用“XDG_VIDEO/Webcam”。"
+msgid "Adjusts contrast level of the picture coming from the webcam"
+msgstr "调整摄像头图像的对比度"
 
 #: ../data/cheese.schemas.in.h:6
-msgid "Height resolution"
-msgstr "高度分辨率"
+msgid "Adjusts hue level of the picture coming from the webcam"
+msgstr "调整摄像头图像的色调"
 
 #: ../data/cheese.schemas.in.h:7
-msgid "If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution."
-msgstr "如果设定为 true，茄子将会允许您立即就地删除文件，而不是将其移动到回收站。此特性非常危险，所以请小心使用。"
+msgid "Adjusts saturation level of the picture coming from the webcam"
+msgstr "调整摄像头图像的色彩饱和度"
 
 #: ../data/cheese.schemas.in.h:8
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr "设置照片保存的路径，为空则使用“XDG_PHOTO/Webcam”。"
+
+#: ../data/cheese.schemas.in.h:9
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr "设置视频保存的路径，为空则使用“XDG_VIDEO/Webcam”。"
+
+#: ../data/cheese.schemas.in.h:10
+msgid "Height resolution"
+msgstr "纵向分辨率"
+
+#: ../data/cheese.schemas.in.h:11
+msgid ""
+"If set to true, Cheese will start up in a wide mode with the image "
+"collection placed on the right-hand side. Useful with small screens."
+msgstr ""
+"如果设置为 true ，茄子将以宽屏模式启动，并将图片集显示在右手边。屏幕较小时这"
+"会很有用。"
+
+#: ../data/cheese.schemas.in.h:12
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"如果设定为 true，茄子将会允许您立即就地删除文件，而不是将其移动到回收站。此特"
+"性非常危险，所以请小心使用。"
+
+#: ../data/cheese.schemas.in.h:13
+msgid "Milliseconds between photos in burst mode."
+msgstr "连拍模式照片间延迟的毫秒数。"
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Number of photos in burst mode."
+msgstr "连拍模式一次拍摄的照片数。"
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Photo Path"
 msgstr "照片路径"
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:16
+msgid "Picture brightness"
+msgstr "图像亮度"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture contrast"
+msgstr "图像对比度"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture hue"
+msgstr "图像色调"
+
+#: ../data/cheese.schemas.in.h:19
+msgid "Picture saturation"
+msgstr "图像饱和度"
+
+#: ../data/cheese.schemas.in.h:20
 msgid "Selected Effects"
 msgstr "选中的特效"
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:21
 msgid "Set to True to show countdown when taking a photo"
-msgstr "设定为 True 将在在拍照时使用倒计时"
+msgstr "设定为 True 将在在拍照时显示倒计时"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:22
 msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgstr "对应摄像头的设备(如 /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:12
+#: ../data/cheese.schemas.in.h:23
 msgid "The height resolution of the image captured from the camera"
-msgstr "从相机抓取图像的高度分辨率"
+msgstr "从相机抓取图像的纵向分辨率"
 
-#: ../data/cheese.schemas.in.h:13
+#: ../data/cheese.schemas.in.h:24
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr "在连拍多张照片时，每张照片拍摄之间的延迟时间，以毫秒记。"
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The number of photos to take in a single burst."
+msgstr "一次连拍的照片数"
+
+#: ../data/cheese.schemas.in.h:26
 msgid "The width resolution of the image captured from the camera"
-msgstr "从相机抓取图像的宽度分辨率"
+msgstr "从相机抓取图像的横向分辨率"
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:27
 msgid "Use a countdown"
 msgstr "使用倒计时"
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:28
 msgid "Video Path"
 msgstr "视频路径"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:29
+#, fuzzy
 msgid "Webcam device string indicator"
-msgstr "摄像头设备字符串指示器"
+msgstr "摄像头设备字符串指示符"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "是否启用立即删除"
 
-#: ../data/cheese.schemas.in.h:18
-msgid "Width resolution"
-msgstr "宽度分辨率"
+#: ../data/cheese.schemas.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "是否以宽屏模式启动"
 
-#: ../data/cheese.ui.h:1
-#: ../src/cheese.c:177
-msgid "Cheese"
-msgstr "茄子"
+#: ../data/cheese.schemas.in.h:32
+msgid "Width resolution"
+msgstr "横向分辨率"
 
 #: ../data/cheese.ui.h:2
+msgid "Switch to Burst Mode"
+msgstr "切换到连拍模式"
+
+#: ../data/cheese.ui.h:3
 msgid "Switch to Photo Mode"
 msgstr "切换到照片模式"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:4
 msgid "Switch to Video Mode"
 msgstr "切换到视频模式"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:5
 msgid "Switch to the Effects Selector"
 msgstr "切换到特效选择器"
 
-#: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:1140
-#: ../src/cheese-window.c:1379
+#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1225
+#: ../src/cheese-window.c:1554
 msgid "_Effects"
 msgstr "特效(_E)"
 
-#: ../data/cheese.ui.h:6
+#: ../data/cheese.ui.h:7
 msgid "_Leave Fullscreen"
 msgstr "退出全屏(_L)"
 
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-window.c:1391
-msgid "_Photo"
-msgstr "照片(_P)"
-
-#: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1443
+#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1587
+#: ../src/cheese-window.c:1627
 msgid "_Take a Photo"
 msgstr "拍照(_T)"
 
-#: ../data/cheese.ui.h:9
-#: ../src/cheese-window.c:1392
-msgid "_Video"
-msgstr "视频(_V)"
-
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>相机</b>"
+msgid "Brightness"
+msgstr "亮度"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>分辨率</b>"
+msgid "Burst mode"
+msgstr "连拍模式"
 
 #: ../data/cheese-prefs.ui.h:3
-#: ../src/cheese-window.c:1383
+msgid "Contrast"
+msgstr "对比度"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (seconds)"
+msgstr "照片延迟(秒)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "设备"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "色调"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "图像属性"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "照片编号"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1558
 msgid "Preferences"
 msgstr "首选项"
+
+#: ../data/cheese-prefs.ui.h:10
+#, fuzzy
+msgid "Resolution"
+msgstr "<b>分辨率</b>"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "饱和"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "网络摄像头"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -159,10 +266,6 @@ msgstr "紫红"
 msgid "Noir/Blanc"
 msgstr "黑白"
 
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "饱和"
-
 #: ../src/cheese-effect-chooser.c:68
 msgid "Hulk"
 msgstr "巨型人"
@@ -175,8 +278,8 @@ msgstr "垂直翻转"
 msgid "Horizontal Flip"
 msgstr "水平翻转"
 
-#: ../src/cheese-effect-chooser.c:74
 #  shagadelic 此词是由Shaggy与psychedelic ( a. 起幻觉的，迷幻的) 结合而来的，并没有什么实际意义，只是用来起夸张与炫耀的作用。参见：《王牌大贱谍》--甘露注
+#: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
 msgstr "迷幻"
 
@@ -202,262 +305,308 @@ msgstr "扭曲"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../src/cheese-countdown.c:436
-#: ../src/cheese-countdown.c:455
+#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
 #: ../src/cheese-countdown.c:474
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
+#: ../src/cheese-no-camera.c:93
 msgid "No camera found!"
-msgstr "没有发现相机！"
+msgstr "没有发现摄像头！"
 
-#: ../src/cheese-no-camera.c:97
+#: ../src/cheese-no-camera.c:94
 msgid "Please refer to the help for further information."
 msgstr "更多信息请参考帮助文档。"
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "帮助"
-
-#: ../src/cheese-webcam.c:1546
-msgid "One or more needed gstreamer elements are missing: "
+#: ../src/cheese-webcam.c:1660
+#, fuzzy
+msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 gstreamer 元素："
 
-#: ../src/cheese-window.c:77
+#: ../src/cheese-window.c:80
 msgid "_Skip"
 msgstr "跳过(_S)"
 
-#: ../src/cheese-window.c:78
+#: ../src/cheese-window.c:81
 msgid "S_kip All"
 msgstr "全部跳过(_K)"
 
-#: ../src/cheese-window.c:79
+#: ../src/cheese-window.c:82
 msgid "Delete _All"
 msgstr "全部删除(_A)"
 
-#: ../src/cheese-window.c:202
-#, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"无法打开浏览器以显示：\n"
-"%s"
-
-#: ../src/cheese-window.c:226
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"无法打开邮件客户端以发送邮件到：\n"
-"%s"
-
-#: ../src/cheese-window.c:469
+#: ../src/cheese-window.c:546
 #, c-format
 msgid ""
 "Failed to launch program to show:\n"
+"%s\n"
 "%s"
 msgstr ""
 "无法启动程序以显示：\n"
+"%s\n"
 "%s"
 
-#: ../src/cheese-window.c:488
+#: ../src/cheese-window.c:567
 msgid "Save File"
 msgstr "保存文件"
 
-#: ../src/cheese-window.c:526
+#: ../src/cheese-window.c:605
 #, c-format
 msgid "Could not save %s"
 msgstr "无法保存 %s"
 
-#: ../src/cheese-window.c:549
+#: ../src/cheese-window.c:628
 msgid "Error while deleting"
 msgstr "删除时出错"
 
-#: ../src/cheese-window.c:550
+#: ../src/cheese-window.c:629
 #, c-format
 msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "无法删除文件“%s”。细节：%s"
+msgstr "无法删除文件“%s”。详细信息：%s"
 
-#: ../src/cheese-window.c:577
+#: ../src/cheese-window.c:656
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "你确定要永久删除 %'d 个选中项吗？"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "您确定要永久删除这 %'d 个选中项吗？"
 
-#: ../src/cheese-window.c:584
+#: ../src/cheese-window.c:663
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
 msgstr "您确定想要永久删除“%s”吗？"
 
-#: ../src/cheese-window.c:587
+#: ../src/cheese-window.c:666
 #, c-format
 msgid "If you delete an item, it will be permanently lost."
 msgstr "如果您删除了某项，该项将永久丢失。"
 
-#: ../src/cheese-window.c:608
+#: ../src/cheese-window.c:687
 msgid "Unknown Error"
 msgstr "未知错误"
 
-#: ../src/cheese-window.c:638
+#: ../src/cheese-window.c:717
 msgid "Cannot move file to trash, do you want to delete immediately?"
 msgstr "无法将文件移动到回收站，您是否想要立即删除？"
 
-#: ../src/cheese-window.c:639
+#: ../src/cheese-window.c:718
 #, c-format
 msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "无法移动文件“%s”到回收站。详情：%s"
+msgstr "无法移动文件“%s”到回收站。详细信息：%s"
 
-#: ../src/cheese-window.c:711
+#: ../src/cheese-window.c:790
 #, c-format
 msgid "Really move all photos and videos to the trash?"
 msgstr "真的要将所有照片和视频移动到回收站吗？"
 
-#: ../src/cheese-window.c:719
+#: ../src/cheese-window.c:798
 msgid "_Move to Trash"
 msgstr "移动到回收站(_M)"
 
-#: ../src/cheese-window.c:837
+#: ../src/cheese-window.c:916
 #, c-format
 msgid "Could not set the Account Photo"
-msgstr "无法设置为账户照片"
+msgstr "无法设置账户照片"
 
-#: ../src/cheese-window.c:869
+#: ../src/cheese-window.c:948
 msgid "Media files"
 msgstr "媒体文件"
 
-#: ../src/cheese-window.c:942
-#: ../src/cheese-window.c:1214
+#: ../src/cheese-window.c:1022 ../src/cheese-window.c:1315
 msgid "Unable to open help file for Cheese"
 msgstr "无法打开茄子的帮助文件"
 
-#: ../src/cheese-window.c:994
+#: ../src/cheese-window.c:1079
 msgid "translator-credits"
 msgstr ""
 "YangZhang <zyangmath@gmail.com>, 2008\n"
-"甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009."
+"甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009\n"
+"arccos (L.Q) <boyermoore@gmail.com>, 2009"
 
-#: ../src/cheese-window.c:997
-msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-msgstr "本程序是自由软件；您可以在自由软件基金会发布的 GNU 通用公共许可证的条款下重新分发和(或)修改它；您可以选择使用 GPL 第二版，或(按照您的意愿)任何更新的版本。\n"
+#: ../src/cheese-window.c:1082
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"本程序是自由软件；您可以在自由软件基金会发布的 GNU 通用公共许可证的条款下重新"
+"分发和(或)修改它；您可以选择使用 GPL 第二版，或(按照您的意愿)任何更新的版"
+"本。\n"
 
-#: ../src/cheese-window.c:1001
-msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-msgstr "本程序分发的目的是希望它物有所用，但是没有任何担保；没有对其适销性和某一特定目的下的适用性的任何即便是暗示的担保。请查阅 GNU 通用公共许可证以获得更多信息。\n"
+#: ../src/cheese-window.c:1086
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"本程序分发的目的是希望它物有所用，但是没有任何担保；没有对其适销性和某一特定"
+"目的下的适用性的任何即便是暗示的担保。请查阅 GNU 通用公共许可证以获得更多信"
+"息。\n"
 
-#: ../src/cheese-window.c:1005
-msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "你应该已经跟本程序一起收到一份 GNU 通用公共许可证的副本；如果没有，参见<http://www.gnu.org/licenses/>。"
+#: ../src/cheese-window.c:1090
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"你应该已经跟本程序一起收到一份 GNU 通用公共许可证的副本；如果没有，参见"
+"<http://www.gnu.org/licenses/>。"
 
-#: ../src/cheese-window.c:1022
+#: ../src/cheese-window.c:1107
 msgid "Cheese Website"
 msgstr "茄子网站"
 
-#: ../src/cheese-window.c:1230
+#: ../src/cheese-window.c:1331
 msgid "_Start Recording"
 msgstr "开始录像(_S)"
 
-#: ../src/cheese-window.c:1329
+#: ../src/cheese-window.c:1499
 msgid "_Stop Recording"
 msgstr "停止录像(_S)"
 
-#: ../src/cheese-window.c:1360
+#: ../src/cheese-window.c:1535
 msgid "_Cheese"
 msgstr "茄子(_C)"
 
-#: ../src/cheese-window.c:1362
+#: ../src/cheese-window.c:1537
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/cheese-window.c:1363
+#: ../src/cheese-window.c:1538
 msgid "Move All to Trash"
 msgstr "全部移动到回收站"
 
-#: ../src/cheese-window.c:1366
+#: ../src/cheese-window.c:1541
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/cheese-window.c:1369
+#: ../src/cheese-window.c:1544
 msgid "_Contents"
 msgstr "目录(_C)"
 
-#: ../src/cheese-window.c:1369
+#: ../src/cheese-window.c:1544
 msgid "Help on this Application"
 msgstr "关于本应用程序的帮助"
 
-#: ../src/cheese-window.c:1375
+#: ../src/cheese-window.c:1550
 msgid "Countdown"
 msgstr "倒计时"
 
-#: ../src/cheese-window.c:1396
+#: ../src/cheese-window.c:1566
+msgid "_Wide mode"
+msgstr "宽屏模式(_W)"
+
+#: ../src/cheese-window.c:1570
+msgid "_Photo"
+msgstr "照片(_P)"
+
+#: ../src/cheese-window.c:1571
+msgid "_Video"
+msgstr "视频(_V)"
+
+#: ../src/cheese-window.c:1572
+msgid "_Burst"
+msgstr "连拍(_B)"
+
+#: ../src/cheese-window.c:1576
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: ../src/cheese-window.c:1398
-msgid "Save _As..."
+#: ../src/cheese-window.c:1578
+#, fuzzy
+msgid "Save _As…"
 msgstr "另存为(_A)..."
 
-#: ../src/cheese-window.c:1400
+#: ../src/cheese-window.c:1580
 msgid "Move to _Trash"
 msgstr "移动到回收站(_T)"
 
-#: ../src/cheese-window.c:1402
+#: ../src/cheese-window.c:1582
 msgid "Delete"
 msgstr "删除"
 
-#: ../src/cheese-window.c:1407
-#: ../src/cheese-window.c:1636
-msgid "_Take a photo"
-msgstr "拍照(_T)"
-
-#: ../src/cheese-window.c:1411
+#: ../src/cheese-window.c:1591
 msgid "_Recording"
 msgstr "录像(_R)"
 
-#: ../src/cheese-window.c:1415
+#: ../src/cheese-window.c:1595 ../src/cheese-window.c:1640
+#, fuzzy
+msgid "_Take multiple Photos"
+msgstr "拍照(_T)"
+
+#: ../src/cheese-window.c:1599
 msgid "_Set As Account Photo"
 msgstr "设置为账户照片(_S)"
 
-#: ../src/cheese-window.c:1419
+#: ../src/cheese-window.c:1603
 msgid "Send by _Mail"
-msgstr "以邮件发送(_M)"
+msgstr "用邮件发送(_M)"
 
-#: ../src/cheese-window.c:1423
+#: ../src/cheese-window.c:1607
 msgid "Send _To"
 msgstr "发送到(_T)"
 
-#: ../src/cheese-window.c:1427
+#: ../src/cheese-window.c:1611
 msgid "Export to F-_Spot"
 msgstr "导出到 F-_Spot"
 
-#: ../src/cheese-window.c:1431
+#: ../src/cheese-window.c:1615
 msgid "Export to _Flickr"
 msgstr "导出到 _Flickr"
 
-#: ../src/cheese-window.c:1455
+#: ../src/cheese-window.c:1653
 msgid "_Start recording"
 msgstr "开始录像(_S)"
 
-#: ../src/cheese-window.c:1779
-msgid "Quit"
-msgstr "退出"
+#: ../src/cheese-window.c:1811
+msgid "_Take a photo"
+msgstr "拍照(_T)"
 
-#: ../src/cheese-window.c:1785
-msgid "About"
-msgstr "关于"
-
-#: ../src/cheese-window.c:1866
-msgid "Check your gstreamer installation"
+#: ../src/cheese-window.c:2071
+#, fuzzy
+msgid "Check your GStreamer installation"
 msgstr "检查您的 gstreamer 安装"
 
-#: ../src/cheese.c:161
+#: ../src/cheese.c:163
 msgid "Be verbose"
 msgstr "显示详细信息"
 
-#: ../src/cheese.c:179
-msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr "- 从您的摄像头拍照或录像，加上有趣的图像效果"
+#: ../src/cheese.c:165
+msgid "Enable wide mode"
+msgstr "启用宽屏模式"
 
+#: ../src/cheese.c:169
+msgid "output version information and exit"
+msgstr "输出版本信息并退出"
+
+#: ../src/cheese.c:186
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr "- 使用摄像头拍照或录像，并加上有趣的图像效果"
+
+#~ msgid "<b>Camera</b>"
+#~ msgstr "<b>相机</b>"
+
+#~ msgid "Help"
+#~ msgstr "帮助"
+
+#~ msgid ""
+#~ "Failed to open browser to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "无法打开浏览器以显示：\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to open email client to send message to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "无法打开邮件客户端以发送邮件到：\n"
+#~ "%s"
+
+#~ msgid "Quit"
+#~ msgstr "退出"
+
+#~ msgid "About"
+#~ msgstr "关于"
