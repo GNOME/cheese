@@ -1,14 +1,16 @@
-INCLUDES = 						\
-	-DBINDIR=\"$(bindir)\"			 	\
-	-DDATADIR=\"$(datadir)\"			\
-	-DPREFIX=\""$(prefix)"\" 			\
-	-DSYSCONFDIR=\""$(sysconfdir)"\" 		\
-	-DLIBDIR=\""$(libdir)"\" 			\
-	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\"	\
-	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
-	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\"		\
-	-DGNOME_DESKTOP_USE_UNSTABLE_API=1		\
-	$(CHEESE_CFLAGS)
+INCLUDES = \
+	-DBINDIR=\"$(bindir)\" \
+	-DDATADIR=\"$(datadir)\" \
+	-DPREFIX=\""$(prefix)"\" \
+	-DSYSCONFDIR=\""$(sysconfdir)"\" \
+	-DLIBDIR=\""$(libdir)"\" \
+	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\" \
+	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\" \
+	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\" \
+	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
+	$(CHEESE_CFLAGS) \
+	-I@top_srcdir@/libcheese \
+	$(NULL)
 
 bin_PROGRAMS = cheese
 
@@ -26,8 +28,6 @@ cheese_SOURCES = \
 	cheese-gconf.h \
 	cheese-thumb-view.c \
 	cheese-thumb-view.h \
-	cheese-webcam.c \
-	cheese-webcam.h \
 	cheese-window.c \
 	cheese-window.h \
 	eog-thumbnail.c \
@@ -50,11 +50,14 @@ cheese_SOURCES = \
 	cheese-prefs-dialog.h \
 	cheese-flash.h \
 	cheese-flash.c \
-	cheese-prefs-webcam-combo.c \
-	cheese-prefs-webcam-combo.h \
+	cheese-prefs-camera-combo.c \
+	cheese-prefs-camera-combo.h \
 	cheese-prefs-burst-spinbox.h \
 	cheese-prefs-burst-spinbox.c
-	
+
+cheese_LDFLAGS = \
+	-L@top_srcdir@/libcheese -lcheese
+
 cheese_LDADD = \
 	$(CHEESE_LIBS)
 

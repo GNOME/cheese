@@ -1,5 +1,5 @@
 /*
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
+ * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -60,9 +60,9 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                          CHEESE_GCONF_PREFIX "/countdown",
                                                          NULL));
       break;
-    case GCONF_PROP_WEBCAM:
+    case GCONF_PROP_CAMERA:
       g_value_set_string (value, gconf_client_get_string (priv->client,
-                                                          CHEESE_GCONF_PREFIX "/webcam",
+                                                          CHEESE_GCONF_PREFIX "/camera",
                                                           NULL));
       break;
     case GCONF_PROP_SELECTED_EFFECTS:
@@ -214,9 +214,9 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                              g_value_get_boolean (value),
                              NULL);
       break;
-    case GCONF_PROP_WEBCAM:
+    case GCONF_PROP_CAMERA:
       gconf_client_set_string (priv->client,
-                               CHEESE_GCONF_PREFIX "/webcam",
+                               CHEESE_GCONF_PREFIX "/camera",
                                g_value_get_string (value),
                                NULL);
       break;
@@ -366,8 +366,8 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                          NULL,
                                                          FALSE,
                                                          G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, GCONF_PROP_WEBCAM,
-                                   g_param_spec_string ("gconf_prop_webcam",
+  g_object_class_install_property (object_class, GCONF_PROP_CAMERA,
+                                   g_param_spec_string ("gconf_prop_camera",
                                                         NULL,
                                                         NULL,
                                                         "",

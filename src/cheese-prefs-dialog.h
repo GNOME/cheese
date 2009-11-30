@@ -24,13 +24,13 @@
   #include "cheese-config.h"
 #endif
 
-#include "cheese-webcam.h"
+#include <cheese-camera.h>
 #include "cheese-prefs-dialog-widgets.h"
 #include "cheese-prefs-resolution-combo.h"
-#include "cheese-prefs-webcam-combo.h"
+#include "cheese-prefs-camera-combo.h"
 #include "cheese-prefs-balance-scale.h"
 #include "cheese-prefs-burst-spinbox.h"
 
-void cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseWebcam *webcam);
+void cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseCamera *camera);
 
 #endif /* _CHEESE_PREFS_DIALOG_H_ */

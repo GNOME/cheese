@@ -21,8 +21,8 @@
 #define _CHEESE_PREFS_BALANCE_SCALE_H_
 
 #include <glib-object.h>
+#include <cheese-camera.h>
 #include "cheese-prefs-widget.h"
-#include "cheese-webcam.h"
 
 G_BEGIN_DECLS
 
@@ -51,7 +51,7 @@ struct _CheesePrefsBalanceScale
 
 GType                    cheese_prefs_balance_scale_get_type (void) G_GNUC_CONST;
 CheesePrefsBalanceScale *cheese_prefs_balance_scale_new (GtkWidget    *scale,
-                                                         CheeseWebcam *webcam,
+                                                         CheeseCamera *camera,
                                                          const gchar  *property,
                                                          const gchar  *balance_key);
 

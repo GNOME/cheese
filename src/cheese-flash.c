@@ -1,6 +1,7 @@
 /*
  * Copyright © 2008 Alexander “weej” Jones <alex@weej.com>
  * Copyright © 2008 Thomas Perl <thp@thpinfo.com>
+ * Copyright © 2009 daniel g. siegel <dgsiegel@gnome.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -23,8 +24,8 @@
 
 #include <gtk/gtk.h>
 
+#include <cheese-camera.h>
 #include "cheese-flash.h"
-#include "cheese-webcam.h"
 
 /* How long to hold the flash for */
 #define FLASH_DURATION 250

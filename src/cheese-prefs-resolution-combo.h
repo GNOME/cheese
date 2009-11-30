@@ -21,8 +21,8 @@
 #define _CHEESE_PREFS_RESOLUTION_COMBO_H_
 
 #include <glib-object.h>
+#include <cheese-camera.h>
 #include "cheese-prefs-widget.h"
-#include "cheese-webcam.h"
 
 G_BEGIN_DECLS
 
@@ -56,7 +56,7 @@ struct _CheesePrefsResolutionCombo
 
 GType                       cheese_prefs_resolution_combo_get_type (void) G_GNUC_CONST;
 CheesePrefsResolutionCombo *cheese_prefs_resolution_combo_new (GtkWidget    *combo_box,
-                                                               CheeseWebcam *webcam,
+                                                               CheeseCamera *camera,
                                                                const gchar  *x_resolution_key,
                                                                const gchar  *y_resolution_key,
                                                                unsigned int  max_x_resolution,

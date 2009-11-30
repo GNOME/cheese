@@ -26,10 +26,10 @@ typedef struct
   unsigned int max_x_resolution;
   unsigned int max_y_resolution;
   GtkListStore *list_store;
-  CheeseWebcam *webcam;
+  CheeseCamera *camera;
   CheeseVideoFormat *selected_format;
   gboolean has_been_synchronized;  /* Make sure we don't synchronize if client
-                                    * sets webcam on construction. */
+                                    * sets camera on construction. */
 } CheesePrefsResolutionComboPrivate;
 
 #define CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE(o)                     \
@@ -44,7 +44,7 @@ enum
   PROP_Y_RESOLUTION_KEY,
   PROP_MAX_X_RESOLUTION,
   PROP_MAX_Y_RESOLUTION,
-  PROP_WEBCAM
+  PROP_CAMERA
 };
 
 enum
@@ -66,7 +66,7 @@ cheese_prefs_resolution_combo_init (CheesePrefsResolutionCombo *self)
   priv->max_x_resolution      = G_MAXUINT;
   priv->max_y_resolution      = G_MAXUINT;
   priv->list_store            = gtk_list_store_new (NUM_COLS, G_TYPE_STRING, G_TYPE_POINTER);
-  priv->webcam                = NULL;
+  priv->camera                = NULL;
   priv->selected_format       = NULL;
   priv->has_been_synchronized = FALSE;
 }
@@ -133,10 +133,10 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
 
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
-  current_format = cheese_webcam_get_current_video_format (priv->webcam);
+  current_format = cheese_camera_get_current_video_format (priv->camera);
 
   gtk_list_store_clear (priv->list_store);
-  formats = cheese_webcam_get_video_formats (priv->webcam);
+  formats = cheese_camera_get_video_formats (priv->camera);
 
   for (i = 0; i < formats->len; i++)
   {
@@ -202,10 +202,10 @@ cheese_prefs_resolution_combo_set_property (GObject *object, guint prop_id,
     case PROP_MAX_Y_RESOLUTION:
       priv->max_y_resolution = g_value_get_uint (value);
       break;
-    case PROP_WEBCAM:
-      priv->webcam = CHEESE_WEBCAM (g_value_get_object (value));
+    case PROP_CAMERA:
+      priv->camera = CHEESE_CAMERA (g_value_get_object (value));
 
-      /* If the webcam changes the resolutions change too. But only change the
+      /* If the camera changes the resolutions change too. But only change the
        * data if we've been synchronized once already. If this property is set
        * on construction, we would synchronize twice--once when the property is
        * set, and again when the dialog syncs when it's created. */
@@ -241,8 +241,8 @@ cheese_prefs_resolution_combo_get_property (GObject *object, guint prop_id,
     case PROP_MAX_Y_RESOLUTION:
       g_value_set_uint (value, priv->max_y_resolution);
       break;
-    case PROP_WEBCAM:
-      g_value_set_object (value, priv->webcam);
+    case PROP_CAMERA:
+      g_value_set_object (value, priv->camera);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -300,16 +300,16 @@ cheese_prefs_resolution_combo_class_init (CheesePrefsResolutionComboClass *klass
                                                       G_PARAM_READABLE | G_PARAM_WRITABLE));
 
   g_object_class_install_property (object_class,
-                                   PROP_WEBCAM,
-                                   g_param_spec_object ("webcam",
+                                   PROP_CAMERA,
+                                   g_param_spec_object ("camera",
                                                         "",
-                                                        "Webcam object",
-                                                        CHEESE_TYPE_WEBCAM,
+                                                        "Camera object",
+                                                        CHEESE_TYPE_CAMERA,
                                                         G_PARAM_READABLE | G_PARAM_WRITABLE));
 }
 
 CheesePrefsResolutionCombo *
-cheese_prefs_resolution_combo_new (GtkWidget *combo_box, CheeseWebcam *webcam,
+cheese_prefs_resolution_combo_new (GtkWidget *combo_box, CheeseCamera *camera,
                                    const gchar *x_resolution_key,
                                    const gchar *y_resolution_key,
                                    unsigned int max_x_resolution,
@@ -321,7 +321,7 @@ cheese_prefs_resolution_combo_new (GtkWidget *combo_box, CheeseWebcam *webcam,
 
   self = g_object_new (CHEESE_TYPE_PREFS_RESOLUTION_COMBO,
                        "widget", combo_box,
-                       "webcam", webcam,
+                       "camera", camera,
                        "x_resolution_key", x_resolution_key,
                        "y_resolution_key", y_resolution_key,
                        NULL);

@@ -150,6 +150,7 @@ data/icons/48x48/actions/Makefile
 data/icons/scalable/actions/Makefile
 data/pixmaps/Makefile
 help/Makefile
+libcheese/Makefile
 src/Makefile
 po/Makefile.in
 ])

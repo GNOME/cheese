@@ -20,7 +20,7 @@
 #include <string.h>
 #include <glib.h>
 
-#include "cheese-webcam.h"
+#include <cheese-camera.h>
 #include "cheese-prefs-widget.h"
 #include "cheese-prefs-balance-scale.h"
 
@@ -31,16 +31,16 @@ enum
   PROP_0,
   PROP_PROPERTY_NAME,
   PROP_GCONF_KEY,
-  PROP_WEBCAM
+  PROP_CAMERA
 };
 
 typedef struct CheesePrefsBalanceScalePrivate
 {
-  CheeseWebcam *webcam;
+  CheeseCamera *camera;
   gchar *property_name;
   gchar *gconf_key;
   gboolean has_been_synchronized;  /* Make sure we don't synchronize if client
-                                    * sets webcam on construction. */
+                                    * sets camera on construction. */
 } CheesePrefsBalanceScalePrivate;
 
 #define CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE(o)                     \
@@ -77,7 +77,7 @@ cheese_prefs_balance_scale_value_changed (GtkRange *scale, CheesePrefsBalanceSca
   CheesePrefsBalanceScalePrivate *priv  = CHEESE_PREFS_BALANCE_SCALE_GET_PRIVATE (self);
   gdouble                         value = gtk_range_get_value (scale);
 
-  cheese_webcam_set_balance_property (priv->webcam, priv->property_name, value);
+  cheese_camera_set_balance_property (priv->camera, priv->property_name, value);
 
   g_object_set (CHEESE_PREFS_WIDGET (self)->gconf, priv->gconf_key, value, NULL);
 
@@ -97,7 +97,7 @@ cheese_prefs_balance_scale_synchronize (CheesePrefsWidget *prefs_widget)
 
   g_object_get (prefs_widget, "widget", &scale, NULL);
 
-  cheese_webcam_get_balance_property_range (priv->webcam,
+  cheese_camera_get_balance_property_range (priv->camera,
                                             priv->property_name, &min, &max, &def);
 
   adj = GTK_ADJUSTMENT (gtk_adjustment_new (def, min, max, (max - min) / STEPS, 0.0, 0.0));
@@ -132,8 +132,8 @@ cheese_prefs_balance_scale_set_property (GObject *object, guint prop_id,
     case PROP_GCONF_KEY:
       priv->gconf_key = g_value_dup_string (value);
       break;
-    case PROP_WEBCAM:
-      priv->webcam = CHEESE_WEBCAM (g_value_get_object (value));
+    case PROP_CAMERA:
+      priv->camera = CHEESE_CAMERA (g_value_get_object (value));
       if (priv->has_been_synchronized)
         cheese_prefs_balance_scale_synchronize (CHEESE_PREFS_WIDGET (object));
       break;
@@ -159,8 +159,8 @@ cheese_prefs_balance_scale_get_property (GObject *object, guint prop_id,
     case PROP_GCONF_KEY:
       g_value_set_string (value, priv->gconf_key);
       break;
-    case PROP_WEBCAM:
-      g_value_set_object (value, priv->webcam);
+    case PROP_CAMERA:
+      g_value_set_object (value, priv->camera);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -198,17 +198,17 @@ cheese_prefs_balance_scale_class_init (CheesePrefsBalanceScaleClass *klass)
                                                         G_PARAM_READABLE | G_PARAM_WRITABLE | G_PARAM_CONSTRUCT_ONLY));
 
   g_object_class_install_property (object_class,
-                                   PROP_WEBCAM,
-                                   g_param_spec_object ("webcam",
-                                                        "webcam",
-                                                        "Webcam object",
-                                                        CHEESE_TYPE_WEBCAM,
+                                   PROP_CAMERA,
+                                   g_param_spec_object ("camera",
+                                                        "camera",
+                                                        "Camera object",
+                                                        CHEESE_TYPE_CAMERA,
                                                         G_PARAM_READWRITE));
 }
 
 CheesePrefsBalanceScale *
 cheese_prefs_balance_scale_new (GtkWidget    *scale,
-                                CheeseWebcam *webcam,
+                                CheeseCamera *camera,
                                 const gchar  *property,
                                 const gchar  *gconf_key)
 {
@@ -217,7 +217,7 @@ cheese_prefs_balance_scale_new (GtkWidget    *scale,
 
   self = g_object_new (CHEESE_TYPE_PREFS_BALANCE_SCALE,
                        "widget", scale,
-                       "webcam", webcam,
+                       "camera", camera,
                        "property_name", property,
                        "gconf_key", gconf_key,
                        NULL);

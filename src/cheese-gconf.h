@@ -1,5 +1,5 @@
 /*
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
+ * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -43,7 +43,7 @@ enum
 {
   GCONF_PROP_0,
   GCONF_PROP_COUNTDOWN,
-  GCONF_PROP_WEBCAM,
+  GCONF_PROP_CAMERA,
   GCONF_PROP_SELECTED_EFFECTS,
   GCONF_PROP_X_RESOLUTION,
   GCONF_PROP_Y_RESOLUTION,

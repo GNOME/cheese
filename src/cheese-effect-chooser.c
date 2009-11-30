@@ -1,5 +1,5 @@
 /*
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
+ * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
@@ -28,8 +28,8 @@
 #include <gtk/gtk.h>
 #include <cairo.h>
 
+#include <cheese-camera.h>
 #include "cheese-effect-chooser.h"
-#include "cheese-webcam.h"
 
 #define BOARD_COLS  4
 #define BOARD_ROWS  3
@@ -50,36 +50,36 @@ typedef struct
 
 typedef struct
 {
-  CheeseWebcamEffect effect;
+  CheeseCameraEffect effect;
   char *name;
   char *filename;
   gboolean is_black;
 } GstEffect;
 
 static const GstEffect GST_EFFECT[] = {
-  {CHEESE_WEBCAM_EFFECT_NO_EFFECT,       N_("No Effect"),
+  {CHEESE_CAMERA_EFFECT_NO_EFFECT,       N_("No Effect"),
    PACKAGE_DATADIR "/effects/identity.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_MAUVE,           N_("Mauve"),
+  {CHEESE_CAMERA_EFFECT_MAUVE,           N_("Mauve"),
    PACKAGE_DATADIR "/effects/Mauve.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_NOIR_BLANC,      N_("Noir/Blanc"),
+  {CHEESE_CAMERA_EFFECT_NOIR_BLANC,      N_("Noir/Blanc"),
    PACKAGE_DATADIR "/effects/NoirBlanc.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_SATURATION,      N_("Saturation"),
+  {CHEESE_CAMERA_EFFECT_SATURATION,      N_("Saturation"),
    PACKAGE_DATADIR "/effects/Saturation.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_HULK,            N_("Hulk"),
+  {CHEESE_CAMERA_EFFECT_HULK,            N_("Hulk"),
    PACKAGE_DATADIR "/effects/Hulk.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_VERTICAL_FLIP,   N_("Vertical Flip"),
+  {CHEESE_CAMERA_EFFECT_VERTICAL_FLIP,   N_("Vertical Flip"),
    PACKAGE_DATADIR "/effects/videoflip_v.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_HORIZONTAL_FLIP, N_("Horizontal Flip"),
+  {CHEESE_CAMERA_EFFECT_HORIZONTAL_FLIP, N_("Horizontal Flip"),
    PACKAGE_DATADIR "/effects/videoflip_h.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_SHAGADELIC,      N_("Shagadelic"),
+  {CHEESE_CAMERA_EFFECT_SHAGADELIC,      N_("Shagadelic"),
    PACKAGE_DATADIR "/effects/shagadelictv.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_VERTIGO,         N_("Vertigo"),
+  {CHEESE_CAMERA_EFFECT_VERTIGO,         N_("Vertigo"),
    PACKAGE_DATADIR "/effects/vertigotv.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_EDGE,            N_("Edge"),
+  {CHEESE_CAMERA_EFFECT_EDGE,            N_("Edge"),
    PACKAGE_DATADIR "/effects/edgetv.png", TRUE},
-  {CHEESE_WEBCAM_EFFECT_DICE,            N_("Dice"),
+  {CHEESE_CAMERA_EFFECT_DICE,            N_("Dice"),
    PACKAGE_DATADIR "/effects/dicetv.png", FALSE},
-  {CHEESE_WEBCAM_EFFECT_WARP,            N_("Warp"),
+  {CHEESE_CAMERA_EFFECT_WARP,            N_("Warp"),
    PACKAGE_DATADIR "/effects/warptv.png", FALSE}
 };
 
@@ -253,13 +253,13 @@ cheese_effect_chooser_button_press_event_cb (GtkWidget *widget, GdkEventButton *
   return TRUE;
 }
 
-CheeseWebcamEffect
+CheeseCameraEffect
 cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser)
 {
   CheeseEffectChooserPrivate *priv = CHEESE_EFFECT_CHOOSER_GET_PRIVATE (effect_chooser);
 
   int                i;
-  CheeseWebcamEffect effect = 0;
+  CheeseCameraEffect effect = 0;
 
   for (i = 0; i < NUM_EFFECTS; i++)
   {

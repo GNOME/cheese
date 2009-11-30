@@ -21,8 +21,8 @@
 #define _CHEESE_PREFS_BURST_SPINBOX_H_
 
 #include <glib-object.h>
+#include <cheese-camera.h>
 #include "cheese-prefs-widget.h"
-#include "cheese-webcam.h"
 
 G_BEGIN_DECLS
 

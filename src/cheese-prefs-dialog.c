@@ -24,7 +24,7 @@ typedef struct
 {
   GtkWidget *cheese_prefs_dialog;
   GtkWidget *resolution_combo_box;
-  GtkWidget *webcam_combo_box;
+  GtkWidget *camera_combo_box;
   GtkWidget *brightness_scale;
   GtkWidget *contrast_scale;
   GtkWidget *saturation_scale;
@@ -33,7 +33,7 @@ typedef struct
   GtkWidget *burst_delay;
 
   GtkWidget *parent;
-  CheeseWebcam *webcam;
+  CheeseCamera *camera;
 
   CheesePrefsDialogWidgets *widgets;
 } CheesePrefsDialog;
@@ -58,8 +58,8 @@ cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
                                                                           "cheese_prefs_dialog"));
   prefs_dialog->resolution_combo_box = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                            "resolution_combo_box"));
-  prefs_dialog->webcam_combo_box = GTK_WIDGET (gtk_builder_get_object (builder,
-                                                                       "webcam_combo_box"));
+  prefs_dialog->camera_combo_box = GTK_WIDGET (gtk_builder_get_object (builder,
+                                                                       "camera_combo_box"));
   prefs_dialog->brightness_scale = GTK_WIDGET (gtk_builder_get_object (builder,
                                                                        "brightness_scale"));
   prefs_dialog->contrast_scale = GTK_WIDGET (gtk_builder_get_object (builder,
@@ -79,38 +79,38 @@ cheese_prefs_dialog_create_dialog (CheesePrefsDialog *prefs_dialog)
 static void
 cheese_prefs_dialog_on_resolution_changed (CheesePrefsWidget *widget, gpointer user_data)
 {
-  CheeseWebcam      *webcam;
+  CheeseCamera      *camera;
   CheeseVideoFormat *current_format;
   CheeseVideoFormat *new_format;
 
-  g_object_get (widget, "webcam", &webcam, NULL);
+  g_object_get (widget, "camera", &camera, NULL);
 
-  current_format = cheese_webcam_get_current_video_format (webcam);
+  current_format = cheese_camera_get_current_video_format (camera);
   new_format     = cheese_prefs_resolution_combo_get_selected_format (CHEESE_PREFS_RESOLUTION_COMBO (widget));
 
   if (new_format != current_format)
-    cheese_webcam_set_video_format (webcam, new_format);
+    cheese_camera_set_video_format (camera, new_format);
 }
 
 static void
 cheese_prefs_dialog_on_device_changed (CheesePrefsWidget *widget, CheesePrefsDialog *prefs_dialog)
 {
-  CheeseWebcam *webcam;
+  CheeseCamera *camera;
   char         *new_device_name;
   char         *old_device_name;
 
-  g_object_get (widget, "webcam", &webcam, NULL);
-  g_object_get (webcam, "device_name", &old_device_name, NULL);
+  g_object_get (widget, "camera", &camera, NULL);
+  g_object_get (camera, "device_name", &old_device_name, NULL);
 
-  new_device_name = cheese_prefs_webcam_combo_get_selected_webcam (CHEESE_PREFS_WEBCAM_COMBO (widget));
-  g_object_set (webcam, "device_name", new_device_name, NULL);
+  new_device_name = cheese_prefs_camera_combo_get_selected_camera (CHEESE_PREFS_CAMERA_COMBO (widget));
+  g_object_set (camera, "device_name", new_device_name, NULL);
   g_free (new_device_name);
-  if (!cheese_webcam_switch_webcam_device (webcam))
+  if (!cheese_camera_switch_camera_device (camera))
   {
-    g_warning ("Couldn't change webcam device.");
+    g_warning ("Couldn't change camera device.");
 
     /* Revert to default device */
-    g_object_set (webcam, "device_name", old_device_name, NULL);
+    g_object_set (camera, "device_name", old_device_name, NULL);
   }
   cheese_prefs_dialog_widgets_synchronize (prefs_dialog->widgets);
   g_free (old_device_name);
@@ -120,7 +120,7 @@ static void
 cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
 {
   CheesePrefsWidget *resolution_widget;
-  CheesePrefsWidget *webcam_widget;
+  CheesePrefsWidget *camera_widget;
   CheesePrefsWidget *brightness_widget;
   CheesePrefsWidget *contrast_widget;
   CheesePrefsWidget *saturation_widget;
@@ -129,7 +129,7 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
   CheesePrefsWidget *burst_repeat_widget;
 
   resolution_widget = CHEESE_PREFS_WIDGET (cheese_prefs_resolution_combo_new (prefs_dialog->resolution_combo_box,
-                                                                              prefs_dialog->webcam,
+                                                                              prefs_dialog->camera,
                                                                               "gconf_prop_x_resolution",
                                                                               "gconf_prop_y_resolution",
                                                                               0, 0));
@@ -138,35 +138,35 @@ cheese_prefs_dialog_setup_widgets (CheesePrefsDialog *prefs_dialog)
                     NULL);
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, resolution_widget);
 
-  webcam_widget = CHEESE_PREFS_WIDGET (cheese_prefs_webcam_combo_new (prefs_dialog->webcam_combo_box,
-                                                                      prefs_dialog->webcam,
-                                                                      "gconf_prop_webcam"));
+  camera_widget = CHEESE_PREFS_WIDGET (cheese_prefs_camera_combo_new (prefs_dialog->camera_combo_box,
+                                                                      prefs_dialog->camera,
+                                                                      "gconf_prop_camera"));
 
-  g_signal_connect (G_OBJECT (webcam_widget), "changed",
+  g_signal_connect (G_OBJECT (camera_widget), "changed",
                     G_CALLBACK (cheese_prefs_dialog_on_device_changed),
                     prefs_dialog);
-  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, webcam_widget);
+  cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, camera_widget);
 
   brightness_widget = CHEESE_PREFS_WIDGET (cheese_prefs_balance_scale_new (prefs_dialog->brightness_scale,
-                                                                           prefs_dialog->webcam, "brightness",
+                                                                           prefs_dialog->camera, "brightness",
                                                                            "gconf_prop_brightness"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, brightness_widget);
 
   contrast_widget = CHEESE_PREFS_WIDGET (cheese_prefs_balance_scale_new (prefs_dialog->contrast_scale,
-                                                                         prefs_dialog->webcam, "contrast",
+                                                                         prefs_dialog->camera, "contrast",
                                                                          "gconf_prop_contrast"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, contrast_widget);
 
   saturation_widget = CHEESE_PREFS_WIDGET (cheese_prefs_balance_scale_new (prefs_dialog->saturation_scale,
-                                                                           prefs_dialog->webcam, "saturation",
+                                                                           prefs_dialog->camera, "saturation",
                                                                            "gconf_prop_saturation"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, saturation_widget);
 
   hue_widget = CHEESE_PREFS_WIDGET (cheese_prefs_balance_scale_new (prefs_dialog->hue_scale,
-                                                                    prefs_dialog->webcam, "hue",
+                                                                    prefs_dialog->camera, "hue",
                                                                     "gconf_prop_hue"));
 
   cheese_prefs_dialog_widgets_add (prefs_dialog->widgets, hue_widget);
@@ -196,14 +196,14 @@ cheese_prefs_dialog_destroy_dialog (CheesePrefsDialog *prefs_dialog)
 }
 
 void
-cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseWebcam *webcam)
+cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseCamera *camera)
 {
   CheesePrefsDialog *prefs_dialog;
 
   prefs_dialog = g_new0 (CheesePrefsDialog, 1);
 
   prefs_dialog->parent  = parent;
-  prefs_dialog->webcam  = webcam;
+  prefs_dialog->camera  = camera;
   prefs_dialog->widgets = cheese_prefs_dialog_widgets_new (gconf);
 
   cheese_prefs_dialog_create_dialog (prefs_dialog);

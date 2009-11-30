@@ -1,5 +1,5 @@
 /*
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
+ * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
@@ -22,7 +22,7 @@
 #define __CHEESE_EFFECT_CHOOSER_H__
 
 #include <gtk/gtk.h>
-#include "cheese-webcam.h"
+#include <cheese-camera.h>
 
 G_BEGIN_DECLS
 
@@ -50,7 +50,7 @@ typedef struct
 GType      cheese_effect_chooser_get_type (void);
 GtkWidget *cheese_effect_chooser_new (char *selected_effects);
 
-CheeseWebcamEffect cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser);
+CheeseCameraEffect cheese_effect_chooser_get_selection (CheeseEffectChooser *effect_chooser);
 char *             cheese_effect_chooser_get_selection_string (CheeseEffectChooser *effect_chooser);
 void               cheese_effect_chooser_unselect_all (CheeseEffectChooser *effect_chooser);
 

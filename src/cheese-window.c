@@ -1,5 +1,5 @@
 /*
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
+ * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2008 Patryk Zawadzki <patrys@pld-linux.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
@@ -64,10 +64,10 @@
 
 typedef enum
 {
-  WEBCAM_MODE_PHOTO,
-  WEBCAM_MODE_VIDEO,
-  WEBCAM_MODE_BURST
-} WebcamMode;
+  CAMERA_MODE_PHOTO,
+  CAMERA_MODE_VIDEO,
+  CAMERA_MODE_BURST
+} CameraMode;
 
 typedef enum
 {
@@ -90,8 +90,8 @@ typedef struct
   char *startup_hal_dev_udi;
   char *video_filename;
 
-  CheeseWebcam *webcam;
-  WebcamMode webcam_mode;
+  CheeseCamera *camera;
+  CameraMode camera_mode;
   CheeseGConf *gconf;
   CheeseFileUtil *fileutil;
 
@@ -446,7 +446,7 @@ cheese_window_fullscreen_leave_notify_cb (GtkWidget        *widget,
 }
 
 static void
-cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
+cheese_window_photo_saved_cb (CheeseCamera *camera, CheeseWindow *cheese_window)
 {
   gdk_threads_enter ();
   if (!cheese_window->is_bursting)
@@ -461,7 +461,7 @@ cheese_window_photo_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 }
 
 static void
-cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
+cheese_window_video_saved_cb (CheeseCamera *camera, CheeseWindow *cheese_window)
 {
   gdk_threads_enter ();
 
@@ -478,7 +478,7 @@ cheese_window_video_saved_cb (CheeseWebcam *webcam, CheeseWindow *cheese_window)
 static void
 cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
 {
-  g_object_unref (cheese_window->webcam);
+  g_object_unref (cheese_window->camera);
   g_object_unref (cheese_window->actions_main);
   g_object_unref (cheese_window->actions_account_photo);
   g_object_unref (cheese_window->actions_countdown);
@@ -1206,11 +1206,11 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Effects"));
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
-    if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
+    if (cheese_window->camera_mode == CAMERA_MODE_PHOTO)
     {
       gtk_action_group_set_sensitive (cheese_window->actions_photo, TRUE);
     }
-    else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+    else if (cheese_window->camera_mode == CAMERA_MODE_BURST)
     {
       gtk_action_group_set_sensitive (cheese_window->actions_burst, TRUE);
     }
@@ -1218,7 +1218,7 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
     {
       gtk_action_group_set_sensitive (cheese_window->actions_video, TRUE);
     }
-    cheese_webcam_set_effect (cheese_window->webcam,
+    cheese_camera_set_effect (cheese_window->camera,
                               cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
     g_object_set (cheese_window->gconf, "gconf_prop_selected_effects",
                   cheese_effect_chooser_get_selection_string (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)),
@@ -1250,7 +1250,7 @@ cheese_window_countdown_picture_cb (gpointer data)
   CheeseWindow *cheese_window = (CheeseWindow *) data;
   char         *photo_filename;
 
-  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  if (cheese_window->camera_mode == CAMERA_MODE_BURST)
   {
     photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, CHEESE_MEDIA_MODE_BURST);
   }
@@ -1259,7 +1259,7 @@ cheese_window_countdown_picture_cb (gpointer data)
     photo_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil, CHEESE_MEDIA_MODE_PHOTO);
   }
 
-  if (cheese_webcam_take_photo (cheese_window->webcam, photo_filename))
+  if (cheese_camera_take_photo (cheese_window->camera, photo_filename))
   {
     cheese_flash_fire (cheese_window->flash);
     ca_gtk_play_for_widget (cheese_window->screen, 0,
@@ -1313,7 +1313,7 @@ cheese_window_stop_recording (CheeseWindow *cheese_window)
     gtk_image_set_from_stock (GTK_IMAGE (cheese_window->image_take_photo_fullscreen),
                               GTK_STOCK_MEDIA_RECORD, GTK_ICON_SIZE_BUTTON);
 
-    cheese_webcam_stop_video_recording (cheese_window->webcam);
+    cheese_camera_stop_video_recording (cheese_window->camera);
     cheese_window->recording = FALSE;
   }
 }
@@ -1336,7 +1336,7 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
   cheese_countdown_cancel ((CheeseCountdown *) cheese_window->countdown);
   cheese_countdown_cancel ((CheeseCountdown *) cheese_window->countdown_fullscreen);
 
-  if (cheese_window->webcam_mode == WEBCAM_MODE_PHOTO)
+  if (cheese_window->camera_mode == CAMERA_MODE_PHOTO)
   {
     gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook_bar), 0);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->fullscreen_bar), 0);
@@ -1344,7 +1344,7 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
   }
-  else if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  else if (cheese_window->camera_mode == CAMERA_MODE_BURST)
   {
     cheese_window->repeat_count = 0;
     cheese_window->is_bursting  = FALSE;
@@ -1372,7 +1372,7 @@ cheese_window_take_photo (gpointer data)
   CheeseWindow *cheese_window = (CheeseWindow *) data;
 
   /* return if burst mode was cancelled */
-  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST &&
+  if (cheese_window->camera_mode == CAMERA_MODE_BURST &&
       !cheese_window->is_bursting && cheese_window->repeat_count <= 0)
   {
     return FALSE;
@@ -1413,7 +1413,7 @@ cheese_window_take_photo (gpointer data)
   gtk_widget_set_sensitive (cheese_window->take_picture, FALSE);
   gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, FALSE);
 
-  if (cheese_window->webcam_mode == WEBCAM_MODE_BURST)
+  if (cheese_window->camera_mode == CAMERA_MODE_BURST)
   {
     guint    repeat_delay = 1000;
     gboolean countdown    = FALSE;
@@ -1450,9 +1450,9 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
 {
   char *str;
 
-  switch (cheese_window->webcam_mode)
+  switch (cheese_window->camera_mode)
   {
-    case WEBCAM_MODE_BURST:
+    case CAMERA_MODE_BURST:
 
       /* ignore keybindings and other while bursting */
       if (cheese_window->is_bursting)
@@ -1463,10 +1463,10 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
       gtk_action_group_set_sensitive (cheese_window->actions_toggle, FALSE);
       g_object_get (cheese_window->gconf, "gconf_prop_burst_repeat", &cheese_window->repeat_count, NULL); /* reset burst counter */
       cheese_fileutil_reset_burst (cheese_window->fileutil); /* reset filename counter */
-    case WEBCAM_MODE_PHOTO:
+    case CAMERA_MODE_PHOTO:
       cheese_window_take_photo (cheese_window);
       break;
-    case WEBCAM_MODE_VIDEO:
+    case CAMERA_MODE_VIDEO:
       if (!cheese_window->recording)
       {
         gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
@@ -1483,8 +1483,8 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
                                   GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
 
         cheese_window->video_filename = cheese_fileutil_get_new_media_filename (cheese_window->fileutil,
-                                                                                WEBCAM_MODE_VIDEO);
-        cheese_webcam_start_video_recording (cheese_window->webcam, cheese_window->video_filename);
+                                                                                CAMERA_MODE_VIDEO);
+        cheese_camera_start_video_recording (cheese_window->camera, cheese_window->video_filename);
 
         cheese_window->recording = TRUE;
       }
@@ -1503,7 +1503,7 @@ static void
 cheese_window_preferences_cb (GtkAction *action, CheeseWindow *cheese_window)
 {
   cheese_prefs_dialog_run (cheese_window->window, cheese_window->gconf,
-                           cheese_window->webcam);
+                           cheese_window->camera);
 }
 
 static const GtkActionEntry action_entries_main[] = {
@@ -1597,7 +1597,7 @@ cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current,
 
   if (strcmp (gtk_action_get_name (GTK_ACTION (current)), "Photo") == 0)
   {
-    cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
+    cheese_window->camera_mode = CAMERA_MODE_PHOTO;
 
     str = g_strconcat ("<b>", _("_Take a Photo"), "</b>", NULL);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), g_strdup (str));
@@ -1610,7 +1610,7 @@ cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current,
   }
   else if (strcmp (gtk_action_get_name (GTK_ACTION (current)), "Burst") == 0)
   {
-    cheese_window->webcam_mode = WEBCAM_MODE_BURST;
+    cheese_window->camera_mode = CAMERA_MODE_BURST;
 
     str = g_strconcat ("<b>", _("_Take multiple Photos"), "</b>", NULL);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), g_strdup (str));
@@ -1623,7 +1623,7 @@ cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current,
   }
   else
   {
-    cheese_window->webcam_mode = WEBCAM_MODE_VIDEO;
+    cheese_window->camera_mode = CAMERA_MODE_VIDEO;
 
     str = g_strconcat ("<b>", _("_Start recording"), "</b>", NULL);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_take_photo), g_strdup (str));
@@ -2007,7 +2007,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 void
 setup_camera (CheeseWindow *cheese_window)
 {
-  char      *webcam_device = NULL;
+  char      *camera_device = NULL;
   int        x_resolution;
   int        y_resolution;
   gdouble    brightness;
@@ -2021,7 +2021,7 @@ setup_camera (CheeseWindow *cheese_window)
   g_object_get (cheese_window->gconf,
                 "gconf_prop_x_resolution", &x_resolution,
                 "gconf_prop_y_resolution", &y_resolution,
-                "gconf_prop_webcam", &webcam_device,
+                "gconf_prop_camera", &camera_device,
                 "gconf_prop_brightness", &brightness,
                 "gconf_prop_contrast", &contrast,
                 "gconf_prop_saturation", &saturation,
@@ -2029,15 +2029,15 @@ setup_camera (CheeseWindow *cheese_window)
                 NULL);
 
   gdk_threads_enter ();
-  cheese_window->webcam = cheese_webcam_new (cheese_window->screen,
-                                             webcam_device, x_resolution,
+  cheese_window->camera = cheese_camera_new (cheese_window->screen,
+                                             camera_device, x_resolution,
                                              y_resolution);
   gdk_threads_leave ();
 
-  g_free (webcam_device);
+  g_free (camera_device);
 
   error = NULL;
-  cheese_webcam_setup (cheese_window->webcam, cheese_window->startup_hal_dev_udi, &error);
+  cheese_camera_setup (cheese_window->camera, cheese_window->startup_hal_dev_udi, &error);
   if (error != NULL)
   {
     GtkWidget *dialog;
@@ -2069,24 +2069,24 @@ setup_camera (CheeseWindow *cheese_window)
     return;
   }
 
-  g_signal_connect (cheese_window->webcam, "photo-saved",
+  g_signal_connect (cheese_window->camera, "photo-saved",
                     G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);
-  g_signal_connect (cheese_window->webcam, "video-saved",
+  g_signal_connect (cheese_window->camera, "video-saved",
                     G_CALLBACK (cheese_window_video_saved_cb), cheese_window);
 
-  cheese_webcam_set_effect (cheese_window->webcam,
+  cheese_camera_set_effect (cheese_window->camera,
                             cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (cheese_window->effect_chooser)));
 
-  cheese_webcam_set_balance_property (cheese_window->webcam, "brightness", brightness);
-  cheese_webcam_set_balance_property (cheese_window->webcam, "contrast", contrast);
-  cheese_webcam_set_balance_property (cheese_window->webcam, "saturation", saturation);
-  cheese_webcam_set_balance_property (cheese_window->webcam, "hue", hue);
+  cheese_camera_set_balance_property (cheese_window->camera, "brightness", brightness);
+  cheese_camera_set_balance_property (cheese_window->camera, "contrast", contrast);
+  cheese_camera_set_balance_property (cheese_window->camera, "saturation", saturation);
+  cheese_camera_set_balance_property (cheese_window->camera, "hue", hue);
 
-  cheese_webcam_play (cheese_window->webcam);
+  cheese_camera_play (cheese_window->camera);
   gdk_threads_enter ();
   gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 0);
   ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
-  if (cheese_webcam_get_num_webcam_devices (cheese_window->webcam) == 0)
+  if (cheese_camera_get_num_camera_devices (cheese_window->camera) == 0)
   {
     info_bar = cheese_no_camera_info_bar_new ();
 
@@ -2133,7 +2133,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 2);
 
-  cheese_window->webcam_mode = WEBCAM_MODE_PHOTO;
+  cheese_window->camera_mode = CAMERA_MODE_PHOTO;
   cheese_window->recording   = FALSE;
 
   g_object_get (cheese_window->gconf,
