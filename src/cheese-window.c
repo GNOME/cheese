@@ -40,10 +40,6 @@
 #include <libebook/e-book.h>
 #include <canberra-gtk.h>
 
-#ifdef HAVE_MMKEYS
-  #include <X11/XF86keysym.h>
-#endif /* HAVE_MMKEYS */
-
 #include "cheese-countdown.h"
 #include "cheese-effect-chooser.h"
 #include "cheese-fileutil.h"
@@ -202,9 +198,6 @@ cheese_window_delete_event_cb (GtkWidget *widget, GdkEvent event, gpointer data)
 static gboolean
 cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWindow *cheese_window)
 {
-#ifndef HAVE_MMKEYS
-  return FALSE;
-#else
   /* If we have modifiers, and either Ctrl, Mod1 (Alt), or any
    * of Mod3 to Mod5 (Mod2 is num-lock...) are pressed, we
    * let Gtk+ handle the key */
@@ -218,7 +211,7 @@ cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWind
 
   switch (event->keyval)
   {
-    case XF86XK_WebCam:
+    case GDK_WebCam:
 
       /* do stuff */
       cheese_window_action_button_clicked_cb (NULL, cheese_window);
@@ -226,7 +219,6 @@ cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWind
   }
 
   return FALSE;
-#endif /* !HAVE_MMKEYS */
 }
 
 static void
