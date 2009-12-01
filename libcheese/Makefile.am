@@ -9,10 +9,10 @@ INCLUDES = \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	$(CHEESE_CFLAGS)
 
-lib_LTLIBRARIES = libcheese.la
+lib_LTLIBRARIES = libcheese-gtk.la
 noinst_LTLIBRARIES = libcheesecommon.la
 
-libcheese_la_CFLAGS = $(CHEESE_CFLAGS)
+libcheese_gtk_la_CFLAGS = $(CHEESE_CFLAGS)
 
 libcheesecommon_la_SOURCES = \
 	cheese-gconf.c \
@@ -24,7 +24,7 @@ libcheesecommon_la_SOURCES = \
 	cheese-flash.h \
 	cheese-flash.c
 
-libcheese_la_SOURCES = \
+libcheese_gtk_la_SOURCES = \
 	cheese-widget.c \
 	cheese-widget.h \
 	$(NULL)
@@ -32,11 +32,11 @@ libcheese_la_SOURCES = \
 # FIXME when we have a .pc file, and sonames
 # include_HEADERS = cheese-widget.h
 
-libcheese_la_LIBADD = \
+libcheese_gtk_la_LIBADD = \
 	libcheesecommon.la \
 	$(CHEESE_LIBS)
 
 noinst_PROGRAMS = cheese-test-widget
 cheese_test_widget_SOURCES = cheese-test-widget.c
-cheese_test_widget_LDADD = $(CHEESE_LIBS) libcheese.la libcheesecommon.la
+cheese_test_widget_LDADD = $(CHEESE_LIBS) libcheese-gtk.la libcheesecommon.la
 
