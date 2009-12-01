@@ -53,10 +53,8 @@ cheese_SOURCES = \
 	cheese-prefs-burst-spinbox.h \
 	cheese-prefs-burst-spinbox.c
 
-cheese_LDFLAGS = \
-	-L@top_srcdir@/libcheese -lcheese
-
 cheese_LDADD = \
+	$(top_builddir)/libcheese/libcheese.la \
 	$(CHEESE_LIBS)
 
 #dbus
