@@ -1,4 +1,4 @@
-libcheese_la_CFLAGS = \
+INCLUDES = \
 	-DDATADIR=\"$(datadir)\" \
 	-DPREFIX=\""$(prefix)"\" \
 	-DSYSCONFDIR=\""$(sysconfdir)"\" \
@@ -10,14 +10,33 @@ libcheese_la_CFLAGS = \
 	$(CHEESE_CFLAGS)
 
 lib_LTLIBRARIES = libcheese.la
+noinst_LTLIBRARIES = libcheesecommon.la
 
 libcheese_la_CFLAGS = $(CHEESE_CFLAGS)
 
-libcheese_la_SOURCES = \
+libcheesecommon_la_SOURCES = \
+	cheese-gconf.c \
+	cheese-gconf.h \
+	cheese-fileutil.c \
+	cheese-fileutil.h \
 	cheese-camera.c \
+	cheese-camera.h \
+	cheese-flash.h \
+	cheese-flash.c
+
+libcheese_la_SOURCES = \
+	cheese-widget.c \
+	cheese-widget.h \
 	$(NULL)
 
-include_HEADERS = cheese-camera.h
+# FIXME when we have a .pc file, and sonames
+# include_HEADERS = cheese-widget.h
 
 libcheese_la_LIBADD = \
+	libcheesecommon.la \
 	$(CHEESE_LIBS)
+
+noinst_PROGRAMS = cheese-test-widget
+cheese_test_widget_SOURCES = cheese-test-widget.c
+cheese_test_widget_LDADD = $(CHEESE_LIBS) libcheese.la libcheesecommon.la
+

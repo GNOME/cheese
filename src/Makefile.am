@@ -22,10 +22,6 @@ cheese_SOURCES = \
 	cheese-dbus.h \
 	cheese-effect-chooser.c \
 	cheese-effect-chooser.h \
-	cheese-fileutil.c \
-	cheese-fileutil.h \
-	cheese-gconf.c \
-	cheese-gconf.h \
 	cheese-thumb-view.c \
 	cheese-thumb-view.h \
 	cheese-window.c \
@@ -46,15 +42,13 @@ cheese_SOURCES = \
 	cheese-prefs-balance-scale.h \
 	cheese-prefs-dialog.c \
 	cheese-prefs-dialog.h \
-	cheese-flash.h \
-	cheese-flash.c \
 	cheese-prefs-camera-combo.c \
 	cheese-prefs-camera-combo.h \
 	cheese-prefs-burst-spinbox.h \
 	cheese-prefs-burst-spinbox.c
 
 cheese_LDADD = \
-	$(top_builddir)/libcheese/libcheese.la \
+	$(top_builddir)/libcheese/libcheesecommon.la \
 	$(CHEESE_LIBS)
 
 #dbus
