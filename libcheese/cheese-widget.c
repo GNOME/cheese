@@ -167,7 +167,7 @@ setup_camera (CheeseWidget *widget)
   g_object_get (priv->gconf,
                 "gconf_prop_x_resolution", &x_resolution,
                 "gconf_prop_y_resolution", &y_resolution,
-                "gconf_prop_webcam", &webcam_device,
+                "gconf_prop_camera", &webcam_device,
                 "gconf_prop_brightness", &brightness,
                 "gconf_prop_contrast", &contrast,
                 "gconf_prop_saturation", &saturation,
