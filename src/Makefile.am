@@ -34,8 +34,6 @@ cheese_SOURCES = \
 	eog-thumbnail.h \
 	eog-thumb-nav.c \
 	eog-thumb-nav.h \
-	ephy-spinner.c \
-	ephy-spinner.h \
 	cheese-no-camera.c \
 	cheese-no-camera.h \
 	cheese-prefs-widget.h \

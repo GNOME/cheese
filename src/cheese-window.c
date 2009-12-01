@@ -51,7 +51,6 @@
 #include "cheese-thumb-view.h"
 #include "eog-thumb-nav.h"
 #include "cheese-window.h"
-#include "ephy-spinner.h"
 #include "cheese-no-camera.h"
 #include "cheese-prefs-dialog.h"
 #include "cheese-flash.h"
@@ -1806,8 +1805,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
   g_free (gconf_effects);
 
-  cheese_window->throbber = ephy_spinner_new ();
-  ephy_spinner_set_size (EPHY_SPINNER (cheese_window->throbber), GTK_ICON_SIZE_DIALOG);
+  cheese_window->throbber = gtk_spinner_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->throbber_frame), cheese_window->throbber);
   gtk_widget_show (cheese_window->throbber);
 
@@ -2085,7 +2083,7 @@ setup_camera (CheeseWindow *cheese_window)
   cheese_camera_play (cheese_window->camera);
   gdk_threads_enter ();
   gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 0);
-  ephy_spinner_stop (EPHY_SPINNER (cheese_window->throbber));
+  gtk_spinner_stop (GTK_SPINNER (cheese_window->throbber));
   if (cheese_camera_get_num_camera_devices (cheese_window->camera) == 0)
   {
     info_bar = cheese_no_camera_info_bar_new ();
@@ -2129,7 +2127,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
   cheese_window_create_window (cheese_window);
   gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
 
-  ephy_spinner_start (EPHY_SPINNER (cheese_window->throbber));
+  gtk_spinner_start (GTK_SPINNER (cheese_window->throbber));
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 2);
 
