@@ -133,6 +133,30 @@ cheese_widget_logo_expose (GtkWidget *w,
 }
 
 static void
+cheese_widget_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
+{
+  GtkStyle *style;
+  guint i;
+
+  for (i = GTK_STATE_NORMAL; i <= GTK_STATE_INSENSITIVE; i++) {
+    GdkColor *fg, *bg;
+
+    style = gtk_widget_get_style (spinner);
+    fg = gdk_color_copy (&style->fg[i]);
+    bg = gdk_color_copy (&style->bg[i]);
+
+    gtk_widget_modify_fg (spinner, i, bg);
+    gtk_widget_modify_bg (spinner, i, fg);
+
+    gtk_widget_modify_fg (parent, i, bg);
+    gtk_widget_modify_bg (parent, i, fg);
+
+    gdk_color_free (fg);
+    gdk_color_free (bg);
+  }
+}
+
+static void
 cheese_widget_set_problem_page (CheeseWidget *widget,
 				const char *icon_name)
 {
@@ -140,7 +164,7 @@ cheese_widget_set_problem_page (CheeseWidget *widget,
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), PROBLEM_PAGE);
   g_object_set_data_full (G_OBJECT (priv->problem),
-  			  "icon-name", g_strdup (icon_name), g_free);
+			  "icon-name", g_strdup (icon_name), g_free);
   g_signal_connect (priv->problem, "expose-event",
                     G_CALLBACK (cheese_widget_logo_expose), widget);
 }
@@ -149,21 +173,29 @@ static void
 cheese_widget_init (CheeseWidget *widget)
 {
   CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
-
-  priv->spinner = gtk_spinner_new ();
+  GtkWidget *box;
 
   /* XXX
    * remove this line if you want to debug */
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (widget), FALSE);
   gtk_notebook_set_show_border (GTK_NOTEBOOK (widget), FALSE);
 
-  gtk_notebook_append_page (GTK_NOTEBOOK (widget),
-  			    priv->spinner, gtk_label_new ("spinner"));
+  /* Spinner page */
+  priv->spinner = gtk_spinner_new ();
+  box = gtk_event_box_new ();
+  gtk_container_add (GTK_CONTAINER (box), priv->spinner);
+  cheese_widget_spinner_invert (priv->spinner, box);
+  gtk_widget_show_all (box);
 
+  gtk_notebook_append_page (GTK_NOTEBOOK (widget),
+			    box, gtk_label_new ("spinner"));
+
+  /* Webcam page */
   priv->screen = gtk_drawing_area_new ();
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
   			    priv->screen, gtk_label_new ("webcam"));
 
+  /* Problem page */
   priv->problem = gtk_drawing_area_new ();
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
 			    priv->problem,
