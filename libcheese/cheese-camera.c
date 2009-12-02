@@ -110,6 +110,7 @@ enum
 enum
 {
   PHOTO_SAVED,
+  PHOTO_TAKEN,
   VIDEO_SAVED,
   LAST_SIGNAL
 };
@@ -244,14 +245,22 @@ cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
                                      FALSE, bits_per_pixel, width, height, stride,
                                      NULL, NULL);
 
-  gdk_pixbuf_save (pixbuf, priv->photo_filename, "jpeg", NULL, NULL);
-  g_object_unref (G_OBJECT (pixbuf));
-
   g_signal_handler_disconnect (G_OBJECT (priv->photo_sink),
-                               priv->photo_handler_signal_id);
+			       priv->photo_handler_signal_id);
   priv->photo_handler_signal_id = 0;
 
-  g_signal_emit (camera, camera_signals[PHOTO_SAVED], 0);
+  if (priv->photo_filename != NULL) {
+    gdk_pixbuf_save (pixbuf, priv->photo_filename, "jpeg", NULL, NULL);
+    g_object_unref (G_OBJECT (pixbuf));
+
+    g_free (priv->photo_filename);
+    priv->photo_filename = NULL;
+
+    g_signal_emit (camera, camera_signals[PHOTO_SAVED], 0);
+  } else {
+    g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0, pixbuf);
+    g_object_unref (pixbuf);
+  }
 }
 
 static void
@@ -1435,6 +1444,25 @@ cheese_camera_take_photo (CheeseCamera *camera, char *filename)
   return TRUE;
 }
 
+gboolean
+cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+
+  if (priv->photo_handler_signal_id != 0)
+  {
+    g_print ("Still waiting for previous photo data, ignoring new request\n");
+    return FALSE;
+  }
+
+  /* Take the photo by connecting the handoff signal */
+  priv->photo_handler_signal_id = g_signal_connect (G_OBJECT (priv->photo_sink),
+                                                    "handoff",
+                                                    G_CALLBACK (cheese_camera_photo_data_cb),
+                                                    camera);
+  return TRUE;
+}
+
 static void
 cheese_camera_finalize (GObject *object)
 {
@@ -1552,6 +1580,13 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               NULL, NULL,
                                               g_cclosure_marshal_VOID__VOID,
                                               G_TYPE_NONE, 0);
+
+  camera_signals[PHOTO_TAKEN] = g_signal_new ("photo-taken", G_OBJECT_CLASS_TYPE (klass),
+                                              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                              G_STRUCT_OFFSET (CheeseCameraClass, photo_taken),
+                                              NULL, NULL,
+                                              g_cclosure_marshal_VOID__OBJECT,
+                                              G_TYPE_NONE, 1, GDK_TYPE_PIXBUF);
 
   camera_signals[VIDEO_SAVED] = g_signal_new ("video-saved", G_OBJECT_CLASS_TYPE (klass),
                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,

@@ -91,6 +91,7 @@ typedef struct
 {
   GObjectClass parent_class;
   void (*photo_saved)(CheeseCamera *camera);
+  void (*photo_taken)(CheeseCamera *camera);
   void (*video_saved)(CheeseCamera *camera);
 } CheeseCameraClass;
 
