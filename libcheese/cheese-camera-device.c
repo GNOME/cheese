@@ -39,6 +39,7 @@ cheese_camera_device_free (CheeseCameraDevice *device)
   g_free (device->gstreamer_src);
   g_free (device->product_name);
   g_array_free (device->video_formats, TRUE);
-  g_hash_table_destroy (device->supported_resolutions);
+  if (device->supported_resolutions != NULL)
+    g_hash_table_destroy (device->supported_resolutions);
 }
 
