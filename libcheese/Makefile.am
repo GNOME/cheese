@@ -23,6 +23,8 @@ libcheesecommon_la_SOURCES = \
 	cheese-camera.h \
 	cheese-camera-device.c \
 	cheese-camera-device.h \
+	cheese-camera-device-monitor.c \
+	cheese-camera-device-monitor.h \
 	cheese-flash.h \
 	cheese-flash.c \
 	cheese-countdown.c \
