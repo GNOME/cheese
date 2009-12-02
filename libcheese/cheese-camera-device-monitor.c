@@ -23,6 +23,7 @@
 #endif
 
 #include <glib-object.h>
+#include <dbus/dbus-glib-lowlevel.h>
 #include <libhal.h>
 #include <string.h>
 
@@ -49,7 +50,7 @@ enum CheeseCameraDeviceMonitorError
 
 typedef struct
 {
-  guint filler;
+  LibHalContext *hal_ctx;
 } CheeseCameraDeviceMonitorPrivate;
 
 enum
@@ -69,9 +70,9 @@ cheese_camera_device_monitor_error_quark (void)
 
 static void
 cheese_camera_device_monitor_handle_udi (CheeseCameraDeviceMonitor *monitor,
-					 LibHalContext *hal_ctx,
 					 const char *udi)
 {
+  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
   char                   *device_path;
   char                   *parent_udi = NULL;
   char                   *subsystem  = NULL;
@@ -85,7 +86,11 @@ cheese_camera_device_monitor_handle_udi (CheeseCameraDeviceMonitor *monitor,
   DBusError               error;
   int fd, ok;
 
-  parent_udi = libhal_device_get_property_string (hal_ctx, udi, "info.parent", &error);
+  g_print ("Checking HAL device '%s'\n", udi);
+
+  dbus_error_init (&error);
+
+  parent_udi = libhal_device_get_property_string (priv->hal_ctx, udi, "info.parent", &error);
   if (dbus_error_is_set (&error))
   {
     g_warning ("error getting parent for %s: %s: %s", udi, error.name, error.message);
@@ -94,11 +99,11 @@ cheese_camera_device_monitor_handle_udi (CheeseCameraDeviceMonitor *monitor,
 
   if (parent_udi != NULL)
   {
-    subsystem = libhal_device_get_property_string (hal_ctx, parent_udi, "info.subsystem", NULL);
+    subsystem = libhal_device_get_property_string (priv->hal_ctx, parent_udi, "info.subsystem", NULL);
     if (subsystem == NULL)
       return;
     property_name = g_strjoin (".", subsystem, "vendor_id", NULL);
-    vendor_id     = libhal_device_get_property_int (hal_ctx, parent_udi, property_name, &error);
+    vendor_id     = libhal_device_get_property_int (priv->hal_ctx, parent_udi, property_name, &error);
     if (dbus_error_is_set (&error))
     {
       g_warning ("error getting vendor id: %s: %s", error.name, error.message);
@@ -107,7 +112,7 @@ cheese_camera_device_monitor_handle_udi (CheeseCameraDeviceMonitor *monitor,
     g_free (property_name);
 
     property_name = g_strjoin (".", subsystem, "product_id", NULL);
-    product_id    = libhal_device_get_property_int (hal_ctx, parent_udi, property_name, &error);
+    product_id    = libhal_device_get_property_int (priv->hal_ctx, parent_udi, property_name, &error);
     if (dbus_error_is_set (&error))
     {
       g_warning ("error getting product id: %s: %s", error.name, error.message);
@@ -120,7 +125,7 @@ cheese_camera_device_monitor_handle_udi (CheeseCameraDeviceMonitor *monitor,
 
   g_print ("Found device %04x:%04x, getting capabilities...\n", vendor_id, product_id);
 
-  device_path = libhal_device_get_property_string (hal_ctx, udi, "video4linux.device", &error);
+  device_path = libhal_device_get_property_string (priv->hal_ctx, udi, "video4linux.device", &error);
   if (dbus_error_is_set (&error))
   {
     g_warning ("error getting V4L device for %s: %s: %s", udi, error.name, error.message);
@@ -201,45 +206,20 @@ cheese_camera_device_monitor_handle_udi (CheeseCameraDeviceMonitor *monitor,
 void
 cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
-//  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (camera);
-
+  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
   int            i;
   int            num_udis = 0;
   char         **udis;
-  LibHalContext *hal_ctx;
   DBusError      error;
 
   g_print ("Probing devices with HAL...\n");
 
+  if (priv->hal_ctx == NULL)
+    return;
+
   dbus_error_init (&error);
-  hal_ctx = libhal_ctx_new ();
-  if (hal_ctx == NULL)
-  {
-    g_warning ("Could not create libhal context");
-    dbus_error_free (&error);
-    return;
-  }
 
-  if (!libhal_ctx_set_dbus_connection (hal_ctx, dbus_bus_get (DBUS_BUS_SYSTEM, &error)))
-  {
-    g_warning ("libhal_ctx_set_dbus_connection: %s: %s", error.name, error.message);
-    dbus_error_free (&error);
-    return;
-  }
-
-  if (!libhal_ctx_init (hal_ctx, &error))
-  {
-    if (dbus_error_is_set (&error))
-    {
-      g_warning ("libhal_ctx_init: %s: %s", error.name, error.message);
-      dbus_error_free (&error);
-    }
-    g_warning ("Could not initialise connection to hald.\n"
-               "Normally this means the HAL daemon (hald) is not running or not ready");
-    return;
-  }
-
-  udis = libhal_find_device_by_capability (hal_ctx, "video4linux", &num_udis, &error);
+  udis = libhal_find_device_by_capability (priv->hal_ctx, "video4linux", &num_udis, &error);
 
   if (dbus_error_is_set (&error))
   {
@@ -250,19 +230,56 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 
   /* Initialize camera structures */
   for (i = 0; i < num_udis; i++)
-    cheese_camera_device_monitor_handle_udi (monitor, hal_ctx, udis[i]);
+    cheese_camera_device_monitor_handle_udi (monitor, udis[i]);
   libhal_free_string_array (udis);
+}
+
+static void
+cheese_camera_device_monitor_added (LibHalContext *ctx, const char *udi)
+{
+  CheeseCameraDeviceMonitor *monitor;
+  char **caps;
+  guint i;
+
+  monitor = CHEESE_CAMERA_DEVICE_MONITOR (libhal_ctx_get_user_data (ctx));
+
+  caps = libhal_device_get_property_strlist (ctx, udi, "info.capabilities", NULL);
+  if (caps == NULL)
+    return;
+
+  for (i = 0; caps[i] != NULL; i++) {
+    if (g_strcmp0 (caps[i], "video4linux") == 0) {
+      cheese_camera_device_monitor_handle_udi (monitor, udi);
+      break;
+    }
+  }
+
+  libhal_free_string_array (caps);
+}
+
+static void
+cheese_camera_device_monitor_removed (LibHalContext *ctx, const char *udi)
+{
+  CheeseCameraDeviceMonitor *monitor;
+
+  monitor = CHEESE_CAMERA_DEVICE_MONITOR (libhal_ctx_get_user_data (ctx));
+
+  g_signal_emit (monitor, monitor_signals[REMOVED], 0, udi);
 }
 
 static void
 cheese_camera_device_monitor_finalize (GObject *object)
 {
-#if 0
-  CheeseCameraDeviceMonitor *camera;
+  CheeseCameraDeviceMonitor *monitor;
 
-  camera = CHEESE_CAMERA_DEVICE_MONITOR (object);
-  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (camera);
-#endif
+  monitor = CHEESE_CAMERA_DEVICE_MONITOR (object);
+  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
+
+  if (priv->hal_ctx != NULL) {
+    libhal_ctx_free (priv->hal_ctx);
+    priv->hal_ctx = NULL;
+  }
+
   G_OBJECT_CLASS (cheese_camera_device_monitor_parent_class)->finalize (object);
 }
 
@@ -291,10 +308,54 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 }
 
 static void
-cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *camera)
+cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 {
-//  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (camera);
+  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
+  DBusConnection *connection;
+  LibHalContext  *hal_ctx;
+  DBusError       error;
 
+  dbus_error_init (&error);
+
+  connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
+
+  hal_ctx = libhal_ctx_new ();
+  if (hal_ctx == NULL)
+  {
+    g_warning ("Could not create libhal context");
+    dbus_error_free (&error);
+    return;
+  }
+
+  if (!libhal_ctx_set_dbus_connection (hal_ctx, connection))
+  {
+    g_warning ("libhal_ctx_set_dbus_connection: %s: %s", error.name, error.message);
+    dbus_error_free (&error);
+    return;
+  }
+
+  if (!libhal_ctx_init (hal_ctx, &error))
+  {
+    if (dbus_error_is_set (&error))
+    {
+      g_warning ("libhal_ctx_init: %s: %s", error.name, error.message);
+      dbus_error_free (&error);
+    }
+    g_warning ("Could not initialise connection to hald.\n"
+               "Normally this means the HAL daemon (hald) is not running or not ready");
+    return;
+  }
+
+  dbus_connection_setup_with_g_main (connection, NULL);
+
+  if (!libhal_ctx_set_user_data (hal_ctx, monitor))
+    g_warning ("Failed to set user data on HAL context");
+  if (!libhal_ctx_set_device_added (hal_ctx, (LibHalDeviceAdded) cheese_camera_device_monitor_added))
+    g_warning ("Failed to connect to device added signal from HAL");
+  if (!libhal_ctx_set_device_removed (hal_ctx, (LibHalDeviceRemoved) cheese_camera_device_monitor_removed))
+    g_warning ("Failed to connect to device removed signal from HAL");
+
+  priv->hal_ctx = hal_ctx;
 }
 
 CheeseCameraDeviceMonitor *
