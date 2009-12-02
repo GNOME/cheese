@@ -59,7 +59,7 @@ typedef struct
 G_DEFINE_TYPE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK);
 
 static GdkPixbuf *
-cheese_widget_load_pixbuf (CheeseWidget *widget,
+cheese_widget_load_pixbuf (GtkWidget *widget,
 			   const char *icon_name,
 			   guint size,
 			   GError **error)
@@ -67,7 +67,7 @@ cheese_widget_load_pixbuf (CheeseWidget *widget,
   GtkIconTheme *theme;
   GdkPixbuf *pixbuf;
 
-  theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (GTK_WIDGET (widget)));
+  theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
   //FIXME special case "no-webcam" and actually use the icon_name
   pixbuf = gtk_icon_theme_load_icon (theme, "error",
 				     size, 0, error);
@@ -77,9 +77,8 @@ cheese_widget_load_pixbuf (CheeseWidget *widget,
 static gboolean
 cheese_widget_logo_expose (GtkWidget *w,
 			   GdkEventExpose *event,
-			   CheeseWidget *widget)
+			   gpointer user_data)
 {
-  CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
   const char *icon_name;
   GdkPixbuf *pixbuf, *logo;
   GError *error = NULL;
@@ -90,7 +89,7 @@ cheese_widget_logo_expose (GtkWidget *w,
 
   gdk_draw_rectangle (w->window, w->style->black_gc, TRUE,
                       0, 0, w->allocation.width, w->allocation.height);
-  icon_name = g_object_get_data (G_OBJECT (priv->problem), "icon-name");
+  icon_name = g_object_get_data (G_OBJECT (w), "icon-name");
   if (icon_name == NULL)
     return FALSE;
 
@@ -102,7 +101,7 @@ cheese_widget_logo_expose (GtkWidget *w,
   d_width = allocation.width;
   d_height = allocation.height - (allocation.height / 3);
 
-  pixbuf = cheese_widget_load_pixbuf (widget, icon_name, d_height, &error);
+  pixbuf = cheese_widget_load_pixbuf (w, icon_name, d_height, &error);
   if (pixbuf == NULL) {
     g_warning ("Could not load icon '%s': %s", icon_name, error->message);
     g_error_free (error);
@@ -166,7 +165,6 @@ cheese_widget_init (CheeseWidget *widget)
   			    priv->screen, gtk_label_new ("webcam"));
 
   priv->problem = gtk_drawing_area_new ();
-  gtk_widget_set_app_paintable (priv->problem, TRUE);
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
 			    priv->problem,
 			    gtk_label_new ("got problems"));
@@ -320,6 +318,11 @@ cheese_widget_realize (GtkWidget *widget)
     g_error_free (error);
     goto error;
   }
+
+  gtk_widget_set_app_paintable (priv->problem, TRUE);
+  gtk_widget_realize (priv->problem);
+  gdk_window_set_back_pixmap (gtk_widget_get_window (priv->problem), NULL, FALSE);
+
   return;
 
 error:
