@@ -287,24 +287,6 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 }
 
 static void
-cheese_camera_device_free (CheeseCameraDevice *device)
-{
-  guint j;
-
-  for (j = 0; j < device->num_video_formats; j++)
-  {
-    g_free (g_array_index (device->video_formats, CheeseVideoFormat, j).framerates);
-    g_free (g_array_index (device->video_formats, CheeseVideoFormat, j).mimetype);
-  }
-  g_free (device->video_device);
-  g_free (device->hal_udi);
-  g_free (device->gstreamer_src);
-  g_free (device->product_name);
-  g_array_free (device->video_formats, TRUE);
-  g_hash_table_destroy (device->supported_resolutions);
-}
-
-static void
 cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);

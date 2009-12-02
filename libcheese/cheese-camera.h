@@ -26,6 +26,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gst/interfaces/xoverlay.h>
+#include <cheese-camera-device.h>
 
 G_BEGIN_DECLS
 
@@ -35,35 +36,6 @@ G_BEGIN_DECLS
 #define CHEESE_IS_CAMERA(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CHEESE_TYPE_CAMERA))
 #define CHEESE_IS_CAMERA_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_CAMERA))
 #define CHEESE_CAMERA_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA, CheeseCameraClass))
-
-typedef struct
-{
-  int numerator;
-  int denominator;
-} CheeseFramerate;
-
-typedef struct
-{
-  char *mimetype;
-  int   width;
-  int   height;
-  int   num_framerates;
-  CheeseFramerate *framerates;
-  CheeseFramerate  highest_framerate;
-} CheeseVideoFormat;
-
-typedef struct
-{
-  char *video_device;
-  char *hal_udi;
-  char *gstreamer_src;
-  char *product_name;
-  int   num_video_formats;
-  GArray *video_formats;
-
-  /* Hash table for resolution based lookup of video_formats */
-  GHashTable *supported_resolutions;
-} CheeseCameraDevice;
 
 typedef enum
 {
