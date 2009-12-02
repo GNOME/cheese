@@ -41,6 +41,9 @@ typedef struct _CheeseWidget CheeseWidget;
 struct _CheeseWidgetClass
 {
   GtkNotebookClass parent_class;
+
+  void (*ready) (CheeseWidget *widget, gboolean is_ready);
+  void (*error) (CheeseWidget *widget, const char *error);
 };
 
 struct _CheeseWidget
@@ -51,6 +54,8 @@ struct _CheeseWidget
 GType cheese_widget_get_type (void) G_GNUC_CONST;
 
 GtkWidget *cheese_widget_new (void);
+
+GObject *cheese_widget_get_camera (CheeseWidget *widget);
 
 G_END_DECLS
 

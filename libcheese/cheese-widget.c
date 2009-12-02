@@ -19,13 +19,16 @@
 
 #include "cheese-config.h"
 
+#include <glib/gi18n.h>
+
 #include "cheese-widget.h"
 #include "cheese-gconf.h"
 #include "cheese-camera.h"
 
 enum
 {
-  CHANGED,
+  READY_SIGNAL,
+  ERROR_SIGNAL,
   LAST_SIGNAL
 };
 
@@ -36,9 +39,9 @@ enum
 };
 
 enum {
-	SPINNER_PAGE = 0,
-	WEBCAM_PAGE  = 1,
-	PROBLEM_PAGE = 2,
+  SPINNER_PAGE = 0,
+  WEBCAM_PAGE  = 1,
+  PROBLEM_PAGE = 2,
 };
 
 static guint widget_signals[LAST_SIGNAL] = {0};
@@ -210,12 +213,12 @@ cheese_widget_finalize (GObject *object)
   CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (object);
 
   if (priv->gconf) {
-  	  g_object_unref (priv->gconf);
-  	  priv->gconf = NULL;
+    g_object_unref (priv->gconf);
+    priv->gconf = NULL;
   }
   if (priv->webcam) {
-  	  g_object_unref (priv->webcam);
-  	  priv->webcam = NULL;
+    g_object_unref (priv->webcam);
+    priv->webcam = NULL;
   }
 
   G_OBJECT_CLASS (cheese_widget_parent_class)->finalize (object);
@@ -268,6 +271,14 @@ cheese_widget_changed (CheeseWidget *self)
 }
 #endif
 
+static gboolean
+cheese_widget_emit_error_idle (CheeseWidget *widget)
+{
+  g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0,
+		 _("Camera setup failed"));
+  return FALSE;
+}
+
 void
 setup_camera (CheeseWidget *widget)
 {
@@ -304,6 +315,7 @@ setup_camera (CheeseWidget *widget)
   {
     g_warning ("Error setting up webcam %s", error->message);
     cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "no-webcam");
+    g_idle_add ((GSourceFunc) cheese_widget_emit_error_idle, widget);
     return;
   }
 
@@ -315,6 +327,7 @@ setup_camera (CheeseWidget *widget)
   } else {
     cheese_camera_play (priv->webcam);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
+    g_signal_emit (widget, widget_signals[READY_SIGNAL], 1, TRUE);
   }
 
   gdk_threads_leave ();
@@ -360,6 +373,8 @@ cheese_widget_realize (GtkWidget *widget)
 error:
   gtk_spinner_stop (GTK_SPINNER (priv->spinner));
   cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
+  g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0,
+		 _("Camera setup failed"));
 }
 
 static void
@@ -369,35 +384,47 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
   object_class->finalize     = cheese_widget_finalize;
-//  object_class->set_property = cheese_widget_set_property;
-//  object_class->get_property = cheese_widget_get_property;
-
-//  klass->changed     = cheese_widget_changed;
-//  klass->synchronize = NULL;
-
+#if 0
+  object_class->set_property = cheese_widget_set_property;
+  object_class->get_property = cheese_widget_get_property;
+#endif
   widget_class->realize      = cheese_widget_realize;
+
+  widget_signals[READY_SIGNAL] = g_signal_new ("ready", G_OBJECT_CLASS_TYPE (klass),
+					       G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+					       G_STRUCT_OFFSET (CheeseWidgetClass, ready),
+					       NULL, NULL,
+					       g_cclosure_marshal_VOID__BOOLEAN,
+					       G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
+
+  widget_signals[ERROR_SIGNAL] = g_signal_new ("error", G_OBJECT_CLASS_TYPE (klass),
+					       G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+					       G_STRUCT_OFFSET (CheeseWidgetClass, error),
+					       NULL, NULL,
+					       g_cclosure_marshal_VOID__STRING,
+					       G_TYPE_NONE, 1, G_TYPE_STRING);
 
   g_type_class_add_private (klass, sizeof (CheeseWidgetPrivate));
 }
 
-#if 0
-void
-cheese_widget_synchronize (CheeseWidget *widget)
-{
-  CHEESE_WIDGET_GET_CLASS (widget)->synchronize (widget);
-}
-#endif
-#if 0
-void
-cheese_widget_notify_changed (CheeseWidget *widget)
-{
-  g_signal_emit_by_name (widget, "changed");
-}
-#endif
-
 GtkWidget *
 cheese_widget_new (void)
 {
-	return g_object_new (CHEESE_TYPE_WIDGET, NULL);
+  return g_object_new (CHEESE_TYPE_WIDGET, NULL);
 }
 
+GObject *
+cheese_widget_get_camera (CheeseWidget *widget)
+{
+  CheeseWidgetPrivate *priv;
+
+  g_return_val_if_fail (CHEESE_WIDGET (widget), NULL);
+
+  priv = CHEESE_WIDGET_GET_PRIVATE (widget);
+
+  return G_OBJECT (priv->webcam);
+}
+
+/*
+ * vim: sw=2 ts=8 cindent noai bs=2
+ */
