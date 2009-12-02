@@ -38,8 +38,7 @@ enum
 enum {
 	SPINNER_PAGE = 0,
 	WEBCAM_PAGE  = 1,
-	NO_WEBCAM_PAGE = 2,
-	BUG_PAGE = 3
+	PROBLEM_PAGE = 2,
 };
 
 static guint widget_signals[LAST_SIGNAL] = {0};
@@ -48,6 +47,7 @@ typedef struct
 {
   GtkWidget *spinner;
   GtkWidget *screen;
+  GtkWidget *problem;
   CheeseGConf *gconf;
   CheeseCamera *webcam;
 } CheeseWidgetPrivate;
@@ -57,6 +57,94 @@ typedef struct
                                 CheeseWidgetPrivate))
 
 G_DEFINE_TYPE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK);
+
+static GdkPixbuf *
+cheese_widget_load_pixbuf (CheeseWidget *widget,
+			   const char *icon_name,
+			   guint size,
+			   GError **error)
+{
+  GtkIconTheme *theme;
+  GdkPixbuf *pixbuf;
+
+  theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (GTK_WIDGET (widget)));
+  //FIXME special case "no-webcam" and actually use the icon_name
+  pixbuf = gtk_icon_theme_load_icon (theme, "error",
+				     size, 0, error);
+  return pixbuf;
+}
+
+static gboolean
+cheese_widget_logo_expose (GtkWidget *w,
+			   GdkEventExpose *event,
+			   CheeseWidget *widget)
+{
+  CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
+  const char *icon_name;
+  GdkPixbuf *pixbuf, *logo;
+  GError *error = NULL;
+  cairo_t *cr;
+  GtkAllocation allocation;
+  guint s_width, s_height, d_width, d_height;
+  float ratio;
+
+  gdk_draw_rectangle (w->window, w->style->black_gc, TRUE,
+                      0, 0, w->allocation.width, w->allocation.height);
+  icon_name = g_object_get_data (G_OBJECT (priv->problem), "icon-name");
+  if (icon_name == NULL)
+    return FALSE;
+
+  cr = gdk_cairo_create (gtk_widget_get_window (w));
+  cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+  gtk_widget_get_allocation (w, &allocation);
+  cairo_rectangle (cr, 0, 0, allocation.width, allocation.height);
+
+  d_width = allocation.width;
+  d_height = allocation.height - (allocation.height / 3);
+
+  pixbuf = cheese_widget_load_pixbuf (widget, icon_name, d_height, &error);
+  if (pixbuf == NULL) {
+    g_warning ("Could not load icon '%s': %s", icon_name, error->message);
+    g_error_free (error);
+    return FALSE;
+  }
+
+  s_width = gdk_pixbuf_get_width (pixbuf);
+  s_height = gdk_pixbuf_get_height (pixbuf);
+
+  if ((gfloat) d_width / s_width > (gfloat) d_height / s_height) {
+    ratio = (gfloat) d_height / s_height;
+  } else {
+    ratio = (gfloat) d_width / s_width;
+  }
+
+  s_width *= ratio;
+  s_height *= ratio;
+
+  logo = gdk_pixbuf_scale_simple (pixbuf, s_width, s_height, GDK_INTERP_BILINEAR);
+
+  gdk_cairo_set_source_pixbuf (cr, logo, (allocation.width - s_width) / 2, (allocation.height - s_height) / 2);
+  cairo_paint (cr);
+  cairo_destroy (cr);
+
+  g_object_unref (logo);
+  g_object_unref (pixbuf);
+
+  return FALSE;
+}
+
+static void
+cheese_widget_set_problem_page (CheeseWidget *widget,
+				const char *icon_name)
+{
+  CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
+
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), PROBLEM_PAGE);
+  g_object_set_data_full (G_OBJECT (priv->problem),
+  			  "icon-name", g_strdup (icon_name), g_free);
+  g_signal_connect (priv->problem, "expose-event",
+                    G_CALLBACK (cheese_widget_logo_expose), widget);
+}
 
 static void
 cheese_widget_init (CheeseWidget *widget)
@@ -68,6 +156,7 @@ cheese_widget_init (CheeseWidget *widget)
   /* XXX
    * remove this line if you want to debug */
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (widget), FALSE);
+  gtk_notebook_set_show_border (GTK_NOTEBOOK (widget), FALSE);
 
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
   			    priv->spinner, gtk_label_new ("spinner"));
@@ -76,13 +165,11 @@ cheese_widget_init (CheeseWidget *widget)
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
   			    priv->screen, gtk_label_new ("webcam"));
 
+  priv->problem = gtk_drawing_area_new ();
+  gtk_widget_set_app_paintable (priv->problem, TRUE);
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
-			    gtk_label_new ("no webcam"),
-			    gtk_label_new ("no webcam"));
-
-  gtk_notebook_append_page (GTK_NOTEBOOK (widget),
-			    gtk_label_new ("bug!"),
-			    gtk_label_new ("bug!"));
+			    priv->problem,
+			    gtk_label_new ("got problems"));
 
   priv->gconf = cheese_gconf_new ();
 }
@@ -186,18 +273,19 @@ setup_camera (CheeseWidget *widget)
   if (error != NULL)
   {
     g_warning ("Error setting up webcam %s", error->message);
-    gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), NO_WEBCAM_PAGE);
+    cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "no-webcam");
     return;
   }
 
-  cheese_camera_play (priv->webcam);
   gdk_threads_enter ();
   gtk_spinner_stop (GTK_SPINNER (priv->spinner));
 
-  if (cheese_camera_get_num_camera_devices (priv->webcam) == 0)
-	  gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), NO_WEBCAM_PAGE);
-  else
-	  gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
+  if (cheese_camera_get_num_camera_devices (priv->webcam) == 0) {
+    cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "no-webcam");
+  } else {
+    cheese_camera_play (priv->webcam);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
+  }
 
   gdk_threads_leave ();
 }
@@ -236,7 +324,7 @@ cheese_widget_realize (GtkWidget *widget)
 
 error:
   gtk_spinner_stop (GTK_SPINNER (priv->spinner));
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), BUG_PAGE);
+  cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
 }
 
 static void
