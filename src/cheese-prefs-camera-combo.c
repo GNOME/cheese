@@ -99,7 +99,7 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
   CheesePrefsCameraComboPrivate *priv = CHEESE_PREFS_CAMERA_COMBO_GET_PRIVATE (self);
 
   GtkWidget          *combo_box;
-  GArray             *camera_devices;
+  GPtrArray          *camera_devices;
   int                 selected_device_ind;
   int                 num_devices;
   CheeseCameraDevice *selected_device;
@@ -126,7 +126,7 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
   selected_device_ind = cheese_camera_get_selected_device_index (priv->camera);
   num_devices         = cheese_camera_get_num_camera_devices (priv->camera);
 
-  selected_device = &g_array_index (camera_devices, CheeseCameraDevice, selected_device_ind);
+  selected_device = g_ptr_array_index (camera_devices, selected_device_ind);
 
   /* If the selected device is not the same device as the one in gconf, the
    * selected device isn't available or was set by --hal-device. Set it now.
@@ -144,7 +144,7 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
   for (i = 0; i < num_devices; i++)
   {
-    device_ptr   = &g_array_index (camera_devices, CheeseCameraDevice, i);
+    device_ptr   = g_ptr_array_index (camera_devices, i);
     product_name = g_strdup_printf ("%s (%s)", device_ptr->product_name, device_ptr->video_device);
     device_name  = g_strdup (device_ptr->video_device);
 
@@ -179,7 +179,7 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
    * available */
   gtk_widget_set_sensitive (combo_box, num_devices > 1);
 
-  g_array_free (camera_devices, TRUE);
+  g_ptr_array_unref (camera_devices);
 }
 
 static void

@@ -89,7 +89,8 @@ typedef struct
 
   int num_camera_devices;
   char *device_name;
-  CheeseCameraDevice *camera_devices;
+  /* an array of CheeseCameraDevices */
+  GPtrArray *camera_devices;
   int x_resolution;
   int y_resolution;
   int selected_device;
@@ -286,6 +287,24 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 }
 
 static void
+cheese_camera_device_free (CheeseCameraDevice *device)
+{
+  guint j;
+
+  for (j = 0; j < device->num_video_formats; j++)
+  {
+    g_free (g_array_index (device->video_formats, CheeseVideoFormat, j).framerates);
+    g_free (g_array_index (device->video_formats, CheeseVideoFormat, j).mimetype);
+  }
+  g_free (device->video_device);
+  g_free (device->hal_udi);
+  g_free (device->gstreamer_src);
+  g_free (device->product_name);
+  g_array_free (device->video_formats, TRUE);
+  g_hash_table_destroy (device->supported_resolutions);
+}
+
+static void
 cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
@@ -297,6 +316,7 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
   LibHalContext *hal_ctx;
 
   priv->num_camera_devices = 0;
+  priv->camera_devices = g_ptr_array_new_with_free_func ((GDestroyNotify) cheese_camera_device_free);
 
   g_print ("Probing devices with HAL...\n");
 
@@ -338,11 +358,9 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
   }
 
   /* Initialize camera structures */
-  priv->camera_devices = g_new0 (CheeseCameraDevice, num_udis);
-
   for (i = 0; i < num_udis; i++)
   {
-    char                   *device;
+    char                   *device_path;
     char                   *parent_udi = NULL;
     char                   *subsystem  = NULL;
     char                   *gstreamer_src, *product_name;
@@ -351,6 +369,7 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
     gint                    vendor_id     = 0;
     gint                    product_id    = 0;
     gchar                  *property_name = NULL;
+    CheeseCameraDevice     *device;
 
     parent_udi = libhal_device_get_property_string (hal_ctx, udis[i], "info.parent", &error);
     if (dbus_error_is_set (&error))
@@ -386,7 +405,7 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
 
     g_print ("Found device %04x:%04x, getting capabilities...\n", vendor_id, product_id);
 
-    device = libhal_device_get_property_string (hal_ctx, udis[i], "video4linux.device", &error);
+    device_path = libhal_device_get_property_string (hal_ctx, udis[i], "video4linux.device", &error);
     if (dbus_error_is_set (&error))
     {
       g_warning ("error getting V4L device for %s: %s: %s", udis[i], error.name, error.message);
@@ -396,17 +415,17 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
 
     /* vbi devices support capture capability too, but cannot be used,
      * so detect them by device name */
-    if (strstr (device, "vbi"))
+    if (strstr (device_path, "vbi"))
     {
-      g_print ("Skipping vbi device: %s\n", device);
-      libhal_free_string (device);
+      g_print ("Skipping vbi device: %s\n", device_path);
+      libhal_free_string (device_path);
       continue;
     }
 
-    if ((fd = open (device, O_RDONLY | O_NONBLOCK)) < 0)
+    if ((fd = open (device_path, O_RDONLY | O_NONBLOCK)) < 0)
     {
-      g_warning ("Failed to open %s: %s", device, strerror (errno));
-      libhal_free_string (device);
+      g_warning ("Failed to open %s: %s", device_path, strerror (errno));
+      libhal_free_string (device_path);
       continue;
     }
     ok = ioctl (fd, VIDIOC_QUERYCAP, &v2cap);
@@ -416,8 +435,8 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
       if (ok < 0)
       {
         g_warning ("Error while probing v4l capabilities for %s: %s",
-                   device, strerror (errno));
-        libhal_free_string (device);
+                   device_path, strerror (errno));
+        libhal_free_string (device_path);
         close (fd);
         continue;
       }
@@ -437,8 +456,8 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
       if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
       {
         g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
-                 "Removing it from device list.\n", device);
-        libhal_free_string (device);
+                 "Removing it from device list.\n", device_path);
+        libhal_free_string (device_path);
         close (fd);
         continue;
       }
@@ -448,35 +467,37 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
 
     g_print ("\n");
 
-    priv->camera_devices[priv->num_camera_devices].hal_udi           = g_strdup (udis[i]);
-    priv->camera_devices[priv->num_camera_devices].video_device      = g_strdup (device);
-    priv->camera_devices[priv->num_camera_devices].gstreamer_src     = g_strdup (gstreamer_src);
-    priv->camera_devices[priv->num_camera_devices].product_name      = g_strdup (product_name);
-    priv->camera_devices[priv->num_camera_devices].num_video_formats = 0;
-    priv->camera_devices[priv->num_camera_devices].video_formats     =
-      g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
-    priv->camera_devices[priv->num_camera_devices].supported_resolutions =
+    device = g_new0 (CheeseCameraDevice, 1);
+
+    device->hal_udi           = g_strdup (udis[i]);
+    device->video_device      = g_strdup (device_path);
+    device->gstreamer_src     = g_strdup (gstreamer_src);
+    device->product_name      = g_strdup (product_name);
+    device->num_video_formats = 0;
+    device->video_formats     = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
+    device->supported_resolutions =
       g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
+    g_ptr_array_add (priv->camera_devices, device);
     priv->num_camera_devices++;
 
-    libhal_free_string (device);
+    libhal_free_string (device_path);
     close (fd);
   }
   libhal_free_string_array (udis);
 
+fallback:
   if (priv->num_camera_devices == 0)
   {
     /* Create a fake device so that resolution changing stil works even if the
      * computer doesn't have a camera. */
-fallback:
-    if (num_udis == 0)
-    {
-      priv->camera_devices = g_new0 (CheeseCameraDevice, 1);
-    }
-    priv->camera_devices[0].num_video_formats = 0;
-    priv->camera_devices[0].video_formats     =
-      g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
-    priv->camera_devices[0].hal_udi = g_strdup ("cheese_fake_videodevice");
+    CheeseCameraDevice *device;
+    if (priv->camera_devices == NULL)
+      priv->camera_devices = g_ptr_array_new ();
+    device = g_new0 (CheeseCameraDevice, 1);
+    device->num_video_formats = 0;
+    device->video_formats     = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
+    device->hal_udi = g_strdup ("cheese_fake_videodevice");
+    g_ptr_array_add (priv->camera_devices, device);
   }
 }
 
@@ -762,7 +783,7 @@ cheese_camera_get_camera_device_data (CheeseCamera       *camera,
 }
 
 static void
-cheese_camera_create_fake_format (CheeseCamera *camera)
+cheese_camera_create_fake_format (CheeseCamera *camera, CheeseCameraDevice *device)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -778,7 +799,7 @@ cheese_camera_create_fake_format (CheeseCamera *camera)
   format.framerates[0].numerator   = 30;
   format.framerates[0].denominator = 1;
 
-  g_array_append_val (priv->camera_devices[0].video_formats, format);
+  g_array_append_val (device->video_formats, format);
   priv->current_format = &format;
 }
 
@@ -794,12 +815,12 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
   g_print ("Probing supported video formats...\n");
   for (i = 0; i < priv->num_camera_devices; i++)
   {
-    cheese_camera_get_camera_device_data (camera, &(priv->camera_devices[i]));
+    cheese_camera_get_camera_device_data (camera, g_ptr_array_index (priv->camera_devices, i));
     g_print ("\n");
   }
 
   if (priv->num_camera_devices == 0)
-    cheese_camera_create_fake_format (camera);
+    cheese_camera_create_fake_format (camera, g_ptr_array_index (priv->camera_devices, 0));
 }
 
 static void
@@ -844,19 +865,24 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
   }
   else
   {
-    CheeseVideoFormat *format;
-    int                i;
-    gchar             *resolution;
+    CheeseVideoFormat  *format;
+    int                 i;
+    gchar              *resolution;
+    CheeseCameraDevice *selected_camera;
 
     /* If we have a matching video device use that one, otherwise use the first */
     priv->selected_device = 0;
+    selected_camera       = g_ptr_array_index (priv->camera_devices, 0);
     format                = NULL;
     for (i = 1; i < priv->num_camera_devices; i++)
     {
-      if (g_strcmp0 (priv->camera_devices[i].video_device, priv->device_name) == 0)
+      CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
+      if (g_strcmp0 (device->video_device, priv->device_name) == 0) {
+        selected_camera = device;
         priv->selected_device = i;
+        break;
+      }
     }
-    CheeseCameraDevice *selected_camera = &(priv->camera_devices[priv->selected_device]);
 
     resolution = g_strdup_printf ("%ix%i", priv->x_resolution,
                                   priv->y_resolution);
@@ -1467,7 +1493,6 @@ static void
 cheese_camera_finalize (GObject *object)
 {
   CheeseCamera *camera;
-  int           i, j;
 
   camera = CHEESE_CAMERA (object);
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
@@ -1485,21 +1510,7 @@ cheese_camera_finalize (GObject *object)
   g_free (priv->device_name);
 
   /* Free CheeseCameraDevice array */
-  for (i = 0; i < priv->num_camera_devices; i++)
-  {
-    for (j = 0; j < priv->camera_devices[i].num_video_formats; j++)
-    {
-      g_free (g_array_index (priv->camera_devices[i].video_formats, CheeseVideoFormat, j).framerates);
-      g_free (g_array_index (priv->camera_devices[i].video_formats, CheeseVideoFormat, j).mimetype);
-    }
-    g_free (priv->camera_devices[i].video_device);
-    g_free (priv->camera_devices[i].hal_udi);
-    g_free (priv->camera_devices[i].gstreamer_src);
-    g_free (priv->camera_devices[i].product_name);
-    g_array_free (priv->camera_devices[i].video_formats, TRUE);
-    g_hash_table_destroy (priv->camera_devices[i].supported_resolutions);
-  }
-  g_free (priv->camera_devices);
+  g_ptr_array_free (priv->camera_devices, TRUE);
 
   G_OBJECT_CLASS (cheese_camera_parent_class)->finalize (object);
 }
@@ -1723,21 +1734,12 @@ cheese_camera_get_selected_device_index (CheeseCamera *camera)
   return priv->selected_device;
 }
 
-GArray *
+GPtrArray *
 cheese_camera_get_camera_devices (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  GArray *devices_arr;
-
-  devices_arr = g_array_sized_new (FALSE,
-                                   TRUE,
-                                   sizeof (CheeseCameraDevice),
-                                   priv->num_camera_devices);
-  devices_arr = g_array_append_vals (devices_arr,
-                                     priv->camera_devices,
-                                     priv->num_camera_devices);
-  return devices_arr;
+  return g_ptr_array_ref (priv->camera_devices);
 }
 
 void
@@ -1755,9 +1757,10 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
 
   for (i = 0; i < priv->num_camera_devices; i++)
   {
-    if (strcmp (priv->camera_devices[i].hal_udi, udi) == 0)
+    CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
+    if (strcmp (device->hal_udi, udi) == 0)
     {
-      g_object_set (camera, "device_name", priv->camera_devices[i].video_device, NULL);
+      g_object_set (camera, "device_name", device->video_device, NULL);
       break;
     }
   }
@@ -1767,8 +1770,9 @@ GArray *
 cheese_camera_get_video_formats (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
 
-  return priv->camera_devices[priv->selected_device].video_formats;
+  return device->video_formats;
 }
 
 void

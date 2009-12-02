@@ -113,11 +113,11 @@ gboolean           cheese_camera_take_photo (CheeseCamera *camera, char *filenam
 gboolean           cheese_camera_has_camera (CheeseCamera *camera);
 int                cheese_camera_get_num_camera_devices (CheeseCamera *camera);
 int                cheese_camera_get_selected_device_index (CheeseCamera *camera);
-GArray *           cheese_camera_get_camera_devices (CheeseCamera *camera);
+GPtrArray *        cheese_camera_get_camera_devices (CheeseCamera *camera);
 void               cheese_camera_set_device_by_dev_file (CheeseCamera *camera, char *file);
 void               cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi);
 gboolean           cheese_camera_switch_camera_device (CheeseCamera *camera);
-GArray *           cheese_camera_get_video_formats (CheeseCamera *camera);
+GArray    *        cheese_camera_get_video_formats (CheeseCamera *camera);
 void               cheese_camera_set_video_format (CheeseCamera      *camera,
                                                    CheeseVideoFormat *format);
 void cheese_camera_get_balance_property_range (CheeseCamera *camera,
