@@ -22,7 +22,9 @@ libcheesecommon_la_SOURCES = \
 	cheese-camera.c \
 	cheese-camera.h \
 	cheese-flash.h \
-	cheese-flash.c
+	cheese-flash.c \
+	cheese-countdown.c \
+	cheese-countdown.h
 
 libcheese_gtk_la_SOURCES = \
 	cheese-widget.c \
