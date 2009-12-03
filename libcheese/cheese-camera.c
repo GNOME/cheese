@@ -562,7 +562,7 @@ cheese_camera_get_camera_device_data (CheeseCamera       *camera,
     if ((pipeline != NULL) && (err == NULL))
     {
       /* Start the pipeline and wait for max. 10 seconds for it to start up */
-      gst_element_set_state (pipeline, GST_STATE_PLAYING);
+      gst_element_set_state (pipeline, GST_STATE_READY);
       ret = gst_element_get_state (pipeline, NULL, NULL, 10 * GST_SECOND);
 
       /* Check if any error messages were posted on the bus */
@@ -576,8 +576,6 @@ cheese_camera_get_camera_device_data (CheeseCamera       *camera,
         GstPad     *pad;
         char       *name;
         GstCaps    *caps;
-
-        gst_element_set_state (pipeline, GST_STATE_PAUSED);
 
         src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
 
