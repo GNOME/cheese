@@ -18,4 +18,5 @@ int main (void)
   XTestFakeKeyEvent (dpy, XKeysymToKeycode(dpy, XF86XK_WebCam), False, CurrentTime);
 
   XCloseDisplay (dpy);
+  return 0;
 }
