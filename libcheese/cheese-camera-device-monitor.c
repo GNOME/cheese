@@ -86,10 +86,10 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 
   g_print ("Checking udev device '%s'\n", g_udev_device_get_property (udevice, "DEVPATH"));
 
-  vendor = g_udev_device_get_property (udevice, "ID_VENDOR");
+  vendor = g_udev_device_get_property (udevice, "ID_VENDOR_ID");
   if (vendor != NULL)
     vendor_id = g_ascii_strtoll (vendor, NULL, 16);
-  product = g_udev_device_get_property (udevice, "ID_MODEL");
+  product = g_udev_device_get_property (udevice, "ID_MODEL_ID");
   if (product != NULL)
     product_id = g_ascii_strtoll (vendor, NULL, 16);
   if (vendor_id == 0 || product_id == 0) {
