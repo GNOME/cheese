@@ -31,6 +31,8 @@ libcheesecommon_la_SOURCES = \
 	cheese-countdown.h
 
 libcheese_gtk_la_SOURCES = \
+	cheese-avatar-chooser.c \
+	cheese-avatar-chooser.h \
 	cheese-widget.c \
 	cheese-widget.h \
 	$(NULL)
