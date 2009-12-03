@@ -41,9 +41,3 @@ libcheese_gtk_la_SOURCES = \
 libcheese_gtk_la_LIBADD = \
 	libcheesecommon.la \
 	$(CHEESE_LIBS)
-
-noinst_PROGRAMS = cheese-test-widget cheese-test-monitor
-cheese_test_widget_SOURCES = cheese-test-widget.c
-cheese_test_widget_LDADD = $(CHEESE_LIBS) libcheese-gtk.la libcheesecommon.la
-cheese_test_monitor_SOURCES = cheese-test-monitor.c
-cheese_test_monitor_LDADD = $(CHEESE_LIBS) libcheese-gtk.la libcheesecommon.la

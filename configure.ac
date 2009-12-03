@@ -125,6 +125,7 @@ data/pixmaps/Makefile
 help/Makefile
 libcheese/Makefile
 src/Makefile
+tests/Makefile
 po/Makefile.in
 ])
 
