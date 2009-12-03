@@ -46,7 +46,7 @@ typedef struct
 typedef struct
 {
   char *video_device;
-  char *hal_udi;
+  char *id;
   char *gstreamer_src;
   char *product_name;
   int   num_video_formats;

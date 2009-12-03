@@ -156,7 +156,7 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 
   device = g_new0 (CheeseCameraDevice, 1);
 
-  device->hal_udi           = g_strdup (g_udev_device_get_property (udevice, "DEVPATH"));
+  device->id                = g_strdup (g_udev_device_get_property (udevice, "DEVPATH"));
   device->video_device      = g_strdup (device_path);
   device->gstreamer_src     = g_strdup (gstreamer_src);
   device->product_name      = g_strdup (product_name);

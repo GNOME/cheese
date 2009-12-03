@@ -292,7 +292,7 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 }
 
 static void
-cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
+cheese_camera_get_video_devices_from_udev (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   CheeseCameraDeviceMonitor *monitor;
@@ -316,7 +316,7 @@ cheese_camera_get_video_devices_from_hal (CheeseCamera *camera)
     device = g_new0 (CheeseCameraDevice, 1);
     device->num_video_formats = 0;
     device->video_formats     = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
-    device->hal_udi = g_strdup ("cheese_fake_videodevice");
+    device->id = g_strdup ("cheese_fake_videodevice");
     g_ptr_array_add (priv->camera_devices, device);
   }
 }
@@ -630,7 +630,7 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
 
   int i;
 
-  cheese_camera_get_video_devices_from_hal (camera);
+  cheese_camera_get_video_devices_from_udev (camera);
 
   g_print ("Probing supported video formats...\n");
   for (i = 0; i < priv->num_camera_devices; i++)
@@ -1501,7 +1501,7 @@ cheese_camera_new (GtkWidget *video_window, char *camera_device_name,
 }
 
 void
-cheese_camera_setup (CheeseCamera *camera, char *hal_dev_udi, GError **error)
+cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -1510,9 +1510,9 @@ cheese_camera_setup (CheeseCamera *camera, char *hal_dev_udi, GError **error)
 
   cheese_camera_detect_camera_devices (camera);
 
-  if (hal_dev_udi != NULL)
+  if (id != NULL)
   {
-    cheese_camera_set_device_by_dev_udi (camera, hal_dev_udi);
+    cheese_camera_set_device_by_dev_udi (camera, id);
   }
 
   priv->pipeline = gst_pipeline_new ("pipeline");
@@ -1578,7 +1578,7 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
   for (i = 0; i < priv->num_camera_devices; i++)
   {
     CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-    if (strcmp (device->hal_udi, udi) == 0)
+    if (strcmp (device->id, udi) == 0)
     {
       g_object_set (camera, "device_name", device->video_device, NULL);
       break;

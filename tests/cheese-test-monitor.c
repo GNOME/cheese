@@ -6,7 +6,7 @@ static void
 added_cb (CheeseCameraDeviceMonitor *monitor,
 	  CheeseCameraDevice *device)
 {
-	g_message ("Added new device with ID '%s'", device->hal_udi);
+	g_message ("Added new device with ID '%s'", device->id);
 }
 
 static void

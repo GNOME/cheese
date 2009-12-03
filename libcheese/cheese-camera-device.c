@@ -35,7 +35,7 @@ cheese_camera_device_free (CheeseCameraDevice *device)
     g_free (g_array_index (device->video_formats, CheeseVideoFormat, j).mimetype);
   }
   g_free (device->video_device);
-  g_free (device->hal_udi);
+  g_free (device->id);
   g_free (device->gstreamer_src);
   g_free (device->product_name);
   g_array_free (device->video_formats, TRUE);
