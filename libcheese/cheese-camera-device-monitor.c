@@ -73,16 +73,16 @@ static void
 cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 				    GUdevDevice *udevice)
 {
-  const char                   *device_path;
-  char                   *gstreamer_src, *product_name;
+  const char             *device_path;
+  const char             *gstreamer_src, *product_name;
   struct v4l2_capability  v2cap;
   struct video_capability v1cap;
-  const char             *vendor = 0;
-  const char             *product = 0;
+  const char             *vendor;
+  const char             *product;
   gint                    vendor_id     = 0;
   gint                    product_id    = 0;
+  gint                    v4l_version   = 0;
   CheeseCameraDevice     *device;
-  int fd, ok;
 
   g_print ("Checking udev device '%s'\n", g_udev_device_get_property (udevice, "DEVPATH"));
 
@@ -112,44 +112,64 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     return;
   }
 
-  if ((fd = open (device_path, O_RDONLY | O_NONBLOCK)) < 0)
-  {
-    g_warning ("Failed to open %s: %s", device_path, strerror (errno));
-    return;
-  }
-  ok = ioctl (fd, VIDIOC_QUERYCAP, &v2cap);
-  if (ok < 0)
-  {
-    ok = ioctl (fd, VIDIOCGCAP, &v1cap);
-    if (ok < 0)
-    {
-      g_warning ("Error while probing v4l capabilities for %s: %s",
-		 device_path, strerror (errno));
-      close (fd);
-      return;
-    }
-    g_print ("Detected v4l device: %s\n", v1cap.name);
-    g_print ("Device type: %d\n", v1cap.type);
-    gstreamer_src = "v4lsrc";
-    product_name  = v1cap.name;
-  }
-  else
-  {
-    guint cap = v2cap.capabilities;
-    g_print ("Detected v4l2 device: %s\n", v2cap.card);
-    g_print ("Driver: %s, version: %d\n", v2cap.driver, v2cap.version);
+  v4l_version = g_udev_device_get_property_as_int (udevice, "ID_V4L_VERSION");
+  if (v4l_version == 2 || v4l_version == 1) {
+    const char *caps;
 
-    /* g_print ("Bus info: %s\n", v2cap.bus_info); */ /* Doesn't seem anything useful */
-    g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
-    if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
+    caps = g_udev_device_get_property (udevice, "ID_V4L_CAPABILITIES");
+    if (caps == NULL || strstr (caps, ":capture:") == NULL)
     {
       g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
 	       "Removing it from device list.\n", device_path);
-      close (fd);
       return;
     }
-    gstreamer_src = "v4l2src";
-    product_name  = (char *) v2cap.card;
+    gstreamer_src = (v4l_version == 2) ? "v4l2src" : "v4lsrc";
+    product_name = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
+  } else if (v4l_version == 0) {
+    int fd, ok;
+    g_warning ("Fix your udev installation to include v4l_id");
+    if ((fd = open (device_path, O_RDONLY | O_NONBLOCK)) < 0)
+    {
+      g_warning ("Failed to open %s: %s", device_path, strerror (errno));
+      return;
+    }
+    ok = ioctl (fd, VIDIOC_QUERYCAP, &v2cap);
+    if (ok < 0)
+    {
+      ok = ioctl (fd, VIDIOCGCAP, &v1cap);
+      if (ok < 0)
+      {
+	g_warning ("Error while probing v4l capabilities for %s: %s",
+		   device_path, strerror (errno));
+	close (fd);
+	return;
+      }
+      g_print ("Detected v4l device: %s\n", v1cap.name);
+      g_print ("Device type: %d\n", v1cap.type);
+      gstreamer_src = "v4lsrc";
+      product_name  = v1cap.name;
+    }
+    else
+    {
+      guint cap = v2cap.capabilities;
+      g_print ("Detected v4l2 device: %s\n", v2cap.card);
+      g_print ("Driver: %s, version: %d\n", v2cap.driver, v2cap.version);
+
+      /* g_print ("Bus info: %s\n", v2cap.bus_info); */ /* Doesn't seem anything useful */
+      g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
+      if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
+      {
+	g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
+		 "Removing it from device list.\n", device_path);
+	close (fd);
+	return;
+      }
+      gstreamer_src = "v4l2src";
+      product_name  = (char *) v2cap.card;
+    }
+    close (fd);
+  } else {
+    g_assert_not_reached ();
   }
 
   g_print ("\n");
@@ -166,7 +186,6 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
   //FIXME This will leak a device, we should ref/unref it instead
   g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
-  close (fd);
 }
 
 void
