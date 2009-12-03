@@ -82,6 +82,7 @@ void               cheese_camera_set_effect (CheeseCamera *camera, CheeseCameraE
 void               cheese_camera_start_video_recording (CheeseCamera *camera, char *filename);
 void               cheese_camera_stop_video_recording (CheeseCamera *camera);
 gboolean           cheese_camera_take_photo (CheeseCamera *camera, char *filename);
+gboolean           cheese_camera_take_photo_pixbuf (CheeseCamera *camera);
 gboolean           cheese_camera_has_camera (CheeseCamera *camera);
 int                cheese_camera_get_num_camera_devices (CheeseCamera *camera);
 int                cheese_camera_get_selected_device_index (CheeseCamera *camera);
