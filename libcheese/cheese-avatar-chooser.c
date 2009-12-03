@@ -203,7 +203,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
   CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
 
-  priv->flash = cheese_flash_new ();
+  priv->flash = cheese_flash_new (GTK_WIDGET (chooser));
 
   gtk_dialog_add_buttons (GTK_DIALOG (chooser),
 			  GTK_STOCK_CANCEL,

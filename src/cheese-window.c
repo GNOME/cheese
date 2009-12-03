@@ -2105,7 +2105,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
   cheese_window->startup_hal_dev_udi = hal_dev_udi;
   cheese_window->gconf               = cheese_gconf_new ();
   cheese_window->fileutil            = cheese_fileutil_new ();
-  cheese_window->flash               = cheese_flash_new ();
+  cheese_window->flash               = cheese_flash_new (NULL);
   cheese_window->isFullscreen        = FALSE;
   cheese_window->is_bursting         = FALSE;
 
@@ -2117,6 +2117,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
   cheese_window->fullscreen_timeout_source = NULL;
 
   cheese_window_create_window (cheese_window);
+  g_object_set (G_OBJECT (cheese_window->flash), "parent", cheese_window->window, NULL);
   gtk_action_group_set_sensitive (cheese_window->actions_effects, FALSE);
 
   gtk_spinner_start (GTK_SPINNER (cheese_window->throbber));

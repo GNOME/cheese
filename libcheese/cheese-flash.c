@@ -27,6 +27,12 @@
 #include <cheese-camera.h>
 #include "cheese-flash.h"
 
+enum
+{
+  PROP_0,
+  PROP_PARENT
+};
+
 /* How long to hold the flash for */
 #define FLASH_DURATION 250
 
@@ -45,6 +51,7 @@ G_DEFINE_TYPE (CheeseFlash, cheese_flash, G_TYPE_OBJECT);
 
 typedef struct
 {
+  GtkWidget *parent;
   GtkWindow *window;
   guint flash_timeout_tag;
   guint fade_timeout_tag;
@@ -74,13 +81,12 @@ cheese_flash_init (CheeseFlash *self)
   priv->flash_timeout_tag = 0;
   priv->fade_timeout_tag  = 0;
 
-  window = GTK_WINDOW (gtk_window_new (GTK_WINDOW_TOPLEVEL));
+  window = GTK_WINDOW (gtk_window_new (GTK_WINDOW_POPUP));
 
   /* make it so it doesn't look like a window on the desktop (+fullscreen) */
   gtk_window_set_decorated (window, FALSE);
   gtk_window_set_skip_taskbar_hint (window, TRUE);
   gtk_window_set_skip_pager_hint (window, TRUE);
-  gtk_window_fullscreen (window);
   gtk_window_set_keep_above (window, TRUE);
 
   /* Don't take focus */
@@ -107,6 +113,10 @@ cheese_flash_dispose (GObject *object)
     gtk_widget_destroy (GTK_WIDGET (priv->window));
     priv->window = NULL;
   }
+  if (priv->parent != NULL) {
+    g_object_unref (priv->parent);
+    priv->parent = NULL;
+  }
 
   if (G_OBJECT_CLASS (cheese_flash_parent_class)->dispose)
     G_OBJECT_CLASS (cheese_flash_parent_class)->dispose (object);
@@ -120,14 +130,47 @@ cheese_flash_finalize (GObject *object)
 }
 
 static void
+cheese_flash_set_property (GObject *object,
+			   guint prop_id,
+			   const GValue *value,
+			   GParamSpec *pspec)
+{
+  CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (object);
+
+  switch (prop_id)
+  {
+    case PROP_PARENT: {
+      GObject *object;
+      object = g_value_get_object (value);
+      if (object != NULL)
+        priv->parent = g_object_ref (object);
+      else
+        priv->parent = NULL;
+      }
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
 cheese_flash_class_init (CheeseFlashClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   g_type_class_add_private (klass, sizeof (CheeseFlashPrivate));
 
-  object_class->dispose  = cheese_flash_dispose;
-  object_class->finalize = cheese_flash_finalize;
+  object_class->set_property = cheese_flash_set_property;
+  object_class->dispose      = cheese_flash_dispose;
+  object_class->finalize     = cheese_flash_finalize;
+
+  g_object_class_install_property (object_class, PROP_PARENT,
+				   g_param_spec_object ("parent",
+							NULL,
+							NULL,
+							GTK_TYPE_WIDGET,
+							G_PARAM_WRITABLE));
 }
 
 static gboolean
@@ -173,6 +216,12 @@ void
 cheese_flash_fire (CheeseFlash *flash)
 {
   CheeseFlashPrivate *flash_priv = CHEESE_FLASH_GET_PRIVATE (flash);
+  GtkWidget *parent;
+  GdkScreen *screen;
+  GdkRectangle rect;
+  int monitor;
+
+  g_return_if_fail (flash_priv->parent != NULL);
 
   GtkWindow *flash_window = flash_priv->window;
 
@@ -181,13 +230,24 @@ cheese_flash_fire (CheeseFlash *flash)
   if (flash_priv->fade_timeout_tag > 0)
     g_source_remove (flash_priv->fade_timeout_tag);
 
+  parent = gtk_widget_get_toplevel (flash_priv->parent);
+  screen = gtk_widget_get_screen (parent);
+  monitor = gdk_screen_get_monitor_at_window (screen,
+					      gtk_widget_get_window (parent));
+  gdk_screen_get_monitor_geometry (screen, monitor, &rect);
+  gtk_window_set_transient_for (GTK_WINDOW (flash_window), GTK_WINDOW (parent));
+  gtk_window_resize (flash_window, rect.width, rect.height);
+  gtk_window_move (flash_window, rect.x, rect.y);
+
   gtk_window_set_opacity (flash_window, 1);
   gtk_widget_show_all (GTK_WIDGET (flash_window));
   flash_priv->flash_timeout_tag = g_timeout_add (FLASH_DURATION, cheese_flash_start_fade, (gpointer) flash);
 }
 
 CheeseFlash *
-cheese_flash_new (void)
+cheese_flash_new (GtkWidget *parent)
 {
-  return g_object_new (CHEESE_TYPE_FLASH, NULL);
+  return g_object_new (CHEESE_TYPE_FLASH,
+		       "parent", parent,
+		       NULL);
 }
