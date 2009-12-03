@@ -50,6 +50,7 @@ enum CheeseCameraDeviceMonitorError
 
 typedef struct
 {
+  DBusConnection *connection;
   LibHalContext *hal_ctx;
 } CheeseCameraDeviceMonitorPrivate;
 
@@ -100,8 +101,10 @@ cheese_camera_device_monitor_handle_udi (CheeseCameraDeviceMonitor *monitor,
   if (parent_udi != NULL)
   {
     subsystem = libhal_device_get_property_string (priv->hal_ctx, parent_udi, "info.subsystem", NULL);
-    if (subsystem == NULL)
+    if (subsystem == NULL) {
+      libhal_free_string (parent_udi);
       return;
+    }
     property_name = g_strjoin (".", subsystem, "vendor_id", NULL);
     vendor_id     = libhal_device_get_property_int (priv->hal_ctx, parent_udi, property_name, &error);
     if (dbus_error_is_set (&error))
@@ -283,6 +286,10 @@ cheese_camera_device_monitor_finalize (GObject *object)
   monitor = CHEESE_CAMERA_DEVICE_MONITOR (object);
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
 
+  if (priv->connection != NULL) {
+    dbus_connection_unref (priv->connection);
+    priv->connection = NULL;
+  }
   if (priv->hal_ctx != NULL) {
     libhal_ctx_set_device_added (priv->hal_ctx, NULL);
     libhal_ctx_set_device_removed (priv->hal_ctx, NULL);
@@ -321,13 +328,13 @@ static void
 cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 {
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
-  DBusConnection *connection;
   LibHalContext  *hal_ctx;
   DBusError       error;
 
   dbus_error_init (&error);
 
-  connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
+  priv->connection = dbus_bus_get (DBUS_BUS_SYSTEM, &error);
+  dbus_connection_set_exit_on_disconnect (priv->connection, FALSE);
 
   hal_ctx = libhal_ctx_new ();
   if (hal_ctx == NULL)
@@ -337,7 +344,7 @@ cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
     return;
   }
 
-  if (!libhal_ctx_set_dbus_connection (hal_ctx, connection))
+  if (!libhal_ctx_set_dbus_connection (hal_ctx, priv->connection))
   {
     g_warning ("libhal_ctx_set_dbus_connection: %s: %s", error.name, error.message);
     dbus_error_free (&error);
@@ -356,7 +363,7 @@ cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
     return;
   }
 
-  dbus_connection_setup_with_g_main (connection, NULL);
+  dbus_connection_setup_with_g_main (priv->connection, NULL);
 
   if (!libhal_ctx_set_user_data (hal_ctx, monitor))
     g_warning ("Failed to set user data on HAL context");
