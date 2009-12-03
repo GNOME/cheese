@@ -327,7 +327,7 @@ setup_camera (CheeseWidget *widget)
   } else {
     cheese_camera_play (priv->webcam);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
-    g_signal_emit (widget, widget_signals[READY_SIGNAL], 1, TRUE);
+    g_signal_emit (widget, widget_signals[READY_SIGNAL], 0, TRUE);
   }
 
   gdk_threads_leave ();
