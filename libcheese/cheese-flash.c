@@ -103,7 +103,10 @@ cheese_flash_dispose (GObject *object)
 {
   CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (object);
 
-  g_object_unref (priv->window);
+  if (priv->window != NULL) {
+    gtk_widget_destroy (GTK_WIDGET (priv->window));
+    priv->window = NULL;
+  }
 
   if (G_OBJECT_CLASS (cheese_flash_parent_class)->dispose)
     G_OBJECT_CLASS (cheese_flash_parent_class)->dispose (object);
