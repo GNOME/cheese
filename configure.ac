@@ -72,6 +72,16 @@ DBUS_GLIB_REQUIRED=0.7
 PANGOCAIRO_REQUIRED=1.18.0
 LIBRSVG_REQUIRED=2.18.0
 
+UDEV_PKG=
+PKG_CHECK_MODULES(UDEV, gudev-1.0,
+		  [AC_DEFINE(HAVE_UDEV, 1, [Define to 1 to enable udev support])
+		  UDEV_PKG=gudev-1.0],
+		  [UDEV_PKG=])
+
+AC_CHECK_HEADER([sys/videoio.h],
+		[AC_DEFINE(USE_SYS_VIDEOIO_H, 1, define to 1 if sys/videoio.h is present)],
+		[AC_DEFINE(USE_SYS_VIDEOIO_H, 0, define to 1 if sys/videoio.h is present)], [])
+
 PKG_CHECK_MODULES(CHEESE, \ 
   glib-2.0 >= $GLIB_REQUIRED \
   gobject-2.0 >= $GOBJECT_REQUIRED \
@@ -86,10 +96,9 @@ PKG_CHECK_MODULES(CHEESE, \
   cairo >= $CAIRO_REQUIRED \
   dbus-1 >= $DBUS_REQUIRED \
   dbus-glib-1 >= $DBUS_GLIB_REQUIRED \
-  gudev-1.0 \
   pangocairo >= $PANGOCAIRO_REQUIRED \
   librsvg-2.0 >= $LIBRSVG_REQUIRED
-  libcanberra-gtk)
+  libcanberra-gtk $UDEV_PKG)
 AC_SUBST(CHEESE_CFLAGS)
 
 CHEESE_LIBS="$CHEESE_LIBS -lgstinterfaces-0.10"

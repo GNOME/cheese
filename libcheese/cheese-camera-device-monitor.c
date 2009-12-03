@@ -24,15 +24,23 @@
 
 #include <glib-object.h>
 #include <dbus/dbus-glib-lowlevel.h>
-#define G_UDEV_API_IS_SUBJECT_TO_CHANGE 1
-#include <gudev/gudev.h>
 #include <string.h>
 
-/* for ioctl query */
+#ifdef HAVE_UDEV
+#define G_UDEV_API_IS_SUBJECT_TO_CHANGE 1
+#include <gudev/gudev.h>
+#else
 #include <fcntl.h>
 #include <unistd.h>
 #include <sys/ioctl.h>
-#include <linux/videodev.h>
+#if USE_SYS_VIDEOIO_H > 0
+#include <sys/types.h>
+#include <sys/videoio.h>
+#elif defined(__sun)
+#include <sys/types.h>
+#include <sys/videodev2.h>
+#endif /* USE_SYS_VIDEOIO_H */
+#endif
 
 #include "cheese-camera-device-monitor.h"
 
@@ -51,7 +59,11 @@ enum CheeseCameraDeviceMonitorError
 
 typedef struct
 {
+#ifdef HAVE_UDEV
   GUdevClient *client;
+#else
+  guint filler;
+#endif /* HAVE_UDEV */
 } CheeseCameraDeviceMonitorPrivate;
 
 enum
@@ -69,14 +81,13 @@ cheese_camera_device_monitor_error_quark (void)
   return g_quark_from_static_string ("cheese-camera-error-quark");
 }
 
+#ifdef HAVE_UDEV
 static void
 cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 				    GUdevDevice *udevice)
 {
   const char             *device_path;
   const char             *gstreamer_src, *product_name;
-  struct v4l2_capability  v2cap;
-  struct video_capability v1cap;
   const char             *vendor;
   const char             *product;
   gint                    vendor_id     = 0;
@@ -126,48 +137,8 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     gstreamer_src = (v4l_version == 2) ? "v4l2src" : "v4lsrc";
     product_name = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
   } else if (v4l_version == 0) {
-    int fd, ok;
-    g_warning ("Fix your udev installation to include v4l_id");
-    if ((fd = open (device_path, O_RDONLY | O_NONBLOCK)) < 0)
-    {
-      g_warning ("Failed to open %s: %s", device_path, strerror (errno));
-      return;
-    }
-    ok = ioctl (fd, VIDIOC_QUERYCAP, &v2cap);
-    if (ok < 0)
-    {
-      ok = ioctl (fd, VIDIOCGCAP, &v1cap);
-      if (ok < 0)
-      {
-	g_warning ("Error while probing v4l capabilities for %s: %s",
-		   device_path, strerror (errno));
-	close (fd);
-	return;
-      }
-      g_print ("Detected v4l device: %s\n", v1cap.name);
-      g_print ("Device type: %d\n", v1cap.type);
-      gstreamer_src = "v4lsrc";
-      product_name  = v1cap.name;
-    }
-    else
-    {
-      guint cap = v2cap.capabilities;
-      g_print ("Detected v4l2 device: %s\n", v2cap.card);
-      g_print ("Driver: %s, version: %d\n", v2cap.driver, v2cap.version);
-
-      /* g_print ("Bus info: %s\n", v2cap.bus_info); */ /* Doesn't seem anything useful */
-      g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
-      if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
-      {
-	g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
-		 "Removing it from device list.\n", device_path);
-	close (fd);
-	return;
-      }
-      gstreamer_src = "v4l2src";
-      product_name  = (char *) v2cap.card;
-    }
-    close (fd);
+    g_warning ("Fix your udev installation to include v4l_id, ignoring %s", device_path);
+    return;
   } else {
     g_assert_not_reached ();
   }
@@ -186,27 +157,6 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
   //FIXME This will leak a device, we should ref/unref it instead
   g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
-}
-
-void
-cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
-{
-  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
-  GList *devices, *l;
-
-  g_print ("Probing devices with udev...\n");
-
-  if (priv->client == NULL)
-    return;
-
-  devices = g_udev_client_query_by_subsystem (priv->client, "video4linux");
-
-  /* Initialize camera structures */
-  for (l = devices; l != NULL; l = l->next) {
-    cheese_camera_device_monitor_added (monitor, l->data);
-    g_object_unref (l->data);
-  }
-  g_list_free (devices);
 }
 
 static void
@@ -229,9 +179,100 @@ cheese_camera_device_monitor_uevent_cb (GUdevClient  *client,
     cheese_camera_device_monitor_added (monitor, udevice);
 }
 
+void
+cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
+{
+  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
+  GList *devices, *l;
+
+  g_print ("Probing devices with udev...\n");
+
+  if (priv->client == NULL)
+    return;
+
+  devices = g_udev_client_query_by_subsystem (priv->client, "video4linux");
+
+  /* Initialize camera structures */
+  for (l = devices; l != NULL; l = l->next) {
+    cheese_camera_device_monitor_added (monitor, l->data);
+    g_object_unref (l->data);
+  }
+  g_list_free (devices);
+}
+#else /* HAVE_UDEV */
+void
+cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
+{
+#if 0
+  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
+  struct v4l2_capability  v2cap;
+  struct video_capability v1cap;
+  int fd, ok;
+
+  if ((fd = open (device_path, O_RDONLY | O_NONBLOCK)) < 0)
+  {
+    g_warning ("Failed to open %s: %s", device_path, strerror (errno));
+    return;
+  }
+  ok = ioctl (fd, VIDIOC_QUERYCAP, &v2cap);
+  if (ok < 0)
+  {
+    ok = ioctl (fd, VIDIOCGCAP, &v1cap);
+    if (ok < 0)
+    {
+      g_warning ("Error while probing v4l capabilities for %s: %s",
+		 device_path, strerror (errno));
+      close (fd);
+      return;
+    }
+    g_print ("Detected v4l device: %s\n", v1cap.name);
+    g_print ("Device type: %d\n", v1cap.type);
+    gstreamer_src = "v4lsrc";
+    product_name  = v1cap.name;
+  }
+  else
+  {
+    guint cap = v2cap.capabilities;
+    g_print ("Detected v4l2 device: %s\n", v2cap.card);
+    g_print ("Driver: %s, version: %d\n", v2cap.driver, v2cap.version);
+
+    /* g_print ("Bus info: %s\n", v2cap.bus_info); */ /* Doesn't seem anything useful */
+    g_print ("Capabilities: 0x%08X\n", v2cap.capabilities);
+    if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
+    {
+      g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
+	       "Removing it from device list.\n", device_path);
+      close (fd);
+      return;
+    }
+    gstreamer_src = "v4l2src";
+    product_name  = (char *) v2cap.card;
+  }
+  close (fd);
+
+  GList *devices, *l;
+
+  g_print ("Probing devices with udev...\n");
+
+  if (priv->client == NULL)
+    return;
+
+  devices = g_udev_client_query_by_subsystem (priv->client, "video4linux");
+
+  /* Initialize camera structures */
+  for (l = devices; l != NULL; l = l->next) {
+    cheese_camera_device_monitor_added (monitor, l->data);
+    g_object_unref (l->data);
+  }
+  g_list_free (devices);
+#endif
+}
+#endif /* HAVE_UDEV */
+
 static void
 cheese_camera_device_monitor_finalize (GObject *object)
 {
+#ifdef HAVE_UDEV
   CheeseCameraDeviceMonitor *monitor;
 
   monitor = CHEESE_CAMERA_DEVICE_MONITOR (object);
@@ -241,7 +282,7 @@ cheese_camera_device_monitor_finalize (GObject *object)
     g_object_unref (priv->client);
     priv->client = NULL;
   }
-
+#endif /* HAVE_UDEV */
   G_OBJECT_CLASS (cheese_camera_device_monitor_parent_class)->finalize (object);
 }
 
@@ -272,12 +313,14 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 static void
 cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 {
+#ifdef HAVE_UDEV
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
   const gchar* const subsystems[] = { "video4linux", NULL };
 
   priv->client = g_udev_client_new (subsystems);
   g_signal_connect (G_OBJECT (priv->client), "uevent",
 		    G_CALLBACK (cheese_camera_device_monitor_uevent_cb), monitor);
+#endif /* HAVE_UDEV */
 }
 
 CheeseCameraDeviceMonitor *
