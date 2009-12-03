@@ -240,8 +240,12 @@ cheese_camera_device_monitor_added (LibHalContext *ctx, const char *udi)
   CheeseCameraDeviceMonitor *monitor;
   char **caps;
   guint i;
+  void *data;
 
-  monitor = CHEESE_CAMERA_DEVICE_MONITOR (libhal_ctx_get_user_data (ctx));
+  data = libhal_ctx_get_user_data (ctx);
+  g_assert (data);
+
+  monitor = CHEESE_CAMERA_DEVICE_MONITOR (data);
 
   caps = libhal_device_get_property_strlist (ctx, udi, "info.capabilities", NULL);
   if (caps == NULL)
@@ -261,8 +265,12 @@ static void
 cheese_camera_device_monitor_removed (LibHalContext *ctx, const char *udi)
 {
   CheeseCameraDeviceMonitor *monitor;
+  void *data;
 
-  monitor = CHEESE_CAMERA_DEVICE_MONITOR (libhal_ctx_get_user_data (ctx));
+  data = libhal_ctx_get_user_data (ctx);
+  g_assert (data);
+
+  monitor = CHEESE_CAMERA_DEVICE_MONITOR (data);
 
   g_signal_emit (monitor, monitor_signals[REMOVED], 0, udi);
 }
@@ -276,6 +284,8 @@ cheese_camera_device_monitor_finalize (GObject *object)
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
 
   if (priv->hal_ctx != NULL) {
+    libhal_ctx_set_device_added (priv->hal_ctx, NULL);
+    libhal_ctx_set_device_removed (priv->hal_ctx, NULL);
     libhal_ctx_free (priv->hal_ctx);
     priv->hal_ctx = NULL;
   }
@@ -350,9 +360,9 @@ cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 
   if (!libhal_ctx_set_user_data (hal_ctx, monitor))
     g_warning ("Failed to set user data on HAL context");
-  if (!libhal_ctx_set_device_added (hal_ctx, (LibHalDeviceAdded) cheese_camera_device_monitor_added))
+  if (!libhal_ctx_set_device_added (hal_ctx, cheese_camera_device_monitor_added))
     g_warning ("Failed to connect to device added signal from HAL");
-  if (!libhal_ctx_set_device_removed (hal_ctx, (LibHalDeviceRemoved) cheese_camera_device_monitor_removed))
+  if (!libhal_ctx_set_device_removed (hal_ctx, cheese_camera_device_monitor_removed))
     g_warning ("Failed to connect to device removed signal from HAL");
 
   priv->hal_ctx = hal_ctx;
