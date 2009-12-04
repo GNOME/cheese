@@ -242,7 +242,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 
   /* Image tab */
   priv->image = gtk_image_new ();
-  priv->take_again_button = gtk_button_new_with_mnemonic (_("_Take another photo"));
+  priv->take_again_button = gtk_button_new_with_mnemonic (_("_Discard photo"));
   g_signal_connect (G_OBJECT (priv->take_again_button), "clicked",
 		    G_CALLBACK (take_again_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_again_button, FALSE);
