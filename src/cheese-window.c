@@ -371,12 +371,14 @@ cheese_window_fullscreen_leave_notify_cb (GtkWidget        *widget,
 void
 cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
 {
+  GtkAllocation allocation;
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
   gboolean toggled = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (widget));
 
+  gtk_widget_get_allocation (GTK_WIDGET (priv->thewidget), &allocation);
   gtk_widget_set_size_request (priv->thewidget,
-                               GTK_WIDGET (priv->thewidget)->allocation.width,
-                               GTK_WIDGET (priv->thewidget)->allocation.height);
+                               allocation.width,
+                               allocation.height);
 
   /* set a single column in wide mode */
   gtk_icon_view_set_columns (GTK_ICON_VIEW (priv->thumb_view), toggled ? 1 : G_MAXINT);

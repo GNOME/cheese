@@ -193,6 +193,7 @@ static gboolean
 cheese_camera_expose_cb (GtkWidget *widget, GdkEventExpose *event, CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  GtkAllocation        allocation;
   GstState             state;
   GstXOverlay         *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
                                                                           GST_TYPE_X_OVERLAY));
@@ -201,8 +202,10 @@ cheese_camera_expose_cb (GtkWidget *widget, GdkEventExpose *event, CheeseCamera 
 
   if ((state < GST_STATE_PLAYING) || (overlay == NULL))
   {
-    gdk_draw_rectangle (widget->window, widget->style->black_gc, TRUE,
-                        0, 0, widget->allocation.width, widget->allocation.height);
+    gtk_widget_get_allocation (widget, &allocation);
+    gdk_draw_rectangle (gtk_widget_get_window (widget),
+                        gtk_widget_get_style (widget)->black_gc, TRUE,
+                        0, 0, allocation.width, allocation.height);
   }
   else
   {

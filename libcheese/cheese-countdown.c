@@ -334,6 +334,7 @@ static gboolean
 on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
 {
   CheeseCountdownPrivate *priv     = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
+  GtkAllocation           allocation;
   cairo_t                *pContext = NULL;
   cairo_pattern_t        *pattern;
   CairoColor              bgBorder;
@@ -342,12 +343,16 @@ on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
   CairoColor              bgShade2;
   CairoColor              bgShade3;
   CairoColor              bgShade4;
-  gdouble                 fWidth  = (gdouble) widget->allocation.width;
-  gdouble                 fHeight = (gdouble) widget->allocation.height;
+  gdouble                 fWidth;
+  gdouble                 fHeight;
+
+  gtk_widget_get_allocation (widget, &allocation);
+  fWidth = (gdouble) allocation.width;
+  fHeight = (gdouble) allocation.height;
 
   /* 3 * 26 are the three numbers, 30 is the width of camera-icon.svg */
-  int     iOffsetX = (widget->allocation.width - 3 * 26 - 30) / 2;
-  int     iOffsetY = (widget->allocation.height - 30) / 2;
+  int     iOffsetX = (allocation.width - 3 * 26 - 30) / 2;
+  int     iOffsetY = (allocation.height - 30) / 2;
   gdouble fAlpha1;
   gdouble fAlpha2;
   gdouble fAlpha3;

@@ -85,14 +85,15 @@ shift_colors (GdkPixbuf *pixbuf,
 static void
 update_pixbufs (UmCropArea *area)
 {
+	GtkAllocation allocation;
+	GtkStyle *style;
+	GtkWidget *widget;
+	GdkColor *color;
+	gdouble scale;
 	gint width;
 	gint height;
-	GtkAllocation allocation;
-	gdouble scale;
-	GdkColor *color;
-	guint32 pixel;
 	gint dest_x, dest_y, dest_width, dest_height;
-	GtkWidget *widget;
+	guint32 pixel;
 
 	widget = GTK_WIDGET (area);
 	gtk_widget_get_allocation (widget, &allocation);
@@ -105,7 +106,8 @@ update_pixbufs (UmCropArea *area)
 		area->priv->pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB, FALSE, 8,
 					     allocation.width, allocation.height);
 
-		color = &widget->style->bg[GTK_WIDGET_STATE (widget)];
+		style = gtk_widget_get_style (widget);
+		color = &style->bg[gtk_widget_get_state (widget)];
   		pixel = ((color->red & 0xff00) << 16) |
        			((color->green & 0xff00) << 8) |
          		 (color->blue & 0xff00);
@@ -178,9 +180,12 @@ static gboolean
 um_crop_area_expose (GtkWidget      *widget,
 		     GdkEventExpose *event)
 {
+	GtkStateType state;
+	GtkStyle *style;
 	cairo_t *cr;
 	GdkRectangle area;
 	GdkRectangle crop;
+	GdkWindow *window;
 	gint width, height;
 	UmCropArea *uarea = UM_CROP_AREA (widget);
 
@@ -188,6 +193,10 @@ um_crop_area_expose (GtkWidget      *widget,
 		return FALSE;
 
 	update_pixbufs (uarea);
+
+	window = gtk_widget_get_window (widget);
+	style = gtk_widget_get_style (widget);
+	state = gtk_widget_get_state (widget);
 
 	width = gdk_pixbuf_get_width (uarea->priv->pixbuf);
 	height = gdk_pixbuf_get_height (uarea->priv->pixbuf);
@@ -198,8 +207,8 @@ um_crop_area_expose (GtkWidget      *widget,
 	area.width = width;
 	area.height = crop.y;
 	gdk_rectangle_intersect (&area, &event->area, &area);
-	gdk_draw_pixbuf (widget->window,
-		 	 widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
+	gdk_draw_pixbuf (window,
+	                 style->fg_gc[state],
 			 uarea->priv->color_shifted,
 		 	 area.x, area.y,
 		 	 area.x, area.y,
@@ -211,8 +220,8 @@ um_crop_area_expose (GtkWidget      *widget,
 	area.width = crop.x;
 	area.height = crop.height;
 	gdk_rectangle_intersect (&area, &event->area, &area);
-	gdk_draw_pixbuf (widget->window,
-		 	 widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
+	gdk_draw_pixbuf (window,
+	                 style->fg_gc[state],
 			 uarea->priv->color_shifted,
 		 	 area.x, area.y,
 		 	 area.x, area.y,
@@ -224,8 +233,8 @@ um_crop_area_expose (GtkWidget      *widget,
 	area.width = crop.width;
 	area.height = crop.height;
 	gdk_rectangle_intersect (&area, &event->area, &area);
-	gdk_draw_pixbuf (widget->window,
-			 widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
+	gdk_draw_pixbuf (window,
+	                 style->fg_gc[state],
 			 uarea->priv->pixbuf,
 			 area.x, area.y,
 			 area.x, area.y,
@@ -237,8 +246,8 @@ um_crop_area_expose (GtkWidget      *widget,
 	area.width = width - area.x;
 	area.height = crop.height;
 	gdk_rectangle_intersect (&area, &event->area, &area);
-	gdk_draw_pixbuf (widget->window,
-		 	 widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
+	gdk_draw_pixbuf (window,
+	                 style->fg_gc[state],
 			 uarea->priv->color_shifted,
 		 	 area.x, area.y,
 		 	 area.x, area.y,
@@ -250,21 +259,21 @@ um_crop_area_expose (GtkWidget      *widget,
 	area.width = width;
 	area.height = height - area.y;
 	gdk_rectangle_intersect (&area, &event->area, &area);
-	gdk_draw_pixbuf (widget->window,
-		 	 widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
+	gdk_draw_pixbuf (window,
+	                 style->fg_gc[state],
 			 uarea->priv->color_shifted,
 		 	 area.x, area.y,
 		 	 area.x, area.y,
 		 	 area.width, area.height,
 		 	 GDK_RGB_DITHER_NONE, 0, 0);
 
-	cr = gdk_cairo_create (widget->window);
+	cr = gdk_cairo_create (window);
 	gdk_cairo_rectangle (cr, &event->area);
 	cairo_clip (cr);
 
 	if (uarea->priv->active_region != OUTSIDE) {
 		gint x1, x2, y1, y2;
-		gdk_cairo_set_source_color (cr, &widget->style->white);
+		gdk_cairo_set_source_color (cr, &style->white);
 		cairo_set_line_width (cr, 1.0);
 		x1 = crop.x + crop.width / 3.0;
 		x2 = crop.x + 2 * crop.width / 3.0;
@@ -285,7 +294,7 @@ um_crop_area_expose (GtkWidget      *widget,
 		cairo_stroke (cr);
 	}
 
-	gdk_cairo_set_source_color (cr, &widget->style->black);
+	gdk_cairo_set_source_color (cr, &style->black);
 	cairo_set_line_width (cr, 1.0);
 	cairo_rectangle (cr,
                          crop.x + 0.5,
@@ -294,7 +303,7 @@ um_crop_area_expose (GtkWidget      *widget,
                          crop.height - 1.0);
         cairo_stroke (cr);
 
-	gdk_cairo_set_source_color (cr, &widget->style->white);
+	gdk_cairo_set_source_color (cr, &style->white);
 	cairo_set_line_width (cr, 2.0);
 	cairo_rectangle (cr,
                          crop.x + 2.0,

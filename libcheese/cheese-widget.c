@@ -93,15 +93,17 @@ cheese_widget_logo_expose (GtkWidget      *w,
   guint         s_width, s_height, d_width, d_height;
   float         ratio;
 
-  gdk_draw_rectangle (w->window, w->style->black_gc, TRUE,
-                      0, 0, w->allocation.width, w->allocation.height);
+  gtk_widget_get_allocation (w, &allocation);
+
+  gdk_draw_rectangle (gtk_widget_get_window (w),
+                      gtk_widget_get_style (w)->black_gc, TRUE,
+                      0, 0, allocation.width, allocation.height);
   icon_name = g_object_get_data (G_OBJECT (w), "icon-name");
   if (icon_name == NULL)
     return FALSE;
 
   cr = gdk_cairo_create (gtk_widget_get_window (w));
   cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
-  gtk_widget_get_allocation (w, &allocation);
   cairo_rectangle (cr, 0, 0, allocation.width, allocation.height);
 
   d_width  = allocation.width;
