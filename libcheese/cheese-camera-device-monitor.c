@@ -2,6 +2,7 @@
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
+ * Copyright © 2009 Filippo Argiolas <filippo.argiolas@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -86,7 +87,7 @@ static void
 cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 				    GUdevDevice *udevice)
 {
-  const char             *device_path;
+  const char             *device_file;
   const char             *gstreamer_src, *product_name;
   const char             *vendor;
   const char             *product;
@@ -115,17 +116,17 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     g_print ("Not an usb device, skipping vendor and model id retrieval\n");
   }
 
-  device_path = g_udev_device_get_device_file (udevice);
-  if (device_path == NULL) {
+  device_file = g_udev_device_get_device_file (udevice);
+  if (device_file == NULL) {
     g_warning ("Error getting V4L device");
     return;
   }
 
   /* vbi devices support capture capability too, but cannot be used,
    * so detect them by device name */
-  if (strstr (device_path, "vbi"))
+  if (strstr (device_file, "vbi"))
   {
-    g_print ("Skipping vbi device: %s\n", device_path);
+    g_print ("Skipping vbi device: %s\n", device_file);
     return;
   }
 
@@ -137,13 +138,13 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     if (caps == NULL || strstr (caps, ":capture:") == NULL)
     {
       g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
-	       "Removing it from device list.\n", device_path);
+	       "Removing it from device list.\n", device_file);
       return;
     }
     gstreamer_src = (v4l_version == 2) ? "v4l2src" : "v4lsrc";
     product_name = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
   } else if (v4l_version == 0) {
-    g_warning ("Fix your udev installation to include v4l_id, ignoring %s", device_path);
+    g_warning ("Fix your udev installation to include v4l_id, ignoring %s", device_file);
     return;
   } else {
     g_assert_not_reached ();
@@ -151,17 +152,14 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 
   g_print ("\n");
 
-  device = g_new0 (CheeseCameraDevice, 1);
+  device = cheese_camera_device_new ();
+  g_object_set (G_OBJECT (device),
+                "device-id", g_udev_device_get_property (udevice, "DEVPATH"),
+                "device-file", device_file,
+                "name", product_name,
+                "src", gstreamer_src,
+                NULL);
 
-  device->id                = g_strdup (g_udev_device_get_property (udevice, "DEVPATH"));
-  device->video_device      = g_strdup (device_path);
-  device->gstreamer_src     = g_strdup (gstreamer_src);
-  device->product_name      = g_strdup (product_name);
-  device->num_video_formats = 0;
-  device->video_formats     = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
-  device->supported_resolutions =
-    g_hash_table_new_full (g_str_hash, g_str_equal, g_free, NULL);
-  //FIXME This will leak a device, we should ref/unref it instead
   g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
 }
 
@@ -303,8 +301,8 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 					 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
 					 G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
 					 NULL, NULL,
-					 g_cclosure_marshal_VOID__POINTER,
-					 G_TYPE_NONE, 1, G_TYPE_POINTER);
+					 g_cclosure_marshal_VOID__OBJECT,
+					 G_TYPE_NONE, 1, G_TYPE_OBJECT);
 
   monitor_signals[REMOVED] = g_signal_new ("removed", G_OBJECT_CLASS_TYPE (klass),
 					   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,

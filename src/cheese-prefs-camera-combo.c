@@ -95,6 +95,7 @@ cheese_prefs_camera_combo_selection_changed (GtkComboBox *combo_box, CheesePrefs
 static void
 cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
 {
+#if 0
   CheesePrefsCameraCombo        *self = CHEESE_PREFS_CAMERA_COMBO (prefs_widget);
   CheesePrefsCameraComboPrivate *priv = CHEESE_PREFS_CAMERA_COMBO_GET_PRIVATE (self);
 
@@ -180,6 +181,7 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
   gtk_widget_set_sensitive (combo_box, num_devices > 1);
 
   g_ptr_array_unref (camera_devices);
+#endif
 }
 
 static void

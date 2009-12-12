@@ -2,6 +2,7 @@
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Ryan zeigler <zeiglerr@gmail.com>
+ * Copyright © 2009 Filippo Argiolas <filippo.argiolas@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -19,44 +20,49 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 #ifndef __CHEESE_CAMERA_DEVICE_H__
 #define __CHEESE_CAMERA_DEVICE_H__
 
-#include <glib.h>
+#include <glib-object.h>
+#include <gst/gst.h>
+
 
 G_BEGIN_DECLS
 
-typedef struct
-{
-  int numerator;
-  int denominator;
-} CheeseFramerate;
+#define CHEESE_TYPE_CAMERA_DEVICE (cheese_camera_device_get_type ())
+#define CHEESE_CAMERA_DEVICE(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDevice))
+#define CHEESE_CAMERA_DEVICE_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDeviceClass))
+#define CHEESE_IS_CAMERA_DEVICE(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CHEESE_TYPE_CAMERA_DEVICE))
+#define CHEESE_IS_CAMERA_DEVICE_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_CAMERA_DEVICE))
+#define CHEESE_CAMERA_DEVICE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDeviceClass))
 
 typedef struct
 {
-  char *mimetype;
-  int   width;
-  int   height;
-  int   num_framerates;
-  CheeseFramerate *framerates;
-  CheeseFramerate  highest_framerate;
-} CheeseVideoFormat;
-
-typedef struct
-{
-  char *video_device;
-  char *id;
-  char *gstreamer_src;
-  char *product_name;
-  int   num_video_formats;
-  GArray *video_formats;
-
-  /* Hash table for resolution based lookup of video_formats */
-  GHashTable *supported_resolutions;
+  GObject parent;
 } CheeseCameraDevice;
 
-void cheese_camera_device_free (CheeseCameraDevice *device);
+typedef struct
+{
+  GObjectClass parent_class;
+} CheeseCameraDeviceClass;
+
+typedef struct
+{
+  int   width;
+  int   height;
+} CheeseVideoFormat;
+
+CheeseCameraDevice        *cheese_camera_device_new (void);
+GstCaps                   *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
+                                                                     CheeseVideoFormat *format);
+
+GList                     *cheese_camera_device_get_readable_format_list (CheeseCameraDevice *device);
+const gchar               *cheese_camera_device_get_name (CheeseCameraDevice *device);
+const gchar               *cheese_camera_device_get_src (CheeseCameraDevice *device);
+const gchar               *cheese_camera_device_get_id (CheeseCameraDevice *device);
+const gchar               *cheese_camera_device_get_device_file (CheeseCameraDevice *device);
+
+
 
 G_END_DECLS
 

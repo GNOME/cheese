@@ -33,6 +33,7 @@
 #include <X11/Xlib.h>
 
 #include "cheese-camera.h"
+#include "cheese-camera-device.h"
 #include "cheese-camera-device-monitor.h"
 
 G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
@@ -42,8 +43,6 @@ G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 #define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
 
 #define MIN_DEFAULT_RATE 15.0
-
-static void find_highest_framerate (CheeseVideoFormat *format);
 
 enum CheeseCameraError
 {
@@ -298,7 +297,7 @@ cheese_camera_get_video_devices_from_udev (CheeseCamera *camera)
   CheeseCameraDeviceMonitor *monitor;
 
   priv->num_camera_devices = 0;
-  priv->camera_devices = g_ptr_array_new_with_free_func ((GDestroyNotify) cheese_camera_device_free);
+  priv->camera_devices = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
 
   monitor = cheese_camera_device_monitor_new ();
   g_signal_connect (G_OBJECT (monitor), "added",
@@ -313,312 +312,88 @@ cheese_camera_get_video_devices_from_udev (CheeseCamera *camera)
     CheeseCameraDevice *device;
     if (priv->camera_devices == NULL)
       priv->camera_devices = g_ptr_array_new ();
-    device = g_new0 (CheeseCameraDevice, 1);
-    device->num_video_formats = 0;
-    device->video_formats     = g_array_new (FALSE, FALSE, sizeof (CheeseVideoFormat));
-    device->id = g_strdup ("cheese_fake_videodevice");
+    device = cheese_camera_device_new ();
+    g_object_set (device, "device-id", "cheese_fake_device", NULL);
     g_ptr_array_add (priv->camera_devices, device);
   }
 }
 
 static void
-cheese_camera_get_supported_framerates (CheeseVideoFormat *video_format, GstStructure *structure)
-{
-  const GValue *framerates;
-  int           i, j;
-
-  framerates = gst_structure_get_value (structure, "framerate");
-  if (GST_VALUE_HOLDS_FRACTION (framerates))
-  {
-    video_format->num_framerates            = 1;
-    video_format->framerates                = g_new0 (CheeseFramerate, video_format->num_framerates);
-    video_format->framerates[0].numerator   = gst_value_get_fraction_numerator (framerates);
-    video_format->framerates[0].denominator = gst_value_get_fraction_denominator (framerates);
-  }
-  else if (GST_VALUE_HOLDS_LIST (framerates))
-  {
-    video_format->num_framerates = gst_value_list_get_size (framerates);
-    video_format->framerates     = g_new0 (CheeseFramerate, video_format->num_framerates);
-    for (i = 0; i < video_format->num_framerates; i++)
-    {
-      const GValue *value;
-      value                                   = gst_value_list_get_value (framerates, i);
-      video_format->framerates[i].numerator   = gst_value_get_fraction_numerator (value);
-      video_format->framerates[i].denominator = gst_value_get_fraction_denominator (value);
-    }
-  }
-  else if (GST_VALUE_HOLDS_FRACTION_RANGE (framerates))
-  {
-    int           numerator_min, denominator_min, numerator_max, denominator_max;
-    const GValue *fraction_range_min;
-    const GValue *fraction_range_max;
-
-    fraction_range_min = gst_value_get_fraction_range_min (framerates);
-    numerator_min      = gst_value_get_fraction_numerator (fraction_range_min);
-    denominator_min    = gst_value_get_fraction_denominator (fraction_range_min);
-
-    fraction_range_max = gst_value_get_fraction_range_max (framerates);
-    numerator_max      = gst_value_get_fraction_numerator (fraction_range_max);
-    denominator_max    = gst_value_get_fraction_denominator (fraction_range_max);
-    g_print ("FractionRange: %d/%d - %d/%d\n", numerator_min, denominator_min, numerator_max, denominator_max);
-
-    video_format->num_framerates = (numerator_max - numerator_min + 1) * (denominator_max - denominator_min + 1);
-    video_format->framerates     = g_new0 (CheeseFramerate, video_format->num_framerates);
-    int k = 0;
-    for (i = numerator_min; i <= numerator_max; i++)
-    {
-      for (j = denominator_min; j <= denominator_max; j++)
-      {
-        video_format->framerates[k].numerator   = i;
-        video_format->framerates[k].denominator = j;
-        k++;
-      }
-    }
-  }
-  else
-  {
-    g_critical ("GValue type %s, cannot be handled for framerates", G_VALUE_TYPE_NAME (framerates));
-  }
-}
-
-static void
-cheese_camera_add_video_format (CheeseCameraDevice *camera_device,
-                                CheeseVideoFormat *video_format, GstStructure *format_structure)
-{
-  int    i;
-  gchar *resolution;
-
-  cheese_camera_get_supported_framerates (video_format, format_structure);
-  find_highest_framerate (video_format);
-
-  g_print ("%s %d x %d num_framerates %d\n", video_format->mimetype, video_format->width,
-           video_format->height, video_format->num_framerates);
-  for (i = 0; i < video_format->num_framerates; i++)
-  {
-    g_print ("%d/%d ", video_format->framerates[i].numerator,
-             video_format->framerates[i].denominator);
-  }
-
-  resolution = g_strdup_printf ("%ix%i", video_format->width,
-                                video_format->height);
-  i = GPOINTER_TO_INT (g_hash_table_lookup (
-                         camera_device->supported_resolutions,
-                         resolution));
-  if (i)   /* Resolution already added ? */
-  {
-    CheeseVideoFormat *curr_format = &g_array_index (
-      camera_device->video_formats,
-      CheeseVideoFormat, i - 1);
-    float new_framerate = (float) video_format->highest_framerate.numerator /
-                          video_format->highest_framerate.denominator;
-    float curr_framerate = (float) curr_format->highest_framerate.numerator /
-                           curr_format->highest_framerate.denominator;
-    if (new_framerate > curr_framerate)
-    {
-      g_print ("higher framerate replacing existing format\n");
-      *curr_format = *video_format;
-    }
-    else
-      g_print ("already added, skipping\n");
-
-    g_free (resolution);
-    return;
-  }
-
-  g_array_append_val (camera_device->video_formats, *video_format);
-  g_hash_table_insert (camera_device->supported_resolutions, resolution,
-                       GINT_TO_POINTER (camera_device->num_video_formats + 1));
-
-  camera_device->num_video_formats++;
-}
-
-static gint
-cheese_resolution_compare (gconstpointer _a, gconstpointer _b)
-{
-  const CheeseVideoFormat *a = _a;
-  const CheeseVideoFormat *b = _b;
-
-  if (a->width == b->width)
-    return a->height - b->height;
-
-  return a->width - b->width;
-}
-
-static void
-cheese_camera_get_supported_video_formats (CheeseCameraDevice *camera_device, GstCaps *caps)
-{
-  int i;
-  int num_structures;
-
-  num_structures = gst_caps_get_size (caps);
-  for (i = 0; i < num_structures; i++)
-  {
-    GstStructure *structure;
-    const GValue *width, *height;
-    structure = gst_caps_get_structure (caps, i);
-
-    /* only interested in raw formats; we don't want to end up using image/jpeg
-     * (or whatever else the cam may produce) since we won't be able to link
-     * that to ffmpegcolorspace or the effect plugins, which makes it rather
-     * useless (although we could plug a decoder of course) */
-    if (!gst_structure_has_name (structure, "video/x-raw-yuv") &&
-        !gst_structure_has_name (structure, "video/x-raw-rgb"))
-    {
-      continue;
-    }
-
-    width  = gst_structure_get_value (structure, "width");
-    height = gst_structure_get_value (structure, "height");
-
-    if (G_VALUE_HOLDS_INT (width))
-    {
-      CheeseVideoFormat video_format;
-
-      video_format.mimetype = g_strdup (gst_structure_get_name (structure));
-      gst_structure_get_int (structure, "width", &(video_format.width));
-      gst_structure_get_int (structure, "height", &(video_format.height));
-      cheese_camera_add_video_format (camera_device, &video_format, structure);
-    }
-    else if (GST_VALUE_HOLDS_INT_RANGE (width))
-    {
-      int min_width, max_width, min_height, max_height;
-      int cur_width, cur_height;
-
-      min_width  = gst_value_get_int_range_min (width);
-      max_width  = gst_value_get_int_range_max (width);
-      min_height = gst_value_get_int_range_min (height);
-      max_height = gst_value_get_int_range_max (height);
-
-      cur_width  = min_width;
-      cur_height = min_height;
-
-      /* Gstreamer will sometimes give us a range with min_xxx == max_xxx,
-       * we use <= here (and not below) to make this work */
-      while (cur_width <= max_width && cur_height <= max_height)
-      {
-        CheeseVideoFormat video_format;
-
-        video_format.mimetype = g_strdup (gst_structure_get_name (structure));
-        video_format.width    = cur_width;
-        video_format.height   = cur_height;
-        cheese_camera_add_video_format (camera_device, &video_format, structure);
-        cur_width  *= 2;
-        cur_height *= 2;
-      }
-
-      cur_width  = max_width;
-      cur_height = max_height;
-      while (cur_width > min_width && cur_height > min_height)
-      {
-        CheeseVideoFormat video_format;
-
-        video_format.mimetype = g_strdup (gst_structure_get_name (structure));
-        video_format.width    = cur_width;
-        video_format.height   = cur_height;
-        cheese_camera_add_video_format (camera_device, &video_format, structure);
-        cur_width  /= 2;
-        cur_height /= 2;
-      }
-    }
-    else
-    {
-      g_critical ("GValue type %s, cannot be handled for resolution width", G_VALUE_TYPE_NAME (width));
-    }
-  }
-
-  /* Sort the format array (so that it will show sorted in the resolution
-   * selection GUI), and rebuild the hashtable (as that will be invalid after
-   * the sorting) */
-  g_array_sort (camera_device->video_formats, cheese_resolution_compare);
-  g_hash_table_remove_all (camera_device->supported_resolutions);
-  for (i = 0; i < camera_device->num_video_formats; i++)
-  {
-    CheeseVideoFormat *format = &g_array_index (camera_device->video_formats,
-                                                CheeseVideoFormat, i);
-    g_hash_table_insert (camera_device->supported_resolutions,
-                         g_strdup_printf ("%ix%i", format->width,
-                                          format->height),
-                         GINT_TO_POINTER (i + 1));
-  }
-}
-
-static void
 cheese_camera_get_camera_device_data (CheeseCamera       *camera,
-                                      CheeseCameraDevice *camera_device)
+                                      CheeseCameraDevice *device)
 {
   char                *pipeline_desc;
   GstElement          *pipeline;
-  GError              *err;
   GstStateChangeReturn ret;
   GstMessage          *msg;
   GstBus              *bus;
+  gchar               *src;
+  gchar               *devpath;
+  GError              *err = NULL;
 
+  g_object_get (G_OBJECT (device), "device-file", &devpath, "src", &src, NULL);
+
+  pipeline_desc = g_strdup_printf ("%s name=source device=%s ! fakesink",
+                                   src, devpath);
+  pipeline = gst_parse_launch (pipeline_desc, &err);
+  if ((pipeline != NULL) && (err == NULL))
   {
-    pipeline_desc = g_strdup_printf ("%s name=source device=%s ! fakesink",
-                                     camera_device->gstreamer_src,
-                                     camera_device->video_device);
-    err      = NULL;
-    pipeline = gst_parse_launch (pipeline_desc, &err);
-    if ((pipeline != NULL) && (err == NULL))
+    /* Start the pipeline and wait for max. 10 seconds for it to start up */
+    gst_element_set_state (pipeline, GST_STATE_READY);
+    ret = gst_element_get_state (pipeline, NULL, NULL, 10 * GST_SECOND);
+
+    /* Check if any error messages were posted on the bus */
+    bus = gst_element_get_bus (pipeline);
+    msg = gst_bus_poll (bus, GST_MESSAGE_ERROR, 0);
+    gst_object_unref (bus);
+
+    if ((msg == NULL) && (ret == GST_STATE_CHANGE_SUCCESS))
     {
-      /* Start the pipeline and wait for max. 10 seconds for it to start up */
-      gst_element_set_state (pipeline, GST_STATE_READY);
-      ret = gst_element_get_state (pipeline, NULL, NULL, 10 * GST_SECOND);
+      GstElement *src;
+      GstPad     *pad;
+      char       *name;
+      GstCaps    *caps;
 
-      /* Check if any error messages were posted on the bus */
-      bus = gst_element_get_bus (pipeline);
-      msg = gst_bus_poll (bus, GST_MESSAGE_ERROR, 0);
-      gst_object_unref (bus);
+      src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
 
-      if ((msg == NULL) && (ret == GST_STATE_CHANGE_SUCCESS))
-      {
-        GstElement *src;
-        GstPad     *pad;
-        char       *name;
-        GstCaps    *caps;
+      g_object_get (G_OBJECT (src), "device-name", &name, NULL);
+      if (name == NULL)
+        name = "Unknown";
 
-        src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
-
-        g_object_get (G_OBJECT (src), "device-name", &name, NULL);
-        if (name == NULL)
-          name = "Unknown";
-
-        g_print ("Device: %s (%s)\n", name, camera_device->video_device);
-        pad  = gst_element_get_pad (src, "src");
-        caps = gst_pad_get_caps (pad);
-        gst_object_unref (pad);
-        cheese_camera_get_supported_video_formats (camera_device, caps);
-        gst_caps_unref (caps);
-      }
-      gst_element_set_state (pipeline, GST_STATE_NULL);
-      gst_object_unref (pipeline);
+      g_print ("Device: %s (%s)\n", name, devpath);
+      pad  = gst_element_get_pad (src, "src");
+      caps = gst_pad_get_caps (pad);
+      gst_object_unref (pad);
+      g_object_set (G_OBJECT (device), "caps", caps, NULL);
+      gst_caps_unref (caps);
     }
-    if (err)
-      g_error_free (err);
-
-    g_free (pipeline_desc);
+    gst_element_set_state (pipeline, GST_STATE_NULL);
+    gst_object_unref (pipeline);
   }
+  if (err)
+    g_error_free (err);
+
+  g_free (pipeline_desc);
+  g_free (devpath);
+  g_free (src);
 }
 
 static void
 cheese_camera_create_fake_format (CheeseCamera *camera, CheeseCameraDevice *device)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  CheeseVideoFormat format;
+//  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   /* Right now just emulate one format: video/x-raw-yuv, 320x240 @ 30 Hz */
+  GstCaps *caps = gst_caps_new_simple ("video/x-raw-yuv",
+                                       "width", G_TYPE_INT,
+                                       320,
+                                       "height", G_TYPE_INT,
+                                       240,
+                                       "framerate", GST_TYPE_FRACTION,
+                                       30, 1,
+                                       NULL);
 
-  format.mimetype                  = g_strdup ("video/x-raw-yuv");
-  format.width                     = 320;
-  format.height                    = 240;
-  format.num_framerates            = 1;
-  format.framerates                = g_new0 (CheeseFramerate, 1);
-  format.framerates[0].numerator   = 30;
-  format.framerates[0].denominator = 1;
-
-  g_array_append_val (device->video_formats, format);
-  priv->current_format = &format;
+  g_object_set (G_OBJECT (device), "caps", caps, NULL);
 }
 
 static void
@@ -641,31 +416,6 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
     cheese_camera_create_fake_format (camera, g_ptr_array_index (priv->camera_devices, 0));
 }
 
-static void
-find_highest_framerate (CheeseVideoFormat *format)
-{
-  int framerate_numerator;
-  int framerate_denominator;
-  int i;
-
-  /* Select the highest framerate up to 30 Hz*/
-  framerate_numerator   = 1;
-  framerate_denominator = 1;
-  for (i = 0; i < format->num_framerates; i++)
-  {
-    float framerate = format->framerates[i].numerator / format->framerates[i].denominator;
-    if (framerate > ((float) framerate_numerator / framerate_denominator)
-        && framerate <= 30)
-    {
-      framerate_numerator   = format->framerates[i].numerator;
-      framerate_denominator = format->framerates[i].denominator;
-    }
-  }
-
-  format->highest_framerate.numerator   = framerate_numerator;
-  format->highest_framerate.denominator = framerate_denominator;
-}
-
 static gboolean
 cheese_camera_create_camera_source_bin (CheeseCamera *camera)
 {
@@ -673,6 +423,8 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
 
   GError *err = NULL;
   char   *camera_input;
+
+  GstCaps *caps;
 
   if (priv->num_camera_devices == 0)
   {
@@ -683,75 +435,42 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
   }
   else
   {
-    CheeseVideoFormat  *format;
     int                 i;
-    gchar              *resolution;
     CheeseCameraDevice *selected_camera;
 
     /* If we have a matching video device use that one, otherwise use the first */
     priv->selected_device = 0;
     selected_camera       = g_ptr_array_index (priv->camera_devices, 0);
-    format                = NULL;
+
     for (i = 1; i < priv->num_camera_devices; i++)
     {
       CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-      if (g_strcmp0 (device->video_device, priv->device_name) == 0) {
+      if (g_strcmp0 (cheese_camera_device_get_device_file (device),
+                     priv->device_name) == 0) {
         selected_camera = device;
         priv->selected_device = i;
         break;
       }
     }
 
-    resolution = g_strdup_printf ("%ix%i", priv->x_resolution,
-                                  priv->y_resolution);
-
     /* Use the previously set resolution from gconf if it is set and the
      * camera supports it. */
-    if (priv->x_resolution != 0 && priv->y_resolution != 0)
+    CheeseVideoFormat *format = g_new0 (CheeseVideoFormat, 1);
+    format->width = priv->x_resolution;
+    format->height = priv->y_resolution;
+    caps = cheese_camera_device_get_caps_for_format (selected_camera, format);
+
+    if (gst_caps_is_empty (caps))
     {
-      i = GPOINTER_TO_INT (g_hash_table_lookup (selected_camera->supported_resolutions, resolution));
-      if (i)
-        format = &g_array_index (selected_camera->video_formats,
-                                 CheeseVideoFormat, i - 1);
+      gst_caps_unref (caps);
+      g_object_get (G_OBJECT (selected_camera), "caps", &caps, NULL);
     }
-
-    if (!format)
-    {
-      /* Select the highest resolution */
-      format = &(g_array_index (selected_camera->video_formats,
-                                CheeseVideoFormat, 0));
-      for (i = 1; i < selected_camera->num_video_formats; i++)
-      {
-        CheeseVideoFormat *new = &g_array_index (selected_camera->video_formats,
-                                                 CheeseVideoFormat, i);
-        gfloat newrate = new->highest_framerate.numerator /
-                         new->highest_framerate.denominator;
-        if ((new->width + new->height) > (format->width + format->height) &&
-            (newrate >= MIN_DEFAULT_RATE))
-        {
-          format = new;
-        }
-      }
-    }
-
-    priv->current_format = format;
-    g_free (resolution);
-
-    if (format == NULL)
-      goto fallback;
 
     camera_input = g_strdup_printf (
-      "%s name=video_source device=%s ! capsfilter name=capsfilter caps=video/x-raw-rgb,width=%d,height=%d,framerate=%d/%d;video/x-raw-yuv,width=%d,height=%d,framerate=%d/%d ! identity",
-      selected_camera->gstreamer_src,
-      selected_camera->video_device,
-      format->width,
-      format->height,
-      format->highest_framerate.numerator,
-      format->highest_framerate.denominator,
-      format->width,
-      format->height,
-      format->highest_framerate.numerator,
-      format->highest_framerate.denominator);
+      "%s name=video_source device=%s ! capsfilter name=capsfilter ! identity",
+      cheese_camera_device_get_src (selected_camera),
+      cheese_camera_device_get_device_file (selected_camera));
+
     g_print ("%s\n", camera_input);
 
     priv->camera_source_bin = gst_parse_bin_from_description (camera_input,
@@ -764,6 +483,12 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
 
   priv->video_source = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "video_source");
   priv->capsfilter   = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "capsfilter");
+
+  GST_ERROR ("caps are %" GST_PTR_FORMAT, caps);
+
+  g_object_set (G_OBJECT (priv->capsfilter), "caps", caps, NULL);
+  gst_caps_unref (caps);
+
   return TRUE;
 
 fallback:
@@ -1576,55 +1301,37 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
   for (i = 0; i < priv->num_camera_devices; i++)
   {
     CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-    if (strcmp (device->id, udi) == 0)
+    if (strcmp (cheese_camera_device_get_id (device), udi) == 0)
     {
-      g_object_set (camera, "device_name", device->video_device, NULL);
+      g_object_set (camera,
+                    "device_name", cheese_camera_device_get_id (device),
+                    NULL);
       break;
     }
   }
 }
 
-GArray *
+GList *
 cheese_camera_get_video_formats (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
 
-  return device->video_formats;
+//  return cheese_camera_device_get_readable_format_list (device);
 }
 
 void
 cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
 {
+#if 0
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  GstCaps *new_caps;
-
-  new_caps = gst_caps_new_simple ("video/x-raw-rgb",
-                                  "width", G_TYPE_INT,
-                                  format->width,
-                                  "height", G_TYPE_INT,
-                                  format->height,
-                                  "framerate", GST_TYPE_FRACTION,
-                                  format->highest_framerate.numerator,
-                                  format->highest_framerate.denominator,
-                                  NULL);
-
-  gst_caps_append (new_caps, gst_caps_new_simple ("video/x-raw-yuv",
-                                                  "width", G_TYPE_INT,
-                                                  format->width,
-                                                  "height", G_TYPE_INT,
-                                                  format->height,
-                                                  "framerate", GST_TYPE_FRACTION,
-                                                  format->highest_framerate.numerator,
-                                                  format->highest_framerate.denominator,
-                                                  NULL));
-
-  priv->current_format = format;
+  GstCaps *caps = cheese_camera_device_get_caps_for_format (priv->selected_camera, format);
 
   cheese_camera_stop (camera);
-  g_object_set (priv->capsfilter, "caps", new_caps, NULL);
+  g_object_set (priv->capsfilter, "caps", caps, NULL);
   cheese_camera_play (camera);
+#endif
 }
 
 CheeseVideoFormat *

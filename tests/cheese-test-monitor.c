@@ -6,7 +6,10 @@ static void
 added_cb (CheeseCameraDeviceMonitor *monitor,
 	  CheeseCameraDevice *device)
 {
-	g_message ("Added new device with ID '%s'", device->id);
+        gchar *id;
+        g_object_get (device, "device-id", &id, NULL);
+	g_message ("Added new device with ID '%s'", id);
+        g_free (id);
 }
 
 static void
