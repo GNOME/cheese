@@ -90,6 +90,7 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
   const char             *gstreamer_src, *product_name;
   const char             *vendor;
   const char             *product;
+  const char             *bus;
   gint                    vendor_id     = 0;
   gint                    product_id    = 0;
   gint                    v4l_version   = 0;
@@ -97,21 +98,26 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 
   g_print ("Checking udev device '%s'\n", g_udev_device_get_property (udevice, "DEVPATH"));
 
-  vendor = g_udev_device_get_property (udevice, "ID_VENDOR_ID");
-  if (vendor != NULL)
-    vendor_id = g_ascii_strtoll (vendor, NULL, 16);
-  product = g_udev_device_get_property (udevice, "ID_MODEL_ID");
-  if (product != NULL)
-    product_id = g_ascii_strtoll (vendor, NULL, 16);
-  if (vendor_id == 0 || product_id == 0) {
-    g_warning ("error getting product or vendor id");
-    return;
+  bus = g_udev_device_get_property (udevice, "ID_BUS");
+  if (g_strcmp0 (bus, "usb") == 0) {
+    vendor = g_udev_device_get_property (udevice, "ID_VENDOR_ID");
+    if (vendor != NULL)
+      vendor_id = g_ascii_strtoll (vendor, NULL, 16);
+    product = g_udev_device_get_property (udevice, "ID_MODEL_ID");
+    if (product != NULL)
+      product_id = g_ascii_strtoll (vendor, NULL, 16);
+    if (vendor_id == 0 || product_id == 0) {
+      g_print ("Error getting vendor and product id\n");
+    } else {
+      g_print ("Found device %04x:%04x, getting capabilities...\n", vendor_id, product_id);
+    }
+  } else {
+    g_print ("Not an usb device, skipping vendor and model id retrieval\n");
   }
-  g_print ("Found device %04x:%04x, getting capabilities...\n", vendor_id, product_id);
 
   device_path = g_udev_device_get_device_file (udevice);
   if (device_path == NULL) {
-    g_warning ("error getting V4L device");
+    g_warning ("Error getting V4L device");
     return;
   }
 
