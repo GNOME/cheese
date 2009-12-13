@@ -288,7 +288,7 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 }
 
 static void
-cheese_camera_get_video_devices_from_udev (CheeseCamera *camera)
+cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   CheeseCameraDeviceMonitor *monitor;
@@ -301,15 +301,6 @@ cheese_camera_get_video_devices_from_udev (CheeseCamera *camera)
 		    G_CALLBACK (cheese_camera_add_device), camera);
   cheese_camera_device_monitor_coldplug (monitor);
   g_object_unref (monitor);
-}
-
-static void
-cheese_camera_detect_camera_devices (CheeseCamera *camera)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  /* FIXME: reduntant */
-  cheese_camera_get_video_devices_from_udev (camera);
 }
 
 static gboolean

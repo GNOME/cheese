@@ -112,10 +112,9 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
   CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self);
 
   GtkWidget         *combo_box;
-  CheeseVideoFormat *current_format;
+  const CheeseVideoFormat *current_format;
   GList             *formats;
   GList             *l;
-  int                i;
   CheeseVideoFormat *format;
   gchar             *format_name;
   GtkTreeIter        iter;
