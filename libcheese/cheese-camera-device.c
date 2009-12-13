@@ -33,6 +33,9 @@ G_DEFINE_TYPE (CheeseCameraDevice, cheese_camera_device, G_TYPE_OBJECT)
 
 #define CHEESE_CAMERA_DEVICE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDevicePrivate))
 
+GST_DEBUG_CATEGORY (cheese_camera_device);
+#define GST_CAT_DEFAULT cheese_camera_device
+
 static gchar *supported_formats[] =
 {
   "video/x-raw-rgb",
@@ -111,6 +114,10 @@ GstCaps *cheese_webcam_device_filter_caps (CheeseCameraDevice *device, const Gst
   GstCaps *filter = gst_caps_from_string (formats_string);
   GstCaps *allowed = gst_caps_intersect (caps, filter);
 
+  GST_DEBUG ("Supported caps %" GST_PTR_FORMAT, caps);
+  GST_DEBUG ("Filter caps %" GST_PTR_FORMAT, filter);
+  GST_DEBUG ("Filtered caps %" GST_PTR_FORMAT, allowed);
+
   g_free (formats_string);
   gst_caps_unref (filter);
 
@@ -130,6 +137,8 @@ cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *
         (item->width == format->width) &&
         (item->height == format->height)) return;
   }
+
+  GST_INFO ("%dx%d", format->width, format->height);
 
   priv->formats = g_list_append (priv->formats, format);
 }
@@ -262,7 +271,6 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
     {
       GstElement *src;
       GstPad     *pad;
-      char       *name;
       GstCaps    *caps;
 
       src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
@@ -407,6 +415,10 @@ cheese_camera_device_init (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
+
+  GST_DEBUG_CATEGORY_INIT (cheese_camera_device,
+                           "cheese-camera-device",
+                           0, "Cheese Camera Device");
   priv->device = NULL;
   priv->id = NULL;
   priv->src = NULL;
@@ -463,8 +475,11 @@ const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device)
 
 CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *device)
 {
-  return g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
-                       cheese_camera_device_get_format_list (device)->data);
+  CheeseVideoFormat *format = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
+                                            cheese_camera_device_get_format_list (device)->data);
+
+  GST_INFO ("%dx%d", format->width, format->height);
+  return format;
 }
 
 GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
@@ -474,6 +489,8 @@ GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
   GstCaps *caps;
   gint i;
+
+  GST_INFO ("Getting caps for %dx%d", format->width, format->height);
 
   caps = gst_caps_new_simple (supported_formats[0],
                               "width", G_TYPE_INT,
@@ -493,8 +510,12 @@ GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                           NULL));
   }
 
-  if (gst_caps_can_intersect (caps, priv->caps))
-    return caps;
-  else
-    return gst_caps_new_empty ();
+  if (!gst_caps_can_intersect (caps, priv->caps)) {
+    gst_caps_unref (caps);
+    caps = gst_caps_new_empty ();
+  }
+
+  GST_INFO ("Got %" GST_PTR_FORMAT, caps);
+
+  return caps;
 }
