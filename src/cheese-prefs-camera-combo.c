@@ -95,7 +95,6 @@ cheese_prefs_camera_combo_selection_changed (GtkComboBox *combo_box, CheesePrefs
 static void
 cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
 {
-#if 0
   CheesePrefsCameraCombo        *self = CHEESE_PREFS_CAMERA_COMBO (prefs_widget);
   CheesePrefsCameraComboPrivate *priv = CHEESE_PREFS_CAMERA_COMBO_GET_PRIVATE (self);
 
@@ -134,10 +133,11 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
    * Not sure if this is desired behavior */
   if (num_devices > 0)
   {
+    const gchar *devpath = cheese_camera_device_get_device_file (selected_device);
     g_object_get (prefs_widget->gconf, priv->camera_device_key, &gconf_device_name, NULL);
-    if (!gconf_device_name || strcmp (selected_device->video_device, gconf_device_name) != 0)
+    if (!gconf_device_name || strcmp (devpath, gconf_device_name) != 0)
     {
-      g_object_set (prefs_widget->gconf, priv->camera_device_key, selected_device->video_device, NULL);
+      g_object_set (prefs_widget->gconf, priv->camera_device_key, devpath, NULL);
     }
     g_free (gconf_device_name);
   }
@@ -146,8 +146,11 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
   for (i = 0; i < num_devices; i++)
   {
     device_ptr   = g_ptr_array_index (camera_devices, i);
-    product_name = g_strdup_printf ("%s (%s)", device_ptr->product_name, device_ptr->video_device);
-    device_name  = g_strdup (device_ptr->video_device);
+    const gchar *devpath = cheese_camera_device_get_device_file (device_ptr);
+    product_name = g_strdup_printf ("%s (%s)",
+                                    cheese_camera_device_get_name (device_ptr),
+                                    devpath);
+    device_name  = g_strdup (devpath);
 
     gtk_list_store_append (priv->list_store, &iter);
     gtk_list_store_set (priv->list_store, &iter, PRODUCT_NAME, product_name,
@@ -181,7 +184,6 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
   gtk_widget_set_sensitive (combo_box, num_devices > 1);
 
   g_ptr_array_unref (camera_devices);
-#endif
 }
 
 static void

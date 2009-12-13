@@ -113,7 +113,8 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
   GtkWidget         *combo_box;
   CheeseVideoFormat *current_format;
-  GArray            *formats;
+  GList             *formats;
+  GList             *l;
   int                i;
   CheeseVideoFormat *format;
   gchar             *format_name;
@@ -138,11 +139,10 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
   gtk_list_store_clear (priv->list_store);
   formats = cheese_camera_get_video_formats (priv->camera);
 
-  for (i = 0; i < formats->len; i++)
+  for (l = formats; l != NULL; l = l->next)
   {
-    format      = &g_array_index (formats, CheeseVideoFormat, i);
+    format = l->data;
     format_name = g_strdup_printf ("%i x %i", format->width, format->height);
-
 
     if (format->width <= priv->max_x_resolution &&
         format->height <= priv->max_y_resolution)
@@ -176,7 +176,9 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
                     G_CALLBACK (combo_selection_changed),
                     self);
 
-  gtk_widget_set_sensitive (combo_box, formats->len > 1);
+  gtk_widget_set_sensitive (combo_box, formats != NULL);
+  g_list_free (formats);
+  g_list_free (l);
 }
 
 static void

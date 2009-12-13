@@ -88,10 +88,8 @@ cheese_prefs_dialog_on_resolution_changed (CheesePrefsWidget *widget, gpointer u
   current_format = cheese_camera_get_current_video_format (camera);
   new_format     = cheese_prefs_resolution_combo_get_selected_format (CHEESE_PREFS_RESOLUTION_COMBO (widget));
 
-#if 0
   if (new_format != current_format)
     cheese_camera_set_video_format (camera, new_format);
-#endif
 }
 
 static void

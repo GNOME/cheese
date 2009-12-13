@@ -740,14 +740,12 @@ cheese_camera_play (CheeseCamera *camera)
 
   if (gst_caps_is_empty (caps))
   {
-    g_warning ("CAPS_ARE_EMPTY");
     gst_caps_unref (caps);
     g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
     priv->current_format = cheese_camera_device_get_best_format (device);
     g_object_notify (G_OBJECT (camera), "format");
     caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
     if (G_UNLIKELY (gst_caps_is_empty (caps))) {
-      g_warning ("CAPS_ARE_STILL_EMPTY");
       gst_caps_unref (caps);
       caps = gst_caps_new_any ();
     }
