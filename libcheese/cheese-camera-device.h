@@ -46,17 +46,21 @@ typedef struct
   GObjectClass parent_class;
 } CheeseCameraDeviceClass;
 
+#define CHEESE_TYPE_VIDEO_FORMAT (cheese_video_format_get_type ())
+
 typedef struct
 {
   int   width;
   int   height;
 } CheeseVideoFormat;
 
+GType cheese_video_format_get_type (void) G_GNUC_CONST;
+
 CheeseCameraDevice        *cheese_camera_device_new (void);
 GstCaps                   *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                                                      CheeseVideoFormat *format);
+CheeseVideoFormat         *cheese_camera_device_get_best_format (CheeseCameraDevice *device);
 
-GList                     *cheese_camera_device_get_readable_format_list (CheeseCameraDevice *device);
 const gchar               *cheese_camera_device_get_name (CheeseCameraDevice *device);
 const gchar               *cheese_camera_device_get_src (CheeseCameraDevice *device);
 const gchar               *cheese_camera_device_get_id (CheeseCameraDevice *device);

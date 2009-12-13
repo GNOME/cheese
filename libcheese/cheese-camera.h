@@ -74,7 +74,7 @@ CheeseCamera *cheese_camera_new (GtkWidget *video_window,
                                  int        x_resolution,
                                  int        y_resolution);
 
-CheeseVideoFormat *cheese_camera_get_current_video_format (CheeseCamera *camera);
+const CheeseVideoFormat *cheese_camera_get_current_video_format (CheeseCamera *camera);
 void               cheese_camera_setup (CheeseCamera *camera, char *udi, GError **error);
 void               cheese_camera_play (CheeseCamera *camera);
 void               cheese_camera_stop (CheeseCamera *camera);

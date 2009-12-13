@@ -19,6 +19,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 #ifdef HAVE_CONFIG_H
   #include <cheese-config.h>
 #endif
@@ -60,6 +61,37 @@ typedef struct
 
   GList *formats;
 } CheeseCameraDevicePrivate;
+
+
+/* CheeseVideoFormat */
+
+static CheeseVideoFormat*
+cheese_video_format_copy (const CheeseVideoFormat *format)
+{
+  return g_slice_dup (CheeseVideoFormat, format);
+}
+
+static void
+cheese_video_format_free (CheeseVideoFormat *format)
+{
+  if (G_LIKELY (format != NULL))
+    g_slice_free (CheeseVideoFormat, format);
+}
+
+GType
+cheese_video_format_get_type (void)
+{
+  static GType our_type = 0;
+
+  if (G_UNLIKELY (our_type == 0))
+    our_type =
+      g_boxed_type_register_static ("CheeseVideoFormat",
+                                    (GBoxedCopyFunc) cheese_video_format_copy,
+                                    (GBoxedFreeFunc) cheese_video_format_free);
+  return our_type;
+}
+
+/* the rest */
 
 static gint
 compare_formats (gconstpointer a, gconstpointer b)
@@ -104,7 +136,7 @@ cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *
 }
 
 static void
-free_formats_list (CheeseCameraDevice *device)
+free_format_list (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
@@ -130,7 +162,7 @@ cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
    * merely perceivable refresh reate gain. I'd say let's throw away
    * everything over 30/1 */
 
-  free_formats_list (device);
+  free_format_list (device);
 
   num_structures = gst_caps_get_size (priv->caps);
   for (i = 0; i < num_structures; i++)
@@ -280,7 +312,8 @@ cheese_camera_device_finalize (GObject *object)
   g_free (priv->src);
   g_free (priv->name);
 
-  // free_formats_list (priv->formats);
+  gst_caps_unref (priv->caps);
+  free_format_list (device);
 }
 
 static void
@@ -377,6 +410,11 @@ const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device)
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   return priv->device;
+}
+
+CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *device)
+{
+  return (CheeseVideoFormat *) cheese_camera_device_get_format_list (device)->data;
 }
 
 GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
