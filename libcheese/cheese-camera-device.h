@@ -56,6 +56,8 @@ typedef struct
 
 GType cheese_video_format_get_type (void) G_GNUC_CONST;
 
+GType cheese_camera_device_get_type (void) G_GNUC_CONST;
+
 CheeseCameraDevice        *cheese_camera_device_new (void);
 GstCaps                   *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                                                      CheeseVideoFormat *format);

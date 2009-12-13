@@ -91,7 +91,7 @@ void               cheese_camera_set_device_by_dev_file (CheeseCamera *camera, c
 void               cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi);
 gboolean           cheese_camera_switch_camera_device (CheeseCamera *camera);
 GList     *        cheese_camera_get_video_formats (CheeseCamera *camera);
-void               cheese_camera_set_video_format (CheeseCamera      *camera,
+gboolean           cheese_camera_set_video_format (CheeseCamera      *camera,
                                                    CheeseVideoFormat *format);
 void cheese_camera_get_balance_property_range (CheeseCamera *camera,
                                                gchar *property,

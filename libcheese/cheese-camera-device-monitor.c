@@ -152,13 +152,12 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 
   g_print ("\n");
 
-  device = cheese_camera_device_new ();
-  g_object_set (G_OBJECT (device),
-                "device-id", g_udev_device_get_property (udevice, "DEVPATH"),
-                "device-file", device_file,
-                "name", product_name,
-                "src", gstreamer_src,
-                NULL);
+  device = g_object_new (CHEESE_TYPE_CAMERA_DEVICE,
+                         "device-id", g_udev_device_get_property (udevice, "DEVPATH"),
+                         "device-file", device_file,
+                         "name", product_name,
+                         "src", gstreamer_src,
+                         NULL);
 
   g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
 }

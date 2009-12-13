@@ -46,8 +46,7 @@ enum
   PROP_NAME,
   PROP_FILE,
   PROP_ID,
-  PROP_SRC,
-  PROP_CAPS
+  PROP_SRC
 };
 
 typedef struct
@@ -233,6 +232,75 @@ cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
 }
 
 static void
+cheese_camera_device_get_caps (CheeseCameraDevice *device)
+{
+  CheeseCameraDevicePrivate *priv =
+    CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
+
+  gchar               *pipeline_desc;
+  GstElement          *pipeline;
+  GstStateChangeReturn ret;
+  GstMessage          *msg;
+  GstBus              *bus;
+  GError              *err = NULL;
+
+  pipeline_desc = g_strdup_printf ("%s name=source device=%s ! fakesink",
+                                   priv->src, priv->device);
+  pipeline = gst_parse_launch (pipeline_desc, &err);
+  if ((pipeline != NULL) && (err == NULL))
+  {
+    /* Start the pipeline and wait for max. 10 seconds for it to start up */
+    gst_element_set_state (pipeline, GST_STATE_READY);
+    ret = gst_element_get_state (pipeline, NULL, NULL, 10 * GST_SECOND);
+
+    /* Check if any error messages were posted on the bus */
+    bus = gst_element_get_bus (pipeline);
+    msg = gst_bus_poll (bus, GST_MESSAGE_ERROR, 0);
+    gst_object_unref (bus);
+
+    if ((msg == NULL) && (ret == GST_STATE_CHANGE_SUCCESS))
+    {
+      GstElement *src;
+      GstPad     *pad;
+      char       *name;
+      GstCaps    *caps;
+
+      src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
+
+      g_object_get (G_OBJECT (src), "device-name", &name, NULL);
+      if (name == NULL)
+        name = "Unknown";
+
+      g_print ("Device: %s (%s)\n", name, priv->device);
+      pad  = gst_element_get_pad (src, "src");
+      caps = gst_pad_get_caps (pad);
+      priv->caps = cheese_webcam_device_filter_caps (device, caps, supported_formats);
+      cheese_webcam_device_update_format_table (device);
+
+      gst_object_unref (pad);
+      gst_caps_unref (caps);
+    }
+    gst_element_set_state (pipeline, GST_STATE_NULL);
+    gst_object_unref (pipeline);
+  }
+
+  if (err)
+    g_error_free (err);
+
+  g_free (pipeline_desc);
+}
+
+static void
+cheese_camera_device_constructed (GObject *object)
+{
+  CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
+
+  cheese_camera_device_get_caps (device);
+
+  G_OBJECT_CLASS (cheese_camera_device_parent_class)->finalize (object);
+}
+
+static void
 cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
 {
   CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
@@ -252,9 +320,6 @@ cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value
   case PROP_SRC:
     g_value_set_string (value, priv->src);
     break;
-  case PROP_CAPS:
-    gst_value_set_caps (value, priv->caps);
-    break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
     break;
@@ -267,7 +332,6 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
   CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
-  const GstCaps *new_caps;
 
   switch (prop_id) {
   case PROP_NAME:
@@ -285,14 +349,6 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
   case PROP_SRC:
     g_free (priv->src);
     priv->src = g_value_dup_string (value);
-    break;
-  case PROP_CAPS:
-    new_caps = gst_value_get_caps (value);
-    if (new_caps != NULL) {
-      gst_caps_unref (priv->caps);
-      priv->caps = cheese_webcam_device_filter_caps (device, new_caps, supported_formats);
-      cheese_webcam_device_update_format_table (device);
-    }
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -314,6 +370,8 @@ cheese_camera_device_finalize (GObject *object)
 
   gst_caps_unref (priv->caps);
   free_format_list (device);
+
+  G_OBJECT_CLASS (cheese_camera_device_parent_class)->finalize (object);
 }
 
 static void
@@ -324,32 +382,27 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
   object_class->finalize     = cheese_camera_device_finalize;
   object_class->get_property = cheese_camera_device_get_property;
   object_class->set_property = cheese_camera_device_set_property;
+  object_class->constructed  = cheese_camera_device_constructed;
 
   g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name",
                                                         NULL, NULL, NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   g_object_class_install_property (object_class, PROP_FILE,
                                    g_param_spec_string ("device-file",
                                                         NULL, NULL, NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   g_object_class_install_property (object_class, PROP_ID,
                                    g_param_spec_string ("device-id",
                                                         NULL, NULL, NULL,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   g_object_class_install_property (object_class, PROP_SRC,
                                    g_param_spec_string ("src",
                                                         NULL, NULL, NULL,
-                                                        G_PARAM_READWRITE));
-  g_object_class_install_property (object_class, PROP_CAPS,
-                                   g_param_spec_boxed ("caps",
-                                                       NULL, NULL,
-                                                       GST_TYPE_CAPS,
-                                                       G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS));
-
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
   g_type_class_add_private (klass, sizeof (CheeseCameraDevicePrivate));
 }
 
