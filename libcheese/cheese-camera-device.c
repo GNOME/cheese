@@ -467,7 +467,8 @@ const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device)
 
 CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *device)
 {
-  return (CheeseVideoFormat *) cheese_camera_device_get_format_list (device)->data;
+  return g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
+                       cheese_camera_device_get_format_list (device)->data);
 }
 
 GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,

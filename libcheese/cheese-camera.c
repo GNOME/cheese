@@ -85,7 +85,7 @@ typedef struct
   int x_resolution;
   int y_resolution;
   int selected_device;
-  CheeseVideoFormat *default_format;
+  CheeseVideoFormat *current_format;
 
   guint eos_timeout_id;
 } CheeseCameraPrivate;
@@ -96,8 +96,6 @@ enum
   PROP_VIDEO_WINDOW,
   PROP_DEVICE_NAME,
   PROP_FORMAT,
-  PROP_X_RESOLUTION,
-  PROP_Y_RESOLUTION
 };
 
 enum
@@ -769,6 +767,28 @@ void
 cheese_camera_play (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
+  GstCaps *caps;
+
+  caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
+
+  if (gst_caps_is_empty (caps))
+  {
+    g_warning ("CAPS_ARE_EMPTY");
+    gst_caps_unref (caps);
+    g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
+    priv->current_format = cheese_camera_device_get_best_format (device);
+    g_object_notify (G_OBJECT (camera), "format");
+    caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
+    if (G_UNLIKELY (gst_caps_is_empty (caps))) {
+      g_warning ("CAPS_ARE_STILL_EMPTY");
+      gst_caps_unref (caps);
+      caps = gst_caps_new_any ();
+    }
+  }
+
+  g_object_set (priv->capsfilter, "caps", caps, NULL);
+  gst_caps_unref (caps);
 
   gst_element_set_state (priv->pipeline, GST_STATE_PLAYING);
   priv->pipeline_is_playing = TRUE;
@@ -994,12 +1014,6 @@ cheese_camera_get_property (GObject *object, guint prop_id, GValue *value,
     case PROP_FORMAT:
       g_value_set_boxed (value, priv->current_format);
       break;
-    case PROP_X_RESOLUTION:
-      g_value_set_int (value, priv->x_resolution);
-      break;
-    case PROP_Y_RESOLUTION:
-      g_value_set_int (value, priv->y_resolution);
-      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1027,7 +1041,9 @@ cheese_camera_set_property (GObject *object, guint prop_id, const GValue *value,
       priv->device_name = g_value_dup_string (value);
       break;
     case PROP_FORMAT:
-      cheese_camera_set_video_format (self, g_value_dup_boxed (value));
+      if (priv->current_format != NULL)
+        g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
+      priv->current_format = g_value_dup_boxed (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -1086,28 +1102,6 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                        CHEESE_TYPE_VIDEO_FORMAT,
                                                        G_PARAM_READWRITE));
 
-
-  g_object_class_install_property (object_class, PROP_X_RESOLUTION,
-                                   g_param_spec_int ("x-resolution",
-                                                     NULL,
-                                                     NULL,
-                                                     0,
-                                                     G_MAXINT,
-                                                     0,
-                                                     G_PARAM_READWRITE |
-                                                     G_PARAM_CONSTRUCT_ONLY));
-
-  g_object_class_install_property (object_class, PROP_Y_RESOLUTION,
-                                   g_param_spec_int ("y-resolution",
-                                                     NULL,
-                                                     NULL,
-                                                     0,
-                                                     G_MAXINT,
-                                                     0,
-                                                     G_PARAM_READWRITE |
-                                                     G_PARAM_CONSTRUCT_ONLY));
-
-
   g_type_class_add_private (klass, sizeof (CheeseCameraPrivate));
 }
 
@@ -1130,19 +1124,20 @@ cheese_camera_new (GtkWidget *video_window, char *camera_device_name,
                    int x_resolution, int y_resolution)
 {
   CheeseCamera *camera;
+  CheeseVideoFormat *format = g_slice_new (CheeseVideoFormat);
+  format->width = x_resolution;
+  format->height = y_resolution;
 
   if (camera_device_name)
   {
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-window", video_window,
                            "device_name", camera_device_name,
-                           "x-resolution", x_resolution,
-                           "y-resolution", y_resolution, NULL);
+                           "format", format, NULL);
   }
   else
   {
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-window", video_window,
-                           "x-resolution", x_resolution,
-                           "y-resolution", y_resolution, NULL);
+                           "format", format, NULL);
   }
 
   return camera;
@@ -1250,49 +1245,6 @@ cheese_camera_is_playing (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   return priv->pipeline_is_playing;
-}
-
-gboolean
-cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-  CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
-  GstCaps *caps;
-
-  if ((format->width == priv->current_format->width) &&
-      (format->height == priv->current_format->height)) {
-    goto out;
-  }
-
-  caps = cheese_camera_device_get_caps_for_format (device, format);
-
-  if (gst_caps_is_empty (caps))
-  {
-    g_warning ("CAPS_ARE_EMPTY");
-    gst_caps_unref (caps);
-    format = g_slice_new (CheeseVideoFormat);
-    format = cheese_camera_device_get_best_format (device);
-    caps = cheese_camera_device_get_caps_for_format (device, format);
-    if (gst_caps_is_empty (caps)) {
-      g_warning ("CAPS_ARE_STILL_EMPTY");
-      gst_caps_unref (caps);
-      return FALSE;
-    }
-  }
-
-  if (cheese_camera_is_playing (camera)) {
-    /* shouldn't this be done async? */
-    cheese_camera_stop (camera);
-    g_object_set (priv->capsfilter, "caps", caps, NULL);
-    cheese_camera_play (camera);
-  } else {
-    g_object_set (priv->capsfilter, "caps", caps, NULL);
-  }
-
-out:
-  g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
-  priv->current_format = format;
-  return TRUE;
 }
 
 const CheeseVideoFormat *
