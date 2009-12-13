@@ -45,7 +45,8 @@ G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 enum CheeseCameraError
 {
   CHEESE_CAMERA_ERROR_UNKNOWN,
-  CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND
+  CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND,
+  CHEESE_CAMERA_ERROR_NO_DEVICE
 };
 
 typedef struct
@@ -311,75 +312,49 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
   GError *err = NULL;
   char   *camera_input;
 
-  if (priv->num_camera_devices == 0)
+  int                 i;
+  CheeseCameraDevice *selected_camera;
+
+  /* If we have a matching video device use that one, otherwise use the first */
+  priv->selected_device = 0;
+  selected_camera       = g_ptr_array_index (priv->camera_devices, 0);
+
+  for (i = 1; i < priv->num_camera_devices; i++)
   {
-    priv->camera_source_bin = gst_parse_bin_from_description (
-      "videotestsrc name=video_source ! capsfilter name=capsfilter ! identity",
-      TRUE,
-      &err);
-    priv->video_source = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "video_source");
-    priv->capsfilter   = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "capsfilter");
-  }
-  else
-  {
-    int                 i;
-    CheeseCameraDevice *selected_camera;
-
-    /* If we have a matching video device use that one, otherwise use the first */
-    priv->selected_device = 0;
-    selected_camera       = g_ptr_array_index (priv->camera_devices, 0);
-
-    for (i = 1; i < priv->num_camera_devices; i++)
-    {
-      CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-      if (g_strcmp0 (cheese_camera_device_get_device_file (device),
-                     priv->device_name) == 0) {
-        selected_camera = device;
-        priv->selected_device = i;
-        break;
-      }
+    CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
+    if (g_strcmp0 (cheese_camera_device_get_device_file (device),
+                   priv->device_name) == 0) {
+      selected_camera = device;
+      priv->selected_device = i;
+      break;
     }
-
-    camera_input = g_strdup_printf (
-      "%s name=video_source device=%s ! capsfilter name=capsfilter ! identity",
-      cheese_camera_device_get_src (selected_camera),
-      cheese_camera_device_get_device_file (selected_camera));
-
-    priv->camera_source_bin = gst_parse_bin_from_description (camera_input,
-                                                              TRUE, &err);
-    g_free (camera_input);
-
-    if (priv->camera_source_bin == NULL) {
-      goto fallback;
-    }
-
-    priv->video_source = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "video_source");
-    priv->capsfilter   = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "capsfilter");
   }
+
+  camera_input = g_strdup_printf (
+    "%s name=video_source device=%s ! capsfilter name=capsfilter ! identity",
+    cheese_camera_device_get_src (selected_camera),
+    cheese_camera_device_get_device_file (selected_camera));
+
+  priv->camera_source_bin = gst_parse_bin_from_description (camera_input,
+                                                            TRUE, &err);
+  g_free (camera_input);
+
+  if (priv->camera_source_bin == NULL) {
+    goto fallback;
+  }
+
+  priv->video_source = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "video_source");
+  priv->capsfilter   = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "capsfilter");
 
   return TRUE;
 
-
-/* FIXME: get rid of videotest stuff and set problem page when
- * something fails, see cheese-video-widget */
 fallback:
   if (err != NULL)
   {
     g_error_free (err);
     err = NULL;
   }
-
-  priv->camera_source_bin = gst_parse_bin_from_description ("videotestsrc name=video_source",
-                                                            TRUE, &err);
-  priv->video_source = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "video_source");
-  if (err != NULL)
-  {
-    g_error_free (err);
-    return FALSE;
-  }
-  priv->capsfilter = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin),
-                                          "capsfilter");
-  return TRUE;
+  return FALSE;
 }
 
 static void
@@ -1108,6 +1083,11 @@ cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
   GError  *tmp_error = NULL;
 
   cheese_camera_detect_camera_devices (camera);
+
+  if (priv->num_camera_devices < 1) {
+    g_set_error (error, CHEESE_CAMERA_ERROR, CHEESE_CAMERA_ERROR_NO_DEVICE, _("No device found"));
+    return;
+  }
 
   if (id != NULL)
   {
