@@ -301,36 +301,6 @@ cheese_camera_get_video_devices_from_udev (CheeseCamera *camera)
 		    G_CALLBACK (cheese_camera_add_device), camera);
   cheese_camera_device_monitor_coldplug (monitor);
   g_object_unref (monitor);
-
-  if (priv->num_camera_devices == 0)
-  {
-    /* Create a fake device so that resolution changing stil works even if the
-     * computer doesn't have a camera. */
-    CheeseCameraDevice *device;
-    if (priv->camera_devices == NULL)
-      priv->camera_devices = g_ptr_array_new ();
-    device = cheese_camera_device_new ();
-    g_object_set (device, "device-id", "cheese_fake_device", NULL);
-    g_ptr_array_add (priv->camera_devices, device);
-  }
-}
-
-static void
-cheese_camera_create_fake_format (CheeseCamera *camera, CheeseCameraDevice *device)
-{
-//  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  /* Right now just emulate one format: video/x-raw-yuv, 320x240 @ 30 Hz */
-  GstCaps *caps = gst_caps_new_simple ("video/x-raw-yuv",
-                                       "width", G_TYPE_INT,
-                                       320,
-                                       "height", G_TYPE_INT,
-                                       240,
-                                       "framerate", GST_TYPE_FRACTION,
-                                       30, 1,
-                                       NULL);
-
-//  g_object_set (G_OBJECT (device), "caps", caps, NULL);
 }
 
 static void
@@ -338,12 +308,8 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  int i;
-
+  /* FIXME: reduntant */
   cheese_camera_get_video_devices_from_udev (camera);
-
-  if (priv->num_camera_devices == 0)
-    cheese_camera_create_fake_format (camera, g_ptr_array_index (priv->camera_devices, 0));
 }
 
 static gboolean
@@ -987,6 +953,7 @@ cheese_camera_finalize (GObject *object)
 
   g_free (priv->photo_filename);
   g_free (priv->device_name);
+  g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
 
   /* Free CheeseCameraDevice array */
   g_ptr_array_free (priv->camera_devices, TRUE);
@@ -1237,7 +1204,7 @@ cheese_camera_get_video_formats (CheeseCamera *camera)
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
 
-//  return cheese_camera_device_get_readable_format_list (device);
+  return cheese_camera_device_get_format_list (device);
 }
 
 gboolean
@@ -1245,6 +1212,21 @@ cheese_camera_is_playing (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   return priv->pipeline_is_playing;
+}
+
+void
+cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  if (!(priv->current_format->width == format->width &&
+        priv->current_format->height == format->height))
+  {
+    g_object_set (G_OBJECT (camera), "format", format, NULL);
+    if (cheese_camera_is_playing (camera)) {
+      cheese_camera_stop (camera);
+      cheese_camera_play (camera);
+    }
+  }
 }
 
 const CheeseVideoFormat *

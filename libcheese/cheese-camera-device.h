@@ -62,6 +62,7 @@ CheeseCameraDevice        *cheese_camera_device_new (void);
 GstCaps                   *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                                                      CheeseVideoFormat *format);
 CheeseVideoFormat         *cheese_camera_device_get_best_format (CheeseCameraDevice *device);
+GList                     *cheese_camera_device_get_format_list (CheeseCameraDevice *device);
 
 const gchar               *cheese_camera_device_get_name (CheeseCameraDevice *device);
 const gchar               *cheese_camera_device_get_src (CheeseCameraDevice *device);
