@@ -133,6 +133,9 @@ static const EffectToPipelineDesc EFFECT_TO_PIPELINE_DESC[] = {
 
 static const int NUM_EFFECTS = G_N_ELEMENTS (EFFECT_TO_PIPELINE_DESC);
 
+GST_DEBUG_CATEGORY (cheese_camera);
+#define GST_CAT_DEFAULT cheese_camera
+
 GQuark
 cheese_camera_error_quark (void)
 {
@@ -257,7 +260,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
   {
     if (priv->is_recording)
     {
-      g_print ("Received EOS message\n");
+      GST_DEBUG ("Received EOS message");
 
       g_source_remove (priv->eos_timeout_id);
 
@@ -817,7 +820,7 @@ cheese_camera_force_stop_video_recording (gpointer data)
 
   if (priv->is_recording)
   {
-    g_print ("Cannot cleanly shutdown recording pipeline, forcing\n");
+    GST_WARNING ("Cannot cleanly shutdown recording pipeline, forcing");
     g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
 
     cheese_camera_change_sink (camera, priv->video_display_bin,
@@ -839,7 +842,7 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
   if (state == GST_STATE_PLAYING)
   {
     /* Send EOS message down the pipeline by stopping video and audio source*/
-    g_print ("Sending EOS event down the recording pipeline\n");
+    GST_DEBUG ("Sending EOS event down the recording pipeline");
     gst_element_send_event (priv->video_source, gst_event_new_eos ());
     gst_element_send_event (priv->audio_source, gst_event_new_eos ());
     priv->eos_timeout_id = g_timeout_add (3000, cheese_camera_force_stop_video_recording, camera);
@@ -857,7 +860,7 @@ cheese_camera_take_photo (CheeseCamera *camera, char *filename)
 
   if (priv->photo_handler_signal_id != 0)
   {
-    g_print ("Still waiting for previous photo data, ignoring new request\n");
+    GST_WARNING ("Still waiting for previous photo data, ignoring new request");
     return FALSE;
   }
 
@@ -879,7 +882,7 @@ cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
 
   if (priv->photo_handler_signal_id != 0)
   {
-    g_print ("Still waiting for previous photo data, ignoring new request\n");
+    GST_WARNING ("Still waiting for previous photo data, ignoring new request");
     return FALSE;
   }
 
@@ -1033,6 +1036,10 @@ static void
 cheese_camera_init (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+
+  GST_DEBUG_CATEGORY_INIT (cheese_camera,
+                           "cheese-camera",
+                           0, "Cheese Camera");
 
   priv->is_recording            = FALSE;
   priv->pipeline_is_playing     = FALSE;
