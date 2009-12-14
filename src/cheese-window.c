@@ -71,6 +71,14 @@ typedef enum
   CHEESE_RESPONSE_DELETE_ALL
 } CheeseDeleteResponseType;
 
+typedef enum
+{
+  PAGE_WEBCAM = 0,
+  PAGE_EFFECTS = 1,
+  PAGE_SPINNER = 2,
+  PAGE_PROBLEM = 3,
+} CheeseNotebookPage;
+
 #define CHEESE_BUTTON_SKIP       _("_Skip")
 #define CHEESE_BUTTON_SKIP_ALL   _("S_kip All")
 #define CHEESE_BUTTON_DELETE_ALL _("Delete _All")
@@ -1193,7 +1201,7 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
 {
   if (gtk_notebook_get_current_page (GTK_NOTEBOOK (cheese_window->notebook)) == 1)
   {
-    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 0);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), PAGE_WEBCAM);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (cheese_window->label_effects), _("_Effects"));
     gtk_widget_set_sensitive (cheese_window->take_picture, TRUE);
     gtk_widget_set_sensitive (cheese_window->take_picture_fullscreen, TRUE);
@@ -1217,7 +1225,7 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
   }
   else
   {
-    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 1);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), PAGE_EFFECTS);
     gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), FALSE);
     gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture_fullscreen), FALSE);
     gtk_action_group_set_sensitive (cheese_window->actions_photo, FALSE);
@@ -1758,6 +1766,10 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   g_object_unref (builder);
 
+  /* FIXME: remove when done with debug */
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
+  gtk_notebook_set_show_border (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
+
   /* configure the popup position and size */
   GdkScreen *screen = gtk_window_get_screen (GTK_WINDOW (cheese_window->fullscreen_popup));
   gtk_window_set_default_size (GTK_WINDOW (cheese_window->fullscreen_popup),
@@ -2074,7 +2086,7 @@ setup_camera (CheeseWindow *cheese_window)
 
   cheese_camera_play (cheese_window->camera);
   gdk_threads_enter ();
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 0);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), PAGE_WEBCAM);
   gtk_spinner_stop (GTK_SPINNER (cheese_window->throbber));
   if (cheese_camera_get_num_camera_devices (cheese_window->camera) == 0)
   {
@@ -2122,7 +2134,7 @@ cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup
 
   gtk_spinner_start (GTK_SPINNER (cheese_window->throbber));
 
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), 2);
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), PAGE_SPINNER);
 
   cheese_window->camera_mode = CAMERA_MODE_PHOTO;
   cheese_window->recording   = FALSE;
