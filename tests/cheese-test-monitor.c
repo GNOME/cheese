@@ -23,7 +23,7 @@ int main (int argc, char **argv)
 {
 	CheeseCameraDeviceMonitor *monitor;
 
-	g_type_init ();
+        gst_init (&argc, &argv);
 
 	monitor = cheese_camera_device_monitor_new ();
 	g_signal_connect (G_OBJECT (monitor), "added",
