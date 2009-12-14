@@ -118,7 +118,8 @@ typedef struct
   GtkWidget *effect_frame;
   GtkWidget *effect_alignment;
   GtkWidget *effect_chooser;
-  GtkWidget *throbber_frame;
+  GtkWidget *throbber_align;
+  GtkWidget *throbber_box;
   GtkWidget *throbber;
   GtkWidget *countdown_frame;
   GtkWidget *countdown_frame_fullscreen;
@@ -277,6 +278,29 @@ cheese_window_set_problem_page (CheeseWindow *window,
                     G_CALLBACK (cheese_window_logo_expose), window);
 }
 
+static void
+cheese_window_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
+{
+  GtkStyle *style;
+  guint i;
+
+  for (i = GTK_STATE_NORMAL; i <= GTK_STATE_INSENSITIVE; i++) {
+    GdkColor *fg, *bg;
+
+    style = gtk_widget_get_style (spinner);
+    fg = gdk_color_copy (&style->fg[i]);
+    bg = gdk_color_copy (&style->bg[i]);
+
+    gtk_widget_modify_fg (spinner, i, bg);
+    gtk_widget_modify_bg (spinner, i, fg);
+
+    gtk_widget_modify_fg (parent, i, bg);
+    gtk_widget_modify_bg (parent, i, fg);
+
+    gdk_color_free (fg);
+    gdk_color_free (bg);
+  }
+}
 
 static void cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window);
 
@@ -1816,7 +1840,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->screen                      = GTK_WIDGET (gtk_builder_get_object (builder, "video_screen"));
   cheese_window->take_picture                = GTK_WIDGET (gtk_builder_get_object (builder, "take_picture"));
   cheese_window->thumb_scrollwindow          = GTK_WIDGET (gtk_builder_get_object (builder, "thumb_scrollwindow"));
-  cheese_window->throbber_frame              = GTK_WIDGET (gtk_builder_get_object (builder, "throbber_frame"));
   cheese_window->countdown_frame             = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
   cheese_window->effect_frame                = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
   cheese_window->effect_alignment            = GTK_WIDGET (gtk_builder_get_object (builder, "effect_alignment"));
@@ -1898,9 +1921,23 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   gtk_container_add (GTK_CONTAINER (cheese_window->effect_frame), cheese_window->effect_chooser);
   g_free (gconf_effects);
 
+/* uncomment to debug */
+/*
+  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
+  gtk_notebook_set_show_border (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
+*/
+
   cheese_window->throbber = gtk_spinner_new ();
-  gtk_container_add (GTK_CONTAINER (cheese_window->throbber_frame), cheese_window->throbber);
-  gtk_widget_show (cheese_window->throbber);
+  cheese_window->throbber_box = gtk_event_box_new ();
+  cheese_window->throbber_align = gtk_alignment_new (0.5, 0.5, 0.6, 0.6);
+  gtk_container_add (GTK_CONTAINER (cheese_window->throbber_box), cheese_window->throbber_align);
+  gtk_container_add (GTK_CONTAINER (cheese_window->throbber_align), cheese_window->throbber);
+  gtk_notebook_insert_page (GTK_NOTEBOOK (cheese_window->notebook),
+			    cheese_window->throbber_box,
+			    gtk_label_new ("spinner"),
+                            PAGE_SPINNER);
+  cheese_window_spinner_invert (cheese_window->throbber, cheese_window->throbber_box);
+  gtk_widget_show_all (cheese_window->throbber_box);
 
   cheese_window->countdown = cheese_countdown_new ();
   gtk_container_add (GTK_CONTAINER (cheese_window->countdown_frame), cheese_window->countdown);
