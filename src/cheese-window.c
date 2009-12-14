@@ -197,9 +197,14 @@ cheese_window_load_pixbuf (GtkWidget *widget,
   GdkPixbuf *pixbuf;
 
   theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
-  //FIXME special case "no-webcam" and actually use the icon_name
-  pixbuf = gtk_icon_theme_load_icon (theme, "error",
-				     size, 0, error);
+  if (!gtk_icon_theme_has_icon (theme, icon_name)) {
+    pixbuf = gtk_icon_theme_load_icon (theme, "error",
+                                       size, 0, error);
+  }
+  else {
+    pixbuf = gtk_icon_theme_load_icon (theme, icon_name,
+                                       size, 0, error);
+  }
   return pixbuf;
 }
 
@@ -2126,8 +2131,10 @@ setup_camera (CheeseWindow *cheese_window)
   if (error != NULL)
   {
     if (error->code == CHEESE_CAMERA_ERROR_NO_DEVICE) {
+      gdk_threads_enter ();
       gtk_spinner_stop (GTK_SPINNER (cheese_window->throbber));
-      cheese_window_set_problem_page (cheese_window, "no-webcam");
+      cheese_window_set_problem_page (cheese_window, "cheese-no-camera");
+      gdk_threads_leave ();
       return;
     }
     GtkWidget *dialog;
