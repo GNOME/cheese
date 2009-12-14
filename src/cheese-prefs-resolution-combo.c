@@ -154,7 +154,8 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
       g_free (format_name);
 
-      if (format == current_format)
+      if ((format->width == current_format->width) &&
+          (format->height == current_format->height))
       {
         active_iter      = iter;
         found_resolution = TRUE;
