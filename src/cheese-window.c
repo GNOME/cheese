@@ -124,9 +124,9 @@ typedef struct
   GtkWidget *countdown_frame_fullscreen;
   GtkWidget *countdown;
   GtkWidget *countdown_fullscreen;
-  GtkWidget *info_bar_frame;
-  GtkWidget *info_bar;
   GtkWidget *problem_page;
+  GtkWidget *problem_area;
+  GtkWidget *problem_bar;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -266,9 +266,9 @@ cheese_window_set_problem_page (CheeseWindow *window,
 				const char *icon_name)
 {
   gtk_notebook_set_current_page (GTK_NOTEBOOK (window->notebook), PAGE_PROBLEM);
-  g_object_set_data_full (G_OBJECT (window->problem_page),
+  g_object_set_data_full (G_OBJECT (window->problem_area),
 			  "icon-name", g_strdup (icon_name), g_free);
-  g_signal_connect (window->problem_page, "expose-event",
+  g_signal_connect (window->problem_area, "expose-event",
                     G_CALLBACK (cheese_window_logo_expose), window);
 }
 
@@ -1774,33 +1774,12 @@ cheese_window_radio_action_group_new (CheeseWindow *cheese_window, char *name,
 }
 
 static void
-cheese_window_set_info_bar (CheeseWindow *cheese_window,
-                            GtkWidget    *info_bar)
-{
-  if (cheese_window->info_bar == info_bar)
-    return;
-
-  if (cheese_window->info_bar != NULL)
-    gtk_widget_destroy (cheese_window->info_bar);
-
-  cheese_window->info_bar = info_bar;
-
-  if (info_bar == NULL)
-    return;
-
-  gtk_container_add (GTK_CONTAINER (cheese_window->info_bar_frame), cheese_window->info_bar);
-  gtk_widget_show (GTK_WIDGET (cheese_window->info_bar));
-}
-
-static void
 cheese_window_create_window (CheeseWindow *cheese_window)
 {
   GError     *error = NULL;
   char       *path;
   GtkBuilder *builder;
   GtkWidget  *menubar;
-
-  cheese_window->info_bar = NULL;
 
   builder = gtk_builder_new ();
   gtk_builder_add_from_file (builder, PACKAGE_DATADIR "/cheese.ui", &error);
@@ -1836,7 +1815,6 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   cheese_window->countdown_frame             = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
   cheese_window->effect_frame                = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
   cheese_window->effect_alignment            = GTK_WIDGET (gtk_builder_get_object (builder, "effect_alignment"));
-  cheese_window->info_bar_frame              = GTK_WIDGET (gtk_builder_get_object (builder, "info_bar_frame"));
   cheese_window->fullscreen_popup            = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_popup"));
   cheese_window->fullscreen_bar              = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_notebook_bar"));
   cheese_window->button_effects_fullscreen   = GTK_WIDGET (gtk_builder_get_object (builder, "button_effects_fullscreen"));
@@ -1857,7 +1835,19 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   g_object_unref (builder);
 
   /* Problem page */
-  cheese_window->problem_page = gtk_drawing_area_new ();
+  cheese_window->problem_page = gtk_vbox_new (FALSE, 0);
+  cheese_window->problem_bar =  cheese_no_camera_info_bar_new ();
+  g_signal_connect (cheese_window->problem_bar,
+                    "response",
+                    G_CALLBACK (cheese_window_no_camera_info_bar_response),
+                    cheese_window);
+  cheese_window->problem_area = gtk_drawing_area_new ();
+  gtk_box_pack_start (GTK_BOX (cheese_window->problem_page),
+                      cheese_window->problem_bar,
+                      FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (cheese_window->problem_page),
+                      cheese_window->problem_area,
+                      TRUE, TRUE, 0);
   gtk_notebook_insert_page (GTK_NOTEBOOK (cheese_window->notebook),
 			    cheese_window->problem_page,
 			    gtk_label_new ("got problems"),
@@ -2110,7 +2100,6 @@ setup_camera (CheeseWindow *cheese_window)
   gdouble    contrast;
   gdouble    saturation;
   gdouble    hue;
-  GtkWidget *info_bar;
 
   GError *error;
 
@@ -2137,6 +2126,7 @@ setup_camera (CheeseWindow *cheese_window)
   if (error != NULL)
   {
     if (error->code == CHEESE_CAMERA_ERROR_NO_DEVICE) {
+      gtk_spinner_stop (GTK_SPINNER (cheese_window->throbber));
       cheese_window_set_problem_page (cheese_window, "no-webcam");
       return;
     }
@@ -2186,17 +2176,7 @@ setup_camera (CheeseWindow *cheese_window)
   gdk_threads_enter ();
   gtk_notebook_set_current_page (GTK_NOTEBOOK (cheese_window->notebook), PAGE_WEBCAM);
   gtk_spinner_stop (GTK_SPINNER (cheese_window->throbber));
-  if (cheese_camera_get_num_camera_devices (cheese_window->camera) == 0)
-  {
-    info_bar = cheese_no_camera_info_bar_new ();
 
-    g_signal_connect (info_bar,
-                      "response",
-                      G_CALLBACK (cheese_window_no_camera_info_bar_response),
-                      cheese_window);
-
-    cheese_window_set_info_bar (cheese_window, info_bar);
-  }
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture), TRUE);
   gtk_widget_set_sensitive (GTK_WIDGET (cheese_window->take_picture_fullscreen), TRUE);
   gtk_action_group_set_sensitive (cheese_window->actions_effects, TRUE);
