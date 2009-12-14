@@ -42,13 +42,6 @@ G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 
 #define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
 
-enum CheeseCameraError
-{
-  CHEESE_CAMERA_ERROR_UNKNOWN,
-  CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND,
-  CHEESE_CAMERA_ERROR_NO_DEVICE
-};
-
 typedef struct
 {
   GtkWidget *video_window;

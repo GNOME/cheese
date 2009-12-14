@@ -67,6 +67,12 @@ typedef struct
   void (*video_saved)(CheeseCamera *camera);
 } CheeseCameraClass;
 
+enum CheeseCameraError
+{
+  CHEESE_CAMERA_ERROR_UNKNOWN,
+  CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND,
+  CHEESE_CAMERA_ERROR_NO_DEVICE
+};
 
 GType         cheese_camera_get_type (void);
 CheeseCamera *cheese_camera_new (GtkWidget *video_window,

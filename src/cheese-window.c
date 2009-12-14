@@ -126,6 +126,7 @@ typedef struct
   GtkWidget *countdown_fullscreen;
   GtkWidget *info_bar_frame;
   GtkWidget *info_bar;
+  GtkWidget *problem_page;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -182,6 +183,95 @@ typedef struct
 
   CheeseFlash *flash;
 } CheeseWindow;
+
+
+/* FIXME: some code borrowed from cheese-widget */
+/* We should really use it directly instead of duplicating stuff here */
+static GdkPixbuf *
+cheese_window_load_pixbuf (GtkWidget *widget,
+			   const char *icon_name,
+			   guint size,
+			   GError **error)
+{
+  GtkIconTheme *theme;
+  GdkPixbuf *pixbuf;
+
+  theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
+  //FIXME special case "no-webcam" and actually use the icon_name
+  pixbuf = gtk_icon_theme_load_icon (theme, "error",
+				     size, 0, error);
+  return pixbuf;
+}
+
+static gboolean
+cheese_window_logo_expose (GtkWidget *w,
+			   GdkEventExpose *event,
+			   gpointer user_data)
+{
+  const char *icon_name;
+  GdkPixbuf *pixbuf, *logo;
+  GError *error = NULL;
+  cairo_t *cr;
+  GtkAllocation allocation;
+  guint s_width, s_height, d_width, d_height;
+  float ratio;
+
+  gdk_draw_rectangle (w->window, w->style->black_gc, TRUE,
+                      0, 0, w->allocation.width, w->allocation.height);
+  icon_name = g_object_get_data (G_OBJECT (w), "icon-name");
+  if (icon_name == NULL)
+    return FALSE;
+
+  cr = gdk_cairo_create (gtk_widget_get_window (w));
+  cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+  gtk_widget_get_allocation (w, &allocation);
+  cairo_rectangle (cr, 0, 0, allocation.width, allocation.height);
+
+  d_width = allocation.width;
+  d_height = allocation.height - (allocation.height / 3);
+
+  pixbuf = cheese_window_load_pixbuf (w, icon_name, d_height, &error);
+  if (pixbuf == NULL) {
+    g_warning ("Could not load icon '%s': %s", icon_name, error->message);
+    g_error_free (error);
+    return FALSE;
+  }
+
+  s_width = gdk_pixbuf_get_width (pixbuf);
+  s_height = gdk_pixbuf_get_height (pixbuf);
+
+  if ((gfloat) d_width / s_width > (gfloat) d_height / s_height) {
+    ratio = (gfloat) d_height / s_height;
+  } else {
+    ratio = (gfloat) d_width / s_width;
+  }
+
+  s_width *= ratio;
+  s_height *= ratio;
+
+  logo = gdk_pixbuf_scale_simple (pixbuf, s_width, s_height, GDK_INTERP_BILINEAR);
+
+  gdk_cairo_set_source_pixbuf (cr, logo, (allocation.width - s_width) / 2, (allocation.height - s_height) / 2);
+  cairo_paint (cr);
+  cairo_destroy (cr);
+
+  g_object_unref (logo);
+  g_object_unref (pixbuf);
+
+  return FALSE;
+}
+
+static void
+cheese_window_set_problem_page (CheeseWindow *window,
+				const char *icon_name)
+{
+  gtk_notebook_set_current_page (GTK_NOTEBOOK (window->notebook), PAGE_PROBLEM);
+  g_object_set_data_full (G_OBJECT (window->problem_page),
+			  "icon-name", g_strdup (icon_name), g_free);
+  g_signal_connect (window->problem_page, "expose-event",
+                    G_CALLBACK (cheese_window_logo_expose), window);
+}
+
 
 static void cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window);
 
@@ -1766,9 +1856,13 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   g_object_unref (builder);
 
-  /* FIXME: remove when done with debug */
-  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
-  gtk_notebook_set_show_border (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
+  /* Problem page */
+  cheese_window->problem_page = gtk_drawing_area_new ();
+  gtk_notebook_insert_page (GTK_NOTEBOOK (cheese_window->notebook),
+			    cheese_window->problem_page,
+			    gtk_label_new ("got problems"),
+                            PAGE_PROBLEM);
+
 
   /* configure the popup position and size */
   GdkScreen *screen = gtk_window_get_screen (GTK_WINDOW (cheese_window->fullscreen_popup));
@@ -2042,6 +2136,10 @@ setup_camera (CheeseWindow *cheese_window)
   cheese_camera_setup (cheese_window->camera, cheese_window->startup_hal_dev_udi, &error);
   if (error != NULL)
   {
+    if (error->code == CHEESE_CAMERA_ERROR_NO_DEVICE) {
+      cheese_window_set_problem_page (cheese_window, "no-webcam");
+      return;
+    }
     GtkWidget *dialog;
     gchar     *primary, *secondary;
 
