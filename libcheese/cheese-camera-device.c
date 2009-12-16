@@ -275,7 +275,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
 
       src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
 
-      g_print ("Device: %s (%s)\n", priv->name, priv->device);
+      GST_LOG ("Device: %s (%s)\n", priv->name, priv->device);
       pad  = gst_element_get_pad (src, "src");
       caps = gst_pad_get_caps (pad);
       priv->caps = cheese_webcam_device_filter_caps (device, caps, supported_formats);

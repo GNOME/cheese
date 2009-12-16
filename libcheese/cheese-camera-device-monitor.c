@@ -188,11 +188,12 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
   GList *devices, *l;
-
-  GST_INFO ("Probing devices with udev...");
+  gint i = 0;
 
   if (priv->client == NULL)
     return;
+
+  GST_INFO ("Probing devices with udev...");
 
   devices = g_udev_client_query_by_subsystem (priv->client, "video4linux");
 
@@ -200,8 +201,11 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
   for (l = devices; l != NULL; l = l->next) {
     cheese_camera_device_monitor_added (monitor, l->data);
     g_object_unref (l->data);
+    i++;
   }
   g_list_free (devices);
+
+  if (i == 0) GST_WARNING ("No device found");
 }
 #else /* HAVE_UDEV */
 void
