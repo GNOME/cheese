@@ -299,9 +299,11 @@ cheese_camera_device_constructed (GObject *object)
 {
   CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
 
+
   cheese_camera_device_get_caps (device);
 
-  G_OBJECT_CLASS (cheese_camera_device_parent_class)->finalize (object);
+  if (G_OBJECT_CLASS (cheese_camera_device_parent_class)->constructed)
+    G_OBJECT_CLASS (cheese_camera_device_parent_class)->constructed (object);
 }
 
 static void
@@ -339,19 +341,23 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
 
   switch (prop_id) {
   case PROP_NAME:
-    g_free (priv->name);
+    if (priv->name)
+      g_free (priv->name);
     priv->name = g_value_dup_string (value);
     break;
   case PROP_ID:
-    g_free (priv->id);
+    if (priv->id)
+      g_free (priv->id);
     priv->id = g_value_dup_string (value);
     break;
   case PROP_FILE:
-    g_free (priv->device);
+    if (priv->device)
+      g_free (priv->device);
     priv->device = g_value_dup_string (value);
     break;
   case PROP_SRC:
-    g_free (priv->src);
+    if (priv->src)
+      g_free (priv->src);
     priv->src = g_value_dup_string (value);
     break;
   default:
