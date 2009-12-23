@@ -94,23 +94,27 @@ cheese_prefs_balance_scale_synchronize (CheesePrefsWidget *prefs_widget)
   GtkAdjustment *adj;
   gdouble        min, max, def;
   gdouble        stored_value;
+  gboolean       can_balance;
 
   g_object_get (prefs_widget, "widget", &scale, NULL);
 
-  cheese_camera_get_balance_property_range (priv->camera,
-                                            priv->property_name, &min, &max, &def);
+  /* Disconnect to prevent a whole bunch of changed notifications */
+  g_signal_handlers_disconnect_by_func (scale, cheese_prefs_balance_scale_value_changed, prefs_widget);
+
+  can_balance = cheese_camera_get_balance_property_range (priv->camera,
+                                                          priv->property_name, &min, &max, &def);
 
   adj = GTK_ADJUSTMENT (gtk_adjustment_new (def, min, max, (max - min) / STEPS, 0.0, 0.0));
   gtk_range_set_adjustment (GTK_RANGE (scale), adj);
 
   gtk_scale_add_mark (GTK_SCALE (scale), def, GTK_POS_BOTTOM, NULL);
 
-  g_object_get (CHEESE_PREFS_WIDGET (self)->gconf, priv->gconf_key, &stored_value, NULL);
+  gtk_widget_set_sensitive (scale, can_balance);
 
-  gtk_range_set_value (GTK_RANGE (scale), stored_value);
-
-  /* Disconnect to prevent a whole bunch of changed notifications */
-  g_signal_handlers_disconnect_by_func (scale, cheese_prefs_balance_scale_value_changed, prefs_widget);
+  if (can_balance) {
+    g_object_get (CHEESE_PREFS_WIDGET (self)->gconf, priv->gconf_key, &stored_value, NULL);
+    gtk_range_set_value (GTK_RANGE (scale), stored_value);
+  }
 
   g_signal_connect (G_OBJECT (scale), "value-changed",
                     G_CALLBACK (cheese_prefs_balance_scale_value_changed),

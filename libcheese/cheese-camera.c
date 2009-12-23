@@ -633,6 +633,17 @@ cheese_camera_get_num_camera_devices (CheeseCamera *camera)
   return priv->num_camera_devices;
 }
 
+CheeseCameraDevice *
+cheese_camera_get_selected_device (CheeseCamera *camera)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  if (cheese_camera_get_num_camera_devices (camera) > 0)
+    return CHEESE_CAMERA_DEVICE (
+      g_ptr_array_index (priv->camera_devices, priv->selected_device));
+  else
+    return NULL;
+}
+
 gboolean
 cheese_camera_switch_camera_device (CheeseCamera *camera)
 {
@@ -1125,14 +1136,6 @@ cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
     g_error ("Unable link pipeline for photo");
 }
 
-int
-cheese_camera_get_selected_device_index (CheeseCamera *camera)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  return priv->selected_device;
-}
-
 GPtrArray *
 cheese_camera_get_camera_devices (CheeseCamera *camera)
 {
@@ -1170,10 +1173,12 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
 GList *
 cheese_camera_get_video_formats (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-  CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
+  CheeseCameraDevice  *device = cheese_camera_get_selected_device (camera);
 
-  return cheese_camera_device_get_format_list (device);
+  if (device)
+    return cheese_camera_device_get_format_list (device);
+  else
+    return NULL;
 }
 
 gboolean
@@ -1206,7 +1211,7 @@ cheese_camera_get_current_video_format (CheeseCamera *camera)
   return priv->current_format;
 }
 
-void
+gboolean
 cheese_camera_get_balance_property_range (CheeseCamera *camera,
                                           gchar *property,
                                           gdouble *min, gdouble *max, gdouble *def)
@@ -1215,17 +1220,21 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
   GParamSpec          *pspec;
 
   *min = 0.0;
-  *max = 0.0;
-  *def = 0.0;
+  *max = 1.0;
+  *def = 0.5;
+
+  if (!GST_IS_ELEMENT (priv->video_balance)) return FALSE;
 
   pspec = g_object_class_find_property (
     G_OBJECT_GET_CLASS (G_OBJECT (priv->video_balance)), property);
 
-  g_return_if_fail (pspec != NULL);
+  g_return_val_if_fail (G_IS_PARAM_SPEC_DOUBLE (pspec), FALSE);
 
   *min = G_PARAM_SPEC_DOUBLE (pspec)->minimum;
   *max = G_PARAM_SPEC_DOUBLE (pspec)->maximum;
   *def = G_PARAM_SPEC_DOUBLE (pspec)->default_value;
+
+  return TRUE;
 }
 
 void

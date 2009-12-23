@@ -100,7 +100,6 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
   GtkWidget          *combo_box;
   GPtrArray          *camera_devices;
-  int                 selected_device_ind;
   int                 num_devices;
   CheeseCameraDevice *selected_device;
   char               *gconf_device_name;
@@ -123,10 +122,8 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
 
   camera_devices      = cheese_camera_get_camera_devices (priv->camera);
-  selected_device_ind = cheese_camera_get_selected_device_index (priv->camera);
   num_devices         = cheese_camera_get_num_camera_devices (priv->camera);
-
-  selected_device = g_ptr_array_index (camera_devices, selected_device_ind);
+  selected_device     = cheese_camera_get_selected_device (priv->camera);
 
   /* If the selected device is not the same device as the one in gconf, the
    * selected device isn't available or was set by --hal-device. Set it now.
