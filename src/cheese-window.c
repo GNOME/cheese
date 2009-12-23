@@ -37,7 +37,6 @@
 
 #include <gst/interfaces/xoverlay.h>
 #include <gtk/gtk.h>
-#include <libebook/e-book.h>
 #include <canberra-gtk.h>
 
 #include "cheese-countdown.h"
@@ -158,15 +157,10 @@ typedef struct
   GtkWidget *take_picture;
   GtkWidget *take_picture_fullscreen;
 
-  GtkActionGroup *actions_account_photo;
   GtkActionGroup *actions_countdown;
   GtkActionGroup *actions_effects;
   GtkActionGroup *actions_preferences;
   GtkActionGroup *actions_file;
-  GtkActionGroup *actions_sendto;
-  GtkActionGroup *actions_flickr;
-  GtkActionGroup *actions_fspot;
-  GtkActionGroup *actions_mail;
   GtkActionGroup *actions_main;
   GtkActionGroup *actions_photo;
   GtkActionGroup *actions_toggle;
@@ -598,14 +592,9 @@ cheese_window_cmd_close (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   g_object_unref (cheese_window->camera);
   g_object_unref (cheese_window->actions_main);
-  g_object_unref (cheese_window->actions_account_photo);
   g_object_unref (cheese_window->actions_countdown);
   g_object_unref (cheese_window->actions_effects);
   g_object_unref (cheese_window->actions_file);
-  g_object_unref (cheese_window->actions_sendto);
-  g_object_unref (cheese_window->actions_flickr);
-  g_object_unref (cheese_window->actions_fspot);
-  g_object_unref (cheese_window->actions_mail);
   g_object_unref (cheese_window->actions_photo);
   g_object_unref (cheese_window->actions_toggle);
   g_object_unref (cheese_window->actions_effects);
@@ -973,137 +962,6 @@ cheese_window_set_countdown (GtkWidget *widget, CheeseWindow *cheese_window)
 }
 
 static void
-cheese_window_cmd_set_about_me_photo (GtkWidget *widget, CheeseWindow *cheese_window)
-{
-  EContact  *contact;
-  EBook     *book;
-  GError    *error = NULL;
-  GdkPixbuf *pixbuf;
-  const int  MAX_PHOTO_HEIGHT = 150;
-  const int  MAX_PHOTO_WIDTH  = 150;
-  char      *filename;
-
-  filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
-
-  if (e_book_get_self (&contact, &book, NULL) && filename)
-  {
-    char *name = e_contact_get (contact, E_CONTACT_FULL_NAME);
-    g_print ("Setting Account Photo for %s\n", name);
-
-    pixbuf = gdk_pixbuf_new_from_file_at_scale (filename, MAX_PHOTO_HEIGHT,
-                                                MAX_PHOTO_WIDTH, TRUE, NULL);
-    if (contact)
-    {
-      EContactPhoto photo;
-      guchar      **data;
-      gsize        *length;
-
-      photo.type                   = E_CONTACT_PHOTO_TYPE_INLINED;
-      photo.data.inlined.mime_type = "image/jpeg";
-      data                         = &photo.data.inlined.data;
-      length                       = &photo.data.inlined.length;
-
-      gdk_pixbuf_save_to_buffer (pixbuf, (char **) data, length, "png", NULL,
-                                 "compression", "9", NULL);
-      e_contact_set (contact, E_CONTACT_PHOTO, &photo);
-
-      if (!e_book_commit_contact (book, contact, &error))
-      {
-        char      *header;
-        GtkWidget *dlg;
-
-        header = g_strdup_printf (_("Could not set the Account Photo"));
-        dlg    = gtk_message_dialog_new (GTK_WINDOW (cheese_window->window),
-                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                         GTK_MESSAGE_ERROR, GTK_BUTTONS_OK, "%s", header);
-        gtk_message_dialog_format_secondary_text (GTK_MESSAGE_DIALOG (dlg), "%s", error->message);
-        gtk_dialog_run (GTK_DIALOG (dlg));
-        gtk_widget_destroy (dlg);
-        g_free (header);
-        g_error_free (error);
-      }
-      g_free (*data);
-    }
-    g_free (filename);
-    g_object_unref (pixbuf);
-  }
-}
-
-static void
-cheese_window_cmd_command_line (GtkAction *action, CheeseWindow *cheese_window)
-{
-  GError     *error = NULL;
-  char       *command_line;
-  const char *action_name;
-  GList      *files, *l;
-
-  files = cheese_thumb_view_get_selected_images_list (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
-  char *filename = cheese_thumb_view_get_selected_image (CHEESE_THUMB_VIEW (cheese_window->thumb_view));
-
-  action_name = gtk_action_get_name (action);
-  if (strcmp (action_name, "SendByMail") == 0)
-  {
-    char *path;
-    command_line = g_strdup_printf ("xdg-open mailto:?subject='%s'", _("Media files"));
-    for (l = files; l != NULL; l = l->next)
-    {
-      path         = g_file_get_path (l->data);
-      command_line = g_strjoin ("&attachment=", command_line, path, NULL);
-      g_free (path);
-      g_object_unref (l->data);
-    }
-    g_list_free (l);
-    g_list_free (files);
-  }
-  else if (strcmp (action_name, "SendTo") == 0)
-  {
-    char *path;
-    command_line = g_strdup_printf ("nautilus-sendto");
-    for (l = files; l != NULL; l = l->next)
-    {
-      path         = g_file_get_path (l->data);
-      command_line = g_strjoin (" ", command_line, path, NULL);
-      g_free (path);
-      g_object_unref (l->data);
-    }
-    g_list_free (l);
-    g_list_free (files);
-  }
-  else if (strcmp (action_name, "ExportToFSpot") == 0)
-  {
-    char *dirname = g_path_get_dirname (filename);
-    command_line = g_strdup_printf ("f-spot -i %s", dirname);
-    g_free (dirname);
-  }
-  else if (strcmp (action_name, "ExportToFlickr") == 0)
-  {
-    char *path;
-    command_line = g_strdup_printf ("postr");
-    for (l = files; l != NULL; l = l->next)
-    {
-      path         = g_file_get_path (l->data);
-      command_line = g_strjoin (" ", command_line, path, NULL);
-      g_free (path);
-      g_object_unref (l->data);
-    }
-    g_list_free (l);
-    g_list_free (files);
-  }
-  else
-  {
-    return;
-  }
-  g_free (filename);
-
-  if (!g_spawn_command_line_async (command_line, &error))
-  {
-    g_warning ("cannot launch command line: %s\n", error->message);
-    g_error_free (error);
-  }
-  g_free (command_line);
-}
-
-static void
 cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
 {
   GError    *error = NULL;
@@ -1287,19 +1145,6 @@ cheese_window_button_press_event_cb (GtkWidget *iconview, GdkEventButton *event,
       }
       g_list_free (l);
       g_list_free (files);
-
-      if (list_has_videos)
-      {
-        gtk_action_group_set_sensitive (cheese_window->actions_flickr, FALSE);
-        gtk_action_group_set_sensitive (cheese_window->actions_fspot, FALSE);
-        gtk_action_group_set_sensitive (cheese_window->actions_account_photo, FALSE);
-      }
-      else
-      {
-        gtk_action_group_set_sensitive (cheese_window->actions_flickr, TRUE);
-        gtk_action_group_set_sensitive (cheese_window->actions_fspot, TRUE);
-        gtk_action_group_set_sensitive (cheese_window->actions_account_photo, TRUE);
-      }
 
       gtk_menu_popup (GTK_MENU (cheese_window->thumb_view_popup_menu),
                       NULL, iconview, NULL, NULL, button, event_time);
@@ -1688,26 +1533,6 @@ static const GtkActionEntry action_entries_burst[] = {
   {"TakeBurst", NULL, N_("_Take multiple Photos"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb)},
 };
 
-static const GtkActionEntry action_entries_account_photo[] = {
-  {"SetAsAccountPhoto", NULL, N_("_Set As Account Photo"), NULL, NULL, G_CALLBACK (cheese_window_cmd_set_about_me_photo)},
-};
-
-static const GtkActionEntry action_entries_mail[] = {
-  {"SendByMail", NULL, N_("Send by _Mail"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
-};
-
-static const GtkActionEntry action_entries_sendto[] = {
-  {"SendTo", NULL, N_("Send _To"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
-};
-
-static const GtkActionEntry action_entries_fspot[] = {
-  {"ExportToFSpot", NULL, N_("Export to F-_Spot"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
-};
-
-static const GtkActionEntry action_entries_flickr[] = {
-  {"ExportToFlickr", NULL, N_("Export to _Flickr"), NULL, NULL, G_CALLBACK (cheese_window_cmd_command_line)},
-};
-
 static void
 cheese_window_activate_radio_action (GtkAction *action, GtkRadioAction *current, CheeseWindow *cheese_window)
 {
@@ -1806,7 +1631,6 @@ static void
 cheese_window_create_window (CheeseWindow *cheese_window)
 {
   GError     *error = NULL;
-  char       *path;
   GtkBuilder *builder;
   GtkWidget  *menubar;
 
@@ -2012,51 +1836,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                                                                  action_entries_burst,
                                                                  G_N_ELEMENTS (action_entries_burst));
   gtk_action_group_set_sensitive (cheese_window->actions_burst, FALSE);
-  cheese_window->actions_account_photo = cheese_window_action_group_new (cheese_window,
-                                                                         "ActionsAccountPhoto",
-                                                                         action_entries_account_photo,
-                                                                         G_N_ELEMENTS (action_entries_account_photo));
-  cheese_window->actions_mail = cheese_window_action_group_new (cheese_window,
-                                                                "ActionsMail",
-                                                                action_entries_mail,
-                                                                G_N_ELEMENTS (action_entries_mail));
-  cheese_window->actions_sendto = cheese_window_action_group_new (cheese_window,
-                                                                  "ActionsSendTo",
-                                                                  action_entries_sendto,
-                                                                  G_N_ELEMENTS (action_entries_sendto));
 
-  /* handling and activation of send to/send mail actions. We only show one send mail action */
-  path = g_find_program_in_path ("nautilus-sendto");
-  gboolean nautilus_sendto = (path != NULL);
-  if (nautilus_sendto)
-  {
-    gtk_action_group_set_visible (cheese_window->actions_sendto, TRUE);
-    gtk_action_group_set_visible (cheese_window->actions_mail, FALSE);
-  }
-  else
-  {
-    path = g_find_program_in_path ("xdg-open");
-    gtk_action_group_set_visible (cheese_window->actions_mail, path != NULL);
-    gtk_action_group_set_visible (cheese_window->actions_sendto, FALSE);
-  }
-  g_free (path);
-
-  cheese_window->actions_fspot = cheese_window_action_group_new (cheese_window,
-                                                                 "ActionsFSpot",
-                                                                 action_entries_fspot,
-                                                                 G_N_ELEMENTS (action_entries_fspot));
-  path = g_find_program_in_path ("f-spot");
-  gtk_action_group_set_visible (cheese_window->actions_fspot, path != NULL);
-  g_free (path);
-
-
-  cheese_window->actions_flickr = cheese_window_action_group_new (cheese_window,
-                                                                  "ActionsFlickr",
-                                                                  action_entries_flickr,
-                                                                  G_N_ELEMENTS (action_entries_flickr));
-  path = g_find_program_in_path ("postr");
-  gtk_action_group_set_visible (cheese_window->actions_flickr, path != NULL);
-  g_free (path);
 
   gtk_ui_manager_add_ui_from_file (cheese_window->ui_manager, PACKAGE_DATADIR "/cheese-ui.xml", &error);
 
