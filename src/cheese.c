@@ -1,5 +1,5 @@
 /*
- * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
+ * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2008 Felix Kaser <f.kaser@gmx.net>
  *
@@ -85,72 +85,6 @@ cheese_print_handler (char *string)
     fputs (string, fp);
 }
 
-void
-cheese_handle_files_from_before_224 (void)
-{
-  CheeseFileUtil *fileutil             = cheese_fileutil_new ();
-  gchar          *photo_path           = cheese_fileutil_get_photo_path (fileutil);
-  gchar          *video_path           = cheese_fileutil_get_video_path (fileutil);
-  gchar          *path_from_before_224 = cheese_fileutil_get_path_before_224 (fileutil);
-  GDir           *dir_from_before_224;
-  gchar          *source_filename, *target_filename;
-  const char     *name;
-  GFile          *source, *target, *dir;
-
-  if (g_file_test (path_from_before_224, G_FILE_TEST_IS_DIR) &&
-      (g_strcmp0 (video_path, path_from_before_224) != 0) &&
-      (g_strcmp0 (photo_path, path_from_before_224) != 0))
-  {
-    dir_from_before_224 = g_dir_open (path_from_before_224, 0, NULL);
-
-    while ((name = g_dir_read_name (dir_from_before_224)))
-    {
-      /* the filenames from before 2.24 have different namings than the > 2.24
-       * files (0042.jpg/ogg vs. 2008-09-09-015555.jpg/ogv) so we just copy and
-       * rename the ogg files to ogv
-       */
-      if (g_str_has_suffix (name, VIDEO_NAME_SUFFIX))
-      {
-        target_filename = g_build_filename (video_path, name, NULL);
-      }
-      else if (g_str_has_suffix (name, ".ogg"))
-      {
-        gchar *filename  = g_strdup (name);
-        gchar *extension = g_strrstr (filename, ".ogg");
-        extension[3]    = 'v';
-        target_filename = g_build_filename (video_path, filename, NULL);
-        g_free (filename);
-      }
-      else if (g_str_has_suffix (name, PHOTO_NAME_SUFFIX))
-      {
-        target_filename = g_build_filename (photo_path, name, NULL);
-      }
-      else
-      {
-        continue;
-      }
-
-      source_filename = g_build_filename (path_from_before_224, name, NULL);
-      source          = g_file_new_for_path (source_filename);
-      target          = g_file_new_for_path (target_filename);
-      g_print ("copying %s to %s\n", source_filename, target_filename);
-      g_file_move (source, target, G_FILE_COPY_OVERWRITE, NULL, NULL, NULL, NULL);
-      g_free (source_filename);
-      g_free (target_filename);
-      g_object_unref (source);
-      g_object_unref (target);
-    }
-
-    g_dir_close (dir_from_before_224);
-
-    dir = g_file_new_for_path (path_from_before_224);
-    g_file_delete (dir, NULL, NULL);
-    g_object_unref (dir);
-  }
-  g_free (path_from_before_224);
-  g_object_unref (fileutil);
-}
-
 int
 main (int argc, char **argv)
 {
@@ -218,7 +152,6 @@ main (int argc, char **argv)
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
-  cheese_handle_files_from_before_224 ();
   cheese_window_init (CheeseOptions.hal_device_id, dbus_server, CheeseOptions.wide_mode);
 
   gdk_threads_enter ();
