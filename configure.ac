@@ -82,6 +82,16 @@ AC_CHECK_HEADER([sys/videoio.h],
 		[AC_DEFINE(USE_SYS_VIDEOIO_H, 1, define to 1 if sys/videoio.h is present)],
 		[AC_DEFINE(USE_SYS_VIDEOIO_H, 0, define to 1 if sys/videoio.h is present)], [])
 
+XTEST_LIBS=
+AC_CHECK_HEADER(X11/extensions/XTest.h, [
+    AC_CHECK_LIB(Xtst, XTestFakeKeyEvent, [
+      AC_DEFINE(HAVE_XTEST, 1, [Defined if the XTEST X extension is
+present])
+      XTEST_LIBS="-lX11 -lXtst"])
+  ])
+AC_SUBST(XTEST_LIBS)
+AM_CONDITIONAL(HAVE_XTEST, test "x$HAVE_TEST" = "xyes")
+
 PKG_CHECK_MODULES(CHEESE, \ 
   glib-2.0 >= $GLIB_REQUIRED \
   gobject-2.0 >= $GOBJECT_REQUIRED \
