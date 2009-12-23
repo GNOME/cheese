@@ -47,6 +47,7 @@ cheese_SOURCES = \
 
 cheese_LDADD = \
 	$(top_builddir)/libcheese/libcheesecommon.la \
+	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(CHEESE_LIBS)
 
 #dbus
