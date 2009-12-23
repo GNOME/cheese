@@ -109,11 +109,13 @@ cheese_flash_dispose (GObject *object)
 {
   CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (object);
 
-  if (priv->window != NULL) {
+  if (priv->window != NULL)
+  {
     gtk_widget_destroy (GTK_WIDGET (priv->window));
     priv->window = NULL;
   }
-  if (priv->parent != NULL) {
+  if (priv->parent != NULL)
+  {
     g_object_unref (priv->parent);
     priv->parent = NULL;
   }
@@ -130,10 +132,10 @@ cheese_flash_finalize (GObject *object)
 }
 
 static void
-cheese_flash_set_property (GObject *object,
-			   guint prop_id,
-			   const GValue *value,
-			   GParamSpec *pspec)
+cheese_flash_set_property (GObject      *object,
+                           guint         prop_id,
+                           const GValue *value,
+                           GParamSpec   *pspec)
 {
   CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (object);
 
@@ -146,8 +148,8 @@ cheese_flash_set_property (GObject *object,
         priv->parent = g_object_ref (object);
       else
         priv->parent = NULL;
-      }
-      break;
+    }
+    break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -166,11 +168,11 @@ cheese_flash_class_init (CheeseFlashClass *klass)
   object_class->finalize     = cheese_flash_finalize;
 
   g_object_class_install_property (object_class, PROP_PARENT,
-				   g_param_spec_object ("parent",
-							NULL,
-							NULL,
-							GTK_TYPE_WIDGET,
-							G_PARAM_WRITABLE));
+                                   g_param_spec_object ("parent",
+                                                        NULL,
+                                                        NULL,
+                                                        GTK_TYPE_WIDGET,
+                                                        G_PARAM_WRITABLE));
 }
 
 static gboolean
@@ -216,10 +218,10 @@ void
 cheese_flash_fire (CheeseFlash *flash)
 {
   CheeseFlashPrivate *flash_priv = CHEESE_FLASH_GET_PRIVATE (flash);
-  GtkWidget *parent;
-  GdkScreen *screen;
-  GdkRectangle rect;
-  int monitor;
+  GtkWidget          *parent;
+  GdkScreen          *screen;
+  GdkRectangle        rect;
+  int                 monitor;
 
   g_return_if_fail (flash_priv->parent != NULL);
 
@@ -230,10 +232,10 @@ cheese_flash_fire (CheeseFlash *flash)
   if (flash_priv->fade_timeout_tag > 0)
     g_source_remove (flash_priv->fade_timeout_tag);
 
-  parent = gtk_widget_get_toplevel (flash_priv->parent);
-  screen = gtk_widget_get_screen (parent);
+  parent  = gtk_widget_get_toplevel (flash_priv->parent);
+  screen  = gtk_widget_get_screen (parent);
   monitor = gdk_screen_get_monitor_at_window (screen,
-					      gtk_widget_get_window (parent));
+                                              gtk_widget_get_window (parent));
   gdk_screen_get_monitor_geometry (screen, monitor, &rect);
   gtk_window_set_transient_for (GTK_WINDOW (flash_window), GTK_WINDOW (parent));
   gtk_window_resize (flash_window, rect.width, rect.height);
@@ -248,6 +250,6 @@ CheeseFlash *
 cheese_flash_new (GtkWidget *parent)
 {
   return g_object_new (CHEESE_TYPE_FLASH,
-		       "parent", parent,
-		       NULL);
+                       "parent", parent,
+                       NULL);
 }

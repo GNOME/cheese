@@ -27,13 +27,13 @@ G_BEGIN_DECLS
 
 #define CHEESE_TYPE_WIDGET (cheese_widget_get_type ())
 #define CHEESE_WIDGET(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_WIDGET, \
-                                                                         CheeseWidget))
+                                                                   CheeseWidget))
 #define CHEESE_WIDGET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_WIDGET, \
-                                                                      CheeseWidgetClass))
+                                                                CheeseWidgetClass))
 #define CHEESE_IS_WIDGET(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_WIDGET))
 #define CHEESE_IS_WIDGET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_WIDGET))
 #define CHEESE_WIDGET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_WIDGET, \
-                                                                        CheeseWidgetClass))
+                                                                  CheeseWidgetClass))
 
 typedef struct _CheeseWidgetClass CheeseWidgetClass;
 typedef struct _CheeseWidget CheeseWidget;
@@ -42,8 +42,8 @@ struct _CheeseWidgetClass
 {
   GtkNotebookClass parent_class;
 
-  void (*ready) (CheeseWidget *widget, gboolean is_ready);
-  void (*error) (CheeseWidget *widget, const char *error);
+  void (*ready)(CheeseWidget *widget, gboolean is_ready);
+  void (*error)(CheeseWidget *widget, const char *error);
 };
 
 struct _CheeseWidget

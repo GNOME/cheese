@@ -31,13 +31,13 @@
 
 G_DEFINE_TYPE (CheeseCameraDevice, cheese_camera_device, G_TYPE_OBJECT)
 
-#define CHEESE_CAMERA_DEVICE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDevicePrivate))
+#define CHEESE_CAMERA_DEVICE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA_DEVICE, \
+                                                                          CheeseCameraDevicePrivate))
 
 GST_DEBUG_CATEGORY (cheese_camera_device);
 #define GST_CAT_DEFAULT cheese_camera_device
 
-static gchar *supported_formats[] =
-{
+static gchar *supported_formats[] = {
   "video/x-raw-rgb",
   "video/x-raw-yuv",
   NULL
@@ -67,7 +67,7 @@ typedef struct
 
 /* CheeseVideoFormat */
 
-static CheeseVideoFormat*
+static CheeseVideoFormat *
 cheese_video_format_copy (const CheeseVideoFormat *format)
 {
   return g_slice_dup (CheeseVideoFormat, format);
@@ -102,17 +102,18 @@ compare_formats (gconstpointer a, gconstpointer b)
   const CheeseVideoFormat *d = b;
 
   /* descending sort for rectangle area */
-  return (d->width*d->height - c->width*c->height);
+  return (d->width * d->height - c->width * c->height);
 }
 
 static
-GstCaps *cheese_webcam_device_filter_caps (CheeseCameraDevice *device, const GstCaps *caps, GStrv formats)
+GstCaps *
+cheese_webcam_device_filter_caps (CheeseCameraDevice *device, const GstCaps *caps, GStrv formats)
 {
 /*  CheeseCameraDevicePrivate *priv =
-    CHEESE_CAMERA_DEVICE_GET_PRIVATE (device); */
-  gchar *formats_string = g_strjoinv ("; ", formats);
-  GstCaps *filter = gst_caps_from_string (formats_string);
-  GstCaps *allowed = gst_caps_intersect (caps, filter);
+ *  CHEESE_CAMERA_DEVICE_GET_PRIVATE (device); */
+  gchar   *formats_string = g_strjoinv ("; ", formats);
+  GstCaps *filter         = gst_caps_from_string (formats_string);
+  GstCaps *allowed        = gst_caps_intersect (caps, filter);
 
   GST_DEBUG ("Supported caps %" GST_PTR_FORMAT, caps);
   GST_DEBUG ("Filter caps %" GST_PTR_FORMAT, filter);
@@ -130,6 +131,7 @@ cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
   GList *l;
+
   for (l = priv->formats; l != NULL; l = l->next)
   {
     CheeseVideoFormat *item = l->data;
@@ -150,6 +152,7 @@ free_format_list (CheeseCameraDevice *device)
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   GList *l;
+
   for (l = priv->formats; l != NULL; l = l->next)
     g_free (l->data);
   g_list_free (priv->formats);
@@ -209,7 +212,7 @@ cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
       {
         CheeseVideoFormat *format = g_new0 (CheeseVideoFormat, 1);
 
-        format->width = cur_width;
+        format->width  = cur_width;
         format->height = cur_height;
 
         cheese_camera_device_add_format (device, format);
@@ -224,7 +227,7 @@ cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
       {
         CheeseVideoFormat *format = g_new0 (CheeseVideoFormat, 1);
 
-        format->width = cur_width;
+        format->width  = cur_width;
         format->height = cur_height;
 
         cheese_camera_device_add_format (device, format);
@@ -276,8 +279,8 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
       src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
 
       GST_LOG ("Device: %s (%s)\n", priv->name, priv->device);
-      pad  = gst_element_get_pad (src, "src");
-      caps = gst_pad_get_caps (pad);
+      pad        = gst_element_get_pad (src, "src");
+      caps       = gst_pad_get_caps (pad);
       priv->caps = cheese_webcam_device_filter_caps (device, caps, supported_formats);
       cheese_webcam_device_update_format_table (device);
 
@@ -309,68 +312,70 @@ cheese_camera_device_constructed (GObject *object)
 static void
 cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
 {
-  CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
-  CheeseCameraDevicePrivate *priv =
+  CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
+  CheeseCameraDevicePrivate *priv   =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
-  switch (prop_id) {
-  case PROP_NAME:
-    g_value_set_string (value, priv->name);
-    break;
-  case PROP_FILE:
-    g_value_set_string (value, priv->device);
-    break;
-  case PROP_ID:
-    g_value_set_string (value, priv->id);
-    break;
-  case PROP_SRC:
-    g_value_set_string (value, priv->src);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    break;
+  switch (prop_id)
+  {
+    case PROP_NAME:
+      g_value_set_string (value, priv->name);
+      break;
+    case PROP_FILE:
+      g_value_set_string (value, priv->device);
+      break;
+    case PROP_ID:
+      g_value_set_string (value, priv->id);
+      break;
+    case PROP_SRC:
+      g_value_set_string (value, priv->src);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
   }
 }
 
 static void
 cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
 {
-  CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
-  CheeseCameraDevicePrivate *priv =
+  CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
+  CheeseCameraDevicePrivate *priv   =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
-  switch (prop_id) {
-  case PROP_NAME:
-    if (priv->name)
-      g_free (priv->name);
-    priv->name = g_value_dup_string (value);
-    break;
-  case PROP_ID:
-    if (priv->id)
-      g_free (priv->id);
-    priv->id = g_value_dup_string (value);
-    break;
-  case PROP_FILE:
-    if (priv->device)
-      g_free (priv->device);
-    priv->device = g_value_dup_string (value);
-    break;
-  case PROP_SRC:
-    if (priv->src)
-      g_free (priv->src);
-    priv->src = g_value_dup_string (value);
-    break;
-  default:
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
-    break;
+  switch (prop_id)
+  {
+    case PROP_NAME:
+      if (priv->name)
+        g_free (priv->name);
+      priv->name = g_value_dup_string (value);
+      break;
+    case PROP_ID:
+      if (priv->id)
+        g_free (priv->id);
+      priv->id = g_value_dup_string (value);
+      break;
+    case PROP_FILE:
+      if (priv->device)
+        g_free (priv->device);
+      priv->device = g_value_dup_string (value);
+      break;
+    case PROP_SRC:
+      if (priv->src)
+        g_free (priv->src);
+      priv->src = g_value_dup_string (value);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
   }
 }
 
 static void
 cheese_camera_device_finalize (GObject *object)
 {
-  CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
-  CheeseCameraDevicePrivate *priv =
+  CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
+  CheeseCameraDevicePrivate *priv   =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   g_free (priv->device);
@@ -426,23 +431,24 @@ cheese_camera_device_init (CheeseCameraDevice *device)
                            "cheese-camera-device",
                            0, "Cheese Camera Device");
   priv->device = NULL;
-  priv->id = NULL;
-  priv->src = NULL;
-  priv->name = g_strdup(_("Unknown device"));
-  priv->caps = gst_caps_new_empty ();
+  priv->id     = NULL;
+  priv->src    = NULL;
+  priv->name   = g_strdup (_("Unknown device"));
+  priv->caps   = gst_caps_new_empty ();
 
   priv->formats = NULL;
 }
 
-CheeseCameraDevice *cheese_camera_device_new (void)
+CheeseCameraDevice *
+cheese_camera_device_new (void)
 {
   return g_object_new (CHEESE_TYPE_CAMERA_DEVICE, NULL);
 }
 
-
 /* public methods */
 
-GList *cheese_camera_device_get_format_list (CheeseCameraDevice *device)
+GList *
+cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
@@ -450,28 +456,35 @@ GList *cheese_camera_device_get_format_list (CheeseCameraDevice *device)
   return g_list_sort (g_list_copy (priv->formats), compare_formats);
 }
 
-const gchar *cheese_camera_device_get_name (CheeseCameraDevice *device)
+const gchar *
+cheese_camera_device_get_name (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   return priv->name;
 }
-const gchar *cheese_camera_device_get_id (CheeseCameraDevice *device)
+
+const gchar *
+cheese_camera_device_get_id (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   return priv->id;
 }
-const gchar *cheese_camera_device_get_src (CheeseCameraDevice *device)
+
+const gchar *
+cheese_camera_device_get_src (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   return priv->src;
 }
-const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device)
+
+const gchar *
+cheese_camera_device_get_device_file (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
@@ -479,7 +492,8 @@ const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device)
   return priv->device;
 }
 
-CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *device)
+CheeseVideoFormat *
+cheese_camera_device_get_best_format (CheeseCameraDevice *device)
 {
   CheeseVideoFormat *format = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
                                             cheese_camera_device_get_format_list (device)->data);
@@ -488,13 +502,14 @@ CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *dev
   return format;
 }
 
-GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
-                                                   CheeseVideoFormat *format)
+GstCaps *
+cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
+                                          CheeseVideoFormat  *format)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
   GstCaps *caps;
-  gint i;
+  gint     i;
 
   GST_INFO ("Getting caps for %dx%d", format->width, format->height);
 
@@ -516,7 +531,8 @@ GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                           NULL));
   }
 
-  if (!gst_caps_can_intersect (caps, priv->caps)) {
+  if (!gst_caps_can_intersect (caps, priv->caps))
+  {
     gst_caps_unref (caps);
     caps = gst_caps_new_empty ();
   }

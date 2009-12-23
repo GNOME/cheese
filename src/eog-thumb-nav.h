@@ -34,41 +34,43 @@ typedef struct _EogThumbNav EogThumbNav;
 typedef struct _EogThumbNavClass EogThumbNavClass;
 typedef struct _EogThumbNavPrivate EogThumbNavPrivate;
 
-#define EOG_TYPE_THUMB_NAV            (eog_thumb_nav_get_type ())
-#define EOG_THUMB_NAV(obj)            (G_TYPE_CHECK_INSTANCE_CAST((obj), EOG_TYPE_THUMB_NAV, EogThumbNav))
-#define EOG_THUMB_NAV_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST((klass),  EOG_TYPE_THUMB_NAV, EogThumbNavClass))
-#define EOG_IS_THUMB_NAV(obj)         (G_TYPE_CHECK_INSTANCE_TYPE((obj), EOG_TYPE_THUMB_NAV))
-#define EOG_IS_THUMB_NAV_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  EOG_TYPE_THUMB_NAV))
-#define EOG_THUMB_NAV_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  EOG_TYPE_THUMB_NAV, EogThumbNavClass))
+#define EOG_TYPE_THUMB_NAV (eog_thumb_nav_get_type ())
+#define EOG_THUMB_NAV(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), EOG_TYPE_THUMB_NAV, EogThumbNav))
+#define EOG_THUMB_NAV_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), EOG_TYPE_THUMB_NAV, EogThumbNavClass))
+#define EOG_IS_THUMB_NAV(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EOG_TYPE_THUMB_NAV))
+#define EOG_IS_THUMB_NAV_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), EOG_TYPE_THUMB_NAV))
+#define EOG_THUMB_NAV_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), EOG_TYPE_THUMB_NAV, EogThumbNavClass))
 
-struct _EogThumbNav {
-        GtkHBox base_instance;
+struct _EogThumbNav
+{
+  GtkHBox base_instance;
 
-        EogThumbNavPrivate *priv;
+  EogThumbNavPrivate *priv;
 };
 
-struct _EogThumbNavClass {
-        GtkHBoxClass parent_class;
+struct _EogThumbNavClass
+{
+  GtkHBoxClass parent_class;
 };
 
-GType            eog_thumb_nav_get_type          (void) G_GNUC_CONST;
+GType eog_thumb_nav_get_type (void) G_GNUC_CONST;
 
-GtkWidget       *eog_thumb_nav_new               (GtkWidget         *thumbview,
-                                                  gboolean           show_buttons);
+GtkWidget *eog_thumb_nav_new (GtkWidget *thumbview,
+                              gboolean   show_buttons);
 
-gboolean         eog_thumb_nav_get_show_buttons  (EogThumbNav       *nav);
+gboolean eog_thumb_nav_get_show_buttons (EogThumbNav *nav);
 
-void             eog_thumb_nav_set_show_buttons  (EogThumbNav       *nav,
-                                                  gboolean           show_buttons);
+void eog_thumb_nav_set_show_buttons (EogThumbNav *nav,
+                                     gboolean     show_buttons);
 
-gboolean         eog_thumb_nav_is_vertical       (EogThumbNav       *nav);
+gboolean eog_thumb_nav_is_vertical (EogThumbNav *nav);
 
-void             eog_thumb_nav_set_vertical      (EogThumbNav       *nav,
-                                                  gboolean           vertical);
+void eog_thumb_nav_set_vertical (EogThumbNav *nav,
+                                 gboolean     vertical);
 
-void            eog_thumb_nav_set_policy         (EogThumbNav *nav,
-                                                  GtkPolicyType hscrollbar_policy,
-                                                  GtkPolicyType vscrollbar_policy);
+void eog_thumb_nav_set_policy (EogThumbNav  *nav,
+                               GtkPolicyType hscrollbar_policy,
+                               GtkPolicyType vscrollbar_policy);
 
 G_END_DECLS
 

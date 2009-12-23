@@ -30,11 +30,14 @@
 G_BEGIN_DECLS
 
 #define CHEESE_TYPE_CAMERA_DEVICE (cheese_camera_device_get_type ())
-#define CHEESE_CAMERA_DEVICE(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDevice))
-#define CHEESE_CAMERA_DEVICE_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDeviceClass))
+#define CHEESE_CAMERA_DEVICE(o)           (G_TYPE_CHECK_INSTANCE_CAST ((o), CHEESE_TYPE_CAMERA_DEVICE, \
+                                                                       CheeseCameraDevice))
+#define CHEESE_CAMERA_DEVICE_CLASS(k)     (G_TYPE_CHECK_CLASS_CAST ((k), CHEESE_TYPE_CAMERA_DEVICE, \
+                                                                    CheeseCameraDeviceClass))
 #define CHEESE_IS_CAMERA_DEVICE(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CHEESE_TYPE_CAMERA_DEVICE))
 #define CHEESE_IS_CAMERA_DEVICE_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_CAMERA_DEVICE))
-#define CHEESE_CAMERA_DEVICE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA_DEVICE, CheeseCameraDeviceClass))
+#define CHEESE_CAMERA_DEVICE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA_DEVICE, \
+                                                                      CheeseCameraDeviceClass))
 
 typedef struct
 {
@@ -50,24 +53,24 @@ typedef struct
 
 typedef struct
 {
-  int   width;
-  int   height;
+  int width;
+  int height;
 } CheeseVideoFormat;
 
 GType cheese_video_format_get_type (void) G_GNUC_CONST;
 
 GType cheese_camera_device_get_type (void) G_GNUC_CONST;
 
-CheeseCameraDevice        *cheese_camera_device_new (void);
-GstCaps                   *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
-                                                                     CheeseVideoFormat *format);
-CheeseVideoFormat         *cheese_camera_device_get_best_format (CheeseCameraDevice *device);
-GList                     *cheese_camera_device_get_format_list (CheeseCameraDevice *device);
+CheeseCameraDevice *cheese_camera_device_new (void);
+GstCaps *           cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
+                                                              CheeseVideoFormat  *format);
+CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *device);
+GList *            cheese_camera_device_get_format_list (CheeseCameraDevice *device);
 
-const gchar               *cheese_camera_device_get_name (CheeseCameraDevice *device);
-const gchar               *cheese_camera_device_get_src (CheeseCameraDevice *device);
-const gchar               *cheese_camera_device_get_id (CheeseCameraDevice *device);
-const gchar               *cheese_camera_device_get_device_file (CheeseCameraDevice *device);
+const gchar *cheese_camera_device_get_name (CheeseCameraDevice *device);
+const gchar *cheese_camera_device_get_src (CheeseCameraDevice *device);
+const gchar *cheese_camera_device_get_id (CheeseCameraDevice *device);
+const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device);
 
 
 

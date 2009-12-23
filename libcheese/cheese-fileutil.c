@@ -244,6 +244,6 @@ cheese_fileutil_new ()
 
   fileutil = g_object_new (CHEESE_TYPE_FILEUTIL, NULL);
   g_object_add_weak_pointer (G_OBJECT (fileutil),
-			     (gpointer) &fileutil);
+                             (gpointer) & fileutil);
   return fileutil;
 }

@@ -1,11 +1,11 @@
-/* Eye Of Gnome - Thumbnailing functions 
+/* Eye Of Gnome - Thumbnailing functions
  *
  * Copyright (C) 2000-2007 The Free Software Foundation
  *
  * Author: Lucas Rocha <lucasr@gnome.org>
  *
- * Based on nautilus code (libnautilus-private/nautilus-thumbnail.c) by: 
- * 	- Andy Hertzfeld <andy@eazel.com>
+ * Based on nautilus code (libnautilus-private/nautilus-thumbnail.c) by:
+ *      - Andy Hertzfeld <andy@eazel.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,10 +29,10 @@
 
 G_BEGIN_DECLS
 
-void          eog_thumbnail_init        (void);
+void eog_thumbnail_init (void);
 
 
-void	      eog_thumbnail_add_frame   (GdkPixbuf **thumbnail);
+void eog_thumbnail_add_frame (GdkPixbuf **thumbnail);
 
 G_END_DECLS
 

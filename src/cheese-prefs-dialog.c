@@ -192,9 +192,9 @@ cheese_prefs_dialog_destroy_dialog (CheesePrefsDialog *prefs_dialog)
 }
 
 static void
-cheese_prefs_dialog_response (GtkDialog *dialog,
-			      int response_id,
-			      CheesePrefsDialog *prefs_dialog)
+cheese_prefs_dialog_response (GtkDialog         *dialog,
+                              int                response_id,
+                              CheesePrefsDialog *prefs_dialog)
 {
   cheese_prefs_dialog_destroy_dialog (prefs_dialog);
 }
@@ -215,5 +215,5 @@ cheese_prefs_dialog_run (GtkWidget *parent, CheeseGConf *gconf, CheeseCamera *ca
 
   gtk_widget_show (prefs_dialog->cheese_prefs_dialog);
   g_signal_connect (G_OBJECT (prefs_dialog->cheese_prefs_dialog), "response",
-		    G_CALLBACK (cheese_prefs_dialog_response), prefs_dialog);
+                    G_CALLBACK (cheese_prefs_dialog_response), prefs_dialog);
 }

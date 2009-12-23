@@ -111,7 +111,8 @@ cheese_prefs_balance_scale_synchronize (CheesePrefsWidget *prefs_widget)
 
   gtk_widget_set_sensitive (scale, can_balance);
 
-  if (can_balance) {
+  if (can_balance)
+  {
     g_object_get (CHEESE_PREFS_WIDGET (self)->gconf, priv->gconf_key, &stored_value, NULL);
     gtk_range_set_value (GTK_RANGE (scale), stored_value);
   }

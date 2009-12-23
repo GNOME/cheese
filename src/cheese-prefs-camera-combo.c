@@ -121,9 +121,9 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
   gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), NULL);
 
-  camera_devices      = cheese_camera_get_camera_devices (priv->camera);
-  num_devices         = cheese_camera_get_num_camera_devices (priv->camera);
-  selected_device     = cheese_camera_get_selected_device (priv->camera);
+  camera_devices  = cheese_camera_get_camera_devices (priv->camera);
+  num_devices     = cheese_camera_get_num_camera_devices (priv->camera);
+  selected_device = cheese_camera_get_selected_device (priv->camera);
 
   /* If the selected device is not the same device as the one in gconf, the
    * selected device isn't available or was set by --hal-device. Set it now.
@@ -142,12 +142,12 @@ cheese_prefs_camera_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
   for (i = 0; i < num_devices; i++)
   {
-    device_ptr   = g_ptr_array_index (camera_devices, i);
+    device_ptr = g_ptr_array_index (camera_devices, i);
     const gchar *devpath = cheese_camera_device_get_device_file (device_ptr);
     product_name = g_strdup_printf ("%s (%s)",
                                     cheese_camera_device_get_name (device_ptr),
                                     devpath);
-    device_name  = g_strdup (devpath);
+    device_name = g_strdup (devpath);
 
     gtk_list_store_append (priv->list_store, &iter);
     gtk_list_store_set (priv->list_store, &iter, PRODUCT_NAME, product_name,

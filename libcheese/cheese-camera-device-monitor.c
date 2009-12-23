@@ -28,27 +28,28 @@
 #include <string.h>
 
 #ifdef HAVE_UDEV
-#define G_UDEV_API_IS_SUBJECT_TO_CHANGE 1
-#include <gudev/gudev.h>
+  #define G_UDEV_API_IS_SUBJECT_TO_CHANGE 1
+  #include <gudev/gudev.h>
 #else
-#include <fcntl.h>
-#include <unistd.h>
-#include <sys/ioctl.h>
-#if USE_SYS_VIDEOIO_H > 0
-#include <sys/types.h>
-#include <sys/videoio.h>
-#elif defined(__sun)
-#include <sys/types.h>
-#include <sys/videodev2.h>
-#endif /* USE_SYS_VIDEOIO_H */
+  #include <fcntl.h>
+  #include <unistd.h>
+  #include <sys/ioctl.h>
+  #if USE_SYS_VIDEOIO_H > 0
+    #include <sys/types.h>
+    #include <sys/videoio.h>
+  #elif defined (__sun)
+    #include <sys/types.h>
+    #include <sys/videodev2.h>
+  #endif /* USE_SYS_VIDEOIO_H */
 #endif
 
 #include "cheese-camera-device-monitor.h"
 
 G_DEFINE_TYPE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_OBJECT)
 
-#define CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), \
-	  CHEESE_TYPE_CAMERA_DEVICE_MONITOR, CheeseCameraDeviceMonitorPrivate))
+#define CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o),                               \
+                                                                                  CHEESE_TYPE_CAMERA_DEVICE_MONITOR, \
+                                                                                  CheeseCameraDeviceMonitorPrivate))
 
 #define CHEESE_CAMERA_DEVICE_MONITOR_ERROR cheese_camera_device_monitor_error_quark ()
 
@@ -88,39 +89,46 @@ cheese_camera_device_monitor_error_quark (void)
 #ifdef HAVE_UDEV
 static void
 cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
-				    GUdevDevice *udevice)
+                                    GUdevDevice               *udevice)
 {
-  const char             *device_file;
-  const char             *gstreamer_src, *product_name;
-  const char             *vendor;
-  const char             *product;
-  const char             *bus;
-  gint                    vendor_id     = 0;
-  gint                    product_id    = 0;
-  gint                    v4l_version   = 0;
-  CheeseCameraDevice     *device;
+  const char         *device_file;
+  const char         *gstreamer_src, *product_name;
+  const char         *vendor;
+  const char         *product;
+  const char         *bus;
+  gint                vendor_id   = 0;
+  gint                product_id  = 0;
+  gint                v4l_version = 0;
+  CheeseCameraDevice *device;
 
   GST_INFO ("Checking udev device '%s'", g_udev_device_get_property (udevice, "DEVPATH"));
 
   bus = g_udev_device_get_property (udevice, "ID_BUS");
-  if (g_strcmp0 (bus, "usb") == 0) {
+  if (g_strcmp0 (bus, "usb") == 0)
+  {
     vendor = g_udev_device_get_property (udevice, "ID_VENDOR_ID");
     if (vendor != NULL)
       vendor_id = g_ascii_strtoll (vendor, NULL, 16);
     product = g_udev_device_get_property (udevice, "ID_MODEL_ID");
     if (product != NULL)
       product_id = g_ascii_strtoll (vendor, NULL, 16);
-    if (vendor_id == 0 || product_id == 0) {
+    if (vendor_id == 0 || product_id == 0)
+    {
       GST_WARNING ("Error getting vendor and product id");
-    } else {
+    }
+    else
+    {
       GST_INFO ("Found device %04x:%04x, getting capabilities...", vendor_id, product_id);
     }
-  } else {
+  }
+  else
+  {
     GST_INFO ("Not an usb device, skipping vendor and model id retrieval");
   }
 
   device_file = g_udev_device_get_device_file (udevice);
-  if (device_file == NULL) {
+  if (device_file == NULL)
+  {
     GST_WARNING ("Error getting V4L device");
     return;
   }
@@ -134,7 +142,8 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
   }
 
   v4l_version = g_udev_device_get_property_as_int (udevice, "ID_V4L_VERSION");
-  if (v4l_version == 2 || v4l_version == 1) {
+  if (v4l_version == 2 || v4l_version == 1)
+  {
     const char *caps;
 
     caps = g_udev_device_get_property (udevice, "ID_V4L_CAPABILITIES");
@@ -145,11 +154,15 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
       return;
     }
     gstreamer_src = (v4l_version == 2) ? "v4l2src" : "v4lsrc";
-    product_name = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
-  } else if (v4l_version == 0) {
+    product_name  = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
+  }
+  else if (v4l_version == 0)
+  {
     GST_ERROR ("Fix your udev installation to include v4l_id, ignoring %s", device_file);
     return;
-  } else {
+  }
+  else
+  {
     g_assert_not_reached ();
   }
 
@@ -165,17 +178,17 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
 
 static void
 cheese_camera_device_monitor_removed (CheeseCameraDeviceMonitor *monitor,
-				      GUdevDevice *udevice)
+                                      GUdevDevice               *udevice)
 {
   g_signal_emit (monitor, monitor_signals[REMOVED], 0,
-		 g_udev_device_get_property (udevice, "DEVPATH"));
+                 g_udev_device_get_property (udevice, "DEVPATH"));
 }
 
 static void
-cheese_camera_device_monitor_uevent_cb (GUdevClient  *client,
-					const gchar  *action,
-					GUdevDevice  *udevice,
-					CheeseCameraDeviceMonitor *monitor)
+cheese_camera_device_monitor_uevent_cb (GUdevClient               *client,
+                                        const gchar               *action,
+                                        GUdevDevice               *udevice,
+                                        CheeseCameraDeviceMonitor *monitor)
 {
   if (g_str_equal (action, "remove"))
     cheese_camera_device_monitor_removed (monitor, udevice);
@@ -187,8 +200,8 @@ void
 cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
-  GList *devices, *l;
-  gint i = 0;
+  GList                            *devices, *l;
+  gint                              i = 0;
 
   if (priv->client == NULL)
     return;
@@ -198,7 +211,8 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
   devices = g_udev_client_query_by_subsystem (priv->client, "video4linux");
 
   /* Initialize camera structures */
-  for (l = devices; l != NULL; l = l->next) {
+  for (l = devices; l != NULL; l = l->next)
+  {
     cheese_camera_device_monitor_added (monitor, l->data);
     g_object_unref (l->data);
     i++;
@@ -207,15 +221,16 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 
   if (i == 0) GST_WARNING ("No device found");
 }
+
 #else /* HAVE_UDEV */
 void
 cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
-#if 0
+  #if 0
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
-  struct v4l2_capability  v2cap;
-  struct video_capability v1cap;
-  int fd, ok;
+  struct v4l2_capability            v2cap;
+  struct video_capability           v1cap;
+  int                               fd, ok;
 
   if ((fd = open (device_path, O_RDONLY | O_NONBLOCK)) < 0)
   {
@@ -229,7 +244,7 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
     if (ok < 0)
     {
       g_warning ("Error while probing v4l capabilities for %s: %s",
-		 device_path, strerror (errno));
+                 device_path, strerror (errno));
       close (fd);
       return;
     }
@@ -249,7 +264,7 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
     if (!(cap & V4L2_CAP_VIDEO_CAPTURE))
     {
       g_print ("Device %s seems to not have the capture capability, (radio tuner?)\n"
-	       "Removing it from device list.\n", device_path);
+               "Removing it from device list.\n", device_path);
       close (fd);
       return;
     }
@@ -268,13 +283,15 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
   devices = g_udev_client_query_by_subsystem (priv->client, "video4linux");
 
   /* Initialize camera structures */
-  for (l = devices; l != NULL; l = l->next) {
+  for (l = devices; l != NULL; l = l->next)
+  {
     cheese_camera_device_monitor_added (monitor, l->data);
     g_object_unref (l->data);
   }
   g_list_free (devices);
-#endif
+  #endif
 }
+
 #endif /* HAVE_UDEV */
 
 static void
@@ -286,7 +303,8 @@ cheese_camera_device_monitor_finalize (GObject *object)
   monitor = CHEESE_CAMERA_DEVICE_MONITOR (object);
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
 
-  if (priv->client != NULL) {
+  if (priv->client != NULL)
+  {
     g_object_unref (priv->client);
     priv->client = NULL;
   }
@@ -299,21 +317,21 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize     = cheese_camera_device_monitor_finalize;
+  object_class->finalize = cheese_camera_device_monitor_finalize;
 
   monitor_signals[ADDED] = g_signal_new ("added", G_OBJECT_CLASS_TYPE (klass),
-					 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-					 G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
-					 NULL, NULL,
-					 g_cclosure_marshal_VOID__OBJECT,
-					 G_TYPE_NONE, 1, G_TYPE_OBJECT);
+                                         G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                         G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
+                                         NULL, NULL,
+                                         g_cclosure_marshal_VOID__OBJECT,
+                                         G_TYPE_NONE, 1, G_TYPE_OBJECT);
 
   monitor_signals[REMOVED] = g_signal_new ("removed", G_OBJECT_CLASS_TYPE (klass),
-					   G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-					   G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, removed),
-					   NULL, NULL,
-					   g_cclosure_marshal_VOID__STRING,
-					   G_TYPE_NONE, 1, G_TYPE_STRING);
+                                           G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                           G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, removed),
+                                           NULL, NULL,
+                                           g_cclosure_marshal_VOID__STRING,
+                                           G_TYPE_NONE, 1, G_TYPE_STRING);
 
   g_type_class_add_private (klass, sizeof (CheeseCameraDeviceMonitorPrivate));
 }
@@ -325,12 +343,12 @@ cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
                            "cheese-device-monitor",
                            0, "Cheese Camera Device Monitor");
 #ifdef HAVE_UDEV
-  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
-  const gchar* const subsystems[] = { "video4linux", NULL };
+  CheeseCameraDeviceMonitorPrivate *priv         = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
+  const gchar *const                subsystems[] = {"video4linux", NULL};
 
   priv->client = g_udev_client_new (subsystems);
   g_signal_connect (G_OBJECT (priv->client), "uevent",
-		    G_CALLBACK (cheese_camera_device_monitor_uevent_cb), monitor);
+                    G_CALLBACK (cheese_camera_device_monitor_uevent_cb), monitor);
 #endif /* HAVE_UDEV */
 }
 

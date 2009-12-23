@@ -496,11 +496,11 @@ cheese_gconf_new ()
   static CheeseGConf *gconf = NULL;
 
   if (gconf != NULL)
-	  return g_object_ref (gconf);
+    return g_object_ref (gconf);
 
   gconf = g_object_new (CHEESE_TYPE_GCONF, NULL);
   g_object_add_weak_pointer (G_OBJECT (gconf),
-			     (gpointer) &gconf);
+                             (gpointer) & gconf);
 
   return gconf;
 }

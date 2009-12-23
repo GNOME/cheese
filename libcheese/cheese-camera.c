@@ -74,6 +74,7 @@ typedef struct
 
   int num_camera_devices;
   char *device_name;
+
   /* an array of CheeseCameraDevices */
   GPtrArray *camera_devices;
   int x_resolution;
@@ -234,10 +235,11 @@ cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
                                      NULL, NULL);
 
   g_signal_handler_disconnect (G_OBJECT (priv->photo_sink),
-			       priv->photo_handler_signal_id);
+                               priv->photo_handler_signal_id);
   priv->photo_handler_signal_id = 0;
 
-  if (priv->photo_filename != NULL) {
+  if (priv->photo_filename != NULL)
+  {
     gdk_pixbuf_save (pixbuf, priv->photo_filename, "jpeg", NULL, NULL);
     g_object_unref (G_OBJECT (pixbuf));
 
@@ -245,7 +247,9 @@ cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
     priv->photo_filename = NULL;
 
     g_signal_emit (camera, camera_signals[PHOTO_SAVED], 0);
-  } else {
+  }
+  else
+  {
     g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0, pixbuf);
     g_object_unref (pixbuf);
   }
@@ -275,8 +279,8 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 
 static void
 cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
-			  CheeseCameraDevice        *device,
-			  CheeseCamera              *camera)
+                          CheeseCameraDevice        *device,
+                          CheeseCamera              *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -287,15 +291,15 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 static void
 cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate       *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   CheeseCameraDeviceMonitor *monitor;
 
   priv->num_camera_devices = 0;
-  priv->camera_devices = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
+  priv->camera_devices     = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
 
   monitor = cheese_camera_device_monitor_new ();
   g_signal_connect (G_OBJECT (monitor), "added",
-		    G_CALLBACK (cheese_camera_add_device), camera);
+                    G_CALLBACK (cheese_camera_add_device), camera);
   cheese_camera_device_monitor_coldplug (monitor);
   g_object_unref (monitor);
 }
@@ -319,8 +323,9 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
   {
     CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
     if (g_strcmp0 (cheese_camera_device_get_device_file (device),
-                   priv->device_name) == 0) {
-      selected_camera = device;
+                   priv->device_name) == 0)
+    {
+      selected_camera       = device;
       priv->selected_device = i;
       break;
     }
@@ -335,7 +340,8 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
                                                             TRUE, &err);
   g_free (camera_input);
 
-  if (priv->camera_source_bin == NULL) {
+  if (priv->camera_source_bin == NULL)
+  {
     goto fallback;
   }
 
@@ -637,9 +643,10 @@ CheeseCameraDevice *
 cheese_camera_get_selected_device (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+
   if (cheese_camera_get_num_camera_devices (camera) > 0)
     return CHEESE_CAMERA_DEVICE (
-      g_ptr_array_index (priv->camera_devices, priv->selected_device));
+             g_ptr_array_index (priv->camera_devices, priv->selected_device));
   else
     return NULL;
 }
@@ -705,9 +712,9 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
 void
 cheese_camera_play (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
   CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
-  GstCaps *caps;
+  GstCaps             *caps;
 
   caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
 
@@ -718,7 +725,8 @@ cheese_camera_play (CheeseCamera *camera)
     priv->current_format = cheese_camera_device_get_best_format (device);
     g_object_notify (G_OBJECT (camera), "format");
     caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
-    if (G_UNLIKELY (gst_caps_is_empty (caps))) {
+    if (G_UNLIKELY (gst_caps_is_empty (caps)))
+    {
       gst_caps_unref (caps);
       caps = gst_caps_new_any ();
     }
@@ -1065,9 +1073,10 @@ CheeseCamera *
 cheese_camera_new (GtkWidget *video_window, char *camera_device_name,
                    int x_resolution, int y_resolution)
 {
-  CheeseCamera *camera;
+  CheeseCamera      *camera;
   CheeseVideoFormat *format = g_slice_new (CheeseVideoFormat);
-  format->width = x_resolution;
+
+  format->width  = x_resolution;
   format->height = y_resolution;
 
   if (camera_device_name)
@@ -1095,7 +1104,8 @@ cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
 
   cheese_camera_detect_camera_devices (camera);
 
-  if (priv->num_camera_devices < 1) {
+  if (priv->num_camera_devices < 1)
+  {
     g_set_error (error, CHEESE_CAMERA_ERROR, CHEESE_CAMERA_ERROR_NO_DEVICE, _("No device found"));
     return;
   }
@@ -1173,7 +1183,7 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
 GList *
 cheese_camera_get_video_formats (CheeseCamera *camera)
 {
-  CheeseCameraDevice  *device = cheese_camera_get_selected_device (camera);
+  CheeseCameraDevice *device = cheese_camera_get_selected_device (camera);
 
   if (device)
     return cheese_camera_device_get_format_list (device);
@@ -1185,6 +1195,7 @@ gboolean
 cheese_camera_is_playing (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+
   return priv->pipeline_is_playing;
 }
 
@@ -1192,11 +1203,13 @@ void
 cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+
   if (!(priv->current_format->width == format->width &&
         priv->current_format->height == format->height))
   {
     g_object_set (G_OBJECT (camera), "format", format, NULL);
-    if (cheese_camera_is_playing (camera)) {
+    if (cheese_camera_is_playing (camera))
+    {
       cheese_camera_stop (camera);
       cheese_camera_play (camera);
     }

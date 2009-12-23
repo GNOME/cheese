@@ -72,7 +72,7 @@ typedef enum
 
 typedef enum
 {
-  PAGE_WEBCAM = 0,
+  PAGE_WEBCAM  = 0,
   PAGE_EFFECTS = 1,
   PAGE_SPINNER = 2,
   PAGE_PROBLEM = 3,
@@ -180,23 +180,25 @@ typedef struct
 } CheeseWindow;
 
 
-/* FIXME: some code borrowed from cheese-widget */
-/* We should really use it directly instead of duplicating stuff here */
+/* FIXME: some code borrowed from cheese-widget 
+ * We should really use it directly instead of duplicating stuff here */
 static GdkPixbuf *
-cheese_window_load_pixbuf (GtkWidget *widget,
-			   const char *icon_name,
-			   guint size,
-			   GError **error)
+cheese_window_load_pixbuf (GtkWidget  *widget,
+                           const char *icon_name,
+                           guint       size,
+                           GError    **error)
 {
   GtkIconTheme *theme;
-  GdkPixbuf *pixbuf;
+  GdkPixbuf    *pixbuf;
 
   theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
-  if (!gtk_icon_theme_has_icon (theme, icon_name)) {
+  if (!gtk_icon_theme_has_icon (theme, icon_name))
+  {
     pixbuf = gtk_icon_theme_load_icon (theme, "error",
                                        size, 0, error);
   }
-  else {
+  else
+  {
     pixbuf = gtk_icon_theme_load_icon (theme, icon_name,
                                        size, 0, error);
   }
@@ -204,17 +206,17 @@ cheese_window_load_pixbuf (GtkWidget *widget,
 }
 
 static gboolean
-cheese_window_logo_expose (GtkWidget *w,
-			   GdkEventExpose *event,
-			   gpointer user_data)
+cheese_window_logo_expose (GtkWidget      *w,
+                           GdkEventExpose *event,
+                           gpointer        user_data)
 {
-  const char *icon_name;
-  GdkPixbuf *pixbuf, *logo;
-  GError *error = NULL;
-  cairo_t *cr;
+  const char   *icon_name;
+  GdkPixbuf    *pixbuf, *logo;
+  GError       *error = NULL;
+  cairo_t      *cr;
   GtkAllocation allocation;
-  guint s_width, s_height, d_width, d_height;
-  float ratio;
+  guint         s_width, s_height, d_width, d_height;
+  float         ratio;
 
   gdk_draw_rectangle (w->window, w->style->black_gc, TRUE,
                       0, 0, w->allocation.width, w->allocation.height);
@@ -227,26 +229,30 @@ cheese_window_logo_expose (GtkWidget *w,
   gtk_widget_get_allocation (w, &allocation);
   cairo_rectangle (cr, 0, 0, allocation.width, allocation.height);
 
-  d_width = allocation.width;
+  d_width  = allocation.width;
   d_height = allocation.height - (allocation.height / 3);
 
   pixbuf = cheese_window_load_pixbuf (w, icon_name, d_height, &error);
-  if (pixbuf == NULL) {
+  if (pixbuf == NULL)
+  {
     g_warning ("Could not load icon '%s': %s", icon_name, error->message);
     g_error_free (error);
     return FALSE;
   }
 
-  s_width = gdk_pixbuf_get_width (pixbuf);
+  s_width  = gdk_pixbuf_get_width (pixbuf);
   s_height = gdk_pixbuf_get_height (pixbuf);
 
-  if ((gfloat) d_width / s_width > (gfloat) d_height / s_height) {
+  if ((gfloat) d_width / s_width > (gfloat) d_height / s_height)
+  {
     ratio = (gfloat) d_height / s_height;
-  } else {
+  }
+  else
+  {
     ratio = (gfloat) d_width / s_width;
   }
 
-  s_width *= ratio;
+  s_width  *= ratio;
   s_height *= ratio;
 
   logo = gdk_pixbuf_scale_simple (pixbuf, s_width, s_height, GDK_INTERP_BILINEAR);
@@ -263,11 +269,11 @@ cheese_window_logo_expose (GtkWidget *w,
 
 static void
 cheese_window_set_problem_page (CheeseWindow *window,
-				const char *icon_name)
+                                const char   *icon_name)
 {
   gtk_notebook_set_current_page (GTK_NOTEBOOK (window->notebook), PAGE_PROBLEM);
   g_object_set_data_full (G_OBJECT (window->problem_area),
-			  "icon-name", g_strdup (icon_name), g_free);
+                          "icon-name", g_strdup (icon_name), g_free);
   g_signal_connect (window->problem_area, "expose-event",
                     G_CALLBACK (cheese_window_logo_expose), window);
 }
@@ -276,14 +282,15 @@ static void
 cheese_window_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
 {
   GtkStyle *style;
-  guint i;
+  guint     i;
 
-  for (i = GTK_STATE_NORMAL; i <= GTK_STATE_INSENSITIVE; i++) {
+  for (i = GTK_STATE_NORMAL; i <= GTK_STATE_INSENSITIVE; i++)
+  {
     GdkColor *fg, *bg;
 
     style = gtk_widget_get_style (spinner);
-    fg = gdk_color_copy (&style->fg[i]);
-    bg = gdk_color_copy (&style->bg[i]);
+    fg    = gdk_color_copy (&style->fg[i]);
+    bg    = gdk_color_copy (&style->bg[i]);
 
     gtk_widget_modify_fg (spinner, i, bg);
     gtk_widget_modify_bg (spinner, i, fg);
@@ -1688,7 +1695,7 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 
   /* Problem page */
   cheese_window->problem_page = gtk_vbox_new (FALSE, 0);
-  cheese_window->problem_bar =  cheese_no_camera_info_bar_new ();
+  cheese_window->problem_bar  = cheese_no_camera_info_bar_new ();
   g_signal_connect (cheese_window->problem_bar,
                     "response",
                     G_CALLBACK (cheese_window_no_camera_info_bar_response),
@@ -1701,8 +1708,8 @@ cheese_window_create_window (CheeseWindow *cheese_window)
                       cheese_window->problem_area,
                       TRUE, TRUE, 0);
   gtk_notebook_insert_page (GTK_NOTEBOOK (cheese_window->notebook),
-			    cheese_window->problem_page,
-			    gtk_label_new ("got problems"),
+                            cheese_window->problem_page,
+                            gtk_label_new ("got problems"),
                             PAGE_PROBLEM);
 
 
@@ -1746,19 +1753,20 @@ cheese_window_create_window (CheeseWindow *cheese_window)
   g_free (gconf_effects);
 
 /* uncomment to debug */
-/*
-  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
-  gtk_notebook_set_show_border (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
-*/
 
-  cheese_window->throbber = gtk_spinner_new ();
-  cheese_window->throbber_box = gtk_event_box_new ();
+/*
+ * gtk_notebook_set_show_tabs (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
+ * gtk_notebook_set_show_border (GTK_NOTEBOOK (cheese_window->notebook), TRUE);
+ */
+
+  cheese_window->throbber       = gtk_spinner_new ();
+  cheese_window->throbber_box   = gtk_event_box_new ();
   cheese_window->throbber_align = gtk_alignment_new (0.5, 0.5, 0.6, 0.6);
   gtk_container_add (GTK_CONTAINER (cheese_window->throbber_box), cheese_window->throbber_align);
   gtk_container_add (GTK_CONTAINER (cheese_window->throbber_align), cheese_window->throbber);
   gtk_notebook_insert_page (GTK_NOTEBOOK (cheese_window->notebook),
-			    cheese_window->throbber_box,
-			    gtk_label_new ("spinner"),
+                            cheese_window->throbber_box,
+                            gtk_label_new ("spinner"),
                             PAGE_SPINNER);
   cheese_window_spinner_invert (cheese_window->throbber, cheese_window->throbber_box);
   gtk_widget_show_all (cheese_window->throbber_box);
@@ -1915,13 +1923,13 @@ cheese_window_create_window (CheeseWindow *cheese_window)
 void
 setup_camera (CheeseWindow *cheese_window)
 {
-  char      *camera_device = NULL;
-  int        x_resolution;
-  int        y_resolution;
-  gdouble    brightness;
-  gdouble    contrast;
-  gdouble    saturation;
-  gdouble    hue;
+  char   *camera_device = NULL;
+  int     x_resolution;
+  int     y_resolution;
+  gdouble brightness;
+  gdouble contrast;
+  gdouble saturation;
+  gdouble hue;
 
   GError *error;
 
@@ -1947,7 +1955,8 @@ setup_camera (CheeseWindow *cheese_window)
   cheese_camera_setup (cheese_window->camera, cheese_window->startup_hal_dev_udi, &error);
   if (error != NULL)
   {
-    if (error->code == CHEESE_CAMERA_ERROR_NO_DEVICE) {
+    if (error->code == CHEESE_CAMERA_ERROR_NO_DEVICE)
+    {
       gdk_threads_enter ();
       gtk_spinner_stop (GTK_SPINNER (cheese_window->throbber));
       cheese_window_set_problem_page (cheese_window, "cheese-no-camera");

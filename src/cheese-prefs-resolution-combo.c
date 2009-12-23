@@ -111,15 +111,15 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
   CheesePrefsResolutionCombo        *self = CHEESE_PREFS_RESOLUTION_COMBO (prefs_widget);
   CheesePrefsResolutionComboPrivate *priv = CHEESE_PREFS_RESOLUTION_COMBO_GET_PRIVATE (self);
 
-  GtkWidget         *combo_box;
+  GtkWidget               *combo_box;
   const CheeseVideoFormat *current_format;
-  GList             *formats;
-  GList             *l;
-  CheeseVideoFormat *format;
-  gchar             *format_name;
-  GtkTreeIter        iter;
-  GtkTreeIter        active_iter;
-  gboolean           found_resolution;
+  GList                   *formats;
+  GList                   *l;
+  CheeseVideoFormat       *format;
+  gchar                   *format_name;
+  GtkTreeIter              iter;
+  GtkTreeIter              active_iter;
+  gboolean                 found_resolution;
 
   priv->has_been_synchronized = TRUE;
   found_resolution            = FALSE;
@@ -140,7 +140,7 @@ cheese_prefs_resolution_combo_synchronize (CheesePrefsWidget *prefs_widget)
 
   for (l = formats; l != NULL; l = l->next)
   {
-    format = l->data;
+    format      = l->data;
     format_name = g_strdup_printf ("%i x %i", format->width, format->height);
 
     if (format->width <= priv->max_x_resolution &&

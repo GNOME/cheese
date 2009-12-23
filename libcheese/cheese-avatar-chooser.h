@@ -25,15 +25,15 @@
 
 G_BEGIN_DECLS
 
-#define CHEESE_TYPE_AVATAR_CHOOSER            (cheese_avatar_chooser_get_type ())
+#define CHEESE_TYPE_AVATAR_CHOOSER (cheese_avatar_chooser_get_type ())
 #define CHEESE_AVATAR_CHOOSER(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_AVATAR_CHOOSER, \
-									   CheeseAvatarChooser))
+                                                                           CheeseAvatarChooser))
 #define CHEESE_AVATAR_CHOOSER_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_AVATAR_CHOOSER, \
-                                                                      CheeseAvatarChooserClass))
+                                                                        CheeseAvatarChooserClass))
 #define CHEESE_IS_AVATAR_CHOOSER(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_AVATAR_CHOOSER))
 #define CHEESE_IS_AVATAR_CHOOSER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_AVATAR_CHOOSER))
 #define CHEESE_AVATAR_CHOOSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_AVATAR_CHOOSER, \
-									  CheeseAvatarChooserClass))
+                                                                          CheeseAvatarChooserClass))
 
 typedef struct _CheeseAvatarChooserClass CheeseAvatarChooserClass;
 typedef struct _CheeseAvatarChooser CheeseAvatarChooser;
