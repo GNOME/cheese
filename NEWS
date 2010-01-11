@@ -1,6 +1,102 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.29.5
+
+  A slightly different format for these release notes.
+  We missed a couple of releases in the 2.29 cycle and the big changes
+  cheese went through meanwhile deserves something better than a cold
+  list of commit messages.
+  Big thanks go to Bastien Nocera who took up most longstanding items
+  in our TODO list and implemented them right away.
+  So let's see what happened since 2.28. Note that most of the following
+  stuff is still a work in progress so don't expect everything listed to
+  be completed.
+
+  * Completely dropped HAL dependency
+    Port most HAL code for v4l capability probing into udev and use
+    gudev in cheese to take advantage of it.
+    Add infrastructure (CheeseCameraDeviceMonitor) for dynamic
+    device hotplugging (UI yet to come).
+    Add optional udev dependency and provide a simple entry point
+    for non linux platforms that will want to use their custom
+    detection code (still waiting for patches).
+
+  * First steps in splitting cheese code into two libraries
+    - libcheese-common
+      Will provide basic non UI related cheese functions: basically,
+      device detection, device monitoring, video format handling.
+    - libcheese-gtk
+      A set of widgets that will allow third party application to
+      include parts of cheese functionality (e.g. the avatar chooser
+      will soon embed a viewfinder for quickly shooting a nice
+      buddy icon). Ideally cheese will be soon based on this set of
+      widgets being the first user of our own library.
+
+  * Rework most of device capability handling code
+    Rewrite caps detection code trying to use gstreamer api instead of
+    our own custom stuff whenever possible.
+    Remove framerate retrieving code since we didn't use it since a
+    couple of releases.
+
+  * Make startup slightly faster
+    Probe device capabilities in PAUSED state instead of PLAYING.
+    This was actually a workaround for a now fixed gstreamer bug (See
+    #587082).
+    Just a two line change but cheese is notably faster now!
+
+  * Cosmetic changes
+    Remove all the fake webcam code and use a still error image when
+    no webcam is available.
+    Drop EphySpinner in favor of the new GtkSpinner. Invert colors to
+    make it sexier.
+    Remove actions (SendTo stuff) from the contextual menu. It wasn't
+    exactly the best way to interoperate with the desktop. And most of
+    them worked suboptimally anyway.
+
+  * Move to GST_DEBUG (first steps, probably needs work)
+    We use gstreamer anyway, why not to take full advantage of it?
+    Gstreamer debug infrastructure is really cool and surely a lot
+    better than our previous g_prints.
+
+  * Fixed bugs
+    #598902 — Make flash window a popup
+    #594966 — Drop HAL
+    #603595 — Add a photo-taken signal, which passes a pixbuf
+    #522199 — First pass at webcam widget for use in other applications
+    #598445 — Use GtkSpinner instead of our own
+    #603152 — Use libcanberra instead of GStreamer for shutter
+    #603161 — Make CheeseGConf a singleton object
+    #603162 — Make CheeseFileUtil a singleton
+    #603167 — Avoid warnings on exit when playback hasn't started
+    #595005 — Use a custom filename to group burst mode pictures
+    #596535 — String fixes
+
+  * Added/Updated Translations
+    - en_GB, courtesy of Philip Withnall
+    - en@shaw, courtesy of Thomas Thurman
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - gl, courtesy of a
+    - he, courtesy of Yaron Shahrabani
+    - lt, courtesy of Gintautas Miliauskas
+    - lv, courtesy of Rūdolfs Mazurs
+    - nb, courtesy of Kjartan Maraas
+    - nds, courtesy of Nils-Christoph Fiedler
+    - pa, courtesy of A S Alam
+    - ru, courtesy of Alexandre Prokoudine
+    - sl, courtesy of Matej Urbančič
+    - sv, courtesy of Daniel Nylander
+    - ta, courtesy of Dr.T.Vasudevan
+    - th, courtesy of อาคม โชติพันธวานนท์
+    - uk, courtesy of Maxim V. Dziumanenko
+    - zh_CN, courtesy of Tao Wei
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - es, courtesy of Jorge González
+    - zh_CN, courtesy of arccos (L.Q)
+
 version 2.28.0
 
   - use _X-GNOME-FullName inside the .desktop file, fixes bug #590182
