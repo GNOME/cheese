@@ -1,4 +1,4 @@
-SUBDIRS = libcheese src tests po data help
+SUBDIRS = libcheese src tests po data help docs
 
 EXTRA_DIST =			\
 	$(cheesedoc_DATA)	\
@@ -13,7 +13,7 @@ DISTCLEANFILES =		\
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = cheese-gtk.pc
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper
+DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper --enable-gtk-doc
 
 CHANGELOG_START = 2.26.0
 

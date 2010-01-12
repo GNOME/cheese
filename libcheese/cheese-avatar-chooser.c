@@ -23,7 +23,7 @@
 #include <canberra-gtk.h>
 
 #include "cheese-camera.h"
-#include "cheese-widget.h"
+#include "cheese-widget-private.h"
 #include "cheese-countdown.h"
 #include "cheese-flash.h"
 #include "cheese-avatar-chooser.h"
@@ -313,6 +313,11 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
   dialog_class->response     = cheese_avatar_chooser_response;
   object_class->get_property = cheese_avatar_chooser_get_property;
 
+  /**
+   * CheeseAvatarChooser:pixbuf:
+   *
+   * a #GdkPixbuf object representing the cropped area of the picture, or %NULL.
+   **/
   g_object_class_install_property (object_class, PROP_PIXBUF,
                                    g_param_spec_object ("pixbuf",
                                                         NULL,
@@ -323,12 +328,28 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
   g_type_class_add_private (klass, sizeof (CheeseAvatarChooserPrivate));
 }
 
+/**
+ * cheese_avatar_chooser_new:
+ *
+ * Returns a new #CheeseAvatarChooser dialogue.
+ *
+ * Return value: a #CheeseAvatarChooser widget.
+ **/
 GtkWidget *
 cheese_avatar_chooser_new (void)
 {
   return g_object_new (CHEESE_TYPE_AVATAR_CHOOSER, NULL);
 }
 
+/**
+ * cheese_avatar_chooser_get_picture:
+ * @chooser: a #CheeseAvatarChooser dialogue.
+ *
+ * Returns the portion of image selected through the builtin
+ * cropping tool, after a picture has been captured on the webcam.
+ *
+ * Return value: a #GdkPixbuf object, or %NULL if no picture has been taken yet.
+ **/
 GdkPixbuf *
 cheese_avatar_chooser_get_picture (CheeseAvatarChooser *chooser)
 {

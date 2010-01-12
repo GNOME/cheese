@@ -21,6 +21,8 @@ CFLAGS="${CFLAGS} -Wall"
 GNOME_MAINTAINER_MODE_DEFINES
 GNOME_COMPILE_WARNINGS
 
+GTK_DOC_CHECK(1.11)
+
 #*******************************************************************************
 # soname
 #*******************************************************************************
@@ -134,6 +136,9 @@ AM_GCONF_SOURCE_2
 AC_OUTPUT([
 Makefile
 cheese-gtk.pc
+docs/Makefile
+docs/reference/Makefile
+docs/reference/version.xml
 data/Makefile
 data/cheese.desktop.in
 data/effects/Makefile

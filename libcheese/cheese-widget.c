@@ -404,6 +404,14 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
 #endif
   widget_class->realize = cheese_widget_realize;
 
+  /**
+   * CheeseWidget::ready:
+   *
+   * @is_ready: Whether the camera is ready for use by the widget.
+   *
+   * The ::ready signal is emitted when the camera is ready to be
+   * used by the widget and other applications.
+   */
   widget_signals[READY_SIGNAL] = g_signal_new ("ready", G_OBJECT_CLASS_TYPE (klass),
                                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                                G_STRUCT_OFFSET (CheeseWidgetClass, ready),
@@ -411,6 +419,14 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
                                                g_cclosure_marshal_VOID__BOOLEAN,
                                                G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
 
+  /**
+   * CheeseWidget::error:
+   *
+   * @error: The error message.
+   *
+   * The ::error signal is emitted when the widget cannot access
+   * the camera.
+   */
   widget_signals[ERROR_SIGNAL] = g_signal_new ("error", G_OBJECT_CLASS_TYPE (klass),
                                                G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                                G_STRUCT_OFFSET (CheeseWidgetClass, error),
@@ -421,6 +437,13 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
   g_type_class_add_private (klass, sizeof (CheeseWidgetPrivate));
 }
 
+/**
+ * cheese_widget_new:
+ *
+ * Returns a new #CheeseWidget widget.
+ *
+ * Return value: a #CheeseWidget widget.
+ **/
 GtkWidget *
 cheese_widget_new (void)
 {

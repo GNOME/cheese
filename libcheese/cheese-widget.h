@@ -55,8 +55,6 @@ GType cheese_widget_get_type (void) G_GNUC_CONST;
 
 GtkWidget *cheese_widget_new (void);
 
-GObject *cheese_widget_get_camera (CheeseWidget *widget);
-
 G_END_DECLS
 
 #endif /* _CHEESE_WIDGET_H_ */
