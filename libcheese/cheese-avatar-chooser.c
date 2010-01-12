@@ -27,6 +27,7 @@
 #include "cheese-countdown.h"
 #include "cheese-flash.h"
 #include "cheese-avatar-chooser.h"
+#include "um-crop-area.h"
 
 enum
 {
@@ -53,7 +54,6 @@ typedef struct
   GtkWidget *take_button;
   GtkWidget *take_again_button;
   GtkWidget *countdown;
-  GdkPixbuf *pixbuf;
   CheeseFlash *flash;
   gulong photo_taken_id;
 } CheeseAvatarChooserPrivate;
@@ -75,9 +75,7 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
   gtk_widget_get_allocation (priv->camera, &allocation);
   gtk_widget_set_size_request (priv->image, allocation.width, allocation.height);
 
-  gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), pixbuf);
-  g_assert (priv->pixbuf == NULL);
-  priv->pixbuf = g_object_ref (pixbuf);
+  um_crop_area_set_picture (UM_CROP_AREA (priv->image), pixbuf);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), IMAGE_PAGE);
   gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
                                      GTK_RESPONSE_ACCEPT,
@@ -151,9 +149,7 @@ take_again_button_clicked_cb (GtkButton           *button,
                                      GTK_RESPONSE_ACCEPT,
                                      FALSE);
 
-  gtk_image_set_from_pixbuf (GTK_IMAGE (priv->image), NULL);
-  g_object_unref (priv->pixbuf);
-  priv->pixbuf = NULL;
+  um_crop_area_set_picture (UM_CROP_AREA (priv->image), NULL);
   g_object_notify (G_OBJECT (chooser), "pixbuf");
 }
 
@@ -207,6 +203,8 @@ create_page (GtkWidget *child,
 static void
 cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
+  GtkWidget *frame;
+
   CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
 
   priv->flash = cheese_flash_new (GTK_WIDGET (chooser));
@@ -247,13 +245,16 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                             gtk_label_new ("webcam"));
 
   /* Image tab */
-  priv->image             = gtk_image_new ();
+  priv->image             = um_crop_area_new ();
+  frame                   = gtk_frame_new (NULL);
+  gtk_container_add (GTK_CONTAINER (frame), priv->image);
+  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
   priv->take_again_button = gtk_button_new_with_mnemonic (_("_Discard photo"));
   g_signal_connect (G_OBJECT (priv->take_again_button), "clicked",
                     G_CALLBACK (take_again_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_again_button, FALSE);
   gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                            create_page (priv->image, priv->take_again_button, NULL),
+                            create_page (frame, priv->take_again_button, NULL),
                             gtk_label_new ("image"));
 
   gtk_window_set_default_size (GTK_WINDOW (chooser), 400, 300);
@@ -270,11 +271,6 @@ cheese_avatar_chooser_finalize (GObject *object)
   {
     g_object_unref (priv->flash);
     priv->flash = NULL;
-  }
-  if (priv->pixbuf != NULL)
-  {
-    g_object_unref (priv->pixbuf);
-    priv->pixbuf = NULL;
   }
 
   G_OBJECT_CLASS (cheese_avatar_chooser_parent_class)->finalize (object);
@@ -294,12 +290,12 @@ cheese_avatar_chooser_get_property (GObject *object, guint prop_id,
 {
   CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (object);
 
-  g_return_if_fail (CHEESE_IS_WIDGET (object));
+  g_return_if_fail (CHEESE_IS_AVATAR_CHOOSER (object));
 
   switch (prop_id)
   {
     case PROP_PIXBUF:
-      g_value_set_object (value, priv->pixbuf);
+      g_value_set_object (value, um_crop_area_get_picture (UM_CROP_AREA (priv->image)));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -342,10 +338,7 @@ cheese_avatar_chooser_get_picture (CheeseAvatarChooser *chooser)
 
   priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
 
-  if (priv->pixbuf == NULL)
-    return NULL;
-
-  return g_object_ref (priv->pixbuf);
+  return um_crop_area_get_picture (UM_CROP_AREA (priv->image));
 }
 
 /*

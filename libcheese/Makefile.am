@@ -33,6 +33,8 @@ libcheesecommon_la_SOURCES = \
 libcheese_gtk_la_SOURCES = \
 	cheese-avatar-chooser.c \
 	cheese-avatar-chooser.h \
+	um-crop-area.c \
+	um-crop-area.h \
 	cheese-widget.c \
 	cheese-widget.h \
 	$(NULL)
