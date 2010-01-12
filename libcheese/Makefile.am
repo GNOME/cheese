@@ -40,8 +40,15 @@ libcheese_gtk_la_SOURCES = \
 	$(NULL)
 
 # FIXME when we have a .pc file, and sonames
-# include_HEADERS = cheese-widget.h
+cheesedir = $(includedir)/cheese
+cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h
 
 libcheese_gtk_la_LIBADD = \
 	libcheesecommon.la \
 	$(CHEESE_LIBS)
+libcheese_gtk_la_LDFLAGS = \
+	-version-info $(CHEESE_LT_VERSION)		\
+	-export-symbols $(srcdir)/cheese-gtk.symbols	\
+	-no-undefined					\
+	$(AM_LDFLAGS)
+

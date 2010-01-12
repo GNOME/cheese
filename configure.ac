@@ -22,6 +22,19 @@ GNOME_MAINTAINER_MODE_DEFINES
 GNOME_COMPILE_WARNINGS
 
 #*******************************************************************************
+# soname
+#*******************************************************************************
+# Before making a release, the CHEESE_LT_VERSION string should be modified.
+# The string is of the form C:R:A.
+# - If interfaces have been changed or added, but binary compatibility has
+#   been preserved, change to C+1:0:A+1
+# - If binary compatibility has been broken (eg removed or changed interfaces)
+#   change to C+1:0:0
+# - If the interface is the same as the previous version, change to C:R+1:A
+CHEESE_LT_VERSION=17:0:0
+AC_SUBST(CHEESE_LT_VERSION)
+
+#*******************************************************************************
 # Expanded dirs
 #*******************************************************************************
 # This macro expands DIR and assigns it to RET.
@@ -120,6 +133,7 @@ AM_GCONF_SOURCE_2
 
 AC_OUTPUT([
 Makefile
+cheese-gtk.pc
 data/Makefile
 data/cheese.desktop.in
 data/effects/Makefile

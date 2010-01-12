@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+
+Name: cheese
+Description: Cheese Webcam widgets
+Version: @VERSION@
+Requires.private: gtk+-x11-2.0 gstreamer-0.10 libcanberra-gtk
+Libs: -L${libdir} -lcheese-gtk
+Cflags: -I${includedir}/cheese
+
