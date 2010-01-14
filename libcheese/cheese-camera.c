@@ -223,6 +223,7 @@ cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
   int                 width, height, stride;
   GdkPixbuf          *pixbuf;
   const int           bits_per_pixel = 8;
+  guchar             *data;
 
   caps      = gst_buffer_get_caps (buffer);
   structure = gst_caps_get_structure (caps, 0);
@@ -230,9 +231,17 @@ cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
   gst_structure_get_int (structure, "height", &height);
 
   stride = buffer->size / height;
-  pixbuf = gdk_pixbuf_new_from_data (GST_BUFFER_DATA (buffer), GDK_COLORSPACE_RGB,
+
+  /* Only copy the data if we're giving away a pixbuf,
+   * not if we're throwing everything away straight away */
+  if (priv->photo_filename != NULL)
+    data = NULL;
+  else
+    data = g_memdup (GST_BUFFER_DATA (buffer), buffer->size);
+  pixbuf = gdk_pixbuf_new_from_data (data ? data : GST_BUFFER_DATA (buffer),
+                                     GDK_COLORSPACE_RGB,
                                      FALSE, bits_per_pixel, width, height, stride,
-                                     NULL, NULL);
+                                     data ? (GdkPixbufDestroyNotify) g_free : NULL, NULL);
 
   g_signal_handler_disconnect (G_OBJECT (priv->photo_sink),
                                priv->photo_handler_signal_id);
