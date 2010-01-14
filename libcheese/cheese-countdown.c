@@ -493,15 +493,6 @@ on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
   return FALSE;
 }
 
-static gboolean
-redraw_handler (gpointer data)
-{
-  GtkWidget *widget = (GtkWidget *) data;
-
-  gtk_widget_queue_draw (widget);
-  return TRUE;
-}
-
 static cairo_surface_t *
 create_surface_from_svg (GtkWidget *widget, gchar *pcFilename)
 {
@@ -615,6 +606,8 @@ cheese_countdown_cb (gpointer countdown)
       return FALSE;
   }
 
+  gtk_widget_queue_draw (GTK_WIDGET (countdown));
+
   return TRUE;
 }
 
@@ -683,8 +676,6 @@ cheese_countdown_init (CheeseCountdown *countdown)
                     G_CALLBACK (on_expose), NULL);
   g_signal_connect (G_OBJECT (countdown), "style-set",
                     G_CALLBACK (on_style_set_cb), countdown);
-
-  g_timeout_add (100, redraw_handler, (gpointer) countdown);
 }
 
 GtkWidget *
