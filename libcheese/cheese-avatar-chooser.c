@@ -281,7 +281,8 @@ cheese_avatar_chooser_response (GtkDialog *dialog, gint response_id)
 {
   CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (dialog);
 
-  cheese_countdown_cancel (CHEESE_COUNTDOWN (priv->countdown));
+  if (priv && priv->countdown)
+    cheese_countdown_cancel (CHEESE_COUNTDOWN (priv->countdown));
 }
 
 static void
