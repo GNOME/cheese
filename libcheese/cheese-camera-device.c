@@ -26,13 +26,30 @@
 
 #include <glib.h>
 #include <glib/gi18n.h>
+#include <gio/gio.h>
 
 #include "cheese-camera-device.h"
 
-G_DEFINE_TYPE (CheeseCameraDevice, cheese_camera_device, G_TYPE_OBJECT)
+static void     cheese_camera_device_initable_iface_init (GInitableIface  *iface);
+static gboolean cheese_camera_device_initable_init       (GInitable       *initable,
+                                                          GCancellable    *cancellable,
+                                                          GError         **error);
+
+G_DEFINE_TYPE_WITH_CODE (CheeseCameraDevice, cheese_camera_device, G_TYPE_OBJECT,
+                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE,
+                                                cheese_camera_device_initable_iface_init))
 
 #define CHEESE_CAMERA_DEVICE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA_DEVICE, \
                                                                           CheeseCameraDevicePrivate))
+
+#define CHEESE_CAMERA_DEVICE_ERROR cheese_camera_device_error_quark ()
+
+enum CheeseCameraDeviceError
+{
+  CHEESE_CAMERA_DEVICE_ERROR_UNKNOWN,
+  CHEESE_CAMERA_DEVICE_ERROR_NOT_SUPPORTED,
+  CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS
+};
 
 GST_DEBUG_CATEGORY (cheese_camera_device);
 #define GST_CAT_DEFAULT cheese_camera_device
@@ -42,6 +59,9 @@ static gchar *supported_formats[] = {
   "video/x-raw-yuv",
   NULL
 };
+
+/* FIXME: make this configurable */
+#define CHEESE_MAXIMUM_RATE 30 /* fps */
 
 enum
 {
@@ -58,12 +78,17 @@ typedef struct
   gchar *id;
   gchar *src;
   gchar *name;
-
   GstCaps *caps;
-
   GList *formats;
+
+  GError *construct_error;
 } CheeseCameraDevicePrivate;
 
+GQuark
+cheese_camera_device_error_quark (void)
+{
+  return g_quark_from_static_string ("cheese-camera-device-error-quark");
+}
 
 /* CheeseVideoFormat */
 
@@ -111,15 +136,30 @@ cheese_webcam_device_filter_caps (CheeseCameraDevice *device, const GstCaps *cap
 {
 /*  CheeseCameraDevicePrivate *priv =
  *  CHEESE_CAMERA_DEVICE_GET_PRIVATE (device); */
-  gchar   *formats_string = g_strjoinv ("; ", formats);
-  GstCaps *filter         = gst_caps_from_string (formats_string);
-  GstCaps *allowed        = gst_caps_intersect (caps, filter);
+  GstCaps *filter;
+  GstCaps *allowed;
+  gint i;
+
+  filter = gst_caps_new_simple (formats[0],
+                                "framerate", GST_TYPE_FRACTION_RANGE,
+                                0, 1, CHEESE_MAXIMUM_RATE, 1,
+                                NULL);
+
+  for (i = 1; i < g_strv_length (formats); i++)
+  {
+    gst_caps_append (filter,
+                     gst_caps_new_simple (formats[i],
+                                          "framerate", GST_TYPE_FRACTION_RANGE,
+                                          0, 1, CHEESE_MAXIMUM_RATE, 1,
+                                          NULL));
+  }
+
+  allowed = gst_caps_intersect (caps, filter);
 
   GST_DEBUG ("Supported caps %" GST_PTR_FORMAT, caps);
   GST_DEBUG ("Filter caps %" GST_PTR_FORMAT, filter);
   GST_DEBUG ("Filtered caps %" GST_PTR_FORMAT, allowed);
 
-  g_free (formats_string);
   gst_caps_unref (filter);
 
   return allowed;
@@ -167,11 +207,6 @@ cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
 
   int i;
   int num_structures;
-
-  /* FIXME: limit maximum framerate somehow, we don't want those
-   * stupid 100Hz webcams that slow down the whole pipeline for a
-   * merely perceivable refresh reate gain. I'd say let's throw away
-   * everything over 30/1 */
 
   free_format_list (device);
 
@@ -282,7 +317,15 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
       pad        = gst_element_get_pad (src, "src");
       caps       = gst_pad_get_caps (pad);
       priv->caps = cheese_webcam_device_filter_caps (device, caps, supported_formats);
-      cheese_webcam_device_update_format_table (device);
+      if (!gst_caps_is_empty (priv->caps))
+        cheese_webcam_device_update_format_table (device);
+      else {
+        g_set_error_literal (&priv->construct_error,
+                             CHEESE_CAMERA_DEVICE_ERROR,
+                             CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS,
+                             _("Device capabilities not supported"));
+
+      }
 
       gst_object_unref (pad);
       gst_caps_unref (caps);
@@ -422,6 +465,12 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
 }
 
 static void
+cheese_camera_device_initable_iface_init (GInitableIface *iface)
+{
+  iface->init = cheese_camera_device_initable_init;
+}
+
+static void
 cheese_camera_device_init (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
@@ -437,12 +486,54 @@ cheese_camera_device_init (CheeseCameraDevice *device)
   priv->caps   = gst_caps_new_empty ();
 
   priv->formats = NULL;
+
+  priv->construct_error = NULL;
+}
+
+static gboolean
+cheese_camera_device_initable_init (GInitable *initable,
+                                    GCancellable *cancellable,
+                                    GError **error)
+{
+  CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (initable);
+  CheeseCameraDevicePrivate *priv =
+    CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (initable), FALSE);
+
+  if (cancellable != NULL)
+  {
+    g_set_error_literal (error,
+                         CHEESE_CAMERA_DEVICE_ERROR,
+                         CHEESE_CAMERA_DEVICE_ERROR_NOT_SUPPORTED,
+                         _("Cancellable initialization not supported"));
+    return FALSE;
+  }
+
+  if (priv->construct_error)
+  {
+    if (error)
+      *error = g_error_copy (priv->construct_error);
+    return FALSE;
+  }
+
+  return TRUE;
 }
 
 CheeseCameraDevice *
-cheese_camera_device_new (void)
+cheese_camera_device_new (const gchar *device_id,
+                          const gchar *device_file,
+                          const gchar *product_name,
+                          const gchar *gstreamer_source,
+                          GError **error)
 {
-  return g_object_new (CHEESE_TYPE_CAMERA_DEVICE, NULL);
+  return CHEESE_CAMERA_DEVICE (g_initable_new (CHEESE_TYPE_CAMERA_DEVICE,
+                                               NULL, error,
+                                               "device-id", device_id,
+                                               "device-file", device_file,
+                                               "name", product_name,
+                                               "src", gstreamer_source,
+                                               NULL));
 }
 
 /* public methods */
@@ -508,21 +599,22 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
-  GstCaps *caps;
+  GstCaps *desired_caps;
+  GstCaps *subset_caps;
   gint     i;
 
   GST_INFO ("Getting caps for %dx%d", format->width, format->height);
 
-  caps = gst_caps_new_simple (supported_formats[0],
-                              "width", G_TYPE_INT,
-                              format->width,
-                              "height", G_TYPE_INT,
-                              format->height,
-                              NULL);
+  desired_caps = gst_caps_new_simple (supported_formats[0],
+                                      "width", G_TYPE_INT,
+                                      format->width,
+                                      "height", G_TYPE_INT,
+                                      format->height,
+                                      NULL);
 
   for (i = 1; i < g_strv_length (supported_formats); i++)
   {
-    gst_caps_append (caps,
+    gst_caps_append (desired_caps,
                      gst_caps_new_simple (supported_formats[i],
                                           "width", G_TYPE_INT,
                                           format->width,
@@ -531,13 +623,16 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                           NULL));
   }
 
-  if (!gst_caps_can_intersect (caps, priv->caps))
+  if (!gst_caps_can_intersect (desired_caps, priv->caps))
   {
-    gst_caps_unref (caps);
-    caps = gst_caps_new_empty ();
+    subset_caps = gst_caps_new_empty ();
+    gst_caps_unref (desired_caps);
+  } else {
+    subset_caps = gst_caps_intersect (desired_caps, priv->caps);
+    gst_caps_unref (desired_caps);
   }
 
-  GST_INFO ("Got %" GST_PTR_FORMAT, caps);
+  GST_INFO ("Got %" GST_PTR_FORMAT, subset_caps);
 
-  return caps;
+  return subset_caps;
 }

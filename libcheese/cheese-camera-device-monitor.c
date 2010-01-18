@@ -99,6 +99,7 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
   gint                vendor_id   = 0;
   gint                product_id  = 0;
   gint                v4l_version = 0;
+  GError             *error = NULL;
   CheeseCameraDevice *device;
 
   GST_INFO ("Checking udev device '%s'", g_udev_device_get_property (udevice, "DEVPATH"));
@@ -166,14 +167,17 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     g_assert_not_reached ();
   }
 
-  device = g_object_new (CHEESE_TYPE_CAMERA_DEVICE,
-                         "device-id", g_udev_device_get_property (udevice, "DEVPATH"),
-                         "device-file", device_file,
-                         "name", product_name,
-                         "src", gstreamer_src,
-                         NULL);
-
-  g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
+  device = cheese_camera_device_new (g_udev_device_get_property (udevice, "DEVPATH"),
+                                     device_file,
+                                     product_name,
+                                     gstreamer_src,
+                                     &error);
+  if (device == NULL)
+    GST_WARNING ("Device initialization for %s failed: %s ",
+                 device_file,
+                 (error != NULL) ? error->message : "Unknown reason");
+  else
+    g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
 }
 
 static void

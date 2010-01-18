@@ -26,7 +26,6 @@
 #include <glib-object.h>
 #include <gst/gst.h>
 
-
 G_BEGIN_DECLS
 
 #define CHEESE_TYPE_CAMERA_DEVICE (cheese_camera_device_get_type ())
@@ -61,7 +60,12 @@ GType cheese_video_format_get_type (void) G_GNUC_CONST;
 
 GType cheese_camera_device_get_type (void) G_GNUC_CONST;
 
-CheeseCameraDevice *cheese_camera_device_new (void);
+CheeseCameraDevice *cheese_camera_device_new (const gchar *device_id,
+                                              const gchar *device_file,
+                                              const gchar *product_name,
+                                              const gchar *gstreamer_source,
+                                              GError **error);
+
 GstCaps *           cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                                               CheeseVideoFormat  *format);
 CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *device);
