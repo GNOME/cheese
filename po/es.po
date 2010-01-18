@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-01-11 20:33+0000\n"
-"PO-Revision-Date: 2010-01-12 20:12+0100\n"
+"POT-Creation-Date: 2010-01-18 19:49+0000\n"
+"PO-Revision-Date: 2010-01-18 23:02+0100\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -263,28 +263,28 @@ msgstr "Saturación"
 msgid "Webcam"
 msgstr "Cámara web"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.c:1238
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:1238
 msgid "Shutter sound"
 msgstr "Sonido del obturador"
 
-#: ../libcheese/cheese-avatar-chooser.c:220
+#: ../libcheese/cheese-avatar-chooser.c:222
 msgid "Take a photo"
 msgstr "Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:239 ../src/cheese-window.c:1732
+#: ../libcheese/cheese-avatar-chooser.c:241 ../src/cheese-window.c:1732
 msgid "_Take a photo"
 msgstr "_Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:251
+#: ../libcheese/cheese-avatar-chooser.c:256
 msgid "_Discard photo"
 msgstr "_Descartar foto"
 
-#: ../libcheese/cheese-camera.c:1109
+#: ../libcheese/cheese-camera.c:1118
 #, c-format
 msgid "No device found"
 msgstr "No se encontró ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1128
+#: ../libcheese/cheese-camera.c:1137
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 
@@ -304,9 +304,17 @@ msgstr "%Id "
 msgid "Camera setup failed"
 msgstr "Falló la configuración de la cámara"
 
-#: ../libcheese/cheese-camera-device.c:436
+#: ../libcheese/cheese-camera-device.c:326
+msgid "Device capabilities not supported"
+msgstr "No se soportan las capacidades del dispositivo"
+
+#: ../libcheese/cheese-camera-device.c:485
 msgid "Unknown device"
 msgstr "Dispositivo desconocido"
+
+#: ../libcheese/cheese-camera-device.c:509
+msgid "Cancellable initialization not supported"
+msgstr "No se soporta la inicialización cancelable"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
