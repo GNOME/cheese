@@ -86,11 +86,30 @@ DBUS_GLIB_REQUIRED=0.7
 PANGOCAIRO_REQUIRED=1.18.0
 LIBRSVG_REQUIRED=2.18.0
 
+#*******************************************************************************
+# Check for udev
+#*******************************************************************************
+
 UDEV_PKG=
 PKG_CHECK_MODULES(UDEV, gudev-1.0,
 		  [AC_DEFINE(HAVE_UDEV, 1, [Define to 1 to enable udev support])
 		  UDEV_PKG=gudev-1.0],
 		  [UDEV_PKG=])
+
+AC_MSG_CHECKING([operating system])
+case $host in
+	*-linux*)
+		AC_DEFINE(OS_LINUX, [], [Linux backend])
+		AC_SUBST(OS_LINUX)
+		AC_MSG_RESULT([Linux])
+		if test x$UDEV_PKG = "x" ; then
+			AC_MSG_ERROR([libgudev is required under Linux and not installed])
+		fi
+		;;
+	*)
+		AC_MSG_RESULT([unsupported operating system])
+esac
+
 
 AC_CHECK_HEADER([sys/videoio.h],
 		[AC_DEFINE(USE_SYS_VIDEOIO_H, 1, define to 1 if sys/videoio.h is present)],
