@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 2.29.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-13 18:40+0100\n"
-"PO-Revision-Date: 2010-01-13 18:40+0100\n"
+"POT-Creation-Date: 2010-01-19 11:50+0100\n"
+"PO-Revision-Date: 2010-01-19 11:51+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "MIME-Version: 1.0\n"
@@ -252,28 +252,28 @@ msgstr "Metning"
 msgid "Webcam"
 msgstr "Kamera"
 
-#: ../libcheese/cheese-avatar-chooser.c:106 ../src/cheese-window.c:1238
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:1238
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
-#: ../libcheese/cheese-avatar-chooser.c:218
+#: ../libcheese/cheese-avatar-chooser.c:222
 msgid "Take a photo"
 msgstr "Ta et bilde"
 
-#: ../libcheese/cheese-avatar-chooser.c:237 ../src/cheese-window.c:1732
+#: ../libcheese/cheese-avatar-chooser.c:241 ../src/cheese-window.c:1732
 msgid "_Take a photo"
 msgstr "_Ta et bilde"
 
-#: ../libcheese/cheese-avatar-chooser.c:252
+#: ../libcheese/cheese-avatar-chooser.c:256
 msgid "_Discard photo"
 msgstr "_Forkast bilde"
 
-#: ../libcheese/cheese-camera.c:1109
+#: ../libcheese/cheese-camera.c:1118
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet funnet"
 
-#: ../libcheese/cheese-camera.c:1128
+#: ../libcheese/cheese-camera.c:1137
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
 
@@ -293,9 +293,17 @@ msgstr "%d "
 msgid "Camera setup failed"
 msgstr "Oppsett av kamera feilet"
 
-#: ../libcheese/cheese-camera-device.c:436
+#: ../libcheese/cheese-camera-device.c:326
+msgid "Device capabilities not supported"
+msgstr "Enhetens funksjoner er ikke støttet"
+
+#: ../libcheese/cheese-camera-device.c:485
 msgid "Unknown device"
 msgstr "Ukjent enhet"
+
+#: ../libcheese/cheese-camera-device.c:509
+msgid "Cancellable initialization not supported"
+msgstr "Avbrytbar initiering er ikke støttet"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
