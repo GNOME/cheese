@@ -1,6 +1,7 @@
 #include <glib.h>
 
 #include "cheese-camera-device-monitor.h"
+#include "cheese-camera-device.h"
 
 static void
 added_cb (CheeseCameraDeviceMonitor *monitor,

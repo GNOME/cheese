@@ -26,6 +26,7 @@
 #include <glib-object.h>
 #include <dbus/dbus-glib-lowlevel.h>
 #include <string.h>
+#include <cheese-camera-device.h>
 
 #ifdef HAVE_UDEV
   #define G_UDEV_API_IS_SUBJECT_TO_CHANGE 1
@@ -200,6 +201,15 @@ cheese_camera_device_monitor_uevent_cb (GUdevClient               *client,
     cheese_camera_device_monitor_added (monitor, udevice);
 }
 
+/**
+ * cheese_camera_device_monitor_coldplug:
+ * @monitor: a #CheeseCameraDeviceMonitor object.
+ *
+ * Will actively look for plugged in cameras and emit
+ * ::added for those new cameras.
+ * This is only required when your program starts, so as to connect
+ * to those signals before they are emitted.
+ */
 void
 cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
@@ -323,6 +333,13 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 
   object_class->finalize = cheese_camera_device_monitor_finalize;
 
+  /**
+   * CheeseCameraDeviceMonitor::added:
+   * @device: A private object representing the newly added camera.
+   *
+   * The ::added signal is emitted when a camera is added, or on start-up
+   * after #cheese_camera_device_monitor_colplug is called.
+   **/
   monitor_signals[ADDED] = g_signal_new ("added", G_OBJECT_CLASS_TYPE (klass),
                                          G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                          G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
@@ -330,6 +347,13 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
                                          g_cclosure_marshal_VOID__OBJECT,
                                          G_TYPE_NONE, 1, G_TYPE_OBJECT);
 
+  /**
+   * CheeseCameraDeviceMonitor::removed:
+   * @id: an ID representing the removed camera.
+   *
+   * The ::removed signal is emitted when a camera is un-plugged, or
+   * disabled on the system.
+   **/
   monitor_signals[REMOVED] = g_signal_new ("removed", G_OBJECT_CLASS_TYPE (klass),
                                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                            G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, removed),
@@ -356,6 +380,13 @@ cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 #endif /* HAVE_UDEV */
 }
 
+/**
+ * cheese_camera_device_monitor_new:
+ *
+ * Returns a new #CheeseCameraDeviceMonitor object.
+ *
+ * Return value: a new #CheeseCameraDeviceMonitor object.
+ **/
 CheeseCameraDeviceMonitor *
 cheese_camera_device_monitor_new (void)
 {

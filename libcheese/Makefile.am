@@ -41,7 +41,7 @@ libcheese_gtk_la_SOURCES = \
 
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
-cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h
+cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h cheese-camera-device-monitor.h
 
 libcheese_gtk_la_LIBADD = \
 	libcheesecommon.la \
