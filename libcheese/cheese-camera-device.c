@@ -1,8 +1,8 @@
 /*
+ * Copyright © 2009 Filippo Argiolas <filippo.argiolas@gmail.com>
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
- * Copyright © 2009 Filippo Argiolas <filippo.argiolas@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *

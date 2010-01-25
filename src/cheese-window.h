@@ -1,4 +1,5 @@
 /*
+ * Copyright © 2009 Filippo Argiolas <filippo.argiolas@gmail.com>
  * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
  *
  * Licensed under the GNU General Public License Version 2
@@ -23,8 +24,33 @@
 #include <gtk/gtk.h>
 #include "cheese-dbus.h"
 
+G_BEGIN_DECLS
 
+#define CHEESE_TYPE_WINDOW (cheese_window_get_type ())
+#define CHEESE_WINDOW(o) (G_TYPE_CHECK_INSTANCE_CAST ((o), CHEESE_TYPE_WINDOW, CheeseWindow))
+#define CHEESE_WINDOW_CLASS(k) (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_WINDOW, CheeseWindowClass))
+#define CHEESE_IS_WINDOW(o) (G_TYPE_CHECK_INSTANCE_TYPE ((o), CHEESE_TYPE_WINDOW))
+#define CHEESE_IS_WINDOW_CLASS(k) (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_WINDOW))
+#define CHEESE_WINDOW_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_WINDOW, CheeseWindowClass))
+
+typedef struct
+{
+  GtkWindow parent;
+} CheeseWindow;
+
+typedef struct
+{
+  GtkWindowClass parent_class;
+} CheeseWindowClass;
+
+GType cheese_window_get_type (void) G_GNUC_CONST;
+
+/* public methods */
+CheeseWindow *cheese_window_new (void);
+
+#if 0
 void cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup_in_wide_mode);
 void cheese_window_bring_to_front (gpointer data);
+#endif
 
 #endif /* __CHEESE_WINDOW_H__ */

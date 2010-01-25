@@ -1,9 +1,9 @@
 /*
+ * Copyright © 2008-2009 Filippo Argiolas <filippo.argiolas@gmail.com>
  * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2008 Patryk Zawadzki <patrys@pld-linux.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
- * Copyright © 2008 Filippo Argiolas <filippo.argiolas@gmail.com>
  * Copyright © 2008 Felix Kaser <f.kaser@gmx.net>
  *
  * Licensed under the GNU General Public License Version 2
@@ -177,10 +177,15 @@ typedef struct
   gboolean is_bursting;
 
   CheeseFlash *flash;
-} CheeseWindow;
+} CheeseWindowPrivate;
 
+#define CHEESE_WINDOW_GET_PRIVATE(o)                     \
+  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_WINDOW, \
+                                CheeseWindowPrivate))
 
-/* FIXME: some code borrowed from cheese-widget 
+G_DEFINE_TYPE (CheeseWindow, cheese_window, GTK_TYPE_WINDOW);
+
+/* FIXME: some code borrowed from cheese-widget
  * We should really use it directly instead of duplicating stuff here */
 static GdkPixbuf *
 cheese_window_load_pixbuf (GtkWidget  *widget,
