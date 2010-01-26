@@ -23,6 +23,10 @@
 
 #include <gtk/gtk.h>
 #include "cheese-dbus.h"
+#include "cheese-camera.h"
+#include "cheese-gconf.h"
+#include "cheese-thumb-view.h"
+#include "cheese-fileutil.h"
 
 G_BEGIN_DECLS
 
@@ -47,6 +51,19 @@ GType cheese_window_get_type (void) G_GNUC_CONST;
 
 /* public methods */
 CheeseWindow *cheese_window_new (void);
+CheeseThumbView *cheese_window_get_thumbview (CheeseWindow *window);
+CheeseCamera * cheese_window_get_camera (CheeseWindow *window);
+CheeseGConf *cheese_window_get_gconf (CheeseWindow *window);
+CheeseFileUtil *cheese_window_get_fileutil (CheeseWindow *window);
+
+/* not so public ideally but ok for internal consumption */
+void cheese_window_toggle_countdown (GtkWidget *widget, CheeseWindow *window);
+void cheese_window_preferences_cb (GtkAction *action, CheeseWindow *cheese_window);
+void cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_window);
+void cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window);
+void cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window);
+void cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_window);
+
 
 #if 0
 void cheese_window_init (char *hal_dev_udi, CheeseDbus *dbus_server, gboolean startup_in_wide_mode);

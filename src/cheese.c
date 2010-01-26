@@ -31,7 +31,7 @@
 
 #include "cheese-fileutil.h"
 #include "cheese-window.h"
-#include "cheese-dbus.h"
+//#include "cheese-dbus.h"
 
 struct _CheeseOptions
 {
@@ -138,12 +138,14 @@ main (int argc, char **argv)
     return 0;
   }
 
+#if 0
   dbus_server = cheese_dbus_new ();
   if (dbus_server == NULL)
   {
     gdk_notify_startup_complete ();
     return -1;
   }
+#endif
 
   g_set_print_handler ((GPrintFunc) cheese_print_handler);
   g_print ("Cheese " VERSION " \n");
@@ -152,7 +154,8 @@ main (int argc, char **argv)
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
-  cheese_window_init (CheeseOptions.hal_device_id, dbus_server, CheeseOptions.wide_mode);
+  CheeseWindow *window = g_object_new (CHEESE_TYPE_WINDOW, NULL);
+  gtk_widget_show (GTK_WIDGET (window));
 
   gdk_threads_enter ();
   gtk_main ();

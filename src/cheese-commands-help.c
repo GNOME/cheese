@@ -22,7 +22,7 @@
 #include "cheese-commands.h"
 
 void
-cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
+cheese_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
 {
   GError    *error = NULL;
   GdkScreen *screen;
@@ -44,7 +44,7 @@ cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window)
 }
 
 void
-cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
+cheese_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
 {
   static const char *authors[] = {
     "daniel g. siegel <dgsiegel@gnome.org>",

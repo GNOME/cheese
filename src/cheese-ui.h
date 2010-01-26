@@ -28,68 +28,61 @@
 
 G_BEGIN_DECLS
 
-static const GtkActionEntry action_entries_main[] = {
+const GtkActionEntry action_entries_main[] = {
   {"Cheese",       NULL,            N_("_Cheese")                       },
 
   {"Edit",         NULL,            N_("_Edit")                         },
-  {"RemoveAll",    NULL,            N_("Move All to Trash"), NULL, NULL,
-   G_CALLBACK (cheese_window_move_all_media_to_trash)},
+  {"Preferences",  GTK_STOCK_PREFERENCES, N_("Preferences"), NULL, NULL, G_CALLBACK (cheese_window_preferences_cb)},
 
   {"Help",         NULL,            N_("_Help")                         },
 
-  {"Quit",         GTK_STOCK_QUIT,  NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_close)},
+  {"Quit",         GTK_STOCK_QUIT,  NULL, NULL, NULL, G_CALLBACK (cheese_cmd_quit)},
   {"HelpContents", GTK_STOCK_HELP,  N_("_Contents"), "F1", N_("Help on this Application"),
-   G_CALLBACK (cheese_window_cmd_help_contents)},
-  {"About",        GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (cheese_window_cmd_about)},
+   G_CALLBACK (cheese_cmd_help_contents)},
+  {"About",        GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (cheese_cmd_about)},
 };
 
-static const GtkToggleActionEntry action_entries_countdown[] = {
-  {"Countdown", NULL, N_("Countdown"), NULL, NULL, G_CALLBACK (cheese_window_set_countdown), FALSE},
-};
-
-static const GtkToggleActionEntry action_entries_effects[] = {
-  {"Effects", NULL, N_("_Effects"), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb), FALSE},
-};
-
-static const GtkActionEntry action_entries_preferences[] = {
-  {"Preferences", GTK_STOCK_PREFERENCES, N_("Preferences"), NULL, NULL, G_CALLBACK (cheese_window_preferences_cb)},
-};
-
-static const GtkToggleActionEntry action_entries_fullscreen[] = {
-  {"Fullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11", NULL, G_CALLBACK (cheese_window_toggle_fullscreen), FALSE},
-};
-
-static const GtkToggleActionEntry action_entries_wide_mode[] = {
-  {"WideMode", NULL, N_("_Wide mode"), NULL, NULL, G_CALLBACK (cheese_window_toggle_wide_mode), FALSE},
-};
-
-static const GtkRadioActionEntry action_entries_toggle[] = {
+const GtkRadioActionEntry action_entries_toggle[] = {
   {"Photo", NULL, N_("_Photo"), NULL, NULL, 0},
   {"Video", NULL, N_("_Video"), NULL, NULL, 1},
   {"Burst", NULL, N_("_Burst"), NULL, NULL, 2},
 };
 
-static const GtkActionEntry action_entries_file[] = {
-  {"Open",        GTK_STOCK_OPEN,    N_("_Open"),          "<control>O",    NULL,
-   G_CALLBACK (cheese_window_cmd_open)},
-  {"SaveAs",      GTK_STOCK_SAVE_AS, N_("Save _As…"),    "<control>S",    NULL,
-   G_CALLBACK (cheese_window_cmd_save_as)},
-  {"MoveToTrash", "user-trash",      N_("Move to _Trash"), "Delete",        NULL,
-   G_CALLBACK (cheese_window_move_media_to_trash)},
-  {"Delete",      NULL,              N_("Delete"),         "<shift>Delete", NULL,
-   G_CALLBACK (cheese_window_delete_media)},
+const GtkToggleActionEntry action_entries_countdown[] = {
+  {"Countdown", NULL, N_("Countdown"), NULL, NULL, G_CALLBACK (cheese_window_toggle_countdown), FALSE},
+};
+const GtkToggleActionEntry action_entries_effects[] = {
+  {"Effects", NULL, N_("_Effects"), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb), FALSE},
 };
 
-static const GtkActionEntry action_entries_photo[] = {
+const GtkToggleActionEntry action_entries_fullscreen[] = {
+  {"Fullscreen", GTK_STOCK_FULLSCREEN, NULL, "F11", NULL, G_CALLBACK (cheese_window_toggle_fullscreen), FALSE},
+};
+const GtkToggleActionEntry action_entries_wide_mode[] = {
+  {"WideMode", NULL, N_("_Wide mode"), NULL, NULL, G_CALLBACK (cheese_window_toggle_wide_mode), FALSE},
+};
+
+const GtkActionEntry action_entries_photo[] = {
   {"TakePhoto", NULL, N_("_Take a Photo"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb)},
 };
-
-static const GtkToggleActionEntry action_entries_video[] = {
+const GtkToggleActionEntry action_entries_video[] = {
   {"TakeVideo", NULL, N_("_Recording"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb), FALSE},
 };
-
-static const GtkActionEntry action_entries_burst[] = {
+const GtkActionEntry action_entries_burst[] = {
   {"TakeBurst", NULL, N_("_Take multiple Photos"), "space", NULL, G_CALLBACK (cheese_window_action_button_clicked_cb)},
+};
+
+const GtkActionEntry action_entries_file[] = {
+  {"Open",        GTK_STOCK_OPEN,    N_("_Open"),          "<control>O",    NULL,
+   G_CALLBACK (cheese_cmd_file_open)},
+  {"SaveAs",      GTK_STOCK_SAVE_AS, N_("Save _As…"),      "<control>S",    NULL,
+   G_CALLBACK (cheese_cmd_file_save_as)},
+  {"MoveToTrash", "user-trash",      N_("Move to _Trash"), "Delete",        NULL,
+   G_CALLBACK (cheese_cmd_file_move_to_trash)},
+  {"RemoveAll",    NULL,             N_("Move All to Trash"), NULL, NULL,
+   G_CALLBACK (cheese_cmd_file_move_all_to_trash)},
+  {"Delete",      NULL,              N_("Delete"),         "<shift>Delete", NULL,
+   G_CALLBACK (cheese_cmd_file_delete)},
 };
 
 G_END_DECLS

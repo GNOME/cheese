@@ -16,14 +16,19 @@ bin_PROGRAMS = cheese
 
 cheese_SOURCES = \
 	cheese.c \
+	cheese-window.c \
+	cheese-window.h \
+	cheese-ui.h \
+	cheese-commands.h \
+	cheese-commands.c \
+	cheese-commands-help.c \
+	cheese-commands-file.c \
 	cheese-dbus.c \
 	cheese-dbus.h \
 	cheese-effect-chooser.c \
 	cheese-effect-chooser.h \
 	cheese-thumb-view.c \
 	cheese-thumb-view.h \
-	cheese-window.c \
-	cheese-window.h \
 	eog-thumbnail.c \
 	eog-thumbnail.h \
 	eog-thumb-nav.c \

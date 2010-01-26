@@ -22,14 +22,25 @@
 #ifndef __CHEESE_COMMANDS_H__
 #define __CHEESE_COMMANDS_H__
 
+#ifdef HAVE_CONFIG_H
+  #include "cheese-config.h"
+#endif
+
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include "cheese-window.h"
 
 G_BEGIN_DECLS
 
-void cheese_window_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window);
-void cheese_window_cmd_about (GtkAction *action, CheeseWindow *cheese_window)
+void cheese_cmd_quit (GtkAction *action, CheeseWindow *window);
+void cheese_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window);
+void cheese_cmd_about (GtkAction *action, CheeseWindow *cheese_window);
+void cheese_cmd_file_open (GtkWidget *widget, CheeseWindow *cheese_window);
+void cheese_cmd_file_save_as (GtkWidget *widget, CheeseWindow *cheese_window);
+void cheese_cmd_file_move_to_trash (GtkWidget *widget, CheeseWindow *cheese_window);
+void cheese_cmd_file_move_all_to_trash (GtkWidget *widget, CheeseWindow *cheese_window);
+void cheese_cmd_file_delete (GtkWidget *widget, CheeseWindow *cheese_window);
 
 G_END_DECLS
 

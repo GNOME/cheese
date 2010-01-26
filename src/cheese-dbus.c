@@ -49,7 +49,7 @@ cheese_dbus_set_window (gpointer data)
 gboolean
 cheese_dbus_notify ()
 {
-  cheese_window_bring_to_front (window_pointer);
+//  cheese_window_bring_to_front (window_pointer);
   return TRUE;
 }
 
