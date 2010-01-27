@@ -148,6 +148,7 @@ main (int argc, char **argv)
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
   CheeseWindow *window = g_object_new (CHEESE_TYPE_WINDOW,
+                                       "startup-wide", CheeseOptions.wide_mode,
                                        NULL);
 
   cheese_dbus_set_window (window);

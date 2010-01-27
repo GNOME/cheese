@@ -59,6 +59,7 @@
 enum
 {
   PROP_0,
+  PROP_STARTUP_WIDE
 };
 
 typedef enum
@@ -81,9 +82,8 @@ typedef struct
   gboolean recording;
 
   gboolean isFullscreen;
+  gboolean startup_wide;
 
-  /* UDI device requested on the command line */
-  char *startup_hal_dev_udi;
   char *video_filename;
 
   CheeseCamera *camera;
@@ -1523,6 +1523,7 @@ cheese_window_init (CheeseWindow *window)
   priv->flash               = cheese_flash_new (NULL);
   priv->isFullscreen        = FALSE;
   priv->is_bursting         = FALSE;
+  priv->startup_wide        = FALSE;
 
   priv->fullscreen_timeout_source = NULL;
 
@@ -1537,30 +1538,6 @@ cheese_window_init (CheeseWindow *window)
 
   priv->camera_mode = CAMERA_MODE_PHOTO;
   priv->recording   = FALSE;
-#if 0
-  g_object_get (priv->gconf,
-                "gconf_prop_wide_mode",
-                &startup_in_wide_mode_saved,
-                NULL);
-
-  startup_in_wide_mode = startup_in_wide_mode_saved ? TRUE : startup_in_wide_mode;
-
-  if (startup_in_wide_mode)
-  {
-    GtkAction *action = gtk_ui_manager_get_action (priv->ui_manager, "/MainMenu/Cheese/WideMode");
-    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
-  }
-#endif
-  /* handy trick to set default size of the drawing area while not
-   * limiting its minimum size, thanks Owen! */
-  GtkRequisition req;
-  gtk_widget_set_size_request (priv->notebook,
-                               DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
-  gtk_widget_size_request (GTK_WIDGET (window), &req);
-  gtk_window_resize (GTK_WINDOW (window), req.width, req.height);
-  gtk_widget_set_size_request (priv->notebook, -1, -1);
-
-  gtk_widget_show_all (priv->main_vbox);
 
   /* Run cam setup in its own thread */
   GError *error = NULL;
@@ -1573,11 +1550,45 @@ cheese_window_init (CheeseWindow *window)
 }
 
 static void
+cheese_window_constructed (GObject *object)
+{
+  CheeseWindow *window = CHEESE_WINDOW (object);
+  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
+
+  gboolean startup_wide_saved;
+
+  g_object_get (priv->gconf,
+                "gconf_prop_wide_mode",
+                &startup_wide_saved,
+                NULL);
+
+  priv->startup_wide = startup_wide_saved ? TRUE : priv->startup_wide;
+
+  if (priv->startup_wide)
+  {
+    GtkAction *action = gtk_ui_manager_get_action (priv->ui_manager, "/MainMenu/Cheese/WideMode");
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+  }
+
+  /* handy trick to set default size of the drawing area while not
+   * limiting its minimum size, thanks Owen! */
+  GtkRequisition req;
+  gtk_widget_set_size_request (priv->notebook,
+                               DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
+  gtk_widget_size_request (GTK_WIDGET (window), &req);
+  gtk_window_resize (GTK_WINDOW (window), req.width, req.height);
+  gtk_widget_set_size_request (priv->notebook, -1, -1);
+
+  gtk_widget_show_all (priv->main_vbox);
+}
+
+static void
 cheese_window_dispose (GObject *object)
 {
   CheeseWindow *window = CHEESE_WINDOW (object);
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
 
+  /* FIXME: fix the flash to be a gtk_window subclass */
   g_object_unref (priv->flash);
   G_OBJECT_CLASS (cheese_window_parent_class)->dispose (object);
 }
@@ -1588,11 +1599,8 @@ cheese_window_finalize (GObject *object)
   CheeseWindow *window = CHEESE_WINDOW (object);
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
 
-  g_message ("FINALIZE");
-
   g_object_unref (priv->camera);
   g_object_unref (priv->fileutil);
-#if 0
   g_object_unref (priv->actions_main);
   g_object_unref (priv->actions_countdown);
   g_object_unref (priv->actions_effects);
@@ -1604,11 +1612,46 @@ cheese_window_finalize (GObject *object)
   g_object_unref (priv->actions_video);
   g_object_unref (priv->actions_burst);
   g_object_unref (priv->actions_fullscreen);
-#endif
   g_object_unref (priv->gconf);
 
   G_OBJECT_CLASS (cheese_window_parent_class)->finalize (object);
   gtk_main_quit ();
+}
+
+static void
+cheese_window_get_property (GObject *object, guint prop_id, GValue *value, GParamSpec *pspec)
+{
+  CheeseWindow *window = CHEESE_WINDOW (object);
+  CheeseWindowPrivate *priv =
+    CHEESE_WINDOW_GET_PRIVATE (window);
+
+  switch (prop_id)
+  {
+    case PROP_STARTUP_WIDE:
+      g_value_set_boolean (value, priv->startup_wide);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
+}
+
+static void
+cheese_window_set_property (GObject *object, guint prop_id, const GValue *value, GParamSpec *pspec)
+{
+  CheeseWindow *window = CHEESE_WINDOW (object);
+  CheeseWindowPrivate *priv =
+    CHEESE_WINDOW_GET_PRIVATE (window);
+
+  switch (prop_id)
+  {
+    case PROP_STARTUP_WIDE:
+      priv->startup_wide = g_value_get_boolean (value);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+      break;
+  }
 }
 
 static void
@@ -1618,6 +1661,14 @@ cheese_window_class_init (CheeseWindowClass *klass)
 
   object_class->finalize = cheese_window_finalize;
   object_class->dispose = cheese_window_dispose;
+  object_class->constructed = cheese_window_constructed;
+  object_class->get_property = cheese_window_get_property;
+  object_class->set_property = cheese_window_set_property;
+
+ g_object_class_install_property (object_class, PROP_STARTUP_WIDE,
+                                  g_param_spec_boolean ("startup-wide",
+                                                        NULL, NULL, FALSE,
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   g_type_class_add_private (object_class, sizeof(CheeseWindowPrivate));
 }
