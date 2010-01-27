@@ -56,6 +56,11 @@
 #define DEFAULT_WINDOW_WIDTH       600
 #define DEFAULT_WINDOW_HEIGHT      450
 
+enum
+{
+  PROP_0,
+};
+
 typedef enum
 {
   CAMERA_MODE_PHOTO,
@@ -298,20 +303,16 @@ cheese_window_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
   }
 }
 
-#if 0
 void
-cheese_window_bring_to_front (gpointer data)
+cheese_window_bring_to_front (CheeseWindow *window)
 {
-  CheeseWindow *cheese_window     = data;
-  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
+  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
   guint32       startup_timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
 
   gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)), startup_timestamp);
 
   gtk_window_present (GTK_WINDOW (window));
 }
-
-#endif
 
 static gboolean
 cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWindow *cheese_window)
@@ -1523,11 +1524,6 @@ cheese_window_init (CheeseWindow *window)
   priv->isFullscreen        = FALSE;
   priv->is_bursting         = FALSE;
 
-//  priv->server = dbus_server;
-#if 0
-  /* save a pointer to the cheese window in cheese dbus */
-  cheese_dbus_set_window (cheese_window);
-#endif
   priv->fullscreen_timeout_source = NULL;
 
   cheese_window_create_window (window);

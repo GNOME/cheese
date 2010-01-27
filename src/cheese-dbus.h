@@ -24,6 +24,7 @@
 
 #include <dbus/dbus-glib.h>
 #include <glib.h>
+#include "cheese-window.h"
 
 G_BEGIN_DECLS
 
@@ -49,7 +50,7 @@ typedef struct _CheeseDbus
 GType       cheese_dbus_get_type (void);
 CheeseDbus *cheese_dbus_new (void);
 
-void     cheese_dbus_set_window (gpointer);
+void     cheese_dbus_set_window (CheeseWindow *window);
 gboolean cheese_dbus_notify (void);
 
 G_END_DECLS

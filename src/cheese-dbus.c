@@ -32,24 +32,23 @@
 #include <stdlib.h>
 #include <gtk/gtk.h>
 #include "cheese-dbus.h"
-#include "cheese-window.h"
 #include "cheese-dbus-infos.h"
 
-gpointer window_pointer;
+CheeseWindow *window_pointer = NULL;
 
 G_DEFINE_TYPE (CheeseDbus, cheese_dbus, G_TYPE_OBJECT);
 
 void
-cheese_dbus_set_window (gpointer data)
+cheese_dbus_set_window (CheeseWindow *window)
 {
-  if (data != NULL)
-    window_pointer = data;
+  if (window != NULL)
+    window_pointer = window;
 }
 
 gboolean
 cheese_dbus_notify ()
 {
-//  cheese_window_bring_to_front (window_pointer);
+  cheese_window_bring_to_front (window_pointer);
   return TRUE;
 }
 
