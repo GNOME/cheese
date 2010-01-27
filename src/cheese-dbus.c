@@ -33,6 +33,7 @@
 #include <gtk/gtk.h>
 #include "cheese-dbus.h"
 #include "cheese-dbus-infos.h"
+#include "cheese-commands.h"
 
 CheeseWindow *window_pointer = NULL;
 
@@ -48,7 +49,7 @@ cheese_dbus_set_window (CheeseWindow *window)
 gboolean
 cheese_dbus_notify ()
 {
-  cheese_window_bring_to_front (window_pointer);
+  cheese_cmd_bring_to_front (window_pointer);
   return TRUE;
 }
 
