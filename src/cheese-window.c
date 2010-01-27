@@ -1517,7 +1517,6 @@ cheese_window_init (CheeseWindow *window)
 {
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
 
-//  priv->startup_hal_dev_udi = hal_dev_udi;
   priv->gconf               = cheese_gconf_new ();
   priv->fileutil            = cheese_fileutil_new ();
   priv->flash               = cheese_flash_new (NULL);
@@ -1528,7 +1527,6 @@ cheese_window_init (CheeseWindow *window)
   priv->fullscreen_timeout_source = NULL;
 
   cheese_window_create_window (window);
-  g_object_set (G_OBJECT (priv->flash), "parent", GTK_WIDGET (window), NULL);
 
   gtk_action_group_set_sensitive (priv->actions_effects, FALSE);
 
@@ -1557,6 +1555,8 @@ cheese_window_constructed (GObject *object)
 
   gboolean startup_wide_saved;
 
+  g_object_set (G_OBJECT (priv->flash), "parent", GTK_WIDGET (window), NULL);
+
   g_object_get (priv->gconf,
                 "gconf_prop_wide_mode",
                 &startup_wide_saved,
@@ -1580,6 +1580,9 @@ cheese_window_constructed (GObject *object)
   gtk_widget_set_size_request (priv->notebook, -1, -1);
 
   gtk_widget_show_all (priv->main_vbox);
+
+  if (G_OBJECT_CLASS (cheese_window_parent_class)->constructed)
+    G_OBJECT_CLASS (cheese_window_parent_class)->constructed (object);
 }
 
 static void
@@ -1588,9 +1591,13 @@ cheese_window_dispose (GObject *object)
   CheeseWindow *window = CHEESE_WINDOW (object);
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
 
-  /* FIXME: fix the flash to be a gtk_window subclass */
-  g_object_unref (priv->flash);
-  G_OBJECT_CLASS (cheese_window_parent_class)->dispose (object);
+  /* FIXME: the flash shouldn't take a reference and should be a
+   * gtkwindow subclass */
+  if (G_IS_OBJECT (priv->flash))
+    g_object_unref (priv->flash);
+
+  if (G_OBJECT_CLASS (cheese_window_parent_class)->dispose)
+    G_OBJECT_CLASS (cheese_window_parent_class)->dispose (object);
 }
 
 static void
@@ -1614,7 +1621,9 @@ cheese_window_finalize (GObject *object)
   g_object_unref (priv->actions_fullscreen);
   g_object_unref (priv->gconf);
 
-  G_OBJECT_CLASS (cheese_window_parent_class)->finalize (object);
+  if (G_OBJECT_CLASS (cheese_window_parent_class)->finalize)
+    G_OBJECT_CLASS (cheese_window_parent_class)->finalize (object);
+
   gtk_main_quit ();
 }
 
