@@ -34,6 +34,7 @@
 G_BEGIN_DECLS
 
 void cheese_cmd_quit (GtkAction *action, CheeseWindow *window);
+void cheese_cmd_bring_to_front (CheeseWindow *window);
 void cheese_cmd_help_contents (GtkAction *action, CheeseWindow *cheese_window);
 void cheese_cmd_about (GtkAction *action, CheeseWindow *cheese_window);
 void cheese_cmd_file_open (GtkWidget *widget, CheeseWindow *cheese_window);
