@@ -302,7 +302,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
 
     /* Check if any error messages were posted on the bus */
     bus = gst_element_get_bus (pipeline);
-    msg = gst_bus_poll (bus, GST_MESSAGE_ERROR, 0);
+    msg = gst_bus_pop_filtered (bus, GST_MESSAGE_ERROR);
     gst_object_unref (bus);
 
     if ((msg == NULL) && (ret == GST_STATE_CHANGE_SUCCESS))
