@@ -48,6 +48,7 @@
 #include "cheese-no-camera.h"
 #include "cheese-prefs-dialog.h"
 #include "cheese-flash.h"
+#include "cheese-widget-private.h"
 
 #define FULLSCREEN_POPUP_HEIGHT    40
 #define FULLSCREEN_TIMEOUT         5 * 1000
@@ -75,13 +76,11 @@ typedef enum
   CAMERA_MODE_BURST
 } CameraMode;
 
-typedef enum
+/* FIXME: don't use page numbers */
+enum
 {
-  PAGE_WEBCAM  = 0,
-  PAGE_EFFECTS = 1,
-  PAGE_SPINNER = 2,
-  PAGE_PROBLEM = 3,
-} CheeseNotebookPage;
+  EFFECTS_PAGE = LAST_PAGE,
+};
 
 typedef struct
 {
@@ -97,10 +96,13 @@ typedef struct
   CheeseGConf *gconf;
   CheeseFileUtil *fileutil;
 
-  GtkWidget *window;
+  /* if you come up with a better name ping me */
+  GtkWidget *thewidget;
+  GtkWidget *video_area;
+
   GtkWidget *fullscreen_popup;
 
-  GtkWidget *notebook;
+  GtkWidget *widget_alignment;
   GtkWidget *notebook_bar;
   GtkWidget *fullscreen_bar;
 
@@ -113,6 +115,7 @@ typedef struct
   GtkWidget *togglegroup_alignment;
 
   GtkWidget *effect_frame;
+  GtkWidget *effect_vbox;
   GtkWidget *effect_alignment;
   GtkWidget *effect_chooser;
   GtkWidget *throbber_align;
@@ -122,9 +125,6 @@ typedef struct
   GtkWidget *countdown_frame_fullscreen;
   GtkWidget *countdown;
   GtkWidget *countdown_fullscreen;
-  GtkWidget *problem_page;
-  GtkWidget *problem_area;
-  GtkWidget *problem_bar;
 
   GtkWidget *button_effects;
   GtkWidget *button_photo;
@@ -151,7 +151,6 @@ typedef struct
   GtkWidget *thumb_view;
   GtkWidget *thumb_view_popup_menu;
 
-  GtkWidget *screen;
   GtkWidget *take_picture;
   GtkWidget *take_picture_fullscreen;
 
@@ -181,131 +180,6 @@ typedef struct
                                 CheeseWindowPrivate))
 
 G_DEFINE_TYPE (CheeseWindow, cheese_window, GTK_TYPE_WINDOW);
-
-/* FIXME: some code borrowed from cheese-widget
- * We should really use it directly instead of duplicating stuff here */
-static GdkPixbuf *
-cheese_window_load_pixbuf (GtkWidget  *widget,
-                           const char *icon_name,
-                           guint       size,
-                           GError    **error)
-{
-  GtkIconTheme *theme;
-  GdkPixbuf    *pixbuf;
-
-  theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
-  if (!gtk_icon_theme_has_icon (theme, icon_name))
-  {
-    pixbuf = gtk_icon_theme_load_icon (theme, "error",
-                                       size, 0, error);
-  }
-  else
-  {
-    pixbuf = gtk_icon_theme_load_icon (theme, icon_name,
-                                       size, 0, error);
-  }
-  return pixbuf;
-}
-
-static gboolean
-cheese_window_logo_expose (GtkWidget      *w,
-                           GdkEventExpose *event,
-                           gpointer        user_data)
-{
-  const char   *icon_name;
-  GdkPixbuf    *pixbuf, *logo;
-  GError       *error = NULL;
-  cairo_t      *cr;
-  GtkAllocation allocation;
-  guint         s_width, s_height, d_width, d_height;
-  float         ratio;
-
-  gdk_draw_rectangle (w->window, w->style->black_gc, TRUE,
-                      0, 0, w->allocation.width, w->allocation.height);
-  icon_name = g_object_get_data (G_OBJECT (w), "icon-name");
-  if (icon_name == NULL)
-    return FALSE;
-
-  cr = gdk_cairo_create (gtk_widget_get_window (w));
-  cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
-  gtk_widget_get_allocation (w, &allocation);
-  cairo_rectangle (cr, 0, 0, allocation.width, allocation.height);
-
-  d_width  = allocation.width;
-  d_height = allocation.height - (allocation.height / 3);
-
-  pixbuf = cheese_window_load_pixbuf (w, icon_name, d_height, &error);
-  if (pixbuf == NULL)
-  {
-    g_warning ("Could not load icon '%s': %s", icon_name, error->message);
-    g_error_free (error);
-    return FALSE;
-  }
-
-  s_width  = gdk_pixbuf_get_width (pixbuf);
-  s_height = gdk_pixbuf_get_height (pixbuf);
-
-  if ((gfloat) d_width / s_width > (gfloat) d_height / s_height)
-  {
-    ratio = (gfloat) d_height / s_height;
-  }
-  else
-  {
-    ratio = (gfloat) d_width / s_width;
-  }
-
-  s_width  *= ratio;
-  s_height *= ratio;
-
-  logo = gdk_pixbuf_scale_simple (pixbuf, s_width, s_height, GDK_INTERP_BILINEAR);
-
-  gdk_cairo_set_source_pixbuf (cr, logo, (allocation.width - s_width) / 2, (allocation.height - s_height) / 2);
-  cairo_paint (cr);
-  cairo_destroy (cr);
-
-  g_object_unref (logo);
-  g_object_unref (pixbuf);
-
-  return FALSE;
-}
-
-static void
-cheese_window_set_problem_page (CheeseWindow *window,
-                                const char   *icon_name)
-{
-  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
-
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), PAGE_PROBLEM);
-  g_object_set_data_full (G_OBJECT (priv->problem_area),
-                          "icon-name", g_strdup (icon_name), g_free);
-  g_signal_connect (priv->problem_area, "expose-event",
-                    G_CALLBACK (cheese_window_logo_expose), window);
-}
-
-static void
-cheese_window_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
-{
-  GtkStyle *style;
-  guint     i;
-
-  for (i = GTK_STATE_NORMAL; i <= GTK_STATE_INSENSITIVE; i++)
-  {
-    GdkColor *fg, *bg;
-
-    style = gtk_widget_get_style (spinner);
-    fg    = gdk_color_copy (&style->fg[i]);
-    bg    = gdk_color_copy (&style->bg[i]);
-
-    gtk_widget_modify_fg (spinner, i, bg);
-    gtk_widget_modify_bg (spinner, i, fg);
-
-    gtk_widget_modify_fg (parent, i, bg);
-    gtk_widget_modify_bg (parent, i, fg);
-
-    gdk_color_free (fg);
-    gdk_color_free (bg);
-  }
-}
 
 static gboolean
 cheese_window_key_press_event_cb (GtkWidget *win, GdkEventKey *event, CheeseWindow *cheese_window)
@@ -406,7 +280,7 @@ cheese_window_fullscreen_motion_notify_cb (GtkWidget      *widget,
     }
 
     /* don't set the timeout in effect-chooser mode */
-    if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)) != 1)
+    if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->thewidget)) != EFFECTS_PAGE)
       cheese_window_fullscreen_set_timeout (cheese_window);
   }
   return FALSE;
@@ -430,12 +304,12 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
     gtk_widget_modify_bg (GTK_WIDGET (cheese_window), GTK_STATE_NORMAL, &bg_color);
 
     gtk_widget_add_events (GTK_WIDGET (cheese_window), GDK_POINTER_MOTION_MASK);
-    gtk_widget_add_events (priv->screen, GDK_POINTER_MOTION_MASK);
+    gtk_widget_add_events (priv->video_area, GDK_POINTER_MOTION_MASK);
 
     g_signal_connect (cheese_window, "motion-notify-event",
                       G_CALLBACK (cheese_window_fullscreen_motion_notify_cb),
                       cheese_window);
-    g_signal_connect (priv->screen, "motion-notify-event",
+    g_signal_connect (priv->video_area, "motion-notify-event",
                       G_CALLBACK (cheese_window_fullscreen_motion_notify_cb),
                       cheese_window);
 
@@ -445,7 +319,7 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
     cheese_window_fullscreen_show_bar (cheese_window);
 
     /* don't set the timeout in effect-chooser mode */
-    if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)) != 1)
+    if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->thewidget)) != EFFECTS_PAGE)
       cheese_window_fullscreen_set_timeout (cheese_window);
 
     priv->isFullscreen = TRUE;
@@ -458,7 +332,7 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
 
     g_signal_handlers_disconnect_by_func (cheese_window,
                                           (gpointer) cheese_window_fullscreen_motion_notify_cb, cheese_window);
-    g_signal_handlers_disconnect_by_func (priv->screen,
+    g_signal_handlers_disconnect_by_func (priv->video_area,
                                           (gpointer) cheese_window_fullscreen_motion_notify_cb, cheese_window);
 
     gtk_window_unfullscreen (GTK_WINDOW (cheese_window));
@@ -493,9 +367,9 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
   gboolean toggled = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (widget));
 
-  gtk_widget_set_size_request (priv->notebook,
-                               GTK_WIDGET (priv->notebook)->allocation.width,
-                               GTK_WIDGET (priv->notebook)->allocation.height);
+  gtk_widget_set_size_request (priv->thewidget,
+                               GTK_WIDGET (priv->thewidget)->allocation.width,
+                               GTK_WIDGET (priv->thewidget)->allocation.height);
 
   /* set a single column in wide mode */
   gtk_icon_view_set_columns (GTK_ICON_VIEW (priv->thumb_view), toggled ? 1 : G_MAXINT);
@@ -553,7 +427,7 @@ cheese_window_toggle_wide_mode (GtkWidget *widget, CheeseWindow *cheese_window)
   GtkRequisition req;
   gtk_widget_size_request (GTK_WIDGET (cheese_window), &req);
   gtk_window_resize (GTK_WINDOW (cheese_window), req.width, req.height);
-  gtk_widget_set_size_request (priv->notebook, -1, -1);
+  gtk_widget_set_size_request (priv->thewidget, -1, -1);
 
   g_object_set (priv->gconf, "gconf_prop_wide_mode", toggled, NULL);
 }
@@ -711,7 +585,7 @@ cheese_window_countdown_picture_cb (gpointer data)
   if (cheese_camera_take_photo (priv->camera, photo_filename))
   {
     cheese_flash_fire (priv->flash);
-    ca_gtk_play_for_widget (priv->screen, 0,
+    ca_gtk_play_for_widget (priv->video_area, 0,
                             CA_PROP_EVENT_ID, "camera-shutter",
                             CA_PROP_MEDIA_ROLE, "event",
                             CA_PROP_EVENT_DESCRIPTION, _("Shutter sound"),
@@ -720,6 +594,7 @@ cheese_window_countdown_picture_cb (gpointer data)
   g_free (photo_filename);
 }
 
+#if 0
 static void
 cheese_window_no_camera_info_bar_response (GtkWidget *widget, gint response_id, CheeseWindow *cheese_window)
 {
@@ -743,6 +618,7 @@ cheese_window_no_camera_info_bar_response (GtkWidget *widget, gint response_id, 
     }
   }
 }
+#endif
 
 static void
 cheese_window_stop_recording (CheeseWindow *cheese_window)
@@ -948,9 +824,9 @@ void
 cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_window)
 {
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
-  if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->notebook)) == 1)
+  if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->thewidget)) == EFFECTS_PAGE)
   {
-    gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), PAGE_WEBCAM);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->thewidget), WEBCAM_PAGE);
     gtk_label_set_text_with_mnemonic (GTK_LABEL (priv->label_effects), _("_Effects"));
     gtk_widget_set_sensitive (priv->take_picture, TRUE);
     gtk_widget_set_sensitive (priv->take_picture_fullscreen, TRUE);
@@ -974,7 +850,7 @@ cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_
   }
   else
   {
-    gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), PAGE_EFFECTS);
+    gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->thewidget), EFFECTS_PAGE);
     gtk_widget_set_sensitive (GTK_WIDGET (priv->take_picture), FALSE);
     gtk_widget_set_sensitive (GTK_WIDGET (priv->take_picture_fullscreen), FALSE);
     gtk_action_group_set_sensitive (priv->actions_photo, FALSE);
@@ -1134,13 +1010,13 @@ setup_widgets_from_builder (CheeseWindow *cheese_window)
   priv->effect_button_alignment     = GTK_WIDGET (gtk_builder_get_object (builder, "effect_button_alignment"));
   priv->toolbar_alignment           = GTK_WIDGET (gtk_builder_get_object (builder, "toolbar_alignment"));
   priv->video_vbox                  = GTK_WIDGET (gtk_builder_get_object (builder, "video_vbox"));
-  priv->notebook                    = GTK_WIDGET (gtk_builder_get_object (builder, "notebook"));
+  priv->widget_alignment            = GTK_WIDGET (gtk_builder_get_object (builder, "widget_alignment"));
   priv->notebook_bar                = GTK_WIDGET (gtk_builder_get_object (builder, "notebook_bar"));
-  priv->screen                      = GTK_WIDGET (gtk_builder_get_object (builder, "video_screen"));
   priv->take_picture                = GTK_WIDGET (gtk_builder_get_object (builder, "take_picture"));
   priv->thumb_scrollwindow          = GTK_WIDGET (gtk_builder_get_object (builder, "thumb_scrollwindow"));
   priv->countdown_frame             = GTK_WIDGET (gtk_builder_get_object (builder, "countdown_frame"));
   priv->effect_frame                = GTK_WIDGET (gtk_builder_get_object (builder, "effect_frame"));
+  priv->effect_vbox                = GTK_WIDGET (gtk_builder_get_object (builder, "effect_vbox"));
   priv->effect_alignment            = GTK_WIDGET (gtk_builder_get_object (builder, "effect_alignment"));
   priv->fullscreen_popup            = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_popup"));
   priv->fullscreen_bar              = GTK_WIDGET (gtk_builder_get_object (builder, "fullscreen_notebook_bar"));
@@ -1157,6 +1033,8 @@ setup_widgets_from_builder (CheeseWindow *cheese_window)
   priv->button_exit_fullscreen      = GTK_WIDGET (gtk_builder_get_object (builder, "button_exit_fullscreen"));
 
   gtk_container_add (GTK_CONTAINER (cheese_window), priv->main_vbox);
+  gtk_notebook_append_page (GTK_NOTEBOOK (priv->thewidget),
+                            priv->effect_vbox, NULL);
 
   g_object_unref (builder);
 }
@@ -1274,102 +1152,26 @@ setup_menubar_and_actions (CheeseWindow *cheese_window)
   gtk_activatable_set_related_action (GTK_ACTIVATABLE (priv->button_burst_fullscreen), action);
 }
 
-void
-setup_camera (CheeseWindow *cheese_window)
+static void
+ready_cb (CheeseWidget        *widget,
+          gboolean             is_ready,
+          CheeseWindow        *window)
 {
-  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
-  char   *camera_device = NULL;
-  int     x_resolution;
-  int     y_resolution;
-  gdouble brightness;
-  gdouble contrast;
-  gdouble saturation;
-  gdouble hue;
+  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
 
-  GError *error;
-
-  g_object_get (priv->gconf,
-                "gconf_prop_x_resolution", &x_resolution,
-                "gconf_prop_y_resolution", &y_resolution,
-                "gconf_prop_camera", &camera_device,
-                "gconf_prop_brightness", &brightness,
-                "gconf_prop_contrast", &contrast,
-                "gconf_prop_saturation", &saturation,
-                "gconf_prop_hue", &hue,
-                NULL);
-
-  gdk_threads_enter ();
-  priv->camera = cheese_camera_new (priv->screen,
-                                             camera_device, x_resolution,
-                                             y_resolution);
-  gdk_threads_leave ();
-
-  g_free (camera_device);
-
-  error = NULL;
-  cheese_camera_setup (priv->camera, NULL, &error);
-  if (error != NULL)
-  {
-    if (error->code == CHEESE_CAMERA_ERROR_NO_DEVICE)
-    {
-      gdk_threads_enter ();
-      gtk_spinner_stop (GTK_SPINNER (priv->throbber));
-      cheese_window_set_problem_page (cheese_window, "cheese-no-camera");
-      gdk_threads_leave ();
-      return;
-    }
-    GtkWidget *dialog;
-    gchar     *primary, *secondary;
-
-    primary   = g_strdup (_("Check your GStreamer installation"));
-    secondary = g_strdup (error->message);
-
-    gdk_threads_enter ();
-
-    dialog = gtk_message_dialog_new (NULL,
-                                     GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_OK,
-                                     "%s", primary);
-    gtk_message_dialog_format_secondary_markup (GTK_MESSAGE_DIALOG (dialog),
-                                                "%s", secondary);
-    gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_destroy (dialog);
-    g_error_free (error);
-    g_free (primary);
-    g_free (secondary);
-
-    /* Clean up and exit */
-    /* FIXME: handle errors in the infobar and remove this shit */
-    gtk_widget_destroy (GTK_WIDGET (cheese_window));
-
-    gdk_threads_leave ();
-
-    return;
-  }
+  priv->camera = CHEESE_CAMERA (cheese_widget_get_camera (CHEESE_WIDGET (priv->thewidget)));
 
   g_signal_connect (priv->camera, "photo-saved",
-                    G_CALLBACK (cheese_window_photo_saved_cb), cheese_window);
+                    G_CALLBACK (cheese_window_photo_saved_cb), window);
   g_signal_connect (priv->camera, "video-saved",
-                    G_CALLBACK (cheese_window_video_saved_cb), cheese_window);
-
-  cheese_camera_set_effect (priv->camera,
-                            cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (priv->effect_chooser)));
-
-  cheese_camera_set_balance_property (priv->camera, "brightness", brightness);
-  cheese_camera_set_balance_property (priv->camera, "contrast", contrast);
-  cheese_camera_set_balance_property (priv->camera, "saturation", saturation);
-  cheese_camera_set_balance_property (priv->camera, "hue", hue);
-
-  cheese_camera_play (priv->camera);
-  gdk_threads_enter ();
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), PAGE_WEBCAM);
-  gtk_spinner_stop (GTK_SPINNER (priv->throbber));
+                    G_CALLBACK (cheese_window_video_saved_cb), window);
 
   gtk_widget_set_sensitive (GTK_WIDGET (priv->take_picture), TRUE);
   gtk_widget_set_sensitive (GTK_WIDGET (priv->take_picture_fullscreen), TRUE);
   gtk_action_group_set_sensitive (priv->actions_effects, TRUE);
-  gdk_threads_leave ();
+
+  cheese_camera_set_effect (priv->camera,
+                            cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (priv->effect_chooser)));
 }
 
 void
@@ -1377,39 +1179,27 @@ cheese_window_init (CheeseWindow *cheese_window)
 {
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
 
-  priv->gconf               = cheese_gconf_new ();
   priv->fileutil            = cheese_fileutil_new ();
   priv->flash               = cheese_flash_new (NULL);
   priv->isFullscreen        = FALSE;
   priv->is_bursting         = FALSE;
   priv->startup_wide        = FALSE;
+  priv->recording           = FALSE;
 
   priv->fullscreen_timeout_source = NULL;
+
+  priv->thewidget = cheese_widget_new ();
+  priv->gconf = CHEESE_GCONF (cheese_widget_get_gconf (CHEESE_WIDGET (priv->thewidget)));
+  priv->video_area = cheese_widget_get_video_area (CHEESE_WIDGET (priv->thewidget));
 
   setup_widgets_from_builder (cheese_window);
   setup_menubar_and_actions (cheese_window);
 
-  /* Problem page */
-  priv->problem_page = gtk_vbox_new (FALSE, 0);
-  priv->problem_bar  = cheese_no_camera_info_bar_new ();
+  g_signal_connect (G_OBJECT (priv->thewidget), "ready",
+                    G_CALLBACK (ready_cb), cheese_window);
 
-  g_signal_connect (priv->problem_bar,
-                    "response",
-                    G_CALLBACK (cheese_window_no_camera_info_bar_response),
-                    cheese_window);
-
-  priv->problem_area = gtk_drawing_area_new ();
-  gtk_box_pack_start (GTK_BOX (priv->problem_page),
-                      priv->problem_bar,
-                      FALSE, FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (priv->problem_page),
-                      priv->problem_area,
-                      TRUE, TRUE, 0);
-  gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
-                            priv->problem_page,
-                            gtk_label_new ("got problems"),
-                            PAGE_PROBLEM);
-
+  gtk_container_add (GTK_CONTAINER (priv->widget_alignment), priv->thewidget);
+  gtk_widget_show (priv->thewidget);
 
   /* configure the popup position and size */
   GdkScreen *screen = gtk_window_get_screen (GTK_WINDOW (priv->fullscreen_popup));
@@ -1434,7 +1224,6 @@ cheese_window_init (CheeseWindow *cheese_window)
   priv->thumb_nav  = eog_thumb_nav_new (priv->thumb_view, FALSE);
 
   gtk_container_add (GTK_CONTAINER (priv->thumb_scrollwindow), priv->thumb_nav);
-
   /* show the scroll window to get it included in the size requisition done later */
   gtk_widget_show_all (priv->thumb_scrollwindow);
 
@@ -1444,46 +1233,12 @@ cheese_window_init (CheeseWindow *cheese_window)
   gtk_container_add (GTK_CONTAINER (priv->effect_frame), priv->effect_chooser);
   g_free (gconf_effects);
 
-/* uncomment to debug */
-
-/*
- * gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), TRUE);
- * gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), TRUE);
- */
-
-  priv->throbber       = gtk_spinner_new ();
-  priv->throbber_box   = gtk_event_box_new ();
-  priv->throbber_align = gtk_alignment_new (0.5, 0.5, 0.6, 0.6);
-  gtk_container_add (GTK_CONTAINER (priv->throbber_box), priv->throbber_align);
-  gtk_container_add (GTK_CONTAINER (priv->throbber_align), priv->throbber);
-  gtk_notebook_insert_page (GTK_NOTEBOOK (priv->notebook),
-                            priv->throbber_box,
-                            gtk_label_new ("spinner"),
-                            PAGE_SPINNER);
-  cheese_window_spinner_invert (priv->throbber, priv->throbber_box);
-  gtk_widget_show_all (priv->throbber_box);
-
   priv->countdown = cheese_countdown_new ();
   gtk_container_add (GTK_CONTAINER (priv->countdown_frame), priv->countdown);
   gtk_widget_show (priv->countdown);
 
   priv->countdown_fullscreen = cheese_countdown_new ();
   gtk_container_add (GTK_CONTAINER (priv->countdown_frame_fullscreen), priv->countdown_fullscreen);
-
-  gtk_widget_realize (priv->screen);
-  GdkWindow *win = gtk_widget_get_window (priv->screen);
-  if (!gdk_window_ensure_native (win))
-  {
-    /* FIXME: this breaks offscreen stuff, we should really find
-     * another way to embed video that doesn't require an XID */
-
-    /* abort: no native window, no xoverlay, no cheese. */
-    g_error ("Could not create a native X11 window for the drawing area");
-  }
-  gdk_window_set_back_pixmap (gtk_widget_get_window (priv->screen), NULL, FALSE);
-  gtk_widget_set_app_paintable (priv->screen, TRUE);
-  gtk_widget_set_double_buffered (priv->screen, FALSE);
-  gtk_widget_add_events (priv->screen, GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
 
   /* Listen for key presses */
   gtk_widget_add_events (GTK_WIDGET (cheese_window), GDK_KEY_PRESS_MASK | GDK_KEY_RELEASE_MASK);
@@ -1498,23 +1253,7 @@ cheese_window_init (CheeseWindow *cheese_window)
   g_signal_connect (priv->thumb_view, "button_press_event",
                     G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 
-  gtk_spinner_start (GTK_SPINNER (priv->throbber));
-
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), PAGE_SPINNER);
-
-  priv->camera_mode = CAMERA_MODE_PHOTO;
-  priv->recording   = FALSE;
-
   cheese_window_set_mode (cheese_window, CAMERA_MODE_PHOTO);
-
-  /* Run cam setup in its own thread */
-  GError *error = NULL;
-  if (!g_thread_create ((GThreadFunc) setup_camera, cheese_window, FALSE, &error))
-  {
-    g_error ("Failed to create setup thread: %s\n", error->message);
-    g_error_free (error);
-    return;
-  }
 }
 
 static void
@@ -1532,6 +1271,10 @@ cheese_window_constructed (GObject *object)
                 &startup_wide_saved,
                 NULL);
 
+  /* TODO: understand why this is needed for sizing trick below to work */
+  /*       or at least make sure it doesn't cause any harm              */
+  gtk_widget_realize (priv->thewidget);
+
   priv->startup_wide = startup_wide_saved ? TRUE : priv->startup_wide;
 
   if (priv->startup_wide)
@@ -1543,11 +1286,11 @@ cheese_window_constructed (GObject *object)
   /* handy trick to set default size of the drawing area while not
    * limiting its minimum size, thanks Owen! */
   GtkRequisition req;
-  gtk_widget_set_size_request (priv->notebook,
+  gtk_widget_set_size_request (priv->thewidget,
                                DEFAULT_WINDOW_WIDTH, DEFAULT_WINDOW_HEIGHT);
   gtk_widget_size_request (GTK_WIDGET (window), &req);
   gtk_window_resize (GTK_WINDOW (window), req.width, req.height);
-  gtk_widget_set_size_request (priv->notebook, -1, -1);
+  gtk_widget_set_size_request (priv->thewidget, -1, -1);
 
   gtk_widget_show_all (priv->main_vbox);
 
@@ -1576,7 +1319,6 @@ cheese_window_finalize (GObject *object)
   CheeseWindow *window = CHEESE_WINDOW (object);
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
 
-  g_object_unref (priv->camera);
   g_object_unref (priv->fileutil);
   g_object_unref (priv->actions_main);
   g_object_unref (priv->actions_countdown);
@@ -1589,7 +1331,6 @@ cheese_window_finalize (GObject *object)
   g_object_unref (priv->actions_video);
   g_object_unref (priv->actions_burst);
   g_object_unref (priv->actions_fullscreen);
-  g_object_unref (priv->gconf);
 
   if (G_OBJECT_CLASS (cheese_window_parent_class)->finalize)
     G_OBJECT_CLASS (cheese_window_parent_class)->finalize (object);
