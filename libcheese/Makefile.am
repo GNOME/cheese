@@ -37,7 +37,10 @@ libcheese_gtk_la_SOURCES = \
 	um-crop-area.h \
 	cheese-widget.c \
 	cheese-widget.h \
+	cheese-widget-private.h \
 	$(NULL)
+
+EXTRA_DIST = cheese-gtk.symbols
 
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
