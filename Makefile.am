@@ -5,7 +5,7 @@ EXTRA_DIST =			\
 	gnome-doc-utils.make\
 	ChangeLog.pre-git
 
-CLEANFILES = cheese-gtk.pc.in
+CLEANFILES = cheese-gtk.pc
 
 DISTCLEANFILES =		\
 	gnome-doc-utils.make
