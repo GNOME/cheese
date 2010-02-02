@@ -54,8 +54,8 @@ G_DEFINE_TYPE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_O
 
 #define CHEESE_CAMERA_DEVICE_MONITOR_ERROR cheese_camera_device_monitor_error_quark ()
 
-GST_DEBUG_CATEGORY (cheese_device_monitor);
-#define GST_CAT_DEFAULT cheese_device_monitor
+GST_DEBUG_CATEGORY (cheese_device_monitor_cat);
+#define GST_CAT_DEFAULT cheese_device_monitor_cat
 
 enum CheeseCameraDeviceMonitorError
 {
@@ -331,6 +331,11 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  if (cheese_device_monitor_cat == NULL)
+    GST_DEBUG_CATEGORY_INIT (cheese_device_monitor_cat,
+                             "cheese-device-monitor",
+                             0, "Cheese Camera Device Monitor");
+
   object_class->finalize = cheese_camera_device_monitor_finalize;
 
   /**
@@ -367,9 +372,6 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 static void
 cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 {
-  GST_DEBUG_CATEGORY_INIT (cheese_device_monitor,
-                           "cheese-device-monitor",
-                           0, "Cheese Camera Device Monitor");
 #ifdef HAVE_UDEV
   CheeseCameraDeviceMonitorPrivate *priv         = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
   const gchar *const                subsystems[] = {"video4linux", NULL};

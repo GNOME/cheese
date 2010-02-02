@@ -51,8 +51,8 @@ enum CheeseCameraDeviceError
   CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS
 };
 
-GST_DEBUG_CATEGORY (cheese_camera_device);
-#define GST_CAT_DEFAULT cheese_camera_device
+GST_DEBUG_CATEGORY (cheese_camera_device_cat);
+#define GST_CAT_DEFAULT cheese_camera_device_cat
 
 static gchar *supported_formats[] = {
   "video/x-raw-rgb",
@@ -437,6 +437,11 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  if (cheese_camera_device_cat == NULL)
+    GST_DEBUG_CATEGORY_INIT (cheese_camera_device_cat,
+			     "cheese-camera-device",
+			     0, "Cheese Camera Device");
+
   object_class->finalize     = cheese_camera_device_finalize;
   object_class->get_property = cheese_camera_device_get_property;
   object_class->set_property = cheese_camera_device_set_property;
@@ -476,9 +481,6 @@ cheese_camera_device_init (CheeseCameraDevice *device)
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
-  GST_DEBUG_CATEGORY_INIT (cheese_camera_device,
-                           "cheese-camera-device",
-                           0, "Cheese Camera Device");
   priv->device = NULL;
   priv->id     = NULL;
   priv->src    = NULL;
