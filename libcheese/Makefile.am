@@ -40,7 +40,7 @@ libcheese_gtk_la_SOURCES = \
 	cheese-widget-private.h \
 	$(NULL)
 
-EXTRA_DIST = cheese-gtk.symbols
+#EXTRA_DIST = cheese-gtk.symbols
 
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
@@ -51,7 +51,7 @@ libcheese_gtk_la_LIBADD = \
 	$(CHEESE_LIBS)
 libcheese_gtk_la_LDFLAGS = \
 	-version-info $(CHEESE_LT_VERSION)		\
-	-export-symbols $(srcdir)/cheese-gtk.symbols	\
+	-export-symbols-regex "^cheese_|.*_get_type"    \
 	-no-undefined					\
 	$(AM_LDFLAGS)
 
