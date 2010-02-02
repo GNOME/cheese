@@ -625,14 +625,8 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                           NULL));
   }
 
-  if (!gst_caps_can_intersect (desired_caps, priv->caps))
-  {
-    subset_caps = gst_caps_new_empty ();
-    gst_caps_unref (desired_caps);
-  } else {
-    subset_caps = gst_caps_intersect (desired_caps, priv->caps);
-    gst_caps_unref (desired_caps);
-  }
+  subset_caps = gst_caps_intersect (desired_caps, priv->caps);
+  gst_caps_unref (desired_caps);
 
   GST_INFO ("Got %" GST_PTR_FORMAT, subset_caps);
 
