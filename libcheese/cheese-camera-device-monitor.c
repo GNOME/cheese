@@ -26,7 +26,6 @@
 #include <glib-object.h>
 #include <dbus/dbus-glib-lowlevel.h>
 #include <string.h>
-#include <cheese-camera-device.h>
 
 #ifdef HAVE_UDEV
   #define G_UDEV_API_IS_SUBJECT_TO_CHANGE 1
@@ -45,6 +44,7 @@
 #endif
 
 #include "cheese-camera-device-monitor.h"
+#include "cheese-marshal.h"
 
 G_DEFINE_TYPE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_OBJECT)
 
@@ -93,17 +93,17 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
                                     GUdevDevice               *udevice)
 {
   const char         *device_file;
-  const char         *gstreamer_src, *product_name;
+  const char         *product_name;
   const char         *vendor;
   const char         *product;
   const char         *bus;
   gint                vendor_id   = 0;
   gint                product_id  = 0;
   gint                v4l_version = 0;
-  GError             *error = NULL;
-  CheeseCameraDevice *device;
 
-  GST_INFO ("Checking udev device '%s'", g_udev_device_get_property (udevice, "DEVPATH"));
+  const gchar *devpath = g_udev_device_get_property (udevice, "DEVPATH");
+
+  GST_INFO ("Checking udev device '%s'", devpath);
 
   bus = g_udev_device_get_property (udevice, "ID_BUS");
   if (g_strcmp0 (bus, "usb") == 0)
@@ -155,7 +155,6 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
                    "Removing it from device list.", device_file);
       return;
     }
-    gstreamer_src = (v4l_version == 2) ? "v4l2src" : "v4lsrc";
     product_name  = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
   }
   else if (v4l_version == 0)
@@ -168,17 +167,11 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     g_assert_not_reached ();
   }
 
-  device = cheese_camera_device_new (g_udev_device_get_property (udevice, "DEVPATH"),
-                                     device_file,
-                                     product_name,
-                                     gstreamer_src,
-                                     &error);
-  if (device == NULL)
-    GST_WARNING ("Device initialization for %s failed: %s ",
+  g_signal_emit (monitor, monitor_signals[ADDED], 0,
+                 devpath,
                  device_file,
-                 (error != NULL) ? error->message : "Unknown reason");
-  else
-    g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
+                 product_name,
+                 v4l_version);
 }
 
 static void
@@ -349,8 +342,8 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
                                          G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                          G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
                                          NULL, NULL,
-                                         g_cclosure_marshal_VOID__OBJECT,
-                                         G_TYPE_NONE, 1, G_TYPE_OBJECT);
+                                         _cheese_marshal_VOID__STRING_STRING_STRING_INT,
+                                         G_TYPE_NONE, 4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
 
   /**
    * CheeseCameraDeviceMonitor::removed:

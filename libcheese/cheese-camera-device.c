@@ -69,15 +69,16 @@ enum
   PROP_NAME,
   PROP_FILE,
   PROP_ID,
-  PROP_SRC
+  PROP_API
 };
 
 typedef struct
 {
   gchar *device;
   gchar *id;
-  gchar *src;
+  const gchar *src;
   gchar *name;
+  gint api;
   GstCaps *caps;
   GList *formats;
 
@@ -344,7 +345,10 @@ static void
 cheese_camera_device_constructed (GObject *object)
 {
   CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
+  CheeseCameraDevicePrivate *priv   =
+    CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
+  priv->src = (priv->api == 2) ? "v4l2src" : "v4lsrc";
 
   cheese_camera_device_get_caps (device);
 
@@ -370,8 +374,8 @@ cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value
     case PROP_ID:
       g_value_set_string (value, priv->id);
       break;
-    case PROP_SRC:
-      g_value_set_string (value, priv->src);
+    case PROP_API:
+      g_value_set_int (value, priv->api);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -403,10 +407,8 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
         g_free (priv->device);
       priv->device = g_value_dup_string (value);
       break;
-    case PROP_SRC:
-      if (priv->src)
-        g_free (priv->src);
-      priv->src = g_value_dup_string (value);
+    case PROP_API:
+      priv->api = g_value_get_int (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -423,7 +425,6 @@ cheese_camera_device_finalize (GObject *object)
 
   g_free (priv->device);
   g_free (priv->id);
-  g_free (priv->src);
   g_free (priv->name);
 
   gst_caps_unref (priv->caps);
@@ -462,10 +463,10 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                         NULL, NULL, NULL,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
-  g_object_class_install_property (object_class, PROP_SRC,
-                                   g_param_spec_string ("src",
-                                                        NULL, NULL, NULL,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+  g_object_class_install_property (object_class, PROP_API,
+                                   g_param_spec_int ("api", NULL, NULL,
+                                                     1, 2, 2,
+                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
   g_type_class_add_private (klass, sizeof (CheeseCameraDevicePrivate));
 }
 
@@ -526,7 +527,7 @@ CheeseCameraDevice *
 cheese_camera_device_new (const gchar *device_id,
                           const gchar *device_file,
                           const gchar *product_name,
-                          const gchar *gstreamer_source,
+                          gint         api_version,
                           GError **error)
 {
   return CHEESE_CAMERA_DEVICE (g_initable_new (CHEESE_TYPE_CAMERA_DEVICE,
@@ -534,7 +535,7 @@ cheese_camera_device_new (const gchar *device_id,
                                                "device-id", device_id,
                                                "device-file", device_file,
                                                "name", product_name,
-                                               "src", gstreamer_source,
+                                               "api", api_version,
                                                NULL));
 }
 

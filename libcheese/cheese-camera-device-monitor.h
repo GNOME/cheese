@@ -47,7 +47,11 @@ typedef struct
 {
   GObjectClass parent_class;
 
-  void (*added)(CheeseCameraDeviceMonitor *camera, GObject *device);
+  void (*added)(CheeseCameraDeviceMonitor *camera,
+                const char *id,
+                const char *device_file,
+                const char *product_name,
+                int api_version);
   void (*removed)(CheeseCameraDeviceMonitor *camera, const char *id);
 } CheeseCameraDeviceMonitorClass;
 

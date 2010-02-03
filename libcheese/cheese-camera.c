@@ -288,13 +288,28 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 
 static void
 cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
-                          CheeseCameraDevice        *device,
+                          const gchar               *id,
+                          const gchar               *device_file,
+                          const gchar               *product_name,
+                          gint                       api_version,
                           CheeseCamera              *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  GError *error;
 
-  g_ptr_array_add (priv->camera_devices, device);
-  priv->num_camera_devices++;
+  CheeseCameraDevice *device = cheese_camera_device_new (id,
+                                                         device_file,
+                                                         product_name,
+                                                         api_version,
+                                                         &error);
+  if (device == NULL)
+    GST_WARNING ("Device initialization for %s failed: %s ",
+                 device_file,
+                 (error != NULL) ? error->message : "Unknown reason");
+  else  {
+    g_ptr_array_add (priv->camera_devices, device);
+    priv->num_camera_devices++;
+  }
 }
 
 static void
