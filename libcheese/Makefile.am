@@ -20,7 +20,7 @@ cheese-marshal.c: cheese-marshal.list Makefile
 
 libcheese_gtk_la_CFLAGS = $(CHEESE_CFLAGS)
 
-marshal_SOURCES = cheese-marshal.c cheese-marshal.h
+BUILT_SOURCES = cheese-marshal.c cheese-marshal.h
 
 libcheesecommon_la_SOURCES = \
 	cheese-gconf.c \
@@ -37,7 +37,7 @@ libcheesecommon_la_SOURCES = \
 	cheese-flash.c \
 	cheese-countdown.c \
 	cheese-countdown.h \
-	$(marshal_SOURCES)
+	$(BUILT_SOURCES)
 
 libcheese_gtk_la_SOURCES = \
 	cheese-avatar-chooser.c \
@@ -50,7 +50,7 @@ libcheese_gtk_la_SOURCES = \
 	$(NULL)
 
 EXTRA_DIST = cheese-gtk.symbols
-CLEANFILES = $(marshal_SOURCES)
+CLEANFILES = $(BUILT_SOURCES)
 
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
