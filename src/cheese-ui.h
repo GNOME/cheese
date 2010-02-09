@@ -79,10 +79,13 @@ const GtkActionEntry action_entries_file[] = {
    G_CALLBACK (cheese_cmd_file_save_as)},
   {"MoveToTrash", "user-trash",      N_("Move to _Trash"), "Delete",        NULL,
    G_CALLBACK (cheese_cmd_file_move_to_trash)},
-  {"RemoveAll",    NULL,             N_("Move All to Trash"), NULL, NULL,
-   G_CALLBACK (cheese_cmd_file_move_all_to_trash)},
   {"Delete",      NULL,              N_("Delete"),         "<shift>Delete", NULL,
    G_CALLBACK (cheese_cmd_file_delete)},
+};
+
+static const GtkActionEntry action_entries_trash[] = {
+  {"RemoveAll",    NULL,             N_("Move All to Trash"), NULL, NULL,
+   G_CALLBACK (cheese_cmd_file_move_all_to_trash)},
 };
 
 G_END_DECLS

@@ -164,6 +164,7 @@ typedef struct
   GtkActionGroup *actions_burst;
   GtkActionGroup *actions_fullscreen;
   GtkActionGroup *actions_wide_mode;
+  GtkActionGroup *actions_trash;
 
   GtkUIManager *ui_manager;
 
@@ -477,6 +478,40 @@ cheese_window_selection_changed_cb (GtkIconView  *iconview,
   {
     gtk_action_group_set_sensitive (priv->actions_file, FALSE);
   }
+}
+
+static void
+cheese_window_thumbnails_changed (GtkTreeModel *model,
+                                  CheeseWindow *cheese_window)
+{
+  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
+  GtkTreeIter iter;
+
+  if (gtk_tree_model_get_iter_first (model, &iter))
+  {
+    gtk_action_group_set_sensitive (priv->actions_trash, TRUE);
+  }
+  else
+  {
+    gtk_action_group_set_sensitive (priv->actions_trash, FALSE);
+  }
+}
+
+static void
+cheese_window_thumbnail_inserted (GtkTreeModel *model,
+                                  GtkTreePath  *path,
+                                  GtkTreeIter  *iter,
+                                  CheeseWindow *cheese_window)
+{
+  cheese_window_thumbnails_changed (model, cheese_window);
+}
+
+static void
+cheese_window_thumbnail_deleted (GtkTreeModel *model,
+                                 GtkTreePath  *path,
+                                 CheeseWindow *cheese_window)
+{
+  cheese_window_thumbnails_changed (model, cheese_window);
 }
 
 static gboolean
@@ -1085,6 +1120,11 @@ setup_menubar_and_actions (CheeseWindow *cheese_window)
                                                        G_N_ELEMENTS (action_entries_file));
   gtk_action_group_set_sensitive (priv->actions_file, FALSE);
 
+  priv->actions_trash = cheese_window_action_group_new (cheese_window,
+                                                        "ActionsTrash",
+                                                        action_entries_trash,
+                                                        G_N_ELEMENTS (action_entries_trash));
+
   priv->actions_photo = cheese_window_action_group_new (cheese_window,
                                                         "ActionsPhoto",
                                                         action_entries_photo,
@@ -1253,6 +1293,13 @@ cheese_window_init (CheeseWindow *cheese_window)
   g_signal_connect (priv->thumb_view, "button_press_event",
                     G_CALLBACK (cheese_window_button_press_event_cb), cheese_window);
 
+  g_signal_connect (gtk_icon_view_get_model (GTK_ICON_VIEW (priv->thumb_view)), "row-inserted",
+                    G_CALLBACK (cheese_window_thumbnail_inserted), cheese_window);
+  g_signal_connect (gtk_icon_view_get_model (GTK_ICON_VIEW (priv->thumb_view)), "row-deleted",
+                    G_CALLBACK (cheese_window_thumbnail_deleted), cheese_window);
+
+  cheese_window_thumbnails_changed (gtk_icon_view_get_model (GTK_ICON_VIEW (priv->thumb_view)), cheese_window);
+
   cheese_window_set_mode (cheese_window, CAMERA_MODE_PHOTO);
 }
 
@@ -1331,6 +1378,7 @@ cheese_window_finalize (GObject *object)
   g_object_unref (priv->actions_video);
   g_object_unref (priv->actions_burst);
   g_object_unref (priv->actions_fullscreen);
+  g_object_unref (priv->actions_trash);
 
   if (G_OBJECT_CLASS (cheese_window_parent_class)->finalize)
     G_OBJECT_CLASS (cheese_window_parent_class)->finalize (object);
