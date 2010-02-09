@@ -1,5 +1,7 @@
 /*
- * Copyright © 2009 Bastien Nocera <hadess@hadess.net>
+ * Copyright © 2010 Filippo Argiolas <filippo.argiolas@gmail.com>
+ * Copyright © 2007,2008 daniel g. siegel <dgsiegel@gnome.org>
+ * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -17,25 +19,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _CHEESE_WIDGET_PRIVATE_H_
-#define _CHEESE_WIDGET_PRIVATE_H_
+#include "cheese-commands.h"
+#include <gdk/gdkx.h>
 
-#include "cheese-widget.h"
-
-G_BEGIN_DECLS
-
-enum
+void
+cheese_cmd_quit (GtkAction *action, CheeseWindow *window)
 {
-  SPINNER_PAGE = 0,
-  WEBCAM_PAGE  = 1,
-  PROBLEM_PAGE = 2,
-  LAST_PAGE = 3,
-};
+   gtk_widget_destroy (GTK_WIDGET (window));
+}
 
-GObject   *cheese_widget_get_camera (CheeseWidget *widget);
-GObject   *cheese_widget_get_gconf  (CheeseWidget *widget);
-GtkWidget *cheese_widget_get_video_area (CheeseWidget *widget);
+void
+cheese_cmd_bring_to_front (CheeseWindow *window)
+{
+  guint32       startup_timestamp = gdk_x11_get_server_time (gtk_widget_get_window (GTK_WIDGET (window)));
 
-G_END_DECLS
+  gdk_x11_window_set_user_time (gtk_widget_get_window (GTK_WIDGET (window)), startup_timestamp);
 
-#endif /* _CHEESE_WIDGET_PRIVATE_H_ */
+  gtk_window_present (GTK_WINDOW (window));
+}

@@ -5,13 +5,12 @@
 
 static void
 added_cb (CheeseCameraDeviceMonitor *monitor,
-          CheeseCameraDevice        *device)
+          const char *id,
+	  const char *device_file,
+	  const char *product_name,
+	  gint api_version)
 {
-  gchar *id;
-
-  g_object_get (device, "device-id", &id, NULL);
   g_message ("Added new device with ID '%s'", id);
-  g_free (id);
 }
 
 static void

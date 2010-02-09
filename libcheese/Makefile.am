@@ -12,7 +12,15 @@ INCLUDES = \
 lib_LTLIBRARIES = libcheese-gtk.la
 noinst_LTLIBRARIES = libcheesecommon.la
 
+cheese-marshal.h: cheese-marshal.list Makefile
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=_cheese_marshal $< --header > $@
+
+cheese-marshal.c: cheese-marshal.list Makefile
+	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=_cheese_marshal $< --body > $@
+
 libcheese_gtk_la_CFLAGS = $(CHEESE_CFLAGS)
+
+BUILT_SOURCES = cheese-marshal.c cheese-marshal.h
 
 libcheesecommon_la_SOURCES = \
 	cheese-gconf.c \
@@ -28,7 +36,8 @@ libcheesecommon_la_SOURCES = \
 	cheese-flash.h \
 	cheese-flash.c \
 	cheese-countdown.c \
-	cheese-countdown.h
+	cheese-countdown.h \
+	$(BUILT_SOURCES)
 
 libcheese_gtk_la_SOURCES = \
 	cheese-avatar-chooser.c \
@@ -41,6 +50,7 @@ libcheese_gtk_la_SOURCES = \
 	$(NULL)
 
 EXTRA_DIST = cheese-gtk.symbols
+CLEANFILES = $(BUILT_SOURCES)
 
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese

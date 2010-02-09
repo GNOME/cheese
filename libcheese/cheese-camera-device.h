@@ -63,7 +63,7 @@ GType cheese_camera_device_get_type (void) G_GNUC_CONST;
 CheeseCameraDevice *cheese_camera_device_new (const gchar *device_id,
                                               const gchar *device_file,
                                               const gchar *product_name,
-                                              const gchar *gstreamer_source,
+                                              gint         api_version,
                                               GError **error);
 
 GstCaps *           cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,

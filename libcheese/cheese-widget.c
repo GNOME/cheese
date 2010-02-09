@@ -339,9 +339,9 @@ setup_camera (CheeseWidget *widget)
   }
   else
   {
+    g_signal_emit (widget, widget_signals[READY_SIGNAL], 0, TRUE);
     cheese_camera_play (priv->webcam);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
-    g_signal_emit (widget, widget_signals[READY_SIGNAL], 0, TRUE);
   }
 
   gdk_threads_leave ();
@@ -451,6 +451,18 @@ cheese_widget_new (void)
 }
 
 GObject *
+cheese_widget_get_gconf (CheeseWidget *widget)
+{
+  CheeseWidgetPrivate *priv;
+
+  g_return_val_if_fail (CHEESE_WIDGET (widget), NULL);
+
+  priv = CHEESE_WIDGET_GET_PRIVATE (widget);
+
+  return G_OBJECT (priv->gconf);
+}
+
+GObject *
 cheese_widget_get_camera (CheeseWidget *widget)
 {
   CheeseWidgetPrivate *priv;
@@ -460,6 +472,18 @@ cheese_widget_get_camera (CheeseWidget *widget)
   priv = CHEESE_WIDGET_GET_PRIVATE (widget);
 
   return G_OBJECT (priv->webcam);
+}
+
+GtkWidget *
+cheese_widget_get_video_area (CheeseWidget *widget)
+{
+ CheeseWidgetPrivate *priv;
+
+  g_return_val_if_fail (CHEESE_WIDGET (widget), NULL);
+
+  priv = CHEESE_WIDGET_GET_PRIVATE (widget);
+
+  return priv->screen;
 }
 
 /*

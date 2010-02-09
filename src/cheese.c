@@ -37,7 +37,6 @@ struct _CheeseOptions
 {
   gboolean verbose;
   gboolean wide_mode;
-  char *hal_device_id;
   gboolean version;
 } CheeseOptions;
 
@@ -97,14 +96,10 @@ main (int argc, char **argv)
      _("Be verbose"), NULL},
     {"wide",       'w', 0,                    G_OPTION_ARG_NONE,   &CheeseOptions.wide_mode,
      _("Enable wide mode"), NULL},
-    {"hal-device", 'd', G_OPTION_FLAG_HIDDEN, G_OPTION_ARG_STRING, &CheeseOptions.hal_device_id,
-     NULL, NULL},
     {"version",    0,   0,                    G_OPTION_ARG_NONE,   &CheeseOptions.version,
      _("output version information and exit"), NULL},
     {NULL}
   };
-
-  CheeseOptions.hal_device_id = NULL;
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
@@ -152,7 +147,13 @@ main (int argc, char **argv)
   gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
                                      APPNAME_DATA_DIR G_DIR_SEPARATOR_S "icons");
 
-  cheese_window_init (CheeseOptions.hal_device_id, dbus_server, CheeseOptions.wide_mode);
+  CheeseWindow *window = g_object_new (CHEESE_TYPE_WINDOW,
+                                       "startup-wide", CheeseOptions.wide_mode,
+                                       NULL);
+
+  cheese_dbus_set_window (window);
+
+  gtk_widget_show (GTK_WIDGET (window));
 
   gdk_threads_enter ();
   gtk_main ();

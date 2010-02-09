@@ -134,8 +134,8 @@ static const EffectToPipelineDesc EFFECT_TO_PIPELINE_DESC[] = {
 
 static const int NUM_EFFECTS = G_N_ELEMENTS (EFFECT_TO_PIPELINE_DESC);
 
-GST_DEBUG_CATEGORY (cheese_camera);
-#define GST_CAT_DEFAULT cheese_camera
+GST_DEBUG_CATEGORY (cheese_camera_cat);
+#define GST_CAT_DEFAULT cheese_camera_cat
 
 GQuark
 cheese_camera_error_quark (void)
@@ -288,13 +288,28 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 
 static void
 cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
-                          CheeseCameraDevice        *device,
+                          const gchar               *id,
+                          const gchar               *device_file,
+                          const gchar               *product_name,
+                          gint                       api_version,
                           CheeseCamera              *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  GError *error;
 
-  g_ptr_array_add (priv->camera_devices, device);
-  priv->num_camera_devices++;
+  CheeseCameraDevice *device = cheese_camera_device_new (id,
+                                                         device_file,
+                                                         product_name,
+                                                         api_version,
+                                                         &error);
+  if (device == NULL)
+    GST_WARNING ("Device initialization for %s failed: %s ",
+                 device_file,
+                 (error != NULL) ? error->message : "Unknown reason");
+  else  {
+    g_ptr_array_add (priv->camera_devices, device);
+    priv->num_camera_devices++;
+  }
 }
 
 static void
@@ -1011,6 +1026,11 @@ cheese_camera_class_init (CheeseCameraClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  if (cheese_camera_cat == NULL)
+    GST_DEBUG_CATEGORY_INIT (cheese_camera_cat,
+                             "cheese-camera",
+                             0, "Cheese Camera");
+
   object_class->finalize     = cheese_camera_finalize;
   object_class->get_property = cheese_camera_get_property;
   object_class->set_property = cheese_camera_set_property;
@@ -1064,10 +1084,6 @@ static void
 cheese_camera_init (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  GST_DEBUG_CATEGORY_INIT (cheese_camera,
-                           "cheese-camera",
-                           0, "Cheese Camera");
 
   priv->is_recording            = FALSE;
   priv->pipeline_is_playing     = FALSE;
