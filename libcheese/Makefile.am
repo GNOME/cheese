@@ -49,7 +49,7 @@ libcheese_gtk_la_SOURCES = \
 	cheese-widget-private.h \
 	$(NULL)
 
-EXTRA_DIST = cheese-gtk.symbols
+EXTRA_DIST = cheese-gtk.symbols cheese-marshal.list
 CLEANFILES = $(BUILT_SOURCES)
 
 # FIXME when we have a .pc file, and sonames
