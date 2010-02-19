@@ -202,11 +202,13 @@ cheese_widget_init (CheeseWidget *widget)
 
   /* Webcam page */
   priv->screen = gtk_drawing_area_new ();
+  gtk_widget_show (priv->screen);
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
                             priv->screen, gtk_label_new ("webcam"));
 
   /* Problem page */
   priv->problem = gtk_drawing_area_new ();
+  gtk_widget_show (priv->problem);
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
                             priv->problem,
                             gtk_label_new ("got problems"));
