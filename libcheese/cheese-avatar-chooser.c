@@ -158,14 +158,28 @@ take_again_button_clicked_cb (GtkButton           *button,
 }
 
 static void
-ready_cb (CheeseWidget        *widget,
-          gboolean             is_ready,
-          CheeseAvatarChooser *chooser)
+state_change_cb (GObject             *object,
+                 GParamSpec          *param_spec,
+                 CheeseAvatarChooser *chooser)
 {
   CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
+  CheeseWidgetState state;
+  g_object_get (object, "state", &state, NULL);
 
-  gtk_widget_set_sensitive (priv->take_button, is_ready);
-  gtk_widget_set_sensitive (priv->take_again_button, is_ready);
+  switch (state) {
+  case CHEESE_WIDGET_STATE_READY:
+    gtk_widget_set_sensitive (priv->take_button, TRUE);
+    gtk_widget_set_sensitive (priv->take_again_button, TRUE);
+    break;
+  case CHEESE_WIDGET_STATE_ERROR:
+    gtk_widget_set_sensitive (priv->take_button, FALSE);
+    gtk_widget_set_sensitive (priv->take_again_button, FALSE);
+    break;
+  case CHEESE_WIDGET_STATE_NONE:
+    break;
+  default:
+    g_assert_not_reached ();
+  }
 }
 
 static GtkWidget *
@@ -236,8 +250,8 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 
   /* Camera tab */
   priv->camera = cheese_widget_new ();
-  g_signal_connect (G_OBJECT (priv->camera), "ready",
-                    G_CALLBACK (ready_cb), chooser);
+  g_signal_connect (G_OBJECT (priv->camera), "notify::state",
+                    G_CALLBACK (state_change_cb), chooser);
   priv->take_button = gtk_button_new_with_mnemonic (_("_Take a photo"));
   g_signal_connect (G_OBJECT (priv->take_button), "clicked",
                     G_CALLBACK (take_button_clicked_cb), chooser);
