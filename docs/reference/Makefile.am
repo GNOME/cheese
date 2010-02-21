@@ -58,6 +58,7 @@ IGNORE_HFILES=					\
 	cheese-flash.h				\
 	cheese-gconf.h				\
 	cheese-widget-private.h			\
+	cheese-enum-types.h                     \
 	um-crop-area.h
 
 # Images to copy into HTML directory.

@@ -24,6 +24,7 @@
 #include "cheese-widget.h"
 #include "cheese-gconf.h"
 #include "cheese-camera.h"
+#include "cheese-enum-types.h"
 
 enum
 {
@@ -35,7 +36,7 @@ enum
 enum
 {
   PROP_0,
-  PROP_WIDGET
+  PROP_STATE
 };
 
 enum
@@ -45,8 +46,6 @@ enum
   PROBLEM_PAGE = 2,
 };
 
-static guint widget_signals[LAST_SIGNAL] = {0};
-
 typedef struct
 {
   GtkWidget *spinner;
@@ -54,6 +53,8 @@ typedef struct
   GtkWidget *problem;
   CheeseGConf *gconf;
   CheeseCamera *webcam;
+  CheeseWidgetState state;
+  GError *error;
 } CheeseWidgetPrivate;
 
 #define CHEESE_WIDGET_GET_PRIVATE(o)                     \
@@ -185,6 +186,9 @@ cheese_widget_init (CheeseWidget *widget)
   CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
   GtkWidget           *box;
 
+  priv->state = CHEESE_WIDGET_STATE_NONE;
+  priv->error = NULL;
+
   /* XXX
    * remove this line if you want to debug */
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (widget), FALSE);
@@ -247,14 +251,15 @@ cheese_widget_set_property (GObject *object, guint prop_id,
 
   switch (prop_id)
   {
-    case PROP_WIDGET:
-      priv->widget = GTK_WIDGET (g_value_get_object (value));
+    case PROP_STATE:
+      priv->state = g_value_get_enum (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
   }
 }
+#endif
 
 static void
 cheese_widget_get_property (GObject *object, guint prop_id,
@@ -266,8 +271,8 @@ cheese_widget_get_property (GObject *object, guint prop_id,
 
   switch (prop_id)
   {
-    case PROP_WIDGET:
-      g_value_set_object (value, priv->widget);
+    case PROP_STATE:
+      g_value_set_enum (value, priv->state);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -275,26 +280,12 @@ cheese_widget_get_property (GObject *object, guint prop_id,
   }
 }
 
-#endif
 #if 0
 static void
 cheese_widget_changed (CheeseWidget *self)
 {
 }
 
-#endif
-
-#if 0
-static gboolean
-cheese_widget_emit_error_idle (CheeseWidget *widget)
-{
-  CheeseWidgetPrivate *priv          = CHEESE_WIDGET_GET_PRIVATE (widget);
-  g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0,
-                 (priv->error && priv->error->message) ?
-                 priv->error->message :
-                 _("Camera setup failed"));
-  return FALSE;
-}
 #endif
 
 void
@@ -308,7 +299,6 @@ setup_camera (CheeseWidget *widget)
   gdouble              contrast;
   gdouble              saturation;
   gdouble              hue;
-  GError              *error = NULL;
 
   g_object_get (priv->gconf,
                 "gconf_prop_x_resolution", &x_resolution,
@@ -328,20 +318,22 @@ setup_camera (CheeseWidget *widget)
 
   g_free (webcam_device);
 
-  cheese_camera_setup (priv->webcam, NULL, &error);
+  cheese_camera_setup (priv->webcam, NULL, &priv->error);
 
   gdk_threads_enter ();
 
   gtk_spinner_stop (GTK_SPINNER (priv->spinner));
 
-  if (error != NULL)
+  if (priv->error != NULL)
   {
-    cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "no-webcam");
-    g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0, error->message);
+    priv->state = CHEESE_WIDGET_STATE_ERROR;
+    g_object_notify (G_OBJECT (widget), "state");
+    cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
   }
   else
   {
-    g_signal_emit (widget, widget_signals[READY_SIGNAL], 0, TRUE);
+    priv->state = CHEESE_WIDGET_STATE_READY;
+    g_object_notify (G_OBJECT (widget), "state");
     cheese_camera_play (priv->webcam);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
   }
@@ -354,7 +346,6 @@ cheese_widget_realize (GtkWidget *widget)
 {
   GdkWindow           *window;
   CheeseWidgetPrivate *priv  = CHEESE_WIDGET_GET_PRIVATE (widget);
-  GError              *error = NULL;
 
   GTK_WIDGET_CLASS (cheese_widget_parent_class)->realize (widget);
 
@@ -373,9 +364,9 @@ cheese_widget_realize (GtkWidget *widget)
   gtk_widget_set_app_paintable (priv->screen, TRUE);
   gtk_widget_set_double_buffered (priv->screen, FALSE);
 
-  if (!g_thread_create ((GThreadFunc) setup_camera, widget, FALSE, &error))
+  if (!g_thread_create ((GThreadFunc) setup_camera, widget, FALSE, &priv->error))
   {
-    g_warning ("Failed to create setup thread: %s", error->message);
+    g_warning ("Failed to create setup thread: %s", priv->error->message);
     goto error;
   }
 
@@ -387,9 +378,9 @@ cheese_widget_realize (GtkWidget *widget)
 
 error:
   gtk_spinner_stop (GTK_SPINNER (priv->spinner));
+  priv->state = CHEESE_WIDGET_STATE_ERROR;
+  g_object_notify (G_OBJECT (widget), "state");
   cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
-  g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0,
-                 error->message);
 }
 
 static void
@@ -401,39 +392,26 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
   object_class->finalize = cheese_widget_finalize;
 #if 0
   object_class->set_property = cheese_widget_set_property;
-  object_class->get_property = cheese_widget_get_property;
 #endif
+  object_class->get_property = cheese_widget_get_property;
   widget_class->realize = cheese_widget_realize;
 
   /**
-   * CheeseWidget::ready:
+   * CheeseWidget:state:
    *
-   * @is_ready: Whether the camera is ready for use by the widget.
+   * Current state of the widget.
    *
-   * The ::ready signal is emitted when the camera is ready to be
-   * used by the widget and other applications.
+   * Connect to notify::state signal to get notified about state
+   * changes. Useful to update other widgets sensitiveness when the
+   * camera is ready or to handle errors if camera setup fails.
    */
-  widget_signals[READY_SIGNAL] = g_signal_new ("ready", G_OBJECT_CLASS_TYPE (klass),
-                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                               G_STRUCT_OFFSET (CheeseWidgetClass, ready),
-                                               NULL, NULL,
-                                               g_cclosure_marshal_VOID__BOOLEAN,
-                                               G_TYPE_NONE, 1, G_TYPE_BOOLEAN);
-
-  /**
-   * CheeseWidget::error:
-   *
-   * @error: The error message.
-   *
-   * The ::error signal is emitted when the widget cannot access
-   * the camera.
-   */
-  widget_signals[ERROR_SIGNAL] = g_signal_new ("error", G_OBJECT_CLASS_TYPE (klass),
-                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                               G_STRUCT_OFFSET (CheeseWidgetClass, error),
-                                               NULL, NULL,
-                                               g_cclosure_marshal_VOID__STRING,
-                                               G_TYPE_NONE, 1, G_TYPE_STRING);
+  g_object_class_install_property (object_class, PROP_STATE,
+                                   g_param_spec_enum ("state",
+                                                      NULL,
+                                                      NULL,
+                                                      CHEESE_TYPE_WIDGET_STATE,
+                                                      CHEESE_WIDGET_STATE_NONE,
+                                                      G_PARAM_READABLE));
 
   g_type_class_add_private (klass, sizeof (CheeseWidgetPrivate));
 }
@@ -485,6 +463,30 @@ cheese_widget_get_video_area (CheeseWidget *widget)
   priv = CHEESE_WIDGET_GET_PRIVATE (widget);
 
   return priv->screen;
+}
+
+/**
+ * cheese_widget_get_error:
+ * @widget: a #CheeseWidget
+ * @error: return location for the error
+ *
+ * Listen for notify::state signals and call this when the current state is %CHEESE_WIDGET_STATE_ERROR.
+ *
+ * The returned #GError will contain more details on what went wrong.
+ **/
+
+void
+cheese_widget_get_error (CheeseWidget *widget, GError **error)
+{
+  CheeseWidgetPrivate *priv;
+
+  g_return_if_fail (CHEESE_WIDGET (widget));
+
+  priv = CHEESE_WIDGET_GET_PRIVATE (widget);
+
+  g_propagate_error (error, priv->error);
+
+  priv->error = NULL;
 }
 
 /*

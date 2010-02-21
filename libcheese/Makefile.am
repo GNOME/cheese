@@ -51,6 +51,7 @@ libcheese_gtk_la_SOURCES = \
 
 EXTRA_DIST = cheese-gtk.symbols cheese-marshal.list
 CLEANFILES = $(BUILT_SOURCES)
+DISTCLEANFILES =
 
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
@@ -65,3 +66,7 @@ libcheese_gtk_la_LDFLAGS = \
 	-no-undefined					\
 	$(AM_LDFLAGS)
 
+glib_enum_h = cheese-enum-types.h
+glib_enum_c = cheese-enum-types.c
+glib_enum_headers = cheese-widget.h
+include $(top_srcdir)/Makefile.am.enums

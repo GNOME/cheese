@@ -41,9 +41,6 @@ typedef struct _CheeseWidget CheeseWidget;
 struct _CheeseWidgetClass
 {
   GtkNotebookClass parent_class;
-
-  void (*ready)(CheeseWidget *widget, gboolean is_ready);
-  void (*error)(CheeseWidget *widget, const char *error);
 };
 
 struct _CheeseWidget
@@ -54,6 +51,24 @@ struct _CheeseWidget
 GType cheese_widget_get_type (void) G_GNUC_CONST;
 
 GtkWidget *cheese_widget_new (void);
+void       cheese_widget_get_error (CheeseWidget *widget, GError **error);
+
+
+/**
+ * CheeseWidgetState:
+ * @CHEESE_WIDGET_STATE_NONE: Default state, camera uninitialized
+ * @CHEESE_WIDGET_STATE_READY: The camera should be ready and the widget should be displaying the preview
+ * @CHEESE_WIDGET_STATE_ERROR: An error occurred while setting up the camera, check what went wrong with cheese_widget_get_error()
+ *
+ * Current #CheeseWidget state.
+ *
+ */
+typedef enum
+{
+  CHEESE_WIDGET_STATE_NONE,
+  CHEESE_WIDGET_STATE_READY,
+  CHEESE_WIDGET_STATE_ERROR
+} CheeseWidgetState;
 
 G_END_DECLS
 
