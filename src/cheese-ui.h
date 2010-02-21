@@ -32,14 +32,16 @@ const GtkActionEntry action_entries_main[] = {
   {"Cheese",       NULL,            N_("_Cheese")                       },
 
   {"Edit",         NULL,            N_("_Edit")                         },
-  {"Preferences",  GTK_STOCK_PREFERENCES, N_("Preferences"), NULL, NULL, G_CALLBACK (cheese_window_preferences_cb)},
-
   {"Help",         NULL,            N_("_Help")                         },
 
   {"Quit",         GTK_STOCK_QUIT,  NULL, NULL, NULL, G_CALLBACK (cheese_cmd_quit)},
   {"HelpContents", GTK_STOCK_HELP,  N_("_Contents"), "F1", N_("Help on this Application"),
    G_CALLBACK (cheese_cmd_help_contents)},
   {"About",        GTK_STOCK_ABOUT, NULL, NULL, NULL, G_CALLBACK (cheese_cmd_about)},
+};
+
+const GtkActionEntry action_entries_prefs[] = {
+  {"Preferences",  GTK_STOCK_PREFERENCES, N_("Preferences"), NULL, NULL, G_CALLBACK (cheese_window_preferences_cb)},
 };
 
 const GtkRadioActionEntry action_entries_toggle[] = {

@@ -112,6 +112,7 @@ typedef struct
   GtkWidget *netbook_alignment;
   GtkWidget *toolbar_alignment;
   GtkWidget *effect_button_alignment;
+  GtkWidget *info_bar_alignment;
   GtkWidget *togglegroup_alignment;
 
   GtkWidget *effect_frame;
@@ -121,6 +122,7 @@ typedef struct
   GtkWidget *throbber_align;
   GtkWidget *throbber_box;
   GtkWidget *throbber;
+  GtkWidget *info_bar;
   GtkWidget *countdown_frame;
   GtkWidget *countdown_frame_fullscreen;
   GtkWidget *countdown;
@@ -154,10 +156,11 @@ typedef struct
   GtkWidget *take_picture;
   GtkWidget *take_picture_fullscreen;
 
+  GtkActionGroup *actions_main;
+  GtkActionGroup *actions_prefs;
   GtkActionGroup *actions_countdown;
   GtkActionGroup *actions_effects;
   GtkActionGroup *actions_file;
-  GtkActionGroup *actions_main;
   GtkActionGroup *actions_photo;
   GtkActionGroup *actions_toggle;
   GtkActionGroup *actions_video;
@@ -327,7 +330,10 @@ cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window)
   }
   else
   {
-    gtk_widget_show_all (GTK_WIDGET (cheese_window));
+    gtk_widget_show (priv->thumb_view);
+    gtk_widget_show (priv->thumb_scrollwindow);
+    gtk_widget_show (menubar);
+    gtk_widget_show (priv->notebook_bar);
     gtk_widget_hide_all (priv->fullscreen_popup);
     gtk_widget_modify_bg (GTK_WIDGET (cheese_window), GTK_STATE_NORMAL, NULL);
 
@@ -629,7 +635,6 @@ cheese_window_countdown_picture_cb (gpointer data)
   g_free (photo_filename);
 }
 
-#if 0
 static void
 cheese_window_no_camera_info_bar_response (GtkWidget *widget, gint response_id, CheeseWindow *cheese_window)
 {
@@ -653,7 +658,6 @@ cheese_window_no_camera_info_bar_response (GtkWidget *widget, gint response_id, 
     }
   }
 }
-#endif
 
 static void
 cheese_window_stop_recording (CheeseWindow *cheese_window)
@@ -1043,6 +1047,7 @@ setup_widgets_from_builder (CheeseWindow *cheese_window)
   priv->netbook_alignment           = GTK_WIDGET (gtk_builder_get_object (builder, "netbook_alignment"));
   priv->togglegroup_alignment       = GTK_WIDGET (gtk_builder_get_object (builder, "togglegroup_alignment"));
   priv->effect_button_alignment     = GTK_WIDGET (gtk_builder_get_object (builder, "effect_button_alignment"));
+  priv->info_bar_alignment          = GTK_WIDGET (gtk_builder_get_object (builder, "info_bar_alignment"));
   priv->toolbar_alignment           = GTK_WIDGET (gtk_builder_get_object (builder, "toolbar_alignment"));
   priv->video_vbox                  = GTK_WIDGET (gtk_builder_get_object (builder, "video_vbox"));
   priv->widget_alignment            = GTK_WIDGET (gtk_builder_get_object (builder, "widget_alignment"));
@@ -1087,6 +1092,10 @@ setup_menubar_and_actions (CheeseWindow *cheese_window)
                                                        "ActionsMain",
                                                        action_entries_main,
                                                        G_N_ELEMENTS (action_entries_main));
+  priv->actions_prefs = cheese_window_action_group_new (cheese_window,
+                                                       "ActionsPrefs",
+                                                       action_entries_prefs,
+                                                       G_N_ELEMENTS (action_entries_prefs));
 
   priv->actions_toggle = cheese_window_radio_action_group_new (cheese_window,
                                                                "ActionsRadio",
@@ -1193,9 +1202,29 @@ setup_menubar_and_actions (CheeseWindow *cheese_window)
 }
 
 static void
-ready_cb (CheeseWidget        *widget,
-          gboolean             is_ready,
-          CheeseWindow        *window)
+on_widget_error (CheeseWidget        *widget,
+                 CheeseWindow        *window)
+{
+  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
+  GError *error = NULL;
+
+  cheese_widget_get_error (widget, &error);
+  g_return_if_fail (error != NULL);
+
+  /* FIXME: hotplug new devices and hide the info bar */
+  gtk_action_group_set_sensitive (priv->actions_prefs, FALSE);
+  cheese_no_camera_set_info_bar_text_and_icon (GTK_INFO_BAR (priv->info_bar),
+                                               "gtk-dialog-error",
+                                               error->message,
+                                               _("Please refer to the help for further information."));
+  gtk_widget_show (priv->info_bar);
+
+  g_error_free (error);
+}
+
+static void
+on_widget_ready (CheeseWidget        *widget,
+                 CheeseWindow        *window)
 {
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
 
@@ -1212,6 +1241,28 @@ ready_cb (CheeseWidget        *widget,
 
   cheese_camera_set_effect (priv->camera,
                             cheese_effect_chooser_get_selection (CHEESE_EFFECT_CHOOSER (priv->effect_chooser)));
+}
+
+static void
+widget_state_change_cb (GObject          *object,
+                        GParamSpec       *param_spec,
+                        CheeseWindow     *cheese_window)
+{
+  CheeseWidgetState state;
+  g_object_get (object, "state", &state, NULL);
+
+  switch (state) {
+  case CHEESE_WIDGET_STATE_READY:
+    on_widget_ready (CHEESE_WIDGET (object), cheese_window);
+    break;
+  case CHEESE_WIDGET_STATE_ERROR:
+    on_widget_error (CHEESE_WIDGET (object), cheese_window);
+    break;
+  case CHEESE_WIDGET_STATE_NONE:
+    break;
+  default:
+    g_assert_not_reached ();
+  }
 }
 
 void
@@ -1235,11 +1286,20 @@ cheese_window_init (CheeseWindow *cheese_window)
   setup_widgets_from_builder (cheese_window);
   setup_menubar_and_actions (cheese_window);
 
-  g_signal_connect (G_OBJECT (priv->thewidget), "ready",
-                    G_CALLBACK (ready_cb), cheese_window);
+  priv->info_bar  = cheese_no_camera_info_bar_new ();
+  gtk_container_add (GTK_CONTAINER (priv->info_bar_alignment), priv->info_bar);
+
+  g_signal_connect (priv->info_bar,
+                    "response",
+                    G_CALLBACK (cheese_window_no_camera_info_bar_response),
+                    cheese_window);
+
+  g_signal_connect (G_OBJECT (priv->thewidget), "notify::state",
+                    G_CALLBACK (widget_state_change_cb), cheese_window);
 
   gtk_container_add (GTK_CONTAINER (priv->widget_alignment), priv->thewidget);
   gtk_widget_show (priv->thewidget);
+
 
   /* configure the popup position and size */
   GdkScreen *screen = gtk_window_get_screen (GTK_WINDOW (priv->fullscreen_popup));
@@ -1271,6 +1331,7 @@ cheese_window_init (CheeseWindow *cheese_window)
   g_object_get (priv->gconf, "gconf_prop_selected_effects", &gconf_effects, NULL);
   priv->effect_chooser = cheese_effect_chooser_new (gconf_effects);
   gtk_container_add (GTK_CONTAINER (priv->effect_frame), priv->effect_chooser);
+  gtk_widget_show_all (priv->effect_vbox);
   g_free (gconf_effects);
 
   priv->countdown = cheese_countdown_new ();
@@ -1339,8 +1400,6 @@ cheese_window_constructed (GObject *object)
   gtk_window_resize (GTK_WINDOW (window), req.width, req.height);
   gtk_widget_set_size_request (priv->thewidget, -1, -1);
 
-  gtk_widget_show_all (priv->main_vbox);
-
   if (G_OBJECT_CLASS (cheese_window_parent_class)->constructed)
     G_OBJECT_CLASS (cheese_window_parent_class)->constructed (object);
 }
@@ -1368,6 +1427,7 @@ cheese_window_finalize (GObject *object)
 
   g_object_unref (priv->fileutil);
   g_object_unref (priv->actions_main);
+  g_object_unref (priv->actions_prefs);
   g_object_unref (priv->actions_countdown);
   g_object_unref (priv->actions_effects);
   g_object_unref (priv->actions_file);

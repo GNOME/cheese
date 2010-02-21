@@ -24,6 +24,10 @@
 G_BEGIN_DECLS
 
 GtkWidget *cheese_no_camera_info_bar_new (void);
+void cheese_no_camera_set_info_bar_text_and_icon (GtkInfoBar  *info_bar,
+                                                  const gchar *icon_stock_id,
+                                                  const gchar *primary_text,
+                                                  const gchar *secondary_text);
 
 G_END_DECLS
 
