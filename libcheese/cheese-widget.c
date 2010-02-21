@@ -284,13 +284,18 @@ cheese_widget_changed (CheeseWidget *self)
 
 #endif
 
+#if 0
 static gboolean
 cheese_widget_emit_error_idle (CheeseWidget *widget)
 {
+  CheeseWidgetPrivate *priv          = CHEESE_WIDGET_GET_PRIVATE (widget);
   g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0,
+                 (priv->error && priv->error->message) ?
+                 priv->error->message :
                  _("Camera setup failed"));
   return FALSE;
 }
+#endif
 
 void
 setup_camera (CheeseWidget *widget)
@@ -324,20 +329,15 @@ setup_camera (CheeseWidget *widget)
   g_free (webcam_device);
 
   cheese_camera_setup (priv->webcam, NULL, &error);
-  if (error != NULL)
-  {
-    g_warning ("Error setting up webcam %s", error->message);
-    cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "no-webcam");
-    g_idle_add ((GSourceFunc) cheese_widget_emit_error_idle, widget);
-    return;
-  }
 
   gdk_threads_enter ();
+
   gtk_spinner_stop (GTK_SPINNER (priv->spinner));
 
-  if (cheese_camera_get_num_camera_devices (priv->webcam) == 0)
+  if (error != NULL)
   {
     cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "no-webcam");
+    g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0, error->message);
   }
   else
   {
@@ -375,8 +375,7 @@ cheese_widget_realize (GtkWidget *widget)
 
   if (!g_thread_create ((GThreadFunc) setup_camera, widget, FALSE, &error))
   {
-    g_warning ("Failed to create setup thread: %s\n", error->message);
-    g_error_free (error);
+    g_warning ("Failed to create setup thread: %s", error->message);
     goto error;
   }
 
@@ -390,7 +389,7 @@ error:
   gtk_spinner_stop (GTK_SPINNER (priv->spinner));
   cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
   g_signal_emit (widget, widget_signals[ERROR_SIGNAL], 0,
-                 _("Camera setup failed"));
+                 error->message);
 }
 
 static void
