@@ -295,7 +295,7 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
                           CheeseCamera              *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-  GError *error;
+  GError *error = NULL;
 
   CheeseCameraDevice *device = cheese_camera_device_new (id,
                                                          device_file,
@@ -1149,8 +1149,9 @@ cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
   cheese_camera_create_video_save_bin (camera, &tmp_error);
   if (tmp_error != NULL)
   {
-    g_propagate_error (error, tmp_error);
-    g_prefix_error (error, _("One or more needed GStreamer elements are missing: "));
+    g_propagate_prefixed_error (error, tmp_error,
+                                _("One or more needed GStreamer elements are missing: "));
+    GST_WARNING ("%s", (*error)->message);
     return;
   }
 
@@ -1174,7 +1175,11 @@ cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
 GPtrArray *
 cheese_camera_get_camera_devices (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv;
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
+
+  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   return g_ptr_array_ref (priv->camera_devices);
 }
@@ -1182,15 +1187,19 @@ cheese_camera_get_camera_devices (CheeseCamera *camera)
 void
 cheese_camera_set_device_by_dev_file (CheeseCamera *camera, char *file)
 {
+  g_return_if_fail (CHEESE_IS_CAMERA (camera));
   g_object_set (camera, "device_name", file, NULL);
 }
 
 void
 cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
+  CheeseCameraPrivate *priv;
   int i;
+
+  g_return_if_fail (CHEESE_IS_CAMERA (camera));
+
+  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   for (i = 0; i < priv->num_camera_devices; i++)
   {
@@ -1208,7 +1217,11 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
 GList *
 cheese_camera_get_video_formats (CheeseCamera *camera)
 {
-  CheeseCameraDevice *device = cheese_camera_get_selected_device (camera);
+  CheeseCameraDevice *device;
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
+
+  device = cheese_camera_get_selected_device (camera);
 
   if (device)
     return cheese_camera_device_get_format_list (device);
@@ -1219,7 +1232,11 @@ cheese_camera_get_video_formats (CheeseCamera *camera)
 gboolean
 cheese_camera_is_playing (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv;
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), FALSE);
+
+  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   return priv->pipeline_is_playing;
 }
@@ -1227,7 +1244,11 @@ cheese_camera_is_playing (CheeseCamera *camera)
 void
 cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv;
+  g_return_if_fail (CHEESE_IS_CAMERA (camera));
+  g_return_if_fail (format == NULL);
+
+  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   if (!(priv->current_format->width == format->width &&
         priv->current_format->height == format->height))
@@ -1245,6 +1266,7 @@ const CheeseVideoFormat *
 cheese_camera_get_current_video_format (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
 
   return priv->current_format;
 }
@@ -1254,8 +1276,12 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
                                           gchar *property,
                                           gdouble *min, gdouble *max, gdouble *def)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv;
   GParamSpec          *pspec;
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), FALSE);
+
+  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   *min = 0.0;
   *max = 1.0;
@@ -1278,7 +1304,11 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
 void
 cheese_camera_set_balance_property (CheeseCamera *camera, gchar *property, gdouble value)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv;
+
+  g_return_if_fail (CHEESE_IS_CAMERA (camera));
+
+  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   g_object_set (G_OBJECT (priv->video_balance), property, value, NULL);
 }
