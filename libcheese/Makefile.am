@@ -12,15 +12,21 @@ INCLUDES = \
 lib_LTLIBRARIES = libcheese-gtk.la
 noinst_LTLIBRARIES = libcheesecommon.la
 
-cheese-marshal.h: cheese-marshal.list Makefile
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=_cheese_marshal $< --header > $@
+EXTRA_DIST = cheese-gtk.symbols
+CLEANFILES =
+DISTCLEANFILES =
+BUILT_SOURCES =
 
-cheese-marshal.c: cheese-marshal.list Makefile
-	$(AM_V_GEN) $(GLIB_GENMARSHAL) --prefix=_cheese_marshal $< --body > $@
+glib_marshal_list = cheese-marshal.list
+glib_marshal_prefix = _cheese_marshal
+include $(top_srcdir)/Makefile.am.marshal
+
+glib_enum_h = cheese-enum-types.h
+glib_enum_c = cheese-enum-types.c
+glib_enum_headers = $(top_srcdir)/libcheese/cheese-widget.h
+include $(top_srcdir)/Makefile.am.enums
 
 libcheese_gtk_la_CFLAGS = $(CHEESE_CFLAGS)
-
-BUILT_SOURCES = cheese-marshal.c cheese-marshal.h
 
 libcheesecommon_la_SOURCES = \
 	cheese-gconf.c \
@@ -49,10 +55,6 @@ libcheese_gtk_la_SOURCES = \
 	cheese-widget-private.h \
 	$(NULL)
 
-EXTRA_DIST = cheese-gtk.symbols cheese-marshal.list
-CLEANFILES = $(BUILT_SOURCES)
-DISTCLEANFILES =
-
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
 cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h cheese-camera-device-monitor.h
@@ -65,8 +67,3 @@ libcheese_gtk_la_LDFLAGS = \
 	-export-symbols $(srcdir)/cheese-gtk.symbols	\
 	-no-undefined					\
 	$(AM_LDFLAGS)
-
-glib_enum_h = cheese-enum-types.h
-glib_enum_c = cheese-enum-types.c
-glib_enum_headers = cheese-widget.h
-include $(top_srcdir)/Makefile.am.enums
