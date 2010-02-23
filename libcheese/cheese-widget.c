@@ -312,7 +312,8 @@ setup_camera (CheeseWidget *widget)
 
   gdk_threads_enter ();
   priv->webcam = cheese_camera_new (priv->screen,
-                                    webcam_device, x_resolution,
+                                    webcam_device,
+                                    x_resolution,
                                     y_resolution);
   gdk_threads_leave ();
 
@@ -332,6 +333,10 @@ setup_camera (CheeseWidget *widget)
   }
   else
   {
+    cheese_camera_set_balance_property (priv->webcam, "brightness", brightness);
+    cheese_camera_set_balance_property (priv->webcam, "contrast", contrast);
+    cheese_camera_set_balance_property (priv->webcam, "saturation", saturation);
+    cheese_camera_set_balance_property (priv->webcam, "hue", hue);
     priv->state = CHEESE_WIDGET_STATE_READY;
     g_object_notify (G_OBJECT (widget), "state");
     cheese_camera_play (priv->webcam);
