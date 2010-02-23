@@ -1,6 +1,34 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.29.91
+  * cheese:
+    - Restore the infobar temporarily disabled in the previous version
+    - Make the infobar display generic errors about camera
+      initialization instead of just the "no-device" one.
+
+  * libcheese-gtk:
+    - Remove "ready" and "error" signals in CheeseWidget and use a
+      "state" property to track current widget state (none, ready,
+      error).
+    - Add cheese_widget_get_error() api to retrieve a GError (propagated
+      from CheeseCamera) if something failed (widget in error state).
+    - Update CheeseAvatarChooser to reflect the new api.
+
+  * Fixed bugs:
+      #592663 — Update sensitivity of "move all to trash", Mathias Clasen
+
+  * Added/Updated Translations
+    - de, courtesy of Wolfgang Stoeggl
+    - gl, courtesy of Fran Diéguez
+    - ja, courtesy of Hideki Yamane (Debian-JP)
+    - pl, courtesy of Piotr Drąg
+    - ro, courtesy of Adi Roiban
+    - ru, courtesy of Alexander Saprykin
+    - sv, courtesy of Daniel Nylander
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+
 version 2.29.90
 
   * Export libcheese-gtk library
