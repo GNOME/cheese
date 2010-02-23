@@ -33,7 +33,7 @@ GTK_DOC_CHECK(1.11)
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
-CHEESE_LT_VERSION=17:0:0
+CHEESE_LT_VERSION=18:0:0
 AC_SUBST(CHEESE_LT_VERSION)
 
 #*******************************************************************************
