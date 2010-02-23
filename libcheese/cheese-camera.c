@@ -1246,7 +1246,7 @@ cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
 {
   CheeseCameraPrivate *priv;
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
-  g_return_if_fail (format == NULL);
+  g_return_if_fail (format != NULL);
 
   priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
