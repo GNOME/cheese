@@ -2,7 +2,7 @@
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
- * Copyright © 2009 Filippo Argiolas <filippo.argiolas@gmail.com>
+ * Copyright © 2010 Filippo Argiolas <filippo.argiolas@gmail.com>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -45,6 +45,21 @@
 
 #include "cheese-camera-device-monitor.h"
 #include "cheese-marshal.h"
+
+/**
+ * SECTION:cheese-camera-device-monitor
+ * @short_description: Simple object to enumerate v4l devices
+ * @include: cheese/cheese-camera-device-monitor.h
+ *
+ * #CheeseCameraDeviceMonitor provides a basic interface for
+ * video4linux device enumeration and hotplugging.
+ *
+ * It uses either GUdev or some platform specific code to list video
+ * devices.  It is also capable (right now in linux only, with the
+ * udev backend) to monitor device plugging and emit a
+ * CheeseCameraDeviceMonitor::added or
+ * CheeseCameraDeviceMonitor::removed signal when an event happens.
+ */
 
 G_DEFINE_TYPE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_OBJECT)
 
@@ -334,6 +349,10 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
   /**
    * CheeseCameraDeviceMonitor::added:
    * @device: A private object representing the newly added camera.
+   * @id: Device unique identifier.
+   * @device: Device file name  (e.g. /dev/video2).
+   * @product_name: Device product name (human readable, intended to be displayed in a UI).
+   * @api_version: Supported video4linux API: 1 for v4l, 2 for v4l2.
    *
    * The ::added signal is emitted when a camera is added, or on start-up
    * after #cheese_camera_device_monitor_colplug is called.
@@ -347,7 +366,8 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 
   /**
    * CheeseCameraDeviceMonitor::removed:
-   * @id: an ID representing the removed camera.
+   * @device: A private object representing the newly added camera
+   * @id: Device unique identifier.
    *
    * The ::removed signal is emitted when a camera is un-plugged, or
    * disabled on the system.

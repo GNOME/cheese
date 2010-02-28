@@ -38,12 +38,16 @@ G_BEGIN_DECLS
 #define CHEESE_IS_CAMERA_DEVICE_MONITOR_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_CAMERA_DEVICE_MONITOR))
 #define CHEESE_CAMERA_DEVICE_MONITOR_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA_DEVICE_MONITOR, \
                                                                               CheeseCameraDeviceMonitorClass))
-typedef struct
+
+typedef struct _CheeseCameraDeviceMonitorClass CheeseCameraDeviceMonitorClass;
+typedef struct _CheeseCameraDeviceMonitor CheeseCameraDeviceMonitor;
+
+struct _CheeseCameraDeviceMonitor
 {
   GObject parent;
-} CheeseCameraDeviceMonitor;
+};
 
-typedef struct
+struct _CheeseCameraDeviceMonitorClass
 {
   GObjectClass parent_class;
 
@@ -53,9 +57,9 @@ typedef struct
                 const char *product_name,
                 int api_version);
   void (*removed)(CheeseCameraDeviceMonitor *camera, const char *id);
-} CheeseCameraDeviceMonitorClass;
+};
 
-GType                      cheese_camera_device_monitor_get_type (void);
+GType                      cheese_camera_device_monitor_get_type (void) G_GNUC_CONST;
 CheeseCameraDeviceMonitor *cheese_camera_device_monitor_new (void);
 void                       cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor);
 
