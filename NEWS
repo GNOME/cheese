@@ -1,6 +1,23 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.29.92
+  - widget: restore saved balance settings at startup
+    Restore balance (brightness, saturation, hue) settings, saved in gconf,
+    when the camera is initialized. Fixes bug 610823.
+  - camera: fix a shameful pointless g_return_if_fail that prevented
+    resolution changin from preferences.
+  - docs: complete api docs for CheeseCameraDeviceMonitor
+  - Added/Updated Translations
+    - ca, courtesy of Gil Forcada
+    - el, courtesy of Kostas Papadimas
+    - en_GB, courtesy of Bruce Cowan
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fi, courtesy of Tommi Vainikainen
+    - hu, courtesy of Gabor Kelemen
+    - nb, courtesy of Kjartan Maraas
+    - pt, courtesy of Duarte Loreto
+
 version 2.29.91
   * cheese:
     - Restore the infobar temporarily disabled in the previous version
