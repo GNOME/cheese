@@ -835,8 +835,8 @@ cheese_window_action_button_clicked_cb (GtkWidget *widget, CheeseWindow *cheese_
       {
         gtk_action_group_set_sensitive (priv->actions_effects, FALSE);
         gtk_action_group_set_sensitive (priv->actions_toggle, FALSE);
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (priv->label_take_photo), _BOLD(VIDEO_START_LABEL));
-        gtk_label_set_markup_with_mnemonic (GTK_LABEL (priv->label_take_photo_fullscreen), _BOLD(VIDEO_START_LABEL));
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (priv->label_take_photo), _BOLD(VIDEO_STOP_LABEL));
+        gtk_label_set_markup_with_mnemonic (GTK_LABEL (priv->label_take_photo_fullscreen), _BOLD(VIDEO_STOP_LABEL));
         gtk_image_set_from_stock (GTK_IMAGE (
                                     priv->image_take_photo), GTK_STOCK_MEDIA_STOP, GTK_ICON_SIZE_BUTTON);
         gtk_image_set_from_stock (GTK_IMAGE (priv->image_take_photo_fullscreen),
