@@ -75,8 +75,8 @@ cheese_widget_load_pixbuf (GtkWidget  *widget,
   theme = gtk_icon_theme_get_for_screen (gtk_widget_get_screen (widget));
 
   /* FIXME special case "no-webcam" and actually use the icon_name */
-  pixbuf = gtk_icon_theme_load_icon (theme, "error",
-                                     size, 0, error);
+  pixbuf = gtk_icon_theme_load_icon (theme, "dialog-error",
+                                     size, GTK_ICON_LOOKUP_USE_BUILTIN | GTK_ICON_LOOKUP_FORCE_SIZE, error);
   return pixbuf;
 }
 
