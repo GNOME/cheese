@@ -110,6 +110,10 @@ main (int argc, char **argv)
   g_thread_init (NULL);
   gdk_threads_init ();
 
+  /* initialize rsvg */
+  /* needed to load the camera icon for the countdown widget */
+  rsvg_init ();
+
   g_set_application_name (_("Cheese"));
 
   context = g_option_context_new (N_("- Take photos and videos with your webcam, with fun graphical effects"));
@@ -158,6 +162,12 @@ main (int argc, char **argv)
   gdk_threads_enter ();
   gtk_main ();
   gdk_threads_leave ();
+
+  /* cleanup rsvg */
+  /* Note: this function is bad with multithread applications as it
+   * calls xmlCleanupParser() and should be only called right before
+   * exit */
+  rsvg_term ();
 
   return 0;
 }

@@ -504,8 +504,6 @@ create_surface_from_svg (GtkWidget *widget, gchar *pcFilename)
 
   CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
 
-  rsvg_init ();
-
   /* load svg-file from disk */
   pSvgHandle = rsvg_handle_new_from_file (pcFilename, &pError);
   if (!pSvgHandle)
@@ -546,7 +544,6 @@ create_surface_from_svg (GtkWidget *widget, gchar *pcFilename)
 
   /* clean up */
   rsvg_handle_free (pSvgHandle);
-  rsvg_term ();
   cairo_destroy (pContext);
 
   return pSurface;
