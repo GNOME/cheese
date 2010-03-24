@@ -28,6 +28,7 @@
 #include <gio/gio.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
+#include <librsvg/rsvg.h>
 
 #include "cheese-fileutil.h"
 #include "cheese-window.h"
