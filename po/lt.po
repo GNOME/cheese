@@ -2,24 +2,26 @@
 # Cheese Lithuanian translation
 # Copyright (C) 2007 Gintautas Miliauskas <gintas@akl.lt>
 # This file is distributed under the same license as cheese
-#
 # Gintautas Miliauskas <gintas@akl.lt>, 2008.
+# Žygimantas Beručka <zygis@gnome.org>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-09-24 10:55+0300\n"
-"PO-Revision-Date: 2009-09-24 10:53+0300\n"
-"Last-Translator: Gintautas Miliauskas <gintautas@miliauskas.lt>\n"
+"Report-Msgid-Bugs-To: "
+"http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2010-03-23 21:59+0000\n"
+"PO-Revision-Date: 2010-03-28 18:02+0300\n"
+"Last-Translator: Žygimantas Beručka <zygis@gnome.org>\n"
 "Language-Team: Lithuanian <gnome-lt@lists.akl.lt>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%"
 "100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: KBabel 1.11.4\n"
+"X-Generator: Virtaal 0.5.2\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:184
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:113
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -27,7 +29,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese internetinės kameros programa"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1102
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-commands-help.c:118
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Fotografuokite ir filmuokite internetine kamera, su įdomiais efektais"
 
@@ -36,30 +38,39 @@ msgstr "Fotografuokite ir filmuokite internetine kamera, su įdomiais efektais"
 #: ../data/cheese.schemas.in.h:3
 msgid ""
 "A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", "
+"\"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
 "Efektai, įjungiami paleidžiant programą. Galimos reikšmės: „mauve“, "
 "„noir_blanc“, „saturation“, „hulk“, „vertical-flip“, „horizontal-flip“, "
 "„shagadelic“, „vertigo“, „edge“, „dice“ ir „warp“"
 
 #: ../data/cheese.schemas.in.h:4
-msgid "Adjusts brightness level of the picture coming from the webcam"
-msgstr "Keičia kamera nufotografuoto vaizdo skaistį"
+#| msgid "Adjusts brightness level of the picture coming from the webcam"
+msgid "Adjusts brightness level of the picture coming from the camera"
+msgstr "Reguliuoja kameros teikiamo vaizdo skaistį"
 
 #: ../data/cheese.schemas.in.h:5
-msgid "Adjusts contrast level of the picture coming from the webcam"
-msgstr "Keičia kamera nufotografuoto vaizdo kontrastą"
+#| msgid "Adjusts contrast level of the picture coming from the webcam"
+msgid "Adjusts contrast level of the picture coming from the camera"
+msgstr "Reguliuoja kameros teikiamo vaizdo kontrastą"
 
 #: ../data/cheese.schemas.in.h:6
-msgid "Adjusts hue level of the picture coming from the webcam"
-msgstr "Keičia kamera nufotografuoto vaizdo atspalvį"
+#| msgid "Adjusts hue level of the picture coming from the webcam"
+msgid "Adjusts hue level of the picture coming from the camera"
+msgstr "Reguliuoja kameros teikiamo vaizdo atspalvį"
 
 #: ../data/cheese.schemas.in.h:7
-msgid "Adjusts saturation level of the picture coming from the webcam"
-msgstr "Keičia kamera nufotografuoto vaizdo grynį"
+#| msgid "Adjusts saturation level of the picture coming from the webcam"
+msgid "Adjusts saturation level of the picture coming from the camera"
+msgstr "Reguliuoja kameros teikiamo vaizdo grynį"
 
 #: ../data/cheese.schemas.in.h:8
+#| msgid "Webcam device string indicator"
+msgid "Camera device string indicator"
+msgstr "Kameros įrenginio sekos indikatorius"
+
+#: ../data/cheese.schemas.in.h:9
 msgid ""
 "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
 "will be used."
@@ -67,7 +78,7 @@ msgstr ""
 "Nurodo kelią, kur bus saugomos nuotraukos. Nenurodžius, bus naudojamas "
 "„XDG_PHOTO/Webcam“."
 
-#: ../data/cheese.schemas.in.h:9
+#: ../data/cheese.schemas.in.h:10
 msgid ""
 "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
 "will be used."
@@ -75,97 +86,99 @@ msgstr ""
 "Nurodo kelią, kur bus saugomi vaizdo įrašai. Nenurodžius, bus naudojamas "
 "„XDG_VIDEO/Webcam“."
 
-#: ../data/cheese.schemas.in.h:10
+#: ../data/cheese.schemas.in.h:11
 msgid "Height resolution"
 msgstr "Aukščio geba"
 
-#: ../data/cheese.schemas.in.h:11
-msgid ""
-"If set to true, Cheese will startup in a wide mode with the image collection "
-"placed on the right side. Useful with small screens."
-msgstr ""
-"Pažymėjus šią nuostatą, „Cheese“ visuomet pasileis plačiojoje veiksenoje (su "
-"paveikslėlių galerija dešinėje pusėje). Tai patogu mažesniuose ekranuose."
-
 #: ../data/cheese.schemas.in.h:12
+#| msgid ""
+#| "If set to true, Cheese will startup in a wide mode with the image "
+#| "collection placed on the right side. Useful with small screens."
+msgid ""
+"If set to true, Cheese will start up in a wide mode with the image "
+"collection placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Pažymėjus šią parinktį, „Cheese“ bus paleista plačiojoje veiksenoje, kur "
+"paveikslėlių galerija yra dešinėje pusėje. Tai patogu turint mažesnį ekraną."
+
+#: ../data/cheese.schemas.in.h:13
 msgid ""
 "If set to true, then Cheese will have a feature allowing you to delete a "
 "file immediately and in-place, instead of moving it to the trash. This "
 "feature can be dangerous, so use caution."
 msgstr ""
-"Jei nustatytas „True“, Cheese galės neatidėliojant pašalinti failą vietoje, "
-"nesiunčiant jo į šiukšlinę. Ši galimybė pavojinga, būite atsargūs."
-
-#: ../data/cheese.schemas.in.h:13
-msgid "Milliseconds between photos in burst mode."
-msgstr "Tarpas milisekundėmis tarp nuotraukų pliūpsnyje."
+"Jei nustatytas teigiama reikšmė, Cheese galės iš karto ištrinti failą, "
+"nesiunčiant jo į šiukšlinę. Ši funkcija gali būti pavojinga, būkite "
+"atsargūs."
 
 #: ../data/cheese.schemas.in.h:14
+msgid "Milliseconds between photos in burst mode."
+msgstr "Intervalas tarp nuotraukų milisekundėmis pliūpsninėje veiksenoje."
+
+#: ../data/cheese.schemas.in.h:15
 msgid "Number of photos in burst mode."
 msgstr "Nuotraukų kiekis pliūpsnyje."
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:16
 msgid "Photo Path"
 msgstr "Nuotraukų kelias"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:17
 msgid "Picture brightness"
 msgstr "Nuotraukos skaistis"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:18
 msgid "Picture contrast"
 msgstr "Nuotraukos kontrastas"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:19
 msgid "Picture hue"
 msgstr "Paveikslėlio atspalvis"
 
-#: ../data/cheese.schemas.in.h:19
-msgid "Picture saturation"
-msgstr "Paveikslėlio ryškumas"
-
 #: ../data/cheese.schemas.in.h:20
+msgid "Picture saturation"
+msgstr "Paveikslėlio grynis"
+
+#: ../data/cheese.schemas.in.h:21
 msgid "Selected Effects"
 msgstr "Pasirinkti efektai"
 
-#: ../data/cheese.schemas.in.h:21
-msgid "Set to True to show countdown when taking a photo"
-msgstr "Nustatykite „True“ laikrodžio naudojimui fotografuojant"
-
 #: ../data/cheese.schemas.in.h:22
-msgid "The device which points to the webcam (e.g. /dev/video0)"
-msgstr "Interneto kameros įrenginys (pvz., /dev/video0)"
+msgid "Set to True to show countdown when taking a photo"
+msgstr ""
+"Nustatykite teigiamą reikšmę, jei norite matyti atgalinį laiką "
+"fotografuojant"
 
 #: ../data/cheese.schemas.in.h:23
-msgid "The height resolution of the image captured from the camera"
-msgstr "Vaizdo, nufotografuoto kamera, aukščio skiriamoji geba."
+#| msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgid "The device which points to the camera (e.g. /dev/video0)"
+msgstr "Įrenginys, rodantis į kamerą (pvz., /dev/video0)"
 
 #: ../data/cheese.schemas.in.h:24
+msgid "The height resolution of the image captured from the camera"
+msgstr "Kameros priimamo vaizdo vertikali skiriamoji geba."
+
+#: ../data/cheese.schemas.in.h:25
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
-msgstr ""
-"Laiko tarpas tarp dviejų nuotraukų pliūpsnio serijoje (milisekundėmis)."
+msgstr "Intervalas milisekundėmis tarp dviejų nuotraukų pliūpsnio serijoje."
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid "The number of photos to take in a single burst."
 msgstr "Nuotraukų skaičius viename pliūpsnyje."
 
-#: ../data/cheese.schemas.in.h:26
-msgid "The width resolution of the image captured from the camera"
-msgstr "Vaizdo, nufotografuoto kamera, pločio skiriamoji geba."
-
 #: ../data/cheese.schemas.in.h:27
-msgid "Use a countdown"
-msgstr "Uždelsti fotografavimą"
+msgid "The width resolution of the image captured from the camera"
+msgstr "Kameros priimamo vaizdo horizontali skiriamoji geba."
 
 #: ../data/cheese.schemas.in.h:28
-msgid "Video Path"
-msgstr "Vaizdo įrašų kelias"
+msgid "Use a countdown"
+msgstr "Naudoti atgalinę laiko atskaitą"
 
 #: ../data/cheese.schemas.in.h:29
-msgid "Webcam device string indicator"
-msgstr "Kameros įrenginio kelio indikatorius"
+msgid "Video Path"
+msgstr "Vaizdo įrašų kelias"
 
 #: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
@@ -177,35 +190,33 @@ msgstr "Ar pradėti darbą plačiojoje veiksenoje"
 
 #: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
-msgstr "Pločio geba"
+msgstr "Horizontali skiriamoji geba"
 
-#: ../data/cheese.ui.h:2
+#: ../data/cheese.ui.h:1
 msgid "Switch to Burst Mode"
 msgstr "Perjungti į pliūpsninę veikseną"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:2
 msgid "Switch to Photo Mode"
 msgstr "Perjungti į nuotraukų veikseną"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:3
 msgid "Switch to Video Mode"
 msgstr "Perjungti į video veikseną"
 
-#: ../data/cheese.ui.h:5
+#: ../data/cheese.ui.h:4
 msgid "Switch to the Effects Selector"
 msgstr "Perjungti į efektų parinkiklį"
 
-#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1226
-#: ../src/cheese-window.c:1546
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
 msgid "_Effects"
 msgstr "_Efektai"
 
-#: ../data/cheese.ui.h:7
+#: ../data/cheese.ui.h:6
 msgid "_Leave Fullscreen"
 msgstr "_Palikti viso ekrano veikseną"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1579
-#: ../src/cheese-window.c:1619
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "_Fotografuoti"
 
@@ -222,8 +233,9 @@ msgid "Contrast"
 msgstr "Kontrastas"
 
 #: ../data/cheese-prefs.ui.h:4
-msgid "Delay between photos (secs.)"
-msgstr "Laiko tarpas tarp nuotraukų (sek.)"
+#| msgid "Delay between photos (secs.)"
+msgid "Delay between photos (seconds)"
+msgstr "Intervalas tarp nuotraukų (sekundėmis)"
 
 #: ../data/cheese-prefs.ui.h:5
 msgid "Device"
@@ -241,7 +253,7 @@ msgstr "Paveikslėlio savybės"
 msgid "Number of photos"
 msgstr "Nuotraukų skaičius"
 
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1550
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-ui.h:44
 msgid "Preferences"
 msgstr "Nustatymai"
 
@@ -251,11 +263,190 @@ msgstr "Skiriamoji geba"
 
 #: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
-msgstr "Ryškumas"
+msgstr "Grynis"
 
 #: ../data/cheese-prefs.ui.h:12
 msgid "Webcam"
-msgstr "Internetinė kamera"
+msgstr "Žiniatinklio kamera"
+
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+msgid "Shutter sound"
+msgstr "Užrakto garsas"
+
+#: ../libcheese/cheese-avatar-chooser.c:236
+#| msgid "_Take a photo"
+msgid "Take a photo"
+msgstr "Fotografuoti"
+
+#: ../libcheese/cheese-avatar-chooser.c:255
+msgid "_Take a photo"
+msgstr "_Fotografuoti"
+
+#: ../libcheese/cheese-avatar-chooser.c:270
+msgid "_Discard photo"
+msgstr "_Atsisakyti nuotraukos"
+
+#: ../libcheese/cheese-camera-device.c:327
+msgid "Device capabilities not supported"
+msgstr "﻿Įrenginio galimybės nepalaikomos"
+
+#: ../libcheese/cheese-camera-device.c:488
+msgid "Unknown device"
+msgstr "Nežinomas įrenginys"
+
+#: ../libcheese/cheese-camera-device.c:512
+msgid "Cancellable initialization not supported"
+msgstr "Atšauktina inicializacija nepalaikoma"
+
+#: ../libcheese/cheese-camera.c:1134
+#, c-format
+#| msgid "No camera found!"
+msgid "No device found"
+msgstr "Įrenginių nerasta"
+
+#: ../libcheese/cheese-camera.c:1153
+#| msgid "One or more needed gstreamer elements are missing: "
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Nėra vieno ar daugiau reikalingų GStreamer elementų:"
+
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
+#: ../libcheese/cheese-countdown.c:474
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-commands-file.c:31
+msgid "_Skip"
+msgstr "_Praleisti"
+
+#: ../src/cheese-commands-file.c:32
+msgid "S_kip All"
+msgstr "P_raleisti visus"
+
+#: ../src/cheese-commands-file.c:33
+msgid "Delete _All"
+msgstr "Trinti _visus"
+
+#: ../src/cheese-commands-file.c:57
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s\n"
+"%s"
+msgstr ""
+"Nepavyko paleisti programos parodyti:\n"
+"%s\n"
+"%s"
+
+#: ../src/cheese-commands-file.c:78
+msgid "Save File"
+msgstr "Įrašyti failą"
+
+#: ../src/cheese-commands-file.c:116
+#, c-format
+msgid "Could not save %s"
+msgstr "Nepavyko įrašyti %s"
+
+#: ../src/cheese-commands-file.c:139
+msgid "Error while deleting"
+msgstr "Klaida trinant"
+
+#: ../src/cheese-commands-file.c:140
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "Failas „%s“ negali būti ištrintas. Priežastis: %s"
+
+#: ../src/cheese-commands-file.c:167
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "Ar tikrai norite galutinai ištrinti %'d pasirinktą elementą?"
+msgstr[1] "Ar tikrai norite galutinai ištrinti %'d pasirinktus elementus?"
+msgstr[2] "Ar tikrai norite galutinai ištrinti %'d pasirinktų elementų?"
+
+#: ../src/cheese-commands-file.c:174
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "Ar tikrai norite galutinai ištrinti „%s“"
+
+#: ../src/cheese-commands-file.c:177
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Jei ištrinsite elementą, jis bus negrįžtamai prarastas."
+
+#: ../src/cheese-commands-file.c:198
+msgid "Unknown Error"
+msgstr "Nežinoma klaida"
+
+#: ../src/cheese-commands-file.c:228
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "Nepavyko perkelti failo į šiukšlinę, ar norite jį ištrinti?"
+
+#: ../src/cheese-commands-file.c:229
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "Failas „%s“ negali būti perkeltas į šiukšlinę. Priežastis: %s"
+
+#: ../src/cheese-commands-file.c:301
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "Tikrai perkelti visas nuotraukas ir video įrašus į šiukšlinę?"
+
+#: ../src/cheese-commands-file.c:309
+msgid "_Move to Trash"
+msgstr "_Perkelti į šiukšlinę"
+
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+msgid "Unable to open help file for Cheese"
+msgstr "Nepavyko atverti Cheese žinyno"
+
+#: ../src/cheese-commands-help.c:96
+msgid "translator-credits"
+msgstr "Gintautas Miliauskas <gintas@akl.lt>"
+
+#: ../src/cheese-commands-help.c:99
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"Ši programa yra laisva. Jūs galite ją platinti ir/arba modifikuotiremdamiesi "
+"Free Software Foundation paskelbtomis GNU BendrosiosViešosios licenzijos "
+"sąlygomis: 2 licenzijos versija, arba (savonuožiūra) bet kuria vėlesne "
+"versija.\n"
+
+#: ../src/cheese-commands-help.c:103
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Ši programa platinama su viltimi, kad ji bus naudinga, bet BE "
+"JOKIŲGARANTIJŲ; be jokios numanomos PERKAMUMO ar TINKAMUMO "
+"KONKRETIEMSTIKSLAMS garantijos. Žiūrėkite GNU Bendrąją Viešąją licenziją "
+"norėdamisužinoti smulkmenas.\n"
+
+#: ../src/cheese-commands-help.c:107
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Jūs turėjote kartu su šia programa gauti ir GNU Bendrosios "
+"Viešosioslicenzijos kopiją. Jei ne, skaitykite <http://www.gnu.org/licenses/"
+">."
+
+#: ../src/cheese-commands-help.c:124
+msgid "Cheese Website"
+msgstr "Cheese tinklalapis"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -301,290 +492,133 @@ msgstr "Kauliukai"
 msgid "Warp"
 msgstr "Iškreiptas"
 
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
-#: ../src/cheese-countdown.c:474
-#, c-format
-msgid "%d "
-msgstr "%d "
-
-#: ../src/cheese-no-camera.c:93
+#: ../src/cheese-no-camera.c:94
 msgid "No camera found!"
 msgstr "Nerasta kamera!"
 
-#: ../src/cheese-no-camera.c:94
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
 msgid "Please refer to the help for further information."
 msgstr "Daugiau informacijos žinyne."
 
-#: ../src/cheese-webcam.c:1660
-msgid "One or more needed gstreamer elements are missing: "
-msgstr "Trūksta reikalingų gstreamer elementų: "
-
-#: ../src/cheese-window.c:80
-msgid "_Skip"
-msgstr "_Peršokti"
-
-#: ../src/cheese-window.c:81
-msgid "S_kip All"
-msgstr "P_eršokti visus"
-
-#: ../src/cheese-window.c:82
-msgid "Delete _All"
-msgstr "Trinti _visus"
-
-#: ../src/cheese-window.c:548
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Nepavyko paleisti programos parodyti:\n"
-"%s\n"
-"%s"
-
-#: ../src/cheese-window.c:569
-msgid "Save File"
-msgstr "Įrašyti failą"
-
-#: ../src/cheese-window.c:607
-#, c-format
-msgid "Could not save %s"
-msgstr "Nepavyko įrašyti %s"
-
-#: ../src/cheese-window.c:630
-msgid "Error while deleting"
-msgstr "Klaida trinant"
-
-#: ../src/cheese-window.c:631
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "Failas „%s“ negali būti ištrintas. Priežastis: %s"
-
-#: ../src/cheese-window.c:658
-#, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural ""
-"Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "Ar tikrai norite galutinai ištrinti %'d pasirinktą elementą?"
-msgstr[1] "Ar tikrai norite galutinai ištrinti %'d pasirinktus elementus?"
-msgstr[2] "Ar tikrai norite galutinai ištrinti %'d pasirinktų elementų?"
-
-#: ../src/cheese-window.c:665
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "Ar tikrai norite galutinai ištrinti „%s“"
-
-#: ../src/cheese-window.c:668
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Jei ištrinsite elementą, jis bus negrįžtamai prarastas."
-
-#: ../src/cheese-window.c:689
-msgid "Unknown Error"
-msgstr "Nežinoma klaida"
-
-#: ../src/cheese-window.c:719
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Nepavyko perkelti failo į šiukšlinę, ar norite jį ištrinti?"
-
-#: ../src/cheese-window.c:720
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "Failas „%s“ negali būti perkeltas į šiukšlinę. Priežastis: %s"
-
-#: ../src/cheese-window.c:792
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "Tikrai perkelti visas nuotraukas ir video įrašus į šiukšlinę?"
-
-#: ../src/cheese-window.c:800
-msgid "_Move to Trash"
-msgstr "_Perkelti į šiukšlinę"
-
-#: ../src/cheese-window.c:918
-#, c-format
-msgid "Could not set the Account Photo"
-msgstr "Nepavyko nustatyti paskyros nuotraukos"
-
-#: ../src/cheese-window.c:950
-msgid "Media files"
-msgstr "Daugialypės terpės failai"
-
-#: ../src/cheese-window.c:1024 ../src/cheese-window.c:1308
-msgid "Unable to open help file for Cheese"
-msgstr "Nepavyko atverti Cheese žinyno"
-
-#: ../src/cheese-window.c:1080
-msgid "translator-credits"
-msgstr "Gintautas Miliauskas <gintas@akl.lt>"
-
-#: ../src/cheese-window.c:1083
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-msgstr ""
-"Ši programa yra laisva. Jūs galite ją platinti ir/arba modifikuotiremdamiesi "
-"Free Software Foundation paskelbtomis GNU BendrosiosViešosios licenzijos "
-"sąlygomis: 2 licenzijos versija, arba (savonuožiūra) bet kuria vėlesne "
-"versija.\n"
-
-#: ../src/cheese-window.c:1087
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-msgstr ""
-"Ši programa platinama su viltimi, kad ji bus naudinga, bet BE "
-"JOKIŲGARANTIJŲ; be jokios numanomos PERKAMUMO ar TINKAMUMO "
-"KONKRETIEMSTIKSLAMS garantijos. Žiūrėkite GNU Bendrąją Viešąją licenziją "
-"norėdamisužinoti smulkmenas.\n"
-
-#: ../src/cheese-window.c:1091
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Jūs turėjote kartu su šia programa gauti ir GNU Bendrosios "
-"Viešosioslicenzijos kopiją. Jei ne, skaitykite <http://www.gnu.org/licenses/"
-">."
-
-#: ../src/cheese-window.c:1108
-msgid "Cheese Website"
-msgstr "Cheese tinklalapis"
-
-#: ../src/cheese-window.c:1324
-msgid "_Start Recording"
-msgstr "_Pradėti įrašymą"
-
-#: ../src/cheese-window.c:1491
-msgid "_Stop Recording"
-msgstr "_Sustabdyti įrašymą"
-
-#: ../src/cheese-window.c:1527
+#: ../src/cheese-ui.h:32
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../src/cheese-window.c:1529
+#: ../src/cheese-ui.h:34
 msgid "_Edit"
 msgstr "_Keisti"
 
-#: ../src/cheese-window.c:1530
-msgid "Move All to Trash"
-msgstr "Perkelti visus į šiukšlinę"
-
-#: ../src/cheese-window.c:1533
+#: ../src/cheese-ui.h:35
 msgid "_Help"
 msgstr "_Žinynas"
 
-#: ../src/cheese-window.c:1536
+#: ../src/cheese-ui.h:38
 msgid "_Contents"
 msgstr "_Turinys"
 
-#: ../src/cheese-window.c:1536
+#: ../src/cheese-ui.h:38
 msgid "Help on this Application"
 msgstr "Programos žinynas"
 
-#: ../src/cheese-window.c:1542
-msgid "Countdown"
-msgstr "Uždelsimas"
-
-#: ../src/cheese-window.c:1558
-msgid "_Wide mode"
-msgstr "_Plati veiksena"
-
-#: ../src/cheese-window.c:1562
+#: ../src/cheese-ui.h:48
 msgid "_Photo"
 msgstr "_Nuotrauka"
 
-#: ../src/cheese-window.c:1563
+#: ../src/cheese-ui.h:49
 msgid "_Video"
 msgstr "_Video"
 
-#: ../src/cheese-window.c:1564
+#: ../src/cheese-ui.h:50
 msgid "_Burst"
 msgstr "_Pliūpsnis"
 
-#: ../src/cheese-window.c:1568
-msgid "_Open"
-msgstr "_Atverti"
+#: ../src/cheese-ui.h:54
+msgid "Countdown"
+msgstr "Uždelsimas"
 
-#: ../src/cheese-window.c:1570
-msgid "Save _As..."
-msgstr "Įrašyti _taip..."
+#: ../src/cheese-ui.h:64
+msgid "_Wide mode"
+msgstr "_Plačioji veiksena"
 
-#: ../src/cheese-window.c:1572
-msgid "Move to _Trash"
-msgstr "Perkelti į _šiukšlinę"
-
-#: ../src/cheese-window.c:1574
-msgid "Delete"
-msgstr "Trinti"
-
-#: ../src/cheese-window.c:1583
+#: ../src/cheese-ui.h:71
 msgid "_Recording"
 msgstr "_Įrašoma"
 
-#: ../src/cheese-window.c:1587 ../src/cheese-window.c:1632
+#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "Fotografuoti _kelis kartus"
 
-#: ../src/cheese-window.c:1591
-msgid "_Set As Account Photo"
-msgstr "_Nustatyti kaip paskyros nuotrauką"
+#: ../src/cheese-ui.h:78
+msgid "_Open"
+msgstr "_Atverti"
 
-#: ../src/cheese-window.c:1595
-msgid "Send by _Mail"
-msgstr "Siųsti el. _paštu"
+#: ../src/cheese-ui.h:80
+#| msgid "Save _As..."
+msgid "Save _As…"
+msgstr "Įrašyti _taip…"
 
-#: ../src/cheese-window.c:1599
-msgid "Send _To"
-msgstr "_Siųsti į"
+#: ../src/cheese-ui.h:82
+msgid "Move to _Trash"
+msgstr "Perkelti į _šiukšlinę"
 
-#: ../src/cheese-window.c:1603
-msgid "Export to F-_Spot"
-msgstr "Eksportuoti į F-_Spot"
+#: ../src/cheese-ui.h:84
+msgid "Delete"
+msgstr "Trinti"
 
-#: ../src/cheese-window.c:1607
-msgid "Export to _Flickr"
-msgstr "Eksportuoti į _Flickr"
+#: ../src/cheese-ui.h:89
+msgid "Move All to Trash"
+msgstr "Perkelti visus į šiukšlinę"
 
-#: ../src/cheese-window.c:1645
-msgid "_Start recording"
+#: ../src/cheese-window.c:60
+msgid "_Start Recording"
 msgstr "_Pradėti įrašymą"
 
-#: ../src/cheese-window.c:1803
-msgid "_Take a photo"
-msgstr "_Fotografuoti"
+#: ../src/cheese-window.c:61
+msgid "_Stop Recording"
+msgstr "_Sustabdyti įrašymą"
 
-#: ../src/cheese-window.c:2063
-msgid "Check your gstreamer installation"
-msgstr "Patikrinkite gstreamer įdiegimą"
-
-#: ../src/cheese.c:163
+#: ../src/cheese.c:96
 msgid "Be verbose"
 msgstr "Išsamūs pranešimai"
 
-#: ../src/cheese.c:165
+#: ../src/cheese.c:98
 msgid "Enable wide mode"
 msgstr "Įjungti plačiąją veikseną"
 
-#: ../src/cheese.c:169
+#: ../src/cheese.c:100
 msgid "output version information and exit"
 msgstr "parodyti informaciją apie programos laidą ir baigti darbą"
 
-#: ../src/cheese.c:186
+#: ../src/cheese.c:115
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
-"- Fotografuokite ir filmuokite internetine kamera, su įdomiais efektais"
+msgstr "– Fotografuokite ir filmuokite internetine kamera, su įdomiais efektais"
+
+#~ msgid "Could not set the Account Photo"
+#~ msgstr "Nepavyko nustatyti paskyros nuotraukos"
+
+#~ msgid "Media files"
+#~ msgstr "Daugialypės terpės failai"
+
+#~ msgid "_Set As Account Photo"
+#~ msgstr "_Nustatyti kaip paskyros nuotrauką"
+
+#~ msgid "Send by _Mail"
+#~ msgstr "Siųsti el. _paštu"
+
+#~ msgid "Send _To"
+#~ msgstr "_Siųsti į"
+
+#~ msgid "Export to F-_Spot"
+#~ msgstr "Eksportuoti į F-_Spot"
+
+#~ msgid "Export to _Flickr"
+#~ msgstr "Eksportuoti į _Flickr"
+
+#~ msgid "_Start recording"
+#~ msgstr "_Pradėti įrašymą"
+
+#~ msgid "Check your gstreamer installation"
+#~ msgstr "Patikrinkite gstreamer įdiegimą"
 
 #~ msgid "<b>Camera</b>"
 #~ msgstr "<b>Kamera</b>"
