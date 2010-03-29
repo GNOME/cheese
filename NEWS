@@ -1,6 +1,35 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.30.0
+  - countdown: move rsvg_init and rsvg_term into main
+    Initialize rsvg at startup and clean it up at exit.
+    Fixes a long standing bug that made cheese crash when going fullscreen
+    with button and window sounds enabled. Fixes bug #592100.
+  - window: set the main button label to "Stop recording" while recording.
+    Little regression introduced in 2.29.90. Fixes bug #613421
+  - widget: use dialog-error icon
+    The "error" icon used before doesn't exist in gnome-icon-theme 2.29 and
+    causes crashes. Use "dialog-error" instead. Fixes #613067
+  - Added/Updated Translations
+    - bn, courtesy of Sadia Afroz
+    - cs, courtesy of Petr Kovar
+    - da, courtesy of Anders Jenbo
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - gu, courtesy of Sweta Kothari
+    - it, courtesy of Alessandro Falappa
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Žygimantas Beručka
+    - lv, courtesy of Peteris Krisjanis
+    - nn, courtesy of Torstein Adolf Winterseth
+    - pa, courtesy of A S Alam
+    - sr, courtesy of Бранко Кокановић
+    - sr@latin, courtesy of Branko Kokanović
+    - uk, courtesy of Maxim V. Dziumanenko
+  - Added/Updated Documentation
+    - cs, courtesy of Lucas Lommer
+    - el, courtesy of Marios Zindilis
+
 version 2.29.92
   - widget: restore saved balance settings at startup
     Restore balance (brightness, saturation, hue) settings, saved in gconf,
