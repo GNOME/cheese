@@ -159,6 +159,7 @@ typedef struct
   GtkActionGroup *actions_main;
   GtkActionGroup *actions_prefs;
   GtkActionGroup *actions_countdown;
+  GtkActionGroup *actions_flash;
   GtkActionGroup *actions_effects;
   GtkActionGroup *actions_file;
   GtkActionGroup *actions_photo;
@@ -627,7 +628,12 @@ cheese_window_countdown_picture_cb (gpointer data)
 
   if (cheese_camera_take_photo (priv->camera, photo_filename))
   {
-    cheese_flash_fire (priv->flash);
+    gboolean flash;
+    g_object_get (priv->gconf, "gconf_prop_flash", &flash, NULL);
+    if(flash)
+    {
+      cheese_flash_fire (priv->flash);
+    }
     ca_gtk_play_for_widget (priv->video_area, 0,
                             CA_PROP_EVENT_ID, "camera-shutter",
                             CA_PROP_MEDIA_ROLE, "event",
@@ -924,6 +930,15 @@ cheese_window_toggle_countdown (GtkWidget *widget, CheeseWindow *window)
   g_object_set (priv->gconf, "gconf_prop_countdown", countdown, NULL);
 }
 
+void
+cheese_window_toggle_flash (GtkWidget *widget, CheeseWindow *window)
+{
+  CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (window);
+  gboolean flash = gtk_toggle_action_get_active (GTK_TOGGLE_ACTION (widget));
+
+  g_object_set (priv->gconf, "gconf_prop_flash", flash, NULL);
+}
+
 static void
 cheese_window_set_mode (CheeseWindow *cheese_window, CameraMode mode)
 {
@@ -1116,6 +1131,11 @@ setup_menubar_and_actions (CheeseWindow *cheese_window)
                                                                    action_entries_countdown,
                                                                    G_N_ELEMENTS (action_entries_countdown));
 
+  priv->actions_countdown = cheese_window_toggle_action_group_new (cheese_window,
+                                                                   "ActionsFlash",
+                                                                   action_entries_flash,
+                                                                   G_N_ELEMENTS (action_entries_flash));
+
   priv->actions_effects = cheese_window_toggle_action_group_new (cheese_window,
                                                                  "ActionsEffects",
                                                                  action_entries_effects,
@@ -1173,6 +1193,15 @@ setup_menubar_and_actions (CheeseWindow *cheese_window)
   {
     gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
   }
+
+  gboolean   flash;
+  action = gtk_ui_manager_get_action (priv->ui_manager, "/MainMenu/Cheese/FlashToggle");
+  g_object_get (priv->gconf, "gconf_prop_flash", &flash, NULL);
+  if (flash)
+  {
+    gtk_toggle_action_set_active (GTK_TOGGLE_ACTION (action), TRUE);
+  }
+
 
   action = gtk_ui_manager_get_action (priv->ui_manager, "/ThumbnailPopup/Delete");
   gboolean enable_delete;

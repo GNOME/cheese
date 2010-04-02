@@ -60,6 +60,11 @@ cheese_gconf_get_property (GObject *object, guint prop_id, GValue *value,
                                                          CHEESE_GCONF_PREFIX "/countdown",
                                                          NULL));
       break;
+    case GCONF_PROP_FLASH:
+      g_value_set_boolean (value, gconf_client_get_bool (priv->client,
+                                                         CHEESE_GCONF_PREFIX "/flash",
+                                                         NULL));
+      break;
     case GCONF_PROP_CAMERA:
       g_value_set_string (value, gconf_client_get_string (priv->client,
                                                           CHEESE_GCONF_PREFIX "/camera",
@@ -214,6 +219,14 @@ cheese_gconf_set_property (GObject *object, guint prop_id, const GValue *value,
                              g_value_get_boolean (value),
                              NULL);
       break;
+
+    case GCONF_PROP_FLASH:
+      gconf_client_set_bool (priv->client,
+                             CHEESE_GCONF_PREFIX "/flash",
+                             g_value_get_boolean (value),
+                             NULL);
+      break;
+
     case GCONF_PROP_CAMERA:
       gconf_client_set_string (priv->client,
                                CHEESE_GCONF_PREFIX "/camera",
@@ -366,6 +379,14 @@ cheese_gconf_class_init (CheeseGConfClass *klass)
                                                          NULL,
                                                          FALSE,
                                                          G_PARAM_READWRITE));
+
+  g_object_class_install_property (object_class, GCONF_PROP_FLASH,
+                                   g_param_spec_boolean ("gconf_prop_flash",
+                                                         NULL,
+                                                         NULL,
+                                                         TRUE,
+                                                         G_PARAM_READWRITE));
+
   g_object_class_install_property (object_class, GCONF_PROP_CAMERA,
                                    g_param_spec_string ("gconf_prop_camera",
                                                         NULL,

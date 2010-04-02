@@ -58,6 +58,7 @@ CheeseFileUtil *cheese_window_get_fileutil (CheeseWindow *window);
 
 /* not so public ideally but ok for internal consumption */
 void cheese_window_toggle_countdown (GtkWidget *widget, CheeseWindow *window);
+void cheese_window_toggle_flash (GtkWidget *widget, CheeseWindow *window);
 void cheese_window_preferences_cb (GtkAction *action, CheeseWindow *cheese_window);
 void cheese_window_effect_button_pressed_cb (GtkWidget *widget, CheeseWindow *cheese_window);
 void cheese_window_toggle_fullscreen (GtkWidget *widget, CheeseWindow *cheese_window);

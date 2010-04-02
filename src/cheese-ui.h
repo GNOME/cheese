@@ -53,6 +53,10 @@ const GtkRadioActionEntry action_entries_toggle[] = {
 const GtkToggleActionEntry action_entries_countdown[] = {
   {"Countdown", NULL, N_("Countdown"), NULL, NULL, G_CALLBACK (cheese_window_toggle_countdown), FALSE},
 };
+const GtkToggleActionEntry action_entries_flash[] = {
+  {"Flash", NULL, N_("Flash"), NULL, NULL, G_CALLBACK (cheese_window_toggle_flash), FALSE},
+};
+
 const GtkToggleActionEntry action_entries_effects[] = {
   {"Effects", NULL, N_("_Effects"), NULL, NULL, G_CALLBACK (cheese_window_effect_button_pressed_cb), FALSE},
 };

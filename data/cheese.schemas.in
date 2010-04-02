@@ -13,6 +13,18 @@
     </schema>
 
     <schema>
+      <key>/schemas/apps/cheese/flash</key>
+      <applyto>/apps/cheese/flash</applyto>
+      <owner>cheese</owner>
+      <type>bool</type>
+      <default>1</default>
+      <locale name="C">
+        <short>Use a flash</short>
+        <long>Set to True to use flash when taking a photo</long>
+      </locale>
+    </schema>
+
+    <schema>
       <key>/schemas/apps/cheese/camera</key>
       <applyto>/apps/cheese/camera</applyto>
       <owner>cheese</owner>
