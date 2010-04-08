@@ -1215,6 +1215,7 @@ on_widget_error (CheeseWidget        *widget,
 
   /* FIXME: hotplug new devices and hide the info bar */
   gtk_action_group_set_sensitive (priv->actions_prefs, FALSE);
+  gtk_action_group_set_sensitive (priv->actions_photo, FALSE);
   cheese_no_camera_set_info_bar_text_and_icon (GTK_INFO_BAR (priv->info_bar),
                                                "gtk-dialog-error",
                                                error->message,
