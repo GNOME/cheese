@@ -688,6 +688,13 @@ cheese_window_escape_key_cb (CheeseWindow *cheese_window,
                              guint keyval, GdkModifierType modifier)
 {
   CheeseWindowPrivate *priv = CHEESE_WINDOW_GET_PRIVATE (cheese_window);
+
+  if (gtk_notebook_get_current_page (GTK_NOTEBOOK (priv->thewidget)) == EFFECTS_PAGE)
+  {
+    gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (priv->button_effects), FALSE);
+    return TRUE;
+  }
+
   if (priv->isFullscreen)
   {
     if (cheese_countdown_get_state (CHEESE_COUNTDOWN (priv->countdown_fullscreen)) == 0)
