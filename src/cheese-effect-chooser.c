@@ -174,22 +174,23 @@ cheese_cairo_draw_card (cairo_t *cr, const GstEffect *card, gboolean highlight)
   cairo_surface_destroy (image);
   cairo_restore (cr);
 
-  cairo_text_extents_t extents;
   if (card->is_black)
     cairo_set_source_rgb (cr, 1, 1, 1);
 
-  double x, y;
-  cairo_select_font_face (cr, "Sans",
-                          CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_NORMAL);
-
-  cairo_set_font_size (cr, 0.09);
+  PangoLayout *layout = pango_cairo_create_layout (cr);
   gchar *name = gettext (card->name);
-  cairo_text_extents (cr, name, &extents);
-  x = 0.5 - (extents.width / 2 + extents.x_bearing);
-  y = 0.92 - (extents.height / 2 + extents.y_bearing);
-
+  pango_layout_set_text (layout, name, -1);
+  PangoFontDescription *desc = pango_font_description_from_string ("Sans 0.09");
+  pango_layout_set_font_description (layout, desc);
+  pango_font_description_free (desc);
+  int width, height;
+  pango_layout_get_size (layout, &width, &height);
+  double x, y;
+  x = 0.5 - ((double)width / PANGO_SCALE) / 2;
+  y = 0.92 - ((double)height / PANGO_SCALE) / 2;
   cairo_move_to (cr, x, y);
-  cairo_show_text (cr, name);
+  pango_cairo_show_layout (cr, layout);
+  g_object_unref (layout);
 
   if (highlight)
   {
