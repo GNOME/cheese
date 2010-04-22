@@ -239,11 +239,12 @@ cheese_effect_chooser_button_press_event_cb (GtkWidget *widget, GdkEventButton *
   GtkAllocation allocation;
   int i;
   int col, row;
-  int slot = (row * BOARD_COLS + col);
+  int slot;
 
   gtk_widget_get_allocation (widget, &allocation);
   col  = (int) (button_event->x / allocation.width * BOARD_COLS);
   row  = (int) (button_event->y / allocation.height * BOARD_ROWS);
+  slot = (row * BOARD_COLS + col);
 
   priv->selected[slot] = !priv->selected[slot];
 
