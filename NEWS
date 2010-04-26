@@ -1,6 +1,25 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.30.1
+  - menu: disable Take Photo when there is no camera.
+    Fixes bug 615002, courtesy of Yuvaraj Pandian
+  - effects: fix a text rendering problem.
+    Fixes bug 613287, courtesy of Mathias Clasen
+  - build: enable GSEAL
+  - all: use accessor functions instead direct access.
+    Fixes bug 585210, courtesy of Javier Jardon.
+  - Added/Updated Translations
+    - ast, courtesy of Xandru Armesto
+    - bn_IN, courtesy of Runa Bhattacharjee
+    - ca@valencia, courtesy of Gil Forcada
+    - id, courtesy of Andika Triwidada
+    - ja, courtesy of Hideki Yamane (Debian-JP)
+    - kn, courtesy of Shankar Prasad
+    - ms, courtesy of Umarzuki Bin Mochlis Moktar
+    - th, courtesy of Theppitak Karoonboonyanan
+  - Added/Updated Documentation
+
 version 2.30.0
   - countdown: move rsvg_init and rsvg_term into main
     Initialize rsvg at startup and clean it up at exit.
