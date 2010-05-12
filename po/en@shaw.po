@@ -4,100 +4,172 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2009-11-06 19:17+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2010-05-05 14:32+0000\n"
+"PO-Revision-Date: 2010-05-12 18:35 -0400\n"
 "Last-Translator: Thomas Thurman <tthurman@gnome.org>\n"
-"Language-Team: Shavian <ubuntu-l10n-en-shaw@lists.launchpad.net>\n"
+"Language-Team: Shavian <ubuntu-l10n-en-shaw@launchpad.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n!=1;\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:184
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
 msgid "Cheese"
 msgstr "·𐑗𐑰𐑟"
 
+#, fuzzy
+#: ../data/cheese.desktop.in.in.h:2
+msgid "Cheese Webcam Booth"
+msgstr "𐑗𐑰𐑟 Webcam 𐑚𐑵𐑔"
+
+#, fuzzy
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-commands-help.c:118
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "𐑑𐑱𐑒 𐑓𐑴𐑑𐑴𐑟 𐑯 𐑝𐑦𐑛𐑰𐑴𐑟 𐑢𐑦𐑞 𐑿𐑼 webcam, 𐑢𐑦𐑞 𐑓𐑳𐑯 𐑜𐑮𐑨𐑓𐑦𐑒𐑩𐑤 𐑦𐑓𐑧𐑒𐑑𐑕"
+
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#, fuzzy
+#: ../data/cheese.schemas.in.h:3
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", "
+"\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and "
+"\"warp\""
+msgstr ""
+"𐑩 𐑤𐑦𐑕𐑑 𐑝 𐑦𐑓𐑧𐑒𐑑𐑕 𐑩𐑐𐑤𐑲𐑛 𐑪𐑯 𐑕𐑑𐑸𐑑𐑳𐑐. 𐑐𐑪𐑕𐑩𐑚𐑩𐑤 𐑝𐑨𐑤𐑿𐑟 𐑸: \"𐑥𐑪𐑝\", \"noir_blanc\", "
+"\"𐑕𐑨𐑗𐑻𐑱𐑖𐑩𐑯\", \"𐑣𐑩𐑤𐑒\", \"𐑝𐑻𐑑𐑦𐑒𐑩𐑤-𐑓𐑤𐑦𐑐\", \"𐑣𐑪𐑮𐑦𐑟𐑪𐑯𐑑𐑩𐑤-𐑓𐑤𐑦𐑐\", "
+"\"shagadelic\", \"𐑝𐑻𐑑𐑦𐑜𐑴\", \"𐑧𐑡\", \"𐑛𐑲𐑕\" 𐑯 \"𐑢𐑪𐑮𐑐\""
+
+#, fuzzy
+#: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the camera"
+msgstr "𐑩𐑡𐑩𐑕𐑑𐑕 𐑚𐑮𐑲𐑑𐑯𐑩𐑕 𐑤𐑧𐑝𐑩𐑤 𐑝 𐑞 𐑐𐑦𐑒𐑗𐑼 𐑒𐑳𐑥𐑦𐑙 𐑓𐑮𐑪𐑥 𐑞 𐑒𐑨𐑥𐑻𐑩"
+
+#, fuzzy
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the camera"
+msgstr "𐑩𐑡𐑩𐑕𐑑𐑕 𐑒𐑩𐑯𐑑𐑮𐑭𐑕𐑑 𐑤𐑧𐑝𐑩𐑤 𐑝 𐑞 𐑐𐑦𐑒𐑗𐑼 𐑒𐑳𐑥𐑦𐑙 𐑓𐑮𐑪𐑥 𐑞 𐑒𐑨𐑥𐑻𐑩"
+
+#, fuzzy
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the camera"
+msgstr "𐑩𐑡𐑩𐑕𐑑𐑕 𐑣𐑿 𐑤𐑧𐑝𐑩𐑤 𐑝 𐑞 𐑐𐑦𐑒𐑗𐑼 𐑒𐑳𐑥𐑦𐑙 𐑓𐑮𐑪𐑥 𐑞 𐑒𐑨𐑥𐑻𐑩"
+
+#, fuzzy
+#: ../data/cheese.schemas.in.h:7
+msgid "Adjusts saturation level of the picture coming from the camera"
+msgstr "𐑩𐑡𐑩𐑕𐑑𐑕 𐑕𐑨𐑗𐑻𐑱𐑖𐑩𐑯 𐑤𐑧𐑝𐑩𐑤 𐑝 𐑞 𐑐𐑦𐑒𐑗𐑼 𐑒𐑳𐑥𐑦𐑙 𐑓𐑮𐑪𐑥 𐑞 𐑒𐑨𐑥𐑻𐑩"
+
+#, fuzzy
+#: ../data/cheese.schemas.in.h:8
+msgid "Camera device string indicator"
+msgstr "𐑒𐑨𐑥𐑻𐑩 𐑛𐑦𐑝𐑲𐑕 𐑕𐑑𐑮𐑦𐑙 𐑦𐑯𐑛𐑦𐑒𐑱𐑑𐑼"
+
+#, fuzzy
+#: ../data/cheese.schemas.in.h:9
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"𐑛𐑦𐑓𐑲𐑯𐑟 𐑞 𐑐𐑭𐑔 𐑢𐑺 𐑞 𐑓𐑴𐑑𐑴𐑟 𐑸 𐑕𐑑𐑹𐑛, 𐑦𐑓 𐑧𐑥𐑐𐑑𐑦 \"XDG_PHOTO/Webcam\" 𐑢𐑦𐑤 𐑚𐑰 𐑿𐑟𐑛."
+
+#, fuzzy
 #: ../data/cheese.schemas.in.h:10
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"𐑛𐑦𐑓𐑲𐑯𐑟 𐑞 𐑐𐑭𐑔 𐑢𐑺 𐑞 𐑝𐑦𐑛𐑰𐑴𐑟 𐑸 𐑕𐑑𐑹𐑛, 𐑦𐑓 𐑧𐑥𐑐𐑑𐑦 \"XDG_VIDEO/Webcam\" 𐑢𐑦𐑤 𐑚𐑰 𐑿𐑟𐑛."
+
+#: ../data/cheese.schemas.in.h:11
 msgid "Height resolution"
 msgstr "𐑣𐑲𐑑 𐑮𐑧𐑟𐑩𐑤𐑵𐑖𐑩𐑯"
 
-#: ../data/cheese.schemas.in.h:11
+#: ../data/cheese.schemas.in.h:12
 msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
+"If set to true, Cheese will start up in a wide mode with the image collection "
+"placed on the right-hand side. Useful with small screens."
 msgstr ""
 "𐑦𐑓 𐑕𐑧𐑑 𐑑 𐑑𐑮𐑵, ·𐑗𐑰𐑟 𐑢𐑦𐑤 𐑕𐑑𐑸𐑑 𐑳𐑐 𐑦𐑯 𐑩 𐑢𐑲𐑛 𐑥𐑴𐑛 𐑢𐑦𐑞 𐑞 𐑦𐑥𐑦𐑡 𐑒𐑩𐑤𐑧𐑒𐑖𐑩𐑯 𐑐𐑤𐑱𐑕𐑑 𐑪𐑯 𐑞 "
 "𐑮𐑲𐑑-𐑣𐑨𐑯𐑛 𐑕𐑲𐑛. 𐑿𐑕𐑓𐑩𐑤 𐑢𐑦𐑞 𐑕𐑥𐑷𐑤 𐑕𐑒𐑮𐑰𐑯𐑟."
 
-#: ../data/cheese.schemas.in.h:12
-msgid ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-msgstr ""
-"𐑦𐑓 𐑕𐑧𐑑 𐑑 𐑑𐑮𐑵, 𐑞𐑧𐑯 ·𐑗𐑰𐑟 𐑢𐑦𐑤 𐑣𐑨𐑝 𐑩 𐑓𐑰𐑗𐑼 𐑩𐑤𐑬𐑦𐑙 𐑿 𐑑 𐑛𐑦𐑤𐑰𐑑 𐑩 𐑓𐑲𐑤 𐑦𐑥𐑰𐑛𐑾𐑑𐑤𐑰 𐑯 𐑦𐑯-"
-"𐑐𐑤𐑱𐑕, 𐑦𐑯𐑕𐑑𐑧𐑛 𐑝 𐑥𐑵𐑝𐑦𐑙 𐑦𐑑 𐑑 𐑞 𐑑𐑮𐑨𐑖. 𐑞𐑦𐑕 𐑓𐑰𐑗𐑼 𐑒𐑨𐑯 𐑚𐑰 𐑛𐑱𐑯𐑡𐑼𐑩𐑕, 𐑕𐑴 𐑿𐑟 𐑒𐑷𐑖𐑩𐑯."
-
 #: ../data/cheese.schemas.in.h:13
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a file "
+"immediately and in-place, instead of moving it to the trash. This feature can "
+"be dangerous, so use caution."
+msgstr ""
+"𐑦𐑓 𐑕𐑧𐑑 𐑑 𐑑𐑮𐑵, 𐑞𐑧𐑯 ·𐑗𐑰𐑟 𐑢𐑦𐑤 𐑣𐑨𐑝 𐑩 𐑓𐑰𐑗𐑼 𐑩𐑤𐑬𐑦𐑙 𐑿 𐑑 𐑛𐑦𐑤𐑰𐑑 𐑩 𐑓𐑲𐑤 𐑦𐑥𐑰𐑛𐑾𐑑𐑤𐑰 𐑯 "
+"𐑦𐑯-𐑐𐑤𐑱𐑕, 𐑦𐑯𐑕𐑑𐑧𐑛 𐑝 𐑥𐑵𐑝𐑦𐑙 𐑦𐑑 𐑑 𐑞 𐑑𐑮𐑨𐑖. 𐑞𐑦𐑕 𐑓𐑰𐑗𐑼 𐑒𐑨𐑯 𐑚𐑰 𐑛𐑱𐑯𐑡𐑼𐑩𐑕, 𐑕𐑴 𐑿𐑟 𐑒𐑷𐑖𐑩𐑯."
+
+#: ../data/cheese.schemas.in.h:14
 msgid "Milliseconds between photos in burst mode."
 msgstr "𐑥𐑦𐑤𐑦𐑕𐑧𐑒𐑩𐑯𐑛𐑟 𐑚𐑦𐑑𐑢𐑰𐑯 𐑓𐑴𐑑𐑴𐑟 𐑦𐑯 𐑚𐑻𐑕𐑑 𐑥𐑴𐑛."
 
-#: ../data/cheese.schemas.in.h:14
+#: ../data/cheese.schemas.in.h:15
 msgid "Number of photos in burst mode."
 msgstr "𐑯𐑳𐑥𐑚𐑼 𐑝 𐑓𐑴𐑑𐑴𐑟 𐑦𐑯 𐑚𐑻𐑕𐑑 𐑥𐑴𐑛."
 
-#: ../data/cheese.schemas.in.h:15
+#: ../data/cheese.schemas.in.h:16
 msgid "Photo Path"
 msgstr "𐑓𐑴𐑑𐑴 𐑐𐑭𐑔"
 
-#: ../data/cheese.schemas.in.h:16
+#: ../data/cheese.schemas.in.h:17
 msgid "Picture brightness"
 msgstr "𐑐𐑦𐑒𐑗𐑼 𐑚𐑮𐑲𐑑𐑯𐑩𐑕"
 
-#: ../data/cheese.schemas.in.h:17
+#: ../data/cheese.schemas.in.h:18
 msgid "Picture contrast"
 msgstr "𐑐𐑦𐑒𐑗𐑼 𐑒𐑩𐑯𐑑𐑮𐑭𐑕𐑑"
 
-#: ../data/cheese.schemas.in.h:18
+#: ../data/cheese.schemas.in.h:19
 msgid "Picture hue"
 msgstr "𐑐𐑦𐑒𐑗𐑼 𐑣𐑿"
 
-#: ../data/cheese.schemas.in.h:19
+#: ../data/cheese.schemas.in.h:20
 msgid "Picture saturation"
 msgstr "𐑐𐑦𐑒𐑗𐑼 𐑕𐑨𐑗𐑻𐑱𐑖𐑩𐑯"
 
-#: ../data/cheese.schemas.in.h:20
+#: ../data/cheese.schemas.in.h:21
 msgid "Selected Effects"
 msgstr "𐑕𐑩𐑤𐑧𐑒𐑑𐑩𐑛 𐑦𐑓𐑧𐑒𐑑𐑕"
 
-#: ../data/cheese.schemas.in.h:21
+#: ../data/cheese.schemas.in.h:22
 msgid "Set to True to show countdown when taking a photo"
 msgstr "𐑕𐑧𐑑 𐑑 𐑑𐑮𐑵 𐑑 𐑖𐑴 𐑒𐑶𐑯𐑑𐑛𐑶𐑯 𐑢𐑧𐑯 𐑑𐑱𐑒𐑦𐑙 𐑩 𐑓𐑴𐑑𐑴"
 
+#, fuzzy
 #: ../data/cheese.schemas.in.h:23
+msgid "The device which points to the camera (e.g. /dev/video0)"
+msgstr "𐑞 𐑛𐑦𐑝𐑲𐑕 𐑢𐑦𐑗 𐑐𐑶𐑯𐑑𐑕 𐑑 𐑞 𐑒𐑨𐑥𐑻𐑩 (𐑧.𐑡𐑰. /𐑛𐑧𐑝/video0)"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The height resolution of the image captured from the camera"
 msgstr "𐑞 𐑣𐑲𐑑 𐑮𐑧𐑟𐑩𐑤𐑵𐑖𐑩𐑯 𐑝 𐑞 𐑦𐑥𐑦𐑡 𐑒𐑨𐑐𐑗𐑻𐑛 𐑓𐑮𐑪𐑥 𐑞 𐑒𐑨𐑥𐑻𐑩"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
 msgstr ""
-"𐑞 𐑤𐑧𐑙𐑔 𐑝 𐑑𐑲𐑥, 𐑦𐑯 𐑥𐑦𐑤𐑦𐑕𐑧𐑒𐑩𐑯𐑛𐑟, 𐑑 𐑛𐑦𐑤𐑱 𐑚𐑦𐑑𐑢𐑰𐑯 𐑑𐑱𐑒𐑦𐑙 𐑰𐑗 𐑓𐑴𐑑𐑴 𐑦𐑯 𐑩 𐑚𐑻𐑕𐑑 𐑕𐑰𐑒𐑢𐑩𐑯𐑕 "
-"𐑝 𐑓𐑴𐑑𐑴𐑟."
+"𐑞 𐑤𐑧𐑙𐑔 𐑝 𐑑𐑲𐑥, 𐑦𐑯 𐑥𐑦𐑤𐑦𐑕𐑧𐑒𐑩𐑯𐑛𐑟, 𐑑 𐑛𐑦𐑤𐑱 𐑚𐑦𐑑𐑢𐑰𐑯 𐑑𐑱𐑒𐑦𐑙 𐑰𐑗 𐑓𐑴𐑑𐑴 𐑦𐑯 𐑩 𐑚𐑻𐑕𐑑 𐑕𐑰𐑒𐑢𐑩𐑯𐑕 𐑝 "
+"𐑓𐑴𐑑𐑴𐑟."
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid "The number of photos to take in a single burst."
 msgstr "𐑞 𐑯𐑳𐑥𐑚𐑼 𐑝 𐑓𐑴𐑑𐑴𐑟 𐑑 𐑑𐑱𐑒 𐑦𐑯 𐑩 𐑕𐑦𐑙𐑜𐑩𐑤 𐑚𐑻𐑕𐑑."
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The width resolution of the image captured from the camera"
 msgstr "𐑞 𐑢𐑦𐑛𐑔 𐑮𐑧𐑟𐑩𐑤𐑵𐑖𐑩𐑯 𐑝 𐑞 𐑦𐑥𐑦𐑡 𐑒𐑨𐑐𐑗𐑻𐑛 𐑓𐑮𐑪𐑥 𐑞 𐑒𐑨𐑥𐑻𐑩"
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "Use a countdown"
 msgstr "𐑿𐑟 𐑩 𐑒𐑶𐑯𐑑𐑛𐑶𐑯"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Video Path"
 msgstr "𐑝𐑦𐑛𐑦𐑴 𐑐𐑭𐑔"
 
@@ -113,25 +185,33 @@ msgstr "𐑢𐑧𐑞𐑼 𐑑 𐑕𐑑𐑸𐑑 𐑦𐑯 𐑢𐑲𐑛 𐑥𐑴�
 msgid "Width resolution"
 msgstr "𐑢𐑦𐑛𐑔 𐑮𐑧𐑟𐑩𐑤𐑵𐑖𐑩𐑯"
 
-#: ../data/cheese.ui.h:2
+#: ../data/cheese.ui.h:1
 msgid "Switch to Burst Mode"
 msgstr "𐑕𐑢𐑦𐑗 𐑑 𐑚𐑻𐑕𐑑 𐑥𐑴𐑛"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:2
 msgid "Switch to Photo Mode"
 msgstr "𐑕𐑢𐑦𐑗 𐑑 𐑓𐑴𐑑𐑴 𐑥𐑴𐑛"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:3
 msgid "Switch to Video Mode"
 msgstr "𐑕𐑢𐑦𐑗 𐑑 𐑝𐑦𐑛𐑦𐑴 𐑥𐑴𐑛"
 
-#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1225
-#: ../src/cheese-window.c:1554
+#, fuzzy
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "𐑕𐑢𐑦𐑗 𐑑 𐑞 𐑦𐑓𐑧𐑒𐑑𐑕 Selector"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:871
 msgid "_Effects"
 msgstr "_𐑦𐑓𐑧𐑒𐑑𐑕"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1587
-#: ../src/cheese-window.c:1627
+#, fuzzy
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "_Leave Fullscreen"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "_𐑑𐑱𐑒 𐑩 𐑓𐑴𐑑𐑴"
 
@@ -167,7 +247,7 @@ msgstr "𐑦𐑥𐑦𐑡 𐑐𐑮𐑪𐑐𐑼𐑑𐑦𐑟"
 msgid "Number of photos"
 msgstr "𐑯𐑳𐑥𐑚𐑼 𐑝 𐑓𐑴𐑑𐑴𐑟"
 
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1558
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-ui.h:44
 msgid "Preferences"
 msgstr "𐑐𐑮𐑧𐑓𐑼𐑩𐑯𐑕𐑩𐑟"
 
@@ -178,6 +258,186 @@ msgstr "𐑮𐑧𐑟𐑩𐑤𐑵𐑖𐑩𐑯"
 #: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
 msgid "Saturation"
 msgstr "𐑕𐑨𐑗𐑻𐑱𐑖𐑩𐑯"
+
+#, fuzzy
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Webcam"
+
+#, fuzzy
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:634
+msgid "Shutter sound"
+msgstr "𐑖𐑩𐑑𐑻 𐑕𐑬𐑯𐑛"
+
+#, fuzzy
+#: ../libcheese/cheese-avatar-chooser.c:236
+msgid "Take a photo"
+msgstr "𐑑𐑱𐑒 𐑩 𐑓𐑴𐑑𐑴"
+
+#: ../libcheese/cheese-avatar-chooser.c:255
+msgid "_Take a photo"
+msgstr "_𐑑𐑱𐑒 𐑩 𐑓𐑴𐑑𐑴"
+
+#, fuzzy
+#: ../libcheese/cheese-avatar-chooser.c:270
+msgid "_Discard photo"
+msgstr "_Discard 𐑓𐑴𐑑𐑴"
+
+#, fuzzy
+#: ../libcheese/cheese-camera-device.c:327
+msgid "Device capabilities not supported"
+msgstr "𐑛𐑦𐑝𐑲𐑕 𐑒𐑱𐑐𐑩𐑚𐑦𐑤𐑩𐑑𐑰𐑟 𐑯𐑪𐑑 𐑕𐑩𐑐𐑹𐑑𐑩𐑛"
+
+#, fuzzy
+#: ../libcheese/cheese-camera-device.c:488
+msgid "Unknown device"
+msgstr "𐑳𐑯𐑴𐑯 𐑛𐑦𐑝𐑲𐑕"
+
+#, fuzzy
+#: ../libcheese/cheese-camera-device.c:512
+msgid "Cancellable initialization not supported"
+msgstr "Cancellable initialization 𐑯𐑪𐑑 𐑕𐑩𐑐𐑹𐑑𐑩𐑛"
+
+#, fuzzy, c-format
+#: ../libcheese/cheese-camera.c:1137
+msgid "No device found"
+msgstr "𐑯𐑴 𐑒𐑨𐑥𐑻𐑩 𐑓𐑬𐑯𐑛!"
+
+#, fuzzy
+#: ../libcheese/cheese-camera.c:1156
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "𐑢𐑳𐑯 𐑹 𐑥𐑹 𐑯𐑰𐑛𐑩𐑛 GStreamer 𐑧𐑤𐑩𐑥𐑩𐑯𐑑𐑕 𐑸 𐑥𐑦𐑕𐑦𐑙: "
+
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#, c-format
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-commands-file.c:31
+msgid "_Skip"
+msgstr "_𐑕𐑒𐑦𐑐"
+
+#, fuzzy
+#: ../src/cheese-commands-file.c:32
+msgid "S_kip All"
+msgstr "S_kip 𐑷𐑤"
+
+#: ../src/cheese-commands-file.c:33
+msgid "Delete _All"
+msgstr "𐑛𐑦𐑤𐑰𐑑 _𐑷𐑤"
+
+#, c-format
+#: ../src/cheese-commands-file.c:57
+msgid "Failed to launch program to show:\n%s\n%s"
+msgstr "𐑓𐑱𐑤𐑛 𐑑 𐑤𐑷𐑯𐑗 𐑐𐑮𐑴𐑜𐑮𐑨𐑥 𐑑 𐑖𐑴:\n%s\n%s"
+
+#: ../src/cheese-commands-file.c:78
+msgid "Save File"
+msgstr "𐑕𐑱𐑝 𐑓𐑲𐑤"
+
+#, c-format
+#: ../src/cheese-commands-file.c:116
+msgid "Could not save %s"
+msgstr "𐑒𐑫𐑛 𐑯𐑪𐑑 𐑕𐑱𐑝 %s"
+
+#: ../src/cheese-commands-file.c:139
+msgid "Error while deleting"
+msgstr "𐑻𐑼 𐑢𐑲𐑤 𐑛𐑦𐑤𐑰𐑑𐑦𐑙"
+
+#, c-format
+#: ../src/cheese-commands-file.c:140
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "𐑞 𐑓𐑲𐑤 \"%s\" 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑛𐑦𐑤𐑰𐑑𐑩𐑛. 𐑛𐑰𐑑𐑱𐑤𐑟: %s"
+
+#, fuzzy, c-format
+#: ../src/cheese-commands-file.c:167
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "𐑸 𐑿 𐑖𐑫𐑼 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑐𐑻𐑥𐑩𐑯𐑩𐑯𐑑𐑤𐑦 𐑛𐑦𐑤𐑰𐑑 \"%s\"?"
+msgstr[1] "𐑸 𐑿 𐑖𐑫𐑼 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑐𐑻𐑥𐑩𐑯𐑩𐑯𐑑𐑤𐑦 𐑛𐑦𐑤𐑰𐑑 \"%s\"?"
+
+#, c-format
+#: ../src/cheese-commands-file.c:174
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "𐑸 𐑿 𐑖𐑫𐑼 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑐𐑻𐑥𐑩𐑯𐑩𐑯𐑑𐑤𐑦 𐑛𐑦𐑤𐑰𐑑 \"%s\"?"
+
+#, c-format
+#: ../src/cheese-commands-file.c:177
+msgid "If you delete an item, it will be permanently lost."
+msgstr "𐑦𐑓 𐑿 𐑛𐑦𐑤𐑰𐑑 𐑩𐑯 𐑲𐑑𐑩𐑥, 𐑦𐑑 𐑢𐑦𐑤 𐑚𐑰 𐑐𐑻𐑥𐑩𐑯𐑩𐑯𐑑𐑤𐑦 𐑤𐑪𐑕𐑑."
+
+#: ../src/cheese-commands-file.c:198
+msgid "Unknown Error"
+msgstr "𐑳𐑯𐑴𐑯 𐑻𐑼"
+
+#: ../src/cheese-commands-file.c:228
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "𐑒𐑨𐑯𐑪𐑑 𐑥𐑵𐑝 𐑓𐑲𐑤 𐑑 𐑑𐑮𐑨𐑖, 𐑛𐑵 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑛𐑦𐑤𐑰𐑑 𐑦𐑥𐑰𐑛𐑾𐑑𐑤𐑰?"
+
+#, c-format
+#: ../src/cheese-commands-file.c:229
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "𐑞 𐑓𐑲𐑤 \"%s\" 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑥𐑵𐑝𐑛 𐑑 𐑞 𐑑𐑮𐑨𐑖. 𐑛𐑰𐑑𐑱𐑤𐑟: %s"
+
+#, c-format
+#: ../src/cheese-commands-file.c:301
+msgid "Really move all photos and videos to the trash?"
+msgstr "𐑮𐑾𐑤𐑦 𐑥𐑵𐑝 𐑷𐑤 𐑓𐑴𐑑𐑴𐑟 𐑯 𐑝𐑦𐑛𐑰𐑴𐑟 𐑑 𐑞 𐑑𐑮𐑨𐑖?"
+
+#: ../src/cheese-commands-file.c:309
+msgid "_Move to Trash"
+msgstr "_𐑥𐑵𐑝 𐑑 𐑑𐑮𐑨𐑖"
+
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:656
+msgid "Unable to open help file for Cheese"
+msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑴𐑐𐑩𐑯 𐑣𐑧𐑤𐑐 𐑓𐑲𐑤 𐑓𐑹 ·𐑗𐑰𐑟"
+
+#: ../src/cheese-commands-help.c:96
+msgid "translator-credits"
+msgstr "·𐑑𐑪𐑥𐑩𐑕 ·𐑔𐑻𐑥𐑩𐑯"
+
+#: ../src/cheese-commands-help.c:99
+msgid ""
+"This program is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
+msgstr ""
+"𐑞𐑦𐑕 𐑐𐑮𐑴𐑜𐑮𐑨𐑥 𐑦𐑟 𐑓𐑮𐑰 𐑕𐑪𐑓𐑑𐑢𐑺; 𐑿 𐑒𐑨𐑯 𐑮𐑰𐑛𐑦𐑕𐑑𐑮𐑦𐑚𐑿𐑑 𐑦𐑑 𐑯/𐑹 𐑥𐑪𐑛𐑦𐑓𐑲 𐑦𐑑 𐑳𐑯𐑛𐑼 𐑞 𐑑𐑻𐑥𐑟 𐑝 𐑞 "
+"·𐑜𐑯𐑿 𐑡𐑧𐑯𐑼𐑩𐑤 𐑐𐑳𐑚𐑤𐑦𐑒 𐑤𐑲𐑕𐑩𐑯𐑕 𐑨𐑟 𐑐𐑳𐑚𐑤𐑦𐑖𐑑 𐑚𐑲 𐑞 𐑓𐑮𐑰 𐑕𐑪𐑓𐑑𐑢𐑺 𐑓𐑬𐑯𐑛𐑱𐑖𐑩𐑯; 𐑲𐑞𐑼 𐑝𐑻𐑠𐑩𐑯 2 𐑝 "
+"𐑞 𐑤𐑲𐑕𐑩𐑯𐑕, 𐑹 (𐑨𐑑 𐑿𐑼 𐑪𐑐𐑖𐑩𐑯) 𐑧𐑯𐑦 𐑤𐑱𐑑𐑼 𐑝𐑻𐑠𐑩𐑯.\n"
+
+#, fuzzy
+#: ../src/cheese-commands-help.c:103
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
+msgstr ""
+"𐑞𐑦𐑕 𐑐𐑮𐑴𐑜𐑮𐑨𐑥 𐑦𐑟 𐑛𐑦𐑕𐑑𐑮𐑦𐑚𐑿𐑑𐑩𐑛 𐑦𐑯 𐑞 𐑣𐑴𐑐 𐑞𐑨𐑑 𐑦𐑑 𐑢𐑦𐑤 𐑚𐑰 𐑿𐑕𐑓𐑩𐑤, 𐑚𐑳𐑑 𐑢𐑦𐑞𐑬𐑑 𐑧𐑯𐑦 "
+"𐑢𐑪𐑮𐑩𐑯𐑑𐑰; 𐑢𐑦𐑞𐑬𐑑 𐑰𐑝𐑩𐑯 𐑞 𐑦𐑥𐑐𐑤𐑲𐑛 𐑢𐑪𐑮𐑩𐑯𐑑𐑰 𐑝 MERCHANTABILITY 𐑹 𐑓𐑦𐑑𐑯𐑩𐑕 𐑓𐑹 𐑩 𐑐𐑼𐑑𐑦𐑒𐑿𐑤𐑼 "
+"𐑐𐑻𐑐𐑩𐑕.  𐑕𐑰 𐑞 ·𐑜𐑯𐑿 𐑡𐑧𐑯𐑼𐑩𐑤 𐑐𐑳𐑚𐑤𐑦𐑒 𐑤𐑲𐑕𐑩𐑯𐑕 𐑓𐑹 𐑥𐑹 𐑛𐑰𐑑𐑱𐑤𐑟.\n"
+
+#: ../src/cheese-commands-help.c:107
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"𐑿 𐑖𐑫𐑛 𐑣𐑨𐑝 𐑮𐑦𐑕𐑰𐑝𐑛 𐑩 𐑒𐑪𐑐𐑦 𐑝 𐑞 ·𐑜𐑯𐑿 𐑡𐑧𐑯𐑼𐑩𐑤 𐑐𐑳𐑚𐑤𐑦𐑒 𐑤𐑲𐑕𐑩𐑯𐑕 𐑩𐑤𐑪𐑙 𐑢𐑦𐑞 𐑞𐑦𐑕 𐑐𐑮𐑴𐑜𐑮𐑨𐑥. "
+"𐑦𐑓 𐑯𐑪𐑑, 𐑕𐑰 <http://www.gnu.org/licenses/>."
+
+#: ../src/cheese-commands-help.c:124
+msgid "Cheese Website"
+msgstr "·𐑗𐑰𐑟 𐑢𐑧𐑚𐑕𐑲𐑑"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -203,6 +463,11 @@ msgstr "𐑝𐑻𐑑𐑦𐑒𐑩𐑤 𐑓𐑤𐑦𐑐"
 msgid "Horizontal Flip"
 msgstr "𐑣𐑪𐑮𐑦𐑟𐑪𐑯𐑑𐑩𐑤 𐑓𐑤𐑦𐑐"
 
+#, fuzzy
+#: ../src/cheese-effect-chooser.c:74
+msgid "Shagadelic"
+msgstr "Shagadelic"
+
 #: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
 msgstr "𐑝𐑻𐑑𐑦𐑜𐑴"
@@ -219,239 +484,105 @@ msgstr "𐑛𐑲𐑕"
 msgid "Warp"
 msgstr "𐑢𐑪𐑮𐑐"
 
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../src/cheese-countdown.c:436 ../src/cheese-countdown.c:455
-#: ../src/cheese-countdown.c:474
-#, c-format
-msgid "%d "
-msgstr "%d "
-
-#: ../src/cheese-no-camera.c:93
+#: ../src/cheese-no-camera.c:94
 msgid "No camera found!"
 msgstr "𐑯𐑴 𐑒𐑨𐑥𐑻𐑩 𐑓𐑬𐑯𐑛!"
 
-#: ../src/cheese-no-camera.c:94
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1222
 msgid "Please refer to the help for further information."
 msgstr "𐑐𐑤𐑰𐑟 𐑮𐑦𐑓𐑻 𐑑 𐑞 𐑣𐑧𐑤𐑐 𐑓𐑹 𐑓𐑻𐑞𐑼 𐑦𐑯𐑓𐑼𐑥𐑱𐑖𐑩𐑯."
 
-#: ../src/cheese-window.c:80
-msgid "_Skip"
-msgstr "_𐑕𐑒𐑦𐑐"
-
-#: ../src/cheese-window.c:82
-msgid "Delete _All"
-msgstr "𐑛𐑦𐑤𐑰𐑑 _𐑷𐑤"
-
-#: ../src/cheese-window.c:546
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s\n"
-"%s"
-msgstr ""
-"𐑓𐑱𐑤𐑛 𐑑 𐑤𐑷𐑯𐑗 𐑐𐑮𐑴𐑜𐑮𐑨𐑥 𐑑 𐑖𐑴:\n"
-"%s\n"
-"%s"
-
-#: ../src/cheese-window.c:567
-msgid "Save File"
-msgstr "𐑕𐑱𐑝 𐑓𐑲𐑤"
-
-#: ../src/cheese-window.c:605
-#, c-format
-msgid "Could not save %s"
-msgstr "𐑒𐑫𐑛 𐑯𐑪𐑑 𐑕𐑱𐑝 %s"
-
-#: ../src/cheese-window.c:628
-msgid "Error while deleting"
-msgstr "𐑻𐑼 𐑢𐑲𐑤 𐑛𐑦𐑤𐑰𐑑𐑦𐑙"
-
-#: ../src/cheese-window.c:629
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "𐑞 𐑓𐑲𐑤 \"%s\" 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑛𐑦𐑤𐑰𐑑𐑩𐑛. 𐑛𐑰𐑑𐑱𐑤𐑟: %s"
-
-#: ../src/cheese-window.c:663
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "𐑸 𐑿 𐑖𐑫𐑼 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑐𐑻𐑥𐑩𐑯𐑩𐑯𐑑𐑤𐑦 𐑛𐑦𐑤𐑰𐑑 \"%s\"?"
-
-#: ../src/cheese-window.c:666
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "𐑦𐑓 𐑿 𐑛𐑦𐑤𐑰𐑑 𐑩𐑯 𐑲𐑑𐑩𐑥, 𐑦𐑑 𐑢𐑦𐑤 𐑚𐑰 𐑐𐑻𐑥𐑩𐑯𐑩𐑯𐑑𐑤𐑦 𐑤𐑪𐑕𐑑."
-
-#: ../src/cheese-window.c:687
-msgid "Unknown Error"
-msgstr "𐑳𐑯𐑴𐑯 𐑻𐑼"
-
-#: ../src/cheese-window.c:717
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "𐑒𐑨𐑯𐑪𐑑 𐑥𐑵𐑝 𐑓𐑲𐑤 𐑑 𐑑𐑮𐑨𐑖, 𐑛𐑵 𐑿 𐑢𐑪𐑯𐑑 𐑑 𐑛𐑦𐑤𐑰𐑑 𐑦𐑥𐑰𐑛𐑾𐑑𐑤𐑰?"
-
-#: ../src/cheese-window.c:718
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "𐑞 𐑓𐑲𐑤 \"%s\" 𐑒𐑨𐑯𐑪𐑑 𐑚𐑰 𐑥𐑵𐑝𐑛 𐑑 𐑞 𐑑𐑮𐑨𐑖. 𐑛𐑰𐑑𐑱𐑤𐑟: %s"
-
-#: ../src/cheese-window.c:790
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "𐑮𐑾𐑤𐑦 𐑥𐑵𐑝 𐑷𐑤 𐑓𐑴𐑑𐑴𐑟 𐑯 𐑝𐑦𐑛𐑰𐑴𐑟 𐑑 𐑞 𐑑𐑮𐑨𐑖?"
-
-#: ../src/cheese-window.c:798
-msgid "_Move to Trash"
-msgstr "_𐑥𐑵𐑝 𐑑 𐑑𐑮𐑨𐑖"
-
-#: ../src/cheese-window.c:916
-#, c-format
-msgid "Could not set the Account Photo"
-msgstr "𐑒𐑫𐑛 𐑯𐑪𐑑 𐑕𐑧𐑑 𐑞 𐑩𐑒𐑬𐑯𐑑 𐑓𐑴𐑑𐑴"
-
-#: ../src/cheese-window.c:948
-msgid "Media files"
-msgstr "𐑥𐑰𐑛𐑦𐑩 𐑓𐑲𐑤𐑟"
-
-#: ../src/cheese-window.c:1022 ../src/cheese-window.c:1315
-msgid "Unable to open help file for Cheese"
-msgstr "𐑳𐑯𐑱𐑚𐑩𐑤 𐑑 𐑴𐑐𐑩𐑯 𐑣𐑧𐑤𐑐 𐑓𐑲𐑤 𐑓𐑹 ·𐑗𐑰𐑟"
-
-#: ../src/cheese-window.c:1079
-msgid "translator-credits"
-msgstr "·𐑑𐑪𐑥𐑩𐑕 ·𐑔𐑻𐑥𐑩𐑯"
-
-#: ../src/cheese-window.c:1082
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-msgstr ""
-"𐑞𐑦𐑕 𐑐𐑮𐑴𐑜𐑮𐑨𐑥 𐑦𐑟 𐑓𐑮𐑰 𐑕𐑪𐑓𐑑𐑢𐑺; 𐑿 𐑒𐑨𐑯 𐑮𐑰𐑛𐑦𐑕𐑑𐑮𐑦𐑚𐑿𐑑 𐑦𐑑 𐑯/𐑹 𐑥𐑪𐑛𐑦𐑓𐑲 𐑦𐑑 𐑳𐑯𐑛𐑼 𐑞 𐑑𐑻𐑥𐑟 𐑝 "
-"𐑞 ·𐑜𐑯𐑿 𐑡𐑧𐑯𐑼𐑩𐑤 𐑐𐑳𐑚𐑤𐑦𐑒 𐑤𐑲𐑕𐑩𐑯𐑕 𐑨𐑟 𐑐𐑳𐑚𐑤𐑦𐑖𐑑 𐑚𐑲 𐑞 𐑓𐑮𐑰 𐑕𐑪𐑓𐑑𐑢𐑺 𐑓𐑬𐑯𐑛𐑱𐑖𐑩𐑯; 𐑲𐑞𐑼 𐑝𐑻𐑠𐑩𐑯 2 "
-"𐑝 𐑞 𐑤𐑲𐑕𐑩𐑯𐑕, 𐑹 (𐑨𐑑 𐑿𐑼 𐑪𐑐𐑖𐑩𐑯) 𐑧𐑯𐑦 𐑤𐑱𐑑𐑼 𐑝𐑻𐑠𐑩𐑯.\n"
-
-#: ../src/cheese-window.c:1090
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"𐑿 𐑖𐑫𐑛 𐑣𐑨𐑝 𐑮𐑦𐑕𐑰𐑝𐑛 𐑩 𐑒𐑪𐑐𐑦 𐑝 𐑞 ·𐑜𐑯𐑿 𐑡𐑧𐑯𐑼𐑩𐑤 𐑐𐑳𐑚𐑤𐑦𐑒 𐑤𐑲𐑕𐑩𐑯𐑕 𐑩𐑤𐑪𐑙 𐑢𐑦𐑞 𐑞𐑦𐑕 𐑐𐑮𐑴𐑜𐑮𐑨𐑥. "
-"𐑦𐑓 𐑯𐑪𐑑, 𐑕𐑰 <http://www.gnu.org/licenses/>."
-
-#: ../src/cheese-window.c:1107
-msgid "Cheese Website"
-msgstr "·𐑗𐑰𐑟 𐑢𐑧𐑚𐑕𐑲𐑑"
-
-#: ../src/cheese-window.c:1331
-msgid "_Start Recording"
-msgstr "_𐑕𐑑𐑸𐑑 𐑮𐑦𐑒𐑹𐑛𐑦𐑙"
-
-#: ../src/cheese-window.c:1499
-msgid "_Stop Recording"
-msgstr "_𐑕𐑑𐑪𐑐 𐑮𐑦𐑒𐑹𐑛𐑦𐑙"
-
-#: ../src/cheese-window.c:1535
+#: ../src/cheese-ui.h:32
 msgid "_Cheese"
 msgstr "_·𐑗𐑰𐑟"
 
-#: ../src/cheese-window.c:1537
+#: ../src/cheese-ui.h:34
 msgid "_Edit"
 msgstr "_𐑧𐑛𐑦𐑑"
 
-#: ../src/cheese-window.c:1538
-msgid "Move All to Trash"
-msgstr "𐑥𐑵𐑝 𐑷𐑤 𐑑 𐑑𐑮𐑨𐑖"
-
-#: ../src/cheese-window.c:1541
+#: ../src/cheese-ui.h:35
 msgid "_Help"
 msgstr "_𐑣𐑧𐑤𐑐"
 
-#: ../src/cheese-window.c:1544
+#: ../src/cheese-ui.h:38
 msgid "_Contents"
 msgstr "_𐑒𐑪𐑯𐑑𐑩𐑯𐑑𐑕"
 
-#: ../src/cheese-window.c:1544
+#: ../src/cheese-ui.h:38
 msgid "Help on this Application"
 msgstr "𐑣𐑧𐑤𐑐 𐑪𐑯 𐑞𐑦𐑕 𐑩𐑐𐑤𐑦𐑒𐑱𐑕𐑩𐑯"
 
-#: ../src/cheese-window.c:1550
-msgid "Countdown"
-msgstr "𐑒𐑶𐑯𐑑𐑛𐑶𐑯"
-
-#: ../src/cheese-window.c:1566
-msgid "_Wide mode"
-msgstr "_𐑢𐑲𐑛 𐑥𐑴𐑛"
-
-#: ../src/cheese-window.c:1570
+#: ../src/cheese-ui.h:48
 msgid "_Photo"
 msgstr "_𐑓𐑴𐑑𐑴"
 
-#: ../src/cheese-window.c:1571
+#: ../src/cheese-ui.h:49
 msgid "_Video"
 msgstr "_𐑝𐑦𐑛𐑦𐑴"
 
-#: ../src/cheese-window.c:1572
+#: ../src/cheese-ui.h:50
 msgid "_Burst"
 msgstr "_𐑚𐑻𐑕𐑑"
 
-#: ../src/cheese-window.c:1576
-msgid "_Open"
-msgstr "_𐑴𐑐𐑩𐑯"
+#: ../src/cheese-ui.h:54
+msgid "Countdown"
+msgstr "𐑒𐑶𐑯𐑑𐑛𐑶𐑯"
 
-#: ../src/cheese-window.c:1578
-msgid "Save _As…"
-msgstr "𐑕𐑱𐑝 _𐑨𐑟…"
+#: ../src/cheese-ui.h:64
+msgid "_Wide mode"
+msgstr "_𐑢𐑲𐑛 𐑥𐑴𐑛"
 
-#: ../src/cheese-window.c:1580
-msgid "Move to _Trash"
-msgstr "𐑥𐑵𐑝 𐑑 _𐑑𐑮𐑨𐑖"
-
-#: ../src/cheese-window.c:1582
-msgid "Delete"
-msgstr "𐑛𐑦𐑤𐑰𐑑"
-
-#: ../src/cheese-window.c:1591
+#: ../src/cheese-ui.h:71
 msgid "_Recording"
 msgstr "_𐑮𐑦𐑒𐑹𐑛𐑦𐑙"
 
-#: ../src/cheese-window.c:1595 ../src/cheese-window.c:1640
+#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "_𐑑𐑱𐑒 𐑥𐑳𐑤𐑑𐑦𐑐𐑩𐑤 𐑓𐑴𐑑𐑴𐑟"
 
-#: ../src/cheese-window.c:1599
-msgid "_Set As Account Photo"
-msgstr "_𐑕𐑧𐑑 𐑨𐑟 𐑩𐑒𐑬𐑯𐑑 𐑓𐑴𐑑𐑴"
+#: ../src/cheese-ui.h:78
+msgid "_Open"
+msgstr "_𐑴𐑐𐑩𐑯"
 
-#: ../src/cheese-window.c:1603
-msgid "Send by _Mail"
-msgstr "𐑕𐑧𐑯𐑛 𐑚𐑲 _𐑥𐑱𐑤"
+#: ../src/cheese-ui.h:80
+msgid "Save _As…"
+msgstr "𐑕𐑱𐑝 _𐑨𐑟…"
 
-#: ../src/cheese-window.c:1607
-msgid "Send _To"
-msgstr "𐑕𐑧𐑯𐑛 _𐑑"
+#: ../src/cheese-ui.h:82
+msgid "Move to _Trash"
+msgstr "𐑥𐑵𐑝 𐑑 _𐑑𐑮𐑨𐑖"
 
-#: ../src/cheese-window.c:1611
-msgid "Export to F-_Spot"
-msgstr "𐑧𐑒𐑕𐑐𐑹𐑑 𐑑 𐑧𐑓-_𐑕𐑐𐑪𐑑"
+#: ../src/cheese-ui.h:84
+msgid "Delete"
+msgstr "𐑛𐑦𐑤𐑰𐑑"
 
-#: ../src/cheese-window.c:1653
-msgid "_Start recording"
+#: ../src/cheese-ui.h:89
+msgid "Move All to Trash"
+msgstr "𐑥𐑵𐑝 𐑷𐑤 𐑑 𐑑𐑮𐑨𐑖"
+
+#: ../src/cheese-window.c:60
+msgid "_Start Recording"
 msgstr "_𐑕𐑑𐑸𐑑 𐑮𐑦𐑒𐑹𐑛𐑦𐑙"
 
-#: ../src/cheese-window.c:1811
-msgid "_Take a photo"
-msgstr "_𐑑𐑱𐑒 𐑩 𐑓𐑴𐑑𐑴"
+#: ../src/cheese-window.c:61
+msgid "_Stop Recording"
+msgstr "_𐑕𐑑𐑪𐑐 𐑮𐑦𐑒𐑹𐑛𐑦𐑙"
 
-#: ../src/cheese.c:165
+#, fuzzy
+#: ../src/cheese.c:97
+msgid "Be verbose"
+msgstr "𐑚𐑰 verbose"
+
+#: ../src/cheese.c:99
 msgid "Enable wide mode"
 msgstr "𐑦𐑯𐑱𐑚𐑩𐑤 𐑢𐑲𐑛 𐑥𐑴𐑛"
 
-#: ../src/cheese.c:169
+#: ../src/cheese.c:101
 msgid "output version information and exit"
 msgstr "𐑬𐑑𐑐𐑫𐑑 𐑝𐑻𐑠𐑩𐑯 𐑦𐑯𐑓𐑼𐑥𐑱𐑖𐑩𐑯 𐑯 𐑧𐑜𐑟𐑦𐑑"
+
+#, fuzzy
+#: ../src/cheese.c:120
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr "- 𐑑𐑱𐑒 𐑓𐑴𐑑𐑴𐑟 𐑯 𐑝𐑦𐑛𐑰𐑴𐑟 𐑢𐑦𐑞 𐑿𐑼 webcam, 𐑢𐑦𐑞 𐑓𐑳𐑯 𐑜𐑮𐑨𐑓𐑦𐑒𐑩𐑤 𐑦𐑓𐑧𐑒𐑑𐑕"
+
