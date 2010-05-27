@@ -1,6 +1,6 @@
 using GLib, Gtk;
 
-public class Cheese.Cheese {
+public class Cheese.Main {
 	static bool verbose;
 	static bool wide;
 	static bool version_only;
@@ -48,6 +48,10 @@ public class Cheese.Cheese {
 		log_file = FileStream.open (Path.build_filename (log_file_dir, "cheese.log"), "w");
 		set_print_handler (print_handler);
 
+		CheeseWindow window = new CheeseWindow();
+		window.setup_ui();
+		window.show_all();
+		
 		Gtk.main ();
 		
 		return 0;

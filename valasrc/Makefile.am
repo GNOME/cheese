@@ -18,7 +18,8 @@ AM_CPPFLAGS = \
 bin_PROGRAMS = cheese
 
 cheese_SOURCES = \
-	cheese.vala
+	cheese-main.vala \
+	cheese-window.vala
 
 cheese_LDADD = \
 	$(CHEESE_LIBS)
