@@ -1,4 +1,4 @@
-VALA_CFLAGS = \
+VALAFLAGS = \
 	--thread \
 	--vapidir vapi \
 	--pkg config \
@@ -15,20 +15,10 @@ AM_CPPFLAGS = \
 	$(CHEESE_CFLAGS) \
 	-include $(CONFIG_HEADER)
 
-BUILT_SOURCES = cheese.vala.stamp
-
 bin_PROGRAMS = cheese
 
-cheese_VALASOURCES = \
-	cheese.vala
-
 cheese_SOURCES = \
-	$(cheese_VALASOURCES:.vala=.c) \
-	$(cheese_VALASOURCES:.vala=.h) 
-
-cheese.vala.stamp: $(cheese_VALASOURCES)
-	$(VALAC) -C $(VALA_CFLAGS) $^
-	touch $@
+	cheese.vala
 
 cheese_LDADD = \
 	$(CHEESE_LIBS)
