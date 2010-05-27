@@ -1,11 +1,21 @@
 using Gtk;
+using Gdk;
 
-public class Cheese.MainWindow : Window {
+public class Cheese.MainWindow : Gtk.Window {
 
 	[CCode (instance_pos = -1)]
 	internal void on_quit (Action action ) {
 		destroy();
 	}
+
+
+	[CCode (instance_pos = -1)]
+	internal void on_help_contents (Action action ) {
+		Gdk.Screen screen;
+		screen = this.get_screen();
+		Gtk.show_uri(screen, "ghelp:cheese", Gtk.get_current_event_time());
+	}
+
 	
 	public	void setup_ui () {
 		Builder builder = new Builder();
@@ -15,7 +25,7 @@ public class Cheese.MainWindow : Window {
 		
 		main_vbox = (VBox) builder.get_object ("mainbox_normal");
 		
-		add(main_vbox);
+		this.add(main_vbox);
 			
 	}
 }
