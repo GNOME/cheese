@@ -1,4 +1,4 @@
-SUBDIRS = libcheese src tests po data help docs
+SUBDIRS = libcheese valasrc tests po data help docs 
 
 EXTRA_DIST =			\
 	$(cheesedoc_DATA)	\
