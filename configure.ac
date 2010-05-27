@@ -88,6 +88,8 @@ DBUS_REQUIRED=1.0
 DBUS_GLIB_REQUIRED=0.7
 PANGOCAIRO_REQUIRED=1.18.0
 LIBRSVG_REQUIRED=2.18.0
+CLUTTER_REQUIRED=1.0
+CLUTTERGTK_REQUIRED=0.10
 
 #*******************************************************************************
 # Check for udev
@@ -142,7 +144,9 @@ PKG_CHECK_MODULES(CHEESE, \
   dbus-1 >= $DBUS_REQUIRED \
   dbus-glib-1 >= $DBUS_GLIB_REQUIRED \
   pangocairo >= $PANGOCAIRO_REQUIRED \
-  librsvg-2.0 >= $LIBRSVG_REQUIRED
+  librsvg-2.0 >= $LIBRSVG_REQUIRED \
+  clutter-1.0 >= $CLUTTER_REQUIRED \
+  clutter-gtk-0.10 >= $CLUTTERGTK_REQUIRED \
   libcanberra-gtk $UDEV_PKG)
 AC_SUBST(CHEESE_CFLAGS)
 

@@ -276,8 +276,39 @@
   </object>
   
   <object class="GtkVBox" id="mainbox_normal">
+    <property name="homogeneous">False</property>    
     <child>
       <object class="GtkMenuBar" id="main_menubar" constructor="menu_ui_man">
+      </object>
+      <packing>
+	<property name="expand">False</property>
+	<property name="fill">False</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkHBox" id="content_area">
+	<child>
+	  <object class="GtkVBox" id="view_area">
+	    <child>
+	      <object class="GtkClutterEmbed" id="viewport">
+		<property name="height_request">450</property>
+		<property name="width_request">600</property>
+	      </object>
+	      <packing>
+		<property name="expand">True</property>
+		<property name="fill">True</property>
+	      </packing>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkFrame" id="thumbnails">
+	    <property name="width_request">140</property>
+	  </object>
+	  <packing>
+	    <property name="expand">False</property>
+	  </packing>
+	</child>
       </object>
     </child>
   </object>

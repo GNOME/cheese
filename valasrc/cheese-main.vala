@@ -1,4 +1,6 @@
-using GLib, Gtk;
+using GLib;
+using Gtk;
+using Clutter;
 
 public class Cheese.Main {
 	static bool verbose;
@@ -27,12 +29,14 @@ public class Cheese.Main {
 		Intl.textdomain (Config.GETTEXT_PACKAGE);
 
 		Gtk.init(ref args);
+		Clutter.init(ref args);
 		
 		try {
 			var context = new OptionContext (_("- Take photos and videos from your webcam"));
 			context.set_help_enabled (true);
 			context.add_main_entries (options, null);
 			context.add_group (Gtk.get_option_group (true));
+			context.add_group (Clutter.get_option_group ());
 			context.parse (ref args);
 		} catch (OptionError e) {
 			stdout.printf ("%s\n", e.message);
@@ -43,9 +47,9 @@ public class Cheese.Main {
  		Environment.set_application_name (_("Cheese"));
 		Window.set_default_icon_name ("cheese");
 
-		string log_file_dir = Path.build_filename (Environment.get_home_dir(), ".config", "cheese");
+		string log_file_dir = GLib.Path.build_filename (Environment.get_home_dir(), ".config", "cheese");
 		DirUtils.create_with_parents (log_file_dir, 0775);
-		log_file = FileStream.open (Path.build_filename (log_file_dir, "cheese.log"), "w");
+		log_file = FileStream.open (GLib.Path.build_filename (log_file_dir, "cheese.log"), "w");
 		set_print_handler (print_handler);
 
 		Cheese.MainWindow main_window = new Cheese.MainWindow();

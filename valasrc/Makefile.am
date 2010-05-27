@@ -3,7 +3,9 @@ VALAFLAGS = \
 	--vapidir vapi \
 	--pkg config \
 	--pkg gtk+-2.0 \
-	--pkg gmodule-2.0
+	--pkg gmodule-2.0 \
+	--pkg clutter-1.0 \
+	--pkg clutter-gtk-0.10
 
 AM_CPPFLAGS = \
 	-DBINDIR=\"$(bindir)\"			 	\
