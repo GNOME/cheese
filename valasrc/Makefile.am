@@ -2,7 +2,8 @@ VALAFLAGS = \
 	--thread \
 	--vapidir vapi \
 	--pkg config \
-	--pkg gtk+-2.0 
+	--pkg gtk+-2.0 \
+	--pkg gmodule-2.0
 
 AM_CPPFLAGS = \
 	-DBINDIR=\"$(bindir)\"			 	\
@@ -13,7 +14,10 @@ AM_CPPFLAGS = \
 	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\"	\
 	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
 	$(CHEESE_CFLAGS) \
-	-include $(CONFIG_HEADER)
+	-include $(CONFIG_HEADER) 
+
+AM_CFLAGS = \
+	-export-dynamic
 
 bin_PROGRAMS = cheese
 

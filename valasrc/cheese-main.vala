@@ -48,10 +48,10 @@ public class Cheese.Main {
 		log_file = FileStream.open (Path.build_filename (log_file_dir, "cheese.log"), "w");
 		set_print_handler (print_handler);
 
-		CheeseWindow window = new CheeseWindow();
-		window.setup_ui();
-		window.destroy.connect(Gtk.main_quit);
-		window.show_all();
+		Cheese.MainWindow main_window = new Cheese.MainWindow();
+		main_window.setup_ui();
+		main_window.destroy.connect(Gtk.main_quit);
+		main_window.show_all();
 		
 		Gtk.main ();
 		
