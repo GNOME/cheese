@@ -50,6 +50,7 @@ public class Cheese.Main {
 
 		CheeseWindow window = new CheeseWindow();
 		window.setup_ui();
+		window.destroy.connect(Gtk.main_quit);
 		window.show_all();
 		
 		Gtk.main ();
