@@ -1,5 +1,5 @@
 # Slovenian translation for cheese.
-# Copyright (C) 2007 daniel g. siegel <dgsiegel@gmail.com>
+# Copyright (C) 2007 Daniel G. Siegel <dgsiegel@gmail.com>
 # This file is distributed under the same license as the cheese package
 #
 # Deni Bačić <baccic@gmail.com>, 2007.
@@ -7,10 +7,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese\n"
+"Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
 "POT-Creation-Date: 2010-01-21 15:03+0000\n"
-"PO-Revision-Date: 2010-05-05 16:31+0100\n"
+"PO-Revision-Date: 2010-05-27 20:03+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -40,23 +40,23 @@ msgstr "Zajemanje slik in posnetkov s spletno kamero in obdelava z veliko grafi�
 #. standarized and should not be translated
 #: ../data/cheese.schemas.in.h:3
 msgid "A list of effects applied on startup. Possible values are: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr "Učinki, ki so uporabljeni ob zagonu. Mogoče vrednosti so: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr "Učinki, ki so uporabljeni ob zagonu. Mogoče vrednosti so: \"mauve\", \"noir_blanc\" (črno-belo), \"saturation\" (nasičenje), \"hulk\", \"vertical-flip\" (navpično zrcaljenje), \"horizontal-flip\" (vodorano zrcaljenje), \"shagadelic\" (žmohtno), \"vertigo\", \"edge\", \"dice\ (kockasto)\" in \"warp\""
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Adjusts brightness level of the picture coming from the camera"
-msgstr "Prilagajanje ravni svetlosti slike, zajete s spletno kamero"
+msgstr "Prilagajanje ravni svetlosti slike zajete s spletno kamero"
 
 #: ../data/cheese.schemas.in.h:5
 msgid "Adjusts contrast level of the picture coming from the camera"
-msgstr "Prilagajanje kontrasta slike, zajete s spletno kamero"
+msgstr "Prilagajanje kontrasta slike zajete s spletno kamero"
 
 #: ../data/cheese.schemas.in.h:6
 msgid "Adjusts hue level of the picture coming from the camera"
-msgstr "Prilagajanje odtenkov slike, zajete s spletno kamero"
+msgstr "Prilagajanje odtenkov slike zajete s spletno kamero"
 
 #: ../data/cheese.schemas.in.h:7
 msgid "Adjusts saturation level of the picture coming from the camera"
-msgstr "Prilagajanje nasičenosti slike, zajete s spletno kamero"
+msgstr "Prilagajanje nasičenosti slike zajete s spletno kamero"
 
 #: ../data/cheese.schemas.in.h:8
 msgid "Camera device string indicator"
@@ -76,11 +76,11 @@ msgstr "Ločljivost višine"
 
 #: ../data/cheese.schemas.in.h:12
 msgid "If set to true, Cheese will start up in a wide mode with the image collection placed on the right-hand side. Useful with small screens."
-msgstr "Izbrana možnost omogoča, da se program zažene v širokem načinu z zbirko slik na desni strani. Možnost je namenjena pri uporabi majhnih zaslonov."
+msgstr "Izbrana možnost omogoča, da se program zažene v širokem načinu z zbirko slik na desni strani. Možnost je koristna pri uporabi majhnih zaslonov."
 
 #: ../data/cheese.schemas.in.h:13
 msgid "If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution."
-msgstr "Izbrana možnost omogoča programu, da sliko izbrišete tako na licu mesta, namesto da jo premaknete v smeti. Možnost je treba uporabljati pazljivo."
+msgstr "Izbrana možnost omogoča programu, da sliko trajno izbrišete, namesto da jo premaknete v smeti. Možnost je treba uporabljati pazljivo."
 
 #: ../data/cheese.schemas.in.h:14
 msgid "Milliseconds between photos in burst mode."
@@ -148,7 +148,7 @@ msgstr "Pot do videa"
 
 #: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
-msgstr "Ali naj bo omogočen neposreden izbris datotek"
+msgstr "Ali naj se omogoči neposredno brisanje datotek"
 
 #: ../data/cheese.schemas.in.h:31
 msgid "Whether to start in wide mode"
@@ -291,11 +291,11 @@ msgstr "Zmožnosti naprave niso podprte"
 
 #: ../libcheese/cheese-camera-device.c:485
 msgid "Unknown device"
-msgstr "Neznana vrsta naprave"
+msgstr "Neznana naprava"
 
 #: ../libcheese/cheese-camera-device.c:509
 msgid "Cancellable initialization not supported"
-msgstr "Dejanje prekinitve zagona ni podprto"
+msgstr "Dejanje preklica začenjanja ni podprto"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -323,7 +323,7 @@ msgstr "Vodoravno zrcaljenje"
 
 #: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
-msgstr "Shagadelic"
+msgstr "Žmohtno"
 
 #: ../src/cheese-effect-chooser.c:76
 msgid "Vertigo"
@@ -368,7 +368,7 @@ msgid ""
 "%s\n"
 "%s"
 msgstr ""
-"Napaka med zaganjanjem programa za prikaz:\n"
+"Napaka med zaganjanjem programa za prikazovanje:\n"
 "%s\n"
 "%s"
 
@@ -415,7 +415,7 @@ msgstr "Neznana napaka"
 
 #: ../src/cheese-window.c:812
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Datoteke ni mogoče premakniti v smeti. Ali jo želite takoj izbrisati?"
+msgstr "Datoteke ni mogoče premakniti v smeti. Ali jo želite izbrisati takoj?"
 
 #: ../src/cheese-window.c:813
 #, c-format
@@ -425,7 +425,7 @@ msgstr "Datoteke \"%s\" ni mogoče premakniti v smeti. Podrobnosti: %s"
 #: ../src/cheese-window.c:885
 #, c-format
 msgid "Really move all photos and videos to the trash?"
-msgstr "Ali zares premaknem vse fotografije in posnetke v smeti?"
+msgstr "Ali naj se zares premaknejo vse fotografije in posnetki v smeti?"
 
 #: ../src/cheese-window.c:893
 msgid "_Move to Trash"
@@ -476,11 +476,11 @@ msgstr "_Uredi"
 
 #: ../src/cheese-window.c:1483
 msgid "Move All to Trash"
-msgstr "Vse premakni v smeti"
+msgstr "Premakni vse v smeti"
 
 #: ../src/cheese-window.c:1486
 msgid "_Help"
-msgstr "Po_moč"
+msgstr "Pomo_č"
 
 #: ../src/cheese-window.c:1489
 msgid "_Contents"
@@ -553,11 +553,11 @@ msgstr "Omogoči široki način"
 
 #: ../src/cheese.c:103
 msgid "output version information and exit"
-msgstr "izpiši podrobnosti različice iz zapusti program"
+msgstr "izpiši podrobnosti različice in končaj program"
 
 #: ../src/cheese.c:120
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr "- Zajemanje slik in posnetkov s spletno kamero in obdelava z veliko grafičnimi učinki"
+msgstr "- Zajemanje slik in posnetkov s spletno kamero in obdelava z veliko grafičnimi učinki."
 
 #~ msgid "Could not set the Account Photo"
 #~ msgstr "Ni mogoče nastaviti slike računa"
@@ -601,4 +601,3 @@ msgstr "- Zajemanje slik in posnetkov s spletno kamero in obdelava z veliko graf
 #~ msgstr "Ni mogoče premakniti datoteke v smeti"
 #~ msgid "_Back"
 #~ msgstr "_Nazaj"
-
