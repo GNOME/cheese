@@ -1,14 +1,16 @@
-
 using Gtk;
 using Gdk;
 using GtkClutter;
 using Clutter;
+using Config;
 
 const int DEFAULT_WINDOW_WIDTH = 600;
 const int DEFAULT_WINDOW_HEIGHT = 450;
 
 public class Cheese.MainWindow : Gtk.Window {
 
+	private Gtk.Builder builder;
+	
 	private Widget thumbnails;
 	private GtkClutter.Embed viewport_widget;
 	private Clutter.Stage viewport;
@@ -17,7 +19,6 @@ public class Cheese.MainWindow : Gtk.Window {
 		destroy();
 	}
 
-
 	[CCode (instance_pos = -1)]
 	internal void on_help_contents (Action action ) {
 		Gdk.Screen screen;
@@ -25,9 +26,18 @@ public class Cheese.MainWindow : Gtk.Window {
 		Gtk.show_uri(screen, "ghelp:cheese", Gtk.get_current_event_time());
 	}
 
+	[CCode (instance_pos = -1)]
+	internal void on_help_about (Action action) {
+		// FIXME: Close doesn't work
+		// FIXME: Clicking URL In the License dialog borks.
+		Gtk.AboutDialog about_dialog;
+		about_dialog = (Gtk.AboutDialog) builder.get_object("aboutdialog");
+		about_dialog.version = Config.VERSION;
+		about_dialog.show_all();
+	}		
 	
 	public	void setup_ui () {
-		Builder builder = new Builder();
+		builder = new Builder();
 		VBox main_vbox;
 		builder.add_from_file (GLib.Path.build_filename ("../data/", "cheese.ui"));
 		builder.connect_signals(this);

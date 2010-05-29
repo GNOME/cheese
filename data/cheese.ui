@@ -1,6 +1,61 @@
 <?xml version="1.0"?>
 <interface>
   <requires lib="gtk+" version="2.16" />
+    <object class="GtkAboutDialog" id="aboutdialog">
+    <property name="program_name">Cheese</property>
+    <property name="comments">Take photos and videos with your webcam, with fun graphical effects</property>
+    <property name="copyright">Copyright © 2007 - 2009
+daniel g. siegel &lt;dgsiegel@gnome.org&gt;</property>
+    <property name="website">http://projects.gnome.org/cheese</property>
+    <property name="website-label">Cheese Website</property>
+    <property name="wrap-license">True</property>
+    <property name="logo-icon-name">cheese</property>
+    <property name="translator-credits" translatable="true">translator-credits</property>
+    <property name="license" translatable="true">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see &lt;http://www.gnu.org/licenses/&gt;.
+</property>
+    <property name="authors">daniel g. siegel &lt;dgsiegel@gnome.org&gt;
+Jaap A. Haitsma &lt;jaap@haitsma.org&gt;
+Filippo Argiolas &lt;fargiolas@gnome.org&gt;
+
+Aidan Delaney &lt;a.j.delaney@brighton.ac.uk&gt;
+Alex "weej" Jones &lt;alex@weej.com&gt;
+Andrea Cimitan &lt;andrea.cimitan@gmail.com&gt;
+Baptiste Mille-Mathias &lt;bmm80@free.fr&gt;
+Cosimo Cecchi &lt;anarki@lilik.it&gt;
+Diego Escalante Urrelo &lt;dieguito@gmail.com&gt;
+Felix Kaser &lt;f.kaser@gmx.net&gt;
+Gintautas Miliauskas &lt;gintas@akl.lt&gt;
+Hans de Goede &lt;jwrdegoede@fedoraproject.org&gt;
+James Liggett &lt;jrliggett@cox.net&gt;
+Luca Ferretti &lt;elle.uca@libero.it&gt;
+Mirco "MacSlow" Müller &lt;macslow@bangang.de&gt;
+Patryk Zawadzki &lt;patrys@pld-linux.org&gt;
+Ryan Zeigler &lt;zeiglerr@gmail.com&gt;
+Sebastian Keller &lt;sebastian-keller@gmx.de&gt;
+Steve Magoun &lt;steve.magoun@canonical.com&gt;
+Thomas Perl &lt;thp@thpinfo.com&gt;
+Tim Philipp Müller &lt;tim@centricular.net&gt;
+Todd Eisenberger &lt;teisenberger@gmail.com&gt;
+Tommi Vainikainen &lt;thv@iki.fi&gt;
+    </property>
+    <property name="documenters">Joshua Henderson &lt;joshhendo@gmail.com&gt;
+Jaap A. Haitsma &lt;jaap@haitsma.org&gt;
+Felix Kaser &lt;f.kaser@gmx.net&gt;
+    </property>
+    <property name="artists">Andreas Nilsson &lt;andreas@andreasn.se&gt;
+Josef Vybíral &lt;josef.vybiral@gmail.com&gt;
+Kalle Persson &lt;kalle@kallepersson.se&gt;
+Lapo Calamandrei &lt;calamandrei@gmail.com&gt;
+Or Dvory &lt;gnudles@nana.co.il&gt;
+Ulisse Perusin &lt;ulisail@yahoo.it&gt;
+    </property>
+
+    </object>
+
   <object class="GtkUIManager" id="menu_ui_man">
     <child>
       <object class="GtkActionGroup" id="main_actions">
@@ -53,7 +108,7 @@
 	    <property name="name">About</property>
 	    <property name="label">_About</property>
 	    <property name="stock_id">gtk-about</property>
-	    <signal name="activate" handler="cheese_main_window_on_about" />
+	    <signal name="activate" handler="cheese_main_window_on_help_about" />
 	  </object>
 	</child>	
 	
@@ -297,6 +352,18 @@
 	      <packing>
 		<property name="expand">True</property>
 		<property name="fill">True</property>
+	      </packing>
+	    </child>
+
+	    <child>
+	      <object class="GtkHBox" id="action_buttons_area">
+		<child>
+		  
+		</child>
+	      </object>
+	      <packing>
+		<property name="expand">False</property>
+		<property name="fill">False</property>
 	      </packing>
 	    </child>
 	  </object>
