@@ -2,16 +2,6 @@
 <interface>
   <requires lib="gtk+" version="2.16" />  
 
-  <object class="GtkImage" id="video_image">
-    <property name="icon_name">video-x-generic</property>
-  </object>
-  <object class="GtkImage" id="burst_image">
-    <property name="icon_name">cheese-take-burst</property>
-  </object>
-  <object class="GtkImage" id="record_image">
-    <property name="icon_name">gtk-media-record</property>
-  </object>
-  
   <object class="GtkVBox" id="mainbox_normal">
     <property name="homogeneous">False</property>    
     <child>
@@ -44,17 +34,35 @@
 		    <property name="spacing">2</property>		    
 		    <child>
 		      <object class="GtkToggleButton" id="photo_toggle_button">
-			<property name="image">photo_image</property>
+			<property name="related-action">photo_mode</property>
+			<property name="use-action-appearance">False</property>
+			<child>
+			  <object class="GtkImage" id="photo_toggle_button_image">
+			    <property name="icon-name">cheese-take-photo</property>
+			  </object>
+			</child>
 		      </object>
 		    </child>
 		    <child>
 		      <object class="GtkToggleButton" id="video_toggle_button">
-			<property name="image">video_image</property>
+			<property name="related-action">video_mode</property>
+			<property name="use-action-appearance">False</property>
+			<child>
+			  <object class="GtkImage" id="video_toggle_button_image">
+			    <property name="icon-name">video-x-generic</property>
+			  </object>
+			</child>
 		      </object>
 		    </child>
 		    <child>
 		      <object class="GtkToggleButton" id="burst_toggle_button">
-			<property name="image">burst_image</property>
+			<property name="related-action">burst_mode</property>
+			<property name="use-action-appearance">False</property>
+			<child>
+			  <object class="GtkImage" id="burst_toggle_button_image">
+			    <property name="icon-name">cheese-take-burst</property>
+			  </object>
+			</child>
 		      </object>
 		    </child>		    
 		  </object>
@@ -70,6 +78,7 @@
 		    <property name="yscale">0</property>
 		    <child>
 		      <object class="GtkButton" id="take_action_button">
+			<property name="related-action">take_photo</property>
 			<child>
 			  <object class="GtkHBox" id="take_action_button_internal_hbox">
 			    <property name="spacing">2</property>
@@ -100,6 +109,7 @@
 		
 		<child>
 		  <object class="GtkToggleButton" id="effects_button">
+		    <property name="related-action">effects_toggle</property>
 		    <child>
 		      <object class="GtkHBox" id="effects_button_internal_hbox">
 			<property name="visible">True</property>
