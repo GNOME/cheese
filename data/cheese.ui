@@ -275,6 +275,16 @@
       </menubar>
     </ui>
   </object>
+
+  <object class="GtkImage" id="video_image">
+    <property name="icon_name">video-x-generic</property>
+  </object>
+  <object class="GtkImage" id="burst_image">
+    <property name="icon_name">cheese-take-burst</property>
+  </object>
+  <object class="GtkImage" id="record_image">
+    <property name="icon_name">gtk-media-record</property>
+  </object>
   
   <object class="GtkVBox" id="mainbox_normal">
     <property name="homogeneous">False</property>    
@@ -300,13 +310,95 @@
 		<property name="fill">True</property>
 	      </packing>
 	    </child>
-
 	    <child>
 	      <object class="GtkHBox" id="action_buttons_area">
+		<child>		  
+		  <object class="GtkHBox" id="mode_toggle_buttons">
+		    <property name="homogeneous">True</property>
+		    <property name="spacing">2</property>		    
+		    <child>
+		      <object class="GtkToggleButton" id="photo_toggle_button">
+			<property name="image">photo_image</property>
+		      </object>
+		    </child>
+		    <child>
+		      <object class="GtkToggleButton" id="video_toggle_button">
+			<property name="image">video_image</property>
+		      </object>
+		    </child>
+		    <child>
+		      <object class="GtkToggleButton" id="burst_toggle_button">
+			<property name="image">burst_image</property>
+		      </object>
+		    </child>		    
+		  </object>
+		  <packing>
+		    <property name="expand">False</property>
+		    <property name="fill">False</property>		    
+		  </packing>		  
+		</child>
+
 		<child>
-		  
+		  <object class="GtkAlignment" id="action_button_alignment">
+		    <property name="xscale">0</property>
+		    <property name="yscale">0</property>
+		    <child>
+		      <object class="GtkButton" id="take_action_button">
+			<child>
+			  <object class="GtkHBox" id="take_action_button_internal_hbox">
+			    <property name="spacing">2</property>
+			    <child>
+			      <object class="GtkImage" id="take_action_button_internal_image">
+				<property name="icon_name">gtk-media-record</property>				
+			      </object>
+			      <packing>
+				<property name="padding">2</property>
+			      </packing>
+			    </child>
+			    <child>
+			      <object class="GtkLabel" id="take_action_button_internal_label">
+				<property name="label" translatable="yes">_Take Photo</property>
+				<property name="use_underline">True</property>
+			      </object>
+			      <packing>
+				  <property name="padding">15</property>
+			      </packing>
+			    </child>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		    
+		  </object>
+		</child>
+		
+		<child>
+		  <object class="GtkToggleButton" id="effects_button">
+		    <child>
+		      <object class="GtkHBox" id="effects_button_internal_hbox">
+			<property name="visible">True</property>
+			<property name="spacing">2</property>
+			<child>
+			  <object class="GtkImage" id="effects_button_internal_image">
+			    <property name="icon_name">browse-webcam-effects</property>
+			  </object>
+			</child>
+			<child>
+			  <object class="GtkLabel" id="effects_button_internal_label">
+			    <property name="label" translatable="yes">_Effects</property>
+			    <property name="use_underline">True</property>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		  <packing>
+		    <property name="expand">False</property>
+		    <property name="fill">False</property>		    
+		  </packing>		  		  
 		</child>
 	      </object>
+	      
 	      <packing>
 		<property name="expand">False</property>
 		<property name="fill">False</property>
