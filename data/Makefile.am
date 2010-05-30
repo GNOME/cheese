@@ -23,7 +23,9 @@ $(service_DATA): $(service_in_files) Makefile
 	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
 
 pkgdata_DATA = \
-	cheese.ui	\
+	cheese-main-window.ui	\
+	cheese-about.ui \
+	cheese-actions.ui \
 	cheese-prefs.ui
 
 EXTRA_DIST = \
