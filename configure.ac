@@ -184,7 +184,7 @@ data/icons/scalable/actions/Makefile
 data/pixmaps/Makefile
 help/Makefile
 libcheese/Makefile
-valasrc/Makefile
+src/Makefile
 tests/Makefile
 po/Makefile.in
 ])
