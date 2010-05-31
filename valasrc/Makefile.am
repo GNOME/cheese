@@ -7,6 +7,8 @@ VALAFLAGS = \
 	--pkg clutter-1.0 \
 	--pkg clutter-gtk-0.10 \
 	--pkg gconf-2.0 \
+	--pkg eogthumbnav \
+	--pkg cheesethumbview
 
 
 AM_CPPFLAGS = \

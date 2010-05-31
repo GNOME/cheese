@@ -3,6 +3,7 @@ using Gdk;
 using GtkClutter;
 using Clutter;
 using Config;
+using Eog;
 
 const int DEFAULT_WINDOW_WIDTH = 600;
 const int DEFAULT_WINDOW_HEIGHT = 450;
@@ -59,8 +60,11 @@ public class Cheese.MainWindow : Gtk.Window {
 					
 		viewport.show_all();
 		Cheese.ThumbView tv = new Cheese.ThumbView();
-		Gtk.Frame tf = (Gtk.Frame) builder.get_object("thumbnails");
-		tf.add(tv);
+		Eog.ThumbNav tnav = new Eog.ThumbNav(tv, false);
+		tv.set_columns(1);
+		tnav.set_vertical(true);
+		Gtk.Frame tf = (Gtk.Frame) builder.get_object("thumbnails");		
+		tf.add(tnav);
 		this.add(main_vbox);
 			
 	}
