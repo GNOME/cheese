@@ -143,8 +143,11 @@
 	  </object>
 	</child>
 	<child>
-	  <object class="GtkFrame" id="thumbnails">
+	  <object class="GtkScrolledWindow" id="thumbnails">
 	    <property name="width_request">140</property>
+	    <child>
+	      <placeholder />
+	    </child>
 	  </object>
 	  <packing>
 	    <property name="expand">False</property>

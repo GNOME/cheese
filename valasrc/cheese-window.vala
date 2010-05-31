@@ -58,6 +58,9 @@ public class Cheese.MainWindow : Gtk.Window {
 		viewport.add_actor(r);
 					
 		viewport.show_all();
+		Cheese.ThumbView tv = new Cheese.ThumbView();
+		Gtk.Frame tf = (Gtk.Frame) builder.get_object("thumbnails");
+		tf.add(tv);
 		this.add(main_vbox);
 			
 	}
