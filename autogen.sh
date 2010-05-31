@@ -6,7 +6,7 @@ test -z "$srcdir" && srcdir=.
 
 PKG_NAME="cheese"
 
-(test -f $srcdir/src/cheese.c) || {
+(test -f $srcdir/valasrc/cheese-main.vala) || {
     echo -n "**Error**: Directory "\`$srcdir\'" does not look like the"
     echo " top-level $PKG_NAME directory"
     exit 1
