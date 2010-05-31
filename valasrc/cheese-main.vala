@@ -52,7 +52,7 @@ public class Cheese.Main {
 		log_file = FileStream.open (GLib.Path.build_filename (log_file_dir, "cheese.log"), "w");
 		set_print_handler (print_handler);
 
-//		Gtk.IconTheme.get_default().append_search_path(GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
+		Gtk.IconTheme.get_default().append_search_path(GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
 		Cheese.MainWindow main_window = new Cheese.MainWindow();
 		main_window.setup_ui();
 		main_window.destroy.connect(Gtk.main_quit);
