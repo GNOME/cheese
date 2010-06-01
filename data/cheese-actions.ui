@@ -118,7 +118,7 @@
 	    <property name="name">Fullscreen</property>
 	    <property name="label">Fullscreen</property>
 	    <property name="stock_id">gtk-fullscreen</property>
-	    <signal name="activate" handler="cheese_main_window_on_layout_fullscreen" />
+	    <signal name="toggle" handler="cheese_main_window_on_layout_fullscreen" />
 	  </object>
 	  <accelerator key="F11" modifiers="" />
 	</child>
@@ -127,7 +127,7 @@
 	  <object class="GtkToggleAction" id="wide_mode">
 	    <property name="name">WideMode</property>
 	    <property name="label">_Wide Mode</property>
-	    <signal name="activate" handler="cheese_main_window_on_layout_wide_mode" />
+	    <signal name="toggled" handler="cheese_main_window_on_layout_wide_mode" />
 	  </object>
 	</child>	
       </object>
@@ -139,7 +139,7 @@
 	  <object class="GtkToggleAction" id="flash">
 	    <property name="name">Flash</property>
 	    <property name="label">Flash</property>
-	    <signal name="activate" handler="cheese_main_window_on_flash_toggle" />
+	    <signal name="toggled" handler="cheese_main_window_on_flash_toggle" />
 	  </object>
 	</child>
 
@@ -147,7 +147,7 @@
 	  <object class="GtkToggleAction" id="countdown">
 	    <property name="name">Countdown</property>
 	    <property name="label">Countdown</property>
-	    <signal name="activate" handler="cheese_main_window_on_countdown_toggle" />
+	    <signal name="toggled" handler="cheese_main_window_on_countdown_toggle" />
 	  </object>
 	</child>	
       </object>
@@ -223,7 +223,7 @@
 	  <object class="GtkToggleAction" id="effects_toggle">
 	    <property name="name">Effects</property>
 	    <property name="label">_Effects</property>
-	    <signal name="activate" handler="cheese_main_window_on_effects_toggle" />
+	    <signal name="toggled" handler="cheese_main_window_on_effects_toggle" />
 	  </object>
 	</child>	
       </object>      
@@ -235,7 +235,7 @@
 	  <object class="GtkToggleAction" id="preferences">
 	    <property name="name">Preferences</property>
 	    <property name="label">_Preferences</property>
-	    <signal name="activate" handler="cheese_main_window_on_preferences_dialog" />
+	    <signal name="toggled" handler="cheese_main_window_on_preferences_dialog" />
 	  </object>
 	</child>
       </object>
