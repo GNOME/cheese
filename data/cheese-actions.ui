@@ -118,7 +118,7 @@
 	    <property name="name">Fullscreen</property>
 	    <property name="label">Fullscreen</property>
 	    <property name="stock_id">gtk-fullscreen</property>
-	    <signal name="toggle" handler="cheese_main_window_on_layout_fullscreen" />
+	    <signal name="toggled" handler="cheese_main_window_on_layout_fullscreen" />
 	  </object>
 	  <accelerator key="F11" modifiers="" />
 	</child>

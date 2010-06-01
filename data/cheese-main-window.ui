@@ -133,6 +133,39 @@
 		    <property name="fill">False</property>		    
 		  </packing>		  		  
 		</child>
+
+		<child>
+		  <object class="GtkHBox" id="leave_fullscreen_button_bin">
+		    <property name="visible">False</property>
+		    <property name="no-show-all">True</property>
+		    <child>
+		      <object class="GtkButton" id="leave_fullscreen_button">
+			<property name="use-action-appearance">False</property>
+			<property name="related-action">fullscreen</property>
+			<child>
+			  <object class="GtkHBox" id="fullscreen_button_internal_hbox">
+			    <property name="spacing">2</property>
+			    <child>
+			      <object class="GtkImage" id="fullscreen_button_internal_image">
+				<property name="stock">gtk-leave-fullscreen</property>
+			      </object>
+			    </child>
+			    <child>
+			      <object class="GtkLabel" id="fullscreen_button_internal_label">
+				<property name="label" translatable="yes">_Leave Fullscreen</property>
+				<property name="use_underline">True</property>
+			      </object>
+			    </child>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		  <packing>
+		    <property name="expand">False</property>
+		    <property name="fill">False</property>		    
+		  </packing>		  		  
+		</child>		
 	      </object>
 	      
 	      <packing>

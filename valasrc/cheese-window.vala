@@ -19,6 +19,11 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Cheese.ThumbView thumb_view;
 	private Gtk.Frame thumbnails_right;
 	private Gtk.Frame thumbnails_bottom;
+	private Gtk.MenuBar menubar;
+	private Gtk.HBox leave_fullscreen_button_container;
+	
+	private bool is_fullscreen;
+	private bool is_wide_mode;
 	
 	[CCode (instance_pos = -1)]
 	internal void on_quit (Action action ) {
@@ -47,9 +52,45 @@ public class Cheese.MainWindow : Gtk.Window {
 		set_wide_mode(action.active);
 	}
 
+	[CCode (instance_pos = -1)]
+	internal void on_layout_fullscreen (ToggleAction action ) {
+		set_fullscreen_mode(action.active);
+	}
 
+	private void set_fullscreen_mode(bool fullscreen_mode) {
+		// After the first time the window has been shown using this.show_all(),
+		// the value of leave_fullscreen_button_container.no_show_all should be set to false
+		// So that the next time leave_fullscreen_button_container.show_all() is called, the button is actually shown
+		// FIXME: If this code can be made cleaner/clearer, pleasae do
+		
+		is_fullscreen = fullscreen_mode;
+		if (fullscreen_mode) {
+			if (is_wide_mode) {
+				thumbnails_right.hide_all();
+			}
+			else {				
+				thumbnails_bottom.hide_all();
+			}
+			menubar.hide_all();
+			leave_fullscreen_button_container.no_show_all = false;
+			leave_fullscreen_button_container.show_all();
+			this.fullscreen();			
+		}
+		else {
+			if (is_wide_mode) {
+				thumbnails_right.show_all();
+			}
+			else {				
+				thumbnails_bottom.show_all();
+			}
+			menubar.show_all();
+			leave_fullscreen_button_container.hide_all();
+			this.unfullscreen();
+		}
+	}
+	
 	private void set_wide_mode(bool wide_mode, bool initialize=false) {
-
+		is_wide_mode = wide_mode;
 		if (!initialize) {
 			// Sets requested size of the viewport_widget to be it's current size
 			// So it does not grow smaller with each toggle
@@ -58,7 +99,7 @@ public class Cheese.MainWindow : Gtk.Window {
 			viewport_widget.set_size_request(alloc.width, alloc.height);
 		}
 		
-		if (wide_mode) {
+		if (is_wide_mode) {
 			thumb_view.set_columns(1);
 			thumb_nav.set_vertical(true);
 			if (thumbnails_bottom.get_child() != null)
@@ -108,6 +149,8 @@ public class Cheese.MainWindow : Gtk.Window {
 		viewport = (Clutter.Stage) viewport_widget.get_stage();
 		thumbnails_right = (Frame) builder.get_object("thumbnails_right");
 		thumbnails_bottom = (Frame) builder.get_object("thumbnails_bottom");
+		menubar = (Gtk.MenuBar) builder.get_object("main_menubar");
+		leave_fullscreen_button_container = (Gtk.HBox) builder.get_object("leave_fullscreen_button_bin");
 
 		Clutter.Rectangle r = new Clutter.Rectangle();
 		r.width = 200;
