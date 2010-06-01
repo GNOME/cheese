@@ -21,9 +21,17 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.Frame thumbnails_bottom;
 	private Gtk.MenuBar menubar;
 	private Gtk.HBox leave_fullscreen_button_container;
+	private Gtk.ToggleButton photo_toggle_button;
+	private Gtk.ToggleButton video_toggle_button;
+	private Gtk.ToggleButton burst_toggle_button;
+	private Gtk.Button take_action_button;
+	private Gtk.ToggleButton effects_toggle_button;
+	private Gtk.Button leave_fullscreen_button;
 	
 	private bool is_fullscreen;
 	private bool is_wide_mode;
+
+	private Gtk.Button[] buttons;
 	
 	[CCode (instance_pos = -1)]
 	internal void on_quit (Action action ) {
@@ -61,7 +69,7 @@ public class Cheese.MainWindow : Gtk.Window {
 		// After the first time the window has been shown using this.show_all(),
 		// the value of leave_fullscreen_button_container.no_show_all should be set to false
 		// So that the next time leave_fullscreen_button_container.show_all() is called, the button is actually shown
-		// FIXME: If this code can be made cleaner/clearer, pleasae do
+		// FIXME: If this code can be made cleaner/clearer, please do
 		
 		is_fullscreen = fullscreen_mode;
 		if (fullscreen_mode) {
@@ -74,6 +82,11 @@ public class Cheese.MainWindow : Gtk.Window {
 			menubar.hide_all();
 			leave_fullscreen_button_container.no_show_all = false;
 			leave_fullscreen_button_container.show_all();
+
+			// Make all buttons look 'flat'
+			foreach (Gtk.Button b in buttons) {
+				b.relief = Gtk.ReliefStyle.NONE;
+			}
 			this.fullscreen();			
 		}
 		else {
@@ -85,6 +98,11 @@ public class Cheese.MainWindow : Gtk.Window {
 			}
 			menubar.show_all();
 			leave_fullscreen_button_container.hide_all();
+
+			// Make all buttons look, uhm, Normal
+			foreach (Gtk.Button b in buttons) {
+				b.relief = Gtk.ReliefStyle.NORMAL;
+			}
 			this.unfullscreen();
 		}
 	}
@@ -110,7 +128,6 @@ public class Cheese.MainWindow : Gtk.Window {
 			thumbnails_right.resize_children();
 			thumbnails_right.show_all();
 			thumbnails_bottom.hide_all();
-			
 		}
 		else {
 			thumb_view.set_columns(5000);
@@ -151,7 +168,22 @@ public class Cheese.MainWindow : Gtk.Window {
 		thumbnails_bottom = (Frame) builder.get_object("thumbnails_bottom");
 		menubar = (Gtk.MenuBar) builder.get_object("main_menubar");
 		leave_fullscreen_button_container = (Gtk.HBox) builder.get_object("leave_fullscreen_button_bin");
+		photo_toggle_button = (Gtk.ToggleButton) builder.get_object("photo_toggle_button");
+		video_toggle_button = (Gtk.ToggleButton) builder.get_object("video_toggle_button");
+		burst_toggle_button = (Gtk.ToggleButton) builder.get_object("burst_toggle_button");
+		take_action_button = (Gtk.Button) builder.get_object("take_action_button");
+		effects_toggle_button = (Gtk.ToggleButton) builder.get_object("effects_toggle_button");
+		leave_fullscreen_button = (Gtk.Button) builder.get_object("leave_fullscreen_button");
 
+		// Array contains all 'buttons', for easier manipulation
+		// IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY
+		buttons = {photo_toggle_button,
+				   video_toggle_button,
+				   burst_toggle_button,
+				   take_action_button,
+				   effects_toggle_button,
+				   leave_fullscreen_button};
+		
 		Clutter.Rectangle r = new Clutter.Rectangle();
 		r.width = 200;
 		r.height = 600;
