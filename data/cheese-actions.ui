@@ -193,6 +193,8 @@
 	    <property name="name">Photo</property>
 	    <property name="label">_Photo</property>
 	    <property name="group">photo_mode</property>
+	    <property name="value">0</property>
+	    <property name="active">True</property>
 	    <signal name="activate" handler="cheese_main_window_on_mode_change" />
 	  </object>
 	</child>
@@ -202,6 +204,7 @@
 	    <property name="name">Video</property>
 	    <property name="label">_Video</property>
 	    <property name="group">photo_mode</property>
+	    <property name="value">1</property>
 	    <signal name="activate" handler="cheese_main_window_on_mode_change" />
 	  </object>
 	</child>
@@ -211,6 +214,7 @@
 	    <property name="name">Burst</property>
 	    <property name="label">Burst</property>
 	    <property name="group">photo_mode</property>
+	    <property name="value">2</property>
 	    <signal name="activate" handler="cheese_main_window_on_mode_change" />
 	  </object>
 	</child>	
@@ -261,7 +265,7 @@
 	  <menuitem action="quit" />
 	</menu>
 	<menu action="edit_action">
-	  <menuitem action="effects" />
+	  <menuitem action="effects_toggle" />
 	  <separator />
 	  <menuitem action="move_to_trash" />
 	  <menuitem action="move_all_to_trash" />

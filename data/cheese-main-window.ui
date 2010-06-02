@@ -73,7 +73,7 @@
 		  </packing>		  
 		</child>
 
-private Gtk.ToggleButton photo_toggle_button;		<child>
+		<child>
 		  <object class="GtkAlignment" id="action_button_alignment">
 		    <property name="xscale">0</property>
 		    <property name="yscale">0</property>
@@ -93,8 +93,9 @@ private Gtk.ToggleButton photo_toggle_button;		<child>
 			    </child>
 			    <child>
 			      <object class="GtkLabel" id="take_action_button_internal_label">
-				<property name="label" translatable="yes">_Take Photo</property>
-				<property name="use_underline">True</property>
+				<property name="label" translatable="yes">&lt;b&gt;_Take a Photo&lt;/b&gt;</property>
+				<property name="use-underline">True</property>
+				<property name="use-markup">True</property>
 			      </object>
 			      <packing>
 				  <property name="padding">15</property>

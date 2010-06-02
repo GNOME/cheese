@@ -7,8 +7,16 @@ using Eog;
 
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 
+enum MODE {
+	PHOTO = 0,
+	VIDEO = 1,
+	BURST = 2
+}
+
 public class Cheese.MainWindow : Gtk.Window {
 
+	private MODE current_mode;
+	
 	private Gtk.Builder builder;
 	
 	private Widget thumbnails;
@@ -24,9 +32,14 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.ToggleButton video_toggle_button;
 	private Gtk.ToggleButton burst_toggle_button;
 	private Gtk.Button take_action_button;
+	private Gtk.Label take_action_button_label;
 	private Gtk.ToggleButton effects_toggle_button;
 	private Gtk.Button leave_fullscreen_button;
 	private Gtk.HBox buttons_area;
+
+	private Gtk.Action take_photo_action;
+	private Gtk.Action take_video_action;
+	private Gtk.Action take_burst_action;
 	
 	private bool is_fullscreen;
 	private bool is_wide_mode;
@@ -63,6 +76,36 @@ public class Cheese.MainWindow : Gtk.Window {
 	[CCode (instance_pos = -1)]
 	internal void on_layout_fullscreen (ToggleAction action ) {
 		set_fullscreen_mode(action.active);
+	}
+
+	[CCode (instance_pos = -1)]
+	internal void on_mode_change(RadioAction action) {
+		set_mode((MODE)action.value);
+	}
+
+	private void set_mode(MODE mode) {
+		this.current_mode = mode;
+		switch(this.current_mode) {
+		case MODE.PHOTO:
+			take_photo_action.sensitive = true;	
+			take_video_action.sensitive = false;
+			take_burst_action.sensitive = false;
+			take_action_button.related_action = take_photo_action;
+			break;
+		case MODE.VIDEO:
+			take_photo_action.sensitive = false;	
+			take_video_action.sensitive = true;
+			take_burst_action.sensitive = false;
+			take_action_button.related_action = take_video_action;
+			break;
+		case MODE.BURST:
+			take_photo_action.sensitive = false;	
+			take_video_action.sensitive = false;
+			take_burst_action.sensitive = true;
+			take_action_button.related_action = take_burst_action;
+			break;
+		}
+		take_action_button_label.label = "<b>" +  take_action_button.related_action.label + "</b>";
 	}
 
 	private TimeoutSource timeout;
@@ -203,10 +246,16 @@ public class Cheese.MainWindow : Gtk.Window {
 		video_toggle_button = (Gtk.ToggleButton) builder.get_object("video_toggle_button");
 		burst_toggle_button = (Gtk.ToggleButton) builder.get_object("burst_toggle_button");
 		take_action_button = (Gtk.Button) builder.get_object("take_action_button");
+		take_action_button_label = (Gtk.Label) builder.get_object("take_action_button_internal_label");
 		effects_toggle_button = (Gtk.ToggleButton) builder.get_object("effects_toggle_button");
 		leave_fullscreen_button = (Gtk.Button) builder.get_object("leave_fullscreen_button");
 		buttons_area = (Gtk.HBox) builder.get_object("buttons_area");
 
+
+		take_photo_action = (Gtk.Action) builder.get_object("take_photo");
+		take_video_action = (Gtk.Action) builder.get_object("take_video");;
+		take_burst_action = (Gtk.Action) builder.get_object("take_burst");;
+	
 		// Array contains all 'buttons', for easier manipulation
 		// IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY
 		buttons = {photo_toggle_button,
@@ -228,7 +277,10 @@ public class Cheese.MainWindow : Gtk.Window {
 		thumb_nav = new Eog.ThumbNav(thumb_view, false);
 		
 		viewport.show_all();
+		
 		set_wide_mode(false, true);
+		set_mode(MODE.PHOTO);
+		
 		this.add(main_vbox);
 			
 	}
