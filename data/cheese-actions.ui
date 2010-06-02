@@ -236,10 +236,10 @@
     <child>
       <object class="GtkActionGroup" id="preferences_actions">
 	<child>
-	  <object class="GtkToggleAction" id="preferences">
+	  <object class="GtkAction" id="preferences">
 	    <property name="name">Preferences</property>
 	    <property name="label">_Preferences</property>
-	    <signal name="toggled" handler="cheese_main_window_on_preferences_dialog" />
+	    <signal name="activate" handler="cheese_main_window_on_preferences_dialog" />
 	  </object>
 	</child>
       </object>
