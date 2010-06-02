@@ -5,8 +5,7 @@ using Clutter;
 using Config;
 using Eog;
 
-const int DEFAULT_WINDOW_WIDTH = 600;
-const int DEFAULT_WINDOW_HEIGHT = 450;
+const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 
 public class Cheese.MainWindow : Gtk.Window {
 
@@ -27,6 +26,7 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.Button take_action_button;
 	private Gtk.ToggleButton effects_toggle_button;
 	private Gtk.Button leave_fullscreen_button;
+	private Gtk.HBox buttons_area;
 	
 	private bool is_fullscreen;
 	private bool is_wide_mode;
@@ -65,6 +65,32 @@ public class Cheese.MainWindow : Gtk.Window {
 		set_fullscreen_mode(action.active);
 	}
 
+	private TimeoutSource timeout;
+	private void clear_fullscreen_timeout() {
+		if (timeout != null) {
+			timeout.destroy();
+			timeout = null;
+		}
+	}
+			
+	private void set_fullscreen_timeout () {
+		timeout = new TimeoutSource(FULLSCREEN_TIMEOUT_INTERVAL);
+		timeout.attach (null);
+		timeout.set_callback(() => { buttons_area.hide();
+									 clear_fullscreen_timeout();
+									 return true;});
+	}
+
+	private bool fullscreen_motion_notify_callback(Gtk.Widget viewport, EventMotion e) {
+		// Start a new timeout at the end of every mouse pointer movement.
+		// So all timeouts will be cancelled, except one at the last pointer movement.
+		// We call show even if the button isn't hidden.
+		clear_fullscreen_timeout();
+		buttons_area.show();
+		set_fullscreen_timeout();
+		return true;
+	}
+	
 	private void set_fullscreen_mode(bool fullscreen_mode) {
 		// After the first time the window has been shown using this.show_all(),
 		// the value of leave_fullscreen_button_container.no_show_all should be set to false
@@ -87,7 +113,9 @@ public class Cheese.MainWindow : Gtk.Window {
 			foreach (Gtk.Button b in buttons) {
 				b.relief = Gtk.ReliefStyle.NONE;
 			}
-			this.fullscreen();			
+			this.fullscreen();
+			viewport_widget.motion_notify_event.connect(fullscreen_motion_notify_callback);
+			set_fullscreen_timeout();
 		}
 		else {
 			if (is_wide_mode) {
@@ -103,6 +131,9 @@ public class Cheese.MainWindow : Gtk.Window {
 			foreach (Gtk.Button b in buttons) {
 				b.relief = Gtk.ReliefStyle.NORMAL;
 			}
+			// Show the buttons area anyway - it might've been hidden in fullscreen mode
+			buttons_area.show();
+			viewport_widget.motion_notify_event.disconnect(fullscreen_motion_notify_callback);
 			this.unfullscreen();
 		}
 	}
@@ -174,6 +205,7 @@ public class Cheese.MainWindow : Gtk.Window {
 		take_action_button = (Gtk.Button) builder.get_object("take_action_button");
 		effects_toggle_button = (Gtk.ToggleButton) builder.get_object("effects_toggle_button");
 		leave_fullscreen_button = (Gtk.Button) builder.get_object("leave_fullscreen_button");
+		buttons_area = (Gtk.HBox) builder.get_object("buttons_area");
 
 		// Array contains all 'buttons', for easier manipulation
 		// IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY
