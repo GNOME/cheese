@@ -27,6 +27,8 @@
 #include <glib.h>
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
+#include <clutter/clutter.h>
+#include <clutter-gst/clutter-gst.h>
 #include <gdk/gdkx.h>
 #include <gst/gst.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
@@ -63,6 +65,8 @@ typedef struct
   GstElement *audio_enc;
   GstElement *video_enc;
 
+  ClutterTexture *video_texture;
+  
   GstElement *effect_filter, *csp_post_effect;
   GstElement *video_balance, *csp_post_balance;
 
@@ -88,7 +92,7 @@ typedef struct
 enum
 {
   PROP_0,
-  PROP_VIDEO_WINDOW,
+  PROP_VIDEO_TEXTURE,
   PROP_DEVICE_NAME,
   PROP_FORMAT,
 };
@@ -155,7 +159,7 @@ cheese_camera_bus_sync_handler (GstBus *bus, GstMessage *message, CheeseCamera *
   if (!gst_structure_has_name (message->structure, "prepare-xwindow-id"))
     return GST_BUS_PASS;
 
-  overlay = GST_X_OVERLAY (GST_MESSAGE_SRC (message));
+  /*  overlay = GST_X_OVERLAY (GST_MESSAGE_SRC (message));
 
   if (g_object_class_find_property (G_OBJECT_GET_CLASS (overlay),
                                     "force-aspect-ratio"))
@@ -164,7 +168,7 @@ cheese_camera_bus_sync_handler (GstBus *bus, GstMessage *message, CheeseCamera *
   gst_x_overlay_set_xwindow_id (overlay,
                                 GDK_WINDOW_XWINDOW (gtk_widget_get_window (priv->video_window)));
 
-  gst_message_unref (message);
+  gst_message_unref (message);   */
 
   return GST_BUS_DROP;
 }
@@ -477,7 +481,7 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
     g_object_set (video_scale, "method", 1, NULL);
   }
 
-  if ((video_sink = gst_element_factory_make ("gconfvideosink", "video_sink")) == NULL)
+  if ((video_sink = clutter_gst_video_sink_new(priv->video_texture)) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "gconfvideosink");
   }
@@ -978,8 +982,8 @@ cheese_camera_get_property (GObject *object, guint prop_id, GValue *value,
 
   switch (prop_id)
   {
-    case PROP_VIDEO_WINDOW:
-      g_value_set_pointer (value, priv->video_window);
+    case PROP_VIDEO_TEXTURE:
+      g_value_set_pointer (value, priv->video_texture);
       break;
     case PROP_DEVICE_NAME:
       g_value_set_string (value, priv->device_name);
@@ -1004,10 +1008,10 @@ cheese_camera_set_property (GObject *object, guint prop_id, const GValue *value,
 
   switch (prop_id)
   {
-    case PROP_VIDEO_WINDOW:
-      priv->video_window = g_value_get_pointer (value);
-      g_signal_connect (priv->video_window, "expose-event",
-                        G_CALLBACK (cheese_camera_expose_cb), self);
+    case PROP_VIDEO_TEXTURE:
+      priv->video_texture = g_value_get_pointer (value);
+      //      g_signal_connect (priv->video_window, "expose-event",
+      //                G_CALLBACK (cheese_camera_expose_cb), self);
       break;
     case PROP_DEVICE_NAME:
       g_free (priv->device_name);
@@ -1060,8 +1064,8 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               G_TYPE_NONE, 0);
 
 
-  g_object_class_install_property (object_class, PROP_VIDEO_WINDOW,
-                                   g_param_spec_pointer ("video-window",
+  g_object_class_install_property (object_class, PROP_VIDEO_TEXTURE,
+                                   g_param_spec_pointer ("video-texture",
                                                          NULL,
                                                          NULL,
                                                          G_PARAM_READWRITE));
@@ -1098,7 +1102,7 @@ cheese_camera_init (CheeseCamera *camera)
 }
 
 CheeseCamera *
-cheese_camera_new (GtkWidget *video_window, char *camera_device_name,
+cheese_camera_new (ClutterTexture *video_texture, char *camera_device_name,
                    int x_resolution, int y_resolution)
 {
   CheeseCamera      *camera;
@@ -1109,13 +1113,13 @@ cheese_camera_new (GtkWidget *video_window, char *camera_device_name,
 
   if (camera_device_name)
   {
-    camera = g_object_new (CHEESE_TYPE_CAMERA, "video-window", video_window,
+    camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
                            "device_name", camera_device_name,
                            "format", format, NULL);
   }
   else
   {
-    camera = g_object_new (CHEESE_TYPE_CAMERA, "video-window", video_window,
+    camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
                            "format", format, NULL);
   }
 

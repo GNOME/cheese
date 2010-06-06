@@ -7,8 +7,10 @@ VALAFLAGS = \
 	--pkg clutter-1.0 \
 	--pkg clutter-gtk-0.10 \
 	--pkg gconf-2.0 \
+	--pkg gstreamer-0.10 \
 	--pkg eogthumbnav \
-	--pkg cheesethumbview
+	--pkg cheese-thumbview \
+	--pkg cheese-common
 
 
 AM_CPPFLAGS = \
@@ -21,7 +23,8 @@ AM_CPPFLAGS = \
 	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	$(CHEESE_CFLAGS) \
-	-include $(CONFIG_HEADER) 
+	-include $(CONFIG_HEADER) \
+	-I@top_srcdir@/libcheese 
 
 AM_CFLAGS = \
 	-export-dynamic
@@ -37,6 +40,6 @@ cheese_SOURCES = \
 	thumbview/eog-thumb-nav.c \
 	thumbview/eog-thumbnail.c
 
-
 cheese_LDADD = \
+	$(top_builddir)/libcheese/libcheesecommon.la \
 	$(CHEESE_LIBS)

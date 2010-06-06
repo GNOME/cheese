@@ -4,7 +4,7 @@ using GtkClutter;
 using Clutter;
 using Config;
 using Eog;
-
+using Gst;
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 
 enum MODE {
@@ -45,6 +45,8 @@ public class Cheese.MainWindow : Gtk.Window {
 	private bool is_wide_mode;
 
 	private Gtk.Button[] buttons;
+
+	private Cheese.Camera camera;
 	
 	[CCode (instance_pos = -1)]
 	internal void on_quit (Action action ) {
@@ -224,7 +226,12 @@ public class Cheese.MainWindow : Gtk.Window {
 			this.size_request(out req);
 			this.resize(req.width, req.height);
 		}
-	}				
+	}
+
+	[CCode (instance_pos = -1)]
+	internal void on_take_action (Action action ) {
+		camera.take_photo("/home/yuvipanda/image.jpg");
+	}
 	
 	public	void setup_ui () {
 		builder = new Builder();
@@ -265,19 +272,21 @@ public class Cheese.MainWindow : Gtk.Window {
 				   effects_toggle_button,
 				   leave_fullscreen_button};
 		
-		Clutter.Rectangle r = new Clutter.Rectangle();
-		r.width = 200;
+		Clutter.Texture r = new Clutter.Texture();
+		r.width = 600;
 		r.height = 600;
 		r.x = 0;
 		r.y = 0;
-		r.color = Clutter.Color.from_string("Red");
+//		r.color = Clutter.Color.from_string("Red");
 		viewport.add_actor(r);
-
+		camera = new Camera(r, "/dev/video0", 1024, 768);
 		thumb_view = new Cheese.ThumbView();
 		thumb_nav = new Eog.ThumbNav(thumb_view, false);
 		
 		viewport.show_all();
-		
+
+		camera.setup("/dev/video0");
+		camera.play();
 		set_wide_mode(false, true);
 		set_mode(MODE.PHOTO);
 		

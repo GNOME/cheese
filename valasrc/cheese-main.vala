@@ -1,6 +1,7 @@
 using GLib;
 using Gtk;
 using Clutter;
+using Gst;
 
 public class Cheese.Main {
 	static bool verbose;
@@ -37,6 +38,7 @@ public class Cheese.Main {
 			context.add_main_entries (options, null);
 			context.add_group (Gtk.get_option_group (true));
 			context.add_group (Clutter.get_option_group ());
+			context.add_group (Gst.init_get_option_group ());
 			context.parse (ref args);
 		} catch (OptionError e) {
 			stdout.printf ("%s\n", e.message);

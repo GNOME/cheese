@@ -26,6 +26,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <gst/interfaces/xoverlay.h>
+#include <clutter/clutter.h>
 #include <cheese-camera-device.h>
 
 G_BEGIN_DECLS
@@ -75,7 +76,7 @@ enum CheeseCameraError
 };
 
 GType         cheese_camera_get_type (void);
-CheeseCamera *cheese_camera_new (GtkWidget *video_window,
+CheeseCamera *cheese_camera_new (ClutterTexture *video_texture,
                                  char      *camera_device_name,
                                  int        x_resolution,
                                  int        y_resolution);
