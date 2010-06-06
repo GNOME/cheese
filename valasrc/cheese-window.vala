@@ -41,6 +41,7 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.Button[] buttons;
 
 	private Cheese.Camera camera;
+	private Cheese.FileUtil fileutil;
 	
 	[CCode (instance_pos = -1)]
 	internal void on_quit (Action action ) {
@@ -224,7 +225,7 @@ public class Cheese.MainWindow : Gtk.Window {
 
 	[CCode (instance_pos = -1)]
 	internal void on_take_action (Action action ) {
-		camera.take_photo("/home/yuvipanda/image.jpg");
+		camera.take_photo(fileutil.get_new_media_filename(this.current_mode));
 	}
 	
 	public	void setup_ui () {
@@ -265,15 +266,21 @@ public class Cheese.MainWindow : Gtk.Window {
 				   take_action_button,
 				   effects_toggle_button,
 				   leave_fullscreen_button};
+
+		Clutter.Texture r = new Clutter.Texture();				
 		
-		Clutter.Texture r = new Clutter.Texture();
+		camera = new Camera(r, "/dev/video0", 1024, 768);
+		fileutil = new FileUtil();
+		
 		r.width = 600;
 		r.height = 600;
 		r.x = 0;
 		r.y = 0;
 //		r.color = Clutter.Color.from_string("Red");
 		viewport.add_actor(r);
-		camera = new Camera(r, "/dev/video0", 1024, 768);
+		
+		
+		
 		thumb_view = new Cheese.ThumbView();
 		thumb_nav = new Eog.ThumbNav(thumb_view, false);
 		

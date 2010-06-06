@@ -65,10 +65,8 @@ namespace Cheese {
 	}
 
 	
-	[Compact]
 	[CCode (cheader_filename = "cheese-fileutil.h")]
-	public class FileUtil {
-		public weak GLib.Object parent;
+	public class FileUtil  : GLib.Object{
 		[CCode (cname = "cheese_fileutil_new", has_construct_function = false)]
 		public FileUtil ();
 		[CCode (cname = "cheese_fileutil_get_log_path")]
@@ -84,6 +82,7 @@ namespace Cheese {
 		[CCode (cname = "cheese_fileutil_reset_burst")]
 		public void reset_burst ();
 	}
+	
 	[Compact]
 	[CCode (cheader_filename = "cheese-flash.h")]
 	public class Flash {
