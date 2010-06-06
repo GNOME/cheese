@@ -35,7 +35,6 @@ cheese_SOURCES = \
 	cheese-main.vala \
 	cheese-window.vala \
 	thumbview/cheese-gconf.c \
-	thumbview/cheese-fileutil.c \
 	thumbview/cheese-thumb-view.c \
 	thumbview/eog-thumb-nav.c \
 	thumbview/eog-thumbnail.c
