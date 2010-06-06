@@ -26,7 +26,8 @@ pkgdata_DATA = \
 	cheese-main-window.ui	\
 	cheese-about.ui \
 	cheese-actions.ui \
-	cheese-prefs.ui
+	cheese-prefs.ui \
+	cheese-viewport.json
 
 EXTRA_DIST = \
 	$(desktop_in_files) \

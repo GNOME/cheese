@@ -11,11 +11,12 @@ public class Cheese.MainWindow : Gtk.Window {
 
 	private MediaMode current_mode;
 	
-	private Gtk.Builder builder;
+	private Gtk.Builder gtk_builder;
+	private Clutter.Script clutter_builder;
 	
-	private Widget thumbnails;
+	private Gtk.Widget thumbnails;
 	private GtkClutter.Embed viewport_widget;
-	private Clutter.Stage viewport;
+	private Gtk.VBox main_vbox;
 	private Eog.ThumbNav thumb_nav;
 	private Cheese.ThumbView thumb_view;
 	private Gtk.Frame thumbnails_right;
@@ -31,6 +32,9 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.Button leave_fullscreen_button;
 	private Gtk.HBox buttons_area;
 
+	private Clutter.Stage viewport;
+	private Clutter.Texture video_preview;
+	
 	private Gtk.Action take_photo_action;
 	private Gtk.Action take_video_action;
 	private Gtk.Action take_burst_action;
@@ -60,7 +64,7 @@ public class Cheese.MainWindow : Gtk.Window {
 		// FIXME: Close doesn't work
 		// FIXME: Clicking URL In the License dialog borks.
 		Gtk.AboutDialog about_dialog;
-		about_dialog = (Gtk.AboutDialog) builder.get_object("aboutdialog");
+		about_dialog = (Gtk.AboutDialog) gtk_builder.get_object("aboutdialog");
 		about_dialog.version = Config.VERSION;
 		about_dialog.show_all();
 	}
@@ -229,34 +233,37 @@ public class Cheese.MainWindow : Gtk.Window {
 	}
 	
 	public	void setup_ui () {
-		builder = new Builder();
-		VBox main_vbox;
-		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
-		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
-		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
-		builder.connect_signals(this);
+		gtk_builder = new Gtk.Builder();
+		clutter_builder = new Clutter.Script();
+		fileutil = new FileUtil();
+
+		gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
+		gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
+		gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
+		gtk_builder.connect_signals(this);
+
+		clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
 		
-		main_vbox = (VBox) builder.get_object ("mainbox_normal");
-		thumbnails = (Widget) builder.get_object("thumbnails");
-		viewport_widget = (GtkClutter.Embed) builder.get_object("viewport");
+		main_vbox = (VBox) gtk_builder.get_object ("mainbox_normal");
+		thumbnails = (Widget) gtk_builder.get_object("thumbnails");
+		viewport_widget = (GtkClutter.Embed) gtk_builder.get_object("viewport");
 		viewport = (Clutter.Stage) viewport_widget.get_stage();
-		thumbnails_right = (Frame) builder.get_object("thumbnails_right");
-		thumbnails_bottom = (Frame) builder.get_object("thumbnails_bottom");
-		menubar = (Gtk.MenuBar) builder.get_object("main_menubar");
-		leave_fullscreen_button_container = (Gtk.HBox) builder.get_object("leave_fullscreen_button_bin");
-		photo_toggle_button = (Gtk.ToggleButton) builder.get_object("photo_toggle_button");
-		video_toggle_button = (Gtk.ToggleButton) builder.get_object("video_toggle_button");
-		burst_toggle_button = (Gtk.ToggleButton) builder.get_object("burst_toggle_button");
-		take_action_button = (Gtk.Button) builder.get_object("take_action_button");
-		take_action_button_label = (Gtk.Label) builder.get_object("take_action_button_internal_label");
-		effects_toggle_button = (Gtk.ToggleButton) builder.get_object("effects_toggle_button");
-		leave_fullscreen_button = (Gtk.Button) builder.get_object("leave_fullscreen_button");
-		buttons_area = (Gtk.HBox) builder.get_object("buttons_area");
+		thumbnails_right = (Frame) gtk_builder.get_object("thumbnails_right");
+		thumbnails_bottom = (Frame) gtk_builder.get_object("thumbnails_bottom");
+		menubar = (Gtk.MenuBar) gtk_builder.get_object("main_menubar");
+		leave_fullscreen_button_container = (Gtk.HBox) gtk_builder.get_object("leave_fullscreen_button_bin");
+		photo_toggle_button = (Gtk.ToggleButton) gtk_builder.get_object("photo_toggle_button");
+		video_toggle_button = (Gtk.ToggleButton) gtk_builder.get_object("video_toggle_button");
+		burst_toggle_button = (Gtk.ToggleButton) gtk_builder.get_object("burst_toggle_button");
+		take_action_button = (Gtk.Button) gtk_builder.get_object("take_action_button");
+		take_action_button_label = (Gtk.Label) gtk_builder.get_object("take_action_button_internal_label");
+		effects_toggle_button = (Gtk.ToggleButton) gtk_builder.get_object("effects_toggle_button");
+		leave_fullscreen_button = (Gtk.Button) gtk_builder.get_object("leave_fullscreen_button");
+		buttons_area = (Gtk.HBox) gtk_builder.get_object("buttons_area");
 
-
-		take_photo_action = (Gtk.Action) builder.get_object("take_photo");
-		take_video_action = (Gtk.Action) builder.get_object("take_video");;
-		take_burst_action = (Gtk.Action) builder.get_object("take_burst");;
+		take_photo_action = (Gtk.Action) gtk_builder.get_object("take_photo");
+		take_video_action = (Gtk.Action) gtk_builder.get_object("take_video");;
+		take_burst_action = (Gtk.Action) gtk_builder.get_object("take_burst");;
 	
 		// Array contains all 'buttons', for easier manipulation
 		// IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY
@@ -267,17 +274,11 @@ public class Cheese.MainWindow : Gtk.Window {
 				   effects_toggle_button,
 				   leave_fullscreen_button};
 
-		Clutter.Texture r = new Clutter.Texture();				
+		video_preview = (Clutter.Texture) clutter_builder.get_object ("video_preview");
 		
-		camera = new Camera(r, "/dev/video0", 1024, 768);
-		fileutil = new FileUtil();
-		
-		r.width = 600;
-		r.height = 600;
-		r.x = 0;
-		r.y = 0;
-//		r.color = Clutter.Color.from_string("Red");
-		viewport.add_actor(r);
+		camera = new Camera(video_preview, "/dev/video0", 1024, 768);
+
+		viewport.add_actor(video_preview);
 		
 		
 		
