@@ -148,7 +148,7 @@ namespace Cheese {
 		DICE,
 		WARP
 	}
-	[CCode (cprefix = "CHEESE_MEDIA_MODE_", has_type_id = false, cheader_filename = "cheese-gtk.h")]
+	[CCode (cprefix = "CHEESE_MEDIA_MODE_", has_type_id = false, cheader_filename = "cheese-fileutil.h")]
 	public enum MediaMode {
 		PHOTO,
 		VIDEO,

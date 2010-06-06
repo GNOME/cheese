@@ -7,15 +7,9 @@ using Eog;
 using Gst;
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 
-enum MODE {
-	PHOTO = 0,
-	VIDEO = 1,
-	BURST = 2
-}
-
 public class Cheese.MainWindow : Gtk.Window {
 
-	private MODE current_mode;
+	private MediaMode current_mode;
 	
 	private Gtk.Builder builder;
 	
@@ -82,25 +76,25 @@ public class Cheese.MainWindow : Gtk.Window {
 
 	[CCode (instance_pos = -1)]
 	internal void on_mode_change(RadioAction action) {
-		set_mode((MODE)action.value);
+		set_mode((MediaMode)action.value);
 	}
 
-	private void set_mode(MODE mode) {
+	private void set_mode(MediaMode mode) {
 		this.current_mode = mode;
 		switch(this.current_mode) {
-		case MODE.PHOTO:
+		case MediaMode.PHOTO:
 			take_photo_action.sensitive = true;	
 			take_video_action.sensitive = false;
 			take_burst_action.sensitive = false;
 			take_action_button.related_action = take_photo_action;
 			break;
-		case MODE.VIDEO:
+		case MediaMode.VIDEO:
 			take_photo_action.sensitive = false;	
 			take_video_action.sensitive = true;
 			take_burst_action.sensitive = false;
 			take_action_button.related_action = take_video_action;
 			break;
-		case MODE.BURST:
+		case MediaMode.BURST:
 			take_photo_action.sensitive = false;	
 			take_video_action.sensitive = false;
 			take_burst_action.sensitive = true;
@@ -288,7 +282,7 @@ public class Cheese.MainWindow : Gtk.Window {
 		camera.setup("/dev/video0");
 		camera.play();
 		set_wide_mode(false, true);
-		set_mode(MODE.PHOTO);
+		set_mode(MediaMode.PHOTO);
 		
 		this.add(main_vbox);
 			
