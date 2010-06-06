@@ -236,9 +236,9 @@ public class Cheese.MainWindow : Gtk.Window {
 	public	void setup_ui () {
 		builder = new Builder();
 		VBox main_vbox;
-		builder.add_from_file (GLib.Path.build_filename ("../data/", "cheese-actions.ui"));
-		builder.add_from_file (GLib.Path.build_filename ("../data/", "cheese-about.ui"));
-		builder.add_from_file (GLib.Path.build_filename ("../data/", "cheese-main-window.ui"));
+		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
+		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
+		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
 		builder.connect_signals(this);
 		
 		main_vbox = (VBox) builder.get_object ("mainbox_normal");
