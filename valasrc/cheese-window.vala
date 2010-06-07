@@ -33,7 +33,9 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.HBox buttons_area;
 
 	private Clutter.Stage viewport;
+	private Clutter.Box viewport_layout;
 	private Clutter.Texture video_preview;
+	private Clutter.BinLayout viewport_layout_manager;
 	
 	private Gtk.Action take_photo_action;
 	private Gtk.Action take_video_action;
@@ -227,6 +229,14 @@ public class Cheese.MainWindow : Gtk.Window {
 		}
 	}
 
+	// To make sure that the layout manager manages the entire stage.
+	internal void on_stage_resize(Clutter.Actor actor,
+								  Clutter.ActorBox box,
+								  Clutter.AllocationFlags flags)
+	{
+		this.viewport_layout.set_size(viewport.width, viewport.height);
+	}
+	
 	[CCode (instance_pos = -1)]
 	internal void on_take_action (Action action ) {
 		camera.take_photo(fileutil.get_new_media_filename(this.current_mode));
@@ -275,12 +285,17 @@ public class Cheese.MainWindow : Gtk.Window {
 				   leave_fullscreen_button};
 
 		video_preview = (Clutter.Texture) clutter_builder.get_object ("video_preview");
-		
+		viewport_layout = (Clutter.Box) clutter_builder.get_object ("viewport_layout");
+		viewport_layout_manager = (Clutter.BinLayout) clutter_builder.get_object ("viewport_layout_manager");
+
+		viewport_layout.set_layout_manager(viewport_layout_manager);
+
 		camera = new Camera(video_preview, "/dev/video0", 1024, 768);
 
-		viewport.add_actor(video_preview);
-		
-		
+		viewport.add_actor(viewport_layout);
+
+		viewport.allocation_changed.connect(on_stage_resize);
+	   		
 		
 		thumb_view = new Cheese.ThumbView();
 		thumb_nav = new Eog.ThumbNav(thumb_view, false);
