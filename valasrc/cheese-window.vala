@@ -48,6 +48,7 @@ public class Cheese.MainWindow : Gtk.Window {
 	private bool is_fullscreen;
 	private bool is_wide_mode;
 	private bool is_recording; // Video Recording Flag
+	private bool is_bursting;
 	
 	private Gtk.Button[] buttons;
 
@@ -267,11 +268,19 @@ public class Cheese.MainWindow : Gtk.Window {
 	{
 		this.viewport_layout.set_size(viewport.width, viewport.height);
 	}
+
+	internal void take_photo() {
+		string file_name = fileutil.get_new_media_filename(this.current_mode);
+		camera.take_photo(file_name);
+		// FIXME: 3 second delay, to make sure we get unique photo_names.
+		// Flash, countdown, etc, should make this better and *non blocking*
+		GLib.Thread.usleep(1 * 1000 * 1000); 
+	}
 	
 	[CCode (instance_pos = -1)]
 	internal void on_take_action (Action action ) {
 		if (current_mode == MediaMode.PHOTO) {
-			camera.take_photo(fileutil.get_new_media_filename(this.current_mode));
+			this.take_photo();
 		}
 		else if (current_mode == MediaMode.VIDEO) {
 			if (!is_recording) {
@@ -288,6 +297,21 @@ public class Cheese.MainWindow : Gtk.Window {
 				this.is_recording = false;
 				this.enable_mode_change();
 			}
+		}
+		else if (current_mode == MediaMode.BURST) {
+			int burst_count = 3;
+			is_bursting = true;
+			this.disable_mode_change();
+			take_action_button.sensitive = false;
+			for (int i = 0; i < burst_count; i++) {
+				if (is_bursting) {
+					this.take_photo();
+				}
+			}
+			this.is_bursting = false;
+			this.enable_mode_change();
+			take_action_button.sensitive = true;
+			fileutil.reset_burst();
 		}
 	}
 	
