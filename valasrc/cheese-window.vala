@@ -40,10 +40,14 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.Action take_photo_action;
 	private Gtk.Action take_video_action;
 	private Gtk.Action take_burst_action;
+	private Gtk.Action photo_mode_action;
+	private Gtk.Action video_mode_action;
+	private Gtk.Action burst_mode_action;
 	
 	private bool is_fullscreen;
 	private bool is_wide_mode;
-
+	private bool is_recording; // Video Recording Flag
+	
 	private Gtk.Button[] buttons;
 
 	private Cheese.Camera camera;
@@ -86,6 +90,26 @@ public class Cheese.MainWindow : Gtk.Window {
 		set_mode((MediaMode)action.value);
 	}
 
+	private void disable_mode_change() {
+		switch(this.current_mode) {
+		case MediaMode.PHOTO:
+			photo_mode_action.sensitive = true;	
+			video_mode_action.sensitive = false;
+			burst_mode_action.sensitive = false;
+			break;
+		case MediaMode.VIDEO:
+			photo_mode_action.sensitive = false;	
+			video_mode_action.sensitive = true;
+			burst_mode_action.sensitive = false;
+			break;
+		case MediaMode.BURST:
+			photo_mode_action.sensitive = false;	
+			video_mode_action.sensitive = false;
+			burst_mode_action.sensitive = true;
+			break;
+		}
+	}
+	
 	private void set_mode(MediaMode mode) {
 		this.current_mode = mode;
 		switch(this.current_mode) {
@@ -239,7 +263,22 @@ public class Cheese.MainWindow : Gtk.Window {
 	
 	[CCode (instance_pos = -1)]
 	internal void on_take_action (Action action ) {
-		camera.take_photo(fileutil.get_new_media_filename(this.current_mode));
+		if (current_mode == MediaMode.PHOTO) {
+			camera.take_photo(fileutil.get_new_media_filename(this.current_mode));
+		}
+		else if (current_mode == MediaMode.VIDEO) {
+			if (!is_recording) {
+				camera.start_video_recording (fileutil.get_new_media_filename(this.current_mode));
+				take_action_button_label.label = "<b>Stop _Recording</b>";
+				this.is_recording = true;
+				this.disable_mode_change();
+			}
+			else {
+				camera.stop_video_recording();
+				take_action_button_label.label = "<b>" +  take_action_button.related_action.label + "</b>";
+				this.is_recording = false;
+			}
+		}
 	}
 	
 	public	void setup_ui () {
@@ -274,6 +313,9 @@ public class Cheese.MainWindow : Gtk.Window {
 		take_photo_action = (Gtk.Action) gtk_builder.get_object("take_photo");
 		take_video_action = (Gtk.Action) gtk_builder.get_object("take_video");;
 		take_burst_action = (Gtk.Action) gtk_builder.get_object("take_burst");;
+		photo_mode_action = (Gtk.Action) gtk_builder.get_object("photo_mode");
+		video_mode_action = (Gtk.Action) gtk_builder.get_object("video_mode");;
+		burst_mode_action = (Gtk.Action) gtk_builder.get_object("burst_mode");;
 	
 		// Array contains all 'buttons', for easier manipulation
 		// IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY
