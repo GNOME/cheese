@@ -91,6 +91,12 @@ public class Cheese.MainWindow : Gtk.Window {
 		set_mode((MediaMode)action.value);
 	}
 
+	private void enable_mode_change() {
+		photo_mode_action.sensitive = true;
+		video_mode_action.sensitive = true;
+		burst_mode_action.sensitive = true;
+	}
+	
 	private void disable_mode_change() {
 		switch(this.current_mode) {
 		case MediaMode.PHOTO:
@@ -280,6 +286,7 @@ public class Cheese.MainWindow : Gtk.Window {
 				take_action_button_label.label = "<b>" +  take_action_button.related_action.label + "</b>";
 				take_action_button_image.set_from_stock(Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
 				this.is_recording = false;
+				this.enable_mode_change();
 			}
 		}
 	}
