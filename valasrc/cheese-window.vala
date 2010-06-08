@@ -28,6 +28,7 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.ToggleButton burst_toggle_button;
 	private Gtk.Button take_action_button;
 	private Gtk.Label take_action_button_label;
+	private Gtk.Image take_action_button_image;	
 	private Gtk.ToggleButton effects_toggle_button;
 	private Gtk.Button leave_fullscreen_button;
 	private Gtk.HBox buttons_area;
@@ -270,12 +271,14 @@ public class Cheese.MainWindow : Gtk.Window {
 			if (!is_recording) {
 				camera.start_video_recording (fileutil.get_new_media_filename(this.current_mode));
 				take_action_button_label.label = "<b>Stop _Recording</b>";
+				take_action_button_image.set_from_stock(Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
 				this.is_recording = true;
 				this.disable_mode_change();
 			}
 			else {
 				camera.stop_video_recording();
 				take_action_button_label.label = "<b>" +  take_action_button.related_action.label + "</b>";
+				take_action_button_image.set_from_stock(Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
 				this.is_recording = false;
 			}
 		}
@@ -306,6 +309,7 @@ public class Cheese.MainWindow : Gtk.Window {
 		burst_toggle_button = (Gtk.ToggleButton) gtk_builder.get_object("burst_toggle_button");
 		take_action_button = (Gtk.Button) gtk_builder.get_object("take_action_button");
 		take_action_button_label = (Gtk.Label) gtk_builder.get_object("take_action_button_internal_label");
+		take_action_button_image = (Gtk.Image) gtk_builder.get_object("take_action_button_internal_image");		
 		effects_toggle_button = (Gtk.ToggleButton) gtk_builder.get_object("effects_toggle_button");
 		leave_fullscreen_button = (Gtk.Button) gtk_builder.get_object("leave_fullscreen_button");
 		buttons_area = (Gtk.HBox) gtk_builder.get_object("buttons_area");
