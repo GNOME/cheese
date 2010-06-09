@@ -44,7 +44,8 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Gtk.Action photo_mode_action;
 	private Gtk.Action video_mode_action;
 	private Gtk.Action burst_mode_action;
-	
+	private Gtk.Action effects_toggle_action;
+
 	private bool is_fullscreen;
 	private bool is_wide_mode;
 	private bool is_recording; // Video Recording Flag
@@ -273,9 +274,6 @@ public class Cheese.MainWindow : Gtk.Window {
 	internal void take_photo() {
 		string file_name = fileutil.get_new_media_filename(this.current_mode);
 		camera.take_photo(file_name);
-		// FIXME: 3 second delay, to make sure we get unique photo_names.
-		// Flash, countdown, etc, should make this better and *non blocking*
-		// GLib.Thread.usleep(1 * 1000 * 1000); 
 	}
 
 	[CCode (instance_pos = -1)]
@@ -290,6 +288,7 @@ public class Cheese.MainWindow : Gtk.Window {
 				take_action_button_image.set_from_stock(Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
 				this.is_recording = true;
 				this.disable_mode_change();
+				effects_toggle_action.sensitive = false;
 			}
 			else {
 				camera.stop_video_recording();
@@ -297,13 +296,15 @@ public class Cheese.MainWindow : Gtk.Window {
 				take_action_button_image.set_from_stock(Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
 				this.is_recording = false;
 				this.enable_mode_change();
+				effects_toggle_action.sensitive = true;
 			}
 		}
 		else if (current_mode == MediaMode.BURST) {
 			int burst_count = 0;
 			is_bursting = true;
 			this.disable_mode_change();
-			take_action_button.sensitive = false;			
+			take_action_button.related_action.sensitive = false;
+			effects_toggle_action.sensitive = false;
 			GLib.Timeout.add_seconds(2,
 									 () => {
 										 if (is_bursting && burst_count < 3) {
@@ -315,7 +316,8 @@ public class Cheese.MainWindow : Gtk.Window {
 											 is_bursting = false;
 											 	
 											 this.enable_mode_change();
-											 take_action_button.sensitive = true;
+											 take_action_button.related_action.sensitive = true;
+											 effects_toggle_action.sensitive = true;
 											 fileutil.reset_burst();
 											 return false;
 										 }
@@ -359,7 +361,8 @@ public class Cheese.MainWindow : Gtk.Window {
 		photo_mode_action = (Gtk.Action) gtk_builder.get_object("photo_mode");
 		video_mode_action = (Gtk.Action) gtk_builder.get_object("video_mode");;
 		burst_mode_action = (Gtk.Action) gtk_builder.get_object("burst_mode");;
-	
+		effects_toggle_action = (Gtk.Action) gtk_builder.get_object("effects_toggle");
+		
 		// Array contains all 'buttons', for easier manipulation
 		// IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY
 		buttons = {photo_toggle_button,
