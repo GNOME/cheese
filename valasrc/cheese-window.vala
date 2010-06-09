@@ -55,6 +55,7 @@ public class Cheese.MainWindow : Gtk.Window {
 
 	private Cheese.Camera camera;
 	private Cheese.FileUtil fileutil;
+	private Cheese.Flash flash;
 	
 	[CCode (instance_pos = -1)]
 	internal void on_quit (Action action ) {
@@ -273,6 +274,7 @@ public class Cheese.MainWindow : Gtk.Window {
 	
 	internal void take_photo() {
 		string file_name = fileutil.get_new_media_filename(this.current_mode);
+		flash.fire();
 		camera.take_photo(file_name);
 	}
 
@@ -329,6 +331,7 @@ public class Cheese.MainWindow : Gtk.Window {
 		gtk_builder = new Gtk.Builder();
 		clutter_builder = new Clutter.Script();
 		fileutil = new FileUtil();
+		flash = new Flash(this);
 
 		gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
 		gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));

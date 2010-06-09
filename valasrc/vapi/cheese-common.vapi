@@ -83,14 +83,13 @@ namespace Cheese {
 		public void reset_burst ();
 	}
 	
-	[Compact]
 	[CCode (cheader_filename = "cheese-flash.h")]
-	public class Flash {
-		public weak GLib.Object parent_instance;
+	public class Flash : GLib.Object {
 		[CCode (has_construct_function = false)]
 		public Flash (Gtk.Widget parent);
 		public void fire ();
 	}
+	
 	[CCode (cheader_filename = "cheese-gconf.h")]
 	public class GConf : GLib.Object {
 		[CCode (has_construct_function = false)]
