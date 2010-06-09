@@ -143,20 +143,20 @@ public class Cheese.MainWindow : Gtk.Window {
 		take_action_button_label.label = "<b>" +  take_action_button.related_action.label + "</b>";
 	}
 
-	private TimeoutSource timeout;
+	private TimeoutSource fullscreen_timeout;
 	private void clear_fullscreen_timeout() {
-		if (timeout != null) {
-			timeout.destroy();
-			timeout = null;
+		if (fullscreen_timeout != null) {
+			fullscreen_timeout.destroy();
+			fullscreen_timeout = null;
 		}
 	}
 			
 	private void set_fullscreen_timeout () {
-		timeout = new TimeoutSource(FULLSCREEN_TIMEOUT_INTERVAL);
-		timeout.attach (null);
-		timeout.set_callback(() => { buttons_area.hide();
-									 clear_fullscreen_timeout();
-									 return true;});
+		fullscreen_timeout = new TimeoutSource(FULLSCREEN_TIMEOUT_INTERVAL);
+		fullscreen_timeout.attach (null);
+		fullscreen_timeout.set_callback(() => { buttons_area.hide();
+												clear_fullscreen_timeout();
+												return true;});
 	}
 
 	private bool fullscreen_motion_notify_callback(Gtk.Widget viewport, EventMotion e) {
@@ -269,14 +269,15 @@ public class Cheese.MainWindow : Gtk.Window {
 		this.viewport_layout.set_size(viewport.width, viewport.height);
 	}
 
+	
 	internal void take_photo() {
 		string file_name = fileutil.get_new_media_filename(this.current_mode);
 		camera.take_photo(file_name);
 		// FIXME: 3 second delay, to make sure we get unique photo_names.
 		// Flash, countdown, etc, should make this better and *non blocking*
-		GLib.Thread.usleep(1 * 1000 * 1000); 
+		// GLib.Thread.usleep(1 * 1000 * 1000); 
 	}
-	
+
 	[CCode (instance_pos = -1)]
 	internal void on_take_action (Action action ) {
 		if (current_mode == MediaMode.PHOTO) {
@@ -299,19 +300,26 @@ public class Cheese.MainWindow : Gtk.Window {
 			}
 		}
 		else if (current_mode == MediaMode.BURST) {
-			int burst_count = 3;
+			int burst_count = 0;
 			is_bursting = true;
 			this.disable_mode_change();
-			take_action_button.sensitive = false;
-			for (int i = 0; i < burst_count; i++) {
-				if (is_bursting) {
-					this.take_photo();
-				}
-			}
-			this.is_bursting = false;
-			this.enable_mode_change();
-			take_action_button.sensitive = true;
-			fileutil.reset_burst();
+			take_action_button.sensitive = false;			
+			GLib.Timeout.add_seconds(2,
+									 () => {
+										 if (is_bursting && burst_count < 3) {
+											 this.take_photo();
+											 burst_count++;
+											 return true;
+										 }
+										 else {
+											 is_bursting = false;
+											 	
+											 this.enable_mode_change();
+											 take_action_button.sensitive = true;
+											 fileutil.reset_burst();
+											 return false;
+										 }
+										 });
 		}
 	}
 	
