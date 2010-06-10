@@ -56,6 +56,7 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Cheese.Camera camera;
 	private Cheese.FileUtil fileutil;
 	private Cheese.Flash flash;
+	private Cheese.GConf conf;
 	
 	[CCode (instance_pos = -1)]
 	internal void on_quit (Action action ) {
@@ -386,16 +387,16 @@ public class Cheese.MainWindow : Gtk.Window {
 		viewport.add_actor(viewport_layout);
 
 		viewport.allocation_changed.connect(on_stage_resize);
-	   		
-		
+	   				
 		thumb_view = new Cheese.ThumbView();
 		thumb_nav = new Eog.ThumbNav(thumb_view, false);
 		
 		viewport.show_all();
 
-		camera.setup("/dev/video0");
+		camera.setup(conf.camera);
 		camera.play();
-		set_wide_mode(false, true);
+
+		set_wide_mode(true, true);
 		set_mode(MediaMode.PHOTO);
 		
 		this.add(main_vbox);

@@ -94,37 +94,38 @@ namespace Cheese {
 	public class GConf : GLib.Object {
 		[CCode (has_construct_function = false)]
 		public GConf ();
-		[NoAccessorMethod]
-		public double gconf_prop_brightness { get; set; }
-		[NoAccessorMethod]
-		public int gconf_prop_burst_delay { get; set; }
-		[NoAccessorMethod]
-		public int gconf_prop_burst_repeat { get; set; }
-		[NoAccessorMethod]
-		public string gconf_prop_camera { owned get; set; }
-		[NoAccessorMethod]
-		public double gconf_prop_contrast { get; set; }
-		[NoAccessorMethod]
-		public bool gconf_prop_countdown { get; set; }
-		[NoAccessorMethod]
-		public bool gconf_prop_enable_delete { get; set; }
-		[NoAccessorMethod]
-		public double gconf_prop_hue { get; set; }
-		[NoAccessorMethod]
-		public string gconf_prop_photo_path { owned get; set; }
-		[NoAccessorMethod]
-		public double gconf_prop_saturation { get; set; }
-		[NoAccessorMethod]
-		public string gconf_prop_selected_effects { owned get; set; }
-		[NoAccessorMethod]
-		public string gconf_prop_video_path { owned get; set; }
-		[NoAccessorMethod]
-		public bool gconf_prop_wide_mode { get; set; }
-		[NoAccessorMethod]
-		public int gconf_prop_x_resolution { get; set; }
-		[NoAccessorMethod]
-		public int gconf_prop_y_resolution { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_brightness")]
+		public double brightness { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_burst_delay")]
+		public int burst_delay { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_burst_repeat")]
+		public int burst_repeat { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_camera")]
+		public string camera { owned get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_contrast")]
+		public double contrast { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_countdown")]
+		public bool countdown { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_enable_delete")]
+		public bool enable_delete { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_hue")]
+		public double hue { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_photo_path")]
+		public string photo_path { owned get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_saturation")]
+		public double saturation { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_selected_effects")]
+		public string selected_effects { owned get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_video_path")]
+		public string video_path { owned get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_wide_mode")]
+		public bool wide_mode { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_x_resolution")]
+		public int x_resolution { get; set; }
+		[NoAccessorMethod, CCode (cname="gconf_prop_y_resolution")]
+		public int y_resolution { get; set; }
 	}
+	
 	[Compact]
 	[CCode (type_id = "CHEESE_TYPE_VIDEO_FORMAT", cheader_filename = "cheese-camera-device.h")]
 	public class VideoFormat {
