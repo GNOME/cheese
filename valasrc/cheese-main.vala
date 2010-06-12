@@ -2,12 +2,15 @@ using GLib;
 using Gtk;
 using Clutter;
 using Gst;
+using Unique;
 
 public class Cheese.Main {
 	static bool verbose;
 	static bool wide;
 	static bool version_only;
 	static FileStream log_file;
+
+	static Cheese.MainWindow main_window;
 
 	const OptionEntry[] options = {
 		{ "verbose", 'v', 0, OptionArg.NONE, ref verbose, N_("Be verbose"), null},
@@ -23,7 +26,19 @@ public class Cheese.Main {
 		}
 	}
 
-	public static int main (string[] args) {
+	public static Unique.Response unique_message_received(int command,
+														  Unique.MessageData msg,
+														  uint time) {
+		Unique.Response res;
+		if (command == Unique.Command.ACTIVATE) {
+			main_window.set_screen(msg.get_screen());
+			main_window.activate();
+		}
+		return Unique.Response.OK;
+	}
+	
+	public static int main (string[] args) {		
+
 
 		Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.PACKAGE_LOCALEDIR);
   		Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
@@ -46,6 +61,19 @@ public class Cheese.Main {
 			return 1;
 		}
 
+		main_window = new Cheese.MainWindow();
+		
+		Unique.App app = new Unique.App("org.gnome.Cheese", null);
+		if (app.is_running) {
+			Unique.Response response;
+			response = app.send_message(Unique.Command.ACTIVATE, null);
+			return 0;
+		}
+		else {
+			app.watch_window(main_window);
+			app.message_received.connect(unique_message_received);
+		}		
+
  		Environment.set_application_name (_("Cheese"));
 		Window.set_default_icon_name ("cheese");
 
@@ -55,7 +83,7 @@ public class Cheese.Main {
 		set_print_handler (print_handler);
 
 		Gtk.IconTheme.get_default().append_search_path(GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
-		Cheese.MainWindow main_window = new Cheese.MainWindow();
+		
 		main_window.setup_ui();
 		main_window.destroy.connect(Gtk.main_quit);
 		main_window.show_all();

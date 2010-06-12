@@ -8,6 +8,7 @@ VALAFLAGS = \
 	--pkg clutter-gtk-0.10 \
 	--pkg gconf-2.0 \
 	--pkg gstreamer-0.10 \
+	--pkg unique-1.0 \
 	--pkg eogthumbnav \
 	--pkg cheese-thumbview \
 	--pkg cheese-common
