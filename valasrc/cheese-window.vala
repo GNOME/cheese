@@ -285,6 +285,26 @@ public class Cheese.MainWindow : Gtk.Window {
 		cd.start_countdown(finish_countdown_callback);
 	}
 
+	private int burst_count;
+
+	private bool burst_take_photo() {
+		if (is_bursting && burst_count < 3) {
+			this.take_photo();
+			burst_count++;
+			return true;
+		}
+		else {
+			is_bursting = false;			
+			this.enable_mode_change();
+			take_action_button.related_action.sensitive = true;
+			effects_toggle_action.sensitive = true;
+			burst_count = 0;
+			fileutil.reset_burst();
+			return false;
+		}
+	}
+									
+	
 	[CCode (instance_pos = -1)]
 	internal void on_take_action (Action action ) {
 		if (current_mode == MediaMode.PHOTO) {
@@ -309,28 +329,12 @@ public class Cheese.MainWindow : Gtk.Window {
 			}
 		}
 		else if (current_mode == MediaMode.BURST) {
-			int burst_count = 0;
 			is_bursting = true;
 			this.disable_mode_change();
 			take_action_button.related_action.sensitive = false;
 			effects_toggle_action.sensitive = false;
-			GLib.Timeout.add_seconds(2,
-									 () => {
-										 if (is_bursting && burst_count < 3) {
-											 this.take_photo();
-											 burst_count++;
-											 return true;
-										 }
-										 else {
-											 is_bursting = false;
-											 	
-											 this.enable_mode_change();
-											 take_action_button.related_action.sensitive = true;
-											 effects_toggle_action.sensitive = true;
-											 fileutil.reset_burst();
-											 return false;
-										 }
-										 });
+			burst_take_photo();
+			GLib.Timeout.add(3500, burst_take_photo);
 		}
 	}
 	
