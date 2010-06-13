@@ -37,6 +37,7 @@ public class Cheese.MainWindow : Gtk.Window {
 	private Clutter.Box viewport_layout;
 	private Clutter.Texture video_preview;
 	private Clutter.BinLayout viewport_layout_manager;
+	private Clutter.Text countdown_layer;
 	
 	private Gtk.Action take_photo_action;
 	private Gtk.Action take_video_action;
@@ -272,11 +273,16 @@ public class Cheese.MainWindow : Gtk.Window {
 		this.viewport_layout.set_size(viewport.width, viewport.height);
 	}
 
+
+	private void finish_countdown_callback() {
+		string file_name = fileutil.get_new_media_filename(this.current_mode);
+		this.flash.fire();
+		this.camera.take_photo(file_name);		
+	}
 	
 	internal void take_photo() {
-		string file_name = fileutil.get_new_media_filename(this.current_mode);
-		flash.fire();
-		camera.take_photo(file_name);
+		Countdown cd = new Countdown(this.countdown_layer);
+		cd.start_countdown(finish_countdown_callback);
 	}
 
 	[CCode (instance_pos = -1)]
@@ -379,6 +385,7 @@ public class Cheese.MainWindow : Gtk.Window {
 		video_preview = (Clutter.Texture) clutter_builder.get_object ("video_preview");
 		viewport_layout = (Clutter.Box) clutter_builder.get_object ("viewport_layout");
 		viewport_layout_manager = (Clutter.BinLayout) clutter_builder.get_object ("viewport_layout_manager");
+		countdown_layer = (Clutter.Text) clutter_builder.get_object ("countdown_layer");
 
 		viewport_layout.set_layout_manager(viewport_layout_manager);
 

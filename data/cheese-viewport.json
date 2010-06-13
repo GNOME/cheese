@@ -4,11 +4,24 @@
     "type": "ClutterTexture",
     "child::x-align": "CLUTTER_BIN_ALIGNMENT_FILL",
     "child::y-align": "CLUTTER_BIN_ALIGNMENT_FILL"
-  },
+},
+{
+    "id": "countdown_layer",
+    "type": "ClutterText",
+    "child::x-align": "CLUTTER_BIN_ALIGNMENT_CENTER",
+    "child::y-align": "CLUTTER_BIN_ALIGNMENT_CENTER",
+    "text": "1",
+    "font-name": "Serif 300px",
+    "opacity": 0
+},
 {
     "id": "viewport_layout",
     "type": "ClutterBox",
-    "children": ['video_preview'] 
+    "children":
+    [
+	'video_preview',
+	'countdown_layer'
+    ] 
 },
 {
     "id": "viewport_layout_manager",
