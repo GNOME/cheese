@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-03-23 21:59+0000\n"
-"PO-Revision-Date: 2010-04-06 15:47+0700\n"
+"POT-Creation-Date: 2010-04-22 16:49+0000\n"
+"PO-Revision-Date: 2010-06-14 20:31+0700\n"
 "Last-Translator: Theppitak Karoonboonyanan <thep@linux.thai.net>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:113
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
 msgid "Cheese"
 msgstr "ชีส"
 
@@ -192,7 +192,7 @@ msgstr "เปลี่ยนเป็นโหมดวีดิทัศน์
 msgid "Switch to the Effects Selector"
 msgstr "เปลี่ยนเป็นเครื่องเลือกลูกเล่น"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:871
 msgid "_Effects"
 msgstr "ลูกเ_ล่น"
 
@@ -252,7 +252,7 @@ msgstr "สีสด"
 msgid "Webcam"
 msgstr "เว็บแคม"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:634
 msgid "Shutter sound"
 msgstr "เสียงชัตเตอร์"
 
@@ -280,12 +280,12 @@ msgstr "อุปกรณ์ไม่ทราบชนิด"
 msgid "Cancellable initialization not supported"
 msgstr "ไม่รองรับการตั้งต้นอุปกรณ์แบบยกเลิกได้"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1137
 #, c-format
 msgid "No device found"
 msgstr "ไม่พบอุปกรณ์"
 
-#: ../libcheese/cheese-camera.c:1153
+#: ../libcheese/cheese-camera.c:1156
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "องค์ประกอบของ GStreamer ที่จำเป็นอย่างน้อยหนึ่งอย่างหายไป: "
 
@@ -295,8 +295,8 @@ msgstr "องค์ประกอบของ GStreamer ที่จำเป�
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -381,7 +381,7 @@ msgstr "ย้ายภาพและวีดิทัศน์ทั้งห
 msgid "_Move to Trash"
 msgstr "_ย้ายไปถังขยะ"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:656
 msgid "Unable to open help file for Cheese"
 msgstr "ไม่สามารถเปิดแฟ้มวิธีใช้ของชีสได้"
 
@@ -472,7 +472,7 @@ msgstr "บิดเบี้ยว"
 msgid "No camera found!"
 msgstr "ไม่พบกล้อง"
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1222
 msgid "Please refer to the help for further information."
 msgstr "กรุณาอ่านเพิ่มเติมได้จากคู่มือวิธีใช้"
 
@@ -534,7 +534,7 @@ msgstr "บันทึกเป็_น…"
 
 #: ../src/cheese-ui.h:82
 msgid "Move to _Trash"
-msgstr "ย้ายไป_ถังขยะ"
+msgstr "ทิ้งลง_ถังขยะ"
 
 #: ../src/cheese-ui.h:84
 msgid "Delete"
@@ -552,19 +552,19 @@ msgstr "เ_ริ่มอัด"
 msgid "_Stop Recording"
 msgstr "_หยุดอัด"
 
-#: ../src/cheese.c:96
+#: ../src/cheese.c:97
 msgid "Be verbose"
 msgstr "แสดงข้อความอย่างละเอียด"
 
-#: ../src/cheese.c:98
+#: ../src/cheese.c:99
 msgid "Enable wide mode"
 msgstr "เปิดใช้งานโหมดจอกว้าง"
 
-#: ../src/cheese.c:100
+#: ../src/cheese.c:101
 msgid "output version information and exit"
 msgstr "แสดงข้อมูลรุ่นของโปรแกรมแล้วจบการทำงาน"
 
-#: ../src/cheese.c:115
+#: ../src/cheese.c:120
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ พร้อมใส่ลูกเล่นสนุกๆ"
 
