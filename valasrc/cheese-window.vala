@@ -46,7 +46,9 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.Action video_mode_action;
   private Gtk.Action burst_mode_action;
   private Gtk.Action effects_toggle_action;
-
+  private Gtk.Action wide_mode_action;
+  private Gtk.Action countdown_action;
+  
   private bool is_fullscreen;
   private bool is_wide_mode;
   private bool is_recording;       /* Video Recording Flag */
@@ -252,6 +254,7 @@ public class Cheese.MainWindow : Gtk.Window
   private void set_wide_mode (bool wide_mode, bool initialize = false)
   {
     is_wide_mode = wide_mode;
+	conf.gconf_prop_wide_mode = wide_mode;
     if (!initialize)
     {
       /* Sets requested size of the viewport_widget to be it's current size
@@ -306,26 +309,37 @@ public class Cheese.MainWindow : Gtk.Window
     this.viewport_layout.set_size (viewport.width, viewport.height);
   }
 
+    [CCode (instance_pos = -1)]
+	internal void on_countdown_toggle (ToggleAction action)
+  {
+    conf.gconf_prop_countdown = action.active;
+  }
+
   private void finish_countdown_callback ()
   {
     string file_name = fileutil.get_new_media_filename (this.current_mode);
-
-    this.flash.fire ();
+	this.flash.fire ();
     this.camera.take_photo (file_name);
   }
 
   internal void take_photo ()
   {
-    Countdown cd = new Countdown (this.countdown_layer);
-
-    cd.start_countdown (finish_countdown_callback);
+	  if (conf.gconf_prop_countdown)
+	  {
+		  Countdown cd = new Countdown (this.countdown_layer);
+		  cd.start_countdown (finish_countdown_callback);
+	  }
+	  else
+	  {
+		  finish_countdown_callback();
+	  }
   }
 
   private int burst_count;
 
   private bool burst_take_photo ()
   {
-    if (is_bursting && burst_count < 3)
+    if (is_bursting && burst_count < conf.gconf_prop_burst_repeat)
     {
       this.take_photo ();
       burst_count++;
@@ -390,7 +404,7 @@ public class Cheese.MainWindow : Gtk.Window
     clutter_builder = new Clutter.Script ();
     fileutil        = new FileUtil ();
     flash           = new Flash (this);
-
+	conf = new GConf();
     gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
     gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
     gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
@@ -417,13 +431,15 @@ public class Cheese.MainWindow : Gtk.Window
     buttons_area                      = (Gtk.HBox)gtk_builder.get_object ("buttons_area");
 
     take_photo_action     = (Gtk.Action)gtk_builder.get_object ("take_photo");
-    take_video_action     = (Gtk.Action)gtk_builder.get_object ("take_video");;
-    take_burst_action     = (Gtk.Action)gtk_builder.get_object ("take_burst");;
+    take_video_action     = (Gtk.Action)gtk_builder.get_object ("take_video");
+    take_burst_action     = (Gtk.Action)gtk_builder.get_object ("take_burst");
     photo_mode_action     = (Gtk.Action)gtk_builder.get_object ("photo_mode");
-    video_mode_action     = (Gtk.Action)gtk_builder.get_object ("video_mode");;
-    burst_mode_action     = (Gtk.Action)gtk_builder.get_object ("burst_mode");;
+    video_mode_action     = (Gtk.Action)gtk_builder.get_object ("video_mode");
+    burst_mode_action     = (Gtk.Action)gtk_builder.get_object ("burst_mode");
     effects_toggle_action = (Gtk.Action)gtk_builder.get_object ("effects_toggle");
-
+	countdown_toggle_action= (Gtk.Action)gtk_builder.get_object ("countdown");
+	wide_mode_action = (Gtk.Action)gtk_builder.get_object("wide_mode");
+	
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
     buttons = {photo_toggle_button,
@@ -451,10 +467,10 @@ public class Cheese.MainWindow : Gtk.Window
 
     viewport.show_all ();
 
-    camera.setup (conf.camera);
+    camera.setup (conf.gconf_prop_camera);
     camera.play ();
 
-    set_wide_mode (true, true);
+    set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);
 
     this.add (main_vbox);
