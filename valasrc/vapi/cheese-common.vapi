@@ -9,9 +9,9 @@ namespace Cheese
 		[CCode (has_construct_function = false)]
 		public Effect ();
 		[NoAccessorMethod]
-		public string name {get; set;}
+		public string name {owned get; set;}
 		[NoAccessorMethod]
-		public string pipeline_desc {get; set;}
+		public string pipeline_desc {owned get; set;}
 	}
 
   [CCode (cheader_filename = "cheese-camera.h")]

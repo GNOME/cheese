@@ -60,7 +60,8 @@ public class Cheese.MainWindow : Gtk.Window
   private Cheese.FileUtil fileutil;
   private Cheese.Flash    flash;
   private Cheese.GConf    conf;
-
+  private Cheese.EffectsManager effects_manager;
+  
   [CCode (instance_pos = -1)]
   internal void on_quit (Action action)
   {
@@ -470,9 +471,8 @@ public class Cheese.MainWindow : Gtk.Window
     camera.setup (conf.gconf_prop_camera);
     camera.play ();
 
-	Effect e = new Effect();
-	e.name = "blah";
-	e.pipeline_desc = "warptv";
+	string mock_path = GLib.Path.build_filename (Config.PACKAGE_DATADIR, "effects", "noir.effect");
+	Effect e = EffectsManager.parse_effect_file (mock_path);
 	camera.set_effect(e);
 
     set_wide_mode (conf.gconf_prop_wide_mode, true);
