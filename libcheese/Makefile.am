@@ -43,6 +43,8 @@ libcheesecommon_la_SOURCES = \
 	cheese-flash.c \
 	cheese-countdown.c \
 	cheese-countdown.h \
+	cheese-effect.c \
+	cheese-effect.h \
 	$(BUILT_SOURCES)
 
 libcheese_gtk_la_SOURCES = \

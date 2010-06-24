@@ -437,7 +437,7 @@ public class Cheese.MainWindow : Gtk.Window
     video_mode_action     = (Gtk.Action)gtk_builder.get_object ("video_mode");
     burst_mode_action     = (Gtk.Action)gtk_builder.get_object ("burst_mode");
     effects_toggle_action = (Gtk.Action)gtk_builder.get_object ("effects_toggle");
-	countdown_toggle_action= (Gtk.Action)gtk_builder.get_object ("countdown");
+	countdown_action= (Gtk.Action)gtk_builder.get_object ("countdown");
 	wide_mode_action = (Gtk.Action)gtk_builder.get_object("wide_mode");
 	
     /* Array contains all 'buttons', for easier manipulation
@@ -469,6 +469,11 @@ public class Cheese.MainWindow : Gtk.Window
 
     camera.setup (conf.gconf_prop_camera);
     camera.play ();
+
+	Effect e = new Effect();
+	e.name = "blah";
+	e.pipeline_desc = "warptv";
+	camera.set_effect(e);
 
     set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);

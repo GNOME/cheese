@@ -3,6 +3,17 @@
 [CCode (cprefix = "Cheese", lower_case_cprefix = "cheese_")]
 namespace Cheese
 {
+	[CCode (cheader_filename = "cheese-effect.h")]
+	public class Effect : GLib.Object
+	{
+		[CCode (has_construct_function = false)]
+		public Effect ();
+		[NoAccessorMethod]
+		public string name {get; set;}
+		[NoAccessorMethod]
+		public string pipeline_desc {get; set;}
+	}
+
   [CCode (cheader_filename = "cheese-camera.h")]
   public class Camera : GLib.Object
   {
@@ -19,7 +30,7 @@ namespace Cheese
     public void                        set_balance_property (string property, double value);
     public void                        set_device_by_dev_file (string file);
     public void                        set_device_by_dev_udi (string udi);
-    public void                        set_effect (Cheese.CameraEffect effect);
+    public void                        set_effect (Cheese.Effect effect);
     public void                        set_video_format (Cheese.VideoFormat format);
     public void                        setup (string udi) throws GLib.Error;
     public void                        start_video_recording (string filename);

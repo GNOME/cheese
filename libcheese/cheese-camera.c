@@ -107,37 +107,6 @@ enum
 
 static guint camera_signals[LAST_SIGNAL];
 
-typedef enum
-{
-  RGB,
-  YUV
-} VideoColorSpace;
-
-typedef struct
-{
-  CheeseCameraEffect effect;
-  const char *pipeline_desc;
-  VideoColorSpace colorspace; /* The color space the effect works in */
-} EffectToPipelineDesc;
-
-
-static const EffectToPipelineDesc EFFECT_TO_PIPELINE_DESC[] = {
-  {CHEESE_CAMERA_EFFECT_NO_EFFECT,       "identity",                             RGB},
-  {CHEESE_CAMERA_EFFECT_MAUVE,           "videobalance saturation=1.5 hue=+0.5", YUV},
-  {CHEESE_CAMERA_EFFECT_NOIR_BLANC,      "videobalance saturation=0",            YUV},
-  {CHEESE_CAMERA_EFFECT_SATURATION,      "videobalance saturation=2",            YUV},
-  {CHEESE_CAMERA_EFFECT_HULK,            "videobalance saturation=1.5 hue=-0.5", YUV},
-  {CHEESE_CAMERA_EFFECT_VERTICAL_FLIP,   "videoflip method=5",                   YUV},
-  {CHEESE_CAMERA_EFFECT_HORIZONTAL_FLIP, "videoflip method=4",                   YUV},
-  {CHEESE_CAMERA_EFFECT_SHAGADELIC,      "shagadelictv",                         RGB},
-  {CHEESE_CAMERA_EFFECT_VERTIGO,         "vertigotv",                            RGB},
-  {CHEESE_CAMERA_EFFECT_EDGE,            "edgetv",                               RGB},
-  {CHEESE_CAMERA_EFFECT_DICE,            "dicetv",                               RGB},
-  {CHEESE_CAMERA_EFFECT_WARP,            "warptv",                               RGB}
-};
-
-static const int NUM_EFFECTS = G_N_ELEMENTS (EFFECT_TO_PIPELINE_DESC);
-
 GST_DEBUG_CATEGORY (cheese_camera_cat);
 #define GST_CAT_DEFAULT cheese_camera_cat
 
@@ -807,37 +776,19 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
 }
 
 void
-cheese_camera_set_effect (CheeseCamera *camera, CheeseCameraEffect effect)
+cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 {
-  GString    *rgb_effects_str = g_string_new ("");
-  GString    *yuv_effects_str = g_string_new ("");
   char       *effects_pipeline_desc;
-  int         i;
   GstElement *effect_filter;
   GError     *err = NULL;
+  char       *effect_desc;
 
-  for (i = 0; i < NUM_EFFECTS; i++)
-  {
-    if (effect & EFFECT_TO_PIPELINE_DESC[i].effect)
-    {
-      if (EFFECT_TO_PIPELINE_DESC[i].colorspace == RGB)
-      {
-        g_string_append (rgb_effects_str, EFFECT_TO_PIPELINE_DESC[i].pipeline_desc);
-        g_string_append (rgb_effects_str, " ! ");
-      }
-      else
-      {
-        g_string_append (yuv_effects_str, " ! ");
-        g_string_append (yuv_effects_str, EFFECT_TO_PIPELINE_DESC[i].pipeline_desc);
-      }
-    }
-  }
+  g_object_get (CHEESE_EFFECT (effect), "pipeline_desc", &effect_desc, NULL);
+
   effects_pipeline_desc = g_strconcat ("ffmpegcolorspace ! ",
-                                       rgb_effects_str->str,
-                                       "ffmpegcolorspace",
-                                       yuv_effects_str->str,
+                                       effect_desc,
+                                       " ! ffmpegcolorspace",
                                        NULL);
-
   effect_filter = gst_parse_bin_from_description (effects_pipeline_desc, TRUE, &err);
   if (!effect_filter || (err != NULL))
   {
@@ -847,8 +798,6 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseCameraEffect effect)
   cheese_camera_change_effect_filter (camera, effect_filter);
 
   g_free (effects_pipeline_desc);
-  g_string_free (rgb_effects_str, TRUE);
-  g_string_free (yuv_effects_str, TRUE);
 }
 
 void

@@ -28,6 +28,7 @@
 #include <gst/interfaces/xoverlay.h>
 #include <clutter/clutter.h>
 #include <cheese-camera-device.h>
+#include <cheese-effect.h>
 
 G_BEGIN_DECLS
 
@@ -37,23 +38,6 @@ G_BEGIN_DECLS
 #define CHEESE_IS_CAMERA(o)        (G_TYPE_CHECK_INSTANCE_TYPE ((o), CHEESE_TYPE_CAMERA))
 #define CHEESE_IS_CAMERA_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_CAMERA))
 #define CHEESE_CAMERA_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA, CheeseCameraClass))
-
-typedef enum
-{
-  CHEESE_CAMERA_EFFECT_NO_EFFECT       = (0),
-  CHEESE_CAMERA_EFFECT_MAUVE           = (1 << 0),
-  CHEESE_CAMERA_EFFECT_NOIR_BLANC      = (1 << 1),
-  CHEESE_CAMERA_EFFECT_SATURATION      = (1 << 2),
-  CHEESE_CAMERA_EFFECT_HULK            = (1 << 3),
-  CHEESE_CAMERA_EFFECT_VERTICAL_FLIP   = (1 << 4),
-  CHEESE_CAMERA_EFFECT_HORIZONTAL_FLIP = (1 << 5),
-  CHEESE_CAMERA_EFFECT_SHAGADELIC      = (1 << 6),
-  CHEESE_CAMERA_EFFECT_VERTIGO         = (1 << 7),
-  CHEESE_CAMERA_EFFECT_EDGE            = (1 << 8),
-  CHEESE_CAMERA_EFFECT_DICE            = (1 << 9),
-  CHEESE_CAMERA_EFFECT_WARP            = (1 << 10),
-}
-CheeseCameraEffect;
 
 typedef struct
 {
@@ -85,7 +69,7 @@ const CheeseVideoFormat *cheese_camera_get_current_video_format (CheeseCamera *c
 void                     cheese_camera_setup (CheeseCamera *camera, char *udi, GError **error);
 void                     cheese_camera_play (CheeseCamera *camera);
 void                     cheese_camera_stop (CheeseCamera *camera);
-void                     cheese_camera_set_effect (CheeseCamera *camera, CheeseCameraEffect effect);
+void                     cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect);
 void                     cheese_camera_start_video_recording (CheeseCamera *camera, char *filename);
 void                     cheese_camera_stop_video_recording (CheeseCamera *camera);
 gboolean                 cheese_camera_take_photo (CheeseCamera *camera, char *filename);
