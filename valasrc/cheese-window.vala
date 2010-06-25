@@ -471,9 +471,9 @@ public class Cheese.MainWindow : Gtk.Window
     camera.setup (conf.gconf_prop_camera);
     camera.play ();
 
-	string mock_path = GLib.Path.build_filename (Config.PACKAGE_DATADIR, "effects", "noir.effect");
-	Effect e = EffectsManager.parse_effect_file (mock_path);
-	camera.set_effect(e);
+	effects_manager = new EffectsManager();
+	effects_manager.load_effects();
+	camera.set_effect(effects_manager.get_effect(conf.gconf_prop_selected_effects));
 
     set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);

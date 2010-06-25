@@ -1,6 +1,6 @@
 Datadir = $(datadir)/cheese/effects
 
-Data_DATA = noir.effect
+Data_DATA = *.effect
 
 EXTRA_DIST =			\
 	$(Data_DATA)

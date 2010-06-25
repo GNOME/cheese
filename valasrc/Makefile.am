@@ -4,6 +4,7 @@ VALAFLAGS = \
 	--pkg config \
 	--pkg gtk+-2.0 \
 	--pkg gmodule-2.0 \
+	--pkg gee-1.0 \
 	--pkg clutter-1.0 \
 	--pkg clutter-gtk-0.10 \
 	--pkg gconf-2.0 \

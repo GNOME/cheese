@@ -92,7 +92,7 @@ CLUTTER_REQUIRED=1.0
 CLUTTERGTK_REQUIRED=0.10
 CLUTTERGST_REQUIRED=0.10
 UNIQUE_REQUIRED=1.1
-
+GEE_REQUIRED=0.5
 #*******************************************************************************
 # Check for udev
 #*******************************************************************************
@@ -150,7 +150,8 @@ PKG_CHECK_MODULES(CHEESE, \
   clutter-1.0 >= $CLUTTER_REQUIRED \
   clutter-gtk-0.10 >= $CLUTTERGTK_REQUIRED \
   clutter-gst-0.10 >= $CLUTTERGST_REQUIRED \
-  unique-1.0  >= $UNIQUE_REQUIRED \ 
+  unique-1.0  >= $UNIQUE_REQUIRED \
+  gee-1.0 >= $GEE_REQUIRED \
   libcanberra-gtk $UDEV_PKG 
   )
 AC_SUBST(CHEESE_CFLAGS)

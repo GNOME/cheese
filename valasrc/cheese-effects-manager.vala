@@ -1,4 +1,5 @@
 using GLib;
+using Gee;
 
 const string GROUP_NAME = "effect";
 
@@ -14,4 +15,48 @@ internal class Cheese.EffectsManager : GLib.Object
 		critical("%s", eff.pipeline_desc);
 		return eff;
 	}
+
+	public ArrayList<Effect> effects;
+	
+	private ArrayList<Effect> load_effects_from_directory (string directory)
+	{	
+		ArrayList<Effect> effects = new ArrayList<Effect>();
+		if (FileUtils.test (directory, FileTest.EXISTS | FileTest.IS_DIR))
+		{
+			Dir dir = Dir.open(directory);		
+			string cur_file;
+			cur_file = dir.read_name();
+			while (cur_file != null)
+			{
+				Effect effect = EffectsManager.parse_effect_file (GLib.Path.build_filename(directory, cur_file));
+				effects.add(effect);
+				cur_file = dir.read_name();
+			}
+		}
+		return effects;
+	}
+
+	public EffectsManager()
+	{
+		effects = new ArrayList<Effect>();
+	}
+	
+	public void load_effects()
+	{
+		string system_effects = GLib.Path.build_filename (Config.PACKAGE_DATADIR, "effects");
+		effects.add_all(load_effects_from_directory (system_effects));
+
+		string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir(), ".cheese", "effects");
+		effects.add_all(load_effects_from_directory (user_effects));
+	}
+
+	public Effect get_effect(string name)
+	{
+		foreach (Effect eff in effects)
+		{
+			if (eff.name == name)
+				return eff;
+		}
+		return null;
+	}	
 }
