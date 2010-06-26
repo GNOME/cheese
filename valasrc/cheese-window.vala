@@ -469,11 +469,13 @@ public class Cheese.MainWindow : Gtk.Window
     viewport.show_all ();
 
     camera.setup (conf.gconf_prop_camera);
-    camera.play ();
 
 	effects_manager = new EffectsManager();
 	effects_manager.load_effects();
-	camera.set_effect(effects_manager.get_effect(conf.gconf_prop_selected_effects));
+	var effect = effects_manager.get_effect(conf.gconf_prop_selected_effects);
+	Clutter.Texture testy = (Clutter.Texture) clutter_builder.get_object("testy");
+	camera.connect_effect_texture (effect, testy);
+	camera.play();
 
     set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);

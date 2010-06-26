@@ -69,6 +69,7 @@ typedef struct
   
   GstElement *effect_filter, *csp_post_effect;
   GstElement *video_balance, *csp_post_balance;
+  GstElement *camera_tee;
 
   gulong photo_handler_signal_id;
 
@@ -397,7 +398,7 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  GstElement *tee, *video_display_queue, *video_scale, *video_sink, *save_queue;
+  GstElement *save_tee, *video_display_queue, *video_scale, *video_sink, *save_queue;
 
   gboolean ok;
   GstPad  *pad;
@@ -406,6 +407,10 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
 
   cheese_camera_create_camera_source_bin (camera);
 
+  if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
+  {
+      cheese_camera_set_error_element_not_found (error, "tee");
+  }      
   if ((priv->effect_filter = gst_element_factory_make ("identity", "effect")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "identity");
@@ -425,7 +430,7 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
     return FALSE;
   }
 
-  if ((tee = gst_element_factory_make ("tee", "tee")) == NULL)
+  if ((save_tee = gst_element_factory_make ("tee", "save_tee")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "tee");
   }
@@ -459,25 +464,30 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
     return FALSE;
 
   gst_bin_add_many (GST_BIN (priv->video_display_bin), priv->camera_source_bin,
+		    priv->camera_tee,
                     priv->effect_filter, priv->csp_post_effect,
                     priv->video_balance, priv->csp_post_balance,
-                    tee, save_queue,
+                    save_tee, save_queue,
                     video_display_queue, video_scale, video_sink, NULL);
 
-  ok = gst_element_link_many (priv->camera_source_bin, priv->effect_filter,
+  ok = gst_element_link_many (priv->camera_source_bin, priv->camera_tee, NULL);
+  ok &= gst_element_link_many (priv->camera_tee, priv->effect_filter,
                               priv->csp_post_effect,
                               priv->video_balance, priv->csp_post_balance,
-                              tee, NULL);
+                              save_tee, NULL);
 
-  ok &= gst_element_link_many (tee, save_queue, NULL);
-  ok &= gst_element_link_many (tee, video_display_queue, video_scale, video_sink, NULL);
+  ok &= gst_element_link_many (save_tee, save_queue, NULL);
+  ok &= gst_element_link_many (save_tee, video_display_queue, video_scale, video_sink, NULL);
 
   /* add ghostpad */
   pad = gst_element_get_pad (save_queue, "src");
   gst_element_add_pad (priv->video_display_bin, gst_ghost_pad_new ("src", pad));
   gst_object_unref (GST_OBJECT (pad));
 
-
+  //  gint b;
+  //  g_object_get(G_OBJECT (priv->camera_tee), "num-src-pads", &b, NULL);
+  ///g_critical("Blaaaaaaaaaaaaaaaaaaaaaah %d", b);
+  
   if (!ok)
     g_error ("Unable to create display pipeline");
 
@@ -759,13 +769,13 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
 
   cheese_camera_stop (camera);
 
-  gst_element_unlink_many (priv->camera_source_bin, priv->effect_filter,
+  gst_element_unlink_many (priv->camera_tee, priv->effect_filter,
                            priv->csp_post_effect, NULL);
 
   gst_bin_remove (GST_BIN (priv->video_display_bin), priv->effect_filter);
 
   gst_bin_add (GST_BIN (priv->video_display_bin), new_filter);
-  ok = gst_element_link_many (priv->camera_source_bin, new_filter,
+  ok = gst_element_link_many (priv->camera_tee, new_filter,
                               priv->csp_post_effect, NULL);
   g_return_if_fail (ok);
 
@@ -775,8 +785,8 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
   priv->effect_filter = new_filter;
 }
 
-void
-cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
+GstElement*
+cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
 {
   char       *effects_pipeline_desc;
   GstElement *effect_filter;
@@ -795,10 +805,37 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
     g_error_free (err);
     g_error ("ERROR effect_filter\n");
   }
-  cheese_camera_change_effect_filter (camera, effect_filter);
-
   g_free (effects_pipeline_desc);
+
+  return effect_filter;
 }
+
+void
+cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
+{
+  GstElement *effect_filter;
+  effect_filter = cheese_camera_element_from_effect (camera, effect);
+  cheese_camera_change_effect_filter (camera, effect_filter);
+}
+
+void
+cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+    
+  GstElement *effect_filter;
+  GstElement *display_element;
+  GstElement *display_queue;
+  gboolean ok;
+
+  display_queue = gst_element_factory_make ("queue", "queue");
+  effect_filter = cheese_camera_element_from_effect (camera, effect);
+  display_element = clutter_gst_video_sink_new (texture);
+  
+  gst_bin_add_many (GST_BIN (priv->pipeline), effect_filter, display_queue, display_element, NULL);
+  ok = gst_element_link_many (priv->camera_tee, effect_filter, display_queue, display_element, NULL);  
+}
+
 
 void
 cheese_camera_start_video_recording (CheeseCamera *camera, char *filename)

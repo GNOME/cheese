@@ -6,6 +6,13 @@
     "child::y-align": "CLUTTER_BIN_ALIGNMENT_FILL"
 },
 {
+    "id": "testy",
+    "type": "ClutterTexture",
+    "child::x-align": "CLUTTER_BIN_ALIGNMENT_FILL",
+    "child::y-align": "CLUTTER_BIN_ALIGNMENT_FILL",
+    "opacity": 128
+},
+{
     "id": "countdown_layer",
     "type": "ClutterText",
     "child::x-align": "CLUTTER_BIN_ALIGNMENT_CENTER",
@@ -20,6 +27,7 @@
     "children":
     [
 	'video_preview',
+	"testy",
 	'countdown_layer'
     ] 
 },

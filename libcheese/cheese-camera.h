@@ -70,6 +70,7 @@ void                     cheese_camera_setup (CheeseCamera *camera, char *udi, G
 void                     cheese_camera_play (CheeseCamera *camera);
 void                     cheese_camera_stop (CheeseCamera *camera);
 void                     cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect);
+void                     cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture);
 void                     cheese_camera_start_video_recording (CheeseCamera *camera, char *filename);
 void                     cheese_camera_stop_video_recording (CheeseCamera *camera);
 gboolean                 cheese_camera_take_photo (CheeseCamera *camera, char *filename);
