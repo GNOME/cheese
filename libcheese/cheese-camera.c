@@ -828,7 +828,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   GstElement *display_queue;
   gboolean ok;
 
-  display_queue = gst_element_factory_make ("queue", "queue");
+  display_queue = gst_element_factory_make ("queue", NULL);
   effect_filter = cheese_camera_element_from_effect (camera, effect);
   display_element = clutter_gst_video_sink_new (texture);
   
