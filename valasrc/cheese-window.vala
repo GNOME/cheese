@@ -50,7 +50,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.Action photo_mode_action;
   private Gtk.Action video_mode_action;
   private Gtk.Action burst_mode_action;
-  private Gtk.Action effects_toggle_action;
+  private Gtk.ToggleAction effects_toggle_action;
   private Gtk.Action wide_mode_action;
   private Gtk.Action countdown_action;
   
@@ -66,6 +66,8 @@ public class Cheese.MainWindow : Gtk.Window
   private Cheese.Flash    flash;
   private Cheese.GConf    conf;
   private Cheese.EffectsManager effects_manager;
+
+  private Cheese.Effect selected_effect;
   
   [CCode (instance_pos = -1)]
   internal void on_quit (Gtk.Action action)
@@ -417,6 +419,15 @@ public class Cheese.MainWindow : Gtk.Window
 		  teardown_effects_selector();
 	  }										
   }
+
+  internal void on_selected_effect_change(Mx.Button button)
+  {	  
+	  selected_effect = button.get_data("effect");
+	  effects_toggle_action.set_active(false);
+	  camera.stop();
+	  camera.set_effect(selected_effect);
+	  camera.play();
+  }
   
   private void teardown_effects_selector()
   {
@@ -457,7 +468,13 @@ public class Cheese.MainWindow : Gtk.Window
 		  Clutter.Texture texture = new Clutter.Texture();
 		  texture.width = 480;
 		  texture.height = 360;
-		  effects_grid.add((Clutter.Actor)texture);
+
+		  Mx.Button button = new Mx.Button();
+		  button.add((Clutter.Actor)texture);
+		  button.set_data ("effect", effect);
+		  button.clicked.connect (on_selected_effect_change);
+		  
+		  effects_grid.add((Clutter.Actor)button);
 		  camera.connect_effect_texture (effect, texture);				
 	  }
 	
@@ -504,7 +521,7 @@ public class Cheese.MainWindow : Gtk.Window
     photo_mode_action     = (Gtk.Action)gtk_builder.get_object ("photo_mode");
     video_mode_action     = (Gtk.Action)gtk_builder.get_object ("video_mode");
     burst_mode_action     = (Gtk.Action)gtk_builder.get_object ("burst_mode");
-    effects_toggle_action = (Gtk.Action)gtk_builder.get_object ("effects_toggle");
+    effects_toggle_action = (Gtk.ToggleAction)gtk_builder.get_object ("effects_toggle");
 	countdown_action= (Gtk.Action)gtk_builder.get_object ("countdown");
 	wide_mode_action = (Gtk.Action)gtk_builder.get_object("wide_mode");
 	
