@@ -423,26 +423,18 @@ public class Cheese.MainWindow : Gtk.Window
   internal void on_selected_effect_change(Mx.Button button)
   {	  
 	  selected_effect = button.get_data("effect");
-	  effects_toggle_action.set_active(false);
-	  camera.stop();
 	  camera.set_effect(selected_effect);
-	  camera.play();
+	  effects_toggle_action.set_active(false);
   }
   
   private void teardown_effects_selector()
   {
-	  camera.stop();
-	  viewport_layout.remove((Clutter.Actor)effects_scroller);
-	  camera.play();
-	  effects_scroller = null;
-	  effects_grid = null;
 	  video_preview.show();
+	  viewport_layout.remove((Clutter.Actor)effects_scroller);
   }
   
   private void setup_effects_selector()
   {
-	  camera.stop();
-
 	  video_preview.hide();
 	  
 	  effects_grid = new Mx.Grid();
@@ -480,7 +472,6 @@ public class Cheese.MainWindow : Gtk.Window
 	
 	  viewport_layout.add((Clutter.Actor)effects_scroller);
 	  this.effects_scroller.set_size (viewport.width, viewport.height);
-	  camera.play();
   }
   
   public void setup_ui ()

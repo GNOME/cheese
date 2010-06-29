@@ -827,13 +827,22 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   GstElement *display_element;
   GstElement *display_queue;
   gboolean ok;
+  gboolean is_playing;
+
+  is_playing = priv->pipeline_is_playing;
+  
+  cheese_camera_stop (camera);
 
   display_queue = gst_element_factory_make ("queue", NULL);
   effect_filter = cheese_camera_element_from_effect (camera, effect);
   display_element = clutter_gst_video_sink_new (texture);
   
   gst_bin_add_many (GST_BIN (priv->pipeline), effect_filter, display_queue, display_element, NULL);
-  ok = gst_element_link_many (priv->camera_tee, effect_filter, display_queue, display_element, NULL);  
+  ok = gst_element_link_many (priv->camera_tee, effect_filter, display_queue, display_element, NULL);
+
+  if (is_playing)
+    cheese_camera_play (camera);
+  
 }
 
 
