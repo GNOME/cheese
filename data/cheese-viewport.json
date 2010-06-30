@@ -2,15 +2,17 @@
 {
     "id": "video_preview",
     "type": "ClutterTexture",
-    "child::x-align": "CLUTTER_BIN_ALIGNMENT_FILL",
-    "child::y-align": "CLUTTER_BIN_ALIGNMENT_FILL"
+    "child::x-align": "CLUTTER_BIN_ALIGNMENT_CENTER",
+    "child::y-align": "CLUTTER_BIN_ALIGNMENT_CENTER"
 },
 {
-    "id": "testy",
-    "type": "ClutterTexture",
-    "child::x-align": "CLUTTER_BIN_ALIGNMENT_FILL",
-    "child::y-align": "CLUTTER_BIN_ALIGNMENT_FILL",
-    "opacity": 128
+    "id": "background",
+    "type": "ClutterRectangle",
+    "color": "Black",
+    "x": 0,
+    "y": 0,
+    "width":768,
+    "height":1024
 },
 {
     "id": "countdown_layer",
@@ -26,8 +28,8 @@
     "type": "ClutterBox",
     "children":
     [
+	'background', 
 	'video_preview',
-	"testy",
 	'countdown_layer'
     ] 
 },

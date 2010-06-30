@@ -40,6 +40,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Texture   video_preview;
   private Clutter.BinLayout viewport_layout_manager;
   private Clutter.Text      countdown_layer;
+  private Clutter.Rectangle background_layer;
 
   private Mx.ScrollView effects_scroller;
   private Mx.Grid effects_grid;
@@ -315,12 +316,13 @@ public class Cheese.MainWindow : Gtk.Window
                                  Clutter.AllocationFlags flags)
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
+	this.background_layer.set_size (viewport.width, viewport.height);
 	this.effects_scroller.set_size (viewport.width, viewport.height);
-	this.effects_grid.set_size (effects_scroller.width, effects_scroller.height);
+	this.effects_grid.set_size (effects_scroller.width, effects_scroller.height);	
   }
 
-    [CCode (instance_pos = -1)]
-	internal void on_countdown_toggle (ToggleAction action)
+  [CCode (instance_pos = -1)]
+  internal void on_countdown_toggle (ToggleAction action)
   {
     conf.gconf_prop_countdown = action.active;
   }
@@ -534,7 +536,8 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout         = (Clutter.Box)clutter_builder.get_object ("viewport_layout");
     viewport_layout_manager = (Clutter.BinLayout)clutter_builder.get_object ("viewport_layout_manager");
     countdown_layer         = (Clutter.Text)clutter_builder.get_object ("countdown_layer");
-
+	background_layer = (Clutter.Rectangle) clutter_builder.get_object ("background");
+	viewport.add_actor (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
     camera = new Camera (video_preview, "/dev/video0", 1024, 768);
@@ -551,6 +554,8 @@ public class Cheese.MainWindow : Gtk.Window
     camera.setup (conf.gconf_prop_camera);
 	camera.play();
 
+
+	
 	camera.toggle_effects_pipeline(false);
 	
     set_wide_mode (conf.gconf_prop_wide_mode, true);
