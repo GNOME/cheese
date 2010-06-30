@@ -90,7 +90,7 @@ PANGOCAIRO_REQUIRED=1.18.0
 LIBRSVG_REQUIRED=2.18.0
 CLUTTER_REQUIRED=1.0
 CLUTTERGTK_REQUIRED=0.10
-CLUTTERGST_REQUIRED=0.10
+CLUTTERGST_REQUIRED=1.0
 UNIQUE_REQUIRED=1.1
 GEE_REQUIRED=0.5
 MX_REQUIRED=1.0
@@ -101,36 +101,35 @@ MX_REQUIRED=1.0
 
 UDEV_PKG=
 PKG_CHECK_MODULES(UDEV, gudev-1.0,
-		  [AC_DEFINE(HAVE_UDEV, 1, [Define to 1 to enable udev support])
-		  UDEV_PKG=gudev-1.0],
-		  [UDEV_PKG=])
+                  [AC_DEFINE(HAVE_UDEV, 1, [Define to 1 to enable udev support])
+                  UDEV_PKG=gudev-1.0],
+                  [UDEV_PKG=])
 
 AC_MSG_CHECKING([operating system])
 case $host in
-	*-linux*)
-		AC_DEFINE(OS_LINUX, [], [Linux backend])
-		AC_SUBST(OS_LINUX)
-		AC_MSG_RESULT([Linux])
-		if test x$UDEV_PKG = "x" ; then
-			AC_MSG_ERROR([libgudev is required under Linux and not installed])
-		fi
-		;;
-	*)
-		AC_MSG_RESULT([unsupported operating system])
+  *-linux*)
+    AC_DEFINE(OS_LINUX, [], [Linux backend])
+    AC_SUBST(OS_LINUX)
+    AC_MSG_RESULT([Linux])
+    if test x$UDEV_PKG = "x" ; then
+            AC_MSG_ERROR([libgudev is required under Linux and not installed])
+    fi
+    ;;
+  *)
+    AC_MSG_RESULT([unsupported operating system])
 esac
 
 
 AC_CHECK_HEADER([sys/videoio.h],
-		[AC_DEFINE(USE_SYS_VIDEOIO_H, 1, define to 1 if sys/videoio.h is present)],
-		[AC_DEFINE(USE_SYS_VIDEOIO_H, 0, define to 1 if sys/videoio.h is present)], [])
+                [AC_DEFINE(USE_SYS_VIDEOIO_H, 1, define to 1 if sys/videoio.h is present)],
+                [AC_DEFINE(USE_SYS_VIDEOIO_H, 0, define to 1 if sys/videoio.h is present)], [])
 
 XTEST_LIBS=
 AC_CHECK_HEADER(X11/extensions/XTest.h, [
-    AC_CHECK_LIB(Xtst, XTestFakeKeyEvent, [
-      AC_DEFINE(HAVE_XTEST, 1, [Defined if the XTEST X extension is
-present])
-      XTEST_LIBS="-lX11 -lXtst"])
-  ])
+  AC_CHECK_LIB(Xtst, XTestFakeKeyEvent, [
+    AC_DEFINE(HAVE_XTEST, 1, [Defined if the XTEST X extension is present])
+    XTEST_LIBS="-lX11 -lXtst"])
+])
 AC_SUBST(XTEST_LIBS)
 AM_CONDITIONAL(HAVE_XTEST, test "x$HAVE_TEST" = "xyes")
 
@@ -151,7 +150,7 @@ PKG_CHECK_MODULES(CHEESE, \
   librsvg-2.0 >= $LIBRSVG_REQUIRED \
   clutter-1.0 >= $CLUTTER_REQUIRED \
   clutter-gtk-0.10 >= $CLUTTERGTK_REQUIRED \
-  clutter-gst-0.10 >= $CLUTTERGST_REQUIRED \
+  clutter-gst-1.0 >= $CLUTTERGST_REQUIRED \
   unique-1.0  >= $UNIQUE_REQUIRED \
   gee-1.0 >= $GEE_REQUIRED \
   mx-1.0 >= $MX_REQUIRED \
@@ -199,7 +198,7 @@ data/icons/scalable/actions/Makefile
 data/pixmaps/Makefile
 help/Makefile
 libcheese/Makefile
-valasrc/Makefile
+src/Makefile
 tests/Makefile
 po/Makefile.in
 ])
