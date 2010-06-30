@@ -316,6 +316,7 @@ public class Cheese.MainWindow : Gtk.Window
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
 	this.effects_scroller.set_size (viewport.width, viewport.height);
+	this.effects_grid.set_size (effects_scroller.width, effects_scroller.height);
   }
 
     [CCode (instance_pos = -1)]
