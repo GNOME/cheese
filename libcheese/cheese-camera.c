@@ -409,7 +409,7 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   priv->video_display_bin = gst_bin_new ("video_display_bin");
 
   cheese_camera_create_camera_source_bin (camera);
-
+  
   if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
   {
       cheese_camera_set_error_element_not_found (error, "tee");
@@ -506,10 +506,6 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   gst_element_add_pad (priv->video_display_bin, gst_ghost_pad_new ("src", pad));
   gst_object_unref (GST_OBJECT (pad));
 
-  //  gint b;
-  //  g_object_get(G_OBJECT (priv->camera_tee), "num-src-pads", &b, NULL);
-  ///g_critical("Blaaaaaaaaaaaaaaaaaaaaaah %d", b);
-  
   if (!ok)
     g_error ("Unable to create display pipeline");
 
@@ -815,7 +811,7 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   GError     *err = NULL;
   char       *effect_desc;
 
-  g_object_get (CHEESE_EFFECT (effect), "pipeline_desc", &effect_desc, NULL);
+  g_object_get (G_OBJECT (effect), "pipeline_desc", &effect_desc, NULL);
 
   effects_pipeline_desc = g_strconcat ("ffmpegcolorspace ! ",
                                        effect_desc,
@@ -846,9 +842,6 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);  
   gboolean is_playing;
 
-  is_playing = priv->pipeline_is_playing;
-  cheese_camera_stop (camera);
-
   /*
   if (active)
   {
@@ -860,11 +853,6 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
     g_object_set ( G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
     g_object_set ( G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
     } */
-  
-  if (is_playing)
-  {    
-    cheese_camera_play (camera);
-  }
 }
 
 void
