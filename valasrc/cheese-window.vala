@@ -446,9 +446,9 @@ public class Cheese.MainWindow : Gtk.Window
 	  effects_grid.child_x_align = Mx.Align.MIDDLE;
 	  effects_grid.child_y_align = Mx.Align.MIDDLE;	
 	  effects_grid.orientation = Mx.Orientation.VERTICAL;
-	  effects_grid.max_stride = 2;
-	  effects_grid.column_spacing = 50;
-	  effects_grid.row_spacing = 50;
+//	  effects_grid.max_stride = 2;
+	  effects_grid.column_spacing = 20;
+	  effects_grid.row_spacing = 20;
 	  
 	  effects_manager = new EffectsManager();
 	  effects_manager.load_effects();
@@ -458,8 +458,8 @@ public class Cheese.MainWindow : Gtk.Window
 	  foreach (Effect effect in effects_manager.effects)
 	  {
 		  Clutter.Texture texture = new Clutter.Texture();
-		  texture.width = 480;
-		  texture.height = 360;
+		  texture.width = 160;
+		  texture.height = 120;
 
 		  Mx.Button button = new Mx.Button();
 		  button.add((Clutter.Actor)texture);

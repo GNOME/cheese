@@ -822,23 +822,34 @@ void
 cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-    
+
+  GstElement *downscaler;
   GstElement *effect_filter;
   GstElement *display_element;
   GstElement *display_queue;
   gboolean ok;
   gboolean is_playing;
+  GError *err = NULL;
 
   is_playing = priv->pipeline_is_playing;
   
   cheese_camera_stop (camera);
 
   display_queue = gst_element_factory_make ("queue", NULL);
+  downscaler = gst_parse_bin_from_description ("videoscale ! video/x-raw-yuv,width=160,height=120 ! ffmpegcolorspace", TRUE, &err);
   effect_filter = cheese_camera_element_from_effect (camera, effect);
   display_element = clutter_gst_video_sink_new (texture);
+
+  if (!downscaler || (err != NULL))
+  {
+      g_error_free (err);
+      g_error ("ERROR downscaling");
+  }
   
-  gst_bin_add_many (GST_BIN (priv->pipeline), effect_filter, display_queue, display_element, NULL);
-  ok = gst_element_link_many (priv->camera_tee, effect_filter, display_queue, display_element, NULL);
+  g_object_set_property (G_OBJECT (downscaler), "method", 0);
+  
+  gst_bin_add_many (GST_BIN (priv->pipeline), downscaler, effect_filter, display_queue, display_element, NULL);
+  ok = gst_element_link_many (priv->camera_tee, downscaler, effect_filter, display_queue, display_element, NULL);
 
   if (is_playing)
     cheese_camera_play (camera);
