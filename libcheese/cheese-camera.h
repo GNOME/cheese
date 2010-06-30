@@ -89,6 +89,8 @@ gboolean cheese_camera_get_balance_property_range (CheeseCamera *camera,
                                                    gchar *property,
                                                    gdouble *min, gdouble *max, gdouble *def);
 void cheese_camera_set_balance_property (CheeseCamera *camera, gchar *property, gdouble value);
+void cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active);
+	
 G_END_DECLS
 
 #endif /* __CHEESE_CAMERA_H__ */

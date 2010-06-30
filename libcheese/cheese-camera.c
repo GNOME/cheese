@@ -69,7 +69,9 @@ typedef struct
   
   GstElement *effect_filter, *csp_post_effect;
   GstElement *video_balance, *csp_post_balance;
-  GstElement *camera_tee;
+  GstElement *camera_tee, *effects_tee;
+  GstElement *effects_downscaler;
+  GstElement *main_valve, *effects_valve;
 
   gulong photo_handler_signal_id;
 
@@ -402,7 +404,8 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
 
   gboolean ok;
   GstPad  *pad;
-
+  GError *err = NULL;
+  
   priv->video_display_bin = gst_bin_new ("video_display_bin");
 
   cheese_camera_create_camera_source_bin (camera);
@@ -410,7 +413,24 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
   {
       cheese_camera_set_error_element_not_found (error, "tee");
-  }      
+  }
+  if ((priv->effects_tee = gst_element_factory_make ("tee", "effects_tee")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "tee");    
+  }
+  if ((priv->effects_valve = gst_element_factory_make ("valve", "effects_valve")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "effects_valve");    
+  }
+  if ((priv->main_valve = gst_element_factory_make ("valve", "main_valve")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "main_valve");    
+  }
+  priv->effects_downscaler = gst_parse_bin_from_description ("videoscale ! video/x-raw-yuv,width=160,height=120 ! ffmpegcolorspace", TRUE, &err);
+  if (priv->effects_downscaler == NULL || err != NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "effects_downscaler");
+  }
   if ((priv->effect_filter = gst_element_factory_make ("identity", "effect")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "identity");
@@ -457,25 +477,27 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
 
   if ((video_sink = clutter_gst_video_sink_new(priv->video_texture)) == NULL)
   {
-    cheese_camera_set_error_element_not_found (error, "gconfvideosink");
+    cheese_camera_set_error_element_not_found (error, "cluttervideosink");
   }
 
   if (error != NULL && *error != NULL)
     return FALSE;
 
   gst_bin_add_many (GST_BIN (priv->video_display_bin), priv->camera_source_bin,
-		    priv->camera_tee,
+		    priv->camera_tee, priv->effects_downscaler, priv->effects_tee,
+		    priv->effects_valve, priv->main_valve,
                     priv->effect_filter, priv->csp_post_effect,
                     priv->video_balance, priv->csp_post_balance,
                     save_tee, save_queue,
                     video_display_queue, video_scale, video_sink, NULL);
 
   ok = gst_element_link_many (priv->camera_source_bin, priv->camera_tee, NULL);
-  ok &= gst_element_link_many (priv->camera_tee, priv->effect_filter,
+  ok &= gst_element_link_many (priv->camera_tee, priv->main_valve, priv->effect_filter,
                               priv->csp_post_effect,
                               priv->video_balance, priv->csp_post_balance,
                               save_tee, NULL);
-
+  ok &= gst_element_link_many (priv->camera_tee, priv->effects_valve,
+			       priv->effects_downscaler, priv->effects_tee, NULL);
   ok &= gst_element_link_many (save_tee, save_queue, NULL);
   ok &= gst_element_link_many (save_tee, video_display_queue, video_scale, video_sink, NULL);
 
@@ -769,13 +791,13 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
 
   cheese_camera_stop (camera);
 
-  gst_element_unlink_many (priv->camera_tee, priv->effect_filter,
+  gst_element_unlink_many (priv->main_valve, priv->effect_filter,
                            priv->csp_post_effect, NULL);
 
   gst_bin_remove (GST_BIN (priv->video_display_bin), priv->effect_filter);
 
   gst_bin_add (GST_BIN (priv->video_display_bin), new_filter);
-  ok = gst_element_link_many (priv->camera_tee, new_filter,
+  ok = gst_element_link_many (priv->main_valve, new_filter,
                               priv->csp_post_effect, NULL);
   g_return_if_fail (ok);
 
@@ -819,11 +841,37 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 }
 
 void
+cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);  
+  gboolean is_playing;
+
+  is_playing = priv->pipeline_is_playing;
+  cheese_camera_stop (camera);
+
+  /*
+  if (active)
+  {
+    g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
+    g_object_set (G_OBJECT (priv->main_valve), "drop", TRUE, NULL);
+  }
+  else
+  {
+    g_object_set ( G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
+    g_object_set ( G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
+    } */
+  
+  if (is_playing)
+  {    
+    cheese_camera_play (camera);
+  }
+}
+
+void
 cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  GstElement *downscaler;
+  
   GstElement *effect_filter;
   GstElement *display_element;
   GstElement *display_queue;
@@ -836,20 +884,12 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   cheese_camera_stop (camera);
 
   display_queue = gst_element_factory_make ("queue", NULL);
-  downscaler = gst_parse_bin_from_description ("videoscale ! video/x-raw-yuv,width=160,height=120 ! ffmpegcolorspace", TRUE, &err);
+
   effect_filter = cheese_camera_element_from_effect (camera, effect);
   display_element = clutter_gst_video_sink_new (texture);
-
-  if (!downscaler || (err != NULL))
-  {
-      g_error_free (err);
-      g_error ("ERROR downscaling");
-  }
-  
-  g_object_set_property (G_OBJECT (downscaler), "method", 0);
-  
-  gst_bin_add_many (GST_BIN (priv->pipeline), downscaler, effect_filter, display_queue, display_element, NULL);
-  ok = gst_element_link_many (priv->camera_tee, downscaler, effect_filter, display_queue, display_element, NULL);
+    
+  gst_bin_add_many (GST_BIN (priv->pipeline), effect_filter, display_queue, display_element, NULL);
+  ok = gst_element_link_many (priv->effects_tee, effect_filter, display_queue, display_element, NULL);
 
   if (is_playing)
     cheese_camera_play (camera);

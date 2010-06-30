@@ -31,6 +31,7 @@ namespace Cheese
     public void                        set_device_by_dev_file (string file);
     public void                        set_device_by_dev_udi (string udi);
     public void                        set_effect (Cheese.Effect effect);
+	public void                        toggle_effects_pipeline (bool active);
 	public void                        connect_effect_texture (Cheese.Effect effect, Clutter.Texture texture);
     public void                        set_video_format (Cheese.VideoFormat format);
     public void                        setup (string udi) throws GLib.Error;

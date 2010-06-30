@@ -410,6 +410,7 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos=-1)]
   internal void on_effects_toggle(Gtk.ToggleAction action)
   {
+
 	  if (action.active)
 	  {
 		  setup_effects_selector();
@@ -417,7 +418,8 @@ public class Cheese.MainWindow : Gtk.Window
 	  else
 	  {
 		  teardown_effects_selector();
-	  }										
+	  }
+	  camera.toggle_effects_pipeline (action.active);
   }
 
   internal void on_selected_effect_change(Mx.Button button)
@@ -548,6 +550,8 @@ public class Cheese.MainWindow : Gtk.Window
     camera.setup (conf.gconf_prop_camera);
 	camera.play();
 
+	camera.toggle_effects_pipeline(false);
+	
     set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);
 
