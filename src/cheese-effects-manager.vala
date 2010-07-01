@@ -27,7 +27,7 @@ internal class Cheese.EffectsManager : GLib.Object
       return null;
     }
 
-    critical ("%s", eff.pipeline_desc);
+    message ("Found %s (%s)", eff.name, eff.pipeline_desc);
     return eff;
   }
 
