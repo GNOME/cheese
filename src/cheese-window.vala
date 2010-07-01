@@ -43,18 +43,18 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Rectangle background_layer;
 
   private Mx.ScrollView effects_scroller;
-  private Mx.Grid effects_grid;
-  
-  private Gtk.Action take_photo_action;
-  private Gtk.Action take_video_action;
-  private Gtk.Action take_burst_action;
-  private Gtk.Action photo_mode_action;
-  private Gtk.Action video_mode_action;
-  private Gtk.Action burst_mode_action;
+  private Mx.Grid       effects_grid;
+
+  private Gtk.Action       take_photo_action;
+  private Gtk.Action       take_video_action;
+  private Gtk.Action       take_burst_action;
+  private Gtk.Action       photo_mode_action;
+  private Gtk.Action       video_mode_action;
+  private Gtk.Action       burst_mode_action;
   private Gtk.ToggleAction effects_toggle_action;
-  private Gtk.Action wide_mode_action;
-  private Gtk.Action countdown_action;
-  
+  private Gtk.Action       wide_mode_action;
+  private Gtk.Action       countdown_action;
+
   private bool is_fullscreen;
   private bool is_wide_mode;
   private bool is_recording;       /* Video Recording Flag */
@@ -62,14 +62,14 @@ public class Cheese.MainWindow : Gtk.Window
 
   private Gtk.Button[] buttons;
 
-  private Cheese.Camera   camera;
-  private Cheese.FileUtil fileutil;
-  private Cheese.Flash    flash;
-  private Cheese.GConf    conf;
+  private Cheese.Camera         camera;
+  private Cheese.FileUtil       fileutil;
+  private Cheese.Flash          flash;
+  private Cheese.GConf          conf;
   private Cheese.EffectsManager effects_manager;
 
   private Cheese.Effect selected_effect;
-  
+
   [CCode (instance_pos = -1)]
   internal void on_quit (Gtk.Action action)
   {
@@ -262,8 +262,8 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void set_wide_mode (bool wide_mode, bool initialize = false)
   {
-    is_wide_mode = wide_mode;
-	conf.gconf_prop_wide_mode = wide_mode;
+    is_wide_mode              = wide_mode;
+    conf.gconf_prop_wide_mode = wide_mode;
     if (!initialize)
     {
       /* Sets requested size of the viewport_widget to be it's current size
@@ -316,9 +316,9 @@ public class Cheese.MainWindow : Gtk.Window
                                  Clutter.AllocationFlags flags)
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
-	this.background_layer.set_size (viewport.width, viewport.height);
-	this.effects_scroller.set_size (viewport.width, viewport.height);
-	this.effects_grid.set_size (effects_scroller.width, effects_scroller.height);	
+    this.background_layer.set_size (viewport.width, viewport.height);
+    this.effects_scroller.set_size (viewport.width, viewport.height);
+    this.effects_grid.set_size (effects_scroller.width, effects_scroller.height);
   }
 
   [CCode (instance_pos = -1)]
@@ -330,21 +330,22 @@ public class Cheese.MainWindow : Gtk.Window
   private void finish_countdown_callback ()
   {
     string file_name = fileutil.get_new_media_filename (this.current_mode);
-	this.flash.fire ();
+
+    this.flash.fire ();
     this.camera.take_photo (file_name);
   }
 
   internal void take_photo ()
   {
-	  if (conf.gconf_prop_countdown)
-	  {
-		  Countdown cd = new Countdown (this.countdown_layer);
-		  cd.start_countdown (finish_countdown_callback);
-	  }
-	  else
-	  {
-		  finish_countdown_callback();
-	  }
+    if (conf.gconf_prop_countdown)
+    {
+      Countdown cd = new Countdown (this.countdown_layer);
+      cd.start_countdown (finish_countdown_callback);
+    }
+    else
+    {
+      finish_countdown_callback ();
+    }
   }
 
   private int burst_count;
@@ -410,84 +411,83 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
-  [CCode (instance_pos=-1)]
-  internal void on_effects_toggle(Gtk.ToggleAction action)
+  [CCode (instance_pos = -1)]
+  internal void on_effects_toggle (Gtk.ToggleAction action)
   {
-
-	  if (action.active)
-	  {
-		  setup_effects_selector();
-	  }
-	  else
-	  {
-		  teardown_effects_selector();
-	  }
-	  camera.toggle_effects_pipeline (action.active);
+    if (action.active)
+    {
+      setup_effects_selector ();
+    }
+    else
+    {
+      teardown_effects_selector ();
+    }
+    camera.toggle_effects_pipeline (action.active);
   }
 
-  internal void on_selected_effect_change(Mx.Button button)
-  {	  
-	  selected_effect = button.get_data("effect");
-	  camera.set_effect(selected_effect);
-	  effects_toggle_action.set_active(false);
-  }
-  
-  private void teardown_effects_selector()
+  internal void on_selected_effect_change (Mx.Button button)
   {
-	  video_preview.show();
-	  viewport_layout.remove((Clutter.Actor)effects_scroller);
+    selected_effect = button.get_data ("effect");
+    camera.set_effect (selected_effect);
+    effects_toggle_action.set_active (false);
   }
-  
-  private void setup_effects_selector()
-  {
-	  video_preview.hide();
-	  if (effects_grid == null)
-	  {
-		  effects_grid = new Mx.Grid();
-		  effects_scroller = new Mx.ScrollView();
-		  effects_scroller.scroll_policy = Mx.ScrollPolicy.HORIZONTAL;
-		  effects_scroller.enable_gestures = true;
-		  
-		  effects_grid.line_alignment = Mx.Align.MIDDLE;
-		  effects_grid.child_x_align = Mx.Align.MIDDLE;
-		  effects_grid.child_y_align = Mx.Align.MIDDLE;	
-		  effects_grid.orientation = Mx.Orientation.VERTICAL;
 
-		  effects_grid.column_spacing = 20;
-		  effects_grid.row_spacing = 20;
-		  
-		  effects_manager = new EffectsManager();
-		  effects_manager.load_effects();
-		  
-		  effects_scroller.add((Clutter.Actor)effects_grid);
-		  
-		  foreach (Effect effect in effects_manager.effects)
-		  {
-			  Clutter.Texture texture = new Clutter.Texture();
-			  texture.width = 160;
-			  texture.height = 120;
-			  
-			  Mx.Button button = new Mx.Button();
-			  button.add((Clutter.Actor)texture);
-			  button.set_data ("effect", effect);
-			  button.clicked.connect (on_selected_effect_change);
-			  
-			  effects_grid.add((Clutter.Actor)button);
-			  camera.connect_effect_texture (effect, texture);				
-		  }
-	  }
-	
-	  viewport_layout.add((Clutter.Actor)effects_scroller);
-	  this.effects_scroller.set_size (viewport.width, viewport.height);
+  private void teardown_effects_selector ()
+  {
+    video_preview.show ();
+    viewport_layout.remove ((Clutter.Actor)effects_scroller);
   }
-  
+
+  private void setup_effects_selector ()
+  {
+    video_preview.hide ();
+    if (effects_grid == null)
+    {
+      effects_grid                     = new Mx.Grid ();
+      effects_scroller                 = new Mx.ScrollView ();
+      effects_scroller.scroll_policy   = Mx.ScrollPolicy.HORIZONTAL;
+      effects_scroller.enable_gestures = true;
+
+      effects_grid.line_alignment = Mx.Align.MIDDLE;
+      effects_grid.child_x_align  = Mx.Align.MIDDLE;
+      effects_grid.child_y_align  = Mx.Align.MIDDLE;
+      effects_grid.orientation    = Mx.Orientation.VERTICAL;
+
+      effects_grid.column_spacing = 20;
+      effects_grid.row_spacing    = 20;
+
+      effects_manager = new EffectsManager ();
+      effects_manager.load_effects ();
+
+      effects_scroller.add ((Clutter.Actor)effects_grid);
+
+      foreach (Effect effect in effects_manager.effects)
+      {
+        Clutter.Texture texture = new Clutter.Texture ();
+        texture.width  = 160;
+        texture.height = 120;
+
+        Mx.Button button = new Mx.Button ();
+        button.add ((Clutter.Actor)texture);
+        button.set_data ("effect", effect);
+        button.clicked.connect (on_selected_effect_change);
+
+        effects_grid.add ((Clutter.Actor)button);
+        camera.connect_effect_texture (effect, texture);
+      }
+    }
+
+    viewport_layout.add ((Clutter.Actor)effects_scroller);
+    this.effects_scroller.set_size (viewport.width, viewport.height);
+  }
+
   public void setup_ui ()
   {
     gtk_builder     = new Gtk.Builder ();
     clutter_builder = new Clutter.Script ();
     fileutil        = new FileUtil ();
     flash           = new Flash (this);
-	conf = new GConf();
+    conf            = new GConf ();
     gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
     gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
     gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
@@ -495,12 +495,12 @@ public class Cheese.MainWindow : Gtk.Window
 
     clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
 
-    main_vbox                         = (Gtk.VBox) gtk_builder.get_object ("mainbox_normal");
-    thumbnails                        = (Gtk.Widget) gtk_builder.get_object ("thumbnails");
+    main_vbox                         = (Gtk.VBox)gtk_builder.get_object ("mainbox_normal");
+    thumbnails                        = (Gtk.Widget)gtk_builder.get_object ("thumbnails");
     viewport_widget                   = (GtkClutter.Embed)gtk_builder.get_object ("viewport");
     viewport                          = (Clutter.Stage)viewport_widget.get_stage ();
-    thumbnails_right                  = (Gtk.Frame) gtk_builder.get_object ("thumbnails_right");
-    thumbnails_bottom                 = (Gtk.Frame) gtk_builder.get_object ("thumbnails_bottom");
+    thumbnails_right                  = (Gtk.Frame)gtk_builder.get_object ("thumbnails_right");
+    thumbnails_bottom                 = (Gtk.Frame)gtk_builder.get_object ("thumbnails_bottom");
     menubar                           = (Gtk.MenuBar)gtk_builder.get_object ("main_menubar");
     leave_fullscreen_button_container = (Gtk.HBox)gtk_builder.get_object ("leave_fullscreen_button_bin");
     photo_toggle_button               = (Gtk.ToggleButton)gtk_builder.get_object ("photo_toggle_button");
@@ -520,9 +520,9 @@ public class Cheese.MainWindow : Gtk.Window
     video_mode_action     = (Gtk.Action)gtk_builder.get_object ("video_mode");
     burst_mode_action     = (Gtk.Action)gtk_builder.get_object ("burst_mode");
     effects_toggle_action = (Gtk.ToggleAction)gtk_builder.get_object ("effects_toggle");
-	countdown_action= (Gtk.Action)gtk_builder.get_object ("countdown");
-	wide_mode_action = (Gtk.Action)gtk_builder.get_object("wide_mode");
-	
+    countdown_action      = (Gtk.Action)gtk_builder.get_object ("countdown");
+    wide_mode_action      = (Gtk.Action)gtk_builder.get_object ("wide_mode");
+
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
     buttons = {photo_toggle_button,
@@ -536,8 +536,8 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout         = (Clutter.Box)clutter_builder.get_object ("viewport_layout");
     viewport_layout_manager = (Clutter.BinLayout)clutter_builder.get_object ("viewport_layout_manager");
     countdown_layer         = (Clutter.Text)clutter_builder.get_object ("countdown_layer");
-	background_layer = (Clutter.Rectangle) clutter_builder.get_object ("background");
-	viewport.add_actor (background_layer);
+    background_layer        = (Clutter.Rectangle)clutter_builder.get_object ("background");
+    viewport.add_actor (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
     camera = new Camera (video_preview, "/dev/video0", 1024, 768);
@@ -552,12 +552,12 @@ public class Cheese.MainWindow : Gtk.Window
     viewport.show_all ();
 
     camera.setup (conf.gconf_prop_camera);
-	camera.play();
+    camera.play ();
 
 
-	
-	camera.toggle_effects_pipeline(false);
-	
+
+    camera.toggle_effects_pipeline (false);
+
     set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);
 
