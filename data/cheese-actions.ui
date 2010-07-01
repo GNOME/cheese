@@ -134,27 +134,6 @@
     </child>
 
     <child>
-      <object class="GtkActionGroup" id="">
-	<child>
-	  <object class="GtkToggleAction" id="flash">
-	    <property name="name">Flash</property>
-	    <property name="label">Flash</property>
-	    <signal name="toggled" handler="cheese_main_window_on_flash_toggle" />
-	  </object>
-	</child>
-
-	<child>
-	  <object class="GtkToggleAction" id="countdown">
-	    <property name="name">Countdown</property>
-	    <property name="label">Countdown</property>
-	    <signal name="toggled" handler="cheese_main_window_on_countdown_toggle" />
-	  </object>
-	</child>	
-      </object>
-    </child>
-
-    
-    <child>
       <object class="GtkActionGroup" id="take_actions">
 	<child>
 	  <object class="GtkAction" id="take_photo">
@@ -248,9 +227,6 @@
     <ui>
       <menubar name="main_menubar">
 	<menu action="cheese_action">
-	  <menuitem action="flash" />
-	  <menuitem action="countdown" />
-	  <separator />
 	  <menuitem action="take_photo" />
 	  <menuitem action="take_video" />
 	  <menuitem action="take_burst" />
