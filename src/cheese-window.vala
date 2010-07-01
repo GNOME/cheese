@@ -81,7 +81,12 @@ public class Cheese.MainWindow : Gtk.Window
   {
     Gdk.Screen screen;
     screen = this.get_screen ();
-    Gtk.show_uri (screen, "ghelp:cheese", Gtk.get_current_event_time ());
+    try {
+      Gtk.show_uri (screen, "ghelp:cheese", Gtk.get_current_event_time ());
+    } catch (Error err)
+    {
+      warning ("Error: %s\n", err.message);
+    }
   }
 
   [CCode (instance_pos = -1)]
@@ -488,12 +493,19 @@ public class Cheese.MainWindow : Gtk.Window
     fileutil        = new FileUtil ();
     flash           = new Flash (this);
     conf            = new GConf ();
-    gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
-    gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
-    gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
-    gtk_builder.connect_signals (this);
 
-    clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
+    try {
+      gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
+      gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
+      gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
+      gtk_builder.connect_signals (this);
+
+      clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
+    } catch (Error err)
+    {
+      warning ("Error: %s\n", err.message);
+      return;
+    }
 
     main_vbox                         = (Gtk.VBox)gtk_builder.get_object ("mainbox_normal");
     thumbnails                        = (Gtk.Widget)gtk_builder.get_object ("thumbnails");
@@ -551,7 +563,14 @@ public class Cheese.MainWindow : Gtk.Window
 
     viewport.show_all ();
 
-    camera.setup (conf.gconf_prop_camera);
+    try {
+      camera.setup (conf.gconf_prop_camera);
+    }
+    catch (Error err)
+    {
+      warning ("Error: %s\n", err.message);
+      return;
+    }
     camera.play ();
 
 

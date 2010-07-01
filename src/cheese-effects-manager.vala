@@ -7,8 +7,8 @@ internal class Cheese.EffectsManager : GLib.Object
 {
   public static Cheese.Effect ? parse_effect_file (string filename)
   {
-    KeyFile kf = new KeyFile ();
-    Effect eff = new Effect ();
+    KeyFile kf  = new KeyFile ();
+    Effect  eff = new Effect ();
 
     try
     {
@@ -38,7 +38,7 @@ internal class Cheese.EffectsManager : GLib.Object
     ArrayList<Effect> effects = new ArrayList<Effect>();
     if (FileUtils.test (directory, FileTest.EXISTS | FileTest.IS_DIR))
     {
-      Dir dir;
+      Dir    dir;
       string cur_file;
       try
       {
