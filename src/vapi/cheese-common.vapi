@@ -12,6 +12,11 @@ namespace Cheese
 		public string name {owned get; set;}
 		[NoAccessorMethod]
 		public string pipeline_desc {owned get; set;}
+		[NoAccessorMethod]
+		public Gst.Element control_valve {get; set;}
+
+		public void enable_preview();
+		public void disable_preview();
 	}
 
   [CCode (cheader_filename = "cheese-camera.h")]

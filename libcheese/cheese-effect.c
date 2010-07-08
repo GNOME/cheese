@@ -101,6 +101,20 @@ cheese_effect_class_init (CheeseEffectClass *klass)
 
 }
 
+void
+cheese_effect_enable_preview (CheeseEffect *self)
+{
+  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (self);
+  g_object_set (G_OBJECT (priv->control_valve), "drop", FALSE, NULL);
+}
+
+void
+cheese_effect_disable_preview (CheeseEffect *self)
+{
+  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (self);
+  g_object_set (G_OBJECT (priv->control_valve), "drop", TRUE, NULL);
+}
+
 static void
 cheese_effect_init (CheeseEffect *self)
 {
