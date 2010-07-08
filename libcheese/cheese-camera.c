@@ -427,6 +427,7 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   {
     cheese_camera_set_error_element_not_found (error, "cluttervideosink");
   }
+  g_object_set (G_OBJECT (priv->effects_valve), "async", FALSE, NULL);
 
   if (error != NULL && *error != NULL)
     return FALSE;
@@ -788,7 +789,7 @@ void
 cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);  
-  
+
   if (active)
   {
     g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
@@ -813,13 +814,14 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   gboolean is_playing;
 
   is_playing = priv->pipeline_is_playing;
-  
+
   cheese_camera_stop (camera);
 
   display_queue = gst_element_factory_make ("queue", NULL);
 
   effect_filter = cheese_camera_element_from_effect (camera, effect);
   display_element = clutter_gst_video_sink_new (texture);
+  g_object_set (G_OBJECT (display_element), "async", FALSE, NULL);
     
   gst_bin_add_many (GST_BIN (priv->pipeline), effect_filter, display_queue, display_element, NULL);
   ok = gst_element_link_many (priv->effects_tee, effect_filter, display_queue, display_element, NULL);
