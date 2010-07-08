@@ -810,6 +810,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   GstElement *effect_filter;
   GstElement *display_element;
   GstElement *display_queue;
+  GstElement *control_valve;
   gboolean ok;
   gboolean is_playing;
 
@@ -817,14 +818,18 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 
   cheese_camera_stop (camera);
 
+  control_valve = gst_element_factory_make ("valve", NULL);
+  g_object_set (G_OBJECT (effect), "control_valve", control_valve, NULL);
+  
   display_queue = gst_element_factory_make ("queue", NULL);
 
   effect_filter = cheese_camera_element_from_effect (camera, effect);
+
   display_element = clutter_gst_video_sink_new (texture);
   g_object_set (G_OBJECT (display_element), "async", FALSE, NULL);
     
-  gst_bin_add_many (GST_BIN (priv->pipeline), effect_filter, display_queue, display_element, NULL);
-  ok = gst_element_link_many (priv->effects_tee, effect_filter, display_queue, display_element, NULL);
+  gst_bin_add_many (GST_BIN (priv->pipeline), control_valve, effect_filter, display_queue, display_element, NULL);
+  ok = gst_element_link_many (priv->effects_tee, control_valve, effect_filter, display_queue, display_element, NULL);
 
   if (is_playing)
     cheese_camera_play (camera);

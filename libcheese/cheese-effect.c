@@ -1,10 +1,13 @@
+#include <gst/gst.h>
+
 #include "cheese-effect.h"
 
 enum 
 {
   PROP_O,
   PROP_NAME,
-  PROP_PIPELINE_DESC
+  PROP_PIPELINE_DESC,
+  PROP_CONTROL_VALVE
 };
 
 G_DEFINE_TYPE (CheeseEffect, cheese_effect, G_TYPE_OBJECT)
@@ -17,6 +20,7 @@ typedef struct _CheeseEffectPrivate CheeseEffectPrivate;
 struct _CheeseEffectPrivate {
   char *name;
   char *pipeline_desc;
+  GstElement *control_valve;
 };
 
 static void
@@ -31,6 +35,9 @@ cheese_effect_get_property (GObject *object, guint property_id,
     break;
   case PROP_PIPELINE_DESC:
     g_value_set_string (value, priv->pipeline_desc);
+    break;
+  case PROP_CONTROL_VALVE:
+    g_value_set_object (value, priv->control_valve);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -51,6 +58,12 @@ cheese_effect_set_property (GObject *object, guint property_id,
   case PROP_PIPELINE_DESC:
     g_free (priv->pipeline_desc);
     priv->pipeline_desc = g_value_dup_string (value);
+    break;
+  case PROP_CONTROL_VALVE:
+    if (priv->control_valve != NULL)
+      g_object_unref (G_OBJECT (priv->control_valve));
+    priv->control_valve = GST_ELEMENT (g_value_get_object (value));
+    g_object_ref (G_OBJECT (priv->control_valve));
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -79,6 +92,13 @@ cheese_effect_class_init (CheeseEffectClass *klass)
 							NULL,
 							"",
 							G_PARAM_READWRITE));
+  g_object_class_install_property (object_class, PROP_CONTROL_VALVE,
+				   g_param_spec_object ("control_valve",
+							NULL,
+							NULL,
+							GST_TYPE_ELEMENT,
+							G_PARAM_READWRITE));
+
 }
 
 static void
