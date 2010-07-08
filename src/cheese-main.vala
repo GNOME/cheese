@@ -33,7 +33,6 @@ public class Cheese.Main
                                                          Unique.MessageData msg,
                                                          uint               time)
   {
-    Unique.Response res;
     if (command == Unique.Command.ACTIVATE)
     {
       main_window.set_screen (msg.get_screen ());

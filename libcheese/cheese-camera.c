@@ -119,32 +119,6 @@ cheese_camera_error_quark (void)
   return g_quark_from_static_string ("cheese-camera-error-quark");
 }
 
-static GstBusSyncReply
-cheese_camera_bus_sync_handler (GstBus *bus, GstMessage *message, CheeseCamera *camera)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-  GstXOverlay         *overlay;
-
-  if (GST_MESSAGE_TYPE (message) != GST_MESSAGE_ELEMENT)
-    return GST_BUS_PASS;
-
-  if (!gst_structure_has_name (message->structure, "prepare-xwindow-id"))
-    return GST_BUS_PASS;
-
-  /*  overlay = GST_X_OVERLAY (GST_MESSAGE_SRC (message));
-
-  if (g_object_class_find_property (G_OBJECT_GET_CLASS (overlay),
-                                    "force-aspect-ratio"))
-    g_object_set (G_OBJECT (overlay), "force-aspect-ratio", TRUE, NULL);
-
-  gst_x_overlay_set_xwindow_id (overlay,
-                                GDK_WINDOW_XWINDOW (gtk_widget_get_window (priv->video_window)));
-
-  gst_message_unref (message);   */
-
-  return GST_BUS_DROP;
-}
-
 static void
 cheese_camera_change_sink (CheeseCamera *camera, GstElement *src,
                            GstElement *new_sink, GstElement *old_sink)
@@ -163,32 +137,6 @@ cheese_camera_change_sink (CheeseCamera *camera, GstElement *src,
 
   if (is_playing)
     cheese_camera_play (camera);
-}
-
-static gboolean
-cheese_camera_expose_cb (GtkWidget *widget, GdkEventExpose *event, CheeseCamera *camera)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-  GtkAllocation        allocation;
-  GstState             state;
-  GstXOverlay         *overlay = GST_X_OVERLAY (gst_bin_get_by_interface (GST_BIN (priv->pipeline),
-                                                                          GST_TYPE_X_OVERLAY));
-
-  gst_element_get_state (priv->pipeline, &state, NULL, 0);
-
-  if ((state < GST_STATE_PLAYING) || (overlay == NULL))
-  {
-    gtk_widget_get_allocation (widget, &allocation);
-    gdk_draw_rectangle (gtk_widget_get_window (widget),
-                        gtk_widget_get_style (widget)->black_gc, TRUE,
-                        0, 0, allocation.width, allocation.height);
-  }
-  else
-  {
-    gst_x_overlay_expose (overlay);
-  }
-
-  return FALSE;
 }
 
 static void
@@ -840,9 +788,7 @@ void
 cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);  
-  gboolean is_playing;
-
-  /*
+  
   if (active)
   {
     g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
@@ -852,7 +798,7 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
   {
     g_object_set ( G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
     g_object_set ( G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
-    } */
+  }
 }
 
 void
@@ -865,7 +811,6 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   GstElement *display_queue;
   gboolean ok;
   gboolean is_playing;
-  GError *err = NULL;
 
   is_playing = priv->pipeline_is_playing;
   
@@ -1206,8 +1151,6 @@ cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
 
   g_signal_connect (G_OBJECT (priv->bus), "message",
                     G_CALLBACK (cheese_camera_bus_message_cb), camera);
-
-  gst_bus_set_sync_handler (priv->bus, (GstBusSyncHandler) cheese_camera_bus_sync_handler, camera);
 
   if (!ok)
     g_error ("Unable link pipeline for photo");
