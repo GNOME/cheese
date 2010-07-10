@@ -463,7 +463,10 @@ public class Cheese.MainWindow : Gtk.Window
   private void activate_effects_page (int number)
   {
     current_effects_page = number;
-    viewport_layout.remove ((Clutter.Actor)current_effects_grid);
+    if (viewport_layout.get_children ().index (current_effects_grid) != -1)
+    {
+      viewport_layout.remove ((Clutter.Actor)current_effects_grid);
+    }
     current_effects_grid = effects_grids[number];
     viewport_layout.add ((Clutter.Actor)current_effects_grid);
     for (int i = 0; i < effects_manager.effects.size; i++)
@@ -479,7 +482,6 @@ public class Cheese.MainWindow : Gtk.Window
       }
     }
     this.current_effects_grid.set_size (viewport.width, viewport.height);
-
 
     effects_page_prev_action.sensitive = (current_effects_page != 0);
     effects_page_next_action.sensitive = (current_effects_page != effects_manager.effects.size / EFFECTS_PER_PAGE);
