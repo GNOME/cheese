@@ -208,7 +208,23 @@
 	    <property name="label">_Effects</property>
 	    <signal name="toggled" handler="cheese_main_window_on_effects_toggle" />
 	  </object>
-	</child>	
+	</child>
+	<child>
+	  <object class="GtkAction" id="effects_page_prev">
+	    <property name="name">Previous Effects Page</property>
+	    <property name="label">Previous Effects Page</property>
+	    <signal name="activate" handler="cheese_main_window_on_prev_effects_page" />
+	  </object>
+          <accelerator key="j" modifiers="GDK_CONTROL_MASK"/>
+	</child>
+        <child>
+	  <object class="GtkAction" id="effects_page_next">
+	    <property name="name">Next Effects Page</property>
+	    <property name="label">Next Effects Page</property>
+	    <signal name="activate" handler="cheese_main_window_on_next_effects_page" />
+	  </object>
+          <accelerator key="k" modifiers="GDK_CONTROL_MASK"/>
+	</child>		
       </object>      
     </child>
 
@@ -242,6 +258,8 @@
 	</menu>
 	<menu action="edit_action">
 	  <menuitem action="effects_toggle" />
+          <menuitem action="effects_page_next" />
+          <menuitem action="effects_page_prev" />
 	  <separator />
 	  <menuitem action="move_to_trash" />
 	  <menuitem action="move_all_to_trash" />

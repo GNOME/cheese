@@ -9,6 +9,7 @@ using Mx;
 using Gee;
 
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
+const int EFFECTS_PER_PAGE            = 9;
 
 public class Cheese.MainWindow : Gtk.Window
 {
@@ -439,12 +440,43 @@ public class Cheese.MainWindow : Gtk.Window
     effects_toggle_action.set_active (false);
   }
 
+  [CCode (instance_pos = -1)]
+  internal void on_prev_effects_page (Gtk.Action action)
+  {
+    if (current_effects_page != 0)
+    {
+      activate_effects_page (current_effects_page - 1);
+    }
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_next_effects_page (Gtk.Action action)
+  {
+    debug ("Hi");
+    if (current_effects_page != (effects_manager.effects.size / EFFECTS_PER_PAGE))
+    {
+      activate_effects_page (current_effects_page + 1);
+    }
+  }
+
   private void activate_effects_page (int number)
   {
     current_effects_page = number;
     viewport_layout.remove ((Clutter.Actor)current_effects_grid);
     current_effects_grid = effects_grids[number];
     viewport_layout.add ((Clutter.Actor)current_effects_grid);
+    for (int i = 0; i < effects_manager.effects.size; i++)
+    {
+      int page_of_effect = i / EFFECTS_PER_PAGE;
+      if (page_of_effect == page_of_effect)
+      {
+        effects_manager.effects[i].enable_preview ();
+      }
+      else
+      {
+        effects_manager.effects[i].disable_preview ();
+      }
+    }
     this.current_effects_grid.set_size (viewport.width, viewport.height);
   }
 
@@ -464,7 +496,7 @@ public class Cheese.MainWindow : Gtk.Window
 
       effects_grids = new ArrayList<Mx.Grid>();
 
-      for (int i = 0; i < (effects_manager.effects.size / 9) + 1; i++)
+      for (int i = 0; i <= effects_manager.effects.size / EFFECTS_PER_PAGE; i++)
       {
         Mx.Grid grid = new Mx.Grid ();
         effects_grids.add (grid);
@@ -490,7 +522,7 @@ public class Cheese.MainWindow : Gtk.Window
         button.set_data ("effect", effect);
         button.clicked.connect (on_selected_effect_change);
 
-        effects_grids[i / 9].add ((Clutter.Actor)button);
+        effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)button);
         camera.connect_effect_texture (effect, texture);
       }
     }
