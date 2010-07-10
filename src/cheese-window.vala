@@ -634,8 +634,6 @@ public class Cheese.MainWindow : Gtk.Window
     }
     camera.play ();
 
-    camera.toggle_effects_pipeline (false);
-
     set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
