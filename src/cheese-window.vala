@@ -45,7 +45,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Rectangle background_layer;
 
   private Mx.Grid            current_effects_grid;
-  private int                current_effects_page;
+  private int                current_effects_page = 0;
   private ArrayList<Mx.Grid> effects_grids;
 
   private Gtk.Action       take_photo_action;
@@ -424,15 +424,7 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   internal void on_effects_toggle (Gtk.ToggleAction action)
   {
-    if (action.active)
-    {
-      setup_effects_selector ();
-    }
-    else
-    {
-      teardown_effects_selector ();
-    }
-    camera.toggle_effects_pipeline (action.active);
+    toggle_effects_selector (action.active);
   }
 
   internal void on_selected_effect_change (Mx.Button button)
@@ -483,19 +475,33 @@ public class Cheese.MainWindow : Gtk.Window
     }
     this.current_effects_grid.set_size (viewport.width, viewport.height);
 
+    setup_effects_page_switch_sensitivity ();
+  }
+
+  private void setup_effects_page_switch_sensitivity ()
+  {
     effects_page_prev_action.sensitive = (current_effects_page != 0);
     effects_page_next_action.sensitive = (current_effects_page != effects_manager.effects.size / EFFECTS_PER_PAGE);
   }
 
-  private void teardown_effects_selector ()
+  private void toggle_effects_selector (bool active)
   {
-    video_preview.show ();
-    viewport_layout.remove ((Clutter.Actor)current_effects_grid);
+    if (active)
+    {
+      video_preview.hide ();
+      current_effects_grid.show ();
+      activate_effects_page (current_effects_page);
+    }
+    else
+    {
+      video_preview.show ();
+      current_effects_grid.hide ();
+    }
+    camera.toggle_effects_pipeline (active);
   }
 
   private void setup_effects_selector ()
   {
-    video_preview.hide ();
     if (current_effects_grid == null)
     {
       effects_manager = new EffectsManager ();
@@ -517,6 +523,7 @@ public class Cheese.MainWindow : Gtk.Window
         grid.row_spacing    = 20;
       }
 
+      camera.stop ();
       for (int i = 0; i < effects_manager.effects.size - 1; i++)
       {
         Effect          effect  = effects_manager.effects[i];
@@ -532,8 +539,10 @@ public class Cheese.MainWindow : Gtk.Window
         effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)button);
         camera.connect_effect_texture (effect, texture);
       }
+      camera.play ();
+      setup_effects_page_switch_sensitivity ();
+      current_effects_grid = effects_grids[0];
     }
-    activate_effects_page (0);
   }
 
   public void setup_ui ()
@@ -629,7 +638,7 @@ public class Cheese.MainWindow : Gtk.Window
 
     set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);
-
+    setup_effects_selector ();
     this.add (main_vbox);
   }
 }
