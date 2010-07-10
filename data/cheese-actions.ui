@@ -213,6 +213,7 @@
 	  <object class="GtkAction" id="effects_page_prev">
 	    <property name="name">Previous Effects Page</property>
 	    <property name="label">Previous Effects Page</property>
+            <property name="sensitive">false</property>
 	    <signal name="activate" handler="cheese_main_window_on_prev_effects_page" />
 	  </object>
           <accelerator key="j" modifiers="GDK_CONTROL_MASK"/>
@@ -221,6 +222,7 @@
 	  <object class="GtkAction" id="effects_page_next">
 	    <property name="name">Next Effects Page</property>
 	    <property name="label">Next Effects Page</property>
+            <property name="sensitive">false</property>
 	    <signal name="activate" handler="cheese_main_window_on_next_effects_page" />
 	  </object>
           <accelerator key="k" modifiers="GDK_CONTROL_MASK"/>

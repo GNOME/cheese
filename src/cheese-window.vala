@@ -57,6 +57,8 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.ToggleAction effects_toggle_action;
   private Gtk.Action       wide_mode_action;
   private Gtk.Action       countdown_action;
+  private Gtk.Action       effects_page_prev_action;
+  private Gtk.Action       effects_page_next_action;
 
   private bool is_fullscreen;
   private bool is_wide_mode;
@@ -452,7 +454,6 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   internal void on_next_effects_page (Gtk.Action action)
   {
-    debug ("Hi");
     if (current_effects_page != (effects_manager.effects.size / EFFECTS_PER_PAGE))
     {
       activate_effects_page (current_effects_page + 1);
@@ -478,6 +479,10 @@ public class Cheese.MainWindow : Gtk.Window
       }
     }
     this.current_effects_grid.set_size (viewport.width, viewport.height);
+
+
+    effects_page_prev_action.sensitive = (current_effects_page != 0);
+    effects_page_next_action.sensitive = (current_effects_page != effects_manager.effects.size / EFFECTS_PER_PAGE);
   }
 
   private void teardown_effects_selector ()
@@ -568,15 +573,17 @@ public class Cheese.MainWindow : Gtk.Window
     leave_fullscreen_button           = (Gtk.Button)gtk_builder.get_object ("leave_fullscreen_button");
     buttons_area                      = (Gtk.HBox)gtk_builder.get_object ("buttons_area");
 
-    take_photo_action     = (Gtk.Action)gtk_builder.get_object ("take_photo");
-    take_video_action     = (Gtk.Action)gtk_builder.get_object ("take_video");
-    take_burst_action     = (Gtk.Action)gtk_builder.get_object ("take_burst");
-    photo_mode_action     = (Gtk.Action)gtk_builder.get_object ("photo_mode");
-    video_mode_action     = (Gtk.Action)gtk_builder.get_object ("video_mode");
-    burst_mode_action     = (Gtk.Action)gtk_builder.get_object ("burst_mode");
-    effects_toggle_action = (Gtk.ToggleAction)gtk_builder.get_object ("effects_toggle");
-    countdown_action      = (Gtk.Action)gtk_builder.get_object ("countdown");
-    wide_mode_action      = (Gtk.Action)gtk_builder.get_object ("wide_mode");
+    take_photo_action        = (Gtk.Action)gtk_builder.get_object ("take_photo");
+    take_video_action        = (Gtk.Action)gtk_builder.get_object ("take_video");
+    take_burst_action        = (Gtk.Action)gtk_builder.get_object ("take_burst");
+    photo_mode_action        = (Gtk.Action)gtk_builder.get_object ("photo_mode");
+    video_mode_action        = (Gtk.Action)gtk_builder.get_object ("video_mode");
+    burst_mode_action        = (Gtk.Action)gtk_builder.get_object ("burst_mode");
+    effects_toggle_action    = (Gtk.ToggleAction)gtk_builder.get_object ("effects_toggle");
+    countdown_action         = (Gtk.Action)gtk_builder.get_object ("countdown");
+    wide_mode_action         = (Gtk.Action)gtk_builder.get_object ("wide_mode");
+    effects_page_next_action = (Gtk.Action)gtk_builder.get_object ("effects_page_next");
+    effects_page_prev_action = (Gtk.Action)gtk_builder.get_object ("effects_page_prev");
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
