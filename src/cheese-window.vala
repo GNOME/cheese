@@ -461,18 +461,20 @@ public class Cheese.MainWindow : Gtk.Window
     }
     current_effects_grid = effects_grids[number];
     viewport_layout.add ((Clutter.Actor)current_effects_grid);
-    for (int i = 0; i < effects_manager.effects.size; i++)
+
+    for (int i = 0; i < effects_manager.effects.size - 1 ; i++)
     {
       int page_of_effect = i / EFFECTS_PER_PAGE;
       if (page_of_effect == page_of_effect)
       {
-        effects_manager.effects[i].enable_preview ();
+        effects_manager.effects[i].enable_preview ();	
       }
       else
       {
         effects_manager.effects[i].disable_preview ();
       }
     }
+
     this.current_effects_grid.set_size (viewport.width, viewport.height);
 
     setup_effects_page_switch_sensitivity ();
