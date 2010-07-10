@@ -730,25 +730,27 @@ static void
 cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  gboolean is_playing = priv->pipeline_is_playing;
   gboolean ok;
 
-  cheese_camera_stop (camera);
-
+  g_object_set (G_OBJECT (priv->main_valve), "drop", TRUE, NULL);
+  
   gst_element_unlink_many (priv->main_valve, priv->effect_filter,
                            priv->csp_post_effect, NULL);
 
+  g_object_ref(priv->effect_filter);
   gst_bin_remove (GST_BIN (priv->video_display_bin), priv->effect_filter);
+  priv->effect_filter = NULL;
+  g_object_unref(priv->effect_filter);
 
   gst_bin_add (GST_BIN (priv->video_display_bin), new_filter);
   ok = gst_element_link_many (priv->main_valve, new_filter,
                               priv->csp_post_effect, NULL);
+  gst_element_set_state (new_filter, GST_STATE_PAUSED);
+
   g_return_if_fail (ok);
 
-  if (is_playing)
-    cheese_camera_play (camera);
-
+  g_object_set (G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
+  
   priv->effect_filter = new_filter;
 }
 
