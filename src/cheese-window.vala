@@ -6,6 +6,7 @@ using Config;
 using Eog;
 using Gst;
 using Mx;
+using Gee;
 
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 
@@ -42,8 +43,9 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Text      countdown_layer;
   private Clutter.Rectangle background_layer;
 
-  private Mx.ScrollView effects_scroller;
-  private Mx.Grid       effects_grid;
+  private Mx.Grid       current_effects_grid;
+  private int current_effects_page;
+  private ArrayList<Mx.Grid>     effects_grids;
 
   private Gtk.Action       take_photo_action;
   private Gtk.Action       take_video_action;
@@ -322,8 +324,8 @@ public class Cheese.MainWindow : Gtk.Window
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
     this.background_layer.set_size (viewport.width, viewport.height);
-    this.effects_scroller.set_size (viewport.width, viewport.height);
-    this.effects_grid.set_size (effects_scroller.width, effects_scroller.height);
+	if (this.current_effects_grid != null)
+		this.current_effects_grid.set_size (viewport.width, viewport.height);
   }
 
   [CCode (instance_pos = -1)]
@@ -437,37 +439,48 @@ public class Cheese.MainWindow : Gtk.Window
     effects_toggle_action.set_active (false);
   }
 
+  private void activate_effects_page (int number)
+  {
+	  current_effects_page = number;
+	  viewport_layout.remove ((Clutter.Actor)current_effects_grid);
+	  current_effects_grid = effects_grids[number];
+	  viewport_layout.add ((Clutter.Actor)current_effects_grid);
+	  this.current_effects_grid.set_size (viewport.width, viewport.height);
+  }
+
   private void teardown_effects_selector ()
   {
     video_preview.show ();
-    viewport_layout.remove ((Clutter.Actor)effects_scroller);
+    viewport_layout.remove ((Clutter.Actor)current_effects_grid);
   }
 
   private void setup_effects_selector ()
-  {
+  {	
     video_preview.hide ();
-    if (effects_grid == null)
+    if (current_effects_grid == null)
     {
-      effects_grid                     = new Mx.Grid ();
-      effects_scroller                 = new Mx.ScrollView ();
-      effects_scroller.scroll_policy   = Mx.ScrollPolicy.HORIZONTAL;
-      effects_scroller.enable_gestures = true;
-
-      effects_grid.line_alignment = Mx.Align.MIDDLE;
-      effects_grid.child_x_align  = Mx.Align.MIDDLE;
-      effects_grid.child_y_align  = Mx.Align.MIDDLE;
-      effects_grid.orientation    = Mx.Orientation.VERTICAL;
-
-      effects_grid.column_spacing = 20;
-      effects_grid.row_spacing    = 20;
-
       effects_manager = new EffectsManager ();
       effects_manager.load_effects ();
 
-      effects_scroller.add ((Clutter.Actor)effects_grid);
+	  effects_grids = new ArrayList<Mx.Grid>();
 
-      foreach (Effect effect in effects_manager.effects)
+	  for (int i=0; i < (effects_manager.effects.size / 9) + 1; i++)
+	  {
+		  Mx.Grid grid = new Mx.Grid();
+		  effects_grids.add(grid);
+
+		  grid.line_alignment = Mx.Align.MIDDLE;
+		  grid.child_x_align  = Mx.Align.MIDDLE;
+		  grid.child_y_align  = Mx.Align.MIDDLE;
+		  grid.orientation    = Mx.Orientation.VERTICAL;
+	 
+		  grid.column_spacing = 20;
+		  grid.row_spacing    = 20;		  
+	  }
+
+      for (int i=0; i < effects_manager.effects.size - 1; i++)
       {
+		  Effect effect = effects_manager.effects[i];
         Clutter.Texture texture = new Clutter.Texture ();
         texture.width  = 160;
         texture.height = 120;
@@ -477,13 +490,11 @@ public class Cheese.MainWindow : Gtk.Window
         button.set_data ("effect", effect);
         button.clicked.connect (on_selected_effect_change);
 
-        effects_grid.add ((Clutter.Actor)button);
+        effects_grids[i/9].add ((Clutter.Actor)button);
         camera.connect_effect_texture (effect, texture);
-      }
+      }	  
     }
-
-    viewport_layout.add ((Clutter.Actor)effects_scroller);
-    this.effects_scroller.set_size (viewport.width, viewport.height);
+	activate_effects_page(0);
   }
 
   public void setup_ui ()
@@ -572,8 +583,6 @@ public class Cheese.MainWindow : Gtk.Window
       return;
     }
     camera.play ();
-
-
 
     camera.toggle_effects_pipeline (false);
 
