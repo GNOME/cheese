@@ -5,7 +5,7 @@ const string GROUP_NAME = "effect";
 
 internal class Cheese.EffectsManager : GLib.Object
 {
-  public static Cheese.Effect ? parse_effect_file (string filename)
+  public static Cheese. Effect ? parse_effect_file (string filename)
   {
     KeyFile kf  = new KeyFile ();
     Effect  eff = new Effect ();
@@ -54,7 +54,8 @@ internal class Cheese.EffectsManager : GLib.Object
       cur_file = dir.read_name ();
       while (cur_file != null)
       {
-        if (cur_file.has_suffix(".effect")) {
+        if (cur_file.has_suffix (".effect"))
+        {
           Effect effect = EffectsManager.parse_effect_file (GLib.Path.build_filename (directory, cur_file));
           effects.add (effect);
         }
@@ -72,6 +73,7 @@ internal class Cheese.EffectsManager : GLib.Object
   public void load_effects ()
   {
     string system_effects = GLib.Path.build_filename (Config.PACKAGE_DATADIR, "effects");
+
     effects.add_all (load_effects_from_directory (system_effects));
 
     string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), ".cheese", "effects");

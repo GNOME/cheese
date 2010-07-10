@@ -14,10 +14,10 @@ public class Cheese.Main
   static Cheese.MainWindow main_window;
 
   const OptionEntry[] options = {
-    {"verbose", 'v', 0, OptionArg.NONE, ref verbose,      N_("Be verbose"),                          null},
-    {"wide",    'w', 0, OptionArg.NONE, ref wide,         N_("Enable wide mode"),                    null},
-    {"version", 0,   0, OptionArg.NONE, ref version_only, N_("Output version information and exit"), null},
-    {null}
+    { "verbose", 'v', 0, OptionArg.NONE, ref verbose,      N_("Be verbose"),                          null},
+    { "wide",    'w', 0, OptionArg.NONE, ref wide,         N_("Enable wide mode"),                    null},
+    { "version", 0,   0, OptionArg.NONE, ref version_only, N_("Output version information and exit"), null},
+    { null}
   };
 
   static void print_handler (string text)

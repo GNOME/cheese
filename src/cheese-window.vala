@@ -43,9 +43,9 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Text      countdown_layer;
   private Clutter.Rectangle background_layer;
 
-  private Mx.Grid       current_effects_grid;
-  private int current_effects_page;
-  private ArrayList<Mx.Grid>     effects_grids;
+  private Mx.Grid            current_effects_grid;
+  private int                current_effects_page;
+  private ArrayList<Mx.Grid> effects_grids;
 
   private Gtk.Action       take_photo_action;
   private Gtk.Action       take_video_action;
@@ -85,7 +85,7 @@ public class Cheese.MainWindow : Gtk.Window
     screen = this.get_screen ();
     try {
       Gtk.show_uri (screen, "ghelp:cheese", Gtk.get_current_event_time ());
-    } catch (Error err)
+    }catch (Error err)
     {
       warning ("Error: %s\n", err.message);
     }
@@ -194,9 +194,9 @@ public class Cheese.MainWindow : Gtk.Window
   {
     fullscreen_timeout = new TimeoutSource (FULLSCREEN_TIMEOUT_INTERVAL);
     fullscreen_timeout.attach (null);
-    fullscreen_timeout.set_callback (() => {buttons_area.hide ();
-                                            clear_fullscreen_timeout ();
-                                            return true;});
+    fullscreen_timeout.set_callback (() => { buttons_area.hide ();
+                                             clear_fullscreen_timeout ();
+                                             return true;});
   }
 
   private bool fullscreen_motion_notify_callback (Gtk.Widget viewport, EventMotion e)
@@ -324,8 +324,8 @@ public class Cheese.MainWindow : Gtk.Window
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
     this.background_layer.set_size (viewport.width, viewport.height);
-	if (this.current_effects_grid != null)
-		this.current_effects_grid.set_size (viewport.width, viewport.height);
+    if (this.current_effects_grid != null)
+      this.current_effects_grid.set_size (viewport.width, viewport.height);
   }
 
   [CCode (instance_pos = -1)]
@@ -441,11 +441,11 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void activate_effects_page (int number)
   {
-	  current_effects_page = number;
-	  viewport_layout.remove ((Clutter.Actor)current_effects_grid);
-	  current_effects_grid = effects_grids[number];
-	  viewport_layout.add ((Clutter.Actor)current_effects_grid);
-	  this.current_effects_grid.set_size (viewport.width, viewport.height);
+    current_effects_page = number;
+    viewport_layout.remove ((Clutter.Actor)current_effects_grid);
+    current_effects_grid = effects_grids[number];
+    viewport_layout.add ((Clutter.Actor)current_effects_grid);
+    this.current_effects_grid.set_size (viewport.width, viewport.height);
   }
 
   private void teardown_effects_selector ()
@@ -455,32 +455,32 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   private void setup_effects_selector ()
-  {	
+  {
     video_preview.hide ();
     if (current_effects_grid == null)
     {
       effects_manager = new EffectsManager ();
       effects_manager.load_effects ();
 
-	  effects_grids = new ArrayList<Mx.Grid>();
+      effects_grids = new ArrayList<Mx.Grid>();
 
-	  for (int i=0; i < (effects_manager.effects.size / 9) + 1; i++)
-	  {
-		  Mx.Grid grid = new Mx.Grid();
-		  effects_grids.add(grid);
-
-		  grid.line_alignment = Mx.Align.MIDDLE;
-		  grid.child_x_align  = Mx.Align.MIDDLE;
-		  grid.child_y_align  = Mx.Align.MIDDLE;
-		  grid.orientation    = Mx.Orientation.VERTICAL;
-	 
-		  grid.column_spacing = 20;
-		  grid.row_spacing    = 20;		  
-	  }
-
-      for (int i=0; i < effects_manager.effects.size - 1; i++)
+      for (int i = 0; i < (effects_manager.effects.size / 9) + 1; i++)
       {
-		  Effect effect = effects_manager.effects[i];
+        Mx.Grid grid = new Mx.Grid ();
+        effects_grids.add (grid);
+
+        grid.line_alignment = Mx.Align.MIDDLE;
+        grid.child_x_align  = Mx.Align.MIDDLE;
+        grid.child_y_align  = Mx.Align.MIDDLE;
+        grid.orientation    = Mx.Orientation.VERTICAL;
+
+        grid.column_spacing = 20;
+        grid.row_spacing    = 20;
+      }
+
+      for (int i = 0; i < effects_manager.effects.size - 1; i++)
+      {
+        Effect          effect  = effects_manager.effects[i];
         Clutter.Texture texture = new Clutter.Texture ();
         texture.width  = 160;
         texture.height = 120;
@@ -490,11 +490,11 @@ public class Cheese.MainWindow : Gtk.Window
         button.set_data ("effect", effect);
         button.clicked.connect (on_selected_effect_change);
 
-        effects_grids[i/9].add ((Clutter.Actor)button);
+        effects_grids[i / 9].add ((Clutter.Actor)button);
         camera.connect_effect_texture (effect, texture);
-      }	  
+      }
     }
-	activate_effects_page(0);
+    activate_effects_page (0);
   }
 
   public void setup_ui ()
@@ -512,7 +512,7 @@ public class Cheese.MainWindow : Gtk.Window
       gtk_builder.connect_signals (this);
 
       clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
-    } catch (Error err)
+    }catch (Error err)
     {
       warning ("Error: %s\n", err.message);
       return;
@@ -548,12 +548,12 @@ public class Cheese.MainWindow : Gtk.Window
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
-    buttons = {photo_toggle_button,
-               video_toggle_button,
-               burst_toggle_button,
-               take_action_button,
-               effects_toggle_button,
-               leave_fullscreen_button};
+    buttons = { photo_toggle_button,
+                video_toggle_button,
+                burst_toggle_button,
+                take_action_button,
+                effects_toggle_button,
+                leave_fullscreen_button};
 
     video_preview           = (Clutter.Texture)clutter_builder.get_object ("video_preview");
     viewport_layout         = (Clutter.Box)clutter_builder.get_object ("viewport_layout");
