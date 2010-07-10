@@ -85,14 +85,15 @@ public class Cheese.MainWindow : Gtk.Window
   internal void on_file_open (Gtk.Action action)
   {
     string filename, uri;
+
     Gdk.Screen screen;
-	
+
 
     filename = thumb_view.get_selected_image ();
-	if (filename == null)
-		return; // Nothing selected.
-	
-    uri      = GLib.Filename.to_uri (filename);
+    if (filename == null)
+      return;           /* Nothing selected. */
+
+    uri = GLib.Filename.to_uri (filename);
 
     screen = this.get_screen ();
     Gtk.show_uri (screen, uri, Gtk.get_current_event_time ());
@@ -434,7 +435,9 @@ public class Cheese.MainWindow : Gtk.Window
       take_action_button.related_action.sensitive = false;
       effects_toggle_action.sensitive             = false;
       burst_take_photo ();
-      GLib.Timeout.add (3500, burst_take_photo);
+
+      /* 3500 ms is approximate time for countdown animation to finish */
+      GLib.Timeout.add ((conf.gconf_prop_burst_delay / 1000) * 3500, burst_take_photo);
     }
   }
 
@@ -632,7 +635,10 @@ public class Cheese.MainWindow : Gtk.Window
     viewport.add_actor (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
-    camera = new Camera (video_preview, "/dev/video0", 1024, 768);
+    camera = new Camera (video_preview,
+                         conf.gconf_prop_camera,
+                         conf.gconf_prop_x_resolution,
+                         conf.gconf_prop_y_resolution);
 
     viewport.add_actor (viewport_layout);
 
