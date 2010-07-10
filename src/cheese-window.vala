@@ -82,6 +82,23 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
+  internal void on_file_open (Gtk.Action action)
+  {
+    string filename, uri;
+    Gdk.Screen screen;
+	
+
+    filename = thumb_view.get_selected_image ();
+	if (filename == null)
+		return; // Nothing selected.
+	
+    uri      = GLib.Filename.to_uri (filename);
+
+    screen = this.get_screen ();
+    Gtk.show_uri (screen, uri, Gtk.get_current_event_time ());
+  }
+
+  [CCode (instance_pos = -1)]
   internal void on_help_contents (Gtk.Action action)
   {
     Gdk.Screen screen;
@@ -462,12 +479,12 @@ public class Cheese.MainWindow : Gtk.Window
     current_effects_grid = effects_grids[number];
     viewport_layout.add ((Clutter.Actor)current_effects_grid);
 
-    for (int i = 0; i < effects_manager.effects.size - 1 ; i++)
+    for (int i = 0; i < effects_manager.effects.size - 1; i++)
     {
       int page_of_effect = i / EFFECTS_PER_PAGE;
       if (page_of_effect == page_of_effect)
       {
-        effects_manager.effects[i].enable_preview ();	
+        effects_manager.effects[i].enable_preview ();
       }
       else
       {

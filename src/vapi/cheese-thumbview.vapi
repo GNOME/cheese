@@ -5,8 +5,8 @@ namespace Cheese
   public class ThumbView : Gtk.IconView
   {
     public ThumbView ();
-    string get_selected_image ();
-    int    get_n_selected ();
-    void   remove_item (GLib.File file);
+    public string get_selected_image ();
+    public int    get_n_selected ();
+    public void   remove_item (GLib.File file);
   }
 }
