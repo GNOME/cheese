@@ -427,7 +427,7 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   {
     cheese_camera_set_error_element_not_found (error, "cluttervideosink");
   }
-  g_object_set (G_OBJECT (priv->effects_valve), "async", FALSE, NULL);
+  g_object_set (G_OBJECT (video_sink), "async", FALSE, NULL);
 
   if (error != NULL && *error != NULL)
     return FALSE;
