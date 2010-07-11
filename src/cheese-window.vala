@@ -64,6 +64,7 @@ public class Cheese.MainWindow : Gtk.Window
   private bool is_wide_mode;
   private bool is_recording;       /* Video Recording Flag */
   private bool is_bursting;
+  private bool is_effects_selector_active;
 
   private Gtk.Button[] buttons;
 
@@ -474,6 +475,8 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void activate_effects_page (int number)
   {
+    if (!is_effects_selector_active)
+      return;
     current_effects_page = number;
     if (viewport_layout.get_children ().index (current_effects_grid) != -1)
     {
@@ -494,20 +497,20 @@ public class Cheese.MainWindow : Gtk.Window
         effects_manager.effects[i].disable_preview ();
       }
     }
-
-    this.current_effects_grid.set_size (viewport.width, viewport.height);
-
     setup_effects_page_switch_sensitivity ();
+    this.current_effects_grid.set_size (viewport.width, viewport.height);
   }
 
   private void setup_effects_page_switch_sensitivity ()
   {
-    effects_page_prev_action.sensitive = (current_effects_page != 0);
-    effects_page_next_action.sensitive = (current_effects_page != effects_manager.effects.size / EFFECTS_PER_PAGE);
+    effects_page_prev_action.sensitive = (is_effects_selector_active && current_effects_page != 0);
+    effects_page_next_action.sensitive =
+      (is_effects_selector_active && current_effects_page != effects_manager.effects.size / EFFECTS_PER_PAGE);
   }
 
   private void toggle_effects_selector (bool active)
   {
+    is_effects_selector_active = active;
     if (active)
     {
       video_preview.hide ();
@@ -520,6 +523,7 @@ public class Cheese.MainWindow : Gtk.Window
       current_effects_grid.hide ();
     }
     camera.toggle_effects_pipeline (active);
+    setup_effects_page_switch_sensitivity ();
   }
 
   private void setup_effects_selector ()
