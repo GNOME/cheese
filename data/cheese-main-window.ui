@@ -212,7 +212,8 @@
 	  </object>
 	</child>
 	<child>
-	  <object class="GtkFrame" id="thumbnails_right">
+	  <object class="GtkAlignment" id="thumbnails_right">
+	      <property name="visible">False</property>
 	    <child>
 	      <placeholder />
 	    </child>
@@ -224,7 +225,7 @@
       </object>
     </child>
     <child>
-      <object class="GtkFrame" id="thumbnails_bottom">
+      <object class="GtkAlignment" id="thumbnails_bottom">
 	<property name="visible">False</property>
 	<child>
 	    <placeholder />	    
