@@ -446,6 +446,12 @@ public class Cheese.MainWindow : Gtk.Window
   internal void on_effects_toggle (Gtk.ToggleAction action)
   {
     toggle_effects_selector (action.active);
+    take_photo_action.sensitive = !action.active;
+    take_video_action.sensitive = !action.active;
+    take_burst_action.sensitive = !action.active;
+    photo_mode_action.sensitive = !action.active;
+    video_mode_action.sensitive = !action.active;
+    burst_mode_action.sensitive = !action.active;
   }
 
   internal void on_selected_effect_change (Mx.Button button)
