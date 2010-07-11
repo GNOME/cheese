@@ -1,19 +1,33 @@
 # List of source files containing translatable strings.
 # Please keep this file sorted alphabetically.
 [encoding: UTF-8]
+[type: gettext/glade]data/cheese-about.ui
+[type: gettext/glade]data/cheese-actions.ui
+[type: gettext/glade]data/cheese-main-window.ui
+[type: gettext/glade]data/cheese-prefs.ui
+[type: gettext/glade]data/cheese-prefs.ui
 data/cheese.desktop.in.in
 data/cheese.schemas.in
-[type: gettext/glade]data/cheese.ui
-[type: gettext/glade]data/cheese-prefs.ui
+[type: gettext/ini]data/effects/agingtv.effect.in
+[type: gettext/ini]data/effects/dicetv.effect.in
+[type: gettext/ini]data/effects/edgetv.effect.in
+[type: gettext/ini]data/effects/hulk.effect.in
+[type: gettext/ini]data/effects/mauve.effect.in
+[type: gettext/ini]data/effects/noir.effect.in
+[type: gettext/ini]data/effects/optv.effect.in
+[type: gettext/ini]data/effects/quarktv.effect.in
+[type: gettext/ini]data/effects/radioactv.effect.in
+[type: gettext/ini]data/effects/saturation.effect.in
+[type: gettext/ini]data/effects/shagadelictv.effect.in
+[type: gettext/ini]data/effects/streaktv.effect.in
+[type: gettext/ini]data/effects/vertigotv.effect.in
+[type: gettext/ini]data/effects/warptv.effect.in
 libcheese/cheese-avatar-chooser.c
 libcheese/cheese-camera-device.c
 libcheese/cheese-camera.c
 libcheese/cheese-countdown.c
 libcheese/cheese-widget.c
-src/cheese-commands-file.c
-src/cheese-commands-help.c
-src/cheese-effect-chooser.c
-src/cheese-no-camera.c
-src/cheese-ui.h
-src/cheese-window.c
-src/cheese.c
+src/cheese-countdown.vala
+src/cheese-effects-manager.vala
+src/cheese-main.vala
+src/cheese-window.vala
