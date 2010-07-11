@@ -108,33 +108,67 @@
 		    
 		  </object>
 		</child>
-		
+
 		<child>
-		  <object class="GtkToggleButton" id="effects_toggle_button">
-		    <property name="related-action">effects_toggle</property>
-		    <child>
-		      <object class="GtkHBox" id="effects_toggle_button_internal_hbox">
-			<property name="visible">True</property>
-			<property name="spacing">2</property>
-			<child>
-			  <object class="GtkImage" id="effects_toggle_button_internal_image">
-			    <property name="icon_name">browse-webcam-effects</property>
-			  </object>
-			</child>
-			<child>
-			  <object class="GtkLabel" id="effects_toggle_button_internal_label">
-			    <property name="label" translatable="yes">_Effects</property>
-			    <property name="use_underline">True</property>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		  <packing>
-		    <property name="expand">False</property>
-		    <property name="fill">False</property>		    
-		  </packing>		  		  
-		</child>
+                  <object class="GtkHBox" id="effects_actions_pack">
+                    <property name="spacing">0</property>
+                    
+                    <child>
+                      <object class="GtkButton" id="effects_prev_page_button">
+                        <property name="related-action">effects_page_prev</property>
+                        <property name="width-request">32</property>
+                        <child>                          
+                          <object class="GtkImage" id="effects_prev_page_button_image">
+                            <property name="stock">gtk-go-back</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    
+                    <child>
+                      <object class="GtkToggleButton" id="effects_toggle_button">
+                        <property name="related-action">effects_toggle</property>                        
+                        <child>
+                          <object class="GtkHBox" id="effects_toggle_button_internal_hbox">
+                            <property name="visible">True</property>
+                            <property name="spacing">2</property>
+                            <child>                          
+                              <object class="GtkImage" id="effects_toggle_button_internal_image">
+                                <property name="icon_name">browse-webcam-effects</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="effects_toggle_button_internal_label">
+                                <property name="label" translatable="yes">_Effects</property>
+                                <property name="use_underline">True</property>
+                              </object>
+                            </child>		                              
+                          </object>
+                        </child>
+                      </object>		 
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>		    
+                      </packing>                      
+                    </child>
+                    
+                    <child>
+                      <object class="GtkButton" id="effects_next_page_button">
+                        <property name="related-action">effects_page_next</property>
+                        <property name="width-request">32</property>
+                        <child>                          
+                          <object class="GtkImage" id="effects_prev_next_button_image">
+                            <property name="stock">gtk-go-forward</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>                    
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>		    
+                  </packing> 
+                </child>
 
 		<child>
 		  <object class="GtkHBox" id="leave_fullscreen_button_bin">
