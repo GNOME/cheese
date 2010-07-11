@@ -101,6 +101,35 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
+  internal void on_file_delete (Gtk.Action action)
+  {
+    string        filename, basename;
+    MessageDialog confirmation_dialog;
+    int           response;
+
+    filename = thumb_view.get_selected_image ();
+    if (filename == null)
+      return;                    /* Nothing selected. */
+
+    basename            = GLib.Filename.display_basename (filename);
+    confirmation_dialog = new MessageDialog.with_markup (this,
+                                                         Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                         Gtk.MessageType.WARNING,
+                                                         Gtk.ButtonsType.NONE,
+                                                         "Are you sure you want to permanently delete the file \"%s\"?",
+                                                         basename);
+    confirmation_dialog.add_button (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL);
+    confirmation_dialog.add_button (Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT);
+    confirmation_dialog.format_secondary_text ("%s", "If you delete an item, it will be permanently lost");
+    response = confirmation_dialog.run ();
+    confirmation_dialog.destroy ();
+    if (response == Gtk.ResponseType.ACCEPT)
+    {
+      GLib.FileUtils.remove (filename);
+    }
+  }
+
+  [CCode (instance_pos = -1)]
   internal void on_help_contents (Gtk.Action action)
   {
     Gdk.Screen screen;
