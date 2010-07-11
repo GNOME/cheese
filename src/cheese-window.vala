@@ -130,6 +130,60 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
+  internal void on_file_save_as (Gtk.Action action)
+  {
+    string            filename, basename;
+    FileChooserDialog save_as_dialog;
+    int               response;
+
+    filename = thumb_view.get_selected_image ();
+    if (filename == null)
+      return;                    /* Nothing selected. */
+
+    save_as_dialog = new FileChooserDialog ("Save File",
+                                            this,
+                                            Gtk.FileChooserAction.SAVE,
+                                            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                                            Gtk.STOCK_SAVE, Gtk.ResponseType.ACCEPT,
+                                            null);
+
+    save_as_dialog.do_overwrite_confirmation = true;
+    basename                                 = GLib.Filename.display_basename (filename);
+    save_as_dialog.set_current_name (basename);
+
+    response = save_as_dialog.run ();
+
+    save_as_dialog.hide ();
+    if (response == Gtk.ResponseType.ACCEPT)
+    {
+      string target_filename;
+      target_filename = save_as_dialog.get_filename ();
+
+      File src  = File.new_for_path (filename);
+      File dest = File.new_for_path (target_filename);
+
+      try
+      {
+        src.copy (dest, FileCopyFlags.OVERWRITE, null, null);
+      }
+      catch (Error err)
+      {
+        MessageDialog error_dialog = new MessageDialog (this,
+                                                        Gtk.DialogFlags.MODAL |
+                                                        Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                        Gtk.MessageType.ERROR,
+                                                        Gtk.ButtonsType.OK,
+                                                        "Could not save %s",
+                                                        target_filename);
+
+        error_dialog.run ();
+        error_dialog.destroy ();
+      }
+    }
+    save_as_dialog.destroy ();
+  }
+
+  [CCode (instance_pos = -1)]
   internal void on_help_contents (Gtk.Action action)
   {
     Gdk.Screen screen;
