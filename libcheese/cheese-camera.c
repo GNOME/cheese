@@ -799,8 +799,8 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
   }
   else
   {
-    g_object_set ( G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
-    g_object_set ( G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
+    g_object_set (G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
+    g_object_set (G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
   }
 }
 
@@ -814,11 +814,8 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   GstElement *display_queue;
   GstElement *control_valve;
   gboolean ok;
-  gboolean is_playing;
 
-  is_playing = priv->pipeline_is_playing;
-
-  cheese_camera_stop (camera);
+  g_object_set (G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
 
   control_valve = gst_element_factory_make ("valve", NULL);
   g_object_set (G_OBJECT (effect), "control_valve", control_valve, NULL);
@@ -833,9 +830,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   gst_bin_add_many (GST_BIN (priv->pipeline), control_valve, effect_filter, display_queue, display_element, NULL);
   ok = gst_element_link_many (priv->effects_tee, control_valve, effect_filter, display_queue, display_element, NULL);
 
-  if (is_playing)
-    cheese_camera_play (camera);
-  
+  g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
 }
 
 
