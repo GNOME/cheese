@@ -425,8 +425,8 @@ public class Cheese.MainWindow : Gtk.Window
         thumbnails_bottom.remove (thumb_nav);
       }
       thumbnails_right.add (thumb_nav);
-      thumbnails_right.resize_children ();
       thumbnails_right.show_all ();
+      thumbnails_right.resize_children ();
       thumbnails_bottom.hide_all ();
     }
     else
@@ -438,9 +438,9 @@ public class Cheese.MainWindow : Gtk.Window
         thumbnails_right.remove (thumb_nav);
       }
       thumbnails_bottom.add (thumb_nav);
+      thumbnails_bottom.show_all ();
       thumbnails_bottom.resize_children ();
       thumbnails_right.hide_all ();
-      thumbnails_bottom.show_all ();
     }
 
 	/* handy trick to keep the window to the desired size while not
