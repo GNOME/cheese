@@ -6,6 +6,7 @@ effects_in_files = \
 	dicetv.effect.in \
 	edgetv.effect.in \
 	hulk.effect.in \
+	identity.effect.in \
 	mauve.effect.in \
 	noir.effect.in \
 	optv.effect.in \
