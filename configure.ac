@@ -24,7 +24,7 @@ CFLAGS+=" -DGSEAL_ENABLE"
 GNOME_MAINTAINER_MODE_DEFINES
 GNOME_COMPILE_WARNINGS
 
-GTK_DOC_CHECK(1.11)
+GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
 
 #*******************************************************************************
 # soname

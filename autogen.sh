@@ -17,6 +17,8 @@ which gnome-autogen.sh || {
     exit 1
 }
 
+gtkdocize || exit 1
+
 REQUIRED_AUTOCONF_VERSION=2.57
 REQUIRED_AUTOMAKE_VERSION=1.7
 REQUIRED_INTLTOOL_VERSION=0.40.0
