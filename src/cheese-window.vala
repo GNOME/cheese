@@ -92,15 +92,22 @@ public class Cheese.MainWindow : Gtk.Window
     if (path == null)
       return false;
 
+    if (!thumb_view.path_is_selected (path))
+    {
+      thumb_view.unselect_all ();
+      thumb_view.select_path (path);
+      thumb_view.set_cursor (path, null, false);
+    }
+
     if (event.type == Gdk.EventType.BUTTON_PRESS)
     {
       if (event.button == 3)
       {
-        popup_menu.popup (null, iconview, null, event.button, event.time);
+        popup_menu.popup (null, thumb_view, null, event.button, event.time);
       }
     }
     else
-    if (event.type == Gdk.EventType .2BUTTON _PRESS)
+    if (event.type == Gdk.EventType.2BUTTON_PRESS)
     {
       on_file_open (null);
     }
