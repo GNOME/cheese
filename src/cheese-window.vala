@@ -162,6 +162,19 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
+  internal void on_file_move_to_trash (Gtk.Action action)
+  {
+    string filename;
+
+    filename = thumb_view.get_selected_image ();
+    if (filename == null)
+      return;                    /* Nothing selected. */
+
+    File file_to_trash = File.new_for_path (filename);
+    file_to_trash.trash (null);
+  }
+
+  [CCode (instance_pos = -1)]
   internal void on_file_save_as (Gtk.Action action)
   {
     string            filename, basename;
@@ -409,12 +422,12 @@ public class Cheese.MainWindow : Gtk.Window
     is_wide_mode              = wide_mode;
     conf.gconf_prop_wide_mode = wide_mode;
 
-	/* keep the viewport to its current size while rearranging the ui,
-	 * so that thumbview moves from right to bottom and viceversa
-	 * while the rest of the window stays unchanged */
-	Gtk.Allocation alloc;
-	viewport_widget.get_allocation (out alloc);
-	viewport_widget.set_size_request (alloc.width, alloc.height);
+    /* keep the viewport to its current size while rearranging the ui,
+     * so that thumbview moves from right to bottom and viceversa
+     * while the rest of the window stays unchanged */
+    Gtk.Allocation alloc;
+    viewport_widget.get_allocation (out alloc);
+    viewport_widget.set_size_request (alloc.width, alloc.height);
 
     if (is_wide_mode)
     {
@@ -443,14 +456,14 @@ public class Cheese.MainWindow : Gtk.Window
       thumbnails_right.hide_all ();
     }
 
-	/* handy trick to keep the window to the desired size while not
-	 * requesting a fixed one. This way the window is resized to its
-	 * natural size (particularly with the constraints imposed by the
-	 * viewport, see above) but can still be shrinked down */
+    /* handy trick to keep the window to the desired size while not
+     * requesting a fixed one. This way the window is resized to its
+     * natural size (particularly with the constraints imposed by the
+     * viewport, see above) but can still be shrinked down */
     Gtk.Requisition req;
-	this.size_request (out req);
-	this.resize (req.width, req.height);
-	viewport_widget.set_size_request (-1,-1);
+    this.size_request (out req);
+    this.resize (req.width, req.height);
+    viewport_widget.set_size_request (-1, -1);
   }
 
   /* To make sure that the layout manager manages the entire stage. */
@@ -788,17 +801,18 @@ public class Cheese.MainWindow : Gtk.Window
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
     this.add (main_vbox);
-	main_vbox.show_all ();
+    main_vbox.show_all ();
 
-	/* needed for the sizing tricks in set_wide_mode (allocation is 0
-	 * if the widget is not realized */
-	viewport_widget.realize();
+    /* needed for the sizing tricks in set_wide_mode (allocation is 0
+     * if the widget is not realized */
+    viewport_widget.realize ();
 
-	/* call set_active instead of our set_wide_mode so that the toggle
-	 * action state is updated */
+    /* call set_active instead of our set_wide_mode so that the toggle
+     * action state is updated */
     wide_mode_action.set_active (conf.gconf_prop_wide_mode);
-	/* apparently set_active doesn't emit toggled nothing has
-	 * changed, do it manually */
-	if (!conf.gconf_prop_wide_mode) wide_mode_action.toggled ();
+
+    /* apparently set_active doesn't emit toggled nothing has
+     * changed, do it manually */
+    if (!conf.gconf_prop_wide_mode) wide_mode_action.toggled ();
   }
 }
