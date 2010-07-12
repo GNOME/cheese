@@ -36,6 +36,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.ToggleButton effects_toggle_button;
   private Gtk.Button       leave_fullscreen_button;
   private Gtk.HBox         buttons_area;
+  private Gtk.Menu         popup_menu;
 
   private Clutter.Stage     viewport;
   private Clutter.Box       viewport_layout;
@@ -82,17 +83,41 @@ public class Cheese.MainWindow : Gtk.Window
     destroy ();
   }
 
+  internal bool on_thumbnail_mouse_button_press (Gtk.Widget      iconview,
+                                                 Gdk.EventButton event)
+  {
+    Gtk.TreePath path;
+    path = thumb_view.get_path_at_pos ((int) event.x, (int) event.y);
+
+    if (path == null)
+      return false;
+
+    if (event.type == Gdk.EventType.BUTTON_PRESS)
+    {
+      if (event.button == 3)
+      {
+        popup_menu.popup (null, iconview, null, event.button, event.time);
+      }
+    }
+    else
+    if (event.type == Gdk.EventType .2BUTTON _PRESS)
+    {
+      on_file_open (null);
+    }
+
+    return false;
+  }
+
   [CCode (instance_pos = -1)]
-  internal void on_file_open (Gtk.Action action)
+  internal void on_file_open (Gtk.Action ? action)
   {
     string filename, uri;
 
     Gdk.Screen screen;
-
-
     filename = thumb_view.get_selected_image ();
+
     if (filename == null)
-      return;           /* Nothing selected. */
+      return;                     /* Nothing selected. */
 
     uri = GLib.Filename.to_uri (filename);
 
@@ -236,7 +261,7 @@ public class Cheese.MainWindow : Gtk.Window
   {
     switch (this.current_mode)
     {
-      case MediaMode.PHOTO:
+      case MediaMode.PHOTO :
         photo_mode_action.sensitive = true;
         video_mode_action.sensitive = false;
         burst_mode_action.sensitive = false;
@@ -698,6 +723,7 @@ public class Cheese.MainWindow : Gtk.Window
     effects_toggle_button             = (Gtk.ToggleButton)gtk_builder.get_object ("effects_toggle_button");
     leave_fullscreen_button           = (Gtk.Button)gtk_builder.get_object ("leave_fullscreen_button");
     buttons_area                      = (Gtk.HBox)gtk_builder.get_object ("buttons_area");
+    popup_menu                        = (Gtk.Menu)gtk_builder.get_object ("thumbnail_popup");
 
     take_photo_action        = (Gtk.Action)gtk_builder.get_object ("take_photo");
     take_video_action        = (Gtk.Action)gtk_builder.get_object ("take_video");
@@ -725,6 +751,7 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout_manager = (Clutter.BinLayout)clutter_builder.get_object ("viewport_layout_manager");
     countdown_layer         = (Clutter.Text)clutter_builder.get_object ("countdown_layer");
     background_layer        = (Clutter.Rectangle)clutter_builder.get_object ("background");
+
     viewport.add_actor (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
@@ -739,6 +766,8 @@ public class Cheese.MainWindow : Gtk.Window
 
     thumb_view = new Cheese.ThumbView ();
     thumb_nav  = new Eog.ThumbNav (thumb_view, false);
+
+    thumb_view.button_press_event.connect (on_thumbnail_mouse_button_press);
 
     viewport.show_all ();
 

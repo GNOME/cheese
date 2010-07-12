@@ -250,14 +250,16 @@
           <menuitem action="about"/>
         </menu>
       </menubar>
-      <menubar name="thumbnail_popup">
+      <popup name="thumbnail_popup" id="thumbnail_popup">
         <menuitem action="open"/>
         <separator/>
         <menuitem action="save_as"/>
         <separator/>
         <menuitem action="move_to_trash"/>
         <menuitem action="delete"/>
-      </menubar>
+      </popup>
     </ui>
+  </object>
+  <object class="GtkMenu" id="thumbnail_popup" constructor="menu_ui_man">
   </object>
 </interface>
