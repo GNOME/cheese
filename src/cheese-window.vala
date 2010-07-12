@@ -495,7 +495,7 @@ public class Cheese.MainWindow : Gtk.Window
       if (!is_recording)
       {
         camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
-        take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>;
+        take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
         take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
         this.is_recording = true;
         this.disable_mode_change ();
