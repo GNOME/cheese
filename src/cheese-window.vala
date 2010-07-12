@@ -56,7 +56,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.Action       video_mode_action;
   private Gtk.Action       burst_mode_action;
   private Gtk.ToggleAction effects_toggle_action;
-  private Gtk.Action       wide_mode_action;
+  private Gtk.ToggleAction wide_mode_action;
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
   private Gtk.Action       effects_page_next_action;
@@ -404,18 +404,17 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
-  private void set_wide_mode (bool wide_mode, bool initialize = false)
+  private void set_wide_mode (bool wide_mode)
   {
     is_wide_mode              = wide_mode;
     conf.gconf_prop_wide_mode = wide_mode;
-    if (!initialize)
-    {
-      /* Sets requested size of the viewport_widget to be it's current size
-       * So it does not grow smaller with each toggle */
-      Gtk.Allocation alloc;
-      viewport_widget.get_allocation (out alloc);
-      viewport_widget.set_size_request (alloc.width, alloc.height);
-    }
+
+	/* keep the viewport to its current size while rearranging the ui,
+	 * so that thumbview moves from right to bottom and viceversa
+	 * while the rest of the window stays unchanged */
+	Gtk.Allocation alloc;
+	viewport_widget.get_allocation (out alloc);
+	viewport_widget.set_size_request (alloc.width, alloc.height);
 
     if (is_wide_mode)
     {
@@ -444,14 +443,14 @@ public class Cheese.MainWindow : Gtk.Window
       thumbnails_bottom.show_all ();
     }
 
-    if (!initialize)
-    {
-      /* Makes sure that the window is the size it ought to be, and no bigger/smaller
-       * Used to make sure that the viewport_widget does not keep growing with each toggle */
-      Gtk.Requisition req;
-      this.size_request (out req);
-      this.resize (req.width, req.height);
-    }
+	/* handy trick to keep the window to the desired size while not
+	 * requesting a fixed one. This way the window is resized to its
+	 * natural size (particularly with the constraints imposed by the
+	 * viewport, see above) but can still be shrinked down */
+    Gtk.Requisition req;
+	this.size_request (out req);
+	this.resize (req.width, req.height);
+	viewport_widget.set_size_request (-1,-1);
   }
 
   /* To make sure that the layout manager manages the entire stage. */
@@ -740,7 +739,7 @@ public class Cheese.MainWindow : Gtk.Window
     burst_mode_action        = (Gtk.Action)gtk_builder.get_object ("burst_mode");
     effects_toggle_action    = (Gtk.ToggleAction)gtk_builder.get_object ("effects_toggle");
     countdown_action         = (Gtk.Action)gtk_builder.get_object ("countdown");
-    wide_mode_action         = (Gtk.Action)gtk_builder.get_object ("wide_mode");
+    wide_mode_action         = (Gtk.ToggleAction)gtk_builder.get_object ("wide_mode");
     effects_page_next_action = (Gtk.Action)gtk_builder.get_object ("effects_page_next");
     effects_page_prev_action = (Gtk.Action)gtk_builder.get_object ("effects_page_prev");
 
@@ -788,9 +787,20 @@ public class Cheese.MainWindow : Gtk.Window
     }
     camera.play ();
 
-    set_wide_mode (conf.gconf_prop_wide_mode, true);
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
     this.add (main_vbox);
+	main_vbox.show_all ();
+
+	/* needed for the sizing tricks in set_wide_mode (allocation is 0
+	 * if the widget is not realized */
+	viewport_widget.realize();
+
+	/* call set_active instead of our set_wide_mode so that the toggle
+	 * action state is updated */
+    wide_mode_action.set_active (conf.gconf_prop_wide_mode);
+	/* apparently set_active doesn't emit toggled nothing has
+	 * changed, do it manually */
+	if (!conf.gconf_prop_wide_mode) wide_mode_action.toggled ();
   }
 }
