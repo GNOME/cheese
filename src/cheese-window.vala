@@ -775,8 +775,6 @@ public class Cheese.MainWindow : Gtk.Window
 
     thumb_view.button_press_event.connect (on_thumbnail_mouse_button_press);
 
-    viewport.show_all ();
-
     try {
       camera.setup (conf.gconf_prop_camera);
     }
