@@ -2,14 +2,42 @@
 <interface>
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
-  <object class="GtkAdjustment" id="adjustment1">
+  <object class="GtkAdjustment" id="brightness_adjustment">
     <property name="value">2</property>
     <property name="lower">3</property>
     <property name="upper">100</property>
     <property name="step_increment">1</property>
     <property name="page_increment">10</property>
   </object>
-  <object class="GtkAdjustment" id="adjustment2">
+  <object class="GtkAdjustment" id="contrast_adjustment">
+    <property name="value">2</property>
+    <property name="lower">3</property>
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="hue_adjustment">
+    <property name="value">2</property>
+    <property name="lower">3</property>
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="saturation_adjustment">
+    <property name="value">2</property>
+    <property name="lower">3</property>
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="burst_count_adjustment">
+    <property name="value">2</property>
+    <property name="lower">3</property>
+    <property name="upper">100</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
+  <object class="GtkAdjustment" id="burst_delay_adjustment">
     <property name="lower">1</property>
     <property name="upper">100</property>
     <property name="step_increment">1</property>
@@ -231,6 +259,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="draw_value">False</property>
+                            <property name="adjustment">brightness_adjustment</property>
                           </object>
                           <packing>
                             <property name="position">0</property>
@@ -241,6 +270,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="draw_value">False</property>
+                            <property name="adjustment">contrast_adjustment</property>
                           </object>
                           <packing>
                             <property name="position">1</property>
@@ -251,6 +281,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="draw_value">False</property>
+                            <property name="adjustment">saturation_adjustment</property>
                           </object>
                           <packing>
                             <property name="position">2</property>
@@ -261,6 +292,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="draw_value">False</property>
+                            <property name="adjustment">hue_adjustment</property>
                           </object>
                           <packing>
                             <property name="position">3</property>
@@ -355,7 +387,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
-                            <property name="adjustment">adjustment1</property>
+                            <property name="adjustment">burst_count_adjustment</property>
                           </object>
                           <packing>
                             <property name="position">0</property>
@@ -366,7 +398,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
-                            <property name="adjustment">adjustment2</property>
+                            <property name="adjustment">burst_delay_adjustment</property>
                           </object>
                           <packing>
                             <property name="position">1</property>
@@ -406,13 +438,14 @@
             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="button1">
+              <object class="GtkButton" id="close">
                 <property name="label">gtk-close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="use_stock">True</property>
+                <signal name="clicked" handler="cheese_preferences_dialog_on_dialog_close" />
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -430,7 +463,7 @@
       </object>
     </child>
     <action-widgets>
-      <action-widget response="0">button1</action-widget>
+      <action-widget response="-7">close</action-widget>
     </action-widgets>
   </object>
 </interface>

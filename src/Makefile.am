@@ -39,6 +39,7 @@ cheese_SOURCES = \
 	cheese-window.vala \
 	cheese-countdown.vala \
 	cheese-effects-manager.vala \
+	cheese-preferences.vala \
 	thumbview/cheese-gconf.c \
 	thumbview/cheese-thumb-view.c \
 	thumbview/eog-thumb-nav.c \

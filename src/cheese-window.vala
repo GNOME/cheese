@@ -69,11 +69,12 @@ public class Cheese.MainWindow : Gtk.Window
 
   private Gtk.Button[] buttons;
 
-  private Cheese.Camera         camera;
-  private Cheese.FileUtil       fileutil;
-  private Cheese.Flash          flash;
-  private Cheese.GConf          conf;
-  private Cheese.EffectsManager effects_manager;
+  private Cheese.Camera            camera;
+  private Cheese.FileUtil          fileutil;
+  private Cheese.Flash             flash;
+  private Cheese.GConf             conf;
+  private Cheese.EffectsManager    effects_manager;
+  private Cheese.PreferencesDialog preferences_dialog;
 
   private Cheese.Effect selected_effect;
 
@@ -81,6 +82,12 @@ public class Cheese.MainWindow : Gtk.Window
   internal void on_quit (Gtk.Action action)
   {
     destroy ();
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_preferences_dialog (Gtk.Action action)
+  {
+    preferences_dialog.show ();
   }
 
   internal bool on_thumbnail_mouse_button_press (Gtk.Widget      iconview,
@@ -107,7 +114,7 @@ public class Cheese.MainWindow : Gtk.Window
       }
     }
     else
-    if (event.type == Gdk.EventType.2BUTTON_PRESS)
+    if (event.type == Gdk.EventType .2BUTTON _PRESS)
     {
       on_file_open (null);
     }
@@ -814,5 +821,7 @@ public class Cheese.MainWindow : Gtk.Window
     /* apparently set_active doesn't emit toggled nothing has
      * changed, do it manually */
     if (!conf.gconf_prop_wide_mode) wide_mode_action.toggled ();
+
+    preferences_dialog = new Cheese.PreferencesDialog (camera, conf);
   }
 }
