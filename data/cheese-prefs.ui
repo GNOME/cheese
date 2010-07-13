@@ -128,6 +128,7 @@
                         <child>
                           <object class="GtkComboBox" id="camera_combo_box">
                             <property name="visible">True</property>
+                            <signal name="changed" handler="cheese_preferences_dialog_on_source_change" />
                           </object>
                           <packing>
                             <property name="position">0</property>

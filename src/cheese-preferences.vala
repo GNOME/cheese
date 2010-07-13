@@ -40,7 +40,36 @@ internal class Cheese.PreferencesDialog : GLib.Object
     this.burst_repeat_spin = (Gtk.SpinButton)builder.get_object ("burst_repeat");
     this.burst_delay_spin  = (Gtk.SpinButton)builder.get_object ("burst_delay");
 
+    initialize_camera_devices ();
     initialize_values_from_conf ();
+  }
+
+  private void initialize_camera_devices ()
+  {
+    Cheese.CameraDevice   dev;
+    TreeIter              active_dev;
+    unowned GLib.PtrArray devices = camera.get_camera_devices ();
+    ListStore             model   = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
+
+    source_combo.model = model;
+
+    for (int i = 0; i < devices.len; i++)
+    {
+      TreeIter iter;
+      dev = (Cheese.CameraDevice)devices.index (i);
+      model.append (out iter);
+      model.set (iter,
+                 0, dev.get_name () + " (" + dev.get_device_file () + " )",
+                 1, dev);
+      if (camera.get_selected_device ().get_device_file () == dev.get_device_file ())
+      {
+        source_combo.set_active_iter (iter);
+      }
+    }
+
+    CellRendererText cell = new CellRendererText ();
+    source_combo.pack_start (cell, false);
+    source_combo.set_attributes (cell, "text", 0);
   }
 
   private void initialize_values_from_conf ()
@@ -52,6 +81,21 @@ internal class Cheese.PreferencesDialog : GLib.Object
 
     burst_repeat_spin.value = conf.gconf_prop_burst_repeat;
     burst_delay_spin.value  = conf.gconf_prop_burst_delay / 1000;
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_source_change (Gtk.ComboBox combo)
+  {
+    TreeIter iter;
+
+    Cheese.CameraDevice dev;
+
+    combo.get_active_iter (out iter);
+    combo.model.get (iter, 1, out dev);
+    camera.set_device_by_dev_file (dev.get_device_file ());
+    camera.switch_camera_device ();
+
+    conf.gconf_prop_camera = dev.get_device_file ();
   }
 
   [CCode (instance_pos = -1)]
