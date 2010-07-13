@@ -182,6 +182,35 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
+  internal void on_file_move_to_trash_all (Gtk.Action action)
+  {
+    try {
+        File file_to_trash;
+        FileInfo file_info;
+        var directory = File.new_for_path (fileutil.get_photo_path ());
+        var enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+
+        while ((file_info = enumerator.next_file (null)) != null) {
+          file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
+          file_to_trash.trash (null);
+        }
+
+        directory = File.new_for_path (fileutil.get_video_path ());
+        enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+
+        while ((file_info = enumerator.next_file (null)) != null) {
+          file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
+          file_to_trash.trash (null);
+        }
+
+    } catch (Error e) {
+        warning ("Error: %s\n", e.message);
+        return;
+    }
+
+  }
+
+  [CCode (instance_pos = -1)]
   internal void on_file_save_as (Gtk.Action action)
   {
     string            filename, basename;
