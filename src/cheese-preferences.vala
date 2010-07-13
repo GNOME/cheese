@@ -51,6 +51,30 @@ internal class Cheese.PreferencesDialog : GLib.Object
     this.dialog.hide_all ();
   }
 
+  [CCode (instance_pos = -1)]
+  internal void on_brightness_change (Gtk.Adjustment adjustment)
+  {
+    this.camera.set_balance_property ("brightness", adjustment.value);
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_contrast_change (Gtk.Adjustment adjustment)
+  {
+    this.camera.set_balance_property ("contrast", adjustment.value);
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_hue_change (Gtk.Adjustment adjustment)
+  {
+    this.camera.set_balance_property ("hue", adjustment.value);
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_saturation_change (Gtk.Adjustment adjustment)
+  {
+    this.camera.set_balance_property ("saturation", adjustment.value);
+  }
+
   public void show ()
   {
     this.dialog.show_all ();

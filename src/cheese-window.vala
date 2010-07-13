@@ -114,7 +114,7 @@ public class Cheese.MainWindow : Gtk.Window
       }
     }
     else
-    if (event.type == Gdk.EventType .2BUTTON _PRESS)
+    if (event.type == Gdk.EventType.2BUTTON_PRESS)
     {
       on_file_open (null);
     }
