@@ -285,7 +285,8 @@ public class Cheese.MainWindow : Gtk.Window
     Gtk.AboutDialog about_dialog;
     about_dialog         = (Gtk.AboutDialog)gtk_builder.get_object ("aboutdialog");
     about_dialog.version = Config.VERSION;
-    about_dialog.show_all ();
+    about_dialog.run ();
+	about_dialog.destroy ();
   }
 
   [CCode (instance_pos = -1)]
