@@ -15,10 +15,8 @@ internal class Cheese.PreferencesDialog : GLib.Object
   private Gtk.Adjustment hue_adjustment;
   private Gtk.Adjustment saturation_adjustment;
 
-  private Gtk.SpinButton burst_count_spin;
+  private Gtk.SpinButton burst_repeat_spin;
   private Gtk.SpinButton burst_delay_spin;
-
-  private Gtk.Button close_button;
 
   public PreferencesDialog (Cheese.Camera camera, Cheese.GConf conf)
   {
@@ -39,10 +37,21 @@ internal class Cheese.PreferencesDialog : GLib.Object
     this.resolution_combo = (Gtk.ComboBox)builder.get_object ("resolution_combo_box");
     this.source_combo     = (Gtk.ComboBox)builder.get_object ("camera_combo_box");
 
-    this.burst_count_spin = (Gtk.SpinButton)builder.get_object ("burst_count");
-    this.burst_delay_spin = (Gtk.SpinButton)builder.get_object ("burst_delay");
+    this.burst_repeat_spin = (Gtk.SpinButton)builder.get_object ("burst_repeat");
+    this.burst_delay_spin  = (Gtk.SpinButton)builder.get_object ("burst_delay");
 
-    this.close_button = (Gtk.Button)builder.get_object ("close");
+    initialize_values_from_conf ();
+  }
+
+  private void initialize_values_from_conf ()
+  {
+    brightness_adjustment.value = conf.gconf_prop_brightness;
+    contrast_adjustment.value   = conf.gconf_prop_contrast;
+    hue_adjustment.value        = conf.gconf_prop_hue;
+    saturation_adjustment.value = conf.gconf_prop_saturation;
+
+    burst_repeat_spin.value = conf.gconf_prop_burst_repeat;
+    burst_delay_spin.value  = conf.gconf_prop_burst_delay / 1000;
   }
 
   [CCode (instance_pos = -1)]
@@ -52,27 +61,43 @@ internal class Cheese.PreferencesDialog : GLib.Object
   }
 
   [CCode (instance_pos = -1)]
+  internal void on_burst_repeat_change (Gtk.SpinButton spinbutton)
+  {
+    conf.gconf_prop_burst_repeat = (int) spinbutton.value;
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_burst_delay_change (Gtk.SpinButton spinbutton)
+  {
+    conf.gconf_prop_burst_delay = (int) spinbutton.value * 1000;
+  }
+
+  [CCode (instance_pos = -1)]
   internal void on_brightness_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("brightness", adjustment.value);
+    conf.gconf_prop_brightness = adjustment.value;
   }
 
   [CCode (instance_pos = -1)]
   internal void on_contrast_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("contrast", adjustment.value);
+    conf.gconf_prop_contrast = adjustment.value;
   }
 
   [CCode (instance_pos = -1)]
   internal void on_hue_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("hue", adjustment.value);
+    conf.gconf_prop_hue = adjustment.value;
   }
 
   [CCode (instance_pos = -1)]
   internal void on_saturation_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("saturation", adjustment.value);
+    conf.gconf_prop_saturation = adjustment.value;
   }
 
   public void show ()

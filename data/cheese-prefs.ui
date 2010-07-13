@@ -392,6 +392,7 @@
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="adjustment">burst_count_adjustment</property>
+                            <signal name="value-changed" handler="cheese_preferences_dialog_on_burst_repeat_change" />
                           </object>
                           <packing>
                             <property name="position">0</property>
@@ -403,6 +404,7 @@
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="adjustment">burst_delay_adjustment</property>
+                            <signal name="value-changed" handler="cheese_preferences_dialog_on_burst_delay_change" />
                           </object>
                           <packing>
                             <property name="position">1</property>
