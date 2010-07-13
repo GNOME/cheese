@@ -187,8 +187,8 @@ public class Cheese.MainWindow : Gtk.Window
     try {
         File file_to_trash;
         FileInfo file_info;
-        var directory = File.new_for_path (fileutil.get_photo_path ());
-        var enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+        File directory = File.new_for_path (fileutil.get_photo_path ());
+        FileEnumerator enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
 
         while ((file_info = enumerator.next_file (null)) != null) {
           file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
