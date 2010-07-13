@@ -138,6 +138,7 @@
                           <object class="GtkComboBox" id="resolution_combo_box">
                             <property name="visible">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
+                            <signal name="changed" handler="cheese_preferences_dialog_on_resolution_change" />
                           </object>
                           <packing>
                             <property name="position">1</property>

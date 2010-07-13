@@ -70,6 +70,35 @@ internal class Cheese.PreferencesDialog : GLib.Object
     CellRendererText cell = new CellRendererText ();
     source_combo.pack_start (cell, false);
     source_combo.set_attributes (cell, "text", 0);
+
+    setup_resolutions_for_device (camera.get_selected_device ());
+  }
+
+  private void setup_resolutions_for_device (Cheese.CameraDevice device)
+  {
+    unowned List<VideoFormat>  formats = device.get_format_list ();
+    ListStore                  model   = new ListStore (2, typeof (string), typeof (Cheese.VideoFormat));
+    unowned Cheese.VideoFormat format;
+
+    resolution_combo.model = model;
+
+    for (int i = 0; i < formats.length (); i++)
+    {
+      TreeIter iter;
+      format = formats<VideoFormat>.nth (i).data;
+      model.append (out iter);
+      model.set (iter,
+                 0, format.width.to_string () + " x " + format.height.to_string (),
+                 1, format);
+      if (camera.get_current_video_format ().width == format.width &&
+          camera.get_current_video_format ().height == format.height)
+      {
+        resolution_combo.set_active_iter (iter);
+      }
+    }
+    CellRendererText cell = new CellRendererText ();
+    resolution_combo.pack_start (cell, false);
+    resolution_combo.set_attributes (cell, "text", 0);
   }
 
   private void initialize_values_from_conf ()
@@ -94,8 +123,23 @@ internal class Cheese.PreferencesDialog : GLib.Object
     combo.model.get (iter, 1, out dev);
     camera.set_device_by_dev_file (dev.get_device_file ());
     camera.switch_camera_device ();
-
+    setup_resolutions_for_device (camera.get_selected_device ());
     conf.gconf_prop_camera = dev.get_device_file ();
+  }
+
+  [CCode (instance_pos = -1)]
+  internal void on_resolution_change (Gtk.ComboBox combo)
+  {
+    TreeIter iter;
+
+    unowned Cheese.VideoFormat format;
+
+    combo.get_active_iter (out iter);
+    combo.model.get (iter, 1, out format);
+    camera.set_video_format (format);
+
+    conf.gconf_prop_x_resolution = format.width;
+    conf.gconf_prop_y_resolution = format.height;
   }
 
   [CCode (instance_pos = -1)]
