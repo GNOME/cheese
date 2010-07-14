@@ -40,8 +40,24 @@ internal class Cheese.PreferencesDialog : GLib.Object
     this.burst_repeat_spin = (Gtk.SpinButton)builder.get_object ("burst_repeat");
     this.burst_delay_spin  = (Gtk.SpinButton)builder.get_object ("burst_delay");
 
+    setup_combo_box_models ();
     initialize_camera_devices ();
     initialize_values_from_conf ();
+  }
+
+  private void setup_combo_box_models ()
+  {
+    ListStore        camera_model     = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
+    ListStore        resolution_model = new ListStore (2, typeof (string), typeof (Cheese.VideoFormat));
+    CellRendererText cell             = new CellRendererText ();
+
+    resolution_combo.model = resolution_model;
+    resolution_combo.pack_start (cell, false);
+    resolution_combo.set_attributes (cell, "text", 0);
+
+    source_combo.model = camera_model;
+    source_combo.pack_start (cell, false);
+    source_combo.set_attributes (cell, "text", 0);
   }
 
   private void initialize_camera_devices ()
@@ -49,9 +65,9 @@ internal class Cheese.PreferencesDialog : GLib.Object
     Cheese.CameraDevice   dev;
     TreeIter              active_dev;
     unowned GLib.PtrArray devices = camera.get_camera_devices ();
-    ListStore             model   = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
+    ListStore             model;
 
-    source_combo.model = model;
+    model = (ListStore) source_combo.model;
 
     for (int i = 0; i < devices.len; i++)
     {
@@ -67,20 +83,20 @@ internal class Cheese.PreferencesDialog : GLib.Object
       }
     }
 
-    CellRendererText cell = new CellRendererText ();
-    source_combo.pack_start (cell, false);
-    source_combo.set_attributes (cell, "text", 0);
-
-    setup_resolutions_for_device (camera.get_selected_device ());
+/*
+ * FIXME: Find a way to block handlers from being fired when initializing combobox
+ *    setup_resolutions_for_device (camera.get_selected_device ());
+ */
   }
 
   private void setup_resolutions_for_device (Cheese.CameraDevice device)
   {
     unowned List<VideoFormat>  formats = device.get_format_list ();
-    ListStore                  model   = new ListStore (2, typeof (string), typeof (Cheese.VideoFormat));
+    ListStore                  model;
     unowned Cheese.VideoFormat format;
 
-    resolution_combo.model = model;
+    model = (ListStore) resolution_combo.model;
+    model.clear ();
 
     for (int i = 0; i < formats.length (); i++)
     {
@@ -96,9 +112,6 @@ internal class Cheese.PreferencesDialog : GLib.Object
         resolution_combo.set_active_iter (iter);
       }
     }
-    CellRendererText cell = new CellRendererText ();
-    resolution_combo.pack_start (cell, false);
-    resolution_combo.set_attributes (cell, "text", 0);
   }
 
   private void initialize_values_from_conf ()
