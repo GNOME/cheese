@@ -461,6 +461,20 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   return TRUE;
 }
 
+static void
+cheese_camera_relink_camera_source_bin (CheeseCamera *camera)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+
+  gst_element_unlink (priv->camera_source_bin, priv->camera_tee);  
+  gst_bin_remove (GST_BIN (priv->video_display_bin), priv->camera_source_bin);
+
+  cheese_camera_create_camera_source_bin (camera);
+
+  gst_bin_add (GST_BIN (priv->video_display_bin), priv->camera_source_bin);
+  gst_element_link (priv->camera_source_bin, priv->camera_tee);
+}
+
 static gboolean
 cheese_camera_create_photo_save_bin (CheeseCamera *camera, GError **error)
 {
@@ -635,10 +649,6 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
 
   gboolean was_recording        = FALSE;
   gboolean pipeline_was_playing = FALSE;
-  gboolean disp_bin_created     = FALSE;
-  gboolean disp_bin_added       = FALSE;
-  gboolean disp_bin_linked      = FALSE;
-  GError  *error                = NULL;
 
   if (priv->is_recording)
   {
@@ -652,26 +662,7 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
     pipeline_was_playing = TRUE;
   }
 
-  gst_bin_remove (GST_BIN (priv->pipeline), priv->video_display_bin);
-
-  disp_bin_created = cheese_camera_create_video_display_bin (camera, &error);
-  if (!disp_bin_created)
-  {
-    return FALSE;
-  }
-  disp_bin_added = gst_bin_add (GST_BIN (priv->pipeline), priv->video_display_bin);
-  if (!disp_bin_added)
-  {
-    gst_object_sink (priv->video_display_bin);
-    return FALSE;
-  }
-
-  disp_bin_linked = gst_element_link (priv->video_display_bin, priv->photo_save_bin);
-  if (!disp_bin_linked)
-  {
-    gst_bin_remove (GST_BIN (priv->pipeline), priv->video_display_bin);
-    return FALSE;
-  }
+  cheese_camera_relink_camera_source_bin (camera);
 
   if (pipeline_was_playing)
   {
