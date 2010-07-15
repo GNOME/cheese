@@ -808,6 +808,8 @@ public class Cheese.MainWindow : Gtk.Window
     countdown_layer         = (Clutter.Text)clutter_builder.get_object ("countdown_layer");
     background_layer        = (Clutter.Rectangle)clutter_builder.get_object ("background");
 
+    video_preview.keep_aspect_ratio = true;
+    video_preview.request_mode = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
     viewport.add_actor (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
