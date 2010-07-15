@@ -850,6 +850,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       Clutter.Text error_layer = (Clutter.Text)clutter_builder.get_object ("error_layer");
       video_preview.hide ();
+      error_layer.text = _("No device found");
       error_layer.show ();
       GLib.SList<weak GLib.Object> objects = gtk_builder.get_objects ();
 
