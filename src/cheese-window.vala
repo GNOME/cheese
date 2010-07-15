@@ -185,29 +185,30 @@ public class Cheese.MainWindow : Gtk.Window
   internal void on_file_move_to_trash_all (Gtk.Action action)
   {
     try {
-        File file_to_trash;
-        FileInfo file_info;
-        File directory = File.new_for_path (fileutil.get_photo_path ());
-        FileEnumerator enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+      File           file_to_trash;
+      FileInfo       file_info;
+      File           directory  = File.new_for_path (fileutil.get_photo_path ());
+      FileEnumerator enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
 
-        while ((file_info = enumerator.next_file (null)) != null) {
-          file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
-          file_to_trash.trash (null);
-        }
+      while ((file_info = enumerator.next_file (null)) != null)
+      {
+        file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
+        file_to_trash.trash (null);
+      }
 
-        directory = File.new_for_path (fileutil.get_video_path ());
-        enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+      directory  = File.new_for_path (fileutil.get_video_path ());
+      enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
 
-        while ((file_info = enumerator.next_file (null)) != null) {
-          file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
-          file_to_trash.trash (null);
-        }
-
-    } catch (Error e) {
-        warning ("Error: %s\n", e.message);
-        return;
+      while ((file_info = enumerator.next_file (null)) != null)
+      {
+        file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
+        file_to_trash.trash (null);
+      }
+    }catch (Error e)
+    {
+      warning ("Error: %s\n", e.message);
+      return;
     }
-
   }
 
   [CCode (instance_pos = -1)]
@@ -809,7 +810,7 @@ public class Cheese.MainWindow : Gtk.Window
     background_layer        = (Clutter.Rectangle)clutter_builder.get_object ("background");
 
     video_preview.keep_aspect_ratio = true;
-    video_preview.request_mode = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
+    video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
     viewport.add_actor (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
@@ -827,18 +828,6 @@ public class Cheese.MainWindow : Gtk.Window
 
     thumb_view.button_press_event.connect (on_thumbnail_mouse_button_press);
 
-    try {
-      camera.setup (conf.gconf_prop_camera);
-    }
-    catch (Error err)
-    {
-      warning ("Error: %s\n", err.message);
-      return;
-    }
-    camera.play ();
-
-    set_mode (MediaMode.PHOTO);
-    setup_effects_selector ();
     this.add (main_vbox);
     main_vbox.show_all ();
 
@@ -854,6 +843,54 @@ public class Cheese.MainWindow : Gtk.Window
      * changed, do it manually */
     if (!conf.gconf_prop_wide_mode) wide_mode_action.toggled ();
 
+    try {
+      camera.setup (conf.gconf_prop_camera);
+    }
+    catch (Error err)
+    {
+      Clutter.Text error_layer = (Clutter.Text)clutter_builder.get_object ("error_layer");
+      video_preview.hide ();
+      error_layer.show ();
+      GLib.SList<weak GLib.Object> objects = gtk_builder.get_objects ();
+
+      /* Keep only these actions sensitive. */
+      string active_actions[11] = { "cheese_action",
+                                    "edit_action",
+                                    "help_action",
+                                    "quit",
+                                    "help_contents",
+                                    "about",
+                                    "open",
+                                    "save_as",
+                                    "move_to_trash",
+                                    "delete",
+                                    "move_all_to_trash"};
+
+      /* Gross hack because Vala's `in` operator doesn't really work */
+      bool flag;
+      foreach (GLib.Object obj in objects)
+      {
+        flag = false;
+        if (obj is Gtk.Action)
+        {
+          Gtk.Action action = (Gtk.Action)obj;
+          foreach (string s in active_actions)
+          {
+            if (action.name == s)
+            {
+              flag = true;
+            }
+          }
+          if (!flag)
+            ((Gtk.Action)obj).sensitive = false;
+        }
+      }
+      return;
+    }
+    camera.play ();
+
+    set_mode (MediaMode.PHOTO);
+    setup_effects_selector ();
     preferences_dialog = new Cheese.PreferencesDialog (camera, conf);
   }
 }

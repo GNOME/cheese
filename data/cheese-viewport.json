@@ -25,12 +25,22 @@
     "color": "White"
 },
 {
+  "id": "error_layer",
+  "type": "ClutterText",
+  "child::x-align": "CLUTTER_BIN_ALIGNMENT_CENTER",
+  "child::y-align": "CLUTTER_BIN_ALIGNMENT_CENTER",
+  "text": "No device found",
+  "color": "White",
+  "visible": "False"
+},
+{
     "id": "viewport_layout",
     "type": "ClutterBox",
     "children":
     [
       'video_preview',
-      'countdown_layer'
+      'countdown_layer',
+      'error_layer'
     ]
 },
 {
