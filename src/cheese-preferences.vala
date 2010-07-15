@@ -47,15 +47,11 @@ internal class Cheese.PreferencesDialog : GLib.Object
 
   private void setup_combo_box_models ()
   {
-    ListStore        camera_model     = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
-    ListStore        resolution_model = new ListStore (2, typeof (string), typeof (Cheese.VideoFormat));
-    CellRendererText cell             = new CellRendererText ();
+    CellRendererText cell = new CellRendererText ();
 
-    resolution_combo.model = resolution_model;
     resolution_combo.pack_start (cell, false);
     resolution_combo.set_attributes (cell, "text", 0);
 
-    source_combo.model = camera_model;
     source_combo.pack_start (cell, false);
     source_combo.set_attributes (cell, "text", 0);
   }
@@ -64,19 +60,19 @@ internal class Cheese.PreferencesDialog : GLib.Object
   {
     Cheese.CameraDevice   dev;
     TreeIter              active_dev;
-    unowned GLib.PtrArray devices = camera.get_camera_devices ();
-    ListStore             model;
+    unowned GLib.PtrArray devices      = camera.get_camera_devices ();
+    ListStore             camera_model = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
 
-    model = (ListStore) source_combo.model;
+    source_combo.model = camera_model;
 
     for (int i = 0; i < devices.len; i++)
     {
       TreeIter iter;
       dev = (Cheese.CameraDevice)devices.index (i);
-      model.append (out iter);
-      model.set (iter,
-                 0, dev.get_name () + " (" + dev.get_device_file () + " )",
-                 1, dev);
+      camera_model.append (out iter);
+      camera_model.set (iter,
+                        0, dev.get_name () + " (" + dev.get_device_file () + " )",
+                        1, dev);
       if (camera.get_selected_device ().get_device_file () == dev.get_device_file ())
       {
         source_combo.set_active_iter (iter);
@@ -92,20 +88,19 @@ internal class Cheese.PreferencesDialog : GLib.Object
   private void setup_resolutions_for_device (Cheese.CameraDevice device)
   {
     unowned List<VideoFormat>  formats = device.get_format_list ();
-    ListStore                  model;
     unowned Cheese.VideoFormat format;
+    ListStore                  resolution_model = new ListStore (2, typeof (string), typeof (Cheese.VideoFormat));
 
-    model = (ListStore) resolution_combo.model;
-    model.clear ();
+    resolution_combo.model = resolution_model;
 
     for (int i = 0; i < formats.length (); i++)
     {
       TreeIter iter;
       format = formats<VideoFormat>.nth (i).data;
-      model.append (out iter);
-      model.set (iter,
-                 0, format.width.to_string () + " x " + format.height.to_string (),
-                 1, format);
+      resolution_model.append (out iter);
+      resolution_model.set (iter,
+                            0, format.width.to_string () + " x " + format.height.to_string (),
+                            1, format);
       if (camera.get_current_video_format ().width == format.width &&
           camera.get_current_video_format ().height == format.height)
       {
