@@ -18,10 +18,13 @@ effects_in_files = \
 	vertigotv.effect.in \
 	warptv.effect.in
 
-effects_DATA = $(effects_in_files:.effect.in=.effect)
+effects_DATA = \
+	$(effects_in_files:.effect.in=.effect) \
+	README
 
 EXTRA_DIST = \
-	$(effects_in_files)
+	$(effects_in_files) \
+	README
 
 DISTCLEANFILES = \
 	$(effects_DATA)
