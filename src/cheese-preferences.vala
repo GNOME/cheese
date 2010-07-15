@@ -15,6 +15,11 @@ internal class Cheese.PreferencesDialog : GLib.Object
   private Gtk.Adjustment hue_adjustment;
   private Gtk.Adjustment saturation_adjustment;
 
+  private Gtk.Scale brightness_scale;
+  private Gtk.Scale contrast_scale;
+  private Gtk.Scale hue_scale;
+  private Gtk.Scale saturation_scale;
+
   private Gtk.SpinButton burst_repeat_spin;
   private Gtk.SpinButton burst_delay_spin;
 
@@ -33,6 +38,18 @@ internal class Cheese.PreferencesDialog : GLib.Object
     this.contrast_adjustment   = (Gtk.Adjustment)builder.get_object ("contrast_adjustment");
     this.hue_adjustment        = (Gtk.Adjustment)builder.get_object ("hue_adjustment");
     this.saturation_adjustment = (Gtk.Adjustment)builder.get_object ("saturation_adjustment");
+
+    /* Here instead of in cheese-prefs.ui because of https://bugzilla.gnome.org/show_bug.cgi?id=624443 */
+
+    this.brightness_scale = (Gtk.Scale)builder.get_object ("brightness_scale");
+    this.contrast_scale   = (Gtk.Scale)builder.get_object ("contrast_scale");
+    this.hue_scale        = (Gtk.Scale)builder.get_object ("hue_scale");
+    this.saturation_scale = (Gtk.Scale)builder.get_object ("saturation_scale");
+
+    this.brightness_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
+    this.contrast_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
+    this.hue_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
+    this.saturation_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
 
     this.resolution_combo = (Gtk.ComboBox)builder.get_object ("resolution_combo_box");
     this.source_combo     = (Gtk.ComboBox)builder.get_object ("camera_combo_box");
