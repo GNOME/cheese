@@ -2,6 +2,7 @@
  * Copyright © 2007,2008 Jaap Haitsma <jaap@haitsma.org>
  * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
+ * Copyright © 2010 Yuvaraj Pandian T <yuvipanda@yuvi.in>
  *
  * Licensed under the GNU General Public License Version 2
  *

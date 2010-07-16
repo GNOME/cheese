@@ -1,5 +1,5 @@
 /*
- * Copyright © 2010 Yuvaraj Pandian <yuvipanda@gmail.com>
+ * Copyright © 2010 Yuvaraj Pandian T <yuvipanda@yuvi.in>
  * Copyright © 2010 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Filippo Argiolas <filippo.argiolas@gmail.com>
  *

@@ -1,5 +1,5 @@
 /*
- * Copyright © 2010 Yuvaraj Pandian <yuvipanda@gmail.com>
+ * Copyright © 2010 Yuvaraj Pandian T <yuvipanda@yuvi.in>
  *
  * Licensed under the GNU General Public License Version 2
  *
