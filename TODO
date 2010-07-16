@@ -26,7 +26,7 @@ of startup time, particularly link_many for each effect is quite
 expensive because it has to match colorspace caps (but in general, gst
 linking is slow).
 
-Can it be avoided? I doubt so. Can it be postponed? definitely.
+Can it be avoided? I doubt so[1]. Can it be postponed? definitely.
 
 There's no reason to link all the effects at startup, the
 highest priority thing at startup is show the window and put an image
@@ -44,3 +44,10 @@ Obviously all this stuff has to be done async so that the UI doesn't
 ever block waiting for each task to complete. This could be done with a
 separate thread like we did or taking advantage of gstreamer async
 facilities (GstBus, GstMessages) or, probably, with a mix of the two.
+
+1. gst_element_link_many is quite slow, a good amount of performance can
+be gained using _link_pads or _link_pads_full.
+The latter, from 0.10.30, can avoid checking if the elements are in the
+same bin if we already know they are (and we know it, we just called
+add_many) or it can avoid caps matching checks if we already know that
+caps are compatible.
