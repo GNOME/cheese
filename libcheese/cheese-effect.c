@@ -1,8 +1,27 @@
+/*
+ * Copyright © 2010 Yuvaraj Pandian <yuvipanda@gmail.com>
+ *
+ * Licensed under the GNU General Public License Version 2
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include <gst/gst.h>
 
 #include "cheese-effect.h"
 
-enum 
+enum
 {
   PROP_O,
   PROP_NAME,
@@ -25,10 +44,10 @@ struct _CheeseEffectPrivate {
 
 static void
 cheese_effect_get_property (GObject *object, guint property_id,
-			    GValue *value, GParamSpec *pspec)
+                            GValue *value, GParamSpec *pspec)
 {
   CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (object);
-  
+
   switch (property_id) {
   case PROP_NAME:
     g_value_set_string (value, priv->name);
@@ -46,10 +65,10 @@ cheese_effect_get_property (GObject *object, guint property_id,
 
 static void
 cheese_effect_set_property (GObject *object, guint property_id,
-			   const GValue *value, GParamSpec *pspec)
+                            const GValue *value, GParamSpec *pspec)
 {
   CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (object);
-  
+
   switch (property_id) {
   case PROP_NAME:
     g_free (priv->name);
@@ -74,30 +93,30 @@ static void
 cheese_effect_class_init (CheeseEffectClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-  
+
   g_type_class_add_private (klass, sizeof (CheeseEffectPrivate));
-  
+
   object_class->get_property = cheese_effect_get_property;
   object_class->set_property = cheese_effect_set_property;
 
   g_object_class_install_property (object_class, PROP_NAME,
-				   g_param_spec_string ("name",
-							NULL,
-							NULL,
-							"",
-							G_PARAM_READWRITE));
+                                   g_param_spec_string ("name",
+                                                        NULL,
+                                                        NULL,
+                                                        "",
+                                                        G_PARAM_READWRITE));
   g_object_class_install_property (object_class, PROP_PIPELINE_DESC,
-				   g_param_spec_string ("pipeline_desc",
-							NULL,
-							NULL,
-							"",
-							G_PARAM_READWRITE));
+                                   g_param_spec_string ("pipeline_desc",
+                                                        NULL,
+                                                        NULL,
+                                                        "",
+                                                        G_PARAM_READWRITE));
   g_object_class_install_property (object_class, PROP_CONTROL_VALVE,
-				   g_param_spec_object ("control_valve",
-							NULL,
-							NULL,
-							GST_TYPE_ELEMENT,
-							G_PARAM_READWRITE));
+                                   g_param_spec_object ("control_valve",
+                                                        NULL,
+                                                        NULL,
+                                                        GST_TYPE_ELEMENT,
+                                                        G_PARAM_READWRITE));
 
 }
 
