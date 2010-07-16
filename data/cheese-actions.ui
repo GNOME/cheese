@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <object class="GtkUIManager" id="menu_ui_man">
+    <child>
+      <object class="GtkActionGroup" id="main_actions">
+        <child>
+          <object class="GtkAction" id="cheese_action">
+            <property name="name">Cheese</property>
+            <property name="label" translatable="yes">_Cheese</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="edit_action">
+            <property name="name">Edit</property>
+            <property name="label" translatable="yes">_Edit</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="help_action">
+            <property name="name">Help</property>
+            <property name="label" translatable="yes">_Help</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="quit">
+            <property name="name">Quit</property>
+            <property name="label" translatable="yes">_Quit</property>
+            <signal name="activate" handler="cheese_main_window_on_quit"/>
+          </object>
+          <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="help_actions">
+        <child>
+          <object class="GtkAction" id="help_contents">
+            <property name="name">HelpContents</property>
+            <property name="label" translatable="yes">Help _Contents</property>
+            <property name="stock_id">gtk-help</property>
+            <signal name="activate" handler="cheese_main_window_on_help_contents"/>
+          </object>
+          <accelerator key="F1"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="about">
+            <property name="name">About</property>
+            <property name="label" translatable="yes">_About</property>
+            <property name="stock_id">gtk-about</property>
+            <signal name="activate" handler="cheese_main_window_on_help_about"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="file_actions">
+        <child>
+          <object class="GtkAction" id="open">
+            <property name="name">Open</property>
+            <property name="label" translatable="yes">_Open</property>
+            <property name="stock_id">gtk-open</property>
+            <signal name="activate" handler="cheese_main_window_on_file_open"/>
+          </object>
+          <accelerator key="O" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="save_as">
+            <property name="name">SaveAs</property>
+            <property name="label" translatable="yes">Save _As</property>
+            <property name="stock_id">gtk-save-as</property>
+            <signal name="activate" handler="cheese_main_window_on_file_save_as"/>
+          </object>
+          <accelerator key="S" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="move_to_trash">
+            <property name="name">MoveToTrash</property>
+            <property name="label" translatable="yes">Move to _Trash</property>
+            <property name="icon_name">user-trash</property>
+            <signal name="activate" handler="cheese_main_window_on_file_move_to_trash"/>
+          </object>
+          <accelerator key="Delete" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="delete">
+            <property name="name">Delete</property>
+            <property name="label" translatable="yes">_Delete</property>
+            <signal name="activate" handler="cheese_main_window_on_file_delete"/>
+          </object>
+          <accelerator key="Delete" modifiers="GDK_SHIFT_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="move_all_to_trash">
+            <property name="name">RemoveAll</property>
+            <property name="label" translatable="yes">Move All to Trash</property>
+            <signal name="activate" handler="cheese_main_window_on_file_move_to_trash_all"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="layout_actions">
+        <child>
+          <object class="GtkToggleAction" id="fullscreen">
+            <property name="name">Fullscreen</property>
+            <property name="label" translatable="yes">Fullscreen</property>
+            <property name="stock_id">gtk-fullscreen</property>
+            <signal name="toggled" handler="cheese_main_window_on_layout_fullscreen"/>
+          </object>
+          <accelerator key="F11" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkToggleAction" id="wide_mode">
+            <property name="name">WideMode</property>
+            <property name="label" translatable="yes">_Wide Mode</property>
+            <signal name="toggled" handler="cheese_main_window_on_layout_wide_mode"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="take_actions">
+        <child>
+          <object class="GtkAction" id="take_photo">
+            <property name="name">TakePhoto</property>
+            <property name="label" translatable="yes">_Take a Photo</property>
+            <signal name="activate" handler="cheese_main_window_on_take_action"/>
+          </object>
+          <accelerator key="space" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="take_video">
+            <property name="name">TakeVideo</property>
+            <property name="label" translatable="yes">_Record a Video</property>
+            <signal name="activate" handler="cheese_main_window_on_take_action"/>
+          </object>
+          <accelerator key="space" modifiers=""/>
+        </child>
+        <child>
+          <object class="GtkAction" id="take_burst">
+            <property name="name">TakeBurst</property>
+            <property name="label" translatable="yes">Take _Multiple Photos</property>
+            <signal name="activate" handler="cheese_main_window_on_take_action"/>
+          </object>
+          <accelerator key="space" modifiers=""/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="mode_actions">
+        <child>
+          <object class="GtkRadioAction" id="photo_mode">
+            <property name="name">Photo</property>
+            <property name="label" translatable="yes">_Photo</property>
+            <property name="group">photo_mode</property>
+            <property name="value">0</property>
+            <property name="active">True</property>
+            <signal name="activate" handler="cheese_main_window_on_mode_change"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="video_mode">
+            <property name="name">Video</property>
+            <property name="label" translatable="yes">_Video</property>
+            <property name="group">photo_mode</property>
+            <property name="value">1</property>
+            <signal name="activate" handler="cheese_main_window_on_mode_change"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkRadioAction" id="burst_mode">
+            <property name="name">Burst</property>
+            <property name="label" translatable="yes">Burst</property>
+            <property name="group">photo_mode</property>
+            <property name="value">2</property>
+            <signal name="activate" handler="cheese_main_window_on_mode_change"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="effects_actions">
+        <child>
+          <object class="GtkToggleAction" id="effects_toggle">
+            <property name="name">Effects</property>
+            <property name="label" translatable="yes">_Effects</property>
+            <signal name="toggled" handler="cheese_main_window_on_effects_toggle"/>
+          </object>
+        </child>
+        <child>
+          <object class="GtkAction" id="effects_page_prev">
+            <property name="name">Previous Effects</property>
+            <property name="label" translatable="yes">Previous Effects</property>
+            <property name="sensitive">false</property>
+            <signal name="activate" handler="cheese_main_window_on_prev_effects_page"/>
+          </object>
+          <accelerator key="j" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
+          <object class="GtkAction" id="effects_page_next">
+            <property name="name">Next Effects</property>
+            <property name="label" translatable="yes">Next Effects</property>
+            <property name="sensitive">false</property>
+            <signal name="activate" handler="cheese_main_window_on_next_effects_page"/>
+          </object>
+          <accelerator key="k" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkActionGroup" id="preferences_actions">
+        <child>
+          <object class="GtkAction" id="preferences">
+            <property name="name">Preferences</property>
+            <property name="label" translatable="yes">_Preferences</property>
+            <signal name="activate" handler="cheese_main_window_on_preferences_dialog"/>
+          </object>
+        </child>
+      </object>
+    </child>
+    <ui>
+      <menubar name="main_menubar">
+        <menu action="cheese_action">
+          <menuitem action="take_photo"/>
+          <menuitem action="take_video"/>
+          <menuitem action="take_burst"/>
+          <separator/>
+          <menuitem action="photo_mode"/>
+          <menuitem action="video_mode"/>
+          <menuitem action="burst_mode"/>
+          <separator/>
+          <menuitem action="fullscreen"/>
+          <menuitem action="wide_mode"/>
+          <separator/>
+          <menuitem action="quit"/>
+        </menu>
+        <menu action="edit_action">
+          <menuitem action="effects_toggle"/>
+          <menuitem action="effects_page_next"/>
+          <menuitem action="effects_page_prev"/>
+          <separator/>
+          <menuitem action="move_to_trash"/>
+          <menuitem action="move_all_to_trash"/>
+          <separator/>
+          <menuitem action="preferences"/>
+        </menu>
+        <menu action="help_action">
+          <menuitem action="help_contents"/>
+          <menuitem action="about"/>
+        </menu>
+      </menubar>
+      <popup name="thumbnail_popup" id="thumbnail_popup">
+        <menuitem action="open"/>
+        <separator/>
+        <menuitem action="save_as"/>
+        <separator/>
+        <menuitem action="move_to_trash"/>
+        <menuitem action="delete"/>
+      </popup>
+    </ui>
+  </object>
+  <object class="GtkMenu" id="thumbnail_popup" constructor="menu_ui_man">
+  </object>
+</interface>

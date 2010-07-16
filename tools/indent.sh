@@ -3,7 +3,7 @@
 INDENT_PROGRAM="uncrustify"
 DIR="tools"
 CFG="cheese-indent.cfg"
-LANG="C"
+LANG="VALA"
 
 [[ $# -lt 1 ]] && { echo "$0 [files]" 1>&2; exit 1; }
 

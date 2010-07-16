@@ -12,6 +12,6 @@ DOC_FIGURES = \
 	figures/cheese-preferences.jpg \
 	figures/cheese-share.jpg \
 	figures/cheese-wide.jpg
- 
+
 DOC_LINGUAS = ca cs de el en_GB es fi fr it nl oc pa pt_BR ru sl sv th zh_CN
 

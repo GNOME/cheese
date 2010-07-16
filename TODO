@@ -1,0 +1,53 @@
+please fix me before 3.0
+
+8 show a throbber when doing something which could take some time, e.g.
+  changing effects, loading webcam, starting recording video
+7 while the webcam is loading, do not allow to take a picture, access
+  preferences etc.
+7 improve video recording (doesnt work here atm)
+6 move to gsettings
+? move to gapplication
+? move to gtk3
+5 fix effects preview layout in fullscreen
+5 remove all warnings when compiling
+4 when maximizing the window, the webcam video still stays the same size
+3 streamline menu items
+3 beautify effects preview, e.g. only a thin white border
+2 startup time is till quite long
+2 overlay effect previews with their names
+
+NOTES, particularly about "show a throbber" and startup time
+
+Who's taking so much time at cheese startup?
+- cheese_camera_connect_effect_texture
+
+That's the most expensive thing we do, it takes a rough 50% (maybe more)
+of startup time, particularly link_many for each effect is quite
+expensive because it has to match colorspace caps (but in general, gst
+linking is slow).
+
+Can it be avoided? I doubt so[1]. Can it be postponed? definitely.
+
+There's no reason to link all the effects at startup, the
+highest priority thing at startup is show the window and put an image
+into it (or if the camera preview takes some time to show up at least
+show something moving like a throbber as we always did).  The effects
+section of the pipeline can be isolated with a valve,
+meanwhile the main pipeline can be started, when the effects are ready
+we can connect them. Ideally given they all have a valve we could
+connect them one at the time and show a throbber for each one. So when
+the user clicks on effect he can see that they are progressively
+loading (or if it clicks on effects when they are ready he won't notice
+the loading thing at all).
+
+Obviously all this stuff has to be done async so that the UI doesn't
+ever block waiting for each task to complete. This could be done with a
+separate thread like we did or taking advantage of gstreamer async
+facilities (GstBus, GstMessages) or, probably, with a mix of the two.
+
+1. gst_element_link_many is quite slow, a good amount of performance can
+be gained using _link_pads or _link_pads_full.
+The latter, from 0.10.30, can avoid checking if the elements are in the
+same bin if we already know they are (and we know it, we just called
+add_many) or it can avoid caps matching checks if we already know that
+caps are compatible.

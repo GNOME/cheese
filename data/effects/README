@@ -1,0 +1,44 @@
+Introduction
+============
+
+Writing effects is very easy: just create a file with the extion ".effect" and
+use the following format for it:
+
+
+[Effect]
+Encoding=UTF-8
+Name=[The human readable effect name]
+Name[LangCode]=[The translated human readable effect name]
+...
+PipelineDescription=[A valid GStreamer pipeline]
+Category=[The category of your effect, e.g. "Colors".]
+Comment=[Optional Element: Description of the effect]
+Comment[LangCode]=[Optional Element: Translation of the description of the effect]
+...
+
+
+Possible Effect Categories
+==========================
+
+  Analysis
+  Blur
+  Colors
+  Fancy
+  Geometry
+  Noise
+  Time
+
+
+A sample effect could look like
+===============================
+
+[Effect]
+Encoding=UTF-8
+Name=The Hulk
+Name[de]=Der Hulk
+Name[it]=Lo Hulk
+PipelineDescription=videobalance saturation=1.5 hue=-0.5
+Category=Color;Fancy;
+Comment=Transform yourself into the amazing Hulk
+Comment[de]=Verwandle dich in den unglaublichen Hulk
+Comment[it]=Trasformati in Hulk

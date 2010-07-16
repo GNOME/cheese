@@ -17,15 +17,17 @@ gtkrc_DATA = gtkrc
 servicedir = $(datadir)/dbus-1/services
 service_in_files = org.gnome.Cheese.service.in
 service_DATA = $(service_in_files:.service.in=.service)
- 
+
 # Rule to make the service file with bindir expanded
 $(service_DATA): $(service_in_files) Makefile
 	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
 
 pkgdata_DATA = \
-	cheese.ui	\
-	cheese-ui.xml \
-	cheese-prefs.ui
+	cheese-main-window.ui	\
+	cheese-about.ui \
+	cheese-actions.ui \
+	cheese-prefs.ui \
+	cheese-viewport.json
 
 EXTRA_DIST = \
 	$(desktop_in_files) \

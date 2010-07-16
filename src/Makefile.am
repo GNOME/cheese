@@ -1,70 +1,56 @@
-INCLUDES = \
-	-DBINDIR=\"$(bindir)\" \
-	-DDATADIR=\"$(datadir)\" \
-	-DPREFIX=\""$(prefix)"\" \
-	-DSYSCONFDIR=\""$(sysconfdir)"\" \
-	-DLIBDIR=\""$(libdir)"\" \
-	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\" \
-	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\" \
-	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\" \
+VALAFLAGS = \
+	--thread \
+	--vapidir vapi \
+	--pkg config \
+	--pkg gtk+-2.0 \
+	--pkg gmodule-2.0 \
+	--pkg gee-1.0 \
+	--pkg clutter-1.0 \
+	--pkg clutter-gtk-0.10 \
+	--pkg gconf-2.0 \
+	--pkg gstreamer-0.10 \
+	--pkg unique-1.0 \
+	--pkg mx-1.0 \
+	--pkg eogthumbnav \
+	--pkg cheese-thumbview \
+	--pkg cheese-common
+
+
+AM_CPPFLAGS = \
+	-DBINDIR=\"$(bindir)\"			 	\
+	-DDATADIR=\"$(datadir)\"			\
+	-DPREFIX=\""$(prefix)"\" 			\
+	-DSYSCONFDIR=\""$(sysconfdir)"\" 		\
+	-DLIBDIR=\""$(libdir)"\" 			\
+	-DPACKAGE_DATADIR=\""$(datadir)/cheese"\"	\
+	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	$(CHEESE_CFLAGS) \
-	-I@top_srcdir@/libcheese \
-	$(NULL)
+	-include $(CONFIG_HEADER) \
+	-I@top_srcdir@/libcheese 
+
+AM_CFLAGS = \
+	-export-dynamic 
 
 bin_PROGRAMS = cheese
 
 cheese_SOURCES = \
-	cheese.c \
-	cheese-window.c \
-	cheese-window.h \
-	cheese-ui.h \
-	cheese-commands.h \
-	cheese-commands.c \
-	cheese-commands-help.c \
-	cheese-commands-file.c \
-	cheese-dbus.c \
-	cheese-dbus.h \
-	cheese-effect-chooser.c \
-	cheese-effect-chooser.h \
-	cheese-thumb-view.c \
-	cheese-thumb-view.h \
-	eog-thumbnail.c \
-	eog-thumbnail.h \
-	eog-thumb-nav.c \
-	eog-thumb-nav.h \
-	cheese-no-camera.c \
-	cheese-no-camera.h \
-	cheese-prefs-widget.h \
-	cheese-prefs-widget.c \
-	cheese-prefs-dialog-widgets.h \
-	cheese-prefs-dialog-widgets.c \
-	cheese-prefs-resolution-combo.h \
-	cheese-prefs-resolution-combo.c \
-	cheese-prefs-balance-scale.c \
-	cheese-prefs-balance-scale.h \
-	cheese-prefs-dialog.c \
-	cheese-prefs-dialog.h \
-	cheese-prefs-camera-combo.c \
-	cheese-prefs-camera-combo.h \
-	cheese-prefs-burst-spinbox.h \
-	cheese-prefs-burst-spinbox.c
+	cheese-main.vala \
+	cheese-window.vala \
+	cheese-countdown.vala \
+	cheese-effects-manager.vala \
+	cheese-preferences.vala \
+	thumbview/cheese-gconf.c \
+	thumbview/cheese-thumb-view.c \
+	thumbview/eog-thumb-nav.c \
+	thumbview/eog-thumbnail.c
+
+noinst_HEADERS = \
+	thumbview/cheese-gconf.h \
+	thumbview/cheese-thumb-view.h \
+	thumbview/eog-thumb-nav.h \
+	thumbview/eog-thumbnail.h
 
 cheese_LDADD = \
 	$(top_builddir)/libcheese/libcheesecommon.la \
-	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(CHEESE_LIBS)
-
-#dbus
-BUILT_SOURCES = cheese-dbus-infos.h
-# We don't want to install this header
-noinst_HEADERS = $(BUILT_SOURCES)
-
-# Correctly clean the generated headers, but keep the xml description
-CLEANFILES = $(BUILT_SOURCES)
-EXTRA_DIST = cheese-dbus-infos.xml
-
-#Rule to generate the binding headers
-cheese-dbus-infos.h:  cheese-dbus-infos.xml
-	dbus-binding-tool --prefix=cheese_dbus --mode=glib-server $<> $@
-
