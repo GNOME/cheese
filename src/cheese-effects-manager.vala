@@ -30,11 +30,12 @@ internal class Cheese.EffectsManager : GLib.Object
   {
     KeyFile kf  = new KeyFile ();
     Effect  eff = new Effect ();
+    var locale = Intl.setlocale(LocaleCategory.ALL, "");
 
     try
     {
       kf.load_from_file (filename, KeyFileFlags.NONE);
-      eff.name          = kf.get_string (GROUP_NAME, "Name");
+      eff.name          = kf.get_locale_string (GROUP_NAME, "Name", locale);
       eff.pipeline_desc = kf.get_string (GROUP_NAME, "PipelineDescription");
     }
     catch (KeyFileError err)
