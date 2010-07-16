@@ -744,15 +744,32 @@ public class Cheese.MainWindow : Gtk.Window
       camera.stop ();
       for (int i = 0; i < effects_manager.effects.size - 1; i++)
       {
-        Effect          effect  = effects_manager.effects[i];
-        Clutter.Texture texture = new Clutter.Texture ();
-        texture.width  = 160;
-        texture.height = 120;
+        Effect            effect  = effects_manager.effects[i];
+        Clutter.Texture   texture = new Clutter.Texture ();
+        Clutter.BinLayout layout  = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
+                                                           Clutter.BinAlignment.FILL);
+        Clutter.Box  box  = new Clutter.Box (layout);
+        Clutter.Text text = new Clutter.Text ();
+
+        box.width  = 160;
+        box.height = 120;
 
         Mx.Button button = new Mx.Button ();
-        button.add ((Clutter.Actor)texture);
+        button.add ((Clutter.Actor)box);
+
+        box.pack ((Clutter.Actor)texture,
+                  "x-align", Clutter.BinAlignment.FILL,
+                  "y-align", Clutter.BinAlignment.FILL, null
+                  );
         button.set_data ("effect", effect);
         button.clicked.connect (on_selected_effect_change);
+
+        text.text  = effect.name;
+        text.color = Clutter.Color.from_string ("white");
+        box.pack ((Clutter.Actor)text,
+                  "x-align", Clutter.BinAlignment.CENTER,
+                  "y-align", Clutter.BinAlignment.END, null
+                  );
 
         effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)button);
         camera.connect_effect_texture (effect, texture);
