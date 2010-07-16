@@ -748,8 +748,12 @@ public class Cheese.MainWindow : Gtk.Window
         Clutter.Texture   texture = new Clutter.Texture ();
         Clutter.BinLayout layout  = new Clutter.BinLayout (Clutter.BinAlignment.FILL,
                                                            Clutter.BinAlignment.FILL);
-        Clutter.Box  box  = new Clutter.Box (layout);
-        Clutter.Text text = new Clutter.Text ();
+        Clutter.Box       box  = new Clutter.Box (layout);
+        Clutter.Text      text = new Clutter.Text ();
+        Clutter.Rectangle rect = new Clutter.Rectangle ();
+
+        rect.opacity = 128;
+        rect.color   = Clutter.Color.from_string ("black");
 
         box.width  = 160;
         box.height = 120;
@@ -766,6 +770,13 @@ public class Cheese.MainWindow : Gtk.Window
 
         text.text  = effect.name;
         text.color = Clutter.Color.from_string ("white");
+
+        rect.height = text.height + 5;
+        box.pack ((Clutter.Actor)rect,
+                  "x-align", Clutter.BinAlignment.FILL,
+                  "y-align", Clutter.BinAlignment.END, null
+                  );
+
         box.pack ((Clutter.Actor)text,
                   "x-align", Clutter.BinAlignment.CENTER,
                   "y-align", Clutter.BinAlignment.END, null
