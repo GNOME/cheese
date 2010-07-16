@@ -100,6 +100,17 @@ internal class Cheese.EffectsManager : GLib.Object
 
     string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), ".cheese", "effects");
     effects.add_all (load_effects_from_directory (user_effects));
+
+    /* GROSS HACK: to make identity element appear first */
+    foreach (Effect e in effects)
+    {
+      if (e.pipeline_desc == "identity")
+      {
+        effects.remove (e);
+        effects.insert (0, e);
+        break;
+      }
+    }
   }
 
   public Effect ? get_effect (string name)
