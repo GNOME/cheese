@@ -5,33 +5,232 @@
 #
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-01-18 19:49+0000\n"
-"PO-Revision-Date: 2010-01-18 23:02+0100\n"
+"POT-Creation-Date: 2010-07-16 21:02+0000\n"
+"PO-Revision-Date: 2010-07-18 12:30+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms:  nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:118
+#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
+#: ../src/cheese-main.vala:105
 msgid "Cheese"
 msgstr "Cheese"
+
+#: ../data/cheese-about.ui.h:2
+msgid "Cheese Website"
+msgstr "Página web de Cheese"
+
+#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"Tome fotografías y vídeos con su cámara web, con divertidos efectos gráficos"
+
+#: ../data/cheese-about.ui.h:4
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>.\n"
+msgstr ""
+"Este programa es software libre: usted puede redistribuirlo y/o modificarlo "
+"bajo los términos de la Licencia Pública General GNU publicada por la "
+"Fundación para el Software Libre, ya sea la versión 2 de la Licencia, o (a "
+"su elección) cualquier versión posterior.\n"
+"\n"
+"Este programa se distribuye con la esperanza de que sea útil, pero SIN "
+"GARANTÍA ALGUNA; ni siquiera la garantía implícita MERCANTIL o de APTITUD "
+"PARA UN PROPÓSITO DETERMINADO. Consulte los detalles de la Licencia Pública "
+"General GNU para obtener una información más detallada. \n"
+"\n"
+"Debería haber recibido una copia de la Licencia Pública General GNU junto a "
+"este programa. En caso contrario, consulte <http://www.gnu.org/licenses/>.\n"
+
+#: ../data/cheese-about.ui.h:10
+msgid "translator-credits"
+msgstr ""
+"Jorge González <jorgegonz@svn.gnome.org>, 2007-2010\n"
+"Ricardo González Castro <rick@jinlabs.com>, 2007\n"
+"Diego Escalante Urrelo <diegoe@gnome.org>, 2007"
+
+#: ../data/cheese-actions.ui.h:1
+#| msgid "_Burst"
+msgid "Burst"
+msgstr "Ráfaga"
+
+#: ../data/cheese-actions.ui.h:2
+#| msgid "_Leave Fullscreen"
+msgid "Fullscreen"
+msgstr "Pantalla completa"
+
+#: ../data/cheese-actions.ui.h:3
+#| msgid "_Contents"
+msgid "Help _Contents"
+msgstr "Índ_ice"
+
+#: ../data/cheese-actions.ui.h:4
+msgid "Move All to Trash"
+msgstr "Mover todos a la papelera"
+
+#: ../data/cheese-actions.ui.h:5
+msgid "Move to _Trash"
+msgstr "Mover a la _papelera"
+
+#: ../data/cheese-actions.ui.h:6
+#| msgid "No Effect"
+msgid "Next Effects"
+msgstr "Siguientes efectos"
+
+#: ../data/cheese-actions.ui.h:7
+#| msgid "No Effect"
+msgid "Previous Effects"
+msgstr "Efectos anteriores"
+
+#: ../data/cheese-actions.ui.h:8
+#| msgid "Save _As…"
+msgid "Save _As"
+msgstr "Guardar co_mo"
+
+#: ../data/cheese-actions.ui.h:9
+#| msgid "_Take multiple Photos"
+msgid "Take _Multiple Photos"
+msgstr "Tomar _múltiples fotos"
+
+#: ../data/cheese-actions.ui.h:10
+#| msgid "About"
+msgid "_About"
+msgstr "Acerca _de"
+
+#: ../data/cheese-actions.ui.h:11
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../data/cheese-actions.ui.h:12
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "_Eliminar"
+
+#: ../data/cheese-actions.ui.h:13
+msgid "_Edit"
+msgstr "_Editar"
+
+#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+msgid "_Effects"
+msgstr "Efecto_s"
+
+#: ../data/cheese-actions.ui.h:15
+msgid "_Help"
+msgstr "Ay_uda"
+
+#: ../data/cheese-actions.ui.h:16
+msgid "_Open"
+msgstr "_Abrir"
+
+#: ../data/cheese-actions.ui.h:17
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../data/cheese-actions.ui.h:18
+#, fuzzy
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "Preferencias"
+
+#: ../data/cheese-actions.ui.h:19
+#| msgid "Quit"
+msgid "_Quit"
+msgstr "_Salir"
+
+#: ../data/cheese-actions.ui.h:20
+#| msgid "_Recording"
+msgid "_Record a Video"
+msgstr "_Grabar un vídeo"
+
+#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+msgid "_Take a Photo"
+msgstr "_Tomar una foto"
+
+#: ../data/cheese-actions.ui.h:22
+msgid "_Video"
+msgstr "_Vídeo"
+
+#: ../data/cheese-actions.ui.h:23
+#| msgid "_Wide mode"
+msgid "_Wide Mode"
+msgstr "Modo _ancho"
+
+#: ../data/cheese-main-window.ui.h:2
+msgid "_Leave Fullscreen"
+msgstr "_Salir de pantalla completa"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "Brightness"
+msgstr "Brillo"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "Burst mode"
+msgstr "Modo ráfaga"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "Contraste"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (seconds)"
+msgstr "Retraso entre fotos (segundos)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Dispositivo"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Tono"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Propiedades de la imagen"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Número de fotos"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "Resolución"
+
+#: ../data/cheese-prefs.ui.h:11 ../data/effects/saturation.effect.in.h:1
+msgid "Saturation"
+msgstr "Saturación"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Cámara web"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
-
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1065
-msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
-"Tome fotografías y vídeos con su cámara web, con divertidos efectos gráficos"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
@@ -185,106 +384,96 @@ msgstr "Indica si se debe iniciar en modo ancho"
 msgid "Width resolution"
 msgstr "Resolución de la anchura"
 
-#: ../data/cheese.ui.h:2
-msgid "Switch to Burst Mode"
-msgstr "Cambiar al modo ráfaga"
+#: ../data/effects/agingtv.effect.in.h:1
+msgid "Historical"
+msgstr "Histórico"
 
-#: ../data/cheese.ui.h:3
-msgid "Switch to Photo Mode"
-msgstr "Cambiar al modo foto"
+#: ../data/effects/dicetv.effect.in.h:1
+msgid "Dice"
+msgstr "Pedazos"
 
-#: ../data/cheese.ui.h:4
-msgid "Switch to Video Mode"
-msgstr "Cambiar al modo vídeo"
+#: ../data/effects/edgetv.effect.in.h:1
+msgid "Edge"
+msgstr "Contornos"
 
-#: ../data/cheese.ui.h:5
-msgid "Switch to the Effects Selector"
-msgstr "Cambiar al selector de efectos"
+#: ../data/effects/hulk.effect.in.h:1
+msgid "Hulk"
+msgstr "Hulk"
 
-#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1176
-#: ../src/cheese-window.c:1499
-msgid "_Effects"
-msgstr "Efecto_s"
+#: ../data/effects/identity.effect.in.h:1
+msgid "No Effect"
+msgstr "Sin efectos"
 
-#: ../data/cheese.ui.h:7
-msgid "_Leave Fullscreen"
-msgstr "_Salir de pantalla completa"
+#: ../data/effects/mauve.effect.in.h:1
+msgid "Mauve"
+msgstr "Malva"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1532
-#: ../src/cheese-window.c:1552
-msgid "_Take a Photo"
-msgstr "_Tomar una foto"
+#: ../data/effects/noir.effect.in.h:1
+msgid "Noir/Blanc"
+msgstr "Blanco y negro"
 
-#: ../data/cheese-prefs.ui.h:1
-msgid "Brightness"
-msgstr "Brillo"
+#: ../data/effects/optv.effect.in.h:1
+msgid "Optical Illusion"
+msgstr "Ilusión óptica"
 
-#: ../data/cheese-prefs.ui.h:2
-msgid "Burst mode"
-msgstr "Modo ráfaga"
+#: ../data/effects/quarktv.effect.in.h:1
+msgid "Quark"
+msgstr "Quark"
 
-#: ../data/cheese-prefs.ui.h:3
-msgid "Contrast"
-msgstr "Contraste"
+#: ../data/effects/radioactv.effect.in.h:1
+msgid "Radioactive"
+msgstr "Radioactivo"
 
-#: ../data/cheese-prefs.ui.h:4
-msgid "Delay between photos (seconds)"
-msgstr "Retraso entre fotos (segundos)"
+#: ../data/effects/shagadelictv.effect.in.h:1
+msgid "Shagadelic"
+msgstr "Psicodélico"
 
-#: ../data/cheese-prefs.ui.h:5
-msgid "Device"
-msgstr "Dispositivo"
+#: ../data/effects/streaktv.effect.in.h:1
+msgid "Kung-Fu"
+msgstr "Kung-Fu"
 
-#: ../data/cheese-prefs.ui.h:6
-msgid "Hue"
-msgstr "Tono"
+#: ../data/effects/vertigotv.effect.in.h:1
+msgid "Vertigo"
+msgstr "Vértigo"
 
-#: ../data/cheese-prefs.ui.h:7
-msgid "Image properties"
-msgstr "Propiedades de la imagen"
+#: ../data/effects/warptv.effect.in.h:1
+msgid "Warp"
+msgstr "Distorsión"
 
-#: ../data/cheese-prefs.ui.h:8
-msgid "Number of photos"
-msgstr "Número de fotos"
-
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1503
-msgid "Preferences"
-msgstr "Preferencias"
-
-#: ../data/cheese-prefs.ui.h:10
-msgid "Resolution"
-msgstr "Resolución"
-
-#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Saturación"
-
-#: ../data/cheese-prefs.ui.h:12
-msgid "Webcam"
-msgstr "Cámara web"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:1238
+#: ../libcheese/cheese-avatar-chooser.c:110
 msgid "Shutter sound"
 msgstr "Sonido del obturador"
 
-#: ../libcheese/cheese-avatar-chooser.c:222
+#: ../libcheese/cheese-avatar-chooser.c:236
 msgid "Take a photo"
 msgstr "Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:241 ../src/cheese-window.c:1732
+#: ../libcheese/cheese-avatar-chooser.c:255
 msgid "_Take a photo"
 msgstr "_Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:256
+#: ../libcheese/cheese-avatar-chooser.c:270
 msgid "_Discard photo"
 msgstr "_Descartar foto"
 
-#: ../libcheese/cheese-camera.c:1118
+#: ../libcheese/cheese-camera-device.c:327
+msgid "Device capabilities not supported"
+msgstr "No se soportan las capacidades del dispositivo"
+
+#: ../libcheese/cheese-camera-device.c:488
+msgid "Unknown device"
+msgstr "Dispositivo desconocido"
+
+#: ../libcheese/cheese-camera-device.c:512
+msgid "Cancellable initialization not supported"
+msgstr "No se soporta la inicialización cancelable"
+
+#: ../libcheese/cheese-camera.c:1116
 #, c-format
 msgid "No device found"
 msgstr "No se encontró ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1137
+#: ../libcheese/cheese-camera.c:1135
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 
@@ -294,314 +483,183 @@ msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%Id "
 
-#: ../libcheese/cheese-widget.c:289 ../libcheese/cheese-widget.c:391
-msgid "Camera setup failed"
-msgstr "Falló la configuración de la cámara"
-
-#: ../libcheese/cheese-camera-device.c:326
-msgid "Device capabilities not supported"
-msgstr "No se soportan las capacidades del dispositivo"
-
-#: ../libcheese/cheese-camera-device.c:485
-msgid "Unknown device"
-msgstr "Dispositivo desconocido"
-
-#: ../libcheese/cheese-camera-device.c:509
-msgid "Cancellable initialization not supported"
-msgstr "No se soporta la inicialización cancelable"
-
-#: ../src/cheese-effect-chooser.c:60
-msgid "No Effect"
-msgstr "Sin efectos"
-
-#: ../src/cheese-effect-chooser.c:62
-msgid "Mauve"
-msgstr "Malva"
-
-#: ../src/cheese-effect-chooser.c:64
-msgid "Noir/Blanc"
-msgstr "Blanco y negro"
-
-#: ../src/cheese-effect-chooser.c:68
-msgid "Hulk"
-msgstr "Hulk"
-
-#: ../src/cheese-effect-chooser.c:70
-msgid "Vertical Flip"
-msgstr "Giro vertical"
-
-#: ../src/cheese-effect-chooser.c:72
-msgid "Horizontal Flip"
-msgstr "Giro horizontal"
-
-#: ../src/cheese-effect-chooser.c:74
-msgid "Shagadelic"
-msgstr "Psicodélico"
-
-#: ../src/cheese-effect-chooser.c:76
-msgid "Vertigo"
-msgstr "Vértigo"
-
-#: ../src/cheese-effect-chooser.c:78
-msgid "Edge"
-msgstr "Contornos"
-
-#: ../src/cheese-effect-chooser.c:80
-msgid "Dice"
-msgstr "Pedazos"
-
-#: ../src/cheese-effect-chooser.c:82
-msgid "Warp"
-msgstr "Distorsión"
-
-#: ../src/cheese-no-camera.c:93
-msgid "No camera found!"
-msgstr "No se encontró ninguna cámara"
-
-#: ../src/cheese-no-camera.c:94
-msgid "Please refer to the help for further information."
-msgstr "Para obtener más información consulte la ayuda."
-
-#: ../src/cheese-window.c:81
-msgid "_Skip"
-msgstr "_Saltar"
-
-#: ../src/cheese-window.c:82
-msgid "S_kip All"
-msgstr "Sal_tar todo"
-
-#: ../src/cheese-window.c:83
-msgid "Delete _All"
-msgstr "Borrar _todo"
-
-#: ../src/cheese-window.c:641
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Falló al lanzar el programa para mostrar:\n"
-"%s\n"
-"%s"
-
-#: ../src/cheese-window.c:662
-msgid "Save File"
-msgstr "Guardar archivo"
-
-#: ../src/cheese-window.c:700
-#, c-format
-msgid "Could not save %s"
-msgstr "No se pudo guardar %s"
-
-#: ../src/cheese-window.c:723
-msgid "Error while deleting"
-msgstr "Error al borrar"
-
-#: ../src/cheese-window.c:724
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "No se puede borrar el archivo «%s». Detalles: %s"
-
-#: ../src/cheese-window.c:751
-#, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural ""
-"Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] ""
-"¿Está seguro de que quiere borrar permanentemente el %'d elemento "
-"seleccionado?"
-msgstr[1] ""
-"¿Está seguro de que quiere borrar permanentemente los %'d elementos "
-"seleccionados?"
-
-#: ../src/cheese-window.c:758
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "¿Está seguro de que quiere borrar permanentemente «%s»?"
-
-#: ../src/cheese-window.c:761
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Si borra un elemento se perderá permanentemente"
-
-#: ../src/cheese-window.c:782
-msgid "Unknown Error"
-msgstr "Error desconocido"
-
-#: ../src/cheese-window.c:812
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr ""
-"No se puede mover el archivo a la papelera, ¿quiere borrarlo inmediatamente?"
-
-#: ../src/cheese-window.c:813
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "No se puede mover el archivo «%s» a la papelera. Detalles: %s"
-
-#: ../src/cheese-window.c:885
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "¿Realmente desea mover todas las fotos y vídeos a la papelera?"
-
-#: ../src/cheese-window.c:893
-msgid "_Move to Trash"
-msgstr "_Mover a la papelera"
-
-#: ../src/cheese-window.c:986 ../src/cheese-window.c:1260
-msgid "Unable to open help file for Cheese"
-msgstr "No se pudo abrir el archivo de ayuda para Cheese"
-
-#: ../src/cheese-window.c:1043
-msgid "translator-credits"
-msgstr ""
-"Jorge González <jorgegonz@svn.gnome.org>, 2007-2010\n"
-"Ricardo González Castro <rick@jinlabs.com>, 2007\n"
-"Diego Escalante Urrelo <diegoe@gnome.org>, 2007"
-
-#: ../src/cheese-window.c:1046
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-msgstr ""
-"Este programa es software libre; puede redistribuirlo y/o modificarlo bajo "
-"los términos de la Licencia Pública General de GNU tal como se publica por "
-"la Free Software Foundation; ya sea la versión 2 de la Licencia, o (a su "
-"elección) cualquier versión posterior.\n"
-
-#: ../src/cheese-window.c:1050
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-msgstr ""
-"Este programa se distribuye con la esperanza de que le sea útil, pero SIN "
-"NINGUNA GARANTÍA; sin incluso la garantía implícita de MERCANTILIDAD o "
-"IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General GNU "
-"para más detalles.\n"
-
-#: ../src/cheese-window.c:1054
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Debería haber recibido una copia de la Licencia Pública General GNU junto "
-"con este programa. Si no la recibió, consulte <http://www.gnu.org/licenses/>."
-
-#: ../src/cheese-window.c:1071
-msgid "Cheese Website"
-msgstr "Página web de Cheese"
-
-#: ../src/cheese-window.c:1276
-msgid "_Start Recording"
-msgstr "_Comenzar a grabar"
-
-#: ../src/cheese-window.c:1444
-msgid "_Stop Recording"
-msgstr "_Parar de grabar"
-
-#: ../src/cheese-window.c:1480
-msgid "_Cheese"
-msgstr "_Cheese"
-
-#: ../src/cheese-window.c:1482
-msgid "_Edit"
-msgstr "_Editar"
-
-#: ../src/cheese-window.c:1483
-msgid "Move All to Trash"
-msgstr "Mover todos a la papelera"
-
-#: ../src/cheese-window.c:1486
-msgid "_Help"
-msgstr "Ay_uda"
-
-#: ../src/cheese-window.c:1489
-msgid "_Contents"
-msgstr "Índ_ice"
-
-#: ../src/cheese-window.c:1489
-msgid "Help on this Application"
-msgstr "Ayuda sobre esta aplicación"
-
-#: ../src/cheese-window.c:1495
-msgid "Countdown"
-msgstr "Cuenta atrás"
-
-#: ../src/cheese-window.c:1511
-msgid "_Wide mode"
-msgstr "Modo _ancho"
-
-#: ../src/cheese-window.c:1515
-msgid "_Photo"
-msgstr "_Foto"
-
-#: ../src/cheese-window.c:1516
-msgid "_Video"
-msgstr "_Vídeo"
-
-#: ../src/cheese-window.c:1517
-msgid "_Burst"
-msgstr "_Ráfaga"
-
-#: ../src/cheese-window.c:1521
-msgid "_Open"
-msgstr "_Abrir"
-
-#: ../src/cheese-window.c:1523
-msgid "Save _As…"
-msgstr "Guardar co_mo…"
-
-#: ../src/cheese-window.c:1525
-msgid "Move to _Trash"
-msgstr "Mover a la _papelera"
-
-#: ../src/cheese-window.c:1527
-msgid "Delete"
-msgstr "Borrar"
-
-#: ../src/cheese-window.c:1536
-msgid "_Recording"
-msgstr "_Grabar"
-
-#: ../src/cheese-window.c:1540 ../src/cheese-window.c:1565
-msgid "_Take multiple Photos"
-msgstr "_Tomar múltiples fotos"
-
-#: ../src/cheese-window.c:1578
-msgid "_Start recording"
-msgstr "_Comenzar a grabar"
-
-#: ../src/cheese-window.c:1969
-msgid "Check your GStreamer installation"
-msgstr "Compruebe su instalación de GStreamer"
-
-#: ../src/cheese.c:97
+#: ../src/cheese-main.vala:38
 msgid "Be verbose"
 msgstr "Proporcionar detalles"
 
-#: ../src/cheese.c:99
+#: ../src/cheese-main.vala:39
 msgid "Enable wide mode"
 msgstr "Activar el modo ancho"
 
-#: ../src/cheese.c:103
-msgid "output version information and exit"
+#: ../src/cheese-main.vala:40
+#, fuzzy
+#| msgid "output version information and exit"
+msgid "Output version information and exit"
 msgstr "mostrar información de la versión y salir"
 
-#: ../src/cheese.c:120
-msgid "- Take photos and videos with your webcam, with fun graphical effects"
+#: ../src/cheese-main.vala:75
+#, fuzzy
+#| msgid ""
+#| "- Take photos and videos with your webcam, with fun graphical effects"
+msgid "- Take photos and videos from your webcam"
 msgstr ""
 "- Tome fotografías y vídeos con su cámara web, con divertidos efectos "
 "gráficos"
+
+#: ../src/cheese-main.vala:86
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+
+#: ../src/cheese-window.vala:601
+#, fuzzy
+#| msgid "_Stop Recording"
+msgid "Stop _Recording"
+msgstr "_Parar de grabar"
+
+#~ msgid "Switch to Burst Mode"
+#~ msgstr "Cambiar al modo ráfaga"
+
+#~ msgid "Switch to Photo Mode"
+#~ msgstr "Cambiar al modo foto"
+
+#~ msgid "Switch to Video Mode"
+#~ msgstr "Cambiar al modo vídeo"
+
+#~ msgid "Switch to the Effects Selector"
+#~ msgstr "Cambiar al selector de efectos"
+
+#~ msgid "Camera setup failed"
+#~ msgstr "Falló la configuración de la cámara"
+
+#~ msgid "Vertical Flip"
+#~ msgstr "Giro vertical"
+
+#~ msgid "Horizontal Flip"
+#~ msgstr "Giro horizontal"
+
+#~ msgid "No camera found!"
+#~ msgstr "No se encontró ninguna cámara"
+
+#~ msgid "Please refer to the help for further information."
+#~ msgstr "Para obtener más información consulte la ayuda."
+
+#~ msgid "_Skip"
+#~ msgstr "_Saltar"
+
+#~ msgid "S_kip All"
+#~ msgstr "Sal_tar todo"
+
+#~ msgid "Delete _All"
+#~ msgstr "Borrar _todo"
+
+#~ msgid ""
+#~ "Failed to launch program to show:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Falló al lanzar el programa para mostrar:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Save File"
+#~ msgstr "Guardar archivo"
+
+#~ msgid "Could not save %s"
+#~ msgstr "No se pudo guardar %s"
+
+#~ msgid "Error while deleting"
+#~ msgstr "Error al borrar"
+
+#~ msgid "The file \"%s\" cannot be deleted. Details: %s"
+#~ msgstr "No se puede borrar el archivo «%s». Detalles: %s"
+
+#~ msgid "Are you sure you want to permanently delete the %'d selected item?"
+#~ msgid_plural ""
+#~ "Are you sure you want to permanently delete the %'d selected items?"
+#~ msgstr[0] ""
+#~ "¿Está seguro de que quiere borrar permanentemente el %'d elemento "
+#~ "seleccionado?"
+#~ msgstr[1] ""
+#~ "¿Está seguro de que quiere borrar permanentemente los %'d elementos "
+#~ "seleccionados?"
+
+#~ msgid "Are you sure you want to permanently delete \"%s\"?"
+#~ msgstr "¿Está seguro de que quiere borrar permanentemente «%s»?"
+
+#~ msgid "If you delete an item, it will be permanently lost."
+#~ msgstr "Si borra un elemento se perderá permanentemente"
+
+#~ msgid "Unknown Error"
+#~ msgstr "Error desconocido"
+
+#~ msgid "Cannot move file to trash, do you want to delete immediately?"
+#~ msgstr ""
+#~ "No se puede mover el archivo a la papelera, ¿quiere borrarlo "
+#~ "inmediatamente?"
+
+#~ msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+#~ msgstr "No se puede mover el archivo «%s» a la papelera. Detalles: %s"
+
+#~ msgid "Really move all photos and videos to the trash?"
+#~ msgstr "¿Realmente desea mover todas las fotos y vídeos a la papelera?"
+
+#~ msgid "_Move to Trash"
+#~ msgstr "_Mover a la papelera"
+
+#~ msgid "Unable to open help file for Cheese"
+#~ msgstr "No se pudo abrir el archivo de ayuda para Cheese"
+
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
+#~ msgstr ""
+#~ "Este programa es software libre; puede redistribuirlo y/o modificarlo "
+#~ "bajo los términos de la Licencia Pública General de GNU tal como se "
+#~ "publica por la Free Software Foundation; ya sea la versión 2 de la "
+#~ "Licencia, o (a su elección) cualquier versión posterior.\n"
+
+#~ msgid ""
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
+#~ msgstr ""
+#~ "Este programa se distribuye con la esperanza de que le sea útil, pero SIN "
+#~ "NINGUNA GARANTÍA; sin incluso la garantía implícita de MERCANTILIDAD o "
+#~ "IDONEIDAD PARA UN PROPÓSITO PARTICULAR. Vea la Licencia Pública General "
+#~ "GNU para más detalles.\n"
+
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see <http://www.gnu.org/licenses/>."
+#~ msgstr ""
+#~ "Debería haber recibido una copia de la Licencia Pública General GNU junto "
+#~ "con este programa. Si no la recibió, consulte <http://www.gnu.org/"
+#~ "licenses/>."
+
+#~ msgid "_Start Recording"
+#~ msgstr "_Comenzar a grabar"
+
+#~ msgid "Help on this Application"
+#~ msgstr "Ayuda sobre esta aplicación"
+
+#~ msgid "Countdown"
+#~ msgstr "Cuenta atrás"
+
+#~ msgid "_Start recording"
+#~ msgstr "_Comenzar a grabar"
+
+#~ msgid "Check your GStreamer installation"
+#~ msgstr "Compruebe su instalación de GStreamer"
 
 #~ msgid "Could not set the Account Photo"
 #~ msgstr "No se pudo establecer la foto de la cuenta"
@@ -623,12 +681,6 @@ msgstr ""
 
 #~ msgid "Export to _Flickr"
 #~ msgstr "Exportar a _Flickr"
-
-#~ msgid "Quit"
-#~ msgstr "Salir"
-
-#~ msgid "About"
-#~ msgstr "Acerca de"
 
 #~ msgid "Help"
 #~ msgstr "Ayuda"
