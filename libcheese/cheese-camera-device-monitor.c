@@ -128,7 +128,7 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
       vendor_id = g_ascii_strtoll (vendor, NULL, 16);
     product = g_udev_device_get_property (udevice, "ID_MODEL_ID");
     if (product != NULL)
-      product_id = g_ascii_strtoll (vendor, NULL, 16);
+      product_id = g_ascii_strtoll (product, NULL, 16);
     if (vendor_id == 0 || product_id == 0)
     {
       GST_WARNING ("Error getting vendor and product id");
