@@ -349,7 +349,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
         g_set_error (&priv->construct_error,
                      CHEESE_CAMERA_DEVICE_ERROR,
                      CHEESE_CAMERA_DEVICE_ERROR_FAILED_INITIALIZATION,
-                     _("Failed to initialize device %s for capability probing"),
+                     "Failed to initialize device %s for capability probing",
                      priv->device);
       }
     }
