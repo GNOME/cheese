@@ -22,7 +22,7 @@
 using GLib;
 using Gee;
 
-const string GROUP_NAME = "Cheese Effect";
+const string GROUP_NAME = "Effect";
 
 internal class Cheese.EffectsManager : GLib.Object
 {
