@@ -48,7 +48,8 @@ enum CheeseCameraDeviceError
 {
   CHEESE_CAMERA_DEVICE_ERROR_UNKNOWN,
   CHEESE_CAMERA_DEVICE_ERROR_NOT_SUPPORTED,
-  CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS
+  CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS,
+  CHEESE_CAMERA_DEVICE_ERROR_FAILED_INITIALIZATION
 };
 
 GST_DEBUG_CATEGORY (cheese_camera_device_cat);
@@ -325,11 +326,32 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
                              CHEESE_CAMERA_DEVICE_ERROR,
                              CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS,
                              _("Device capabilities not supported"));
-
       }
 
       gst_object_unref (pad);
       gst_caps_unref (caps);
+    } else {
+      if (msg) {
+        gchar *dbg_info = NULL;
+        gst_message_parse_error (msg, &err, &dbg_info);
+        GST_WARNING ("Failed to start the capability probing pipeline");
+        GST_WARNING ("Error from element %s: %s, %s",
+                     GST_OBJECT_NAME (msg->src),
+                     err->message,
+                     (dbg_info) ? dbg_info : "no extra debug detail");
+        g_error_free (err);
+        err = NULL;
+        /* construct_error is meant to be displayed in the UI
+           (although it currently isn't displayed in cheese),
+           err->message from gstreamer is too technical for this
+           purpose, the idea is warn the user about an error and point
+           him to the logs for more info */
+        g_set_error (&priv->construct_error,
+                     CHEESE_CAMERA_DEVICE_ERROR,
+                     CHEESE_CAMERA_DEVICE_ERROR_FAILED_INITIALIZATION,
+                     _("Failed to initialize device %s for capability probing"),
+                     priv->device);
+      }
     }
     gst_element_set_state (pipeline, GST_STATE_NULL);
     gst_object_unref (pipeline);
