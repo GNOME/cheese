@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-17 14:50+0300\n"
-"PO-Revision-Date: 2010-07-17 20:23+0200\n"
+"POT-Creation-Date: 2010-07-21 19:13+0300\n"
+"PO-Revision-Date: 2010-07-21 19:13+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
@@ -438,15 +438,20 @@ msgstr "_צלם תמונה"
 msgid "_Discard photo"
 msgstr "ה_תעלמות מתמונה"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "יכולות ההתקן אינן נתמכות"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:352
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "ארע כשל בהפעלת ההתקן %s לתשאול יכולות"
+
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "התקן בלתי מוכר"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
