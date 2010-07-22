@@ -640,11 +640,12 @@ public class Cheese.MainWindow : Gtk.Window
     burst_mode_action.sensitive = !action.active;
   }
 
-  internal void on_selected_effect_change (Mx.Button button)
+  internal bool on_selected_effect_change (Clutter.ButtonEvent event)
   {
-    selected_effect = button.get_data ("effect");
+    selected_effect = event.source.get_data ("effect");
     camera.set_effect (selected_effect);
     effects_toggle_action.set_active (false);
+    return false;
   }
 
   [CCode (instance_pos = -1)]
@@ -758,15 +759,13 @@ public class Cheese.MainWindow : Gtk.Window
         box.width  = 160;
         box.height = 120;
 
-        Mx.Button button = new Mx.Button ();
-        button.add ((Clutter.Actor)box);
-
         box.pack ((Clutter.Actor)texture,
                   "x-align", Clutter.BinAlignment.FILL,
                   "y-align", Clutter.BinAlignment.FILL, null
                   );
-        button.set_data ("effect", effect);
-        button.clicked.connect (on_selected_effect_change);
+        box.reactive = true;
+        box.set_data ("effect", effect);
+        box.button_release_event.connect (on_selected_effect_change);
 
         text.text  = effect.name;
         text.color = Clutter.Color.from_string ("white");
@@ -782,7 +781,7 @@ public class Cheese.MainWindow : Gtk.Window
                   "y-align", Clutter.BinAlignment.END, null
                   );
 
-        effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)button);
+        effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)box);
         camera.connect_effect_texture (effect, texture);
       }
       camera.play ();
