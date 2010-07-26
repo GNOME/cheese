@@ -742,7 +742,7 @@ public class Cheese.MainWindow : Gtk.Window
         grid.row_spacing    = 20;
       }
 
-      camera.stop ();
+
       for (int i = 0; i < effects_manager.effects.size - 1; i++)
       {
         Effect            effect  = effects_manager.effects[i];
@@ -784,7 +784,7 @@ public class Cheese.MainWindow : Gtk.Window
         effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)box);
         camera.connect_effect_texture (effect, texture);
       }
-      camera.play ();
+
       setup_effects_page_switch_sensitivity ();
       current_effects_grid = effects_grids[0];
     }
@@ -937,10 +937,11 @@ public class Cheese.MainWindow : Gtk.Window
       }
       return;
     }
-    camera.play ();
+   
 
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
     preferences_dialog = new Cheese.PreferencesDialog (camera, conf);
+    camera.play ();
   }
 }
