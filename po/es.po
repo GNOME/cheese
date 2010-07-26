@@ -8,11 +8,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese.HEAD\n"
+"Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-07-18 10:30+0000\n"
-"PO-Revision-Date: 2010-07-18 12:49+0200\n"
+"POT-Creation-Date: 2010-07-20 19:39+0000\n"
+"PO-Revision-Date: 2010-07-26 20:57+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -139,7 +139,6 @@ msgid "_Photo"
 msgstr "_Foto"
 
 #: ../data/cheese-actions.ui.h:18
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "Prefere_ncias"
 
@@ -443,15 +442,20 @@ msgstr "_Tomar una foto"
 msgid "_Discard photo"
 msgstr "_Descartar foto"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "No se soportan las capacidades del dispositivo"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:352
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "Falló al inicializar el dispositivo %s para probar sus capacidades"
+
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "Dispositivo desconocido"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "No se soporta la inicialización cancelable"
 
@@ -485,13 +489,10 @@ msgid "Enable wide mode"
 msgstr "Activar el modo ancho"
 
 #: ../src/cheese-main.vala:40
-#| msgid "output version information and exit"
 msgid "Output version information and exit"
 msgstr "Mostrar información de la versión y salir"
 
 #: ../src/cheese-main.vala:75
-#| msgid ""
-#| "- Take photos and videos with your webcam, with fun graphical effects"
 msgid "- Take photos and videos from your webcam"
 msgstr ": Tomar fotografías y vídeos con su cámara web"
 
@@ -503,7 +504,6 @@ msgstr ""
 "comandos disponibles.\n"
 
 #: ../src/cheese-window.vala:601
-#| msgid "_Stop Recording"
 msgid "Stop _Recording"
 msgstr "_Detener grabación"
 
