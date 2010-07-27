@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
-"Report-Msgid-Bugs-To: gnome-gl-list@gnome.org\n"
-"POT-Creation-Date: 2010-07-18 16:49+0200\n"
-"PO-Revision-Date: 2010-07-18 17:20+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-07-27 17:48+0200\n"
+"PO-Revision-Date: 2010-07-27 17:49+0200\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -56,6 +56,17 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see <http://www.gnu.org/licenses/>.\n"
 msgstr ""
+"Este programa é software libre, vostede pode redistribuílo e/ou modificalo "
+"baixo os termos da Licenza Pública Xeral de GNU publicada pola Free Software "
+"Foundation, tanto a versión 3 como as posteriores.\n"
+"\n"
+"Este programa distribúese coa esperanza de que lle sexa útil, pero SEN "
+"GARANTÍA NINGUNHA, incluso sen a garantía de MERCANTIBILIDADE ou ADECUACIÓN "
+"A UN PROPÓSITO EN PARTICULAR. Vexa a Licenza  Pública Xeral para ter máis "
+"detalles.\n"
+"\n"
+"Debeu recibir unha copia da Licenza Pública Xeral de GNU con este programa, "
+"se non foi así vexa <http://www.gnu.org/licenses/>.\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -66,9 +77,7 @@ msgstr ""
 "Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun."
 "org>, 2009.\n"
 "Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.\n"
-"Ricardo González Castro <rick@jinlabs.com>, 2007.\n"
-"\n"
-"Proxecto Trasno http://trasno.net"
+"Ricardo González Castro <rick@jinlabs.com>, 2007."
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Burst"
@@ -442,15 +451,22 @@ msgstr "_Sacar unha foto"
 msgid "_Discard photo"
 msgstr "_Desbotar a foto"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "As capacidades do dispositivo non son compatíbeis"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:352
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr ""
+"Produciuse un fallo ao inicializar o dispositivo %s para a capacidade de "
+"proba"
+
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "Dispositivo descoñecido"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "A inicialización cancelábel non é compatíbel"
 
