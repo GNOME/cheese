@@ -108,6 +108,8 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   internal void on_preferences_dialog (Gtk.Action action)
   {
+    if (preferences_dialog == null)
+      preferences_dialog = new Cheese.PreferencesDialog (camera, conf);
     preferences_dialog.show ();
   }
 
@@ -941,7 +943,6 @@ public class Cheese.MainWindow : Gtk.Window
 
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
-    preferences_dialog = new Cheese.PreferencesDialog (camera, conf);
     camera.play ();
   }
 }
