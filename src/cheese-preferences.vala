@@ -51,7 +51,6 @@ internal class Cheese.PreferencesDialog : GLib.Object
 
     Gtk.Builder builder = new Gtk.Builder ();
     builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-prefs.ui"));
-    builder.connect_signals (this);
 
     this.dialog = (Gtk.Dialog)builder.get_object ("cheese_prefs_dialog");
 
@@ -81,6 +80,10 @@ internal class Cheese.PreferencesDialog : GLib.Object
     setup_combo_box_models ();
     initialize_camera_devices ();
     initialize_values_from_conf ();
+
+    // Connect signals only after all the widgets have been setup
+    // Stops a bunch of unnecessary signals from being fired
+    builder.connect_signals (this); 
   }
 
   private void setup_combo_box_models ()
@@ -117,10 +120,7 @@ internal class Cheese.PreferencesDialog : GLib.Object
       }
     }
 
-/*
- * FIXME: Find a way to block handlers from being fired when initializing combobox
- *    setup_resolutions_for_device (camera.get_selected_device ());
- */
+    setup_resolutions_for_device (camera.get_selected_device ());	
   }
 
   private void setup_resolutions_for_device (Cheese.CameraDevice device)
