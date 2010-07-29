@@ -94,11 +94,15 @@ internal class Cheese.EffectsManager : GLib.Object
 
   public void load_effects ()
   {
-    string system_effects = GLib.Path.build_filename (Config.PACKAGE_DATADIR, "effects");
+    string system_effects;
+    foreach (string dir in Environment.get_system_data_dirs ())
+    {
+      system_effects = GLib.Path.build_filename (dir, "gnome-video-effects");
+      effects.add_all (load_effects_from_directory (system_effects));
+    }
 
-    effects.add_all (load_effects_from_directory (system_effects));
-
-    string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), ".cheese", "effects");
+    // FIXME: it would be probably better to use ~/.local/share/
+    string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), ".gnome-video-effects");
     effects.add_all (load_effects_from_directory (user_effects));
 
     /* GROSS HACK: to make identity element appear first */

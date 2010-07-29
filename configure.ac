@@ -180,7 +180,6 @@ docs/reference/Makefile
 docs/reference/version.xml
 data/Makefile
 data/cheese.desktop.in
-data/effects/Makefile
 data/icons/Makefile
 data/icons/16x16/Makefile
 data/icons/22x22/Makefile
