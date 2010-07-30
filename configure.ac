@@ -154,7 +154,9 @@ PKG_CHECK_MODULES(CHEESE, \
   unique-1.0  >= $UNIQUE_REQUIRED \
   gee-1.0 >= $GEE_REQUIRED \
   mx-1.0 >= $MX_REQUIRED \
-  libcanberra-gtk $UDEV_PKG 
+  libcanberra-gtk \
+  $UDEV_PKG \
+  gnome-video-effects
   )
 AC_SUBST(CHEESE_CFLAGS)
 
