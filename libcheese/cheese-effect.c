@@ -120,6 +120,13 @@ cheese_effect_class_init (CheeseEffectClass *klass)
 
 }
 
+gboolean
+cheese_effect_is_preview_connected (CheeseEffect *self)
+{
+  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (self);
+  return priv->control_valve != NULL;
+}
+
 void
 cheese_effect_enable_preview (CheeseEffect *self)
 {

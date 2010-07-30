@@ -17,6 +17,7 @@ namespace Cheese
 
 		public void enable_preview();
 		public void disable_preview();
+		public bool is_preview_connected();
 	}
 
   [CCode (cheader_filename = "cheese-camera.h")]

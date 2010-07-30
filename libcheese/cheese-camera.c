@@ -818,11 +818,20 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 
   display_element = clutter_gst_video_sink_new (texture);
   g_object_set (G_OBJECT (display_element), "async", FALSE, NULL);
-    
+ 
   gst_bin_add_many (GST_BIN (priv->pipeline), control_valve, effect_filter, display_queue, display_element, NULL);
+
+
+
   ok = gst_element_link_many (priv->effects_tee, control_valve, effect_filter, display_queue, display_element, NULL);
 
-  g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
+  // HACK: I don't understand GStreamer enough to know why this works.
+  gst_element_set_state (control_valve, GST_STATE_PLAYING);
+  gst_element_set_state (effect_filter, GST_STATE_PLAYING);
+  gst_element_set_state (display_queue, GST_STATE_PLAYING);
+  gst_element_set_state (display_element, GST_STATE_PLAYING); 
+
+  g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);  
 }
 
 

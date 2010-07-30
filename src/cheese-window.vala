@@ -682,14 +682,20 @@ public class Cheese.MainWindow : Gtk.Window
 
     for (int i = 0; i < effects_manager.effects.size - 1; i++)
     {
-      int page_of_effect = i / EFFECTS_PER_PAGE;
-      if (page_of_effect == page_of_effect)
+      int           page_of_effect = i / EFFECTS_PER_PAGE;
+      Cheese.Effect effect         = effects_manager.effects[i];
+      if (page_of_effect == number)
       {
-        effects_manager.effects[i].enable_preview ();
+        if (!effect.is_preview_connected ())
+        {
+          Clutter.Texture texture = effect.get_data<Clutter.Texture> ("texture");
+          camera.connect_effect_texture (effect, texture);
+        }
+        effect.enable_preview ();
       }
       else
       {
-        effects_manager.effects[i].disable_preview ();
+        effect.disable_preview ();
       }
     }
     setup_effects_page_switch_sensitivity ();
@@ -744,7 +750,6 @@ public class Cheese.MainWindow : Gtk.Window
         grid.row_spacing    = 20;
       }
 
-
       for (int i = 0; i < effects_manager.effects.size - 1; i++)
       {
         Effect            effect  = effects_manager.effects[i];
@@ -767,6 +772,8 @@ public class Cheese.MainWindow : Gtk.Window
                   );
         box.reactive = true;
         box.set_data ("effect", effect);
+        effect.set_data ("texture", texture);
+
         box.button_release_event.connect (on_selected_effect_change);
 
         text.text  = effect.name;
@@ -784,7 +791,6 @@ public class Cheese.MainWindow : Gtk.Window
                   );
 
         effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)box);
-        camera.connect_effect_texture (effect, texture);
       }
 
       setup_effects_page_switch_sensitivity ();
@@ -939,7 +945,7 @@ public class Cheese.MainWindow : Gtk.Window
       }
       return;
     }
-   
+
 
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
