@@ -26,7 +26,7 @@ const string GROUP_NAME = "Effect";
 
 internal class Cheese.EffectsManager : GLib.Object
 {
-  public static Cheese. Effect ? parse_effect_file (string filename)
+  public static Cheese.Effect ? parse_effect_file (string filename)
   {
     KeyFile kf  = new KeyFile ();
     Effect  eff = new Effect ();
@@ -49,7 +49,6 @@ internal class Cheese.EffectsManager : GLib.Object
       return null;
     }
 
-    message ("Found %s (%s)", eff.name, eff.pipeline_desc);
     return eff;
   }
 
@@ -57,7 +56,8 @@ internal class Cheese.EffectsManager : GLib.Object
 
   private ArrayList<Effect> ? load_effects_from_directory (string directory)
   {
-    ArrayList<Effect> effects = new ArrayList<Effect>();
+    ArrayList<Effect> list = new ArrayList<Effect>();
+
     if (FileUtils.test (directory, FileTest.EXISTS | FileTest.IS_DIR))
     {
       Dir    dir;
@@ -79,17 +79,21 @@ internal class Cheese.EffectsManager : GLib.Object
         if (cur_file.has_suffix (".effect"))
         {
           Effect effect = EffectsManager.parse_effect_file (GLib.Path.build_filename (directory, cur_file));
-          effects.add (effect);
+          if (!effects.contains(effect))
+          {
+            message ("Found %s (%s)", effect.name, effect.pipeline_desc);
+            list.add (effect);
+          }
         }
         cur_file = dir.read_name ();
       }
     }
-    return effects;
+    return list;
   }
 
   public EffectsManager ()
   {
-    effects = new ArrayList<Effect>();
+    effects = new ArrayList<Effect>((EqualFunc) cmp_value);
   }
 
   public void load_effects ()
@@ -126,4 +130,10 @@ internal class Cheese.EffectsManager : GLib.Object
     }
     return null;
   }
+
+  private static bool cmp_value (Effect a, Effect b)
+  {
+    return a.pipeline_desc == b.pipeline_desc;
+  }
+
 }
