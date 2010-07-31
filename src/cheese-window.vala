@@ -696,7 +696,8 @@ public class Cheese.MainWindow : Gtk.Window
       }
       else
       {
-        effect.disable_preview ();
+        if (effect.is_preview_connected ())
+          effect.disable_preview ();
       }
     }
     setup_effects_page_switch_sensitivity ();
