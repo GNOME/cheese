@@ -679,6 +679,7 @@ public class Cheese.MainWindow : Gtk.Window
     }
     current_effects_grid = effects_grids[number];
     viewport_layout.add ((Clutter.Actor)current_effects_grid);
+    this.current_effects_grid.set_size (viewport.width, viewport.height);
 
     for (int i = 0; i < effects_manager.effects.size - 1; i++)
     {
@@ -699,7 +700,6 @@ public class Cheese.MainWindow : Gtk.Window
       }
     }
     setup_effects_page_switch_sensitivity ();
-    this.current_effects_grid.set_size (viewport.width, viewport.height);
   }
 
   private void setup_effects_page_switch_sensitivity ()
@@ -870,11 +870,6 @@ public class Cheese.MainWindow : Gtk.Window
     viewport.add_actor (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
-    camera = new Camera (video_preview,
-                         conf.gconf_prop_camera,
-                         conf.gconf_prop_x_resolution,
-                         conf.gconf_prop_y_resolution);
-
     viewport.add_actor (viewport_layout);
 
     viewport.allocation_changed.connect (on_stage_resize);
@@ -898,6 +893,18 @@ public class Cheese.MainWindow : Gtk.Window
     /* apparently set_active doesn't emit toggled nothing has
      * changed, do it manually */
     if (!conf.gconf_prop_wide_mode) wide_mode_action.toggled ();
+
+
+    set_mode (MediaMode.PHOTO);
+    setup_effects_selector ();
+  }
+
+  public void setup_camera ()
+  {
+    camera = new Camera (video_preview,
+                         conf.gconf_prop_camera,
+                         conf.gconf_prop_x_resolution,
+                         conf.gconf_prop_y_resolution);
 
     try {
       camera.setup (conf.gconf_prop_camera);
@@ -946,9 +953,6 @@ public class Cheese.MainWindow : Gtk.Window
       return;
     }
 
-
-    set_mode (MediaMode.PHOTO);
-    setup_effects_selector ();
     camera.play ();
   }
 }
