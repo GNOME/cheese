@@ -750,11 +750,14 @@ GstElement*
 cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
 {
   char       *effects_pipeline_desc;
+  char       *name;
   GstElement *effect_filter;
   GError     *err = NULL;
   char       *effect_desc;
 
-  g_object_get (G_OBJECT (effect), "pipeline_desc", &effect_desc, NULL);
+  g_object_get (G_OBJECT (effect),
+                "pipeline_desc", &effect_desc,
+                "name", &name, NULL);
 
   effects_pipeline_desc = g_strconcat ("ffmpegcolorspace ! ",
                                        effect_desc,
@@ -764,7 +767,7 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   if (!effect_filter || (err != NULL))
   {
     g_error_free (err);
-    g_error ("ERROR effect_filter\n");
+    g_warning ("Error with effect filter %s. Ignored", name);
   }
   g_free (effects_pipeline_desc);
 
