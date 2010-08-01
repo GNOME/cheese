@@ -12,14 +12,15 @@
 # Anton Meixome <meixome@mancomun.org>, 2009.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010.
 # Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010.
+# Fran Dieguez <frandieguez@mabishu.com>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-27 17:48+0200\n"
-"PO-Revision-Date: 2010-07-27 17:49+0200\n"
-"Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
+"POT-Creation-Date: 2010-08-01 23:46+0200\n"
+"PO-Revision-Date: 2010-08-01 23:47+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@mabishu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,11 +55,11 @@ msgid ""
 "more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>.\n"
+"this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
 "Este programa é software libre, vostede pode redistribuílo e/ou modificalo "
 "baixo os termos da Licenza Pública Xeral de GNU publicada pola Free Software "
-"Foundation, tanto a versión 3 como as posteriores.\n"
+"Foundation, tanto a versión 2 como as posteriores.\n"
 "\n"
 "Este programa distribúese coa esperanza de que lle sexa útil, pero SEN "
 "GARANTÍA NINGUNHA, incluso sen a garantía de MERCANTIBILIDADE ou ADECUACIÓN "
@@ -66,7 +67,7 @@ msgstr ""
 "detalles.\n"
 "\n"
 "Debeu recibir unha copia da Licenza Pública Xeral de GNU con este programa, "
-"se non foi así vexa <http://www.gnu.org/licenses/>.\n"
+"se non foi así vexa http://www.gnu.org/licenses/.\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -215,7 +216,7 @@ msgstr "Preferencias"
 msgid "Resolution"
 msgstr "Resolución"
 
-#: ../data/cheese-prefs.ui.h:11 ../data/effects/saturation.effect.in.h:1
+#: ../data/cheese-prefs.ui.h:11
 msgid "Saturation"
 msgstr "Saturación"
 
@@ -379,62 +380,6 @@ msgstr "Cando comezar en modo amplo"
 msgid "Width resolution"
 msgstr "Resolución da largura"
 
-#: ../data/effects/agingtv.effect.in.h:1
-msgid "Historical"
-msgstr "Hitorial"
-
-#: ../data/effects/dicetv.effect.in.h:1
-msgid "Dice"
-msgstr "Pixelar"
-
-#: ../data/effects/edgetv.effect.in.h:1
-msgid "Edge"
-msgstr "Bordos"
-
-#: ../data/effects/hulk.effect.in.h:1
-msgid "Hulk"
-msgstr "Hulk"
-
-#: ../data/effects/identity.effect.in.h:1
-msgid "No Effect"
-msgstr "Sen efectos"
-
-#: ../data/effects/mauve.effect.in.h:1
-msgid "Mauve"
-msgstr "Malva"
-
-#: ../data/effects/noir.effect.in.h:1
-msgid "Noir/Blanc"
-msgstr "Branco e negro"
-
-#: ../data/effects/optv.effect.in.h:1
-msgid "Optical Illusion"
-msgstr "Ilusión óptica"
-
-#: ../data/effects/quarktv.effect.in.h:1
-msgid "Quark"
-msgstr "Quark"
-
-#: ../data/effects/radioactv.effect.in.h:1
-msgid "Radioactive"
-msgstr "Radioactivo"
-
-#: ../data/effects/shagadelictv.effect.in.h:1
-msgid "Shagadelic"
-msgstr "Psicodélico"
-
-#: ../data/effects/streaktv.effect.in.h:1
-msgid "Kung-Fu"
-msgstr "Kung-Fu"
-
-#: ../data/effects/vertigotv.effect.in.h:1
-msgid "Vertigo"
-msgstr "Vertixe"
-
-#: ../data/effects/warptv.effect.in.h:1
-msgid "Warp"
-msgstr "Deformar"
-
 #: ../libcheese/cheese-avatar-chooser.c:110
 msgid "Shutter sound"
 msgstr "Son do obturador"
@@ -470,12 +415,12 @@ msgstr "Dispositivo descoñecido"
 msgid "Cancellable initialization not supported"
 msgstr "A inicialización cancelábel non é compatíbel"
 
-#: ../libcheese/cheese-camera.c:1116
+#: ../libcheese/cheese-camera.c:1128
 #, c-format
 msgid "No device found"
 msgstr "Non se atopou ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1135
+#: ../libcheese/cheese-camera.c:1147
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Falta un ou máis elementos necesarios de Gstreamer: "
 
@@ -514,9 +459,51 @@ msgstr ""
 "Executar «%s --help» para ver unha lista completa de opcións de liña de ordes "
 "dispoñíbeis.\n"
 
-#: ../src/cheese-window.vala:601
+#: ../src/cheese-window.vala:603
 msgid "Stop _Recording"
 msgstr "_Deter a gravación"
+
+#~ msgid "Historical"
+#~ msgstr "Hitorial"
+
+#~ msgid "Dice"
+#~ msgstr "Pixelar"
+
+#~ msgid "Edge"
+#~ msgstr "Bordos"
+
+#~ msgid "Hulk"
+#~ msgstr "Hulk"
+
+#~ msgid "No Effect"
+#~ msgstr "Sen efectos"
+
+#~ msgid "Mauve"
+#~ msgstr "Malva"
+
+#~ msgid "Noir/Blanc"
+#~ msgstr "Branco e negro"
+
+#~ msgid "Optical Illusion"
+#~ msgstr "Ilusión óptica"
+
+#~ msgid "Quark"
+#~ msgstr "Quark"
+
+#~ msgid "Radioactive"
+#~ msgstr "Radioactivo"
+
+#~ msgid "Shagadelic"
+#~ msgstr "Psicodélico"
+
+#~ msgid "Kung-Fu"
+#~ msgstr "Kung-Fu"
+
+#~ msgid "Vertigo"
+#~ msgstr "Vertixe"
+
+#~ msgid "Warp"
+#~ msgstr "Deformar"
 
 #~ msgid "Switch to Burst Mode"
 #~ msgstr "Cambiar ao modo de explosión"
