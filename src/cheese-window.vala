@@ -57,7 +57,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.ToggleButton effects_toggle_button;
   private Gtk.Button       leave_fullscreen_button;
   private Gtk.HBox         buttons_area;
-  private Gtk.Menu         popup_menu;
+  private Gtk.Menu         thumbnail_popup;
 
   private Clutter.Stage     viewport;
   private Clutter.Box       viewport_layout;
@@ -100,20 +100,20 @@ public class Cheese.MainWindow : Gtk.Window
   private Cheese.Effect selected_effect;
 
   [CCode (instance_pos = -1)]
-  internal void on_quit (Gtk.Action action)
+  public void on_quit (Gtk.Action action)
   {
     destroy ();
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_preferences_dialog (Gtk.Action action)
+  public void on_preferences_dialog (Gtk.Action action)
   {
     if (preferences_dialog == null)
       preferences_dialog = new Cheese.PreferencesDialog (camera, conf);
     preferences_dialog.show ();
   }
 
-  internal bool on_thumbnail_mouse_button_press (Gtk.Widget      iconview,
+  public bool on_thumbnail_mouse_button_press (Gtk.Widget      iconview,
                                                  Gdk.EventButton event)
   {
     Gtk.TreePath path;
@@ -133,7 +133,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       if (event.button == 3)
       {
-        popup_menu.popup (null, thumb_view, null, event.button, event.time);
+        thumbnail_popup.popup (null, thumb_view, null, event.button, event.time);
       }
     }
     else
@@ -146,7 +146,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_file_open (Gtk.Action ? action)
+  public void on_file_open (Gtk.Action ? action)
   {
     string filename, uri;
 
@@ -163,7 +163,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_file_delete (Gtk.Action action)
+  public void on_file_delete (Gtk.Action action)
   {
     string        filename, basename;
     MessageDialog confirmation_dialog;
@@ -192,7 +192,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_file_move_to_trash (Gtk.Action action)
+  public void on_file_move_to_trash (Gtk.Action action)
   {
     string filename;
 
@@ -205,7 +205,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_file_move_to_trash_all (Gtk.Action action)
+  public void on_file_move_to_trash_all (Gtk.Action action)
   {
     try {
       File           file_to_trash;
@@ -235,7 +235,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_file_save_as (Gtk.Action action)
+  public void on_file_save_as (Gtk.Action action)
   {
     string            filename, basename;
     FileChooserDialog save_as_dialog;
@@ -289,7 +289,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_help_contents (Gtk.Action action)
+  public void on_help_contents (Gtk.Action action)
   {
     Gdk.Screen screen;
     screen = this.get_screen ();
@@ -302,7 +302,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_help_about (Gtk.Action action)
+  public void on_help_about (Gtk.Action action)
   {
     /* FIXME: Close doesn't work
      * FIXME: Clicking URL In the License dialog borks. */
@@ -314,19 +314,19 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_layout_wide_mode (ToggleAction action)
+  public void on_layout_wide_mode (ToggleAction action)
   {
     set_wide_mode (action.active);
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_layout_fullscreen (ToggleAction action)
+  public void on_layout_fullscreen (ToggleAction action)
   {
     set_fullscreen_mode (action.active);
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_mode_change (RadioAction action)
+  public void on_mode_change (RadioAction action)
   {
     set_mode ((MediaMode) action.value);
   }
@@ -528,7 +528,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   /* To make sure that the layout manager manages the entire stage. */
-  internal void on_stage_resize (Clutter.Actor           actor,
+  public void on_stage_resize (Clutter.Actor           actor,
                                  Clutter.ActorBox        box,
                                  Clutter.AllocationFlags flags)
   {
@@ -539,7 +539,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_countdown_toggle (ToggleAction action)
+  public void on_countdown_toggle (ToggleAction action)
   {
     conf.gconf_prop_countdown = action.active;
   }
@@ -552,7 +552,7 @@ public class Cheese.MainWindow : Gtk.Window
     this.camera.take_photo (file_name);
   }
 
-  internal void take_photo ()
+  public void take_photo ()
   {
     if (conf.gconf_prop_countdown)
     {
@@ -588,7 +588,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_take_action (Gtk.Action action)
+  public void on_take_action (Gtk.Action action)
   {
     if (current_mode == MediaMode.PHOTO)
     {
@@ -631,7 +631,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_effects_toggle (Gtk.ToggleAction action)
+  public void on_effects_toggle (Gtk.ToggleAction action)
   {
     toggle_effects_selector (action.active);
     take_photo_action.sensitive = !action.active;
@@ -642,7 +642,7 @@ public class Cheese.MainWindow : Gtk.Window
     burst_mode_action.sensitive = !action.active;
   }
 
-  internal bool on_selected_effect_change (Clutter.ButtonEvent event)
+  public bool on_selected_effect_change (Clutter.ButtonEvent event)
   {
     selected_effect = event.source.get_data ("effect");
     camera.set_effect (selected_effect);
@@ -651,7 +651,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_prev_effects_page (Gtk.Action action)
+  public void on_prev_effects_page (Gtk.Action action)
   {
     if (current_effects_page != 0)
     {
@@ -660,7 +660,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  internal void on_next_effects_page (Gtk.Action action)
+  public void on_next_effects_page (Gtk.Action action)
   {
     if (current_effects_page != (effects_manager.effects.size / EFFECTS_PER_PAGE))
     {
@@ -837,7 +837,7 @@ public class Cheese.MainWindow : Gtk.Window
     effects_toggle_button             = (Gtk.ToggleButton)gtk_builder.get_object ("effects_toggle_button");
     leave_fullscreen_button           = (Gtk.Button)gtk_builder.get_object ("leave_fullscreen_button");
     buttons_area                      = (Gtk.HBox)gtk_builder.get_object ("buttons_area");
-    popup_menu                        = (Gtk.Menu)gtk_builder.get_object ("thumbnail_popup");
+    thumbnail_popup                        = (Gtk.Menu)gtk_builder.get_object ("thumbnail_popup");
 
     take_photo_action        = (Gtk.Action)gtk_builder.get_object ("take_photo");
     take_video_action        = (Gtk.Action)gtk_builder.get_object ("take_video");
