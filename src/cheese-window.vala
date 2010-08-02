@@ -65,6 +65,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.BinLayout viewport_layout_manager;
   private Clutter.Text      countdown_layer;
   private Clutter.Rectangle background_layer;
+  private Clutter.Text      error_layer;
 
   private Mx.Grid            current_effects_grid;
   private int                current_effects_page = 0;
@@ -114,7 +115,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   public bool on_thumbnail_mouse_button_press (Gtk.Widget      iconview,
-                                                 Gdk.EventButton event)
+                                               Gdk.EventButton event)
   {
     Gtk.TreePath path;
     path = thumb_view.get_path_at_pos ((int) event.x, (int) event.y);
@@ -529,8 +530,8 @@ public class Cheese.MainWindow : Gtk.Window
 
   /* To make sure that the layout manager manages the entire stage. */
   public void on_stage_resize (Clutter.Actor           actor,
-                                 Clutter.ActorBox        box,
-                                 Clutter.AllocationFlags flags)
+                               Clutter.ActorBox        box,
+                               Clutter.AllocationFlags flags)
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
     this.background_layer.set_size (viewport.width, viewport.height);
@@ -716,14 +717,31 @@ public class Cheese.MainWindow : Gtk.Window
     if (active)
     {
       video_preview.hide ();
-      current_effects_grid.show ();
-      activate_effects_page (current_effects_page);
+
+      if (effects_grids.size == 0)
+      {
+        error_layer.text = _("No effects found");
+        error_layer.show ();
+      }
+      else
+      {
+        current_effects_grid.show ();
+        activate_effects_page (current_effects_page);
+      }
     }
     else
     {
+      if (effects_grids.size == 0)
+      {
+        error_layer.hide ();
+      }
+      else
+      {
+        current_effects_grid.hide ();
+      }
       video_preview.show ();
-      current_effects_grid.hide ();
     }
+
     camera.toggle_effects_pipeline (active);
     setup_effects_page_switch_sensitivity ();
   }
@@ -736,6 +754,11 @@ public class Cheese.MainWindow : Gtk.Window
       effects_manager.load_effects ();
 
       effects_grids = new ArrayList<Mx.Grid>();
+
+      if (effects_manager.effects.size == 0)
+      {
+        return;
+      }
 
       for (int i = 0; i <= effects_manager.effects.size / EFFECTS_PER_PAGE; i++)
       {
@@ -837,7 +860,7 @@ public class Cheese.MainWindow : Gtk.Window
     effects_toggle_button             = (Gtk.ToggleButton)gtk_builder.get_object ("effects_toggle_button");
     leave_fullscreen_button           = (Gtk.Button)gtk_builder.get_object ("leave_fullscreen_button");
     buttons_area                      = (Gtk.HBox)gtk_builder.get_object ("buttons_area");
-    thumbnail_popup                        = (Gtk.Menu)gtk_builder.get_object ("thumbnail_popup");
+    thumbnail_popup                   = (Gtk.Menu)gtk_builder.get_object ("thumbnail_popup");
 
     take_photo_action        = (Gtk.Action)gtk_builder.get_object ("take_photo");
     take_video_action        = (Gtk.Action)gtk_builder.get_object ("take_video");
@@ -865,6 +888,7 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout_manager = (Clutter.BinLayout)clutter_builder.get_object ("viewport_layout_manager");
     countdown_layer         = (Clutter.Text)clutter_builder.get_object ("countdown_layer");
     background_layer        = (Clutter.Rectangle)clutter_builder.get_object ("background");
+    error_layer             = (Clutter.Text)clutter_builder.get_object ("error_layer");
 
     video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
@@ -912,7 +936,6 @@ public class Cheese.MainWindow : Gtk.Window
     }
     catch (Error err)
     {
-      Clutter.Text error_layer = (Clutter.Text)clutter_builder.get_object ("error_layer");
       video_preview.hide ();
       warning ("Error: %s\n", err.message);
       error_layer.text = err.message;
