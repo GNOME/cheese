@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-21 19:13+0300\n"
-"PO-Revision-Date: 2010-07-21 19:13+0200\n"
+"POT-Creation-Date: 2010-08-03 10:41+0300\n"
+"PO-Revision-Date: 2010-08-03 10:42+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgid ""
 "more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>.\n"
+"this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
 "This program is free software; you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -57,7 +57,7 @@ msgstr ""
 "more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>.\n"
+"this program. If not, see http://www.gnu.org/licenses/\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -65,7 +65,7 @@ msgstr ""
 "יאיר הרשקוביץ <yairhr@gmail.com>\n"
 "‏He-he-6 https://launchpad.net/~he-he-6\n"
 "‏ירון שהרבני <sh.yaron@gmail.com>\n"
-"פרוייקט תרגום GNOME לעברית:\n"
+"פרויקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
 #: ../data/cheese-actions.ui.h:1
@@ -204,7 +204,7 @@ msgstr "העדפות"
 msgid "Resolution"
 msgstr "רזולוציה"
 
-#: ../data/cheese-prefs.ui.h:11 ../data/effects/saturation.effect.in.h:1
+#: ../data/cheese-prefs.ui.h:11
 msgid "Saturation"
 msgstr "רוויה"
 
@@ -366,62 +366,6 @@ msgstr "Whether to start in wide mode"
 msgid "Width resolution"
 msgstr "Width resolution"
 
-#: ../data/effects/agingtv.effect.in.h:1
-msgid "Historical"
-msgstr "היסטורי"
-
-#: ../data/effects/dicetv.effect.in.h:1
-msgid "Dice"
-msgstr "קוביה"
-
-#: ../data/effects/edgetv.effect.in.h:1
-msgid "Edge"
-msgstr "קצוות"
-
-#: ../data/effects/hulk.effect.in.h:1
-msgid "Hulk"
-msgstr "הענק הירוק"
-
-#: ../data/effects/identity.effect.in.h:1
-msgid "No Effect"
-msgstr "ללא אפקט"
-
-#: ../data/effects/mauve.effect.in.h:1
-msgid "Mauve"
-msgstr "ארגמן"
-
-#: ../data/effects/noir.effect.in.h:1
-msgid "Noir/Blanc"
-msgstr "שחור לבן"
-
-#: ../data/effects/optv.effect.in.h:1
-msgid "Optical Illusion"
-msgstr "אשליה אופטית"
-
-#: ../data/effects/quarktv.effect.in.h:1
-msgid "Quark"
-msgstr "קווארק"
-
-#: ../data/effects/radioactv.effect.in.h:1
-msgid "Radioactive"
-msgstr "רדיואקטיבי"
-
-#: ../data/effects/shagadelictv.effect.in.h:1
-msgid "Shagadelic"
-msgstr "סבנטיז"
-
-#: ../data/effects/streaktv.effect.in.h:1
-msgid "Kung-Fu"
-msgstr "קונג־פו"
-
-#: ../data/effects/vertigotv.effect.in.h:1
-msgid "Vertigo"
-msgstr "סחרחורת"
-
-#: ../data/effects/warptv.effect.in.h:1
-msgid "Warp"
-msgstr "עיוות"
-
 #: ../libcheese/cheese-avatar-chooser.c:110
 msgid "Shutter sound"
 msgstr "צליל הצמצם"
@@ -455,12 +399,12 @@ msgstr "התקן בלתי מוכר"
 msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
-#: ../libcheese/cheese-camera.c:1116
+#: ../libcheese/cheese-camera.c:1128
 #, c-format
 msgid "No device found"
 msgstr "לא נמצא התקן"
 
-#: ../libcheese/cheese-camera.c:1135
+#: ../libcheese/cheese-camera.c:1147
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "רכיב אחד או יותר של gstreamer חסר: "
 
@@ -498,9 +442,55 @@ msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-window.vala:601
+#: ../src/cheese-window.vala:604
 msgid "Stop _Recording"
 msgstr "ה_פסקת ההקלטה"
+
+#: ../src/cheese-window.vala:723
+msgid "No effects found"
+msgstr "לא נמצאו אפקטים"
+
+#~ msgid "Historical"
+#~ msgstr "היסטורי"
+
+#~ msgid "Dice"
+#~ msgstr "קוביה"
+
+#~ msgid "Edge"
+#~ msgstr "קצוות"
+
+#~ msgid "Hulk"
+#~ msgstr "הענק הירוק"
+
+#~ msgid "No Effect"
+#~ msgstr "ללא אפקט"
+
+#~ msgid "Mauve"
+#~ msgstr "ארגמן"
+
+#~ msgid "Noir/Blanc"
+#~ msgstr "שחור לבן"
+
+#~ msgid "Optical Illusion"
+#~ msgstr "אשליה אופטית"
+
+#~ msgid "Quark"
+#~ msgstr "קווארק"
+
+#~ msgid "Radioactive"
+#~ msgstr "רדיואקטיבי"
+
+#~ msgid "Shagadelic"
+#~ msgstr "סבנטיז"
+
+#~ msgid "Kung-Fu"
+#~ msgstr "קונג־פו"
+
+#~ msgid "Vertigo"
+#~ msgstr "סחרחורת"
+
+#~ msgid "Warp"
+#~ msgstr "עיוות"
 
 #~ msgid "Switch to Burst Mode"
 #~ msgstr "עבור למצב צילום רציף"
