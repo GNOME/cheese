@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 2.31.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-20 22:50+0200\n"
-"PO-Revision-Date: 2010-07-20 22:53+0200\n"
+"POT-Creation-Date: 2010-08-04 13:56+0200\n"
+"PO-Revision-Date: 2010-08-04 13:57+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -42,7 +42,7 @@ msgid ""
 "more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>.\n"
+"this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
 
 #: ../data/cheese-about.ui.h:10
@@ -185,7 +185,7 @@ msgstr "Brukervalg"
 msgid "Resolution"
 msgstr "Oppløsning"
 
-#: ../data/cheese-prefs.ui.h:11 ../data/effects/saturation.effect.in.h:1
+#: ../data/cheese-prefs.ui.h:11
 msgid "Saturation"
 msgstr "Metning"
 
@@ -344,62 +344,6 @@ msgstr "Om programmet skal startes i bred modus"
 msgid "Width resolution"
 msgstr "Breddeoppløsning"
 
-#: ../data/effects/agingtv.effect.in.h:1
-msgid "Historical"
-msgstr "Historisk"
-
-#: ../data/effects/dicetv.effect.in.h:1
-msgid "Dice"
-msgstr "Terning"
-
-#: ../data/effects/edgetv.effect.in.h:1
-msgid "Edge"
-msgstr "Kant"
-
-#: ../data/effects/hulk.effect.in.h:1
-msgid "Hulk"
-msgstr "Hulk"
-
-#: ../data/effects/identity.effect.in.h:1
-msgid "No Effect"
-msgstr "Ingen effekt"
-
-#: ../data/effects/mauve.effect.in.h:1
-msgid "Mauve"
-msgstr "Mauve"
-
-#: ../data/effects/noir.effect.in.h:1
-msgid "Noir/Blanc"
-msgstr "Noir/Blanc"
-
-#: ../data/effects/optv.effect.in.h:1
-msgid "Optical Illusion"
-msgstr "Optisk illusjon"
-
-#: ../data/effects/quarktv.effect.in.h:1
-msgid "Quark"
-msgstr "Kvark"
-
-#: ../data/effects/radioactv.effect.in.h:1
-msgid "Radioactive"
-msgstr "Radioaktiv"
-
-#: ../data/effects/shagadelictv.effect.in.h:1
-msgid "Shagadelic"
-msgstr "Shagadelic"
-
-#: ../data/effects/streaktv.effect.in.h:1
-msgid "Kung-Fu"
-msgstr "Kung-Fu"
-
-#: ../data/effects/vertigotv.effect.in.h:1
-msgid "Vertigo"
-msgstr "Vertigo"
-
-#: ../data/effects/warptv.effect.in.h:1
-msgid "Warp"
-msgstr "Warp"
-
 #: ../libcheese/cheese-avatar-chooser.c:110
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
@@ -433,12 +377,12 @@ msgstr "Ukjent enhet"
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytbar initiering er ikke støttet"
 
-#: ../libcheese/cheese-camera.c:1116
+#: ../libcheese/cheese-camera.c:1128
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet funnet"
 
-#: ../libcheese/cheese-camera.c:1135
+#: ../libcheese/cheese-camera.c:1147
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
 
@@ -473,8 +417,56 @@ msgstr "- Ta bilder og video fra ditt webkamera"
 #: ../src/cheese-main.vala:86
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr "Kjør «%s --help» for å se en full liste med tilgjengelige kommandolinjeflagg.\n"
+msgstr ""
+"Kjør «%s --help» for å se en full liste med tilgjengelige "
+"kommandolinjeflagg.\n"
 
-#: ../src/cheese-window.vala:601
+#: ../src/cheese-window.vala:604
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
+
+#: ../src/cheese-window.vala:723
+msgid "No effects found"
+msgstr "Ingen effekter funnet"
+
+#~ msgid "Historical"
+#~ msgstr "Historisk"
+
+#~ msgid "Dice"
+#~ msgstr "Terning"
+
+#~ msgid "Edge"
+#~ msgstr "Kant"
+
+#~ msgid "Hulk"
+#~ msgstr "Hulk"
+
+#~ msgid "No Effect"
+#~ msgstr "Ingen effekt"
+
+#~ msgid "Mauve"
+#~ msgstr "Mauve"
+
+#~ msgid "Noir/Blanc"
+#~ msgstr "Noir/Blanc"
+
+#~ msgid "Optical Illusion"
+#~ msgstr "Optisk illusjon"
+
+#~ msgid "Quark"
+#~ msgstr "Kvark"
+
+#~ msgid "Radioactive"
+#~ msgstr "Radioaktiv"
+
+#~ msgid "Shagadelic"
+#~ msgstr "Shagadelic"
+
+#~ msgid "Kung-Fu"
+#~ msgstr "Kung-Fu"
+
+#~ msgid "Vertigo"
+#~ msgstr "Vertigo"
+
+#~ msgid "Warp"
+#~ msgstr "Warp"
