@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master.kn\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-21 12:25+0530\n"
-"PO-Revision-Date: 2010-07-28 16:33+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2010-08-05 09:27+0000\n"
+"PO-Revision-Date: 2010-08-05 15:45+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: kn_IN <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
@@ -41,7 +42,7 @@ msgid ""
 msgstr ""
 "ಆರಂಭಗೊಳ್ಳುವಾಗ ಅನ್ವಯಿಸಬೇಕಿರುವ ಪರಿಣಾಮಗಳ ಪಟ್ಟಿ. ಪಟ್ಟಿಯು ಈ ಕೆಳಗಿನಂತಿದೆ:  \"ಮಾವ್\", "
 "\"ನೋಯಿರ್_ಬ್ಲಾಂಕ್\", \"ಸ್ಯಾಚುರೇಶನ್\", \"ಹಲ್ಕ್‍\", \"ಅಡ್ಡ-ಮಡಚುವಿಕೆ\", \"ಲಂಬ -ಮಡಚುವಿಕೆ"
-"\", \"ಶೆಗಾಡೆಲಿಕ್\", \"ವರ್ಟಿಗೋ\", \"ಎಡ್ಜ್‍\", \"ಡೈಸ್\" ಹಾಗು \"ವ್ರಾಪ್\""
+"\", \"ಶೆಗಾಡೆಲಿಕ್\", \"ವರ್ಟಿಗೋ\", \"ಅಂಚು\", \"ಡೈಸ್\" ಹಾಗು \"ಆವರಿಕೆ\""
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Adjusts brightness level of the picture coming from the camera"
@@ -88,7 +89,7 @@ msgid ""
 "If set to true, Cheese will start up in a wide mode with the image "
 "collection placed on the right-hand side. Useful with small screens."
 msgstr ""
-"true ಗೆ ಬದಲಾಯಿಸಿದಲ್ಲಿ, Cheese ಚಿತ್ರಗಳ ಸಂಗ್ರಹವನ್ನು ಬಲಕ್ಕೆ ಇರಿಸಲ್ಪಟ್ಟು ಅಗಲ ಕ್ರಮದಲ್ಲಿ "
+"ನಿಜಕ್ಕೆ ಬದಲಾಯಿಸಿದಲ್ಲಿ, Cheese ಚಿತ್ರಗಳ ಸಂಗ್ರಹವನ್ನು ಬಲಕ್ಕೆ ಇರಿಸಲ್ಪಟ್ಟು ಅಗಲ ಕ್ರಮದಲ್ಲಿ "
 "ಆರಂಭಗೊಳ್ಳುತ್ತದೆ. ಇದು ಸಣ್ಣ ತೆರೆಗಳಲ್ಲಿ ಸಹಾಯಕವಾಗುತ್ತದೆ."
 
 #: ../data/cheese.schemas.in.h:13
@@ -198,7 +199,7 @@ msgstr "ವಿಡಿಯೋ ಕ್ರಮಕ್ಕೆ ಬದಲಾಯಿಸು"
 msgid "Switch to the Effects Selector"
 msgstr "ಪರಿಣಾಮ ಆಯ್ಕೆಗಾರನಿಗೆ ಬದಲಾಯಿಸು"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:871
 msgid "_Effects"
 msgstr "ಪರಿಣಾಮಗಳು(_E)"
 
@@ -258,9 +259,9 @@ msgstr "ಸ್ಯಾಚುರೇಶನ್"
 msgid "Webcam"
 msgstr "ವೆಬ್‌ಕ್ಯಾಮ್"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:634
 msgid "Shutter sound"
-msgstr "ಶಟರ್ ವೇಗ"
+msgstr "ಶಟರಿನ ವೇಗ"
 
 #: ../libcheese/cheese-avatar-chooser.c:236
 msgid "Take a photo"
@@ -274,24 +275,24 @@ msgstr "ಒಂದು ಚಿತ್ರವನ್ನು ತೆಗೆ(_T)"
 msgid "_Discard photo"
 msgstr "ಚಿತ್ರವನ್ನು ತಿರಸ್ಕರಿಸು(_D)"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
-msgstr "ಯಾವುದೆ ಸಾಧನ ಸಾಮರ್ಥ್ಯಗಳಿಗೆ ಬೆಂಬಲವಿಲ್ಲ"
+msgstr "ಸಾಧನ ಸಾಮರ್ಥ್ಯಗಳಿಗೆ ಬೆಂಬಲವಿಲ್ಲ"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "ಗೊತ್ತಿರದ ಸಾಧನ"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "ರದ್ದುಗೊಳಿಸಬಹುದಾದ ಆರಂಭಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1137
 #, c-format
 msgid "No device found"
 msgstr "ಯಾವುದೆ ಸಾಧನವು ಕಂಡು ಬಂದಿಲ್ಲ"
 
-#: ../libcheese/cheese-camera.c:1153
+#: ../libcheese/cheese-camera.c:1156
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "ಅಗತ್ಯವಿರುವ ಒಂದು ಅಥವ ಹೆಚ್ಚಿನ Gstreamer ಘಟಕಗಳು ಕಾಣೆಯಾಗಿವೆ: "
 
@@ -301,8 +302,8 @@ msgstr "ಅಗತ್ಯವಿರುವ ಒಂದು ಅಥವ ಹೆಚ್ಚಿ
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -387,7 +388,7 @@ msgstr "ಎಲ್ಲಾ ಚಿತ್ರಗಳನ್ನು ಹಾಗು ವೀಡ
 msgid "_Move to Trash"
 msgstr "ಕಸದ ಬುಟ್ಟಿಗೆ ಜರುಗಿಸು(_M)"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:656
 msgid "Unable to open help file for Cheese"
 msgstr "ಚೀಸ್‌ಗಾಗಿನ ನೆರವಿನ ಕಡತಗಳನ್ನು ತೆರೆಯಲಾಗಿಲ್ಲ"
 
@@ -479,7 +480,7 @@ msgstr "ಆವರಿಕೆ"
 msgid "No camera found!"
 msgstr "ಯಾವುದೆ ಕ್ಯಾಮರಾ ಕಂಡುಬಂದಿಲ್ಲ!"
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1222
 msgid "Please refer to the help for further information."
 msgstr "ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ ದಯವಿಟ್ಟು ನೆರವನ್ನು ನೋಡಿ."
 
@@ -576,6 +577,44 @@ msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- ನಿಮ್ಮ ವೆಬ್‌ಕ್ಯಾಮ್‌ ಅನ್ನು ಬಳಸಿಕೊಂಡು ತಮಾಷೆಯ ಗ್ರಾಫಿಕಲ್ ಪರಿಣಾಮಗಳೊಂದಿಗೆ ಚಿತ್ರಗಳನ್ನು ಹಾಗು "
 "ವಿಡಿಯೋಗಳನ್ನು ತೆಗೆಯಿರಿ"
+
+#, fuzzy
+#~| msgid "_Leave Fullscreen"
+#~ msgid "Fullscreen"
+#~ msgstr "ಪೂರ್ಣತೆರೆಯಿಂದ ನಿರ್ಗಮಿಸು(_L)"
+
+#, fuzzy
+#~| msgid "No Effect"
+#~ msgid "Previous Effects"
+#~ msgstr "ಯಾವುದೆ ಪರಿಣಾಮ ಇಲ್ಲ"
+
+#, fuzzy
+#~| msgid "Preferences"
+#~ msgid "_Preferences"
+#~ msgstr "ಆದ್ಯತೆಗಳು"
+
+#, fuzzy
+#~| msgid "_Edit"
+#~ msgid "_Quit"
+#~ msgstr "ಸಂಪಾದನೆ(_E)"
+
+#, fuzzy
+#~| msgid "_Recording"
+#~ msgid "_Record a Video"
+#~ msgstr "ರೆಕಾರ್ಡ್ ಮಾಡುವಿಕೆ(_R)"
+
+#, fuzzy
+#~| msgid ""
+#~| "- Take photos and videos with your webcam, with fun graphical effects"
+#~ msgid "- Take photos and videos from your webcam"
+#~ msgstr ""
+#~ "- ನಿಮ್ಮ ವೆಬ್‌ಕ್ಯಾಮ್‌ ಅನ್ನು ಬಳಸಿಕೊಂಡು ತಮಾಷೆಯ ಗ್ರಾಫಿಕಲ್ ಪರಿಣಾಮಗಳೊಂದಿಗೆ ಚಿತ್ರಗಳನ್ನು "
+#~ "ಹಾಗು ವಿಡಿಯೋಗಳನ್ನು ತೆಗೆಯಿರಿ"
+
+#, fuzzy
+#~| msgid "No device found"
+#~ msgid "No effects found"
+#~ msgstr "ಯಾವುದೆ ಸಾಧನವು ಕಂಡು ಬಂದಿಲ್ಲ"
 
 #~ msgid "Could not set the Account Photo"
 #~ msgstr "ಖಾತೆಯ ಭಾವಚಿತ್ರವನ್ನು ಹೊಂದಿಸಲಾಗಿಲ್ಲ"
