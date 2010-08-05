@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master.kn\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-21 12:37+0530\n"
-"PO-Revision-Date: 2010-03-23 12:54+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2010-08-05 09:21+0000\n"
+"PO-Revision-Date: 2010-08-05 15:57+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
-"Language-Team: kn-IN <>\n"
+"Language-Team: kn_IN <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -41,7 +42,7 @@ msgid ""
 msgstr ""
 "ಆರಂಭಗೊಳ್ಳುವಾಗ ಅನ್ವಯಿಸಬೇಕಿರುವ ಪರಿಣಾಮಗಳ ಪಟ್ಟಿ. ಪಟ್ಟಿಯು ಈ ಕೆಳಗಿನಂತಿದೆ:  \"ಮಾವ್\", "
 "\"ನೋಯಿರ್_ಬ್ಲಾಂಕ್\", \"ಸ್ಯಾಚುರೇಶನ್\", \"ಹಲ್ಕ್‍\", \"ಅಡ್ಡ-ಮಡಚುವಿಕೆ\", \"ಲಂಬ -ಮಡಚುವಿಕೆ"
-"\", \"ಶೆಗಾಡೆಲಿಕ್\", \"ವರ್ಟಿಗೋ\", \"ಎಡ್ಜ್‍\", \"ಡೈಸ್\" ಹಾಗು \"ವ್ರಾಪ್\""
+"\", \"ಶೆಗಾಡೆಲಿಕ್\", \"ವರ್ಟಿಗೋ\", \"ಅಂಚು\", \"ಡೈಸ್\" ಹಾಗು \"ಆವರಿಕೆ\""
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Adjusts brightness level of the picture coming from the webcam"
@@ -84,7 +85,7 @@ msgid ""
 "If set to true, Cheese will startup in a wide mode with the image collection "
 "placed on the right side. Useful with small screens."
 msgstr ""
-"true ಗೆ ಬದಲಾಯಿಸಿದಲ್ಲಿ, Cheese ಚಿತ್ರಗಳ ಸಂಗ್ರಹವನ್ನು ಬಲಕ್ಕೆ ಇರಿಸಲ್ಪಟ್ಟು ಅಗಲ ಕ್ರಮದಲ್ಲಿ "
+"ನಿಜಕ್ಕೆ ಬದಲಾಯಿಸಿದಲ್ಲಿ, Cheese ಚಿತ್ರಗಳ ಸಂಗ್ರಹವನ್ನು ಬಲಕ್ಕೆ ಇರಿಸಲ್ಪಟ್ಟು ಅಗಲ ಕ್ರಮದಲ್ಲಿ "
 "ಆರಂಭಗೊಳ್ಳುತ್ತದೆ. ಇದು ಸಣ್ಣ ತೆರೆಗಳಲ್ಲಿ ಸಹಾಯಕವಾಗುತ್ತದೆ."
 
 #: ../data/cheese.schemas.in.h:12
@@ -278,11 +279,11 @@ msgstr "ಹಲ್ಕ್‍"
 
 #: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
-msgstr "ಲಂಬ-ಮಡಚುವಿಕೆ(ವರ್ಟಿಕಲ್ ಪ್ಲಿಪ್)"
+msgstr "ಲಂಬ-ಮಡಚುವಿಕೆ"
 
 #: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
-msgstr "ಅಡ್ಡ-ಮಡಚುವಿಕೆ(ಹಾರಿಝಾಂಟಲ್ ಪ್ಲಿಪ್)"
+msgstr "ಅಡ್ಡ-ಮಡಚುವಿಕೆ"
 
 #: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
@@ -294,7 +295,7 @@ msgstr "ವರ್ಟಿಗೋ"
 
 #: ../src/cheese-effect-chooser.c:78
 msgid "Edge"
-msgstr "ಎಡ್ಜ್‍"
+msgstr "ಅಂಚು"
 
 #: ../src/cheese-effect-chooser.c:80
 msgid "Dice"
@@ -302,7 +303,7 @@ msgstr "ಡೈಸ್"
 
 #: ../src/cheese-effect-chooser.c:82
 msgid "Warp"
-msgstr "ವ್ರಾಪ್"
+msgstr "ಆವರಿಕೆ"
 
 #. TRANSLATORS:
 #. * This is the countdown number when taking the photo.
@@ -326,17 +327,15 @@ msgstr "ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ ದಯವಿಟ್�
 
 #: ../src/cheese-webcam.c:1662
 msgid "One or more needed gstreamer elements are missing: "
-msgstr ""
-"ಅಗತ್ಯವಿರುವ ಒಂದು ಅಥವ ಹೆಚ್ಚಿನ gstreamer ಘಟಕಗಳು ಕಾಣೆಯಾಗಿವೆ:\n"
-"<i>%s</i>"
+msgstr "ಅಗತ್ಯವಿರುವ ಒಂದು ಅಥವ ಹೆಚ್ಚಿನ gstreamer ಘಟಕಗಳು ಕಾಣೆಯಾಗಿವೆ: "
 
 #: ../src/cheese-window.c:80
 msgid "_Skip"
-msgstr "ಉಪೇಕ್ಷಿಸು(_S)"
+msgstr "ಕಡೆಗಣಿಸು(_S)"
 
 #: ../src/cheese-window.c:81
 msgid "S_kip All"
-msgstr "ಎಲ್ಲವನ್ನೂ ಉಪೇಕ್ಷಿಸು(_k)"
+msgstr "ಎಲ್ಲವನ್ನೂ ಕಡೆಗಣಿಸು(_k)"
 
 #: ../src/cheese-window.c:82
 msgid "Delete _All"
@@ -374,8 +373,7 @@ msgstr "\"%s\" ಕಡತವನ್ನು ಅಳಿಸಲಾಗುವುದಿಲ�
 #: ../src/cheese-window.c:658
 #, c-format
 msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural ""
-"Are you sure you want to permanently delete the %'d selected items?"
+msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
 msgstr[0] "ಆರಿಸಲಾದ %'d ಅಂಶವನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲು ನೀವು ಖಚಿತವೆ?"
 msgstr[1] "ಆರಿಸಲಾದ %'d ಅಂಶಗಳನ್ನು ಶಾಶ್ವತವಾಗಿ ಅಳಿಸಲು ನೀವು ಖಚಿತವೆ?"
 
@@ -478,7 +476,7 @@ msgstr "ಚೀಸ್(_C)"
 
 #: ../src/cheese-window.c:1529
 msgid "_Edit"
-msgstr "ಸಂಪಾದಿಸು(_E)"
+msgstr "ಸಂಪಾದನೆ(_E)"
 
 #: ../src/cheese-window.c:1530
 msgid "Move All to Trash"
@@ -486,7 +484,7 @@ msgstr "ಎಲ್ಲವನ್ನೂ ಕಸದಬುಟ್ಟಿಗೆ ಜರು�
 
 #: ../src/cheese-window.c:1533
 msgid "_Help"
-msgstr "ಸಹಾಯ(_H)"
+msgstr "ನೆರವು(_H)"
 
 #: ../src/cheese-window.c:1536
 msgid "_Contents"
@@ -494,7 +492,7 @@ msgstr "ಅಂಶಗಳು(_C)"
 
 #: ../src/cheese-window.c:1536
 msgid "Help on this Application"
-msgstr "ಈ ಅನ್ವಯದಲ್ಲಿನ ಸಹಾಯ"
+msgstr "ಈ ಅನ್ವಯಕ್ಕಾಗಿನ ಸಹಾಯ"
 
 #: ../src/cheese-window.c:1542
 msgid "Countdown"
@@ -522,7 +520,7 @@ msgstr "ತೆರೆ(_O)"
 
 #: ../src/cheese-window.c:1570
 msgid "Save _As..."
-msgstr "ಹೀಗೆ ಉಳಿಸು (_A)..."
+msgstr "ಹೀಗೆ ಉಳಿಸು(_A)..."
 
 #: ../src/cheese-window.c:1572
 msgid "Move to _Trash"
@@ -589,3 +587,62 @@ msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- ನಿಮ್ಮ ವೆಬ್‌ಕ್ಯಾಮ್‌ ಅನ್ನು ಬಳಸಿಕೊಂಡು ತಮಾಷೆಯ ಗ್ರಾಫಿಕಲ್ ಪರಿಣಾಮಗಳೊಂದಿಗೆ ಚಿತ್ರಗಳನ್ನು ಹಾಗು "
 "ವಿಡಿಯೋಗಳನ್ನು ತೆಗೆಯಿರಿ"
+
+#, fuzzy
+#~| msgid "_Leave Fullscreen"
+#~ msgid "Fullscreen"
+#~ msgstr "ಪೂರ್ಣತೆರೆಯಿಂದ ನಿರ್ಗಮಿಸು(_L)"
+
+#, fuzzy
+#~| msgid "No Effect"
+#~ msgid "Previous Effects"
+#~ msgstr "ಯಾವುದೆ ಪರಿಣಾಮ ಇಲ್ಲ"
+
+#, fuzzy
+#~| msgid "Preferences"
+#~ msgid "_Preferences"
+#~ msgstr "ಆದ್ಯತೆಗಳು"
+
+#, fuzzy
+#~| msgid "_Edit"
+#~ msgid "_Quit"
+#~ msgstr "ಸಂಪಾದನೆ(_E)"
+
+#, fuzzy
+#~| msgid "_Recording"
+#~ msgid "_Record a Video"
+#~ msgstr "ರೆಕಾರ್ಡ್ ಮಾಡುವಿಕೆ(_R)"
+
+#~ msgid "Shutter sound"
+#~ msgstr "ಶಟರಿನ ವೇಗ"
+
+#~ msgid "Take a photo"
+#~ msgstr "ಒಂದು ಚಿತ್ರವನ್ನು ತೆಗೆದುಕೊಳ್ಳಿ"
+
+#~ msgid "_Discard photo"
+#~ msgstr "ಚಿತ್ರವನ್ನು ತಿರಸ್ಕರಿಸು(_D)"
+
+#~ msgid "Device capabilities not supported"
+#~ msgstr "ಸಾಧನ ಸಾಮರ್ಥ್ಯಗಳಿಗೆ ಬೆಂಬಲವಿಲ್ಲ"
+
+#~ msgid "Unknown device"
+#~ msgstr "ಗೊತ್ತಿರದ ಸಾಧನ"
+
+#~ msgid "Cancellable initialization not supported"
+#~ msgstr "ರದ್ದುಗೊಳಿಸಬಹುದಾದ ಆರಂಭಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ"
+
+#~ msgid "No device found"
+#~ msgstr "ಯಾವುದೆ ಸಾಧನವು ಕಂಡು ಬಂದಿಲ್ಲ"
+
+#, fuzzy
+#~| msgid ""
+#~| "- Take photos and videos with your webcam, with fun graphical effects"
+#~ msgid "- Take photos and videos from your webcam"
+#~ msgstr ""
+#~ "- ನಿಮ್ಮ ವೆಬ್‌ಕ್ಯಾಮ್‌ ಅನ್ನು ಬಳಸಿಕೊಂಡು ತಮಾಷೆಯ ಗ್ರಾಫಿಕಲ್ ಪರಿಣಾಮಗಳೊಂದಿಗೆ ಚಿತ್ರಗಳನ್ನು "
+#~ "ಹಾಗು ವಿಡಿಯೋಗಳನ್ನು ತೆಗೆಯಿರಿ"
+
+#, fuzzy
+#~| msgid "No device found"
+#~ msgid "No effects found"
+#~ msgstr "ಯಾವುದೆ ಸಾಧನವು ಕಂಡು ಬಂದಿಲ್ಲ"
