@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-26 21:19+0200\n"
-"PO-Revision-Date: 2010-07-26 21:25+0100\n"
+"POT-Creation-Date: 2010-08-06 13:30+0200\n"
+"PO-Revision-Date: 2010-08-06 13:33+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -37,13 +37,13 @@ msgid ""
 "\n"
 "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.\n"
+"You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
 "Detta program är fri programvara. Du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation, antingen version 2 eller (om du så vill) någon senare version.\n"
 "\n"
 "Detta program distribueras i hopp om att det ska vara användbart, men UTAN NÅGON SOM HELST GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR NÅGOT SPECIELLT ÄNDAMÅL. Se GNU General Public License för ytterligare information.\n"
 "\n"
-"Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se <http://www.gnu.org/licenses/>.\n"
+"Du bör ha fått en kopia av GNU General Public License tillsammans med detta program. Om inte, se http://www.gnu.org/licenses/\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -54,9 +54,8 @@ msgstr ""
 "<tp-sv@listor.tp-sv.se>."
 
 #: ../data/cheese-actions.ui.h:1
-#, fuzzy
 msgid "Burst"
-msgstr "_Multipelt"
+msgstr "Bildsekvens"
 
 #: ../data/cheese-actions.ui.h:2
 msgid "Fullscreen"
@@ -158,7 +157,7 @@ msgstr "Ljusstyrka"
 
 #: ../data/cheese-prefs.ui.h:2
 msgid "Burst mode"
-msgstr "Multipelt läge"
+msgstr "Bildsekvensläge"
 
 #: ../data/cheese-prefs.ui.h:3
 msgid "Contrast"
@@ -193,7 +192,6 @@ msgid "Resolution"
 msgstr "Upplösning"
 
 #: ../data/cheese-prefs.ui.h:11
-#: ../data/effects/saturation.effect.in.h:1
 msgid "Saturation"
 msgstr "Mättnad"
 
@@ -253,11 +251,11 @@ msgstr "Om inställd till sant kommer Cheese att ha en funktion som låter dig t
 
 #: ../data/cheese.schemas.in.h:14
 msgid "Milliseconds between photos in burst mode."
-msgstr "Millisekunder mellan foton i multipelt läge."
+msgstr "Millisekunder mellan foton i bildsekvensläge."
 
 #: ../data/cheese.schemas.in.h:15
 msgid "Number of photos in burst mode."
-msgstr "Antal foton i multipelt läge."
+msgstr "Antal foton i bildsekvensläge."
 
 #: ../data/cheese.schemas.in.h:16
 msgid "Photo Path"
@@ -297,11 +295,11 @@ msgstr "Höjdupplösningen för bilden som fångas med kameran"
 
 #: ../data/cheese.schemas.in.h:25
 msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos."
-msgstr "Längden i tid, i millisekunder, att vänta mellan varje fototagning i en multipel fotosekvens."
+msgstr "Längden i tid, i millisekunder, att vänta mellan varje fototagning i en fotosekvens."
 
 #: ../data/cheese.schemas.in.h:26
 msgid "The number of photos to take in a single burst."
-msgstr "Antalet foton att ta i en enda multipel tagning."
+msgstr "Antalet foton att ta i en enda bildsekvenstagning."
 
 #: ../data/cheese.schemas.in.h:27
 msgid "The width resolution of the image captured from the camera"
@@ -327,62 +325,6 @@ msgstr "Huruvida uppstart i bredläge ska ske"
 msgid "Width resolution"
 msgstr "Upplösning för bredd"
 
-#: ../data/effects/agingtv.effect.in.h:1
-msgid "Historical"
-msgstr ""
-
-#: ../data/effects/dicetv.effect.in.h:1
-msgid "Dice"
-msgstr "Tärning"
-
-#: ../data/effects/edgetv.effect.in.h:1
-msgid "Edge"
-msgstr "Kantig"
-
-#: ../data/effects/hulk.effect.in.h:1
-msgid "Hulk"
-msgstr "Hulken"
-
-#: ../data/effects/identity.effect.in.h:1
-msgid "No Effect"
-msgstr "Ingen effekt"
-
-#: ../data/effects/mauve.effect.in.h:1
-msgid "Mauve"
-msgstr "Mauve"
-
-#: ../data/effects/noir.effect.in.h:1
-msgid "Noir/Blanc"
-msgstr "Svartvitt"
-
-#: ../data/effects/optv.effect.in.h:1
-msgid "Optical Illusion"
-msgstr "Optisk illusion"
-
-#: ../data/effects/quarktv.effect.in.h:1
-msgid "Quark"
-msgstr ""
-
-#: ../data/effects/radioactv.effect.in.h:1
-msgid "Radioactive"
-msgstr "Radioaktiv"
-
-#: ../data/effects/shagadelictv.effect.in.h:1
-msgid "Shagadelic"
-msgstr "Psykedelisk"
-
-#: ../data/effects/streaktv.effect.in.h:1
-msgid "Kung-Fu"
-msgstr "Kung-Fu"
-
-#: ../data/effects/vertigotv.effect.in.h:1
-msgid "Vertigo"
-msgstr "Vertigo"
-
-#: ../data/effects/warptv.effect.in.h:1
-msgid "Warp"
-msgstr "Vrid"
-
 #: ../libcheese/cheese-avatar-chooser.c:110
 msgid "Shutter sound"
 msgstr "Slutarljud"
@@ -406,7 +348,7 @@ msgstr "Enhetsförmågorna stöds inte"
 #: ../libcheese/cheese-camera-device.c:352
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
-msgstr ""
+msgstr "Misslyckades med att initiera enheten %s för funktionsavsökning"
 
 #: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
@@ -416,12 +358,12 @@ msgstr "Okänd enhet"
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytningsbar initiering stöds inte"
 
-#: ../libcheese/cheese-camera.c:1116
+#: ../libcheese/cheese-camera.c:1128
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet hittades"
 
-#: ../libcheese/cheese-camera.c:1135
+#: ../libcheese/cheese-camera.c:1147
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 
@@ -459,10 +401,38 @@ msgstr "- Ta foton och videor från din webbkamera"
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Kör \"%s --help\" för en komplett lista över tillgängliga kommandoradsflaggor.\n"
 
-#: ../src/cheese-window.vala:601
+#: ../src/cheese-window.vala:604
 msgid "Stop _Recording"
 msgstr "S_toppa inspelning"
 
+#: ../src/cheese-window.vala:723
+msgid "No effects found"
+msgstr "Inga effekter hittades"
+
+#~ msgid "Dice"
+#~ msgstr "Tärning"
+#~ msgid "Edge"
+#~ msgstr "Kantig"
+#~ msgid "Hulk"
+#~ msgstr "Hulken"
+#~ msgid "No Effect"
+#~ msgstr "Ingen effekt"
+#~ msgid "Mauve"
+#~ msgstr "Mauve"
+#~ msgid "Noir/Blanc"
+#~ msgstr "Svartvitt"
+#~ msgid "Optical Illusion"
+#~ msgstr "Optisk illusion"
+#~ msgid "Radioactive"
+#~ msgstr "Radioaktiv"
+#~ msgid "Shagadelic"
+#~ msgstr "Psykedelisk"
+#~ msgid "Kung-Fu"
+#~ msgstr "Kung-Fu"
+#~ msgid "Vertigo"
+#~ msgstr "Vertigo"
+#~ msgid "Warp"
+#~ msgstr "Vrid"
 #~ msgid "Switch to Burst Mode"
 #~ msgstr "Växla till multipelt läge"
 #~ msgid "Switch to Photo Mode"
