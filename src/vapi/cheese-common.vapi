@@ -114,43 +114,6 @@ namespace Cheese
     public void fire ();
   }
 
-  [CCode (cheader_filename = "cheese-gconf.h")]
-  public class GConf : GLib.Object
-  {
-    [CCode (has_construct_function = false)]
-    public GConf ();
-    [NoAccessorMethod]
-    public double gconf_prop_brightness {get; set;}
-    [NoAccessorMethod]
-    public int gconf_prop_burst_delay {get; set;}
-    [NoAccessorMethod]
-    public int gconf_prop_burst_repeat {get; set;}
-    [NoAccessorMethod]
-    public string gconf_prop_camera {owned get; set;}
-    [NoAccessorMethod]
-    public double gconf_prop_contrast {get; set;}
-    [NoAccessorMethod]
-    public bool gconf_prop_countdown {get; set;}
-    [NoAccessorMethod]
-    public bool gconf_prop_enable_delete {get; set;}
-    [NoAccessorMethod]
-    public double gconf_prop_hue {get; set;}
-    [NoAccessorMethod]
-    public string gconf_prop_photo_path {owned get; set;}
-    [NoAccessorMethod]
-    public double gconf_prop_saturation {get; set;}
-    [NoAccessorMethod]
-    public string gconf_prop_selected_effects {owned get; set;}
-    [NoAccessorMethod]
-    public string gconf_prop_video_path {owned get; set;}
-    [NoAccessorMethod]
-    public bool gconf_prop_wide_mode {get; set;}
-    [NoAccessorMethod]
-    public int gconf_prop_x_resolution {get; set;}
-    [NoAccessorMethod]
-    public int gconf_prop_y_resolution {get; set;}
-  }
-
   [Compact]
   [CCode (type_id = "CHEESE_TYPE_VIDEO_FORMAT", cheader_filename = "cheese-camera-device.h")]
   public class VideoFormat

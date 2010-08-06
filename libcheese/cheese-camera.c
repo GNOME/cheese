@@ -788,6 +788,7 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   {
     g_error_free (err);
     g_warning ("Error with effect filter %s. Ignored", name);
+    return NULL;
   }
   g_free (effects_pipeline_desc);
 
@@ -800,7 +801,8 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
   GstElement *effect_filter;
 
   effect_filter = cheese_camera_element_from_effect (camera, effect);
-  cheese_camera_change_effect_filter (camera, effect_filter);
+  if (effect_filter != NULL)
+    cheese_camera_change_effect_filter (camera, effect_filter);
 }
 
 void

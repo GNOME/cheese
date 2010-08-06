@@ -106,7 +106,7 @@ public class Cheese.Main
 
     main_window.setup_ui ();
     main_window.destroy.connect (Gtk.main_quit);
-    main_window.show_all ();
+    main_window.show ();
     main_window.setup_camera (device);
     Gtk.main ();
 

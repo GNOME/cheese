@@ -1,0 +1,136 @@
+<schemalist>
+  <schema id='org.gnome.Cheese' path='/apps/cheese/'>
+    <key name='countdown' type='b'>
+      <summary>Use a countdown</summary>
+      <description>
+        Set to True to show countdown when taking a photo
+      </description>
+      <default>true</default>
+    </key>
+
+    <key name='flash' type='b'>
+      <summary>Fire flash before taking a picture</summary>
+      <description>
+        Set to True to fire a flash before taking a picture
+      </description>
+      <default>true</default>
+    </key>
+
+    <key name='camera' type='s'>
+      <summary>Camera device string indicator</summary>
+      <description>
+        The device which points to the camera (e.g. /dev/video0)
+      </description>
+      <default>''</default>
+    </key>
+
+    <key name='selected-effect' type='s'>
+      <summary>Name of last selected effect</summary>
+      <description>
+        Name of installed effect that was selected last
+      </description>
+      <default>'identity'</default>
+    </key>
+
+    <key name='x-resolution' type='i'>
+      <summary>Width resolution</summary>
+      <description>
+        The width resolution of the image captured from the camera
+      </description>
+      <default>0</default>
+    </key>
+
+    <key name='y-resolution' type='i'>
+      <summary>Height resolution</summary>
+      <description>
+        The height resolution of the image captured from the camera
+      </description>
+      <default>0</default>
+    </key>
+
+    <key name='brightness' type='d'>
+      <summary>Picture brightness</summary>
+      <description>
+        Adjusts brightness level of the picture coming from the camera
+      </description>
+      <default>0</default>
+    </key>
+
+    <key name='contrast' type='d'>
+      <summary>Picture contrast</summary>
+      <description>
+        Adjusts contrast level of the picture coming from the camera
+      </description>
+      <default>0</default>
+    </key>
+
+    <key name='saturation' type='d'>
+      <summary>Picture saturation</summary>
+      <description>
+        Adjusts saturation level of the picture coming from the camera
+      </description>
+      <default>0</default>
+    </key>
+
+    <key name='hue' type='d'>
+      <summary>Picture hue</summary>
+      <description>
+        Adjusts hue level of the picture coming from the camera
+      </description>
+      <default>0</default>
+    </key>
+
+    <key name='video-path' type='s'>
+      <summary>Video Path</summary>
+      <description>
+        Defines the path where the videos are stored. If empty,
+        "XDG_VIDEO/Webcam" will be used.
+      </description>
+      <default>''</default>
+    </key>
+
+    <key name='photo-path' type='s'>
+      <summary>Photo Path</summary>
+      <description>
+        Defines the path where the photos are stored. If empty,
+        "XDG_PHOTO/Webcam" will be used.
+      </description>
+      <default>''</default>
+    </key>
+
+    <key name='wide-mode' type='b'>
+      <summary>Whether to start in wide mode</summary>
+      <description>
+        If set to true, Cheese will start up in a wide mode with the
+        image collection placed on the right-hand side. Useful with
+        small screens.
+      </description>
+      <default>false</default>
+    </key>
+
+    <key name='fullscreen' type='b'>
+      <summary>Whether to start in fullscreen</summary>
+      <description>
+        If set to true, Cheese will start up in a fullscreen mode. 
+      </description>
+      <default>false</default>
+    </key>
+
+    <key name='burst-delay' type='i'>
+      <summary>Time between photos in burst mode</summary>
+      <description>
+        The length of time, in milliseconds, to delay between taking
+        each photo in a burst sequence of photos.
+      </description>
+      <default>1000</default>
+    </key>
+
+     <key name='burst-repeat' type='i'>
+      <summary>Number of photos in burst mode</summary>
+      <description>
+        The number of photos to take in a single burst.
+      </description>
+      <default>4</default>
+    </key>
+  </schema>
+</schemalist>

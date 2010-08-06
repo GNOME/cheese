@@ -28,7 +28,6 @@
 #include <string.h>
 
 #include "cheese-fileutil.h"
-#include "cheese-gconf.h"
 
 G_DEFINE_TYPE (CheeseFileUtil, cheese_fileutil, G_TYPE_OBJECT)
 
@@ -183,12 +182,12 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   priv->burst_count    = 0;
   priv->burst_raw_name = "";
 
-  CheeseGConf *gconf;
+  GSettings *settings;
 
-  gconf = cheese_gconf_new ();
+  settings = g_settings_new ("org.gnome.Cheese");
 
-  g_object_get (gconf, "gconf_prop_video_path", &priv->video_path, NULL);
-  g_object_get (gconf, "gconf_prop_photo_path", &priv->photo_path, NULL);
+  g_settings_get (settings, "video-path", "s", &priv->video_path);
+  g_settings_get (settings, "photo-path", "s", &priv->video_path);
 
   /* get the video path from gconf, xdg or hardcoded */
   if (!priv->video_path || strcmp (priv->video_path, "") == 0)
@@ -202,7 +201,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
     }
   }
 
-  /* get the photo path from gconf, xdg or hardcoded */
+  /* get the photo path from gsettings, xdg or hardcoded */
   if (!priv->photo_path || strcmp (priv->photo_path, "") == 0)
   {
     /* get xdg */
@@ -214,7 +213,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
     }
   }
 
-  g_object_unref (gconf);
+  g_object_unref (settings);
 }
 
 CheeseFileUtil *

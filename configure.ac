@@ -75,13 +75,12 @@ GNOME_DOC_INIT
 # Check required libraries
 #*******************************************************************************
 
-GLIB_REQUIRED=2.16.0
+GLIB_REQUIRED=2.26.0
 GOBJECT_REQUIRED=2.12.0
-GIO_REQUIRED=2.16.0
+GIO_REQUIRED=2.26.0
 GTK_REQUIRED=2.19.1
 GDK_REQUIRED=2.14.0
 LIBGNOMEDESKTOP_REQUIRED=2.26.0
-GCONF_REQUIRED=2.16.0
 GSTREAMER_REQUIRED=0.10.23
 CAIRO_REQUIRED=1.4.0
 DBUS_REQUIRED=1.0
@@ -140,7 +139,6 @@ PKG_CHECK_MODULES(CHEESE, \
   gtk+-2.0 >= $GTK_REQUIRED \
   gdk-2.0 >= $GDK_REQUIRED \
   gnome-desktop-2.0 >= $LIBGNOMEDESKTOP_REQUIRED \
-  gconf-2.0 >= $GCONF_REQUIRED \
   gstreamer-0.10 >= $GSTREAMER_REQUIRED \
   gstreamer-plugins-base-0.10 >= $GSTREAMER_REQUIRED \
   cairo >= $CAIRO_REQUIRED \
@@ -168,9 +166,7 @@ GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 AC_SUBST(GLIB_MKENUMS)
 
-AC_PATH_PROG(GCONFTOOL, gconftool-2)
-AM_GCONF_SOURCE_2
-
+GLIB_GSETTINGS
 #*******************************************************************************
 
 AC_OUTPUT([

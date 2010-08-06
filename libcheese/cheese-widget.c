@@ -22,7 +22,6 @@
 #include <glib/gi18n.h>
 
 #include "cheese-widget.h"
-#include "cheese-gconf.h"
 #include "cheese-camera.h"
 #include "cheese-enum-types.h"
 
@@ -52,7 +51,7 @@ typedef struct
   GtkWidget *screen;
   ClutterActor *texture;
   GtkWidget *problem;
-  CheeseGConf *gconf;
+  GSettings *settings;
   CheeseCamera *webcam;
   CheeseWidgetState state;
   GError *error;
@@ -228,7 +227,7 @@ cheese_widget_init (CheeseWidget *widget)
                             priv->problem,
                             gtk_label_new ("got problems"));
 
-  priv->gconf = cheese_gconf_new ();
+  priv->settings = g_settings_new ("org.gnome.Cheese");
 }
 
 static void
@@ -236,10 +235,10 @@ cheese_widget_finalize (GObject *object)
 {
   CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (object);
 
-  if (priv->gconf)
+  if (priv->settings)
   {
-    g_object_unref (priv->gconf);
-    priv->gconf = NULL;
+    g_object_unref (priv->settings);
+    priv->settings = NULL;
   }
   if (priv->webcam)
   {
@@ -311,16 +310,14 @@ setup_camera (CheeseWidget *widget)
   gdouble              contrast;
   gdouble              saturation;
   gdouble              hue;
-
-  g_object_get (priv->gconf,
-                "gconf_prop_x_resolution", &x_resolution,
-                "gconf_prop_y_resolution", &y_resolution,
-                "gconf_prop_camera", &webcam_device,
-                "gconf_prop_brightness", &brightness,
-                "gconf_prop_contrast", &contrast,
-                "gconf_prop_saturation", &saturation,
-                "gconf_prop_hue", &hue,
-                NULL);
+ 
+  g_settings_get (priv->settings, "x-resolution", "i", &x_resolution);
+  g_settings_get (priv->settings, "y-resolution", "i", &y_resolution);
+  g_settings_get (priv->settings, "camera",       "s", &webcam_device);
+  g_settings_get (priv->settings, "brightness",   "d", &brightness);
+  g_settings_get (priv->settings, "contrast",     "d", &contrast);
+  g_settings_get (priv->settings, "saturation",   "d", &saturation);
+  g_settings_get (priv->settings, "hue",          "d", &hue);
 
   gdk_threads_enter ();
   priv->webcam = cheese_camera_new (CLUTTER_TEXTURE (priv->texture),
@@ -446,8 +443,8 @@ cheese_widget_new (void)
   return g_object_new (CHEESE_TYPE_WIDGET, NULL);
 }
 
-GObject *
-cheese_widget_get_gconf (CheeseWidget *widget)
+GSettings *
+cheese_widget_get_settings (CheeseWidget *widget)
 {
   CheeseWidgetPrivate *priv;
 
@@ -455,7 +452,7 @@ cheese_widget_get_gconf (CheeseWidget *widget)
 
   priv = CHEESE_WIDGET_GET_PRIVATE (widget);
 
-  return G_OBJECT (priv->gconf);
+  return G_OBJECT (priv->settings);
 }
 
 GObject *

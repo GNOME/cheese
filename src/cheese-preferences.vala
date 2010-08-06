@@ -24,7 +24,8 @@ using Gtk;
 public class Cheese.PreferencesDialog : GLib.Object
 {
   private Cheese.Camera camera;
-  private Cheese.GConf  conf;
+
+  private GLib.Settings settings;
 
   private Gtk.Dialog dialog;
 
@@ -44,10 +45,13 @@ public class Cheese.PreferencesDialog : GLib.Object
   private Gtk.SpinButton burst_repeat_spin;
   private Gtk.SpinButton burst_delay_spin;
 
-  public PreferencesDialog (Cheese.Camera camera, Cheese.GConf conf)
+  private Gtk.CheckButton countdown_check;
+  private Gtk.CheckButton flash_check;
+
+  public PreferencesDialog (Cheese.Camera camera, GLib.Settings settings)
   {
     this.camera = camera;
-    this.conf   = conf;
+    this.settings   = settings;
 
     Gtk.Builder builder = new Gtk.Builder ();
     try
@@ -61,32 +65,35 @@ public class Cheese.PreferencesDialog : GLib.Object
 
     this.dialog = (Gtk.Dialog)builder.get_object ("cheese_prefs_dialog");
 
-    this.brightness_adjustment = (Gtk.Adjustment)builder.get_object ("brightness_adjustment");
-    this.contrast_adjustment   = (Gtk.Adjustment)builder.get_object ("contrast_adjustment");
-    this.hue_adjustment        = (Gtk.Adjustment)builder.get_object ("hue_adjustment");
-    this.saturation_adjustment = (Gtk.Adjustment)builder.get_object ("saturation_adjustment");
+    this.brightness_adjustment = (Gtk.Adjustment) builder.get_object ("brightness_adjustment");
+    this.contrast_adjustment   = (Gtk.Adjustment) builder.get_object ("contrast_adjustment");
+    this.hue_adjustment        = (Gtk.Adjustment) builder.get_object ("hue_adjustment");
+    this.saturation_adjustment = (Gtk.Adjustment) builder.get_object ("saturation_adjustment");
 
     /* Here instead of in cheese-prefs.ui because of https://bugzilla.gnome.org/show_bug.cgi?id=624443 */
 
-    this.brightness_scale = (Gtk.Scale)builder.get_object ("brightness_scale");
-    this.contrast_scale   = (Gtk.Scale)builder.get_object ("contrast_scale");
-    this.hue_scale        = (Gtk.Scale)builder.get_object ("hue_scale");
-    this.saturation_scale = (Gtk.Scale)builder.get_object ("saturation_scale");
+    this.brightness_scale = (Gtk.Scale) builder.get_object ("brightness_scale");
+    this.contrast_scale   = (Gtk.Scale) builder.get_object ("contrast_scale");
+    this.hue_scale        = (Gtk.Scale) builder.get_object ("hue_scale");
+    this.saturation_scale = (Gtk.Scale) builder.get_object ("saturation_scale");
 
     this.brightness_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
     this.contrast_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
     this.hue_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
     this.saturation_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
 
-    this.resolution_combo = (Gtk.ComboBox)builder.get_object ("resolution_combo_box");
-    this.source_combo     = (Gtk.ComboBox)builder.get_object ("camera_combo_box");
+    this.resolution_combo = (Gtk.ComboBox) builder.get_object ("resolution_combo_box");
+    this.source_combo     = (Gtk.ComboBox) builder.get_object ("camera_combo_box");
 
-    this.burst_repeat_spin = (Gtk.SpinButton)builder.get_object ("burst_repeat");
-    this.burst_delay_spin  = (Gtk.SpinButton)builder.get_object ("burst_delay");
+    this.burst_repeat_spin = (Gtk.SpinButton) builder.get_object ("burst_repeat");
+    this.burst_delay_spin  = (Gtk.SpinButton) builder.get_object ("burst_delay");
+
+    this.countdown_check  = (Gtk.CheckButton) builder.get_object ("countdown");
+    this.flash_check  = (Gtk.CheckButton) builder.get_object ("flash");
 
     setup_combo_box_models ();
     initialize_camera_devices ();
-    initialize_values_from_conf ();
+    initialize_values_from_settings ();
 
     /*
      * Connect signals only after all the widgets have been setup
@@ -113,11 +120,13 @@ public class Cheese.PreferencesDialog : GLib.Object
     ListStore             camera_model = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
 
     source_combo.model = camera_model;
+    if (devices.len <= 1)
+      source_combo.sensitive = false;
 
     for (int i = 0; i < devices.len; i++)
     {
       TreeIter iter;
-      dev = (Cheese.CameraDevice)devices.index (i);
+      dev = (Cheese.CameraDevice) devices.index (i);
       camera_model.append (out iter);
       camera_model.set (iter,
                         0, dev.get_name () + " (" + dev.get_device_file () + " )",
@@ -128,6 +137,7 @@ public class Cheese.PreferencesDialog : GLib.Object
       }
     }
 
+    settings.set_string("camera", camera.get_selected_device ().get_device_file ());
     setup_resolutions_for_device (camera.get_selected_device ());
   }
 
@@ -151,19 +161,24 @@ public class Cheese.PreferencesDialog : GLib.Object
           camera.get_current_video_format ().height == format.height)
       {
         resolution_combo.set_active_iter (iter);
+        settings.set_int("x-resolution", format.width);
+        settings.set_int("y-resolution", format.height);
       }
     }
   }
 
-  private void initialize_values_from_conf ()
+  private void initialize_values_from_settings ()
   {
-    brightness_adjustment.value = conf.gconf_prop_brightness;
-    contrast_adjustment.value   = conf.gconf_prop_contrast;
-    hue_adjustment.value        = conf.gconf_prop_hue;
-    saturation_adjustment.value = conf.gconf_prop_saturation;
+    brightness_adjustment.value = settings.get_double("brightness");
+    contrast_adjustment.value   = settings.get_double("contrast");
+    hue_adjustment.value        = settings.get_double("hue");
+    saturation_adjustment.value = settings.get_double("saturation");
 
-    burst_repeat_spin.value = conf.gconf_prop_burst_repeat;
-    burst_delay_spin.value  = conf.gconf_prop_burst_delay / 1000;
+    burst_repeat_spin.value = settings.get_int("burst-repeat");
+    burst_delay_spin.value  = settings.get_int("burst-delay") / 1000;
+
+    countdown_check.active = settings.get_boolean("countdown");
+    flash_check.active = settings.get_boolean("flash");
   }
 
   [CCode (instance_pos = -1)]
@@ -178,7 +193,7 @@ public class Cheese.PreferencesDialog : GLib.Object
     camera.set_device_by_dev_file (dev.get_device_file ());
     camera.switch_camera_device ();
     setup_resolutions_for_device (camera.get_selected_device ());
-    conf.gconf_prop_camera = dev.get_device_file ();
+    settings.set_string("camera", dev.get_device_file ());
   }
 
   [CCode (instance_pos = -1)]
@@ -192,8 +207,8 @@ public class Cheese.PreferencesDialog : GLib.Object
     combo.model.get (iter, 1, out format);
     camera.set_video_format (format);
 
-    conf.gconf_prop_x_resolution = format.width;
-    conf.gconf_prop_y_resolution = format.height;
+    settings.set_int("x-resolution", format.width);
+    settings.set_int("y-resolution", format.height);
   }
 
   [CCode (instance_pos = -1)]
@@ -203,43 +218,55 @@ public class Cheese.PreferencesDialog : GLib.Object
   }
 
   [CCode (instance_pos = -1)]
+  public void on_countdown_toggle (Gtk.CheckButton checkbutton)
+  {
+    settings.set_boolean("countdown", checkbutton.active);
+  }
+
+  [CCode (instance_pos = -1)]
+  public void on_flash_toggle (Gtk.CheckButton checkbutton)
+  {
+    settings.set_boolean("flash", checkbutton.active);
+  }
+  
+  [CCode (instance_pos = -1)]
   public void on_burst_repeat_change (Gtk.SpinButton spinbutton)
   {
-    conf.gconf_prop_burst_repeat = (int) spinbutton.value;
+    settings.set_int("burst-repeat", (int) spinbutton.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_burst_delay_change (Gtk.SpinButton spinbutton)
   {
-    conf.gconf_prop_burst_delay = (int) spinbutton.value * 1000;
+    settings.set_int("burst-delay", (int) spinbutton.value * 1000);
   }
 
   [CCode (instance_pos = -1)]
   public void on_brightness_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("brightness", adjustment.value);
-    conf.gconf_prop_brightness = adjustment.value;
+    settings.set_double("brightness", adjustment.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_contrast_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("contrast", adjustment.value);
-    conf.gconf_prop_contrast = adjustment.value;
+    settings.set_double("contrast", adjustment.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_hue_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("hue", adjustment.value);
-    conf.gconf_prop_hue = adjustment.value;
+    settings.set_double("hue", adjustment.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_saturation_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("saturation", adjustment.value);
-    conf.gconf_prop_saturation = adjustment.value;
+    settings.set_double("saturation", adjustment.value);
   }
 
   public void show ()

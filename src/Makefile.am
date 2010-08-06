@@ -42,13 +42,11 @@ cheese_SOURCES = \
 	cheese-countdown.vala \
 	cheese-effects-manager.vala \
 	cheese-preferences.vala \
-	thumbview/cheese-gconf.c \
 	thumbview/cheese-thumb-view.c \
 	thumbview/cheese-thumbnail.c \
 	thumbview/eog-thumb-nav.c
 
 noinst_HEADERS = \
-	thumbview/cheese-gconf.h \
 	thumbview/cheese-thumb-view.h \
 	thumbview/cheese-thumbnail.h \
 	thumbview/eog-thumb-nav.h

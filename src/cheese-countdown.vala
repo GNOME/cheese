@@ -39,7 +39,7 @@ internal class Cheese.Countdown : GLib.Object
   private static Clutter.Animation anim;
 
   public bool running;
-  
+
   public Countdown (Clutter.Text countdown_actor)
   {
     this.countdown_actor = countdown_actor;
@@ -56,7 +56,7 @@ internal class Cheese.Countdown : GLib.Object
     if (this.current_value <= 0)
     {
       this.completed_callback ();
-	  running = false;
+      running = false;
       return;
     }
     this.countdown_actor.text = this.current_value.to_string ();
@@ -70,7 +70,7 @@ internal class Cheese.Countdown : GLib.Object
   {
     this.completed_callback = completed_callback;
     this.current_value      = COUNTDOWN_START;
-	running = true;
+    running = true;
     countdown_actor.show ();
     fade_in ();
   }
@@ -79,6 +79,6 @@ internal class Cheese.Countdown : GLib.Object
   {
     countdown_actor.hide ();
     SignalHandler.disconnect (anim, signal_id);
-	running = false;
+    running = false;
   }
 }

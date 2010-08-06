@@ -3,43 +3,39 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy toplevel-contextual -->
   <object class="GtkAdjustment" id="brightness_adjustment">
-    <property name="value">0</property>
     <property name="lower">-1</property>
     <property name="upper">1</property>
-    <property name="step_increment">0.1</property>
+    <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">0.5</property>
-    <signal name="value-changed" handler="cheese_preferences_dialog_on_brightness_change" />
+    <signal name="value_changed" handler="cheese_preferences_dialog_on_brightness_change"/>
   </object>
   <object class="GtkAdjustment" id="contrast_adjustment">
     <property name="value">1</property>
-    <property name="lower">0</property>
     <property name="upper">2</property>
-    <property name="step_increment">0.1</property>
+    <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">0.5</property>
-    <signal name="value-changed" handler="cheese_preferences_dialog_on_contrast_change" />
+    <signal name="value_changed" handler="cheese_preferences_dialog_on_contrast_change"/>
   </object>
   <object class="GtkAdjustment" id="hue_adjustment">
-    <property name="value">0</property>
     <property name="lower">-1</property>
     <property name="upper">1</property>
-    <property name="step_increment">0.1</property>
+    <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">0.5</property>
-    <signal name="value-changed" handler="cheese_preferences_dialog_on_hue_change" />
+    <signal name="value_changed" handler="cheese_preferences_dialog_on_hue_change"/>
   </object>
   <object class="GtkAdjustment" id="saturation_adjustment">
     <property name="value">1</property>
-    <property name="lower">0</property>
     <property name="upper">2</property>
-    <property name="step_increment">0.1</property>
+    <property name="step_increment">0.10000000000000001</property>
     <property name="page_increment">0.5</property>
-    <signal name="value-changed" handler="cheese_preferences_dialog_on_saturation_change" />
+    <signal name="value_changed" handler="cheese_preferences_dialog_on_saturation_change"/>
   </object>
   <object class="GtkAdjustment" id="burst_count_adjustment">
     <property name="value">2</property>
     <property name="lower">3</property>
     <property name="upper">10000</property>
     <property name="step_increment">1</property>
-    <property name="page_increment">10</property>    
+    <property name="page_increment">10</property>
   </object>
   <object class="GtkAdjustment" id="burst_delay_adjustment">
     <property name="lower">1</property>
@@ -77,7 +73,6 @@
                     <child>
                       <object class="GtkVBox" id="vbox4">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
                         <property name="spacing">2</property>
                         <child>
                           <object class="GtkAlignment" id="alignment3">
@@ -123,12 +118,11 @@
                     <child>
                       <object class="GtkVBox" id="vbox5">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
                         <property name="spacing">2</property>
                         <child>
                           <object class="GtkComboBox" id="camera_combo_box">
                             <property name="visible">True</property>
-                            <signal name="changed" handler="cheese_preferences_dialog_on_source_change" />
+                            <signal name="changed" handler="cheese_preferences_dialog_on_source_change"/>
                           </object>
                           <packing>
                             <property name="position">0</property>
@@ -138,7 +132,7 @@
                           <object class="GtkComboBox" id="resolution_combo_box">
                             <property name="visible">True</property>
                             <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
-                            <signal name="changed" handler="cheese_preferences_dialog_on_resolution_change" />
+                            <signal name="changed" handler="cheese_preferences_dialog_on_resolution_change"/>
                           </object>
                           <packing>
                             <property name="position">1</property>
@@ -178,15 +172,13 @@
                     <child>
                       <object class="GtkVBox" id="vbox3">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
                         <property name="spacing">2</property>
-
                         <child>
                           <object class="GtkAlignment" id="alignment1">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="xscale">0</property>
                             <property name="yalign">0</property>
+                            <property name="xscale">0</property>
                             <property name="yscale">0</property>
                             <property name="left_padding">10</property>
                             <child>
@@ -197,17 +189,15 @@
                             </child>
                           </object>
                           <packing>
-                          <property name="expand">True</property>
-                          <property name="fill">True</property>
-                        </packing>
-                          
+                            <property name="position">0</property>
+                          </packing>
                         </child>
                         <child>
                           <object class="GtkAlignment" id="alignment2">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="xscale">0</property>
                             <property name="yalign">0</property>
+                            <property name="xscale">0</property>
                             <property name="yscale">0</property>
                             <property name="left_padding">10</property>
                             <child>
@@ -225,10 +215,10 @@
                           <object class="GtkAlignment" id="alignment5">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="xscale">0</property>
                             <property name="yalign">0</property>
+                            <property name="xscale">0</property>
                             <property name="yscale">0</property>
-                            <property name="left_padding">10</property>                            
+                            <property name="left_padding">10</property>
                             <child>
                               <object class="GtkLabel" id="label7">
                                 <property name="visible">True</property>
@@ -237,8 +227,6 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
-                          <property name="fill">True</property>
                             <property name="position">2</property>
                           </packing>
                         </child>
@@ -246,8 +234,8 @@
                           <object class="GtkAlignment" id="alignment6">
                             <property name="visible">True</property>
                             <property name="xalign">0</property>
-                            <property name="xscale">0</property>
                             <property name="yalign">0</property>
+                            <property name="xscale">0</property>
                             <property name="yscale">0</property>
                             <property name="left_padding">10</property>
                             <child>
@@ -258,8 +246,6 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
-                          <property name="fill">True</property>
                             <property name="position">3</property>
                           </packing>
                         </child>
@@ -273,18 +259,15 @@
                     <child>
                       <object class="GtkVBox" id="vbox2">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
                         <property name="spacing">2</property>
                         <child>
                           <object class="GtkHScale" id="brightness_scale">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="draw_value">False</property>
                             <property name="adjustment">brightness_adjustment</property>
+                            <property name="draw_value">False</property>
                           </object>
                           <packing>
-                            <property name="expand">True</property>
-                          <property name="fill">True</property>
                             <property name="position">0</property>
                           </packing>
                         </child>
@@ -292,8 +275,8 @@
                           <object class="GtkHScale" id="contrast_scale">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="draw_value">False</property>
                             <property name="adjustment">contrast_adjustment</property>
+                            <property name="draw_value">False</property>
                           </object>
                           <packing>
                             <property name="position">1</property>
@@ -303,8 +286,8 @@
                           <object class="GtkHScale" id="saturation_scale">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="draw_value">False</property>
                             <property name="adjustment">saturation_adjustment</property>
+                            <property name="draw_value">False</property>
                           </object>
                           <packing>
                             <property name="position">2</property>
@@ -314,8 +297,8 @@
                           <object class="GtkHScale" id="hue_scale">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="draw_value">False</property>
                             <property name="adjustment">hue_adjustment</property>
+                            <property name="draw_value">False</property>
                           </object>
                           <packing>
                             <property name="position">3</property>
@@ -345,6 +328,62 @@
               </packing>
             </child>
             <child>
+              <object class="GtkFrame" id="frame4">
+                <property name="visible">True</property>
+                <property name="label_xalign">0</property>
+                <property name="shadow_type">none</property>
+                <child>
+                  <object class="GtkAlignment" id="alignment9">
+                    <property name="visible">True</property>
+                    <property name="left_padding">12</property>
+                    <child>
+                      <object class="GtkHBox" id="hbox4">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkCheckButton" id="countdown">
+                            <property name="label" translatable="yes">_Countdown</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="cheese_preferences_dialog_on_countdown_toggle"/>
+                          </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="flash">
+                            <property name="label" translatable="yes">Fire _Flash</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="use_underline">True</property>
+                            <property name="draw_indicator">True</property>
+                            <signal name="toggled" handler="cheese_preferences_dialog_on_flash_toggle"/>
+                          </object>
+                          <packing>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <child type="label">
+                  <object class="GtkLabel" id="label12">
+                    <property name="visible">True</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Shutter&lt;/b&gt;</property>
+                    <property name="use_markup">True</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
               <object class="GtkFrame" id="frame1">
                 <property name="visible">True</property>
                 <property name="label_xalign">0</property>
@@ -357,7 +396,6 @@
                     <child>
                       <object class="GtkVBox" id="vbox6">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
                         <property name="spacing">2</property>
                         <child>
                           <object class="GtkAlignment" id="alignment7">
@@ -403,7 +441,6 @@
                     <child>
                       <object class="GtkVBox" id="vbox7">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
                         <property name="spacing">2</property>
                         <child>
                           <object class="GtkSpinButton" id="burst_repeat">
@@ -411,7 +448,7 @@
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="adjustment">burst_count_adjustment</property>
-                            <signal name="value-changed" handler="cheese_preferences_dialog_on_burst_repeat_change" />
+                            <signal name="value_changed" handler="cheese_preferences_dialog_on_burst_repeat_change"/>
                           </object>
                           <packing>
                             <property name="position">0</property>
@@ -423,7 +460,7 @@
                             <property name="can_focus">True</property>
                             <property name="invisible_char">&#x25CF;</property>
                             <property name="adjustment">burst_delay_adjustment</property>
-                            <signal name="value-changed" handler="cheese_preferences_dialog_on_burst_delay_change" />
+                            <signal name="value_changed" handler="cheese_preferences_dialog_on_burst_delay_change"/>
                           </object>
                           <packing>
                             <property name="position">1</property>
@@ -447,7 +484,7 @@
                 </child>
               </object>
               <packing>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -470,7 +507,7 @@
                 <property name="receives_default">True</property>
                 <property name="events">GDK_POINTER_MOTION_MASK | GDK_POINTER_MOTION_HINT_MASK | GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
                 <property name="use_stock">True</property>
-                <signal name="clicked" handler="cheese_preferences_dialog_on_dialog_close" />
+                <signal name="clicked" handler="cheese_preferences_dialog_on_dialog_close"/>
               </object>
               <packing>
                 <property name="expand">False</property>

@@ -29,8 +29,6 @@ include $(top_srcdir)/Makefile.am.enums
 libcheese_gtk_la_CFLAGS = $(CHEESE_CFLAGS)
 
 libcheesecommon_la_SOURCES = \
-	cheese-gconf.c \
-	cheese-gconf.h \
 	cheese-fileutil.c \
 	cheese-fileutil.h \
 	cheese-camera.c \
