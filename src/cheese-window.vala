@@ -839,8 +839,7 @@ public class Cheese.MainWindow : Gtk.Window
       clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
     }catch (Error err)
     {
-      warning ("Error: %s\n", err.message);
-      return;
+		error ("Error: %s", err.message);
     }
 
     main_vbox                         = (Gtk.VBox)gtk_builder.get_object ("mainbox_normal");

@@ -50,7 +50,14 @@ public class Cheese.PreferencesDialog : GLib.Object
     this.conf   = conf;
 
     Gtk.Builder builder = new Gtk.Builder ();
-    builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-prefs.ui"));
+	try
+	{
+		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-prefs.ui"));
+	}
+	catch (Error err)
+	{
+		error ("Error: %s", err.message);
+	}
 
     this.dialog = (Gtk.Dialog)builder.get_object ("cheese_prefs_dialog");
 
