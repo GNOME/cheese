@@ -88,6 +88,7 @@ public class Cheese.MainWindow : Gtk.Window
   private bool is_recording;       /* Video Recording Flag */
   private bool is_bursting;
   private bool is_effects_selector_active;
+  private bool is_camera_actions_sensitive;
 
   private Gtk.Button[] buttons;
 
@@ -157,25 +158,25 @@ public class Cheese.MainWindow : Gtk.Window
     if (filename == null)
       return;                     /* Nothing selected. */
 
-	try
-	{
-		uri = GLib.Filename.to_uri (filename);
-		screen = this.get_screen ();
-		Gtk.show_uri (screen, uri, Gtk.get_current_event_time ());
-	}
-	catch (Error err)
-	{
-		MessageDialog error_dialog = new MessageDialog (this,
-                                                        Gtk.DialogFlags.MODAL |
-                                                        Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                        Gtk.MessageType.ERROR,
-                                                        Gtk.ButtonsType.OK,
-                                                        "Could not open %s",
-                                                        filename);
+    try
+    {
+      uri    = GLib.Filename.to_uri (filename);
+      screen = this.get_screen ();
+      Gtk.show_uri (screen, uri, Gtk.get_current_event_time ());
+    }
+    catch (Error err)
+    {
+      MessageDialog error_dialog = new MessageDialog (this,
+                                                      Gtk.DialogFlags.MODAL |
+                                                      Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                      Gtk.MessageType.ERROR,
+                                                      Gtk.ButtonsType.OK,
+                                                      "Could not open %s",
+                                                      filename);
 
-        error_dialog.run ();
-        error_dialog.destroy ();
-	}
+      error_dialog.run ();
+      error_dialog.destroy ();
+    }
   }
 
   [CCode (instance_pos = -1)]
@@ -217,23 +218,23 @@ public class Cheese.MainWindow : Gtk.Window
       return;                    /* Nothing selected. */
 
     File file_to_trash = File.new_for_path (filename);
-	try
-	{
-		file_to_trash.trash (null);
-	}
-	catch (Error err)
-	{
-		MessageDialog error_dialog = new MessageDialog (this,
-                                                        Gtk.DialogFlags.MODAL |
-                                                        Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                        Gtk.MessageType.ERROR,
-                                                        Gtk.ButtonsType.OK,
-                                                        "Could not move %s to trash",
-                                                        filename);
+    try
+    {
+      file_to_trash.trash (null);
+    }
+    catch (Error err)
+    {
+      MessageDialog error_dialog = new MessageDialog (this,
+                                                      Gtk.DialogFlags.MODAL |
+                                                      Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                      Gtk.MessageType.ERROR,
+                                                      Gtk.ButtonsType.OK,
+                                                      "Could not move %s to trash",
+                                                      filename);
 
-        error_dialog.run ();
-        error_dialog.destroy ();
-	}
+      error_dialog.run ();
+      error_dialog.destroy ();
+    }
   }
 
   [CCode (instance_pos = -1)]
@@ -853,6 +854,75 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  private Gee.HashMap<string, bool> action_sensitivities;
+  public void toggle_camera_actions_sensitivities (bool active)
+  {
+	  is_camera_actions_sensitive = active;
+    if (active)
+    {
+      foreach (string key in action_sensitivities.keys)
+      {
+        Gtk.Action action = (Gtk.Action)gtk_builder.get_object (key);
+        action.sensitive = action_sensitivities.get (key);
+      }
+    }
+    else
+    {
+      action_sensitivities = new HashMap<string, bool> (GLib.str_hash);
+      GLib.SList<weak GLib.Object> objects = gtk_builder.get_objects ();
+      foreach (GLib.Object obj in objects)
+      {
+        if (obj is Gtk.Action)
+        {
+          Gtk.Action action = (Gtk.Action)obj;
+          action_sensitivities.set (action.name, action.sensitive);
+        }
+      }
+
+      /* Keep only these actions sensitive. */
+      string active_actions[11] = { "cheese_action",
+                                    "edit_action",
+                                    "help_action",
+                                    "quit",
+                                    "help_contents",
+                                    "about",
+                                    "open",
+                                    "save_as",
+                                    "move_to_trash",
+                                    "delete",
+                                    "move_all_to_trash"};
+
+      /* Gross hack because Vala's `in` operator doesn't really work */
+      bool flag;
+      foreach (GLib.Object obj in objects)
+      {
+        flag = false;
+        if (obj is Gtk.Action)
+        {
+          Gtk.Action action = (Gtk.Action)obj;
+          foreach (string s in active_actions)
+          {
+            if (action.name == s)
+            {
+              flag = true;
+            }
+          }
+          if (!flag)
+            ((Gtk.Action)obj).sensitive = false;
+        }
+      }
+    }
+  }
+
+  private void camera_state_changed (Gst.State new_state)
+  {
+	  if (new_state == Gst.State.PLAYING)
+	  {
+		  if (!is_camera_actions_sensitive)
+			  toggle_camera_actions_sensitivities (true);
+	  }
+  }
+
   public void setup_ui ()
   {
     gtk_builder     = new Gtk.Builder ();
@@ -870,7 +940,7 @@ public class Cheese.MainWindow : Gtk.Window
       clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
     }catch (Error err)
     {
-		error ("Error: %s", err.message);
+      error ("Error: %s", err.message);
     }
 
     main_vbox                         = (Gtk.VBox)gtk_builder.get_object ("mainbox_normal");
@@ -952,6 +1022,8 @@ public class Cheese.MainWindow : Gtk.Window
 
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
+
+    toggle_camera_actions_sensitivities (false);
   }
 
   public void setup_camera ()
@@ -970,43 +1042,11 @@ public class Cheese.MainWindow : Gtk.Window
       warning ("Error: %s\n", err.message);
       error_layer.text = err.message;
       error_layer.show ();
-      GLib.SList<weak GLib.Object> objects = gtk_builder.get_objects ();
-
-      /* Keep only these actions sensitive. */
-      string active_actions[11] = { "cheese_action",
-                                    "edit_action",
-                                    "help_action",
-                                    "quit",
-                                    "help_contents",
-                                    "about",
-                                    "open",
-                                    "save_as",
-                                    "move_to_trash",
-                                    "delete",
-                                    "move_all_to_trash"};
-
-      /* Gross hack because Vala's `in` operator doesn't really work */
-      bool flag;
-      foreach (GLib.Object obj in objects)
-      {
-        flag = false;
-        if (obj is Gtk.Action)
-        {
-          Gtk.Action action = (Gtk.Action)obj;
-          foreach (string s in active_actions)
-          {
-            if (action.name == s)
-            {
-              flag = true;
-            }
-          }
-          if (!flag)
-            ((Gtk.Action)obj).sensitive = false;
-        }
-      }
+      toggle_camera_actions_sensitivities (false);
       return;
     }
 
+    camera.state_changed.connect (camera_state_changed);
     camera.play ();
   }
 }

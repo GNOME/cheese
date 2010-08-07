@@ -106,6 +106,7 @@ enum
   PHOTO_SAVED,
   PHOTO_TAKEN,
   VIDEO_SAVED,
+  STATE_CHANGED,
   LAST_SIGNAL
 };
 
@@ -210,6 +211,19 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       cheese_camera_change_sink (camera, priv->video_display_bin,
                                  priv->photo_save_bin, priv->video_save_bin);
       priv->is_recording = FALSE;
+    }  
+  }
+  else if (GST_MESSAGE_TYPE (message) == GST_MESSAGE_STATE_CHANGED)
+  {
+    if (strcmp(GST_MESSAGE_SRC_NAME (message), "pipeline") == 0)
+    {
+      GstState old, new;
+      gst_message_parse_state_changed (message, &old, &new, NULL);
+      if (new == GST_STATE_PLAYING)
+      {
+        g_signal_emit (camera, camera_signals[STATE_CHANGED], 0, new);
+      }
+      g_debug ("%d -> %d", old, new);
     }
   }
 }
@@ -1049,6 +1063,13 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               NULL, NULL,
                                               g_cclosure_marshal_VOID__VOID,
                                               G_TYPE_NONE, 0);
+
+  camera_signals[STATE_CHANGED] = g_signal_new ("state-changed", G_OBJECT_CLASS_TYPE (klass),
+                                              G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
+                                              G_STRUCT_OFFSET (CheeseCameraClass, state_changed),
+                                              NULL, NULL,
+                                              g_cclosure_marshal_VOID__INT,
+                                                G_TYPE_NONE, 1, G_TYPE_INT);
 
 
   g_object_class_install_property (object_class, PROP_VIDEO_TEXTURE,
