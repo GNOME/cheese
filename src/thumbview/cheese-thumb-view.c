@@ -29,7 +29,7 @@
 #include <string.h>
 
 #include "cheese-fileutil.h"
-#include "eog-thumbnail.h"
+#include "cheese-thumbnail.h"
 
 #include "cheese-thumb-view.h"
 
@@ -154,7 +154,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   }
   else
   {
-    eog_thumbnail_add_frame (&pixbuf);
+    cheese_thumbnail_add_frame (&pixbuf);
   }
 
   gdk_threads_enter ();
@@ -595,7 +595,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   GFile *file;
 
-  eog_thumbnail_init ();
+  cheese_thumbnail_init ();
 
   priv->store   = gtk_list_store_new (3, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   priv->n_items = 0;

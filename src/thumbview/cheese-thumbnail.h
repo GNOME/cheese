@@ -1,11 +1,12 @@
-/* Eye Of Gnome - Thumbnailing functions
+/*
+ * Copyright © 2010 daniel g. siegel <dgsiegel@gnome.org>
  *
- * Copyright (C) 2000-2007 The Free Software Foundation
  *
- * Author: Lucas Rocha <lucasr@gnome.org>
+ * Based on eog and eel code by:
+ *   - Lucas Rocha <lucasr@gnome.org>
+ *   - Andy Hertzfeld <andy@eazel.com>
  *
- * Based on nautilus code (libnautilus-private/nautilus-thumbnail.c) by:
- *      - Andy Hertzfeld <andy@eazel.com>
+ * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,22 +19,20 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _EOG_THUMBNAIL_H_
-#define _EOG_THUMBNAIL_H_
+#ifndef _CHEESE_THUMBNAIL_H_
+#define _CHEESE_THUMBNAIL_H_
 
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
 
-void eog_thumbnail_init (void);
+void cheese_thumbnail_init (void);
 
-
-void eog_thumbnail_add_frame (GdkPixbuf **thumbnail);
+void cheese_thumbnail_add_frame (GdkPixbuf **pixbuf);
 
 G_END_DECLS
 
-#endif /* _EOG_THUMBNAIL_H_ */
+#endif /* _CHEESE_THUMBNAIL_H_ */

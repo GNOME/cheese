@@ -1,11 +1,12 @@
-/* Eye Of Gnome - Thumbnailing functions
+/*
+ * Copyright © 2010 daniel g. siegel <dgsiegel@gnome.org>
  *
- * Copyright (C) 2000-2007 The Free Software Foundation
  *
- * Author: Lucas Rocha <lucasr@gnome.org>
+ * Based on eog and eel code by:
+ *   - Lucas Rocha <lucasr@gnome.org>
+ *   - Andy Hertzfeld <andy@eazel.com>
  *
- * Based on eel code (eel/eel-graphic-effects.c) by:
- *      - Andy Hertzfeld <andy@eazel.com>
+ * Licensed under the GNU General Public License Version 2
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +19,19 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* NOTE this is a stripped version of eog-thumbnail which only contains the
- * functions necessary for cheese
- */
 #ifdef HAVE_CONFIG_H
   #include <cheese-config.h>
 #endif
 
-#include "eog-thumbnail.h"
+#include "cheese-thumbnail.h"
+
+#define CHEESE_THUMBNAIL_FRAME_LEFT   3
+#define CHEESE_THUMBNAIL_FRAME_TOP    3
+#define CHEESE_THUMBNAIL_FRAME_RIGHT  3
+#define CHEESE_THUMBNAIL_FRAME_BOTTOM 3
 
 
 static GdkPixbuf *frame = NULL;
@@ -123,14 +125,14 @@ art_rgb_run_alpha (guint8 *buf, guint8 r, guint8 g, guint8 b, int alpha, int n)
 }
 
 static GdkPixbuf *
-eog_thumbnail_stretch_frame_image (GdkPixbuf *frame_image,
-                                   gint       left_offset,
-                                   gint       top_offset,
-                                   gint       right_offset,
-                                   gint       bottom_offset,
-                                   gint       dest_width,
-                                   gint       dest_height,
-                                   gboolean   fill_flag)
+cheese_thumbnail_stretch_frame_image (GdkPixbuf *frame_image,
+                                      gint       left_offset,
+                                      gint       top_offset,
+                                      gint       right_offset,
+                                      gint       bottom_offset,
+                                      gint       dest_width,
+                                      gint       dest_height,
+                                      gboolean   fill_flag)
 {
   GdkPixbuf *result_pixbuf;
   guchar    *pixels_ptr;
@@ -253,38 +255,41 @@ eog_thumbnail_stretch_frame_image (GdkPixbuf *frame_image,
 }
 
 void
-eog_thumbnail_add_frame (GdkPixbuf **thumbnail)
+cheese_thumbnail_add_frame (GdkPixbuf **pixbuf)
 {
-  GdkPixbuf *result_pixbuf;
-  gint       source_width, source_height;
-  gint       dest_width, dest_height;
+  GdkPixbuf *result;
+  int        source_width, source_height;
+  int        dest_width, dest_height;
+  int        left_offset, right_offset, top_offset, bottom_offset;
 
-  source_width  = gdk_pixbuf_get_width (*thumbnail);
-  source_height = gdk_pixbuf_get_height (*thumbnail);
+  left_offset   = CHEESE_THUMBNAIL_FRAME_LEFT;
+  right_offset  = CHEESE_THUMBNAIL_FRAME_RIGHT;
+  top_offset    = CHEESE_THUMBNAIL_FRAME_TOP;
+  bottom_offset = CHEESE_THUMBNAIL_FRAME_BOTTOM;
 
-  dest_width  = source_width + 9;
-  dest_height = source_height + 9;
+  source_width  = gdk_pixbuf_get_width (*pixbuf);
+  source_height = gdk_pixbuf_get_height (*pixbuf);
 
-  result_pixbuf = eog_thumbnail_stretch_frame_image (frame,
-                                                     3, 3, 6, 6,
-                                                     dest_width,
-                                                     dest_height,
-                                                     FALSE);
+  dest_width  = source_width + left_offset + right_offset;
+  dest_height = source_height + top_offset + bottom_offset;
 
-  gdk_pixbuf_copy_area (*thumbnail,
-                        0, 0,
-                        source_width,
-                        source_height,
-                        result_pixbuf,
-                        3, 3);
+  result = cheese_thumbnail_stretch_frame_image (frame,
+                                                 left_offset,
+                                                 top_offset,
+                                                 right_offset,
+                                                 bottom_offset,
+                                                 dest_width,
+                                                 dest_height,
+                                                 FALSE);
 
-  g_object_unref (*thumbnail);
+  gdk_pixbuf_copy_area (*pixbuf, 0, 0, source_width, source_height, result, left_offset, top_offset);
+  g_object_unref (*pixbuf);
 
-  *thumbnail = result_pixbuf;
+  *pixbuf = result;
 }
 
 void
-eog_thumbnail_init (void)
+cheese_thumbnail_init (void)
 {
   if (frame == NULL)
   {

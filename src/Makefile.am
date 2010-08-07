@@ -42,14 +42,14 @@ cheese_SOURCES = \
 	cheese-preferences.vala \
 	thumbview/cheese-gconf.c \
 	thumbview/cheese-thumb-view.c \
-	thumbview/eog-thumb-nav.c \
-	thumbview/eog-thumbnail.c
+	thumbview/cheese-thumbnail.c \
+	thumbview/eog-thumb-nav.c
 
 noinst_HEADERS = \
 	thumbview/cheese-gconf.h \
 	thumbview/cheese-thumb-view.h \
-	thumbview/eog-thumb-nav.h \
-	thumbview/eog-thumbnail.h
+	thumbview/cheese-thumbnail.h \
+	thumbview/eog-thumb-nav.h
 
 cheese_LDADD = \
 	$(top_builddir)/libcheese/libcheesecommon.la \
