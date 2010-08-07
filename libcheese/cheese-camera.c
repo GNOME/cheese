@@ -742,9 +742,9 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
   gst_element_unlink_many (priv->main_valve, priv->effect_filter,
                            priv->csp_post_effect, NULL);
 
-  g_object_ref(priv->effect_filter);
+  g_object_ref(priv->effect_filter); 
   gst_bin_remove (GST_BIN (priv->video_display_bin), priv->effect_filter);
-  priv->effect_filter = NULL;
+  gst_element_set_state (priv->effect_filter, GST_STATE_NULL);
   g_object_unref(priv->effect_filter);
 
   gst_bin_add (GST_BIN (priv->video_display_bin), new_filter);
