@@ -223,7 +223,6 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       {
         g_signal_emit (camera, camera_signals[STATE_CHANGED], 0, new);
       }
-      g_debug ("%d -> %d", old, new);
     }
   }
 }
@@ -1069,7 +1068,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               G_STRUCT_OFFSET (CheeseCameraClass, state_changed),
                                               NULL, NULL,
                                               g_cclosure_marshal_VOID__INT,
-                                                G_TYPE_NONE, 1, G_TYPE_INT);
+                                              G_TYPE_NONE, 1, G_TYPE_INT);
 
 
   g_object_class_install_property (object_class, PROP_VIDEO_TEXTURE,
