@@ -157,10 +157,25 @@ public class Cheese.MainWindow : Gtk.Window
     if (filename == null)
       return;                     /* Nothing selected. */
 
-    uri = GLib.Filename.to_uri (filename);
+	try
+	{
+		uri = GLib.Filename.to_uri (filename);
+		screen = this.get_screen ();
+		Gtk.show_uri (screen, uri, Gtk.get_current_event_time ());
+	}
+	catch (Error err)
+	{
+		MessageDialog error_dialog = new MessageDialog (this,
+                                                        Gtk.DialogFlags.MODAL |
+                                                        Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                        Gtk.MessageType.ERROR,
+                                                        Gtk.ButtonsType.OK,
+                                                        "Could not open %s",
+                                                        filename);
 
-    screen = this.get_screen ();
-    Gtk.show_uri (screen, uri, Gtk.get_current_event_time ());
+        error_dialog.run ();
+        error_dialog.destroy ();
+	}
   }
 
   [CCode (instance_pos = -1)]
@@ -202,7 +217,23 @@ public class Cheese.MainWindow : Gtk.Window
       return;                    /* Nothing selected. */
 
     File file_to_trash = File.new_for_path (filename);
-    file_to_trash.trash (null);
+	try
+	{
+		file_to_trash.trash (null);
+	}
+	catch (Error err)
+	{
+		MessageDialog error_dialog = new MessageDialog (this,
+                                                        Gtk.DialogFlags.MODAL |
+                                                        Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                        Gtk.MessageType.ERROR,
+                                                        Gtk.ButtonsType.OK,
+                                                        "Could not move %s to trash",
+                                                        filename);
+
+        error_dialog.run ();
+        error_dialog.destroy ();
+	}
   }
 
   [CCode (instance_pos = -1)]
