@@ -30,7 +30,7 @@ public class Cheese.Main
   static bool       verbose;
   static bool       wide;
   static string     device;
-  static bool       version_only;
+  static bool       version;
   static FileStream log_file;
 
   static Cheese.MainWindow main_window;
@@ -39,7 +39,7 @@ public class Cheese.Main
     { "verbose", 'v', 0, OptionArg.NONE, ref verbose,      N_("Be verbose"),                          null},
     { "wide",    'w', 0, OptionArg.NONE, ref wide,         N_("Enable wide mode"),                    null},
     { "device",  'd', 0, OptionArg.FILENAME, ref device,   N_("Device to use as a camera"),           N_("DEVICE")},
-    { "version", 0,   0, OptionArg.NONE, ref version_only, N_("Output version information and exit"), null},
+    { "version", 0,   0, OptionArg.NONE, ref version,      N_("Output version information and exit"), null},
     { null}
   };
 
@@ -89,6 +89,12 @@ public class Cheese.Main
       stdout.printf ("%s\n", e.message);
       stdout.printf (_("Run '%s --help' to see a full list of available command line options.\n"), args[0]);
       return 1;
+    }
+
+    if (version)
+    {
+      stdout.printf ("%s %s\n", Config.PACKAGE_NAME, Config.PACKAGE_VERSION);
+      return 0;
     }
 
     main_window = new Cheese.MainWindow ();
