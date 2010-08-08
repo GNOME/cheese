@@ -480,7 +480,8 @@ public class Cheese.MainWindow : Gtk.Window
       /* Make all buttons look 'flat' */
       foreach (Gtk.Button b in buttons)
       {
-        b.relief = Gtk.ReliefStyle.NONE;
+        if (b.get_name() != "take_action_button")
+          b.relief = Gtk.ReliefStyle.NONE;
       }
       this.fullscreen ();
       viewport_widget.motion_notify_event.connect (fullscreen_motion_notify_callback);
@@ -502,7 +503,8 @@ public class Cheese.MainWindow : Gtk.Window
       /* Make all buttons look, uhm, Normal */
       foreach (Gtk.Button b in buttons)
       {
-        b.relief = Gtk.ReliefStyle.NORMAL;
+        if (b.get_name() != "take_action_button")
+          b.relief = Gtk.ReliefStyle.NORMAL;
       }
 
       /* Show the buttons area anyway - it might've been hidden in fullscreen mode */
