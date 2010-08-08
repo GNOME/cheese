@@ -34,11 +34,7 @@ EXTRA_DIST = \
 	$(schema_in_files) \
 	$(service_in_files) \
 	$(pkgdata_DATA) \
-	$(gtkrc_DATA) \
-	$(bugreport_SCRIPTS)
-
-bugreportdir      = $(libexecdir)/cheese
-bugreport_SCRIPTS = cheese-bugreport.sh
+	$(gtkrc_DATA)
 
 if GCONF_SCHEMAS_INSTALL
 install-data-local:

@@ -31,7 +31,6 @@ public class Cheese.Main
   static bool       wide;
   static string     device;
   static bool       version;
-  static FileStream log_file;
 
   static Cheese.MainWindow main_window;
 
@@ -42,15 +41,6 @@ public class Cheese.Main
     { "version", 0,   0, OptionArg.NONE, ref version,      N_("Output version information and exit"), null},
     { null}
   };
-
-  static void print_handler (string text)
-  {
-    log_file.puts (text);
-    if (verbose)
-    {
-      stdout.puts (text);
-    }
-  }
 
   public static Unique.Response unique_message_received (int                command,
                                                          Unique.MessageData msg,
@@ -114,11 +104,6 @@ public class Cheese.Main
 
     Environment.set_application_name (_("Cheese"));
     Window.set_default_icon_name ("cheese");
-
-    string log_file_dir = GLib.Path.build_filename (Environment.get_home_dir (), ".config", "cheese");
-    DirUtils.create_with_parents (log_file_dir, 0775);
-    log_file = FileStream.open (GLib.Path.build_filename (log_file_dir, "cheese.log"), "w");
-    set_print_handler (print_handler);
 
     Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
 
