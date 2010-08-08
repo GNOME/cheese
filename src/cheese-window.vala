@@ -1032,15 +1032,21 @@ public class Cheese.MainWindow : Gtk.Window
     toggle_camera_actions_sensitivities (false);
   }
 
-  public void setup_camera ()
+  public void setup_camera (string uri)
   {
+    string device;
+    if (uri.length > 0)
+      device = uri;
+    else
+      device = conf.gconf_prop_camera;
+
     camera = new Camera (video_preview,
-                         conf.gconf_prop_camera,
+                         device,
                          conf.gconf_prop_x_resolution,
                          conf.gconf_prop_y_resolution);
 
     try {
-      camera.setup (conf.gconf_prop_camera);
+      camera.setup (device);
     }
     catch (Error err)
     {

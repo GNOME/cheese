@@ -29,6 +29,7 @@ public class Cheese.Main
 {
   static bool       verbose;
   static bool       wide;
+  static string     device;
   static bool       version_only;
   static FileStream log_file;
 
@@ -37,6 +38,7 @@ public class Cheese.Main
   const OptionEntry[] options = {
     { "verbose", 'v', 0, OptionArg.NONE, ref verbose,      N_("Be verbose"),                          null},
     { "wide",    'w', 0, OptionArg.NONE, ref wide,         N_("Enable wide mode"),                    null},
+    { "device",  'd', 0, OptionArg.FILENAME, ref device,   N_("Device to use as a camera"),           N_("DEVICE")},
     { "version", 0,   0, OptionArg.NONE, ref version_only, N_("Output version information and exit"), null},
     { null}
   };
@@ -117,7 +119,7 @@ public class Cheese.Main
     main_window.setup_ui ();
     main_window.destroy.connect (Gtk.main_quit);
     main_window.show_all ();
-    main_window.setup_camera ();
+    main_window.setup_camera (device);
     Gtk.main ();
 
     return 0;
