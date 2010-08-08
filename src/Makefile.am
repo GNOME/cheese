@@ -11,6 +11,8 @@ VALAFLAGS = \
 	--pkg gstreamer-0.10 \
 	--pkg unique-1.0 \
 	--pkg mx-1.0 \
+	--pkg libcanberra \
+	--pkg libcanberra-gtk \
 	--pkg eogthumbnav \
 	--pkg cheese-thumbview \
 	--pkg cheese-common

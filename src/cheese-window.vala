@@ -28,6 +28,7 @@ using Eog;
 using Gst;
 using Mx;
 using Gee;
+using CanberraGtk;
 
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 const int EFFECTS_PER_PAGE            = 9;
@@ -582,6 +583,11 @@ public class Cheese.MainWindow : Gtk.Window
     string file_name = fileutil.get_new_media_filename (this.current_mode);
 
     this.flash.fire ();
+    CanberraGtk.play_for_widget (this.main_vbox, 0,
+                                 Canberra.PROP_EVENT_ID, "camera-shutter",
+                                 Canberra.PROP_MEDIA_ROLE, "event",
+                                 Canberra.PROP_EVENT_DESCRIPTION, _("Shutter sound"),
+                                 null);
     this.camera.take_photo (file_name);
   }
 
