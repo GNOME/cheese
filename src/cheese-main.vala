@@ -27,7 +27,6 @@ using Unique;
 
 public class Cheese.Main
 {
-  static bool       verbose;
   static bool       wide;
   static string     device;
   static bool       version;
@@ -35,7 +34,6 @@ public class Cheese.Main
   static Cheese.MainWindow main_window;
 
   const OptionEntry[] options = {
-    { "verbose", 'v', 0, OptionArg.NONE, ref verbose,      N_("Be verbose"),                          null},
     { "wide",    'w', 0, OptionArg.NONE, ref wide,         N_("Enable wide mode"),                    null},
     { "device",  'd', 0, OptionArg.FILENAME, ref device,   N_("Device to use as a camera"),           N_("DEVICE")},
     { "version", 0,   0, OptionArg.NONE, ref version,      N_("Output version information and exit"), null},
