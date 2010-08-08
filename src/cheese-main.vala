@@ -36,7 +36,7 @@ public class Cheese.Main
   const OptionEntry[] options = {
     { "wide",    'w', 0, OptionArg.NONE, ref wide,         N_("Enable wide mode"),                    null},
     { "device",  'd', 0, OptionArg.FILENAME, ref device,   N_("Device to use as a camera"),           N_("DEVICE")},
-    { "version", 0,   0, OptionArg.NONE, ref version,      N_("Output version information and exit"), null},
+    { "version", 'v', 0, OptionArg.NONE, ref version,      N_("Output version information and exit"), null},
     { null}
   };
 
