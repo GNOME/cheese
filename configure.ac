@@ -94,6 +94,7 @@ CLUTTERGST_REQUIRED=1.0
 UNIQUE_REQUIRED=1.1
 GEE_REQUIRED=0.5
 MX_REQUIRED=1.0
+LIBCANBERRA_REQUIRED=0.23
 
 #*******************************************************************************
 # Check for udev
@@ -154,7 +155,7 @@ PKG_CHECK_MODULES(CHEESE, \
   unique-1.0  >= $UNIQUE_REQUIRED \
   gee-1.0 >= $GEE_REQUIRED \
   mx-1.0 >= $MX_REQUIRED \
-  libcanberra-gtk \
+  libcanberra-gtk >= $LIBCANBERRA_REQUIRED \
   $UDEV_PKG \
   gnome-video-effects
   )
