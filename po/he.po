@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-03 10:41+0300\n"
-"PO-Revision-Date: 2010-08-03 10:42+0200\n"
+"POT-Creation-Date: 2010-08-09 12:45+0300\n"
+"PO-Revision-Date: 2010-08-09 12:46+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Hebrew\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:105
+#: ../src/cheese-main.vala:103
 msgid "Cheese"
 msgstr "‏Cheese"
 
@@ -366,45 +366,45 @@ msgstr "Whether to start in wide mode"
 msgid "Width resolution"
 msgstr "Width resolution"
 
-#: ../libcheese/cheese-avatar-chooser.c:110
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:589
 msgid "Shutter sound"
 msgstr "צליל הצמצם"
 
-#: ../libcheese/cheese-avatar-chooser.c:236
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "צילום תמונה"
 
-#: ../libcheese/cheese-avatar-chooser.c:255
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "_צלם תמונה"
 
-#: ../libcheese/cheese-avatar-chooser.c:270
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "ה_תעלמות מתמונה"
 
-#: ../libcheese/cheese-camera-device.c:328
+#: ../libcheese/cheese-camera-device.c:329
 msgid "Device capabilities not supported"
 msgstr "יכולות ההתקן אינן נתמכות"
 
-#: ../libcheese/cheese-camera-device.c:352
+#: ../libcheese/cheese-camera-device.c:357
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "ארע כשל בהפעלת ההתקן %s לתשאול יכולות"
 
-#: ../libcheese/cheese-camera-device.c:510
+#: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
 msgstr "התקן בלתי מוכר"
 
-#: ../libcheese/cheese-camera-device.c:534
+#: ../libcheese/cheese-camera-device.c:539
 msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
-#: ../libcheese/cheese-camera.c:1128
+#: ../libcheese/cheese-camera.c:1154
 #, c-format
 msgid "No device found"
 msgstr "לא נמצא התקן"
 
-#: ../libcheese/cheese-camera.c:1147
+#: ../libcheese/cheese-camera.c:1173
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "רכיב אחד או יותר של gstreamer חסר: "
 
@@ -420,35 +420,42 @@ msgstr "רכיב אחד או יותר של gstreamer חסר: "
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-main.vala:38
-msgid "Be verbose"
-msgstr "Be verbose"
-
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "Enable wide mode"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "Device to use as a camera"
+
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "DEVICE"
+
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Output version information and exit"
 
-#: ../src/cheese-main.vala:75
+#: ../src/cheese-main.vala:67
 msgid "- Take photos and videos from your webcam"
 msgstr "- Take photos and videos from your webcam"
 
-#: ../src/cheese-main.vala:86
+#: ../src/cheese-main.vala:78
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-window.vala:604
+#: ../src/cheese-window.vala:642
 msgid "Stop _Recording"
 msgstr "ה_פסקת ההקלטה"
 
-#: ../src/cheese-window.vala:723
+#: ../src/cheese-window.vala:761
 msgid "No effects found"
 msgstr "לא נמצאו אפקטים"
+
+#~ msgid "Be verbose"
+#~ msgstr "Be verbose"
 
 #~ msgid "Historical"
 #~ msgstr "היסטורי"
