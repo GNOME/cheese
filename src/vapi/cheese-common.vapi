@@ -94,8 +94,6 @@ namespace Cheese
   {
     [CCode (cname = "cheese_fileutil_new", has_construct_function = false)]
     public FileUtil ();
-    [CCode (cname = "cheese_fileutil_get_log_path")]
-    public unowned string get_log_path ();
     [CCode (cname = "cheese_fileutil_get_new_media_filename")]
     public unowned string get_new_media_filename (Cheese.MediaMode mode);
     [CCode (cname = "cheese_fileutil_get_path_before_224")]

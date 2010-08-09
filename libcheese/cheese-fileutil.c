@@ -39,7 +39,6 @@ typedef struct
 {
   gchar *video_path;
   gchar *photo_path;
-  gchar *log_path;
   gint   burst_count;
   gchar *burst_raw_name;
 } CheeseFileUtilPrivate;
@@ -72,18 +71,6 @@ gchar *
 cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
 {
   return g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
-}
-
-gchar *
-cheese_fileutil_get_log_path (CheeseFileUtil *fileutil)
-{
-  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
-
-  gchar *path;
-
-  path = priv->log_path;
-
-  return path;
 }
 
 gchar *
@@ -175,7 +162,6 @@ cheese_fileutil_finalize (GObject *object)
 
   g_free (priv->video_path);
   g_free (priv->photo_path);
-  g_free (priv->log_path);
   G_OBJECT_CLASS (cheese_fileutil_parent_class)->finalize (object);
 }
 
@@ -227,9 +213,6 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
       priv->photo_path = cheese_fileutil_get_path_before_224 (fileutil);
     }
   }
-
-  /* FIXME: use the xdg log path */
-  priv->log_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", NULL);
 
   g_object_unref (gconf);
 }
