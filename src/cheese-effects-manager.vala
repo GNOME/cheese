@@ -28,9 +28,9 @@ internal class Cheese.EffectsManager : GLib.Object
 {
   public static Cheese.Effect ? parse_effect_file (string filename)
   {
-    KeyFile kf  = new KeyFile ();
-    Effect  eff = new Effect ();
-    var locale = Intl.setlocale(LocaleCategory.ALL, "");
+    KeyFile kf     = new KeyFile ();
+    Effect  eff    = new Effect ();
+    var     locale = Intl.setlocale (LocaleCategory.ALL, "");
 
     try
     {
@@ -79,7 +79,7 @@ internal class Cheese.EffectsManager : GLib.Object
         if (cur_file.has_suffix (".effect"))
         {
           Effect effect = EffectsManager.parse_effect_file (GLib.Path.build_filename (directory, cur_file));
-          if (!effects.contains(effect))
+          if (!effects.contains (effect))
           {
             message ("Found %s (%s)", effect.name, effect.pipeline_desc);
             list.add (effect);
@@ -99,11 +99,11 @@ internal class Cheese.EffectsManager : GLib.Object
   public void load_effects ()
   {
     string system_effects;
+
     foreach (string dir in Environment.get_system_data_dirs ())
     {
       system_effects = GLib.Path.build_filename (dir, "gnome-video-effects");
       effects.add_all (load_effects_from_directory (system_effects));
-
     }
 
     string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), "gnome-video-effects");
@@ -135,5 +135,4 @@ internal class Cheese.EffectsManager : GLib.Object
   {
     return a.pipeline_desc == b.pipeline_desc;
   }
-
 }

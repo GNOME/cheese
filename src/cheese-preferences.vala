@@ -50,14 +50,14 @@ public class Cheese.PreferencesDialog : GLib.Object
     this.conf   = conf;
 
     Gtk.Builder builder = new Gtk.Builder ();
-	try
-	{
-		builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-prefs.ui"));
-	}
-	catch (Error err)
-	{
-		error ("Error: %s", err.message);
-	}
+    try
+    {
+      builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-prefs.ui"));
+    }
+    catch (Error err)
+    {
+      error ("Error: %s", err.message);
+    }
 
     this.dialog = (Gtk.Dialog)builder.get_object ("cheese_prefs_dialog");
 
@@ -88,9 +88,11 @@ public class Cheese.PreferencesDialog : GLib.Object
     initialize_camera_devices ();
     initialize_values_from_conf ();
 
-    // Connect signals only after all the widgets have been setup
-    // Stops a bunch of unnecessary signals from being fired
-    builder.connect_signals (this); 
+    /*
+     * Connect signals only after all the widgets have been setup
+     * Stops a bunch of unnecessary signals from being fired
+     */
+    builder.connect_signals (this);
   }
 
   private void setup_combo_box_models ()
@@ -126,7 +128,7 @@ public class Cheese.PreferencesDialog : GLib.Object
       }
     }
 
-    setup_resolutions_for_device (camera.get_selected_device ());	
+    setup_resolutions_for_device (camera.get_selected_device ());
   }
 
   private void setup_resolutions_for_device (Cheese.CameraDevice device)

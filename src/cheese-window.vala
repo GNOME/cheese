@@ -261,7 +261,7 @@ public class Cheese.MainWindow : Gtk.Window
         file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
         file_to_trash.trash (null);
       }
-    }catch (Error e)
+    } catch (Error e)
     {
       warning ("Error: %s\n", e.message);
       return;
@@ -329,7 +329,7 @@ public class Cheese.MainWindow : Gtk.Window
     screen = this.get_screen ();
     try {
       Gtk.show_uri (screen, "ghelp:cheese", Gtk.get_current_event_time ());
-    }catch (Error err)
+    } catch (Error err)
     {
       warning ("Error: %s\n", err.message);
     }
@@ -439,9 +439,9 @@ public class Cheese.MainWindow : Gtk.Window
   {
     fullscreen_timeout = new TimeoutSource (FULLSCREEN_TIMEOUT_INTERVAL);
     fullscreen_timeout.attach (null);
-    fullscreen_timeout.set_callback (() => { buttons_area.hide ();
-                                             clear_fullscreen_timeout ();
-                                             return true;});
+    fullscreen_timeout.set_callback (() => {buttons_area.hide ();
+                                            clear_fullscreen_timeout ();
+                                            return true; });
   }
 
   private bool fullscreen_motion_notify_callback (Gtk.Widget viewport, EventMotion e)
@@ -863,7 +863,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Gee.HashMap<string, bool> action_sensitivities;
   public void toggle_camera_actions_sensitivities (bool active)
   {
-	  is_camera_actions_sensitive = active;
+    is_camera_actions_sensitive = active;
     if (active)
     {
       foreach (string key in action_sensitivities.keys)
@@ -886,17 +886,17 @@ public class Cheese.MainWindow : Gtk.Window
       }
 
       /* Keep only these actions sensitive. */
-      string active_actions[11] = { "cheese_action",
-                                    "edit_action",
-                                    "help_action",
-                                    "quit",
-                                    "help_contents",
-                                    "about",
-                                    "open",
-                                    "save_as",
-                                    "move_to_trash",
-                                    "delete",
-                                    "move_all_to_trash"};
+      string active_actions[11] = {"cheese_action",
+                                   "edit_action",
+                                   "help_action",
+                                   "quit",
+                                   "help_contents",
+                                   "about",
+                                   "open",
+                                   "save_as",
+                                   "move_to_trash",
+                                   "delete",
+                                   "move_all_to_trash"};
 
       /* Gross hack because Vala's `in` operator doesn't really work */
       bool flag;
@@ -922,11 +922,11 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void camera_state_changed (Gst.State new_state)
   {
-	  if (new_state == Gst.State.PLAYING)
-	  {
-		  if (!is_camera_actions_sensitive)
-			  toggle_camera_actions_sensitivities (true);
-	  }
+    if (new_state == Gst.State.PLAYING)
+    {
+      if (!is_camera_actions_sensitive)
+        toggle_camera_actions_sensitivities (true);
+    }
   }
 
   public void setup_ui ()
@@ -944,7 +944,7 @@ public class Cheese.MainWindow : Gtk.Window
       gtk_builder.connect_signals (this);
 
       clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
-    }catch (Error err)
+    } catch (Error err)
     {
       error ("Error: %s", err.message);
     }
@@ -982,12 +982,12 @@ public class Cheese.MainWindow : Gtk.Window
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
-    buttons = { photo_toggle_button,
-                video_toggle_button,
-                burst_toggle_button,
-                take_action_button,
-                effects_toggle_button,
-                leave_fullscreen_button};
+    buttons = {photo_toggle_button,
+               video_toggle_button,
+               burst_toggle_button,
+               take_action_button,
+               effects_toggle_button,
+               leave_fullscreen_button};
 
     video_preview           = (Clutter.Texture)clutter_builder.get_object ("video_preview");
     viewport_layout         = (Clutter.Box)clutter_builder.get_object ("viewport_layout");
@@ -1035,6 +1035,7 @@ public class Cheese.MainWindow : Gtk.Window
   public void setup_camera (string ? uri)
   {
     string device;
+
     if (uri != null && uri.length > 0)
       device = uri;
     else

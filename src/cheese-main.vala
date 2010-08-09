@@ -27,17 +27,17 @@ using Unique;
 
 public class Cheese.Main
 {
-  static bool       wide;
-  static string     device;
-  static bool       version;
+  static bool   wide;
+  static string device;
+  static bool   version;
 
   static Cheese.MainWindow main_window;
 
   const OptionEntry[] options = {
-    { "wide",    'w', 0, OptionArg.NONE, ref wide,         N_("Enable wide mode"),                    null},
-    { "device",  'd', 0, OptionArg.FILENAME, ref device,   N_("Device to use as a camera"),           N_("DEVICE")},
-    { "version", 'v', 0, OptionArg.NONE, ref version,      N_("Output version information and exit"), null},
-    { null}
+    {"wide",    'w', 0, OptionArg.NONE,     ref wide,    N_("Enable wide mode"),                    null        },
+    {"device",  'd', 0, OptionArg.FILENAME, ref device,  N_("Device to use as a camera"),           N_("DEVICE")},
+    {"version", 'v', 0, OptionArg.NONE,     ref version, N_("Output version information and exit"), null        },
+    {null}
   };
 
   public static Unique.Response unique_message_received (int                command,
