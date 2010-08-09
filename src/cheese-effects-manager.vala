@@ -26,7 +26,7 @@ const string GROUP_NAME = "Effect";
 
 internal class Cheese.EffectsManager : GLib.Object
 {
-  public static Cheese.Effect ? parse_effect_file (string filename)
+  public static Cheese.Effect? parse_effect_file (string filename)
   {
     KeyFile kf     = new KeyFile ();
     Effect  eff    = new Effect ();
@@ -109,15 +109,13 @@ internal class Cheese.EffectsManager : GLib.Object
     string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), "gnome-video-effects");
     effects.add_all (load_effects_from_directory (user_effects));
 
-    /* GROSS HACK: to make identity element appear first */
-    foreach (Effect e in effects)
+    /* add identity effect as the first in the effect list */
+    if (effects.size > 0)
     {
-      if (e.pipeline_desc == "identity")
-      {
-        effects.remove (e);
-        effects.insert (0, e);
-        break;
-      }
+      Effect e = new Effect ();
+      e.name          = _("No Effect");
+      e.pipeline_desc = "identity";
+      effects.insert (0, e);
     }
   }
 
