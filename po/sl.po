@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2010-08-03 07:43+0000\n"
-"PO-Revision-Date: 2010-08-03 12:21+0100\n"
+"POT-Creation-Date: 2010-08-09 01:56+0000\n"
+"PO-Revision-Date: 2010-08-09 09:58+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: ../data/cheese-about.ui.h:1
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:105
+#: ../src/cheese-main.vala:103
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -329,44 +329,45 @@ msgid "Width resolution"
 msgstr "Ločljivost širine"
 
 #: ../libcheese/cheese-avatar-chooser.c:110
+#: ../src/cheese-window.vala:589
 msgid "Shutter sound"
 msgstr "Zvok zaklopke"
 
-#: ../libcheese/cheese-avatar-chooser.c:236
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "Zajemi fotografijo"
 
-#: ../libcheese/cheese-avatar-chooser.c:255
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "_Zajemi fotografijo"
 
-#: ../libcheese/cheese-avatar-chooser.c:270
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "_Zavrzi sliko"
 
-#: ../libcheese/cheese-camera-device.c:328
+#: ../libcheese/cheese-camera-device.c:329
 msgid "Device capabilities not supported"
 msgstr "Zmožnosti naprave niso podprte"
 
-#: ../libcheese/cheese-camera-device.c:352
+#: ../libcheese/cheese-camera-device.c:357
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Začenjanje naprave %s za preiskovanje zmožnosti je spodletelo"
 
-#: ../libcheese/cheese-camera-device.c:510
+#: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
 msgstr "Neznana naprava"
 
-#: ../libcheese/cheese-camera-device.c:534
+#: ../libcheese/cheese-camera-device.c:539
 msgid "Cancellable initialization not supported"
 msgstr "Dejanje preklica začenjanja ni podprto"
 
-#: ../libcheese/cheese-camera.c:1128
+#: ../libcheese/cheese-camera.c:1154
 #, c-format
 msgid "No device found"
 msgstr "Ni mogoče najti naprave"
 
-#: ../libcheese/cheese-camera.c:1147
+#: ../libcheese/cheese-camera.c:1173
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Enega ali več zahtevanih predmetov programa GStreamer ni mogoče najti: "
 
@@ -383,34 +384,41 @@ msgstr "Enega ali več zahtevanih predmetov programa GStreamer ni mogoče najti:
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-main.vala:38
-msgid "Be verbose"
-msgstr "Podroben izpis"
-
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "Omogoči široki način"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "Naprava, uporabljena kot spletna kamera"
+
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "NAPRAVA"
+
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Izpiši podrobnosti različice in končaj"
 
-#: ../src/cheese-main.vala:75
+#: ../src/cheese-main.vala:67
 msgid "- Take photos and videos from your webcam"
 msgstr "- Zajemanje slik in posnetkov s spletno kamero"
 
-#: ../src/cheese-main.vala:86
+#: ../src/cheese-main.vala:78
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Za popoln seznam možnosti ukazne vrstice zaženite '%s --help'.\n"
 
-#: ../src/cheese-window.vala:604
+#: ../src/cheese-window.vala:642
 msgid "Stop _Recording"
 msgstr "_Zaustavi snemanje"
 
-#: ../src/cheese-window.vala:723
+#: ../src/cheese-window.vala:761
 msgid "No effects found"
 msgstr "Učinkov ni mogoče najti"
+
+#~ msgid "Be verbose"
+#~ msgstr "Podroben izpis"
 
 #~ msgid "Switch to Burst Mode"
 #~ msgstr "Preklopi na zaporedni način zajemanja"
