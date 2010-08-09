@@ -30,10 +30,10 @@
 
 #include "cheese-camera-device.h"
 
-static void     cheese_camera_device_initable_iface_init (GInitableIface  *iface);
-static gboolean cheese_camera_device_initable_init       (GInitable       *initable,
-                                                          GCancellable    *cancellable,
-                                                          GError         **error);
+static void     cheese_camera_device_initable_iface_init (GInitableIface *iface);
+static gboolean cheese_camera_device_initable_init (GInitable    *initable,
+                                                    GCancellable *cancellable,
+                                                    GError      **error);
 
 G_DEFINE_TYPE_WITH_CODE (CheeseCameraDevice, cheese_camera_device, G_TYPE_OBJECT,
                          G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE,
@@ -79,9 +79,9 @@ typedef struct
   gchar *id;
   const gchar *src;
   gchar *name;
-  gint api;
+  gint   api;
   GstCaps *caps;
-  GList *formats;
+  GList   *formats;
 
   GError *construct_error;
 } CheeseCameraDevicePrivate;
@@ -140,7 +140,7 @@ cheese_webcam_device_filter_caps (CheeseCameraDevice *device, const GstCaps *cap
  *  CHEESE_CAMERA_DEVICE_GET_PRIVATE (device); */
   GstCaps *filter;
   GstCaps *allowed;
-  gint i;
+  gint     i;
 
   filter = gst_caps_new_simple (formats[0],
                                 "framerate", GST_TYPE_FRACTION_RANGE,
@@ -321,7 +321,8 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
       priv->caps = cheese_webcam_device_filter_caps (device, caps, supported_formats);
       if (!gst_caps_is_empty (priv->caps))
         cheese_webcam_device_update_format_table (device);
-      else {
+      else
+      {
         g_set_error_literal (&priv->construct_error,
                              CHEESE_CAMERA_DEVICE_ERROR,
                              CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS,
@@ -330,8 +331,11 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
 
       gst_object_unref (pad);
       gst_caps_unref (caps);
-    } else {
-      if (msg) {
+    }
+    else
+    {
+      if (msg)
+      {
         gchar *dbg_info = NULL;
         gst_message_parse_error (msg, &err, &dbg_info);
         GST_WARNING ("Failed to start the capability probing pipeline");
@@ -341,11 +345,12 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
                      (dbg_info) ? dbg_info : "no extra debug detail");
         g_error_free (err);
         err = NULL;
+
         /* construct_error is meant to be displayed in the UI
-           (although it currently isn't displayed in cheese),
-           err->message from gstreamer is too technical for this
-           purpose, the idea is warn the user about an error and point
-           him to the logs for more info */
+         * (although it currently isn't displayed in cheese),
+         * err->message from gstreamer is too technical for this
+         * purpose, the idea is warn the user about an error and point
+         * him to the logs for more info */
         g_set_error (&priv->construct_error,
                      CHEESE_CAMERA_DEVICE_ERROR,
                      CHEESE_CAMERA_DEVICE_ERROR_FAILED_INITIALIZATION,
@@ -366,7 +371,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
 static void
 cheese_camera_device_constructed (GObject *object)
 {
-  CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (object);
+  CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
   CheeseCameraDevicePrivate *priv   =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
@@ -462,8 +467,8 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
 
   if (cheese_camera_device_cat == NULL)
     GST_DEBUG_CATEGORY_INIT (cheese_camera_device_cat,
-			     "cheese-camera-device",
-			     0, "Cheese Camera Device");
+                             "cheese-camera-device",
+                             0, "Cheese Camera Device");
 
   object_class->finalize     = cheese_camera_device_finalize;
   object_class->get_property = cheese_camera_device_get_property;
@@ -516,12 +521,12 @@ cheese_camera_device_init (CheeseCameraDevice *device)
 }
 
 static gboolean
-cheese_camera_device_initable_init (GInitable *initable,
+cheese_camera_device_initable_init (GInitable    *initable,
                                     GCancellable *cancellable,
-                                    GError **error)
+                                    GError      **error)
 {
-  CheeseCameraDevice *device = CHEESE_CAMERA_DEVICE (initable);
-  CheeseCameraDevicePrivate *priv =
+  CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (initable);
+  CheeseCameraDevicePrivate *priv   =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (initable), FALSE);
@@ -550,7 +555,7 @@ cheese_camera_device_new (const gchar *device_id,
                           const gchar *device_file,
                           const gchar *product_name,
                           gint         api_version,
-                          GError **error)
+                          GError     **error)
 {
   return CHEESE_CAMERA_DEVICE (g_initable_new (CHEESE_TYPE_CAMERA_DEVICE,
                                                NULL, error,

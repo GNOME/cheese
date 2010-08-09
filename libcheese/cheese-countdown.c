@@ -333,7 +333,7 @@ do_text (cairo_t    *pContext,
 static gboolean
 on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
 {
-  CheeseCountdownPrivate *priv     = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
+  CheeseCountdownPrivate *priv = CHEESE_COUNTDOWN_GET_PRIVATE (widget);
   GtkAllocation           allocation;
   cairo_t                *pContext = NULL;
   cairo_pattern_t        *pattern;
@@ -347,7 +347,7 @@ on_expose (GtkWidget *widget, GdkEventExpose *pEvent, gpointer data)
   gdouble                 fHeight;
 
   gtk_widget_get_allocation (widget, &allocation);
-  fWidth = (gdouble) allocation.width;
+  fWidth  = (gdouble) allocation.width;
   fHeight = (gdouble) allocation.height;
 
   /* 3 * 26 are the three numbers, 30 is the width of camera-icon.svg */

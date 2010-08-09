@@ -261,6 +261,7 @@ cheese_widget_set_property (GObject *object, guint prop_id,
       break;
   }
 }
+
 #endif
 
 static void
@@ -352,7 +353,7 @@ static void
 cheese_widget_realize (GtkWidget *widget)
 {
   GdkWindow           *window;
-  CheeseWidgetPrivate *priv  = CHEESE_WIDGET_GET_PRIVATE (widget);
+  CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
 
   GTK_WIDGET_CLASS (cheese_widget_parent_class)->realize (widget);
 
@@ -401,7 +402,7 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
   object_class->set_property = cheese_widget_set_property;
 #endif
   object_class->get_property = cheese_widget_get_property;
-  widget_class->realize = cheese_widget_realize;
+  widget_class->realize      = cheese_widget_realize;
 
   /**
    * CheeseWidget:state:
@@ -463,7 +464,7 @@ cheese_widget_get_camera (CheeseWidget *widget)
 GtkWidget *
 cheese_widget_get_video_area (CheeseWidget *widget)
 {
- CheeseWidgetPrivate *priv;
+  CheeseWidgetPrivate *priv;
 
   g_return_val_if_fail (CHEESE_WIDGET (widget), NULL);
 

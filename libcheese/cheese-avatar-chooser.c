@@ -163,22 +163,24 @@ state_change_cb (GObject             *object,
                  CheeseAvatarChooser *chooser)
 {
   CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
-  CheeseWidgetState state;
+  CheeseWidgetState           state;
+
   g_object_get (object, "state", &state, NULL);
 
-  switch (state) {
-  case CHEESE_WIDGET_STATE_READY:
-    gtk_widget_set_sensitive (priv->take_button, TRUE);
-    gtk_widget_set_sensitive (priv->take_again_button, TRUE);
-    break;
-  case CHEESE_WIDGET_STATE_ERROR:
-    gtk_widget_set_sensitive (priv->take_button, FALSE);
-    gtk_widget_set_sensitive (priv->take_again_button, FALSE);
-    break;
-  case CHEESE_WIDGET_STATE_NONE:
-    break;
-  default:
-    g_assert_not_reached ();
+  switch (state)
+  {
+    case CHEESE_WIDGET_STATE_READY:
+      gtk_widget_set_sensitive (priv->take_button, TRUE);
+      gtk_widget_set_sensitive (priv->take_again_button, TRUE);
+      break;
+    case CHEESE_WIDGET_STATE_ERROR:
+      gtk_widget_set_sensitive (priv->take_button, FALSE);
+      gtk_widget_set_sensitive (priv->take_again_button, FALSE);
+      break;
+    case CHEESE_WIDGET_STATE_NONE:
+      break;
+    default:
+      g_assert_not_reached ();
   }
 }
 
@@ -263,8 +265,8 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                             gtk_label_new ("webcam"));
 
   /* Image tab */
-  priv->image             = um_crop_area_new ();
-  frame                   = gtk_frame_new (NULL);
+  priv->image = um_crop_area_new ();
+  frame       = gtk_frame_new (NULL);
   gtk_container_add (GTK_CONTAINER (frame), priv->image);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
   priv->take_again_button = gtk_button_new_with_mnemonic (_("_Discard photo"));

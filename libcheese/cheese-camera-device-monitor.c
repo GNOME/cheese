@@ -107,14 +107,14 @@ static void
 cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
                                     GUdevDevice               *udevice)
 {
-  const char         *device_file;
-  const char         *product_name;
-  const char         *vendor;
-  const char         *product;
-  const char         *bus;
-  gint                vendor_id   = 0;
-  gint                product_id  = 0;
-  gint                v4l_version = 0;
+  const char *device_file;
+  const char *product_name;
+  const char *vendor;
+  const char *product;
+  const char *bus;
+  gint        vendor_id   = 0;
+  gint        product_id  = 0;
+  gint        v4l_version = 0;
 
   const gchar *devpath = g_udev_device_get_property (udevice, "DEVPATH");
 
@@ -170,7 +170,7 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
                    "Removing it from device list.", device_file);
       return;
     }
-    product_name  = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
+    product_name = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
   }
   else if (v4l_version == 0)
   {

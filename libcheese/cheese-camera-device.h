@@ -64,10 +64,10 @@ CheeseCameraDevice *cheese_camera_device_new (const gchar *device_id,
                                               const gchar *device_file,
                                               const gchar *product_name,
                                               gint         api_version,
-                                              GError **error);
+                                              GError     **error);
 
-GstCaps *           cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
-                                                              CheeseVideoFormat  *format);
+GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
+                                                   CheeseVideoFormat  *format);
 CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *device);
 GList *            cheese_camera_device_get_format_list (CheeseCameraDevice *device);
 

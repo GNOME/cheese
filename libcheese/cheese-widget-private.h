@@ -29,11 +29,11 @@ enum
   SPINNER_PAGE = 0,
   WEBCAM_PAGE  = 1,
   PROBLEM_PAGE = 2,
-  LAST_PAGE = 3,
+  LAST_PAGE    = 3,
 };
 
-GObject   *cheese_widget_get_camera (CheeseWidget *widget);
-GObject   *cheese_widget_get_gconf  (CheeseWidget *widget);
+GObject *  cheese_widget_get_camera (CheeseWidget *widget);
+GObject *  cheese_widget_get_gconf (CheeseWidget *widget);
 GtkWidget *cheese_widget_get_video_area (CheeseWidget *widget);
 
 G_END_DECLS

@@ -52,10 +52,10 @@ struct _CheeseCameraDeviceMonitorClass
   GObjectClass parent_class;
 
   void (*added)(CheeseCameraDeviceMonitor *camera,
-                const char *id,
-                const char *device_file,
-                const char *product_name,
-                int api_version);
+                const char                *id,
+                const char                *device_file,
+                const char                *product_name,
+                int                        api_version);
   void (*removed)(CheeseCameraDeviceMonitor *camera, const char *id);
 };
 
