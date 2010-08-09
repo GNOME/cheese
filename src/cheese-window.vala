@@ -720,7 +720,7 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout.add ((Clutter.Actor)current_effects_grid);
     this.current_effects_grid.set_size (viewport.width, viewport.height);
 
-    for (int i = 0; i < effects_manager.effects.size - 1; i++)
+    for (int i = 0; i < effects_manager.effects.size; i++)
     {
       int           page_of_effect = i / EFFECTS_PER_PAGE;
       Cheese.Effect effect         = effects_manager.effects[i];
@@ -812,7 +812,7 @@ public class Cheese.MainWindow : Gtk.Window
         grid.row_spacing    = 20;
       }
 
-      for (int i = 0; i < effects_manager.effects.size - 1; i++)
+      for (int i = 0; i < effects_manager.effects.size; i++)
       {
         Effect            effect  = effects_manager.effects[i];
         Clutter.Texture   texture = new Clutter.Texture ();
