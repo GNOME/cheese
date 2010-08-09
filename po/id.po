@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-08-04 03:19+0000\n"
-"PO-Revision-Date: 2010-08-04 12:57+0700\n"
+"POT-Creation-Date: 2010-08-08 23:47+0000\n"
+"PO-Revision-Date: 2010-08-09 18:24+0700\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:105
+#: ../src/cheese-main.vala:103
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -368,7 +368,7 @@ msgstr "Apakah mulai pada moda lebar"
 msgid "Width resolution"
 msgstr "Resolusi lebar"
 
-#: ../libcheese/cheese-avatar-chooser.c:110
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:589
 msgid "Shutter sound"
 msgstr "Suara tombol"
 
@@ -401,12 +401,12 @@ msgstr "Perangkat tak dikenal"
 msgid "Cancellable initialization not supported"
 msgstr "Inisiasi yang dapat dibatalkan tak didukung"
 
-#: ../libcheese/cheese-camera.c:1128
+#: ../libcheese/cheese-camera.c:1148
 #, c-format
 msgid "No device found"
 msgstr "Tidak menemukan perangkat"
 
-#: ../libcheese/cheese-camera.c:1147
+#: ../libcheese/cheese-camera.c:1167
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Satu atau lebih elemen GStreamer yang diperlukan hilang:"
 
@@ -422,33 +422,37 @@ msgstr "Satu atau lebih elemen GStreamer yang diperlukan hilang:"
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-main.vala:38
-msgid "Be verbose"
-msgstr "Mode riuh"
-
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "Mengaktifkan mode lebar"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "Perangkat yang dipakai sebagai kamera"
+
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "PERANGKAT"
+
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Tampilkan informasi versi dan keluar"
 
-#: ../src/cheese-main.vala:75
+#: ../src/cheese-main.vala:67
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ambil foto dan video dengan webcam Anda"
 
-#: ../src/cheese-main.vala:86
+#: ../src/cheese-main.vala:78
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Jalankan '%s --help' untuk melihat daftar lengkap dari opsi perintah baris "
 "yang tersedia.\n"
 
-#: ../src/cheese-window.vala:604
+#: ../src/cheese-window.vala:642
 msgid "Stop _Recording"
 msgstr "Berhenti Me_rekam"
 
-#: ../src/cheese-window.vala:723
+#: ../src/cheese-window.vala:761
 msgid "No effects found"
 msgstr "Tidak menemukan efek"
