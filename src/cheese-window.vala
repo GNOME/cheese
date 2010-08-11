@@ -589,12 +589,16 @@ public class Cheese.MainWindow : Gtk.Window
                                  Canberra.PROP_EVENT_DESCRIPTION, _("Shutter sound"),
                                  null);
     this.camera.take_photo (file_name);
+	if (current_mode == MediaMode.PHOTO)
+		take_photo_action.sensitive = true;
   }
 
   public void take_photo ()
   {
     if (conf.gconf_prop_countdown)
     {
+		if (current_mode == MediaMode.PHOTO)
+			take_photo_action.sensitive = false;
       Countdown cd = new Countdown (this.countdown_layer);
       cd.start_countdown (finish_countdown_callback);
     }
