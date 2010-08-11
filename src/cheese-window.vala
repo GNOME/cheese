@@ -90,6 +90,7 @@ public class Cheese.MainWindow : Gtk.Window
   private bool is_bursting;
   private bool is_effects_selector_active;
   private bool is_camera_actions_sensitive;
+  private bool action_cancelled;
 
   private Gtk.Button[] buttons;
 
@@ -582,27 +583,36 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void finish_countdown_callback ()
   {
-    string file_name = fileutil.get_new_media_filename (this.current_mode);
+	  if (!action_cancelled)
+	  {
+		  string file_name = fileutil.get_new_media_filename (this.current_mode);
+		  
+		  this.flash.fire ();
+		  CanberraGtk.play_for_widget (this.main_vbox, 0,
+									   Canberra.PROP_EVENT_ID, "camera-shutter",
+									   Canberra.PROP_MEDIA_ROLE, "event",
+									   Canberra.PROP_EVENT_DESCRIPTION, _("Shutter sound"),
+									   null);
+		  this.camera.take_photo (file_name);
+		  if (current_mode == MediaMode.PHOTO)
+			  take_photo_action.sensitive = true;
 
-    this.flash.fire ();
-    CanberraGtk.play_for_widget (this.main_vbox, 0,
-                                 Canberra.PROP_EVENT_ID, "camera-shutter",
-                                 Canberra.PROP_MEDIA_ROLE, "event",
-                                 Canberra.PROP_EVENT_DESCRIPTION, _("Shutter sound"),
-                                 null);
-    this.camera.take_photo (file_name);
-	if (current_mode == MediaMode.PHOTO)
-		take_photo_action.sensitive = true;
+	  }
+	  else
+	  {
+		  action_cancelled = false;
+	  }
   }
 
+  Countdown current_countdown;
   public void take_photo ()
   {
     if (conf.gconf_prop_countdown)
     {
 		if (current_mode == MediaMode.PHOTO)
 			take_photo_action.sensitive = false;
-      Countdown cd = new Countdown (this.countdown_layer);
-      cd.start_countdown (finish_countdown_callback);
+      current_countdown = new Countdown (this.countdown_layer);
+      current_countdown.start_countdown (finish_countdown_callback);
     }
     else
     {
@@ -631,6 +641,22 @@ public class Cheese.MainWindow : Gtk.Window
       return false;
     }
   }
+
+  private bool on_key_release (Gdk.EventKey event)
+  {
+	  //HACK: Replace literals with constants when Vala supports gdkkeysyms.h
+	  switch (event.keyval)
+	  {		  
+	  case 0xFF1B: // GDK_ESCAPE
+		  is_bursting = false;
+		  action_cancelled = true;
+		  countdown_layer.hide();
+		  burst_take_photo ();
+		  break;
+	  }
+	  return false;
+  }
+  
 
   [CCode (instance_pos = -1)]
   public void on_take_action (Gtk.Action action)
@@ -1036,6 +1062,8 @@ public class Cheese.MainWindow : Gtk.Window
     setup_effects_selector ();
 
     toggle_camera_actions_sensitivities (false);
+
+	this.key_release_event.connect (on_key_release);
   }
 
   public void setup_camera (string ? uri)
