@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-07-22 16:07+0000\n"
-"PO-Revision-Date: 2010-07-23 10:27+0800\n"
+"POT-Creation-Date: 2010-08-09 23:12+0000\n"
+"PO-Revision-Date: 2010-08-11 19:18+0800\n"
 "Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:105
+#: ../src/cheese-main.vala:103
 msgid "Cheese"
 msgstr "茄子"
 
@@ -48,17 +48,16 @@ msgid ""
 "more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>.\n"
+"this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
-"这个程序是自由软件；您可以在遵守由自由软件基金会发布的 GNU 通用公共许可协议的"
-"情况下重新分发它并且/或者修改它；或许可协议的第二版，或（由您选择）任何更新版"
-"本。\n"
+"这个程序是自由软件；您可以遵照由自由软件基金会发布的 GNU 通用公共许可协议或许"
+"可协议的第二版，或(由您选择)任何更新版本重新分发和/或修改它；\n"
 "\n"
 "这个程序本着可应用的意愿分发，但不作任何保证；甚至没有商业性的或对特定目的适"
 "用性的暗指。更多细节请参看 GNU 通用公共许可协议。\n"
 "\n"
-"您应该已经随这个程序收到一份 GNU 通用公共许可协议；如果没有，见 <http://www."
-"gnu.org/licenses/>。\n"
+"您应该已经收到这个程序附带的一份 GNU 通用公共许可协议；如果没有，查看 "
+"<http://www.gnu.org/licenses/>。\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -205,7 +204,7 @@ msgstr "首选项"
 msgid "Resolution"
 msgstr "分辨率"
 
-#: ../data/cheese-prefs.ui.h:11 ../data/effects/saturation.effect.in.h:1
+#: ../data/cheese-prefs.ui.h:11
 msgid "Saturation"
 msgstr "饱和"
 
@@ -360,102 +359,45 @@ msgstr "是否以宽屏模式启动"
 msgid "Width resolution"
 msgstr "横向分辨率"
 
-#: ../data/effects/agingtv.effect.in.h:1
-msgid "Historical"
-msgstr "老照片"
-
-#: ../data/effects/dicetv.effect.in.h:1
-msgid "Dice"
-msgstr "骰子"
-
-#: ../data/effects/edgetv.effect.in.h:1
-msgid "Edge"
-msgstr "加边"
-
-#: ../data/effects/hulk.effect.in.h:1
-msgid "Hulk"
-msgstr "显现"
-
-#: ../data/effects/identity.effect.in.h:1
-msgid "No Effect"
-msgstr "无"
-
-#: ../data/effects/mauve.effect.in.h:1
-msgid "Mauve"
-msgstr "淡紫"
-
-#: ../data/effects/noir.effect.in.h:1
-msgid "Noir/Blanc"
-msgstr "黑白"
-
-#: ../data/effects/optv.effect.in.h:1
-msgid "Optical Illusion"
-msgstr "眩目"
-
-#: ../data/effects/quarktv.effect.in.h:1
-msgid "Quark"
-msgstr "夸克"
-
-#: ../data/effects/radioactv.effect.in.h:1
-msgid "Radioactive"
-msgstr "放射"
-
-#  shagadelic 此词是由Shaggy与psychedelic ( a. 起幻觉的，迷幻的) 结合而来的，并没有什么实际意义，只是用来起夸张与炫耀的作用。参见：《王牌大贱谍》--甘露注
-#: ../data/effects/shagadelictv.effect.in.h:1
-msgid "Shagadelic"
-msgstr "迷幻"
-
-#: ../data/effects/streaktv.effect.in.h:1
-msgid "Kung-Fu"
-msgstr "功夫"
-
-#: ../data/effects/vertigotv.effect.in.h:1
-msgid "Vertigo"
-msgstr "眩晕"
-
-#: ../data/effects/warptv.effect.in.h:1
-msgid "Warp"
-msgstr "扭曲"
-
-#: ../libcheese/cheese-avatar-chooser.c:110
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:589
 msgid "Shutter sound"
 msgstr "快门声"
 
-#: ../libcheese/cheese-avatar-chooser.c:236
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "拍照"
 
-#: ../libcheese/cheese-avatar-chooser.c:255
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "拍照(_T)"
 
-#: ../libcheese/cheese-avatar-chooser.c:270
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "丢弃照片(_D)"
 
-#: ../libcheese/cheese-camera-device.c:328
+#: ../libcheese/cheese-camera-device.c:329
 msgid "Device capabilities not supported"
 msgstr "不支持该设备的全部功能"
 
-#: ../libcheese/cheese-camera-device.c:352
+#: ../libcheese/cheese-camera-device.c:357
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "初始化设备 %s 以启用探测能力时失败"
 
-#: ../libcheese/cheese-camera-device.c:510
+#: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
 msgstr "未知设备"
 
-#: ../libcheese/cheese-camera-device.c:534
+#: ../libcheese/cheese-camera-device.c:539
 msgid "Cancellable initialization not supported"
 msgstr "不支持可中断初始化"
 
-#: ../libcheese/cheese-camera.c:1116
+#: ../libcheese/cheese-camera.c:1154
 #, c-format
 msgid "No device found"
 msgstr "没有发现设备"
 
-#: ../libcheese/cheese-camera.c:1135
+#: ../libcheese/cheese-camera.c:1173
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 GStreamer 元素："
 
@@ -471,30 +413,85 @@ msgstr "缺少所需的一个或多个 GStreamer 元素："
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-main.vala:38
-msgid "Be verbose"
-msgstr "显示详细信息"
+#: ../src/cheese-effects-manager.vala:116
+msgid "No Effect"
+msgstr "无"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "启用宽屏模式"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "用作摄像头的设备"
+
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "设备"
+
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "输出版本信息并退出"
 
-#: ../src/cheese-main.vala:75
+#: ../src/cheese-main.vala:67
 msgid "- Take photos and videos from your webcam"
 msgstr "- 使用摄像头拍摄照片和视频"
 
-#: ../src/cheese-main.vala:86
+#: ../src/cheese-main.vala:78
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "运行“%s --help”来查看可用命令行选项的完整列表。\n"
 
-#: ../src/cheese-window.vala:601
+#: ../src/cheese-window.vala:642
 msgid "Stop _Recording"
 msgstr "停止录像(_R)"
+
+#: ../src/cheese-window.vala:761
+msgid "No effects found"
+msgstr "没有发现特效"
+
+#~ msgid "Historical"
+#~ msgstr "老照片"
+
+#~ msgid "Dice"
+#~ msgstr "骰子"
+
+#~ msgid "Edge"
+#~ msgstr "加边"
+
+#~ msgid "Hulk"
+#~ msgstr "显现"
+
+#~ msgid "Mauve"
+#~ msgstr "淡紫"
+
+#~ msgid "Noir/Blanc"
+#~ msgstr "黑白"
+
+#~ msgid "Optical Illusion"
+#~ msgstr "眩目"
+
+#~ msgid "Quark"
+#~ msgstr "夸克"
+
+#~ msgid "Radioactive"
+#~ msgstr "放射"
+
+#  shagadelic 此词是由Shaggy与psychedelic ( a. 起幻觉的，迷幻的) 结合而来的，并没有什么实际意义，只是用来起夸张与炫耀的作用。参见：《王牌大贱谍》--甘露注
+#~ msgid "Shagadelic"
+#~ msgstr "迷幻"
+
+#~ msgid "Kung-Fu"
+#~ msgstr "功夫"
+
+#~ msgid "Vertigo"
+#~ msgstr "眩晕"
+
+#~ msgid "Warp"
+#~ msgstr "扭曲"
+
+#~ msgid "Be verbose"
+#~ msgstr "显示详细信息"
 
 #~ msgid "Switch to Burst Mode"
 #~ msgstr "切换到连拍模式"
