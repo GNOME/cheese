@@ -1,7 +1,7 @@
 # Chinese translations for cheese package
 # cheese 软件包的简体中文翻译.
-# Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2008, 2009, 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the cheese package.
 # YangZhang <zyangmath@gmail.com>, 2008.
 # 甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009
 # arccos (L.Q) <boyermoore@gmail.com>, 2009
@@ -10,16 +10,16 @@ msgstr ""
 "Project-Id-Version: cheese trunk\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2009-12-07 16:13+0000\n"
-"PO-Revision-Date: 2009-12-02 21:11+0100\n"
-"Last-Translator: Tao Wei <weitao1979@gmail.com>\n"
-"Language-Team: Chinese i18n <i18n-zh@googlegroups.com>\n"
+"POT-Creation-Date: 2010-08-05 10:17+0000\n"
+"PO-Revision-Date: 2010-08-10 14:22+0800\n"
+"Last-Translator: Yinghua Wang <wantinghard@gmail.com>\n"
+"Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:184
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
 msgid "Cheese"
 msgstr "茄子"
 
@@ -27,7 +27,7 @@ msgstr "茄子"
 msgid "Cheese Webcam Booth"
 msgstr "茄子大头贴"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1073
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-commands-help.c:118
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "使用摄像头拍照或录像，并加上有趣的图像效果"
 
@@ -174,33 +174,31 @@ msgstr "是否以宽屏模式启动"
 msgid "Width resolution"
 msgstr "横向分辨率"
 
-#: ../data/cheese.ui.h:2
+#: ../data/cheese.ui.h:1
 msgid "Switch to Burst Mode"
 msgstr "切换到连拍模式"
 
-#: ../data/cheese.ui.h:3
+#: ../data/cheese.ui.h:2
 msgid "Switch to Photo Mode"
 msgstr "切换到照片模式"
 
-#: ../data/cheese.ui.h:4
+#: ../data/cheese.ui.h:3
 msgid "Switch to Video Mode"
 msgstr "切换到视频模式"
 
-#: ../data/cheese.ui.h:5
+#: ../data/cheese.ui.h:4
 msgid "Switch to the Effects Selector"
 msgstr "切换到特效选择器"
 
-#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1197
-#: ../src/cheese-window.c:1520
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:871
 msgid "_Effects"
 msgstr "特效(_E)"
 
-#: ../data/cheese.ui.h:7
+#: ../data/cheese.ui.h:6
 msgid "_Leave Fullscreen"
 msgstr "退出全屏(_L)"
 
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1553
-#: ../src/cheese-window.c:1593
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "拍照(_T)"
 
@@ -236,7 +234,7 @@ msgstr "图像属性"
 msgid "Number of photos"
 msgstr "照片编号"
 
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1524
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-ui.h:44
 msgid "Preferences"
 msgstr "首选项"
 
@@ -252,25 +250,40 @@ msgstr "饱和"
 msgid "Webcam"
 msgstr "网络摄像头"
 
-#: ../libcheese/cheese-avatar-chooser.c:105 ../src/cheese-window.c:1259
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:634
 msgid "Shutter sound"
 msgstr "快门声"
 
-#: ../libcheese/cheese-avatar-chooser.c:214
-#, fuzzy
-#| msgid "_Take a photo"
+#: ../libcheese/cheese-avatar-chooser.c:236
 msgid "Take a photo"
-msgstr "拍照(_T)"
+msgstr "拍照"
 
-#: ../libcheese/cheese-avatar-chooser.c:233 ../src/cheese-window.c:1777
+#: ../libcheese/cheese-avatar-chooser.c:255
 msgid "_Take a photo"
 msgstr "拍照(_T)"
 
-#: ../libcheese/cheese-avatar-chooser.c:245
+#: ../libcheese/cheese-avatar-chooser.c:270
 msgid "_Discard photo"
-msgstr ""
+msgstr "丢弃照片(_D)"
 
-#: ../libcheese/cheese-camera.c:1526
+#: ../libcheese/cheese-camera-device.c:328
+msgid "Device capabilities not supported"
+msgstr "不支持该设备的全部功能"
+
+#: ../libcheese/cheese-camera-device.c:510
+msgid "Unknown device"
+msgstr "未知设备"
+
+#: ../libcheese/cheese-camera-device.c:534
+msgid "Cancellable initialization not supported"
+msgstr "不支持可中断初始化"
+
+#: ../libcheese/cheese-camera.c:1137
+#, c-format
+msgid "No device found"
+msgstr "没有发现设备"
+
+#: ../libcheese/cheese-camera.c:1156
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 GStreamer 元素："
 
@@ -280,15 +293,136 @@ msgstr "缺少所需的一个或多个 GStreamer 元素："
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../libcheese/cheese-widget.c:278 ../libcheese/cheese-widget.c:377
-msgid "Camera setup failed"
-msgstr "相机设置失败"
+#: ../src/cheese-commands-file.c:31
+msgid "_Skip"
+msgstr "跳过(_S)"
+
+#: ../src/cheese-commands-file.c:32
+msgid "S_kip All"
+msgstr "全部跳过(_K)"
+
+#: ../src/cheese-commands-file.c:33
+msgid "Delete _All"
+msgstr "全部删除(_A)"
+
+#: ../src/cheese-commands-file.c:57
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s\n"
+"%s"
+msgstr ""
+"无法启动程序以显示：\n"
+"%s\n"
+"%s"
+
+#: ../src/cheese-commands-file.c:78
+msgid "Save File"
+msgstr "保存文件"
+
+#: ../src/cheese-commands-file.c:116
+#, c-format
+msgid "Could not save %s"
+msgstr "无法保存 %s"
+
+#: ../src/cheese-commands-file.c:139
+msgid "Error while deleting"
+msgstr "删除时出错"
+
+#: ../src/cheese-commands-file.c:140
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "无法删除文件“%s”。详细信息：%s"
+
+#: ../src/cheese-commands-file.c:167
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "您确定要永久删除这 %'d 个选中项吗？"
+
+#: ../src/cheese-commands-file.c:174
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "您确定想要永久删除“%s”吗？"
+
+#: ../src/cheese-commands-file.c:177
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "如果您删除了某项，该项将永久丢失。"
+
+#: ../src/cheese-commands-file.c:198
+msgid "Unknown Error"
+msgstr "未知错误"
+
+#: ../src/cheese-commands-file.c:228
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "无法将文件移动到回收站，您是否想要立即删除？"
+
+#: ../src/cheese-commands-file.c:229
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "无法移动文件“%s”到回收站。详细信息：%s"
+
+#: ../src/cheese-commands-file.c:301
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "真的要将所有照片和视频移动到回收站吗？"
+
+#: ../src/cheese-commands-file.c:309
+msgid "_Move to Trash"
+msgstr "移动到回收站(_M)"
+
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:656
+msgid "Unable to open help file for Cheese"
+msgstr "无法打开茄子的帮助文件"
+
+#: ../src/cheese-commands-help.c:96
+msgid "translator-credits"
+msgstr ""
+"YangZhang <zyangmath@gmail.com>, 2008\n"
+"甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009\n"
+"arccos (L.Q) <boyermoore@gmail.com>, 2009"
+
+#: ../src/cheese-commands-help.c:99
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"本程序是自由软件；您可以在自由软件基金会发布的 GNU 通用公共许可证的条款下重新"
+"分发和(或)修改它；您可以选择使用 GPL 第二版，或(按照您的意愿)任何更新的版"
+"本。\n"
+
+#: ../src/cheese-commands-help.c:103
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"本程序分发的目的是希望它物有所用，但是没有任何担保；没有对其适销性和某一特定"
+"目的下的适用性的任何即便是暗示的担保。请查阅 GNU 通用公共许可证以获得更多信"
+"息。\n"
+
+#: ../src/cheese-commands-help.c:107
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"你应该已经跟本程序一起收到一份 GNU 通用公共许可证的副本；如果没有，参见"
+"<http://www.gnu.org/licenses/>。"
+
+#: ../src/cheese-commands-help.c:124
+msgid "Cheese Website"
+msgstr "茄子网站"
 
 #: ../src/cheese-effect-chooser.c:60
 msgid "No Effect"
@@ -335,267 +469,138 @@ msgstr "方块"
 msgid "Warp"
 msgstr "扭曲"
 
-#: ../src/cheese-no-camera.c:93
+#: ../src/cheese-no-camera.c:94
 msgid "No camera found!"
 msgstr "没有发现摄像头！"
 
-#: ../src/cheese-no-camera.c:94
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1222
 msgid "Please refer to the help for further information."
 msgstr "更多信息请参考帮助文档。"
 
-#: ../src/cheese-window.c:74
-msgid "_Skip"
-msgstr "跳过(_S)"
-
-#: ../src/cheese-window.c:75
-msgid "S_kip All"
-msgstr "全部跳过(_K)"
-
-#: ../src/cheese-window.c:76
-msgid "Delete _All"
-msgstr "全部删除(_A)"
-
-#: ../src/cheese-window.c:518
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s\n"
-"%s"
-msgstr ""
-"无法启动程序以显示：\n"
-"%s\n"
-"%s"
-
-#: ../src/cheese-window.c:539
-msgid "Save File"
-msgstr "保存文件"
-
-#: ../src/cheese-window.c:577
-#, c-format
-msgid "Could not save %s"
-msgstr "无法保存 %s"
-
-#: ../src/cheese-window.c:600
-msgid "Error while deleting"
-msgstr "删除时出错"
-
-#: ../src/cheese-window.c:601
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "无法删除文件“%s”。详细信息：%s"
-
-#: ../src/cheese-window.c:628
-#, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural ""
-"Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "您确定要永久删除这 %'d 个选中项吗？"
-
-#: ../src/cheese-window.c:635
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "您确定想要永久删除“%s”吗？"
-
-#: ../src/cheese-window.c:638
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "如果您删除了某项，该项将永久丢失。"
-
-#: ../src/cheese-window.c:659
-msgid "Unknown Error"
-msgstr "未知错误"
-
-#: ../src/cheese-window.c:689
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "无法将文件移动到回收站，您是否想要立即删除？"
-
-#: ../src/cheese-window.c:690
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "无法移动文件“%s”到回收站。详细信息：%s"
-
-#: ../src/cheese-window.c:762
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "真的要将所有照片和视频移动到回收站吗？"
-
-#: ../src/cheese-window.c:770
-msgid "_Move to Trash"
-msgstr "移动到回收站(_M)"
-
-#: ../src/cheese-window.c:888
-#, c-format
-msgid "Could not set the Account Photo"
-msgstr "无法设置账户照片"
-
-#: ../src/cheese-window.c:920
-msgid "Media files"
-msgstr "媒体文件"
-
-#: ../src/cheese-window.c:994 ../src/cheese-window.c:1281
-msgid "Unable to open help file for Cheese"
-msgstr "无法打开茄子的帮助文件"
-
-#: ../src/cheese-window.c:1051
-msgid "translator-credits"
-msgstr ""
-"YangZhang <zyangmath@gmail.com>, 2008\n"
-"甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009\n"
-"arccos (L.Q) <boyermoore@gmail.com>, 2009"
-
-#: ../src/cheese-window.c:1054
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-msgstr ""
-"本程序是自由软件；您可以在自由软件基金会发布的 GNU 通用公共许可证的条款下重新"
-"分发和(或)修改它；您可以选择使用 GPL 第二版，或(按照您的意愿)任何更新的版"
-"本。\n"
-
-#: ../src/cheese-window.c:1058
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-msgstr ""
-"本程序分发的目的是希望它物有所用，但是没有任何担保；没有对其适销性和某一特定"
-"目的下的适用性的任何即便是暗示的担保。请查阅 GNU 通用公共许可证以获得更多信"
-"息。\n"
-
-#: ../src/cheese-window.c:1062
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"你应该已经跟本程序一起收到一份 GNU 通用公共许可证的副本；如果没有，参见"
-"<http://www.gnu.org/licenses/>。"
-
-#: ../src/cheese-window.c:1079
-msgid "Cheese Website"
-msgstr "茄子网站"
-
-#: ../src/cheese-window.c:1297
-msgid "_Start Recording"
-msgstr "开始录像(_S)"
-
-#: ../src/cheese-window.c:1465
-msgid "_Stop Recording"
-msgstr "停止录像(_S)"
-
-#: ../src/cheese-window.c:1501
+#: ../src/cheese-ui.h:32
 msgid "_Cheese"
 msgstr "茄子(_C)"
 
-#: ../src/cheese-window.c:1503
+#: ../src/cheese-ui.h:34
 msgid "_Edit"
 msgstr "编辑(_E)"
 
-#: ../src/cheese-window.c:1504
-msgid "Move All to Trash"
-msgstr "全部移动到回收站"
-
-#: ../src/cheese-window.c:1507
+#: ../src/cheese-ui.h:35
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/cheese-window.c:1510
+#: ../src/cheese-ui.h:38
 msgid "_Contents"
 msgstr "目录(_C)"
 
-#: ../src/cheese-window.c:1510
+#: ../src/cheese-ui.h:38
 msgid "Help on this Application"
 msgstr "关于本应用程序的帮助"
 
-#: ../src/cheese-window.c:1516
-msgid "Countdown"
-msgstr "倒计时"
-
-#: ../src/cheese-window.c:1532
-msgid "_Wide mode"
-msgstr "宽屏模式(_W)"
-
-#: ../src/cheese-window.c:1536
+#: ../src/cheese-ui.h:48
 msgid "_Photo"
 msgstr "照片(_P)"
 
-#: ../src/cheese-window.c:1537
+#: ../src/cheese-ui.h:49
 msgid "_Video"
 msgstr "视频(_V)"
 
-#: ../src/cheese-window.c:1538
+#: ../src/cheese-ui.h:50
 msgid "_Burst"
 msgstr "连拍(_B)"
 
-#: ../src/cheese-window.c:1542
-msgid "_Open"
-msgstr "打开(_O)"
+#: ../src/cheese-ui.h:54
+msgid "Countdown"
+msgstr "倒计时"
 
-#: ../src/cheese-window.c:1544
-msgid "Save _As…"
-msgstr "另存为(_A)..."
+#: ../src/cheese-ui.h:64
+msgid "_Wide mode"
+msgstr "宽屏模式(_W)"
 
-#: ../src/cheese-window.c:1546
-msgid "Move to _Trash"
-msgstr "移动到回收站(_T)"
-
-#: ../src/cheese-window.c:1548
-msgid "Delete"
-msgstr "删除"
-
-#: ../src/cheese-window.c:1557
+#: ../src/cheese-ui.h:71
 msgid "_Recording"
 msgstr "录像(_R)"
 
-#: ../src/cheese-window.c:1561 ../src/cheese-window.c:1606
+#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "拍摄多张照片(_T)"
 
-#: ../src/cheese-window.c:1565
-msgid "_Set As Account Photo"
-msgstr "设置为账户照片(_S)"
+#: ../src/cheese-ui.h:78
+msgid "_Open"
+msgstr "打开(_O)"
 
-#: ../src/cheese-window.c:1569
-msgid "Send by _Mail"
-msgstr "用邮件发送(_M)"
+#: ../src/cheese-ui.h:80
+msgid "Save _As…"
+msgstr "另存为(_A)..."
 
-#: ../src/cheese-window.c:1573
-msgid "Send _To"
-msgstr "发送到(_T)"
+#: ../src/cheese-ui.h:82
+msgid "Move to _Trash"
+msgstr "移动到回收站(_T)"
 
-#: ../src/cheese-window.c:1577
-msgid "Export to F-_Spot"
-msgstr "导出到 F-_Spot"
+#: ../src/cheese-ui.h:84
+msgid "Delete"
+msgstr "删除"
 
-#: ../src/cheese-window.c:1581
-msgid "Export to _Flickr"
-msgstr "导出到 _Flickr"
+#: ../src/cheese-ui.h:89
+msgid "Move All to Trash"
+msgstr "全部移动到回收站"
 
-#: ../src/cheese-window.c:1619
-msgid "_Start recording"
+#: ../src/cheese-window.c:60
+msgid "_Start Recording"
 msgstr "开始录像(_S)"
 
-#: ../src/cheese-window.c:2036
-msgid "Check your GStreamer installation"
-msgstr "检查您的 GStreamer 安装"
+#: ../src/cheese-window.c:61
+msgid "_Stop Recording"
+msgstr "停止录像(_S)"
 
-#: ../src/cheese.c:163
+#: ../src/cheese.c:97
 msgid "Be verbose"
 msgstr "显示详细信息"
 
-#: ../src/cheese.c:165
+#: ../src/cheese.c:99
 msgid "Enable wide mode"
 msgstr "启用宽屏模式"
 
-#: ../src/cheese.c:169
+#: ../src/cheese.c:101
 msgid "output version information and exit"
 msgstr "输出版本信息并退出"
 
-#: ../src/cheese.c:186
+#: ../src/cheese.c:120
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- 使用摄像头拍照或录像，并加上有趣的图像效果"
+
+#~ msgid "Failed to initialize device %s for capability probing"
+#~ msgstr "初始化设备 %s 以启用探测能力时失败"
+
+#~ msgid "Camera setup failed"
+#~ msgstr "相机设置失败"
+
+#~ msgid "Could not set the Account Photo"
+#~ msgstr "无法设置账户照片"
+
+#~ msgid "Media files"
+#~ msgstr "媒体文件"
+
+#~ msgid "_Set As Account Photo"
+#~ msgstr "设置为账户照片(_S)"
+
+#~ msgid "Send by _Mail"
+#~ msgstr "用邮件发送(_M)"
+
+#~ msgid "Send _To"
+#~ msgstr "发送到(_T)"
+
+#~ msgid "Export to F-_Spot"
+#~ msgstr "导出到 F-_Spot"
+
+#~ msgid "Export to _Flickr"
+#~ msgstr "导出到 _Flickr"
+
+#~ msgid "_Start recording"
+#~ msgstr "开始录像(_S)"
+
+#~ msgid "Check your GStreamer installation"
+#~ msgstr "检查您的 GStreamer 安装"
 
 #~ msgid "<b>Camera</b>"
 #~ msgstr "<b>相机</b>"
