@@ -60,8 +60,7 @@ public class Cheese.Main
 
     Gtk.rc_parse (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "gtkrc"));
 
-    Gtk.init (ref args);
-    Clutter.init (ref args);
+    GtkClutter.init (ref args);
 
     try {
       var context = new OptionContext (_("- Take photos and videos from your webcam"));
