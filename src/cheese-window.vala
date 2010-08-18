@@ -611,7 +611,7 @@ public class Cheese.MainWindow : Gtk.Window
       if (current_mode == MediaMode.PHOTO)
         take_photo_action.sensitive = false;
       current_countdown = new Countdown (this.countdown_layer);
-      current_countdown.start_countdown (finish_countdown_callback);
+      current_countdown.start (finish_countdown_callback);
     }
     else
     {
@@ -648,27 +648,30 @@ public class Cheese.MainWindow : Gtk.Window
     string key;
 
     key = Gdk.keyval_name (event.keyval);
-    if (strcmp (key, "Escape") == 0)
+    if ((current_countdown != null && current_countdown.running) || is_bursting || is_recording)
     {
-      action_cancelled = true;
-      if (current_mode == MediaMode.PHOTO)
+      if (strcmp (key, "Escape") == 0)
       {
-        current_countdown.stop ();
-        finish_countdown_callback ();
+        action_cancelled = true;
+        if (current_mode == MediaMode.PHOTO)
+        {
+          current_countdown.stop ();
+          finish_countdown_callback ();
+        }
+        else
+        if (current_mode == MediaMode.BURST)
+        {
+          current_countdown.stop ();
+          is_bursting = false;
+          burst_take_photo ();
+        }
+        else
+        if (current_mode == MediaMode.VIDEO)
+        {
+          toggle_video_recording (false);
+        }
+        action_cancelled = false;
       }
-      else
-      if (current_mode == MediaMode.BURST)
-      {
-        current_countdown.stop ();
-        is_bursting = false;
-        burst_take_photo ();
-      }
-      else
-      if (current_mode == MediaMode.VIDEO)
-      {
-        toggle_video_recording (false);
-      }
-      action_cancelled = false;
     }
     return false;
   }
