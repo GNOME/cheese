@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-06 13:30+0200\n"
-"PO-Revision-Date: 2010-08-06 13:33+0100\n"
+"POT-Creation-Date: 2010-08-18 22:21+0200\n"
+"PO-Revision-Date: 2010-08-18 22:21+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: ../data/cheese-about.ui.h:1
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:105
+#: ../src/cheese-main.vala:102
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -326,44 +326,45 @@ msgid "Width resolution"
 msgstr "Upplösning för bredd"
 
 #: ../libcheese/cheese-avatar-chooser.c:110
+#: ../src/cheese-window.vala:589
 msgid "Shutter sound"
 msgstr "Slutarljud"
 
-#: ../libcheese/cheese-avatar-chooser.c:236
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "Ta ett foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:255
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "_Ta ett foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:270
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "_Förkasta foto"
 
-#: ../libcheese/cheese-camera-device.c:328
+#: ../libcheese/cheese-camera-device.c:329
 msgid "Device capabilities not supported"
 msgstr "Enhetsförmågorna stöds inte"
 
-#: ../libcheese/cheese-camera-device.c:352
+#: ../libcheese/cheese-camera-device.c:357
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Misslyckades med att initiera enheten %s för funktionsavsökning"
 
-#: ../libcheese/cheese-camera-device.c:510
+#: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
 msgstr "Okänd enhet"
 
-#: ../libcheese/cheese-camera-device.c:534
+#: ../libcheese/cheese-camera-device.c:539
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytningsbar initiering stöds inte"
 
-#: ../libcheese/cheese-camera.c:1128
+#: ../libcheese/cheese-camera.c:1154
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet hittades"
 
-#: ../libcheese/cheese-camera.c:1147
+#: ../libcheese/cheese-camera.c:1173
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 
@@ -380,43 +381,51 @@ msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-main.vala:38
-msgid "Be verbose"
-msgstr "Var informativ"
+#: ../src/cheese-effects-manager.vala:116
+msgid "No Effect"
+msgstr "Ingen effekt"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "Aktivera bredläge"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "Enhet att använda som en kamera"
+
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "ENHET"
+
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Skriv ut versionsinformation och avsluta"
 
-#: ../src/cheese-main.vala:75
+#: ../src/cheese-main.vala:66
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta foton och videor från din webbkamera"
 
-#: ../src/cheese-main.vala:86
+#: ../src/cheese-main.vala:77
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Kör \"%s --help\" för en komplett lista över tillgängliga kommandoradsflaggor.\n"
 
-#: ../src/cheese-window.vala:604
+#: ../src/cheese-window.vala:646
 msgid "Stop _Recording"
 msgstr "S_toppa inspelning"
 
-#: ../src/cheese-window.vala:723
+#: ../src/cheese-window.vala:765
 msgid "No effects found"
 msgstr "Inga effekter hittades"
 
+#~ msgid "Be verbose"
+#~ msgstr "Var informativ"
 #~ msgid "Dice"
 #~ msgstr "Tärning"
 #~ msgid "Edge"
 #~ msgstr "Kantig"
 #~ msgid "Hulk"
 #~ msgstr "Hulken"
-#~ msgid "No Effect"
-#~ msgstr "Ingen effekt"
 #~ msgid "Mauve"
 #~ msgstr "Mauve"
 #~ msgid "Noir/Blanc"
