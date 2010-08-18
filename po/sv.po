@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-21 17:09+0100\n"
-"PO-Revision-Date: 2010-02-21 17:09+0100\n"
+"POT-Creation-Date: 2010-08-18 22:24+0200\n"
+"PO-Revision-Date: 2010-08-18 22:25+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese.c:113
+#: ../src/cheese.c:118
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -113,42 +113,50 @@ msgid "Set to True to show countdown when taking a photo"
 msgstr "Ställ in till sant för att visa nedräkning när ett foto tas"
 
 #: ../data/cheese.schemas.in.h:23
+msgid "Set to True to use flash when taking a photo"
+msgstr "Ställ in till sant för att använda blixt när ett foto tas"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "Enheten som pekar till kameran (t.ex. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid "The height resolution of the image captured from the camera"
 msgstr "Höjdupplösningen för bilden som fångas med kameran"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos."
 msgstr "Längden i tid, i millisekunder, att vänta mellan varje fototagning i en multipel fotosekvens."
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The number of photos to take in a single burst."
 msgstr "Antalet foton att ta i en enda multipel tagning."
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "The width resolution of the image captured from the camera"
 msgstr "Breddupplösningen för bilden som fångas med kameran"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Use a countdown"
 msgstr "Använd en nedräknare"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "Använd en blixt"
+
+#: ../data/cheese.schemas.in.h:31
 msgid "Video Path"
 msgstr "Videosökväg"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:32
 msgid "Whether to enable immediate deletion"
 msgstr "Huruvida omedelbar borttagning ska aktiveras"
 
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:33
 msgid "Whether to start in wide mode"
 msgstr "Huruvida uppstart i bredläge ska ske"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:34
 msgid "Width resolution"
 msgstr "Upplösning för bredd"
 
@@ -169,8 +177,8 @@ msgid "Switch to the Effects Selector"
 msgstr "Växla till effektväljaren"
 
 #: ../data/cheese.ui.h:5
-#: ../src/cheese-ui.h:55
-#: ../src/cheese-window.c:865
+#: ../src/cheese-ui.h:61
+#: ../src/cheese-window.c:884
 msgid "_Effects"
 msgstr "_Effekter"
 
@@ -179,7 +187,7 @@ msgid "_Leave Fullscreen"
 msgstr "_Lämna helskärmsläge"
 
 #: ../data/cheese.ui.h:7
-#: ../src/cheese-ui.h:66
+#: ../src/cheese-ui.h:72
 #: ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "_Ta ett foto"
@@ -217,7 +225,7 @@ msgid "Number of photos"
 msgstr "Antal foton"
 
 #: ../data/cheese-prefs.ui.h:9
-#: ../src/cheese-ui.h:35
+#: ../src/cheese-ui.h:44
 msgid "Preferences"
 msgstr "Inställningar"
 
@@ -235,40 +243,40 @@ msgid "Webcam"
 msgstr "Webbkamera"
 
 #: ../libcheese/cheese-avatar-chooser.c:110
-#: ../src/cheese-window.c:626
+#: ../src/cheese-window.c:640
 msgid "Shutter sound"
 msgstr "Slutarljud"
 
-#: ../libcheese/cheese-avatar-chooser.c:222
+#: ../libcheese/cheese-avatar-chooser.c:236
 msgid "Take a photo"
 msgstr "Ta ett foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:241
+#: ../libcheese/cheese-avatar-chooser.c:255
 msgid "_Take a photo"
 msgstr "_Ta ett foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:256
+#: ../libcheese/cheese-avatar-chooser.c:270
 msgid "_Discard photo"
 msgstr "_Förkasta foto"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "Enhetsförmågorna stöds inte"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "Okänd enhet"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytningsbar initiering stöds inte"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1137
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet hittades"
 
-#: ../libcheese/cheese-camera.c:1153
+#: ../libcheese/cheese-camera.c:1156
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 
@@ -278,17 +286,12 @@ msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436
-#: ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441
+#: ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
-
-#: ../libcheese/cheese-widget.c:289
-#: ../libcheese/cheese-widget.c:391
-msgid "Camera setup failed"
-msgstr "Kamerakonfigurationen misslyckades"
 
 #: ../src/cheese-commands-file.c:31
 msgid "_Skip"
@@ -371,7 +374,7 @@ msgid "_Move to Trash"
 msgstr "Flytta till _papperskorgen"
 
 #: ../src/cheese-commands-help.c:39
-#: ../src/cheese-window.c:649
+#: ../src/cheese-window.c:662
 msgid "Unable to open help file for Cheese"
 msgstr "Kunde inte öppna hjälpfilen för Cheese"
 
@@ -445,11 +448,12 @@ msgstr "Tärning"
 msgid "Warp"
 msgstr "Vrid"
 
-#: ../src/cheese-no-camera.c:93
+#: ../src/cheese-no-camera.c:94
 msgid "No camera found!"
 msgstr "Ingen kamera hittades!"
 
-#: ../src/cheese-no-camera.c:94
+#: ../src/cheese-no-camera.c:95
+#: ../src/cheese-window.c:1258
 msgid "Please refer to the help for further information."
 msgstr "Referera till hjälpen för ytterligare information."
 
@@ -461,64 +465,68 @@ msgstr "_Cheese"
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: ../src/cheese-ui.h:37
+#: ../src/cheese-ui.h:35
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../src/cheese-ui.h:40
+#: ../src/cheese-ui.h:38
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../src/cheese-ui.h:40
+#: ../src/cheese-ui.h:38
 msgid "Help on this Application"
 msgstr "Hjälp för detta program"
 
-#: ../src/cheese-ui.h:46
+#: ../src/cheese-ui.h:48
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../src/cheese-ui.h:47
+#: ../src/cheese-ui.h:49
 msgid "_Video"
 msgstr "_Video"
 
-#: ../src/cheese-ui.h:48
+#: ../src/cheese-ui.h:50
 msgid "_Burst"
 msgstr "_Multipelt"
 
-#: ../src/cheese-ui.h:52
+#: ../src/cheese-ui.h:54
 msgid "Countdown"
 msgstr "Nedräkning"
 
-#: ../src/cheese-ui.h:62
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "Blixt"
+
+#: ../src/cheese-ui.h:68
 msgid "_Wide mode"
 msgstr "_Bredläge"
 
-#: ../src/cheese-ui.h:69
+#: ../src/cheese-ui.h:75
 msgid "_Recording"
 msgstr "_Inspelning"
 
-#: ../src/cheese-ui.h:72
+#: ../src/cheese-ui.h:78
 #: ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "_Ta flera foton"
 
-#: ../src/cheese-ui.h:76
+#: ../src/cheese-ui.h:82
 msgid "_Open"
 msgstr "_Öppna"
 
-#: ../src/cheese-ui.h:78
+#: ../src/cheese-ui.h:84
 msgid "Save _As…"
 msgstr "Spara s_om..."
 
-#: ../src/cheese-ui.h:80
+#: ../src/cheese-ui.h:86
 msgid "Move to _Trash"
 msgstr "Flytta till _papperskorgen"
 
-#: ../src/cheese-ui.h:82
+#: ../src/cheese-ui.h:88
 msgid "Delete"
 msgstr "Ta bort"
 
-#: ../src/cheese-ui.h:87
+#: ../src/cheese-ui.h:93
 msgid "Move All to Trash"
 msgstr "Flytta allt till papperskorgen"
 
@@ -530,22 +538,24 @@ msgstr "_Starta inspelning"
 msgid "_Stop Recording"
 msgstr "_Stoppa inspelning"
 
-#: ../src/cheese.c:96
+#: ../src/cheese.c:97
 msgid "Be verbose"
 msgstr "Var informativ"
 
-#: ../src/cheese.c:98
+#: ../src/cheese.c:99
 msgid "Enable wide mode"
 msgstr "Aktivera bredläge"
 
-#: ../src/cheese.c:100
+#: ../src/cheese.c:101
 msgid "output version information and exit"
 msgstr "skriv ut versionsinformation och avsluta"
 
-#: ../src/cheese.c:115
+#: ../src/cheese.c:120
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- Ta bilder och videor från din webbkamera med roliga grafiska effekter"
 
+#~ msgid "Camera setup failed"
+#~ msgstr "Kamerakonfigurationen misslyckades"
 #~ msgid "_Start recording"
 #~ msgstr "_Starta inspelning"
 #~ msgid "Check your GStreamer installation"
