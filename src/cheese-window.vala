@@ -666,16 +666,37 @@ public class Cheese.MainWindow : Gtk.Window
       else
       if (current_mode == MediaMode.VIDEO)
       {
-        is_recording = true;
-        on_take_action (null);
+        toggle_video_recording (false);
       }
       action_cancelled = false;
     }
     return false;
   }
 
+  public void toggle_video_recording (bool active)
+  {
+    if (active)
+    {
+      camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
+      take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
+      take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
+      this.is_recording = true;
+      this.disable_mode_change ();
+      effects_toggle_action.sensitive = false;
+    }
+    else
+    {
+      camera.stop_video_recording ();
+      take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
+      take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
+      this.is_recording = false;
+      this.enable_mode_change ();
+      effects_toggle_action.sensitive = true;
+    }
+  }
+
   [CCode (instance_pos = -1)]
-  public void on_take_action (Gtk.Action ? action)
+  public void on_take_action (Gtk.Action action)
   {
     if (current_mode == MediaMode.PHOTO)
     {
@@ -684,24 +705,7 @@ public class Cheese.MainWindow : Gtk.Window
     else
     if (current_mode == MediaMode.VIDEO)
     {
-      if (!is_recording)
-      {
-        camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
-        take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
-        take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
-        this.is_recording = true;
-        this.disable_mode_change ();
-        effects_toggle_action.sensitive = false;
-      }
-      else
-      {
-        camera.stop_video_recording ();
-        take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
-        take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
-        this.is_recording = false;
-        this.enable_mode_change ();
-        effects_toggle_action.sensitive = true;
-      }
+      toggle_video_recording (!is_recording);
     }
     else
     if (current_mode == MediaMode.BURST)
