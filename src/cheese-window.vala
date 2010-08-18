@@ -262,7 +262,7 @@ public class Cheese.MainWindow : Gtk.Window
         file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
         file_to_trash.trash (null);
       }
-    } catch (Error e)
+    }catch (Error e)
     {
       warning ("Error: %s\n", e.message);
       return;
@@ -330,7 +330,7 @@ public class Cheese.MainWindow : Gtk.Window
     screen = this.get_screen ();
     try {
       Gtk.show_uri (screen, "ghelp:cheese", Gtk.get_current_event_time ());
-    } catch (Error err)
+    }catch (Error err)
     {
       warning ("Error: %s\n", err.message);
     }
@@ -440,9 +440,9 @@ public class Cheese.MainWindow : Gtk.Window
   {
     fullscreen_timeout = new TimeoutSource (FULLSCREEN_TIMEOUT_INTERVAL);
     fullscreen_timeout.attach (null);
-    fullscreen_timeout.set_callback (() => {buttons_area.hide ();
-                                            clear_fullscreen_timeout ();
-                                            return true; });
+    fullscreen_timeout.set_callback (() => { buttons_area.hide ();
+                                             clear_fullscreen_timeout ();
+                                             return true;});
   }
 
   private bool fullscreen_motion_notify_callback (Gtk.Widget viewport, EventMotion e)
@@ -481,7 +481,7 @@ public class Cheese.MainWindow : Gtk.Window
       /* Make all buttons look 'flat' */
       foreach (Gtk.Button b in buttons)
       {
-        if (b.get_name() != "take_action_button")
+        if (b.get_name () != "take_action_button")
           b.relief = Gtk.ReliefStyle.NONE;
       }
       this.fullscreen ();
@@ -504,7 +504,7 @@ public class Cheese.MainWindow : Gtk.Window
       /* Make all buttons look, uhm, Normal */
       foreach (Gtk.Button b in buttons)
       {
-        if (b.get_name() != "take_action_button")
+        if (b.get_name () != "take_action_button")
           b.relief = Gtk.ReliefStyle.NORMAL;
       }
 
@@ -583,25 +583,24 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void finish_countdown_callback ()
   {
-	  if (!action_cancelled)
-	  {
-		  string file_name = fileutil.get_new_media_filename (this.current_mode);
-		  
-		  this.flash.fire ();
-		  CanberraGtk.play_for_widget (this.main_vbox, 0,
-									   Canberra.PROP_EVENT_ID, "camera-shutter",
-									   Canberra.PROP_MEDIA_ROLE, "event",
-									   Canberra.PROP_EVENT_DESCRIPTION, _("Shutter sound"),
-									   null);
-		  this.camera.take_photo (file_name);
-		  if (current_mode == MediaMode.PHOTO)
-			  take_photo_action.sensitive = true;
+    if (!action_cancelled)
+    {
+      string file_name = fileutil.get_new_media_filename (this.current_mode);
 
-	  }
-	  else
-	  {
-		  action_cancelled = false;
-	  }
+      this.flash.fire ();
+      CanberraGtk.play_for_widget (this.main_vbox, 0,
+                                   Canberra.PROP_EVENT_ID, "camera-shutter",
+                                   Canberra.PROP_MEDIA_ROLE, "event",
+                                   Canberra.PROP_EVENT_DESCRIPTION, _("Shutter sound"),
+                                   null);
+      this.camera.take_photo (file_name);
+    }
+    else
+    {
+      action_cancelled = false;
+    }
+    if (current_mode == MediaMode.PHOTO)
+      take_photo_action.sensitive = true;
   }
 
   Countdown current_countdown;
@@ -609,8 +608,8 @@ public class Cheese.MainWindow : Gtk.Window
   {
     if (conf.gconf_prop_countdown)
     {
-		if (current_mode == MediaMode.PHOTO)
-			take_photo_action.sensitive = false;
+      if (current_mode == MediaMode.PHOTO)
+        take_photo_action.sensitive = false;
       current_countdown = new Countdown (this.countdown_layer);
       current_countdown.start_countdown (finish_countdown_callback);
     }
@@ -620,7 +619,8 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
-  private int burst_count;
+  private int  burst_count;
+  private uint burst_callback_id;
 
   private bool burst_take_photo ()
   {
@@ -638,25 +638,31 @@ public class Cheese.MainWindow : Gtk.Window
       effects_toggle_action.sensitive             = true;
       burst_count                                 = 0;
       fileutil.reset_burst ();
+      GLib.Source.remove (burst_callback_id);
       return false;
     }
   }
 
   private bool on_key_release (Gdk.EventKey event)
   {
-	  //HACK: Replace literals with constants when Vala supports gdkkeysyms.h
-	  switch (event.keyval)
-	  {		  
-	  case 0xFF1B: // GDK_ESCAPE
-		  is_bursting = false;
-		  action_cancelled = true;
-		  countdown_layer.hide();
-		  burst_take_photo ();
-		  break;
-	  }
-	  return false;
+    /* HACK: Replace literals with constants when Vala supports gdkkeysyms.h */
+    switch (event.keyval)
+    {
+      case 0xFF1B:     /* GDK_ESCAPE */
+        action_cancelled = true;
+        current_countdown.stop ();
+        if (current_mode == MediaMode.PHOTO)
+          finish_countdown_callback ();
+        else
+        {
+          is_bursting = false;
+          burst_take_photo ();
+        }
+        action_cancelled = false;
+        break;
+    }
+    return false;
   }
-  
 
   [CCode (instance_pos = -1)]
   public void on_take_action (Gtk.Action action)
@@ -697,7 +703,7 @@ public class Cheese.MainWindow : Gtk.Window
       burst_take_photo ();
 
       /* 3500 ms is approximate time for countdown animation to finish */
-      GLib.Timeout.add ((conf.gconf_prop_burst_delay / 1000) * 3500, burst_take_photo);
+      burst_callback_id = GLib.Timeout.add ((conf.gconf_prop_burst_delay / 1000) * 3500, burst_take_photo);
     }
   }
 
@@ -918,17 +924,17 @@ public class Cheese.MainWindow : Gtk.Window
       }
 
       /* Keep only these actions sensitive. */
-      string active_actions[11] = {"cheese_action",
-                                   "edit_action",
-                                   "help_action",
-                                   "quit",
-                                   "help_contents",
-                                   "about",
-                                   "open",
-                                   "save_as",
-                                   "move_to_trash",
-                                   "delete",
-                                   "move_all_to_trash"};
+      string active_actions[11] = { "cheese_action",
+                                    "edit_action",
+                                    "help_action",
+                                    "quit",
+                                    "help_contents",
+                                    "about",
+                                    "open",
+                                    "save_as",
+                                    "move_to_trash",
+                                    "delete",
+                                    "move_all_to_trash"};
 
       /* Gross hack because Vala's `in` operator doesn't really work */
       bool flag;
@@ -976,7 +982,7 @@ public class Cheese.MainWindow : Gtk.Window
       gtk_builder.connect_signals (this);
 
       clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
-    } catch (Error err)
+    }catch (Error err)
     {
       error ("Error: %s", err.message);
     }
@@ -1014,12 +1020,12 @@ public class Cheese.MainWindow : Gtk.Window
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
-    buttons = {photo_toggle_button,
-               video_toggle_button,
-               burst_toggle_button,
-               take_action_button,
-               effects_toggle_button,
-               leave_fullscreen_button};
+    buttons = { photo_toggle_button,
+                video_toggle_button,
+                burst_toggle_button,
+                take_action_button,
+                effects_toggle_button,
+                leave_fullscreen_button};
 
     video_preview           = (Clutter.Texture)clutter_builder.get_object ("video_preview");
     viewport_layout         = (Clutter.Box)clutter_builder.get_object ("viewport_layout");
@@ -1063,7 +1069,7 @@ public class Cheese.MainWindow : Gtk.Window
 
     toggle_camera_actions_sensitivities (false);
 
-	this.key_release_event.connect (on_key_release);
+    this.key_release_event.connect (on_key_release);
   }
 
   public void setup_camera (string ? uri)

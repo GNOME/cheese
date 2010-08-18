@@ -34,6 +34,10 @@ internal class Cheese.Countdown : GLib.Object
 
   private static int current_value = 0;
 
+  private static ulong signal_id;
+
+  private static Clutter.Animation anim;
+
   public Countdown (Clutter.Text countdown_actor)
   {
     this.countdown_actor = countdown_actor;
@@ -41,8 +45,8 @@ internal class Cheese.Countdown : GLib.Object
 
   private void fade_out ()
   {
-    Clutter.Animation anim = this.countdown_actor.animate (Clutter.AnimationMode.LINEAR, 500, "opacity", 0);
-    Signal.connect_after (anim, "completed", (GLib.Callback)fade_in, this);
+    anim      = this.countdown_actor.animate (Clutter.AnimationMode.LINEAR, 500, "opacity", 0);
+    signal_id = Signal.connect_after (anim, "completed", (GLib.Callback)fade_in, this);
   }
 
   private void fade_in ()
@@ -55,14 +59,21 @@ internal class Cheese.Countdown : GLib.Object
     this.countdown_actor.text = this.current_value.to_string ();
     this.current_value--;
 
-    Clutter.Animation anim = this.countdown_actor.animate (Clutter.AnimationMode.LINEAR, 500, "opacity", 255);
-    Signal.connect_after (anim, "completed", (GLib.Callback)fade_out, this);
+    anim      = this.countdown_actor.animate (Clutter.AnimationMode.LINEAR, 500, "opacity", 255);
+    signal_id = Signal.connect_after (anim, "completed", (GLib.Callback)fade_out, this);
   }
 
   public void start_countdown (CountdownCallback completed_callback)
   {
     this.completed_callback = completed_callback;
     this.current_value      = COUNTDOWN_START;
+    countdown_actor.show ();
     fade_in ();
+  }
+
+  public void stop ()
+  {
+    countdown_actor.hide ();
+    SignalHandler.disconnect (anim, signal_id);
   }
 }
