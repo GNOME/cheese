@@ -650,13 +650,23 @@ public class Cheese.MainWindow : Gtk.Window
     {
       case 0xFF1B:     /* GDK_ESCAPE */
         action_cancelled = true;
-        current_countdown.stop ();
         if (current_mode == MediaMode.PHOTO)
-          finish_countdown_callback ();
-        else
         {
+          current_countdown.stop ();
+          finish_countdown_callback ();
+        }
+        else
+        if (current_mode == MediaMode.BURST)
+        {
+          current_countdown.stop ();
           is_bursting = false;
           burst_take_photo ();
+        }
+        else
+        if (current_mode == MediaMode.VIDEO)
+        {
+          is_recording = true;
+          on_take_action (null);
         }
         action_cancelled = false;
         break;
@@ -665,7 +675,7 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   [CCode (instance_pos = -1)]
-  public void on_take_action (Gtk.Action action)
+  public void on_take_action (Gtk.Action ? action)
   {
     if (current_mode == MediaMode.PHOTO)
     {
