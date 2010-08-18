@@ -648,9 +648,9 @@ public class Cheese.MainWindow : Gtk.Window
     string key;
 
     key = Gdk.keyval_name (event.keyval);
-    if ((current_countdown != null && current_countdown.running) || is_bursting || is_recording)
+    if (strcmp (key, "Escape") == 0)
     {
-      if (strcmp (key, "Escape") == 0)
+      if ((current_countdown != null && current_countdown.running) || is_bursting || is_recording)
       {
         action_cancelled = true;
         if (current_mode == MediaMode.PHOTO)
@@ -671,6 +671,11 @@ public class Cheese.MainWindow : Gtk.Window
           toggle_video_recording (false);
         }
         action_cancelled = false;
+      }
+      else
+      if (is_effects_selector_active)
+      {
+        effects_toggle_action.set_active (false);
       }
     }
     return false;
