@@ -645,31 +645,31 @@ public class Cheese.MainWindow : Gtk.Window
 
   private bool on_key_release (Gdk.EventKey event)
   {
-    /* HACK: Replace literals with constants when Vala supports gdkkeysyms.h */
-    switch (event.keyval)
+    string key;
+
+    key = Gdk.keyval_name (event.keyval);
+    if (strcmp (key, "Escape") == 0)
     {
-      case 0xFF1B:     /* GDK_ESCAPE */
-        action_cancelled = true;
-        if (current_mode == MediaMode.PHOTO)
-        {
-          current_countdown.stop ();
-          finish_countdown_callback ();
-        }
-        else
-        if (current_mode == MediaMode.BURST)
-        {
-          current_countdown.stop ();
-          is_bursting = false;
-          burst_take_photo ();
-        }
-        else
-        if (current_mode == MediaMode.VIDEO)
-        {
-          is_recording = true;
-          on_take_action (null);
-        }
-        action_cancelled = false;
-        break;
+      action_cancelled = true;
+      if (current_mode == MediaMode.PHOTO)
+      {
+        current_countdown.stop ();
+        finish_countdown_callback ();
+      }
+      else
+      if (current_mode == MediaMode.BURST)
+      {
+        current_countdown.stop ();
+        is_bursting = false;
+        burst_take_photo ();
+      }
+      else
+      if (current_mode == MediaMode.VIDEO)
+      {
+        is_recording = true;
+        on_take_action (null);
+      }
+      action_cancelled = false;
     }
     return false;
   }
