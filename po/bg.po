@@ -1,35 +1,219 @@
-# Bulgarian translation of Cheese po-file.
-# Copyright (C) 2008, 2009 Free Software Foundation, Inc.
+# Bulgarian translation of cheese po-file.
+# Copyright (C) 2008, 2009, 2010 Free Software Foundation, Inc.
 # Copyright (C) 2010 Krasimir Chonov <mk2616@abv.bg>.
 # This file is distributed under the same license as the cheese package.
-# Alexander Shopov <ash@contact.bg>, 2008, 2009.
+# Alexander Shopov <ash@kambanaria.org>, 2008, 2009, 2010.
 # Krasimir Chonov <mk2616@abv.bg>, 2010.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: chese master\n"
+"Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-01-21 15:32+0200\n"
-"PO-Revision-Date: 2010-01-21 15:32+0200\n"
+"POT-Creation-Date: 2010-08-25 15:44+0300\n"
+"PO-Revision-Date: 2010-08-25 15:43+0300\n"
 "Last-Translator: Krasimir Chonov <mk2616@abv.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../data/cheese.ui.h:1 ../src/cheese.c:118
+#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
+#: ../src/cheese-main.vala:102
 msgid "Cheese"
 msgstr "Cheese"
+
+#: ../data/cheese-about.ui.h:2
+msgid "Cheese Website"
+msgstr "Уеб сайт на Cheese"
+
+#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"Заснeмане на снимки и клипове с вашата уеб камера и прилагане на ефекти"
+
+#: ../data/cheese-about.ui.h:4
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see http://www.gnu.org/licenses/\n"
+msgstr ""
+"Тази програма (Cheese) е свободен софтуер. Можете да я разпространявате и/"
+"или променяте под условията на Общия публичен лиценз на GNU (GNU GPL), както "
+"е публикуван от Фондацията за свободен софтуер — версия 2 на лиценза или (по "
+"ваше решение) по-късна версия.\n"
+"Тази програма се разпространява с надеждата, че ще бъде полезна, но БЕЗ "
+"НИКАКВИ ГАРАНЦИИ, дори и косвените за ПРОДАЖБА или СЪОТВЕТСТВИЕ С КАКВАТО И "
+"ДА Е УПОТРЕБА. За подробности погледнете Общия публичен лиценз на GNU.\n"
+"Трябва да сте получили копие от Общия публичен лиценз на GNU (GNU GPL) "
+"заедно с тази програма. Ако не сте, погледнете http://www.gnu.org/licenses/\n"
+
+#: ../data/cheese-about.ui.h:10
+msgid "translator-credits"
+msgstr ""
+"Александър Шопов <ash@kambanaria.org>\n"
+"\n"
+"Проектът за превод на GNOME има нужда от подкрепа.\n"
+"Научете повече за нас на http://gnome.cult.bg\n"
+"Докладвайте за грешки на http://gnome.cult.bg/bugs"
+
+#: ../data/cheese-actions.ui.h:1
+msgid "Burst"
+msgstr "Серия"
+
+#: ../data/cheese-actions.ui.h:2
+msgid "Fullscreen"
+msgstr "Цял екран"
+
+#: ../data/cheese-actions.ui.h:3
+msgid "Help _Contents"
+msgstr "_Ръководство"
+
+#: ../data/cheese-actions.ui.h:4
+msgid "Move All to Trash"
+msgstr "Преместване на всичко в кошчето"
+
+#: ../data/cheese-actions.ui.h:5
+msgid "Move to _Trash"
+msgstr "Пре_местване в кошчето"
+
+#: ../data/cheese-actions.ui.h:6
+msgid "Next Effects"
+msgstr "Следващи ефекти"
+
+#: ../data/cheese-actions.ui.h:7
+msgid "Previous Effects"
+msgstr "Предишни ефекти"
+
+#: ../data/cheese-actions.ui.h:8
+msgid "Save _As"
+msgstr "Запазване _като"
+
+#: ../data/cheese-actions.ui.h:9
+msgid "Take _Multiple Photos"
+msgstr "_Снимане на серия от снимки"
+
+#: ../data/cheese-actions.ui.h:10
+msgid "_About"
+msgstr "_Относно"
+
+#: ../data/cheese-actions.ui.h:11
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../data/cheese-actions.ui.h:12
+msgid "_Delete"
+msgstr "_Изтриване"
+
+#: ../data/cheese-actions.ui.h:13
+msgid "_Edit"
+msgstr "_Редактиране"
+
+#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+msgid "_Effects"
+msgstr "_Ефекти"
+
+#: ../data/cheese-actions.ui.h:15
+msgid "_Help"
+msgstr "Помо_щ"
+
+#: ../data/cheese-actions.ui.h:16
+msgid "_Open"
+msgstr "_Отваряне"
+
+#: ../data/cheese-actions.ui.h:17
+msgid "_Photo"
+msgstr "_Снимка"
+
+#: ../data/cheese-actions.ui.h:18
+msgid "_Preferences"
+msgstr "_Настройки"
+
+#: ../data/cheese-actions.ui.h:19
+msgid "_Quit"
+msgstr "_Спиране на програмата"
+
+#: ../data/cheese-actions.ui.h:20
+msgid "_Record a Video"
+msgstr "_Запис на клип"
+
+#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+msgid "_Take a Photo"
+msgstr "_Снимане на снимка"
+
+#: ../data/cheese-actions.ui.h:22
+msgid "_Video"
+msgstr "_Клип"
+
+#: ../data/cheese-actions.ui.h:23
+msgid "_Wide Mode"
+msgstr "_Широк интерфейс"
+
+#: ../data/cheese-main-window.ui.h:2
+msgid "_Leave Fullscreen"
+msgstr "Изход от _цял екран"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "Brightness"
+msgstr "Яркост"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "Burst mode"
+msgstr "Серия от снимки"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "Контраст"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (seconds)"
+msgstr "Интервал между снимките в секунди"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Устройство"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Оттенък"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Настройки на изображението"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Брой снимки"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Preferences"
+msgstr "Настройки"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "Разделителна способност"
+
+#: ../data/cheese-prefs.ui.h:11
+msgid "Saturation"
+msgstr "Насищане"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Камера"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Крива камера с Cheese"
-
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-window.c:1065
-msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
-"Заснeмане на снимки и клипове с вашата уеб камера и прилагане на ефекти"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
@@ -182,106 +366,46 @@ msgstr "Дали да се стартира с широк интерфейс"
 msgid "Width resolution"
 msgstr "Хоризонтална разделителна способност"
 
-#: ../data/cheese.ui.h:2
-msgid "Switch to Burst Mode"
-msgstr "Серия от снимки"
-
-#: ../data/cheese.ui.h:3
-msgid "Switch to Photo Mode"
-msgstr "Единична снимка"
-
-#: ../data/cheese.ui.h:4
-msgid "Switch to Video Mode"
-msgstr "Видео режим"
-
-#: ../data/cheese.ui.h:5
-msgid "Switch to the Effects Selector"
-msgstr "Избор на ефекти"
-
-#: ../data/cheese.ui.h:6 ../src/cheese-window.c:1176
-#: ../src/cheese-window.c:1499
-msgid "_Effects"
-msgstr "_Ефекти"
-
-#: ../data/cheese.ui.h:7
-msgid "_Leave Fullscreen"
-msgstr "Изход от _цял екран"
-
-#: ../data/cheese.ui.h:8 ../src/cheese-window.c:1532
-#: ../src/cheese-window.c:1552
-msgid "_Take a Photo"
-msgstr "_Снимане на снимка"
-
-#: ../data/cheese-prefs.ui.h:1
-msgid "Brightness"
-msgstr "Яркост"
-
-#: ../data/cheese-prefs.ui.h:2
-msgid "Burst mode"
-msgstr "Серия от снимки"
-
-#: ../data/cheese-prefs.ui.h:3
-msgid "Contrast"
-msgstr "Контраст"
-
-#: ../data/cheese-prefs.ui.h:4
-msgid "Delay between photos (seconds)"
-msgstr "Интервал между снимките в секунди"
-
-#: ../data/cheese-prefs.ui.h:5
-msgid "Device"
-msgstr "Устройство"
-
-#: ../data/cheese-prefs.ui.h:6
-msgid "Hue"
-msgstr "Оттенък"
-
-#: ../data/cheese-prefs.ui.h:7
-msgid "Image properties"
-msgstr "Настройки на изображението"
-
-#: ../data/cheese-prefs.ui.h:8
-msgid "Number of photos"
-msgstr "Брой снимки"
-
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-window.c:1503
-msgid "Preferences"
-msgstr "Настройки"
-
-#: ../data/cheese-prefs.ui.h:10
-msgid "Resolution"
-msgstr "Разделителна способност"
-
-#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Насищане"
-
-#: ../data/cheese-prefs.ui.h:12
-msgid "Webcam"
-msgstr "Камера"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:1238
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
 msgid "Shutter sound"
 msgstr "Звук при снимка"
 
-#: ../libcheese/cheese-avatar-chooser.c:222
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "Снимане"
 
-#: ../libcheese/cheese-avatar-chooser.c:241 ../src/cheese-window.c:1732
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "_Снимка"
 
-#: ../libcheese/cheese-avatar-chooser.c:256
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "Да _не се запазва"
 
-#: ../libcheese/cheese-camera.c:1118
+#: ../libcheese/cheese-camera-device.c:329
+msgid "Device capabilities not supported"
+msgstr "Някои възможности на устройството не се поддържат"
+
+#: ../libcheese/cheese-camera-device.c:357
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr ""
+"Устройството „%s“ не може да се инициализира за проверка на възможностите му"
+
+#: ../libcheese/cheese-camera-device.c:515
+msgid "Unknown device"
+msgstr "Непозната камера"
+
+#: ../libcheese/cheese-camera-device.c:539
+msgid "Cancellable initialization not supported"
+msgstr "Не се поддържа инициализация, която може да се отмени"
+
+#: ../libcheese/cheese-camera.c:1156
 #, c-format
 msgid "No device found"
 msgstr "Липсва камера"
 
-#: ../libcheese/cheese-camera.c:1137
+#: ../libcheese/cheese-camera.c:1175
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Липсва поне един елемент на gstreamer: "
 
@@ -291,307 +415,47 @@ msgstr "Липсва поне един елемент на gstreamer: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../libcheese/cheese-widget.c:289 ../libcheese/cheese-widget.c:391
-msgid "Camera setup failed"
-msgstr "Настройването на камерата е неуспешно"
-
-#: ../libcheese/cheese-camera-device.c:326
-msgid "Device capabilities not supported"
-msgstr "Някои възможности на устройството не се поддържат"
-
-#: ../libcheese/cheese-camera-device.c:485
-msgid "Unknown device"
-msgstr "Непозната камера"
-
-#: ../libcheese/cheese-camera-device.c:509
-msgid "Cancellable initialization not supported"
-msgstr "Не се поддържа инициализация, която може да се отмени"
-
-#: ../src/cheese-effect-chooser.c:60
+#: ../src/cheese-effects-manager.vala:116
 msgid "No Effect"
 msgstr "Без ефект"
 
-#: ../src/cheese-effect-chooser.c:62
-msgid "Mauve"
-msgstr "Бледомораво"
-
-#: ../src/cheese-effect-chooser.c:64
-msgid "Noir/Blanc"
-msgstr "Черно-бяло"
-
-#: ../src/cheese-effect-chooser.c:68
-msgid "Hulk"
-msgstr "Позеленяване"
-
-#: ../src/cheese-effect-chooser.c:70
-msgid "Vertical Flip"
-msgstr "Обратно"
-
-#: ../src/cheese-effect-chooser.c:72
-msgid "Horizontal Flip"
-msgstr "Огледално"
-
-#: ../src/cheese-effect-chooser.c:74
-msgid "Shagadelic"
-msgstr "Хипноза"
-
-#: ../src/cheese-effect-chooser.c:76
-msgid "Vertigo"
-msgstr "Размазано"
-
-#: ../src/cheese-effect-chooser.c:78
-msgid "Edge"
-msgstr "Контури"
-
-#: ../src/cheese-effect-chooser.c:80
-msgid "Dice"
-msgstr "Кубизъм"
-
-#: ../src/cheese-effect-chooser.c:82
-msgid "Warp"
-msgstr "Разкривяване"
-
-#: ../src/cheese-no-camera.c:93
-msgid "No camera found!"
-msgstr "Липсва камера!"
-
-#: ../src/cheese-no-camera.c:94
-msgid "Please refer to the help for further information."
-msgstr "За повече информация проверете помощта."
-
-#: ../src/cheese-window.c:81
-msgid "_Skip"
-msgstr "_Пропускане"
-
-#: ../src/cheese-window.c:82
-msgid "S_kip All"
-msgstr "Пропускане на _всички"
-
-#: ../src/cheese-window.c:83
-msgid "Delete _All"
-msgstr "_Изтриване на всички"
-
-#: ../src/cheese-window.c:641
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Не може да се стартира програма, която да покаже:\n"
-"%s\n"
-"%s"
-
-#: ../src/cheese-window.c:662
-msgid "Save File"
-msgstr "Запазване на файл"
-
-#: ../src/cheese-window.c:700
-#, c-format
-msgid "Could not save %s"
-msgstr "„%s“ не може да се запази"
-
-#: ../src/cheese-window.c:723
-msgid "Error while deleting"
-msgstr "Грешка при изтриване"
-
-#: ../src/cheese-window.c:724
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "Файлът „%s“ не може да бъде изтрит. Подробности: %s"
-
-#: ../src/cheese-window.c:751
-#, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural ""
-"Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "Сигурни ли сте, че искате окончателно да изтриете %'d избран обект?"
-msgstr[1] ""
-"Сигурни ли сте, че искате окончателно да изтриете %'d избрани обекта?"
-
-#: ../src/cheese-window.c:758
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "Сигурни ли сте, че искате окончателно да изтриете „%s“?"
-
-#: ../src/cheese-window.c:761
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Когато изтриете обект, той изчезва необратимо."
-
-#: ../src/cheese-window.c:782
-msgid "Unknown Error"
-msgstr "Непозната грешка"
-
-#: ../src/cheese-window.c:812
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Файлът не може да бъде преместен в кошчето. Искате ли да го изтриете?"
-
-#: ../src/cheese-window.c:813
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "Файлът „%s“ не може да бъде преместен в кошчето: %s"
-
-#: ../src/cheese-window.c:885
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "Наистина ли да се преместят всички снимки и клипове в кошчето?"
-
-#: ../src/cheese-window.c:893
-msgid "_Move to Trash"
-msgstr "_Преместване в кошчето"
-
-#: ../src/cheese-window.c:986 ../src/cheese-window.c:1260
-msgid "Unable to open help file for Cheese"
-msgstr "Файлът с помощта за Cheese не може да бъде отворен"
-
-#: ../src/cheese-window.c:1043
-msgid "translator-credits"
-msgstr ""
-"Александър Шопов <ash@contact.bg>\n"
-"\n"
-"Проектът за превод на GNOME има нужда от подкрепа.\n"
-"Научете повече за нас на http://gnome.cult.bg\n"
-"Докладвайте за грешки на http://gnome.cult.bg/bugs"
-
-#: ../src/cheese-window.c:1046
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-msgstr ""
-"Тази програма (Cheese) е свободен софтуер. Можете да я разпространявате и/"
-"или променяте под условията на Общия публичен лиценз на GNU (GNU GPL), както "
-"е публикуван от Фондацията за свободен софтуер — версия 2 на лиценза или (по "
-"ваше решение) по-късна версия.\n"
-
-#: ../src/cheese-window.c:1050
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-msgstr ""
-"Тази програма се разпространява с надеждата, че ще бъде полезна, но БЕЗ "
-"НИКАКВИ ГАРАНЦИИ, дори и косвените за ПРОДАЖБА или СЪОТВЕТСТВИЕ С КАКВАТО И "
-"ДА Е УПОТРЕБА. За подробности погледнете Общия публичен лиценз на GNU.\n"
-
-#: ../src/cheese-window.c:1054
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Трябва да сте получили копие от Общия публичен лиценз на GNU (GNU GPL) "
-"заедно с тази програма. Ако не сте, погледнете <http://www.gnu.org/licenses/"
-">."
-
-#: ../src/cheese-window.c:1071
-msgid "Cheese Website"
-msgstr "Уеб сайт на Cheese"
-
-#: ../src/cheese-window.c:1276
-msgid "_Start Recording"
-msgstr "_Начало на запис"
-
-#: ../src/cheese-window.c:1444
-msgid "_Stop Recording"
-msgstr "_Край на запис"
-
-#: ../src/cheese-window.c:1480
-msgid "_Cheese"
-msgstr "_Cheese"
-
-#: ../src/cheese-window.c:1482
-msgid "_Edit"
-msgstr "_Редактиране"
-
-#: ../src/cheese-window.c:1483
-msgid "Move All to Trash"
-msgstr "Преместване на всичко в кошчето"
-
-#: ../src/cheese-window.c:1486
-msgid "_Help"
-msgstr "Помо_щ"
-
-#: ../src/cheese-window.c:1489
-msgid "_Contents"
-msgstr "_Ръководство"
-
-#: ../src/cheese-window.c:1489
-msgid "Help on this Application"
-msgstr "Помощ за програмата"
-
-#: ../src/cheese-window.c:1495
-msgid "Countdown"
-msgstr "Брояч"
-
-#: ../src/cheese-window.c:1511
-msgid "_Wide mode"
-msgstr "_Широк интерфейс"
-
-#: ../src/cheese-window.c:1515
-msgid "_Photo"
-msgstr "_Снимка"
-
-#: ../src/cheese-window.c:1516
-msgid "_Video"
-msgstr "_Клип"
-
-#: ../src/cheese-window.c:1517
-msgid "_Burst"
-msgstr "_Серия"
-
-#: ../src/cheese-window.c:1521
-msgid "_Open"
-msgstr "_Отваряне"
-
-#: ../src/cheese-window.c:1523
-msgid "Save _As…"
-msgstr "Запазване _като…"
-
-#: ../src/cheese-window.c:1525
-msgid "Move to _Trash"
-msgstr "Пре_местване в кошчето"
-
-#: ../src/cheese-window.c:1527
-msgid "Delete"
-msgstr "Изтриване"
-
-#: ../src/cheese-window.c:1536
-msgid "_Recording"
-msgstr "_Запис"
-
-#: ../src/cheese-window.c:1540 ../src/cheese-window.c:1565
-msgid "_Take multiple Photos"
-msgstr "_Снимане на серия от снимки"
-
-#: ../src/cheese-window.c:1578
-msgid "_Start recording"
-msgstr "_Начало на запис"
-
-#: ../src/cheese-window.c:1969
-msgid "Check your GStreamer installation"
-msgstr "Проверете инсталацията на gstreamer"
-
-#: ../src/cheese.c:97
-msgid "Be verbose"
-msgstr "Подробни съобщения"
-
-#: ../src/cheese.c:99
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "Включване на широкия интерфейс"
 
-#: ../src/cheese.c:103
-msgid "output version information and exit"
-msgstr "извеждане на информация за версията и изход"
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "Кое устройство (камера) да се използва"
 
-#: ../src/cheese.c:120
-msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr "— заснемане на снимки и клипове с вашата камера с весели ефекти"
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "УСТРОЙСТВО"
+
+#: ../src/cheese-main.vala:39
+msgid "Output version information and exit"
+msgstr "Извеждане на информация за версията и изход"
+
+#: ../src/cheese-main.vala:66
+msgid "- Take photos and videos from your webcam"
+msgstr "— заснемане на снимки и клипове с вашата камера"
+
+#: ../src/cheese-main.vala:77
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"Изпълнете „%s --help“, за да видите списък с наличните опции на командния "
+"ред.\n"
+
+#: ../src/cheese-window.vala:689
+msgid "Stop _Recording"
+msgstr "_Край на запис"
+
+#: ../src/cheese-window.vala:821
+msgid "No effects found"
+msgstr "Липсват ефекти"
