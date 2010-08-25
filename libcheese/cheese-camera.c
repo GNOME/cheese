@@ -206,7 +206,9 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 
       g_source_remove (priv->eos_timeout_id);
 
-      g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
+      /* emit signal by name here as the camera_signals array is empty in this thread */
+      /* TODO: really understand how threads and static works and why this is needed */
+      g_signal_emit_by_name (camera, "video-saved", NULL);
 
       cheese_camera_change_sink (camera, priv->video_display_bin,
                                  priv->photo_save_bin, priv->video_save_bin);
