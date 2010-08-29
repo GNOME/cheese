@@ -1,5 +1,6 @@
 # Cheese Italian translation
-# Copyright (C) 2007 the cheese copyright holder # This file is distributed under the same license as cheese
+# Copyright (C) 2007, 2008, 2009, 2010 the cheese copyright holder
+# This file is distributed under the same license as cheese
 #
 # Alessandro Falappa <alessandro@falappa.net>, 2007,2008,2009,2010.
 msgid ""
@@ -7,8 +8,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-03-03 22:40+0000\n"
-"PO-Revision-Date: 2010-03-03 21:45+0200\n"
+"POT-Creation-Date: 2010-08-26 01:17+0000\n"
+"PO-Revision-Date: 2010-08-26 21:45+0200\n"
 "Last-Translator: Alessandro Falappa <alessandro@falappa.net>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:113
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -43,30 +44,25 @@ msgstr ""
 "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" e \"warp\""
 
 #: ../data/cheese.schemas.in.h:4
-#| msgid "Adjusts brightness level of the picture coming from the webcam"
 msgid "Adjusts brightness level of the picture coming from the camera"
 msgstr ""
 "Regola il livello di luminosità dell'immagine catturata dalla videocamera"
 
 #: ../data/cheese.schemas.in.h:5
-#| msgid "Adjusts contrast level of the picture coming from the webcam"
 msgid "Adjusts contrast level of the picture coming from the camera"
 msgstr ""
 "Regola il livello di contrasto dell'immagine catturata dalla videocamera"
 
 #: ../data/cheese.schemas.in.h:6
-#| msgid "Adjusts hue level of the picture coming from the webcam"
 msgid "Adjusts hue level of the picture coming from the camera"
 msgstr "Regola la tonalità di colore dell'immagine catturata dalla videocamera"
 
 #: ../data/cheese.schemas.in.h:7
-#| msgid "Adjusts saturation level of the picture coming from the webcam"
 msgid "Adjusts saturation level of the picture coming from the camera"
 msgstr ""
 "Regola il livello di saturazione dell'immagine catturata dalla videocamera"
 
 #: ../data/cheese.schemas.in.h:8
-#| msgid "Webcam device string indicator"
 msgid "Camera device string indicator"
 msgstr "Device della videocamera"
 
@@ -91,9 +87,6 @@ msgid "Height resolution"
 msgstr "Risoluzione verticale"
 
 #: ../data/cheese.schemas.in.h:12
-#| msgid ""
-#| "If set to true, Cheese will startup in a wide mode with the image "
-#| "collection placed on the right side. Useful with small screens."
 msgid ""
 "If set to true, Cheese will start up in a wide mode with the image "
 "collection placed on the right-hand side. Useful with small screens."
@@ -150,46 +143,54 @@ msgstr ""
 "Se impostato a VERO, viene mostrato un conto alla rovescia prima dello scatto"
 
 #: ../data/cheese.schemas.in.h:23
-#| msgid "The device which points to the webcam (e.g. /dev/video0)"
+#| msgid "Set to True to show countdown when taking a photo"
+msgid "Set to True to use flash when taking a photo"
+msgstr "Se impostato a VERO, utilizza il flash durante lo scatto"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "Device che punta alla videocamera (per esempio /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid "The height resolution of the image captured from the camera"
 msgstr "La risoluzione verticale dell'immagine catturata dalla videocamera"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
 msgstr ""
 "L'intervallo di tempo tra una foto e l'altra in una raffica, in millisecondi."
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The number of photos to take in a single burst."
 msgstr "Il numero di foto da riprendere in una singola raffica."
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "The width resolution of the image captured from the camera"
 msgstr "La risoluzione orizzontale dell'immagine catturata dalla videocamera"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Use a countdown"
 msgstr "Usa un conto alla rovescia"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "Utilizza il flash"
+
+#: ../data/cheese.schemas.in.h:31
 msgid "Video Path"
 msgstr "Percorso video"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:32
 msgid "Whether to enable immediate deletion"
 msgstr "Indica se abilitare l'eliminazione immediata"
 
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:33
 msgid "Whether to start in wide mode"
 msgstr "Indica se iniziare in modalità panoramica"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:34
 msgid "Width resolution"
 msgstr "Risoluzione orizzontale"
 
@@ -209,7 +210,7 @@ msgstr "Passa alla modalità video"
 msgid "Switch to the Effects Selector"
 msgstr "Passa al selettore degli effetti"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:61 ../src/cheese-window.c:884
 msgid "_Effects"
 msgstr "_Effetti"
 
@@ -217,7 +218,7 @@ msgstr "_Effetti"
 msgid "_Leave Fullscreen"
 msgstr "_Finestra normale"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:72 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "_Scatta foto"
 
@@ -234,7 +235,6 @@ msgid "Contrast"
 msgstr "Contrasto"
 
 #: ../data/cheese-prefs.ui.h:4
-#| msgid "Delay between photos (secs.)"
 msgid "Delay between photos (seconds)"
 msgstr "Intervallo tra le foto (secondi)"
 
@@ -270,12 +270,11 @@ msgstr "Saturazione"
 msgid "Webcam"
 msgstr "Webcam"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:640
 msgid "Shutter sound"
 msgstr "Suono dell'otturatore"
 
 #: ../libcheese/cheese-avatar-chooser.c:236
-#| msgid "_Take a photo"
 msgid "Take a photo"
 msgstr "Scatta una foto"
 
@@ -287,26 +286,24 @@ msgstr "_Scatta foto"
 msgid "_Discard photo"
 msgstr "_Scarta foto"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "Funzionalità del dispositivo non supportate"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "Dispositivo sconosciuto"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "Interruzione del processo di inizializzazione non supportata"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1139
 #, c-format
-#| msgid "No camera found!"
 msgid "No device found"
 msgstr "Nessun dispositivo trovato"
 
-#: ../libcheese/cheese-camera.c:1153
-#| msgid "One or more needed gstreamer elements are missing: "
+#: ../libcheese/cheese-camera.c:1158
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Uno o più elementi GStreamer risultano mancanti: "
 
@@ -316,8 +313,8 @@ msgstr "Uno o più elementi GStreamer risultano mancanti: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -403,7 +400,7 @@ msgstr "Spostare tutte le foto e i video nel cestino?"
 msgid "_Move to Trash"
 msgstr "_Sposta nel cestino"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:662
 msgid "Unable to open help file for Cheese"
 msgstr "Impossibile aprire il file della guida di Cheese"
 
@@ -496,7 +493,7 @@ msgstr "Distorsione"
 msgid "No camera found!"
 msgstr "Nessuna videocamera trovata."
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1258
 msgid "Please refer to the help for further information."
 msgstr "Per ulteriori informazioni, consultare il manuale."
 
@@ -536,36 +533,39 @@ msgstr "_Raffica"
 msgid "Countdown"
 msgstr "Conto alla rovescia"
 
-#: ../src/cheese-ui.h:64
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "Flash"
+
+#: ../src/cheese-ui.h:68
 msgid "_Wide mode"
 msgstr "Modalità _panoramica"
 
-#: ../src/cheese-ui.h:71
+#: ../src/cheese-ui.h:75
 msgid "_Recording"
 msgstr "_Registrazione"
 
-#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
+#: ../src/cheese-ui.h:78 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "_Scatta foto a raffica"
 
-#: ../src/cheese-ui.h:78
+#: ../src/cheese-ui.h:82
 msgid "_Open"
 msgstr "_Apri"
 
-#: ../src/cheese-ui.h:80
-#| msgid "Save _As..."
+#: ../src/cheese-ui.h:84
 msgid "Save _As…"
 msgstr "Sa_lva come..."
 
-#: ../src/cheese-ui.h:82
+#: ../src/cheese-ui.h:86
 msgid "Move to _Trash"
 msgstr "Sposta nel ce_stino"
 
-#: ../src/cheese-ui.h:84
+#: ../src/cheese-ui.h:88
 msgid "Delete"
 msgstr "Elimina"
 
-#: ../src/cheese-ui.h:89
+#: ../src/cheese-ui.h:93
 msgid "Move All to Trash"
 msgstr "Sposta tutto nel cestino"
 
@@ -577,19 +577,19 @@ msgstr "Inizia _registrazione"
 msgid "_Stop Recording"
 msgstr "Ferma _registrazione"
 
-#: ../src/cheese.c:96
+#: ../src/cheese.c:97
 msgid "Be verbose"
 msgstr "Maggiore dettaglio nei messaggi"
 
-#: ../src/cheese.c:98
+#: ../src/cheese.c:99
 msgid "Enable wide mode"
 msgstr "Abilita la modalità panoramica"
 
-#: ../src/cheese.c:100
+#: ../src/cheese.c:101
 msgid "output version information and exit"
 msgstr "Mostra informazioni di versione ed esce"
 
-#: ../src/cheese.c:115
+#: ../src/cheese.c:120
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- Scatta fotografie e registra video con la webcam applicando divertenti "
