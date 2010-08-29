@@ -9,12 +9,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese MASTER\n"
+"Project-Id-Version: cheese 2.32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-01-18 19:49+0000\n"
-"PO-Revision-Date: 2010-01-26 08:44+0200\n"
-"Last-Translator: Ivar Smolin <okul@linux.ee>\n"
+"POT-Creation-Date: 2010-08-27 02:02+0000\n"
+"PO-Revision-Date: 2010-08-26 20:51+0300\n"
+"Last-Translator: Mattias Põldaru <mahfiaz gmail com>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,10 +93,10 @@ msgstr ""
 "järele."
 
 msgid "Milliseconds between photos in burst mode."
-msgstr "Fotode vahe seeriarežiimis millisekundites."
+msgstr "Viivitus sarivõtte fotode vahel millisekundites."
 
 msgid "Number of photos in burst mode."
-msgstr "Fotode arv seeriarežiimis."
+msgstr "Fotode arv sarivõttes."
 
 msgid "Photo Path"
 msgstr "Fotode rada"
@@ -119,6 +119,10 @@ msgstr "Valitud efektid"
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Kui märgitud, siis kasutatakse pildistamise ajastamiseks loendurit"
 
+#| msgid "Set to True to show countdown when taking a photo"
+msgid "Set to True to use flash when taking a photo"
+msgstr "Kui märgitud, siis kasutatakse pildistamisel välku"
+
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "Kaameraseadmele osutav string (näiteks /dev/video0)"
 
@@ -128,16 +132,19 @@ msgstr "Kaamera salvestatud pildi püstlahutus"
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
-msgstr "Ajavahemik millisekundites seeriarežiimis tehtavate ülesvõetete vahel."
+msgstr "Ajavahemik millisekundites sarivõttel tehtavate ülesvõetete vahel."
 
 msgid "The number of photos to take in a single burst."
-msgstr "Fotode arv, mitu võetakse ühes fotoseerias."
+msgstr "Fotode arv, mitu võetakse ühe sarivõttega."
 
 msgid "The width resolution of the image captured from the camera"
 msgstr "Kaamera salvestatud pildi rõhtlahutus"
 
 msgid "Use a countdown"
 msgstr "Loenduri kasutamine"
+
+msgid "Use a flash"
+msgstr "Välku kasutatakse"
 
 msgid "Video Path"
 msgstr "Videode rada"
@@ -152,7 +159,7 @@ msgid "Width resolution"
 msgstr "Pildi laius"
 
 msgid "Switch to Burst Mode"
-msgstr "Lülitu seeriarežiimile"
+msgstr "Lülitumine sarivõttele"
 
 msgid "Switch to Photo Mode"
 msgstr "Lülitumine fotorežiimile"
@@ -176,7 +183,7 @@ msgid "Brightness"
 msgstr "Heledus"
 
 msgid "Burst mode"
-msgstr "Seeriarežiim"
+msgstr "Sarivõte"
 
 msgid "Contrast"
 msgstr "Kontrast"
@@ -220,6 +227,15 @@ msgstr "_Pildista"
 msgid "_Discard photo"
 msgstr "_Hülga foto"
 
+msgid "Device capabilities not supported"
+msgstr "Seadme omadused pole toetatud"
+
+msgid "Unknown device"
+msgstr "Tundmatu seade"
+
+msgid "Cancellable initialization not supported"
+msgstr "Katkestatav lähtestamine pole toetatud"
+
 #, c-format
 msgid "No device found"
 msgstr "Seadet ei leitud!"
@@ -236,57 +252,6 @@ msgstr "Üks või enam Gstreameri elementi on puudu: "
 #, c-format
 msgid "%d "
 msgstr "%d "
-
-msgid "Camera setup failed"
-msgstr "Tõrge kaamera seadistamisel"
-
-msgid "Device capabilities not supported"
-msgstr "Seadme omadused pole toetatud"
-
-msgid "Unknown device"
-msgstr "Tundmatu seade"
-
-msgid "Cancellable initialization not supported"
-msgstr "Katkestatav lähtestamine pole toetatud"
-
-msgid "No Effect"
-msgstr "Efekt puudub"
-
-msgid "Mauve"
-msgstr "Lillakas"
-
-msgid "Noir/Blanc"
-msgstr "Sünge"
-
-msgid "Hulk"
-msgstr "Rohenägu"
-
-msgid "Vertical Flip"
-msgstr "Püstine peegeldus"
-
-msgid "Horizontal Flip"
-msgstr "Rõhtne peegeldus"
-
-msgid "Shagadelic"
-msgstr "Pööriseline"
-
-msgid "Vertigo"
-msgstr "Ähmane"
-
-msgid "Edge"
-msgstr "Serv"
-
-msgid "Dice"
-msgstr "Hakitud"
-
-msgid "Warp"
-msgstr "Kõverpeegel"
-
-msgid "No camera found!"
-msgstr "Kaamerat ei leitud!"
-
-msgid "Please refer to the help for further information."
-msgstr "Täiendavate juhiste saamiseks vaata palun abiteavet."
 
 msgid "_Skip"
 msgstr "_Jäta vahele"
@@ -394,20 +359,50 @@ msgstr ""
 msgid "Cheese Website"
 msgstr "Cheese'i veebisait"
 
-msgid "_Start Recording"
-msgstr "Alusta _salvestamist"
+msgid "No Effect"
+msgstr "Efekt puudub"
 
-msgid "_Stop Recording"
-msgstr "Seiska _salvestamine"
+msgid "Mauve"
+msgstr "Lillakas"
+
+msgid "Noir/Blanc"
+msgstr "Sünge"
+
+msgid "Hulk"
+msgstr "Rohenägu"
+
+msgid "Vertical Flip"
+msgstr "Püstine peegeldus"
+
+msgid "Horizontal Flip"
+msgstr "Rõhtne peegeldus"
+
+msgid "Shagadelic"
+msgstr "Pööriseline"
+
+msgid "Vertigo"
+msgstr "Ähmane"
+
+msgid "Edge"
+msgstr "Serv"
+
+msgid "Dice"
+msgstr "Hakitud"
+
+msgid "Warp"
+msgstr "Kõverpeegel"
+
+msgid "No camera found!"
+msgstr "Kaamerat ei leitud!"
+
+msgid "Please refer to the help for further information."
+msgstr "Täiendavate juhiste saamiseks vaata palun abiteavet."
 
 msgid "_Cheese"
 msgstr "_Cheese"
 
 msgid "_Edit"
 msgstr "_Redaktor"
-
-msgid "Move All to Trash"
-msgstr "Viska kõik prügikasti"
 
 msgid "_Help"
 msgstr "A_bi"
@@ -418,12 +413,6 @@ msgstr "_Sisukord"
 msgid "Help on this Application"
 msgstr "Abiteave selle rakenduse kohta"
 
-msgid "Countdown"
-msgstr "Loendur"
-
-msgid "_Wide mode"
-msgstr "_Lairežiim"
-
 msgid "_Photo"
 msgstr "_Foto"
 
@@ -431,7 +420,22 @@ msgid "_Video"
 msgstr "_Video"
 
 msgid "_Burst"
-msgstr "_Fotoseeria"
+msgstr "_Sarivõte"
+
+msgid "Countdown"
+msgstr "Loendur"
+
+msgid "Flash"
+msgstr "Välḱ"
+
+msgid "_Wide mode"
+msgstr "_Lairežiim"
+
+msgid "_Recording"
+msgstr "_Salvesta"
+
+msgid "_Take multiple Photos"
+msgstr "_Tee mitu fotot"
 
 msgid "_Open"
 msgstr "_Ava"
@@ -445,17 +449,14 @@ msgstr "Viska _prügikasti"
 msgid "Delete"
 msgstr "Kustuta"
 
-msgid "_Recording"
-msgstr "_Salvesta"
+msgid "Move All to Trash"
+msgstr "Viska kõik prügikasti"
 
-msgid "_Take multiple Photos"
-msgstr "_Tee mitu fotot"
-
-msgid "_Start recording"
+msgid "_Start Recording"
 msgstr "Alusta _salvestamist"
 
-msgid "Check your GStreamer installation"
-msgstr "Kontrolli oma Gstreameri paigaldust"
+msgid "_Stop Recording"
+msgstr "Seiska _salvestamine"
 
 msgid "Be verbose"
 msgstr "Teaberohke väljundi lubamine"
