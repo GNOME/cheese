@@ -1,6 +1,31 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.31.91
+  - camera: emit video-saved signal by name in gst threads
+    Static camera_signals array is not initizialized in the gstreamer thread
+    so we get a critical assertion failed (signal_id > 0) if we emit by id.
+    This should workaround the issue.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=620637
+  - Added/Updated Translations
+    - ar, courtesy of Khaled Hosny
+    - bg, courtesy of Krasimir Chonov
+    - el, courtesy of Michael Kotsarinis
+    - en_GB, courtesy of Philip Withnall
+    - et, courtesy of Mattias Põldaru
+    - fr, courtesy of Pablo Martin-Gomez
+    - he, courtesy of Yaron Shahrabani
+    - hu, courtesy of Gabor Kelemen
+    - it, courtesy of Alessandro Falappa
+    - nb, courtesy of Kjartan Maraas
+    - sr, courtesy of Милош Поповић
+    - sr@latin, courtesy of Miloš Popović
+    - sv, courtesy of Daniel Nylander
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+
 version 2.31.90
   - Added menu option to toggle flash when taking a picture.
   - Made escape key always hide the Effects pane if it is visible.
