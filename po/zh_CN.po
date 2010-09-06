@@ -5,18 +5,20 @@
 # YangZhang <zyangmath@gmail.com>, 2008.
 # 甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009
 # arccos (L.Q) <boyermoore@gmail.com>, 2009
+# Xhacker Liu <liu.dongyuan@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese trunk\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-08-05 10:17+0000\n"
-"PO-Revision-Date: 2010-08-10 14:22+0800\n"
-"Last-Translator: Yinghua Wang <wantinghard@gmail.com>\n"
+"POT-Creation-Date: 2010-09-01 14:24+0000\n"
+"PO-Revision-Date: 2010-09-06 18:58+0800\n"
+"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
@@ -133,44 +135,52 @@ msgid "Set to True to show countdown when taking a photo"
 msgstr "设定为 True 将在在拍照时显示倒计时"
 
 #: ../data/cheese.schemas.in.h:23
+msgid "Set to True to use flash when taking a photo"
+msgstr "设定为 True 将在在拍照时使用闪光"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "对应摄像头的设备(如 /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid "The height resolution of the image captured from the camera"
 msgstr "从相机抓取图像的纵向分辨率"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
 msgstr "在连拍多张照片时，每张照片拍摄之间的延迟时间，以毫秒记。"
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The number of photos to take in a single burst."
 msgstr "一次连拍的照片数"
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "The width resolution of the image captured from the camera"
 msgstr "从相机抓取图像的横向分辨率"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Use a countdown"
 msgstr "使用倒计时"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "使用闪光"
+
+#: ../data/cheese.schemas.in.h:31
 msgid "Video Path"
 msgstr "视频路径"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:32
 msgid "Whether to enable immediate deletion"
 msgstr "是否启用立即删除"
 
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:33
 msgid "Whether to start in wide mode"
 msgstr "是否以宽屏模式启动"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:34
 msgid "Width resolution"
 msgstr "横向分辨率"
 
@@ -190,7 +200,7 @@ msgstr "切换到视频模式"
 msgid "Switch to the Effects Selector"
 msgstr "切换到特效选择器"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:871
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:61 ../src/cheese-window.c:884
 msgid "_Effects"
 msgstr "特效(_E)"
 
@@ -198,7 +208,7 @@ msgstr "特效(_E)"
 msgid "_Leave Fullscreen"
 msgstr "退出全屏(_L)"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:72 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "拍照(_T)"
 
@@ -250,7 +260,7 @@ msgstr "饱和"
 msgid "Webcam"
 msgstr "网络摄像头"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:634
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:640
 msgid "Shutter sound"
 msgstr "快门声"
 
@@ -278,12 +288,12 @@ msgstr "未知设备"
 msgid "Cancellable initialization not supported"
 msgstr "不支持可中断初始化"
 
-#: ../libcheese/cheese-camera.c:1137
+#: ../libcheese/cheese-camera.c:1139
 #, c-format
 msgid "No device found"
 msgstr "没有发现设备"
 
-#: ../libcheese/cheese-camera.c:1156
+#: ../libcheese/cheese-camera.c:1158
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 GStreamer 元素："
 
@@ -379,7 +389,7 @@ msgstr "真的要将所有照片和视频移动到回收站吗？"
 msgid "_Move to Trash"
 msgstr "移动到回收站(_M)"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:656
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:662
 msgid "Unable to open help file for Cheese"
 msgstr "无法打开茄子的帮助文件"
 
@@ -473,7 +483,7 @@ msgstr "扭曲"
 msgid "No camera found!"
 msgstr "没有发现摄像头！"
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1222
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1258
 msgid "Please refer to the help for further information."
 msgstr "更多信息请参考帮助文档。"
 
@@ -513,35 +523,39 @@ msgstr "连拍(_B)"
 msgid "Countdown"
 msgstr "倒计时"
 
-#: ../src/cheese-ui.h:64
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "闪光"
+
+#: ../src/cheese-ui.h:68
 msgid "_Wide mode"
 msgstr "宽屏模式(_W)"
 
-#: ../src/cheese-ui.h:71
+#: ../src/cheese-ui.h:75
 msgid "_Recording"
 msgstr "录像(_R)"
 
-#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
+#: ../src/cheese-ui.h:78 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "拍摄多张照片(_T)"
 
-#: ../src/cheese-ui.h:78
+#: ../src/cheese-ui.h:82
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: ../src/cheese-ui.h:80
+#: ../src/cheese-ui.h:84
 msgid "Save _As…"
 msgstr "另存为(_A)..."
 
-#: ../src/cheese-ui.h:82
+#: ../src/cheese-ui.h:86
 msgid "Move to _Trash"
 msgstr "移动到回收站(_T)"
 
-#: ../src/cheese-ui.h:84
+#: ../src/cheese-ui.h:88
 msgid "Delete"
 msgstr "删除"
 
-#: ../src/cheese-ui.h:89
+#: ../src/cheese-ui.h:93
 msgid "Move All to Trash"
 msgstr "全部移动到回收站"
 
