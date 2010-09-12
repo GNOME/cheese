@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-23 22:58+0100\n"
-"PO-Revision-Date: 2010-03-22 22:39+0100\n"
+"POT-Creation-Date: 2010-09-12 17:04+0200\n"
+"PO-Revision-Date: 2010-09-11 19:42+0200\n"
 "Last-Translator: Anders Jenbo <anders@jenbo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "MIME-Version: 1.0\n"
@@ -23,18 +23,205 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:113
+#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
+#: ../src/cheese-main.vala:102
 msgid "Cheese"
 msgstr "Cheese"
+
+#: ../data/cheese-about.ui.h:2
+msgid "Cheese Website"
+msgstr "Webside for Cheese"
+
+#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"Tag billeder og optag video fra dit webkamera, med sjove grafiske effekter"
+
+#: ../data/cheese-about.ui.h:4
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see http://www.gnu.org/licenses/\n"
+msgstr ""
+
+#: ../data/cheese-about.ui.h:10
+msgid "translator-credits"
+msgstr ""
+"Anders K. Madsen\n"
+"Kenneth Nielsen\n"
+"\n"
+"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
+"Mere info: http://www.dansk-gruppen.dk"
+
+#: ../data/cheese-actions.ui.h:1
+#, fuzzy
+msgid "Burst"
+msgstr "_Serie"
+
+#: ../data/cheese-actions.ui.h:2
+#, fuzzy
+msgid "Fullscreen"
+msgstr "Forlad fuld _skærm"
+
+#: ../data/cheese-actions.ui.h:3
+#, fuzzy
+msgid "Help _Contents"
+msgstr "_Indhold"
+
+#: ../data/cheese-actions.ui.h:4
+msgid "Move All to Trash"
+msgstr "Flyt alle til papirkurv"
+
+#: ../data/cheese-actions.ui.h:5
+msgid "Move to _Trash"
+msgstr "Flyt til _papirkurv"
+
+#: ../data/cheese-actions.ui.h:6
+#, fuzzy
+msgid "Next Effects"
+msgstr "Ingen effekt"
+
+#: ../data/cheese-actions.ui.h:7
+#, fuzzy
+msgid "Previous Effects"
+msgstr "Ingen effekt"
+
+#: ../data/cheese-actions.ui.h:8
+#, fuzzy
+msgid "Save _As"
+msgstr "Gem _som…"
+
+#: ../data/cheese-actions.ui.h:9
+#, fuzzy
+msgid "Take _Multiple Photos"
+msgstr "_Tag flere billeder"
+
+#: ../data/cheese-actions.ui.h:10
+#, fuzzy
+msgid "_About"
+msgstr "Om"
+
+#: ../data/cheese-actions.ui.h:11
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../data/cheese-actions.ui.h:12
+#, fuzzy
+msgid "_Delete"
+msgstr "Slet"
+
+#: ../data/cheese-actions.ui.h:13
+msgid "_Edit"
+msgstr "_Redigér"
+
+#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+msgid "_Effects"
+msgstr "_Effekter"
+
+#: ../data/cheese-actions.ui.h:15
+msgid "_Help"
+msgstr "_Hjælp"
+
+#: ../data/cheese-actions.ui.h:16
+msgid "_Open"
+msgstr "_Åbn"
+
+#: ../data/cheese-actions.ui.h:17
+msgid "_Photo"
+msgstr "_Billede"
+
+#: ../data/cheese-actions.ui.h:18
+#, fuzzy
+msgid "_Preferences"
+msgstr "Indstillinger"
+
+#: ../data/cheese-actions.ui.h:19
+#, fuzzy
+msgid "_Quit"
+msgstr "Afslut"
+
+#: ../data/cheese-actions.ui.h:20
+#, fuzzy
+msgid "_Record a Video"
+msgstr "_Optager"
+
+#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+msgid "_Take a Photo"
+msgstr "_Tag et billede"
+
+#: ../data/cheese-actions.ui.h:22
+msgid "_Video"
+msgstr "_Video"
+
+#: ../data/cheese-actions.ui.h:23
+#, fuzzy
+msgid "_Wide Mode"
+msgstr "Bred _tilstand"
+
+#: ../data/cheese-main-window.ui.h:2
+msgid "_Leave Fullscreen"
+msgstr "Forlad fuld _skærm"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "Brightness"
+msgstr "Lysstyrke"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "Burst mode"
+msgstr "Serietilstand"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (seconds)"
+msgstr "Forsinkelse mellem billeder (sek.)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Enhed"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Farvetone"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Billedegenskaber"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Antal billeder"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "Opløsning"
+
+#: ../data/cheese-prefs.ui.h:11
+msgid "Saturation"
+msgstr "Farvemætning"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Webkamera"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese - webkamerastand"
-
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-commands-help.c:118
-msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
-"Tag billeder og optag video fra dit webkamera, med sjove grafiske effekter"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
@@ -186,116 +373,45 @@ msgstr "Hvorvidt der startes op i bred tilstand"
 msgid "Width resolution"
 msgstr "Breddeopløsning"
 
-#: ../data/cheese.ui.h:1
-msgid "Switch to Burst Mode"
-msgstr "Skift til serietilstand"
-
-#: ../data/cheese.ui.h:2
-msgid "Switch to Photo Mode"
-msgstr "Skift til billedtilstand"
-
-#: ../data/cheese.ui.h:3
-msgid "Switch to Video Mode"
-msgstr "Skift til videotilstand"
-
-#: ../data/cheese.ui.h:4
-msgid "Switch to the Effects Selector"
-msgstr "Skift til effektvælger"
-
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
-msgid "_Effects"
-msgstr "_Effekter"
-
-#: ../data/cheese.ui.h:6
-msgid "_Leave Fullscreen"
-msgstr "Forlad fuld _skærm"
-
-#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
-msgid "_Take a Photo"
-msgstr "_Tag et billede"
-
-#: ../data/cheese-prefs.ui.h:1
-msgid "Brightness"
-msgstr "Lysstyrke"
-
-#: ../data/cheese-prefs.ui.h:2
-msgid "Burst mode"
-msgstr "Serietilstand"
-
-#: ../data/cheese-prefs.ui.h:3
-msgid "Contrast"
-msgstr "Kontrast"
-
-#: ../data/cheese-prefs.ui.h:4
-msgid "Delay between photos (seconds)"
-msgstr "Forsinkelse mellem billeder (sek.)"
-
-#: ../data/cheese-prefs.ui.h:5
-msgid "Device"
-msgstr "Enhed"
-
-#: ../data/cheese-prefs.ui.h:6
-msgid "Hue"
-msgstr "Farvetone"
-
-#: ../data/cheese-prefs.ui.h:7
-msgid "Image properties"
-msgstr "Billedegenskaber"
-
-#: ../data/cheese-prefs.ui.h:8
-msgid "Number of photos"
-msgstr "Antal billeder"
-
-#: ../data/cheese-prefs.ui.h:9 ../src/cheese-ui.h:44
-msgid "Preferences"
-msgstr "Indstillinger"
-
-#: ../data/cheese-prefs.ui.h:10
-msgid "Resolution"
-msgstr "Opløsning"
-
-#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Farvemætning"
-
-#: ../data/cheese-prefs.ui.h:12
-msgid "Webcam"
-msgstr "Webkamera"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
 msgid "Shutter sound"
 msgstr "Lukker lyd"
 
-#: ../libcheese/cheese-avatar-chooser.c:236
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "Tag et billede"
 
-#: ../libcheese/cheese-avatar-chooser.c:255
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "_Tag et billede"
 
-#: ../libcheese/cheese-avatar-chooser.c:270
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "_Kassér foto"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:329
 msgid "Device capabilities not supported"
 msgstr "Enheds funktioner ikke understøttet"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:357
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr ""
+
+#: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
 msgstr "Ukendt enhed"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:539
 msgid "Cancellable initialization not supported"
 msgstr "Annullerbar opstart ikke understøttet"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1156
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhed fundet"
 
-#: ../libcheese/cheese-camera.c:1153
+#: ../libcheese/cheese-camera.c:1175
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Et eller flere gstreamer-elementer mangler: "
 
@@ -305,290 +421,222 @@ msgstr "Et eller flere gstreamer-elementer mangler: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-commands-file.c:31
-msgid "_Skip"
-msgstr "_Spring over"
-
-#: ../src/cheese-commands-file.c:32
-msgid "S_kip All"
-msgstr "S_pring alle over"
-
-#: ../src/cheese-commands-file.c:33
-msgid "Delete _All"
-msgstr "Slet _alle"
-
-#: ../src/cheese-commands-file.c:57
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Kunne ikke køre program for at fremvise:\n"
-"%s\n"
-"%s"
-
-#: ../src/cheese-commands-file.c:78
-msgid "Save File"
-msgstr "Gem fil"
-
-#: ../src/cheese-commands-file.c:116
-#, c-format
-msgid "Could not save %s"
-msgstr "Kunne ikke gemme %s"
-
-#: ../src/cheese-commands-file.c:139
-msgid "Error while deleting"
-msgstr "Fejl under sletning"
-
-#: ../src/cheese-commands-file.c:140
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "Filen \"%s\" kan ikke slettes. Detaljer: %s"
-
-#: ../src/cheese-commands-file.c:167
-#, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural ""
-"Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "Er du sikker på, at du permanent vil slette %'d valgt element?"
-msgstr[1] ""
-"Er du sikker på, at du permanent vil slette de %'d valgte elementer?"
-
-#: ../src/cheese-commands-file.c:174
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "Er du sikker på, at du permanent vil slette \"%s\"?"
-
-#: ../src/cheese-commands-file.c:177
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Hvis du sletter et element, vil det gå permanent tabt."
-
-#: ../src/cheese-commands-file.c:198
-msgid "Unknown Error"
-msgstr "Ukendt fejl"
-
-#: ../src/cheese-commands-file.c:228
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr ""
-"Kan ikke flytte fil til papirkurv, ønsker du at slette den øjeblikkeligt?"
-
-#: ../src/cheese-commands-file.c:229
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "Filen \"%s\" kan ikke flyttes til papirkurven. Detaljer: %s"
-
-#: ../src/cheese-commands-file.c:301
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "Vil du virkelig flytte alle billeder og videoer til papirkurven?"
-
-#: ../src/cheese-commands-file.c:309
-msgid "_Move to Trash"
-msgstr "_Flyt til papirkurv"
-
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
-msgid "Unable to open help file for Cheese"
-msgstr "Kunne ikke åbne hjælpfil for Cheese"
-
-#: ../src/cheese-commands-help.c:96
-msgid "translator-credits"
-msgstr ""
-"Anders K. Madsen\n"
-"Kenneth Nielsen\n"
-"\n"
-"Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
-"Mere info: http://www.dansk-gruppen.dk"
-
-#: ../src/cheese-commands-help.c:99
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-msgstr ""
-"Dette program er fri software. Du kan redistribuere og/eller modificere det "
-"under de betingelserne som er angivet i GNU General Public License, som er "
-"udgivet af Free Software Foundation. Enten version 2 af licensen eller "
-"(efter eget valg) enhver senere version\n"
-
-#: ../src/cheese-commands-help.c:103
-msgid ""
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-msgstr ""
-"Dette program distribueres i håb om at det vil vise sig nyttigt, men UDEN "
-"NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
-"SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
-"læses i GNU General Public License.\n"
-
-#: ../src/cheese-commands-help.c:107
-msgid ""
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr ""
-"Du skulle have modtaget en kopi af GNU General Public License sammen med "
-"dette program. Hvis ikke så kan du finde det her, <http://www.gnu.org/"
-"licenses/>."
-
-#: ../src/cheese-commands-help.c:124
-msgid "Cheese Website"
-msgstr "Webside for Cheese"
-
-#: ../src/cheese-effect-chooser.c:60
+#: ../src/cheese-effects-manager.vala:116
 msgid "No Effect"
 msgstr "Ingen effekt"
 
-#: ../src/cheese-effect-chooser.c:62
-msgid "Mauve"
-msgstr "Lilla skær"
-
-#: ../src/cheese-effect-chooser.c:64
-msgid "Noir/Blanc"
-msgstr "Sort/Hvid"
-
-#: ../src/cheese-effect-chooser.c:68
-msgid "Hulk"
-msgstr "Hulk"
-
-#: ../src/cheese-effect-chooser.c:70
-msgid "Vertical Flip"
-msgstr "På hovedet"
-
-#: ../src/cheese-effect-chooser.c:72
-msgid "Horizontal Flip"
-msgstr "Spejlvend"
-
-#: ../src/cheese-effect-chooser.c:74
-msgid "Shagadelic"
-msgstr "Shagadelic"
-
-#: ../src/cheese-effect-chooser.c:76
-msgid "Vertigo"
-msgstr "Rundtosset"
-
-#: ../src/cheese-effect-chooser.c:78
-msgid "Edge"
-msgstr "Kanter"
-
-#: ../src/cheese-effect-chooser.c:80
-msgid "Dice"
-msgstr "Tern"
-
-#: ../src/cheese-effect-chooser.c:82
-msgid "Warp"
-msgstr "Vredet"
-
-#: ../src/cheese-no-camera.c:94
-msgid "No camera found!"
-msgstr "Intet kamera fundet!"
-
-# Jeg vil gerne have tilføjet enten "dokumentation" eller "menu" efter hjælp, men efter som jeg reelt ikke ved hvad der menes har jeg ikke gjort det
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
-msgid "Please refer to the help for further information."
-msgstr "Se hjælp for mere information."
-
-#: ../src/cheese-ui.h:32
-msgid "_Cheese"
-msgstr "_Cheese"
-
-#: ../src/cheese-ui.h:34
-msgid "_Edit"
-msgstr "_Redigér"
-
-#: ../src/cheese-ui.h:35
-msgid "_Help"
-msgstr "_Hjælp"
-
-#: ../src/cheese-ui.h:38
-msgid "_Contents"
-msgstr "_Indhold"
-
-#: ../src/cheese-ui.h:38
-msgid "Help on this Application"
-msgstr "Hjælp til dette program"
-
-#: ../src/cheese-ui.h:48
-msgid "_Photo"
-msgstr "_Billede"
-
-#: ../src/cheese-ui.h:49
-msgid "_Video"
-msgstr "_Video"
-
-#: ../src/cheese-ui.h:50
-msgid "_Burst"
-msgstr "_Serie"
-
-#: ../src/cheese-ui.h:54
-msgid "Countdown"
-msgstr "Nedtælling"
-
-#: ../src/cheese-ui.h:64
-msgid "_Wide mode"
-msgstr "Bred _tilstand"
-
-#: ../src/cheese-ui.h:71
-msgid "_Recording"
-msgstr "_Optager"
-
-#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
-msgid "_Take multiple Photos"
-msgstr "_Tag flere billeder"
-
-#: ../src/cheese-ui.h:78
-msgid "_Open"
-msgstr "_Åbn"
-
-#: ../src/cheese-ui.h:80
-msgid "Save _As…"
-msgstr "Gem _som…"
-
-#: ../src/cheese-ui.h:82
-msgid "Move to _Trash"
-msgstr "Flyt til _papirkurv"
-
-#: ../src/cheese-ui.h:84
-msgid "Delete"
-msgstr "Slet"
-
-#: ../src/cheese-ui.h:89
-msgid "Move All to Trash"
-msgstr "Flyt alle til papirkurv"
-
-#: ../src/cheese-window.c:60
-msgid "_Start Recording"
-msgstr "_Start optagelse"
-
-#: ../src/cheese-window.c:61
-msgid "_Stop Recording"
-msgstr "_Stop optagelse"
-
-#: ../src/cheese.c:96
-msgid "Be verbose"
-msgstr "Vær uddybende"
-
-#: ../src/cheese.c:98
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "Slå bred tilstand til"
 
-#: ../src/cheese.c:100
-msgid "output version information and exit"
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr ""
+
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr ""
+
+#: ../src/cheese-main.vala:39
+#, fuzzy
+msgid "Output version information and exit"
 msgstr "vis versionsinformation og afslut"
 
-#: ../src/cheese.c:115
-msgid "- Take photos and videos with your webcam, with fun graphical effects"
+#: ../src/cheese-main.vala:66
+#, fuzzy
+msgid "- Take photos and videos from your webcam"
 msgstr ""
-"- Tag billeder og optag video fra dit webkamera, med sjove grafiske effekter"
+"Et \"cheesy\" program til at tage billeder og optage video fra dit webcam"
+
+#: ../src/cheese-main.vala:77
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+
+#: ../src/cheese-window.vala:689
+#, fuzzy
+msgid "Stop _Recording"
+msgstr "_Stop optagelse"
+
+#: ../src/cheese-window.vala:821
+#, fuzzy
+msgid "No effects found"
+msgstr "Ingen enhed fundet"
+
+#~| msgid "Set to True to show countdown when taking a photo"
+#~ msgid "Set to True to use flash when taking a photo"
+#~ msgstr "Sæt til sand, hvis der skal bruges blitz ved fotografering"
+
+#~ msgid "Use a flash"
+#~ msgstr "Brug blitz"
+
+#~ msgid "Switch to Burst Mode"
+#~ msgstr "Skift til serietilstand"
+
+#~ msgid "Switch to Photo Mode"
+#~ msgstr "Skift til billedtilstand"
+
+#~ msgid "Switch to Video Mode"
+#~ msgstr "Skift til videotilstand"
+
+#~ msgid "Switch to the Effects Selector"
+#~ msgstr "Skift til effektvælger"
+
+#~ msgid "_Skip"
+#~ msgstr "_Spring over"
+
+#~ msgid "S_kip All"
+#~ msgstr "S_pring alle over"
+
+#~ msgid "Delete _All"
+#~ msgstr "Slet _alle"
+
+#~ msgid ""
+#~ "Failed to launch program to show:\n"
+#~ "%s\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Kunne ikke køre program for at fremvise:\n"
+#~ "%s\n"
+#~ "%s"
+
+#~ msgid "Save File"
+#~ msgstr "Gem fil"
+
+#~ msgid "Could not save %s"
+#~ msgstr "Kunne ikke gemme %s"
+
+#~ msgid "Error while deleting"
+#~ msgstr "Fejl under sletning"
+
+#~ msgid "The file \"%s\" cannot be deleted. Details: %s"
+#~ msgstr "Filen \"%s\" kan ikke slettes. Detaljer: %s"
+
+#~ msgid "Are you sure you want to permanently delete the %'d selected item?"
+#~ msgid_plural ""
+#~ "Are you sure you want to permanently delete the %'d selected items?"
+#~ msgstr[0] "Er du sikker på, at du permanent vil slette %'d valgt element?"
+#~ msgstr[1] ""
+#~ "Er du sikker på, at du permanent vil slette de %'d valgte elementer?"
+
+#~ msgid "Are you sure you want to permanently delete \"%s\"?"
+#~ msgstr "Er du sikker på, at du permanent vil slette \"%s\"?"
+
+#~ msgid "If you delete an item, it will be permanently lost."
+#~ msgstr "Hvis du sletter et element, vil det gå permanent tabt."
+
+#~ msgid "Unknown Error"
+#~ msgstr "Ukendt fejl"
+
+#~ msgid "Cannot move file to trash, do you want to delete immediately?"
+#~ msgstr ""
+#~ "Kan ikke flytte fil til papirkurv, ønsker du at slette den øjeblikkeligt?"
+
+#~ msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+#~ msgstr "Filen \"%s\" kan ikke flyttes til papirkurven. Detaljer: %s"
+
+#~ msgid "Really move all photos and videos to the trash?"
+#~ msgstr "Vil du virkelig flytte alle billeder og videoer til papirkurven?"
+
+#~ msgid "_Move to Trash"
+#~ msgstr "_Flyt til papirkurv"
+
+#~ msgid "Unable to open help file for Cheese"
+#~ msgstr "Kunne ikke åbne hjælpfil for Cheese"
+
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
+#~ msgstr ""
+#~ "Dette program er fri software. Du kan redistribuere og/eller modificere "
+#~ "det under de betingelserne som er angivet i GNU General Public License, "
+#~ "som er udgivet af Free Software Foundation. Enten version 2 af licensen "
+#~ "eller (efter eget valg) enhver senere version\n"
+
+#~ msgid ""
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
+#~ msgstr ""
+#~ "Dette program distribueres i håb om at det vil vise sig nyttigt, men UDEN "
+#~ "NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
+#~ "SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
+#~ "læses i GNU General Public License.\n"
+
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see <http://www.gnu.org/licenses/>."
+#~ msgstr ""
+#~ "Du skulle have modtaget en kopi af GNU General Public License sammen med "
+#~ "dette program. Hvis ikke så kan du finde det her, <http://www.gnu.org/"
+#~ "licenses/>."
+
+#~ msgid "Mauve"
+#~ msgstr "Lilla skær"
+
+#~ msgid "Noir/Blanc"
+#~ msgstr "Sort/Hvid"
+
+#~ msgid "Hulk"
+#~ msgstr "Hulk"
+
+#~ msgid "Vertical Flip"
+#~ msgstr "På hovedet"
+
+#~ msgid "Horizontal Flip"
+#~ msgstr "Spejlvend"
+
+#~ msgid "Shagadelic"
+#~ msgstr "Shagadelic"
+
+#~ msgid "Vertigo"
+#~ msgstr "Rundtosset"
+
+#~ msgid "Edge"
+#~ msgstr "Kanter"
+
+#~ msgid "Dice"
+#~ msgstr "Tern"
+
+#~ msgid "Warp"
+#~ msgstr "Vredet"
+
+#~ msgid "No camera found!"
+#~ msgstr "Intet kamera fundet!"
+
+# Jeg vil gerne have tilføjet enten "dokumentation" eller "menu" efter hjælp, men efter som jeg reelt ikke ved hvad der menes har jeg ikke gjort det
+#~ msgid "Please refer to the help for further information."
+#~ msgstr "Se hjælp for mere information."
+
+#~ msgid "Help on this Application"
+#~ msgstr "Hjælp til dette program"
+
+#~ msgid "Countdown"
+#~ msgstr "Nedtælling"
+
+#~ msgid "Flash"
+#~ msgstr "Blitz"
+
+#~ msgid "_Start Recording"
+#~ msgstr "_Start optagelse"
+
+#~ msgid "Be verbose"
+#~ msgstr "Vær uddybende"
+
+#~ msgid ""
+#~ "- Take photos and videos with your webcam, with fun graphical effects"
+#~ msgstr ""
+#~ "- Tag billeder og optag video fra dit webkamera, med sjove grafiske "
+#~ "effekter"
 
 #~ msgid "Could not set the Account Photo"
 #~ msgstr "Kunne ikke indstille kontobilledet"
@@ -637,30 +685,11 @@ msgstr ""
 #~ "Kunne ikke åbne e-postklient for at sende til:\n"
 #~ "%s"
 
-#~ msgid "Quit"
-#~ msgstr "Afslut"
-
-#~ msgid "About"
-#~ msgstr "Om"
-
-#~ msgid "A cheesy program to take photos and videos from your webcam"
-#~ msgstr ""
-#~ "Et \"cheesy\" program til at tage billeder og optage video fra dit webcam"
-
 #~ msgid "Cannot move file to trash"
 #~ msgstr "Kan ikke flytte fil til papirkurven"
 
 #~ msgid "_Back"
 #~ msgstr "Til_bage"
-
-#, fuzzy
-#~ msgid "A cheesy program to take photos from your webcam"
-#~ msgstr ""
-#~ "Et \"cheesy\" program til at tage billeder og optage video fra dit webcam"
-
-#, fuzzy
-#~ msgid "Cheese Camera"
-#~ msgstr "Cheese"
 
 #~ msgid "Could not find the Trash"
 #~ msgstr "Kunne ikke finde papirkurven"
