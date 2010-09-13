@@ -4,15 +4,16 @@
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2007,2008.
 # Kentaro Kazuhama <kazken3@gmail.com>, 2009.
 # Hideki Yamane (Debian-JP) <henrich@debian.or.jp>, 2009-2010.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-03-29 21:22+0000\n"
-"PO-Revision-Date: 2010-02-23 23:14+0900\n"
-"Last-Translator: Hideki Yamane (Debian-JP) <henrich@debian.or.jp>\n"
+"POT-Creation-Date: 2010-09-12 15:04+0000\n"
+"PO-Revision-Date: 2010-09-13 22:31+0900\n"
+"Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,8 +42,8 @@ msgid ""
 msgstr ""
 "起動時に適用するいろいろな画像効果です。指定可能な値: \"mauve\" (薄紫色)、"
 "\"noir_blanc\" (白黒)、\"saturation\" (鮮やか)、\"hulk\" (ハルク)、"
-"\"vertical-flip\" (Ｙ軸方向に折り返す)、 \"horizontal-flip\" (Ｘ軸方向に折り"
-"返す)、\"shagadelic\" (セクシー)、\"vertigo\" (めまい)、\"edge\" (エッジ)、"
+"\"vertical-flip\" (Y軸方向に折り返す)、 \"horizontal-flip\" (X軸方向に折り返"
+"す)、\"shagadelic\" (セクシー)、\"vertigo\" (めまい)、\"edge\" (エッジ)、"
 "\"dice\" (ダイス)、\"warp\" (ワープ)"
 
 #: ../data/cheese.schemas.in.h:4
@@ -83,7 +84,7 @@ msgstr ""
 
 #: ../data/cheese.schemas.in.h:11
 msgid "Height resolution"
-msgstr "Ｙ方向の解像度"
+msgstr "Y方向の解像度"
 
 #: ../data/cheese.schemas.in.h:12
 msgid ""
@@ -100,7 +101,7 @@ msgid ""
 "feature can be dangerous, so use caution."
 msgstr ""
 "TRUE にするとゴミ箱に送ることなしにその場でファイルを抹消します。抹消すると元"
-"に戻せないので、この機能の扱いには十分に注意して下さい。"
+"に戻せないので、この機能の扱いには十分に注意してください。"
 
 #: ../data/cheese.schemas.in.h:14
 msgid "Milliseconds between photos in burst mode."
@@ -139,46 +140,54 @@ msgid "Set to True to show countdown when taking a photo"
 msgstr "写真を撮るまでカウントダウンするかどうかです。"
 
 #: ../data/cheese.schemas.in.h:23
+msgid "Set to True to use flash when taking a photo"
+msgstr "写真を撮る時にフラッシュを使うには true と設定します"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "カメラを接続しているデバイス名です (例: /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:24
-msgid "The height resolution of the image captured from the camera"
-msgstr "カメラで取得した画像の高さ (Ｙ方向の解像度) です。"
-
 #: ../data/cheese.schemas.in.h:25
+msgid "The height resolution of the image captured from the camera"
+msgstr "カメラで取得した画像の高さ (Y方向の解像度) です。"
+
+#: ../data/cheese.schemas.in.h:26
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
 msgstr "画像を連続で撮影する時の遅延の間隔をミリ秒単位の長さで設定します。"
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The number of photos to take in a single burst."
 msgstr "一度の連続モードで撮影する画像の数を設定します。"
 
-#: ../data/cheese.schemas.in.h:27
-msgid "The width resolution of the image captured from the camera"
-msgstr "カメラで取得した画像の幅 (Ｘ方向の解像度) です。"
-
 #: ../data/cheese.schemas.in.h:28
+msgid "The width resolution of the image captured from the camera"
+msgstr "カメラで取得した画像の幅 (X方向の解像度) です。"
+
+#: ../data/cheese.schemas.in.h:29
 msgid "Use a countdown"
 msgstr "カウントダウンする"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "フラッシュを使用"
+
+#: ../data/cheese.schemas.in.h:31
 msgid "Video Path"
 msgstr "動画を保存する場所"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:32
 msgid "Whether to enable immediate deletion"
 msgstr "ファイルを直ぐに削除してしまうかどうか"
 
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:33
 msgid "Whether to start in wide mode"
 msgstr "ワイドモードで開始するかどうか"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:34
 msgid "Width resolution"
-msgstr "Ｘ方向の解像度"
+msgstr "X方向の解像度"
 
 #: ../data/cheese.ui.h:1
 msgid "Switch to Burst Mode"
@@ -196,7 +205,7 @@ msgstr "動画のモードに切り替えます"
 msgid "Switch to the Effects Selector"
 msgstr "画像の効果を選択するモードに切り替えます"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:61 ../src/cheese-window.c:884
 msgid "_Effects"
 msgstr "画像の効果(_E)"
 
@@ -204,7 +213,7 @@ msgstr "画像の効果(_E)"
 msgid "_Leave Fullscreen"
 msgstr "フルスクリーン表示の解除(_L)"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:72 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "写真の撮影(_T)"
 
@@ -256,7 +265,7 @@ msgstr "鮮やか"
 msgid "Webcam"
 msgstr "ウェブカム"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:640
 msgid "Shutter sound"
 msgstr "シャッター音"
 
@@ -272,26 +281,26 @@ msgstr "写真を撮る(_T)"
 msgid "_Discard photo"
 msgstr "写真を破棄する(_D)"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "デバイスの機能はサポートされていません"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "不明なデバイス"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "初期化はキャンセルできません"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1139
 #, c-format
 msgid "No device found"
 msgstr "デバイスが見つかりません"
 
-#: ../libcheese/cheese-camera.c:1153
+#: ../libcheese/cheese-camera.c:1158
 msgid "One or more needed GStreamer elements are missing: "
-msgstr "必要な GStreamer エレメントが見つかりません:"
+msgstr "必要な GStreamer エレメントが見つかりません: "
 
 #. TRANSLATORS:
 #. * This is the countdown number when taking the photo.
@@ -299,8 +308,8 @@ msgstr "必要な GStreamer エレメントが見つかりません:"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -311,11 +320,11 @@ msgstr "スキップ(_S)"
 
 #: ../src/cheese-commands-file.c:32
 msgid "S_kip All"
-msgstr "全てスキップ(_K)"
+msgstr "すべてスキップ(_K)"
 
 #: ../src/cheese-commands-file.c:33
 msgid "Delete _All"
-msgstr "全て削除(_A)"
+msgstr "すべて削除(_A)"
 
 #: ../src/cheese-commands-file.c:57
 #, c-format
@@ -351,12 +360,12 @@ msgstr "\"%s\" というファイルを削除できません。詳細は次の�
 msgid "Are you sure you want to permanently delete the %'d selected item?"
 msgid_plural ""
 "Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "本当に指定した %'d個のアイテムを完全に抹消してもよろしいですか？"
+msgstr[0] "本当に指定した %'d個のアイテムを完全に抹消してもよろしいですか?"
 
 #: ../src/cheese-commands-file.c:174
 #, c-format
 msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "\"%s\" を完全に抹消してもよろしいですか？"
+msgstr "\"%s\" を完全に抹消してもよろしいですか?"
 
 #: ../src/cheese-commands-file.c:177
 #, c-format
@@ -369,7 +378,7 @@ msgstr "原因不明のエラー"
 
 #: ../src/cheese-commands-file.c:228
 msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "ファイルをゴミ箱へ移動できません。今すぐ削除してもよろしいですか？"
+msgstr "ファイルをゴミ箱へ移動できません。今すぐ削除してもよろしいですか?"
 
 #: ../src/cheese-commands-file.c:229
 #, c-format
@@ -380,13 +389,13 @@ msgstr ""
 #: ../src/cheese-commands-file.c:301
 #, c-format
 msgid "Really move all photos and videos to the trash?"
-msgstr "本当に全ての写真と動画をゴミ箱に移動しますか？"
+msgstr "本当にすべての写真と動画をゴミ箱に移動しますか?"
 
 #: ../src/cheese-commands-file.c:309
 msgid "_Move to Trash"
 msgstr "ゴミ箱へ移動する(_M)"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:662
 msgid "Unable to open help file for Cheese"
 msgstr "Cheese のヘルプを開けませんでした"
 
@@ -395,7 +404,9 @@ msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "kentaro kazuhama <kazken3@gmail.com>\n"
-"やまねひでき <henrich@debian.or.jp>"
+"やまねひでき <henrich@debian.or.jp>\n"
+"草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
+"日本GNOMEユーザ会 <http://www.gnome.gr.jp/>"
 
 #: ../src/cheese-commands-help.c:99
 msgid ""
@@ -417,7 +428,7 @@ msgid ""
 msgstr ""
 "本プログラムは有用とは思いますが、頒布にあたっては市場性及び特定目的、適合性"
 "についての暗黙の保証を含めて、いかなる保証も行ないません。詳細については GNU "
-"一般公有使用許諾契約書をご覧下さい。\n"
+"一般公有使用許諾契約書をご覧ください。\n"
 
 #: ../src/cheese-commands-help.c:107
 msgid ""
@@ -425,7 +436,7 @@ msgid ""
 "this program. If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 "あなたは本プログラムと一緒に GNU 一般公有使用許諾契約書の写しを受け取っている"
-"はずです。そうでない場合は <http://www.gnu.org/licenses/> をご覧下さい。"
+"はずです。そうでない場合は <http://www.gnu.org/licenses/> をご覧ください。"
 
 #: ../src/cheese-commands-help.c:124
 msgid "Cheese Website"
@@ -449,11 +460,11 @@ msgstr "ハルク"
 
 #: ../src/cheese-effect-chooser.c:70
 msgid "Vertical Flip"
-msgstr "Ｙ軸方向に折り返す"
+msgstr "Y軸方向に折り返す"
 
 #: ../src/cheese-effect-chooser.c:72
 msgid "Horizontal Flip"
-msgstr "Ｘ軸方向に折り返す"
+msgstr "X軸方向に折り返す"
 
 #: ../src/cheese-effect-chooser.c:74
 msgid "Shagadelic"
@@ -477,11 +488,11 @@ msgstr "ワープ"
 
 #: ../src/cheese-no-camera.c:94
 msgid "No camera found!"
-msgstr "カメラが見つかりませんでした！"
+msgstr "カメラが見つかりませんでした!"
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1258
 msgid "Please refer to the help for further information."
-msgstr "更に詳細な情報についてはヘルプを参照して下さい。"
+msgstr "更に詳細な情報についてはヘルプを参照してください。"
 
 #: ../src/cheese-ui.h:32
 msgid "_Cheese"
@@ -519,37 +530,41 @@ msgstr "連続(_B)"
 msgid "Countdown"
 msgstr "カウントダウンする"
 
-#: ../src/cheese-ui.h:64
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "フラッシュ"
+
+#: ../src/cheese-ui.h:68
 msgid "_Wide mode"
 msgstr "ワイドモード(_W)"
 
-#: ../src/cheese-ui.h:71
+#: ../src/cheese-ui.h:75
 msgid "_Recording"
 msgstr "録画する(_R)"
 
-#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
+#: ../src/cheese-ui.h:78 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "複数の写真を撮る(_T)"
 
-#: ../src/cheese-ui.h:78
+#: ../src/cheese-ui.h:82
 msgid "_Open"
 msgstr "開く(_O)"
 
-#: ../src/cheese-ui.h:80
+#: ../src/cheese-ui.h:84
 msgid "Save _As…"
 msgstr "別名で保存(_A)…"
 
-#: ../src/cheese-ui.h:82
+#: ../src/cheese-ui.h:86
 msgid "Move to _Trash"
 msgstr "ゴミ箱へ移動する(_T)"
 
-#: ../src/cheese-ui.h:84
+#: ../src/cheese-ui.h:88
 msgid "Delete"
 msgstr "削除"
 
-#: ../src/cheese-ui.h:89
+#: ../src/cheese-ui.h:93
 msgid "Move All to Trash"
-msgstr "全てゴミ箱へ移動する"
+msgstr "すべてゴミ箱へ移動する"
 
 #: ../src/cheese-window.c:60
 msgid "_Start Recording"
@@ -606,4 +621,4 @@ msgstr "- ウェブカムで画像効果が付いた楽しい写真や動画を�
 #~ msgstr "録画の開始(_S)"
 
 #~ msgid "Check your GStreamer installation"
-#~ msgstr "GStreamer がインストールされているか確認して下さい"
+#~ msgstr "GStreamer がインストールされているか確認してください"
