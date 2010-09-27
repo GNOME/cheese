@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-28 19:30+0100\n"
-"PO-Revision-Date: 2010-02-16 23:15+0100\n"
+"POT-Creation-Date: 2010-09-27 20:29+0200\n"
+"PO-Revision-Date: 2010-09-24 09:50+0200\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:113
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -138,14 +138,18 @@ msgstr ""
 "fotos"
 
 #: ../data/cheese.schemas.in.h:23
+msgid "Set to True to use flash when taking a photo"
+msgstr "Establiu-lo a «True» (cert) per utilitzar el flaix quan es facin fotos"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "El dispositiu que fa referència a la càmera (p. e. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid "The height resolution of the image captured from the camera"
 msgstr "La resolució de l'alçada de la foto creada amb la càmera"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
@@ -153,31 +157,35 @@ msgstr ""
 "La durada, en mil·lisegons, entre foto i foto en el mode de seqüència de "
 "fotos."
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The number of photos to take in a single burst."
 msgstr "El nombre de fotos a fer en una sola seqüència."
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "The width resolution of the image captured from the camera"
 msgstr "La resolució de l'amplada de la foto creada amb la càmera"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Use a countdown"
 msgstr "Utilitza un temporitzador"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "Utilitza el flaix"
+
+#: ../data/cheese.schemas.in.h:31
 msgid "Video Path"
 msgstr "Camí del vídeo"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:32
 msgid "Whether to enable immediate deletion"
 msgstr "Si s'ha d'habilitar la supressió immediata"
 
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:33
 msgid "Whether to start in wide mode"
 msgstr "Si s'ha d'iniciar en mode ampla"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:34
 msgid "Width resolution"
 msgstr "Resolució de l'amplada"
 
@@ -197,7 +205,7 @@ msgstr "Canvia al mode vídeo"
 msgid "Switch to the Effects Selector"
 msgstr "Canvia al selector d'efectes"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:61 ../src/cheese-window.c:884
 msgid "_Effects"
 msgstr "E_fectes"
 
@@ -205,7 +213,7 @@ msgstr "E_fectes"
 msgid "_Leave Fullscreen"
 msgstr "_Surt de la pantalla completa"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:72 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "Fes una f_oto"
 
@@ -257,7 +265,7 @@ msgstr "Saturació"
 msgid "Webcam"
 msgstr "Càmera web"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:640
 msgid "Shutter sound"
 msgstr "So del disparador"
 
@@ -273,24 +281,24 @@ msgstr "Fes una f_oto"
 msgid "_Discard photo"
 msgstr "_Descarta la foto"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "No estan implementades les especificacions del dispositiu"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "Dispositiu desconegut"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "No es pot cancel·lar la inicialització"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1139
 #, c-format
 msgid "No device found"
 msgstr "No s'ha trobat cap dispositiu"
 
-#: ../libcheese/cheese-camera.c:1153
+#: ../libcheese/cheese-camera.c:1158
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Manquen un o més elements necessaris del GStreamer: "
 
@@ -300,8 +308,8 @@ msgstr "Manquen un o més elements necessaris del GStreamer: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -389,7 +397,7 @@ msgstr "Segur que voleu moure totes les fotos i els vídeos a la paperera?"
 msgid "_Move to Trash"
 msgstr "_Mou a la paperera"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:662
 msgid "Unable to open help file for Cheese"
 msgstr "No s'ha pogut obrir el fitxer d'ajuda del Cheese"
 
@@ -482,7 +490,7 @@ msgstr "Distorsió"
 msgid "No camera found!"
 msgstr "No s'ha trobat cap càmera"
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1258
 msgid "Please refer to the help for further information."
 msgstr "Per obtenir més informació, consulteu l'ajuda."
 
@@ -522,35 +530,39 @@ msgstr "_Seqüència"
 msgid "Countdown"
 msgstr "Temporitzador"
 
-#: ../src/cheese-ui.h:64
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "Flaix"
+
+#: ../src/cheese-ui.h:68
 msgid "_Wide mode"
 msgstr "Mode _ampla"
 
-#: ../src/cheese-ui.h:71
+#: ../src/cheese-ui.h:75
 msgid "_Recording"
 msgstr "E_nregistrament"
 
-#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
+#: ../src/cheese-ui.h:78 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "Fes _diverses fotos"
 
-#: ../src/cheese-ui.h:78
+#: ../src/cheese-ui.h:82
 msgid "_Open"
 msgstr "_Obre"
 
-#: ../src/cheese-ui.h:80
+#: ../src/cheese-ui.h:84
 msgid "Save _As…"
 msgstr "_Anomena i desa…"
 
-#: ../src/cheese-ui.h:82
+#: ../src/cheese-ui.h:86
 msgid "Move to _Trash"
 msgstr "Moure a la _paperera"
 
-#: ../src/cheese-ui.h:84
+#: ../src/cheese-ui.h:88
 msgid "Delete"
 msgstr "Suprimeix"
 
-#: ../src/cheese-ui.h:89
+#: ../src/cheese-ui.h:93
 msgid "Move All to Trash"
 msgstr "Mou-ho tot a la paperera"
 
@@ -562,19 +574,19 @@ msgstr "_Comença l'enregistrament"
 msgid "_Stop Recording"
 msgstr "Atura l'e_nregistrament"
 
-#: ../src/cheese.c:96
+#: ../src/cheese.c:97
 msgid "Be verbose"
 msgstr "Sigues detallat"
 
-#: ../src/cheese.c:98
+#: ../src/cheese.c:99
 msgid "Enable wide mode"
 msgstr "Habilita el mode ampla"
 
-#: ../src/cheese.c:100
+#: ../src/cheese.c:101
 msgid "output version information and exit"
 msgstr "mostra la informació de la versió i surt"
 
-#: ../src/cheese.c:115
+#: ../src/cheese.c:120
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- Feu fotos i vídeos amb la càmera web, amb efectes gràfics divertits"
 
