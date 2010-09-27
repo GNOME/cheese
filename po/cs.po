@@ -1,19 +1,22 @@
 # Cheese Czech translation.
 # Copyright (C) 2007, 2008, 2009, 2010 daniel g. siegel <dgsiegel@gnome.org> et al.
 # This file is distributed under the same license as the cheese package.
+#
 # Vítězslav Kotrla <vitko@post.cz>, 2007.
-# Petr Kovar <pknbe@volny.cz>, 2008, 2010.
 # Kamil Páral <ripper42@gmail.com>, 2008.
 # Lucas Lommer <llommer@svn.gnome.org>, 2009, 2010.
+# Petr Kovar <pknbe@volny.cz>, 2008, 2010.
+# Marek Černocký <marek@manet.cz>, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-29 01:18+0200\n"
-"PO-Revision-Date: 2010-03-26 23:44+0100\n"
-"Last-Translator: Petr Kovar <pknbe@volny.cz>\n"
+"POT-Creation-Date: 2010-09-27 17:31+0200\n"
+"PO-Revision-Date: 2010-09-27 17:24+0200\n"
+"Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -140,14 +143,18 @@ msgid "Set to True to show countdown when taking a photo"
 msgstr "Při povolení bude při pořízení snímku použito odpočítávání času"
 
 #: ../data/cheese.schemas.in.h:23
+msgid "Set to True to use flash when taking a photo"
+msgstr "Nastavte na Zapnuto, pokud chcete při pořizování fotek používat blesk"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "Zařízení, které označuje kameru (např. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid "The height resolution of the image captured from the camera"
 msgstr "Výška rozlišení obrázku zachyceného kamerou"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
@@ -155,31 +162,35 @@ msgstr ""
 "Doba prodlevy v milisekundách mezi jednotlivými snímky během jednoho cyklu "
 "snímání v sérii."
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The number of photos to take in a single burst."
 msgstr "Počet snímků zachycených během jedné série."
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "The width resolution of the image captured from the camera"
 msgstr "Šířka rozlišení obrázku zachyceného kamerou"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Use a countdown"
 msgstr "Použít odpočítávání"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "Použít blesk"
+
+#: ../data/cheese.schemas.in.h:31
 msgid "Video Path"
 msgstr "Cesta k videu"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:32
 msgid "Whether to enable immediate deletion"
 msgstr "Zda povolit okamžité smazání"
 
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:33
 msgid "Whether to start in wide mode"
 msgstr "Jestli se spouštět v režimu na šířku"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:34
 msgid "Width resolution"
 msgstr "Šířka rozlišení"
 
@@ -199,7 +210,7 @@ msgstr "Přepnout do režimu videa"
 msgid "Switch to the Effects Selector"
 msgstr "Přepnout do výběru efektů"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:61 ../src/cheese-window.c:884
 msgid "_Effects"
 msgstr "_Efekty"
 
@@ -207,7 +218,7 @@ msgstr "_Efekty"
 msgid "_Leave Fullscreen"
 msgstr "Opustit režim ce_lé obrazovky"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:72 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "Pořídi_t snímek"
 
@@ -259,7 +270,7 @@ msgstr "Syté barvy"
 msgid "Webcam"
 msgstr "Webkamera"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:640
 msgid "Shutter sound"
 msgstr "Zvuk záklopky"
 
@@ -275,24 +286,24 @@ msgstr "Pořídi_t snímek"
 msgid "_Discard photo"
 msgstr "Zaho_dit snímek"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "Funkce zařízení nejsou podporovány"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "Neznámé zařízení"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "Zrušitelné spouštění není podporováno"
 
-#: ../libcheese/cheese-camera.c:1134
+#: ../libcheese/cheese-camera.c:1139
 #, c-format
 msgid "No device found"
 msgstr "Žádné zařízení nebylo nalezeno"
 
-#: ../libcheese/cheese-camera.c:1153
+#: ../libcheese/cheese-camera.c:1158
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Jeden nebo více potřebných elementů GStreameru chybí: "
 
@@ -302,8 +313,8 @@ msgstr "Jeden nebo více potřebných elementů GStreameru chybí: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -390,7 +401,7 @@ msgstr "Opravdu přesunout všechny snímky a videoklipy do koše?"
 msgid "_Move to Trash"
 msgstr "_Přesunout do koše"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:662
 msgid "Unable to open help file for Cheese"
 msgstr "Nelze otevřít nápovědu pro Cheese"
 
@@ -485,7 +496,7 @@ msgstr "Deformace"
 msgid "No camera found!"
 msgstr "Nenalezena žádná kamera!"
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1258
 msgid "Please refer to the help for further information."
 msgstr "Prosím zobrazte si nápovědu, chcete-li dodatečné informace."
 
@@ -525,35 +536,39 @@ msgstr "_Série"
 msgid "Countdown"
 msgstr "Odpočet"
 
-#: ../src/cheese-ui.h:64
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "Blesk"
+
+#: ../src/cheese-ui.h:68
 msgid "_Wide mode"
 msgstr "_Režim na šířku"
 
-#: ../src/cheese-ui.h:71
+#: ../src/cheese-ui.h:75
 msgid "_Recording"
 msgstr "Nah_rávání"
 
-#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
+#: ../src/cheese-ui.h:78 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "Pořídi_t vícenásobné snímky"
 
-#: ../src/cheese-ui.h:78
+#: ../src/cheese-ui.h:82
 msgid "_Open"
 msgstr "_Otevřít"
 
-#: ../src/cheese-ui.h:80
+#: ../src/cheese-ui.h:84
 msgid "Save _As…"
 msgstr "Uložit _jako…"
 
-#: ../src/cheese-ui.h:82
+#: ../src/cheese-ui.h:86
 msgid "Move to _Trash"
 msgstr "Přesunou_t do koše"
 
-#: ../src/cheese-ui.h:84
+#: ../src/cheese-ui.h:88
 msgid "Delete"
 msgstr "Smazat"
 
-#: ../src/cheese-ui.h:89
+#: ../src/cheese-ui.h:93
 msgid "Move All to Trash"
 msgstr "Přesunout vše do koše"
 
