@@ -68,9 +68,9 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Rectangle background_layer;
   private Clutter.Text      error_layer;
 
-  private Mx.Grid            current_effects_grid;
+  private Mx.Table            current_effects_grid;
   private int                current_effects_page = 0;
-  private ArrayList<Mx.Grid> effects_grids;
+  private ArrayList<Mx.Table> effects_grids;
 
   private Gtk.Action       take_photo_action;
   private Gtk.Action       take_video_action;
@@ -851,7 +851,7 @@ public class Cheese.MainWindow : Gtk.Window
       effects_manager = new EffectsManager ();
       effects_manager.load_effects ();
 
-      effects_grids = new ArrayList<Mx.Grid>();
+      effects_grids = new ArrayList<Mx.Table>();
 
       if (effects_manager.effects.size == 0)
       {
@@ -860,13 +860,8 @@ public class Cheese.MainWindow : Gtk.Window
 
       for (int i = 0; i <= effects_manager.effects.size / EFFECTS_PER_PAGE; i++)
       {
-        Mx.Grid grid = new Mx.Grid ();
+        Mx.Table grid = new Mx.Table ();
         effects_grids.add (grid);
-
-        grid.line_alignment = Mx.Align.MIDDLE;
-        grid.child_x_align  = Mx.Align.MIDDLE;
-        grid.child_y_align  = Mx.Align.MIDDLE;
-        grid.orientation    = Mx.Orientation.VERTICAL;
 
         grid.column_spacing = 20;
         grid.row_spacing    = 20;
@@ -912,7 +907,12 @@ public class Cheese.MainWindow : Gtk.Window
                   "y-align", Clutter.BinAlignment.END, null
                   );
 
-        effects_grids[i / EFFECTS_PER_PAGE].add ((Clutter.Actor)box);
+        effects_grids[i / EFFECTS_PER_PAGE].add_actor_with_properties ((Clutter.Actor)box,
+																	   (i % EFFECTS_PER_PAGE) % 3,
+																	   (i % EFFECTS_PER_PAGE) / 3,
+																	   "x-fill", true,
+																	   "y-fill", true
+			);
       }
 
       setup_effects_page_switch_sensitivity ();
