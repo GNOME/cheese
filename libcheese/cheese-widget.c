@@ -50,6 +50,7 @@ typedef struct
 {
   GtkWidget *spinner;
   GtkWidget *screen;
+  ClutterActor *texture;
   GtkWidget *problem;
   CheeseGConf *gconf;
   CheeseCamera *webcam;
@@ -187,6 +188,7 @@ cheese_widget_init (CheeseWidget *widget)
 {
   CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
   GtkWidget           *box;
+  ClutterActor        *stage;
 
   priv->state = CHEESE_WIDGET_STATE_NONE;
   priv->error = NULL;
@@ -207,8 +209,15 @@ cheese_widget_init (CheeseWidget *widget)
                             box, gtk_label_new ("spinner"));
 
   /* Webcam page */
-  priv->screen = gtk_drawing_area_new ();
+  priv->screen = gtk_clutter_embed_new ();
+  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->screen));
+  priv->texture = clutter_texture_new ();
+
+  clutter_actor_set_size (priv->texture, 400, 300);
+  clutter_container_add_actor (CLUTTER_CONTAINER (stage), priv->texture);
+
   gtk_widget_show (priv->screen);
+  clutter_actor_show (priv->texture);
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
                             priv->screen, gtk_label_new ("webcam"));
 
@@ -314,7 +323,7 @@ setup_camera (CheeseWidget *widget)
                 NULL);
 
   gdk_threads_enter ();
-  priv->webcam = cheese_camera_new (priv->screen,
+  priv->webcam = cheese_camera_new (CLUTTER_TEXTURE (priv->texture),
                                     webcam_device,
                                     x_resolution,
                                     y_resolution);
