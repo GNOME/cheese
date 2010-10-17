@@ -199,8 +199,8 @@ public class Cheese.MainWindow : Gtk.Window
                                                          Gtk.ButtonsType.NONE,
                                                          "Are you sure you want to permanently delete the file \"%s\"?",
                                                          basename);
-    confirmation_dialog.add_button (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL);
-    confirmation_dialog.add_button (Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT);
+    confirmation_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+    confirmation_dialog.add_button (Gtk.Stock.DELETE, Gtk.ResponseType.ACCEPT);
     confirmation_dialog.format_secondary_text ("%s", "If you delete an item, it will be permanently lost");
     response = confirmation_dialog.run ();
     confirmation_dialog.destroy ();
@@ -283,8 +283,8 @@ public class Cheese.MainWindow : Gtk.Window
     save_as_dialog = new FileChooserDialog ("Save File",
                                             this,
                                             Gtk.FileChooserAction.SAVE,
-                                            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-                                            Gtk.STOCK_SAVE, Gtk.ResponseType.ACCEPT,
+                                            Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                                            Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT,
                                             null);
 
     save_as_dialog.do_overwrite_confirmation = true;
@@ -687,7 +687,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
       take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
-      take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
+      take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_STOP, Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
       effects_toggle_action.sensitive = false;
@@ -696,7 +696,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       camera.stop_video_recording ();
       take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
-      take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
+      take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_RECORD, Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
       effects_toggle_action.sensitive = true;
