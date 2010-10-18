@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-08-08 23:47+0000\n"
-"PO-Revision-Date: 2010-08-09 02:26+0200\n"
+"POT-Creation-Date: 2010-10-16 10:25+0000\n"
+"PO-Revision-Date: 2010-10-18 12:21+0200\n"
 "Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:103
+#: ../src/cheese-main.vala:102
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -312,7 +312,7 @@ msgstr "Contraste de la imagen"
 
 #: ../data/cheese.schemas.in.h:19
 msgid "Picture hue"
-msgstr "Todo de la imagen"
+msgstr "Tono de la imagen"
 
 #: ../data/cheese.schemas.in.h:20
 msgid "Picture saturation"
@@ -370,45 +370,45 @@ msgstr "Indica si se debe iniciar en modo ancho"
 msgid "Width resolution"
 msgstr "Resolución de la anchura"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:589
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
 msgid "Shutter sound"
 msgstr "Sonido del obturador"
 
-#: ../libcheese/cheese-avatar-chooser.c:236
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:255
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "_Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:270
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "_Descartar foto"
 
-#: ../libcheese/cheese-camera-device.c:328
+#: ../libcheese/cheese-camera-device.c:329
 msgid "Device capabilities not supported"
 msgstr "No se soportan las capacidades del dispositivo"
 
-#: ../libcheese/cheese-camera-device.c:352
+#: ../libcheese/cheese-camera-device.c:357
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Falló al inicializar el dispositivo %s para probar sus capacidades"
 
-#: ../libcheese/cheese-camera-device.c:510
+#: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
 msgstr "Dispositivo desconocido"
 
-#: ../libcheese/cheese-camera-device.c:534
+#: ../libcheese/cheese-camera-device.c:539
 msgid "Cancellable initialization not supported"
 msgstr "No se soporta la inicialización cancelable"
 
-#: ../libcheese/cheese-camera.c:1148
+#: ../libcheese/cheese-camera.c:1156
 #, c-format
 msgid "No device found"
 msgstr "No se encontró ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1167
+#: ../libcheese/cheese-camera.c:1175
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 
@@ -423,6 +423,10 @@ msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 #, c-format
 msgid "%d "
 msgstr "%Id "
+
+#: ../src/cheese-effects-manager.vala:116
+msgid "No Effect"
+msgstr "Sin efectos"
 
 #: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
@@ -440,22 +444,22 @@ msgstr "DISPOSITIVO"
 msgid "Output version information and exit"
 msgstr "Mostrar información de la versión y salir"
 
-#: ../src/cheese-main.vala:67
+#: ../src/cheese-main.vala:66
 msgid "- Take photos and videos from your webcam"
 msgstr ": Tomar fotografías y vídeos con su cámara web"
 
-#: ../src/cheese-main.vala:78
+#: ../src/cheese-main.vala:77
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Ejecutar «%s --help» para ver una lista completa de opciones de línea de "
 "comandos disponibles.\n"
 
-#: ../src/cheese-window.vala:642
+#: ../src/cheese-window.vala:689
 msgid "Stop _Recording"
 msgstr "_Detener grabación"
 
-#: ../src/cheese-window.vala:761
+#: ../src/cheese-window.vala:821
 msgid "No effects found"
 msgstr "No se encontró ningún efecto"
 
@@ -473,9 +477,6 @@ msgstr "No se encontró ningún efecto"
 
 #~ msgid "Hulk"
 #~ msgstr "Hulk"
-
-#~ msgid "No Effect"
-#~ msgstr "Sin efectos"
 
 #~ msgid "Mauve"
 #~ msgstr "Malva"
