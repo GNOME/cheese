@@ -26,7 +26,6 @@ using Clutter;
 using Config;
 using Eog;
 using Gst;
-using Mx;
 using Gee;
 using CanberraGtk;
 
@@ -68,9 +67,9 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Rectangle background_layer;
   private Clutter.Text      error_layer;
 
-  private Mx.Table            current_effects_grid;
+  private Clutter.Box           current_effects_grid;
   private int                current_effects_page = 0;
-  private ArrayList<Mx.Table> effects_grids;
+  private ArrayList<Clutter.Box> effects_grids;
 
   private Gtk.Action       take_photo_action;
   private Gtk.Action       take_video_action;
@@ -851,7 +850,7 @@ public class Cheese.MainWindow : Gtk.Window
       effects_manager = new EffectsManager ();
       effects_manager.load_effects ();
 
-      effects_grids = new ArrayList<Mx.Table>();
+      effects_grids = new ArrayList<Clutter.Box>();
 
       if (effects_manager.effects.size == 0)
       {
@@ -860,11 +859,12 @@ public class Cheese.MainWindow : Gtk.Window
 
       for (int i = 0; i <= effects_manager.effects.size / EFFECTS_PER_PAGE; i++)
       {
-        Mx.Table grid = new Mx.Table ();
+		  Clutter.TableLayout table_layout = new TableLayout();
+		Clutter.Box grid = new Clutter.Box (table_layout);
         effects_grids.add (grid);
 
-        grid.column_spacing = 20;
-        grid.row_spacing    = 20;
+        table_layout.column_spacing = 20;
+        table_layout.row_spacing    = 20;
       }
 
       for (int i = 0; i < effects_manager.effects.size; i++)
@@ -907,11 +907,11 @@ public class Cheese.MainWindow : Gtk.Window
                   "y-align", Clutter.BinAlignment.END, null
                   );
 
-        effects_grids[i / EFFECTS_PER_PAGE].add_actor_with_properties ((Clutter.Actor)box,
-																	   (i % EFFECTS_PER_PAGE) % 3,
-																	   (i % EFFECTS_PER_PAGE) / 3,
-																	   "x-fill", true,
-																	   "y-fill", true
+		Clutter.TableLayout table_layout = (Clutter.TableLayout)effects_grids[i / EFFECTS_PER_PAGE].layout_manager;
+        table_layout.pack (
+			(Clutter.Actor)box,
+			(i % EFFECTS_PER_PAGE) % 3,
+			(i % EFFECTS_PER_PAGE) / 3
 			);
       }
 
