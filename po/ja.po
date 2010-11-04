@@ -11,10 +11,11 @@ msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-09-13 13:38+0000\n"
-"PO-Revision-Date: 2010-09-13 22:45+0900\n"
+"POT-Creation-Date: 2010-11-03 08:54+0000\n"
+"PO-Revision-Date: 2010-09-13 22:31+0900\n"
 "Last-Translator: Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,19 +57,22 @@ msgstr ""
 "kentaro kazuhama <kazken3@gmail.com>\n"
 "やまねひでき <henrich@debian.or.jp>\n"
 "草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
-"日本GNOMEユーザ会 <http://www.gnome.gr.jp/>"
+"日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
 
 #: ../data/cheese-actions.ui.h:1
+#, fuzzy
 msgid "Burst"
-msgstr "連続"
+msgstr "連続(_B)"
 
 #: ../data/cheese-actions.ui.h:2
+#, fuzzy
 msgid "Fullscreen"
-msgstr "フルスクリーン"
+msgstr "フルスクリーンの解除(_L)"
 
 #: ../data/cheese-actions.ui.h:3
+#, fuzzy
 msgid "Help _Contents"
-msgstr "ヘルプの目次(_C)"
+msgstr "目次(_C)"
 
 #: ../data/cheese-actions.ui.h:4
 msgid "Move All to Trash"
@@ -79,32 +83,37 @@ msgid "Move to _Trash"
 msgstr "ゴミ箱へ移動する(_T)"
 
 #: ../data/cheese-actions.ui.h:6
+#, fuzzy
 msgid "Next Effects"
-msgstr "次の効果"
+msgstr "効果なし"
 
 #: ../data/cheese-actions.ui.h:7
+#, fuzzy
 msgid "Previous Effects"
-msgstr "前の効果"
+msgstr "効果なし"
 
 #: ../data/cheese-actions.ui.h:8
+#, fuzzy
 msgid "Save _As"
-msgstr "別名で保存(_A)"
+msgstr "別名で保存(_A)…"
 
 #: ../data/cheese-actions.ui.h:9
+#, fuzzy
 msgid "Take _Multiple Photos"
-msgstr "複数の写真を撮る(_M)"
+msgstr "複数の写真を撮る(_T)"
 
 #: ../data/cheese-actions.ui.h:10
 msgid "_About"
-msgstr "情報(_A)"
+msgstr ""
 
 #: ../data/cheese-actions.ui.h:11
 msgid "_Cheese"
 msgstr "Cheese(_C)"
 
 #: ../data/cheese-actions.ui.h:12
+#, fuzzy
 msgid "_Delete"
-msgstr "削除(_D)"
+msgstr "削除"
 
 #: ../data/cheese-actions.ui.h:13
 msgid "_Edit"
@@ -127,16 +136,18 @@ msgid "_Photo"
 msgstr "写真(_P)"
 
 #: ../data/cheese-actions.ui.h:18
+#, fuzzy
 msgid "_Preferences"
-msgstr "設定(_P)"
+msgstr "Cheese の設定"
 
 #: ../data/cheese-actions.ui.h:19
 msgid "_Quit"
-msgstr "終了(_Q)"
+msgstr ""
 
 #: ../data/cheese-actions.ui.h:20
+#, fuzzy
 msgid "_Record a Video"
-msgstr "動画を録画(_R)"
+msgstr "録画する(_R)"
 
 #: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
 msgid "_Take a Photo"
@@ -147,12 +158,13 @@ msgid "_Video"
 msgstr "動画(_V)"
 
 #: ../data/cheese-actions.ui.h:23
+#, fuzzy
 msgid "_Wide Mode"
 msgstr "ワイドモード(_W)"
 
 #: ../data/cheese-main-window.ui.h:2
 msgid "_Leave Fullscreen"
-msgstr "フルスクリーン表示の解除(_L)"
+msgstr "フルスクリーンの解除(_L)"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "Brightness"
@@ -214,11 +226,11 @@ msgid ""
 "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
 "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 msgstr ""
-"起動時に適用するいろいろな画像効果です。指定可能な値: \"mauve\" (薄紫色)、"
-"\"noir_blanc\" (白黒)、\"saturation\" (鮮やか)、\"hulk\" (ハルク)、"
-"\"vertical-flip\" (Y軸方向に折り返す)、 \"horizontal-flip\" (X軸方向に折り返"
-"す)、\"shagadelic\" (セクシー)、\"vertigo\" (めまい)、\"edge\" (エッジ)、"
-"\"dice\" (ダイス)、\"warp\" (ワープ)"
+"起動時に適用するいろいろな画像効果です。指定可能な値: \"mauve\" (薄紫"
+"色)、\"noir_blanc\" (白黒)、\"saturation\" (鮮やか)、\"hulk\" (ハル"
+"ク)、\"vertical-flip\" (Y軸方向に折り返す)、 \"horizontal-flip\" (X軸方向に折"
+"り返す)、\"shagadelic\" (セクシー)、\"vertigo\" (めまい)、\"edge\" (エッ"
+"ジ)、\"dice\" (ダイス)、\"warp\" (ワープ)"
 
 #: ../data/cheese.schemas.in.h:4
 msgid "Adjusts brightness level of the picture coming from the camera"
@@ -355,7 +367,7 @@ msgstr "ワイドモードで開始するかどうか"
 msgid "Width resolution"
 msgstr "X方向の解像度"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:593
 msgid "Shutter sound"
 msgstr "シャッター音"
 
@@ -378,7 +390,7 @@ msgstr "デバイスの機能はサポートされていません"
 #: ../libcheese/cheese-camera-device.c:357
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
-msgstr "機能を調べるためにデバイス %s を初期化するのに失敗しました"
+msgstr ""
 
 #: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
@@ -419,34 +431,36 @@ msgstr "ワイドモードを有効にする"
 
 #: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
-msgstr "カメラとして使用するデバイス"
+msgstr ""
 
 #: ../src/cheese-main.vala:38
 msgid "DEVICE"
-msgstr "DEVICE"
+msgstr ""
 
 #: ../src/cheese-main.vala:39
+#, fuzzy
 msgid "Output version information and exit"
 msgstr "バージョン情報を出力して終了する"
 
 #: ../src/cheese-main.vala:66
+#, fuzzy
 msgid "- Take photos and videos from your webcam"
-msgstr "- ウェブカムで写真や動画を撮る"
+msgstr "- ウェブカムで画像効果が付いた楽しい写真や動画を撮る"
 
 #: ../src/cheese-main.vala:77
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
-"'%s --help' を実行すれば利用可能なコマンドラインオプションの完全な一覧を見ら"
-"れます。\n"
 
-#: ../src/cheese-window.vala:689
+#: ../src/cheese-window.vala:688
+#, fuzzy
 msgid "Stop _Recording"
-msgstr "録画の停止(_R)"
+msgstr "録画の停止(_S)"
 
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:820
+#, fuzzy
 msgid "No effects found"
-msgstr "効果が見つかりません"
+msgstr "デバイスが見つかりません"
 
 #~ msgid "Set to True to use flash when taking a photo"
 #~ msgstr "写真を撮る時にフラッシュを使うには true と設定します"
