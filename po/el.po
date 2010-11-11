@@ -9,29 +9,212 @@ msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2010-08-13 15:31+0000\n"
-"PO-Revision-Date: 2010-08-26 10:47+0200\n"
-"Last-Translator: Michael Kotsarinis <mk73628@hotmail.com>\n"
+"POT-Creation-Date: 2010-08-26 18:21+0000\n"
+"PO-Revision-Date: 2010-11-11 20:03+0200\n"
+"Last-Translator: Michael Kotsarinis <mk73628@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 0.2\n"
+"X-Poedit-Language: Greek\n"
+"X-Poedit-Country: GREECE\n"
 
+#: ../data/cheese-about.ui.h:1
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese.c:118
+#: ../src/cheese-main.vala:102
 msgid "Cheese"
 msgstr "Cheese"
+
+#: ../data/cheese-about.ui.h:2
+msgid "Cheese Website"
+msgstr "Ιστοσελίδα του Cheese"
+
+#: ../data/cheese-about.ui.h:3
+#: ../data/cheese.desktop.in.in.h:3
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "Λήψη φωτογραφιών και βίντεο από την δικτυακή σας κάμερα, με διασκεδαστικά γραφικά εφέ"
+
+#: ../data/cheese-about.ui.h:4
+msgid ""
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/\n"
+msgstr ""
+
+#: ../data/cheese-about.ui.h:10
+msgid "translator-credits"
+msgstr ""
+"Ελληνική μεταφραστική ομάδα GNOME\n"
+" Αθανάσιος Λευτέρης <alefteris@gmail.com>\n"
+"\n"
+"Για περισσότερα δείτε http://www.gnome.gr/"
+
+#: ../data/cheese-actions.ui.h:1
+#| msgid "_Burst"
+msgid "Burst"
+msgstr "Πολλαπλή λήψη"
+
+#: ../data/cheese-actions.ui.h:2
+#| msgid "_Leave Fullscreen"
+msgid "Fullscreen"
+msgstr "Πλήρης οθόνη"
+
+#: ../data/cheese-actions.ui.h:3
+#| msgid "_Contents"
+msgid "Help _Contents"
+msgstr "_Περιεχόμενα βοήθειας"
+
+#: ../data/cheese-actions.ui.h:4
+msgid "Move All to Trash"
+msgstr "Μετακίνηση όλων στα απορρίμματα"
+
+#: ../data/cheese-actions.ui.h:5
+msgid "Move to _Trash"
+msgstr "Μετακίνηση στα απορρίμμα_τα"
+
+#: ../data/cheese-actions.ui.h:6
+#| msgid "No Effect"
+msgid "Next Effects"
+msgstr "Επόμενα εφέ"
+
+#: ../data/cheese-actions.ui.h:7
+#| msgid "No Effect"
+msgid "Previous Effects"
+msgstr "Προηγούμενα εφέ"
+
+#: ../data/cheese-actions.ui.h:8
+#| msgid "Save _As…"
+msgid "Save _As"
+msgstr "_Αποθήκευση ως…"
+
+#: ../data/cheese-actions.ui.h:9
+#| msgid "_Take multiple Photos"
+msgid "Take _Multiple Photos"
+msgstr "_Λήψη πολλαπλών φωτογραφιών"
+
+#: ../data/cheese-actions.ui.h:10
+#| msgid "About"
+msgid "_About"
+msgstr "_Περί"
+
+#: ../data/cheese-actions.ui.h:11
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../data/cheese-actions.ui.h:12
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "_Διαγραφή"
+
+#: ../data/cheese-actions.ui.h:13
+msgid "_Edit"
+msgstr "_Επεξεργασία"
+
+#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-main-window.ui.h:1
+msgid "_Effects"
+msgstr "_Εφέ"
+
+#: ../data/cheese-actions.ui.h:15
+msgid "_Help"
+msgstr "_Βοήθεια"
+
+#: ../data/cheese-actions.ui.h:16
+msgid "_Open"
+msgstr "Άν_οιγμα"
+
+#: ../data/cheese-actions.ui.h:17
+msgid "_Photo"
+msgstr "_Φωτογραφία"
+
+#: ../data/cheese-actions.ui.h:18
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_Προτιμήσεις"
+
+#: ../data/cheese-actions.ui.h:19
+#| msgid "Quit"
+msgid "_Quit"
+msgstr "_Τερματισμός"
+
+#: ../data/cheese-actions.ui.h:20
+#| msgid "_Recording"
+msgid "_Record a Video"
+msgstr "_Εγγραφή βίντεο"
+
+#: ../data/cheese-actions.ui.h:21
+#: ../data/cheese-main-window.ui.h:3
+msgid "_Take a Photo"
+msgstr "_Λήψη φωτογραφίας"
+
+#: ../data/cheese-actions.ui.h:22
+msgid "_Video"
+msgstr "_Βίντεο"
+
+#: ../data/cheese-actions.ui.h:23
+#| msgid "_Wide mode"
+msgid "_Wide Mode"
+msgstr "_Λειτουργία ευρείας εικόνας"
+
+#: ../data/cheese-main-window.ui.h:2
+msgid "_Leave Fullscreen"
+msgstr "Έ_ξοδος από πλήρη οθόνη"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "Brightness"
+msgstr "Φωτεινότητα"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "Burst mode"
+msgstr "Λειτουργία πολλαπλής φωτογράφησης"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "Αντίθεση"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (seconds)"
+msgstr "Καθυστέρηση μεταξύ φωτογραφιών (δευτ)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Συσκευή"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Απόχρωση"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Ιδιότητες εικόνας"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Αριθμός φωτογραφιών"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "Ανάλυση"
+
+#: ../data/cheese-prefs.ui.h:11
+msgid "Saturation"
+msgstr "Κορεσμός"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Webcam"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese"
-
-#: ../data/cheese.desktop.in.in.h:3
-#: ../src/cheese-commands-help.c:118
-msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Λήψη φωτογραφιών και βίντεο από την δικτυακή σας κάμερα, με διασκεδαστικά γραφικά εφέ"
 
 #. Translators: please note, that the effect names are
 #. standarized and should not be translated
@@ -116,171 +299,85 @@ msgid "Set to True to show countdown when taking a photo"
 msgstr "Καθορίστε το σε Αληθές για να χρησιμοποιείται αντίστροφη μέτρηση κατά την λήψη φωτογραφίας"
 
 #: ../data/cheese.schemas.in.h:23
-#| msgid "Set to True to show countdown when taking a photo"
-msgid "Set to True to use flash when taking a photo"
-msgstr "Καθορίστε το σε Αληθές για να χρήση φλας κατά την λήψη φωτογραφίας"
-
-#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "Η συσκευή που αντιστοιχεί στη δικτυακή κάμερα (π.χ. /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:24
 msgid "The height resolution of the image captured from the camera"
 msgstr "Το ύψος ανάλυσης της εικόνας που καταγράφηκε από την κάμερα"
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:25
 msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos."
 msgstr "Η διάρκεια καθυστερησης , σε εκατοστά δευτερολέπτου, ανάμεσα σε κάθε λήψη φωτογραφίας στη λειτουργία πολλαπλής φωτογράφησης."
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:26
 msgid "The number of photos to take in a single burst."
 msgstr "Ο αριθμός των φωτογραφιών που θα λαμβάνονται σε κάθε πολλαπλή φωτογράφηση."
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:27
 msgid "The width resolution of the image captured from the camera"
 msgstr "Το πλάτος ανάλυσης της εικόνας που καταγράφηκε από την κάμερα"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:28
 msgid "Use a countdown"
 msgstr "Χρήση αντίστροφης μέτρησης"
 
-#: ../data/cheese.schemas.in.h:30
-msgid "Use a flash"
-msgstr "Χρήση φλας"
-
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:29
 msgid "Video Path"
 msgstr "Διαδρομή βίντεο"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:30
 msgid "Whether to enable immediate deletion"
 msgstr "Αν θα ενεργοποιηθεί η άμεση διαγραφή"
 
-#: ../data/cheese.schemas.in.h:33
+#: ../data/cheese.schemas.in.h:31
 msgid "Whether to start in wide mode"
 msgstr "Αν θα γίνεται εκκίνηση σε λειτουργία ευρείας εικόνας."
 
-#: ../data/cheese.schemas.in.h:34
+#: ../data/cheese.schemas.in.h:32
 msgid "Width resolution"
 msgstr "Πλάτος ανάλυσης"
 
-#: ../data/cheese.ui.h:1
-msgid "Switch to Burst Mode"
-msgstr "Αλλαγή σε λειτουργία πολλαπλής φωτογράφησης"
-
-#: ../data/cheese.ui.h:2
-msgid "Switch to Photo Mode"
-msgstr "Αλλαγή σε λειτουργία φωτογράφισης"
-
-#: ../data/cheese.ui.h:3
-msgid "Switch to Video Mode"
-msgstr "Αλλαγή σε λειτουργία βίντεο"
-
-#: ../data/cheese.ui.h:4
-msgid "Switch to the Effects Selector"
-msgstr "Αλλαγή σε επιλογή εφέ"
-
-#: ../data/cheese.ui.h:5
-#: ../src/cheese-ui.h:61
-#: ../src/cheese-window.c:884
-msgid "_Effects"
-msgstr "_Εφέ"
-
-#: ../data/cheese.ui.h:6
-msgid "_Leave Fullscreen"
-msgstr "Έ_ξοδος από πλήρη οθόνη"
-
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-ui.h:72
-#: ../src/cheese-window.c:59
-msgid "_Take a Photo"
-msgstr "_Λήψη φωτογραφίας"
-
-#: ../data/cheese-prefs.ui.h:1
-msgid "Brightness"
-msgstr "Φωτεινότητα"
-
-#: ../data/cheese-prefs.ui.h:2
-msgid "Burst mode"
-msgstr "Λειτουργία πολλαπλής φωτογράφησης"
-
-#: ../data/cheese-prefs.ui.h:3
-msgid "Contrast"
-msgstr "Αντίθεση"
-
-#: ../data/cheese-prefs.ui.h:4
-msgid "Delay between photos (seconds)"
-msgstr "Καθυστέρηση μεταξύ φωτογραφιών (δευτ)"
-
-#: ../data/cheese-prefs.ui.h:5
-msgid "Device"
-msgstr "Συσκευή"
-
-#: ../data/cheese-prefs.ui.h:6
-msgid "Hue"
-msgstr "Απόχρωση"
-
-#: ../data/cheese-prefs.ui.h:7
-msgid "Image properties"
-msgstr "Ιδιότητες εικόνας"
-
-#: ../data/cheese-prefs.ui.h:8
-msgid "Number of photos"
-msgstr "Αριθμός φωτογραφιών"
-
-#: ../data/cheese-prefs.ui.h:9
-#: ../src/cheese-ui.h:44
-msgid "Preferences"
-msgstr "Προτιμήσεις"
-
-#: ../data/cheese-prefs.ui.h:10
-msgid "Resolution"
-msgstr "Ανάλυση"
-
-#: ../data/cheese-prefs.ui.h:11
-#: ../src/cheese-effect-chooser.c:66
-msgid "Saturation"
-msgstr "Κορεσμός"
-
-#: ../data/cheese-prefs.ui.h:12
-msgid "Webcam"
-msgstr "Webcam"
-
 #: ../libcheese/cheese-avatar-chooser.c:110
-#: ../src/cheese-window.c:640
+#: ../src/cheese-window.vala:594
 msgid "Shutter sound"
 msgstr "Ήχος φωτοφράκτη"
 
-#: ../libcheese/cheese-avatar-chooser.c:236
+#: ../libcheese/cheese-avatar-chooser.c:238
 msgid "Take a photo"
 msgstr "Λήψη φωτογραφίας"
 
-#: ../libcheese/cheese-avatar-chooser.c:255
+#: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
 msgstr "_Λήψη φωτογραφίας"
 
-#: ../libcheese/cheese-avatar-chooser.c:270
+#: ../libcheese/cheese-avatar-chooser.c:272
 msgid "_Discard photo"
 msgstr "Από_ρριψη φωτογραφίας"
 
-#: ../libcheese/cheese-camera-device.c:328
+#: ../libcheese/cheese-camera-device.c:329
 msgid "Device capabilities not supported"
 msgstr "Δεν υποστηρίζονται οι δυνατότητες της συσκευής"
 
-#: ../libcheese/cheese-camera-device.c:510
+#: ../libcheese/cheese-camera-device.c:357
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "Αποτυχία αρχικοποίησης συσκευής %s για ανίχνευση δυνατοτήτων"
+
+#: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
 msgstr "Άγνωστη συσκευή"
 
-#: ../libcheese/cheese-camera-device.c:534
+#: ../libcheese/cheese-camera-device.c:539
 msgid "Cancellable initialization not supported"
 msgstr "Δεν υποστηρίζεται η ακύρωση αρχικοποίησης"
 
-#: ../libcheese/cheese-camera.c:1137
+#: ../libcheese/cheese-camera.c:1156
 #, c-format
 msgid "No device found"
 msgstr "Δε βρέθηκε συσκευή"
 
-#: ../libcheese/cheese-camera.c:1156
+#: ../libcheese/cheese-camera.c:1175
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ένα ή περισσότερα απαιτούμενα στοιχεία του gstreamer αγνοούνται: "
 
@@ -297,300 +394,45 @@ msgstr "Ένα ή περισσότερα απαιτούμενα στοιχεία
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-commands-file.c:31
-msgid "_Skip"
-msgstr "_Προσπέραση"
-
-#: ../src/cheese-commands-file.c:32
-msgid "S_kip All"
-msgstr "Π_ροσπέραση όλων"
-
-#: ../src/cheese-commands-file.c:33
-msgid "Delete _All"
-msgstr "Διαγραφή ό_λων"
-
-#: ../src/cheese-commands-file.c:57
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s\n"
-"%s"
-msgstr ""
-"Αποτυχία εκκίνησης προγράμματος για προβολή:\n"
-"%s\n"
-"%s"
-
-#: ../src/cheese-commands-file.c:78
-msgid "Save File"
-msgstr "Αποθήκευση αρχείου"
-
-#: ../src/cheese-commands-file.c:116
-#, c-format
-msgid "Could not save %s"
-msgstr "Δεν είναι δυνατή η αποθήκευση του %s"
-
-#: ../src/cheese-commands-file.c:139
-msgid "Error while deleting"
-msgstr "Σφάλμα κατά την διαγραφή"
-
-#: ../src/cheese-commands-file.c:140
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "Το αρχείο \"%s\" δεν μπορεί να διαγραφεί. Λεπτομέρειες: %s"
-
-#: ../src/cheese-commands-file.c:167
-#, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "Είστε σίγουροι ότι θέλετε να διαγράψετε οριστικά το %'d επιλεγμένο αντικείμενο;"
-msgstr[1] "Είστε σίγουροι ότι θέλετε να διαγράψετε οριστικά τα %'d επιλεγμένα αντικείμενα;"
-
-#: ../src/cheese-commands-file.c:174
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "Είστε σίγουροι ότι θέλετε να διαγράψετε οριστικά το \"%s\";"
-
-#: ../src/cheese-commands-file.c:177
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Αν διαγράψετε ένα αντικείμενο, αυτό θα χαθεί οριστικά."
-
-#: ../src/cheese-commands-file.c:198
-msgid "Unknown Error"
-msgstr "Άγνωστο σφάλμα"
-
-#: ../src/cheese-commands-file.c:228
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Το αρχείο δε μπορεί να μετακινηθεί στα απορρίμματα. Θέλετε να το διαγράψετε οριστικά τώρα;"
-
-#: ../src/cheese-commands-file.c:229
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "Το αρχείο \"%s\" δεν μπορεί να μεταφερθεί στα απορρίμματα. Λεπτομέρειες: %s"
-
-#: ../src/cheese-commands-file.c:301
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "Να μεταφερθούν όλες οι φωτογραφίες στα απορρίμματα;"
-
-#: ../src/cheese-commands-file.c:309
-msgid "_Move to Trash"
-msgstr "_Μετακίνηση στα Απορρίμματα"
-
-#: ../src/cheese-commands-help.c:39
-#: ../src/cheese-window.c:662
-msgid "Unable to open help file for Cheese"
-msgstr "Αδυναμία άνοιγμα αρχείου βοήθειας για το Cheese"
-
-#: ../src/cheese-commands-help.c:96
-msgid "translator-credits"
-msgstr ""
-"Ελληνική μεταφραστική ομάδα GNOME\n"
-" Αθανάσιος Λευτέρης <alefteris@gmail.com>\n"
-"\n"
-"Για περισσότερα δείτε http://www.gnome.gr/"
-
-#: ../src/cheese-commands-help.c:99
-msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-msgstr "Αυτό το πρόγραμμα είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανέμετε ή/και να το τροποποιείτε μέσω των όρων της GNU General Public License όπως αυτή δημοσιεύτηκε από το  Free Software Foundation, έκδοση 2, ή (προαιρετικά) οποιαδήποτε νεότερη έκδοση.\n"
-
-#: ../src/cheese-commands-help.c:103
-msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-msgstr "Αυτό το πρόγραμμα διανέμεται με την ελπίδα ότι θα είναι χρήσιμος, αλλά ΧΩΡΙΣ ΚΑΜΜΙΑ ΑΠΟΛΥΤΩΣ ΕΓΓΥΗΣΗ για συγκεκριμένο σκοπό. Δείτε για περισσότερες λεπτομέρειες την GNU General Public License.\n"
-
-#: ../src/cheese-commands-help.c:107
-msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "Θα πρέπει να έχετε λάβει ένα αντίγραφο της Γενικής Άδειας Δημόσιας Χρήσης GNU (GNU General Public License) μαζί με αυτό το πρόγραμμα. Αν όχι, δείτε <http://www.gnu.org/licenses/>."
-
-#: ../src/cheese-commands-help.c:124
-msgid "Cheese Website"
-msgstr "Ιστοσελίδα του Cheese"
-
-#: ../src/cheese-effect-chooser.c:60
+#: ../src/cheese-effects-manager.vala:116
 msgid "No Effect"
 msgstr "Δίχως εφέ"
 
-#: ../src/cheese-effect-chooser.c:62
-msgid "Mauve"
-msgstr "Μωβ"
-
-#: ../src/cheese-effect-chooser.c:64
-msgid "Noir/Blanc"
-msgstr "Άσπρο/μαύρο"
-
-#: ../src/cheese-effect-chooser.c:68
-msgid "Hulk"
-msgstr "Χουλκ"
-
-#: ../src/cheese-effect-chooser.c:70
-msgid "Vertical Flip"
-msgstr "Κάθετο στρίψιμο"
-
-#: ../src/cheese-effect-chooser.c:72
-msgid "Horizontal Flip"
-msgstr "Οριζόντιο στρίψιμο"
-
-#: ../src/cheese-effect-chooser.c:74
-msgid "Shagadelic"
-msgstr "Ψυχεδέλεια"
-
-#: ../src/cheese-effect-chooser.c:76
-msgid "Vertigo"
-msgstr "Ίλιγγος"
-
-#: ../src/cheese-effect-chooser.c:78
-msgid "Edge"
-msgstr "Περίγραμμα"
-
-#: ../src/cheese-effect-chooser.c:80
-msgid "Dice"
-msgstr "Κύβοι"
-
-#: ../src/cheese-effect-chooser.c:82
-msgid "Warp"
-msgstr "Στρέβλωση"
-
-#: ../src/cheese-no-camera.c:94
-msgid "No camera found!"
-msgstr "Δε βρέθηκε κάμερα!"
-
-#: ../src/cheese-no-camera.c:95
-#: ../src/cheese-window.c:1258
-msgid "Please refer to the help for further information."
-msgstr "Παρακαλώ ανατρέξτε στην βοήθεια για περισσότερες πληροφορίες."
-
-#: ../src/cheese-ui.h:32
-msgid "_Cheese"
-msgstr "_Cheese"
-
-#: ../src/cheese-ui.h:34
-msgid "_Edit"
-msgstr "_Επεξεργασία"
-
-#: ../src/cheese-ui.h:35
-msgid "_Help"
-msgstr "_Βοήθεια"
-
-#: ../src/cheese-ui.h:38
-msgid "_Contents"
-msgstr "_Περιεχόμενα"
-
-#: ../src/cheese-ui.h:38
-msgid "Help on this Application"
-msgstr "Βοήθεια για αυτή την εφαρμογή"
-
-#: ../src/cheese-ui.h:48
-msgid "_Photo"
-msgstr "_Φωτογραφία"
-
-#: ../src/cheese-ui.h:49
-msgid "_Video"
-msgstr "_Βίντεο"
-
-#: ../src/cheese-ui.h:50
-msgid "_Burst"
-msgstr "_Πολλαπλή λήψη"
-
-#: ../src/cheese-ui.h:54
-msgid "Countdown"
-msgstr "Αντίστροφη μέτρηση"
-
-#: ../src/cheese-ui.h:57
-msgid "Flash"
-msgstr "Φλας"
-
-#: ../src/cheese-ui.h:68
-msgid "_Wide mode"
-msgstr "_Λειτουργία ευρείας εικόνας"
-
-#: ../src/cheese-ui.h:75
-msgid "_Recording"
-msgstr "_Εγγραφή"
-
-#: ../src/cheese-ui.h:78
-#: ../src/cheese-window.c:62
-msgid "_Take multiple Photos"
-msgstr "_Λήψη πολλαπλών φωτογραφιών"
-
-#: ../src/cheese-ui.h:82
-msgid "_Open"
-msgstr "Άν_οιγμα"
-
-#: ../src/cheese-ui.h:84
-msgid "Save _As…"
-msgstr "_Αποθήκευση ως..."
-
-#: ../src/cheese-ui.h:86
-msgid "Move to _Trash"
-msgstr "Μετακίνηση στα απορρίμμα_τα"
-
-#: ../src/cheese-ui.h:88
-msgid "Delete"
-msgstr "Διαγραφή"
-
-#: ../src/cheese-ui.h:93
-msgid "Move All to Trash"
-msgstr "Μετακίνηση όλων στα απορρίμματα"
-
-#: ../src/cheese-window.c:60
-msgid "_Start Recording"
-msgstr "Έ_ναρξη εγγραφής"
-
-#: ../src/cheese-window.c:61
-msgid "_Stop Recording"
-msgstr "_Διακοπή εγγραφής"
-
-#: ../src/cheese.c:97
-msgid "Be verbose"
-msgstr "Να είστε φλύαροι"
-
-#: ../src/cheese.c:99
+#: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
 msgstr "Ενεργοποίηση ευρείας εικόνας"
 
-#: ../src/cheese.c:101
-msgid "output version information and exit"
-msgstr "προβολή πληροφοριών έκδοσης και έξοδος"
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "Συσκευή για χρήση ως κάμερα"
 
-#: ../src/cheese.c:120
-msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr "- Λήψη φωτογραφιών και βίντεο από την δικτυακή κάμερά σας, με διασκεδαστικά γραφικά εφέ"
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "DEVICE"
 
-#~ msgid "Could not set the Account Photo"
-#~ msgstr "Δεν είναι δυνατός ο καθορισμός της φωτογραφίας λογαριασμού"
-#~ msgid "Media files"
-#~ msgstr "Αρχεία μέσων"
-#~ msgid "_Set As Account Photo"
-#~ msgstr "_Καθορισμός ως φωτογραφία λογαριασμού"
-#~ msgid "Send by _Mail"
-#~ msgstr "Αποστολή με _ηλεκτρονικό ταχυδρομείο"
-#~ msgid "Send _To"
-#~ msgstr "Αποστολή _προς"
-#~ msgid "Export to F-_Spot"
-#~ msgstr "Εξαγωγή στο F-_Spot"
-#~ msgid "Export to _Flickr"
-#~ msgstr "Εξαγωγή στο _Flickr"
-#~ msgid "_Start recording"
-#~ msgstr "Έ_ναρξη εγγραφής"
-#~ msgid "Check your gstreamer installation"
-#~ msgstr "Έλεγξε την εγκατάσταση του gstreamer σας"
-#~ msgid "Help"
-#~ msgstr "Βοήθεια"
-#~ msgid ""
-#~ "Failed to open browser to show:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Αποτυχία ανοίγματος περιηγητή για προβολή:\n"
-#~ "%s"
-#~ msgid ""
-#~ "Failed to open email client to send message to:\n"
-#~ "%s"
-#~ msgstr ""
-#~ "Αποτυχία ανοίγματος εφαρμογής ηλεκτρονικής αλληλογραφίας για αποστολή "
-#~ "προς:\n"
-#~ "%s"
-#~ msgid "Quit"
-#~ msgstr "Τερματισμός"
-#~ msgid "About"
-#~ msgstr "Περί"
+#: ../src/cheese-main.vala:39
+#| msgid "output version information and exit"
+msgid "Output version information and exit"
+msgstr "Προβολή πληροφοριών έκδοσης και έξοδος"
+
+#: ../src/cheese-main.vala:66
+#| msgid ""
+#| "- Take photos and videos with your webcam, with fun graphical effects"
+msgid "- Take photos and videos from your webcam"
+msgstr "- Λήψη φωτογραφιών και βίντεο από την δικτυακή κάμερά σας"
+
+#: ../src/cheese-main.vala:77
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgstr "Εκτελέστε '%s --help' για να δείτε την πλήρη λίστα των διαθέσιμων επιλογών γραμμής εντολών.\n"
+
+#: ../src/cheese-window.vala:689
+#| msgid "_Stop Recording"
+msgid "Stop _Recording"
+msgstr "Δια_κοπή εγγραφής"
+
+#: ../src/cheese-window.vala:821
+#| msgid "No device found"
+msgid "No effects found"
+msgstr "Δε βρέθηκαν εφέ"
 
