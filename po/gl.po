@@ -11,17 +11,18 @@
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Anton Meixome <meixome@mancomun.org>, 2009.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010.
-# Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010.
 # Fran Dieguez <frandieguez@ubuntu.com>, 2010.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-16 10:28+0200\n"
-"PO-Revision-Date: 2010-08-16 10:28+0200\n"
-"Last-Translator: Fran Dieguez <frandieguez@ubuntu.com>\n"
+"POT-Creation-Date: 2010-11-16 19:25+0100\n"
+"PO-Revision-Date: 2010-11-16 19:26+0100\n"
+"Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -177,210 +178,70 @@ msgid "_Leave Fullscreen"
 msgstr "_Saír do modo de pantalla completa"
 
 #: ../data/cheese-prefs.ui.h:1
+msgid "<b>Shutter</b>"
+msgstr "<b>Obturador</b>"
+
+#: ../data/cheese-prefs.ui.h:2
 msgid "Brightness"
 msgstr "Brillo"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:3
 msgid "Burst mode"
 msgstr "Modo de explosión"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:4
 msgid "Contrast"
 msgstr "Contraste"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:5
 msgid "Delay between photos (seconds)"
 msgstr "Atraso entre fotos (segundos)"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Device"
 msgstr "Dispositivo"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
+msgid "Fire _Flash"
+msgstr "Disparar _Flash"
+
+#: ../data/cheese-prefs.ui.h:8
 msgid "Hue"
 msgstr "Ton"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Image properties"
 msgstr "Propiedades da imaxe"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Number of photos"
 msgstr "Número de fotos"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../data/cheese-prefs.ui.h:10
+#: ../data/cheese-prefs.ui.h:12
 msgid "Resolution"
 msgstr "Resolución"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Saturación"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
 msgid "Webcam"
 msgstr "Cámara web"
+
+#: ../data/cheese-prefs.ui.h:15
+msgid "_Countdown"
+msgstr "_Conta atrás"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#. Translators: please note, that the effect names are
-#. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid ""
-"A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr ""
-"Unha lista dos efectos aplicados ao inicio. Os valores posíbeis son: "
-"«mauve» (malva), «noir_blanc» (blanco e negro), «saturation», «hulk», «vertical-"
-"flip» (xiro vertical), «horizontal-flip» (xiro horizontal), "
-"«shagadelic» (psicodélico), «vertigo» (vértigo), «edge» (contornos), "
-"«dice» (pedazos) e «wrap» (distorsión)."
-
-#: ../data/cheese.schemas.in.h:4
-msgid "Adjusts brightness level of the picture coming from the camera"
-msgstr "Axusta o nivel de brillo da imaxe capturada coa cámara"
-
-#: ../data/cheese.schemas.in.h:5
-msgid "Adjusts contrast level of the picture coming from the camera"
-msgstr "Axusta o nivel de contraste da imaxe capturada coa cámara"
-
-#: ../data/cheese.schemas.in.h:6
-msgid "Adjusts hue level of the picture coming from the camera"
-msgstr "Axusta o nivel de ton da imaxe capturada coa cámara"
-
-#: ../data/cheese.schemas.in.h:7
-msgid "Adjusts saturation level of the picture coming from the camera"
-msgstr "Axusta o nivel de saturación da imaxe capturada coa cámara"
-
-#: ../data/cheese.schemas.in.h:8
-msgid "Camera device string indicator"
-msgstr "Indicador de cadea do dispositivo da cámara"
-
-#: ../data/cheese.schemas.in.h:9
-msgid ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr ""
-"Define o camiño onde se gardan as fotos; se está baleira usarase «XDG_PHOTO/"
-"Webcam»."
-
-#: ../data/cheese.schemas.in.h:10
-msgid ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr ""
-"Define o camiño onde se gardan os vídeos; se está baleira usarase «XDG_VIDEO/"
-"Webcam»."
-
-#: ../data/cheese.schemas.in.h:11
-msgid "Height resolution"
-msgstr "Resolución da altura"
-
-#: ../data/cheese.schemas.in.h:12
-msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
-msgstr ""
-"Se vale verdadeiro, Cheese iniciarase en modo amplo coa colección de imaxes "
-"situada no lado dereito. Útil no caso de pantallas pequenas."
-
-#: ../data/cheese.schemas.in.h:13
-msgid ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-msgstr ""
-"Se vale verdadeiro, entón Cheese terá unha funcionalidade que lle permitirá "
-"eliminar un ficheiro inmediatamente e dende o propio lugar, en vez de movelo "
-"ao lixo. Esta funcionalidade pode ser perigosa, así que úsea con precaución."
-
-#: ../data/cheese.schemas.in.h:14
-msgid "Milliseconds between photos in burst mode."
-msgstr "Milisegundos entre fotos no modo de explosión"
-
-#: ../data/cheese.schemas.in.h:15
-msgid "Number of photos in burst mode."
-msgstr "Número de fotos no modo de explosión."
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Photo Path"
-msgstr "Camiño das fotos"
-
-#: ../data/cheese.schemas.in.h:17
-msgid "Picture brightness"
-msgstr "Brillo da imaxe"
-
-#: ../data/cheese.schemas.in.h:18
-msgid "Picture contrast"
-msgstr "Contraste da imaxe"
-
-#: ../data/cheese.schemas.in.h:19
-msgid "Picture hue"
-msgstr "Ton da imaxe"
-
-#: ../data/cheese.schemas.in.h:20
-msgid "Picture saturation"
-msgstr "Saturación da imaxe"
-
-#: ../data/cheese.schemas.in.h:21
-msgid "Selected Effects"
-msgstr "Efectos seleccionados"
-
-#: ../data/cheese.schemas.in.h:22
-msgid "Set to True to show countdown when taking a photo"
-msgstr "Definir como True para mostrar a conta atrás ao sacar unha foto"
-
-#: ../data/cheese.schemas.in.h:23
-msgid "The device which points to the camera (e.g. /dev/video0)"
-msgstr "O dispositivo que apunta á cámara (p.ex: /dev/video0)"
-
-#: ../data/cheese.schemas.in.h:24
-msgid "The height resolution of the image captured from the camera"
-msgstr "A resolución da altura da imaxe capturada coa cámara"
-
-#: ../data/cheese.schemas.in.h:25
-msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
-msgstr ""
-"A duración do tempo, en milisegundos, de retardo entre a toma de cada foto "
-"nunha secuencia de explosión de fotos."
-
-#: ../data/cheese.schemas.in.h:26
-msgid "The number of photos to take in a single burst."
-msgstr "O número de fotos a sacar en cada explosión."
-
-#: ../data/cheese.schemas.in.h:27
-msgid "The width resolution of the image captured from the camera"
-msgstr "A resolución da largura da imaxe capturada coa cámara"
-
-#: ../data/cheese.schemas.in.h:28
-msgid "Use a countdown"
-msgstr "Usar unha conta atrás"
-
-#: ../data/cheese.schemas.in.h:29
-msgid "Video Path"
-msgstr "Camiño de vídeo"
-
-#: ../data/cheese.schemas.in.h:30
-msgid "Whether to enable immediate deletion"
-msgstr "Indica se se activa a eliminación inmediata"
-
-#: ../data/cheese.schemas.in.h:31
-msgid "Whether to start in wide mode"
-msgstr "Cando comezar en modo amplo"
-
-#: ../data/cheese.schemas.in.h:32
-msgid "Width resolution"
-msgstr "Resolución da largura"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:589
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:600
 msgid "Shutter sound"
 msgstr "Son do obturador"
 
@@ -415,12 +276,12 @@ msgstr "Dispositivo descoñecido"
 msgid "Cancellable initialization not supported"
 msgstr "A inicialización cancelábel non é compatíbel"
 
-#: ../libcheese/cheese-camera.c:1154
+#: ../libcheese/cheese-camera.c:1158
 #, c-format
 msgid "No device found"
 msgstr "Non se atopou ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1173
+#: ../libcheese/cheese-camera.c:1177
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Falta un ou máis elementos necesarios de Gstreamer: "
 
@@ -464,16 +325,137 @@ msgstr "- Tome fotografías e vídeos coa súa cámara web"
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
-"Executar «%s --help» para ver unha lista completa de opcións de liña de ordes "
-"dispoñíbeis.\n"
+"Executar «%s --help» para ver unha lista completa de opcións de liña de "
+"ordes dispoñíbeis.\n"
 
-#: ../src/cheese-window.vala:646
+#: ../src/cheese-window.vala:695
 msgid "Stop _Recording"
 msgstr "_Deter a gravación"
 
-#: ../src/cheese-window.vala:765
+#: ../src/cheese-window.vala:828
 msgid "No effects found"
 msgstr "Non se atopou ningún efecto"
+
+#~ msgid ""
+#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+#~ msgstr ""
+#~ "Unha lista dos efectos aplicados ao inicio. Os valores posíbeis son: "
+#~ "«mauve» (malva), «noir_blanc» (blanco e negro), «saturation», «hulk», "
+#~ "«vertical-flip» (xiro vertical), «horizontal-flip» (xiro horizontal), "
+#~ "«shagadelic» (psicodélico), «vertigo» (vértigo), «edge» (contornos), "
+#~ "«dice» (pedazos) e «wrap» (distorsión)."
+
+#~ msgid "Adjusts brightness level of the picture coming from the camera"
+#~ msgstr "Axusta o nivel de brillo da imaxe capturada coa cámara"
+
+#~ msgid "Adjusts contrast level of the picture coming from the camera"
+#~ msgstr "Axusta o nivel de contraste da imaxe capturada coa cámara"
+
+#~ msgid "Adjusts hue level of the picture coming from the camera"
+#~ msgstr "Axusta o nivel de ton da imaxe capturada coa cámara"
+
+#~ msgid "Adjusts saturation level of the picture coming from the camera"
+#~ msgstr "Axusta o nivel de saturación da imaxe capturada coa cámara"
+
+#~ msgid "Camera device string indicator"
+#~ msgstr "Indicador de cadea do dispositivo da cámara"
+
+#~ msgid ""
+#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Define o camiño onde se gardan as fotos; se está baleira usarase "
+#~ "«XDG_PHOTO/Webcam»."
+
+#~ msgid ""
+#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Define o camiño onde se gardan os vídeos; se está baleira usarase "
+#~ "«XDG_VIDEO/Webcam»."
+
+#~ msgid "Height resolution"
+#~ msgstr "Resolución da altura"
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in a wide mode with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "Se vale verdadeiro, Cheese iniciarase en modo amplo coa colección de "
+#~ "imaxes situada no lado dereito. Útil no caso de pantallas pequenas."
+
+#~ msgid ""
+#~ "If set to true, then Cheese will have a feature allowing you to delete a "
+#~ "file immediately and in-place, instead of moving it to the trash. This "
+#~ "feature can be dangerous, so use caution."
+#~ msgstr ""
+#~ "Se vale verdadeiro, entón Cheese terá unha funcionalidade que lle "
+#~ "permitirá eliminar un ficheiro inmediatamente e dende o propio lugar, en "
+#~ "vez de movelo ao lixo. Esta funcionalidade pode ser perigosa, así que "
+#~ "úsea con precaución."
+
+#~ msgid "Milliseconds between photos in burst mode."
+#~ msgstr "Milisegundos entre fotos no modo de explosión"
+
+#~ msgid "Number of photos in burst mode."
+#~ msgstr "Número de fotos no modo de explosión."
+
+#~ msgid "Photo Path"
+#~ msgstr "Camiño das fotos"
+
+#~ msgid "Picture brightness"
+#~ msgstr "Brillo da imaxe"
+
+#~ msgid "Picture contrast"
+#~ msgstr "Contraste da imaxe"
+
+#~ msgid "Picture hue"
+#~ msgstr "Ton da imaxe"
+
+#~ msgid "Picture saturation"
+#~ msgstr "Saturación da imaxe"
+
+#~ msgid "Selected Effects"
+#~ msgstr "Efectos seleccionados"
+
+#~ msgid "Set to True to show countdown when taking a photo"
+#~ msgstr "Definir como True para mostrar a conta atrás ao sacar unha foto"
+
+#~ msgid "The device which points to the camera (e.g. /dev/video0)"
+#~ msgstr "O dispositivo que apunta á cámara (p.ex: /dev/video0)"
+
+#~ msgid "The height resolution of the image captured from the camera"
+#~ msgstr "A resolución da altura da imaxe capturada coa cámara"
+
+#~ msgid ""
+#~ "The length of time, in milliseconds, to delay between taking each photo "
+#~ "in a burst sequence of photos."
+#~ msgstr ""
+#~ "A duración do tempo, en milisegundos, de retardo entre a toma de cada "
+#~ "foto nunha secuencia de explosión de fotos."
+
+#~ msgid "The number of photos to take in a single burst."
+#~ msgstr "O número de fotos a sacar en cada explosión."
+
+#~ msgid "The width resolution of the image captured from the camera"
+#~ msgstr "A resolución da largura da imaxe capturada coa cámara"
+
+#~ msgid "Use a countdown"
+#~ msgstr "Usar unha conta atrás"
+
+#~ msgid "Video Path"
+#~ msgstr "Camiño de vídeo"
+
+#~ msgid "Whether to enable immediate deletion"
+#~ msgstr "Indica se se activa a eliminación inmediata"
+
+#~ msgid "Whether to start in wide mode"
+#~ msgstr "Cando comezar en modo amplo"
+
+#~ msgid "Width resolution"
+#~ msgstr "Resolución da largura"
 
 #~ msgid "Be verbose"
 #~ msgstr "Saída detallada"
@@ -637,9 +619,6 @@ msgstr "Non se atopou ningún efecto"
 
 #~ msgid "Help on this Application"
 #~ msgstr "Axuda sobre este aplicativo"
-
-#~ msgid "Countdown"
-#~ msgstr "Conta atrás"
 
 #~ msgid "_Start Recording"
 #~ msgstr "_Iniciar a gravación"
