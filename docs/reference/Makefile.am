@@ -56,7 +56,6 @@ IGNORE_HFILES=					\
 	cheese-countdown.h			\
 	cheese-fileutil.h			\
 	cheese-flash.h				\
-	cheese-gconf.h				\
 	cheese-widget-private.h			\
 	cheese-enum-types.h                     \
 	um-crop-area.h
