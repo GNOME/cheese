@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 2.91.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-16 12:24+0200\n"
-"PO-Revision-Date: 2010-10-16 12:24+0200\n"
+"POT-Creation-Date: 2010-11-20 11:51+0100\n"
+"PO-Revision-Date: 2010-11-20 11:52+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -146,205 +146,70 @@ msgid "_Leave Fullscreen"
 msgstr "For_lat fullskjerm"
 
 #: ../data/cheese-prefs.ui.h:1
+msgid "<b>Shutter</b>"
+msgstr "<b>Lukker</b>"
+
+#: ../data/cheese-prefs.ui.h:2
 msgid "Brightness"
 msgstr "Lysstyrke"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:3
 msgid "Burst mode"
 msgstr "Bytt til seriemodus"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:4
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:5
 msgid "Delay between photos (seconds)"
 msgstr "Pause mellom bilder (sekunder)"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Device"
 msgstr "Enhet"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
+msgid "Fire _Flash"
+msgstr "Utløs _blitz"
+
+#: ../data/cheese-prefs.ui.h:8
 msgid "Hue"
 msgstr "Glød"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Image properties"
 msgstr "Egenskaper for bilde"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Number of photos"
 msgstr "Antall bilder"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
 msgid "Preferences"
 msgstr "Brukervalg"
 
-#: ../data/cheese-prefs.ui.h:10
+#: ../data/cheese-prefs.ui.h:12
 msgid "Resolution"
 msgstr "Oppløsning"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Metning"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
 msgid "Webcam"
 msgstr "Kamera"
+
+#: ../data/cheese-prefs.ui.h:15
+msgid "_Countdown"
+msgstr "Ne_dtelling"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese webkamera"
 
-#. Translators: please note, that the effect names are
-#. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid ""
-"A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr ""
-"Effekter som brukes ved oppstart. Mulige verdier er: «mauve», «noir_blanc», "
-"«saturation», «hulk», «vertical-flip», «horisontal-flip», «shagadelic», "
-"«vertigo», «edge», «dice» og «warp»"
-
-#: ../data/cheese.schemas.in.h:4
-msgid "Adjusts brightness level of the picture coming from the camera"
-msgstr "Justerer nivå på lysstyrke for bilde fra kamera"
-
-#: ../data/cheese.schemas.in.h:5
-msgid "Adjusts contrast level of the picture coming from the camera"
-msgstr "Justerer nivå på kontrast på bilde fra kamera"
-
-#: ../data/cheese.schemas.in.h:6
-msgid "Adjusts hue level of the picture coming from the camera"
-msgstr "Justerer nivå på glød på bilde fra kamera"
-
-#: ../data/cheese.schemas.in.h:7
-msgid "Adjusts saturation level of the picture coming from the camera"
-msgstr "Justerer metningsnivå for bilde fra kamera"
-
-#: ../data/cheese.schemas.in.h:8
-msgid "Camera device string indicator"
-msgstr "Enhetsstreng for webkamera"
-
-#: ../data/cheese.schemas.in.h:9
-msgid ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr ""
-"Definerer stien til stedet bildene lagres. Hvis denne er tom vil «XDG_PHOTO/"
-"Webcam» brukes."
-
-#: ../data/cheese.schemas.in.h:10
-msgid ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr ""
-"Definerer stien til stedet hvor videoer er lagret. Hvis den er tom vil "
-"«XDG_VIDEO/Webcam» brukes."
-
-#: ../data/cheese.schemas.in.h:11
-msgid "Height resolution"
-msgstr "Høydeoppløsning"
-
-#: ../data/cheese.schemas.in.h:12
-msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
-msgstr ""
-"Hvis denne settes til «true» vil Cheese starte opp i bred modus med "
-"bildesamlingen plassert på høyre side. Nyttig på små skjermer."
-
-#: ../data/cheese.schemas.in.h:13
-msgid ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-msgstr ""
-"Hvis denne settes til true vil Cheese la deg slette en fil med en gang og "
-"der den er i stedet for å flytte den til papirkurven. Brukes med varsomhet."
-
-#: ../data/cheese.schemas.in.h:14
-msgid "Milliseconds between photos in burst mode."
-msgstr "Millisekunder mellom bilder i sekvensmodus."
-
-#: ../data/cheese.schemas.in.h:15
-msgid "Number of photos in burst mode."
-msgstr "Antall bilder i en serie."
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Photo Path"
-msgstr "Sti til bilde"
-
-#: ../data/cheese.schemas.in.h:17
-msgid "Picture brightness"
-msgstr "Lysstyrke for bilde"
-
-#: ../data/cheese.schemas.in.h:18
-msgid "Picture contrast"
-msgstr "Kontrast for bilde"
-
-#: ../data/cheese.schemas.in.h:19
-msgid "Picture hue"
-msgstr "Glød for bilde"
-
-#: ../data/cheese.schemas.in.h:20
-msgid "Picture saturation"
-msgstr "Metning for bilde"
-
-#: ../data/cheese.schemas.in.h:21
-msgid "Selected Effects"
-msgstr "Valgte effekter"
-
-#: ../data/cheese.schemas.in.h:22
-msgid "Set to True to show countdown when taking a photo"
-msgstr "Sett til «true» desom nedtelling skal brukes når et bilde tas"
-
-#: ../data/cheese.schemas.in.h:23
-msgid "The device which points to the camera (e.g. /dev/video0)"
-msgstr "Enheten som peker til webkameraet (f.eks /dev/video0)"
-
-#: ../data/cheese.schemas.in.h:24
-msgid "The height resolution of the image captured from the camera"
-msgstr "Høydeoppløsning for bildet som hentes fra kameraet"
-
-#: ../data/cheese.schemas.in.h:25
-msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
-msgstr "Tid i millisekunder for pause mellom hvert bilde i en bildesekvens."
-
-#: ../data/cheese.schemas.in.h:26
-msgid "The number of photos to take in a single burst."
-msgstr "Antall bilder som skal tas i en enkelt serie."
-
-#: ../data/cheese.schemas.in.h:27
-msgid "The width resolution of the image captured from the camera"
-msgstr "Breddeoppløsning for bildet som hentes fra kameraet"
-
-#: ../data/cheese.schemas.in.h:28
-msgid "Use a countdown"
-msgstr "Bruk nedtelling"
-
-#: ../data/cheese.schemas.in.h:29
-msgid "Video Path"
-msgstr "Sti til video"
-
-#: ../data/cheese.schemas.in.h:30
-msgid "Whether to enable immediate deletion"
-msgstr "Om filen skal slettes med en gang"
-
-#: ../data/cheese.schemas.in.h:31
-msgid "Whether to start in wide mode"
-msgstr "Om programmet skal startes i bred modus"
-
-#: ../data/cheese.schemas.in.h:32
-msgid "Width resolution"
-msgstr "Breddeoppløsning"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:600
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
@@ -377,12 +242,12 @@ msgstr "Ukjent enhet"
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytbar initiering er ikke støttet"
 
-#: ../libcheese/cheese-camera.c:1156
+#: ../libcheese/cheese-camera.c:1158
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet funnet"
 
-#: ../libcheese/cheese-camera.c:1175
+#: ../libcheese/cheese-camera.c:1177
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
 
@@ -429,10 +294,10 @@ msgstr ""
 "Kjør «%s --help» for å se en full liste med tilgjengelige "
 "kommandolinjeflagg.\n"
 
-#: ../src/cheese-window.vala:689
+#: ../src/cheese-window.vala:695
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:828
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
