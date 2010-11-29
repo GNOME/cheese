@@ -1,6 +1,152 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.91.2
+  - port cheese to gsettings
+    this commit drops gconf entirely from cheese and uses
+    gsettings. glib and gio dependency was bumped to 2.26.0
+  - Increased upper bound for number of photos taken in burst mode and time
+    interval between photos taken in burst mode
+  - Removed mx dependency. Bumped minimum clutter version to 1.4.0
+  - test-widget: Using gtk_clutter_init
+    The test cheese-test-widget was using gtk_init instead of
+    gtk_clutter_init, displaying the error "Unable to create a new stage".
+  - widget: Using ClutterTexture instead of DrawingArea
+    The method cheese_camera_new expects a ClutterTexture, but the widget
+    was trying to use a GtkDrawingArea. It now has a GtkClutterEmbed widget
+    that contains a ClutterTexture that will be used by cheese_camera_new.
+  - camera: emit video-saved signal by name in gst threads
+    Static camera_signals array is not initizialized in the gstreamer thread
+    so we get a critical assertion failed (signal_id > 0) if we emit by id.
+    This should workaround the issue #620637
+  - Mapped the Escape key to either stop a current action or to take you out of
+    the effects selector or fullscreen
+  - main: properly start GtkClutter to avoid a runtime warning
+    Initializing GtkClutter instead of gtk and clutter separately
+    prevents this:
+    ClutterGLX-CRITICAL **: Unable to make the stage window 0x4600035 the current GLX drawable
+  - Fixed bug where you can start multiple countdowns in photo mode that
+    run together and mess up the counter
+  - json: fix a boolean property defined as a string
+    Fixes a g_value_copy incompatible types critical warning at runtime
+  - configure: Use cheese instead of Cheese
+    This way the .ui files are installed in /usr/shared/cheese
+    as expected, instead of /usr/shared/Cheese, fixes bug #626697
+  - check if vala is available, fail if not, partially fixes #626697
+  - bump vala requirement to 0.9.2 and use the new syntax for gtk stock items
+    in vala 0.10
+  - add identity effect manually at the first position of the effect list
+  - remove --verbose command line flag, log handler and bugreport script
+    as most of the debug output is done with GST_* or with
+    debug() and message(), the log file is useless and therefore
+    the bugreport script which is collection that file too.
+  - show the version with the -v/--version command line flag
+  - check if device uri is null, before setting up the camera with it
+  - add a command line option to specify camera file, fixes bug #614778
+    the -d or --device option was added to specify a different
+    device file. if the device file does not exist, or is not a
+    valid v4l/v4l2 device it will be silently ignored
+  - bump libcanberra version requirement to 0.23
+  - play a sound when taking a photo
+    this was somehow not added when we did the vala port, now
+    everybody can enjoy that lovely shutter sound
+  - parse our custom gtkrc file to hide the thumbview arrows
+  - Killed several memory leaks
+  - Fixed some runtime warnings
+  - Camera related actions are now disabled until the pipeline is playing
+  - Show error dialogs when any of the file operations fail
+  - Made app crash early if the GTKBUilder UI files are not found
+  - get rid of eog thumbnail
+    removed eog thumbnail and added cheese thumbnail, which
+    uses the best things from nautilus and eog.
+  - Display 'No effects found' message if no effects were found.
+  - Removed most unneccessary warnings when compiling src/*
+    Warnings that remain point to real problems that should be handled
+  - Errors in effect files no longer fatal
+  - Partially removed warnings that appeared during effect switching
+  - use the correct protocol in licence dialog, fixes bug #610207
+    as the original text of the link began with &lt;http://...
+    this was seen as the protocol, however the protocol is just
+    http://
+  - Split UI setup into UI Setup and camera setup. Shows Window as soon
+    as UI is setup.
+    Slightly faster time-to-window-visible
+  - ignore effects, if they are already loaded
+    if an effect is already loaded, cheese ignores the effect
+    and does not add it to the ui. this is done by comparing the
+    gstreamer pipeline
+  - load effects from ~/.local/share/gnome-video-effects/
+    xdg user_data_dir defaults to ~/.local/share/gnome-video-effects,
+    so we are looking into that place for user effects
+  - Effect preview elements are now constructed on-demand, rather than
+    at startup.
+  - remove the effect files from cheese from now on and add gnome-video-effects
+    as a dependency. effects are brought to the users home by the package
+    gnome-video-effects (http://git.gnome.org/browse/gnome-video-effects).
+    this way, many applications, like Pitivi or Empathy are able to use the
+    same effects as we do. however, we will not depend on it, as it is an
+    optional package and not needed to run.
+
+    cheese looks for a directory named gnome-video-effects in one of the system
+    share directories proposed by XDG (mostly /usr/share/ or /usr/local/share/).
+
+    it also looks if the user has a directory named ~/.gnome-video-effects. we
+    probably should change that and use the XDG standard for user shared files,
+    which is ~/.local/share/
+  - Removed a few unnecessary camera start/stops during startup
+  - Do not create a device if gst initializazion fails
+    Currently we create a device with empty caps if the probing pipeline
+    cannot be started. That's wrong, the device evidendtly doesn't work so
+    the CheeseCameraDevice object for doesn't have to be created. Fixes bug #618203
+  - Added/Updated Translations
+    - ar, courtesy of Khaled Hosny
+    - bg, courtesy of Krasimir Chonov
+    - ca, courtesy of Gil Forcada
+    - ca@valencia, courtesy of Gil Forcada
+    - cs, courtesy of Marek Černocký
+    - da, courtesy of Anders Jenbo
+    - de, courtesy of Mario Blättermann
+    - el, courtesy of Michael Kotsarinis
+    - en_GB, courtesy of Philip Withnall
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fr, courtesy of Pablo Martin-Gomez
+    - gl, courtesy of Fran Diéguez
+    - he, courtesy of Yaron Shahrabani
+    - hi, courtesy of Rajesh Ranjan
+    - hu, courtesy of Gabor Kelemen
+    - id, courtesy of Dirgita
+    - it, courtesy of Alessandro Falappa
+    - ja, courtesy of Takayuki KUSANO
+    - kk, courtesy of Baurzhan Muftakhidinov
+    - kn, courtesy of Shankar Prasad
+    - lt, courtesy of Rimas Kudelis
+    - nb, courtesy of Kjartan Maraas
+    - nl, courtesy of Reinout van Schouwen
+    - nn, courtesy of Torstein Adolf Winterseth
+    - or, courtesy of Manoj Kumar Giri
+    - pa, courtesy of A S Alam
+    - pl, courtesy of Tomasz Dominikowski
+    - pt, courtesy of Duarte Loreto
+    - ro, courtesy of Lucian Adrian Grijincu
+    - ru, courtesy of Yuri Myasoedov
+    - sk, courtesy of Miroslav Biňas
+    - sl, courtesy of Matej Urbančič
+    - sr, courtesy of Милош Поповић
+    - sr@latin, courtesy of Miloš Popović
+    - sv, courtesy of Daniel Nylander
+    - ta, courtesy of Dr.T.Vasudevan
+    - te, courtesy of Krishna Babu K
+    - th, courtesy of Akom Chotiphantawanon
+    - ug, courtesy of Sahran
+    - zh_CN, courtesy of Aron Xu
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - cs, courtesy of Lucas Lommer
+    - zh_CN, courtesy of YunQiang Su
+
 version 2.31.1
   - the ui was rewritten using vala and clutter
   - using live previews for all effects
