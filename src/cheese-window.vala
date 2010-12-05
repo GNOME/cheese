@@ -777,10 +777,12 @@ public class Cheese.MainWindow : Gtk.Window
     current_effects_page = number;
     if (viewport_layout.get_children ().index (current_effects_grid) != -1)
     {
-      viewport_layout.remove ((Clutter.Actor)current_effects_grid);
+      viewport_layout.remove ((Clutter.Actor) current_effects_grid);
     }
     current_effects_grid = effects_grids[number];
+    current_effects_grid.set ("opacity", 0);
     viewport_layout.add ((Clutter.Actor) current_effects_grid);
+    current_effects_grid.animate (Clutter.AnimationMode.LINEAR, 1000, "opacity", 255);
 
     for (int i = 0; i < effects_manager.effects.size; i++)
     {
