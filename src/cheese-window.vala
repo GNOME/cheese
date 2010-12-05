@@ -186,29 +186,49 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_file_delete (Gtk.Action action)
   {
-    string        filename, basename;
+    File file;
+    int response;
     MessageDialog confirmation_dialog;
-    int           response;
 
-    filename = thumb_view.get_selected_image ();
-    if (filename == null)
-      return;                    /* Nothing selected. */
+    GLib.List<GLib.File> files = thumb_view.get_selected_images_list ();
 
-    basename            = GLib.Filename.display_basename (filename);
-    confirmation_dialog = new MessageDialog.with_markup (this,
-                                                         Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                         Gtk.MessageType.WARNING,
-                                                         Gtk.ButtonsType.NONE,
-                                                         "Are you sure you want to permanently delete the file \"%s\"?",
-                                                         basename);
-    confirmation_dialog.add_button (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL);
-    confirmation_dialog.add_button (Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT);
-    confirmation_dialog.format_secondary_text ("%s", "If you delete an item, it will be permanently lost");
-    response = confirmation_dialog.run ();
-    confirmation_dialog.destroy ();
-    if (response == Gtk.ResponseType.ACCEPT)
+    for (int i = 0; i < files.length (); i++)
     {
-      GLib.FileUtils.remove (filename);
+      file = files<GLib.File>.nth (i).data;
+      if (file == null)
+        return;
+
+      confirmation_dialog = new MessageDialog.with_markup (this,
+                                                           Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                           Gtk.MessageType.WARNING,
+                                                           Gtk.ButtonsType.NONE,
+                                                           "Are you sure you want to permanently delete the file \"%s\"?",
+                                                           file.get_basename ());
+      confirmation_dialog.add_button (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL);
+      confirmation_dialog.add_button (Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT);
+      confirmation_dialog.format_secondary_text ("%s", "If you delete an item, it will be permanently lost");
+      response = confirmation_dialog.run ();
+      confirmation_dialog.destroy ();
+      if (response == Gtk.ResponseType.ACCEPT)
+      {
+        try
+        {
+          file.delete (null);
+        }
+        catch (Error err)
+        {
+          MessageDialog error_dialog = new MessageDialog (this,
+                                                          Gtk.DialogFlags.MODAL |
+                                                          Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                          Gtk.MessageType.ERROR,
+                                                          Gtk.ButtonsType.OK,
+                                                          "Could not delete %s",
+                                                          file.get_path());
+
+          error_dialog.run ();
+          error_dialog.destroy ();
+        }
+      }
     }
   }
 
