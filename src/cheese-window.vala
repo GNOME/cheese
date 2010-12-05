@@ -341,8 +341,6 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_help_about (Gtk.Action action)
   {
-    /* FIXME: Close doesn't work
-     * FIXME: Clicking URL In the License dialog borks. */
     Gtk.AboutDialog about_dialog;
     about_dialog         = (Gtk.AboutDialog)gtk_builder.get_object ("aboutdialog");
     about_dialog.version = Config.VERSION;
