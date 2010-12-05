@@ -864,9 +864,10 @@ public class Cheese.MainWindow : Gtk.Window
         Clutter.TableLayout table_layout = new TableLayout();
         Clutter.Box grid = new Clutter.Box (table_layout);
         effects_grids.add (grid);
+        grid.set_size (viewport.width, viewport.height);
 
-        table_layout.set_column_spacing (20);
-        table_layout.set_row_spacing (20);
+        table_layout.set_column_spacing (10);
+        table_layout.set_row_spacing (10);
       }
 
       for (int i = 0; i < effects_manager.effects.size; i++)
@@ -881,9 +882,6 @@ public class Cheese.MainWindow : Gtk.Window
 
         rect.opacity = 128;
         rect.color   = Clutter.Color.from_string ("black");
-
-        box.width  = 160;
-        box.height = 120;
 
         box.pack ((Clutter.Actor) texture,
                   "x-align", Clutter.BinAlignment.FILL,
@@ -907,6 +905,9 @@ public class Cheese.MainWindow : Gtk.Window
                   "y-align", Clutter.BinAlignment.END, null);
 
         Clutter.TableLayout table_layout = (Clutter.TableLayout) effects_grids[i / EFFECTS_PER_PAGE].layout_manager;
+        box.width = (viewport.width - 2 * table_layout.get_column_spacing ()) / 3;
+        box.height = (viewport.height - 2 * table_layout.get_row_spacing ()) / 3;
+
         table_layout.pack ((Clutter.Actor) box,
                            (i % EFFECTS_PER_PAGE) % 3,
                            (i % EFFECTS_PER_PAGE) / 3);
