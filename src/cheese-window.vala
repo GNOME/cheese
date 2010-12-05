@@ -215,29 +215,33 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_file_move_to_trash (Gtk.Action action)
   {
-    string filename;
+    File file;
 
-    filename = thumb_view.get_selected_image ();
-    if (filename == null)
-      return;                    /* Nothing selected. */
+    GLib.List<GLib.File> files = thumb_view.get_selected_images_list ();
 
-    File file_to_trash = File.new_for_path (filename);
-    try
+    for (int i = 0; i < files.length (); i++)
     {
-      file_to_trash.trash (null);
-    }
-    catch (Error err)
-    {
-      MessageDialog error_dialog = new MessageDialog (this,
-                                                      Gtk.DialogFlags.MODAL |
-                                                      Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                      Gtk.MessageType.ERROR,
-                                                      Gtk.ButtonsType.OK,
-                                                      "Could not move %s to trash",
-                                                      filename);
+      file = files<GLib.File>.nth (i).data;
+      if (file == null)
+        return;
 
-      error_dialog.run ();
-      error_dialog.destroy ();
+      try
+      {
+        file.trash (null);
+      }
+      catch (Error err)
+      {
+        MessageDialog error_dialog = new MessageDialog (this,
+                                                        Gtk.DialogFlags.MODAL |
+                                                        Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                        Gtk.MessageType.ERROR,
+                                                        Gtk.ButtonsType.OK,
+                                                        "Could not move %s to trash",
+                                                        file.get_path());
+
+        error_dialog.run ();
+        error_dialog.destroy ();
+      }
     }
   }
 
