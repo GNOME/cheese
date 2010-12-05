@@ -574,8 +574,6 @@ public class Cheese.MainWindow : Gtk.Window
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
     this.background_layer.set_size (viewport.width, viewport.height);
-    if (this.current_effects_grid != null)
-      this.current_effects_grid.set_size (viewport.width, viewport.height);
   }
 
   [CCode (instance_pos = -1)]
@@ -785,7 +783,6 @@ public class Cheese.MainWindow : Gtk.Window
     }
     current_effects_grid = effects_grids[number];
     viewport_layout.add ((Clutter.Actor) current_effects_grid);
-    this.current_effects_grid.set_size (viewport.width, viewport.height);
 
     for (int i = 0; i < effects_manager.effects.size; i++)
     {
@@ -1066,7 +1063,6 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
     viewport.add_actor (viewport_layout);
-    viewport_layout_manager.set_alignment (viewport_layout, Clutter.BinAlignment.CENTER, Clutter.BinAlignment.CENTER);
 
     viewport.allocation_changed.connect (on_stage_resize);
 
