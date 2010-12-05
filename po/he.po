@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-09 12:45+0300\n"
-"PO-Revision-Date: 2010-08-09 12:46+0200\n"
+"POT-Creation-Date: 2010-12-05 02:10+0200\n"
+"PO-Revision-Date: 2010-12-05 02:10+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Hebrew\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:103
+#: ../src/cheese-main.vala:102
 msgid "Cheese"
 msgstr "‏Cheese"
 
@@ -165,208 +165,70 @@ msgid "_Leave Fullscreen"
 msgstr "י_ציאה ממסך מלא"
 
 #: ../data/cheese-prefs.ui.h:1
+msgid "<b>Shutter</b>"
+msgstr "<b>צמצם</b>"
+
+#: ../data/cheese-prefs.ui.h:2
 msgid "Brightness"
 msgstr "בהירות"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:3
 msgid "Burst mode"
 msgstr "מעבר לצילום רציף"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:4
 msgid "Contrast"
 msgstr "ניגודיות"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:5
 msgid "Delay between photos (seconds)"
 msgstr "השהיה בין התמונות (שניות)"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Device"
 msgstr "קוביההתקן"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
+msgid "Fire _Flash"
+msgstr "הפעלת ה_בזק"
+
+#: ../data/cheese-prefs.ui.h:8
 msgid "Hue"
 msgstr "גוון"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Image properties"
 msgstr "מאפייני התמונה"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Number of photos"
 msgstr "מספר תמונות"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
 msgid "Preferences"
 msgstr "העדפות"
 
-#: ../data/cheese-prefs.ui.h:10
+#: ../data/cheese-prefs.ui.h:12
 msgid "Resolution"
 msgstr "רזולוציה"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "רוויה"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
 msgid "Webcam"
 msgstr "מצלמת רשת"
+
+#: ../data/cheese-prefs.ui.h:15
+msgid "_Countdown"
+msgstr "_ספירה לאחור"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "תא הצילום של Cheese"
 
-#. Translators: please note, that the effect names are
-#. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid ""
-"A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr ""
-"A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-
-#: ../data/cheese.schemas.in.h:4
-msgid "Adjusts brightness level of the picture coming from the camera"
-msgstr "Adjusts brightness level of the picture coming from the camera"
-
-#: ../data/cheese.schemas.in.h:5
-msgid "Adjusts contrast level of the picture coming from the camera"
-msgstr "Adjusts contrast level of the picture coming from the camera"
-
-#: ../data/cheese.schemas.in.h:6
-msgid "Adjusts hue level of the picture coming from the camera"
-msgstr "Adjusts hue level of the picture coming from the camera"
-
-#: ../data/cheese.schemas.in.h:7
-msgid "Adjusts saturation level of the picture coming from the camera"
-msgstr "Adjusts saturation level of the picture coming from the camera"
-
-#: ../data/cheese.schemas.in.h:8
-msgid "Camera device string indicator"
-msgstr "Camera device string indicator"
-
-#: ../data/cheese.schemas.in.h:9
-msgid ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-
-#: ../data/cheese.schemas.in.h:10
-msgid ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-
-#: ../data/cheese.schemas.in.h:11
-msgid "Height resolution"
-msgstr "Height resolution"
-
-#: ../data/cheese.schemas.in.h:12
-msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
-msgstr ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
-
-#: ../data/cheese.schemas.in.h:13
-msgid ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-msgstr ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-
-#: ../data/cheese.schemas.in.h:14
-msgid "Milliseconds between photos in burst mode."
-msgstr "Milliseconds between photos in burst mode."
-
-#: ../data/cheese.schemas.in.h:15
-msgid "Number of photos in burst mode."
-msgstr "Number of photos in burst mode."
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Photo Path"
-msgstr "Photo Path"
-
-#: ../data/cheese.schemas.in.h:17
-msgid "Picture brightness"
-msgstr "Picture brightness"
-
-#: ../data/cheese.schemas.in.h:18
-msgid "Picture contrast"
-msgstr "Picture contrast"
-
-#: ../data/cheese.schemas.in.h:19
-msgid "Picture hue"
-msgstr "Picture hue"
-
-#: ../data/cheese.schemas.in.h:20
-msgid "Picture saturation"
-msgstr "Picture saturation"
-
-#: ../data/cheese.schemas.in.h:21
-msgid "Selected Effects"
-msgstr "Selected Effects"
-
-#: ../data/cheese.schemas.in.h:22
-msgid "Set to True to show countdown when taking a photo"
-msgstr "Set to True to show countdown when taking a photo"
-
-#: ../data/cheese.schemas.in.h:23
-msgid "The device which points to the camera (e.g. /dev/video0)"
-msgstr "The device which points to the camera (e.g. /dev/video0)"
-
-#: ../data/cheese.schemas.in.h:24
-msgid "The height resolution of the image captured from the camera"
-msgstr "The height resolution of the image captured from the camera"
-
-#: ../data/cheese.schemas.in.h:25
-msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
-msgstr ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
-
-#: ../data/cheese.schemas.in.h:26
-msgid "The number of photos to take in a single burst."
-msgstr "The number of photos to take in a single burst."
-
-#: ../data/cheese.schemas.in.h:27
-msgid "The width resolution of the image captured from the camera"
-msgstr "The width resolution of the image captured from the camera"
-
-#: ../data/cheese.schemas.in.h:28
-msgid "Use a countdown"
-msgstr "Use a countdown"
-
-#: ../data/cheese.schemas.in.h:29
-msgid "Video Path"
-msgstr "Video Path"
-
-#: ../data/cheese.schemas.in.h:30
-msgid "Whether to enable immediate deletion"
-msgstr "Whether to enable immediate deletion"
-
-#: ../data/cheese.schemas.in.h:31
-msgid "Whether to start in wide mode"
-msgstr "Whether to start in wide mode"
-
-#: ../data/cheese.schemas.in.h:32
-msgid "Width resolution"
-msgstr "Width resolution"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:589
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:600
 msgid "Shutter sound"
 msgstr "צליל הצמצם"
 
@@ -399,12 +261,12 @@ msgstr "התקן בלתי מוכר"
 msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
-#: ../libcheese/cheese-camera.c:1154
+#: ../libcheese/cheese-camera.c:1158
 #, c-format
 msgid "No device found"
 msgstr "לא נמצא התקן"
 
-#: ../libcheese/cheese-camera.c:1173
+#: ../libcheese/cheese-camera.c:1177
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "רכיב אחד או יותר של gstreamer חסר: "
 
@@ -419,6 +281,10 @@ msgstr "רכיב אחד או יותר של gstreamer חסר: "
 #, c-format
 msgid "%d "
 msgstr "%d "
+
+#: ../src/cheese-effects-manager.vala:116
+msgid "No Effect"
+msgstr "ללא אפקט"
 
 #: ../src/cheese-main.vala:37
 msgid "Enable wide mode"
@@ -436,23 +302,141 @@ msgstr "DEVICE"
 msgid "Output version information and exit"
 msgstr "Output version information and exit"
 
-#: ../src/cheese-main.vala:67
+#: ../src/cheese-main.vala:66
 msgid "- Take photos and videos from your webcam"
 msgstr "- Take photos and videos from your webcam"
 
-#: ../src/cheese-main.vala:78
+#: ../src/cheese-main.vala:77
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-window.vala:642
+#: ../src/cheese-window.vala:695
 msgid "Stop _Recording"
 msgstr "ה_פסקת ההקלטה"
 
-#: ../src/cheese-window.vala:761
+#: ../src/cheese-window.vala:828
 msgid "No effects found"
 msgstr "לא נמצאו אפקטים"
+
+#~ msgid ""
+#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+#~ msgstr ""
+#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+
+#~ msgid "Adjusts brightness level of the picture coming from the camera"
+#~ msgstr "Adjusts brightness level of the picture coming from the camera"
+
+#~ msgid "Adjusts contrast level of the picture coming from the camera"
+#~ msgstr "Adjusts contrast level of the picture coming from the camera"
+
+#~ msgid "Adjusts hue level of the picture coming from the camera"
+#~ msgstr "Adjusts hue level of the picture coming from the camera"
+
+#~ msgid "Adjusts saturation level of the picture coming from the camera"
+#~ msgstr "Adjusts saturation level of the picture coming from the camera"
+
+#~ msgid "Camera device string indicator"
+#~ msgstr "Camera device string indicator"
+
+#~ msgid ""
+#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+
+#~ msgid ""
+#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+
+#~ msgid "Height resolution"
+#~ msgstr "Height resolution"
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in a wide mode with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "If set to true, Cheese will start up in a wide mode with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+
+#~ msgid ""
+#~ "If set to true, then Cheese will have a feature allowing you to delete a "
+#~ "file immediately and in-place, instead of moving it to the trash. This "
+#~ "feature can be dangerous, so use caution."
+#~ msgstr ""
+#~ "If set to true, then Cheese will have a feature allowing you to delete a "
+#~ "file immediately and in-place, instead of moving it to the trash. This "
+#~ "feature can be dangerous, so use caution."
+
+#~ msgid "Milliseconds between photos in burst mode."
+#~ msgstr "Milliseconds between photos in burst mode."
+
+#~ msgid "Number of photos in burst mode."
+#~ msgstr "Number of photos in burst mode."
+
+#~ msgid "Photo Path"
+#~ msgstr "Photo Path"
+
+#~ msgid "Picture brightness"
+#~ msgstr "Picture brightness"
+
+#~ msgid "Picture contrast"
+#~ msgstr "Picture contrast"
+
+#~ msgid "Picture hue"
+#~ msgstr "Picture hue"
+
+#~ msgid "Picture saturation"
+#~ msgstr "Picture saturation"
+
+#~ msgid "Selected Effects"
+#~ msgstr "Selected Effects"
+
+#~ msgid "Set to True to show countdown when taking a photo"
+#~ msgstr "Set to True to show countdown when taking a photo"
+
+#~ msgid "The device which points to the camera (e.g. /dev/video0)"
+#~ msgstr "The device which points to the camera (e.g. /dev/video0)"
+
+#~ msgid "The height resolution of the image captured from the camera"
+#~ msgstr "The height resolution of the image captured from the camera"
+
+#~ msgid ""
+#~ "The length of time, in milliseconds, to delay between taking each photo "
+#~ "in a burst sequence of photos."
+#~ msgstr ""
+#~ "The length of time, in milliseconds, to delay between taking each photo "
+#~ "in a burst sequence of photos."
+
+#~ msgid "The number of photos to take in a single burst."
+#~ msgstr "The number of photos to take in a single burst."
+
+#~ msgid "The width resolution of the image captured from the camera"
+#~ msgstr "The width resolution of the image captured from the camera"
+
+#~ msgid "Use a countdown"
+#~ msgstr "Use a countdown"
+
+#~ msgid "Video Path"
+#~ msgstr "Video Path"
+
+#~ msgid "Whether to enable immediate deletion"
+#~ msgstr "Whether to enable immediate deletion"
+
+#~ msgid "Whether to start in wide mode"
+#~ msgstr "Whether to start in wide mode"
+
+#~ msgid "Width resolution"
+#~ msgstr "Width resolution"
 
 #~ msgid "Be verbose"
 #~ msgstr "Be verbose"
@@ -468,9 +452,6 @@ msgstr "לא נמצאו אפקטים"
 
 #~ msgid "Hulk"
 #~ msgstr "הענק הירוק"
-
-#~ msgid "No Effect"
-#~ msgstr "ללא אפקט"
 
 #~ msgid "Mauve"
 #~ msgstr "ארגמן"
@@ -614,9 +595,6 @@ msgstr "לא נמצאו אפקטים"
 
 #~ msgid "Help on this Application"
 #~ msgstr "עזרה עבור יישום זה"
-
-#~ msgid "Countdown"
-#~ msgstr "ספירה לאחור"
 
 #~ msgid "_Start Recording"
 #~ msgstr "_התחל הקלטה"
