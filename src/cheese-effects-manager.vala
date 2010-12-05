@@ -109,6 +109,8 @@ internal class Cheese.EffectsManager : GLib.Object
     string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), "gnome-video-effects");
     effects.add_all (load_effects_from_directory (user_effects));
 
+    effects.sort((CompareFunc) sort_value);
+
     /* add identity effect as the first in the effect list */
     if (effects.size > 0)
     {
@@ -132,5 +134,15 @@ internal class Cheese.EffectsManager : GLib.Object
   private static bool cmp_value (Effect a, Effect b)
   {
     return a.pipeline_desc == b.pipeline_desc;
+  }
+
+  private static int sort_value (Effect a, Effect b)
+  {
+    if (a.name.down () < b.name.down ())
+      return -1;
+    else if (a.name.down () > b.name.down ())
+      return 1;
+    else
+      return 0;
   }
 }
