@@ -447,8 +447,9 @@ public class Cheese.MainWindow : Gtk.Window
         take_action_button.related_action = take_burst_action;
         break;
     }
-    take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
-  }
+    take_action_button_label.label  = "<b>" + take_action_button.related_action.label + "</b>";
+    take_action_button.tooltip_text = take_action_button.related_action.tooltip;
+}
 
   private TimeoutSource fullscreen_timeout;
   private void clear_fullscreen_timeout ()
