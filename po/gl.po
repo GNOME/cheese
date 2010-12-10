@@ -18,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-16 19:25+0100\n"
-"PO-Revision-Date: 2010-11-16 19:26+0100\n"
+"POT-Creation-Date: 2010-12-11 00:06+0100\n"
+"PO-Revision-Date: 2010-12-11 00:08+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -110,70 +110,111 @@ msgid "Previous Effects"
 msgstr "Anteriores efectos"
 
 #: ../data/cheese-actions.ui.h:8
+msgid "Record a video"
+msgstr "Gravar un vídeo"
+
+#: ../data/cheese-actions.ui.h:9
 msgid "Save _As"
 msgstr "Gardar _como"
 
-#: ../data/cheese-actions.ui.h:9
+#: ../data/cheese-actions.ui.h:10
 msgid "Take _Multiple Photos"
 msgstr "_Sacar varias fotos"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:238
+msgid "Take a photo"
+msgstr "Sacar unha foto"
+
+#: ../data/cheese-actions.ui.h:12
+msgid "Take multiple photos"
+msgstr "Sacar varias fotos"
+
+#: ../data/cheese-actions.ui.h:13
 msgid "_About"
 msgstr "_Sobre"
 
-#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-actions.ui.h:14
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:15
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:16
 msgid "_Edit"
 msgstr "_Editar"
 
-#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Efectos"
 
-#: ../data/cheese-actions.ui.h:15
+#: ../data/cheese-actions.ui.h:18
 msgid "_Help"
 msgstr "A_xuda"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:19
 msgid "_Open"
 msgstr "A_brir"
 
-#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-actions.ui.h:20
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:21
 msgid "_Preferences"
 msgstr "_Preferencias"
 
-#: ../data/cheese-actions.ui.h:19
+#: ../data/cheese-actions.ui.h:22
 msgid "_Quit"
 msgstr "_Saír"
 
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:23
 msgid "_Record a Video"
 msgstr "G_ravar un vídeo"
 
-#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "_Sacar unha foto"
 
-#: ../data/cheese-actions.ui.h:22
+#: ../data/cheese-actions.ui.h:25
 msgid "_Video"
 msgstr "_Vídeo"
 
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:26
 msgid "_Wide Mode"
 msgstr "Modo _amplo"
 
+#: ../data/cheese-main-window.ui.h:1
+msgid "Effects"
+msgstr "Efectos"
+
 #: ../data/cheese-main-window.ui.h:2
+msgid "Leave fullscreen"
+msgstr "Saír do modo de pantalla completa"
+
+#: ../data/cheese-main-window.ui.h:3
+msgid "Next effect"
+msgstr "Seguinte efecto"
+
+#: ../data/cheese-main-window.ui.h:4
+msgid "Photo burst mode"
+msgstr "Modo de explosión de foto"
+
+#: ../data/cheese-main-window.ui.h:5
+msgid "Photo mode"
+msgstr "Modo de foto"
+
+#: ../data/cheese-main-window.ui.h:6
+msgid "Previous effect"
+msgstr "Anterior efecto"
+
+#: ../data/cheese-main-window.ui.h:8
+msgid "Video mode"
+msgstr "Modo do vídeo"
+
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Leave Fullscreen"
 msgstr "_Saír do modo de pantalla completa"
 
@@ -241,13 +282,9 @@ msgstr "_Conta atrás"
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:600
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:621
 msgid "Shutter sound"
 msgstr "Son do obturador"
-
-#: ../libcheese/cheese-avatar-chooser.c:238
-msgid "Take a photo"
-msgstr "Sacar unha foto"
 
 #: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
@@ -297,7 +334,7 @@ msgstr "Falta un ou máis elementos necesarios de Gstreamer: "
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-effects-manager.vala:116
+#: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Sen efectos"
 
@@ -328,11 +365,11 @@ msgstr ""
 "Executar «%s --help» para ver unha lista completa de opcións de liña de "
 "ordes dispoñíbeis.\n"
 
-#: ../src/cheese-window.vala:695
+#: ../src/cheese-window.vala:716
 msgid "Stop _Recording"
 msgstr "_Deter a gravación"
 
-#: ../src/cheese-window.vala:828
+#: ../src/cheese-window.vala:850
 msgid "No effects found"
 msgstr "Non se atopou ningún efecto"
 
