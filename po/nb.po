@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 2.91.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-20 11:51+0100\n"
-"PO-Revision-Date: 2010-11-20 11:52+0100\n"
+"POT-Creation-Date: 2010-12-12 21:29+0100\n"
+"PO-Revision-Date: 2010-12-12 21:30+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -78,70 +78,111 @@ msgid "Previous Effects"
 msgstr "Forrige effekter"
 
 #: ../data/cheese-actions.ui.h:8
+msgid "Record a video"
+msgstr "Ta opp en video"
+
+#: ../data/cheese-actions.ui.h:9
 msgid "Save _As"
 msgstr "L_agre som"
 
-#: ../data/cheese-actions.ui.h:9
+#: ../data/cheese-actions.ui.h:10
 msgid "Take _Multiple Photos"
 msgstr "Ta _flere bilder"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:238
+msgid "Take a photo"
+msgstr "Ta et bilde"
+
+#: ../data/cheese-actions.ui.h:12
+msgid "Take multiple photos"
+msgstr "Ta flere bilder"
+
+#: ../data/cheese-actions.ui.h:13
 msgid "_About"
 msgstr "_Om"
 
-#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-actions.ui.h:14
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:15
 msgid "_Delete"
 msgstr "_Slett"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:16
 msgid "_Edit"
 msgstr "R_ediger"
 
-#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Effekter"
 
-#: ../data/cheese-actions.ui.h:15
+#: ../data/cheese-actions.ui.h:18
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:19
 msgid "_Open"
 msgstr "_Åpne"
 
-#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-actions.ui.h:20
 msgid "_Photo"
 msgstr "_Bilde"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:21
 msgid "_Preferences"
 msgstr "_Brukervalg"
 
-#: ../data/cheese-actions.ui.h:19
+#: ../data/cheese-actions.ui.h:22
 msgid "_Quit"
 msgstr "A_vslutt"
 
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:23
 msgid "_Record a Video"
 msgstr "_Ta opp en video"
 
-#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "_Ta et bilde"
 
-#: ../data/cheese-actions.ui.h:22
+#: ../data/cheese-actions.ui.h:25
 msgid "_Video"
 msgstr "_Video"
 
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:26
 msgid "_Wide Mode"
 msgstr "_Bred modus"
 
+#: ../data/cheese-main-window.ui.h:1
+msgid "Effects"
+msgstr "Effekter"
+
 #: ../data/cheese-main-window.ui.h:2
+msgid "Leave fullscreen"
+msgstr "Forlat fullskjerm"
+
+#: ../data/cheese-main-window.ui.h:3
+msgid "Next effect"
+msgstr "Neste effekt"
+
+#: ../data/cheese-main-window.ui.h:4
+msgid "Photo burst mode"
+msgstr "Bildeseriemodus"
+
+#: ../data/cheese-main-window.ui.h:5
+msgid "Photo mode"
+msgstr "Fotomodus"
+
+#: ../data/cheese-main-window.ui.h:6
+msgid "Previous effect"
+msgstr "Forrige effekt"
+
+#: ../data/cheese-main-window.ui.h:8
+msgid "Video mode"
+msgstr "Videomodus"
+
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Leave Fullscreen"
 msgstr "For_lat fullskjerm"
 
@@ -209,13 +250,9 @@ msgstr "Ne_dtelling"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese webkamera"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:600
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:621
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
-
-#: ../libcheese/cheese-avatar-chooser.c:238
-msgid "Take a photo"
-msgstr "Ta et bilde"
 
 #: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
@@ -263,7 +300,7 @@ msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-effects-manager.vala:116
+#: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Ingen effekt"
 
@@ -294,10 +331,10 @@ msgstr ""
 "Kjør «%s --help» for å se en full liste med tilgjengelige "
 "kommandolinjeflagg.\n"
 
-#: ../src/cheese-window.vala:695
+#: ../src/cheese-window.vala:716
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:828
+#: ../src/cheese-window.vala:850
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
