@@ -93,6 +93,7 @@ public class Cheese.MainWindow : Gtk.Window
   private bool is_effects_selector_active;
   private bool is_camera_actions_sensitive;
   private bool action_cancelled;
+  private bool is_command_line_startup;
 
   private Gtk.Button[] buttons;
 
@@ -375,12 +376,24 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_layout_wide_mode (ToggleAction action)
   {
+    if(!is_command_line_startup)
+    {
+     /* Don't save to settings when using -w mode from command-line, so
+      * command-line options change the mode for one run only. */
+      settings.set_boolean ("wide-mode", action.active);
+    }
     set_wide_mode (action.active);
   }
 
   [CCode (instance_pos = -1)]
   public void on_layout_fullscreen (ToggleAction action)
   {
+    if(!is_command_line_startup)
+    {
+     /* Don't save to settings when using -f mode from command-line, so
+      * command-line options change the mode for one run only. */
+      settings.set_boolean ("fullscreen", action.active);
+    }
     set_fullscreen_mode (action.active);
   }
 
@@ -488,7 +501,6 @@ public class Cheese.MainWindow : Gtk.Window
      * So that the next time leave_fullscreen_button_container.show_all() is called, the button is actually shown
      * FIXME: If this code can be made cleaner/clearer, please do */
 
-    settings.set_boolean ("fullscreen", fullscreen_mode);
     is_fullscreen = fullscreen_mode;
     if (fullscreen_mode)
     {
@@ -544,7 +556,6 @@ public class Cheese.MainWindow : Gtk.Window
   private void set_wide_mode (bool wide_mode)
   {
     is_wide_mode = wide_mode;
-    settings.set_boolean ("wide-mode", wide_mode);
 
     /* keep the viewport to its current size while rearranging the ui,
      * so that thumbview moves from right to bottom and viceversa
@@ -1013,6 +1024,26 @@ public class Cheese.MainWindow : Gtk.Window
       if (!is_camera_actions_sensitive)
         toggle_camera_actions_sensitivities (true);
     }
+  }
+
+  public void set_startup_wide_mode ()
+  {
+    if (is_wide_mode)
+    {
+      /* Cheese was already in wide mode, avoid setting it again. */
+      return;
+    }
+
+    is_command_line_startup = true;
+    wide_mode_action.set_active (true);
+    is_command_line_startup = false;
+  }
+
+  public void set_startup_fullscreen_mode ()
+  {
+    is_command_line_startup = true;
+    fullscreen_action.set_active (true);
+    is_command_line_startup = false;
   }
 
   public void setup_ui ()

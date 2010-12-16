@@ -30,13 +30,15 @@ public class Cheese.Main
   static bool   wide;
   static string device;
   static bool   version;
+  static bool   fullscreen;
 
   static Cheese.MainWindow main_window;
 
   const OptionEntry[] options = {
-    {"wide",    'w', 0, OptionArg.NONE,     ref wide,    N_("Enable wide mode"),                    null        },
-    {"device",  'd', 0, OptionArg.FILENAME, ref device,  N_("Device to use as a camera"),           N_("DEVICE")},
-    {"version", 'v', 0, OptionArg.NONE,     ref version, N_("Output version information and exit"), null        },
+    {"wide",       'w', 0, OptionArg.NONE,     ref wide,       N_("Start in wide mode"),                  null        },
+    {"device",     'd', 0, OptionArg.FILENAME, ref device,     N_("Device to use as a camera"),           N_("DEVICE")},
+    {"version",    'v', 0, OptionArg.NONE,     ref version,    N_("Output version information and exit"), null        },
+    {"fullscreen", 'f', 0, OptionArg.NONE,     ref fullscreen, N_("Start in fullscreen mode"),            null        },
     {null}
   };
 
@@ -105,6 +107,17 @@ public class Cheese.Main
     Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
 
     main_window.setup_ui ();
+
+    if (wide)
+    {
+      main_window.set_startup_wide_mode ();
+    }
+
+    if (fullscreen)
+    {
+      main_window.set_startup_fullscreen_mode ();
+    }
+
     main_window.destroy.connect (Gtk.main_quit);
     main_window.show ();
     main_window.setup_camera (device);
