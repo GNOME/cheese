@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 2.91.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-12 21:29+0100\n"
-"PO-Revision-Date: 2010-12-12 21:30+0100\n"
+"POT-Creation-Date: 2010-12-17 13:11+0100\n"
+"PO-Revision-Date: 2010-12-17 13:13+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -44,6 +44,11 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
+"Dette programmet er fri programvare. Du kan redistribuere og/eller endre programmet under betingelsene gitt i GNU General Public License som utgitt av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du ønsker det) enhver senere versjon.\n"
+"\n"
+"Programmet distribueres i håp om at programmet er nyttig, men uten NOEN GARANTI, ikke engang implisitt garanti om at det er SALGBART eller PASSER ET BESTEMT FORMÅL. Se GNU General Public License for detaljer.\n"
+"\n"
+"Du skal ha mottatt en kopi av GNU General Public License sammen med dette programmet. Hvis dette ikke er tilfelle kan du se på http://www.gnu.org/licenses/\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -250,7 +255,7 @@ msgstr "Ne_dtelling"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese webkamera"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:621
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:632
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
@@ -304,37 +309,41 @@ msgstr "%d "
 msgid "No Effect"
 msgstr "Ingen effekt"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "Aktiver bred modus"
-
 #: ../src/cheese-main.vala:38
+msgid "Start in wide mode"
+msgstr "Start i bred modus"
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "Enhet som skal brukes som kamera"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "ENHET"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "Vis versjonsinformasjon og avslutt"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "Start i fullskjermmodus"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta bilder og video fra ditt webkamera"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Kjør «%s --help» for å se en full liste med tilgjengelige "
 "kommandolinjeflagg.\n"
 
-#: ../src/cheese-window.vala:716
+#: ../src/cheese-window.vala:727
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:850
+#: ../src/cheese-window.vala:861
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
