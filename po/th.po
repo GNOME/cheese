@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-12-12 20:30+0000\n"
-"PO-Revision-Date: 2010-12-15 16:24+0700\n"
+"POT-Creation-Date: 2010-12-16 20:03+0000\n"
+"PO-Revision-Date: 2010-12-17 08:40+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "ชีส"
 
@@ -264,7 +264,7 @@ msgstr "_นับถอยหลัง"
 msgid "Cheese Webcam Booth"
 msgstr "บูทเว็บแคมชีส"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:621
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:632
 msgid "Shutter sound"
 msgstr "เสียงชัตเตอร์"
 
@@ -318,38 +318,45 @@ msgstr "%d "
 msgid "No Effect"
 msgstr "ไม่มีลูกเล่น"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "เปิดใช้งานโหมดจอกว้าง"
-
 #: ../src/cheese-main.vala:38
+msgid "Start in wide mode"
+msgstr "เริ่มต้นในโหมดจอกว้าง"
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "อุปกรณ์จะที่ใช้เป็นกล้อง"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "อุปกรณ์"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "แสดงข้อมูลรุ่นของโปรแกรมแล้วจบการทำงาน"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "เริ่มต้นในโหมดเต็มจอ"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "เรียก '%s --help' เพื่อดูตัวเลือกทั้งหมดที่มีของบรรทัดคำสั่ง\n"
 
-#: ../src/cheese-window.vala:716
+#: ../src/cheese-window.vala:727
 msgid "Stop _Recording"
 msgstr "หยุด_อัด"
 
-#: ../src/cheese-window.vala:850
+#: ../src/cheese-window.vala:861
 msgid "No effects found"
 msgstr "ไม่พบลูกเล่น"
+
+#~ msgid "Enable wide mode"
+#~ msgstr "เปิดใช้งานโหมดจอกว้าง"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
@@ -457,9 +464,6 @@ msgstr "ไม่พบลูกเล่น"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "จะเปิดการใช้งานการลบอย่างทันทีทันใดหรือไม่"
-
-#~ msgid "Whether to start in wide mode"
-#~ msgstr "จะเริ่มต้นในโหมดจอกว้างหรือไม่"
 
 #~ msgid "Width resolution"
 #~ msgstr "ความละเอียดตามแนวกว้างของภาพ"
