@@ -591,9 +591,8 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
-  char *path_videos = NULL, *path_photos = NULL;
-
-  GFile *file;
+  priv->video_file_monitor = NULL;
+  priv->photo_file_monitor = NULL;
 
   cheese_thumbnail_init ();
 
@@ -621,31 +620,7 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (thumb_view), 0);
   gtk_icon_view_set_column_spacing (GTK_ICON_VIEW (thumb_view), 0);
 
-  path_videos = cheese_fileutil_get_video_path (priv->fileutil);
-  path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
-
-  g_mkdir_with_parents (path_videos, 0775);
-  g_mkdir_with_parents (path_photos, 0775);
-
   priv->factory = gnome_desktop_thumbnail_factory_new (GNOME_DESKTOP_THUMBNAIL_SIZE_NORMAL);
-
-  /* connect signal to video path */
-  file                     = g_file_new_for_path (path_videos);
-  priv->video_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
-  g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
-
-  /* if both paths are the same, make only one file monitor and point twice to the file monitor (photo_file_monitor = video_file_monitor) */
-  if (strcmp (path_videos, path_photos) != 0)
-  {
-    /* connect signal to photo path */
-    file                     = g_file_new_for_path (path_photos);
-    priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
-    g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
-  }
-  else
-  {
-    priv->photo_file_monitor = priv->video_file_monitor;
-  }
 
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
 
@@ -671,4 +646,42 @@ cheese_thumb_view_new ()
 
   thumb_view = g_object_new (CHEESE_TYPE_THUMB_VIEW, NULL);
   return GTK_WIDGET (thumb_view);
+}
+
+void
+cheese_thumb_view_start_monitoring_photo_path (CheeseThumbView *thumb_view, char *path_photos)
+{
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  if(priv->photo_file_monitor != NULL)
+    return;
+
+  GFile *file;
+
+  /* connect signal to photo path */
+  file                     = g_file_new_for_path (path_photos);
+  priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+  g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
+
+  g_object_unref (file);
+
+}
+
+void
+cheese_thumb_view_start_monitoring_video_path (CheeseThumbView *thumb_view, char *path_videos)
+{
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  if(priv->video_file_monitor != NULL)
+    return;
+
+  GFile *file;
+
+  /* connect signal to video path */
+  file                     = g_file_new_for_path (path_videos);
+  priv->video_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+  g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
+
+  g_object_unref (file);
+
 }

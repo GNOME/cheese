@@ -94,6 +94,8 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
   else
     path = cheese_fileutil_get_video_path (fileutil);
 
+  g_mkdir_with_parents (path, 0775);
+
   if (mode == CHEESE_MEDIA_MODE_PHOTO)
   {
     filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, PHOTO_NAME_SUFFIX);

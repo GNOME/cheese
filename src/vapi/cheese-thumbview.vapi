@@ -9,5 +9,7 @@ namespace Cheese
     public List<GLib.File> get_selected_images_list ();
     public int             get_n_selected ();
     public void            remove_item (GLib.File file);
+    public void            start_monitoring_photo_path (string path_photos);
+    public void            start_monitoring_video_path (string path_videos);
   }
 }
