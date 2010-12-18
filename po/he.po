@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-11 00:27+0200\n"
-"PO-Revision-Date: 2010-12-11 00:28+0200\n"
+"POT-Creation-Date: 2010-12-19 01:03+0200\n"
+"PO-Revision-Date: 2010-12-19 01:03+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Hebrew\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "‏Cheese"
 
@@ -269,7 +269,7 @@ msgstr "_ספירה לאחור"
 msgid "Cheese Webcam Booth"
 msgstr "תא הצילום של Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:621
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:637
 msgid "Shutter sound"
 msgstr "צליל הצמצם"
 
@@ -323,39 +323,46 @@ msgstr "%d "
 msgid "No Effect"
 msgstr "ללא אפקט"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "Enable wide mode"
-
 #: ../src/cheese-main.vala:38
+msgid "Start in wide mode"
+msgstr "הפעלה במצב רחב"
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "Device to use as a camera"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "DEVICE"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "Output version information and exit"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "הפעלה במסך מלא"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- Take photos and videos from your webcam"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-window.vala:716
+#: ../src/cheese-window.vala:732
 msgid "Stop _Recording"
 msgstr "ה_פסקת ההקלטה"
 
-#: ../src/cheese-window.vala:850
+#: ../src/cheese-window.vala:866
 msgid "No effects found"
 msgstr "לא נמצאו אפקטים"
+
+#~ msgid "Enable wide mode"
+#~ msgstr "Enable wide mode"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
@@ -468,9 +475,6 @@ msgstr "לא נמצאו אפקטים"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Whether to enable immediate deletion"
-
-#~ msgid "Whether to start in wide mode"
-#~ msgstr "Whether to start in wide mode"
 
 #~ msgid "Width resolution"
 #~ msgstr "Width resolution"
