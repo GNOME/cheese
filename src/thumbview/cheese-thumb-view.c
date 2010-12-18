@@ -506,33 +506,39 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     priv->multiplex_thumbnail_generator = !priv->multiplex_thumbnail_generator;
   g_free (multiplex_file);
 
-  /* read videos from the vid directory */
-  while ((name = g_dir_read_name (dir_videos)))
+  if (dir_videos)
   {
-    if (!(g_str_has_suffix (name, VIDEO_NAME_SUFFIX)))
-      continue;
+    /* read videos from the vid directory */
+    while ((name = g_dir_read_name (dir_videos)))
+    {
+      if (!(g_str_has_suffix (name, VIDEO_NAME_SUFFIX)))
+        continue;
 
-    filename = g_build_filename (path_videos, name, NULL);
-    file     = g_file_new_for_path (filename);
-    cheese_thumb_view_append_item (thumb_view, file);
-    g_free (filename);
-    g_object_unref (file);
+      filename = g_build_filename (path_videos, name, NULL);
+      file     = g_file_new_for_path (filename);
+      cheese_thumb_view_append_item (thumb_view, file);
+      g_free (filename);
+      g_object_unref (file);
+    }
+    g_dir_close (dir_videos);
   }
-  g_dir_close (dir_videos);
 
-  /* read photos from the photo directory */
-  while ((name = g_dir_read_name (dir_photos)))
+  if (dir_photos)
   {
-    if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
-      continue;
+    /* read photos from the photo directory */
+    while ((name = g_dir_read_name (dir_photos)))
+    {
+      if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
+        continue;
 
-    filename = g_build_filename (path_photos, name, NULL);
-    file     = g_file_new_for_path (filename);
-    cheese_thumb_view_append_item (thumb_view, file);
-    g_free (filename);
-    g_object_unref (file);
+      filename = g_build_filename (path_photos, name, NULL);
+      file     = g_file_new_for_path (filename);
+      cheese_thumb_view_append_item (thumb_view, file);
+      g_free (filename);
+      g_object_unref (file);
+    }
+    g_dir_close (dir_photos);
   }
-  g_dir_close (dir_photos);
 }
 
 static void
@@ -653,7 +659,7 @@ cheese_thumb_view_start_monitoring_photo_path (CheeseThumbView *thumb_view, char
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
-  if(priv->photo_file_monitor != NULL)
+  if (priv->photo_file_monitor != NULL)
     return;
 
   GFile *file;
@@ -672,7 +678,7 @@ cheese_thumb_view_start_monitoring_video_path (CheeseThumbView *thumb_view, char
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
-  if(priv->video_file_monitor != NULL)
+  if (priv->video_file_monitor != NULL)
     return;
 
   GFile *file;
