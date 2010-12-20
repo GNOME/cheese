@@ -317,6 +317,7 @@ public class Cheese.MainWindow : Gtk.Window
     save_as_dialog.do_overwrite_confirmation = true;
     basename                                 = GLib.Filename.display_basename (filename);
     save_as_dialog.set_current_name (basename);
+    save_as_dialog.set_current_folder (GLib.Environment.get_home_dir ());
 
     response = save_as_dialog.run ();
 
