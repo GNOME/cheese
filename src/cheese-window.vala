@@ -547,6 +547,9 @@ public class Cheese.MainWindow : Gtk.Window
           b.relief = Gtk.ReliefStyle.NORMAL;
       }
 
+      /* Stop timer so buttons_area does not get hidden after returning from
+       * fullscreen mode */
+      clear_fullscreen_timeout ();
       /* Show the buttons area anyway - it might've been hidden in fullscreen mode */
       buttons_area.show ();
       viewport_widget.motion_notify_event.disconnect (fullscreen_motion_notify_callback);
