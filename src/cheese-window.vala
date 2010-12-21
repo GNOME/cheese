@@ -409,30 +409,15 @@ public class Cheese.MainWindow : Gtk.Window
     photo_mode_action.sensitive = true;
     video_mode_action.sensitive = true;
     burst_mode_action.sensitive = true;
+    effects_toggle_action.sensitive = true;
   }
 
   private void disable_mode_change ()
   {
-    switch (this.current_mode)
-    {
-      case MediaMode.PHOTO :
-        photo_mode_action.sensitive = true;
-        video_mode_action.sensitive = false;
-        burst_mode_action.sensitive = false;
-        break;
-
-      case MediaMode.VIDEO:
-        photo_mode_action.sensitive = false;
-        video_mode_action.sensitive = true;
-        burst_mode_action.sensitive = false;
-        break;
-
-      case MediaMode.BURST:
-        photo_mode_action.sensitive = false;
-        video_mode_action.sensitive = false;
-        burst_mode_action.sensitive = true;
-        break;
-    }
+     photo_mode_action.sensitive = false;
+     video_mode_action.sensitive = false;
+     burst_mode_action.sensitive = false;
+     effects_toggle_action.sensitive = false;
   }
 
   private void set_mode (MediaMode mode)
@@ -622,7 +607,7 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void finish_countdown_callback ()
   {
-    if (!action_cancelled)
+    if (action_cancelled == false)
     {
       string file_name = fileutil.get_new_media_filename (this.current_mode);
 
@@ -642,10 +627,8 @@ public class Cheese.MainWindow : Gtk.Window
                                    null);
       this.camera.take_photo (file_name);
     }
-    else
-    {
-      action_cancelled = false;
-    }
+
+    enable_mode_change ();
     if (current_mode == MediaMode.PHOTO)
       take_photo_action.sensitive = true;
   }
@@ -655,8 +638,10 @@ public class Cheese.MainWindow : Gtk.Window
   {
     if (settings.get_boolean ("countdown"))
     {
+      disable_mode_change ();
       if (current_mode == MediaMode.PHOTO)
         take_photo_action.sensitive = false;
+
       current_countdown = new Countdown (this.countdown_layer);
       current_countdown.start (finish_countdown_callback);
     }
@@ -679,13 +664,7 @@ public class Cheese.MainWindow : Gtk.Window
     }
     else
     {
-      is_bursting = false;
-      this.enable_mode_change ();
-      take_action_button.related_action.sensitive = true;
-      effects_toggle_action.sensitive             = true;
-      burst_count                                 = 0;
-      fileutil.reset_burst ();
-      GLib.Source.remove (burst_callback_id);
+      toggle_photo_bursting (false);
       return false;
     }
   }
@@ -708,9 +687,7 @@ public class Cheese.MainWindow : Gtk.Window
         else
         if (current_mode == MediaMode.BURST)
         {
-          current_countdown.stop ();
-          is_bursting = false;
-          burst_take_photo ();
+          toggle_photo_bursting (false);
         }
         else
         if (current_mode == MediaMode.VIDEO)
@@ -728,16 +705,15 @@ public class Cheese.MainWindow : Gtk.Window
     return false;
   }
 
-  public void toggle_video_recording (bool active)
+  public void toggle_video_recording (bool is_start)
   {
-    if (active)
+    if (is_start)
     {
       camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
       take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
       take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
-      effects_toggle_action.sensitive = false;
     }
     else
     {
@@ -746,7 +722,33 @@ public class Cheese.MainWindow : Gtk.Window
       take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
-      effects_toggle_action.sensitive = true;
+    }
+  }
+
+  public void toggle_photo_bursting (bool is_start)
+  {
+    if (is_start)
+    {
+      is_bursting = true;
+      this.disable_mode_change ();
+      effects_toggle_action.sensitive = false;
+      take_action_button_label.label  = "<b>" + _("Stop _Taking Pictures") + "</b>";
+      burst_take_photo ();
+
+      /* 3500 ms is approximate time for countdown animation to finish */
+      burst_callback_id = GLib.Timeout.add ((settings.get_int ("burst-delay") / 1000) * 3500, burst_take_photo);
+    }
+    else
+    {
+      if (current_countdown != null && current_countdown.running)
+        current_countdown.stop ();
+
+      is_bursting = false;
+      this.enable_mode_change ();
+      take_action_button_label.label  = "<b>" + take_action_button.related_action.label + "</b>";
+      burst_count = 0;
+      fileutil.reset_burst ();
+      GLib.Source.remove (burst_callback_id);
     }
   }
 
@@ -765,14 +767,7 @@ public class Cheese.MainWindow : Gtk.Window
     else
     if (current_mode == MediaMode.BURST)
     {
-      is_bursting = true;
-      this.disable_mode_change ();
-      take_action_button.related_action.sensitive = false;
-      effects_toggle_action.sensitive             = false;
-      burst_take_photo ();
-
-      /* 3500 ms is approximate time for countdown animation to finish */
-      burst_callback_id = GLib.Timeout.add ((settings.get_int ("burst-delay") / 1000) * 3500, burst_take_photo);
+      toggle_photo_bursting (!is_bursting);
     }
   }
 
