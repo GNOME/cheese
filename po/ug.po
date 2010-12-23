@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese gnome-2-32\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2010-11-16 06:26+0000\n"
+"POT-Creation-Date: 2010-12-21 23:58+0000\n"
 "PO-Revision-Date: 2010-08-26 01:17+0000\n"
 "Last-Translator: Sahran <sahran.ug@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -52,10 +52,8 @@ msgstr "بۇ پروگرامما ئەركىن يۇمشاق دېتال؛ سىز ئ
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
-msgstr "Sahran <sahran@live.com>\n"
-"Gheyret T.Kenji <gheyret@yahoo.com>\n"
-"Zeper <zeper@msn.com>\n"
-"Abduxukur Abdurixit <abduxukur.abdurixit@t-systems.ch>"
+msgstr "Gheyret Kenji <gheyret@gmail.com>\n"
+"Sahran<sahran@live.com>"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Burst"
@@ -86,70 +84,120 @@ msgid "Previous Effects"
 msgstr "ئالدىنقى ئۈنۈملەر"
 
 #: ../data/cheese-actions.ui.h:8
+#| msgid "_Record a Video"
+msgid "Record a video"
+msgstr ""
+
+#: ../data/cheese-actions.ui.h:9
 msgid "Save _As"
 msgstr "باشقا ئاتتا ساقلا(_A)"
 
-#: ../data/cheese-actions.ui.h:9
+#: ../data/cheese-actions.ui.h:10
 msgid "Take _Multiple Photos"
 msgstr "كۆپ رەسىم تارت(_M)"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:238
+msgid "Take a photo"
+msgstr "رەسىم تارتىدۇ"
+
+#: ../data/cheese-actions.ui.h:12
+#| msgid "Take _Multiple Photos"
+msgid "Take multiple photos"
+msgstr ""
+
+#: ../data/cheese-actions.ui.h:13
 msgid "_About"
 msgstr "ھەققىدە(_A)"
 
-#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-actions.ui.h:14
 msgid "_Cheese"
 msgstr "Cheese(_C)"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:15
 msgid "_Delete"
 msgstr "ئۆچۈر(_D)"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:16
 msgid "_Edit"
 msgstr "تەھرىر(_E)"
 
-#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "ئۈنۈملەر(_E)"
 
-#: ../data/cheese-actions.ui.h:15
+#: ../data/cheese-actions.ui.h:18
 msgid "_Help"
 msgstr "ياردەم(_H)"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:19
 msgid "_Open"
 msgstr "ئاچ(_O)"
 
-#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-actions.ui.h:20
 msgid "_Photo"
 msgstr "رەسىم(_P)"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:21
 msgid "_Preferences"
 msgstr "مايىللىق(_P)"
 
-#: ../data/cheese-actions.ui.h:19
+#: ../data/cheese-actions.ui.h:22
 msgid "_Quit"
 msgstr "چېكىن(_Q)"
 
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:23
 msgid "_Record a Video"
 msgstr "سىن خاتىرىلە(_R)"
 
-#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "رەسىم تارت(_T)"
 
-#: ../data/cheese-actions.ui.h:22
+#: ../data/cheese-actions.ui.h:25
 msgid "_Video"
 msgstr "سىن(_V)"
 
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:26
 msgid "_Wide Mode"
 msgstr "كەڭرى ھالەت(_W)"
 
+#: ../data/cheese-main-window.ui.h:1
+#| msgid "_Effects"
+msgid "Effects"
+msgstr "ئۈنۈملەر"
+
 #: ../data/cheese-main-window.ui.h:2
+#| msgid "_Leave Fullscreen"
+msgid "Leave fullscreen"
+msgstr "تولۇق ئېكران ھالىتىدىن چىق"
+
+#: ../data/cheese-main-window.ui.h:3
+#| msgid "Next Effects"
+msgid "Next effect"
+msgstr ""
+
+#: ../data/cheese-main-window.ui.h:4
+#| msgid "Burst mode"
+msgid "Photo burst mode"
+msgstr ""
+
+#: ../data/cheese-main-window.ui.h:5
+#| msgid "_Photo"
+msgid "Photo mode"
+msgstr ""
+
+#: ../data/cheese-main-window.ui.h:6
+#| msgid "Previous Effects"
+msgid "Previous effect"
+msgstr ""
+
+#: ../data/cheese-main-window.ui.h:8
+#| msgid "_Wide Mode"
+msgid "Video mode"
+msgstr ""
+
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Leave Fullscreen"
 msgstr "پۈتۈن ئېكراندىن ئايرىل(_L)"
 
@@ -178,7 +226,6 @@ msgid "Device"
 msgstr "ئۈسكۈنە"
 
 #: ../data/cheese-prefs.ui.h:7
-#| msgid "Flash"
 msgid "Fire _Flash"
 msgstr ""
 
@@ -211,7 +258,6 @@ msgid "Webcam"
 msgstr "ۋېبكامېرا"
 
 #: ../data/cheese-prefs.ui.h:15
-#| msgid "Countdown"
 msgid "_Countdown"
 msgstr "تەتۈر سانا(_C)"
 
@@ -219,13 +265,9 @@ msgstr "تەتۈر سانا(_C)"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese Webcam Booth"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:600
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:626
 msgid "Shutter sound"
 msgstr "Shutter نىڭ ئاۋازى"
-
-#: ../libcheese/cheese-avatar-chooser.c:238
-msgid "Take a photo"
-msgstr "رەسىم تارتىدۇ"
 
 #: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
@@ -273,42 +315,54 @@ msgstr "GStreamer  نىڭ كېرەكلىك ئېلېمېنت تېپىلمىدى: 
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-effects-manager.vala:116
+#: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "ئۈنۈم يوق"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "كەڭرى ھالەتنى ئىشلىتىدۇ"
-
 #: ../src/cheese-main.vala:38
+#| msgid "Whether to start in wide mode"
+msgid "Start in wide mode"
+msgstr ""
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "كامېرا سۈپىتىدە ئىشلىتىدىغان ئۈسكىنە"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "ئۈسكۈنە"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "نەشر ئۇچۇرىنى كۆرسىتىپ ئاخىرلاشتۇرىدۇ"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "تولۇق ئېكران ھالىتىدە قوزغىتىش"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- ۋېبكامېرا ئارقىلىق سىن ۋە سۈرەتلەرنى تارتىدۇ"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr "'%s --help' ئىجرا قىلىنسا بۇيرۇق قۇرى تاللانمىسىنى ئىشلىتىشنىڭ تولۇق تىزىملىكى كۆرۈنىدۇ.\n"
+msgstr "'%s --help' ئىجرا قىلىنسا بۇيرۇق قۇرى تاللانمىسىنىڭ تولۇق تىزىملىكى كۆرۈنىدۇ.\n"
 
-#: ../src/cheese-window.vala:695
+#: ../src/cheese-window.vala:713
 msgid "Stop _Recording"
 msgstr "خاتىرىلەشنى توختات(_R)"
 
-#: ../src/cheese-window.vala:828
+#: ../src/cheese-window.vala:735
+msgid "Stop _Taking Pictures"
+msgstr ""
+
+#: ../src/cheese-window.vala:865
 msgid "No effects found"
 msgstr "ئۈنۈملەر تېپىلمىدى"
+
+#~ msgid "Enable wide mode"
+#~ msgstr "كەڭرى ھالەتنى ئىشلىتىدۇ"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
@@ -420,9 +474,6 @@ msgstr "ئۈنۈملەر تېپىلمىدى"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "دەرھال ئۆچۈرۈشنى قوزغىتامدۇ يوق"
-
-#~ msgid "Whether to start in wide mode"
-#~ msgstr "كەڭ ھالەتتە قوزغالسۇنمۇ"
 
 #~ msgid "Width resolution"
 #~ msgstr "يان يۆنىلىشتىكى ئېنىقلىقى"
