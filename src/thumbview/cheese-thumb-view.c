@@ -521,6 +521,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
       g_object_unref (file);
     }
     g_dir_close (dir_videos);
+    cheese_thumb_view_start_monitoring_video_path (thumb_view, path_videos);
   }
 
   if (dir_photos)
@@ -538,6 +539,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
       g_object_unref (file);
     }
     g_dir_close (dir_photos);
+    cheese_thumb_view_start_monitoring_photo_path (thumb_view, path_photos);
   }
 }
 

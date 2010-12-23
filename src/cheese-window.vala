@@ -628,9 +628,11 @@ public class Cheese.MainWindow : Gtk.Window
       this.camera.take_photo (file_name);
     }
 
-    enable_mode_change ();
     if (current_mode == MediaMode.PHOTO)
+    {
       take_photo_action.sensitive = true;
+      enable_mode_change ();
+    }
   }
 
   Countdown current_countdown;
@@ -638,9 +640,11 @@ public class Cheese.MainWindow : Gtk.Window
   {
     if (settings.get_boolean ("countdown"))
     {
-      disable_mode_change ();
       if (current_mode == MediaMode.PHOTO)
+      {
         take_photo_action.sensitive = false;
+        disable_mode_change ();
+      }
 
       current_countdown = new Countdown (this.countdown_layer);
       current_countdown.start (finish_countdown_callback);
