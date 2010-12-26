@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese GNOME TRUNK\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2008-11-07 08:46+0100\n"
-"PO-Revision-Date: 2009-02-06 19:18+1030\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&component=general\n"
+"POT-Creation-Date: 2010-12-26 07:41+0000\n"
+"PO-Revision-Date: 2010-12-26 16:25+0700\n"
 "Last-Translator: Clytie Siddall <clytie@riverland.net.au>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -17,183 +18,313 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: LocFactoryEditor 1.8\n"
 
-#: ../data/cheese.desktop.in.in.h:1
-msgid "Cheese Webcam Booth"
-msgstr "Trang chủ Cheese"
-
-#: ../data/cheese.desktop.in.in.h:2
-#: ../src/cheese-window.c:1016
-msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Chụp ảnh và phim dùng webcam, thêm các hiệu ứng đồ họa thứ vị."
-
-#. Translators: please note, that the effect names are
-#. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid "A list of effects applied on startup. Possible values are: \"mauve\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr "Các hiệu ứng được áp dụng vào lúc khởi chạy. Giá trị có thể gồm: \"mauve\" (màu hoà ca), \"noir_blanc\" (màu đen trắng), \"saturation\" (bão hoà), \"hulk\" (to lớn), \"vertical-flip\" (lật dọc), \"horizontal-flip\" (lật ngang), \"shagadelic\" (ma tuý), \"vertigo\" (chóng mặt), \"edge\" (cạnh), \"dice\" (súc sắc), \"warp\" (làm oằn)"
-
-#: ../data/cheese.schemas.in.h:4
-msgid "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Xác định đường dẫn theo đó cần lưu lại các ảnh chụp. Bỏ trống thì dùng « XDG_PHOTO/Webcam »."
-
-#: ../data/cheese.schemas.in.h:5
-msgid "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Xác định đường dẫn theo đó cần lưu lại các phim. Bỏ trống thì dùng « XDG_VIDEO/Webcam »."
-
-#: ../data/cheese.schemas.in.h:6
-msgid "Height resolution"
-msgstr "Độ phân giải chiều cao"
-
-#: ../data/cheese.schemas.in.h:7
-msgid "If set to true, then Cheese will have a feature allowing you to delete a file immediately and in-place, instead of moving it to the trash. This feature can be dangerous, so use caution."
-msgstr "Nếu là true, Cheese sẽ có tính năng cho phép xoá tập tin tức thì, tại chỗ, thay vì phải chuyển vào Sọt rác. Tính năng này có thể nguy hiểm, dùng cẩn thận."
-
-#: ../data/cheese.schemas.in.h:8
-msgid "Photo Path"
-msgstr "Đường dẫn ảnh chụp"
-
-#: ../data/cheese.schemas.in.h:9
-msgid "Selected Effects"
-msgstr "Hiệu ứng đã chọn"
-
-#: ../data/cheese.schemas.in.h:10
-msgid "Set to True to show countdown when taking a photo"
-msgstr "Đặt là True để hiện đếm ngược khi chụp ảnh"
-
-#: ../data/cheese.schemas.in.h:11
-msgid "The device which points to the webcam (e.g. /dev/video0)"
-msgstr "Chuỗi thiết bị mà chỉ tới webcam, v.d. « /dev/video0 »"
-
-#: ../data/cheese.schemas.in.h:12
-msgid "The height resolution of the image captured from the camera"
-msgstr "Độ phân giải chiều cao của ảnh được chụp từ máy ảnh"
-
-#: ../data/cheese.schemas.in.h:13
-msgid "The width resolution of the image captured from the camera"
-msgstr "Độ phân giải chiều rộng của ảnh được chụp từ máy ảnh"
-
-#: ../data/cheese.schemas.in.h:14
-msgid "Use a countdown"
-msgstr "Đếm ngược"
-
-#: ../data/cheese.schemas.in.h:15
-msgid "Video Path"
-msgstr "Đường dẫn phim"
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Webcam device string indicator"
-msgstr "Chuỗi chỉ thị thiết bị webcam"
-
-#: ../data/cheese.schemas.in.h:17
-msgid "Whether to enable immediate deletion"
-msgstr "Có bật xoá tức thì không"
-
-#: ../data/cheese.schemas.in.h:18
-msgid "Width resolution"
-msgstr "Độ phân giải chiều rộng"
-
-#: ../data/cheese.ui.h:1
-#: ../src/cheese.c:177
+#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.ui.h:2
-msgid "Switch to Photo Mode"
-msgstr "Chuyển sang chế độ ảnh"
+#: ../data/cheese-about.ui.h:2
+msgid "Cheese Website"
+msgstr "Trang chủ Cheese"
 
-#: ../data/cheese.ui.h:3
-msgid "Switch to Video Mode"
-msgstr "Chuyển sang chế độ phim"
+#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "Chụp ảnh và phim dùng webcam, thêm các hiệu ứng đồ họa thứ vị."
 
-#: ../data/cheese.ui.h:4
-msgid "Switch to the Effects Selector"
-msgstr "Chuyển sang bộ chọn hiệu ứng"
+#: ../data/cheese-about.ui.h:4
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see http://www.gnu.org/licenses/\n"
+msgstr ""
+"Chương trình này là phần mềm tự do; bạn có thể phát hành lại và/hoặc sửa đổi "
+"nó theo các điều khoản của Giấy Phép Công Cộng GNU như được xuất bản bởi Tổ "
+"chức Phần mềm Tự do; hoặc phiên bản 2 của giấy phép này, hoặc bất kì phiên "
+"bản sau nào (tuỳ ý).\n"
+"\n"
+"Chương trình này được phát hành với mong muốn nó sẽ là một phần mềm có ích,"
+"nhưng KHÔNG PHẢI CHỊU BẤT KÌ TRÁCH NHIỆM NÀO; thậm chí cả về KHẢ NĂNG BÁN "
+"LẠI hoặc PHÙ HỢP VỚI TỪNG MỤC ĐÍCH CỤ THỂ. Xem Giấy phép Công cộng GNU để "
+"biết thêm chi tiết.\n"
+"\n"
+"Bạn đã nhận một bản sao của Giấy Phép Công Cộng GNU cùng với chương trình "
+"này; nếu không, hãy liên hệ Tổ chức Phần mềm Tự do: http://www.gnu.org/"
+"licesnses\n"
 
-#: ../data/cheese.ui.h:5
-#: ../src/cheese-window.c:1140
-#: ../src/cheese-window.c:1379
+#: ../data/cheese-about.ui.h:10
+msgid "translator-credits"
+msgstr "Nhóm Việt hóa GNOME <gnomevi-list@lists.sourceforge.net>"
+
+#: ../data/cheese-actions.ui.h:1
+#| msgid "_Burst"
+msgid "Burst"
+msgstr "Hàng loạt"
+
+#: ../data/cheese-actions.ui.h:2
+#| msgid "_Leave Fullscreen"
+msgid "Fullscreen"
+msgstr "Toàn màn hình"
+
+#: ../data/cheese-actions.ui.h:3
+#| msgid "_Contents"
+msgid "Help _Contents"
+msgstr "Mụ_c lục"
+
+#: ../data/cheese-actions.ui.h:4
+msgid "Move All to Trash"
+msgstr "Chuyển tất cả vào Sọt rác"
+
+#: ../data/cheese-actions.ui.h:5
+msgid "Move to _Trash"
+msgstr "Chuyển vào Sọt _rác"
+
+#: ../data/cheese-actions.ui.h:6
+#| msgid "No Effect"
+msgid "Next Effects"
+msgstr "Hiệu ứng kế"
+
+#: ../data/cheese-actions.ui.h:7
+#| msgid "No Effect"
+msgid "Previous Effects"
+msgstr "Hiệu ứng trước"
+
+#: ../data/cheese-actions.ui.h:8
+msgid "Record a video"
+msgstr "Thu phim"
+
+#: ../data/cheese-actions.ui.h:9
+#| msgid "Save _As..."
+msgid "Save _As"
+msgstr "Lưu _dạng"
+
+#: ../data/cheese-actions.ui.h:10
+#| msgid "_Take multiple Photos"
+msgid "Take _Multiple Photos"
+msgstr "_Chụp nhiều ảnh"
+
+#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:238
+msgid "Take a photo"
+msgstr "Chụp ảnh"
+
+#: ../data/cheese-actions.ui.h:12
+#| msgid "_Take multiple Photos"
+msgid "Take multiple photos"
+msgstr "Chụp nhiều ảnh"
+
+#: ../data/cheese-actions.ui.h:13
+#| msgid "About"
+msgid "_About"
+msgstr "_Giới thiệu"
+
+#: ../data/cheese-actions.ui.h:14
+msgid "_Cheese"
+msgstr "_Cheese"
+
+#: ../data/cheese-actions.ui.h:15
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "_Xoá"
+
+#: ../data/cheese-actions.ui.h:16
+msgid "_Edit"
+msgstr "_Sửa"
+
+#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Hiệu ứng"
 
-#: ../data/cheese.ui.h:6
-msgid "_Leave Fullscreen"
-msgstr "_Thôi toàn màn hình"
+#: ../data/cheese-actions.ui.h:18
+msgid "_Help"
+msgstr "Trợ g_iúp"
 
-#: ../data/cheese.ui.h:7
-#: ../src/cheese-window.c:1391
+#: ../data/cheese-actions.ui.h:19
+msgid "_Open"
+msgstr "_Mở"
+
+#: ../data/cheese-actions.ui.h:20
 msgid "_Photo"
 msgstr "Ảnh chụ_p"
 
-#: ../data/cheese.ui.h:8
-#: ../src/cheese-window.c:1443
+#: ../data/cheese-actions.ui.h:21
+#| msgid "Preferences"
+msgid "_Preferences"
+msgstr "_Tùy thích"
+
+#: ../data/cheese-actions.ui.h:22
+#| msgid "Quit"
+msgid "_Quit"
+msgstr "T_hoát"
+
+#: ../data/cheese-actions.ui.h:23
+#| msgid "_Recording"
+msgid "_Record a Video"
+msgstr "_Thu phim"
+
+#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "_Chụp ảnh"
 
-#: ../data/cheese.ui.h:9
-#: ../src/cheese-window.c:1392
+#: ../data/cheese-actions.ui.h:25
 msgid "_Video"
 msgstr "Ph_im"
 
+#: ../data/cheese-actions.ui.h:26
+#| msgid "_Wide mode"
+msgid "_Wide Mode"
+msgstr "_Chế độ rộng"
+
+#: ../data/cheese-main-window.ui.h:1
+#| msgid "_Effects"
+msgid "Effects"
+msgstr "Hiệu ứng"
+
+#: ../data/cheese-main-window.ui.h:2
+#| msgid "_Leave Fullscreen"
+msgid "Leave fullscreen"
+msgstr "Thôi toàn màn hình"
+
+#: ../data/cheese-main-window.ui.h:3
+#| msgid "No Effect"
+msgid "Next effect"
+msgstr "Hiệu ứng kế"
+
+#: ../data/cheese-main-window.ui.h:4
+#| msgid "Burst mode"
+msgid "Photo burst mode"
+msgstr "Chế độ chụp hàng loạt"
+
+#: ../data/cheese-main-window.ui.h:5
+#| msgid "_Photo"
+msgid "Photo mode"
+msgstr "Chế độ ảnh"
+
+#: ../data/cheese-main-window.ui.h:6
+msgid "Previous effect"
+msgstr "Hiệu ứng trước"
+
+#: ../data/cheese-main-window.ui.h:8
+#| msgid "_Wide mode"
+msgid "Video mode"
+msgstr "Chế độ _phim"
+
+#: ../data/cheese-main-window.ui.h:10
+msgid "_Leave Fullscreen"
+msgstr "_Thôi toàn màn hình"
+
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Camera</b>"
-msgstr "<b>Máy quay</b>"
+#| msgid "<b>Camera</b>"
+msgid "<b>Shutter</b>"
+msgstr "<b>Cửa chập</b>"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "<b>Resolution</b>"
-msgstr "<b>Độ phân giải</b>"
+msgid "Brightness"
+msgstr "Độ ánh sáng"
 
 #: ../data/cheese-prefs.ui.h:3
-#: ../src/cheese-window.c:1383
+msgid "Burst mode"
+msgstr "Chế độ chụp hàng loạt"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Contrast"
+msgstr "Độ tương phản"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Delay between photos (seconds)"
+msgstr "Khoảng dừng giữa các ảnh (giây)"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Device"
+msgstr "Thiết bị"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Fire _Flash"
+msgstr "_Chớp lửa"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Hue"
+msgstr "Màu sắc"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Image properties"
+msgstr "Thuộc tính ảnh"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Number of photos"
+msgstr "Số ảnh"
+
+#: ../data/cheese-prefs.ui.h:11
 msgid "Preferences"
 msgstr "Tùy thích"
 
-#: ../src/cheese-effect-chooser.c:60
-msgid "No Effect"
-msgstr "Không hiệu ứng"
+#: ../data/cheese-prefs.ui.h:12
+msgid "Resolution"
+msgstr "Độ phân giải"
 
-#: ../src/cheese-effect-chooser.c:62
-msgid "Mauve"
-msgstr "Màu hoa cà"
-
-#: ../src/cheese-effect-chooser.c:64
-msgid "Noir/Blanc"
-msgstr "Màu đen trắng"
-
-#: ../src/cheese-effect-chooser.c:66
+#: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Bão hòa"
 
-#: ../src/cheese-effect-chooser.c:68
-msgid "Hulk"
-msgstr "To lớn"
+#: ../data/cheese-prefs.ui.h:14
+msgid "Webcam"
+msgstr "Webcam"
 
-#: ../src/cheese-effect-chooser.c:70
-msgid "Vertical Flip"
-msgstr "Lật theo chiều dọc"
+#: ../data/cheese-prefs.ui.h:15
+#| msgid "Countdown"
+msgid "_Countdown"
+msgstr "Đế_m ngược"
 
-#: ../src/cheese-effect-chooser.c:72
-msgid "Horizontal Flip"
-msgstr "Lật theo chiều ngang"
+#: ../data/cheese.desktop.in.in.h:2
+msgid "Cheese Webcam Booth"
+msgstr "Trang chủ Cheese"
 
-#: ../src/cheese-effect-chooser.c:74
-msgid "Shagadelic"
-msgstr "Ma tuý"
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:626
+msgid "Shutter sound"
+msgstr "Âm thanh khi chụp"
 
-#: ../src/cheese-effect-chooser.c:76
-msgid "Vertigo"
-msgstr "Chóng mặt"
+#: ../libcheese/cheese-avatar-chooser.c:257
+msgid "_Take a photo"
+msgstr "_Chụp ảnh"
 
-#: ../src/cheese-effect-chooser.c:78
-msgid "Edge"
-msgstr "Cạnh"
+#: ../libcheese/cheese-avatar-chooser.c:272
+msgid "_Discard photo"
+msgstr "_Bỏ ảnh"
 
-#: ../src/cheese-effect-chooser.c:80
-msgid "Dice"
-msgstr "Súc sắc"
+#: ../libcheese/cheese-camera-device.c:329
+msgid "Device capabilities not supported"
+msgstr "Không hỗ trợ tính năng thiết bị"
 
-#: ../src/cheese-effect-chooser.c:82
-msgid "Warp"
-msgstr "Làm oằn"
+#: ../libcheese/cheese-camera-device.c:357
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "Lỗi khởi động thiết bị %s để dò tính năng"
+
+#: ../libcheese/cheese-camera-device.c:515
+msgid "Unknown device"
+msgstr "Thiết bị không xác định"
+
+#: ../libcheese/cheese-camera-device.c:539
+msgid "Cancellable initialization not supported"
+msgstr "Không hỗ trợ khởi động có thể huỷ"
+
+#: ../libcheese/cheese-camera.c:1158
+#, c-format
+msgid "No device found"
+msgstr "Không tìm thấy thiết bị"
+
+#: ../libcheese/cheese-camera.c:1177
+#| msgid "One or more needed gstreamer elements are missing: "
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Thiếu một hoặc nhiều yếu tố GStreamer cần thiết: "
 
 #. TRANSLATORS:
 #. * This is the countdown number when taking the photo.
@@ -201,262 +332,321 @@ msgstr "Làm oằn"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../src/cheese-countdown.c:436
-#: ../src/cheese-countdown.c:455
-#: ../src/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-no-camera.c:96
-msgid "No camera found!"
-msgstr "Không tìm thấy máy ảnh."
+#: ../src/cheese-effects-manager.vala:118
+msgid "No Effect"
+msgstr "Không hiệu ứng"
 
-#: ../src/cheese-no-camera.c:97
-msgid "Please refer to the help for further information."
-msgstr "Hãy đọc trợ giúp để xem thông tin thêm."
+#: ../src/cheese-main.vala:38
+#| msgid "Whether to start in wide mode"
+msgid "Start in wide mode"
+msgstr "Khởi động theo chế dộ rộng"
 
-#: ../src/cheese-no-camera.c:100
-msgid "Help"
-msgstr "Trợ giúp"
+#: ../src/cheese-main.vala:39
+msgid "Device to use as a camera"
+msgstr "Thiết bị thu"
 
-#: ../src/cheese-webcam.c:1546
-msgid "One or more needed gstreamer elements are missing: "
-msgstr "Thiếu một hoặc nhiều yếu tố gstreamer cần thiết: "
+#: ../src/cheese-main.vala:39
+msgid "DEVICE"
+msgstr "THIẾT BỊ"
 
-#: ../src/cheese-window.c:77
-msgid "_Skip"
-msgstr "_Bỏ qua"
+#: ../src/cheese-main.vala:40
+#| msgid "output version information and exit"
+msgid "Output version information and exit"
+msgstr "Hiện thông tin phiên bản và thoát"
 
-#: ../src/cheese-window.c:78
-msgid "S_kip All"
-msgstr "Bỏ qua _tất cả"
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "Bắt đầu ở chế độ toàn màn hình"
 
-#: ../src/cheese-window.c:79
-msgid "Delete _All"
-msgstr "Xoá _tất cả"
+#: ../src/cheese-main.vala:68
+#| msgid ""
+#| "- Take photos and videos with your webcam, with fun graphical effects"
+msgid "- Take photos and videos from your webcam"
+msgstr "— Chụp ảnh và phim dùng webcam"
 
-#: ../src/cheese-window.c:202
+#: ../src/cheese-main.vala:79
 #, c-format
-msgid ""
-"Failed to open browser to show:\n"
-"%s"
-msgstr ""
-"Lỗi mở trình duyệt để hiển thị:\n"
-"%s"
+msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgstr "Chạy '%s --help' để xem danh sách tuỳ chọn dòng lệnh.\n"
 
-#: ../src/cheese-window.c:226
-#, c-format
-msgid ""
-"Failed to open email client to send message to:\n"
-"%s"
-msgstr ""
-"Lỗi mở ứng dụng thư điện tử để gửi thư cho :\n"
-"%s"
-
-#: ../src/cheese-window.c:469
-#, c-format
-msgid ""
-"Failed to launch program to show:\n"
-"%s"
-msgstr ""
-"Lỗi khởi chạy chương trình để hiển thị:\n"
-"%s"
-
-#: ../src/cheese-window.c:488
-msgid "Save File"
-msgstr "Lưu tập tin"
-
-#: ../src/cheese-window.c:526
-#, c-format
-msgid "Could not save %s"
-msgstr "Không thể lưu %s"
-
-#: ../src/cheese-window.c:549
-msgid "Error while deleting"
-msgstr "Lỗi xoá"
-
-#: ../src/cheese-window.c:550
-#, c-format
-msgid "The file \"%s\" cannot be deleted. Details: %s"
-msgstr "Không thể xoá tập tin « %s ». Chi tiết: %s"
-
-#: ../src/cheese-window.c:577
-#, c-format
-msgid "Are you sure you want to permanently delete the %'d selected item?"
-msgid_plural "Are you sure you want to permanently delete the %'d selected items?"
-msgstr[0] "Bạn có chắc muốn xoá hẳn %'d mục đã chọn không?"
-
-#: ../src/cheese-window.c:584
-#, c-format
-msgid "Are you sure you want to permanently delete \"%s\"?"
-msgstr "Bạn có chắc muốn xoá vĩnh viễn \"%s\" không?"
-
-#: ../src/cheese-window.c:587
-#, c-format
-msgid "If you delete an item, it will be permanently lost."
-msgstr "Nếu bạn xoá một mục, nó sẽ bị mất vĩnh viễn."
-
-#: ../src/cheese-window.c:608
-msgid "Unknown Error"
-msgstr "Lỗi lạ"
-
-#: ../src/cheese-window.c:638
-msgid "Cannot move file to trash, do you want to delete immediately?"
-msgstr "Không thể chuyển tập tin vào Sọt rác, bạn có muốn xoá tức thì không?"
-
-#: ../src/cheese-window.c:639
-#, c-format
-msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-msgstr "Không thể cho tập tin « %s » vào Sọt rác. Chi tiết: %s"
-
-#: ../src/cheese-window.c:711
-#, c-format
-msgid "Really move all photos and videos to the trash?"
-msgstr "Thực sự muốn di chuyển tất cả các ảnh chụp và phim vào Sọt Rác không?"
-
-#: ../src/cheese-window.c:719
-msgid "_Move to Trash"
-msgstr "Chu_yển vào Sọt Rác"
-
-#: ../src/cheese-window.c:837
-#, c-format
-msgid "Could not set the Account Photo"
-msgstr "Không thể đặt Ảnh chụp Tài khoản"
-
-#: ../src/cheese-window.c:869
-msgid "Media files"
-msgstr "Tập tin phương tiện"
-
-#: ../src/cheese-window.c:942
-#: ../src/cheese-window.c:1214
-msgid "Unable to open help file for Cheese"
-msgstr "Không thể mở tập tin trợ giúp cho trình Cheese"
-
-#: ../src/cheese-window.c:994
-msgid "translator-credits"
-msgstr "Nhóm Việt hóa GNOME <gnomevi-list@lists.sourceforge.net>"
-
-#: ../src/cheese-window.c:997
-msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
-msgstr "Chương trình này là phần mềm tự do; bạn có thể phát hành lại nó và/hoặc sửa đổi nó với điều kiện của Giấy Phép Công Cộng GNU như được xuất bản bởi Tổ chức Phần mềm Tự do; hoặc phiên bản 2 của Giấy phép này, hoặc (tùy chọn) bất kỳ phiên bản sau nào.\n"
-
-#: ../src/cheese-window.c:1001
-msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
-msgstr "Chương trình này được phát hành vì mong muốn nó có ích, nhưng KHÔNG CÓ BẢO HÀNH GÌ CẢ, THẬM CHÍ KHÔNG CÓ BẢO ĐẢM ĐƯỢC NGỤ Ý KHẢ NĂNG BÁN HAY KHẢ NĂNG LÀM ĐƯỢC VIỆC DỨT KHOÁT. Xem Giấy Phép Công Cộng GNU để biết thêm chi tiết.\n"
-
-#: ../src/cheese-window.c:1005
-msgid "You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>."
-msgstr "Bạn đã nhận một bản sao của Giấy Phép Công Cộng GNU cùng với chương trình này; nếu không, xem <http://www.gnu.org/licenses/>."
-
-#: ../src/cheese-window.c:1022
-msgid "Cheese Website"
-msgstr "Trang chủ Cheese"
-
-#: ../src/cheese-window.c:1230
-msgid "_Start Recording"
-msgstr "_Bắt đầu thu"
-
-#: ../src/cheese-window.c:1329
-msgid "_Stop Recording"
+#: ../src/cheese-window.vala:717
+#| msgid "_Stop Recording"
+msgid "Stop _Recording"
 msgstr "_Dừng thu"
 
-#: ../src/cheese-window.c:1360
-msgid "_Cheese"
-msgstr "_Cheese"
+#: ../src/cheese-window.vala:739
+msgid "Stop _Taking Pictures"
+msgstr "Ngừng _chụp hình"
 
-#: ../src/cheese-window.c:1362
-msgid "_Edit"
-msgstr "_Sửa"
+#: ../src/cheese-window.vala:869
+#| msgid "No device found"
+msgid "No effects found"
+msgstr "Không có hiệu ứng"
 
-#: ../src/cheese-window.c:1363
-msgid "Move All to Trash"
-msgstr "Chuyển tất cả vào Sọt rác"
+#~ msgid ""
+#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+#~ msgstr ""
+#~ "Các hiệu ứng được áp dụng vào lúc khởi chạy. Giá trị có thể gồm: \"mauve"
+#~ "\" (màu hoà ca), \"noir_blanc\" (màu đen trắng), \"saturation\" (bão "
+#~ "hoà), \"hulk\" (to lớn), \"vertical-flip\" (lật dọc), \"horizontal-flip"
+#~ "\" (lật ngang), \"shagadelic\" (ma tuý), \"vertigo\" (chóng mặt), \"edge"
+#~ "\" (cạnh), \"dice\" (súc sắc), \"warp\" (làm oằn)"
 
-#: ../src/cheese-window.c:1366
-msgid "_Help"
-msgstr "Trợ g_iúp"
+#~ msgid ""
+#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Xác định đường dẫn theo đó cần lưu lại các ảnh chụp. Bỏ trống thì dùng « "
+#~ "XDG_PHOTO/Webcam »."
 
-#: ../src/cheese-window.c:1369
-msgid "_Contents"
-msgstr "Mụ_c lục"
+#~ msgid ""
+#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Xác định đường dẫn theo đó cần lưu lại các phim. Bỏ trống thì dùng « "
+#~ "XDG_VIDEO/Webcam »."
 
-#: ../src/cheese-window.c:1369
-msgid "Help on this Application"
-msgstr "Trợ giúp về ứng dụng này"
+#~ msgid "Height resolution"
+#~ msgstr "Độ phân giải chiều cao"
 
-#: ../src/cheese-window.c:1375
-msgid "Countdown"
-msgstr "Đếm ngược"
+#~ msgid ""
+#~ "If set to true, then Cheese will have a feature allowing you to delete a "
+#~ "file immediately and in-place, instead of moving it to the trash. This "
+#~ "feature can be dangerous, so use caution."
+#~ msgstr ""
+#~ "Nếu là true, Cheese sẽ có tính năng cho phép xoá tập tin tức thì, tại "
+#~ "chỗ, thay vì phải chuyển vào Sọt rác. Tính năng này có thể nguy hiểm, "
+#~ "dùng cẩn thận."
 
-#: ../src/cheese-window.c:1396
-msgid "_Open"
-msgstr "_Mở"
+#~ msgid "Photo Path"
+#~ msgstr "Đường dẫn ảnh chụp"
 
-#: ../src/cheese-window.c:1398
-msgid "Save _As..."
-msgstr "Lưu _dạng..."
+#~ msgid "Selected Effects"
+#~ msgstr "Hiệu ứng đã chọn"
 
-#: ../src/cheese-window.c:1400
-msgid "Move to _Trash"
-msgstr "Chuyển vào Sọt _rác"
+#~ msgid "Set to True to show countdown when taking a photo"
+#~ msgstr "Đặt là True để hiện đếm ngược khi chụp ảnh"
 
-#: ../src/cheese-window.c:1402
-msgid "Delete"
-msgstr "Xoá"
+#~ msgid "The device which points to the webcam (e.g. /dev/video0)"
+#~ msgstr "Chuỗi thiết bị mà chỉ tới webcam, v.d. « /dev/video0 »"
 
-#: ../src/cheese-window.c:1407
-#: ../src/cheese-window.c:1636
-msgid "_Take a photo"
-msgstr "_Chụp ảnh"
+#~ msgid "The height resolution of the image captured from the camera"
+#~ msgstr "Độ phân giải chiều cao của ảnh được chụp từ máy ảnh"
 
-#: ../src/cheese-window.c:1411
-msgid "_Recording"
-msgstr "Đ_ang thu"
+#~ msgid "The width resolution of the image captured from the camera"
+#~ msgstr "Độ phân giải chiều rộng của ảnh được chụp từ máy ảnh"
 
-#: ../src/cheese-window.c:1415
-msgid "_Set As Account Photo"
-msgstr "Đặt là Ảnh chụp _Tài khoản"
+#~ msgid "Use a countdown"
+#~ msgstr "Đếm ngược"
 
-#: ../src/cheese-window.c:1419
-msgid "Send by _Mail"
-msgstr "Gửi đính kè_m thư"
+#~ msgid "Video Path"
+#~ msgstr "Đường dẫn phim"
 
-#: ../src/cheese-window.c:1423
-msgid "Send _To"
-msgstr "Gửi ch_o"
+#~ msgid "Webcam device string indicator"
+#~ msgstr "Chuỗi chỉ thị thiết bị webcam"
 
-#: ../src/cheese-window.c:1427
-msgid "Export to F-_Spot"
-msgstr "Xuất vào F-_Spot"
+#~ msgid "Whether to enable immediate deletion"
+#~ msgstr "Có bật xoá tức thì không"
 
-#: ../src/cheese-window.c:1431
-msgid "Export to _Flickr"
-msgstr "Xuất vào _Flickr"
+#~ msgid "Width resolution"
+#~ msgstr "Độ phân giải chiều rộng"
 
-#: ../src/cheese-window.c:1455
-msgid "_Start recording"
-msgstr "_Bắt đầu thu"
+#~ msgid "Switch to Photo Mode"
+#~ msgstr "Chuyển sang chế độ ảnh"
 
-#: ../src/cheese-window.c:1779
-msgid "Quit"
-msgstr "Thoát"
+#~ msgid "Switch to Video Mode"
+#~ msgstr "Chuyển sang chế độ phim"
 
-#: ../src/cheese-window.c:1785
-msgid "About"
-msgstr "Giới thiệu"
+#~ msgid "Switch to the Effects Selector"
+#~ msgstr "Chuyển sang bộ chọn hiệu ứng"
 
-#: ../src/cheese-window.c:1866
-msgid "Check your gstreamer installation"
-msgstr "Kiểm tra cài đặt gstreamer của bạn"
+#~ msgid "<b>Resolution</b>"
+#~ msgstr "<b>Độ phân giải</b>"
 
-#: ../src/cheese.c:161
-msgid "Be verbose"
-msgstr "Xuất chi tiết"
+#~ msgid "Mauve"
+#~ msgstr "Màu hoa cà"
 
-#: ../src/cheese.c:179
-msgid "- Take photos and videos with your webcam, with fun graphical effects"
-msgstr "— Chụp ảnh và phim dùng webcam, thêm các hiệu ứng đồ họa thứ vị."
+#~ msgid "Noir/Blanc"
+#~ msgstr "Màu đen trắng"
+
+#~ msgid "Hulk"
+#~ msgstr "To lớn"
+
+#~ msgid "Vertical Flip"
+#~ msgstr "Lật theo chiều dọc"
+
+#~ msgid "Horizontal Flip"
+#~ msgstr "Lật theo chiều ngang"
+
+#~ msgid "Shagadelic"
+#~ msgstr "Ma tuý"
+
+#~ msgid "Vertigo"
+#~ msgstr "Chóng mặt"
+
+#~ msgid "Edge"
+#~ msgstr "Cạnh"
+
+#~ msgid "Dice"
+#~ msgstr "Súc sắc"
+
+#~ msgid "Warp"
+#~ msgstr "Làm oằn"
+
+#~ msgid "No camera found!"
+#~ msgstr "Không tìm thấy máy ảnh."
+
+#~ msgid "Please refer to the help for further information."
+#~ msgstr "Hãy đọc trợ giúp để xem thông tin thêm."
+
+#~ msgid "Help"
+#~ msgstr "Trợ giúp"
+
+#~ msgid "_Skip"
+#~ msgstr "_Bỏ qua"
+
+#~ msgid "S_kip All"
+#~ msgstr "Bỏ qua _tất cả"
+
+#~ msgid "Delete _All"
+#~ msgstr "Xoá _tất cả"
+
+#~ msgid ""
+#~ "Failed to open browser to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi mở trình duyệt để hiển thị:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to open email client to send message to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi mở ứng dụng thư điện tử để gửi thư cho :\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "Failed to launch program to show:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Lỗi khởi chạy chương trình để hiển thị:\n"
+#~ "%s"
+
+#~ msgid "Save File"
+#~ msgstr "Lưu tập tin"
+
+#~ msgid "Could not save %s"
+#~ msgstr "Không thể lưu %s"
+
+#~ msgid "Error while deleting"
+#~ msgstr "Lỗi xoá"
+
+#~ msgid "The file \"%s\" cannot be deleted. Details: %s"
+#~ msgstr "Không thể xoá tập tin « %s ». Chi tiết: %s"
+
+#~ msgid "Are you sure you want to permanently delete the %'d selected item?"
+#~ msgid_plural ""
+#~ "Are you sure you want to permanently delete the %'d selected items?"
+#~ msgstr[0] "Bạn có chắc muốn xoá hẳn %'d mục đã chọn không?"
+
+#~ msgid "Are you sure you want to permanently delete \"%s\"?"
+#~ msgstr "Bạn có chắc muốn xoá vĩnh viễn \"%s\" không?"
+
+#~ msgid "If you delete an item, it will be permanently lost."
+#~ msgstr "Nếu bạn xoá một mục, nó sẽ bị mất vĩnh viễn."
+
+#~ msgid "Unknown Error"
+#~ msgstr "Lỗi lạ"
+
+#~ msgid "Cannot move file to trash, do you want to delete immediately?"
+#~ msgstr ""
+#~ "Không thể chuyển tập tin vào Sọt rác, bạn có muốn xoá tức thì không?"
+
+#~ msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+#~ msgstr "Không thể cho tập tin « %s » vào Sọt rác. Chi tiết: %s"
+
+#~ msgid "Really move all photos and videos to the trash?"
+#~ msgstr ""
+#~ "Thực sự muốn di chuyển tất cả các ảnh chụp và phim vào Sọt Rác không?"
+
+#~ msgid "_Move to Trash"
+#~ msgstr "Chu_yển vào Sọt Rác"
+
+#~ msgid "Could not set the Account Photo"
+#~ msgstr "Không thể đặt Ảnh chụp Tài khoản"
+
+#~ msgid "Media files"
+#~ msgstr "Tập tin phương tiện"
+
+#~ msgid "Unable to open help file for Cheese"
+#~ msgstr "Không thể mở tập tin trợ giúp cho trình Cheese"
+
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
+#~ msgstr ""
+#~ "Chương trình này là phần mềm tự do; bạn có thể phát hành lại nó và/hoặc "
+#~ "sửa đổi nó với điều kiện của Giấy Phép Công Cộng GNU như được xuất bản "
+#~ "bởi Tổ chức Phần mềm Tự do; hoặc phiên bản 2 của Giấy phép này, hoặc (tùy "
+#~ "chọn) bất kỳ phiên bản sau nào.\n"
+
+#~ msgid ""
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
+#~ msgstr ""
+#~ "Chương trình này được phát hành vì mong muốn nó có ích, nhưng KHÔNG CÓ "
+#~ "BẢO HÀNH GÌ CẢ, THẬM CHÍ KHÔNG CÓ BẢO ĐẢM ĐƯỢC NGỤ Ý KHẢ NĂNG BÁN HAY KHẢ "
+#~ "NĂNG LÀM ĐƯỢC VIỆC DỨT KHOÁT. Xem Giấy Phép Công Cộng GNU để biết thêm "
+#~ "chi tiết.\n"
+
+#~ msgid ""
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see <http://www.gnu.org/licenses/>."
+#~ msgstr ""
+#~ "Bạn đã nhận một bản sao của Giấy Phép Công Cộng GNU cùng với chương trình "
+#~ "này; nếu không, xem <http://www.gnu.org/licenses/>."
+
+#~ msgid "_Start Recording"
+#~ msgstr "_Bắt đầu thu"
+
+#~ msgid "Help on this Application"
+#~ msgstr "Trợ giúp về ứng dụng này"
+
+#~ msgid "_Set As Account Photo"
+#~ msgstr "Đặt là Ảnh chụp _Tài khoản"
+
+#~ msgid "Send by _Mail"
+#~ msgstr "Gửi đính kè_m thư"
+
+#~ msgid "Send _To"
+#~ msgstr "Gửi ch_o"
+
+#~ msgid "Export to F-_Spot"
+#~ msgstr "Xuất vào F-_Spot"
+
+#~ msgid "Export to _Flickr"
+#~ msgstr "Xuất vào _Flickr"
+
+#~ msgid "_Start recording"
+#~ msgstr "_Bắt đầu thu"
+
+#~ msgid "Check your gstreamer installation"
+#~ msgstr "Kiểm tra cài đặt gstreamer của bạn"
+
+#~ msgid "Be verbose"
+#~ msgstr "Xuất chi tiết"
 
 #~ msgid "Adjusts brightness level of the picture coming from the camera"
 #~ msgstr "Điều chỉnh độ sáng của ảnh từ máy ảnh"
@@ -492,56 +682,8 @@ msgstr "— Chụp ảnh và phim dùng webcam, thêm các hiệu ứng đồ h�
 #~ msgid "The number of photos to take in a single burst."
 #~ msgstr "Số ảnh chụp trong một lần chụp hàng loạt."
 
-#~ msgid "Whether to start in wide mode"
-#~ msgstr "Xác địnhnkhởi động theo chế dộ rộng"
-
 #~ msgid "Switch to Burst Mode"
 #~ msgstr "Chuyển sang chế độ chụp hàng loạt"
-
-#~ msgid "Brightness"
-#~ msgstr "Độ ánh sáng"
-
-#~ msgid "Burst mode"
-#~ msgstr "Chế độ chụp hàng loạt"
-
-#~ msgid "Contrast"
-#~ msgstr "Độ tương phản"
-
-#~ msgid "Delay between photos (seconds)"
-#~ msgstr "Khoảng dừng giữa các ảnh (giây)"
-
-#~ msgid "Device"
-#~ msgstr "Thiết bị"
-
-#~ msgid "Hue"
-#~ msgstr "Màu sắc"
-
-#~ msgid "Image properties"
-#~ msgstr "Thuộc tính ảnh"
-
-#~ msgid "Number of photos"
-#~ msgstr "Số ảnh"
-
-#~ msgid "Resolution"
-#~ msgstr "Độ phân giải"
-
-#~ msgid "Webcam"
-#~ msgstr "Webcam"
-
-#~ msgid "Shutter sound"
-#~ msgstr "Âm thanh khi chụp"
-
-#~ msgid "Take a photo"
-#~ msgstr "Chụp ảnh"
-
-#~ msgid "_Discard photo"
-#~ msgstr "_Bỏ ảnh"
-
-#~ msgid "Unknown device"
-#~ msgstr "Thiết bị không xác định"
-
-#~ msgid "No device found"
-#~ msgstr "Không tìm thấy thiết bị"
 
 #~ msgid ""
 #~ "Failed to launch program to show:\n"
@@ -552,20 +694,8 @@ msgstr "— Chụp ảnh và phim dùng webcam, thêm các hiệu ứng đồ h�
 #~ "%s\n"
 #~ "%s"
 
-#~ msgid "_Burst"
-#~ msgstr "_Hàng loạt"
-
-#~ msgid "_Wide mode"
-#~ msgstr "_Chế độ rộng"
-
-#~ msgid "_Take multiple Photos"
-#~ msgstr "_Chụp nhiều ảnh"
-
 #~ msgid "Save _As…"
 #~ msgstr "Lưu _dạng…"
 
 #~ msgid "Enable wide mode"
 #~ msgstr "Bật chế dộ rộng"
-
-#~ msgid "output version information and exit"
-#~ msgstr "Cho biết thông tin về phiên bản và thoát"
