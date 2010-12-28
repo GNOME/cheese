@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2010-12-11 14:27+0000\n"
-"PO-Revision-Date: 2010-12-11 21:00+0100\n"
+"POT-Creation-Date: 2010-12-26 17:57+0000\n"
+"PO-Revision-Date: 2010-12-28 23:05+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -24,7 +24,7 @@ msgstr ""
 
 #: ../data/cheese-about.ui.h:1
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -262,7 +262,7 @@ msgid "Cheese Webcam Booth"
 msgstr "Foto kabina Cheese"
 
 #: ../libcheese/cheese-avatar-chooser.c:110
-#: ../src/cheese-window.vala:621
+#: ../src/cheese-window.vala:626
 msgid "Shutter sound"
 msgstr "Zvok zaklopke"
 
@@ -317,39 +317,49 @@ msgstr "%d "
 msgid "No Effect"
 msgstr "Brez učinka"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "Omogoči široki način"
-
 #: ../src/cheese-main.vala:38
+msgid "Start in wide mode"
+msgstr "Začni v širokem načinu"
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "Naprava, uporabljena kot spletna kamera"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "NAPRAVA"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "Izpiši podrobnosti različice in končaj"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "Začni v  celozaslonskem načinu"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- Zajemanje slik in posnetkov s spletno kamero"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Za popoln seznam možnosti ukazne vrstice zaženite '%s --help'.\n"
 
-#: ../src/cheese-window.vala:716
+#: ../src/cheese-window.vala:717
 msgid "Stop _Recording"
 msgstr "_Zaustavi snemanje"
 
-#: ../src/cheese-window.vala:850
+#: ../src/cheese-window.vala:739
+msgid "Stop _Taking Pictures"
+msgstr "Zaustavi _zajemanje slik"
+
+#: ../src/cheese-window.vala:869
 msgid "No effects found"
 msgstr "Učinkov ni mogoče najti"
 
+#~ msgid "Enable wide mode"
+#~ msgstr "Omogoči široki način"
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
 #~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
@@ -436,8 +446,6 @@ msgstr "Učinkov ni mogoče najti"
 #~ msgstr "Pot do videa"
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Ali naj se omogoči neposredno brisanje datotek"
-#~ msgid "Whether to start in wide mode"
-#~ msgstr "Ali se okno zažene v širokem načinu"
 #~ msgid "Width resolution"
 #~ msgstr "Ločljivost širine"
 #~ msgid "Be verbose"
