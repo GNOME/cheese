@@ -3,13 +3,14 @@
 #
 # Amanpreet Singh Alam <apreet.alam@gmail.com>, 2008.
 # Amanpreet Singh Alam <aalam@users.sf.net>, 2008.
-# A S Alam <aalam@users.sf.net>, 2009, 2010.
+# A S Alam <aalam@users.sf.net>, 2009, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2010-10-03 21:49+0000\n"
-"PO-Revision-Date: 2010-10-04 07:23+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2010-12-21 23:58+0000\n"
+"PO-Revision-Date: 2011-01-02 07:46+0530\n"
 "Last-Translator: A S Alam <aalam@users.sf.net>\n"
 "Language-Team: Punjabi/Panjabi <punjabi-users@lists.sf.net>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "ਚੀਜ਼"
 
@@ -92,279 +93,191 @@ msgid "Previous Effects"
 msgstr "ਪਿਛਲਾ ਪਰਭਾਵ"
 
 #: ../data/cheese-actions.ui.h:8
+#| msgid "_Record a Video"
+msgid "Record a video"
+msgstr "ਵਿਡੀਓ ਰਿਕਾਰਡ ਕਰੋ"
+
+#: ../data/cheese-actions.ui.h:9
 msgid "Save _As"
 msgstr "ਇੰਝ ਸੰਭਾਲੋ(_A)"
 
-#: ../data/cheese-actions.ui.h:9
+#: ../data/cheese-actions.ui.h:10
 msgid "Take _Multiple Photos"
 msgstr "ਕਈ ਫੋਟੋ ਲਵੋ(_M)"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:238
+msgid "Take a photo"
+msgstr "ਫੋਟੋ ਲਵੋ"
+
+#: ../data/cheese-actions.ui.h:12
+#| msgid "Take _Multiple Photos"
+msgid "Take multiple photos"
+msgstr "ਕਈ ਫੋਟੋ ਲਵੋ"
+
+#: ../data/cheese-actions.ui.h:13
 msgid "_About"
 msgstr "ਇਸ ਬਾਰੇ(_A)"
 
-#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-actions.ui.h:14
 msgid "_Cheese"
 msgstr "ਚੀਜ਼(_C)"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:15
 msgid "_Delete"
 msgstr "ਹਟਾਓ(_D)"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:16
 msgid "_Edit"
 msgstr "ਸੋਧ(_E)"
 
-#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "ਪਰਭਾਵ(_E)"
 
-#: ../data/cheese-actions.ui.h:15
+#: ../data/cheese-actions.ui.h:18
 msgid "_Help"
 msgstr "ਮੱਦਦ(_H)"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:19
 msgid "_Open"
 msgstr "ਖੋਲ੍ਹੋ(_O)"
 
-#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-actions.ui.h:20
 msgid "_Photo"
 msgstr "ਫੋਟੋ(_P)"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:21
 msgid "_Preferences"
 msgstr "ਮੇਰੀ ਪਸੰਦ(_P)"
 
-#: ../data/cheese-actions.ui.h:19
+#: ../data/cheese-actions.ui.h:22
 msgid "_Quit"
 msgstr "ਬੰਦ ਕਰੋ(_Q)"
 
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:23
 msgid "_Record a Video"
 msgstr "ਵਿਡੀਓ ਰਿਕਾਰਡ ਕਰੋ(_R)"
 
-#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "ਇੱਕ ਫੋਟੋ ਲਵੋ(_T)"
 
-#: ../data/cheese-actions.ui.h:22
+#: ../data/cheese-actions.ui.h:25
 msgid "_Video"
 msgstr "ਵਿਡੀਓ(_V)"
 
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:26
 msgid "_Wide Mode"
 msgstr "ਵਾਈਡ ਮੋਡ(_W)"
 
+#: ../data/cheese-main-window.ui.h:1
+#| msgid "_Effects"
+msgid "Effects"
+msgstr "ਪਰਭਾਵ"
+
 #: ../data/cheese-main-window.ui.h:2
+#| msgid "_Leave Fullscreen"
+msgid "Leave fullscreen"
+msgstr "ਪੂਰੀ ਸਕਰੀਨ ਛੱਡੋ"
+
+#: ../data/cheese-main-window.ui.h:3
+#| msgid "Next Effects"
+msgid "Next effect"
+msgstr "ਅਗਲਾ ਪਰਭਾਵ"
+
+#: ../data/cheese-main-window.ui.h:4
+#| msgid "Burst mode"
+msgid "Photo burst mode"
+msgstr "ਫੋਟੋ ਬਰੱਸਟ ਮੋਡ"
+
+#: ../data/cheese-main-window.ui.h:5
+#| msgid "_Photo"
+msgid "Photo mode"
+msgstr "ਫੋਟੋ ਮੋਡ"
+
+#: ../data/cheese-main-window.ui.h:6
+#| msgid "Previous Effects"
+msgid "Previous effect"
+msgstr "ਪਿਛਲਾ ਪਰਭਾਵ"
+
+#: ../data/cheese-main-window.ui.h:8
+#| msgid "_Wide Mode"
+msgid "Video mode"
+msgstr "ਵਿਡੀਓ ਮੋਡ"
+
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Leave Fullscreen"
 msgstr "ਪੂਰੀ ਸਕਰੀਨ ਛੱਡੋ(_L)"
 
 #: ../data/cheese-prefs.ui.h:1
+msgid "<b>Shutter</b>"
+msgstr "<b>ਸ਼ਟਰ</b>"
+
+#: ../data/cheese-prefs.ui.h:2
 msgid "Brightness"
 msgstr "ਚਮਕ"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:3
 msgid "Burst mode"
 msgstr "ਬਰੱਸਟ ਮੋਡ"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:4
 msgid "Contrast"
 msgstr "ਕੰਟਰਾਸਟ"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:5
 msgid "Delay between photos (seconds)"
 msgstr "ਫੋਟੋਆਂ ਲੈਣ ਦੌਰਾਨ ਦੇਰੀ (ਸਕਿੰਟਾਂ ਵਿੱਚ)"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Device"
 msgstr "ਜੰਤਰ"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
+msgid "Fire _Flash"
+msgstr "ਫਾਇਰ ਫਲੈਸ਼(_F)"
+
+#: ../data/cheese-prefs.ui.h:8
 msgid "Hue"
 msgstr "ਆਭਾ"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Image properties"
 msgstr "ਚਿੱਤਰ ਵਿਸ਼ੇਸ਼ਤਾ"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Number of photos"
 msgstr "ਫੋਟੋਆਂ ਦੀ ਗਿਣਤੀ"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
 msgid "Preferences"
 msgstr "ਮੇਰੀ ਪਸੰਦ"
 
-#: ../data/cheese-prefs.ui.h:10
+#: ../data/cheese-prefs.ui.h:12
 msgid "Resolution"
 msgstr "ਰੈਜੋਲੂਸ਼ਨ"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "ਸੰਤ੍ਰਿਪਤਾ"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
 msgid "Webcam"
 msgstr "ਵੈੱਬਕੈਮ"
+
+#: ../data/cheese-prefs.ui.h:15
+#| msgid "Countdown"
+msgid "_Countdown"
+msgstr "ਉਲਟੀ-ਗਿਣਤੀ(_C)"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "ਚੀਜ਼ ਵੈੱਬ-ਕੈਮ ਬੂਥ"
 
-#. Translators: please note, that the effect names are
-#. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid ""
-"A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr ""
-"ਸ਼ੁਰੂ ਸਮੇਂ ਲਾਗੂ ਕਰਨ ਲਈ ਪਰਭਾਵਾਂ ਦੀ ਲਿਸਟ ਹੈ। ਸੰਭਵ ਮੁੱਲ ਹਨ: \"mauve\", \"noir_blanc\", "
-"\"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", "
-"\"shagadelic\", \"vertigo\", \"edge\", \"dice\" ਅਤੇ \"warp\""
-
-#: ../data/cheese.schemas.in.h:4
-msgid "Adjusts brightness level of the picture coming from the camera"
-msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਚਮਕ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
-
-#: ../data/cheese.schemas.in.h:5
-msgid "Adjusts contrast level of the picture coming from the camera"
-msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਕੰਟਰਾਸਟ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
-
-#: ../data/cheese.schemas.in.h:6
-msgid "Adjusts hue level of the picture coming from the camera"
-msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਆਭਾ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
-
-#: ../data/cheese.schemas.in.h:7
-msgid "Adjusts saturation level of the picture coming from the camera"
-msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਸੰਤ੍ਰਿਪਤਾ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
-
-#: ../data/cheese.schemas.in.h:8
-msgid "Camera device string indicator"
-msgstr "ਕੈਮਰਾ ਜੰਤਰ ਲਾਈਨ ਸੰਕੇਤ"
-
-#: ../data/cheese.schemas.in.h:9
-msgid ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr ""
-"ਪਾਥ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਫੋਟੋ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_PHOTO/Webcam\" ਵਰਤਿਆ "
-"ਜਾਵੇਗਾ।"
-
-#: ../data/cheese.schemas.in.h:10
-msgid ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr ""
-"ਥਾਂ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਵਿਡੀਓ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_VIDEO/Webcam\" ਵਰਤਿਆ "
-"ਜਾਵੇਗਾ।"
-
-#: ../data/cheese.schemas.in.h:11
-msgid "Height resolution"
-msgstr "ਉਚਾਈ ਰੈਜ਼ੋਲੂਸ਼ਨ"
-
-#: ../data/cheese.schemas.in.h:12
-msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
-msgstr ""
-"ਜੇ ਚੋਣ ਕੀਤੀ ਤਾਂ ਚੀਜ਼ ਪਹਿਲਾਂ ਲਏ ਗਏ ਚਿੱਤਰਾਂ ਨੂੰ ਸੱਜੇ-ਹੱਥ ਰੱਖ ਕੇ ਚੌੜੇ ਰੂਪ ਵਿੱਚ ਸ਼ੁਰੂ ਹੋਵੇਗਾ। ਇਹ ਛੋਟੀਆਂ "
-"ਸਕਰੀਨਾਂ ਲਈ ਫਾਇਦੇਮੰਦ ਹੈ।"
-
-#: ../data/cheese.schemas.in.h:13
-msgid ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-msgstr ""
-"ਜੇ ਚੋਣ ਕੀਤੀ ਤਾਂ ਚੀਜ਼ ਵਿੱਚ ਮੌਜੂਦ ਇੱਕ ਫੀਚਰ ਤੁਹਾਨੂੰ ਇੱਕ ਫਾਇਲ ਤੁਰੰਤ ਹਟਾਉਣ ਵਿੱਚ ਮੱਦਦ ਕਰੇਗਾ, ਤਾਂ ਕਿ "
-"ਰੱਦੀ ਵਿੱਚ ਭੇਜਣਾ ਨਾ ਪਵੇ। ਇਹ ਫੀਚਰ ਖਤਰਨਾਕ ਹੋ ਸਕਦਾ ਹੈ, ਸੋ ਜ਼ਰਾ ਧਿਆਨ ਨਾਲ।"
-
-#: ../data/cheese.schemas.in.h:14
-msgid "Milliseconds between photos in burst mode."
-msgstr "ਬਰੱਸਟ ਮੋਡ ਵਿੱਚ ਫੋਟੋ ਲੈਣ ਲਈ ਮਿਲੀਸਕਿੰਟ।"
-
-#: ../data/cheese.schemas.in.h:15
-msgid "Number of photos in burst mode."
-msgstr "ਬਰੱਸਟ ਮੋਡ ਵਿੱਚ ਫੋਟੋਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Photo Path"
-msgstr "ਫੋਟੋ ਪਾਥ"
-
-#: ../data/cheese.schemas.in.h:17
-msgid "Picture brightness"
-msgstr "ਤਸਵੀਰ ਚਮਕ"
-
-#: ../data/cheese.schemas.in.h:18
-msgid "Picture contrast"
-msgstr "ਚਿੱਤਰ ਕੰਟਰਾਸਟ"
-
-#: ../data/cheese.schemas.in.h:19
-msgid "Picture hue"
-msgstr "ਚਿੱਤਰ ਆਭਾ"
-
-#: ../data/cheese.schemas.in.h:20
-msgid "Picture saturation"
-msgstr "ਤਸਵੀਰ ਸੰਤ੍ਰਿਪਤਾ"
-
-#: ../data/cheese.schemas.in.h:21
-msgid "Selected Effects"
-msgstr "ਚੁਣੇ ਪਰਭਾਵ"
-
-#: ../data/cheese.schemas.in.h:22
-msgid "Set to True to show countdown when taking a photo"
-msgstr "ਫੋਟੋ ਲੈਣ ਦੌਰਾਨ ਪੁੱਠੀ ਗਿਣਤੀ ਵੇਖਾਉਣ ਲਈ ਚੋਣ ਕਰੋ"
-
-#: ../data/cheese.schemas.in.h:23
-msgid "The device which points to the camera (e.g. /dev/video0)"
-msgstr "ਜੰਤਰ, ਜੋ ਕਿ ਕੈਮਰੇ ਦਰਸਾਉਦਾ ਹੈ (ਜਿਵੇਂ ਕਿ /dev/video0)"
-
-#: ../data/cheese.schemas.in.h:24
-msgid "The height resolution of the image captured from the camera"
-msgstr "ਕੈਮਰੇ ਤੋਂ ਚਿੱਤਰ ਲੈਣ ਲੀ ਉਚਾਈ ਰੋਜ਼ੂਲੋਸ਼ਨ"
-
-#: ../data/cheese.schemas.in.h:25
-msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
-msgstr "ਸਮਾਂ ਮਿਲੀਸਕਿੰਟਾਂ ਵਿੱਚ, ਬਰੱਸਟ ਮੋਡ ਵਿੱਚ ਲਗਾਤਾਰ ਫੋਟੋ ਲੈਣ ਦੌਰਾਨ ਹਰੇਕ ਫੋਟੋ ਲਈ ਸਮਾਂ ਅੰਤਰ।"
-
-#: ../data/cheese.schemas.in.h:26
-msgid "The number of photos to take in a single burst."
-msgstr "ਇੱਕਲੇ ਬਰੱਸਟ ਵਿੱਚੋਂ ਲਈਆਂ ਜਾਣ ਵਾਲੀਆਂ ਫੋਟੋਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
-
-#: ../data/cheese.schemas.in.h:27
-msgid "The width resolution of the image captured from the camera"
-msgstr "ਕੈਮਰੇ ਤੋਂ ਚਿੱਤਰ ਲੈਣ ਲਈ ਚੌੜਾਈ ਰੈਜ਼ੂਲੋਸ਼ਨ"
-
-#: ../data/cheese.schemas.in.h:28
-msgid "Use a countdown"
-msgstr "ਉਲਟੀ-ਗਿਣਤੀ ਵਰਤੋਂ"
-
-#: ../data/cheese.schemas.in.h:29
-msgid "Video Path"
-msgstr "ਵਿਡੀਓ ਪਾਥ"
-
-#: ../data/cheese.schemas.in.h:30
-msgid "Whether to enable immediate deletion"
-msgstr "ਕੀ ਤੁਰੰਤ ਹਟਾਉਣਾ ਯੋਗ ਰੱਖਣਾ ਹੈ"
-
-#: ../data/cheese.schemas.in.h:31
-msgid "Whether to start in wide mode"
-msgstr "ਕੀ ਵਾਈਡ ਮੋਡ ਸ਼ੁਰੂ ਕਰਨਾ ਹੈ"
-
-#: ../data/cheese.schemas.in.h:32
-msgid "Width resolution"
-msgstr "ਚੌੜਾਈ ਰੈਜ਼ੋਲੂਸ਼ਨ"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:626
 msgid "Shutter sound"
 msgstr "ਸ਼ਟਰ ਸਾਊਂਡ"
-
-#: ../libcheese/cheese-avatar-chooser.c:238
-msgid "Take a photo"
-msgstr "ਫੋਟੋ ਲਵੋ"
 
 #: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
@@ -391,12 +304,12 @@ msgstr "ਅਣਜਾਣ ਜੰਤਰ"
 msgid "Cancellable initialization not supported"
 msgstr "ਰੱਦ ਕਰਨ ਯੋਗ ਸ਼ੁਰੂਆਤ ਸਹਾਇਕ ਨਹੀਂ ਹੈ"
 
-#: ../libcheese/cheese-camera.c:1156
+#: ../libcheese/cheese-camera.c:1158
 #, c-format
 msgid "No device found"
 msgstr "ਕੋਈ ਜੰਤਰ ਨਹੀਂ ਮਿਲਿਆ"
 
-#: ../libcheese/cheese-camera.c:1175
+#: ../libcheese/cheese-camera.c:1177
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "ਲੋੜੀਦੇ ਇੱਕ ਜਾਂ ਹੋਰ ਜੀ-ਸਟਰੀਮਰ ਭਾਗ ਗੁੰਮ ਹਨ: "
 
@@ -412,43 +325,166 @@ msgstr "ਲੋੜੀਦੇ ਇੱਕ ਜਾਂ ਹੋਰ ਜੀ-ਸਟਰੀਮ�
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-effects-manager.vala:116
-#| msgid "Next Effects"
+#: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "ਪਰਭਾਵ ਨਹੀਂ"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "ਵਾਈਡ ਮੋਡ ਚਾਲੂ"
-
 #: ../src/cheese-main.vala:38
+#| msgid "Whether to start in wide mode"
+msgid "Start in wide mode"
+msgstr "ਵਾਈਡ ਮੋਡ ਸ਼ੁਰੂ ਕਰਨਾ ਹੈ"
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "ਕੈਮਰੇ ਵਜੋਂ ਵਰਤਣ ਲਈ ਜੰਤਰ"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "ਜੰਤਰ"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "ਵਰਜਨ ਜਾਣਕਾਰੀ ਦਿਓ ਅਤੇ ਬੰਦ ਕਰੋ"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "ਪੂਰੀ ਸਕਰੀਨ ਮੋਡ ਵਿੱਚ ਸ਼ੁਰੂ"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- ਆਪਣੇ ਵੈੱਬਕੈਮ ਨਾਲ ਫੋਟੋ ਲਵੋ ਅਤੇ ਵਿਡੀਓ ਬਣਾਓ"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "ਉਪਲੱਬਧ ਕਮਾਂਡ ਲਾਈਨ ਚੋਣਾਂ ਦੀ ਪੂਰੀ ਲਿਸਟ ਵੇਖਣ ਲਈ '%s --help' ਚਲਾਓ।\n"
 
-#: ../src/cheese-window.vala:689
+#: ../src/cheese-window.vala:713
 msgid "Stop _Recording"
 msgstr "ਰਿਕਾਰਡਿੰਗ ਰੋਕੋ(_S)"
 
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:735
+msgid "Stop _Taking Pictures"
+msgstr "ਤਸਵੀਰਾਂ ਲੈਣ ਤੋਂ ਰੋਕੋ(_T)"
+
+#: ../src/cheese-window.vala:865
 msgid "No effects found"
 msgstr "ਕੋਈ ਪਰਭਾਵ ਨਹੀਂ ਲੱਭਿਆ"
+
+#~ msgid ""
+#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+#~ msgstr ""
+#~ "ਸ਼ੁਰੂ ਸਮੇਂ ਲਾਗੂ ਕਰਨ ਲਈ ਪਰਭਾਵਾਂ ਦੀ ਲਿਸਟ ਹੈ। ਸੰਭਵ ਮੁੱਲ ਹਨ: \"mauve\", \"noir_blanc\", "
+#~ "\"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", "
+#~ "\"shagadelic\", \"vertigo\", \"edge\", \"dice\" ਅਤੇ \"warp\""
+
+#~ msgid "Adjusts brightness level of the picture coming from the camera"
+#~ msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਚਮਕ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#~ msgid "Adjusts contrast level of the picture coming from the camera"
+#~ msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਕੰਟਰਾਸਟ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#~ msgid "Adjusts hue level of the picture coming from the camera"
+#~ msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਆਭਾ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#~ msgid "Adjusts saturation level of the picture coming from the camera"
+#~ msgstr "ਕੈਮਰੇ ਤੋਂ ਲਈ ਜਾ ਰਹੀ ਤਸਵੀਰ ਲਈ ਸੰਤ੍ਰਿਪਤਾ ਲੈਵਲ ਅਡਜੱਸਟ ਕਰੋ"
+
+#~ msgid "Camera device string indicator"
+#~ msgstr "ਕੈਮਰਾ ਜੰਤਰ ਲਾਈਨ ਸੰਕੇਤ"
+
+#~ msgid ""
+#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "ਪਾਥ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਫੋਟੋ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_PHOTO/Webcam\" ਵਰਤਿਆ "
+#~ "ਜਾਵੇਗਾ।"
+
+#~ msgid ""
+#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "ਥਾਂ ਦਿਓ, ਜਿੱਥੇ ਕਿ ਵਿਡੀਓ ਨੂੰ ਸੰਭਾਲਿਆ ਜਾਵੇ, ਜੇ ਖਾਲੀ ਹੈ ਤਾਂ  \"XDG_VIDEO/Webcam\" "
+#~ "ਵਰਤਿਆ ਜਾਵੇਗਾ।"
+
+#~ msgid "Height resolution"
+#~ msgstr "ਉਚਾਈ ਰੈਜ਼ੋਲੂਸ਼ਨ"
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in a wide mode with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "ਜੇ ਚੋਣ ਕੀਤੀ ਤਾਂ ਚੀਜ਼ ਪਹਿਲਾਂ ਲਏ ਗਏ ਚਿੱਤਰਾਂ ਨੂੰ ਸੱਜੇ-ਹੱਥ ਰੱਖ ਕੇ ਚੌੜੇ ਰੂਪ ਵਿੱਚ ਸ਼ੁਰੂ ਹੋਵੇਗਾ। ਇਹ "
+#~ "ਛੋਟੀਆਂ ਸਕਰੀਨਾਂ ਲਈ ਫਾਇਦੇਮੰਦ ਹੈ।"
+
+#~ msgid ""
+#~ "If set to true, then Cheese will have a feature allowing you to delete a "
+#~ "file immediately and in-place, instead of moving it to the trash. This "
+#~ "feature can be dangerous, so use caution."
+#~ msgstr ""
+#~ "ਜੇ ਚੋਣ ਕੀਤੀ ਤਾਂ ਚੀਜ਼ ਵਿੱਚ ਮੌਜੂਦ ਇੱਕ ਫੀਚਰ ਤੁਹਾਨੂੰ ਇੱਕ ਫਾਇਲ ਤੁਰੰਤ ਹਟਾਉਣ ਵਿੱਚ ਮੱਦਦ ਕਰੇਗਾ, ਤਾਂ "
+#~ "ਕਿ ਰੱਦੀ ਵਿੱਚ ਭੇਜਣਾ ਨਾ ਪਵੇ। ਇਹ ਫੀਚਰ ਖਤਰਨਾਕ ਹੋ ਸਕਦਾ ਹੈ, ਸੋ ਜ਼ਰਾ ਧਿਆਨ ਨਾਲ।"
+
+#~ msgid "Milliseconds between photos in burst mode."
+#~ msgstr "ਬਰੱਸਟ ਮੋਡ ਵਿੱਚ ਫੋਟੋ ਲੈਣ ਲਈ ਮਿਲੀਸਕਿੰਟ।"
+
+#~ msgid "Number of photos in burst mode."
+#~ msgstr "ਬਰੱਸਟ ਮੋਡ ਵਿੱਚ ਫੋਟੋਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#~ msgid "Photo Path"
+#~ msgstr "ਫੋਟੋ ਪਾਥ"
+
+#~ msgid "Picture brightness"
+#~ msgstr "ਤਸਵੀਰ ਚਮਕ"
+
+#~ msgid "Picture contrast"
+#~ msgstr "ਚਿੱਤਰ ਕੰਟਰਾਸਟ"
+
+#~ msgid "Picture hue"
+#~ msgstr "ਚਿੱਤਰ ਆਭਾ"
+
+#~ msgid "Picture saturation"
+#~ msgstr "ਤਸਵੀਰ ਸੰਤ੍ਰਿਪਤਾ"
+
+#~ msgid "Selected Effects"
+#~ msgstr "ਚੁਣੇ ਪਰਭਾਵ"
+
+#~ msgid "Set to True to show countdown when taking a photo"
+#~ msgstr "ਫੋਟੋ ਲੈਣ ਦੌਰਾਨ ਪੁੱਠੀ ਗਿਣਤੀ ਵੇਖਾਉਣ ਲਈ ਚੋਣ ਕਰੋ"
+
+#~ msgid "The device which points to the camera (e.g. /dev/video0)"
+#~ msgstr "ਜੰਤਰ, ਜੋ ਕਿ ਕੈਮਰੇ ਦਰਸਾਉਦਾ ਹੈ (ਜਿਵੇਂ ਕਿ /dev/video0)"
+
+#~ msgid "The height resolution of the image captured from the camera"
+#~ msgstr "ਕੈਮਰੇ ਤੋਂ ਚਿੱਤਰ ਲੈਣ ਲੀ ਉਚਾਈ ਰੋਜ਼ੂਲੋਸ਼ਨ"
+
+#~ msgid ""
+#~ "The length of time, in milliseconds, to delay between taking each photo "
+#~ "in a burst sequence of photos."
+#~ msgstr "ਸਮਾਂ ਮਿਲੀਸਕਿੰਟਾਂ ਵਿੱਚ, ਬਰੱਸਟ ਮੋਡ ਵਿੱਚ ਲਗਾਤਾਰ ਫੋਟੋ ਲੈਣ ਦੌਰਾਨ ਹਰੇਕ ਫੋਟੋ ਲਈ ਸਮਾਂ ਅੰਤਰ।"
+
+#~ msgid "The number of photos to take in a single burst."
+#~ msgstr "ਇੱਕਲੇ ਬਰੱਸਟ ਵਿੱਚੋਂ ਲਈਆਂ ਜਾਣ ਵਾਲੀਆਂ ਫੋਟੋਆਂ ਦੀ ਗਿਣਤੀ ਹੈ।"
+
+#~ msgid "The width resolution of the image captured from the camera"
+#~ msgstr "ਕੈਮਰੇ ਤੋਂ ਚਿੱਤਰ ਲੈਣ ਲਈ ਚੌੜਾਈ ਰੈਜ਼ੂਲੋਸ਼ਨ"
+
+#~ msgid "Use a countdown"
+#~ msgstr "ਉਲਟੀ-ਗਿਣਤੀ ਵਰਤੋਂ"
+
+#~ msgid "Video Path"
+#~ msgstr "ਵਿਡੀਓ ਪਾਥ"
+
+#~ msgid "Whether to enable immediate deletion"
+#~ msgstr "ਕੀ ਤੁਰੰਤ ਹਟਾਉਣਾ ਯੋਗ ਰੱਖਣਾ ਹੈ"
+
+#~ msgid "Width resolution"
+#~ msgstr "ਚੌੜਾਈ ਰੈਜ਼ੋਲੂਸ਼ਨ"
+
+#~ msgid "Enable wide mode"
+#~ msgstr "ਵਾਈਡ ਮੋਡ ਚਾਲੂ"
 
 #~ msgid "Be verbose"
 #~ msgstr "ਜਾਣਕਾਰੀ ਵਧਾਓ"
@@ -590,9 +626,6 @@ msgstr "ਕੋਈ ਪਰਭਾਵ ਨਹੀਂ ਲੱਭਿਆ"
 
 #~ msgid "Help on this Application"
 #~ msgstr "ਇਹ ਐਪਲੀਕੇਸ਼ਨ ਬਾਰੇ ਮੱਦਦ"
-
-#~ msgid "Countdown"
-#~ msgstr "ਉਲਟੀ-ਗਿਣਤੀ"
 
 #~ msgid "_Start Recording"
 #~ msgstr "ਰਿਕਾਰਡ ਸਟਾਰਟ(_S)"
