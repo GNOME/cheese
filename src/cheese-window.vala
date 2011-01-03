@@ -715,6 +715,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
       take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
+      take_action_button.tooltip_text = "Stop recording";
       take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
@@ -723,6 +724,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       camera.stop_video_recording ();
       take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
+      take_action_button.tooltip_text = take_action_button.related_action.tooltip;
       take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
@@ -737,6 +739,7 @@ public class Cheese.MainWindow : Gtk.Window
       this.disable_mode_change ();
       effects_toggle_action.sensitive = false;
       take_action_button_label.label  = "<b>" + _("Stop _Taking Pictures") + "</b>";
+      take_action_button.tooltip_text = "Stop taking pictures";
       burst_take_photo ();
 
       /* 3500 ms is approximate time for countdown animation to finish */
@@ -750,6 +753,7 @@ public class Cheese.MainWindow : Gtk.Window
       is_bursting = false;
       this.enable_mode_change ();
       take_action_button_label.label  = "<b>" + take_action_button.related_action.label + "</b>";
+      take_action_button.tooltip_text = take_action_button.related_action.tooltip;
       burst_count = 0;
       fileutil.reset_burst ();
       GLib.Source.remove (burst_callback_id);
