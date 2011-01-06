@@ -29,7 +29,8 @@ public class Cheese.PreferencesDialog : GLib.Object
 
   private Gtk.Dialog dialog;
 
-  private Gtk.ComboBox resolution_combo;
+  private Gtk.ComboBox photo_resolution_combo;
+  private Gtk.ComboBox video_resolution_combo;
   private Gtk.ComboBox source_combo;
 
   private Gtk.Adjustment brightness_adjustment;
@@ -47,6 +48,8 @@ public class Cheese.PreferencesDialog : GLib.Object
 
   private Gtk.CheckButton countdown_check;
   private Gtk.CheckButton flash_check;
+  
+  private MediaMode current_mode;
 
   public PreferencesDialog (Cheese.Camera camera, GLib.Settings settings)
   {
@@ -82,7 +85,8 @@ public class Cheese.PreferencesDialog : GLib.Object
     this.hue_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
     this.saturation_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
 
-    this.resolution_combo = (Gtk.ComboBox) builder.get_object ("resolution_combo_box");
+    this.photo_resolution_combo = (Gtk.ComboBox) builder.get_object ("photo_resolution_combo_box");
+    this.video_resolution_combo = (Gtk.ComboBox) builder.get_object ("video_resolution_combo_box");
     this.source_combo     = (Gtk.ComboBox) builder.get_object ("camera_combo_box");
 
     this.burst_repeat_spin = (Gtk.SpinButton) builder.get_object ("burst_repeat");
@@ -106,8 +110,11 @@ public class Cheese.PreferencesDialog : GLib.Object
   {
     CellRendererText cell = new CellRendererText ();
 
-    resolution_combo.pack_start (cell, false);
-    resolution_combo.set_attributes (cell, "text", 0);
+    photo_resolution_combo.pack_start (cell, false);
+    photo_resolution_combo.set_attributes (cell, "text", 0);
+
+    video_resolution_combo.pack_start (cell, false);
+    video_resolution_combo.set_attributes (cell, "text", 0);
 
     source_combo.pack_start (cell, false);
     source_combo.set_attributes (cell, "text", 0);
@@ -137,7 +144,7 @@ public class Cheese.PreferencesDialog : GLib.Object
       }
     }
 
-    settings.set_string("camera", camera.get_selected_device ().get_device_file ());
+    settings.set_string ("camera", camera.get_selected_device ().get_device_file ());
     setup_resolutions_for_device (camera.get_selected_device ());
   }
 
@@ -147,7 +154,8 @@ public class Cheese.PreferencesDialog : GLib.Object
     unowned Cheese.VideoFormat format;
     ListStore                  resolution_model = new ListStore (2, typeof (string), typeof (Cheese.VideoFormat));
 
-    resolution_combo.model = resolution_model;
+    photo_resolution_combo.model = resolution_model;
+    video_resolution_combo.model = resolution_model;
 
     for (int i = 0; i < formats.length (); i++)
     {
@@ -160,25 +168,42 @@ public class Cheese.PreferencesDialog : GLib.Object
       if (camera.get_current_video_format ().width == format.width &&
           camera.get_current_video_format ().height == format.height)
       {
-        resolution_combo.set_active_iter (iter);
-        settings.set_int("x-resolution", format.width);
-        settings.set_int("y-resolution", format.height);
+        photo_resolution_combo.set_active_iter (iter);
+        settings.set_int ("photo-x-resolution", format.width);
+        settings.set_int ("photo-y-resolution", format.height);
       }
+
+      if (settings.get_int ("video-x-resolution") == format.width &&
+          settings.get_int ("video-y-resolution") == format.height)
+      {
+        video_resolution_combo.set_active_iter (iter);
+      }
+    }
+
+    /* Video resolution combo shows photo resolution by
+    *  default if previous user choice is not found in settings or not supported
+    *  by current device. These values are saved to settings.
+    */
+    if (video_resolution_combo.get_active () == -1)
+    {
+      video_resolution_combo.set_active (photo_resolution_combo.get_active ());
+      settings.set_int ("video-x-resolution", settings.get_int ("photo-x-resolution"));
+      settings.set_int ("video-y-resolution", settings.get_int ("photo-y-resolution"));
     }
   }
 
   private void initialize_values_from_settings ()
   {
-    brightness_adjustment.value = settings.get_double("brightness");
-    contrast_adjustment.value   = settings.get_double("contrast");
-    hue_adjustment.value        = settings.get_double("hue");
-    saturation_adjustment.value = settings.get_double("saturation");
+    brightness_adjustment.value = settings.get_double ("brightness");
+    contrast_adjustment.value   = settings.get_double ("contrast");
+    hue_adjustment.value        = settings.get_double ("hue");
+    saturation_adjustment.value = settings.get_double ("saturation");
 
-    burst_repeat_spin.value = settings.get_int("burst-repeat");
-    burst_delay_spin.value  = settings.get_int("burst-delay") / 1000;
+    burst_repeat_spin.value = settings.get_int ("burst-repeat");
+    burst_delay_spin.value  = settings.get_int ("burst-delay") / 1000;
 
-    countdown_check.active = settings.get_boolean("countdown");
-    flash_check.active = settings.get_boolean("flash");
+    countdown_check.active = settings.get_boolean ("countdown");
+    flash_check.active = settings.get_boolean ("flash");
   }
 
   [CCode (instance_pos = -1)]
@@ -193,11 +218,11 @@ public class Cheese.PreferencesDialog : GLib.Object
     camera.set_device_by_dev_file (dev.get_device_file ());
     camera.switch_camera_device ();
     setup_resolutions_for_device (camera.get_selected_device ());
-    settings.set_string("camera", dev.get_device_file ());
+    settings.set_string ("camera", dev.get_device_file ());
   }
 
   [CCode (instance_pos = -1)]
-  public void on_resolution_change (Gtk.ComboBox combo)
+  public void on_photo_resolution_change (Gtk.ComboBox combo)
   {
     TreeIter iter;
 
@@ -205,10 +230,29 @@ public class Cheese.PreferencesDialog : GLib.Object
 
     combo.get_active_iter (out iter);
     combo.model.get (iter, 1, out format);
-    camera.set_video_format (format);
+    
+    if (current_mode == MediaMode.PHOTO || current_mode == MediaMode.BURST)
+      camera.set_video_format (format);
 
-    settings.set_int("x-resolution", format.width);
-    settings.set_int("y-resolution", format.height);
+    settings.set_int ("photo-x-resolution", format.width);
+    settings.set_int ("photo-y-resolution", format.height);
+  }
+
+  [CCode (instance_pos = -1)]
+  public void on_video_resolution_change (Gtk.ComboBox combo)
+  {
+    TreeIter iter;
+
+    unowned Cheese.VideoFormat format;
+
+    combo.get_active_iter (out iter);
+    combo.model.get (iter, 1, out format);
+    
+    if (current_mode == MediaMode.VIDEO)
+      camera.set_video_format (format);
+
+    settings.set_int ("video-x-resolution", format.width);
+    settings.set_int ("video-y-resolution", format.height);
   }
 
   [CCode (instance_pos = -1)]
@@ -220,57 +264,63 @@ public class Cheese.PreferencesDialog : GLib.Object
   [CCode (instance_pos = -1)]
   public void on_countdown_toggle (Gtk.CheckButton checkbutton)
   {
-    settings.set_boolean("countdown", checkbutton.active);
+    settings.set_boolean ("countdown", checkbutton.active);
   }
 
   [CCode (instance_pos = -1)]
   public void on_flash_toggle (Gtk.CheckButton checkbutton)
   {
-    settings.set_boolean("flash", checkbutton.active);
+    settings.set_boolean ("flash", checkbutton.active);
   }
-  
+
   [CCode (instance_pos = -1)]
   public void on_burst_repeat_change (Gtk.SpinButton spinbutton)
   {
-    settings.set_int("burst-repeat", (int) spinbutton.value);
+    settings.set_int ("burst-repeat", (int) spinbutton.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_burst_delay_change (Gtk.SpinButton spinbutton)
   {
-    settings.set_int("burst-delay", (int) spinbutton.value * 1000);
+    settings.set_int ("burst-delay", (int) spinbutton.value * 1000);
   }
 
   [CCode (instance_pos = -1)]
   public void on_brightness_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("brightness", adjustment.value);
-    settings.set_double("brightness", adjustment.value);
+    settings.set_double ("brightness", adjustment.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_contrast_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("contrast", adjustment.value);
-    settings.set_double("contrast", adjustment.value);
+    settings.set_double ("contrast", adjustment.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_hue_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("hue", adjustment.value);
-    settings.set_double("hue", adjustment.value);
+    settings.set_double ("hue", adjustment.value);
   }
 
   [CCode (instance_pos = -1)]
   public void on_saturation_change (Gtk.Adjustment adjustment)
   {
     this.camera.set_balance_property ("saturation", adjustment.value);
-    settings.set_double("saturation", adjustment.value);
+    settings.set_double ("saturation", adjustment.value);
   }
 
   public void show ()
   {
     this.dialog.show_all ();
   }
+  
+  public void set_current_mode (MediaMode mode)
+  {
+    this.current_mode = mode;
+  }
+  
 }

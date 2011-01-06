@@ -310,9 +310,9 @@ setup_camera (CheeseWidget *widget)
   gdouble              contrast;
   gdouble              saturation;
   gdouble              hue;
- 
-  g_settings_get (priv->settings, "x-resolution", "i", &x_resolution);
-  g_settings_get (priv->settings, "y-resolution", "i", &y_resolution);
+
+  g_settings_get (priv->settings, "photo-x-resolution", "i", &x_resolution);
+  g_settings_get (priv->settings, "photo-y-resolution", "i", &y_resolution);
   g_settings_get (priv->settings, "camera",       "s", &webcam_device);
   g_settings_get (priv->settings, "brightness",   "d", &brightness);
   g_settings_get (priv->settings, "contrast",     "d", &contrast);

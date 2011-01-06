@@ -109,7 +109,7 @@ internal class Cheese.EffectsManager : GLib.Object
     string user_effects = GLib.Path.build_filename (Environment.get_user_data_dir (), "gnome-video-effects");
     effects.add_all (load_effects_from_directory (user_effects));
 
-    effects.sort((CompareFunc) sort_value);
+    effects.sort ((CompareFunc) sort_value);
 
     /* add identity effect as the first in the effect list */
     if (effects.size > 0)

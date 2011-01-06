@@ -117,6 +117,7 @@ public class Cheese.MainWindow : Gtk.Window
   {
     if (preferences_dialog == null)
       preferences_dialog = new Cheese.PreferencesDialog (camera, settings);
+    preferences_dialog.set_current_mode (current_mode);
     preferences_dialog.show ();
   }
 
@@ -224,7 +225,7 @@ public class Cheese.MainWindow : Gtk.Window
                                                           Gtk.MessageType.ERROR,
                                                           Gtk.ButtonsType.OK,
                                                           "Could not delete %s",
-                                                          file.get_path());
+                                                          file.get_path ());
 
           error_dialog.run ();
           error_dialog.destroy ();
@@ -258,7 +259,7 @@ public class Cheese.MainWindow : Gtk.Window
                                                         Gtk.MessageType.ERROR,
                                                         Gtk.ButtonsType.OK,
                                                         "Could not move %s to trash",
-                                                        file.get_path());
+                                                        file.get_path ());
 
         error_dialog.run ();
         error_dialog.destroy ();
@@ -377,7 +378,7 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_layout_wide_mode (ToggleAction action)
   {
-    if(!is_command_line_startup)
+    if (!is_command_line_startup)
     {
      /* Don't save to settings when using -w mode from command-line, so
       * command-line options change the mode for one run only. */
@@ -389,7 +390,7 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_layout_fullscreen (ToggleAction action)
   {
-    if(!is_command_line_startup)
+    if (!is_command_line_startup)
     {
      /* Don't save to settings when using -f mode from command-line, so
       * command-line options change the mode for one run only. */
@@ -420,9 +421,53 @@ public class Cheese.MainWindow : Gtk.Window
      effects_toggle_action.sensitive = false;
   }
 
+  private void set_resolution(MediaMode mode)
+  {
+    if (camera == null)
+      return;
+
+    unowned GLib.List<VideoFormat> formats = camera.get_video_formats ();
+
+    if (formats == null)
+      return;
+    
+    unowned Cheese.VideoFormat format;
+    int width = 0;
+    int height = 0;
+
+    switch (mode)
+    {
+      case MediaMode.PHOTO:
+      case MediaMode.BURST:
+        width  = settings.get_int ("photo-x-resolution");
+        height = settings.get_int ("photo-y-resolution");
+        break;
+      case MediaMode.VIDEO:
+        width  = settings.get_int ("video-x-resolution");
+        height = settings.get_int ("video-y-resolution");
+        break;
+    }
+
+    for (int i = 0; i < formats.length (); i++)
+    {
+      format = formats<VideoFormat>.nth (i).data;
+      if (width == format.width && height == format.height)
+      {
+        camera.set_video_format (format);
+        break;
+      }
+    }
+  }
+
   private void set_mode (MediaMode mode)
   {
     this.current_mode = mode;
+    
+    set_resolution (current_mode);
+    
+    if (preferences_dialog != null)
+      preferences_dialog.set_current_mode (current_mode);
+    
     switch (this.current_mode)
     {
       case MediaMode.PHOTO:
@@ -482,9 +527,9 @@ public class Cheese.MainWindow : Gtk.Window
 
   private void set_fullscreen_mode (bool fullscreen_mode)
   {
-    /* After the first time the window has been shown using this.show_all(),
+    /* After the first time the window has been shown using this.show_all (),
      * the value of leave_fullscreen_button_container.no_show_all should be set to false
-     * So that the next time leave_fullscreen_button_container.show_all() is called, the button is actually shown
+     * So that the next time leave_fullscreen_button_container.show_all () is called, the button is actually shown
      * FIXME: If this code can be made cleaner/clearer, please do */
 
     is_fullscreen = fullscreen_mode;
@@ -612,9 +657,9 @@ public class Cheese.MainWindow : Gtk.Window
       string file_name = fileutil.get_new_media_filename (this.current_mode);
 
       if (current_mode == MediaMode.VIDEO)
-        thumb_view.start_monitoring_video_path(fileutil.get_video_path ());
+        thumb_view.start_monitoring_video_path (fileutil.get_video_path ());
       else
-        thumb_view.start_monitoring_photo_path(fileutil.get_photo_path ());
+        thumb_view.start_monitoring_photo_path (fileutil.get_photo_path ());
 
       if (settings.get_boolean ("flash"))
       {
@@ -911,7 +956,7 @@ public class Cheese.MainWindow : Gtk.Window
 
       for (int i = 0; i <= effects_manager.effects.size / EFFECTS_PER_PAGE; i++)
       {
-        Clutter.TableLayout table_layout = new TableLayout();
+        Clutter.TableLayout table_layout = new TableLayout ();
         Clutter.Box grid = new Clutter.Box (table_layout);
         effects_grids.add (grid);
         grid.set_size (viewport.width, viewport.height);
@@ -1180,8 +1225,8 @@ public class Cheese.MainWindow : Gtk.Window
 
     camera = new Camera (video_preview,
                          device,
-                         settings.get_int ("x-resolution"),
-                         settings.get_int ("y-resolution"));
+                         settings.get_int ("photo-x-resolution"),
+                         settings.get_int ("photo-y-resolution"));
     try {
       camera.setup (device);
     }
@@ -1200,19 +1245,19 @@ public class Cheese.MainWindow : Gtk.Window
     if (effect != null)
       camera.set_effect (effect);
 
-    value = settings.get_double("brightness");
+    value = settings.get_double ("brightness");
     if (value != 0.0)
       camera.set_balance_property ("brightness", value);
 
-    value = settings.get_double("contrast");
+    value = settings.get_double ("contrast");
     if (value != 1.0)
       camera.set_balance_property ("contrast", value);
 
-    value = settings.get_double("hue");
+    value = settings.get_double ("hue");
     if (value != 0.0)
       camera.set_balance_property ("hue", value);
 
-    value = settings.get_double("saturation");
+    value = settings.get_double ("saturation");
     if (value != 1.0)
       camera.set_balance_property ("saturation", value);
 
