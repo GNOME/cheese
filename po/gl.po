@@ -12,14 +12,14 @@
 # Anton Meixome <meixome@mancomun.org>, 2009.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010.
 # Fran Dieguez <frandieguez@ubuntu.com>, 2010.
-# Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-11 00:06+0100\n"
-"PO-Revision-Date: 2010-12-11 00:08+0100\n"
+"POT-Creation-Date: 2011-01-06 23:36+0100\n"
+"PO-Revision-Date: 2011-01-06 23:36+0100\n"
 "Last-Translator: Fran Diéguez <frandieguez@ubuntu.com>\n"
 "Language-Team: Galician <gnome-gl-list@gnome.org>\n"
 "Language: gl\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -195,8 +195,8 @@ msgid "Leave fullscreen"
 msgstr "Saír do modo de pantalla completa"
 
 #: ../data/cheese-main-window.ui.h:3
-msgid "Next effect"
-msgstr "Seguinte efecto"
+msgid "Next"
+msgstr "Seguinte"
 
 #: ../data/cheese-main-window.ui.h:4
 msgid "Photo burst mode"
@@ -207,8 +207,8 @@ msgid "Photo mode"
 msgstr "Modo de foto"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous effect"
-msgstr "Anterior efecto"
+msgid "Previous"
+msgstr "Anterior"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Video mode"
@@ -259,22 +259,26 @@ msgid "Number of photos"
 msgstr "Número de fotos"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "Preferences"
-msgstr "Preferencias"
+msgid "Photo resolution"
+msgstr "Resolución da foto"
 
 #: ../data/cheese-prefs.ui.h:12
-msgid "Resolution"
-msgstr "Resolución"
+msgid "Preferences"
+msgstr "Preferencias"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Saturación"
 
 #: ../data/cheese-prefs.ui.h:14
+msgid "Video resolution"
+msgstr "Resolución do vídeo"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "Cámara web"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "_Countdown"
 msgstr "_Conta atrás"
 
@@ -282,7 +286,7 @@ msgstr "_Conta atrás"
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:621
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "Son do obturador"
 
@@ -338,40 +342,57 @@ msgstr "%d "
 msgid "No Effect"
 msgstr "Sen efectos"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "Activar o modo amplo"
-
 #: ../src/cheese-main.vala:38
+msgid "Start in wide mode"
+msgstr "Iniciar en modo amplo"
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "Dispositivo a usar como cámara"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "DISPOSITIVO"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "Mostrar información da versión e saír"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "Iniciar en modo de pantalla completa"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- Tome fotografías e vídeos coa súa cámara web"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Executar «%s --help» para ver unha lista completa de opcións de liña de "
 "ordes dispoñíbeis.\n"
 
-#: ../src/cheese-window.vala:716
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "_Deter a gravación"
 
-#: ../src/cheese-window.vala:850
+#: ../src/cheese-window.vala:786
+msgid "Stop _Taking Pictures"
+msgstr "Deixar de _tomar imaxes"
+
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "Non se atopou ningún efecto"
+
+#~ msgid "Next effect"
+#~ msgstr "Seguinte efecto"
+
+#~ msgid "Resolution"
+#~ msgstr "Resolución"
+
+#~ msgid "Enable wide mode"
+#~ msgstr "Activar o modo amplo"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
@@ -412,9 +433,6 @@ msgstr "Non se atopou ningún efecto"
 #~ msgstr ""
 #~ "Define o camiño onde se gardan os vídeos; se está baleira usarase "
 #~ "«XDG_VIDEO/Webcam»."
-
-#~ msgid "Height resolution"
-#~ msgstr "Resolución da altura"
 
 #~ msgid ""
 #~ "If set to true, Cheese will start up in a wide mode with the image "
@@ -487,12 +505,6 @@ msgstr "Non se atopou ningún efecto"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Indica se se activa a eliminación inmediata"
-
-#~ msgid "Whether to start in wide mode"
-#~ msgstr "Cando comezar en modo amplo"
-
-#~ msgid "Width resolution"
-#~ msgstr "Resolución da largura"
 
 #~ msgid "Be verbose"
 #~ msgstr "Saída detallada"
