@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2010-12-26 17:57+0000\n"
-"PO-Revision-Date: 2010-12-28 23:05+0100\n"
+"POT-Creation-Date: 2011-01-06 22:37+0000\n"
+"PO-Revision-Date: 2011-01-07 22:06+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: \n"
@@ -174,8 +174,8 @@ msgid "Leave fullscreen"
 msgstr "Zapusti celozaslonski način"
 
 #: ../data/cheese-main-window.ui.h:3
-msgid "Next effect"
-msgstr "Naslednji učinek"
+msgid "Next"
+msgstr "Naslednja"
 
 #: ../data/cheese-main-window.ui.h:4
 msgid "Photo burst mode"
@@ -186,8 +186,8 @@ msgid "Photo mode"
 msgstr "Slikovni način"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous effect"
-msgstr "Predhodni učinek"
+msgid "Previous"
+msgstr "Predhodna"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Video mode"
@@ -238,22 +238,26 @@ msgid "Number of photos"
 msgstr "Število fotografij"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "Preferences"
-msgstr "Možnosti"
+msgid "Photo resolution"
+msgstr "Ločljivost fotografije"
 
 #: ../data/cheese-prefs.ui.h:12
-msgid "Resolution"
-msgstr "Ločljivost"
+msgid "Preferences"
+msgstr "Možnosti"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Nasičenost"
 
 #: ../data/cheese-prefs.ui.h:14
+msgid "Video resolution"
+msgstr "Ločljivost videa"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "Spletna kamera"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "_Countdown"
 msgstr "_Odštevanje"
 
@@ -262,7 +266,7 @@ msgid "Cheese Webcam Booth"
 msgstr "Foto kabina Cheese"
 
 #: ../libcheese/cheese-avatar-chooser.c:110
-#: ../src/cheese-window.vala:626
+#: ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "Zvok zaklopke"
 
@@ -346,18 +350,22 @@ msgstr "- Zajemanje slik in posnetkov s spletno kamero"
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Za popoln seznam možnosti ukazne vrstice zaženite '%s --help'.\n"
 
-#: ../src/cheese-window.vala:717
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "_Zaustavi snemanje"
 
-#: ../src/cheese-window.vala:739
+#: ../src/cheese-window.vala:786
 msgid "Stop _Taking Pictures"
 msgstr "Zaustavi _zajemanje slik"
 
-#: ../src/cheese-window.vala:869
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "Učinkov ni mogoče najti"
 
+#~ msgid "Next effect"
+#~ msgstr "Naslednji učinek"
+#~ msgid "Resolution"
+#~ msgstr "Ločljivost"
 #~ msgid "Enable wide mode"
 #~ msgstr "Omogoči široki način"
 #~ msgid ""
@@ -392,8 +400,6 @@ msgstr "Učinkov ni mogoče najti"
 #~ msgstr ""
 #~ "Določa pot, kjer so shranjeni posnetki. V primeru, da možnost ni izbrana "
 #~ "je privzeto določena pot \"XDG_VIDEO/Webcam\"."
-#~ msgid "Height resolution"
-#~ msgstr "Ločljivost višine"
 #~ msgid ""
 #~ "If set to true, Cheese will start up in a wide mode with the image "
 #~ "collection placed on the right-hand side. Useful with small screens."
@@ -446,8 +452,6 @@ msgstr "Učinkov ni mogoče najti"
 #~ msgstr "Pot do videa"
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Ali naj se omogoči neposredno brisanje datotek"
-#~ msgid "Width resolution"
-#~ msgstr "Ločljivost širine"
 #~ msgid "Be verbose"
 #~ msgstr "Podroben izpis"
 #~ msgid "Switch to Burst Mode"
