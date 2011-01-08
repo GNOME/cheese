@@ -4,17 +4,17 @@
 # This file is distributed under the same license as cheese
 #
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-03 15:29+0000\n"
-"PO-Revision-Date: 2011-01-05 12:34+0100\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
+"POT-Creation-Date: 2011-01-07 21:09+0000\n"
+"PO-Revision-Date: 2011-01-08 12:22+0100\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -197,7 +197,6 @@ msgid "Photo mode"
 msgstr "Modo foto"
 
 #: ../data/cheese-main-window.ui.h:6
-#| msgid "Previous effect"
 msgid "Previous"
 msgstr "Anterior"
 
@@ -250,22 +249,28 @@ msgid "Number of photos"
 msgstr "Número de fotos"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "Preferences"
-msgstr "Preferencias"
+#| msgid "Height resolution"
+msgid "Photo resolution"
+msgstr "Resolución de la foto"
 
 #: ../data/cheese-prefs.ui.h:12
-msgid "Resolution"
-msgstr "Resolución"
+msgid "Preferences"
+msgstr "Preferencias"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Saturación"
 
 #: ../data/cheese-prefs.ui.h:14
+#| msgid "Width resolution"
+msgid "Video resolution"
+msgstr "Resolución del vídeo"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "Cámara web"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "_Countdown"
 msgstr "_Cuenta atrás"
 
@@ -273,7 +278,7 @@ msgstr "_Cuenta atrás"
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:626
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "Sonido del obturador"
 
@@ -358,17 +363,20 @@ msgstr ""
 "Ejecutar «%s --help» para ver una lista completa de opciones de línea de "
 "comandos disponibles.\n"
 
-#: ../src/cheese-window.vala:717
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "_Detener grabación"
 
-#: ../src/cheese-window.vala:741
+#: ../src/cheese-window.vala:786
 msgid "Stop _Taking Pictures"
 msgstr "Dejar de _tomar imágenes"
 
-#: ../src/cheese-window.vala:873
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "No se encontró ningún efecto"
+
+#~ msgid "Resolution"
+#~ msgstr "Resolución"
 
 #~ msgid "Next effect"
 #~ msgstr "Siguiente efecto"
@@ -416,9 +424,6 @@ msgstr "No se encontró ningún efecto"
 #~ msgstr ""
 #~ "Define la ruta donde se almacenarán los vídeos, si está vacío se usará "
 #~ "\"XDG_VIDEO/Webcam\"."
-
-#~ msgid "Height resolution"
-#~ msgstr "Resolución de la altura"
 
 #~ msgid ""
 #~ "If set to true, Cheese will start up in a wide mode with the image "
@@ -490,9 +495,6 @@ msgstr "No se encontró ningún efecto"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Indica si se debe activar el borrado inmediato"
-
-#~ msgid "Width resolution"
-#~ msgstr "Resolución de la anchura"
 
 #~ msgid "Be verbose"
 #~ msgstr "Proporcionar detalles"
