@@ -7,11 +7,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&component=general\n"
-"POT-Creation-Date: 2010-08-29 19:34+0000\n"
-"PO-Revision-Date: 2010-08-27 13:31+0700\n"
-"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
+"POT-Creation-Date: 2011-01-06 18:46+0000\n"
+"PO-Revision-Date: 2011-01-07 23:15+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: GNOME Indonesian Translation Team <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,8 +20,9 @@ msgstr ""
 "X-Poedit-Country: Indonesia\n"
 "X-Generator: Lokalize 1.1\n"
 
-#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../data/cheese-about.ui.h:1
+#: ../data/cheese.desktop.in.in.h:1
+#: ../src/cheese-main.vala:104
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -30,37 +30,24 @@ msgstr "Cheese"
 msgid "Cheese Website"
 msgstr "Situs Web Cheese"
 
-#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+#: ../data/cheese-about.ui.h:3
+#: ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
-"Ambil foto dan video dengan webkam Anda, dengan efek grafis yang menarik"
+msgstr "Ambil foto dan video dengan webkam Anda, dengan efek grafis yang menarik"
 
 #: ../data/cheese-about.ui.h:4
 msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
+"This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.\n"
 "\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
 "\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
+"You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
-"Program ini adalah perangkat lunak bebas; Anda dapat menyebarluaskannya dan/"
-"atau mengubahnya di bawah syarat GNU General Public License sebagaimana "
-"dipublikasikan oleh Free Software Foundation; baik versi 2 dari Lisensi, "
-"atau (terserah pilihan Anda) versi setelahnya.\n"
+"Program ini adalah perangkat lunak bebas; Anda dapat menyebarluaskannya dan/atau mengubahnya di bawah syarat GNU General Public License sebagaimana dipublikasikan oleh Free Software Foundation; baik versi 2 dari Lisensi, atau (terserah pilihan Anda) versi setelahnya.\n"
 "\n"
-"Program ini didistribusikan dengan harapan dapat berguna, tetapi TANPA "
-"ADANYA JAMINAN; termasuk tanpa jaminan DAYA JUAL atau KELAIKAN UNTUK TUJUAN "
-"TERTENTU. Lihat GNU General Public License untuk rincian lebih lanjut.\n"
+"Program ini didistribusikan dengan harapan dapat berguna, tetapi TANPA ADANYA JAMINAN; termasuk tanpa jaminan DAYA JUAL atau KELAIKAN UNTUK TUJUAN TERTENTU. Lihat GNU General Public License untuk rincian lebih lanjut.\n"
 "\n"
-"Anda seharusnya menerima salinan dari GNU General Public License bersama "
-"program ini. Jika tidak, lihatlah http://www.gnu.org/licenses/\n"
+"Anda seharusnya menerima salinan dari GNU General Public License bersama program ini. Jika tidak, lihatlah http://www.gnu.org/licenses/\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -97,282 +84,200 @@ msgid "Previous Effects"
 msgstr "Efek Sebelumnya"
 
 #: ../data/cheese-actions.ui.h:8
+#| msgid "_Record a Video"
+msgid "Record a video"
+msgstr "Rekam video"
+
+#: ../data/cheese-actions.ui.h:9
 msgid "Save _As"
 msgstr "Simp_an Sebagai"
 
-#: ../data/cheese-actions.ui.h:9
+#: ../data/cheese-actions.ui.h:10
 msgid "Take _Multiple Photos"
 msgstr "A_mbil Banyak Foto"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:238
+msgid "Take a photo"
+msgstr "Ambil foto"
+
+#: ../data/cheese-actions.ui.h:12
+#| msgid "Take _Multiple Photos"
+msgid "Take multiple photos"
+msgstr "Ambil banyak foto"
+
+#: ../data/cheese-actions.ui.h:13
 msgid "_About"
 msgstr "Tent_ang"
 
-#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-actions.ui.h:14
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:15
 msgid "_Delete"
 msgstr "_Hapus"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:16
 msgid "_Edit"
 msgstr "_Sunting"
 
-#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Efek"
 
-#: ../data/cheese-actions.ui.h:15
+#: ../data/cheese-actions.ui.h:18
 msgid "_Help"
 msgstr "Ba_ntuan"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:19
 msgid "_Open"
 msgstr "_Buka"
 
-#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-actions.ui.h:20
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:21
 msgid "_Preferences"
 msgstr "_Preferensi"
 
-#: ../data/cheese-actions.ui.h:19
+#: ../data/cheese-actions.ui.h:22
 msgid "_Quit"
 msgstr "_Keluar"
 
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:23
 msgid "_Record a Video"
 msgstr "_Rekam Video"
 
-#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-actions.ui.h:24
+#: ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "Ambil Fo_to"
 
-#: ../data/cheese-actions.ui.h:22
+#: ../data/cheese-actions.ui.h:25
 msgid "_Video"
 msgstr "_Video"
 
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:26
 msgid "_Wide Mode"
 msgstr "Mode _Lebar"
 
+#: ../data/cheese-main-window.ui.h:1
+#| msgid "_Effects"
+msgid "Effects"
+msgstr "Efek"
+
 #: ../data/cheese-main-window.ui.h:2
+#| msgid "_Leave Fullscreen"
+msgid "Leave fullscreen"
+msgstr "Tinggalkan moda layar penuh"
+
+#: ../data/cheese-main-window.ui.h:3
+msgid "Next"
+msgstr "Berikutnya"
+
+#: ../data/cheese-main-window.ui.h:4
+#| msgid "Burst mode"
+msgid "Photo burst mode"
+msgstr "Mode rentetan foto"
+
+#: ../data/cheese-main-window.ui.h:5
+#| msgid "_Photo"
+msgid "Photo mode"
+msgstr "Mode foto"
+
+#: ../data/cheese-main-window.ui.h:6
+#| msgid "Previous Effects"
+msgid "Previous"
+msgstr "Sebelumnya"
+
+#: ../data/cheese-main-window.ui.h:8
+#| msgid "_Wide Mode"
+msgid "Video mode"
+msgstr "Mode video"
+
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Leave Fullscreen"
 msgstr "Tinggalkan Moda _Layar Penuh"
 
 #: ../data/cheese-prefs.ui.h:1
+msgid "<b>Shutter</b>"
+msgstr "<b>Tombol</b>"
+
+#: ../data/cheese-prefs.ui.h:2
 msgid "Brightness"
 msgstr "Kecerahan"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:3
 msgid "Burst mode"
 msgstr "Mode rentetan"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:4
 msgid "Contrast"
 msgstr "Kontras"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:5
 msgid "Delay between photos (seconds)"
 msgstr "Jeda antar foto (detik)"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Device"
 msgstr "Perangkat"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
+msgid "Fire _Flash"
+msgstr "Nyalakan Lampu _Kilat"
+
+#: ../data/cheese-prefs.ui.h:8
 msgid "Hue"
 msgstr "Hue"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Image properties"
 msgstr "Properti gambar"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Number of photos"
 msgstr "Jumlah foto:"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
+#| msgid "Height resolution"
+msgid "Photo resolution"
+msgstr "Resolusi foto"
+
+#: ../data/cheese-prefs.ui.h:12
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: ../data/cheese-prefs.ui.h:10
-msgid "Resolution"
-msgstr "Resolusi"
-
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Saturasi"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
+#| msgid "Width resolution"
+msgid "Video resolution"
+msgstr "Resolusi video"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "Webkam"
+
+#: ../data/cheese-prefs.ui.h:16
+#| msgid "Use a countdown"
+msgid "_Countdown"
+msgstr "_Hitung mundur"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese Pojok Webkam"
 
-#. Translators: please note, that the effect names are
-#. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid ""
-"A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr ""
-"Daftar efek yang diterapkan saat awal. Nilai yang mungkin adalah: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" dan \"warp\""
-
-#: ../data/cheese.schemas.in.h:4
-msgid "Adjusts brightness level of the picture coming from the camera"
-msgstr "Atur tingkat kecerahan gambar yang datang dari kamera"
-
-#: ../data/cheese.schemas.in.h:5
-msgid "Adjusts contrast level of the picture coming from the camera"
-msgstr "Atur tingkat kontras gambar yang datang dari kamera"
-
-#: ../data/cheese.schemas.in.h:6
-msgid "Adjusts hue level of the picture coming from the camera"
-msgstr "Atur tingkat hue gambar yang datang dari kamera"
-
-#: ../data/cheese.schemas.in.h:7
-msgid "Adjusts saturation level of the picture coming from the camera"
-msgstr "Atur tingkat saturasi gambar yang datang dari kamera"
-
-#: ../data/cheese.schemas.in.h:8
-msgid "Camera device string indicator"
-msgstr "Indikator string perangkat kamera"
-
-#: ../data/cheese.schemas.in.h:9
-msgid ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr ""
-"Menentukan lokasi foto disimpan, bila kosong \"XDG_PHOTO/Webcam\" akan "
-"dipakai."
-
-#: ../data/cheese.schemas.in.h:10
-msgid ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr ""
-"Menentukan lokasi foto disimpan, bila kosong \"XDG_VIDEO/Webcam\" akan "
-"dipakai."
-
-#: ../data/cheese.schemas.in.h:11
-msgid "Height resolution"
-msgstr "Resolusi tinggi"
-
-#: ../data/cheese.schemas.in.h:12
-msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
-msgstr ""
-"Bila ditata ke benar, Cheese akan mulai pada moda lebar dengan koleksi citra "
-"ditempatkan pada sisi kanan. Berguna bagi layar kecil."
-
-#: ../data/cheese.schemas.in.h:13
-msgid ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-msgstr ""
-"Bila ditata ke benar, maka Cheese akan memiliki fitur yang memungkinkan Anda "
-"untuk menghapus suatu berkas seketika, tanpa terlebih dahulu memindahkannya "
-"ke tong sampah. Fitur ini bisa berbahaya, maka berhati-hatilah."
-
-#: ../data/cheese.schemas.in.h:14
-msgid "Milliseconds between photos in burst mode."
-msgstr "Milidetik antar foto pada moda rentetan."
-
-#: ../data/cheese.schemas.in.h:15
-msgid "Number of photos in burst mode."
-msgstr "Banyaknya foto dalam mode rentetan."
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Photo Path"
-msgstr "Lokasi Foto"
-
-#: ../data/cheese.schemas.in.h:17
-msgid "Picture brightness"
-msgstr "Kecerahan foto"
-
-#: ../data/cheese.schemas.in.h:18
-msgid "Picture contrast"
-msgstr "Kontras gambar"
-
-#: ../data/cheese.schemas.in.h:19
-msgid "Picture hue"
-msgstr "Corak gambar"
-
-#: ../data/cheese.schemas.in.h:20
-msgid "Picture saturation"
-msgstr "Saturasi gambar"
-
-#: ../data/cheese.schemas.in.h:21
-msgid "Selected Effects"
-msgstr "Efek yang Dipilih"
-
-#: ../data/cheese.schemas.in.h:22
-msgid "Set to True to show countdown when taking a photo"
-msgstr "Tata ke benar untuk menampilkan hitung mundur saat mengambil foto"
-
-#: ../data/cheese.schemas.in.h:23
-msgid "The device which points to the camera (e.g. /dev/video0)"
-msgstr "Perangkat yang mengacu ke kamera (mis. /dev/video0)"
-
-#: ../data/cheese.schemas.in.h:24
-msgid "The height resolution of the image captured from the camera"
-msgstr "Resolusi tinggi citra yang ditangkap dari kamera"
-
-#: ../data/cheese.schemas.in.h:25
-msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
-msgstr ""
-"Lama waktu dalam mili detik, untuk jeda antara mengambil tiap foto dalam "
-"suatu urutan rentetan foto."
-
-#: ../data/cheese.schemas.in.h:26
-msgid "The number of photos to take in a single burst."
-msgstr "Cacah foto yang diambil dalam suatu rentetan tunggal."
-
-#: ../data/cheese.schemas.in.h:27
-msgid "The width resolution of the image captured from the camera"
-msgstr "Resolusi lebar dari citra yang ditangkap dari kamera"
-
-#: ../data/cheese.schemas.in.h:28
-msgid "Use a countdown"
-msgstr "Menggunakan hitung mundur"
-
-#: ../data/cheese.schemas.in.h:29
-msgid "Video Path"
-msgstr "Lokasi Video"
-
-#: ../data/cheese.schemas.in.h:30
-msgid "Whether to enable immediate deletion"
-msgstr "Apakah mengaktifkan penghapusan langsung"
-
-#: ../data/cheese.schemas.in.h:31
-msgid "Whether to start in wide mode"
-msgstr "Apakah mulai pada moda lebar"
-
-#: ../data/cheese.schemas.in.h:32
-msgid "Width resolution"
-msgstr "Resolusi lebar"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
+#: ../libcheese/cheese-avatar-chooser.c:110
+#: ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "Suara tombol"
-
-#: ../libcheese/cheese-avatar-chooser.c:238
-msgid "Take a photo"
-msgstr "Ambil foto"
 
 #: ../libcheese/cheese-avatar-chooser.c:257
 msgid "_Take a photo"
@@ -399,12 +304,12 @@ msgstr "Perangkat tak dikenal"
 msgid "Cancellable initialization not supported"
 msgstr "Inisiasi yang dapat dibatalkan tak didukung"
 
-#: ../libcheese/cheese-camera.c:1156
+#: ../libcheese/cheese-camera.c:1158
 #, c-format
 msgid "No device found"
 msgstr "Tidak menemukan perangkat"
 
-#: ../libcheese/cheese-camera.c:1175
+#: ../libcheese/cheese-camera.c:1177
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Satu atau lebih elemen GStreamer yang diperlukan hilang:"
 
@@ -414,47 +319,169 @@ msgstr "Satu atau lebih elemen GStreamer yang diperlukan hilang:"
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:441
+#: ../libcheese/cheese-countdown.c:460
 #: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
 
-#: ../src/cheese-effects-manager.vala:116
+#: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Tanpa Efek"
 
-#: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "Mengaktifkan mode lebar"
-
 #: ../src/cheese-main.vala:38
+#| msgid "Whether to start in wide mode"
+msgid "Start in wide mode"
+msgstr "Mulai pada moda lebar"
+
+#: ../src/cheese-main.vala:39
 msgid "Device to use as a camera"
 msgstr "Perangkat yang akan dipakai sebagai kamera"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:39
 msgid "DEVICE"
 msgstr "PERANGKAT"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:40
 msgid "Output version information and exit"
 msgstr "Menampilkan informasi versi dan keluar"
 
-#: ../src/cheese-main.vala:66
+#: ../src/cheese-main.vala:41
+msgid "Start in fullscreen mode"
+msgstr "Mulai dalam mode layar penuh"
+
+#: ../src/cheese-main.vala:68
 msgid "- Take photos and videos from your webcam"
 msgstr "- Mengambil foto dan video dengan webkam Anda"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:79
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"Jalankan '%s --help' untuk daftar lengkap opsi baris perintah yang "
-"tersedia.\n"
+msgstr "Jalankan '%s --help' untuk daftar lengkap opsi baris perintah yang tersedia.\n"
 
-#: ../src/cheese-window.vala:689
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "Berhenti Me_rekam"
 
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:786
+msgid "Stop _Taking Pictures"
+msgstr "Berhen_ti Ambil Gambar"
+
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "Tidak menemukan efek"
+
+#~ msgid "Resolution"
+#~ msgstr "Resolusi"
+
+#~ msgid ""
+#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+#~ msgstr ""
+#~ "Daftar efek yang diterapkan saat awal. Nilai yang mungkin adalah: \"mauve"
+#~ "\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", "
+#~ "\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" dan "
+#~ "\"warp\""
+
+#~ msgid "Adjusts brightness level of the picture coming from the camera"
+#~ msgstr "Atur tingkat kecerahan gambar yang datang dari kamera"
+
+#~ msgid "Adjusts contrast level of the picture coming from the camera"
+#~ msgstr "Atur tingkat kontras gambar yang datang dari kamera"
+
+#~ msgid "Adjusts hue level of the picture coming from the camera"
+#~ msgstr "Atur tingkat hue gambar yang datang dari kamera"
+
+#~ msgid "Adjusts saturation level of the picture coming from the camera"
+#~ msgstr "Atur tingkat saturasi gambar yang datang dari kamera"
+
+#~ msgid "Camera device string indicator"
+#~ msgstr "Indikator string perangkat kamera"
+
+#~ msgid ""
+#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Menentukan lokasi foto disimpan, bila kosong \"XDG_PHOTO/Webcam\" akan "
+#~ "dipakai."
+
+#~ msgid ""
+#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Menentukan lokasi foto disimpan, bila kosong \"XDG_VIDEO/Webcam\" akan "
+#~ "dipakai."
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in a wide mode with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "Bila ditata ke benar, Cheese akan mulai pada moda lebar dengan koleksi "
+#~ "citra ditempatkan pada sisi kanan. Berguna bagi layar kecil."
+
+#~ msgid ""
+#~ "If set to true, then Cheese will have a feature allowing you to delete a "
+#~ "file immediately and in-place, instead of moving it to the trash. This "
+#~ "feature can be dangerous, so use caution."
+#~ msgstr ""
+#~ "Bila ditata ke benar, maka Cheese akan memiliki fitur yang memungkinkan "
+#~ "Anda untuk menghapus suatu berkas seketika, tanpa terlebih dahulu "
+#~ "memindahkannya ke tong sampah. Fitur ini bisa berbahaya, maka berhati-"
+#~ "hatilah."
+
+#~ msgid "Milliseconds between photos in burst mode."
+#~ msgstr "Milidetik antar foto pada moda rentetan."
+
+#~ msgid "Number of photos in burst mode."
+#~ msgstr "Banyaknya foto dalam mode rentetan."
+
+#~ msgid "Photo Path"
+#~ msgstr "Lokasi Foto"
+
+#~ msgid "Picture brightness"
+#~ msgstr "Kecerahan foto"
+
+#~ msgid "Picture contrast"
+#~ msgstr "Kontras gambar"
+
+#~ msgid "Picture hue"
+#~ msgstr "Corak gambar"
+
+#~ msgid "Picture saturation"
+#~ msgstr "Saturasi gambar"
+
+#~ msgid "Selected Effects"
+#~ msgstr "Efek yang Dipilih"
+
+#~ msgid "Set to True to show countdown when taking a photo"
+#~ msgstr "Tata ke benar untuk menampilkan hitung mundur saat mengambil foto"
+
+#~ msgid "The device which points to the camera (e.g. /dev/video0)"
+#~ msgstr "Perangkat yang mengacu ke kamera (mis. /dev/video0)"
+
+#~ msgid "The height resolution of the image captured from the camera"
+#~ msgstr "Resolusi tinggi citra yang ditangkap dari kamera"
+
+#~ msgid ""
+#~ "The length of time, in milliseconds, to delay between taking each photo "
+#~ "in a burst sequence of photos."
+#~ msgstr ""
+#~ "Lama waktu dalam mili detik, untuk jeda antara mengambil tiap foto dalam "
+#~ "suatu urutan rentetan foto."
+
+#~ msgid "The number of photos to take in a single burst."
+#~ msgstr "Cacah foto yang diambil dalam suatu rentetan tunggal."
+
+#~ msgid "The width resolution of the image captured from the camera"
+#~ msgstr "Resolusi lebar dari citra yang ditangkap dari kamera"
+
+#~ msgid "Video Path"
+#~ msgstr "Lokasi Video"
+
+#~ msgid "Whether to enable immediate deletion"
+#~ msgstr "Apakah mengaktifkan penghapusan langsung"
+
+#~ msgid "Enable wide mode"
+#~ msgstr "Mengaktifkan mode lebar"
