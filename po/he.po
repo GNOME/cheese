@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-26 19:55+0200\n"
-"PO-Revision-Date: 2010-12-26 19:55+0200\n"
+"POT-Creation-Date: 2011-01-09 18:52+0200\n"
+"PO-Revision-Date: 2011-01-09 18:53+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
@@ -182,8 +182,8 @@ msgid "Leave fullscreen"
 msgstr "יציאה ממסך מלא"
 
 #: ../data/cheese-main-window.ui.h:3
-msgid "Next effect"
-msgstr "האפקט הבא"
+msgid "Next"
+msgstr "הבא"
 
 #: ../data/cheese-main-window.ui.h:4
 msgid "Photo burst mode"
@@ -194,8 +194,8 @@ msgid "Photo mode"
 msgstr "מצב תמונה"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous effect"
-msgstr "האפקט הקודם"
+msgid "Previous"
+msgstr "הקודם"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Video mode"
@@ -246,22 +246,26 @@ msgid "Number of photos"
 msgstr "מספר תמונות"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "Preferences"
-msgstr "העדפות"
+msgid "Photo resolution"
+msgstr "רזולוציית התמונות"
 
 #: ../data/cheese-prefs.ui.h:12
-msgid "Resolution"
-msgstr "רזולוציה"
+msgid "Preferences"
+msgstr "העדפות"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "רוויה"
 
 #: ../data/cheese-prefs.ui.h:14
+msgid "Video resolution"
+msgstr "רזולוציית הווידאו"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "מצלמת רשת"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "_Countdown"
 msgstr "_ספירה לאחור"
 
@@ -269,7 +273,7 @@ msgstr "_ספירה לאחור"
 msgid "Cheese Webcam Booth"
 msgstr "תא הצילום של Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:626
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "צליל הצמצם"
 
@@ -353,17 +357,23 @@ msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-window.vala:717
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "ה_פסקת ההקלטה"
 
-#: ../src/cheese-window.vala:739
+#: ../src/cheese-window.vala:786
 msgid "Stop _Taking Pictures"
 msgstr "ע_צירת צילום התמונות"
 
-#: ../src/cheese-window.vala:869
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "לא נמצאו אפקטים"
+
+#~ msgid "Next effect"
+#~ msgstr "האפקט הבא"
+
+#~ msgid "Resolution"
+#~ msgstr "רזולוציה"
 
 #~ msgid "Enable wide mode"
 #~ msgstr "Enable wide mode"
@@ -405,9 +415,6 @@ msgstr "לא נמצאו אפקטים"
 #~ msgstr ""
 #~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
 #~ "\" will be used."
-
-#~ msgid "Height resolution"
-#~ msgstr "Height resolution"
 
 #~ msgid ""
 #~ "If set to true, Cheese will start up in a wide mode with the image "
@@ -479,9 +486,6 @@ msgstr "לא נמצאו אפקטים"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Whether to enable immediate deletion"
-
-#~ msgid "Width resolution"
-#~ msgstr "Width resolution"
 
 #~ msgid "Be verbose"
 #~ msgstr "Be verbose"
