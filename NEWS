@@ -1,6 +1,56 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.91.3
+
+  - Photo and video resolution can be set separately. Fixes bug #582268
+  - Fixed tooltip text for "stop action" and for "next/prev effect page"
+    buttons
+  - Start monitoring storage folders if they exist when cheese starts,
+    and a fix for bug 637798 commit.
+  - Burst mode session can be cancelled with a "Stop taking pictures"
+    button. Fixes bug #637798
+  - Button area does not get hidden after returning from fullscreen mode.
+  - Start "Save as" dialog in home folder
+  - Check if each Webcam directory exists before filling thumb view
+  - Don't create Webcam dirs (in Pictures and Video user dirs) unless
+    there is content to put on it, fixes bug #563058
+  - Command line options for starting in wide and fullscreen modes,
+    fixes bug #597820
+  - All ui buttons now have tooltips, fixes bug #622974
+  - allow multiple items to be deleted at once
+  - allow multiple items moved to trash at once
+  - do a fade in animatin on each new effect page
+  - calculate the dimension of the effect previews automatically
+    this is done by getting the viewport dimension, subtracting
+    the borders and then dividing by three. if there are less than
+    9 effects on the last effects pane, we want to still start
+    putting the previews in the upper left corner. in fullscreen
+    we simply use the same size.
+  - remove useless comments
+  - align the effects in the center, regardless of window size
+  - sort the effects in the effect preview alphabetically
+  - set the effect panes preview to a fixed size
+  - post release version bump
+  - Added/Updated Translations
+    - de, courtesy of Wolfgang Stoeggl
+    - es, courtesy of Jorge González
+    - et, courtesy of Ivar Smolin
+    - gl, courtesy of Fran Diéguez
+    - he, courtesy of Yaron Shahrabani
+    - id, courtesy of Andika Triwidada
+    - nb, courtesy of Kjartan Maraas
+    - pa, courtesy of A S Alam
+    - sl, courtesy of Matej Urbančič
+    - sv, courtesy of Daniel Nylander
+    - th, courtesy of Akom Chotiphantawanon
+    - ug, courtesy of Sahran
+    - vi, courtesy of Clytie Siddall
+    - zh_CN, courtesy of Aron Xu
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+
 version 2.91.2
   - port cheese to gsettings
     this commit drops gconf entirely from cheese and uses
