@@ -3,6 +3,7 @@
  * Copyright © 2007-2009 daniel g. siegel <dgsiegel@gnome.org>
  * Copyright © 2008 Ryan Zeigler <zeiglerr@gmail.com>
  * Copyright © 2010 Yuvaraj Pandian T <yuvipanda@yuvi.in>
+ * Copyright © 2011 Luciana Fujii Pontello <luciana@fujii.eti.br>
  *
  * Licensed under the GNU General Public License Version 2
  *
@@ -42,16 +43,19 @@ G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 
 #define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
 
+typedef enum
+{
+  MODE_IMAGE = 0,
+  MODE_VIDEO
+} GstCameraBinMode;
+
 typedef struct
 {
-  GstElement *pipeline;
   GstBus *bus;
 
-  /* We build the active pipeline by linking the appropriate pipelines listed below*/
+  GstElement *camerabin;
   GstElement *camera_source_bin;
-  GstElement *video_display_bin;
-  GstElement *photo_save_bin;
-  GstElement *video_save_bin;
+  GstElement *video_filter_bin;
 
   GstElement *video_source;
   GstElement *capsfilter;
@@ -117,26 +121,6 @@ cheese_camera_error_quark (void)
 }
 
 static void
-cheese_camera_change_sink (CheeseCamera *camera, GstElement *src,
-                           GstElement *new_sink, GstElement *old_sink)
-{
-  CheeseCameraPrivate *priv       = CHEESE_CAMERA_GET_PRIVATE (camera);
-  gboolean             is_playing = priv->pipeline_is_playing;
-
-  cheese_camera_stop (camera);
-
-  gst_element_unlink (src, old_sink);
-  gst_object_ref (old_sink);
-  gst_bin_remove (GST_BIN (priv->pipeline), old_sink);
-
-  gst_bin_add (GST_BIN (priv->pipeline), new_sink);
-  gst_element_link (src, new_sink);
-
-  if (is_playing)
-    cheese_camera_play (camera);
-}
-
-static void
 cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
                              GstPad *pad, CheeseCamera *camera)
 {
@@ -183,7 +167,7 @@ cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
   }
   else
   {
-    g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0, pixbuf);
+    g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0);
     g_object_unref (pixbuf);
   }
 }
@@ -191,28 +175,8 @@ cheese_camera_photo_data_cb (GstElement *element, GstBuffer *buffer,
 static void
 cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
   switch (GST_MESSAGE_TYPE (message))
   {
-    case GST_MESSAGE_EOS:
-    {
-      if (priv->is_recording)
-      {
-        GST_DEBUG ("Received EOS message");
-
-        g_source_remove (priv->eos_timeout_id);
-
-        /* emit signal by name here as the camera_signals array is empty in this thread */
-        /* TODO: really understand how threads and static works and why this is needed */
-        g_signal_emit_by_name (camera, "video-saved", NULL);
-
-        cheese_camera_change_sink (camera, priv->video_display_bin,
-                                   priv->photo_save_bin, priv->video_save_bin);
-        priv->is_recording = FALSE;
-      }
-
-    }
     case GST_MESSAGE_WARNING:
     {
       GError *err = NULL;
@@ -247,7 +211,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
     }
     case GST_MESSAGE_STATE_CHANGED:
     {
-      if (strcmp (GST_MESSAGE_SRC_NAME (message), "pipeline") == 0)
+      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin") == 0)
       {
         GstState old, new;
         gst_message_parse_state_changed (message, &old, &new, NULL);
@@ -396,19 +360,15 @@ cheese_camera_set_error_element_not_found (GError **error, const char *factoryna
 }
 
 static gboolean
-cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
+cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  GstElement *save_tee, *video_display_queue, *video_scale, *video_sink, *save_queue;
-
-  gboolean ok;
+  gboolean ok = TRUE;
   GstPad  *pad;
   GError  *err = NULL;
 
-  priv->video_display_bin = gst_bin_new ("video_display_bin");
-
-  cheese_camera_create_camera_source_bin (camera);
+  priv->video_filter_bin = gst_bin_new ("video_filter_bin");
 
   if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
   {
@@ -449,64 +409,32 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
     return FALSE;
   }
 
-  if ((save_tee = gst_element_factory_make ("tee", "save_tee")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "tee");
-  }
-
-  if ((save_queue = gst_element_factory_make ("queue", "save_queue")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "queue");
-  }
-
-  if ((video_display_queue = gst_element_factory_make ("queue", "video_display_queue")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "queue");
-  }
-
-  if ((video_scale = gst_element_factory_make ("videoscale", "video_scale")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "videoscale");
-  }
-  else
-  {
-    /* Use bilinear scaling */
-    g_object_set (video_scale, "method", 1, NULL);
-  }
-
-  if ((video_sink = clutter_gst_video_sink_new (priv->video_texture)) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "cluttervideosink");
-  }
-  g_object_set (G_OBJECT (video_sink), "async", FALSE, NULL);
-
   if (error != NULL && *error != NULL)
     return FALSE;
 
-  gst_bin_add_many (GST_BIN (priv->video_display_bin), priv->camera_source_bin,
-                    priv->camera_tee, priv->effects_downscaler, priv->effects_tee,
-                    priv->effects_valve, priv->main_valve,
-                    priv->effect_filter,
-                    priv->video_balance, priv->csp_post_balance,
-                    save_tee, save_queue,
-                    video_display_queue, video_scale, video_sink, NULL);
+  gst_bin_add_many (GST_BIN (priv->video_filter_bin), priv->camera_tee,
+                    priv->effects_downscaler, priv->effects_tee,
+                    priv->effects_valve, priv->main_valve, priv->effect_filter,
+                    priv->video_balance, priv->csp_post_balance, NULL);
 
-  ok  = gst_element_link_many (priv->camera_source_bin, priv->camera_tee, NULL);
   ok &= gst_element_link_many (priv->camera_tee, priv->main_valve, priv->effect_filter,
-                               priv->video_balance, priv->csp_post_balance,
-                               save_tee, NULL);
+                               priv->video_balance, priv->csp_post_balance, NULL);
+
   ok &= gst_element_link_many (priv->camera_tee, priv->effects_valve,
                                priv->effects_downscaler, priv->effects_tee, NULL);
-  ok &= gst_element_link_many (save_tee, save_queue, NULL);
-  ok &= gst_element_link_many (save_tee, video_display_queue, video_scale, video_sink, NULL);
 
-  /* add ghostpad */
-  pad = gst_element_get_pad (save_queue, "src");
-  gst_element_add_pad (priv->video_display_bin, gst_ghost_pad_new ("src", pad));
+  /* add ghostpads */
+
+  pad = gst_element_get_static_pad (priv->csp_post_balance, "src");
+  gst_element_add_pad (priv->video_filter_bin, gst_ghost_pad_new ("src", pad));
+  gst_object_unref (GST_OBJECT (pad));
+
+  pad = gst_element_get_static_pad (priv->camera_tee, "sink");
+  gst_element_add_pad (priv->video_filter_bin, gst_ghost_pad_new ("sink", pad));
   gst_object_unref (GST_OBJECT (pad));
 
   if (!ok)
-    g_error ("Unable to create display pipeline");
+    g_error ("Unable to create filter bin");
 
   return TRUE;
 }
@@ -516,160 +444,9 @@ cheese_camera_relink_camera_source_bin (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  gst_element_unlink (priv->camera_source_bin, priv->camera_tee);
-  gst_bin_remove (GST_BIN (priv->video_display_bin), priv->camera_source_bin);
-
   cheese_camera_create_camera_source_bin (camera);
 
-  gst_bin_add (GST_BIN (priv->video_display_bin), priv->camera_source_bin);
-  gst_element_link (priv->camera_source_bin, priv->camera_tee);
-}
-
-static gboolean
-cheese_camera_create_photo_save_bin (CheeseCamera *camera, GError **error)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  GstElement *csp_photo_save_bin;
-
-  gboolean ok;
-  GstPad  *pad;
-  GstCaps *caps;
-
-  priv->photo_save_bin = gst_bin_new ("photo_save_bin");
-
-  if ((csp_photo_save_bin = gst_element_factory_make ("ffmpegcolorspace", "csp_photo_save_bin")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "ffmpegcolorspace");
-  }
-  if ((priv->photo_sink = gst_element_factory_make ("fakesink", "photo_sink")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "fakesink");
-  }
-
-  if (error != NULL && *error != NULL)
-    return FALSE;
-
-  gst_bin_add_many (GST_BIN (priv->photo_save_bin), csp_photo_save_bin,
-                    priv->photo_sink, NULL);
-
-  /* add ghostpad */
-  pad = gst_element_get_pad (csp_photo_save_bin, "sink");
-  gst_element_add_pad (priv->photo_save_bin, gst_ghost_pad_new ("sink", pad));
-  gst_object_unref (GST_OBJECT (pad));
-
-  caps = gst_caps_new_simple ("video/x-raw-rgb",
-                              "bpp", G_TYPE_INT, 24,
-                              "depth", G_TYPE_INT, 24,
-                              NULL);
-  ok = gst_element_link_filtered (csp_photo_save_bin, priv->photo_sink, caps);
-  gst_caps_unref (caps);
-
-  g_object_set (G_OBJECT (priv->photo_sink), "signal-handoffs", TRUE, NULL);
-
-  if (!ok)
-    g_error ("Unable to create photo save pipeline");
-
-  return TRUE;
-}
-
-static gboolean
-cheese_camera_create_video_save_bin (CheeseCamera *camera, GError **error)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  GstElement *audio_queue, *audio_convert, *audio_enc;
-  GstElement *video_save_csp, *video_save_rate, *video_save_scale, *video_enc;
-  GstElement *mux;
-  GstPad     *pad;
-  gboolean    ok;
-
-  priv->video_save_bin = gst_bin_new ("video_save_bin");
-
-  if ((priv->audio_source = gst_element_factory_make ("gconfaudiosrc", "audio_source")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "gconfaudiosrc");
-  }
-  if ((audio_queue = gst_element_factory_make ("queue", "audio_queue")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "queue");
-  }
-  if ((audio_convert = gst_element_factory_make ("audioconvert", "audio_convert")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "audioconvert");
-  }
-  if ((audio_enc = gst_element_factory_make ("vorbisenc", "audio_enc")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "vorbisenc");
-  }
-
-  if ((video_save_csp = gst_element_factory_make ("ffmpegcolorspace", "video_save_csp")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "ffmpegcolorspace");
-  }
-  if ((video_enc = gst_element_factory_make ("theoraenc", "video_enc")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "theoraenc");
-  }
-  else
-  {
-    g_object_set (video_enc, "keyframe-force", 1, NULL);
-  }
-
-  if ((video_save_rate = gst_element_factory_make ("videorate", "video_save_rate")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "videorate");
-  }
-  if ((video_save_scale = gst_element_factory_make ("videoscale", "video_save_scale")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "videoscale");
-  }
-  else
-  {
-    /* Use bilinear scaling */
-    g_object_set (video_save_scale, "method", 1, NULL);
-  }
-
-  if ((mux = gst_element_factory_make ("oggmux", "mux")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "oggmux");
-  }
-  else
-  {
-    g_object_set (G_OBJECT (mux),
-                  "max-delay", (guint64) 10000000,
-                  "max-page-delay", (guint64) 10000000, NULL);
-  }
-
-  if ((priv->video_file_sink = gst_element_factory_make ("filesink", "video_file_sink")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "filesink");
-  }
-
-  if (error != NULL && *error != NULL)
-    return FALSE;
-
-  gst_bin_add_many (GST_BIN (priv->video_save_bin), priv->audio_source, audio_queue,
-                    audio_convert, audio_enc, video_save_csp, video_save_rate, video_save_scale, video_enc,
-                    mux, priv->video_file_sink, NULL);
-
-  /* add ghostpad */
-  pad = gst_element_get_pad (video_save_csp, "sink");
-  gst_element_add_pad (priv->video_save_bin, gst_ghost_pad_new ("sink", pad));
-  gst_object_unref (GST_OBJECT (pad));
-
-
-  ok = gst_element_link_many (priv->audio_source, audio_queue, audio_convert,
-                              audio_enc, mux, priv->video_file_sink, NULL);
-
-  ok &= gst_element_link_many (video_save_csp, video_save_rate, video_save_scale, video_enc,
-                               NULL);
-  ok &= gst_element_link (video_enc, mux);
-
-  if (!ok)
-    g_error ("Unable to create video save pipeline");
-
-  return TRUE;
+  g_object_set (priv->camerabin, "video-source", priv->camera_source_bin, NULL);
 }
 
 static int
@@ -763,7 +540,7 @@ cheese_camera_play (CheeseCamera *camera)
   g_object_set (priv->capsfilter, "caps", caps, NULL);
   gst_caps_unref (caps);
 
-  gst_element_set_state (priv->pipeline, GST_STATE_PLAYING);
+  gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
   priv->pipeline_is_playing = TRUE;
 }
 
@@ -777,8 +554,8 @@ cheese_camera_stop (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  if (priv->pipeline != NULL)
-    gst_element_set_state (priv->pipeline, GST_STATE_NULL);
+  if (priv->camerabin != NULL)
+    gst_element_set_state (priv->camerabin, GST_STATE_NULL);
   priv->pipeline_is_playing = FALSE;
 }
 
@@ -794,11 +571,11 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
                            priv->video_balance, NULL);
 
   g_object_ref (priv->effect_filter);
-  gst_bin_remove (GST_BIN (priv->video_display_bin), priv->effect_filter);
+  gst_bin_remove (GST_BIN (priv->video_filter_bin), priv->effect_filter);
   gst_element_set_state (priv->effect_filter, GST_STATE_NULL);
   g_object_unref (priv->effect_filter);
 
-  gst_bin_add (GST_BIN (priv->video_display_bin), new_filter);
+  gst_bin_add (GST_BIN (priv->video_filter_bin), new_filter);
   ok = gst_element_link_many (priv->main_valve, new_filter,
                               priv->video_balance, NULL);
   gst_element_set_state (new_filter, GST_STATE_PAUSED);
@@ -894,7 +671,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   GstElement *display_element;
   GstElement *display_queue;
   GstElement *control_valve;
-  gboolean    ok;
+  gboolean    ok = TRUE;
 
   g_object_set (G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
 
@@ -908,9 +685,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   display_element = clutter_gst_video_sink_new (texture);
   g_object_set (G_OBJECT (display_element), "async", FALSE, NULL);
 
-  gst_bin_add_many (GST_BIN (priv->pipeline), control_valve, effect_filter, display_queue, display_element, NULL);
-
-
+  gst_bin_add_many (GST_BIN (priv->video_filter_bin), control_valve, effect_filter, display_queue, display_element, NULL);
 
   ok = gst_element_link_many (priv->effects_tee, control_valve, effect_filter, display_queue, display_element, NULL);
   g_return_if_fail (ok);
@@ -920,6 +695,9 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   gst_element_set_state (effect_filter, GST_STATE_PLAYING);
   gst_element_set_state (display_queue, GST_STATE_PLAYING);
   gst_element_set_state (display_element, GST_STATE_PLAYING);
+
+  if (!ok)
+      g_warning ("Could not create effects pipeline");
 
   g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
 }
@@ -935,9 +713,9 @@ cheese_camera_start_video_recording (CheeseCamera *camera, const char *filename)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  g_object_set (CHEESE_CAMERA_GET_PRIVATE (camera)->video_file_sink, "location", filename, NULL);
-  cheese_camera_change_sink (camera, priv->video_display_bin,
-                             priv->video_save_bin, priv->photo_save_bin);
+  g_object_set (priv->camerabin, "mode", MODE_VIDEO, NULL);
+  g_object_set (priv->camerabin, "filename", filename, NULL);
+  g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
   priv->is_recording = TRUE;
 }
 
@@ -952,8 +730,8 @@ cheese_camera_force_stop_video_recording (gpointer data)
     GST_WARNING ("Cannot cleanly shutdown recording pipeline, forcing");
     g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
 
-    cheese_camera_change_sink (camera, priv->video_display_bin,
-                               priv->photo_save_bin, priv->video_save_bin);
+    cheese_camera_stop (camera);
+    g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
     priv->is_recording = FALSE;
   }
 
@@ -971,20 +749,28 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   GstState             state;
 
-  gst_element_get_state (priv->pipeline, &state, NULL, 0);
+  gst_element_get_state (priv->camerabin, &state, NULL, 0);
 
   if (state == GST_STATE_PLAYING)
   {
-    /* Send EOS message down the pipeline by stopping video and audio source*/
-    GST_DEBUG ("Sending EOS event down the recording pipeline");
-    gst_element_send_event (priv->video_source, gst_event_new_eos ());
-    gst_element_send_event (priv->audio_source, gst_event_new_eos ());
-    priv->eos_timeout_id = g_timeout_add (3000, cheese_camera_force_stop_video_recording, camera);
+    g_signal_emit_by_name (priv->camerabin, "capture-stop", 0);
+    g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
+    priv->is_recording = FALSE;
   }
   else
   {
     cheese_camera_force_stop_video_recording (camera);
   }
+}
+
+static void
+cheese_camera_image_done_cb (GstElement *camerabin, gchar *filename,
+                             CheeseCamera *camera)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  g_signal_handler_disconnect (G_OBJECT (priv->camerabin),
+                               priv->photo_handler_signal_id);
+  priv->photo_handler_signal_id = 0;
 }
 
 /**
@@ -994,7 +780,6 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
  *
  * Returns: TRUE on success, FALSE if an error occurred
  */
-
 gboolean
 cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
 {
@@ -1005,15 +790,31 @@ cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
     GST_WARNING ("Still waiting for previous photo data, ignoring new request");
     return FALSE;
   }
+  priv->photo_handler_signal_id = g_signal_connect (G_OBJECT (priv->camerabin),
+                                                    "image-done",
+                                                    G_CALLBACK (cheese_camera_image_done_cb),
+                                                    camera);
 
   g_free (priv->photo_filename);
   priv->photo_filename = g_strdup (filename);
 
-  /* Take the photo by connecting the handoff signal */
-  priv->photo_handler_signal_id = g_signal_connect (G_OBJECT (priv->photo_sink),
-                                                    "handoff",
-                                                    G_CALLBACK (cheese_camera_photo_data_cb),
-                                                    camera);
+  /* Take the photo*/
+
+  /* Only copy the data if we're giving away a pixbuf,
+   * not if we're throwing everything away straight away */
+
+  if (priv->photo_filename != NULL)
+  {
+    g_object_set (priv->camerabin, "filename", priv->photo_filename, NULL);
+    g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
+    g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
+    g_signal_emit (camera, camera_signals[PHOTO_SAVED], 0);
+  }
+  else
+  {
+    g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0);
+  }
+
   return TRUE;
 }
 
@@ -1034,10 +835,10 @@ cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
   }
 
   /* Take the photo by connecting the handoff signal */
-  priv->photo_handler_signal_id = g_signal_connect (G_OBJECT (priv->photo_sink),
-                                                    "handoff",
-                                                    G_CALLBACK (cheese_camera_photo_data_cb),
-                                                    camera);
+  priv->photo_handler_signal_id =  g_signal_connect (G_OBJECT (priv->photo_sink),
+                                                     "handoff",
+                                                     G_CALLBACK (cheese_camera_photo_data_cb),
+                                                     camera);
   return TRUE;
 }
 
@@ -1050,13 +851,11 @@ cheese_camera_finalize (GObject *object)
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   cheese_camera_stop (camera);
-  if (priv->pipeline != NULL)
-    gst_object_unref (priv->pipeline);
+  if (priv->camerabin != NULL)
+    gst_object_unref (priv->camerabin);
 
-  if (priv->is_recording && priv->photo_save_bin != NULL)
-    gst_object_unref (priv->photo_save_bin);
-  else if (priv->video_save_bin != NULL)
-    gst_object_unref (priv->video_save_bin);
+  if (priv->video_filter_bin != NULL)
+    gst_object_unref (priv->video_filter_bin);
 
   g_free (priv->photo_filename);
   g_free (priv->device_name);
@@ -1149,7 +948,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               G_STRUCT_OFFSET (CheeseCameraClass, photo_taken),
                                               NULL, NULL,
                                               g_cclosure_marshal_VOID__OBJECT,
-                                              G_TYPE_NONE, 1, GDK_TYPE_PIXBUF);
+                                              G_TYPE_NONE, 0);
 
   camera_signals[VIDEO_SAVED] = g_signal_new ("video-saved", G_OBJECT_CLASS_TYPE (klass),
                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
@@ -1275,8 +1074,8 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  gboolean ok        = TRUE;
   GError  *tmp_error = NULL;
+  GstElement *video_sink;
 
   cheese_camera_detect_camera_devices (camera);
 
@@ -1291,34 +1090,43 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
     cheese_camera_set_device_by_dev_udi (camera, id);
   }
 
-  priv->pipeline = gst_pipeline_new ("pipeline");
+  cheese_camera_create_camera_source_bin (camera);
 
-  cheese_camera_create_video_display_bin (camera, &tmp_error);
+  if ((priv->camerabin = gst_element_factory_make ("camerabin", "camerabin")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "camerabin");
+  }
+  g_object_set (priv->camerabin, "video-source", priv->camera_source_bin, NULL);
 
-  cheese_camera_create_photo_save_bin (camera, &tmp_error);
+  /* Create a clutter-gst sink and set it as camerabin sink*/
 
-  cheese_camera_create_video_save_bin (camera, &tmp_error);
-  if (tmp_error != NULL)
+  if ((video_sink = clutter_gst_video_sink_new (priv->video_texture)) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "cluttervideosink");
+  }
+  g_object_set (G_OBJECT (video_sink), "async", FALSE, NULL);
+  g_object_set (G_OBJECT (priv->camerabin), "viewfinder-sink", video_sink, NULL);
+
+  /* Set flags to enable conversions*/
+
+  g_object_set (G_OBJECT (priv->camerabin), "flags", 0xd9, NULL);
+
+  cheese_camera_create_video_filter_bin (camera, &tmp_error);
+
+  if (tmp_error != NULL || (error != NULL && *error != NULL))
   {
     g_propagate_prefixed_error (error, tmp_error,
                                 _("One or more needed GStreamer elements are missing: "));
     GST_WARNING ("%s", (*error)->message);
     return;
   }
+  g_object_set (G_OBJECT (priv->camerabin), "video-source-filter", priv->video_filter_bin, NULL);
 
-  gst_bin_add_many (GST_BIN (priv->pipeline), priv->video_display_bin,
-                    priv->photo_save_bin, NULL);
-
-  ok = gst_element_link (priv->video_display_bin, priv->photo_save_bin);
-
-  priv->bus = gst_element_get_bus (priv->pipeline);
+  priv->bus = gst_element_get_bus (priv->camerabin);
   gst_bus_add_signal_watch (priv->bus);
 
   g_signal_connect (G_OBJECT (priv->bus), "message",
                     G_CALLBACK (cheese_camera_bus_message_cb), camera);
-
-  if (!ok)
-    g_error ("Unable link pipeline for photo");
 }
 
 /**
