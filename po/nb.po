@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 2.91.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-17 13:11+0100\n"
-"PO-Revision-Date: 2010-12-17 13:13+0100\n"
+"POT-Creation-Date: 2011-01-12 11:03+0100\n"
+"PO-Revision-Date: 2011-01-12 11:04+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -44,11 +44,18 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
-"Dette programmet er fri programvare. Du kan redistribuere og/eller endre programmet under betingelsene gitt i GNU General Public License som utgitt av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du ønsker det) enhver senere versjon.\n"
+"Dette programmet er fri programvare. Du kan redistribuere og/eller endre "
+"programmet under betingelsene gitt i GNU General Public License som utgitt "
+"av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du "
+"ønsker det) enhver senere versjon.\n"
 "\n"
-"Programmet distribueres i håp om at programmet er nyttig, men uten NOEN GARANTI, ikke engang implisitt garanti om at det er SALGBART eller PASSER ET BESTEMT FORMÅL. Se GNU General Public License for detaljer.\n"
+"Programmet distribueres i håp om at programmet er nyttig, men uten NOEN "
+"GARANTI, ikke engang implisitt garanti om at det er SALGBART eller PASSER ET "
+"BESTEMT FORMÅL. Se GNU General Public License for detaljer.\n"
 "\n"
-"Du skal ha mottatt en kopi av GNU General Public License sammen med dette programmet. Hvis dette ikke er tilfelle kan du se på http://www.gnu.org/licenses/\n"
+"Du skal ha mottatt en kopi av GNU General Public License sammen med dette "
+"programmet. Hvis dette ikke er tilfelle kan du se på http://www.gnu.org/"
+"licenses/\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -168,8 +175,8 @@ msgid "Leave fullscreen"
 msgstr "Forlat fullskjerm"
 
 #: ../data/cheese-main-window.ui.h:3
-msgid "Next effect"
-msgstr "Neste effekt"
+msgid "Next"
+msgstr "Neste"
 
 #: ../data/cheese-main-window.ui.h:4
 msgid "Photo burst mode"
@@ -180,8 +187,8 @@ msgid "Photo mode"
 msgstr "Fotomodus"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous effect"
-msgstr "Forrige effekt"
+msgid "Previous"
+msgstr "Forrige"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Video mode"
@@ -232,22 +239,26 @@ msgid "Number of photos"
 msgstr "Antall bilder"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "Preferences"
-msgstr "Brukervalg"
+msgid "Photo resolution"
+msgstr "Oppløsning for bilde"
 
 #: ../data/cheese-prefs.ui.h:12
-msgid "Resolution"
-msgstr "Oppløsning"
+msgid "Preferences"
+msgstr "Brukervalg"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Metning"
 
 #: ../data/cheese-prefs.ui.h:14
+msgid "Video resolution"
+msgstr "Oppløsning for video"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "Kamera"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "_Countdown"
 msgstr "Ne_dtelling"
 
@@ -255,7 +266,7 @@ msgstr "Ne_dtelling"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese webkamera"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
@@ -340,10 +351,14 @@ msgstr ""
 "Kjør «%s --help» for å se en full liste med tilgjengelige "
 "kommandolinjeflagg.\n"
 
-#: ../src/cheese-window.vala:727
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:861
+#: ../src/cheese-window.vala:786
+msgid "Stop _Taking Pictures"
+msgstr "Stopp fo_tografering"
+
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
