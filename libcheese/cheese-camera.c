@@ -198,33 +198,62 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  if (GST_MESSAGE_TYPE (message) == GST_MESSAGE_EOS)
+  switch (GST_MESSAGE_TYPE (message))
   {
-    if (priv->is_recording)
+    case GST_MESSAGE_EOS:
     {
-      GST_DEBUG ("Received EOS message");
-
-      g_source_remove (priv->eos_timeout_id);
-
-      /* emit signal by name here as the camera_signals array is empty in this thread */
-      /* TODO: really understand how threads and static works and why this is needed */
-      g_signal_emit_by_name (camera, "video-saved", NULL);
-
-      cheese_camera_change_sink (camera, priv->video_display_bin,
-                                 priv->photo_save_bin, priv->video_save_bin);
-      priv->is_recording = FALSE;
-    }
-  }
-  else if (GST_MESSAGE_TYPE (message) == GST_MESSAGE_STATE_CHANGED)
-  {
-    if (strcmp (GST_MESSAGE_SRC_NAME (message), "pipeline") == 0)
-    {
-      GstState old, new;
-      gst_message_parse_state_changed (message, &old, &new, NULL);
-      if (new == GST_STATE_PLAYING)
+      if (priv->is_recording)
       {
-        g_signal_emit (camera, camera_signals[STATE_CHANGED], 0, new);
+        GST_DEBUG ("Received EOS message");
+
+        g_source_remove (priv->eos_timeout_id);
+
+        /* emit signal by name here as the camera_signals array is empty in this thread */
+        /* TODO: really understand how threads and static works and why this is needed */
+        g_signal_emit_by_name (camera, "video-saved", NULL);
+
+        cheese_camera_change_sink (camera, priv->video_display_bin,
+                                   priv->photo_save_bin, priv->video_save_bin);
+        priv->is_recording = FALSE;
       }
+
+    }
+    case GST_MESSAGE_WARNING:
+    {
+      GError *err;
+      gchar *debug;
+
+      gst_message_parse_warning (message, &err, &debug);
+      g_warning ("%s\n", err->message);
+      g_error_free (err);
+      g_free (debug);
+      break;
+    }
+    case GST_MESSAGE_ERROR:
+    {
+      GError *err;
+      gchar *debug;
+
+      gst_message_parse_error (message, &err, &debug);
+      g_warning ("%s\n", err->message);
+      g_error_free (err);
+      g_free (debug);
+      break;
+    }
+    case GST_MESSAGE_STATE_CHANGED:
+    {
+      if (strcmp (GST_MESSAGE_SRC_NAME (message), "pipeline") == 0)
+      {
+        GstState old, new;
+        gst_message_parse_state_changed (message, &old, &new, NULL);
+        if (new == GST_STATE_PLAYING)
+          g_signal_emit (camera, camera_signals[STATE_CHANGED], 0, new);
+      }
+      break;
+    }
+    default:
+    {
+      break;
     }
   }
 }
