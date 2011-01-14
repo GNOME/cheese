@@ -68,7 +68,7 @@ typedef struct
 
   ClutterTexture *video_texture;
 
-  GstElement *effect_filter, *csp_post_effect;
+  GstElement *effect_filter;
   GstElement *video_balance, *csp_post_balance;
   GstElement *camera_tee, *effects_tee;
   GstElement *effects_downscaler;
@@ -433,10 +433,6 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   {
     cheese_camera_set_error_element_not_found (error, "identity");
   }
-  if ((priv->csp_post_effect = gst_element_factory_make ("ffmpegcolorspace", "csp_post_effect")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "ffmpegcolorspace");
-  }
   if ((priv->video_balance = gst_element_factory_make ("videobalance", "video_balance")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "videobalance");
@@ -485,14 +481,13 @@ cheese_camera_create_video_display_bin (CheeseCamera *camera, GError **error)
   gst_bin_add_many (GST_BIN (priv->video_display_bin), priv->camera_source_bin,
                     priv->camera_tee, priv->effects_downscaler, priv->effects_tee,
                     priv->effects_valve, priv->main_valve,
-                    priv->effect_filter, priv->csp_post_effect,
+                    priv->effect_filter,
                     priv->video_balance, priv->csp_post_balance,
                     save_tee, save_queue,
                     video_display_queue, video_scale, video_sink, NULL);
 
   ok  = gst_element_link_many (priv->camera_source_bin, priv->camera_tee, NULL);
   ok &= gst_element_link_many (priv->camera_tee, priv->main_valve, priv->effect_filter,
-                               priv->csp_post_effect,
                                priv->video_balance, priv->csp_post_balance,
                                save_tee, NULL);
   ok &= gst_element_link_many (priv->camera_tee, priv->effects_valve,
@@ -776,7 +771,7 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
   g_object_set (G_OBJECT (priv->main_valve), "drop", TRUE, NULL);
 
   gst_element_unlink_many (priv->main_valve, priv->effect_filter,
-                           priv->csp_post_effect, NULL);
+                           priv->video_balance, NULL);
 
   g_object_ref (priv->effect_filter);
   gst_bin_remove (GST_BIN (priv->video_display_bin), priv->effect_filter);
@@ -785,7 +780,7 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
 
   gst_bin_add (GST_BIN (priv->video_display_bin), new_filter);
   ok = gst_element_link_many (priv->main_valve, new_filter,
-                              priv->csp_post_effect, NULL);
+                              priv->video_balance, NULL);
   gst_element_set_state (new_filter, GST_STATE_PAUSED);
 
   g_return_if_fail (ok);
