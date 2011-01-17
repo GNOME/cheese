@@ -874,6 +874,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 
 
   ok = gst_element_link_many (priv->effects_tee, control_valve, effect_filter, display_queue, display_element, NULL);
+  g_return_if_fail (ok);
 
   /* HACK: I don't understand GStreamer enough to know why this works. */
   gst_element_set_state (control_valve, GST_STATE_PLAYING);
