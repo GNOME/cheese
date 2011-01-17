@@ -11,15 +11,6 @@ gsettings_SCHEMAS = org.gnome.Cheese.gschema.xml
 gtkrcdir = $(pkgdatadir)
 gtkrc_DATA = gtkrc
 
-# Dbus service file
-servicedir = $(datadir)/dbus-1/services
-service_in_files = org.gnome.Cheese.service.in
-service_DATA = $(service_in_files:.service.in=.service)
-
-# Rule to make the service file with bindir expanded
-$(service_DATA): $(service_in_files) Makefile
-	@sed -e "s|\@bindir\@|$(bindir)|" $< > $@
-
 pkgdata_DATA = \
 	cheese-main-window.ui	\
 	cheese-about.ui \

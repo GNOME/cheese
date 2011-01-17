@@ -24,7 +24,6 @@
 #endif
 
 #include <glib-object.h>
-#include <dbus/dbus-glib-lowlevel.h>
 #include <string.h>
 
 #ifdef HAVE_UDEV
