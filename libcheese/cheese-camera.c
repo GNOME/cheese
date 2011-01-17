@@ -56,6 +56,7 @@ typedef struct
   GstElement *camerabin;
   GstElement *camera_source_bin;
   GstElement *video_filter_bin;
+  GstElement *effects_preview_bin;
 
   GstElement *video_source;
   GstElement *capsfilter;
@@ -358,9 +359,8 @@ cheese_camera_set_error_element_not_found (GError **error, const char *factoryna
     }
   }
 }
-
 static gboolean
-cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
+cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -368,12 +368,8 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   GstPad  *pad;
   GError  *err = NULL;
 
-  priv->video_filter_bin = gst_bin_new ("video_filter_bin");
+  priv->effects_preview_bin = gst_bin_new ("effects_preview_bin");
 
-  if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "tee");
-  }
   if ((priv->effects_tee = gst_element_factory_make ("tee", "effects_tee")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "tee");
@@ -382,10 +378,6 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   {
     cheese_camera_set_error_element_not_found (error, "effects_valve");
   }
-  if ((priv->main_valve = gst_element_factory_make ("valve", "main_valve")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "main_valve");
-  }
   priv->effects_downscaler = gst_parse_bin_from_description (
     "videoscale ! video/x-raw-yuv,width=160,height=120 ! ffmpegcolorspace",
     TRUE,
@@ -393,6 +385,49 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   if (priv->effects_downscaler == NULL || err != NULL)
   {
     cheese_camera_set_error_element_not_found (error, "effects_downscaler");
+  }
+
+  if (error != NULL && *error != NULL)
+    return FALSE;
+
+  gst_bin_add_many (GST_BIN (priv->effects_preview_bin),
+                    priv->effects_downscaler, priv->effects_tee,
+                    priv->effects_valve, NULL);
+
+  ok &= gst_element_link_many (priv->effects_valve, priv->effects_downscaler,
+                               priv->effects_tee, NULL);
+
+  /* add ghostpads */
+
+  pad = gst_element_get_static_pad (priv->effects_valve, "sink");
+  gst_element_add_pad (priv->effects_preview_bin, gst_ghost_pad_new ("sink", pad));
+  gst_object_unref (GST_OBJECT (pad));
+
+  if (!ok)
+    g_error ("Unable to create effects preview bin");
+
+  return TRUE;
+}
+
+static gboolean
+cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+
+  gboolean ok = TRUE;
+  GstPad  *pad;
+
+  cheese_camera_create_effects_preview_bin (camera, error);
+
+  priv->video_filter_bin = gst_bin_new ("video_filter_bin");
+
+  if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "tee");
+  }
+  if ((priv->main_valve = gst_element_factory_make ("valve", "main_valve")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "main_valve");
   }
   if ((priv->effect_filter = gst_element_factory_make ("identity", "effect")) == NULL)
   {
@@ -413,15 +448,15 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
     return FALSE;
 
   gst_bin_add_many (GST_BIN (priv->video_filter_bin), priv->camera_tee,
-                    priv->effects_downscaler, priv->effects_tee,
-                    priv->effects_valve, priv->main_valve, priv->effect_filter,
-                    priv->video_balance, priv->csp_post_balance, NULL);
+                    priv->main_valve, priv->effect_filter,
+                    priv->video_balance, priv->csp_post_balance,
+                    priv->effects_preview_bin, NULL);
 
-  ok &= gst_element_link_many (priv->camera_tee, priv->main_valve, priv->effect_filter,
-                               priv->video_balance, priv->csp_post_balance, NULL);
-
-  ok &= gst_element_link_many (priv->camera_tee, priv->effects_valve,
-                               priv->effects_downscaler, priv->effects_tee, NULL);
+  ok &= gst_element_link_many (priv->camera_tee, priv->main_valve,
+                               priv->effect_filter, priv->video_balance,
+                               priv->csp_post_balance, NULL);
+  gst_pad_link (gst_element_get_request_pad (priv->camera_tee, "src%d"),
+                gst_element_get_static_pad (priv->effects_preview_bin, "sink"));
 
   /* add ghostpads */
 
