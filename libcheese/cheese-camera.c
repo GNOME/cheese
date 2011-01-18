@@ -1131,6 +1131,8 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
   {
     cheese_camera_set_error_element_not_found (error, "camerabin");
   }
+  g_object_set (priv->camerabin, "video-capture-height", 0,
+                "video-capture-width", 0, NULL);
   g_object_set (priv->camerabin, "video-source", priv->camera_source_bin, NULL);
 
   /* Create a clutter-gst sink and set it as camerabin sink*/
