@@ -54,12 +54,10 @@ typedef struct
   GstBus *bus;
 
   GstElement *camerabin;
-  GstElement *camera_source_bin;
   GstElement *video_filter_bin;
   GstElement *effects_preview_bin;
 
   GstElement *video_source;
-  GstElement *capsfilter;
   GstElement *video_file_sink;
   GstElement *photo_sink;
   GstElement *audio_source;
@@ -273,7 +271,7 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
 }
 
 static gboolean
-cheese_camera_create_camera_source_bin (CheeseCamera *camera)
+cheese_camera_set_camera_source (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -300,31 +298,25 @@ cheese_camera_create_camera_source_bin (CheeseCamera *camera)
   }
 
   camera_input = g_strdup_printf (
-    "%s name=video_source device=%s ! capsfilter name=capsfilter ! identity",
+    "%s name=video_source device=%s",
     cheese_camera_device_get_src (selected_camera),
     cheese_camera_device_get_device_file (selected_camera));
 
-  priv->camera_source_bin = gst_parse_bin_from_description (camera_input,
-                                                            TRUE, &err);
+  priv->video_source = gst_parse_bin_from_description (camera_input, TRUE, &err);
   g_free (camera_input);
 
-  if (priv->camera_source_bin == NULL)
+  if (priv->video_source == NULL)
   {
-    goto fallback;
+    if (err != NULL)
+    {
+      g_error_free (err);
+      err = NULL;
+    }
+    return FALSE;
   }
-
-  priv->video_source = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "video_source");
-  priv->capsfilter   = gst_bin_get_by_name (GST_BIN (priv->camera_source_bin), "capsfilter");
+  g_object_set (priv->camerabin, "video-source", priv->video_source, NULL);
 
   return TRUE;
-
-fallback:
-  if (err != NULL)
-  {
-    g_error_free (err);
-    err = NULL;
-  }
-  return FALSE;
 }
 
 static void
@@ -474,16 +466,6 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   return TRUE;
 }
 
-static void
-cheese_camera_relink_camera_source_bin (CheeseCamera *camera)
-{
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  cheese_camera_create_camera_source_bin (camera);
-
-  g_object_set (priv->camerabin, "video-source", priv->camera_source_bin, NULL);
-}
-
 static int
 cheese_camera_get_num_camera_devices (CheeseCamera *camera)
 {
@@ -531,7 +513,7 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
     pipeline_was_playing = TRUE;
   }
 
-  cheese_camera_relink_camera_source_bin (camera);
+  cheese_camera_set_camera_source (camera);
 
   if (pipeline_was_playing)
   {
@@ -565,14 +547,14 @@ cheese_camera_play (CheeseCamera *camera)
     priv->current_format = cheese_camera_device_get_best_format (device);
     g_object_notify (G_OBJECT (camera), "format");
     caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
-    if (G_UNLIKELY (gst_caps_is_empty (caps)))
-    {
-      gst_caps_unref (caps);
-      caps = gst_caps_new_any ();
-    }
   }
 
-  g_object_set (priv->capsfilter, "caps", caps, NULL);
+  if (!gst_caps_is_empty (caps))
+  {
+    g_signal_emit_by_name (priv->camerabin, "set-video-resolution-fps",
+                           priv->current_format->width,
+                           priv->current_format->height, 0, 1, 0);
+  }
   gst_caps_unref (caps);
 
   gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
@@ -1125,7 +1107,6 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
     cheese_camera_set_device_by_dev_udi (camera, id);
   }
 
-  cheese_camera_create_camera_source_bin (camera);
 
   if ((priv->camerabin = gst_element_factory_make ("camerabin", "camerabin")) == NULL)
   {
@@ -1133,7 +1114,6 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
   }
   g_object_set (priv->camerabin, "video-capture-height", 0,
                 "video-capture-width", 0, NULL);
-  g_object_set (priv->camerabin, "video-source", priv->camera_source_bin, NULL);
 
   /* Create a clutter-gst sink and set it as camerabin sink*/
 
@@ -1147,6 +1127,7 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
   /* Set flags to enable conversions*/
 
   g_object_set (G_OBJECT (priv->camerabin), "flags", 0xd9, NULL);
+  cheese_camera_set_camera_source (camera);
 
   cheese_camera_create_video_filter_bin (camera, &tmp_error);
 
