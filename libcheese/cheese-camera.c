@@ -49,6 +49,18 @@ typedef enum
   MODE_VIDEO
 } GstCameraBinMode;
 
+typedef enum {
+  GST_CAMERABIN_FLAG_SOURCE_RESIZE               = (1 << 0),
+  GST_CAMERABIN_FLAG_SOURCE_COLOR_CONVERSION     = (1 << 1),
+  GST_CAMERABIN_FLAG_VIEWFINDER_COLOR_CONVERSION = (1 << 2),
+  GST_CAMERABIN_FLAG_VIEWFINDER_SCALE            = (1 << 3),
+  GST_CAMERABIN_FLAG_AUDIO_CONVERSION            = (1 << 4),
+  GST_CAMERABIN_FLAG_DISABLE_AUDIO               = (1 << 5),
+  GST_CAMERABIN_FLAG_IMAGE_COLOR_CONVERSION      = (1 << 6),
+  GST_CAMERABIN_FLAG_VIDEO_COLOR_CONVERSION      = (1 << 7)
+} GstCameraBinFlags;
+
+
 typedef struct
 {
   GstBus *bus;
@@ -1126,7 +1138,15 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
 
   /* Set flags to enable conversions*/
 
-  g_object_set (G_OBJECT (priv->camerabin), "flags", 0xd9, NULL);
+  g_object_set (G_OBJECT (priv->camerabin), "flags",
+                GST_CAMERABIN_FLAG_SOURCE_RESIZE |
+                GST_CAMERABIN_FLAG_SOURCE_COLOR_CONVERSION |
+                GST_CAMERABIN_FLAG_VIEWFINDER_SCALE |
+                GST_CAMERABIN_FLAG_AUDIO_CONVERSION |
+                GST_CAMERABIN_FLAG_IMAGE_COLOR_CONVERSION |
+                GST_CAMERABIN_FLAG_VIDEO_COLOR_CONVERSION,
+                NULL);
+
   cheese_camera_set_camera_source (camera);
 
   cheese_camera_create_video_filter_bin (camera, &tmp_error);
