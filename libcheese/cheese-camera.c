@@ -1105,6 +1105,7 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
 
   GError  *tmp_error = NULL;
   GstElement *video_sink;
+  GstCaps *caps;
 
   cheese_camera_detect_camera_devices (camera);
 
@@ -1146,6 +1147,12 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
                 GST_CAMERABIN_FLAG_IMAGE_COLOR_CONVERSION |
                 GST_CAMERABIN_FLAG_VIDEO_COLOR_CONVERSION,
                 NULL);
+
+  /* Set caps to filter, so it doesn't defaults to I420 format*/
+
+  caps = gst_caps_from_string ("video/x-raw-yuv; video/x-raw-rgb");
+  g_object_set (G_OBJECT (priv->camerabin), "filter-caps", caps, NULL);
+  gst_caps_unref (caps);
 
   cheese_camera_set_camera_source (camera);
 
