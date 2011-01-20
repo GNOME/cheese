@@ -452,7 +452,7 @@ cheese_widget_get_settings (CheeseWidget *widget)
 
   priv = CHEESE_WIDGET_GET_PRIVATE (widget);
 
-  return G_OBJECT (priv->settings);
+  return priv->settings;
 }
 
 GObject *
