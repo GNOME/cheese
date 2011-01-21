@@ -1,0 +1,595 @@
+# Esperanto translation for cheese
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the cheese package.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011.
+# Kim RIBEIRO < >, 2011.
+# Patrick (Petriko) OUDEJANS < >, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: cheese\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-09-28 12:10+0000\n"
+"PO-Revision-Date: 2011-01-21 19:42+0100\n"
+"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
+"Language-Team: Esperanto <ubuntu-l10n-eo@lists.launchpad.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Launchpad-Export-Date: 2011-01-21 16:20+0000\n"
+"X-Generator: Launchpad (build 12214)\n"
+
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
+msgid "Cheese"
+msgstr "Rideto"
+
+#: ../data/cheese.desktop.in.in.h:2
+msgid "Cheese Webcam Booth"
+msgstr "Rideto-Retkamerao-Budo"
+
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-commands-help.c:118
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "Fari fotojn kaj videojn per via retkamerao, kun gajaj grafikaj efektoj"
+
+#. Translators: please note, that the effect names are
+#. standarized and should not be translated
+#: ../data/cheese.schemas.in.h:3
+msgid ""
+"A list of effects applied on startup. Possible values are: \"mauve\", "
+"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+msgstr ""
+"Listo de efektoj aplikataj dum starto. Eblaj valoroj estas: \"mauve"
+"\" (malva), \"noir_blanc\" (nigra-blanka), \"saturation\" (satureco), \"hulk"
+"\", \"vertical-flip\" (vertikala renverso), \"horizontal-flip\" (horizontala "
+"renverso), \"shagadelic\" (trance), \"vertigo\" (vertiĝo), \"edge\" (eĝo), "
+"\"dice\" (ĵetkubo) kaj \"warp\" (distordo)"
+
+#: ../data/cheese.schemas.in.h:4
+msgid "Adjusts brightness level of the picture coming from the camera"
+msgstr "Akomodi helecnivelon de la bildo venanta de la kamerao"
+
+#: ../data/cheese.schemas.in.h:5
+msgid "Adjusts contrast level of the picture coming from the camera"
+msgstr "Akomodi kontrastnivelon de la bildo venanta de la kamerao"
+
+#: ../data/cheese.schemas.in.h:6
+msgid "Adjusts hue level of the picture coming from the camera"
+msgstr "Akomodi kolornuancnivelon de la bildo venanta de la kamerao"
+
+#: ../data/cheese.schemas.in.h:7
+msgid "Adjusts saturation level of the picture coming from the camera"
+msgstr "Akomodi saturecnivelon de la bildo venanta de la kamerao"
+
+#: ../data/cheese.schemas.in.h:8
+msgid "Camera device string indicator"
+msgstr "Aparatvojo al la kamerao"
+
+#: ../data/cheese.schemas.in.h:9
+msgid ""
+"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Difini la vojon kien la fotoj estas konservata, se estas malplena "
+"\"XDG_PHOTO/Webcam\" estas uzata."
+
+#: ../data/cheese.schemas.in.h:10
+msgid ""
+"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Difini la vojon kien la videoj estas konservata, se estas malplena "
+"\"XDG_VIDEO/Webcam\" estas uzata."
+
+#: ../data/cheese.schemas.in.h:11
+msgid "Height resolution"
+msgstr "Vertikala distingivo"
+
+#: ../data/cheese.schemas.in.h:12
+msgid ""
+"If set to true, Cheese will start up in a wide mode with the image "
+"collection placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Se agordite al 'vere', Rideto startigos en larĝa reĝimo kun la bildaro "
+"metita dekstren. Uzinda kun malgrandaj ekranoj."
+
+#: ../data/cheese.schemas.in.h:13
+msgid ""
+"If set to true, then Cheese will have a feature allowing you to delete a "
+"file immediately and in-place, instead of moving it to the trash. This "
+"feature can be dangerous, so use caution."
+msgstr ""
+"Se agordite al 'vere', Rideto ebligos al vi tuje kaj surloke forigi dosieron "
+"anstataŭe meti ĝin en rubujon. Ĉi tiu ebleco povas esti danĝera do estu "
+"atentema."
+
+#: ../data/cheese.schemas.in.h:14
+msgid "Milliseconds between photos in burst mode."
+msgstr "Milisekundoj inter fotoj dum seriokapta reĝimo."
+
+#: ../data/cheese.schemas.in.h:15
+msgid "Number of photos in burst mode."
+msgstr "Nombro da fotoj dum seriokapta reĝimo."
+
+#: ../data/cheese.schemas.in.h:16
+msgid "Photo Path"
+msgstr "Fotovojo"
+
+#: ../data/cheese.schemas.in.h:17
+msgid "Picture brightness"
+msgstr "Bildheleco"
+
+#: ../data/cheese.schemas.in.h:18
+msgid "Picture contrast"
+msgstr "Bildkontrasto"
+
+#: ../data/cheese.schemas.in.h:19
+msgid "Picture hue"
+msgstr "Bildkolornuanco"
+
+#: ../data/cheese.schemas.in.h:20
+msgid "Picture saturation"
+msgstr "Bildsatureco"
+
+#: ../data/cheese.schemas.in.h:21
+msgid "Selected Effects"
+msgstr "Elektitaj efektoj"
+
+#: ../data/cheese.schemas.in.h:22
+msgid "Set to True to show countdown when taking a photo"
+msgstr "Agordi al 'vere' por montri ĝisnombradon dum fotado"
+
+#: ../data/cheese.schemas.in.h:23
+msgid "Set to True to use flash when taking a photo"
+msgstr "Agordi al 'vere' por uzi fulmon dum fotado"
+
+#: ../data/cheese.schemas.in.h:24
+msgid "The device which points to the camera (e.g. /dev/video0)"
+msgstr "La aparato kiu indikas al la kamerao (ekz. /dev/video0)"
+
+#: ../data/cheese.schemas.in.h:25
+msgid "The height resolution of the image captured from the camera"
+msgstr "La vertikala distingivo de la bildo kaptita de la kamerao"
+
+#: ../data/cheese.schemas.in.h:26
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr ""
+"Daŭro da tempo, en milisekundoj, por atendi inter ĉiu foto dum seriokapto."
+
+#: ../data/cheese.schemas.in.h:27
+msgid "The number of photos to take in a single burst."
+msgstr "Nombro da fotoj kiuj estu kaptota dum seriokapto."
+
+#: ../data/cheese.schemas.in.h:28
+msgid "The width resolution of the image captured from the camera"
+msgstr "La horizontala distingivo de la bildo kaptita de la kamerao"
+
+#: ../data/cheese.schemas.in.h:29
+msgid "Use a countdown"
+msgstr "Uzi ĝisnombradon"
+
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "Uzi fulmon"
+
+#: ../data/cheese.schemas.in.h:31
+msgid "Video Path"
+msgstr "Videovojo"
+
+#: ../data/cheese.schemas.in.h:32
+msgid "Whether to enable immediate deletion"
+msgstr "Difini ĉu enŝalti tujan forigon"
+
+#: ../data/cheese.schemas.in.h:33
+msgid "Whether to start in wide mode"
+msgstr "Difini ĉu starti per larĝa reĝimo"
+
+#: ../data/cheese.schemas.in.h:34
+msgid "Width resolution"
+msgstr "Horizontala distingivo"
+
+#: ../data/cheese.ui.h:1
+msgid "Switch to Burst Mode"
+msgstr "Ŝalti al seriokapta reĝimo"
+
+#: ../data/cheese.ui.h:2
+msgid "Switch to Photo Mode"
+msgstr "Ŝalti al fotoreĝimo"
+
+#: ../data/cheese.ui.h:3
+msgid "Switch to Video Mode"
+msgstr "Ŝalti al videoreĝimo"
+
+#: ../data/cheese.ui.h:4
+msgid "Switch to the Effects Selector"
+msgstr "Ŝalti al la efektelektilo"
+
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:61 ../src/cheese-window.c:884
+msgid "_Effects"
+msgstr "_Efektoj"
+
+#: ../data/cheese.ui.h:6
+msgid "_Leave Fullscreen"
+msgstr "_Lasi tutekranan reĝimon"
+
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:72 ../src/cheese-window.c:59
+msgid "_Take a Photo"
+msgstr "_Fari foton"
+
+#: ../data/cheese-prefs.ui.h:1
+msgid "Brightness"
+msgstr "Heleco"
+
+#: ../data/cheese-prefs.ui.h:2
+msgid "Burst mode"
+msgstr "Seriokapta reĝimo"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "Contrast"
+msgstr "Kontrasto"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Delay between photos (seconds)"
+msgstr "Prokrasto inter fotoj (sekundoj)"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Device"
+msgstr "Aparato"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Hue"
+msgstr "Kolornuanco"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Image properties"
+msgstr "Bildatributoj"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Number of photos"
+msgstr "Nombro de fotoj"
+
+#: ../data/cheese-prefs.ui.h:9 ../src/cheese-ui.h:44
+msgid "Preferences"
+msgstr "Agordoj"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Resolution"
+msgstr "Distingivo"
+
+#: ../data/cheese-prefs.ui.h:11 ../src/cheese-effect-chooser.c:66
+msgid "Saturation"
+msgstr "Satureco"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Webcam"
+msgstr "Retkamerao"
+
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:640
+msgid "Shutter sound"
+msgstr "Obturatorsono"
+
+#: ../libcheese/cheese-avatar-chooser.c:236
+msgid "Take a photo"
+msgstr "Fari foton"
+
+#: ../libcheese/cheese-avatar-chooser.c:255
+msgid "_Take a photo"
+msgstr "_Fari foton"
+
+#: ../libcheese/cheese-avatar-chooser.c:270
+msgid "_Discard photo"
+msgstr "_Ne konservi foton"
+
+#: ../libcheese/cheese-camera-device.c:328
+msgid "Device capabilities not supported"
+msgstr "Aparatkapabloj ne estas subtenataj"
+
+#: ../libcheese/cheese-camera-device.c:510
+msgid "Unknown device"
+msgstr "Nekonata aparato"
+
+#: ../libcheese/cheese-camera-device.c:534
+msgid "Cancellable initialization not supported"
+msgstr "Rezignebla pravalorizo ne estas subtenata"
+
+#: ../libcheese/cheese-camera.c:1139
+#, c-format
+msgid "No device found"
+msgstr "Neniu aparato estas trovita"
+
+#: ../libcheese/cheese-camera.c:1158
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Unu aŭ plu bezonataj GStreamer-elementoj mankas: "
+
+#. TRANSLATORS:
+#. * This is the countdown number when taking the photo.
+#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
+#. * To enable to show the numbers in your own language, use %Id instead.
+#. * Please leave the additional whitespace after the number
+#.
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
+#, c-format
+msgid "%d "
+msgstr "%d "
+
+#: ../src/cheese-commands-file.c:31
+msgid "_Skip"
+msgstr "_Ignori"
+
+#: ../src/cheese-commands-file.c:32
+msgid "S_kip All"
+msgstr "I_gnori ĉiujn"
+
+#: ../src/cheese-commands-file.c:33
+msgid "Delete _All"
+msgstr "_Forigu ĉiujn"
+
+#: ../src/cheese-commands-file.c:57
+#, c-format
+msgid ""
+"Failed to launch program to show:\n"
+"%s\n"
+"%s"
+msgstr ""
+"Fiaskis lanĉi programon por montri:\n"
+"%s\n"
+"%s"
+
+#: ../src/cheese-commands-file.c:78
+msgid "Save File"
+msgstr "Konservi dosieron"
+
+#: ../src/cheese-commands-file.c:116
+#, c-format
+msgid "Could not save %s"
+msgstr "Ne eblis konservi %s"
+
+#: ../src/cheese-commands-file.c:139
+msgid "Error while deleting"
+msgstr "Eraro dum forigo"
+
+#: ../src/cheese-commands-file.c:140
+#, c-format
+msgid "The file \"%s\" cannot be deleted. Details: %s"
+msgstr "Ne eblas forigi la dosieron \"%s\". Detaloj: %s"
+
+#: ../src/cheese-commands-file.c:167
+#, c-format
+msgid "Are you sure you want to permanently delete the %'d selected item?"
+msgid_plural ""
+"Are you sure you want to permanently delete the %'d selected items?"
+msgstr[0] "Ĉu vi certe volas forigi daŭre la %'d elektitan elementon?"
+msgstr[1] "Ĉu vi certe volas forigi daŭre la %'d elektitajn elementojn?"
+
+#: ../src/cheese-commands-file.c:174
+#, c-format
+msgid "Are you sure you want to permanently delete \"%s\"?"
+msgstr "Ĉu vi certe volas forigi \"%s\" daŭre?"
+
+#: ../src/cheese-commands-file.c:177
+#, c-format
+msgid "If you delete an item, it will be permanently lost."
+msgstr "Se vi forigos elementon, ĝi malaperos daŭre."
+
+#: ../src/cheese-commands-file.c:198
+msgid "Unknown Error"
+msgstr "Nekonata eraro"
+
+#: ../src/cheese-commands-file.c:228
+msgid "Cannot move file to trash, do you want to delete immediately?"
+msgstr "Ne eblas movi dosieron rubujen, ĉu vi volas ĝin forigi tuj?"
+
+#: ../src/cheese-commands-file.c:229
+#, c-format
+msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
+msgstr "Ne eblas movi la dosieron \"%s\" rubujen. Detaloj: %s"
+
+#: ../src/cheese-commands-file.c:301
+#, c-format
+msgid "Really move all photos and videos to the trash?"
+msgstr "Ĉu certe movi ĉiujn fotojn kaj videojn rubujen?"
+
+#: ../src/cheese-commands-file.c:309
+msgid "_Move to Trash"
+msgstr "_Movi rubujen"
+
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:662
+msgid "Unable to open help file for Cheese"
+msgstr "Ne eblas malfermi helpdosieron por Rideto"
+
+#: ../src/cheese-commands-help.c:96
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  Kim Ribeiro https://launchpad.net/~kimribeiro\n"
+"  Kristjan SCHMIDT https://launchpad.net/~kristjan-eo\n"
+"  Patrick (Petriko) Oudejans https://launchpad.net/~patrickoudejans"
+
+#: ../src/cheese-commands-help.c:99
+msgid ""
+"This program is free software; you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License as published by the Free "
+"Software Foundation; either version 2 of the License, or (at your option) "
+"any later version.\n"
+msgstr ""
+"Tiu ĉi programo estas libera programaro; vi povas disdoni kaj/aŭ modifi ĝin "
+"sub la kondiĉoj de la Ĝeneralan Publikan Permesilon de GNU eldonite de la "
+"'Free Software Foundation'; aŭ en la 2a versio de la permesilo aŭ (laŭ via "
+"volo) en sekvanta versio.\n"
+
+#: ../src/cheese-commands-help.c:103
+msgid ""
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
+"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
+"more details.\n"
+msgstr ""
+"Tiu programo estas distribuite kun la espero ke ĝi estos utila, sed SEN IA "
+"AJN GARANTIO; eĉ sen la implica garantio de NEGOCEBLO aŭ ADAPTADO AL IU "
+"APARTA CELO. Vidu la Ĝeneralan Publikan Permesilon de GNU por pli da "
+"detaloj.\n"
+
+#: ../src/cheese-commands-help.c:107
+msgid ""
+"You should have received a copy of the GNU General Public License along with "
+"this program. If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+"Vi certe ricevis kopion de la Ĝeneralan Publikan Permesilon de GNU kune kun "
+"ĉi tiu programo. Se ne, vidu <http://www.gnu.org/licenses/>."
+
+#: ../src/cheese-commands-help.c:124
+msgid "Cheese Website"
+msgstr "Rideto-retpaĝaro"
+
+#: ../src/cheese-effect-chooser.c:60
+msgid "No Effect"
+msgstr "Neniu efekto"
+
+#: ../src/cheese-effect-chooser.c:62
+msgid "Mauve"
+msgstr "Malva"
+
+#: ../src/cheese-effect-chooser.c:64
+msgid "Noir/Blanc"
+msgstr "Nigra-blanka"
+
+#: ../src/cheese-effect-chooser.c:68
+msgid "Hulk"
+msgstr "Hulk"
+
+#: ../src/cheese-effect-chooser.c:70
+msgid "Vertical Flip"
+msgstr "Vert. renverso"
+
+#: ../src/cheese-effect-chooser.c:72
+msgid "Horizontal Flip"
+msgstr "Hor. renverso"
+
+#: ../src/cheese-effect-chooser.c:74
+msgid "Shagadelic"
+msgstr "Trance"
+
+#: ../src/cheese-effect-chooser.c:76
+msgid "Vertigo"
+msgstr "Vertiĝo"
+
+#: ../src/cheese-effect-chooser.c:78
+msgid "Edge"
+msgstr "Eĝo"
+
+#: ../src/cheese-effect-chooser.c:80
+msgid "Dice"
+msgstr "Ĵetkubo"
+
+#: ../src/cheese-effect-chooser.c:82
+msgid "Warp"
+msgstr "Distordo"
+
+#: ../src/cheese-no-camera.c:94
+msgid "No camera found!"
+msgstr "Trovis neniun kameraon!"
+
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1258
+msgid "Please refer to the help for further information."
+msgstr "Bonvole referencu al la helpo por plua informo."
+
+#: ../src/cheese-ui.h:32
+msgid "_Cheese"
+msgstr "_Rideto"
+
+#: ../src/cheese-ui.h:34
+msgid "_Edit"
+msgstr "R_edakti"
+
+#: ../src/cheese-ui.h:35
+msgid "_Help"
+msgstr "_Helpo"
+
+#: ../src/cheese-ui.h:38
+msgid "_Contents"
+msgstr "_Enhavoj"
+
+#: ../src/cheese-ui.h:38
+msgid "Help on this Application"
+msgstr "Helpo pri ĉi tiu aplikaĵo"
+
+#: ../src/cheese-ui.h:48
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../src/cheese-ui.h:49
+msgid "_Video"
+msgstr "_Video"
+
+#: ../src/cheese-ui.h:50
+msgid "_Burst"
+msgstr "_Brevi"
+
+#: ../src/cheese-ui.h:54
+msgid "Countdown"
+msgstr "Ĝisnombrado"
+
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "Fulmo"
+
+#: ../src/cheese-ui.h:68
+msgid "_Wide mode"
+msgstr "_Larĝa reĝimo"
+
+#: ../src/cheese-ui.h:75
+msgid "_Recording"
+msgstr "_Registrado"
+
+#: ../src/cheese-ui.h:78 ../src/cheese-window.c:62
+msgid "_Take multiple Photos"
+msgstr "_Fari plurajn fotojn"
+
+#: ../src/cheese-ui.h:82
+msgid "_Open"
+msgstr "_Malfermi"
+
+#: ../src/cheese-ui.h:84
+msgid "Save _As…"
+msgstr "Konservi _kiel…"
+
+#: ../src/cheese-ui.h:86
+msgid "Move to _Trash"
+msgstr "Movi _rubujen"
+
+#: ../src/cheese-ui.h:88
+msgid "Delete"
+msgstr "Forigi"
+
+#: ../src/cheese-ui.h:93
+msgid "Move All to Trash"
+msgstr "Movi ĉiujn rubujen"
+
+#: ../src/cheese-window.c:60
+msgid "_Start Recording"
+msgstr "_Starti registradon"
+
+#: ../src/cheese-window.c:61
+msgid "_Stop Recording"
+msgstr "Ĉe_si registradon"
+
+#: ../src/cheese.c:97
+msgid "Be verbose"
+msgstr "Detala eligo"
+
+#: ../src/cheese.c:99
+msgid "Enable wide mode"
+msgstr "Enŝalti larĝan reĝimon"
+
+#: ../src/cheese.c:101
+msgid "output version information and exit"
+msgstr "eligi versioinformon kaj eliri"
+
+#: ../src/cheese.c:120
+msgid "- Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"- Fari fotojn kaj videojn per via retkamerao, kun gajaj grafikaj efektoj"
