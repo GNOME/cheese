@@ -1081,6 +1081,10 @@ public class Cheese.MainWindow : Gtk.Window
     {
       if (!is_camera_actions_sensitive)
         toggle_camera_actions_sensitivities (true);
+
+      Effect effect = effects_manager.get_effect (settings.get_string ("selected-effect"));
+      if (effect != null)
+        camera.set_effect (effect);
     }
   }
 
@@ -1232,7 +1236,6 @@ public class Cheese.MainWindow : Gtk.Window
   public void setup_camera (string ? uri)
   {
     string device;
-    Effect effect;
     double value;
 
     if (uri != null && uri.length > 0)
@@ -1257,10 +1260,6 @@ public class Cheese.MainWindow : Gtk.Window
       toggle_camera_actions_sensitivities (false);
       return;
     }
-
-    effect = effects_manager.get_effect (settings.get_string ("selected-effect"));
-    if (effect != null)
-      camera.set_effect (effect);
 
     value = settings.get_double ("brightness");
     if (value != 0.0)

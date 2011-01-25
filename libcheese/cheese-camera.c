@@ -624,16 +624,19 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   GstElement *effect_filter;
   GError     *err = NULL;
   char       *effect_desc;
+  GstElement *colorspace1;
+  GstElement *colorspace2;
+  GstPad     *pad;
 
   g_object_get (G_OBJECT (effect),
                 "pipeline_desc", &effect_desc,
                 "name", &name, NULL);
 
-  effects_pipeline_desc = g_strconcat ("ffmpegcolorspace ! ",
+  effects_pipeline_desc = g_strconcat ("ffmpegcolorspace name=colorspace1 ! ",
                                        effect_desc,
-                                       " ! ffmpegcolorspace",
+                                       " ! ffmpegcolorspace name=colorspace2",
                                        NULL);
-  effect_filter = gst_parse_bin_from_description (effects_pipeline_desc, TRUE, &err);
+  effect_filter = gst_parse_bin_from_description (effects_pipeline_desc, FALSE, &err);
   if (!effect_filter || (err != NULL))
   {
     g_error_free (err);
@@ -641,6 +644,18 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
     return NULL;
   }
   g_free (effects_pipeline_desc);
+
+  /* Add ghost pads to effect_filter bin */
+  colorspace1 = gst_bin_get_by_name (GST_BIN (effect_filter), "colorspace1");
+  colorspace2 = gst_bin_get_by_name (GST_BIN (effect_filter), "colorspace2");
+
+  pad = gst_element_get_static_pad (colorspace1, "sink");
+  gst_element_add_pad (effect_filter, gst_ghost_pad_new ("sink", pad));
+  gst_object_unref (GST_OBJECT (pad));
+
+  pad = gst_element_get_static_pad (colorspace2, "src");
+  gst_element_add_pad (effect_filter, gst_ghost_pad_new ("src", pad));
+  gst_object_unref (GST_OBJECT (pad));
 
   return effect_filter;
 }
