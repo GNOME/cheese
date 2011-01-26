@@ -363,6 +363,35 @@ cheese_camera_set_error_element_not_found (GError **error, const char *factoryna
     }
   }
 }
+
+static void
+cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  GstElement          *video_enc;
+  GstElement          *mux;
+
+  /* Setup video-encoder explicitly to be able to set its properties*/
+
+  if ((video_enc = gst_element_factory_make ("theoraenc", "theoraenc")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "theoraenc");
+    return;
+  }
+  g_object_set (priv->camerabin, "video-encoder", video_enc, NULL);
+  g_object_set (G_OBJECT (video_enc), "speed-level", 2, NULL);
+
+  if ((mux = gst_element_factory_make ("oggmux", "oggmux")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "oggmux");
+    return;
+  }
+  g_object_set (priv->camerabin, "video-muxer", mux, NULL);
+  g_object_set (G_OBJECT (mux),
+                "max-delay", (guint64) 10000000,
+                "max-page-delay", (guint64) 10000000, NULL);
+}
+
 static gboolean
 cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
 {
@@ -1170,7 +1199,7 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
   gst_caps_unref (caps);
 
   cheese_camera_set_camera_source (camera);
-
+  cheese_camera_set_video_recording (camera, &tmp_error);
   cheese_camera_create_video_filter_bin (camera, &tmp_error);
 
   if (tmp_error != NULL || (error != NULL && *error != NULL))
