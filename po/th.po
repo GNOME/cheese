@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-04 12:55+0000\n"
-"PO-Revision-Date: 2011-01-05 13:57+0700\n"
+"POT-Creation-Date: 2011-01-21 20:40+0000\n"
+"PO-Revision-Date: 2011-01-24 00:29+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -241,22 +241,26 @@ msgid "Number of photos"
 msgstr "จำนวนภาพ"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "Preferences"
-msgstr "ปรับแต่ง"
+msgid "Photo resolution"
+msgstr "ความละเอียดของภาพ"
 
 #: ../data/cheese-prefs.ui.h:12
-msgid "Resolution"
-msgstr "ความละเอียด"
+msgid "Preferences"
+msgstr "ปรับแต่ง"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "สีสด"
 
 #: ../data/cheese-prefs.ui.h:14
+msgid "Video resolution"
+msgstr "ความละเอียดของวีดิทัศน์"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "เว็บแคม"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "_Countdown"
 msgstr "_นับถอยหลัง"
 
@@ -264,7 +268,7 @@ msgstr "_นับถอยหลัง"
 msgid "Cheese Webcam Booth"
 msgstr "บูทเว็บแคมชีส"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:626
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "เสียงชัตเตอร์"
 
@@ -293,12 +297,12 @@ msgstr "อุปกรณ์ไม่ทราบชนิด"
 msgid "Cancellable initialization not supported"
 msgstr "ไม่รองรับการตั้งต้นอุปกรณ์แบบยกเลิกได้"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1183
 #, c-format
 msgid "No device found"
 msgstr "ไม่พบอุปกรณ์"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1202
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "องค์ประกอบของ GStreamer ที่จำเป็นอย่างน้อยหนึ่งอย่างหายไป: "
 
@@ -347,17 +351,20 @@ msgstr "- ถ่ายภาพและวีดิทัศน์จากเ�
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "เรียก '%s --help' เพื่อดูตัวเลือกทั้งหมดที่มีของบรรทัดคำสั่ง\n"
 
-#: ../src/cheese-window.vala:717
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "หยุด_อัด"
 
-#: ../src/cheese-window.vala:741
+#: ../src/cheese-window.vala:786
 msgid "Stop _Taking Pictures"
 msgstr "หยุด_ถ่ายภาพ"
 
-#: ../src/cheese-window.vala:873
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "ไม่พบลูกเล่น"
+
+#~ msgid "Resolution"
+#~ msgstr "ความละเอียด"
 
 #~ msgid "Next effect"
 #~ msgstr "ลูกเล่นถัดไป"
@@ -400,9 +407,6 @@ msgstr "ไม่พบลูกเล่น"
 #~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
 #~ "\" will be used."
 #~ msgstr "กำหนดที่เก็บวีดิทัศน์ ถ้าไม่กำหนดไว้จะใช้ \"XDG_VIDEO/Webcam\" แทน"
-
-#~ msgid "Height resolution"
-#~ msgstr "ความละเอียดตามแนวสูงของภาพ"
 
 #~ msgid ""
 #~ "If set to true, Cheese will start up in a wide mode with the image "
@@ -471,9 +475,6 @@ msgstr "ไม่พบลูกเล่น"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "จะเปิดการใช้งานการลบอย่างทันทีทันใดหรือไม่"
-
-#~ msgid "Width resolution"
-#~ msgstr "ความละเอียดตามแนวกว้างของภาพ"
 
 #~ msgid "Switch to Burst Mode"
 #~ msgstr "เปลี่ยนเป็นโหมดภาพถ่ายต่อเนื่อง"
