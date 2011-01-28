@@ -884,7 +884,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 }
 
 void
-cheese_camera_start_video_recording (CheeseCamera *camera, char *filename)
+cheese_camera_start_video_recording (CheeseCamera *camera, const char *filename)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -936,7 +936,7 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
 }
 
 gboolean
-cheese_camera_take_photo (CheeseCamera *camera, char *filename)
+cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -1168,14 +1168,14 @@ cheese_camera_new (ClutterTexture *video_texture, char *camera_device_name,
 
 
 void
-cheese_camera_set_device_by_dev_file (CheeseCamera *camera, gchar *file)
+cheese_camera_set_device_by_dev_file (CheeseCamera *camera, const gchar *file)
 {
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
   g_object_set (camera, "device_name", file, NULL);
 }
 
 static void
-cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, gchar *udi)
+cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, const gchar *udi)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
   int                  i;
@@ -1196,7 +1196,7 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, gchar *udi)
   }
 }
 void
-cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
+cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
@@ -1320,7 +1320,7 @@ cheese_camera_get_current_video_format (CheeseCamera *camera)
 
 gboolean
 cheese_camera_get_balance_property_range (CheeseCamera *camera,
-                                          gchar *property,
+                                          const gchar *property,
                                           gdouble *min, gdouble *max, gdouble *def)
 {
   CheeseCameraPrivate *priv;
@@ -1349,7 +1349,7 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
 }
 
 void
-cheese_camera_set_balance_property (CheeseCamera *camera, gchar *property, gdouble value)
+cheese_camera_set_balance_property (CheeseCamera *camera, const gchar *property, gdouble value)
 {
   CheeseCameraPrivate *priv;
 

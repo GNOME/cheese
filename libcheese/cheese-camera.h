@@ -68,28 +68,28 @@ CheeseCamera *cheese_camera_new (ClutterTexture *video_texture,
                                  int             y_resolution);
 
 const CheeseVideoFormat *cheese_camera_get_current_video_format (CheeseCamera *camera);
-void                     cheese_camera_setup (CheeseCamera *camera, char *udi, GError **error);
+void                     cheese_camera_setup (CheeseCamera *camera, const char *udi, GError **error);
 void                     cheese_camera_play (CheeseCamera *camera);
 void                     cheese_camera_stop (CheeseCamera *camera);
 void                     cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect);
 void                     cheese_camera_connect_effect_texture (CheeseCamera   *camera,
                                                                CheeseEffect   *effect,
                                                                ClutterTexture *texture);
-void                cheese_camera_start_video_recording (CheeseCamera *camera, char *filename);
+void                cheese_camera_start_video_recording (CheeseCamera *camera, const char *filename);
 void                cheese_camera_stop_video_recording (CheeseCamera *camera);
-gboolean            cheese_camera_take_photo (CheeseCamera *camera, char *filename);
+gboolean            cheese_camera_take_photo (CheeseCamera *camera, const char *filename);
 gboolean            cheese_camera_take_photo_pixbuf (CheeseCamera *camera);
 CheeseCameraDevice *cheese_camera_get_selected_device (CheeseCamera *camera);
 GPtrArray *         cheese_camera_get_camera_devices (CheeseCamera *camera);
-void                cheese_camera_set_device_by_dev_file (CheeseCamera *camera, char *file);
+void                cheese_camera_set_device_by_dev_file (CheeseCamera *camera, const char *file);
 void                cheese_camera_switch_camera_device (CheeseCamera *camera);
 GList *             cheese_camera_get_video_formats (CheeseCamera *camera);
 void                cheese_camera_set_video_format (CheeseCamera      *camera,
                                                     CheeseVideoFormat *format);
 gboolean cheese_camera_get_balance_property_range (CheeseCamera *camera,
-                                                   gchar *property,
+                                                   const gchar *property,
                                                    gdouble *min, gdouble *max, gdouble *def);
-void cheese_camera_set_balance_property (CheeseCamera *camera, gchar *property, gdouble value);
+void cheese_camera_set_balance_property (CheeseCamera *camera, const gchar *property, gdouble value);
 void cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active);
 
 G_END_DECLS
