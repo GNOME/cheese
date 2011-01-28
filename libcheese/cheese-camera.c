@@ -667,7 +667,7 @@ cheese_camera_create_video_save_bin (CheeseCamera *camera, GError **error)
   return TRUE;
 }
 
-int
+static int
 cheese_camera_get_num_camera_devices (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
@@ -790,7 +790,7 @@ cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter
   priv->effect_filter = new_filter;
 }
 
-GstElement *
+static GstElement *
 cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
 {
   char       *effects_pipeline_desc;
@@ -1168,6 +1168,35 @@ cheese_camera_new (ClutterTexture *video_texture, char *camera_device_name,
   return camera;
 }
 
+
+void
+cheese_camera_set_device_by_dev_file (CheeseCamera *camera, gchar *file)
+{
+  g_return_if_fail (CHEESE_IS_CAMERA (camera));
+  g_object_set (camera, "device_name", file, NULL);
+}
+
+static void
+cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, gchar *udi)
+{
+  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  int                  i;
+
+  g_return_if_fail (CHEESE_IS_CAMERA (camera));
+
+
+  for (i = 0; i < priv->num_camera_devices; i++)
+  {
+    CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
+    if (strcmp (cheese_camera_device_get_id (device), udi) == 0)
+    {
+      g_object_set (camera,
+                    "device_name", cheese_camera_device_get_id (device),
+                    NULL);
+      break;
+    }
+  }
+}
 void
 cheese_camera_setup (CheeseCamera *camera, char *id, GError **error)
 {
@@ -1231,35 +1260,6 @@ cheese_camera_get_camera_devices (CheeseCamera *camera)
   return g_ptr_array_ref (priv->camera_devices);
 }
 
-void
-cheese_camera_set_device_by_dev_file (CheeseCamera *camera, char *file)
-{
-  g_return_if_fail (CHEESE_IS_CAMERA (camera));
-  g_object_set (camera, "device_name", file, NULL);
-}
-
-void
-cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, char *udi)
-{
-  CheeseCameraPrivate *priv;
-  int                  i;
-
-  g_return_if_fail (CHEESE_IS_CAMERA (camera));
-
-  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-
-  for (i = 0; i < priv->num_camera_devices; i++)
-  {
-    CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-    if (strcmp (cheese_camera_device_get_id (device), udi) == 0)
-    {
-      g_object_set (camera,
-                    "device_name", cheese_camera_device_get_id (device),
-                    NULL);
-      break;
-    }
-  }
-}
 
 GList *
 cheese_camera_get_video_formats (CheeseCamera *camera)
@@ -1276,7 +1276,7 @@ cheese_camera_get_video_formats (CheeseCamera *camera)
     return NULL;
 }
 
-gboolean
+static gboolean
 cheese_camera_is_playing (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv;
