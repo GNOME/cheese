@@ -687,7 +687,7 @@ cheese_camera_get_selected_device (CheeseCamera *camera)
     return NULL;
 }
 
-gboolean
+void
 cheese_camera_switch_camera_device (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
@@ -718,8 +718,6 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
    * {
    * Restart recording... ?
    * } */
-
-  return TRUE;
 }
 
 void

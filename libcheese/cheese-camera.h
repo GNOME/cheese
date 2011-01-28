@@ -82,7 +82,7 @@ gboolean            cheese_camera_take_photo_pixbuf (CheeseCamera *camera);
 CheeseCameraDevice *cheese_camera_get_selected_device (CheeseCamera *camera);
 GPtrArray *         cheese_camera_get_camera_devices (CheeseCamera *camera);
 void                cheese_camera_set_device_by_dev_file (CheeseCamera *camera, char *file);
-gboolean            cheese_camera_switch_camera_device (CheeseCamera *camera);
+void                cheese_camera_switch_camera_device (CheeseCamera *camera);
 GList *             cheese_camera_get_video_formats (CheeseCamera *camera);
 void                cheese_camera_set_video_format (CheeseCamera      *camera,
                                                     CheeseVideoFormat *format);
