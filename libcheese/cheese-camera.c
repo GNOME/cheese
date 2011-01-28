@@ -680,6 +680,13 @@ cheese_camera_get_num_camera_devices (CheeseCamera *camera)
   return priv->num_camera_devices;
 }
 
+/**
+ * cheese_camera_get_selected_device:
+ * @camera: a #CheeseCamera
+ *
+ * Returns: (transfer none): a #CheeseCameraDevice or NULL
+ */
+
 CheeseCameraDevice *
 cheese_camera_get_selected_device (CheeseCamera *camera)
 {
@@ -725,6 +732,11 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
    * } */
 }
 
+/**
+ * cheese_camera_play:
+ * @camera: a #CheeseCamera
+ */
+
 void
 cheese_camera_play (CheeseCamera *camera)
 {
@@ -754,6 +766,11 @@ cheese_camera_play (CheeseCamera *camera)
   gst_element_set_state (priv->pipeline, GST_STATE_PLAYING);
   priv->pipeline_is_playing = TRUE;
 }
+
+/**
+ * cheese_camera_stop:
+ * @camera: a #CheeseCamera
+ */
 
 void
 cheese_camera_stop (CheeseCamera *camera)
@@ -822,6 +839,12 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   return effect_filter;
 }
 
+/**
+ * cheese_camera_set_effect:
+ * @camera: a #CheeseCamera
+ * @effect: a #CheeseEffect
+ */
+
 void
 cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 {
@@ -831,6 +854,12 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
   if (effect_filter != NULL)
     cheese_camera_change_effect_filter (camera, effect_filter);
 }
+
+/**
+ * cheese_camera_toggle_effects_pipeline:
+ * @camera: a #CheeseCamera
+ * @active: TRUE is effects pipeline is active, FALSE otherwise
+ */
 
 void
 cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
@@ -848,6 +877,13 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
     g_object_set (G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
   }
 }
+
+/**
+ * cheese_camera_connect_effect_texture:
+ * @camera: a #CheeseCamera
+ * @effect: a #CheeseEffect
+ * @texture: a #ClutterTexture
+ */
 
 void
 cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
@@ -888,6 +924,12 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
 }
 
+/**
+ * cheese_camera_start_video_recording:
+ * @camera: a #CheeseCamera
+ * @filename: the name of the video file that should be recorded
+ */
+
 void
 cheese_camera_start_video_recording (CheeseCamera *camera, const char *filename)
 {
@@ -918,6 +960,11 @@ cheese_camera_force_stop_video_recording (gpointer data)
   return FALSE;
 }
 
+/**
+ * cheese_camera_stop_video_recording:
+ * @camera: a #CheeseCamera
+ */
+
 void
 cheese_camera_stop_video_recording (CheeseCamera *camera)
 {
@@ -940,6 +987,14 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
   }
 }
 
+/**
+ * cheese_camera_take_photo:
+ * @camera: a #CheeseCamera
+ * @filename: name of the file to save photo to
+ *
+ * Returns: TRUE on success, FALSE if an error occurred
+ */
+
 gboolean
 cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
 {
@@ -961,6 +1016,11 @@ cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
                                                     camera);
   return TRUE;
 }
+
+/**
+ * cheese_camera_take_photo_pixbuf:
+ * @camera: a #CheeseCamera
+ */
 
 gboolean
 cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
@@ -1168,6 +1228,11 @@ cheese_camera_new (ClutterTexture *video_texture, char *camera_device_name,
   return camera;
 }
 
+/**
+ * cheese_camera_set_device_by_dev_file:
+ * @camera: a #CheeseCamera
+ * @file: the filename
+ */
 
 void
 cheese_camera_set_device_by_dev_file (CheeseCamera *camera, const gchar *file)
@@ -1197,6 +1262,14 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, const gchar *udi)
     }
   }
 }
+
+/**
+ * cheese_camera_setup:
+ * @camera: a #CheeseCamera
+ * @id: the device id
+ * @error: return location for a GError or NULL
+ */
+
 void
 cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
 {
@@ -1248,6 +1321,13 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
     g_error ("Unable link pipeline for photo");
 }
 
+/**
+ * cheese_camera_get_camera_devices:
+ * @camera: a #CheeseCamera
+ *
+ * Returns: (element-type Cheese.CameraDevice) (transfer container): Array of #CheeseCameraDevice
+ */
+
 GPtrArray *
 cheese_camera_get_camera_devices (CheeseCamera *camera)
 {
@@ -1260,6 +1340,12 @@ cheese_camera_get_camera_devices (CheeseCamera *camera)
   return g_ptr_array_ref (priv->camera_devices);
 }
 
+/**
+ * cheese_camera_get_video_formats:
+ * @camera: a #CheeseCamera
+ *
+ * Returns: (element-type Cheese.VideoFormat) (transfer container): List of #CheeseVideoFormat
+ */
 
 GList *
 cheese_camera_get_video_formats (CheeseCamera *camera)
@@ -1288,6 +1374,12 @@ cheese_camera_is_playing (CheeseCamera *camera)
   return priv->pipeline_is_playing;
 }
 
+/**
+ * cheese_camera_set_video_format:
+ * @camera: a #CheeseCamera
+ * format: a #CheeseVideoFormat
+ */
+
 void
 cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
 {
@@ -1310,6 +1402,13 @@ cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
   }
 }
 
+/**
+ * cheese_camera_get_current_video_format:
+ * @camera: a #CheeseCamera
+ *
+ * Returns: (transfer none): a #CheeseVideoFormat
+ */
+
 const CheeseVideoFormat *
 cheese_camera_get_current_video_format (CheeseCamera *camera)
 {
@@ -1319,6 +1418,15 @@ cheese_camera_get_current_video_format (CheeseCamera *camera)
 
   return priv->current_format;
 }
+
+/**
+ * cheese_camera_get_balance_property_range:
+ * @camera: a #CheeseCamera
+ * @property: name of the balance property
+ * @min: (out): minimun value
+ * @max: (out): maximum value
+ * @def: (out): default value
+ */
 
 gboolean
 cheese_camera_get_balance_property_range (CheeseCamera *camera,
@@ -1349,6 +1457,13 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
 
   return TRUE;
 }
+
+/**
+ * cheese_camera_set_balance_property:
+ * @camera: A #CheeseCamera
+ * @property: name of the balance property
+ * @value: value to be set
+ */
 
 void
 cheese_camera_set_balance_property (CheeseCamera *camera, const gchar *property, gdouble value)
