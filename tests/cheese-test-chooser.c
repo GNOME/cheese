@@ -34,7 +34,7 @@ main (int argc, char **argv)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  gtk_init (&argc, &argv);
+  gtk_clutter_init (&argc, &argv);
 
   window = cheese_avatar_chooser_new ();
   g_signal_connect (G_OBJECT (window), "response",
