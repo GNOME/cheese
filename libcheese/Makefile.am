@@ -9,8 +9,7 @@ INCLUDES = \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	$(CHEESE_CFLAGS)
 
-lib_LTLIBRARIES = libcheese-gtk.la
-noinst_LTLIBRARIES = libcheesecommon.la
+lib_LTLIBRARIES = libcheese.la libcheese-gtk.la
 
 EXTRA_DIST = cheese-gtk.symbols
 CLEANFILES =
@@ -28,7 +27,7 @@ include $(top_srcdir)/Makefile.am.enums
 
 libcheese_gtk_la_CFLAGS = $(CHEESE_CFLAGS)
 
-libcheesecommon_la_SOURCES = \
+libcheese_la_SOURCES = \
 	cheese-fileutil.c \
 	cheese-fileutil.h \
 	cheese-camera.c \
@@ -37,8 +36,6 @@ libcheesecommon_la_SOURCES = \
 	cheese-camera-device.h \
 	cheese-camera-device-monitor.c \
 	cheese-camera-device-monitor.h \
-	cheese-flash.h \
-	cheese-flash.c \
 	cheese-effect.c \
 	cheese-effect.h \
 	$(BUILT_SOURCES)
@@ -51,14 +48,16 @@ libcheese_gtk_la_SOURCES = \
 	cheese-widget.c \
 	cheese-widget.h \
 	cheese-widget-private.h \
+	cheese-flash.h \
+	cheese-flash.c \
 	$(NULL)
 
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
-cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h cheese-camera-device-monitor.h
+cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h cheese-camera.h cheese-effect.h cheese-camera-device.h cheese-camera-device-monitor.h
 
 libcheese_gtk_la_LIBADD = \
-	libcheesecommon.la \
+	libcheese.la \
 	$(CHEESE_LIBS)
 libcheese_gtk_la_LDFLAGS = \
 	-version-info $(CHEESE_LT_VERSION)		\

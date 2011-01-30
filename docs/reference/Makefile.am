@@ -79,7 +79,7 @@ expand_content_files=
 # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
 INCLUDES=-I$(top_srcdir) -I$(top_builddir) $(CHEESE_CFLAGS)
 GTKDOC_LIBS=\
-	$(top_builddir)/libcheese/libcheesecommon.la \
+	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.

@@ -51,5 +51,6 @@ noinst_HEADERS = \
 	thumbview/eog-thumb-nav.h
 
 cheese_LDADD = \
-	$(top_builddir)/libcheese/libcheesecommon.la \
+	$(top_builddir)/libcheese/libcheese.la \
+	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(CHEESE_LIBS)
