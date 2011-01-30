@@ -24,7 +24,6 @@
 
 #include "cheese-camera.h"
 #include "cheese-widget-private.h"
-#include "cheese-countdown.h"
 #include "cheese-flash.h"
 #include "cheese-avatar-chooser.h"
 #include "um-crop-area.h"
@@ -53,7 +52,6 @@ typedef struct
   GtkWidget *image;
   GtkWidget *take_button;
   GtkWidget *take_again_button;
-  GtkWidget *countdown;
   CheeseFlash *flash;
   gulong photo_taken_id;
 } CheeseAvatarChooserPrivate;
@@ -89,10 +87,10 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
 }
 
 static void
-picture_cb (gpointer data)
+take_button_clicked_cb (GtkButton           *button,
+                        CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooser        *chooser = CHEESE_AVATAR_CHOOSER (data);
-  CheeseAvatarChooserPrivate *priv    = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (data);
+  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
   GObject                    *camera;
 
   camera = cheese_widget_get_camera (CHEESE_WIDGET (priv->camera));
@@ -114,32 +112,6 @@ picture_cb (gpointer data)
   {
     g_assert_not_reached ();
   }
-}
-
-static void
-hide_cb (gpointer data)
-{
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (data);
-
-  gtk_widget_hide (priv->countdown);
-  gtk_widget_show (priv->take_button);
-}
-
-static void
-take_button_clicked_cb (GtkButton           *button,
-                        CheeseAvatarChooser *chooser)
-{
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
-  GtkAllocation               allocation;
-
-  gtk_widget_get_allocation (priv->take_button, &allocation);
-  gtk_widget_hide (priv->take_button);
-  gtk_widget_set_size_request (priv->countdown, -1, allocation.height);
-  gtk_widget_show (priv->countdown);
-  cheese_countdown_start (CHEESE_COUNTDOWN (priv->countdown),
-                          picture_cb,
-                          hide_cb,
-                          (gpointer) chooser);
 }
 
 static void
@@ -258,10 +230,8 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
   g_signal_connect (G_OBJECT (priv->take_button), "clicked",
                     G_CALLBACK (take_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_button, FALSE);
-  priv->countdown = cheese_countdown_new ();
-  gtk_widget_set_no_show_all (priv->countdown, TRUE);
   gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                            create_page (priv->camera, priv->take_button, priv->countdown),
+                            create_page (priv->camera, priv->take_button, NULL),
                             gtk_label_new ("webcam"));
 
   /* Image tab */
@@ -297,15 +267,6 @@ cheese_avatar_chooser_finalize (GObject *object)
 }
 
 static void
-cheese_avatar_chooser_response (GtkDialog *dialog, gint response_id)
-{
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (dialog);
-
-  if (priv && priv->countdown)
-    cheese_countdown_cancel (CHEESE_COUNTDOWN (priv->countdown));
-}
-
-static void
 cheese_avatar_chooser_get_property (GObject *object, guint prop_id,
                                     GValue *value, GParamSpec *pspec)
 {
@@ -328,10 +289,8 @@ static void
 cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
 {
   GObjectClass   *object_class = G_OBJECT_CLASS (klass);
-  GtkDialogClass *dialog_class = GTK_DIALOG_CLASS (klass);
 
   object_class->finalize     = cheese_avatar_chooser_finalize;
-  dialog_class->response     = cheese_avatar_chooser_response;
   object_class->get_property = cheese_avatar_chooser_get_property;
 
   /**

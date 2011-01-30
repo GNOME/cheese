@@ -39,8 +39,6 @@ libcheesecommon_la_SOURCES = \
 	cheese-camera-device-monitor.h \
 	cheese-flash.h \
 	cheese-flash.c \
-	cheese-countdown.c \
-	cheese-countdown.h \
 	cheese-effect.c \
 	cheese-effect.h \
 	$(BUILT_SOURCES)

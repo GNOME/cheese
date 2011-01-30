@@ -151,8 +151,6 @@ namespace Cheese
     READY,
     ERROR
   }
-  [CCode (cheader_filename = "cheese-countdown.h")]
-  public delegate void cheese_countdown_cb_t ();
   [CCode (cheader_filename = "cheese-fileutil.h")]
   public const string PHOTO_NAME_SUFFIX;
   [CCode (cheader_filename = "cheese-fileutil.h")]
