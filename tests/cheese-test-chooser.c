@@ -4,6 +4,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
+#include <clutter-gtk/clutter-gtk.h>
 #include "cheese-avatar-chooser.h"
 
 static void
