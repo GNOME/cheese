@@ -18,6 +18,11 @@ pkgdata_DATA = \
 	cheese-prefs.ui \
 	cheese-viewport.json
 
+pkgconfigdir = $(libdir)/pkgconfig
+pkgconfig_DATA = \
+	cheese.pc \
+	cheese-gtk.pc
+
 EXTRA_DIST = \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
@@ -31,3 +36,8 @@ clean-local :
 DISTCLEANFILES = \
 	cheese.desktop \
 	org.gnome.Cheese.service
+
+CLEANFILES = \
+	cheese.pc \
+	cheese-gtk.pc
+

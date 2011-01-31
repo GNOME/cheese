@@ -174,12 +174,12 @@ GLIB_GSETTINGS
 
 AC_OUTPUT([
 Makefile
-cheese.pc
-cheese-gtk.pc
 docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml
 data/Makefile
+data/cheese.pc
+data/cheese-gtk.pc
 data/cheese.desktop.in
 data/icons/Makefile
 data/icons/16x16/Makefile

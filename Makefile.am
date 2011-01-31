@@ -5,13 +5,8 @@ EXTRA_DIST =			\
 	gnome-doc-utils.make\
 	ChangeLog.pre-git
 
-CLEANFILES = cheese-gtk.pc
-
 DISTCLEANFILES =		\
 	gnome-doc-utils.make
-
-pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = cheese.pc cheese-gtk.pc
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper --enable-gtk-doc
 
