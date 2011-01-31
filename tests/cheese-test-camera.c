@@ -20,7 +20,8 @@ delete_callback (GtkWidget *window,
 static gboolean
 time_cb (CheeseCamera *camera)
 {
-  cheese_camera_take_photo (camera, "testcamera.jpeg");
+  g_print ("Cheese! filename: testcamera.jpg\n");
+  cheese_camera_take_photo (camera, "testcamera.jpg");
   return FALSE;
 }
 
