@@ -27,7 +27,7 @@ GNOME_COMPILE_WARNINGS
 GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
 
 #*******************************************************************************
-# soname
+# Libraries
 #*******************************************************************************
 # Before making a release, the CHEESE_LT_VERSION string should be modified.
 # The string is of the form C:R:A.
@@ -36,8 +36,10 @@ GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
-CHEESE_LT_VERSION=18:0:0
-AC_SUBST(CHEESE_LT_VERSION)
+LIBCHEESE_LT_VERSION=0:0:0
+LIBCHEESE_GTK_LT_VERSION=19:0:0
+AC_SUBST(LIBCHEESE_LT_VERSION)
+AC_SUBST(LIBCHEESE_GTK_LT_VERSION)
 
 #*******************************************************************************
 # Expanded dirs

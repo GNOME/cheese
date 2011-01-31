@@ -64,13 +64,16 @@ cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h cheese-camera.h cheese-
 
 libcheese_la_LIBADD = \
 	$(CHEESE_LIBS)
+libcheese_la_LDFLAGS = \
+	-version-info $(LIBCHEESE_LT_VERSION) \
+	$(AM_LDFLAGS)
 
 libcheese_gtk_la_LIBADD = \
 	libcheese.la \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS)
 libcheese_gtk_la_LDFLAGS = \
-	-version-info $(CHEESE_LT_VERSION)		\
+	-version-info $(LIBCHEESE_GTK_LT_VERSION)		\
 	-export-symbols $(srcdir)/cheese-gtk.symbols	\
 	-no-undefined					\
 	$(AM_LDFLAGS)
