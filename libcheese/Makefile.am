@@ -8,7 +8,7 @@ INCLUDES = \
 	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\" \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	$(CHEESE_CFLAGS) \
-	$(CHEESEGTK_CFLAGS)
+	$(CHEESE_GTK_CFLAGS)
 
 lib_LTLIBRARIES = libcheese.la libcheese-gtk.la
 
@@ -28,7 +28,7 @@ include $(top_srcdir)/Makefile.am.enums
 
 libcheese_gtk_la_CFLAGS = \
 	$(CHEESE_CFLAGS) \
-	$(CHEESEGTK_CFLAGS)
+	$(CHEESE_GTK_CFLAGS)
 
 libcheese_la_CFLAGS = \
 	$(CHEESE_CFLAGS)
@@ -68,7 +68,7 @@ libcheese_la_LIBADD = \
 libcheese_gtk_la_LIBADD = \
 	libcheese.la \
 	$(CHEESE_LIBS) \
-	$(CHEESEGTK_LIBS)
+	$(CHEESE_GTK_LIBS)
 libcheese_gtk_la_LDFLAGS = \
 	-version-info $(CHEESE_LT_VERSION)		\
 	-export-symbols $(srcdir)/cheese-gtk.symbols	\

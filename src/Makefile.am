@@ -27,7 +27,7 @@ AM_CPPFLAGS = \
 	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\"	\
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	$(CHEESE_CFLAGS) \
-	$(CHEESEGTK_CFLAGS) \
+	$(CHEESE_GTK_CFLAGS) \
 	-include $(CONFIG_HEADER) \
 	-I@top_srcdir@/libcheese 
 
@@ -55,4 +55,4 @@ cheese_LDADD = \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(CHEESE_LIBS) \
-	$(CHEESEGTK_LIBS)
+	$(CHEESE_GTK_LIBS)
