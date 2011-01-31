@@ -27,12 +27,9 @@
 #include <glib-object.h>
 #include <glib.h>
 #include <glib/gi18n.h>
-#include <gtk/gtk.h>
 #include <clutter/clutter.h>
 #include <clutter-gst/clutter-gst.h>
-#include <gdk/gdkx.h>
 #include <gst/gst.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
 #include <X11/Xlib.h>
 
 #include "cheese-camera.h"
@@ -47,8 +44,6 @@ G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 
 typedef struct
 {
-  GtkWidget *video_window;
-
   GstElement *pipeline;
   GstBus *bus;
 
@@ -1042,9 +1037,6 @@ cheese_camera_set_property (GObject *object, guint prop_id, const GValue *value,
   {
     case PROP_VIDEO_TEXTURE:
       priv->video_texture = g_value_get_pointer (value);
-
-      /*      g_signal_connect (priv->video_window, "expose-event", */
-      /*                G_CALLBACK (cheese_camera_expose_cb), self); */
       break;
     case PROP_DEVICE_NAME:
       g_free (priv->device_name);

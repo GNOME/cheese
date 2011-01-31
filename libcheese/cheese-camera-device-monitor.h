@@ -24,7 +24,6 @@
 #define __CHEESE_CAMERA_DEVICE_MONITOR_H__
 
 #include <glib-object.h>
-#include <gtk/gtk.h>
 #include <gst/interfaces/xoverlay.h>
 
 G_BEGIN_DECLS
