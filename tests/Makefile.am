@@ -12,7 +12,7 @@ INCLUDES = \
 	-I@top_srcdir@/libcheese \
 	$(NULL)
 
-EXAMPLES = cheese-test-widget cheese-test-monitor cheese-test-chooser
+EXAMPLES = cheese-test-widget cheese-test-camera cheese-test-monitor cheese-test-chooser
 
 if HAVE_XTEST
 noinst_PROGRAMS = $(EXAMPLES) test-webcam-button
@@ -21,12 +21,16 @@ noinst_PROGRAMS = $(EXAMPLES)
 endif
 
 cheese_test_widget_SOURCES = cheese-test-widget.c
+cheese_test_camera_SOURCES = cheese-test-camera.c
 cheese_test_monitor_SOURCES = cheese-test-monitor.c
 test_webcam_button_SOURCES = test-webcam-button.c
 
 cheese_test_widget_LDADD = $(CHEESE_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
+	$(NULL)
+cheese_test_camera_LDADD = $(CHEESE_LIBS) \
+	$(top_builddir)/libcheese/libcheese.la \
 	$(NULL)
 cheese_test_monitor_LDADD = $(CHEESE_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \

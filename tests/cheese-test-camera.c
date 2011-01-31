@@ -1,0 +1,78 @@
+
+#include "cheese-config.h"
+
+#include <glib/gi18n.h>
+#include <gtk/gtk.h>
+#include <clutter-gtk/clutter-gtk.h>
+#include <gst/gst.h>
+#include "cheese-camera.h"
+
+static gboolean
+delete_callback (GtkWidget *window,
+                 GdkEvent  *event,
+                 gpointer   data)
+{
+  gtk_widget_destroy (window);
+  gtk_main_quit ();
+  return FALSE;
+}
+
+static gboolean
+time_cb (CheeseCamera *camera)
+{
+  cheese_camera_take_photo (camera, "testcamera.jpeg");
+  return FALSE;
+}
+
+int
+main (int argc, char **argv)
+{
+  GtkWidget *window;
+  GtkWidget *screen;
+  CheeseCamera *camera;
+  ClutterActor *stage;
+  ClutterActor *texture;
+
+  g_thread_init (NULL);
+  gdk_threads_init ();
+  gst_init (&argc, &argv);
+
+  bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
+  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
+  textdomain (GETTEXT_PACKAGE);
+
+  gtk_clutter_init (&argc, &argv);
+
+  window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_default_size (GTK_WINDOW (window), 400, 300);
+  g_signal_connect (G_OBJECT (window), "delete-event",
+                    G_CALLBACK (delete_callback), NULL);
+
+  screen = gtk_clutter_embed_new ();
+  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (screen));
+  texture = clutter_texture_new ();
+
+  clutter_actor_set_size (texture, 400, 300);
+  clutter_container_add_actor (CLUTTER_CONTAINER (stage), texture);
+
+  gtk_widget_show (screen);
+  clutter_actor_show (texture);
+
+  gdk_threads_enter ();
+  camera = cheese_camera_new (CLUTTER_TEXTURE (texture), NULL, 640, 480);
+  gdk_threads_leave ();
+
+  cheese_camera_setup (camera, NULL, NULL);
+
+  gtk_container_add (GTK_CONTAINER (window), screen);
+
+  gtk_widget_show_all (window);
+
+  cheese_camera_play (camera);
+
+  g_timeout_add_seconds (5, (GSourceFunc) (time_cb), camera);
+
+  gtk_main ();
+
+  return 0;
+}
