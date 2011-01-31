@@ -7,7 +7,8 @@ INCLUDES = \
 	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\" \
 	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\" \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
-	$(CHEESE_CFLAGS)
+	$(CHEESE_CFLAGS) \
+	$(CHEESEGTK_CFLAGS)
 
 lib_LTLIBRARIES = libcheese.la libcheese-gtk.la
 
@@ -25,7 +26,12 @@ glib_enum_c = cheese-enum-types.c
 glib_enum_headers = $(top_srcdir)/libcheese/cheese-widget.h
 include $(top_srcdir)/Makefile.am.enums
 
-libcheese_gtk_la_CFLAGS = $(CHEESE_CFLAGS)
+libcheese_gtk_la_CFLAGS = \
+	$(CHEESE_CFLAGS) \
+	$(CHEESEGTK_CFLAGS)
+
+libcheese_la_CFLAGS = \
+	$(CHEESE_CFLAGS)
 
 libcheese_la_SOURCES = \
 	cheese-fileutil.c \
@@ -56,9 +62,13 @@ libcheese_gtk_la_SOURCES = \
 cheesedir = $(includedir)/cheese
 cheese_HEADERS = cheese-widget.h cheese-avatar-chooser.h cheese-camera.h cheese-effect.h cheese-camera-device.h cheese-camera-device-monitor.h
 
+libcheese_la_LIBADD = \
+	$(CHEESE_LIBS)
+
 libcheese_gtk_la_LIBADD = \
 	libcheese.la \
-	$(CHEESE_LIBS)
+	$(CHEESE_LIBS) \
+	$(CHEESEGTK_LIBS)
 libcheese_gtk_la_LDFLAGS = \
 	-version-info $(CHEESE_LT_VERSION)		\
 	-export-symbols $(srcdir)/cheese-gtk.symbols	\

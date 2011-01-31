@@ -133,29 +133,36 @@ AM_CONDITIONAL(HAVE_XTEST, test "x$HAVE_TEST" = "xyes")
 PKG_CHECK_MODULES(CHEESE, \ 
   glib-2.0 >= $GLIB_REQUIRED \
   gobject-2.0 >= $GOBJECT_REQUIRED \
-  gio-2.0 >= $GIO_REQUIRED \
-  gtk+-2.0 >= $GTK_REQUIRED \
-  gdk-2.0 >= $GDK_REQUIRED \
-  gnome-desktop-2.0 >= $LIBGNOMEDESKTOP_REQUIRED \
+  gdk-pixbuf-2.0 \
   gstreamer-0.10 >= $GSTREAMER_REQUIRED \
   gstreamer-plugins-base-0.10 >= $GSTREAMER_REQUIRED \
   cairo >= $CAIRO_REQUIRED \
   pangocairo >= $PANGOCAIRO_REQUIRED \
-  librsvg-2.0 >= $LIBRSVG_REQUIRED \
   clutter-1.0 >= $CLUTTER_REQUIRED \
-  clutter-gtk-0.10 >= $CLUTTERGTK_REQUIRED \
   clutter-gst-1.0 >= $CLUTTERGST_REQUIRED \
+  $UDEV_PKG
+  )
+AC_SUBST(CHEESE_CFLAGS)
+AC_SUBST(CHEESE_LIBS)
+CHEESE_LIBS="$CHEESE_LIBS -lgstinterfaces-0.10"
+
+PKG_CHECK_MODULES(CHEESEGTK, \ 
+  gio-2.0 >= $GIO_REQUIRED \
+  gtk+-2.0 >= $GTK_REQUIRED \
+  gdk-2.0 >= $GDK_REQUIRED \
+  gnome-desktop-2.0 >= $LIBGNOMEDESKTOP_REQUIRED \
+  librsvg-2.0 >= $LIBRSVG_REQUIRED \
+  clutter-gtk-0.10 >= $CLUTTERGTK_REQUIRED \
   unique-1.0  >= $UNIQUE_REQUIRED \
   gee-1.0 >= $GEE_REQUIRED \
   libcanberra-gtk >= $LIBCANBERRA_REQUIRED \
   $UDEV_PKG \
   gnome-video-effects
   )
-AC_SUBST(CHEESE_CFLAGS)
+AC_SUBST(CHEESEGTK_CFLAGS)
 
-CHEESE_LIBS="$CHEESE_LIBS -lgstinterfaces-0.10"
 
-AC_SUBST(CHEESE_LIBS)
+AC_SUBST(CHEESEGTK_LIBS)
 
 GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
 GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`

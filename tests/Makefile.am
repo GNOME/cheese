@@ -9,6 +9,7 @@ INCLUDES = \
 	-DAPPNAME_DATA_DIR=\"$(pkgdatadir)\" \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	$(CHEESE_CFLAGS) \
+	$(CHEESEGTK_CFLAGS) \
 	-I@top_srcdir@/libcheese \
 	$(NULL)
 
@@ -26,19 +27,23 @@ cheese_test_monitor_SOURCES = cheese-test-monitor.c
 test_webcam_button_SOURCES = test-webcam-button.c
 
 cheese_test_widget_LDADD = $(CHEESE_LIBS) \
+	$(CHEESEGTK_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(NULL)
 cheese_test_camera_LDADD = $(CHEESE_LIBS) \
+	$(CHEESEGTK_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(NULL)
 cheese_test_monitor_LDADD = $(CHEESE_LIBS) \
+	$(CHEESEGTK_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(NULL)
 test_webcam_button_LDADD = $(XTEST_LIBS)
 cheese_test_chooser_SOURCES = cheese-test-chooser.c
 cheese_test_chooser_LDADD = $(CHEESE_LIBS) \
+	$(CHEESEGTK_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(NULL)
