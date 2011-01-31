@@ -1,6 +1,64 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.91.4
+  - bump LT_VERSION numbers for libcheese and libcheese-gtk
+  - Splitting dependencies of libcheese and libcheese-gtk
+    Spliting dependencies of libcheese and libcheese-gtk and linking
+    libcheese library with it's dependencies.
+  - libcheese: Removing unnecessary includes
+    Removing unnecessary includes of gtk in libcheese modules.
+  - Creating pkgconfig file for libcheese and libcheese-gtk
+  - Adding test for CheeseCamera
+    cheese-test-camera creates a CheeseCamera and takes a photo that will be
+    saved in testcamera.jpg after five seconds.
+  - Creating libcheese, installable non-gtk lib
+    Cheese-flash is now part of libcheese-gtk, since it depends on gtk and
+    we want libcheese to not depend on it. Libcheesecommon is now called
+    simply Libcheese and it's installed, it's the main cheese lib which can
+    be used to set the pipeline, take_photos and record video.
+  - remove countdown from libcheese
+    cheese uses the new countdown in src/cheese-countdown.vala
+    which prints the countdown directly on the clutter texture.
+  - cheese-test-chooser: Use gtk_clutter_init
+    Cheese test chooser should use gtk_clutter_init instead of gtk_init,
+    since cheese-camera now uses a ClutterTexture to display video.
+  - cheese-camera: using const char * when appropriate
+    Filenames and other string parameters used to set properties can be
+    const.
+  - cheese-camera: switch_device is now a void method
+    Method cheese_camera_switch_device always returned true. Its return
+    value can be ignored.
+  - cheese-camera: Making methods static
+    Some methods are only used inside CheeseCamera, so I removed them from
+    header file and declared them as static.
+  - cheese-widget: Fix return type for get_settings
+  - remove dbus support from cheese, fixes bug #622915
+  - cheese-camera: Check return of linking effect
+    Return if linking effect preview was not successful.
+  - cheese-camera: Removing extra colorspace after effect
+    Effects are already created using one colorspace before and one after
+    its pipeline description, so there is no need to add another colorspace
+    after the effect bin.
+  - cheese-camera: Handle more bus messages
+    When bus receives error or warning messages, we parse them and print
+    warning messages.
+  - Updated Basque language
+  - Added/Updated Translations
+    - bg, courtesy of Krasimir Chonov
+    - cs, courtesy of Marek Černocký
+    - el, courtesy of Kostas Papadimas
+    - eo, courtesy of Kristjan SCHMIDT
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fa, courtesy of Mahyar Moghimi
+    - gl, courtesy of Fran Diéguez
+    - nb, courtesy of Kjartan Maraas
+    - ru, courtesy of Yuri Myasoedov
+    - th, courtesy of Akom Chotiphantawanon
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+
 version 2.91.3
 
   - Photo and video resolution can be set separately. Fixes bug #582268
