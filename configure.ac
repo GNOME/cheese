@@ -167,6 +167,7 @@ GLIB_GSETTINGS
 
 AC_OUTPUT([
 Makefile
+cheese.pc
 cheese-gtk.pc
 docs/Makefile
 docs/reference/Makefile

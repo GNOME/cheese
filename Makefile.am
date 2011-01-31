@@ -11,7 +11,7 @@ DISTCLEANFILES =		\
 	gnome-doc-utils.make
 
 pkgconfigdir = $(libdir)/pkgconfig
-pkgconfig_DATA = cheese-gtk.pc
+pkgconfig_DATA = cheese.pc cheese-gtk.pc
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper --enable-gtk-doc
 
