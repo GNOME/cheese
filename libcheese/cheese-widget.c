@@ -81,29 +81,27 @@ cheese_widget_load_pixbuf (GtkWidget  *widget,
 }
 
 static gboolean
-cheese_widget_logo_expose (GtkWidget      *w,
-                           GdkEventExpose *event,
-                           gpointer        user_data)
+cheese_widget_logo_draw (GtkWidget      *w,
+                         cairo_t        *cr,
+                         gpointer        user_data)
 {
   const char   *icon_name;
   GdkPixbuf    *pixbuf, *logo;
   GError       *error = NULL;
-  cairo_t      *cr;
   GtkAllocation allocation;
   guint         s_width, s_height, d_width, d_height;
   float         ratio;
 
   gtk_widget_get_allocation (w, &allocation);
 
-  gdk_draw_rectangle (gtk_widget_get_window (w),
-                      gtk_widget_get_style (w)->black_gc, TRUE,
-                      0, 0, allocation.width, allocation.height);
-  icon_name = g_object_get_data (G_OBJECT (w), "icon-name");
-  if (icon_name == NULL)
-    return FALSE;
-
-  cr = gdk_cairo_create (gtk_widget_get_window (w));
   cairo_set_source_rgb (cr, 0.0, 0.0, 0.0);
+
+  icon_name = g_object_get_data (G_OBJECT (w), "icon-name");
+  if (icon_name == NULL) {
+    cairo_paint (cr);
+    return FALSE;
+  }
+
   cairo_rectangle (cr, 0, 0, allocation.width, allocation.height);
 
   d_width  = allocation.width;
@@ -136,7 +134,6 @@ cheese_widget_logo_expose (GtkWidget      *w,
 
   gdk_cairo_set_source_pixbuf (cr, logo, (allocation.width - s_width) / 2, (allocation.height - s_height) / 2);
   cairo_paint (cr);
-  cairo_destroy (cr);
 
   g_object_unref (logo);
   g_object_unref (pixbuf);
@@ -178,8 +175,8 @@ cheese_widget_set_problem_page (CheeseWidget *widget,
   gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), PROBLEM_PAGE);
   g_object_set_data_full (G_OBJECT (priv->problem),
                           "icon-name", g_strdup (icon_name), g_free);
-  g_signal_connect (priv->problem, "expose-event",
-                    G_CALLBACK (cheese_widget_logo_expose), widget);
+  g_signal_connect (priv->problem, "draw",
+                    G_CALLBACK (cheese_widget_logo_draw), widget);
 }
 
 static void
@@ -374,7 +371,6 @@ cheese_widget_realize (GtkWidget *widget)
     goto error;
   }
 
-  gdk_window_set_back_pixmap (gtk_widget_get_window (priv->screen), NULL, FALSE);
   gtk_widget_set_app_paintable (priv->screen, TRUE);
   gtk_widget_set_double_buffered (priv->screen, FALSE);
 
@@ -386,7 +382,6 @@ cheese_widget_realize (GtkWidget *widget)
 
   gtk_widget_set_app_paintable (priv->problem, TRUE);
   gtk_widget_realize (priv->problem);
-  gdk_window_set_back_pixmap (gtk_widget_get_window (priv->problem), NULL, FALSE);
 
   return;
 
