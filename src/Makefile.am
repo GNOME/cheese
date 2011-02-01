@@ -2,15 +2,15 @@ VALAFLAGS = \
 	--thread \
 	--vapidir vapi \
 	--pkg config \
-	--pkg gtk+-2.0 \
+	--pkg gtk+-3.0 \
 	--pkg gmodule-2.0 \
 	--pkg gee-1.0 \
 	--pkg clutter-1.0 \
-	--pkg clutter-gtk-0.10 \
+	--pkg clutter-gtk-1.0 \
 	--pkg gstreamer-0.10 \
 	--pkg unique-1.0 \
 	--pkg libcanberra \
-	--pkg libcanberra-gtk \
+	--pkg libcanberra-gtk3 \
 	--pkg eogthumbnav \
 	--pkg cheese-thumbview \
 	--pkg cheese-common \
