@@ -27,35 +27,38 @@ G_BEGIN_DECLS
 
 #define UM_TYPE_CROP_AREA (um_crop_area_get_type ())
 #define UM_CROP_AREA(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), UM_TYPE_CROP_AREA, \
-                                                                  UmCropArea))
+                                                                           UmCropArea))
 #define UM_CROP_AREA_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), UM_TYPE_CROP_AREA, \
-                                                               UmCropAreaClass))
+                                                                        UmCropAreaClass))
 #define UM_IS_CROP_AREA(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), UM_TYPE_CROP_AREA))
 #define UM_IS_CROP_AREA_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), UM_TYPE_CROP_AREA))
 #define UM_CROP_AREA_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), UM_TYPE_CROP_AREA, \
-                                                                 UmCropAreaClass))
+                                                                          UmCropAreaClass))
 
 typedef struct _UmCropAreaClass UmCropAreaClass;
 typedef struct _UmCropArea UmCropArea;
 typedef struct _UmCropAreaPrivate UmCropAreaPrivate;
 
-struct _UmCropAreaClass
-{
-  GtkDrawingAreaClass parent_class;
+struct _UmCropAreaClass {
+        GtkDrawingAreaClass parent_class;
 };
 
-struct _UmCropArea
-{
-  GtkDrawingArea parent_instance;
-  UmCropAreaPrivate *priv;
+struct _UmCropArea {
+        GtkDrawingArea parent_instance;
+        UmCropAreaPrivate *priv;
 };
 
-GType um_crop_area_get_type (void) G_GNUC_CONST;
+GType      um_crop_area_get_type             (void) G_GNUC_CONST;
 
-GtkWidget *um_crop_area_new (void);
-GdkPixbuf *um_crop_area_get_picture (UmCropArea *area);
-void       um_crop_area_set_picture (UmCropArea *area,
-                                     GdkPixbuf  *pixbuf);
+GtkWidget *um_crop_area_new                  (void);
+GdkPixbuf *um_crop_area_get_picture          (UmCropArea *area);
+void       um_crop_area_set_picture          (UmCropArea *area,
+                                              GdkPixbuf  *pixbuf);
+void       um_crop_area_set_min_size         (UmCropArea *area,
+                                              gint        width,
+                                              gint        height);
+void       um_crop_area_set_constrain_aspect (UmCropArea *area,
+                                              gboolean    constrain);
 
 G_END_DECLS
 
