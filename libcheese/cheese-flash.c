@@ -75,7 +75,7 @@ static void
 cheese_flash_init (CheeseFlash *self)
 {
   CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (self);
-
+  cairo_region_t *input_region;
   GtkWindow *window;
 
   priv->flash_timeout_tag = 0;
@@ -95,10 +95,9 @@ cheese_flash_init (CheeseFlash *self)
 
   /* Don't consume input */
   gtk_widget_realize (GTK_WIDGET (window));
-  GdkRegion *input_region;
-  input_region = gdk_region_new ();
+  input_region = cairo_region_create ();
   gdk_window_input_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)), input_region, 0, 0);
-  gdk_region_destroy (input_region);
+  cairo_region_destroy (input_region);
 
   g_signal_connect (G_OBJECT (window), "expose-event", G_CALLBACK (cheese_flash_window_expose_event_cb), NULL);
   priv->window = window;
