@@ -6,16 +6,14 @@ VALAFLAGS = \
 	--pkg gmodule-2.0 \
 	--pkg gee-1.0 \
 	--pkg clutter-1.0 \
-	--pkg clutter-gtk-1.0 \
+        --pkg clutter-gtk-1.0 \
 	--pkg gstreamer-0.10 \
-	--pkg unique-1.0 \
-	--pkg libcanberra \
-	--pkg libcanberra-gtk3 \
+        --pkg libcanberra-gtk \
+        --pkg libcanberra \
 	--pkg eogthumbnav \
 	--pkg cheese-thumbview \
 	--pkg cheese-common \
 	--pkg clutter-tablelayout
-
 
 AM_CPPFLAGS = \
 	-DBINDIR=\"$(bindir)\"			 	\
