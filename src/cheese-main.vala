@@ -23,9 +23,8 @@ using GLib;
 using Gtk;
 using Clutter;
 using Gst;
-using Unique;
 
-public class Cheese.Main
+public class Cheese.Main : Gtk.Application
 {
   static bool   wide;
   static string device;
@@ -42,19 +41,108 @@ public class Cheese.Main
     {null}
   };
 
-  public static Unique.Response unique_message_received (int                command,
-                                                         Unique.MessageData msg,
-                                                         uint               time)
+  public void on_app_activate ()
   {
-    if (command == Unique.Command.ACTIVATE)
+    GLib.List list;
+    Gtk.Widget window;
+
+    list = get_windows ();
+
+    if (list != null)
+      main_window.present ();
+    else
     {
-      main_window.set_screen (msg.get_screen ());
-      main_window.activate ();
-    }
-    return Unique.Response.OK;
+      main_window = new Cheese.MainWindow ();
+
+      Environment.set_application_name (_("Cheese"));
+      Window.set_default_icon_name ("cheese");
+
+      Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
+
+      main_window.setup_ui ();
+
+      main_window.set_application (this);
+      main_window.destroy.connect (Gtk.main_quit);
+      main_window.show ();
+      main_window.setup_camera (device);
+     }
   }
 
-  public static int main (string[] args)
+  public override bool local_command_line (string[] arguments, int exit_status)
+  {
+    // Try to register.
+    try
+    {
+      register();
+    }
+    catch (Error e)
+    {
+      stdout.printf ("Error: %s\n", e.message);
+      exit_status = 1;
+      return true;
+    }
+
+    // Check command line parameters.
+    int n_args = arguments.length;
+    if (n_args <= 1)
+    {
+      activate ();
+      exit_status = 0;
+    }
+    else
+    {
+      // Set parser.
+      try
+      {
+        var context = new OptionContext (_("- Take photos and videos from your webcam"));
+        context.set_help_enabled (true);
+        context.add_main_entries (options, null);
+        context.add_group (Gtk.get_option_group (true));
+        context.add_group (Clutter.get_option_group ());
+        context.add_group (Gst.init_get_option_group ());
+        context.parse (ref arguments);
+      }
+      catch (OptionError e)
+      {
+        stdout.printf ("%s\n", e.message);
+        stdout.printf (_("Run '%s --help' to see a full list of available command line options.\n"), arguments[0]);
+        exit_status = 1;
+        return true;
+      }
+
+      if (version)
+      {
+        stdout.printf ("%s %s\n", Config.PACKAGE_NAME, Config.PACKAGE_VERSION);
+        exit_status = 1;
+        return true;
+      }
+
+      //Remote instance process commands locally.
+      if (get_is_remote ())
+      {
+        if ((version) || (wide) || (fullscreen))
+        {
+          stdout.printf (_("Another instance of Cheese is currently running\n"));
+          exit_status = 1;
+          return true;
+        }
+      }
+      //Primary instance.
+      else
+      {
+         if (wide)
+           main_window.set_startup_wide_mode ();
+         if (fullscreen)
+           main_window.set_startup_fullscreen_mode ();
+
+         exit_status=0;
+      }
+    }
+    return true;
+  }
+}
+
+  public int main (string[] args)
   {
     Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.PACKAGE_LOCALEDIR);
     Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
@@ -64,65 +152,11 @@ public class Cheese.Main
 
     GtkClutter.init (ref args);
 
-    try {
-      var context = new OptionContext (_("- Take photos and videos from your webcam"));
-      context.set_help_enabled (true);
-      context.add_main_entries (options, null);
-      context.add_group (Gtk.get_option_group (true));
-      context.add_group (Clutter.get_option_group ());
-      context.add_group (Gst.init_get_option_group ());
-      context.parse (ref args);
-    }
-    catch (OptionError e)
-    {
-      stdout.printf ("%s\n", e.message);
-      stdout.printf (_("Run '%s --help' to see a full list of available command line options.\n"), args[0]);
-      return 1;
-    }
+    Cheese.Main app;
+    app = new Cheese.Main ();
+    app.set_application_id ("org.gnome.Cheese");
+    app.activate.connect (app.on_app_activate);
+    int status = app.run();
 
-    if (version)
-    {
-      stdout.printf ("%s %s\n", Config.PACKAGE_NAME, Config.PACKAGE_VERSION);
-      return 0;
-    }
-
-    main_window = new Cheese.MainWindow ();
-
-    Unique.App app = new Unique.App ("org.gnome.Cheese", null);
-    if (app.is_running)
-    {
-      Unique.Response response;
-      response = app.send_message (Unique.Command.ACTIVATE, null);
-      return 0;
-    }
-    else
-    {
-      app.watch_window (main_window);
-      app.message_received.connect (unique_message_received);
-    }
-
-    Environment.set_application_name (_("Cheese"));
-    Window.set_default_icon_name ("cheese");
-
-    Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
-
-    main_window.setup_ui ();
-
-    if (wide)
-    {
-      main_window.set_startup_wide_mode ();
-    }
-
-    if (fullscreen)
-    {
-      main_window.set_startup_fullscreen_mode ();
-    }
-
-    main_window.destroy.connect (Gtk.main_quit);
-    main_window.show ();
-    main_window.setup_camera (device);
-    Gtk.main ();
-
-    return 0;
+    return status;
   }
-}
