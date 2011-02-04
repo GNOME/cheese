@@ -1040,7 +1040,7 @@ public class Cheese.MainWindow : Gtk.Window
       }
 
       /* Keep only these actions sensitive. */
-      string active_actions[11] = { "cheese_action",
+      string [] active_actions = { "cheese_action",
                                     "edit_action",
                                     "help_action",
                                     "quit",
