@@ -1,30 +1,33 @@
 # Process this file with autoconf to produce a configure script.
+AC_PREREQ([2.64])
+AC_INIT([cheese],
+        [2.91.5],
+        [http://bugzilla.gnome.org/enter_bug.cgi?product=cheese],
+        [cheese],
+        [http://projects.gnome.org/cheese/])
 
-AC_INIT(cheese, 2.91.5)
+AC_CONFIG_HEADERS([cheese-config.h])
+AC_CONFIG_SRCDIR([configure.ac])
+AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE(AC_PACKAGE_NAME, AC_PACKAGE_VERSION)
-m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
-AM_CONFIG_HEADER(cheese-config.h)
-AM_MAINTAINER_MODE
+AM_INIT_AUTOMAKE([1.11 -Wall])
+AM_MAINTAINER_MODE([enable])
 
-AM_PROG_VALAC([0.9.2])
-
-dnl make sure we keep ACLOCAL_FLAGS around for maintainer builds to work
-AC_SUBST(ACLOCAL_AMFLAGS, "\${ACLOCAL_FLAGS}")
-
-AC_ISC_POSIX
+# Check for programs
 AC_PROG_CC
 AM_PROG_CC_STDC
 AC_HEADER_STDC
-AM_PROG_LIBTOOL
+AM_PROG_VALAC([0.9.2])
+
+# Initialize libtool
+LT_PREREQ([2.2])
+LT_INIT
 
 CFLAGS="${CFLAGS} -Wall"
 CFLAGS+=" -DGSEAL_ENABLE"
 
 GNOME_MAINTAINER_MODE_DEFINES
-GNOME_COMPILE_WARNINGS
-
-GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+GNOME_COMPILE_WARNINGS([maximum])
 
 #*******************************************************************************
 # Libraries
@@ -70,8 +73,6 @@ AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE", [GETTEXT package name])
 
 IT_PROG_INTLTOOL([0.40.0])
 AM_GLIB_GNU_GETTEXT
-
-GNOME_DOC_INIT
 
 #*******************************************************************************
 # Check required libraries
@@ -162,8 +163,6 @@ PKG_CHECK_MODULES(CHEESE_GTK, \
   gnome-video-effects
   )
 AC_SUBST(CHEESE_GTK_CFLAGS)
-
-
 AC_SUBST(CHEESE_GTK_LIBS)
 
 GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
@@ -171,10 +170,16 @@ GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 AC_SUBST(GLIB_MKENUMS)
 
+# API documentation
+GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
+
+# User manual
+GNOME_DOC_INIT([0.20])
+
 GLIB_GSETTINGS
 #*******************************************************************************
 
-AC_OUTPUT([
+AC_CONFIG_FILES([
 Makefile
 docs/Makefile
 docs/reference/Makefile
@@ -204,5 +209,6 @@ src/Makefile
 tests/Makefile
 po/Makefile.in
 ])
+AC_OUTPUT
 
 #**************************************************************************

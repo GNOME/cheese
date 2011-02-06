@@ -1,3 +1,5 @@
+ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+
 SUBDIRS = libcheese src tests po data help docs
 
 EXTRA_DIST =			\
