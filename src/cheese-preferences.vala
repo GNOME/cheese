@@ -258,7 +258,7 @@ public class Cheese.PreferencesDialog : GLib.Object
   [CCode (instance_pos = -1)]
   public void on_dialog_close (Gtk.Button button)
   {
-    this.dialog.hide_all ();
+    this.dialog.hide ();
   }
 
   [CCode (instance_pos = -1)]

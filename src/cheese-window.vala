@@ -206,8 +206,8 @@ public class Cheese.MainWindow : Gtk.Window
                                                            Gtk.ButtonsType.NONE,
                                                            "Are you sure you want to permanently delete the file \"%s\"?",
                                                            file.get_basename ());
-      confirmation_dialog.add_button (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL);
-      confirmation_dialog.add_button (Gtk.STOCK_DELETE, Gtk.ResponseType.ACCEPT);
+      confirmation_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+      confirmation_dialog.add_button (Gtk.Stock.DELETE, Gtk.ResponseType.ACCEPT);
       confirmation_dialog.format_secondary_text ("%s", "If you delete an item, it will be permanently lost");
       response = confirmation_dialog.run ();
       confirmation_dialog.destroy ();
@@ -311,8 +311,8 @@ public class Cheese.MainWindow : Gtk.Window
     save_as_dialog = new FileChooserDialog ("Save File",
                                             this,
                                             Gtk.FileChooserAction.SAVE,
-                                            Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-                                            Gtk.STOCK_SAVE, Gtk.ResponseType.ACCEPT,
+                                            Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
+                                            Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT,
                                             null);
 
     save_as_dialog.do_overwrite_confirmation = true;
@@ -537,13 +537,13 @@ public class Cheese.MainWindow : Gtk.Window
     {
       if (is_wide_mode)
       {
-        thumbnails_right.hide_all ();
+        thumbnails_right.hide ();
       }
       else
       {
-        thumbnails_bottom.hide_all ();
+        thumbnails_bottom.hide ();
       }
-      menubar.hide_all ();
+      menubar.hide ();
       leave_fullscreen_button_container.no_show_all = false;
       leave_fullscreen_button_container.show_all ();
 
@@ -568,7 +568,7 @@ public class Cheese.MainWindow : Gtk.Window
         thumbnails_bottom.show_all ();
       }
       menubar.show_all ();
-      leave_fullscreen_button_container.hide_all ();
+      leave_fullscreen_button_container.hide ();
 
       /* Make all buttons look, uhm, Normal */
       foreach (Gtk.Button b in buttons)
@@ -609,7 +609,7 @@ public class Cheese.MainWindow : Gtk.Window
       thumbnails_right.add (thumb_nav);
       thumbnails_right.show_all ();
       thumbnails_right.resize_children ();
-      thumbnails_bottom.hide_all ();
+      thumbnails_bottom.hide ();
     }
     else
     {
@@ -622,15 +622,17 @@ public class Cheese.MainWindow : Gtk.Window
       thumbnails_bottom.add (thumb_nav);
       thumbnails_bottom.show_all ();
       thumbnails_bottom.resize_children ();
-      thumbnails_right.hide_all ();
+      thumbnails_right.hide ();
     }
 
     /* handy trick to keep the window to the desired size while not
      * requesting a fixed one. This way the window is resized to its
      * natural size (particularly with the constraints imposed by the
      * viewport, see above) but can still be shrinked down */
+
     Gtk.Requisition req;
-    this.size_request (out req);
+    //this.size_request (out req);
+    this.get_preferred_size(req, req);
     this.resize (req.width, req.height);
     viewport_widget.set_size_request (-1, -1);
   }
@@ -761,7 +763,7 @@ public class Cheese.MainWindow : Gtk.Window
       camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
       take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
       take_action_button.tooltip_text = "Stop recording";
-      take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_STOP, Gtk.IconSize.BUTTON);
+      take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_STOP, Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
     }
@@ -770,7 +772,7 @@ public class Cheese.MainWindow : Gtk.Window
       camera.stop_video_recording ();
       take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
       take_action_button.tooltip_text = take_action_button.related_action.tooltip;
-      take_action_button_image.set_from_stock (Gtk.STOCK_MEDIA_RECORD, Gtk.IconSize.BUTTON);
+      take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_RECORD, Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
     }
