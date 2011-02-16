@@ -3,6 +3,7 @@
   <requires lib="gtk+" version="2.16"/>
   <object class="GtkVBox" id="mainbox_normal">
     <property name="homogeneous">False</property>
+    <property name="events">GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
     <child>
       <object class="GtkMenuBar" id="main_menubar" constructor="menu_ui_man">
       </object>

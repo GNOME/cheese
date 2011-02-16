@@ -58,15 +58,15 @@ typedef struct
 } CheeseFlashPrivate;
 
 static gboolean
-cheese_flash_window_expose_event_cb (GtkWidget *widget, GdkEventExpose *event, gpointer user_data)
+cheese_flash_window_expose_event_cb (GtkWidget *widget, cairo_t *cr, gpointer user_data)
 {
-  cairo_t *cr;
+  //cairo_t *cr;
 
-  cr = gdk_cairo_create (gtk_widget_get_window (widget));
-  cairo_set_source_rgb (cr, 1, 1, 1);
-  cairo_rectangle (cr, event->area.x, event->area.y, event->area.width, event->area.height);
+  //cr = gdk_cairo_create (gtk_widget_get_window (widget));
+  //cairo_set_source_rgb (cr, 1, 1, 1);
+  //cairo_rectangle (cr, event->area.x, event->area.y, event->area.width, event->area.height);
   cairo_fill (cr);
-  cairo_destroy (cr);
+  //cairo_destroy (cr);
 
   return TRUE;
 }
@@ -99,7 +99,7 @@ cheese_flash_init (CheeseFlash *self)
   gdk_window_input_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)), input_region, 0, 0);
   cairo_region_destroy (input_region);
 
-  g_signal_connect (G_OBJECT (window), "expose-event", G_CALLBACK (cheese_flash_window_expose_event_cb), NULL);
+  g_signal_connect (G_OBJECT (window), "draw", G_CALLBACK (cheese_flash_window_expose_event_cb), NULL);
   priv->window = window;
 }
 

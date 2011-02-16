@@ -1088,7 +1088,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               g_cclosure_marshal_VOID__VOID,
                                               G_TYPE_NONE, 0);
 
-  camera_signals[STATE_CHANGED] = g_signal_new ("state-changed", G_OBJECT_CLASS_TYPE (klass),
+  camera_signals[STATE_CHANGED] = g_signal_new ("state-flags-changed", G_OBJECT_CLASS_TYPE (klass),
                                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                                 G_STRUCT_OFFSET (CheeseCameraClass, state_changed),
                                                 NULL, NULL,

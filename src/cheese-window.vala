@@ -631,8 +631,7 @@ public class Cheese.MainWindow : Gtk.Window
      * viewport, see above) but can still be shrinked down */
 
     Gtk.Requisition req;
-    //this.size_request (out req);
-    this.get_preferred_size(req, req);
+    this.get_preferred_size(out req, out req);
     this.resize (req.width, req.height);
     viewport_widget.set_size_request (-1, -1);
   }

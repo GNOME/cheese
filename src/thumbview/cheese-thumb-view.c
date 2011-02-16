@@ -25,7 +25,7 @@
 
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <libgnomeui/gnome-desktop-thumbnail.h>
+#include <libgnome-desktop/gnome-desktop-thumbnail.h>
 #include <string.h>
 
 #include "cheese-fileutil.h"

@@ -144,25 +144,22 @@ cheese_widget_logo_draw (GtkWidget      *w,
 static void
 cheese_widget_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
 {
-  GtkStyle *style;
+  GtkStyleContext *context;
   guint     i;
 
   for (i = GTK_STATE_NORMAL; i <= GTK_STATE_INSENSITIVE; i++)
   {
-    GdkColor *fg, *bg;
+    GdkRGBA fg, bg;
 
-    style = gtk_widget_get_style (spinner);
-    fg    = gdk_color_copy (&style->fg[i]);
-    bg    = gdk_color_copy (&style->bg[i]);
+    context = gtk_widget_get_style_context (spinner);
+    gtk_style_context_get_color (context, gtk_style_context_get_state (context), &fg);
+    gtk_style_context_get_background_color (context, gtk_style_context_get_state (context), &bg);
 
-    gtk_widget_modify_fg (spinner, i, bg);
-    gtk_widget_modify_bg (spinner, i, fg);
+    gtk_widget_override_color (spinner, i, &bg);
+    gtk_widget_override_background_color (spinner, i, &fg);
 
-    gtk_widget_modify_fg (parent, i, bg);
-    gtk_widget_modify_bg (parent, i, fg);
-
-    gdk_color_free (fg);
-    gdk_color_free (bg);
+    gtk_widget_override_color (parent, i, &bg);
+    gtk_widget_override_background_color (parent, i, &fg);
   }
 }
 

@@ -41,14 +41,14 @@ public class Cheese.Main : Gtk.Application
     {null}
   };
 
+  public Main (string app_id, ApplicationFlags flags)
+  {
+    GLib.Object (application_id: app_id, flags: flags);
+  }
+
   public void on_app_activate ()
   {
-    GLib.List list;
-    Gtk.Widget window;
-
-    list = get_windows ();
-
-    if (list != null)
+    if (get_windows () != null)
       main_window.present ();
     else
     {
@@ -148,13 +148,12 @@ public class Cheese.Main : Gtk.Application
     Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain (Config.GETTEXT_PACKAGE);
 
-    Gtk.rc_parse (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "gtkrc"));
+    //Gtk.rc_parse (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "gtkrc"));
 
     GtkClutter.init (ref args);
 
     Cheese.Main app;
-    app = new Cheese.Main ();
-    app.set_application_id ("org.gnome.Cheese");
+    app = new Cheese.Main ("org.gnome.Cheese", ApplicationFlags.FLAGS_NONE);
     app.activate.connect (app.on_app_activate);
     int status = app.run();
 

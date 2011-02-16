@@ -208,7 +208,6 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                           GTK_RESPONSE_ACCEPT,
                           NULL);
   gtk_window_set_title (GTK_WINDOW (chooser), _("Take a photo"));
-  gtk_dialog_set_has_separator (GTK_DIALOG (chooser), FALSE);
 
   gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
                                      GTK_RESPONSE_ACCEPT,
