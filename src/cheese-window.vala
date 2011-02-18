@@ -1184,6 +1184,21 @@ public class Cheese.MainWindow : Gtk.Window
     thumb_view = new Cheese.ThumbView ();
     thumb_nav  = new Eog.ThumbNav (thumb_view, false);
 
+    Gtk.CssProvider css;
+    try
+    {
+      css = new Gtk.CssProvider();
+      css.load_from_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese.css"));
+    }
+    catch (Error e)
+    {
+      stdout.printf ("Error: %s\n", e.message);
+    }
+
+    Gtk.StyleContext context;
+    context = thumb_view.get_style_context ();
+    context.add_provider (css, 600);
+
     thumb_view.button_press_event.connect (on_thumbnail_mouse_button_press);
 
     this.add (main_vbox);

@@ -8,8 +8,8 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 gsettings_SCHEMAS = org.gnome.Cheese.gschema.xml
 @GSETTINGS_RULES@
 
-gtkrcdir = $(pkgdatadir)
-gtkrc_DATA = gtkrc
+cssdir = $(pkgdatadir)
+css_DATA = cheese.css
 
 pkgdata_DATA = \
 	cheese-main-window.ui	\
@@ -28,7 +28,7 @@ EXTRA_DIST = \
 	$(gsettings_SCHEMAS) \
 	$(service_in_files) \
 	$(pkgdata_DATA) \
-	$(gtkrc_DATA)
+        $(css_DATA)
 
 clean-local :
 	rm -f *~

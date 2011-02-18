@@ -148,8 +148,6 @@ public class Cheese.Main : Gtk.Application
     Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain (Config.GETTEXT_PACKAGE);
 
-    //Gtk.rc_parse (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "gtkrc"));
-
     GtkClutter.init (ref args);
 
     Cheese.Main app;
