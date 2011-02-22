@@ -77,3 +77,37 @@ libcheese_gtk_la_LDFLAGS = \
 	-export-symbols $(srcdir)/cheese-gtk.symbols	\
 	-no-undefined					\
 	$(AM_LDFLAGS)
+
+-include $(INTROSPECTION_MAKEFILE)
+INTROSPECTION_SCANNER_ARGS = --add-include-path=$(srcdir) \
+	--warn-all
+INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
+introspection_sources = $(libcheese_la_SOURCES) \
+	cheese-marshal.h \
+	cheese-enum-types.h
+
+if HAVE_INTROSPECTION
+INTROSPECTION_GIRS = Cheese-1.0.gir
+
+Cheese-1.0.gir: libcheese.la
+Cheese_1_0_gir_INCLUDES = GObject-2.0 \
+	GLib-2.0 \
+	Gst-0.10 \
+	GstBase-0.10 \
+	cairo-1.0 \
+	Clutter-1.0 \
+	GdkPixbuf-2.0
+Cheese_1_0_gir_CFLAGS = $(INCLUDES) \
+	$(CHEESE_CFLAGS)
+Cheese_1_0_gir_LIBS = libcheese.la
+Cheese_1_0_gir_FILES = $(introspection_sources)
+Cheese_1_0_gir_SCANNERFLAGS = --verbose --warn-all --pkg-export cheese-1.0
+
+girdir = $(datadir)/gir-1.0
+gir_DATA = $(INTROSPECTION_GIRS)
+
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = Cheese-1.0.typelib
+
+CLEANFILES += $(gir_DATA) $(typelib_DATA)
+endif

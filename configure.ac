@@ -10,7 +10,7 @@ AC_CONFIG_HEADERS([cheese-config.h])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.11 -Wall])
+AM_INIT_AUTOMAKE([1.11 -Wall -Wno-portability])
 AM_MAINTAINER_MODE([enable])
 
 # Check for programs
@@ -170,6 +170,8 @@ GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
 GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AC_SUBST(GLIB_GENMARSHAL)
 AC_SUBST(GLIB_MKENUMS)
+
+GOBJECT_INTROSPECTION_CHECK([0.6.7])
 
 # API documentation
 GTK_DOC_CHECK([1.14],[--flavour no-tmpl])
