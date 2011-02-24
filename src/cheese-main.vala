@@ -96,6 +96,7 @@ public class Cheese.Main : Gtk.Application
     int n_args = local_args.length;
     if (n_args <= 1)
     {
+      Gst.init (ref local_args);
       activate ();
       exit_status = 0;
     }
@@ -140,6 +141,7 @@ public class Cheese.Main : Gtk.Application
       //Primary instance.
       else
       {
+        Gst.init (ref local_args);
         activate ();
         exit_status=0;
       }
