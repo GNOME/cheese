@@ -61,6 +61,11 @@ public class Cheese.Main : Gtk.Application
 
       main_window.setup_ui ();
 
+      if (wide)
+        main_window.set_startup_wide_mode ();
+      if (fullscreen)
+        main_window.set_startup_fullscreen_mode ();
+
       main_window.set_application (this);
       main_window.destroy.connect (Gtk.main_quit);
       main_window.show ();
@@ -68,7 +73,9 @@ public class Cheese.Main : Gtk.Application
      }
   }
 
-  public override bool local_command_line (string[] arguments, int exit_status)
+  public override bool local_command_line ([CCode (array_null_terminated = true, array_length = false)]
+                                           ref unowned string[] arguments,
+                                           out int exit_status)
   {
     // Try to register.
     try
@@ -82,8 +89,11 @@ public class Cheese.Main : Gtk.Application
       return true;
     }
 
+    // Workaround until bug 642885 is solved.
+    unowned string[] local_args = arguments;
+
     // Check command line parameters.
-    int n_args = arguments.length;
+    int n_args = local_args.length;
     if (n_args <= 1)
     {
       activate ();
@@ -100,7 +110,7 @@ public class Cheese.Main : Gtk.Application
         context.add_group (Gtk.get_option_group (true));
         context.add_group (Clutter.get_option_group ());
         context.add_group (Gst.init_get_option_group ());
-        context.parse (ref arguments);
+        context.parse (ref local_args);
       }
       catch (OptionError e)
       {
@@ -130,12 +140,8 @@ public class Cheese.Main : Gtk.Application
       //Primary instance.
       else
       {
-         if (wide)
-           main_window.set_startup_wide_mode ();
-         if (fullscreen)
-           main_window.set_startup_fullscreen_mode ();
-
-         exit_status=0;
+        activate ();
+        exit_status=0;
       }
     }
     return true;
@@ -152,8 +158,9 @@ public class Cheese.Main : Gtk.Application
 
     Cheese.Main app;
     app = new Cheese.Main ("org.gnome.Cheese", ApplicationFlags.FLAGS_NONE);
+
     app.activate.connect (app.on_app_activate);
-    int status = app.run();
+    int status = app.run (args);
 
     return status;
   }
