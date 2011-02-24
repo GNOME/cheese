@@ -131,12 +131,9 @@ public class Cheese.Main : Gtk.Application
       //Remote instance process commands locally.
       if (get_is_remote ())
       {
-        if ((version) || (wide) || (fullscreen))
-        {
           stdout.printf (_("Another instance of Cheese is currently running\n"));
           exit_status = 1;
           return true;
-        }
       }
       //Primary instance.
       else
