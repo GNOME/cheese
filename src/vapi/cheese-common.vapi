@@ -56,7 +56,7 @@ namespace Cheese
     public virtual signal void photo_saved ();
     public virtual signal void photo_taken (Gdk.Pixbuf pixbuf);
     public virtual signal void video_saved ();
-    public virtual signal void state_changed (Gst.State new_state);
+    public virtual signal void state_flags_changed (Gst.State new_state);
   }
   [CCode (cheader_filename = "cheese-camera-device.h")]
   public class CameraDevice : GLib.Object, GLib.Initable

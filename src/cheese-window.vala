@@ -1277,7 +1277,7 @@ public class Cheese.MainWindow : Gtk.Window
     if (value != 1.0)
       camera.set_balance_property ("saturation", value);
 
-    camera.state_changed.connect (camera_state_changed);
+    camera.state_flags_changed.connect (camera_state_changed);
     camera.play ();
   }
 }
