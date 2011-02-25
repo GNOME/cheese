@@ -51,7 +51,7 @@ typedef struct
   void (*photo_saved)(CheeseCamera *camera);
   void (*photo_taken)(CheeseCamera *camera, GdkPixbuf *pixbuf);
   void (*video_saved)(CheeseCamera *camera);
-  void (*state_changed)(CheeseCamera *camera, GstState new_state);
+  void (*state_flags_changed)(CheeseCamera *camera, GstState new_state);
 } CheeseCameraClass;
 
 enum CheeseCameraError

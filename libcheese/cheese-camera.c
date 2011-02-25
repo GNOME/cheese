@@ -101,7 +101,7 @@ enum
   PHOTO_SAVED,
   PHOTO_TAKEN,
   VIDEO_SAVED,
-  STATE_CHANGED,
+  STATE_FLAGS_CHANGED,
   LAST_SIGNAL
 };
 
@@ -242,7 +242,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
         GstState old, new;
         gst_message_parse_state_changed (message, &old, &new, NULL);
         if (new == GST_STATE_PLAYING)
-          g_signal_emit (camera, camera_signals[STATE_CHANGED], 0, new);
+          g_signal_emit (camera, camera_signals[STATE_FLAGS_CHANGED], 0, new);
       }
       break;
     }
@@ -1088,9 +1088,9 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               g_cclosure_marshal_VOID__VOID,
                                               G_TYPE_NONE, 0);
 
-  camera_signals[STATE_CHANGED] = g_signal_new ("state-flags-changed", G_OBJECT_CLASS_TYPE (klass),
+  camera_signals[STATE_FLAGS_CHANGED] = g_signal_new ("state-flags-changed", G_OBJECT_CLASS_TYPE (klass),
                                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                                G_STRUCT_OFFSET (CheeseCameraClass, state_changed),
+                                                G_STRUCT_OFFSET (CheeseCameraClass, state_flags_changed),
                                                 NULL, NULL,
                                                 g_cclosure_marshal_VOID__INT,
                                                 G_TYPE_NONE, 1, G_TYPE_INT);
