@@ -78,6 +78,10 @@ typedef struct
   GtkTreeIter iter;
 } CheeseThumbViewThreadData;
 
+
+static void
+cheese_thumb_view_constructed (GObject *object);
+
 static void
 cheese_thumb_view_thread_append_item (gpointer data)
 {
@@ -563,6 +567,7 @@ cheese_thumb_view_class_init (CheeseThumbViewClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+  object_class->constructed = cheese_thumb_view_constructed;
   object_class->finalize = cheese_thumb_view_finalize;
 
   g_type_class_add_private (klass, sizeof (CheeseThumbViewPrivate));
@@ -606,6 +611,10 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   priv->store   = gtk_list_store_new (3, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   priv->n_items = 0;
+  
+  priv->fileutil = cheese_fileutil_new ();
+  priv->factory = gnome_desktop_thumbnail_factory_new (GNOME_DESKTOP_THUMBNAIL_SIZE_NORMAL);
+
 
   g_signal_connect (G_OBJECT (priv->store),
                     "row-inserted",
@@ -616,8 +625,21 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
                     G_CALLBACK (cheese_thumb_view_row_deleted_cb),
                     thumb_view);
 
-  priv->fileutil = cheese_fileutil_new ();
+  g_signal_connect (G_OBJECT (thumb_view), "drag-data-get",
+                    G_CALLBACK (cheese_thumb_view_on_drag_data_get_cb), NULL);
+                    
+  /* We do the rest of the initialization in our constructed() implementation,
+   * because GtkIconView may not be ready for us to do more now.
+   * See https://bugzilla.gnome.org/show_bug.cgi?id=643286#c6
+   */
+}
 
+static void
+cheese_thumb_view_constructed (GObject *object)
+{
+  CheeseThumbView *thumb_view = CHEESE_THUMB_VIEW (object);
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  
   gtk_icon_view_set_model (GTK_ICON_VIEW (thumb_view), GTK_TREE_MODEL (priv->store));
 
   gtk_widget_set_size_request (GTK_WIDGET (thumb_view),
@@ -628,8 +650,6 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
   gtk_icon_view_set_row_spacing (GTK_ICON_VIEW (thumb_view), 0);
   gtk_icon_view_set_column_spacing (GTK_ICON_VIEW (thumb_view), 0);
 
-  priv->factory = gnome_desktop_thumbnail_factory_new (GNOME_DESKTOP_THUMBNAIL_SIZE_NORMAL);
-
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
 
   gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), G_MAXINT);
@@ -638,12 +658,10 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
                                           target_table, G_N_ELEMENTS (target_table),
                                           GDK_ACTION_COPY);
   gtk_icon_view_set_selection_mode (GTK_ICON_VIEW (thumb_view), GTK_SELECTION_MULTIPLE);
-  g_signal_connect (G_OBJECT (thumb_view), "drag-data-get",
-                    G_CALLBACK (cheese_thumb_view_on_drag_data_get_cb), NULL);
 
   gtk_tree_sortable_set_sort_column_id (GTK_TREE_SORTABLE (priv->store),
                                         THUMBNAIL_BASENAME_URL_COLUMN, GTK_SORT_ASCENDING);
-
+                                        
   cheese_thumb_view_fill (thumb_view);
 }
 
