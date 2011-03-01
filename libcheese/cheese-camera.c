@@ -141,6 +141,7 @@ cheese_camera_photo_data (CheeseCamera *camera, GstBuffer *buffer)
   GdkPixbuf          *pixbuf;
   const int           bits_per_pixel = 8;
   guchar             *data = NULL;
+  CheeseCameraPrivate *priv  = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   caps = gst_buffer_get_caps (buffer);
   structure = gst_caps_get_structure (caps, 0);
@@ -155,6 +156,7 @@ cheese_camera_photo_data (CheeseCamera *camera, GstBuffer *buffer)
                                      FALSE, bits_per_pixel, width, height, stride,
                                      data ? (GdkPixbufDestroyNotify) g_free : NULL, NULL);
 
+  g_object_set (G_OBJECT (priv->camerabin), "preview-caps", NULL, NULL);
   g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0, pixbuf);
   g_object_unref (pixbuf);
 }
