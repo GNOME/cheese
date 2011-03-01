@@ -9,14 +9,17 @@
 # Aron Xu <aronxu@gnome.org>, 2010.
 # lainme <lainme993@gmail.com>, 2010
 # 指冷玉笙寒 (dhyang) <dhyang555@gmail.com>, 2010
+# ben <benbenhappy2008@gmail.com>, 2011.
+# YunQiang Su <wzssyqa@gmail.com>, 2011.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2010-12-23 05:08+0000\n"
-"PO-Revision-Date: 2010-12-25 20:40+0800\n"
-"Last-Translator: Aron Xu <happyaron.xu@gmail.com>\n"
+"POT-Creation-Date: 2011-02-28 23:28+0000\n"
+"PO-Revision-Date: 2011-03-01 12:15+0000\n"
+"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +71,8 @@ msgstr ""
 "arccos (L.Q) <boyermoore@gmail.com>, 2009\n"
 "Tao Wei <weitao1979@gmail.com>, 2009\n"
 "Aron Xu <aronxu@gnome.org>, 2010\n"
-"指冷玉笙寒 (dhyang) <dhyang555@gmail.com>, 2010"
+"指冷玉笙寒 (dhyang) <dhyang555@gmail.com>, 2010\n"
+"ben <benbenhappy2008@gmail.com>, 2011"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Burst"
@@ -111,7 +115,7 @@ msgid "Take _Multiple Photos"
 msgstr "拍摄多张照片(_M)"
 
 #: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:238
+#: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "拍照"
 
@@ -184,8 +188,8 @@ msgid "Leave fullscreen"
 msgstr "退出全屏"
 
 #: ../data/cheese-main-window.ui.h:3
-msgid "Next effect"
-msgstr "下一个效果"
+msgid "Next"
+msgstr "向后"
 
 #: ../data/cheese-main-window.ui.h:4
 msgid "Photo burst mode"
@@ -196,8 +200,8 @@ msgid "Photo mode"
 msgstr "单拍模式"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous effect"
-msgstr "上一个效果"
+msgid "Previous"
+msgstr "向前"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Video mode"
@@ -248,22 +252,26 @@ msgid "Number of photos"
 msgstr "照片编号"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "Preferences"
-msgstr "首选项"
+msgid "Photo resolution"
+msgstr "照片分辨率"
 
 #: ../data/cheese-prefs.ui.h:12
-msgid "Resolution"
-msgstr "分辨率"
+msgid "Preferences"
+msgstr "首选项"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "饱和度"
 
 #: ../data/cheese-prefs.ui.h:14
+msgid "Video resolution"
+msgstr "视频分辨率"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "摄像头"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "_Countdown"
 msgstr "倒计时(_C)"
 
@@ -271,15 +279,15 @@ msgstr "倒计时(_C)"
 msgid "Cheese Webcam Booth"
 msgstr "茄子大头贴"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:626
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:671
 msgid "Shutter sound"
 msgstr "快门声"
 
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:229
 msgid "_Take a photo"
 msgstr "拍照(_T)"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:242
 msgid "_Discard photo"
 msgstr "丢弃照片(_D)"
 
@@ -300,26 +308,14 @@ msgstr "未知设备"
 msgid "Cancellable initialization not supported"
 msgstr "不支持可中断初始化"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1202
 #, c-format
 msgid "No device found"
 msgstr "未发现设备"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1221
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 GStreamer 元素："
-
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%d "
 
 #: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
@@ -354,14 +350,20 @@ msgstr "- 使用摄像头拍摄照片和视频"
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "运行“%s --help”来查看可用命令行选项的完整列表。\n"
 
-#: ../src/cheese-window.vala:717
+#: ../src/cheese-window.vala:762
 msgid "Stop _Recording"
 msgstr "停止录像(_R)"
 
-#: ../src/cheese-window.vala:739
+#: ../src/cheese-window.vala:786
 msgid "Stop _Taking Pictures"
 msgstr "停止拍照(_T)"
 
-#: ../src/cheese-window.vala:869
+#: ../src/cheese-window.vala:918
 msgid "No effects found"
 msgstr "未发现效果"
+
+#~ msgid "Next effect"
+#~ msgstr "下一个效果"
+
+#~ msgid "%d "
+#~ msgstr "%d "
