@@ -79,6 +79,7 @@ expand_content_files=
 # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
 AM_CPPFLAGS=-I$(top_srcdir) -I$(top_builddir) $(CHEESE_CFLAGS)
 GTKDOC_LIBS=\
+	$(CHEESE_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la
 
