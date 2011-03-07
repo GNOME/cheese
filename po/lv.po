@@ -6,24 +6,25 @@
 # Raivis Dejus <orvils@gmail.com>, 2009.
 # Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2009, 2010.
 # Peteris Krisjanis <pecisk@gmail.com>, 2010.
+# Rudolfs <rudolfs.mazurs@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2010-02-21 21:37+0000\n"
-"PO-Revision-Date: 2010-03-11 23:13+0200\n"
-"Last-Translator: Peteris Krisjanis <pecisk@gmail.com>\n"
-"Language-Team: Latviešu <lata-l10n@googlegroups.com>\n"
+"POT-Creation-Date: 2010-08-13 15:31+0000\n"
+"PO-Revision-Date: 2011-03-07 14:13+0200\n"
+"Last-Translator: Rudolfs <rudolfs.mazurs@gmail.com>\n"
+"Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2009-01-04 12:24+0000\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.1\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:113
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese.c:118
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -50,27 +51,22 @@ msgstr ""
 "\"warp\""
 
 #: ../data/cheese.schemas.in.h:4
-#| msgid "Adjusts brightness level of the picture coming from the webcam"
 msgid "Adjusts brightness level of the picture coming from the camera"
 msgstr "Noregulē gaišuma līmeni bildei, kura nāk no tīmekļa kameras"
 
 #: ../data/cheese.schemas.in.h:5
-#| msgid "Adjusts contrast level of the picture coming from the webcam"
 msgid "Adjusts contrast level of the picture coming from the camera"
 msgstr "Noregulē kontrasta līmeni bildei, kura nāk no tīmekļa kameras"
 
 #: ../data/cheese.schemas.in.h:6
-#| msgid "Adjusts hue level of the picture coming from the webcam"
 msgid "Adjusts hue level of the picture coming from the camera"
 msgstr "Noregulē nokrāsas līmeni bildei, kura nāk no tīmekļa kameras"
 
 #: ../data/cheese.schemas.in.h:7
-#| msgid "Adjusts saturation level of the picture coming from the webcam"
 msgid "Adjusts saturation level of the picture coming from the camera"
 msgstr "Noregulē piesātinājuma līmeni bildei, kura nāk no tīmekļa kameras"
 
 #: ../data/cheese.schemas.in.h:8
-#| msgid "Webcam device string indicator"
 msgid "Camera device string indicator"
 msgstr "Kameras ierīces virknes indikators"
 
@@ -95,9 +91,6 @@ msgid "Height resolution"
 msgstr "Augsta izšķirtspēja"
 
 #: ../data/cheese.schemas.in.h:12
-#| msgid ""
-#| "If set to true, Cheese will startup in a wide mode with the image "
-#| "collection placed on the right side. Useful with small screens."
 msgid ""
 "If set to true, Cheese will start up in a wide mode with the image "
 "collection placed on the right-hand side. Useful with small screens."
@@ -151,45 +144,53 @@ msgid "Set to True to show countdown when taking a photo"
 msgstr "Vai uzņemot foto jāizmanto laika skaitīšana atpakaļ"
 
 #: ../data/cheese.schemas.in.h:23
-#| msgid "The device which points to the webcam (e.g. /dev/video0)"
+#| msgid "Set to True to show countdown when taking a photo"
+msgid "Set to True to use flash when taking a photo"
+msgstr "Vai uzņemot foto jāizmanto zibspuldze"
+
+#: ../data/cheese.schemas.in.h:24
 msgid "The device which points to the camera (e.g. /dev/video0)"
 msgstr "Ierīce, kas norāda uz kameru (piem., /dev/video0)"
 
-#: ../data/cheese.schemas.in.h:24
+#: ../data/cheese.schemas.in.h:25
 msgid "The height resolution of the image captured from the camera"
 msgstr "Augstuma izšķirtspēja no kameras iegūtajiem attēliem"
 
-#: ../data/cheese.schemas.in.h:25
+#: ../data/cheese.schemas.in.h:26
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos."
 msgstr "Laiks milisekundēs, kuru ieturēt starp bilžu uzņemšanu šalts režīmā."
 
-#: ../data/cheese.schemas.in.h:26
+#: ../data/cheese.schemas.in.h:27
 msgid "The number of photos to take in a single burst."
 msgstr "Bilžu skaits, kuru uzņemt vienā šaltī."
 
-#: ../data/cheese.schemas.in.h:27
+#: ../data/cheese.schemas.in.h:28
 msgid "The width resolution of the image captured from the camera"
 msgstr "Platuma izšķirtspēja no kameras iegūtajiem attēliem"
 
-#: ../data/cheese.schemas.in.h:28
+#: ../data/cheese.schemas.in.h:29
 msgid "Use a countdown"
 msgstr "Izmantot laika atskaitīšanu atpakaļ"
 
-#: ../data/cheese.schemas.in.h:29
+#: ../data/cheese.schemas.in.h:30
+msgid "Use a flash"
+msgstr "Izmantot zibspuldzi"
+
+#: ../data/cheese.schemas.in.h:31
 msgid "Video Path"
 msgstr "Video ceļš"
 
-#: ../data/cheese.schemas.in.h:30
+#: ../data/cheese.schemas.in.h:32
 msgid "Whether to enable immediate deletion"
 msgstr "Vai aktivizēt tūlītēju dzēšanu"
 
-#: ../data/cheese.schemas.in.h:31
+#: ../data/cheese.schemas.in.h:33
 msgid "Whether to start in wide mode"
 msgstr "Vai sākt platajā režīmā"
 
-#: ../data/cheese.schemas.in.h:32
+#: ../data/cheese.schemas.in.h:34
 msgid "Width resolution"
 msgstr "Platuma izšķirtspēja"
 
@@ -209,7 +210,7 @@ msgstr "Pārslēgties uz video režīmu"
 msgid "Switch to the Effects Selector"
 msgstr "Pārslēgties uz efektu galeriju"
 
-#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:57 ../src/cheese-window.c:869
+#: ../data/cheese.ui.h:5 ../src/cheese-ui.h:61 ../src/cheese-window.c:884
 msgid "_Effects"
 msgstr "_Efekti"
 
@@ -217,7 +218,7 @@ msgstr "_Efekti"
 msgid "_Leave Fullscreen"
 msgstr "Pamest pi_lnekrāna režīmu"
 
-#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:68 ../src/cheese-window.c:59
+#: ../data/cheese.ui.h:7 ../src/cheese-ui.h:72 ../src/cheese-window.c:59
 msgid "_Take a Photo"
 msgstr "_Uzņemt foto"
 
@@ -234,7 +235,6 @@ msgid "Contrast"
 msgstr "Kontrasts"
 
 #: ../data/cheese-prefs.ui.h:4
-#| msgid "Delay between photos (secs.)"
 msgid "Delay between photos (seconds)"
 msgstr "Aizture starp bildēm (sekundēs)"
 
@@ -270,12 +270,11 @@ msgstr "Piesātinājums"
 msgid "Webcam"
 msgstr "Tīmekļa kamera"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:632
+#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.c:640
 msgid "Shutter sound"
 msgstr "Slēdža skaņa"
 
 #: ../libcheese/cheese-avatar-chooser.c:236
-#| msgid "_Take a photo"
 msgid "Take a photo"
 msgstr "Uzņemt foto"
 
@@ -287,25 +286,24 @@ msgstr "_Uzņemt foto"
 msgid "_Discard photo"
 msgstr "_Izmest foto"
 
-#: ../libcheese/cheese-camera-device.c:327
+#: ../libcheese/cheese-camera-device.c:328
 msgid "Device capabilities not supported"
 msgstr "Ierīces funkcijas nav atbalstītas"
 
-#: ../libcheese/cheese-camera-device.c:488
+#: ../libcheese/cheese-camera-device.c:510
 msgid "Unknown device"
 msgstr "Nezināma ierīce"
 
-#: ../libcheese/cheese-camera-device.c:512
+#: ../libcheese/cheese-camera-device.c:534
 msgid "Cancellable initialization not supported"
 msgstr "Atsaucama inicializācija nav atbalstīta"
 
-#: ../libcheese/cheese-camera.c:1134, c-format
-#| msgid "No camera found!"
+#: ../libcheese/cheese-camera.c:1137
+#, c-format
 msgid "No device found"
 msgstr "Ierīce nav atrasta!"
 
-#: ../libcheese/cheese-camera.c:1153
-#| msgid "One or more needed gstreamer elements are missing: "
+#: ../libcheese/cheese-camera.c:1156
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Trūkst viens vai vairāki Gstreamer elementi: "
 
@@ -315,8 +313,8 @@ msgstr "Trūkst viens vai vairāki Gstreamer elementi: "
 #. * To enable to show the numbers in your own language, use %Id instead.
 #. * Please leave the additional whitespace after the number
 #.
-#: ../libcheese/cheese-countdown.c:436 ../libcheese/cheese-countdown.c:455
-#: ../libcheese/cheese-countdown.c:474
+#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
+#: ../libcheese/cheese-countdown.c:479
 #, c-format
 msgid "%d "
 msgstr "%d "
@@ -410,7 +408,7 @@ msgstr "Vai tiešām pārvietot visus foto un video uz miskasti?"
 msgid "_Move to Trash"
 msgstr "Pārvietot uz _miskasti"
 
-#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:654
+#: ../src/cheese-commands-help.c:39 ../src/cheese-window.c:662
 msgid "Unable to open help file for Cheese"
 msgstr "Nevar atvērt Cheese palīdzību"
 
@@ -503,7 +501,7 @@ msgstr "Izplūdis"
 msgid "No camera found!"
 msgstr "Kamera nav atrasta!"
 
-#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1219
+#: ../src/cheese-no-camera.c:95 ../src/cheese-window.c:1258
 msgid "Please refer to the help for further information."
 msgstr "Lūdzu izmantojiet dokumentāciju, lai iegūtu papildus informāciju."
 
@@ -543,36 +541,39 @@ msgstr "Ša_lts"
 msgid "Countdown"
 msgstr "Laika atskaite"
 
-#: ../src/cheese-ui.h:64
+#: ../src/cheese-ui.h:57
+msgid "Flash"
+msgstr "Zibspuldze"
+
+#: ../src/cheese-ui.h:68
 msgid "_Wide mode"
 msgstr "_Platais režīms"
 
-#: ../src/cheese-ui.h:71
+#: ../src/cheese-ui.h:75
 msgid "_Recording"
 msgstr "Ie_raksts"
 
-#: ../src/cheese-ui.h:74 ../src/cheese-window.c:62
+#: ../src/cheese-ui.h:78 ../src/cheese-window.c:62
 msgid "_Take multiple Photos"
 msgstr "_Uzņemt vairākus foto"
 
-#: ../src/cheese-ui.h:78
+#: ../src/cheese-ui.h:82
 msgid "_Open"
 msgstr "_Atvērt"
 
-#: ../src/cheese-ui.h:80
-#| msgid "Save _As..."
+#: ../src/cheese-ui.h:84
 msgid "Save _As…"
 msgstr "S_aglabāt kā..."
 
-#: ../src/cheese-ui.h:82
+#: ../src/cheese-ui.h:86
 msgid "Move to _Trash"
 msgstr "Pārvie_tot uz miskasti"
 
-#: ../src/cheese-ui.h:84
+#: ../src/cheese-ui.h:88
 msgid "Delete"
 msgstr "Dzēst"
 
-#: ../src/cheese-ui.h:89
+#: ../src/cheese-ui.h:93
 msgid "Move All to Trash"
 msgstr "Pārvietot visu uz miskasti"
 
@@ -584,19 +585,19 @@ msgstr "_Sākt ierakstu"
 msgid "_Stop Recording"
 msgstr "Pārtraukt ierak_stu"
 
-#: ../src/cheese.c:96
+#: ../src/cheese.c:97
 msgid "Be verbose"
 msgstr "Būt detalizētam"
 
-#: ../src/cheese.c:98
+#: ../src/cheese.c:99
 msgid "Enable wide mode"
 msgstr "Ieslēgt plato režīmu"
 
-#: ../src/cheese.c:100
+#: ../src/cheese.c:101
 msgid "output version information and exit"
 msgstr "izdrukāt versijas informāciju un iziet"
 
-#: ../src/cheese.c:115
+#: ../src/cheese.c:120
 msgid "- Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "- Uzņemiet fotogrāfijas un video ar savu tīmekļa kameru ar jautriem efektiem"
