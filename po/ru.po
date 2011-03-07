@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese gnome-2-22\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-06 18:46+0000\n"
-"PO-Revision-Date: 2011-01-21 23:38+0300\n"
-"Last-Translator: Yuri Myasoedov <omerta13@yandex.ru>\n"
+"POT-Creation-Date: 2011-03-07 09:40+0000\n"
+"PO-Revision-Date: 2011-03-07 23:22+0400\n"
+"Last-Translator: Yuri Myaseodov <omerta13@yandex.ru>\n"
 "Language-Team: Russian <gnome-cyr@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: ../data/cheese-about.ui.h:1
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -56,17 +56,14 @@ msgstr ""
 "Денис Кафтаев <dkaftaev@gmail.com>, 2010"
 
 #: ../data/cheese-actions.ui.h:1
-#| msgid "_Burst"
 msgid "Burst"
 msgstr "Серия"
 
 #: ../data/cheese-actions.ui.h:2
-#| msgid "_Leave Fullscreen"
 msgid "Fullscreen"
 msgstr "Во весь экран"
 
 #: ../data/cheese-actions.ui.h:3
-#| msgid "_Contents"
 msgid "Help _Contents"
 msgstr "_Содержание справки"
 
@@ -79,12 +76,10 @@ msgid "Move to _Trash"
 msgstr "_Удалить в корзину"
 
 #: ../data/cheese-actions.ui.h:6
-#| msgid "No Effect"
 msgid "Next Effects"
 msgstr "Следующие эффекты"
 
 #: ../data/cheese-actions.ui.h:7
-#| msgid "No Effect"
 msgid "Previous Effects"
 msgstr "Предыдущие эффекты"
 
@@ -93,28 +88,24 @@ msgid "Record a video"
 msgstr "Записать видео"
 
 #: ../data/cheese-actions.ui.h:9
-#| msgid "Save _As…"
 msgid "Save _As"
 msgstr "Сохранить _как"
 
 #: ../data/cheese-actions.ui.h:10
-#| msgid "_Take multiple Photos"
 msgid "Take _Multiple Photos"
 msgstr "_Сделать несколько снимков"
 
 #: ../data/cheese-actions.ui.h:11
 #: ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:238
+#: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "_Сфотографировать"
 
 #: ../data/cheese-actions.ui.h:12
-#| msgid "_Take multiple Photos"
 msgid "Take multiple photos"
 msgstr "Сделать несколько снимков"
 
 #: ../data/cheese-actions.ui.h:13
-#| msgid "About"
 msgid "_About"
 msgstr "_О программе"
 
@@ -123,7 +114,6 @@ msgid "_Cheese"
 msgstr "Съё_мка"
 
 #: ../data/cheese-actions.ui.h:15
-#| msgid "Delete"
 msgid "_Delete"
 msgstr "_Удалить"
 
@@ -149,17 +139,14 @@ msgid "_Photo"
 msgstr "_Фото"
 
 #: ../data/cheese-actions.ui.h:21
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Параметры"
 
 #: ../data/cheese-actions.ui.h:22
-#| msgid "Quit"
 msgid "_Quit"
 msgstr "_Выход"
 
 #: ../data/cheese-actions.ui.h:23
-#| msgid "_Recording"
 msgid "_Record a Video"
 msgstr "_Запись видео"
 
@@ -173,17 +160,14 @@ msgid "_Video"
 msgstr "_Видео"
 
 #: ../data/cheese-actions.ui.h:26
-#| msgid "_Wide mode"
 msgid "_Wide Mode"
 msgstr "_Широкоэкранный режим"
 
 #: ../data/cheese-main-window.ui.h:1
-#| msgid "_Effects"
 msgid "Effects"
 msgstr "Эффекты"
 
 #: ../data/cheese-main-window.ui.h:2
-#| msgid "_Leave Fullscreen"
 msgid "Leave fullscreen"
 msgstr "Выйти из полноэкранного режима"
 
@@ -192,12 +176,10 @@ msgid "Next"
 msgstr "Следующий"
 
 #: ../data/cheese-main-window.ui.h:4
-#| msgid "Burst mode"
 msgid "Photo burst mode"
 msgstr "Режим серийной фотосъёмки"
 
 #: ../data/cheese-main-window.ui.h:5
-#| msgid "_Photo"
 msgid "Photo mode"
 msgstr "Режим фотосъёмки"
 
@@ -206,7 +188,6 @@ msgid "Previous"
 msgstr "Предыдущий"
 
 #: ../data/cheese-main-window.ui.h:8
-#| msgid "_Wide mode"
 msgid "Video mode"
 msgstr "Режим видеосъёмки"
 
@@ -215,7 +196,6 @@ msgid "_Leave Fullscreen"
 msgstr "Выйти из _полноэкранного режима"
 
 #: ../data/cheese-prefs.ui.h:1
-#| msgid "<b>Camera</b>"
 msgid "<b>Shutter</b>"
 msgstr "<b>Затвор</b>"
 
@@ -240,7 +220,6 @@ msgid "Device"
 msgstr "Устройство"
 
 #: ../data/cheese-prefs.ui.h:7
-#| msgid "Flash"
 msgid "Fire _Flash"
 msgstr "_Вспышка"
 
@@ -257,7 +236,6 @@ msgid "Number of photos"
 msgstr "Количество фотографий"
 
 #: ../data/cheese-prefs.ui.h:11
-#| msgid "Height resolution"
 msgid "Photo resolution"
 msgstr "Разрешение фотоснимков"
 
@@ -270,7 +248,6 @@ msgid "Saturation"
 msgstr "Насыщенность"
 
 #: ../data/cheese-prefs.ui.h:14
-#| msgid "Width resolution"
 msgid "Video resolution"
 msgstr "Разрешение видео"
 
@@ -279,7 +256,6 @@ msgid "Webcam"
 msgstr "Веб-камера"
 
 #: ../data/cheese-prefs.ui.h:16
-#| msgid "Countdown"
 msgid "_Countdown"
 msgstr "_Обратный отсчёт"
 
@@ -287,16 +263,16 @@ msgstr "_Обратный отсчёт"
 msgid "Cheese Webcam Booth"
 msgstr "Фотовидеобудка Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110
-#: ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108
+#: ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "Звук затвора"
 
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "_Сделать снимок"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "_Отбросить снимок"
 
@@ -317,76 +293,62 @@ msgstr "Неизвестное устройство"
 msgid "Cancellable initialization not supported"
 msgstr "Отмена инициализации невозможна"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1212
 #, c-format
 msgid "No device found"
 msgstr "Устройства не найдены"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1231
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Один или более компонентов GStreamer отсутствуют:"
-
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441
-#: ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%d "
 
 #: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Без эффектов"
 
-#: ../src/cheese-main.vala:38
-#| msgid "Whether to start in wide mode"
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "запустить в широкоформатном режиме"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "устройство, используемое в качестве камеры"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "УСТРОЙСТВО"
 
-#: ../src/cheese-main.vala:40
-#| msgid "output version information and exit"
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "вывести версию и выйти"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "запустить в полноэкранном режиме"
 
-#: ../src/cheese-main.vala:68
-#| msgid ""
-#| "- Take photos and videos with your webcam, with fun graphical effects"
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
 msgstr "— создание фотоснимков и видео с помощью веб-камеры"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Запустите «%s --help», чтобы вывести список всех доступных параметров командной строки.\n"
 
-#: ../src/cheese-window.vala:762
-#| msgid "_Stop Recording"
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Экземпляр приложения Cheese уже запущен\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "_Остановить запись"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "_Остановить фотосъёмку"
 
-#: ../src/cheese-window.vala:918
-#| msgid "No device found"
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "Эффекты не найдены"
 
