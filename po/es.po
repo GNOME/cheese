@@ -4,17 +4,17 @@
 # This file is distributed under the same license as cheese
 #
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-07 21:09+0000\n"
-"PO-Revision-Date: 2011-01-08 12:22+0100\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"POT-Creation-Date: 2011-03-07 09:40+0000\n"
+"PO-Revision-Date: 2011-03-07 12:41+0100\n"
+"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -112,7 +112,7 @@ msgid "Take _Multiple Photos"
 msgstr "Tomar _múltiples fotos"
 
 #: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:238
+#: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "Tomar una foto"
 
@@ -249,7 +249,6 @@ msgid "Number of photos"
 msgstr "Número de fotos"
 
 #: ../data/cheese-prefs.ui.h:11
-#| msgid "Height resolution"
 msgid "Photo resolution"
 msgstr "Resolución de la foto"
 
@@ -262,7 +261,6 @@ msgid "Saturation"
 msgstr "Saturación"
 
 #: ../data/cheese-prefs.ui.h:14
-#| msgid "Width resolution"
 msgid "Video resolution"
 msgstr "Resolución del vídeo"
 
@@ -278,15 +276,15 @@ msgstr "_Cuenta atrás"
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "Sonido del obturador"
 
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "_Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "_Descartar foto"
 
@@ -307,73 +305,69 @@ msgstr "Dispositivo desconocido"
 msgid "Cancellable initialization not supported"
 msgstr "No se soporta la inicialización cancelable"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1212
 #, c-format
 msgid "No device found"
 msgstr "No se encontró ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1231
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
-
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%Id "
 
 #: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Sin efectos"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "Iniciar en modo ancho"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "Dispositivo que usar como cámara"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "DISPOSITIVO"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Mostrar información de la versión y salir"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "Iniciar en modo a pantalla completa"
 
-#: ../src/cheese-main.vala:68
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
 msgstr ": Tomar fotografías y vídeos con su cámara web"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Ejecutar «%s --help» para ver una lista completa de opciones de línea de "
 "comandos disponibles.\n"
 
-#: ../src/cheese-window.vala:762
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Ya se está ejecutando otra instancia del Cheese\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "_Detener grabación"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "Dejar de _tomar imágenes"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "No se encontró ningún efecto"
+
+#~ msgid "%d "
+#~ msgstr "%Id "
 
 #~ msgid "Resolution"
 #~ msgstr "Resolución"
