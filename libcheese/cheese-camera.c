@@ -218,14 +218,14 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       GError *err = NULL;
       gchar *debug = NULL;
       gst_message_parse_warning (message, &err, &debug);
-      
+
       if (err && err->message) {
         g_warning ("%s\n", err->message);
         g_error_free (err);
       } else {
         g_warning ("Unparsable GST_MESSAGE_WARNING message.\n");
       }
-      
+
       g_free (debug);
       break;
     }
@@ -234,7 +234,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       GError *err = NULL;
       gchar *debug = NULL;
       gst_message_parse_error (message, &err, &debug);
-      
+
       if (err && err->message) {
         g_warning ("%s\n", err->message);
         g_error_free (err);
