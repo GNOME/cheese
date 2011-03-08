@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-09 12:29+0100\n"
-"PO-Revision-Date: 2011-01-09 12:30+0100\n"
+"POT-Creation-Date: 2011-03-08 00:23+0100\n"
+"PO-Revision-Date: 2011-03-08 08:25+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../data/cheese-about.ui.h:1
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -96,7 +96,7 @@ msgstr "Ta _flera foton"
 
 #: ../data/cheese-actions.ui.h:11
 #: ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:238
+#: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "Ta ett foto"
 
@@ -262,16 +262,16 @@ msgstr "Ne_dräkning"
 msgid "Cheese Webcam Booth"
 msgstr "Webbkamerabåset Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110
-#: ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108
+#: ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "Slutarljud"
 
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "_Ta ett foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "_Förkasta foto"
 
@@ -292,73 +292,67 @@ msgstr "Okänd enhet"
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytningsbar initiering stöds inte"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1212
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet hittades"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1231
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
-
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441
-#: ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%d "
 
 #: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Ingen effekt"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "Starta i bredläge"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "Enhet att använda som en kamera"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "ENHET"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Skriv ut versionsinformation och avsluta"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "Starta i helskärmsläge"
 
-#: ../src/cheese-main.vala:68
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta foton och videor från din webbkamera"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Kör \"%s --help\" för en komplett lista över tillgängliga kommandoradsflaggor.\n"
 
-#: ../src/cheese-window.vala:762
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "En annan instans av Cheese är för närvarande igång\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "S_toppa inspelning"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "Sluta _ta bilder"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "Inga effekter hittades"
 
+#~ msgid "%d "
+#~ msgstr "%d "
 #~ msgid "Next effect"
 #~ msgstr "Nästa effekt"
 #~ msgid "Resolution"
