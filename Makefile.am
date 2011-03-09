@@ -5,13 +5,12 @@ SUBDIRS = libcheese src tests po data help docs
 EXTRA_DIST =			\
 	$(cheesedoc_DATA)	\
 	gnome-doc-utils.make\
-	ChangeLog.pre-git \
-	m4/introspection.m4
+	ChangeLog.pre-git
 
 DISTCLEANFILES =		\
 	gnome-doc-utils.make
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper --enable-gtk-doc --enable-introspection
+DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper --enable-gtk-doc
 
 CHANGELOG_START = 2.26.0
 
