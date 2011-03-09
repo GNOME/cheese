@@ -22,7 +22,8 @@ fi
 PACKAGE_MODULE=$(echo $PACKAGE_NAME | tr "[:upper:]" "[:lower:]")
 PACKAGE_SCREENSHOTS="${PACKAGE_WEBSITE}tour"
 PACKAGE_VERSION=$(cat $PACKAGE_NEWS_FILE | grep -m1 version | awk '{ print $2 }')
-PACKAGE_VERSION=$(cat configure.ac | grep AC_INIT | awk '{print $2}' | sed "s/)//")
+#PACKAGE_VERSION=$(cat configure.ac | grep AC_INIT | awk '{print $2}' | sed "s/)//")
+PACKAGE_VERSION=$(cat configure.ac | grep -A 1 AC_INIT | grep -o "[0-9]\.[0-9]\{1,2\}\.[0-9]\{1,2\}")
 SUBJECT="ANNOUNCE: $PACKAGE_NAME $PACKAGE_VERSION released"
 
 ###############################################
