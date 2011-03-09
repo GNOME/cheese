@@ -87,27 +87,27 @@ introspection_sources = $(libcheese_la_SOURCES) \
 	cheese-enum-types.h
 
 if HAVE_INTROSPECTION
-INTROSPECTION_GIRS = Cheese-1.0.gir
+INTROSPECTION_GIRS = Cheese-3.0.gir
 
-Cheese-1.0.gir: libcheese.la
-Cheese_1_0_gir_INCLUDES = GObject-2.0 \
+Cheese-3.0.gir: libcheese.la
+Cheese_3_0_gir_INCLUDES = GObject-2.0 \
 	GLib-2.0 \
 	Gst-0.10 \
 	GstBase-0.10 \
 	cairo-1.0 \
 	Clutter-1.0 \
 	GdkPixbuf-2.0
-Cheese_1_0_gir_CFLAGS = -I$(srcdir) $(INCLUDES) \
+Cheese_3_0_gir_CFLAGS = -I$(srcdir) $(INCLUDES) \
 	$(CHEESE_CFLAGS)
-Cheese_1_0_gir_LIBS = libcheese.la
-Cheese_1_0_gir_FILES = $(introspection_sources)
-Cheese_1_0_gir_SCANNERFLAGS = --verbose --warn-all --pkg-export cheese-1.0
+Cheese_3_0_gir_LIBS = libcheese.la
+Cheese_3_0_gir_FILES = $(introspection_sources)
+Cheese_3_0_gir_SCANNERFLAGS = --verbose --warn-all --pkg-export cheese-3.0
 
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
 
 typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = Cheese-1.0.typelib
+typelib_DATA = Cheese-3.0.typelib
 
 CLEANFILES += $(gir_DATA) $(typelib_DATA)
 endif
