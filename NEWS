@@ -1,6 +1,79 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.91.91
+  - use camerabin for taking photos and videos
+  - Migrated from libunique to GtkApplication
+  - Ported to GTK+ 3.x
+  - build: Update autotools configuration
+  - cheese-camera: Unsetting preview-caps after photo
+    After taking a photo to pixbuf, we set preview-caps to NULL so regular
+    photo doesn't send the preview message.
+  - cheese-camera: Fixing take_photo_pixbuf
+    Method cheese_camera_take_photo_pixbuf was not working. Now it is
+    implemented using camerabin's features. We set preview-caps in camerabin
+    and get the buffer for the photo via message on the bus.
+    Signals are now only emitted if the capture was successful.
+  - cheese-camera: Set video recording options
+    Set encoding and multiplexing options.
+  - svg overlay effects can now be added
+  - cheese-camera: Set filter-caps property
+    Set filter-caps property to avoid camerabin default of video/x-raw-yuv
+    format=(fourcc)I420.
+  - cheese-camera: Enabling source color conversion
+    Setting the flag to enable color conversion on video source. Flags names
+    were also redefined to allow code readability.
+  - cheese-camera: Setting resolution in camerabin
+    Cheese was using a capsfilter after video source to configure the
+    desired resolution for pictures and video. We now use the camerabin
+    signal set-video-resolution-fps to set desired resolution.
+  - cheese-camera: Removing height and width defaults
+    Camerabin has video-capture defaults that can cause not-negotiated
+    errors or set resolution to values that are not the requested by the
+    user. Setting them to zero we allow the resolution to be negotiated.
+  - cheese-camera: Creating a separate effects_preview_bin
+    Create a effects_preview_bin that will hold all elements related to
+    effects live preview. This bin is added to video_filter_bin, the same
+    bin that contained those elements directly before.
+  - cheese-camera: Use camerabin as pipeline base
+    Changed Cheese-Camera to use camerabin as its base. Camerabin implements
+    view-finder, image capture and video recording.
+  - Add gobject introspection support to build system
+  - configure.ac: Changing required versions
+    Cheese works with older version of clutter, gtk, gdk and
+    libgnomedesktop.
+  - cheese-window: Fix vala syntax problem
+    Cheese wasn't compiled by latest java because of this array
+    construction. Changing it to a proper array we avoid the compiling
+    problem. Fixes bug #639276.
+  - Added/Updated Translations
+    - af, courtesy of F Wolff
+    - ar, courtesy of Khaled Hosny
+    - ast, courtesy of ivarela
+    - bn_IN, courtesy of "Last-Translator: \n"
+    - ca, courtesy of Gil Forcada
+    - en_GB, courtesy of Bruce Cowan
+    - es, courtesy of Daniel Mustieles
+    - fr, courtesy of Nicolas Repentin
+    - hu, courtesy of Gabor Kelemen
+    - ko, courtesy of Changwoo Ryu
+    - lv, courtesy of Rudolfs
+    - nb, courtesy of Kjartan Maraas
+    - or, courtesy of Manoj Kumar Giri
+    - pa, courtesy of A S Alam
+    - pl, courtesy of Piotr Drąg
+    - pt, courtesy of Duarte Loreto
+    - ru, courtesy of Yuri Myaseodov
+    - sl, courtesy of Matej Urbančič
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+    - sv, courtesy of Daniel Nylander
+    - ug, courtesy of Sahran
+    - uk, courtesy of Korostil Daniel
+    - zh_CN, courtesy of YunQiang Su
+  - Added/Updated Documentation
+    - es, courtesy of Jorge González
+
 version 2.91.4
   - bump LT_VERSION numbers for libcheese and libcheese-gtk
   - Splitting dependencies of libcheese and libcheese-gtk
