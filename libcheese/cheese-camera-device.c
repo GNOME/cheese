@@ -568,6 +568,13 @@ cheese_camera_device_new (const gchar *device_id,
 
 /* public methods */
 
+/**
+ * cheese_camera_device_get_format_list:
+ * @device: a #CheeseCameraDevice
+ *
+ * Returns: (element-type Cheese.VideoFormat) (transfer container): List of #CheeseVideoFormat
+ */
+
 GList *
 cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 {
@@ -576,6 +583,13 @@ cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 
   return g_list_sort (g_list_copy (priv->formats), compare_formats);
 }
+
+/**
+ * cheese_camera_device_get_name:
+ * @device: a #CheeseCameraDevice
+ *
+ * Returns: (transfer none)
+ */
 
 const gchar *
 cheese_camera_device_get_name (CheeseCameraDevice *device)
@@ -586,6 +600,12 @@ cheese_camera_device_get_name (CheeseCameraDevice *device)
   return priv->name;
 }
 
+/** cheese_camera_device_get_id:
+ * @device: a #CheeseCameraDevice
+ *
+ * Returns: (transfer none)
+ */
+
 const gchar *
 cheese_camera_device_get_id (CheeseCameraDevice *device)
 {
@@ -594,6 +614,12 @@ cheese_camera_device_get_id (CheeseCameraDevice *device)
 
   return priv->id;
 }
+
+/** cheese_camera_device_get_src:
+ * @device: a #CheeseCameraDevice
+ *
+ * Returns: (transfer none)
+ */
 
 const gchar *
 cheese_camera_device_get_src (CheeseCameraDevice *device)
@@ -604,6 +630,12 @@ cheese_camera_device_get_src (CheeseCameraDevice *device)
   return priv->src;
 }
 
+/** cheese_camera_device_get_device_file:
+ * @device: a #CheeseCameraDevice
+ *
+ * Returns: (transfer none)
+ */
+
 const gchar *
 cheese_camera_device_get_device_file (CheeseCameraDevice *device)
 {
@@ -612,6 +644,12 @@ cheese_camera_device_get_device_file (CheeseCameraDevice *device)
 
   return priv->device;
 }
+
+/** cheese_camera_device_get_device_file:
+ * @device: a #CheeseCameraDevice
+ *
+ * Returns: (transfer full): a #CheeseVideoFormat
+ */
 
 CheeseVideoFormat *
 cheese_camera_device_get_best_format (CheeseCameraDevice *device)
@@ -622,6 +660,12 @@ cheese_camera_device_get_best_format (CheeseCameraDevice *device)
   GST_INFO ("%dx%d", format->width, format->height);
   return format;
 }
+
+/** cheese_camera_device_get_device_file:
+ * @device: a #CheeseCameraDevice
+ *
+ * Returns: (transfer full)
+ */
 
 GstCaps *
 cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
