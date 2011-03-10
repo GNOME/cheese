@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-01-09 18:52+0200\n"
-"PO-Revision-Date: 2011-01-09 18:53+0200\n"
+"POT-Creation-Date: 2011-03-10 18:46+0200\n"
+"PO-Revision-Date: 2011-03-10 18:47+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Hebrew\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "‏Cheese"
 
@@ -109,7 +109,7 @@ msgid "Take _Multiple Photos"
 msgstr "_צילום מספר תמונות"
 
 #: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:238
+#: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "צילום תמונה"
 
@@ -273,15 +273,15 @@ msgstr "_ספירה לאחור"
 msgid "Cheese Webcam Booth"
 msgstr "תא הצילום של Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "צליל הצמצם"
 
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "_צלם תמונה"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "ה_תעלמות מתמונה"
 
@@ -302,72 +302,68 @@ msgstr "התקן בלתי מוכר"
 msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1182
 #, c-format
 msgid "No device found"
 msgstr "לא נמצא התקן"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1232
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "רכיב אחד או יותר של gstreamer חסר: "
-
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%d "
 
 #: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "ללא אפקט"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "הפעלה במצב רחב"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "Device to use as a camera"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "DEVICE"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Output version information and exit"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "הפעלה במסך מלא"
 
-#: ../src/cheese-main.vala:68
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
 msgstr "- Take photos and videos from your webcam"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-window.vala:762
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Another instance of Cheese is currently running\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "ה_פסקת ההקלטה"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "ע_צירת צילום התמונות"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "לא נמצאו אפקטים"
+
+#~ msgid "%d "
+#~ msgstr "%d "
 
 #~ msgid "Next effect"
 #~ msgstr "האפקט הבא"
