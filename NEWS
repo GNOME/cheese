@@ -2,6 +2,15 @@ ChangeLog for Cheese
 --------------------
 
 version 2.91.91
+  - Drop version to 2.91.91.1
+    The tarball release of 2.91.91 was generated with a tarball release of
+    Vala that was affected by bug 642885. This is a point release, that
+    contains a workaround for that bug until a new Vala release (0.11.7) is
+    out.
+
+  - Correct some configure requirements
+
+version 2.91.91
   - use camerabin for taking photos and videos
   - Migrated from libunique to GtkApplication
   - Ported to GTK+ 3.x
