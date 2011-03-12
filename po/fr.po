@@ -1,5 +1,5 @@
 # French translation of Cheese
-# Copyright (C) 2007-2010 Listed translators
+# Copyright (C) 2007-2011 Listed translators
 # This file is distributed under the same license as cheese
 #
 # Pierre Slamich <pierre.slamich@gmail.com>, 2007.
@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: cheese HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-31 21:51+0000\n"
-"PO-Revision-Date: 2010-11-17 18:12+0100\n"
+"POT-Creation-Date: 2011-03-08 07:25+0000\n"
+"PO-Revision-Date: 2011-03-12 20:25+0100\n"
 "Last-Translator: Nicolas Repentin <nicolas@shivaserv.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -283,15 +283,15 @@ msgstr "_Retardateur"
 msgid "Cheese Webcam Booth"
 msgstr "Studio webcam Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "Bruit de l'obturateur"
 
-#: ../libcheese/cheese-avatar-chooser.c:229
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "P_rendre une photo"
 
-#: ../libcheese/cheese-avatar-chooser.c:242
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "_Rejeter la photo"
 
@@ -313,12 +313,12 @@ msgstr "Périphérique inconnu"
 msgid "Cancellable initialization not supported"
 msgstr "Initialisation annulable non prise en charge"
 
-#: ../libcheese/cheese-camera.c:1202
+#: ../libcheese/cheese-camera.c:1212
 #, c-format
 msgid "No device found"
 msgstr "Aucun périphérique détecté"
 
-#: ../libcheese/cheese-camera.c:1221
+#: ../libcheese/cheese-camera.c:1231
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Un ou plusieurs éléments GStreamer sont manquants : "
 
@@ -326,46 +326,50 @@ msgstr "Un ou plusieurs éléments GStreamer sont manquants : "
 msgid "No Effect"
 msgstr "Aucun effet"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "Démarre en mode large"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "Périphérique à utiliser comme caméra"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "PÉRIPHÉRIQUE"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Affiche les informations de version et quitte"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "Démarre en mode plein écran"
 
-#: ../src/cheese-main.vala:68
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
-msgstr ""
-"- Prise de photos et enregistrement de vidéos grâce à votre webcam"
+msgstr "- Prise de photos et enregistrement de vidéos grâce à votre webcam"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
-"Exécutez '%s --help' pour afficher la liste des options disponibles en "
-"ligne de commande.\n"
+"Exécutez '%s --help' pour afficher la liste des options disponibles en ligne "
+"de commande.\n"
 
-#: ../src/cheese-window.vala:762
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Un autre instance de Cheese est déjà lancée\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "_Arrêter l'enregistrement"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "Arrê_ter la prise de photos"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "Aucun effet trouvé"
