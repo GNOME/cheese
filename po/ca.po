@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-01 00:26+0100\n"
-"PO-Revision-Date: 2011-02-28 23:23+0100\n"
+"POT-Creation-Date: 2011-03-13 21:33+0100\n"
+"PO-Revision-Date: 2011-03-13 21:33+0100\n"
 "Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -266,15 +266,15 @@ msgstr "_Temporitzador"
 msgid "Cheese Webcam Booth"
 msgstr "Cabina de fotografia del Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "So del disparador"
 
-#: ../libcheese/cheese-avatar-chooser.c:229
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "Fes una f_oto"
 
-#: ../libcheese/cheese-avatar-chooser.c:242
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "_Descarta la foto"
 
@@ -295,12 +295,12 @@ msgstr "Dispositiu desconegut"
 msgid "Cancellable initialization not supported"
 msgstr "No es pot cancel·lar la inicialització"
 
-#: ../libcheese/cheese-camera.c:1202
+#: ../libcheese/cheese-camera.c:1182
 #, c-format
 msgid "No device found"
 msgstr "No s'ha trobat cap dispositiu"
 
-#: ../libcheese/cheese-camera.c:1221
+#: ../libcheese/cheese-camera.c:1232
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Manquen un o més elements necessaris del GStreamer: "
 
@@ -308,46 +308,51 @@ msgstr "Manquen un o més elements necessaris del GStreamer: "
 msgid "No Effect"
 msgstr "Sense efectes"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "Inicia en el mode ampla"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "Dispositiu per utilitzar com a càmera"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "DISPOSITIU"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Mostra la informació de la versió i surt"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "Inicia en mode a pantalla completa"
 
-#: ../src/cheese-main.vala:68
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
 msgstr "- Fes fotos i vídeos amb la càmera web"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Executeu «%s --help» per veure tota la llista d'opcions de la línia d'ordres "
 "disponibles.\n"
 
-#: ../src/cheese-window.vala:762
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Ja s'està executant un altra instància del Cheese\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "Atura l'e_nregistrament"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "Deixa de _fer fotos"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "No s'ha trobat cap efecte"
 
