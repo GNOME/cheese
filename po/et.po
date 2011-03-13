@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: cheese MASTER\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-07 21:09+0000\n"
+"POT-Creation-Date: 2011-03-08 07:25+0000\n"
 "PO-Revision-Date: 2011-01-08 10:52+0200\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian <gnome-et@linux.ee>\n"
@@ -246,16 +246,6 @@ msgstr "Seadet ei leitud!"
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Üks või enam Gstreameri elementi on puudu: "
 
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#, c-format
-msgid "%d "
-msgstr "%d "
-
 msgid "No Effect"
 msgstr "Efekt puudub"
 
@@ -280,6 +270,10 @@ msgstr "- Veebikaamerast fotode ja videote salvestamine"
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Kõigi käsureavalikute nägemiseks käivita '%s --help'.\n"
+
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Üks Cheese'i instants juba töötab\n"
 
 msgid "Stop _Recording"
 msgstr "Lõpeta _salvestamine"
@@ -389,9 +383,6 @@ msgstr "Efekte ei leitud"
 
 #~ msgid "The number of photos to take in a single burst."
 #~ msgstr "Fotode arv, mitu võetakse ühe sarivõttega."
-
-#~ msgid "Video Path"
-#~ msgstr "Videode rada"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Kas vahetu kustutamine on lubatud või mitte"
