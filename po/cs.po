@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-06 18:46+0000\n"
-"PO-Revision-Date: 2011-01-28 17:19+0100\n"
+"POT-Creation-Date: 2011-03-08 07:25+0000\n"
+"PO-Revision-Date: 2011-03-14 22:46+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr ""
 "X-Generator: Lokalize 1.0\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -74,17 +74,14 @@ msgstr ""
 "Marek Černocký <marek@manet.cz>"
 
 #: ../data/cheese-actions.ui.h:1
-#| msgid "_Burst"
 msgid "Burst"
 msgstr "Série"
 
 #: ../data/cheese-actions.ui.h:2
-#| msgid "_Leave Fullscreen"
 msgid "Fullscreen"
 msgstr "Celá obrazovka"
 
 #: ../data/cheese-actions.ui.h:3
-#| msgid "_Contents"
 msgid "Help _Contents"
 msgstr "O_bsah nápovědy"
 
@@ -97,12 +94,10 @@ msgid "Move to _Trash"
 msgstr "Přesunou_t do koše"
 
 #: ../data/cheese-actions.ui.h:6
-#| msgid "No Effect"
 msgid "Next Effects"
 msgstr "Následující efekt"
 
 #: ../data/cheese-actions.ui.h:7
-#| msgid "No Effect"
 msgid "Previous Effects"
 msgstr "Předchozí efekt"
 
@@ -111,22 +106,19 @@ msgid "Record a video"
 msgstr "Zaznamenat video"
 
 #: ../data/cheese-actions.ui.h:9
-#| msgid "Save _As…"
 msgid "Save _As"
 msgstr "Uložit _jako"
 
 #: ../data/cheese-actions.ui.h:10
-#| msgid "_Take multiple Photos"
 msgid "Take _Multiple Photos"
 msgstr "Pořídit více sní_mků"
 
 #: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:238
+#: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "Pořídit snímek"
 
 #: ../data/cheese-actions.ui.h:12
-#| msgid "_Take multiple Photos"
 msgid "Take multiple photos"
 msgstr "Pořídit více snímků"
 
@@ -139,7 +131,6 @@ msgid "_Cheese"
 msgstr "_Cheese"
 
 #: ../data/cheese-actions.ui.h:15
-#| msgid "Delete"
 msgid "_Delete"
 msgstr "_Smazat"
 
@@ -164,17 +155,14 @@ msgid "_Photo"
 msgstr "_Snímek"
 
 #: ../data/cheese-actions.ui.h:21
-#| msgid "Preferences"
 msgid "_Preferences"
 msgstr "_Předvolby"
 
 #: ../data/cheese-actions.ui.h:22
-#| msgid "_Edit"
 msgid "_Quit"
 msgstr "U_končit"
 
 #: ../data/cheese-actions.ui.h:23
-#| msgid "_Recording"
 msgid "_Record a Video"
 msgstr "_Zaznamenat video"
 
@@ -187,17 +175,14 @@ msgid "_Video"
 msgstr "_Video"
 
 #: ../data/cheese-actions.ui.h:26
-#| msgid "_Wide mode"
 msgid "_Wide Mode"
 msgstr "_Režim na šířku"
 
 #: ../data/cheese-main-window.ui.h:1
-#| msgid "_Effects"
 msgid "Effects"
 msgstr "Efekty"
 
 #: ../data/cheese-main-window.ui.h:2
-#| msgid "_Leave Fullscreen"
 msgid "Leave fullscreen"
 msgstr "Opustit celou obrazovku"
 
@@ -206,12 +191,10 @@ msgid "Next"
 msgstr "Následující"
 
 #: ../data/cheese-main-window.ui.h:4
-#| msgid "Burst mode"
 msgid "Photo burst mode"
 msgstr "Režim snímání v sérii"
 
 #: ../data/cheese-main-window.ui.h:5
-#| msgid "_Photo"
 msgid "Photo mode"
 msgstr "Režim fotek"
 
@@ -220,7 +203,6 @@ msgid "Previous"
 msgstr "Předchozí"
 
 #: ../data/cheese-main-window.ui.h:8
-#| msgid "_Wide mode"
 msgid "Video mode"
 msgstr "Režim videa"
 
@@ -253,7 +235,6 @@ msgid "Device"
 msgstr "Zařízení"
 
 #: ../data/cheese-prefs.ui.h:7
-#| msgid "Flash"
 msgid "Fire _Flash"
 msgstr "Spustit _blesk"
 
@@ -270,7 +251,6 @@ msgid "Number of photos"
 msgstr "Počet snímů"
 
 #: ../data/cheese-prefs.ui.h:11
-#| msgid "Height resolution"
 msgid "Photo resolution"
 msgstr "Rozlišení fotky"
 
@@ -283,7 +263,6 @@ msgid "Saturation"
 msgstr "Syté barvy"
 
 #: ../data/cheese-prefs.ui.h:14
-#| msgid "Width resolution"
 msgid "Video resolution"
 msgstr "Rozlišení videa"
 
@@ -292,7 +271,6 @@ msgid "Webcam"
 msgstr "Webkamera"
 
 #: ../data/cheese-prefs.ui.h:16
-#| msgid "Countdown"
 msgid "_Countdown"
 msgstr "O_dpočet"
 
@@ -300,15 +278,15 @@ msgstr "O_dpočet"
 msgid "Cheese Webcam Booth"
 msgstr "Fotobudka Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "Zvuk záklopky"
 
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "Pořídi_t snímek"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "Zaho_dit snímek"
 
@@ -331,77 +309,66 @@ msgstr "Neznámé zařízení"
 msgid "Cancellable initialization not supported"
 msgstr "Zrušitelné spouštění není podporováno"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1212
 #, c-format
 msgid "No device found"
 msgstr "Žádné zařízení nebylo nalezeno"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1231
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Jeden nebo více potřebných elementů GStreameru chybí: "
-
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%d "
 
 #: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Bez efektů"
 
-#: ../src/cheese-main.vala:38
-#| msgid "Whether to start in wide mode"
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "Spustit v režimu na šířku"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "Zařízení, které se má použít jako fotoaparát"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "ZAŘÍZENÍ"
 
-#: ../src/cheese-main.vala:40
-#| msgid "output version information and exit"
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Vypsat informace o verzi a skončit"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "Spustit v režimu celé obrazovky"
 
-#: ../src/cheese-main.vala:68
-#| msgid ""
-#| "- Take photos and videos with your webcam, with fun graphical effects"
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
 msgstr "– pořídit si snímky a videoklipy svojí webovou kamerou"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Spuštěním „%s --help“ zobrazíte seznam všech dostupných přepínačů příkazové "
 "řádky.\n"
 
-#: ../src/cheese-window.vala:762
-#| msgid "_Stop Recording"
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Jiná instance aplikace Cheese již běží\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "Za_stavit záznam"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "Zastavi_t pořizování snímků"
 
-#: ../src/cheese-window.vala:918
-#| msgid "No device found"
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "Nebyly nalezeny žádné efekty"
 
+#~ msgid "%d "
+#~ msgstr "%d "
