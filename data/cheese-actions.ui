@@ -25,7 +25,7 @@
         <child>
           <object class="GtkAction" id="quit">
             <property name="name">Quit</property>
-            <property name="label" translatable="yes">_Quit</property>
+	    <property name="stock-id">gtk-quit</property>
             <signal name="activate" handler="cheese_main_window_on_quit"/>
           </object>
           <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
@@ -37,8 +37,8 @@
         <child>
           <object class="GtkAction" id="help_contents">
             <property name="name">HelpContents</property>
-            <property name="label" translatable="yes">Help _Contents</property>
-            <property name="stock_id">gtk-help</property>
+            <property name="label" translatable="yes">_Contents</property>
+            <property name="stock-id">gtk-help</property>
             <signal name="activate" handler="cheese_main_window_on_help_contents"/>
           </object>
           <accelerator key="F1"/>
@@ -47,7 +47,7 @@
           <object class="GtkAction" id="about">
             <property name="name">About</property>
             <property name="label" translatable="yes">_About</property>
-            <property name="stock_id">gtk-about</property>
+            <property name="stock-id">gtk-about</property>
             <signal name="activate" handler="cheese_main_window_on_help_about"/>
           </object>
         </child>
@@ -58,8 +58,7 @@
         <child>
           <object class="GtkAction" id="open">
             <property name="name">Open</property>
-            <property name="label" translatable="yes">_Open</property>
-            <property name="stock_id">gtk-open</property>
+            <property name="stock-id">gtk-open</property>
             <signal name="activate" handler="cheese_main_window_on_file_open"/>
           </object>
           <accelerator key="O" modifiers="GDK_CONTROL_MASK"/>
@@ -67,8 +66,8 @@
         <child>
           <object class="GtkAction" id="save_as">
             <property name="name">SaveAs</property>
-            <property name="label" translatable="yes">Save _As</property>
-            <property name="stock_id">gtk-save-as</property>
+            <property name="label" translatable="yes">Save _As…</property>
+            <property name="stock-id">gtk-save-as</property>
             <signal name="activate" handler="cheese_main_window_on_file_save_as"/>
           </object>
           <accelerator key="S" modifiers="GDK_CONTROL_MASK"/>
@@ -77,7 +76,7 @@
           <object class="GtkAction" id="move_to_trash">
             <property name="name">MoveToTrash</property>
             <property name="label" translatable="yes">Move to _Trash</property>
-            <property name="icon_name">user-trash</property>
+            <property name="icon-name">user-trash</property>
             <signal name="activate" handler="cheese_main_window_on_file_move_to_trash"/>
           </object>
           <accelerator key="Delete" modifiers=""/>
@@ -85,7 +84,7 @@
         <child>
           <object class="GtkAction" id="delete">
             <property name="name">Delete</property>
-            <property name="label" translatable="yes">_Delete</property>
+            <property name="stock-id">gtk-delete</property>
             <signal name="activate" handler="cheese_main_window_on_file_delete"/>
           </object>
           <accelerator key="Delete" modifiers="GDK_SHIFT_MASK"/>
@@ -93,7 +92,7 @@
         <child>
           <object class="GtkAction" id="move_all_to_trash">
             <property name="name">RemoveAll</property>
-            <property name="label" translatable="yes">Move All to Trash</property>
+            <property name="label" translatable="yes">Move _All to Trash</property>
             <signal name="activate" handler="cheese_main_window_on_file_move_to_trash_all"/>
           </object>
         </child>
@@ -104,8 +103,7 @@
         <child>
           <object class="GtkToggleAction" id="fullscreen">
             <property name="name">Fullscreen</property>
-            <property name="label" translatable="yes">Fullscreen</property>
-            <property name="stock_id">gtk-fullscreen</property>
+            <property name="stock-id">gtk-fullscreen</property>
             <signal name="toggled" handler="cheese_main_window_on_layout_fullscreen"/>
           </object>
           <accelerator key="F11" modifiers=""/>
@@ -173,7 +171,7 @@
         <child>
           <object class="GtkRadioAction" id="burst_mode">
             <property name="name">Burst</property>
-            <property name="label" translatable="yes">Burst</property>
+            <property name="label" translatable="yes">_Burst</property>
             <property name="group">photo_mode</property>
             <property name="value">2</property>
             <signal name="activate" handler="cheese_main_window_on_mode_change"/>
@@ -193,7 +191,7 @@
         <child>
           <object class="GtkAction" id="effects_page_prev">
             <property name="name">Previous Effects</property>
-            <property name="label" translatable="yes">Previous Effects</property>
+            <property name="label" translatable="yes">P_revious Effects</property>
             <property name="sensitive">false</property>
             <signal name="activate" handler="cheese_main_window_on_prev_effects_page"/>
           </object>
@@ -202,7 +200,7 @@
         <child>
           <object class="GtkAction" id="effects_page_next">
             <property name="name">Next Effects</property>
-            <property name="label" translatable="yes">Next Effects</property>
+            <property name="label" translatable="yes">Ne_xt Effects</property>
             <property name="sensitive">false</property>
             <signal name="activate" handler="cheese_main_window_on_next_effects_page"/>
           </object>
@@ -215,7 +213,7 @@
         <child>
           <object class="GtkAction" id="preferences">
             <property name="name">Preferences</property>
-            <property name="label" translatable="yes">_Preferences</property>
+            <property name="stock-id">gtk-preferences</property>
             <signal name="activate" handler="cheese_main_window_on_preferences_dialog"/>
           </object>
         </child>
