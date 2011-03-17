@@ -5,17 +5,17 @@
 # Andre Klapper <ak-47@gmx.net>, 2007.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2008 - 2011.
 # Hendrik Richter <hendrikr@gnome.org>, 2008, 2009.
-# Mario Blättermann <mariobl@gnome.org>, 2009, 2010.
+# Mario Blättermann <mariobl@gnome.org>, 2009-2011.
 # Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2010, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese\n"
+"Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&component=general\n"
-"POT-Creation-Date: 2011-01-08 01:42+0000\n"
-"PO-Revision-Date: 2011-01-08 11:33+0100\n"
-"Last-Translator: Wolfgang Stoeggl <c72578@yahoo.de>\n"
+"POT-Creation-Date: 2011-03-08 07:25+0000\n"
+"PO-Revision-Date: 2011-03-17 11:17+0100\n"
+"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Poedit-Language: German\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -40,15 +40,15 @@ msgstr ""
 
 #: ../data/cheese-about.ui.h:4
 msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
+"This program is free software; you can redistribute it and/or modify it under "
+"the terms of the GNU General Public License as published by the Free Software "
+"Foundation; either version 2 of the License, or (at your option) any later "
+"version.\n"
 "\n"
 "This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
+"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
+"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
+"details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see http://www.gnu.org/licenses/\n"
@@ -67,8 +67,8 @@ msgstr ""
 "GPL) nach.\n"
 "\n"
 "Mit diesem Programm sollten Sie außerdem eine Kopie der GNU General Public "
-"License erhalten haben. Wenn dem nicht so ist, sehen Sie bitte auf http://"
-"www.gnu.org/licenses/ nach.\n"
+"License erhalten haben. Wenn dem nicht so ist, sehen Sie bitte auf http://www."
+"gnu.org/licenses/ nach.\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -121,7 +121,7 @@ msgid "Take _Multiple Photos"
 msgstr "_Mehrere Fotos aufnehmen"
 
 #: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:238
+#: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "Foto aufnehmen"
 
@@ -287,15 +287,15 @@ msgstr "_Countdown"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese Webcam-Automat"
 
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "Verschlussgeräusch"
 
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "Foto _aufnehmen"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "Foto _verwerfen"
 
@@ -307,8 +307,7 @@ msgstr "Funktionen des Geräts werden nicht unterstützt"
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr ""
-"Gerät %s konnte zur Feststellung dessen Fähigkeiten nicht initialisiert "
-"werden"
+"Gerät %s konnte zur Feststellung dessen Fähigkeiten nicht initialisiert werden"
 
 #: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
@@ -318,92 +317,63 @@ msgstr "Unbekanntes Gerät"
 msgid "Cancellable initialization not supported"
 msgstr "Abbrechbare Initialisierung wird nicht unterstützt"
 
-#: ../libcheese/cheese-camera.c:1158
+#: ../libcheese/cheese-camera.c:1212
 #, c-format
 msgid "No device found"
 msgstr "Kein Gerät gefunden"
 
-#: ../libcheese/cheese-camera.c:1177
+#: ../libcheese/cheese-camera.c:1231
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ein oder mehrere GStreamer-Elemente fehlen: "
-
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%d "
 
 #: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Kein Effekt"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "Im breiten Modus starten"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
 msgstr "Gerät welches als Kamera benutzt werden soll"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "GERÄT"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "Versionsinformationen anzeigen und beenden"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "Im Vollbildmodus starten"
 
-#: ../src/cheese-main.vala:68
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
 msgstr "Ein Programm, um Bilder und Videos mit einer Webcam aufzunehmen"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Bitte geben Sie »%s --help« ein, um alle verfügbaren Optionen anzusehen.\n"
 
-#: ../src/cheese-window.vala:762
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Eine weitere Instanz von Cheese läuft bereits\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
 msgstr "Aufnahme _stoppen"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:787
 msgid "Stop _Taking Pictures"
 msgstr "Fo_toaufnahmen stoppen"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "Kein Effekt gefunden"
 
-#~ msgid ""
-#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
-#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-#~ msgstr ""
-#~ "Effekte, die beim Starten aktiviert werden. Mögliche Werte sind: "
-#~ "»mauve« (Violett), »noir_blanc« (Schwarz-weiß), »saturation« (Sättigung), "
-#~ "»hulk«, »vertical-flip« (Vertikale Spiegelung), »horizontal-"
-#~ "flip« (Horizontale Spiegelung), »shagadelic« (Psychedelisch), »vertigo«, "
-#~ "»edge« (Ecken), »dice« (Würfel) und »warp«."
-
-#~ msgid "Adjusts brightness level of the picture coming from the camera"
-#~ msgstr "Stellt die Helligkeit des Bildes der Kamera ein"
-
-#~ msgid "Adjusts contrast level of the picture coming from the camera"
-#~ msgstr "Stellt den Kontrast des Bildes der Kamera ein"
-
-#~ msgid "Adjusts hue level of the picture coming from the camera"
-#~ msgstr "Stellt den Farbton des Bildes der Kamera ein"
-
-#~ msgid "Adjusts saturation level of the picture coming from the camera"
-#~ msgstr "Stellt die Sättigung des Bildes der Kamera ein"
