@@ -352,7 +352,6 @@ setup_camera (CheeseWidget *widget)
 static void
 cheese_widget_realize (GtkWidget *widget)
 {
-  GdkWindow           *window;
   CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
 
   GTK_WIDGET_CLASS (cheese_widget_parent_class)->realize (widget);
@@ -360,33 +359,13 @@ cheese_widget_realize (GtkWidget *widget)
   gtk_spinner_start (GTK_SPINNER (priv->spinner));
 
   gtk_widget_realize (priv->screen);
-  window = gtk_widget_get_window (priv->screen);
-  if (!gdk_window_ensure_native (window))
-  {
-    /* abort: no native window, no xoverlay, no cheese. */
-    g_warning ("Could not create a native X11 window for the drawing area");
-    goto error;
-  }
 
-  gtk_widget_set_app_paintable (priv->screen, TRUE);
-  gtk_widget_set_double_buffered (priv->screen, FALSE);
-
-  if (!g_thread_create ((GThreadFunc) setup_camera, widget, FALSE, &priv->error))
-  {
-    g_warning ("Failed to create setup thread: %s", priv->error->message);
-    goto error;
-  }
+  setup_camera (CHEESE_WIDGET (widget));
 
   gtk_widget_set_app_paintable (priv->problem, TRUE);
   gtk_widget_realize (priv->problem);
 
   return;
-
-error:
-  gtk_spinner_stop (GTK_SPINNER (priv->spinner));
-  priv->state = CHEESE_WIDGET_STATE_ERROR;
-  g_object_notify (G_OBJECT (widget), "state");
-  cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
 }
 
 static void
