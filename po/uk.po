@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-09 17:18+0200\n"
-"PO-Revision-Date: 2011-03-09 17:20+0300\n"
+"POT-Creation-Date: 2011-03-17 18:15+0200\n"
+"PO-Revision-Date: 2011-03-17 18:18+0300\n"
 "Last-Translator: Korostil Daniel <ted.korostiled@gmail.com>\n"
 "Language-Team: translation@linux.org.ua\n"
 "Language: uk\n"
@@ -67,107 +67,87 @@ msgstr ""
 "Daniel Korostil <ted.korostiled@gmail.com>"
 
 #: ../data/cheese-actions.ui.h:1
-msgid "Burst"
-msgstr "Серія"
+msgid "Move _All to Trash"
+msgstr "Перемістити _все у смітник"
 
 #: ../data/cheese-actions.ui.h:2
-msgid "Fullscreen"
-msgstr "На повний екран"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Help _Contents"
-msgstr "_Зміст довідки"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move All to Trash"
-msgstr "Перемістити все у смітник"
-
-#: ../data/cheese-actions.ui.h:5
 msgid "Move to _Trash"
 msgstr "Перемістити у _смітник"
 
-#: ../data/cheese-actions.ui.h:6
-msgid "Next Effects"
-msgstr "Наступні ефекти"
+#: ../data/cheese-actions.ui.h:3
+msgid "Ne_xt Effects"
+msgstr "_Наступні ефекти"
 
-#: ../data/cheese-actions.ui.h:7
-msgid "Previous Effects"
-msgstr "Попередні ефекти"
+#: ../data/cheese-actions.ui.h:4
+msgid "P_revious Effects"
+msgstr "_Попередні ефекти"
 
-#: ../data/cheese-actions.ui.h:8
+#: ../data/cheese-actions.ui.h:5
 msgid "Record a video"
 msgstr "Записати відео"
 
-#: ../data/cheese-actions.ui.h:9
-msgid "Save _As"
+#: ../data/cheese-actions.ui.h:6
+msgid "Save _As…"
 msgstr "Зберегти _як…"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:7
 msgid "Take _Multiple Photos"
 msgstr "Зробити _декілька фотографій"
 
-#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
 #: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "Сфотографувати"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:9
 msgid "Take multiple photos"
 msgstr "Зробити декілька фотографій"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:10
 msgid "_About"
 msgstr "_Про програму"
 
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:11
+msgid "_Burst"
+msgstr "_Серія"
+
+#: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
 msgstr "_Сир"
 
-#: ../data/cheese-actions.ui.h:15
-msgid "_Delete"
-msgstr "_Вилучити"
+#: ../data/cheese-actions.ui.h:13
+msgid "_Contents"
+msgstr "_Зміст"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:14
 msgid "_Edit"
-msgstr "З_міна"
+msgstr "З_міни"
 
-#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Ефекти"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:16
 msgid "_Help"
 msgstr "_Довідка"
 
-#: ../data/cheese-actions.ui.h:19
-msgid "_Open"
-msgstr "_Відкрити"
-
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:17
 msgid "_Photo"
 msgstr "_Фотографія"
 
-#: ../data/cheese-actions.ui.h:21
-msgid "_Preferences"
-msgstr "_Параметри"
-
-#: ../data/cheese-actions.ui.h:22
-msgid "_Quit"
-msgstr "_Вийти"
-
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:18
 msgid "_Record a Video"
 msgstr "Запис _відео"
 
-#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
+#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "_Сфотографувати"
 
-#: ../data/cheese-actions.ui.h:25
+#: ../data/cheese-actions.ui.h:20
 msgid "_Video"
 msgstr "_Відео"
 
-#: ../data/cheese-actions.ui.h:26
+#: ../data/cheese-actions.ui.h:21
 msgid "_Wide Mode"
 msgstr "_Широкий режим"
 
@@ -300,12 +280,12 @@ msgstr "Невідомий пристрій"
 msgid "Cancellable initialization not supported"
 msgstr "Скасування не підтримується"
 
-#: ../libcheese/cheese-camera.c:1212
+#: ../libcheese/cheese-camera.c:1182
 #, c-format
 msgid "No device found"
 msgstr "Пристрій не знайдено"
 
-#: ../libcheese/cheese-camera.c:1231
+#: ../libcheese/cheese-camera.c:1232
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Нема одного чи декількох компонентів GStreamer: "
 
@@ -360,6 +340,21 @@ msgstr "Зупинити з_йомку"
 #: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "Не знайдено жодного ефекту"
+
+#~ msgid "Fullscreen"
+#~ msgstr "На повний екран"
+
+#~ msgid "_Delete"
+#~ msgstr "_Вилучити"
+
+#~ msgid "_Open"
+#~ msgstr "_Відкрити"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Параметри"
+
+#~ msgid "_Quit"
+#~ msgstr "_Вийти"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
