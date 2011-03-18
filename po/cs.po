@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&component=general\n"
-"POT-Creation-Date: 2011-03-08 07:25+0000\n"
-"PO-Revision-Date: 2011-03-14 22:46+0100\n"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-17 13:20+0000\n"
+"PO-Revision-Date: 2011-03-18 08:37+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -74,107 +74,93 @@ msgstr ""
 "Marek Černocký <marek@manet.cz>"
 
 #: ../data/cheese-actions.ui.h:1
-msgid "Burst"
-msgstr "Série"
+#| msgid "Move All to Trash"
+msgid "Move _All to Trash"
+msgstr "Přesunout _vše do koše"
 
 #: ../data/cheese-actions.ui.h:2
-msgid "Fullscreen"
-msgstr "Celá obrazovka"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Help _Contents"
-msgstr "O_bsah nápovědy"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move All to Trash"
-msgstr "Přesunout vše do koše"
-
-#: ../data/cheese-actions.ui.h:5
 msgid "Move to _Trash"
 msgstr "Přesunou_t do koše"
 
-#: ../data/cheese-actions.ui.h:6
-msgid "Next Effects"
-msgstr "Následující efekt"
+#: ../data/cheese-actions.ui.h:3
+#| msgid "Next Effects"
+msgid "Ne_xt Effects"
+msgstr "Násled_ující efekt"
 
-#: ../data/cheese-actions.ui.h:7
-msgid "Previous Effects"
-msgstr "Předchozí efekt"
+#: ../data/cheese-actions.ui.h:4
+#| msgid "Previous Effects"
+msgid "P_revious Effects"
+msgstr "Př_edchozí efekt"
 
-#: ../data/cheese-actions.ui.h:8
+#: ../data/cheese-actions.ui.h:5
 msgid "Record a video"
 msgstr "Zaznamenat video"
 
-#: ../data/cheese-actions.ui.h:9
-msgid "Save _As"
-msgstr "Uložit _jako"
+#: ../data/cheese-actions.ui.h:6
+#| msgid "Save _As"
+msgid "Save _As…"
+msgstr "Uložit _jako…"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:7
 msgid "Take _Multiple Photos"
 msgstr "Pořídit více sní_mků"
 
-#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
 #: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "Pořídit snímek"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:9
 msgid "Take multiple photos"
 msgstr "Pořídit více snímků"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:10
 msgid "_About"
 msgstr "O _aplikaci"
 
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:11
+#| msgid "Burst"
+msgid "_Burst"
+msgstr "_Série"
+
+#: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../data/cheese-actions.ui.h:15
-msgid "_Delete"
-msgstr "_Smazat"
+#: ../data/cheese-actions.ui.h:13
+#| msgid "Help _Contents"
+msgid "_Contents"
+msgstr "O_bsah"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:14
 msgid "_Edit"
 msgstr "_Upravit"
 
-#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Efekty"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:16
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../data/cheese-actions.ui.h:19
-msgid "_Open"
-msgstr "_Otevřít"
-
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:17
 msgid "_Photo"
 msgstr "_Snímek"
 
-#: ../data/cheese-actions.ui.h:21
-msgid "_Preferences"
-msgstr "_Předvolby"
-
-#: ../data/cheese-actions.ui.h:22
-msgid "_Quit"
-msgstr "U_končit"
-
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:18
 msgid "_Record a Video"
 msgstr "_Zaznamenat video"
 
-#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
+#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "Pořídi_t snímek"
 
-#: ../data/cheese-actions.ui.h:25
+#: ../data/cheese-actions.ui.h:20
 msgid "_Video"
 msgstr "_Video"
 
-#: ../data/cheese-actions.ui.h:26
+#: ../data/cheese-actions.ui.h:21
 msgid "_Wide Mode"
 msgstr "_Režim na šířku"
 
@@ -309,12 +295,12 @@ msgstr "Neznámé zařízení"
 msgid "Cancellable initialization not supported"
 msgstr "Zrušitelné spouštění není podporováno"
 
-#: ../libcheese/cheese-camera.c:1212
+#: ../libcheese/cheese-camera.c:1182
 #, c-format
 msgid "No device found"
 msgstr "Žádné zařízení nebylo nalezeno"
 
-#: ../libcheese/cheese-camera.c:1231
+#: ../libcheese/cheese-camera.c:1232
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Jeden nebo více potřebných elementů GStreameru chybí: "
 
@@ -369,6 +355,21 @@ msgstr "Zastavi_t pořizování snímků"
 #: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "Nebyly nalezeny žádné efekty"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Celá obrazovka"
+
+#~ msgid "_Delete"
+#~ msgstr "_Smazat"
+
+#~ msgid "_Open"
+#~ msgstr "_Otevřít"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Předvolby"
+
+#~ msgid "_Quit"
+#~ msgstr "U_končit"
 
 #~ msgid "%d "
 #~ msgstr "%d "
