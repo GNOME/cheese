@@ -13,7 +13,7 @@ AM_CPPFLAGS = \
 	-I@top_srcdir@/libcheese \
 	$(NULL)
 
-EXAMPLES = cheese-test-widget cheese-test-camera cheese-test-monitor cheese-test-chooser
+EXAMPLES = cheese-test-widget cheese-test-camera cheese-test-monitor cheese-test-chooser cheese-test-flash
 
 if HAVE_XTEST
 noinst_PROGRAMS = $(EXAMPLES) test-webcam-button
@@ -25,6 +25,8 @@ cheese_test_widget_SOURCES = cheese-test-widget.c
 cheese_test_camera_SOURCES = cheese-test-camera.c
 cheese_test_monitor_SOURCES = cheese-test-monitor.c
 test_webcam_button_SOURCES = test-webcam-button.c
+cheese_test_flash_SOURCES = cheese-test-flash.c
+cheese_test_chooser_SOURCES = cheese-test-chooser.c
 
 cheese_test_widget_LDADD = $(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
@@ -41,8 +43,12 @@ cheese_test_monitor_LDADD = $(CHEESE_LIBS) \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(NULL)
 test_webcam_button_LDADD = $(XTEST_LIBS)
-cheese_test_chooser_SOURCES = cheese-test-chooser.c
 cheese_test_chooser_LDADD = $(CHEESE_LIBS) \
+	$(CHEESE_GTK_LIBS) \
+	$(top_builddir)/libcheese/libcheese.la \
+	$(top_builddir)/libcheese/libcheese-gtk.la \
+	$(NULL)
+cheese_test_flash_LDADD = $(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
 	$(top_builddir)/libcheese/libcheese.la \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
