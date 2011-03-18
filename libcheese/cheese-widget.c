@@ -20,6 +20,7 @@
 #include "cheese-config.h"
 
 #include <glib/gi18n.h>
+#include <clutter-gst/clutter-gst.h>
 
 #include "cheese-widget.h"
 #include "cheese-camera.h"
@@ -373,6 +374,9 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
 {
   GObjectClass   *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
+
+  gtk_clutter_init (NULL, NULL);
+  clutter_gst_init (NULL, NULL);
 
   object_class->finalize = cheese_widget_finalize;
 #if 0
