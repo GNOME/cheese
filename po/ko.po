@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&component=general\n"
-"POT-Creation-Date: 2011-03-08 07:25+0000\n"
-"PO-Revision-Date: 2011-03-14 09:08+0900\n"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-03-17 13:20+0000\n"
+"PO-Revision-Date: 2011-03-19 21:58+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
@@ -71,107 +71,87 @@ msgid "translator-credits"
 msgstr "GNOME Korea <http://gnome.or.kr/>"
 
 #: ../data/cheese-actions.ui.h:1
-msgid "Burst"
-msgstr "연사"
+msgid "Move _All to Trash"
+msgstr "모두 휴지통으로 옮기기(_A)"
 
 #: ../data/cheese-actions.ui.h:2
-msgid "Fullscreen"
-msgstr "전체 화면"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Help _Contents"
-msgstr "도움말 차례(_C)"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move All to Trash"
-msgstr "모두 휴지통으로 옮기기"
-
-#: ../data/cheese-actions.ui.h:5
 msgid "Move to _Trash"
 msgstr "휴지통으로 옮기기(_T)"
 
-#: ../data/cheese-actions.ui.h:6
-msgid "Next Effects"
-msgstr "다음 효과"
+#: ../data/cheese-actions.ui.h:3
+msgid "Ne_xt Effects"
+msgstr "다음 효과(_X)"
 
-#: ../data/cheese-actions.ui.h:7
-msgid "Previous Effects"
-msgstr "이전 효과"
+#: ../data/cheese-actions.ui.h:4
+msgid "P_revious Effects"
+msgstr "이전 효과(_R)"
 
-#: ../data/cheese-actions.ui.h:8
+#: ../data/cheese-actions.ui.h:5
 msgid "Record a video"
 msgstr "동영상 녹화"
 
-#: ../data/cheese-actions.ui.h:9
-msgid "Save _As"
-msgstr "다른 이름으로 저장(_A)"
+#: ../data/cheese-actions.ui.h:6
+msgid "Save _As…"
+msgstr "다른 이름으로 저장(_A)…"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:7
 msgid "Take _Multiple Photos"
 msgstr "사진 여러 장 찍기(_M)"
 
-#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
 #: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "사진 찍기"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:9
 msgid "Take multiple photos"
 msgstr "사진 여러 장 찍기"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:10
 msgid "_About"
 msgstr "정보(_A)"
 
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:11
+msgid "_Burst"
+msgstr "연사(_B)"
+
+#: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
 msgstr "치즈(_C)"
 
-#: ../data/cheese-actions.ui.h:15
-msgid "_Delete"
-msgstr "삭제(_D)"
+#: ../data/cheese-actions.ui.h:13
+msgid "_Contents"
+msgstr "차례(_C)"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:14
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "효과(_E)"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:16
 msgid "_Help"
 msgstr "도움말(_H)"
 
-#: ../data/cheese-actions.ui.h:19
-msgid "_Open"
-msgstr "열기(_O)"
-
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:17
 msgid "_Photo"
 msgstr "사진(_P)"
 
-#: ../data/cheese-actions.ui.h:21
-msgid "_Preferences"
-msgstr "기본 설정(_P)"
-
-#: ../data/cheese-actions.ui.h:22
-msgid "_Quit"
-msgstr "끝내기(_Q)"
-
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:18
 msgid "_Record a Video"
 msgstr "동영상 녹화(_R)"
 
-#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
+#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "사진 찍기(_T)"
 
-#: ../data/cheese-actions.ui.h:25
+#: ../data/cheese-actions.ui.h:20
 msgid "_Video"
 msgstr "비디오(_V)"
 
-#: ../data/cheese-actions.ui.h:26
+#: ../data/cheese-actions.ui.h:21
 msgid "_Wide Mode"
 msgstr "와이드 모드(_W)"
 
@@ -305,12 +285,12 @@ msgstr "알 수 없는 장치"
 msgid "Cancellable initialization not supported"
 msgstr "초기화 취소를 지원하지 않습니다"
 
-#: ../libcheese/cheese-camera.c:1212
+#: ../libcheese/cheese-camera.c:1182
 #, c-format
 msgid "No device found"
 msgstr "장치가 없습니다"
 
-#: ../libcheese/cheese-camera.c:1231
+#: ../libcheese/cheese-camera.c:1232
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "필요한 GStreamer 엘리먼트가 없습니다: "
 
@@ -364,6 +344,21 @@ msgstr "사진 찍기 중지(_T)"
 #: ../src/cheese-window.vala:919
 msgid "No effects found"
 msgstr "효과가 없습니다"
+
+#~ msgid "Fullscreen"
+#~ msgstr "전체 화면"
+
+#~ msgid "_Delete"
+#~ msgstr "삭제(_D)"
+
+#~ msgid "_Open"
+#~ msgstr "열기(_O)"
+
+#~ msgid "_Preferences"
+#~ msgstr "기본 설정(_P)"
+
+#~ msgid "_Quit"
+#~ msgstr "끝내기(_Q)"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
