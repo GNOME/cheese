@@ -1,6 +1,41 @@
 ChangeLog for Cheese
 --------------------
 
+version 2.91.92
+  - Makefile.am: Add autogen.sh to extra_dist
+  - tests: Add test program for the flash object
+  - lib: Don't forget to call gtk_clutter_init()
+    Note that using this in an application that relies on keyboard
+    input for GtkClutter widgets will fail horribly.
+  - lib: Make cheese-widget work again
+  - Fix default value for the dconf contrast
+  - Restore and fix menu mnemonics and entries
+  - Added/Updated Translations
+    - ca, courtesy of Gil Forcada
+    - cs, courtesy of Marek Černocký
+    - de, courtesy of Mario Blättermann
+    - es, courtesy of Daniel Mustieles
+    - et, courtesy of Ivar Smolin
+    - fr, courtesy of Claude Paroz
+    - gl, courtesy of "Last-Translator: \n"
+    - hu, courtesy of Gabor Kelemen
+    - kn, courtesy of Shankar Prasad
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Rimas Kudelis
+    - lv, courtesy of Rudolfs
+    - nb, courtesy of Kjartan Maraas
+    - pl, courtesy of Piotr Drąg
+    - pt_BR, courtesy of Flamarion Jorge
+    - pt, courtesy of Duarte Loreto
+    - ro, courtesy of Lucian Adrian Grijincu
+    - sk, courtesy of Miroslav Biňas
+    - sl, courtesy of Matej Urbančič
+    - sv, courtesy of Daniel Nylander
+    - uk, courtesy of Korostil Daniel
+    - zh_CN, courtesy of chiachen
+  - Added/Updated Documentation
+    - sv, courtesy of Henrik Löwendahl
+
 version 2.91.91.1
   - Drop version to 2.91.91.1
     The tarball release of 2.91.91 was generated with a tarball release of
