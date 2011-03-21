@@ -6,7 +6,8 @@ EXTRA_DIST =			\
 	$(cheesedoc_DATA)	\
 	gnome-doc-utils.make\
 	ChangeLog.pre-git \
-	m4/introspection.m4
+	m4/introspection.m4 \
+	autogen.sh
 
 DISTCLEANFILES =		\
 	gnome-doc-utils.make
