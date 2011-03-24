@@ -115,9 +115,9 @@ update_pixbufs (UmCropArea *area)
                                                      allocation.width, allocation.height);
 
                 gtk_style_context_get_background_color (context, gtk_style_context_get_state (context), &color);
-                pixel = (((gint)(color.red * 255)) << 16) |
-                        (((gint)(color.green * 255)) << 8) |
-                         ((gint)(color.blue * 255));
+                pixel = (((gint)(color.red * 1.0)) << 16) |
+                        (((gint)(color.green * 1.0)) << 8) |
+                         ((gint)(color.blue * 1.0));
                 gdk_pixbuf_fill (area->priv->pixbuf, pixel);
 
                 width = gdk_pixbuf_get_width (area->priv->browse_pixbuf);
@@ -368,7 +368,7 @@ eval_radial_line (gdouble center_x, gdouble center_y,
         gdouble decision_intercept;
 
         decision_slope = (bounds_y - center_y) / (bounds_x - center_x);
-        decision_intercept = bounds_y = -(decision_slope * bounds_x);
+        decision_intercept = -(decision_slope * bounds_x);
 
         return (int) (decision_slope * user_x + decision_intercept);
 }
@@ -815,3 +815,4 @@ um_crop_area_set_constrain_aspect (UmCropArea *area,
                 area->priv->aspect = -1;
         }
 }
+
