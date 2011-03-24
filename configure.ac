@@ -145,6 +145,7 @@ PKG_CHECK_MODULES(CHEESE, \
   pangocairo >= $PANGOCAIRO_REQUIRED \
   clutter-1.0 >= $CLUTTER_REQUIRED \
   clutter-gst-1.0 >= $CLUTTERGST_REQUIRED \
+  mx-1.0 \
   $UDEV_PKG
   )
 AC_SUBST(CHEESE_CFLAGS)

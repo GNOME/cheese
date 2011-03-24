@@ -49,6 +49,8 @@ libcheese_la_SOURCES = \
 libcheese_gtk_la_SOURCES = \
 	cheese-avatar-chooser.c \
 	cheese-avatar-chooser.h \
+	cheese-aspect-frame.c \
+	cheese-aspect-frame.h \
 	um-crop-area.c \
 	um-crop-area.h \
 	cheese-widget.c \

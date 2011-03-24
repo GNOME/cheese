@@ -21,10 +21,12 @@
 
 #include <glib/gi18n.h>
 #include <clutter-gst/clutter-gst.h>
+#include <mx/mx.h>
 
 #include "cheese-widget.h"
 #include "cheese-camera.h"
 #include "cheese-enum-types.h"
+#include "cheese-aspect-frame.h"
 
 enum
 {
@@ -182,7 +184,9 @@ cheese_widget_init (CheeseWidget *widget)
 {
   CheeseWidgetPrivate *priv = CHEESE_WIDGET_GET_PRIVATE (widget);
   GtkWidget           *box;
-  ClutterActor        *stage;
+  ClutterActor        *stage, *frame;
+  ClutterConstraint   *constraint;
+  ClutterColor black = { 0x00, 0x00, 0x00, 0xff };
 
   priv->state = CHEESE_WIDGET_STATE_NONE;
   priv->error = NULL;
@@ -205,10 +209,16 @@ cheese_widget_init (CheeseWidget *widget)
   /* Webcam page */
   priv->screen = gtk_clutter_embed_new ();
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->screen));
-  priv->texture = clutter_texture_new ();
+  clutter_stage_set_color (CLUTTER_STAGE (stage), &black);
+  frame = cheese_aspect_frame_new ();
 
+  priv->texture = clutter_texture_new ();
   clutter_actor_set_size (priv->texture, 400, 300);
-  clutter_container_add_actor (CLUTTER_CONTAINER (stage), priv->texture);
+  mx_bin_set_child (MX_BIN (frame), priv->texture);
+
+  clutter_container_add_actor (CLUTTER_CONTAINER (stage), frame);
+  constraint = clutter_bind_constraint_new (stage, CLUTTER_BIND_SIZE, 0.0);
+  clutter_actor_add_constraint_with_name (frame, "size", constraint);
 
   gtk_widget_show (priv->screen);
   clutter_actor_show (priv->texture);
