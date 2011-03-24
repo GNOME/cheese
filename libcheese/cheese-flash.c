@@ -27,6 +27,14 @@
 #include <cheese-camera.h>
 #include "cheese-flash.h"
 
+#ifdef GDK_WINDOWING_X11
+#include <X11/Xproto.h>
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/Xatom.h>
+#include <gdk/gdkx.h>
+#endif /* GDK_WINDOWING_X11 */
+
 enum
 {
   PROP_0,
@@ -56,6 +64,110 @@ typedef struct
   guint flash_timeout_tag;
   guint fade_timeout_tag;
 } CheeseFlashPrivate;
+
+/* Copy-pasted from totem/src/backend/video-utils.c
+ * Waiting on GTK+ bug:
+ * https://bugzilla.gnome.org/show_bug.cgi?id=523574 */
+#ifdef GDK_WINDOWING_X11
+static int
+get_current_desktop (GdkScreen *screen)
+{
+        Display *display;
+        Window win;
+        Atom current_desktop, type;
+        int format;
+        unsigned long n_items, bytes_after;
+        unsigned char *data_return = NULL;
+        int workspace = 0;
+
+        display = GDK_DISPLAY_XDISPLAY (gdk_screen_get_display (screen));
+        win = XRootWindow (display, GDK_SCREEN_XNUMBER (screen));
+
+        current_desktop = XInternAtom (display, "_NET_CURRENT_DESKTOP", True);
+
+        XGetWindowProperty (display,
+                            win,
+                            current_desktop,
+                            0, G_MAXLONG,
+                            False, XA_CARDINAL,
+                            &type, &format, &n_items, &bytes_after,
+                            &data_return);
+
+        if (type == XA_CARDINAL && format == 32 && n_items > 0)
+                workspace = (int) data_return[0];
+        if (data_return)
+                XFree (data_return);
+
+        return workspace;
+}
+
+static gboolean
+get_work_area (GdkScreen      *screen,
+	       GdkRectangle   *rect)
+{
+	Atom            workarea;
+	Atom            type;
+	Window          win;
+	int             format;
+	gulong          num;
+	gulong          leftovers;
+	gulong          max_len = 4 * 32;
+	guchar         *ret_workarea;
+	long           *workareas;
+	int             result;
+	int             disp_screen;
+	int             desktop;
+	Display        *display;
+
+	display = GDK_DISPLAY_XDISPLAY (gdk_screen_get_display (screen));
+	workarea = XInternAtom (display, "_NET_WORKAREA", True);
+
+	disp_screen = GDK_SCREEN_XNUMBER (screen);
+
+	/* Defaults in case of error */
+	rect->x = 0;
+	rect->y = 0;
+	rect->width = gdk_screen_get_width (screen);
+	rect->height = gdk_screen_get_height (screen);
+
+	if (workarea == None)
+		return FALSE;
+
+	win = XRootWindow (display, disp_screen);
+	result = XGetWindowProperty (display,
+				     win,
+				     workarea,
+				     0,
+				     max_len,
+				     False,
+				     AnyPropertyType,
+				     &type,
+				     &format,
+				     &num,
+				     &leftovers,
+				     &ret_workarea);
+
+	if (result != Success
+	    || type == None
+	    || format == 0
+	    || leftovers
+	    || num % 4) {
+		return FALSE;
+	}
+
+	desktop = get_current_desktop (screen);
+
+	workareas = (long *) ret_workarea;
+	rect->x = workareas[desktop * 4];
+	rect->y = workareas[desktop * 4 + 1];
+	rect->width = workareas[desktop * 4 + 2];
+	rect->height = workareas[desktop * 4 + 3];
+
+	XFree (ret_workarea);
+
+	return TRUE;
+}
+#endif /* GDK_WINDOWING_X11 */
 
 static gboolean
 cheese_flash_window_draw_event_cb (GtkWidget *widget, cairo_t *cr, gpointer user_data)
@@ -227,8 +339,16 @@ cheese_flash_fire (CheeseFlash *flash)
   parent  = gtk_widget_get_toplevel (flash_priv->parent);
   screen  = gtk_widget_get_screen (parent);
   monitor = gdk_screen_get_monitor_at_window (screen,
-                                              gtk_widget_get_window (parent));
+					      gtk_widget_get_window (parent));
   gdk_screen_get_monitor_geometry (screen, monitor, &rect);
+#ifdef GDK_WINDOWING_X11
+  {
+    GdkRectangle area, dest;
+    get_work_area (screen, &area);
+    if (gdk_rectangle_intersect (&area, &rect, &dest))
+      rect = dest;
+  }
+#endif /* GDK_WINDOWING_X11 */
   gtk_window_set_transient_for (GTK_WINDOW (flash_window), GTK_WINDOW (parent));
   gtk_window_resize (flash_window, rect.width, rect.height);
   gtk_window_move (flash_window, rect.x, rect.y);
