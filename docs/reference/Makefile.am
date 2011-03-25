@@ -53,6 +53,7 @@ CFILE_GLOB=$(top_srcdir)/libcheese/*.c
 IGNORE_HFILES=					\
 	cheese-camera-device.h			\
 	cheese-camera.h				\
+	cheese-aspect-frame.h			\
 	cheese-fileutil.h			\
 	cheese-flash.h				\
 	cheese-widget-private.h			\
