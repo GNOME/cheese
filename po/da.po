@@ -2,7 +2,7 @@
 # Copyright (C) 2008-09 daniel g. siegel <dgsiegel@gmail.com>
 # This file is distributed under the same license as cheese
 # Anders K. Madsen <madsen@lillesvin.net>, 2007.
-# Kenneth Nielsen <k.nielsen81@mail.com>, 2008-09.
+# Kenneth Nielsen <k.nielsen81@mail.com>, 2008-11.
 #
 # Ordliste
 # burst (i burst mode) -> serietilstand
@@ -14,17 +14,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-12 17:04+0200\n"
-"PO-Revision-Date: 2010-09-11 19:42+0200\n"
+"POT-Creation-Date: 2011-03-28 23:02+0200\n"
+"PO-Revision-Date: 2011-03-28 22:49+0200\n"
 "Last-Translator: Anders Jenbo <anders@jenbo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
+"Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -52,6 +53,18 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program. If not, see http://www.gnu.org/licenses/\n"
 msgstr ""
+"Dette program er fri software. Du kan redistribuere og/eller modificere det "
+"under de betingelser, som er angivet i GNU General Public License, som er "
+"udgivet af Free Software Foundation. Enten version 2 af licensen eller "
+"(efter eget valg) enhver senere version.\n"
+"\n"
+"Dette program distribueres i håb om, at det vil vise sig nyttigt, men UDEN "
+"NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
+"SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
+"læses i GNU General Public License.\n"
+"\n"
+"Du bør have modtaget en kopi af GNU General Public License sammen med dette "
+"program. Hvis ikke, så besøg http://www.gnu.org/licenses/\n"
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
@@ -63,329 +76,199 @@ msgstr ""
 "Mere info: http://www.dansk-gruppen.dk"
 
 #: ../data/cheese-actions.ui.h:1
-#, fuzzy
-msgid "Burst"
-msgstr "_Serie"
+msgid "Move _All to Trash"
+msgstr "Flyt _alle til papirkurv"
 
 #: ../data/cheese-actions.ui.h:2
-#, fuzzy
-msgid "Fullscreen"
-msgstr "Forlad fuld _skærm"
-
-#: ../data/cheese-actions.ui.h:3
-#, fuzzy
-msgid "Help _Contents"
-msgstr "_Indhold"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move All to Trash"
-msgstr "Flyt alle til papirkurv"
-
-#: ../data/cheese-actions.ui.h:5
 msgid "Move to _Trash"
 msgstr "Flyt til _papirkurv"
 
+#: ../data/cheese-actions.ui.h:3
+msgid "Ne_xt Effects"
+msgstr "Næ_ste effekt"
+
+#: ../data/cheese-actions.ui.h:4
+msgid "P_revious Effects"
+msgstr "Fo_rrige effekt"
+
+#: ../data/cheese-actions.ui.h:5
+msgid "Record a video"
+msgstr "Optag en video"
+
 #: ../data/cheese-actions.ui.h:6
-#, fuzzy
-msgid "Next Effects"
-msgstr "Ingen effekt"
-
-#: ../data/cheese-actions.ui.h:7
-#, fuzzy
-msgid "Previous Effects"
-msgstr "Ingen effekt"
-
-#: ../data/cheese-actions.ui.h:8
-#, fuzzy
-msgid "Save _As"
+msgid "Save _As…"
 msgstr "Gem _som…"
 
-#: ../data/cheese-actions.ui.h:9
-#, fuzzy
+#: ../data/cheese-actions.ui.h:7
 msgid "Take _Multiple Photos"
-msgstr "_Tag flere billeder"
+msgstr "Tag _flere billeder"
+
+#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:210
+msgid "Take a photo"
+msgstr "Tag et billede"
+
+#: ../data/cheese-actions.ui.h:9
+msgid "Take multiple photos"
+msgstr "Tag flere billeder"
 
 #: ../data/cheese-actions.ui.h:10
-#, fuzzy
 msgid "_About"
-msgstr "Om"
+msgstr "_Om"
 
 #: ../data/cheese-actions.ui.h:11
+msgid "_Burst"
+msgstr "_Serie"
+
+#: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../data/cheese-actions.ui.h:12
-#, fuzzy
-msgid "_Delete"
-msgstr "Slet"
-
 #: ../data/cheese-actions.ui.h:13
+msgid "_Contents"
+msgstr "_Indhold"
+
+#: ../data/cheese-actions.ui.h:14
 msgid "_Edit"
 msgstr "_Redigér"
 
-#: ../data/cheese-actions.ui.h:14 ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Effekter"
 
-#: ../data/cheese-actions.ui.h:15
+#: ../data/cheese-actions.ui.h:16
 msgid "_Help"
 msgstr "_Hjælp"
-
-#: ../data/cheese-actions.ui.h:16
-msgid "_Open"
-msgstr "_Åbn"
 
 #: ../data/cheese-actions.ui.h:17
 msgid "_Photo"
 msgstr "_Billede"
 
 #: ../data/cheese-actions.ui.h:18
-#, fuzzy
-msgid "_Preferences"
-msgstr "Indstillinger"
-
-#: ../data/cheese-actions.ui.h:19
-#, fuzzy
-msgid "_Quit"
-msgstr "Afslut"
-
-#: ../data/cheese-actions.ui.h:20
-#, fuzzy
 msgid "_Record a Video"
-msgstr "_Optager"
+msgstr "_Optag en video"
 
-#: ../data/cheese-actions.ui.h:21 ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "_Tag et billede"
 
-#: ../data/cheese-actions.ui.h:22
+#: ../data/cheese-actions.ui.h:20
 msgid "_Video"
 msgstr "_Video"
 
-#: ../data/cheese-actions.ui.h:23
-#, fuzzy
+#: ../data/cheese-actions.ui.h:21
 msgid "_Wide Mode"
-msgstr "Bred _tilstand"
+msgstr "_Bred tilstand"
+
+#: ../data/cheese-main-window.ui.h:1
+msgid "Effects"
+msgstr "Effekter"
 
 #: ../data/cheese-main-window.ui.h:2
+msgid "Leave fullscreen"
+msgstr "Forlad fuld skærm"
+
+#: ../data/cheese-main-window.ui.h:3
+msgid "Next"
+msgstr "Næste"
+
+#: ../data/cheese-main-window.ui.h:4
+msgid "Photo burst mode"
+msgstr "Serietilstand"
+
+#: ../data/cheese-main-window.ui.h:5
+msgid "Photo mode"
+msgstr "Billedtilstand"
+
+#: ../data/cheese-main-window.ui.h:6
+msgid "Previous"
+msgstr "Forrige"
+
+#: ../data/cheese-main-window.ui.h:8
+msgid "Video mode"
+msgstr "Videotilstand"
+
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Leave Fullscreen"
 msgstr "Forlad fuld _skærm"
 
 #: ../data/cheese-prefs.ui.h:1
+msgid "<b>Shutter</b>"
+msgstr "<b>Lukker</b>"
+
+#: ../data/cheese-prefs.ui.h:2
 msgid "Brightness"
 msgstr "Lysstyrke"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:3
 msgid "Burst mode"
 msgstr "Serietilstand"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:4
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:5
 msgid "Delay between photos (seconds)"
 msgstr "Forsinkelse mellem billeder (sek.)"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Device"
 msgstr "Enhed"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
+msgid "Fire _Flash"
+msgstr "Affyr _blitz"
+
+#: ../data/cheese-prefs.ui.h:8
 msgid "Hue"
 msgstr "Farvetone"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Image properties"
 msgstr "Billedegenskaber"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Number of photos"
 msgstr "Antal billeder"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
+msgid "Photo resolution"
+msgstr "Billedopløsning"
+
+#: ../data/cheese-prefs.ui.h:12
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: ../data/cheese-prefs.ui.h:10
-msgid "Resolution"
-msgstr "Opløsning"
-
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Saturation"
 msgstr "Farvemætning"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
+msgid "Video resolution"
+msgstr "Videoopløsning"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Webcam"
 msgstr "Webkamera"
+
+#: ../data/cheese-prefs.ui.h:16
+msgid "_Countdown"
+msgstr "_Nedtælling"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese - webkamerastand"
 
-#. Translators: please note, that the effect names are
-#. standarized and should not be translated
-#: ../data/cheese.schemas.in.h:3
-msgid ""
-"A list of effects applied on startup. Possible values are: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-msgstr ""
-"Liste af effekter som anvendes ved opstart. Mulige værdier er: \"mauve\", "
-"\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-"flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" og \"warp\""
-
-#: ../data/cheese.schemas.in.h:4
-msgid "Adjusts brightness level of the picture coming from the camera"
-msgstr "Justerer lysstyrkeniveauet for billedet som kommer fra kameraet"
-
-#: ../data/cheese.schemas.in.h:5
-msgid "Adjusts contrast level of the picture coming from the camera"
-msgstr "Justerer kontrastniveauet for billedet som kommer fra kameraet"
-
-#: ../data/cheese.schemas.in.h:6
-msgid "Adjusts hue level of the picture coming from the camera"
-msgstr "Justerer farvetoneniveauet for billedet som kommer fra kameraet"
-
-#: ../data/cheese.schemas.in.h:7
-msgid "Adjusts saturation level of the picture coming from the camera"
-msgstr "Justerer mætningsniveauet for billedet som kommer fra kameraet"
-
-#: ../data/cheese.schemas.in.h:8
-msgid "Camera device string indicator"
-msgstr "Kamerasenhedsindikatorstreng"
-
-#: ../data/cheese.schemas.in.h:9
-msgid ""
-"Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr ""
-"Definerer den sti hvor billeder vil blive gemt. Hvis den er tom vil "
-"\"XDG_PHOTO/Webcam\" blive brugt."
-
-#: ../data/cheese.schemas.in.h:10
-msgid ""
-"Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr ""
-"Definerer den sti hvor videoer vil blive gemt. Hvis den er tom vil "
-"\"XDG_VIDEO/Webcam\" blive brugt."
-
-#: ../data/cheese.schemas.in.h:11
-msgid "Height resolution"
-msgstr "Højdeopløsning"
-
-#: ../data/cheese.schemas.in.h:12
-msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
-msgstr ""
-"Hvis sat til sand, vil Cheese starte op i en bred tilstand med "
-"billedsamlingen placeret på højre side. Nyttigt ved små skærme."
-
-#: ../data/cheese.schemas.in.h:13
-msgid ""
-"If set to true, then Cheese will have a feature allowing you to delete a "
-"file immediately and in-place, instead of moving it to the trash. This "
-"feature can be dangerous, so use caution."
-msgstr ""
-"Hvis sat til sand, så vil Cheese have en funktion som tillader dig at slette "
-"en fil øjeblikkeligt, der hvor den er, i stedet for at flytte den til "
-"papirkurven. Denne funktion kan være farlig så brug den med forsigtighed."
-
-#: ../data/cheese.schemas.in.h:14
-msgid "Milliseconds between photos in burst mode."
-msgstr "Millisekunder mellem billeder i serietilstand."
-
-#: ../data/cheese.schemas.in.h:15
-msgid "Number of photos in burst mode."
-msgstr "Antal billeder i serietilstand."
-
-#: ../data/cheese.schemas.in.h:16
-msgid "Photo Path"
-msgstr "Billedsti"
-
-#: ../data/cheese.schemas.in.h:17
-msgid "Picture brightness"
-msgstr "Billedlysstyrke"
-
-#: ../data/cheese.schemas.in.h:18
-msgid "Picture contrast"
-msgstr "Billedkontrast"
-
-#: ../data/cheese.schemas.in.h:19
-msgid "Picture hue"
-msgstr "Billedfarvetone"
-
-#: ../data/cheese.schemas.in.h:20
-msgid "Picture saturation"
-msgstr "Billedmætning"
-
-#: ../data/cheese.schemas.in.h:21
-msgid "Selected Effects"
-msgstr "Udvalgte effekter"
-
-#: ../data/cheese.schemas.in.h:22
-msgid "Set to True to show countdown when taking a photo"
-msgstr "Sæt til sand, hvis der skal vises nedtælling ved fotografering"
-
-#: ../data/cheese.schemas.in.h:23
-msgid "The device which points to the camera (e.g. /dev/video0)"
-msgstr "Enheden som henviser til kameraet (f.eks. /dev/video0)"
-
-#: ../data/cheese.schemas.in.h:24
-msgid "The height resolution of the image captured from the camera"
-msgstr "Højdeopløsningen af billedet taget med kameraet"
-
-#: ../data/cheese.schemas.in.h:25
-msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
-msgstr ""
-"Forsinkelsen, i millisekunder, mellem enkeltbilleder i en serie (burst) af "
-"billeder."
-
-#: ../data/cheese.schemas.in.h:26
-msgid "The number of photos to take in a single burst."
-msgstr "Antallet af billeder der skal tages i en enkelt serie (burst)."
-
-#: ../data/cheese.schemas.in.h:27
-msgid "The width resolution of the image captured from the camera"
-msgstr "Breddeopløsningen af billedet taget med kameraet"
-
-#: ../data/cheese.schemas.in.h:28
-msgid "Use a countdown"
-msgstr "Brug en nedtælling"
-
-#: ../data/cheese.schemas.in.h:29
-msgid "Video Path"
-msgstr "Videosti"
-
-#: ../data/cheese.schemas.in.h:30
-msgid "Whether to enable immediate deletion"
-msgstr "Om øjeblikkelig sletning skal slås til"
-
-#: ../data/cheese.schemas.in.h:31
-msgid "Whether to start in wide mode"
-msgstr "Hvorvidt der startes op i bred tilstand"
-
-#: ../data/cheese.schemas.in.h:32
-msgid "Width resolution"
-msgstr "Breddeopløsning"
-
-#: ../libcheese/cheese-avatar-chooser.c:110 ../src/cheese-window.vala:594
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
 msgid "Shutter sound"
 msgstr "Lukker lyd"
 
-#: ../libcheese/cheese-avatar-chooser.c:238
-msgid "Take a photo"
-msgstr "Tag et billede"
-
-#: ../libcheese/cheese-avatar-chooser.c:257
+#: ../libcheese/cheese-avatar-chooser.c:228
 msgid "_Take a photo"
 msgstr "_Tag et billede"
 
-#: ../libcheese/cheese-avatar-chooser.c:272
+#: ../libcheese/cheese-avatar-chooser.c:241
 msgid "_Discard photo"
 msgstr "_Kassér foto"
 
@@ -397,6 +280,7 @@ msgstr "Enheds funktioner ikke understøttet"
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr ""
+"Kunne ikke initialisere enheden %s med henblik på kompatibilitetsundersøgelse"
 
 #: ../libcheese/cheese-camera-device.c:515
 msgid "Unknown device"
@@ -406,68 +290,204 @@ msgstr "Ukendt enhed"
 msgid "Cancellable initialization not supported"
 msgstr "Annullerbar opstart ikke understøttet"
 
-#: ../libcheese/cheese-camera.c:1156
+#: ../libcheese/cheese-camera.c:1182
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhed fundet"
 
-#: ../libcheese/cheese-camera.c:1175
+#: ../libcheese/cheese-camera.c:1232
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Et eller flere gstreamer-elementer mangler: "
 
-#. TRANSLATORS:
-#. * This is the countdown number when taking the photo.
-#. * If you leave as is (that is, %d), it will show 3, 2, 1, 0.
-#. * To enable to show the numbers in your own language, use %Id instead.
-#. * Please leave the additional whitespace after the number
-#.
-#: ../libcheese/cheese-countdown.c:441 ../libcheese/cheese-countdown.c:460
-#: ../libcheese/cheese-countdown.c:479
-#, c-format
-msgid "%d "
-msgstr "%d "
-
-#: ../src/cheese-effects-manager.vala:116
+#: ../src/cheese-effects-manager.vala:118
 msgid "No Effect"
 msgstr "Ingen effekt"
 
 #: ../src/cheese-main.vala:37
-msgid "Enable wide mode"
-msgstr "Slå bred tilstand til"
+msgid "Start in wide mode"
+msgstr "Start i bred tilstand"
 
 #: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
-msgstr ""
+msgstr "Enheden der skal bruges som kamera"
 
 #: ../src/cheese-main.vala:38
 msgid "DEVICE"
-msgstr ""
+msgstr "ENHED"
 
 #: ../src/cheese-main.vala:39
-#, fuzzy
 msgid "Output version information and exit"
-msgstr "vis versionsinformation og afslut"
+msgstr "Skriv versionsinformation og afslut"
 
-#: ../src/cheese-main.vala:66
-#, fuzzy
+#: ../src/cheese-main.vala:40
+msgid "Start in fullscreen mode"
+msgstr "Start i fuldskærmstilstand"
+
+#: ../src/cheese-main.vala:108
 msgid "- Take photos and videos from your webcam"
-msgstr ""
-"Et \"cheesy\" program til at tage billeder og optage video fra dit webcam"
+msgstr "- Tag billeder og videoer med dit webkamera"
 
-#: ../src/cheese-main.vala:77
+#: ../src/cheese-main.vala:119
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
+"Kør \"%s --help\" for at få en liste over alle tilgængelige "
+"kommandlinjetilvalg.\n"
 
-#: ../src/cheese-window.vala:689
-#, fuzzy
+#: ../src/cheese-main.vala:134
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Der kører allerede en instans af Cheese\n"
+
+#: ../src/cheese-window.vala:763
 msgid "Stop _Recording"
-msgstr "_Stop optagelse"
+msgstr "Stop _optagelse"
 
-#: ../src/cheese-window.vala:821
-#, fuzzy
+#: ../src/cheese-window.vala:787
+msgid "Stop _Taking Pictures"
+msgstr "Stop med at _tage billeder"
+
+#: ../src/cheese-window.vala:919
 msgid "No effects found"
-msgstr "Ingen enhed fundet"
+msgstr "Ingen effekter fundet"
+
+#, fuzzy
+#~ msgid "Fullscreen"
+#~ msgstr "Forlad fuld _skærm"
+
+#, fuzzy
+#~ msgid "_Delete"
+#~ msgstr "Slet"
+
+#~ msgid "_Open"
+#~ msgstr "_Åbn"
+
+#, fuzzy
+#~ msgid "_Preferences"
+#~ msgstr "Indstillinger"
+
+#, fuzzy
+#~ msgid "_Quit"
+#~ msgstr "Afslut"
+
+#~ msgid "Resolution"
+#~ msgstr "Opløsning"
+
+#~ msgid ""
+#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
+#~ msgstr ""
+#~ "Liste af effekter som anvendes ved opstart. Mulige værdier er: \"mauve\", "
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" og \"warp\""
+
+#~ msgid "Adjusts brightness level of the picture coming from the camera"
+#~ msgstr "Justerer lysstyrkeniveauet for billedet som kommer fra kameraet"
+
+#~ msgid "Adjusts contrast level of the picture coming from the camera"
+#~ msgstr "Justerer kontrastniveauet for billedet som kommer fra kameraet"
+
+#~ msgid "Adjusts hue level of the picture coming from the camera"
+#~ msgstr "Justerer farvetoneniveauet for billedet som kommer fra kameraet"
+
+#~ msgid "Adjusts saturation level of the picture coming from the camera"
+#~ msgstr "Justerer mætningsniveauet for billedet som kommer fra kameraet"
+
+#~ msgid "Camera device string indicator"
+#~ msgstr "Kamerasenhedsindikatorstreng"
+
+#~ msgid ""
+#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Definerer den sti hvor billeder vil blive gemt. Hvis den er tom vil "
+#~ "\"XDG_PHOTO/Webcam\" blive brugt."
+
+#~ msgid ""
+#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Definerer den sti hvor videoer vil blive gemt. Hvis den er tom vil "
+#~ "\"XDG_VIDEO/Webcam\" blive brugt."
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in a wide mode with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "Hvis sat til sand, vil Cheese starte op i en bred tilstand med "
+#~ "billedsamlingen placeret på højre side. Nyttigt ved små skærme."
+
+#~ msgid ""
+#~ "If set to true, then Cheese will have a feature allowing you to delete a "
+#~ "file immediately and in-place, instead of moving it to the trash. This "
+#~ "feature can be dangerous, so use caution."
+#~ msgstr ""
+#~ "Hvis sat til sand, så vil Cheese have en funktion som tillader dig at "
+#~ "slette en fil øjeblikkeligt, der hvor den er, i stedet for at flytte den "
+#~ "til papirkurven. Denne funktion kan være farlig så brug den med "
+#~ "forsigtighed."
+
+#~ msgid "Milliseconds between photos in burst mode."
+#~ msgstr "Millisekunder mellem billeder i serietilstand."
+
+#~ msgid "Number of photos in burst mode."
+#~ msgstr "Antal billeder i serietilstand."
+
+#~ msgid "Photo Path"
+#~ msgstr "Billedsti"
+
+#~ msgid "Picture brightness"
+#~ msgstr "Billedlysstyrke"
+
+#~ msgid "Picture contrast"
+#~ msgstr "Billedkontrast"
+
+#~ msgid "Picture hue"
+#~ msgstr "Billedfarvetone"
+
+#~ msgid "Picture saturation"
+#~ msgstr "Billedmætning"
+
+#~ msgid "Selected Effects"
+#~ msgstr "Udvalgte effekter"
+
+#~ msgid "Set to True to show countdown when taking a photo"
+#~ msgstr "Sæt til sand, hvis der skal vises nedtælling ved fotografering"
+
+#~ msgid "The device which points to the camera (e.g. /dev/video0)"
+#~ msgstr "Enheden som henviser til kameraet (f.eks. /dev/video0)"
+
+#~ msgid "The height resolution of the image captured from the camera"
+#~ msgstr "Højdeopløsningen af billedet taget med kameraet"
+
+#~ msgid ""
+#~ "The length of time, in milliseconds, to delay between taking each photo "
+#~ "in a burst sequence of photos."
+#~ msgstr ""
+#~ "Forsinkelsen, i millisekunder, mellem enkeltbilleder i en serie (burst) "
+#~ "af billeder."
+
+#~ msgid "The number of photos to take in a single burst."
+#~ msgstr "Antallet af billeder der skal tages i en enkelt serie (burst)."
+
+#~ msgid "The width resolution of the image captured from the camera"
+#~ msgstr "Breddeopløsningen af billedet taget med kameraet"
+
+#~ msgid "Use a countdown"
+#~ msgstr "Brug en nedtælling"
+
+#~ msgid "Video Path"
+#~ msgstr "Videosti"
+
+#~ msgid "Whether to enable immediate deletion"
+#~ msgstr "Om øjeblikkelig sletning skal slås til"
+
+#~ msgid "%d "
+#~ msgstr "%d "
+
+#~ msgid "Enable wide mode"
+#~ msgstr "Slå bred tilstand til"
 
 #~| msgid "Set to True to show countdown when taking a photo"
 #~ msgid "Set to True to use flash when taking a photo"
@@ -620,12 +640,6 @@ msgstr "Ingen enhed fundet"
 #~ msgid "Help on this Application"
 #~ msgstr "Hjælp til dette program"
 
-#~ msgid "Countdown"
-#~ msgstr "Nedtælling"
-
-#~ msgid "Flash"
-#~ msgstr "Blitz"
-
 #~ msgid "_Start Recording"
 #~ msgstr "_Start optagelse"
 
@@ -664,9 +678,6 @@ msgstr "Ingen enhed fundet"
 
 #~ msgid "Check your gstreamer installation"
 #~ msgstr "Kontrollér din gstreamer-installation"
-
-#~ msgid "<b>Camera</b>"
-#~ msgstr "<b>Kamera</b>"
 
 #~ msgid "Help"
 #~ msgstr "Hjælp"
