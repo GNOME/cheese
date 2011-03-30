@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-09 19:06+0000\n"
-"PO-Revision-Date: 2011-03-09 19:07+0100\n"
+"POT-Creation-Date: 2011-03-30 14:57+0100\n"
+"PO-Revision-Date: 2011-03-30 14:58+0100\n"
 "Last-Translator: Bruce Cowan <bruce@bcowan.me.uk>\n"
 "Language-Team: British English <en@li.org>\n"
 "Language: en_GB\n"
@@ -66,107 +66,87 @@ msgstr ""
 "Bruce Cowan <bruce@bcowan.me.uk>"
 
 #: ../data/cheese-actions.ui.h:1
-msgid "Burst"
-msgstr "Burst"
+msgid "Move _All to Trash"
+msgstr "Move _All to Wastebasket"
 
 #: ../data/cheese-actions.ui.h:2
-msgid "Fullscreen"
-msgstr "Fullscreen"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Help _Contents"
-msgstr "Help _Contents"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move All to Trash"
-msgstr "Move All to Wastebasket"
-
-#: ../data/cheese-actions.ui.h:5
 msgid "Move to _Trash"
 msgstr "Move to Was_tebasket"
 
-#: ../data/cheese-actions.ui.h:6
-msgid "Next Effects"
-msgstr "Next Effects"
+#: ../data/cheese-actions.ui.h:3
+msgid "Ne_xt Effects"
+msgstr "Ne_xt Effects"
 
-#: ../data/cheese-actions.ui.h:7
-msgid "Previous Effects"
-msgstr "Previous Effects"
+#: ../data/cheese-actions.ui.h:4
+msgid "P_revious Effects"
+msgstr "P_revious Effects"
 
-#: ../data/cheese-actions.ui.h:8
+#: ../data/cheese-actions.ui.h:5
 msgid "Record a video"
 msgstr "Record a video"
 
-#: ../data/cheese-actions.ui.h:9
-msgid "Save _As"
+#: ../data/cheese-actions.ui.h:6
+msgid "Save _As…"
 msgstr "Save _As…"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:7
 msgid "Take _Multiple Photos"
 msgstr "Take _Multiple Photos"
 
-#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
 #: ../libcheese/cheese-avatar-chooser.c:210
 msgid "Take a photo"
 msgstr "Take a photo"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:9
 msgid "Take multiple photos"
 msgstr "Take multiple photos"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:10
 msgid "_About"
 msgstr "_About"
 
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:11
+msgid "_Burst"
+msgstr "_Burst"
+
+#: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../data/cheese-actions.ui.h:15
-msgid "_Delete"
-msgstr "_Delete"
+#: ../data/cheese-actions.ui.h:13
+msgid "_Contents"
+msgstr "_Contents"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:14
 msgid "_Edit"
 msgstr "_Edit"
 
-#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Effects"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:16
 msgid "_Help"
 msgstr "_Help"
 
-#: ../data/cheese-actions.ui.h:19
-msgid "_Open"
-msgstr "_Open"
-
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:17
 msgid "_Photo"
 msgstr "_Photo"
 
-#: ../data/cheese-actions.ui.h:21
-msgid "_Preferences"
-msgstr "_Preferences"
-
-#: ../data/cheese-actions.ui.h:22
-msgid "_Quit"
-msgstr "_Quit"
-
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:18
 msgid "_Record a Video"
 msgstr "_Record a Video"
 
-#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
+#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "_Take a Photo"
 
-#: ../data/cheese-actions.ui.h:25
+#: ../data/cheese-actions.ui.h:20
 msgid "_Video"
 msgstr "_Video"
 
-#: ../data/cheese-actions.ui.h:26
+#: ../data/cheese-actions.ui.h:21
 msgid "_Wide Mode"
 msgstr "_Wide Mode"
 
@@ -270,7 +250,7 @@ msgstr "_Countdown"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese Webcam Booth"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:674
 msgid "Shutter sound"
 msgstr "Shutter sound"
 
@@ -299,12 +279,12 @@ msgstr "Unknown device"
 msgid "Cancellable initialization not supported"
 msgstr "Cancellable initialisation not supported"
 
-#: ../libcheese/cheese-camera.c:1212
+#: ../libcheese/cheese-camera.c:1182
 #, c-format
 msgid "No device found"
 msgstr "No device found"
 
-#: ../libcheese/cheese-camera.c:1231
+#: ../libcheese/cheese-camera.c:1232
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "One or more needed GStreamer elements are missing: "
 
@@ -347,17 +327,32 @@ msgstr ""
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Another instance of Cheese is currently running\n"
 
-#: ../src/cheese-window.vala:763
+#: ../src/cheese-window.vala:765
 msgid "Stop _Recording"
 msgstr "Stop _Recording"
 
-#: ../src/cheese-window.vala:787
+#: ../src/cheese-window.vala:789
 msgid "Stop _Taking Pictures"
 msgstr "Stop _Taking Pictures"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:921
 msgid "No effects found"
 msgstr "No effects found"
+
+#~ msgid "Fullscreen"
+#~ msgstr "Fullscreen"
+
+#~ msgid "_Delete"
+#~ msgstr "_Delete"
+
+#~ msgid "_Open"
+#~ msgstr "_Open"
+
+#~ msgid "_Preferences"
+#~ msgstr "_Preferences"
+
+#~ msgid "_Quit"
+#~ msgstr "_Quit"
 
 #~ msgid "Resolution"
 #~ msgstr "Resolution"
