@@ -1101,6 +1101,14 @@ cheese_camera_init (CheeseCamera *camera)
   priv->current_format          = NULL;
 }
 
+/**
+ * cheese_camera_new:
+ * @video_texture: a #ClutterTexture
+ * @camera_device_name: (allow-none): the device name
+ * @x_resolution: the resolution width
+ * @y_resolution: the resolution height
+ */
+
 CheeseCamera *
 cheese_camera_new (ClutterTexture *video_texture, char *camera_device_name,
                    int x_resolution, int y_resolution)
@@ -1164,7 +1172,7 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, const gchar *udi)
 /**
  * cheese_camera_setup:
  * @camera: a #CheeseCamera
- * @id: the device id
+ * @id: (allow-none): the device id
  * @error: return location for a GError or NULL
  */
 
