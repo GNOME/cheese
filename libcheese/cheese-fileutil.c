@@ -189,7 +189,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   settings = g_settings_new ("org.gnome.Cheese");
 
   g_settings_get (settings, "video-path", "s", &priv->video_path);
-  g_settings_get (settings, "photo-path", "s", &priv->video_path);
+  g_settings_get (settings, "photo-path", "s", &priv->photo_path);
 
   /* get the video path from gsettings, xdg or hardcoded */
   if (!priv->video_path || strcmp (priv->video_path, "") == 0)
