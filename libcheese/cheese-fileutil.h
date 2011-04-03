@@ -22,12 +22,12 @@
 #ifndef __CHEESE_FILEUTIL_H__
 #define __CHEESE_FILEUTIL_H__
 
+#include <glib-object.h>
+
 #define PHOTO_NAME_SUFFIX ".jpg"
 #define VIDEO_NAME_SUFFIX ".ogv"
 
 G_BEGIN_DECLS
-
-#include <glib-object.h>
 
 #define CHEESE_TYPE_FILEUTIL (cheese_fileutil_get_type ())
 #define CHEESE_FILEUTIL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_FILEUTIL, CheeseFileUtil))
