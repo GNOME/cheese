@@ -103,7 +103,7 @@ Cheese_3_0_gir_CFLAGS = -I$(srcdir) $(INCLUDES) \
 	$(CHEESE_CFLAGS)
 Cheese_3_0_gir_LIBS = libcheese.la
 Cheese_3_0_gir_FILES = $(introspection_sources)
-Cheese_3_0_gir_SCANNERFLAGS = --verbose --warn-all --pkg-export cheese-3.0
+Cheese_3_0_gir_SCANNERFLAGS = --verbose --warn-all --pkg-export cheese
 
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
