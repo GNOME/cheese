@@ -192,7 +192,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   filename = g_file_get_path (file);
 
-  if (!(g_str_has_suffix (filename, PHOTO_NAME_SUFFIX)) && !(g_str_has_suffix (filename, VIDEO_NAME_SUFFIX)))
+  if (!(g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX)) && !(g_str_has_suffix (filename, CHEESE_VIDEO_NAME_SUFFIX)))
   {
     g_free (filename);
     return;
@@ -515,7 +515,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     /* read videos from the vid directory */
     while ((name = g_dir_read_name (dir_videos)))
     {
-      if (!(g_str_has_suffix (name, VIDEO_NAME_SUFFIX)))
+      if (!(g_str_has_suffix (name, CHEESE_VIDEO_NAME_SUFFIX)))
         continue;
 
       filename = g_build_filename (path_videos, name, NULL);
@@ -533,7 +533,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     /* read photos from the photo directory */
     while ((name = g_dir_read_name (dir_photos)))
     {
-      if (!(g_str_has_suffix (name, PHOTO_NAME_SUFFIX)))
+      if (!(g_str_has_suffix (name, CHEESE_PHOTO_NAME_SUFFIX)))
         continue;
 
       filename = g_build_filename (path_photos, name, NULL);
