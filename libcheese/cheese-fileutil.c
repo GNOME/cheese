@@ -47,11 +47,7 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
-  gchar *path;
-
-  path = priv->video_path;
-
-  return path;
+  return priv->video_path;
 }
 
 gchar *
@@ -59,11 +55,7 @@ cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
-  gchar *path;
-
-  path = priv->photo_path;
-
-  return path;
+  return priv->photo_path;
 }
 
 gchar *
