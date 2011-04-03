@@ -106,10 +106,15 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
   }
 
   file = g_file_new_for_path (filename);
+  num = 0;
 
-  if (g_file_query_exists (file, NULL))
+  while (g_file_query_exists (file, NULL))
   {
-    num = 1;
+    num++;
+
+    g_object_unref (file);
+    g_free (filename);
+
     if (mode == CHEESE_MEDIA_MODE_PHOTO)
       filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, CHEESE_PHOTO_NAME_SUFFIX);
     else if (mode == CHEESE_MEDIA_MODE_BURST)
@@ -118,20 +123,9 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
       filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, CHEESE_VIDEO_NAME_SUFFIX);
 
     file = g_file_new_for_path (filename);
-
-    while (g_file_query_exists (file, NULL))
-    {
-      num++;
-      if (mode == CHEESE_MEDIA_MODE_PHOTO)
-        filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, CHEESE_PHOTO_NAME_SUFFIX);
-      else if (mode == CHEESE_MEDIA_MODE_BURST)
-        filename = g_strdup_printf ("%s_%d (%d)%s", priv->burst_raw_name, priv->burst_count, num, CHEESE_PHOTO_NAME_SUFFIX);
-      else
-        filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, CHEESE_VIDEO_NAME_SUFFIX);
-
-      file = g_file_new_for_path (filename);
-    }
   }
+
+  g_object_unref (file);
 
   return filename;
 }
