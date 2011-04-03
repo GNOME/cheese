@@ -24,8 +24,8 @@
 
 #include <glib-object.h>
 
-#define PHOTO_NAME_SUFFIX ".jpg"
-#define VIDEO_NAME_SUFFIX ".ogv"
+#define CHEESE_PHOTO_NAME_SUFFIX ".jpg"
+#define CHEESE_VIDEO_NAME_SUFFIX ".ogv"
 
 G_BEGIN_DECLS
 
