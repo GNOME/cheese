@@ -488,7 +488,7 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
   GDir       *dir_videos, *dir_photos;
-  char       *path_videos, *path_photos;
+  const char *path_videos, *path_photos;
   const char *name;
   char       *filename;
   GFile      *file;
@@ -675,7 +675,7 @@ cheese_thumb_view_new ()
 }
 
 void
-cheese_thumb_view_start_monitoring_photo_path (CheeseThumbView *thumb_view, char *path_photos)
+cheese_thumb_view_start_monitoring_photo_path (CheeseThumbView *thumb_view, const char *path_photos)
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
@@ -694,7 +694,7 @@ cheese_thumb_view_start_monitoring_photo_path (CheeseThumbView *thumb_view, char
 }
 
 void
-cheese_thumb_view_start_monitoring_video_path (CheeseThumbView *thumb_view, char *path_videos)
+cheese_thumb_view_start_monitoring_video_path (CheeseThumbView *thumb_view, const char *path_videos)
 {
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
