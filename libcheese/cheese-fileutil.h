@@ -57,11 +57,11 @@ typedef enum
 GType           cheese_fileutil_get_type (void);
 CheeseFileUtil *cheese_fileutil_new (void);
 
-gchar *cheese_fileutil_get_video_path (CheeseFileUtil *fileutil);
-gchar *cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil);
-gchar *cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
-gchar *cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode);
-void   cheese_fileutil_reset_burst (CheeseFileUtil *fileutil);
+const gchar *cheese_fileutil_get_video_path (CheeseFileUtil *fileutil);
+const gchar *cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil);
+gchar       *cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
+gchar       *cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode);
+void         cheese_fileutil_reset_burst (CheeseFileUtil *fileutil);
 
 G_END_DECLS
 

@@ -42,7 +42,7 @@ typedef struct
   gchar *burst_raw_name;
 } CheeseFileUtilPrivate;
 
-gchar *
+const gchar *
 cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
@@ -50,7 +50,7 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
   return priv->video_path;
 }
 
-gchar *
+const gchar *
 cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
@@ -67,13 +67,13 @@ cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
 gchar *
 cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode)
 {
-  struct tm *ptr;
-  time_t     tm;
-  char       date[21];
-  gchar     *path;
-  char      *filename;
-  GFile     *file;
-  int        num;
+  struct tm   *ptr;
+  time_t       tm;
+  char         date[21];
+  const gchar *path;
+  char        *filename;
+  GFile       *file;
+  int          num;
 
   CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
