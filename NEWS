@@ -1,6 +1,36 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.0.0
+  - lib: fix typo when initializing photo_path private attribute.
+  - lib: export correct package on introspection files.
+    The name of Cheese's pkg is cheese, not cheese-3.0.
+  - lib: fix recording videos after previous image/video captures.
+    This fixes bug: https://bugzilla.gnome.org/show_bug.cgi?id=645975
+  - window: set the about dialog transient and modal so that mutter can apply
+    the GNOME 3 modal dialog effect to it.
+    Fixes bug: https://bugzilla.gnome.org/show_bug.cgi?id=646007
+  - Added/Updated Translations
+    - ca, courtesy of Gil Forcada
+    - da, courtesy of Anders Jenbo
+    - en_GB, courtesy of Bruce Cowan
+    - eu, courtesy of Julen Ruiz Aizpuru
+    - gu, courtesy of Sweta Kothari
+    - he, courtesy of Yaron Shahrabani
+    - id, courtesy of Dirgita
+    - it, courtesy of Alessandro Falappa
+    - lt, courtesy of Gintautas Miliauskas
+    - pa, courtesy of A S Alam
+    - pt_BR, courtesy of Rodrigo Padula de Oliveira
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+    - ta, courtesy of Dr.T.Vasudevan
+    - th, courtesy of Akom Chotiphantawanon
+    - tr, courtesy of Baris Cicek
+    - ug, courtesy of Sahran
+    - vi, courtesy of Clytie Siddall
+  - Added/Updated Documentation
+
 version 2.91.93:
    - Cheese widget bug fixes
    - Make Flash widget not cover the GNOME Shell panel
