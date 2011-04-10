@@ -49,6 +49,7 @@
     <property name="title" translatable="yes">Preferences</property>
     <property name="window_position">center-on-parent</property>
     <property name="type_hint">dialog</property>
+    <signal name="delete-event" handler="cheese_preferences_dialog_on_delete" swapped="no"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox1">
         <property name="visible">True</property>
