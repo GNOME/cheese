@@ -135,6 +135,8 @@ cheese_thumb_view_thread_append_item (gpointer data)
   g_free (thumb_loc);
   g_free (uri);
 
+  gdk_threads_enter ();
+
   if (!pixbuf)
   {
     gchar  *escape = NULL;
@@ -156,8 +158,6 @@ cheese_thumb_view_thread_append_item (gpointer data)
   {
     eog_thumbnail_add_frame (&pixbuf);
   }
-
-  gdk_threads_enter ();
 
   gtk_list_store_set (priv->store, &iter,
                       THUMBNAIL_PIXBUF_COLUMN, pixbuf, -1);
