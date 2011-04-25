@@ -1,6 +1,27 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.0.1
+  - cheese-test-flash: Quit the test when window is closed.
+    When the window was closed, cheese-test-flash would continue to run. Now
+    the test quits when the window is closed.
+  - cheese-thumb-view: guard thread unsafe operations to avoid crash.
+  - lib: fix leaks and simplify cheese_fileutil_get_new_media_filename.
+  - lib: properly prefix photo/video suffix constants in cheese namespace.
+  - lib: move glib-object.h before G_BEGIN_DECLS in cheese-fileutil.h to
+    fix a build warning about implicit declaration.
+  - lib: return const char * when getting photo/video paths and
+    update all uses of both methods accordingly.
+  - lib: no need to declare variable to return photo/video paths.
+  - lib: add some missing introspection annotations in cheese-camera.
+  - set default value for saturation to 1, fixes bug #647228.
+  - Added/Updated Translations
+    - eu, courtesy of Julen Ruiz Aizpuru
+    - fa, courtesy of Arash Mousavi
+    - nl, courtesy of Wouter Bolsterlee
+    - tr, courtesy of Muhammet Kara
+  - Added/Updated Documentation
+
 version 3.0.0
   - lib: fix typo when initializing photo_path private attribute.
   - lib: export correct package on introspection files.
