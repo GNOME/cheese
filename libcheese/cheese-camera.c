@@ -835,6 +835,7 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
   {
     g_signal_emit_by_name (priv->camerabin, "capture-stop", 0);
     g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
+    g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
     priv->is_recording = FALSE;
   }
   else
