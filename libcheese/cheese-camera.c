@@ -812,6 +812,7 @@ cheese_camera_force_stop_video_recording (gpointer data)
 
     cheese_camera_stop (camera);
     g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
+    cheese_camera_play (camera);
     priv->is_recording = FALSE;
   }
 
