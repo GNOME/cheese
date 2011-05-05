@@ -172,7 +172,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       gst_message_parse_warning (message, &err, &debug);
 
       if (err && err->message) {
-        g_warning ("%s\n", err->message);
+        g_warning ("%s: %s\n", err->message, debug);
         g_error_free (err);
       } else {
         g_warning ("Unparsable GST_MESSAGE_WARNING message.\n");
