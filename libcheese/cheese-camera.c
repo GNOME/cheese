@@ -175,7 +175,7 @@ cheese_camera_photo_data (CheeseCamera *camera, GstBuffer *buffer)
                                      FALSE, bits_per_pixel, width, height, stride,
                                      data ? (GdkPixbufDestroyNotify) g_free : NULL, NULL);
 
-  g_object_set (G_OBJECT (priv->camerabin), "preview-caps", NULL, NULL);
+  g_object_set (G_OBJECT (priv->camerabin), "post-previews", FALSE, NULL);
   g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0, pixbuf);
   g_object_unref (pixbuf);
 }
@@ -1135,6 +1135,7 @@ cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
                               "bpp", G_TYPE_INT, 24,
                               "depth", G_TYPE_INT, 24,
                               NULL);
+  g_object_set (G_OBJECT (priv->camerabin), "post-previews", TRUE, NULL);
   g_object_set (G_OBJECT (priv->camerabin), "preview-caps", caps, NULL);
   gst_caps_unref (caps);
 
