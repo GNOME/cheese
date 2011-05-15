@@ -137,6 +137,8 @@ AM_CONDITIONAL(HAVE_XTEST, test "x$HAVE_TEST" = "xyes")
 
 PKG_CHECK_MODULES(CHEESE, \ 
   glib-2.0 >= $GLIB_REQUIRED \
+  gio-2.0 >= $GIO_REQUIRED \
+  x11 \
   gobject-2.0 >= $GOBJECT_REQUIRED \
   gdk-pixbuf-2.0 \
   gstreamer-0.10 >= $GSTREAMER_REQUIRED \
