@@ -331,6 +331,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
 
       gst_object_unref (pad);
       gst_caps_unref (caps);
+      gst_object_unref (src);
     }
     else
     {
