@@ -162,6 +162,7 @@ create_page (GtkWidget *child,
              GtkWidget *extra)
 {
   GtkWidget *vbox, *hbox;
+  GtkAlignment *align;
 
   vbox = gtk_vbox_new (FALSE, 8);
   gtk_box_pack_start (GTK_BOX (vbox),
@@ -169,12 +170,14 @@ create_page (GtkWidget *child,
                       TRUE,
                       TRUE,
                       0);
-  hbox = gtk_hbox_new (FALSE, 8);
+  align = gtk_alignment_new (0.5, 0, 0, 0);
   gtk_box_pack_start (GTK_BOX (vbox),
-                      hbox,
+                      align,
                       FALSE,
                       TRUE,
                       0);
+  hbox = gtk_hbox_new (FALSE, 8);
+  gtk_container_add(GTK_CONTAINER(align), hbox);
   gtk_box_pack_start (GTK_BOX (hbox),
                       button,
                       FALSE,
