@@ -839,9 +839,10 @@ public class Cheese.MainWindow : Gtk.Window
     burst_mode_action.sensitive = !action.active;
   }
 
-  public bool on_selected_effect_change (Clutter.ButtonEvent event)
+  public bool on_selected_effect_change (Clutter.Actor source,
+                                         Clutter.ButtonEvent event)
   {
-    selected_effect = event.source.get_data ("effect");
+    selected_effect = source.get_data ("effect");
     camera.set_effect (selected_effect);
     settings.set_string ("selected-effect", selected_effect.name);
     effects_toggle_action.set_active (false);
