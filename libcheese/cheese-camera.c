@@ -80,7 +80,6 @@ typedef struct
   GstElement *effect_filter;
   GstElement *video_balance, *csp_post_balance;
   GstElement *camera_tee, *effects_tee;
-  GstElement *effects_downscaler;
   GstElement *main_valve, *effects_valve;
 
   GstCaps *preview_caps;
@@ -416,24 +415,14 @@ cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
   {
     cheese_camera_set_error_element_not_found (error, "effects_valve");
   }
-  priv->effects_downscaler = gst_parse_bin_from_description (
-    "videoscale ! video/x-raw-yuv,width=160,height=120 ! ffmpegcolorspace",
-    TRUE,
-    &err);
-  if (priv->effects_downscaler == NULL || err != NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "effects_downscaler");
-  }
 
   if (error != NULL && *error != NULL)
     return FALSE;
 
   gst_bin_add_many (GST_BIN (priv->effects_preview_bin),
-                    priv->effects_downscaler, priv->effects_tee,
-                    priv->effects_valve, NULL);
+		    priv->effects_valve, priv->effects_tee, NULL);
 
-  ok &= gst_element_link_many (priv->effects_valve, priv->effects_downscaler,
-                               priv->effects_tee, NULL);
+  ok &= gst_element_link_many (priv->effects_valve, priv->effects_tee, NULL);
 
   /* add ghostpads */
 
