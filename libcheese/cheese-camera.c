@@ -993,10 +993,10 @@ cheese_camera_start_video_recording (CheeseCamera *camera, const gchar *filename
 
   g_object_set (priv->camerabin, "mode", MODE_VIDEO, NULL);
   gst_element_set_state (priv->camerabin, GST_STATE_READY);
-  g_object_set (priv->camerabin, "filename", filename, NULL);
+  g_object_set (priv->camerabin, "location", filename, NULL);
   cheese_camera_set_tags (camera);
   gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
-  g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
+  g_signal_emit_by_name (priv->camerabin, "start-capture", 0);
   priv->is_recording = TRUE;
 }
 
@@ -1048,7 +1048,7 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
 
   if (state == GST_STATE_PLAYING)
   {
-    g_signal_emit_by_name (priv->camerabin, "capture-stop", 0);
+    g_signal_emit_by_name (priv->camerabin, "stop-capture", 0);
     g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
     g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
     priv->is_recording = FALSE;
@@ -1117,10 +1117,10 @@ cheese_camera_take_photo (CheeseCamera *camera, const gchar *filename)
 
   if (priv->photo_filename != NULL)
   {
-    g_object_set (priv->camerabin, "filename", priv->photo_filename, NULL);
+    g_object_set (priv->camerabin, "location", priv->photo_filename, NULL);
     g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
     cheese_camera_set_tags (camera);
-    g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
+    g_signal_emit_by_name (priv->camerabin, "start-capture", 0);
   }
   else
   {
@@ -1174,9 +1174,9 @@ cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
 
   /* Take the photo */
 
-  g_object_set (priv->camerabin, "filename", "/dev/null", NULL);
+  g_object_set (priv->camerabin, "location", "/dev/null", NULL);
   g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
-  g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
+  g_signal_emit_by_name (priv->camerabin, "start-capture", 0);
 
   return TRUE;
 }
