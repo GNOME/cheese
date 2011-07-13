@@ -659,11 +659,6 @@ public class Cheese.MainWindow : Gtk.Window
     {
       string file_name = fileutil.get_new_media_filename (this.current_mode);
 
-      if (current_mode == MediaMode.VIDEO)
-        thumb_view.start_monitoring_video_path (fileutil.get_video_path ());
-      else
-        thumb_view.start_monitoring_photo_path (fileutil.get_photo_path ());
-
       if (settings.get_boolean ("flash"))
       {
         this.flash.fire ();
@@ -1276,5 +1271,10 @@ public class Cheese.MainWindow : Gtk.Window
 
     camera.state_flags_changed.connect (camera_state_changed);
     camera.play ();
+  }
+  public void start_thumbview_monitors ()
+  {
+    thumb_view.start_monitoring_video_path (fileutil.get_video_path ());
+    thumb_view.start_monitoring_photo_path (fileutil.get_photo_path ());
   }
 }
