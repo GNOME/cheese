@@ -31,6 +31,7 @@
 #include <clutter/clutter.h>
 #include <clutter-gst/clutter-gst.h>
 #include <gst/gst.h>
+#include <gst/basecamerabinsrc/gstcamerabin-enum.h>
 #include <X11/Xlib.h>
 
 #include "cheese-camera.h"
@@ -53,12 +54,6 @@ G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 #define CHEESE_CAMERA_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA, CheeseCameraPrivate))
 
 #define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
-
-typedef enum
-{
-  MODE_IMAGE = 0,
-  MODE_VIDEO
-} GstCameraBinMode;
 
 typedef enum {
   GST_CAMERABIN_FLAG_SOURCE_RESIZE               = (1 << 0),
