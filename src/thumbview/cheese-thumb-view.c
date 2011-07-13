@@ -356,9 +356,16 @@ cheese_thumb_view_monitor_cb (GFileMonitor     *file_monitor,
     case G_FILE_MONITOR_EVENT_DELETED:
       cheese_thumb_view_remove_item (thumb_view, file);
       break;
+
+    case G_FILE_MONITOR_EVENT_MOVED:
+      cheese_thumb_view_remove_item (thumb_view, file);
+      cheese_thumb_view_append_item (thumb_view, other_file);
+      break;
+
     case G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT:
       cheese_thumb_view_append_item (thumb_view, file);
       break;
+
     default:
       break;
   }
@@ -697,7 +704,7 @@ cheese_thumb_view_start_monitoring_photo_path (CheeseThumbView *thumb_view, cons
 
   /* connect signal to photo path */
   file                     = g_file_new_for_path (path_photos);
-  priv->photo_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+  priv->photo_file_monitor = g_file_monitor_directory (file, G_FILE_MONITOR_SEND_MOVED, NULL, NULL);
   g_signal_connect (priv->photo_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
 
   g_object_unref (file);
@@ -716,7 +723,7 @@ cheese_thumb_view_start_monitoring_video_path (CheeseThumbView *thumb_view, cons
 
   /* connect signal to video path */
   file                     = g_file_new_for_path (path_videos);
-  priv->video_file_monitor = g_file_monitor_directory (file, 0, NULL, NULL);
+  priv->video_file_monitor = g_file_monitor_directory (file, G_FILE_MONITOR_SEND_MOVED, NULL, NULL);
   g_signal_connect (priv->video_file_monitor, "changed", G_CALLBACK (cheese_thumb_view_monitor_cb), thumb_view);
 
   g_object_unref (file);
