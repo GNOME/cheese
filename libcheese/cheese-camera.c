@@ -1552,11 +1552,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
     return;
   }
 
-  //raluca: TODO: set video-filter, preview-filter, image-filter?
-  g_object_set (G_OBJECT (priv->camerabin), "viewfinder-filter", priv->video_filter_bin, NULL);
-  //g_object_set (G_OBJECT (priv->camerabin), "video-filter", priv->video_filter_bin, NULL);
-  //g_object_set (G_OBJECT (priv->camerabin), "preview-filter", priv->video_filter_bin, NULL);
-  //g_object_set (G_OBJECT (priv->camerabin), "image-filter", priv->video_filter_bin, NULL);
+  g_object_set (G_OBJECT (priv->camera_source), "video-source-filter", priv->video_filter_bin, NULL);
 
   priv->bus = gst_element_get_bus (priv->camerabin);
   gst_bus_add_signal_watch (priv->bus);
