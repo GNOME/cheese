@@ -60,6 +60,7 @@ public class Cheese.Main : Gtk.Application
       Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
 
       main_window.setup_ui ();
+      main_window.start_thumbview_monitors ();
 
       if (wide)
         main_window.set_startup_wide_mode ();
