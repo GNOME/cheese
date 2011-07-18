@@ -1,6 +1,29 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.0.2
+  - Update about dialog credits.
+  - Printing debug of error messages.
+  - thumb-view: start monitoring for photos and videos at startup.
+  - cheese-camera: make effect previews scale with the cheese window
+    Before this patch, when you scaled Cheese's main window, in the the
+    effects preview mode, the window would scale but the 9 videos inside
+    the window would remain at the same size.
+  - add gio-2.0 and x11 to PKG_CHECK_MODULES
+  - cheese-gtk.pc: Updating 'requires private' to gtk3 versions of packages.
+  - window: use the right signature for button-release-event callback
+    The signature is (ClutterActor, ClutterEvent). Using the event source
+    there is wrong, as that's not guaranteed to be the same object emitting
+    the callback (i.e. the object emitting could be just forwarding an event
+    coming from one of its children). Fixes bug #647677
+  - libcheese: Don't leak the source element when probing for the caps.
+  - cheese-camera: Setting camera to playing after forced stop.
+  - cheese-camera: Emit VIDEO_SAVED signal when video is saved.
+  - Added/Updated Translations:
+    - ca@valencia, courtesy of Gil Forcada
+    - te, courtesy of Praveen Illa
+    - ug, courtesy of Sahran
+
 version 3.0.1
   - cheese-test-flash: Quit the test when window is closed.
     When the window was closed, cheese-test-flash would continue to run. Now
