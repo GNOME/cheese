@@ -244,7 +244,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       const GstStructure *structure;
       GstBuffer *buffer;
       const GValue *image;
-      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin2") == 0)
+      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camera_source") == 0)
       {
         structure = gst_message_get_structure (message);
         if (strcmp (gst_structure_get_name (structure), "preview-image") == 0)
@@ -1145,7 +1145,7 @@ cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
 
   /* Take the photo */
 
-  g_object_set (priv->camerabin, "location", "/dev/null", NULL);
+  g_object_set (priv->camerabin, "location", NULL, NULL);
   g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
   g_signal_emit_by_name (priv->camerabin, "start-capture", 0);
 
