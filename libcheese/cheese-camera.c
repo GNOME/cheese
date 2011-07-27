@@ -721,9 +721,8 @@ cheese_camera_play (CheeseCamera *camera)
 
   if (!gst_caps_is_empty (caps))
   {
-    g_signal_emit_by_name (priv->camerabin, "set-video-resolution-fps",
-                           priv->current_format->width,
-                           priv->current_format->height, 0, 1, 0);
+    GST_INFO_OBJECT (camera, "SETTING caps%" GST_PTR_FORMAT, caps);
+    g_object_set (priv->camerabin, "viewfinder-caps", caps, NULL);
   }
   gst_caps_unref (caps);
 
