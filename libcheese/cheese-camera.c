@@ -1025,7 +1025,6 @@ cheese_camera_force_stop_video_recording (gpointer data)
     g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
 
     cheese_camera_stop (camera);
-    g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
     cheese_camera_play (camera);
     priv->is_recording = FALSE;
   }
@@ -1054,7 +1053,6 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
   if (state == GST_STATE_PLAYING)
   {
     g_signal_emit_by_name (priv->camerabin, "stop-capture", 0);
-    g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
     g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
     priv->is_recording = FALSE;
   }
