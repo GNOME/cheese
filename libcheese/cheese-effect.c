@@ -156,3 +156,135 @@ cheese_effect_new (void)
 {
   return g_object_new (CHEESE_TYPE_EFFECT, NULL);
 }
+
+/**
+ * cheese_effect_load_from_file: load effect from file
+ * @fname: (type filename): name of the file containing effect specification
+ *
+ * Returns: (transfer full): a #CheeseEffect
+ */
+CheeseEffect*
+cheese_effect_load_from_file (const gchar *fname)
+{
+  const gchar  *GROUP_NAME = "Effect";
+  gchar        *name, *desc;
+  GError       *err = NULL;
+  CheeseEffect *eff = NULL;
+  GKeyFile     *kf = g_key_file_new ();
+
+  g_key_file_load_from_file (kf, fname, G_KEY_FILE_NONE, &err);
+  if (err != NULL)
+    goto err_kf_load;
+
+  name = g_key_file_get_locale_string (kf, GROUP_NAME, "Name", NULL, &err);
+  if (err != NULL)
+    goto err_name;
+
+  desc = g_key_file_get_string (kf, GROUP_NAME, "PipelineDescription", &err);
+  if (err != NULL)
+    goto err_desc;
+
+  g_key_file_free (kf);
+
+  eff = cheese_effect_new ();
+  g_object_set (eff, "name", name, NULL);
+  g_object_set (eff, "pipeline-desc", desc, NULL);
+  g_free (name);
+  g_free (desc);
+
+  return eff;
+
+err_desc:
+    g_free (name);
+err_name:
+err_kf_load:
+    g_key_file_free (kf);
+    g_warning ("CheeseEffect: couldn't load file %s: %s", fname, err->message);
+    g_clear_error (&err);
+    return NULL;
+}
+
+/* Returns list of effects loaded from files from @directory.
+   Only parses files ending with the '.effects' extension */
+static GList*
+cheese_effect_load_effects_from_directory (const gchar* directory)
+{
+  gboolean retval;
+  GError   *err = NULL;
+  GDir     *dir = NULL;
+  GList    *list = NULL;
+
+  retval = g_file_test (directory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR);
+  if (!retval)
+    return NULL;
+
+  dir = g_dir_open (directory, (guint) 0, &err);
+  if (err != NULL)
+  {
+    g_warning ("CheeseEffect: g_dir_open: %s\n", err->message);
+    g_clear_error (&err);
+    return NULL;
+  }
+
+  while (TRUE) {
+    CheeseEffect *effect;
+    gchar        *abs_path;
+    const gchar  *fname = g_dir_read_name (dir);
+
+    /* no more files */
+    if (fname == NULL)
+      break;
+
+    if (!g_str_has_suffix (fname, ".effect"))
+      continue;
+
+    abs_path = g_build_filename (directory, fname, NULL);
+    effect = cheese_effect_load_from_file (abs_path);
+    if (effect != NULL)
+      list = g_list_append (list, effect);
+    g_free (abs_path);
+  }
+  g_dir_close (dir);
+
+  return list;
+}
+
+static GList*
+cheese_effect_load_effects_from_subdirectory (const gchar* directory,
+                                              const gchar* subdirectory)
+{
+  GList *list;
+  gchar *path = g_build_filename (directory, subdirectory, NULL);
+  list = cheese_effect_load_effects_from_directory (path);
+  g_free (path);
+  return list;
+}
+
+/**
+ * cheese_effect_load_effects: load effects from known standard directories.
+ *
+ * Returns: (element-type Cheese.Effect) (transfer full): List of #CheeseEffect
+ */
+GList*
+cheese_effect_load_effects ()
+{
+  const gchar *const*data_dirs, *dir;
+  GList *ret = NULL, *l;
+
+  dir = g_get_user_data_dir (); /* value returned owned by GLib */
+  l = cheese_effect_load_effects_from_subdirectory (dir, "gnome-video-effects");
+  ret = g_list_concat (ret, l);
+
+  data_dirs = g_get_system_data_dirs (); /* value returned owned by GLib */
+  if (!data_dirs)
+    return ret;
+
+  for (; *data_dirs; data_dirs++)
+  {
+    dir = *data_dirs;
+    l = cheese_effect_load_effects_from_subdirectory (dir, "gnome-video-effects");
+    ret = g_list_concat (ret, l);
+  }
+
+  return ret;
+}

@@ -58,6 +58,9 @@ gboolean      cheese_effect_is_preview_connected (CheeseEffect *self);
 void          cheese_effect_enable_preview (CheeseEffect *self);
 void          cheese_effect_disable_preview (CheeseEffect *self);
 
+CheeseEffect *cheese_effect_load_from_file (const gchar *fname);
+GList        *cheese_effect_load_effects ();
+
 G_END_DECLS
 
 #endif /* _CHEESE_EFFECT_H_ */
