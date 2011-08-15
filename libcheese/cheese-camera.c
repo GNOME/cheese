@@ -659,14 +659,18 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
                                        effect_desc,
                                        " ! ffmpegcolorspace name=colorspace2",
                                        NULL);
+  g_free (effect_desc);
   effect_filter = gst_parse_bin_from_description (effects_pipeline_desc, FALSE, &err);
+  g_free (effects_pipeline_desc);
   if (!effect_filter || (err != NULL))
   {
     g_error_free (err);
     g_warning ("Error with effect filter %s. Ignored", name);
+    g_free (name);
     return NULL;
   }
-  g_free (effects_pipeline_desc);
+  g_free (name);
+
 
   /* Add ghost pads to effect_filter bin */
   colorspace1 = gst_bin_get_by_name (GST_BIN (effect_filter), "colorspace1");
