@@ -679,10 +679,12 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   pad = gst_element_get_static_pad (colorspace1, "sink");
   gst_element_add_pad (effect_filter, gst_ghost_pad_new ("sink", pad));
   gst_object_unref (GST_OBJECT (pad));
+  gst_object_unref (GST_OBJECT (colorspace1));
 
   pad = gst_element_get_static_pad (colorspace2, "src");
   gst_element_add_pad (effect_filter, gst_ghost_pad_new ("src", pad));
   gst_object_unref (GST_OBJECT (pad));
+  gst_object_unref (GST_OBJECT (colorspace2));
 
   return effect_filter;
 }
