@@ -18,9 +18,6 @@ namespace Cheese
     public void enable_preview();
     public void disable_preview();
     public bool is_preview_connected();
-
-    public static Cheese.Effect load_from_file (string fname);
-    public static GLib.List<Cheese.Effect> load_effects ();
   }
 
   [CCode (cheader_filename = "cheese-camera.h")]
