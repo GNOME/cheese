@@ -59,7 +59,7 @@ void          cheese_effect_enable_preview (CheeseEffect *self);
 void          cheese_effect_disable_preview (CheeseEffect *self);
 
 CheeseEffect *cheese_effect_load_from_file (const gchar *fname);
-GList        *cheese_effect_load_effects ();
+GList        *cheese_effect_load_effects (void);
 
 G_END_DECLS
 
