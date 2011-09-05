@@ -1,6 +1,73 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.1.91
+  - Fix cheese_effect_load_effects prototype
+  - help: Reviewed and improved new Mallard help
+  - help: Added Mallard help, removed DocBook help
+  - cheese-effects: implement loading cheese effects in libcheese
+  - cheese-camera: fix 2 gst object reference leaks
+  - cheese-camera: fix 3 string memory leaks
+  - about: Update credits according to AUTHORS file
+  - cheese-camera: Print debug of messages
+  - thumb-view: start monitoring at startup
+    Before this we started monitoring each for each photo/video
+    capture. That was a bit inefficient as the directories in which photos
+    and videos are saved are known and don't change during the program's
+    lifetime.
+    Now we start the monitoring at startup only once.
+  - cheese-camera: make effect previews scale with the cheese window
+    Before this patch, when you scaled Cheese's main window, in the the
+    effects preview mode, the window would scale but the 9 videos inside
+    the window would remain at the same size.
+    I had to remove the fixed scaling from the effects pipeline and let
+    the size of the textures be governed by the layout manager.
+    Now when you scale the Cheese effect preview window all 9 videos are
+    automatically scaled (keeping aspect-ratio) to fill the available space.
+  - libcheese: aligned button to center
+  - add gio-2.0 and x11 to PKG_CHECK_MODULES
+  - cheese-gtk.pc: Update 'requires private' to gtk3
+  - window: use the right signature for button-release-event callback
+    The signature is (ClutterActor, ClutterEvent). Using the event source
+    there is wrong, as that's not guaranteed to be the same object emitting
+    the callback (i.e. the object emitting could be just forwarding an event
+    coming from one of its children).
+    https://bugzilla.gnome.org/show_bug.cgi?id=647677
+  - libcheese: don't leak the source element
+  - Updated Telugu Translations done by Praveen Illa
+  - Updated Telugu translations done by Praveen Illa
+  - cheese-camera: Setting camera to playing after forced stop
+  - cheese-camera: Emit signal when video is saved
+  - .gitignore: Added new test executables
+  - cheese-test-flash: Quit when window is closed
+  - cheese-thumb-view: guard thread unsafe operations
+  - ui: handle "delete-event" signal at Preferences dialog, fixes bug #647229
+    the "close" event triggered by the escape key was destroyng the dialog, so
+    when the user tried to open the Preferences dialog again what appeared was
+    an empty/tiny window. Handle the "delete-event" connecting it with
+    hide_on_delete() solved the problem.
+  - lib: fix leaks and simplify cheese_fileutil_get_new_media_filename
+  - lib: properly prefix photo/video suffix constants in cheese namespace
+  - lib: move glib-object.h before G_BEGIN_DECLS in cheese-fileutil.h
+    Fixes a build warning about implicit declaration.
+  - lib: return const char * when getting photo/video paths
+    Update all uses of both methods accordingly.
+  - lib: no need to declare variable to retun photo/video paths
+  - lib: add some missing introspection annotations in cheese-camera
+  - set default value for saturation to 1, fixes bug #647228
+  - Added/Updated Translations
+    - ca@valencia, courtesy of Gil Forcada
+    - eo, courtesy of Kristjan SCHMIDT
+    - fa, courtesy of Arash Mousavi
+    - fi, courtesy of Tommi Vainikainen
+    - nl, courtesy of Wouter Bolsterlee
+    - te, courtesy of Praveen Illa
+    - tr, courtesy of Muhammet Kara
+    - ug, courtesy of Sahran
+    - zu, courtesy of Priscilla Mahlangu
+  - Added/Updated Documentation
+    - ko, courtesy of Seong-ho, Cho
+
 version 3.0.0
   - lib: fix typo when initializing photo_path private attribute.
   - lib: export correct package on introspection files.
