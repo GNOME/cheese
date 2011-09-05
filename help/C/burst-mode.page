@@ -2,46 +2,61 @@
       type="topic" style="task"
       id="burst-mode">
   <info>
-    <link type="guide" xref="index#multiple-photos"/>
+    <link type="guide" xref="index"/>
     <revision version="3.0" date="2011-08-24" status="candidate"/>
+    <revision version="3.1" date="2011-09-05" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
       <email>yrazes@gmail.com</email>
       <years>2011</years>
     </credit>
+    <credit type="editor">
+      <name>Ekaterina Gerasimova</name>
+      <email>kittykat3756@gmail.com</email>
+    </credit>
 
-    <desc>Burst Mode takes several photos in a short space of time. Change your pose in between each shot!</desc>
+    <desc><gui>Burst mode</gui> takes several photos rapidly. Change your pose
+    in between each shot!</desc>
   </info>
 
-  <title>Take multiple photos in rapid succession</title>
+  <title>Take multiple photos in quick succession</title>
 
-  <p>You can use Burst Mode to automatically take several photos in one go, with a short pause between each shot. It's particularly fun if you change your pose in between pictures! To use Burst Mode:</p>
+  <p>You can use <gui>Burst mode</gui> to automatically take several photos in
+  one go, with a short pause between each shot. It's particularly fun if you
+  change your pose in between photos! To use <gui>Burst mode</gui>:</p>
 
   <steps>
     <item>
-     <p>Click the small button that looks like a stack of photos in the lower left of the Cheese window. If you clicked the right one, the button in the center of the window should now say <gui>Take Multiple Photos</gui>.</p>
+     <p>Click <gui>Burst</gui>, the <gui>Take a Photo</gui> button will now say <gui>Take Multiple Photos</gui>.</p>
      <p>Alternatively, click <guiseq><gui>Cheese</gui><gui>Burst</gui></guiseq>.</p>
     </item>
     <item>
      <p>Click <gui>Take Multiple Photos</gui> or press the <key>spacebar</key>.</p>
-     <p>By default, four photos will be taken, with a three second delay between each photo. You'll see a countdown before each photo is taken.</p>
+     <p>By default, four photos will be taken, with a three second delay between
+     each countdown, which you will see before each photo is taken.</p>
     </item>
   </steps>
 
-<p>Press <key>Esc</key> if you want to stop Cheese from taking photos at any point.</p>
+  <p>Press <key>Esc</key> if you want to stop <app>Cheese</app> from taking
+  photos at any point.</p>
 
 <section id="burst-preferences">
- <title>Change how many photos are taken, and the delay between shots</title>
- <p>You can change how many photos should be taken in each burst, and the length of the pause between photos:</p>
- <steps>
-  <item>
-   <p>Click <guiseq><gui>Edit</gui><gui>Preferences</gui></guiseq>.</p>
-  </item>
-  <item>
-   <p>Change the options under <gui>Burst mode</gui> and click <gui>Close</gui>.</p>
-  </item>
- </steps>
+  <title>Change how many photos are taken and the delay between them</title>
+  <p>You can change how many photos will be taken in each burst and the length
+  of the delay between the photos:</p>
+  <steps>
+    <item>
+      <p>Click <guiseq><gui>Edit</gui><gui>Preferences</gui></guiseq>.</p>
+    </item>
+    <item>
+      <p>Change the options under <gui>Burst mode</gui> and click <gui>Close</gui>.</p>
+    </item>
+  </steps>
+  <note>
+    <p>The delay is between the last photo taken and the start of the count down
+    for the next photo, not between two photos.</p>
+  </note>
 </section>
 
 </page>
