@@ -1,0 +1,57 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="closed">
+  <info>
+    <revision version="3.0" date="2011-08-24" status="incomplete"/>
+    <link type="guide" xref="index#problems"/>
+    <credit type="author copyright">
+      <name>Julita Inca</name>
+      <email>yrazes@gmail.com</email>
+      <years>2011</years>
+    </credit>
+
+    <desc>The application closes itself after a while sometimes.</desc>
+  </info>
+
+<title>Why does Cheese close itself when I don't want it to?</title>
+
+<comment>
+ <cite>Phil Bull</cite>
+ <p>These instructions are potentially dangerous. They ask a user to become root!</p>
+</comment>
+
+<p>Terminal is the best debug tool; so, run <app>Cheese</app> in terminal and check if you got this output:</p>
+
+<p><code>$ cheese</code></p>
+<p><code>progname=cheese; RGBA=on
+The program 'cheese' received an X Window System error.
+This probably reflects a bug in the program.
+The error was 'BadMatch (invalid parameter attributes)'.
+ (Details: serial 77 error_code 8 request_code 132 minor_code 19)
+ (Note to programmers: normally, X errors are reported asynchronously;
+ that is, you will receive the error a while after causing it.
+ To debug your program, run it with the --sync command line
+ option to change this behavior. You can then get a meaningful
+ backtrace from your debugger if you break on the gdk_x_error() function.)
+?
+</code></p>
+<note style="important"><p>Before following the instructions to get a solution, you have to ask an expert of administration of Linux, becuase doing some changes as a superuser can cause some other changes in the system:</p></note>
+
+<steps>
+<item>
+<p>To edit <gui>gtkrgba.sh</gui> as a root, open your terminal and type:</p>
+<code>sudo gedit /etc/profile.d/gtkrgba.sh</code></item>
+<item><p>You will see a list of applications that use rgba.</p>
+<p>If you don't see <gui>Cheese</gui> in the list, append <gui>":cheese".</gui>
+Be careful, it is <gui>“:”</gui> before <gui>"cheese"</gui>.  
+(See the last word in the last line):</p>
+<p><code>export GTK_MODULES=rgba
+export GTK_RGBA_APPS=allbut:firefox:firefox-3.5:gksudo:ooffice:soffice:inksca\
+pe:gksu:gtk-recordMyDesktop:kompozer-bin:gpaint:lernid:totem:truecrypt:thunde\
+rbird-bin:thunderbird:checkgmail:gloobus-preview:exe:firefox-bin:swiftfox-bin\
+:gnome-mplayer:gnome-screensaver:google-chrome:chromium-browser:prism-bin:gno\
+me-mplayer:xsane:metacity:mutter:Banshee:cheese </code></p></item>
+<item><p>Save it and run <gui>Cheese</gui> by terminal. </p></item>
+</steps>
+<p>Source of the solution: <link href="http://www.ubuntu-es.org/node/129987">Ubuntu-es</link>, <link href="http://zaybort.linuxerz.org/2011/02/problemas-con-el-cheese/">Zaybort blog</link> and <link href="http://ubuntuforums.org/showthread.php?t=1754098">Ubuntu forums</link>. If you don't have the rgba package, click <link href= "https://wiki.ubuntu.com/DesktopTeam/RgbaGtkWithPPA">here</link>.</p>
+</page>

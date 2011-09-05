@@ -1,0 +1,33 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="webcams">
+  <info>
+	<revision version="3.0" date="2011-08-25" status="incomplete"/>
+	<link type="guide" xref="index#problems"/>
+	 
+    <credit type="author copyright">
+      <name>Julita Inca</name>
+      <email>yrazes@gmail.com</email>
+      <years>2011</years>
+    </credit>
+
+    <desc>There is a list of some webcams and drivers that works good with Cheese.</desc>
+  </info>
+
+<title>I have no image on my Cheese screen</title>
+
+<comment>
+ <cite>Phil Bull</cite>
+ <p>This topic needs cleaning up a little. It needs to explain the problem (and what the user would expect to see if they had that problem) more clearly. There should also be a stronger division between different solutions, and more explanation of what each solution is trying to address.</p>
+</comment>
+
+<p>Maybe you are trying to open up <app>Cheese</app> and it does not display the picture from the webcam, even though the webcam light is on. To get your camera working with <app>Cheese</app> follow these recommendations:</p>
+<steps>
+<item>
+<p>First, you will have to ensure that it works with the <link href="http://gstreamer.freedesktop.org/">Gstreamer Framework</link> (i.e.<link href="http://linux-galaxy.blogspot.com/2011/06/cheese-faltan-uno-o-mas-elementos.html"> installation</link>) and Video4Linux2 (V4L2) or Video4Linux (V4L). See some packages <link href="https://launchpad.net/~libv4l/+archive/ppa?field.series_filter=maverick">here</link>. To
+test this, you can use the 'gstreamer-properties' tool or use this <link href="http://testwebcam.com">page</link>.</p></item>
+<item><p>If the problem persists, check if your video card has the specific driver. Most of the time, general drivers are installed or detected by default instead of the specific one. To know what driver you need, see the <link href="http://en.gentoo-wiki.com/wiki/Webcam#Webcam_driver">wiki webcam</link> or check the <link href="http://linuxcommand.org/man_pages/lsusb8.html">lsusb command</link>; and search your webcam driver in <link href="http://www.logitech.com">Logitech</link> or <link href="http://www.ideasonboard.org/uvc/">Linux UVC</link>.</p></item> 
+<item><p>Finally, if the problem continues, change the <link xref="resolution-photo">resolution</link> setting of the camera. Some applications can't detect the camera's resolution, so they put by defatult a diferent resolution of your webcam in the initial configuration.</p></item> 
+</steps>
+<p>See some <link href="https://wiki.ubuntu.com/SkypeWebCams?highlight=%28cheese%29">webcams tested in Ubuntu</link> and <link href="http://building-a-black-hole.blogspot.com">some experiences</link> with the <app>Cheese technology</app>.</p>
+</page>

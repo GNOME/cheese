@@ -1,0 +1,43 @@
+<page xmlns="http://projectmallard.org/1.0/"
+      type="topic" style="task"
+      id="no-device">
+  <info>
+    <revision version="3.0" date="2011-08-24" status="incomplete"/>
+    <link type="guide" xref="index#problems" group="#first"/>
+    
+    <credit type="author copyright">
+      <name>Julita Inca</name>
+      <email>yrazes@gmail.com</email>
+      <years>2011</years>
+    </credit>
+
+    <desc>It started saying that it didn't recognize your webcam device.</desc>
+  </info>
+
+  <title>Why does it say "No device found"?</title>
+
+<comment>
+ <cite>Phil Bull</cite>
+ <p>There are more possible reasons for why the webcam isn't detected properly. This topic needs to be expanded.</p>
+</comment>
+
+  <p>If it says "No device found" when you open Cheese, it means that your webcam was not detected properly. Try the following suggestions to get it to recognize your webcam:</p>
+
+  <list>
+    <item>
+     <p>Make sure that the webcam's power switch is on, if it has one. Also, some laptops have a switch/key to enable/disable the webcam; so, check that the power lead is plugged in firmly too. A good way of checking that the webcam is working properly is to plug it into another computer to see if it's detected.</p>
+    </item>
+    <item>
+	 <p>Some webcams need extra software to be installed before they can work. This is called a <em>device driver</em>, and whether you need one or not will depend on your . Install a device driver for your video card. Find your driver in <link href="http://www.logitech.com">Logitech website</link> or <link href="http://www.ideasonboard.org/uvc/">here</link>.</p>
+	</item>
+    <item><p>If you still have some problems, check all packages that are necessary for running <app>Cheese</app>. See more in <link xref="webcams">webcams</link>.</p></item>
+  </list>
+<note style="advanced">
+<p>See more troubleshootings related in <link href="http://ubuntuforums.org/archive/index.php/t-1703909.html">Ubuntu forums</link>,
+<link href="http://askubuntu.com/questions/3222/my-webcam-wont-work-how-do-i-debug">Q/A Ubuntu</link> and
+<link href="https://answers.launchpad.net/ubuntu/+source/cheese/+question/154094">here</link>.
+Check also for Fedora <link href="http://forums.fedoraforum.org/showthread.php?t=251050">here</link>
+</p>
+</note>
+
+</page>
