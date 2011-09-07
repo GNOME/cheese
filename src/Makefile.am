@@ -54,3 +54,10 @@ cheese_LDADD = \
 	$(top_builddir)/libcheese/libcheese-gtk.la \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS)
+
+dist_noinst_DATA = \
+	vapi/cheese-common.deps \
+	vapi/cheese-thumbview.vapi \
+	vapi/clutter-tablelayout.vapi \
+	vapi/config.vapi \
+	vapi/eogthumbnav.vapi
