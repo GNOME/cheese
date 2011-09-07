@@ -107,6 +107,7 @@ public class Cheese.Main : Gtk.Application
       try
       {
         var context = new OptionContext (_("- Take photos and videos from your webcam"));
+        context.set_translation_domain (Config.GETTEXT_PACKAGE);
         context.set_help_enabled (true);
         context.add_main_entries (options, null);
         context.add_group (Gtk.get_option_group (true));
