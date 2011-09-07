@@ -12,8 +12,7 @@ VALAFLAGS = \
         --pkg libcanberra \
 	--pkg eogthumbnav \
 	--pkg cheese-thumbview \
-	--pkg cheese-common \
-	--pkg clutter-tablelayout
+	--pkg cheese-common
 
 AM_CPPFLAGS = \
 	-DBINDIR=\"$(bindir)\"			 	\
@@ -58,6 +57,5 @@ cheese_LDADD = \
 dist_noinst_DATA = \
 	vapi/cheese-common.deps \
 	vapi/cheese-thumbview.vapi \
-	vapi/clutter-tablelayout.vapi \
 	vapi/config.vapi \
 	vapi/eogthumbnav.vapi
