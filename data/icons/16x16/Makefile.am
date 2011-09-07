@@ -6,12 +6,5 @@ context = apps
 
 iconsdir = $(themedir)/$(size)/$(context)
 
-icons_DATA = \
+dist_icons_DATA = \
 	cheese.png
-
-noinst_DATA = \
-	cheese.svg
-
-EXTRA_DIST =		\
-	$(icons_DATA)	\
-	$(noinst_DATA)
