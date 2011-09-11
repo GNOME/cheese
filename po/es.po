@@ -4,23 +4,23 @@
 # This file is distributed under the same license as cheese
 #
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
-# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 # Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011.
+# Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-17 13:20+0000\n"
-"PO-Revision-Date: 2011-03-17 18:19+0100\n"
-"Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español <gnome-es-list@gnome.org>\n"
+"POT-Creation-Date: 2011-06-16 19:51+0000\n"
+"PO-Revision-Date: 2011-09-11 10:15+0200\n"
+"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
 #: ../src/cheese-main.vala:57
@@ -57,7 +57,7 @@ msgstr ""
 "su elección) cualquier versión posterior.\n"
 "\n"
 "Este programa se distribuye con la esperanza de que sea útil, pero SIN "
-"GARANTÍA ALGUNA; ni siquiera la garantía implícita MERCANTIL o de APTITUD "
+"GARANTÍA ALGUNA; ni siquiera la garantía implícita MERCANTIL o de APTITUD "
 "PARA UN PROPÓSITO DETERMINADO. Consulte los detalles de la Licencia Pública "
 "General GNU para obtener una información más detallada. \n"
 "\n"
@@ -73,7 +73,6 @@ msgstr ""
 "Diego Escalante Urrelo <diegoe@gnome.org>, 2007"
 
 #: ../data/cheese-actions.ui.h:1
-#| msgid "Move All to Trash"
 msgid "Move _All to Trash"
 msgstr "Mo_ver todos a la papelera"
 
@@ -82,12 +81,10 @@ msgid "Move to _Trash"
 msgstr "Mover a la _papelera"
 
 #: ../data/cheese-actions.ui.h:3
-#| msgid "Next Effects"
 msgid "Ne_xt Effects"
 msgstr "Siguientes e_fectos"
 
 #: ../data/cheese-actions.ui.h:4
-#| msgid "Previous Effects"
 msgid "P_revious Effects"
 msgstr "Efectos anterio_res"
 
@@ -96,7 +93,6 @@ msgid "Record a video"
 msgstr "Grabar un vídeo"
 
 #: ../data/cheese-actions.ui.h:6
-#| msgid "Save _As"
 msgid "Save _As…"
 msgstr "Guardar _como…"
 
@@ -118,7 +114,6 @@ msgid "_About"
 msgstr "Acerca _de"
 
 #: ../data/cheese-actions.ui.h:11
-#| msgid "Burst"
 msgid "_Burst"
 msgstr "_Ráfaga"
 
@@ -127,7 +122,6 @@ msgid "_Cheese"
 msgstr "_Cheese"
 
 #: ../data/cheese-actions.ui.h:13
-#| msgid "Help _Contents"
 msgid "_Contents"
 msgstr "Índ_ice"
 
@@ -263,7 +257,7 @@ msgstr "_Cuenta atrás"
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:674
 msgid "Shutter sound"
 msgstr "Sonido del obturador"
 
@@ -279,25 +273,25 @@ msgstr "_Descartar foto"
 msgid "Device capabilities not supported"
 msgstr "No se soportan las capacidades del dispositivo"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:358
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Falló al inicializar el dispositivo %s para probar sus capacidades"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:516
 msgid "Unknown device"
 msgstr "Dispositivo desconocido"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:540
 msgid "Cancellable initialization not supported"
 msgstr "No se soporta la inicialización cancelable"
 
-#: ../libcheese/cheese-camera.c:1182
+#: ../libcheese/cheese-camera.c:1194
 #, c-format
 msgid "No device found"
 msgstr "No se encontró ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1232
+#: ../libcheese/cheese-camera.c:1244
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 
@@ -341,15 +335,15 @@ msgstr ""
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Ya se está ejecutando otra instancia del Cheese\n"
 
-#: ../src/cheese-window.vala:763
+#: ../src/cheese-window.vala:765
 msgid "Stop _Recording"
 msgstr "_Detener grabación"
 
-#: ../src/cheese-window.vala:787
+#: ../src/cheese-window.vala:789
 msgid "Stop _Taking Pictures"
 msgstr "Dejar de _tomar imágenes"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:922
 msgid "No effects found"
 msgstr "No se encontró ningún efecto"
 
