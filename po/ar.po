@@ -5,30 +5,33 @@
 # Automatically generated, 2007.
 # Usama Akkad <uak@aya.sy>, 2008.
 # Khaled Hosny <khaledhosny@eglug.org>, 2008, 2009, 2010, 2011.
+# Anass Ahmed <anass.1430@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.HEAD.ar.1\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-04 00:33+0200\n"
-"PO-Revision-Date: 2011-02-04 00:33+0300\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic <doc@arabeyes.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-09-08 16:02+0000\n"
+"PO-Revision-Date: 2011-09-04 18:58+0200\n"
+"Last-Translator: Anass Ahmed <anass.1430@gmail.com>\n"
+"Language-Team: Arabeyes\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Virtaal 0.6.1\n"
+"X-Generator: Virtaal 0.7.0\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:104
+#: ../src/cheese-main.vala:57
 msgid "Cheese"
 msgstr "«ابتسم»"
 
 #: ../data/cheese-about.ui.h:2
 msgid "Cheese Website"
-msgstr "موقع شيز"
+msgstr "موقع «ابتسم»"
 
 #: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
@@ -66,110 +69,91 @@ msgid "translator-credits"
 msgstr ""
 "فريق عربآيز للترجمة http://www.arabeyes.org :\n"
 "جهاد عفيفي\t<djihed@gmail.com>\n"
-"خالد حسني\t<khaledhosny@eglug.org>"
+"خالد حسني\t<khaledhosny@eglug.org>\n"
+"أنس أحمد        <anass.1430@gmail.com>"
 
 #: ../data/cheese-actions.ui.h:1
-msgid "Burst"
-msgstr "تكراري"
+msgid "Move _All to Trash"
+msgstr "انقل ال_كل إلى المهملات"
 
 #: ../data/cheese-actions.ui.h:2
-msgid "Fullscreen"
-msgstr "ملء الشاشة"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Help _Contents"
-msgstr "_محتويات المساعدة"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move All to Trash"
-msgstr "انقل الكل إلى المهملات"
-
-#: ../data/cheese-actions.ui.h:5
 msgid "Move to _Trash"
 msgstr "انقل إلى ال_مهملات"
 
-#: ../data/cheese-actions.ui.h:6
-msgid "Next Effects"
-msgstr "المؤثرات التالية"
+#: ../data/cheese-actions.ui.h:3
+msgid "Ne_xt Effects"
+msgstr "المؤثرات ال_تالية"
 
-#: ../data/cheese-actions.ui.h:7
-msgid "Previous Effects"
-msgstr "المؤثرات السابقة"
+#: ../data/cheese-actions.ui.h:4
+msgid "P_revious Effects"
+msgstr "المؤثرات ال_سابقة"
 
-#: ../data/cheese-actions.ui.h:8
+#: ../data/cheese-actions.ui.h:5
 msgid "Record a video"
 msgstr "سجّل فديو"
 
-#: ../data/cheese-actions.ui.h:9
-msgid "Save _As"
-msgstr "احفظ با_سم"
+#: ../data/cheese-actions.ui.h:6
+msgid "Save _As…"
+msgstr "احفظ _كـ…"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:7
 msgid "Take _Multiple Photos"
 msgstr "ال_تقط عدة صور"
 
-#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:210
+#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:213
 msgid "Take a photo"
 msgstr "التقط صورة"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:9
 msgid "Take multiple photos"
 msgstr "التقط عدة صور"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:10
 msgid "_About"
 msgstr "_عن"
 
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:11
+msgid "_Burst"
+msgstr "_تكراري"
+
+#: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
 msgstr "ابت_سم"
 
-#: ../data/cheese-actions.ui.h:15
-msgid "_Delete"
-msgstr "ا_حذف"
+#: ../data/cheese-actions.ui.h:13
+msgid "_Contents"
+msgstr "م_حتويات المساعدة"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:14
 msgid "_Edit"
 msgstr "ت_حرير"
 
-#: ../data/cheese-actions.ui.h:17 ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "المؤث_رات"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:16
 msgid "_Help"
 msgstr "م_ساعدة"
 
-#: ../data/cheese-actions.ui.h:19
-msgid "_Open"
-msgstr "ا_فتح"
-
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:17
 msgid "_Photo"
 msgstr "_صورة"
 
-#: ../data/cheese-actions.ui.h:21
-msgid "_Preferences"
-msgstr "الت_فضيلات"
-
-#: ../data/cheese-actions.ui.h:22
-msgid "_Quit"
-msgstr "ا_خرج"
-
-#: ../data/cheese-actions.ui.h:23
+#: ../data/cheese-actions.ui.h:18
 msgid "_Record a Video"
 msgstr "_سجّل فديو"
 
-#: ../data/cheese-actions.ui.h:24 ../data/cheese-main-window.ui.h:11
+#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "ال_تقط صورة"
 
-#: ../data/cheese-actions.ui.h:25
+#: ../data/cheese-actions.ui.h:20
 msgid "_Video"
 msgstr "_فيديو"
 
-#: ../data/cheese-actions.ui.h:26
+#: ../data/cheese-actions.ui.h:21
 msgid "_Wide Mode"
 msgstr "الو_ضع العريض"
 
@@ -273,15 +257,15 @@ msgstr "_عد تنازلي"
 msgid "Cheese Webcam Booth"
 msgstr "غرفة كمرة الوب «ابتسم»"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:671
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:669
 msgid "Shutter sound"
 msgstr "صوت الغالق"
 
-#: ../libcheese/cheese-avatar-chooser.c:229
+#: ../libcheese/cheese-avatar-chooser.c:231
 msgid "_Take a photo"
 msgstr "ا_لتقط صورة"
 
-#: ../libcheese/cheese-avatar-chooser.c:242
+#: ../libcheese/cheese-avatar-chooser.c:244
 msgid "_Discard photo"
 msgstr "ا_نبذ الصورة"
 
@@ -289,72 +273,92 @@ msgstr "ا_نبذ الصورة"
 msgid "Device capabilities not supported"
 msgstr "إمكانيات الجهاز غير مدعومة"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:358
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "فشل استبداء %s لسبر خصائصه"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:516
 msgid "Unknown device"
 msgstr "جهاز مجهول"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:540
 msgid "Cancellable initialization not supported"
 msgstr "الاستبداء القابل للإلغاء غير مدعوم"
 
-#: ../libcheese/cheese-camera.c:1202
+#: ../libcheese/cheese-camera.c:1189
 #, c-format
 msgid "No device found"
 msgstr "لم يُعثر على أي جهاز"
 
-#: ../libcheese/cheese-camera.c:1221
+#: ../libcheese/cheese-camera.c:1239
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "عنصر أو أكثر من عناصر GStreamer مفقودة:"
 
-#: ../src/cheese-effects-manager.vala:118
+#: ../src/cheese-effects-manager.vala:48
 msgid "No Effect"
 msgstr "لا مؤثرات"
 
-#: ../src/cheese-main.vala:38
+#: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
 msgstr "ابدأ في الوضع العريض"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "Device to use as a camera"
-msgstr "الجهاز الذي سيكون الكمرة"
+msgstr "الجهاز المستخدم ككمرة"
 
-#: ../src/cheese-main.vala:39
+#: ../src/cheese-main.vala:38
 msgid "DEVICE"
 msgstr "الجهاز"
 
-#: ../src/cheese-main.vala:40
+#: ../src/cheese-main.vala:39
 msgid "Output version information and exit"
 msgstr "اكتب رقم الإصدار ثم اخرج"
 
-#: ../src/cheese-main.vala:41
+#: ../src/cheese-main.vala:40
 msgid "Start in fullscreen mode"
 msgstr "ابدأ في نمط ملء الشاشة"
 
-#: ../src/cheese-main.vala:68
+#: ../src/cheese-main.vala:109
 msgid "- Take photos and videos from your webcam"
 msgstr "- التقط صورا بكاميرا الوب"
 
-#: ../src/cheese-main.vala:79
+#: ../src/cheese-main.vala:121
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "شغل ‪'%s --help'‬ لترى قائمة كاملة بخيارات سطر الأوامر.\n"
 
-#: ../src/cheese-window.vala:762
+#: ../src/cheese-main.vala:136
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "يعمل تطبيق آخر من «ابتسم» حاليًا\n"
+
+#: ../src/cheese-window.vala:760
 msgid "Stop _Recording"
 msgstr "أو_قف التسجيل"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:784
 msgid "Stop _Taking Pictures"
 msgstr "أوقف أ_خذ الصور"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:925
 msgid "No effects found"
 msgstr "لم يُعثر على مؤثرات"
+
+#~ msgid "Fullscreen"
+#~ msgstr "ملء الشاشة"
+
+#~ msgid "_Delete"
+#~ msgstr "ا_حذف"
+
+#~ msgid "_Open"
+#~ msgstr "ا_فتح"
+
+#~ msgid "_Preferences"
+#~ msgstr "الت_فضيلات"
+
+#~ msgid "_Quit"
+#~ msgstr "ا_خرج"
 
 #~ msgid "Resolution"
 #~ msgstr "الميز"
