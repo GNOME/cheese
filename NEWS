@@ -1,6 +1,30 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.1.92
+  - configure.ac: Bump Cheese version to 3.1.92
+  - help: fixed countdown and flash help, bug 659013
+  - help: reviewed and improved wording
+  - Fixed one string
+  - Updated Spanish translation
+  - Refresh icons, bug 646770
+  - Remove unnecessary clutter-tablelayout.vapi
+    Fixes bug 657029.
+  - Distribute .vapi files, bug 652870
+  - Translate the command-line summary, bug 636585
+  - Check return value of gtk_clutter_init()
+    Fixes bug 654913.
+  - Fix invalid burst mode delay time, bug 652532
+  - Remove gettext macros in configure.ac, bug 655166
+  - Added/Updated Translations
+    - ar, courtesy of Anass Ahmed
+    - be, courtesy of Ihar Hrachyshka
+    - es, courtesy of Jorge González
+  - Added/Updated Documentation
+    - de, courtesy of Mario Blättermann
+    - es, courtesy of Jorge González
+    - gl, courtesy of Fran Dieguez
+
 version 3.1.91.1
   - configure.ac: Bump version to 3.1.91.1 release
     Bump SONAME of libcheese and libcheese-gtk to be greater than those from
