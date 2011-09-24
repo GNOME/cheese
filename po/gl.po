@@ -11,23 +11,23 @@
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Anton Meixome <meixome@mancomun.org>, 2009.
-# Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010.
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010, 2011.
 # Fran Dieguez <frandieguez@ubuntu.com>, 2010.
 # Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-20 16:15+0100\n"
-"PO-Revision-Date: 2011-03-20 16:16+0100\n"
-"Last-Translator: \n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"POT-Creation-Date: 2011-09-24 14:35+0200\n"
+"PO-Revision-Date: 2011-09-23 13:33+0200\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
+"Language-Team: Galego <kde-i18n-doc@kde.org>\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
 #: ../src/cheese-main.vala:57
@@ -64,8 +64,7 @@ msgstr ""
 "Foundation, tanto a versión 2 como as posteriores.\n"
 "\n"
 "Este programa distribúese coa esperanza de que lle sexa útil, pero SEN "
-"GARANTÍA NINGUNHA, incluso sen a garantía de MERCANTIBILIDADE ou "
-"ADECUACIÓN "
+"GARANTÍA NINGUNHA, incluso sen a garantía de MERCANTIBILIDADE ou ADECUACIÓN "
 "A UN PROPÓSITO EN PARTICULAR. Vexa a Licenza  Pública Xeral para ter máis "
 "detalles.\n"
 "\n"
@@ -75,13 +74,17 @@ msgstr ""
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
 msgstr ""
+"Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010, 2011.\n"
 "Fran Diéguez <frandieguez@ubuntu.com>, 2009, 2010.\n"
-"Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010.\n"
 "Anton Meixome <meixome@mancomun.org>, 2009.\n"
 "Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun."
 "org>, 2009.\n"
 "Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.\n"
-"Ricardo González Castro <rick@jinlabs.com>, 2007."
+"Ricardo González Castro <rick@jinlabs.com>, 2007.\n"
+"\n"
+"Proxecto Trasno - Adaptación do software libre á lingua galega.\n"
+"Se desexas colaborar connosco podes atopar máis información en http://www."
+"trasno.net"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Move _All to Trash"
@@ -112,7 +115,7 @@ msgid "Take _Multiple Photos"
 msgstr "_Sacar varias fotos"
 
 #: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:210
+#: ../libcheese/cheese-avatar-chooser.c:213
 msgid "Take a photo"
 msgstr "Sacar unha foto"
 
@@ -126,7 +129,7 @@ msgstr "_Sobre"
 
 #: ../data/cheese-actions.ui.h:11
 msgid "_Burst"
-msgstr "_Explosión"
+msgstr "_Ráfaga"
 
 #: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
@@ -182,7 +185,7 @@ msgstr "Seguinte"
 
 #: ../data/cheese-main-window.ui.h:4
 msgid "Photo burst mode"
-msgstr "Modo de explosión de foto"
+msgstr "Modo de ráfaga de fotos"
 
 #: ../data/cheese-main-window.ui.h:5
 msgid "Photo mode"
@@ -210,7 +213,7 @@ msgstr "Brillo"
 
 #: ../data/cheese-prefs.ui.h:3
 msgid "Burst mode"
-msgstr "Modo de explosión"
+msgstr "Modo de ráfaga"
 
 #: ../data/cheese-prefs.ui.h:4
 msgid "Contrast"
@@ -268,15 +271,15 @@ msgstr "_Conta atrás"
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:669
 msgid "Shutter sound"
 msgstr "Son do obturador"
 
-#: ../libcheese/cheese-avatar-chooser.c:228
+#: ../libcheese/cheese-avatar-chooser.c:231
 msgid "_Take a photo"
 msgstr "_Sacar unha foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:241
+#: ../libcheese/cheese-avatar-chooser.c:244
 msgid "_Discard photo"
 msgstr "_Desbotar a foto"
 
@@ -284,31 +287,31 @@ msgstr "_Desbotar a foto"
 msgid "Device capabilities not supported"
 msgstr "As capacidades do dispositivo non son compatíbeis"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:358
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr ""
 "Produciuse un fallo ao inicializar o dispositivo %s para a capacidade de "
 "proba"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:516
 msgid "Unknown device"
 msgstr "Dispositivo descoñecido"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:540
 msgid "Cancellable initialization not supported"
 msgstr "A inicialización cancelábel non é compatíbel"
 
-#: ../libcheese/cheese-camera.c:1182
+#: ../libcheese/cheese-camera.c:1189
 #, c-format
 msgid "No device found"
 msgstr "Non se atopou ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1232
+#: ../libcheese/cheese-camera.c:1239
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Falta un ou máis elementos necesarios de Gstreamer: "
 
-#: ../src/cheese-effects-manager.vala:118
+#: ../src/cheese-effects-manager.vala:48
 msgid "No Effect"
 msgstr "Sen efectos"
 
@@ -332,31 +335,31 @@ msgstr "Mostrar información da versión e saír"
 msgid "Start in fullscreen mode"
 msgstr "Iniciar en modo de pantalla completa"
 
-#: ../src/cheese-main.vala:108
+#: ../src/cheese-main.vala:109
 msgid "- Take photos and videos from your webcam"
 msgstr "- Tome fotografías e vídeos coa súa cámara web"
 
-#: ../src/cheese-main.vala:119
+#: ../src/cheese-main.vala:121
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Executar «%s --help» para ver unha lista completa de opcións de liña de "
 "ordes dispoñíbeis.\n"
 
-#: ../src/cheese-main.vala:134
+#: ../src/cheese-main.vala:136
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Xa ten unha xanela de Cheese executándose\n"
 
-#: ../src/cheese-window.vala:763
+#: ../src/cheese-window.vala:760
 msgid "Stop _Recording"
 msgstr "_Deter a gravación"
 
-#: ../src/cheese-window.vala:787
+#: ../src/cheese-window.vala:784
 msgid "Stop _Taking Pictures"
 msgstr "Deixar de _tomar imaxes"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:925
 msgid "No effects found"
 msgstr "Non se atopou ningún efecto"
 
