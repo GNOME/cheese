@@ -1,20 +1,21 @@
 # Galician translation for cheese.
 # Copyright (C) 2011 cheese's COPYRIGHT HOLDER
 # This file is distributed under the same license as the cheese package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Fran Dieguez <frandieguez@gnome.org>, 2011.
 #
+# Fran Dieguez <frandieguez@gnome.org>, 2011.
+# Leandro Regueiro <leandro.regueiro@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"POT-Creation-Date: 2011-09-11 09:31+0000\n"
-"PO-Revision-Date: 2011-09-20 02:06+0200\n"
-"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"POT-Creation-Date: 2011-09-20 00:08+0000\n"
+"PO-Revision-Date: 2011-09-23 12:50+0200\n"
+"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
+"Language-Team: Galego <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Lokalize 1.0\n"
 
 #: C/wide-mode.page:10(name) C/view-photo.page:10(name)
 #: C/take-photo.page:15(name) C/save-photo.page:10(name)
@@ -247,13 +248,17 @@ msgstr ""
 "gui><gui>Webcam</gui></guiseq> no seu cartafol de usuario."
 
 #: C/save-photo.page:29(p)
+#| msgid ""
+#| "To save an image to a different location, right-click the image in the "
+#| "photo stream and click <gui>Save As</gui>. Then, choose where you want to "
+#| "save the image to."
 msgid ""
 "To save an image to a different location, right-click the image in the photo "
 "stream and click <gui>Save As</gui>. Then, choose where you want to save the "
-"image to."
+"image."
 msgstr ""
 "Para gardar unha imaxe nunha localización distinta, prema co botón dereito "
-"sobre unha imaxe da tira de imaxes e seleccione <gui>Gardar como </gui>. "
+"sobre unha imaxe da tira de fotos e prema en <gui>Gardar como</gui>. "
 "Logo, seleccione onde quere gardar a imaxe."
 
 #: C/save-photo.page:33(p)
@@ -308,7 +313,7 @@ msgstr ""
 "resolución. Pode cambiar a resolución da cámara web:"
 
 #: C/resolution-photo.page:36(p) C/image-properties.page:29(p)
-#: C/burst-mode.page:50(p)
+#: C/burst-mode.page:52(p)
 msgid "Click <guiseq><gui>Edit</gui><gui>Preferences</gui></guiseq>."
 msgstr "Prema <guiseq><gui>Editar</gui><gui>Preferencias</gui>."
 
@@ -599,35 +604,40 @@ msgstr ""
 "brevemente branca. Isto fornece luz adicional."
 
 #: C/disable-flash.page:26(p)
+#| msgid ""
+#| "To disable this feature, click <guiseq><gui>Cheese</gui><gui>Flash</gui></"
+#| "guiseq> so that <gui>Flash</gui> is unchecked."
 msgid ""
-"To disable this feature, click <guiseq><gui>Cheese</gui><gui>Flash</gui></"
-"guiseq> so that <gui>Flash</gui> is unchecked."
+"To disable this feature, click <guiseq><gui>Edit</gui><gui>Preferences</"
+"gui></guiseq> and uncheck <gui>Fire Flash</gui>."
 msgstr ""
-"Para desactivar esta característica, prema <guiseq><gui>Cheese</"
-"gui><gui>Flash</gui></guiseq> para asegurarse de que <gui>Flash</gui> está "
-"desactivado."
+"Para desactivar esta característica, prema en <guiseq><gui>Editar</"
+"gui><gui>Preferencias</gui></guiseq> e desmarque <gui>Disparar flash</gui>."
 
 #: C/disable-countdown.page:19(desc)
-msgid ""
-"Click <guiseq><gui>Cheese</gui><gui>Countdown</gui></guiseq> to disable the "
-"countdown."
+msgid "Remove the countdown so that photos are taken instantly."
 msgstr ""
-"Prema <guiseq><gui>Cheese</gui><gui>Conta atrás</gui></guiseq> para "
-"desactivar a conta atrás."
+"Eliminar a conta atrás de xeito que as fotos se tomen instantaneamente."
 
-#: C/disable-countdown.page:23(title)
+#: C/disable-countdown.page:22(title)
 msgid "Disable the <gui>Countdown</gui> before photos are taken"
 msgstr "Desactive a <gui>Conta atrás</gui> antes de que se tomen as fotos"
 
-#: C/disable-countdown.page:25(p)
+#: C/disable-countdown.page:24(p)
+#| msgid ""
+#| "By default, <app>Cheese</app> counts down from three before taking a "
+#| "photo. You can stop this from happening by clicking <guiseq><gui>Cheese</"
+#| "gui><gui>Countdown</gui></guiseq>, so that <gui>Countdown</gui> is "
+#| "unchecked."
 msgid ""
 "By default, <app>Cheese</app> counts down from three before taking a photo. "
-"You can stop this from happening by clicking <guiseq><gui>Cheese</"
-"gui><gui>Countdown</gui></guiseq>, so that <gui>Countdown</gui> is unchecked."
+"You can disable this feature by clicking <guiseq><gui>Edit</"
+"gui><gui>Preferences</gui></guiseq> and unchecking <gui>Countdown</gui>."
 msgstr ""
 "Por omisión, <app>Cheese</app> fai unha conta atrás antes de tomar unha "
-"foto. Pode evitar isto premendo <guiseq><gui>Cheese</gui><gui>Conta atrás</"
-"gui></guiseq>, para comprobar que <gui>Conta atrás</gui> estea desactivado."
+"foto. Pode desactivar esta característica premendo en <guiseq><gui>Editar<"
+"/gui><gui>Preferencias</"
+"gui></guiseq> e desmarcando <gui>Conta atrás</gui>."
 
 #: C/delete-photo.page:19(desc)
 msgid "Remove photos and videos that you no longer want to keep."
@@ -678,8 +688,12 @@ msgstr ""
 "gui>. Isto moveraa ao cartafol <gui>Lixo</gui> do computador."
 
 #: C/delete-photo.page:45(p)
+#| msgid ""
+#| "Cheese does not have its own <gui>Trash</gui> folder and you can not "
+#| "access your computer's <gui>Trash</gui> folder from within <app>Cheese</"
+#| "app>."
 msgid ""
-"Cheese does not have its own <gui>Trash</gui> folder and you can not access "
+"Cheese does not have its own <gui>Trash</gui> folder and you cannot access "
 "your computer's <gui>Trash</gui> folder from within <app>Cheese</app>."
 msgstr ""
 "Cheese non ten o seu propio cartafol <gui>Lixo</gui> polo que non pode "
@@ -698,12 +712,16 @@ msgid "Take multiple photos in quick succession"
 msgstr "Tomar múltiples fotos continuas de forma rápida"
 
 #: C/burst-mode.page:25(p)
+#| msgid ""
+#| "You can use <gui>Burst mode</gui> to automatically take several photos in "
+#| "one go, with a short pause between each shot. It's particularly fun if "
+#| "you change your pose in between photos! To use <gui>Burst mode</gui>:"
 msgid ""
 "You can use <gui>Burst mode</gui> to automatically take several photos in "
-"one go, with a short pause between each shot. It's particularly fun if you "
+"one go, with a short pause between shots. It is particularly fun if you "
 "change your pose in between photos! To use <gui>Burst mode</gui>:"
 msgstr ""
-"Pode usar o <gui>Modo ráfaga</gui> para sacar varias fotos de forma "
+"Pode usar o <gui>Modo ráfaga</gui> para sacar varias fotos seguidas de forma "
 "automática, con unha pequena pausa entre cada disparo. Isto é "
 "particularmente divertido se cambia as poses entre as fotos. Para usar o "
 "<gui>Modo ráfaga</gui>:"
@@ -716,28 +734,31 @@ msgstr ""
 "Prema <gui>Ráfaga</gui>, o botón <gui>Tomar unha foto</gui> dirá <gui>Tomar "
 "múltiples fotos</gui>."
 
-#: C/burst-mode.page:32(p)
+#: C/burst-mode.page:33(p)
 msgid ""
 "Alternatively, click <guiseq><gui>Cheese</gui><gui>Burst</gui></guiseq>."
 msgstr ""
 "De forma alternativa, prema <guiseq><gui>Cheese</gui><gui>Ráfaga</gui></"
 "guiseq>."
 
-#: C/burst-mode.page:35(p)
+#: C/burst-mode.page:36(p)
 msgid "Click <gui>Take Multiple Photos</gui> or press the <key>spacebar</key>."
 msgstr ""
 "Prema <gui>Tomar múltiples fotos</gui> ou prema a <key>barra espaciadora</"
 "key>."
 
-#: C/burst-mode.page:36(p)
+#: C/burst-mode.page:38(p)
+#| msgid ""
+#| "By default, four photos will be taken, with a three second delay between "
+#| "each countdown, which you will see before each photo is taken."
 msgid ""
-"By default, four photos will be taken, with a three second delay between "
-"each countdown, which you will see before each photo is taken."
+"By default, four photos will be taken, with a three second delay and a "
+"countdown between photos."
 msgstr ""
-"Por omisión, tomaranse catro fotos, con tres segundos de retraso entre cada "
-"unha, verá cada foto antes de tomar a seguinte."
+"Por omisión, tomaranse catro fotos, con tres segundos de atraso e unha conta "
+"atrás entre as fotos."
 
-#: C/burst-mode.page:41(p)
+#: C/burst-mode.page:43(p)
 msgid ""
 "Press <key>Esc</key> if you want to stop <app>Cheese</app> from taking "
 "photos at any point."
@@ -745,11 +766,11 @@ msgstr ""
 "Prema <key>Esc</key> se desexa deter a toma de fotos de <app>Cheese</app> en "
 "calquera punto."
 
-#: C/burst-mode.page:45(title)
+#: C/burst-mode.page:47(title)
 msgid "Change how many photos are taken and the delay between them"
 msgstr "Cambie cantas fotos se toman e o retraso entre elas"
 
-#: C/burst-mode.page:46(p)
+#: C/burst-mode.page:48(p)
 msgid ""
 "You can change how many photos will be taken in each burst and the length of "
 "the delay between the photos:"
@@ -757,18 +778,21 @@ msgstr ""
 "Pode cambiar cantas fotos se toman para cada modo ráfaga e a cantidade de "
 "atrase entre as fotos:"
 
-#: C/burst-mode.page:53(p)
+#: C/burst-mode.page:55(p)
 msgid ""
 "Change the options under <gui>Burst mode</gui> and click <gui>Close</gui>."
 msgstr "Cambie as opcións en <gui>Modo ráfaga</gui> e prema <gui>Pechar</gui>."
 
-#: C/burst-mode.page:57(p)
+#: C/burst-mode.page:59(p)
+#| msgid ""
+#| "The delay is between the last photo taken and the start of the count down "
+#| "for the next photo, not between two photos."
 msgid ""
-"The delay is between the last photo taken and the start of the count down "
-"for the next photo, not between two photos."
+"The delay is between the last photo taken and the start of the countdown for "
+"the next photo, not between two photos."
 msgstr ""
 "O atraso entre a última foto e o inicio da conta atrás para a seguinte foto, "
-"non entre dúas fotos:"
+"e non entre dúas fotos."
 
 #. When image changes, this message will be marked fuzzy or untranslated for you.
 #. It doesn't matter what you translate it to: it's not used at all.
@@ -843,4 +867,17 @@ msgstr ""
 #. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
 #: C/index.page:0(None)
 msgid "translator-credits"
-msgstr "Fran Dieguez <frandieguez@gnome.org>, 2011."
+msgstr ""
+"Leandro Regueiro <leandro.regueiro@gmail.com>, 2011.\n"
+"Fran Dieguez <frandieguez@gnome.org>, 2011.\n"
+"\n"
+"Proxecto Trasno - Adaptación do software libre á lingua galega.\n"
+"Se desexas colaborar connosco podes atopar máis información en http://www."
+"trasno.net"
+
+#~ msgid ""
+#~ "Click <guiseq><gui>Cheese</gui><gui>Countdown</gui></guiseq> to disable "
+#~ "the countdown."
+#~ msgstr ""
+#~ "Prema <guiseq><gui>Cheese</gui><gui>Conta atrás</gui></guiseq> para "
+#~ "desactivar a conta atrás."
