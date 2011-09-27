@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.64])
 AC_INIT([cheese],
-        [3.1.92],
+        [3.2.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=cheese],
         [cheese],
         [http://projects.gnome.org/cheese/])
@@ -39,8 +39,8 @@ GNOME_COMPILE_WARNINGS([maximum])
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
-LIBCHEESE_LT_VERSION=2:1:1
-LIBCHEESE_GTK_LT_VERSION=20:3:0
+LIBCHEESE_LT_VERSION=2:2:1
+LIBCHEESE_GTK_LT_VERSION=20:4:0
 AC_SUBST(LIBCHEESE_LT_VERSION)
 AC_SUBST(LIBCHEESE_GTK_LT_VERSION)
 
