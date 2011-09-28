@@ -385,9 +385,6 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
   GObjectClass   *object_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  gtk_clutter_init (NULL, NULL);
-  clutter_gst_init (NULL, NULL);
-
   object_class->finalize = cheese_widget_finalize;
 #if 0
   object_class->set_property = cheese_widget_set_property;
@@ -418,7 +415,9 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
 /**
  * cheese_widget_new:
  *
- * Returns a new #CheeseWidget widget.
+ * Creates a new #CheeseWidget. Make sure that you call gtk_clutter_init() and
+ * clutter_gst_init(), and check for errors during initialization, before
+ * calling this function.
  *
  * Return value: a #CheeseWidget widget.
  **/
