@@ -955,11 +955,14 @@ public class Cheese.MainWindow : Gtk.Window
       effects_manager = new EffectsManager ();
       effects_manager.load_effects ();
 
+      /* Must initialize effects_grids before returning, as it is dereferenced later, bug 654671. */
+      effects_grids = new ArrayList<Clutter.Box> ();
+
       if (effects_manager.effects.size == 0)
       {
+        warning ("gnome-video-effects is not installed.");
         return;
       }
-      effects_grids = new ArrayList<Clutter.Box> ();
 
       for (int i = 0; i <= effects_manager.effects.size / EFFECTS_PER_PAGE; i++)
       {
