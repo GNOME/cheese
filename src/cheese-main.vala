@@ -52,6 +52,11 @@ public class Cheese.Main : Gtk.Application
       main_window.present ();
     else
     {
+      // Prefer a dark GTK+ theme, bug 660628.
+      var gtk_settings = Gtk.Settings.get_default ();
+      if (gtk_settings != null)
+        gtk_settings.gtk_application_prefer_dark_theme = true;
+
       main_window = new Cheese.MainWindow ();
 
       Environment.set_application_name (_("Cheese"));
