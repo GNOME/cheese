@@ -2,22 +2,43 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS = libcheese src tests po data help docs
 
-EXTRA_DIST =			\
-	$(cheesedoc_DATA)	\
-	gnome-doc-utils.make\
+dist_noinst_DATA = \
+	build-aux/gnome-doc-utils.make \
 	ChangeLog.pre-git \
+	intltool-extract.in \
+	intltool-merge.in \
+	intltool-update.in \
 	m4/introspection.m4 \
+
+dist_noinst_SCRIPTS = \
 	autogen.sh
 
-DISTCLEANFILES =		\
-	gnome-doc-utils.make
+DISTCLEANFILES = \
+	intltool-extract \
+	intltool-merge \
+	intltool-update
+
+MAINTAINERCLEANFILES = \
+	build-aux/compile \
+	build-aux/config.guess \
+	build-aux/config.sub \
+	build-aux/depcomp \
+	build-aux/gnome-doc-utils.make \
+	build-aux/install-sh \
+	build-aux/ltmain.sh \
+	build-aux/missing \
+	aclocal.m4 \
+	config.h.n \
+	mkinstalldirs \
+	omf.make \
+	xmldocs.make
 
 DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper --enable-gtk-doc --enable-introspection
 
 CHANGELOG_START = 2.26.0
 
 dist-hook:
-	@if test -d "$(srcdir)/.git"; \
+	$(AM_V_at)if test -d "$(srcdir)/.git"; \
 	then \
 		echo Creating ChangeLog && \
 		( cd "$(top_srcdir)" && \
