@@ -25,7 +25,7 @@
 
 #include "cheese-widget.h"
 #include "cheese-camera.h"
-#include "cheese-enum-types.h"
+#include "cheese-enums.h"
 #include "cheese-aspect-frame.h"
 
 enum

@@ -360,7 +360,7 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
                                          G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                          G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
                                          NULL, NULL,
-                                         _cheese_marshal_VOID__STRING_STRING_STRING_INT,
+                                         cheese_marshal_VOID__STRING_STRING_STRING_INT,
                                          G_TYPE_NONE, 4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
 
   /**
