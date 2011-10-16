@@ -361,6 +361,7 @@ update_icon_cache = gtk-update-icon-cache --ignore-theme-index --force
 
 install-data-hook: install-update-icon-cache
 uninstall-hook: uninstall-update-icon-cache
+	touch libcheese_la_vala.stamp
 
 install-update-icon-cache:
 	$(AM_V_at)$(POST_INSTALL)
@@ -441,6 +442,7 @@ CLEANFILES = \
 	$(typelib_DATA)
 
 DISTCLEANFILES = \
+	libcheese_la_vala.stamp \
 	intltool-extract \
 	intltool-merge \
 	intltool-update \
