@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = src po help docs
+SUBDIRS = src po help
 
 marshal_data = \
 	libcheese/cheese-marshal.c \
@@ -330,12 +330,42 @@ dist_pixmaps_DATA = \
 	data/pixmaps/cheese-2.svg \
 	data/pixmaps/cheese-3.svg
 
+# gtk-doc
+gtkdoc_builddir = $(top_builddir)/docs/reference
+gtkdoc_distdir = $(top_distdir)/docs/reference
+gtkdoc_srcdir = $(top_srcdir)/docs/reference
+
+all-local: $(bin_PROGRAMS)
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) all
+clean-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) clean
+distclean-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) distclean
+docs: $(lib_LTLIBRARIES)
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) docs
+install-data-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) install-data
+uninstall-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) uninstall
+
+dist-hook: git-changelog-hook
+	$(MKDIR_P) $(gtkdoc_distdir)
+	cp $(gtkdoc_srcdir)/Makefile.am $(gtkdoc_srcdir)/Makefile.in $(gtkdoc_distdir)
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) \
+	  distdir="../../$(gtkdoc_distdir)" \
+	  top_distdir="../../$(top_distdir)" \
+	  dist-hook
+
 dist_noinst_DATA = \
 	build-aux/gnome-doc-utils.make \
 	ChangeLog.pre-git \
 	$(desktop_in_files) \
 	$(gsettings_in_file) \
 	$(service_in_files) \
+	$(gtkdoc_srcdir)/cheese-docs.xml \
+	$(gtkdoc_srcdir)/cheese-sections.txt \
+	$(gtkdoc_srcdir)/version.xml.in \
+	gtk-doc.make \
 	intltool-extract.in \
 	intltool-merge.in \
 	intltool-update.in \
@@ -383,7 +413,7 @@ DISTCHECK_CONFIGURE_FLAGS = --disable-schemas-install --disable-scrollkeeper --e
 
 CHANGELOG_START = 2.26.0
 
-dist-hook:
+git-changelog-hook:
 	$(AM_V_at)if test -d "$(srcdir)/.git"; \
 	then \
 		echo Creating ChangeLog && \
@@ -398,3 +428,5 @@ dist-hook:
 	else \
 		echo A git clone is required to generate a ChangeLog >&2; \
 	fi
+
+.PHONY: docs

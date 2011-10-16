@@ -18,18 +18,18 @@ DOC_MAIN_SGML_FILE=$(DOC_MODULE)-docs.xml
 # gtk-doc will search all .c & .h files beneath here for inline comments
 # documenting the functions and macros.
 # e.g. DOC_SOURCE_DIR=../../../gtk
-DOC_SOURCE_DIR=../../libcheese
+DOC_SOURCE_DIR=$(top_srcdir)/libcheese
 
 # Extra options to pass to gtkdoc-scangobj. Not normally needed.
 SCANGOBJ_OPTIONS=
 
 # Extra options to supply to gtkdoc-scan.
 # e.g. SCAN_OPTIONS=--deprecated-guards="GTK_DISABLE_DEPRECATED" 
-SCAN_OPTIONS=--rebuild-types
+SCAN_OPTIONS=--source-dir=$(top_srcdir)/libcheese --rebuild-types
 
 # Extra options to supply to gtkdoc-mkdb.
 # e.g. MKDB_OPTIONS=--sgml-mode --output-format=xml
-MKDB_OPTIONS=--sgml-mode --output-format=xml --name-space=cheese
+MKDB_OPTIONS=--source-dir=$(top_srcdir)/libcheese --sgml-mode --output-format=xml --name-space=cheese
 
 # Extra options to supply to gtkdoc-mktmpl
 # e.g. MKTMPL_OPTIONS=--only-section-tmpl
@@ -57,7 +57,7 @@ IGNORE_HFILES=					\
 	cheese-fileutil.h			\
 	cheese-flash.h				\
 	cheese-widget-private.h			\
-	cheese-enum-types.h                     \
+	cheese-enums.h \
 	um-crop-area.h
 
 # Images to copy into HTML directory.
@@ -81,15 +81,14 @@ expand_content_files=
 AM_CPPFLAGS=-I$(top_srcdir) -I$(top_builddir) $(CHEESE_CFLAGS)
 GTKDOC_LIBS=\
 	$(CHEESE_LIBS) \
-	$(top_builddir)/libcheese/libcheese.la \
-	$(top_builddir)/libcheese/libcheese-gtk.la
+	$(top_builddir)/libcheese.la \
+	$(top_builddir)/libcheese-gtk.la
 
 # This includes the standard gtk-doc make rules, copied by gtkdocize.
 include $(top_srcdir)/gtk-doc.make
 
 # Other files to distribute
 # e.g. EXTRA_DIST += version.xml.in
-EXTRA_DIST += version.xml.in
 
 #if ENABLE_GTK_DOC
 #TESTS_ENVIRONMENT = cd $(srcdir) &&

@@ -170,7 +170,6 @@ GLIB_GSETTINGS
 
 AC_CONFIG_FILES([
 Makefile
-docs/Makefile
 docs/reference/Makefile
 docs/reference/version.xml
 data/cheese.pc
