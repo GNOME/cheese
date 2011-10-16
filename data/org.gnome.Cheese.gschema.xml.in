@@ -1,151 +1,151 @@
 <schemalist>
   <schema id='org.gnome.Cheese' path='/apps/cheese/'>
     <key name='countdown' type='b'>
-      <summary>Use a countdown</summary>
-      <description>
+      <_summary>Use a countdown</_summary>
+      <_description>
         Set to True to show countdown when taking a photo
-      </description>
+      </_description>
       <default>true</default>
     </key>
 
     <key name='flash' type='b'>
-      <summary>Fire flash before taking a picture</summary>
-      <description>
+      <_summary>Fire flash before taking a picture</_summary>
+      <_description>
         Set to True to fire a flash before taking a picture
-      </description>
+      </_description>
       <default>true</default>
     </key>
 
     <key name='camera' type='s'>
-      <summary>Camera device string indicator</summary>
-      <description>
+      <_summary>Camera device string indicator</_summary>
+      <_description>
         The device which points to the camera (e.g. /dev/video0)
-      </description>
+      </_description>
       <default>''</default>
     </key>
 
     <key name='selected-effect' type='s'>
-      <summary>Name of last selected effect</summary>
-      <description>
+      <_summary>Name of last selected effect</_summary>
+      <_description>
         Name of installed effect that was selected last
-      </description>
+      </_description>
       <default>'identity'</default>
     </key>
 
     <key name='photo-x-resolution' type='i'>
-      <summary>Photo width resolution</summary>
-      <description>
+      <_summary>Photo width resolution</_summary>
+      <_description>
         The width resolution of the image captured from the camera
-      </description>
+      </_description>
       <default>0</default>
     </key>
 
     <key name='photo-y-resolution' type='i'>
-      <summary>Photo height resolution</summary>
-      <description>
+      <_summary>Photo height resolution</_summary>
+      <_description>
         The height resolution of the image captured from the camera
-      </description>
+      </_description>
       <default>0</default>
     </key>
 
     <key name='video-x-resolution' type='i'>
-      <summary>Video width resolution</summary>
-      <description>
+      <_summary>Video width resolution</_summary>
+      <_description>
         The width resolution of the video captured from the camera
-      </description>
+      </_description>
       <default>0</default>
     </key>
 
     <key name='video-y-resolution' type='i'>
-      <summary>Video height resolution</summary>
-      <description>
+      <_summary>Video height resolution</_summary>
+      <_description>
         The height resolution of the video captured from the camera
-      </description>
+      </_description>
       <default>0</default>
     </key>
 
     <key name='brightness' type='d'>
-      <summary>Picture brightness</summary>
-      <description>
+      <_summary>Picture brightness</_summary>
+      <_description>
         Adjusts brightness level of the picture coming from the camera
-      </description>
+      </_description>
       <default>0</default>
     </key>
 
     <key name='contrast' type='d'>
-      <summary>Picture contrast</summary>
-      <description>
+      <_summary>Picture contrast</_summary>
+      <_description>
         Adjusts contrast level of the picture coming from the camera
-      </description>
+      </_description>
       <default>1.0</default>
     </key>
 
     <key name='saturation' type='d'>
-      <summary>Picture saturation</summary>
-      <description>
+      <_summary>Picture saturation</_summary>
+      <_description>
         Adjusts saturation level of the picture coming from the camera
-      </description>
+      </_description>
       <default>1</default>
     </key>
 
     <key name='hue' type='d'>
-      <summary>Picture hue</summary>
-      <description>
+      <_summary>Picture hue</_summary>
+      <_description>
         Adjusts hue level of the picture coming from the camera
-      </description>
+      </_description>
       <default>0</default>
     </key>
 
     <key name='video-path' type='s'>
-      <summary>Video Path</summary>
-      <description>
+      <_summary>Video Path</_summary>
+      <_description>
         Defines the path where the videos are stored. If empty,
         "XDG_VIDEO/Webcam" will be used.
-      </description>
+      </_description>
       <default>''</default>
     </key>
 
     <key name='photo-path' type='s'>
-      <summary>Photo Path</summary>
-      <description>
+      <_summary>Photo Path</_summary>
+      <_description>
         Defines the path where the photos are stored. If empty,
         "XDG_PHOTO/Webcam" will be used.
-      </description>
+      </_description>
       <default>''</default>
     </key>
 
     <key name='wide-mode' type='b'>
-      <summary>Whether to start in wide mode</summary>
-      <description>
+      <_summary>Whether to start in wide mode</_summary>
+      <_description>
         If set to true, Cheese will start up in a wide mode with the
         image collection placed on the right-hand side. Useful with
         small screens.
-      </description>
+      </_description>
       <default>false</default>
     </key>
 
     <key name='fullscreen' type='b'>
-      <summary>Whether to start in fullscreen</summary>
-      <description>
-        If set to true, Cheese will start up in a fullscreen mode. 
-      </description>
+      <_summary>Whether to start in fullscreen</_summary>
+      <_description>
+        If set to true, Cheese will start up in a fullscreen mode.
+      </_description>
       <default>false</default>
     </key>
 
     <key name='burst-delay' type='i'>
-      <summary>Time between photos in burst mode</summary>
-      <description>
+      <_summary>Time between photos in burst mode</_summary>
+      <_description>
         The length of time, in milliseconds, to delay between taking
         each photo in a burst sequence of photos.
-      </description>
+      </_description>
       <default>1000</default>
     </key>
 
      <key name='burst-repeat' type='i'>
-      <summary>Number of photos in burst mode</summary>
-      <description>
+      <_summary>Number of photos in burst mode</_summary>
+      <_description>
         The number of photos to take in a single burst.
-      </description>
+      </_description>
       <default>4</default>
     </key>
   </schema>
