@@ -194,7 +194,6 @@ data/icons/scalable/actions/Makefile
 data/pixmaps/Makefile
 help/Makefile
 src/Makefile
-tests/Makefile
 po/Makefile.in
 ])
 AC_OUTPUT
