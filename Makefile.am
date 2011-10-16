@@ -1,6 +1,6 @@
 ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
-SUBDIRS = src po help
+SUBDIRS = po help
 
 marshal_data = \
 	libcheese/cheese-marshal.c \
@@ -55,9 +55,26 @@ AM_CPPFLAGS = \
 	-DPACKAGE_DATADIR=\""$(pkgdatadir)"\" \
 	-DPACKAGE_LOCALEDIR=\""$(datadir)"\" \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
+	-I$(top_builddir) \
 	$(CHEESE_CFLAGS) \
 	$(CHEESE_GTK_FLAGS) \
 	$(CHEESE_WFLAGS)
+
+VALAFLAGS = \
+	--thread \
+	--vapidir $(top_srcdir)/src/vapi \
+	--pkg config \
+	--pkg gtk+-3.0 \
+	--pkg gmodule-2.0 \
+	--pkg gee-1.0 \
+	--pkg clutter-1.0 \
+	--pkg clutter-gtk-1.0 \
+	--pkg gstreamer-0.10 \
+	--pkg libcanberra-gtk \
+	--pkg libcanberra \
+	--pkg eogthumbnav \
+	--pkg cheese-thumbview \
+	--pkg cheese-common
 
 lib_LTLIBRARIES = libcheese.la libcheese-gtk.la
 
@@ -68,7 +85,6 @@ libcheese_gtk_la_CFLAGS = \
 
 libcheese_gtk_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I$(top_builddir) \
 	-I$(top_builddir)/libcheese \
 	-I$(top_srcdir)/libcheese \
 	-I$(top_srcdir)/src
@@ -106,7 +122,6 @@ libcheese_la_CFLAGS = \
 
 libcheese_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
-	-I$(top_builddir) \
 	-I$(top_builddir)/libcheese \
 	-I$(top_srcdir)/libcheese
 
@@ -177,6 +192,40 @@ typelibdir = $(libdir)/girepository-1.0
 typelib_DATA = Cheese-3.0.typelib
 endif
 
+bin_PROGRAMS = cheese
+
+# cheese-main.vala must go at the end of the Vala sources.
+cheese_SOURCES = \
+	src/cheese-countdown.vala \
+	src/cheese-effects-manager.vala \
+	src/cheese-preferences.vala \
+	src/cheese-window.vala \
+	src/cheese-main.vala \
+	src/thumbview/cheese-thumb-view.c \
+	src/thumbview/cheese-thumbnail.c \
+	src/thumbview/eog-thumb-nav.c
+
+noinst_HEADERS = \
+	src/thumbview/cheese-thumb-view.h \
+	src/thumbview/cheese-thumbnail.h \
+	src/thumbview/eog-thumb-nav.h
+
+cheese_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CHEESE_CFLAGS) \
+	$(CHEESE_GTK_CFLAGS) \
+	-include $(top_builddir)/$(CONFIG_HEADER) \
+	-I$(top_srcdir)/libcheese \
+	-I$(top_srcdir)/src
+
+cheese_CFLAGS = -export-dynamic
+
+cheese_LDADD = \
+	libcheese.la \
+	libcheese-gtk.la \
+	$(CHEESE_LIBS) \
+	$(CHEESE_GTK_LIBS)
+
 EXAMPLES = \
 	tests/cheese-test-camera \
 	tests/cheese-test-chooser \
@@ -195,8 +244,7 @@ endif
 EXAMPLES_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	$(CHEESE_GTK_CFLAGS) \
-	-I$(top_srcdir)/libcheese \
-	-I$(top_builddir)
+	-I$(top_srcdir)/libcheese
 
 tests_cheese_test_camera_SOURCES = tests/cheese-test-camera.c
 tests_cheese_test_chooser_SOURCES = tests/cheese-test-chooser.c
@@ -374,6 +422,11 @@ dist_noinst_DATA = \
 	libcheese/cheese-gtk.symbols \
 	libcheese/cheese-marshal.list \
 	m4/introspection.m4 \
+	src/vapi/cheese-common.deps \
+	src/vapi/cheese-common.vapi \
+	src/vapi/cheese-thumbview.vapi \
+	src/vapi/config.vapi \
+	src/vapi/eogthumbnav.vapi
 
 dist_noinst_SCRIPTS = \
 	autogen.sh

@@ -176,7 +176,6 @@ data/cheese.pc
 data/cheese-gtk.pc
 data/cheese.desktop.in
 help/Makefile
-src/Makefile
 po/Makefile.in
 ])
 AC_OUTPUT

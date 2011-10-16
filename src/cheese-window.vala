@@ -372,7 +372,7 @@ public class Cheese.MainWindow : Gtk.Window
     about_dialog         = (Gtk.AboutDialog)gtk_builder.get_object ("aboutdialog");
     about_dialog.set_transient_for (this);
     about_dialog.set_modal (true);
-    about_dialog.version = Config.VERSION;
+    about_dialog.version = Config.PACKAGE_VERSION;
     about_dialog.run ();
     about_dialog.hide ();
   }
