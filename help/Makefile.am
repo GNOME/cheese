@@ -33,4 +33,4 @@ DOC_PAGES = \
 	view-photo.page \
 	wide-mode.page
 
-DOC_LINGUAS = ca cs de el en_GB es fi fr gl it ko nl oc pa pt_BR ru sl sv th zh_CN
+DOC_LINGUAS = ca cs de el en_GB es fi fr gl hu it ko nl oc pa pt_BR ru sl sv th zh_CN
