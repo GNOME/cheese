@@ -1,23 +1,24 @@
 # Ягор Кур'яновіч <me@sontan.name>, 2009.
 # Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2011.
+# Yuri Matsuk <yuri@matsuk.net>, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-15 14:32+0300\n"
-"PO-Revision-Date: 2011-09-15 14:31+0300\n"
-"Last-Translator: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>\n"
+"POT-Creation-Date: 2011-10-24 02:00+0300\n"
+"PO-Revision-Date: 2011-10-24 01:59+0300\n"
+"Last-Translator: Yuri Matsuk <yuri@matsuk.net>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:57
+#: ../src/cheese-main.vala:62
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -248,6 +249,165 @@ msgstr "_Адваротны адлік"
 msgid "Cheese Webcam Booth"
 msgstr "Фотавідэабудан Cheese"
 
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:1
+msgid "Adjusts brightness level of the picture coming from the camera"
+msgstr "Падстройка ўзроўню яркасці выявы, якая прыходзіць з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:2
+msgid "Adjusts contrast level of the picture coming from the camera"
+msgstr "Падстройка ўзроўню кантраснасці выявы, якая прыходзіць з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:3
+msgid "Adjusts hue level of the picture coming from the camera"
+msgstr "Падстройка ўзроўню тону выявы, якая прыходзіць з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:4
+msgid "Adjusts saturation level of the picture coming from the camera"
+msgstr "Падстройка ўзроўню насычанасці выявы, якая прыходзіць з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:5
+msgid "Camera device string indicator"
+msgstr "Знакавы ідэнтыфікатар камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Сцежка, дзе захоўваюцца фотаздымкі. Калі ключ не мае значэння, будзе ўжыта "
+"\"XDG_PHOTO/Webcam\"."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Сцежка, дзе захоўваюцца відэазапісы. Калі ключ не мае значэння, будзе ўжыта "
+"\"XDG_VIDEO/Webcam\"."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
+msgid "Fire flash before taking a picture"
+msgstr "Ужываць успышку для здымкі"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
+msgid "If set to true, Cheese will start up in a fullscreen mode."
+msgstr "Калі ўключана, Cheese будзе пачынаць працу ў поўнаэкранным рэжыме."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:10
+msgid ""
+"If set to true, Cheese will start up in a wide mode with the image "
+"collection placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Калі ўключана, Cheese будзе пачынаць працу ў шырокафарматным рэжыме і з "
+"калекцыяй выяў з правага боку. Гэта магчымасць карысная для невялікіх "
+"экранаў."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:11
+msgid "Name of installed effect that was selected last"
+msgstr "Назва ўсталяванага эфекту, які быў ужыты апошнім"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:12
+msgid "Name of last selected effect"
+msgstr "Назва апошняга ўжытага эфекту"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+msgid "Number of photos in burst mode"
+msgstr "Колькасць фотаздымкаў у рэжыме серыйнай здымкі"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+msgid "Photo Path"
+msgstr "Сцежка фотаздымкаў"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
+msgid "Photo height resolution"
+msgstr "Вертыкальная распазнавальнасць фотаздымка"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:16
+msgid "Photo width resolution"
+msgstr "Гарызантальная распазнавальнасць фотаздымка"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:17
+msgid "Picture brightness"
+msgstr "Яркасць выявы"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+msgid "Picture contrast"
+msgstr "Кантраснасць выявы"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+msgid "Picture hue"
+msgstr "Тон выявы"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+msgid "Picture saturation"
+msgstr "Насычанасць выявы"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
+msgid "Set to True to fire a flash before taking a picture"
+msgstr "Уключыце гэту настройку, каб ужываць успышку для здымкі"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:22
+msgid "Set to True to show countdown when taking a photo"
+msgstr "Уключыце гэту настройку для паказу адваротнага адліку пры здымцы"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:23
+msgid "The device which points to the camera (e.g. /dev/video0)"
+msgstr "Прыстасаванне камеры (напрыклад, /dev/video0)"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:24
+msgid "The height resolution of the image captured from the camera"
+msgstr "Вертыкальная распазнавальнасць выявы, атрыманай з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:25
+msgid "The height resolution of the video captured from the camera"
+msgstr "Вертыкальная распазнавальнасць відэа, атрыманага з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:26
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr "Затрымка ў мілісекундах паміж серыйнымі здымкамі."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:27
+msgid "The number of photos to take in a single burst."
+msgstr "Колькасць здымкаў у адной серыі."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:28
+msgid "The width resolution of the image captured from the camera"
+msgstr "Гарызантальная распазнавальнасць выявы, атрыманай з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:29
+msgid "The width resolution of the video captured from the camera"
+msgstr "Гарызантальная распазнавальнасць відэа, атрыманага з камеры"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+msgid "Time between photos in burst mode"
+msgstr "Затрымка паміж здымкамі пры серыйнай здымцы"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+msgid "Use a countdown"
+msgstr "Ужыць адваротны адлік"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+msgid "Video Path"
+msgstr "Сцежка відэа"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
+msgid "Video height resolution"
+msgstr "Вертыкальная распазнавальнасць відэа"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
+msgid "Video width resolution"
+msgstr "Гарызантальная распазнавальнасць відэа"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:35
+msgid "Whether to start in fullscreen"
+msgstr "Ці трэба запускаць у поўнаэкранным рэжыме"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:36
+msgid "Whether to start in wide mode"
+msgstr "Ці трэба запускаць у шырокафарматным рэжыме"
+
 #: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:669
 msgid "Shutter sound"
 msgstr "Гук затвора"
@@ -310,18 +470,18 @@ msgstr "Вывесці інфармацыю аб нумары версіі пр�
 msgid "Start in fullscreen mode"
 msgstr "Запусціць у поўнаэкранным рэжыме"
 
-#: ../src/cheese-main.vala:109
+#: ../src/cheese-main.vala:114
 msgid "- Take photos and videos from your webcam"
 msgstr "- Фота- і відэаздымкі з дапамогай сеціўнай відэакамеры"
 
-#: ../src/cheese-main.vala:121
+#: ../src/cheese-main.vala:126
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Каб убачыць поўны спіс магчымых опцый загаднага радка, выканайце \"%s --help"
 "\".\n"
 
-#: ../src/cheese-main.vala:136
+#: ../src/cheese-main.vala:141
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Праграма Cheese ужо запушчана\n"
