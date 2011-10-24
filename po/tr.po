@@ -1,16 +1,16 @@
 # translation of cheese to Turkish
 # Copyright (C) 2008, 2009, 2011 the Free Software Foundation, Inc.
 # This file is distributed under the same license as the cheese package.
+#
 # Baris Cicek <baris@teamforce.name.tr>, 2008, 2009, 2011.
 # Muhammet Kara <muhammet.k@gmail.com>, 2011.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-04-11 20:59+0000\n"
-"PO-Revision-Date: 2011-04-09 02:49+0300\n"
+"POT-Creation-Date: 2011-10-23 13:27+0000\n"
+"PO-Revision-Date: 2011-10-24 21:16+0300\n"
 "Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,10 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 1.1\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:57
+#: ../src/cheese-main.vala:62
 msgid "Cheese"
 msgstr "Peynir"
 
@@ -64,7 +64,9 @@ msgstr ""
 
 #: ../data/cheese-about.ui.h:10
 msgid "translator-credits"
-msgstr "Barış Çiçek <baris@teamforce.name.tr>"
+msgstr ""
+"Barış Çiçek <baris@teamforce.name.tr>\n"
+"Muhammet Kara <muhammet.k@gmail.com>"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Move _All to Trash"
@@ -95,7 +97,7 @@ msgid "Take _Multiple Photos"
 msgstr "_Çoklu Fotoğraf Çek"
 
 #: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:210
+#: ../libcheese/cheese-avatar-chooser.c:213
 msgid "Take a photo"
 msgstr "Fotoğraf çek"
 
@@ -251,15 +253,212 @@ msgstr "_Geri Sayım"
 msgid "Cheese Webcam Booth"
 msgstr "Peynir Web Kamerası Standı"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:674
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:1
+#| msgid "Adjusts brightness level of the picture coming from the webcam"
+msgid "Adjusts brightness level of the picture coming from the camera"
+msgstr "Kameradan gelen resmin parlaklık düzeyini ayarlar"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:2
+#| msgid "Adjusts contrast level of the picture coming from the webcam"
+msgid "Adjusts contrast level of the picture coming from the camera"
+msgstr "Kameradan gelen resmin karşıtlık düzeyini ayarlar"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:3
+#| msgid "Adjusts hue level of the picture coming from the webcam"
+msgid "Adjusts hue level of the picture coming from the camera"
+msgstr "Kameradan gelen resmin renk düzeyini ayarlar"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:4
+#| msgid "Adjusts saturation level of the picture coming from the webcam"
+msgid "Adjusts saturation level of the picture coming from the camera"
+msgstr "Kameradan gelen resmin doygunluk düzeyini ayarlar"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:5
+#| msgid "Webcam device string indicator"
+msgid "Camera device string indicator"
+msgstr "Kamera aygıt dizgesi belirteci"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+#, fuzzy
+#| msgid ""
+#| "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
+#| "\" will be used."
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Fotoğrafların saklanacağı yolu belirti, eğer boş ise \"XDG_PHOTO/Webcam\" "
+"kullanılacak."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+#, fuzzy
+#| msgid ""
+#| "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
+#| "\" will be used."
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Videoların saklanacağı yolu belirtir, eğer boşsa \"XDG_VIDEO/Webcam\" "
+"kullanılacak."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
+msgid "Fire flash before taking a picture"
+msgstr "Resim çekmeden önce flaş patlat"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
+msgid "If set to true, Cheese will start up in a fullscreen mode."
+msgstr ""
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:10
+#, fuzzy
+#| msgid ""
+#| "If set to true, Cheese will startup in a wide mode with the image "
+#| "collection placed on the right side. Useful with small screens."
+msgid ""
+"If set to true, Cheese will start up in a wide mode with the image "
+"collection placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Eğer doğru ise, Cheese resim koleksiyonu sağ kenara yerleştirilecek biçimde "
+"geniş kipte başlatılacak. Küçük ekranlar için faydalıdır."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:11
+msgid "Name of installed effect that was selected last"
+msgstr ""
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:12
+msgid "Name of last selected effect"
+msgstr "Son seçilen etkinin adı"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+#, fuzzy
+#| msgid "Number of photos in burst mode."
+msgid "Number of photos in burst mode"
+msgstr "Patlama kipinde fotoğraf sayısı."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+msgid "Photo Path"
+msgstr "Fotoğraf Yolu"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
+#| msgid "Photo resolution"
+msgid "Photo height resolution"
+msgstr "Fotoğraf yükseklik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:16
+#| msgid "Photo resolution"
+msgid "Photo width resolution"
+msgstr "Fotoğraf genişlik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:17
+msgid "Picture brightness"
+msgstr "Resim parlaklığı"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+msgid "Picture contrast"
+msgstr "Resim zıtlığı"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+msgid "Picture hue"
+msgstr "Resim tonu"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+msgid "Picture saturation"
+msgstr "Resim dolgunluğu"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
+#, fuzzy
+#| msgid "Set to True to show countdown when taking a photo"
+msgid "Set to True to fire a flash before taking a picture"
+msgstr "Fotoğraf çekerken geri sayımın kullanılması için True atayın"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:22
+msgid "Set to True to show countdown when taking a photo"
+msgstr "Fotoğraf çekerken geri sayımın kullanılması için True atayın"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:23
+#, fuzzy
+#| msgid "The device which points to the webcam (e.g. /dev/video0)"
+msgid "The device which points to the camera (e.g. /dev/video0)"
+msgstr "Bir web kamerasını belirten aygıt (örn. /dev/video0)"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:24
+msgid "The height resolution of the image captured from the camera"
+msgstr "Fotoğraf makinesinden yakalanacak resmin yükseklik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:25
+#, fuzzy
+#| msgid "The height resolution of the image captured from the camera"
+msgid "The height resolution of the video captured from the camera"
+msgstr "Fotoğraf makinesinden yakalanacak resmin yükseklik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:26
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos."
+msgstr ""
+"Fotoğraf patlama sırasında her fotoğraf arasında geçecek zamanın milisaniye "
+"cinsinden uzunluğu."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:27
+msgid "The number of photos to take in a single burst."
+msgstr "Tek bir patlamada çekilecek fotoğraf sayısı."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:28
+msgid "The width resolution of the image captured from the camera"
+msgstr "Fotoğraf makinesinden yakalanacak resmin genişlik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:29
+#, fuzzy
+#| msgid "The width resolution of the image captured from the camera"
+msgid "The width resolution of the video captured from the camera"
+msgstr "Fotoğraf makinesinden yakalanacak resmin genişlik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+#, fuzzy
+#| msgid "Milliseconds between photos in burst mode."
+msgid "Time between photos in burst mode"
+msgstr "Patlama kipinde fotoğraflar arasındaki milisaniye."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+msgid "Use a countdown"
+msgstr "Geri sayım kullan"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+msgid "Video Path"
+msgstr "Video Yolu"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
+#| msgid "Video resolution"
+msgid "Video height resolution"
+msgstr "Video yükseklik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
+#| msgid "Video resolution"
+msgid "Video width resolution"
+msgstr "Video genişlik çözünürlüğü"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:35
+#, fuzzy
+#| msgid "Start in fullscreen mode"
+msgid "Whether to start in fullscreen"
+msgstr "Tam ekran kipinde başlat"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:36
+#, fuzzy
+#| msgid "Start in wide mode"
+msgid "Whether to start in wide mode"
+msgstr "Geniş kipte başlat"
+
+#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:669
 msgid "Shutter sound"
 msgstr "Deklanşör sesi"
 
-#: ../libcheese/cheese-avatar-chooser.c:228
+#: ../libcheese/cheese-avatar-chooser.c:231
 msgid "_Take a photo"
 msgstr "_Fotoğraf çek"
 
-#: ../libcheese/cheese-avatar-chooser.c:241
+#: ../libcheese/cheese-avatar-chooser.c:244
 msgid "_Discard photo"
 msgstr "_Fotoğrafı kaydetme"
 
@@ -267,29 +466,29 @@ msgstr "_Fotoğrafı kaydetme"
 msgid "Device capabilities not supported"
 msgstr "Aygıt yetenekleri desteklenmedi"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:358
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Yetenek sınaması için %s aygıtı başlatılamadı"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:516
 msgid "Unknown device"
 msgstr "Bilinmeyen aygıt"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:540
 msgid "Cancellable initialization not supported"
 msgstr "İptal edilebilir ilklendirme desteklenmiyor"
 
-#: ../libcheese/cheese-camera.c:1192
+#: ../libcheese/cheese-camera.c:1189
 #, c-format
 msgid "No device found"
 msgstr "Aygıt bulunamadı"
 
-#: ../libcheese/cheese-camera.c:1242
+#: ../libcheese/cheese-camera.c:1239
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Gereken GStreamer öğelerinden bir veya daha fazlası eksik: "
 
-#: ../src/cheese-effects-manager.vala:118
+#: ../src/cheese-effects-manager.vala:48
 msgid "No Effect"
 msgstr "Etki Yok"
 
@@ -313,29 +512,29 @@ msgstr "Sürüm bilgisini yazdır ve çık"
 msgid "Start in fullscreen mode"
 msgstr "Tam ekran kipinde başlat"
 
-#: ../src/cheese-main.vala:108
+#: ../src/cheese-main.vala:114
 msgid "- Take photos and videos from your webcam"
 msgstr "- Web kameranızdan fotoğraf ve video çekin"
 
-#: ../src/cheese-main.vala:119
+#: ../src/cheese-main.vala:126
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Bütün  yardım fonksiyonları listesi için '%s --help' komutunu girin.\n"
 
-#: ../src/cheese-main.vala:134
+#: ../src/cheese-main.vala:141
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Cheese'in başka bir kopyası çalışıyor.\n"
 
-#: ../src/cheese-window.vala:765
+#: ../src/cheese-window.vala:760
 msgid "Stop _Recording"
 msgstr "_Kaydı Durdur"
 
-#: ../src/cheese-window.vala:789
+#: ../src/cheese-window.vala:784
 msgid "Stop _Taking Pictures"
 msgstr "_Resim Çekmeyi Durdur"
 
-#: ../src/cheese-window.vala:921
+#: ../src/cheese-window.vala:925
 msgid "No effects found"
 msgstr "Etki yok"
 
@@ -348,39 +547,6 @@ msgstr "Etki yok"
 #~ "\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-flip\", "
 #~ "\"shagadelic\", \"vertigo\", \"edge\", \"dice\" ve \"warp\""
 
-#~ msgid "Adjusts brightness level of the picture coming from the webcam"
-#~ msgstr "Web kamerasından yakalanacak resmin parlaklık seviyesi"
-
-#~ msgid "Adjusts contrast level of the picture coming from the webcam"
-#~ msgstr "Web kamerasından yakalanacak resmin zıtlık seviyesi"
-
-#~ msgid "Adjusts hue level of the picture coming from the webcam"
-#~ msgstr "Web kamerasından yakalanacak resmin renk tonu seviyesi"
-
-#~ msgid "Adjusts saturation level of the picture coming from the webcam"
-#~ msgstr "Fotoğraf makinesinden yakalanacak resmin dolgunluk seviyesi"
-
-#~ msgid ""
-#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
-#~ "\" will be used."
-#~ msgstr ""
-#~ "Fotoğrafların saklanacağı yolu belirti, eğer boş ise \"XDG_PHOTO/Webcam\" "
-#~ "kullanılacak."
-
-#~ msgid ""
-#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
-#~ "\" will be used."
-#~ msgstr ""
-#~ "Videoların saklanacağı yolu belirtir, eğer boşsa \"XDG_VIDEO/Webcam\" "
-#~ "kullanılacak."
-
-#~ msgid ""
-#~ "If set to true, Cheese will startup in a wide mode with the image "
-#~ "collection placed on the right side. Useful with small screens."
-#~ msgstr ""
-#~ "Eğer doğru ise, Cheese resim koleksiyonu sağ kenara yerleştirilecek "
-#~ "biçimde geniş kipte başlatılacak. Küçük ekranlar için faydalıdır."
-
 #~ msgid ""
 #~ "If set to true, then Cheese will have a feature allowing you to delete a "
 #~ "file immediately and in-place, instead of moving it to the trash. This "
@@ -390,60 +556,8 @@ msgstr "Etki yok"
 #~ "silmeye olanak sağlayacak bir özellik kullanır. Bu özellik tehlikeli "
 #~ "olabilir o yüzden dikkatli kullanın."
 
-#~ msgid "Milliseconds between photos in burst mode."
-#~ msgstr "Patlama kipinde fotoğraflar arasındaki milisaniye."
-
-#~ msgid "Number of photos in burst mode."
-#~ msgstr "Patlama kipinde fotoğraf sayısı."
-
-#~ msgid "Photo Path"
-#~ msgstr "Fotoğraf Yolu"
-
-#~ msgid "Picture brightness"
-#~ msgstr "Resim parlaklığı"
-
-#~ msgid "Picture contrast"
-#~ msgstr "Resim zıtlığı"
-
-#~ msgid "Picture hue"
-#~ msgstr "Resim tonu"
-
-#~ msgid "Picture saturation"
-#~ msgstr "Resim dolgunluğu"
-
 #~ msgid "Selected Effects"
 #~ msgstr "Seçili Etkiler"
-
-#~ msgid "Set to True to show countdown when taking a photo"
-#~ msgstr "Fotoğraf çekerken geri sayımın kullanılması için True atayın"
-
-#~ msgid "The device which points to the webcam (e.g. /dev/video0)"
-#~ msgstr "Bir web kamerasını belirten aygıt (örn. /dev/video0)"
-
-#~ msgid "The height resolution of the image captured from the camera"
-#~ msgstr "Fotoğraf makinesinden yakalanacak resmin yükseklik çözünürlüğü"
-
-#~ msgid ""
-#~ "The length of time, in milliseconds, to delay between taking each photo "
-#~ "in a burst sequence of photos."
-#~ msgstr ""
-#~ "Fotoğraf patlama sırasında her fotoğraf arasında geçecek zamanın "
-#~ "milisaniye cinsinden uzunluğu."
-
-#~ msgid "The number of photos to take in a single burst."
-#~ msgstr "Tek bir patlamada çekilecek fotoğraf sayısı."
-
-#~ msgid "The width resolution of the image captured from the camera"
-#~ msgstr "Fotoğraf makinesinden yakalanacak resmin genişlik çözünürlüğü"
-
-#~ msgid "Use a countdown"
-#~ msgstr "Geri sayım kullan"
-
-#~ msgid "Video Path"
-#~ msgstr "Video Yolu"
-
-#~ msgid "Webcam device string indicator"
-#~ msgstr "Web kamerası aygıt dizgisi belirteci"
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Anında silmenin etkinleştirilmesi"
