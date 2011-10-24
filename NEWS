@@ -1,6 +1,45 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.3.1
+  - configure.ac: Bump cheese version to 3.3.1
+  - Update .gitignore
+    Additionally, remove INSTALL, as it is created during autoreconf.
+  - Work around an error during uninstall of distcheck
+  - Convert src subdirectory to build non-recursively
+  - Convert documentation to build non-recursively
+  - Make data directory build non-recursively
+    Additionally, make the GSettings schema translatable.
+  - Convert tests to build non-recursively
+  - Convert libcheese to build non-recursively
+  - Update toplevel Makefile.am to more modern style
+  - Update configure.ac to more modern style
+  - Make preferences dialog layout HIG-compliant
+    The layout of the preferences dialog was ported to a new one that
+    conforms to the HIG and is also based on GtkGrid containers. Fixes bug
+    661651.
+  - Prefer a dark GTK+ theme, bug 660628
+  - Do not crash if gnome-video-effects is not present
+    Also, print a warning using warning(). Fixes bug 654671.
+  - Add David King as a maintainer
+  - Do not call _init() functions inside CheeseWidget
+    GObject construction cannot fail, which is incompatible with calling
+    _init() functions which can fail inside a constructor. Users of
+    CheeseWidget must instead initialise the relevant toolkits (Clutter-GTK+
+    and Gst-Clutter) themselves, and gracefully fail before
+    cheese_widget_new() is called. Fixes the remainder of bug 654913 and
+    also bug 660400.
+  - Updated French doc translation
+  - Added/Updated Translations
+    - be, courtesy of Yuri Matsuk
+    - el, courtesy of Giannis Katsampirhs
+    - es, courtesy of Jorge González
+    - nb, courtesy of Kjartan Maraas
+    - tr, courtesy of Muhammet Kara
+  - Added/Updated Documentation
+    - fr, courtesy of Bruno Brouard
+    - hu, courtesy of Gabor Kelemen
+
 version 3.2.0
   - configure.ac: Bump Cheese version to 3.2.0
   - Added/Updated Translations
