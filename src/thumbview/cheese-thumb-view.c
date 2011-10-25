@@ -50,6 +50,8 @@ typedef struct
   GnomeDesktopThumbnailFactory *factory;
   gboolean multiplex_thumbnail_generator;
   guint n_items;
+  guint idle_id;
+  GQueue *thumbnails;
 } CheeseThumbViewPrivate;
 
 enum
@@ -76,18 +78,25 @@ typedef struct
   CheeseThumbView *thumb_view;
   GFile *file;
   GtkTreeIter iter;
-} CheeseThumbViewThreadData;
+} CheeseThumbViewIdleData;
 
 
 static void
 cheese_thumb_view_constructed (GObject *object);
 
-static void
-cheese_thumb_view_thread_append_item (gpointer data)
+static gboolean
+cheese_thumb_view_idle_append_item (gpointer data)
 {
-  CheeseThumbViewThreadData *item       = data;
-  CheeseThumbView           *thumb_view = item->thumb_view;
-  CheeseThumbViewPrivate    *priv       = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+  CheeseThumbViewIdleData *item = g_queue_peek_head (data);
+  CheeseThumbView         *thumb_view;
+  CheeseThumbViewPrivate  *priv;
+
+  /* Disconnect the idle handler when the queue is empty. */
+  if (item == NULL) return FALSE;
+
+  thumb_view = item->thumb_view;
+  priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
 
   GnomeDesktopThumbnailFactory *factory = priv->factory;
   GFile                        *file    = item->file;
@@ -105,7 +114,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
   if (!info)
   {
     g_warning ("Invalid filename\n");
-    return;
+    return TRUE;
   }
   g_file_info_get_modification_time (info, &mtime);
   mime_type = g_strdup (g_file_info_get_content_type (info));
@@ -139,8 +148,6 @@ cheese_thumb_view_thread_append_item (gpointer data)
   g_free (thumb_loc);
   g_free (uri);
 
-  gdk_threads_enter ();
-
   if (!pixbuf)
   {
     gchar  *escape = NULL;
@@ -155,7 +162,7 @@ cheese_thumb_view_thread_append_item (gpointer data)
     if (error)
     {
       g_warning ("%s", error->message);
-      return;
+      return TRUE;
     }
   }
   else
@@ -166,13 +173,14 @@ cheese_thumb_view_thread_append_item (gpointer data)
   gtk_list_store_set (priv->store, &iter,
                       THUMBNAIL_PIXBUF_COLUMN, pixbuf, -1);
 
-  gdk_threads_leave ();
-
   g_free (mime_type);
   g_free (filename);
   g_object_unref (pixbuf);
   g_object_unref (file);
-  g_free (item);
+  g_slice_free (CheeseThumbViewIdleData, item);
+  g_queue_pop_head (data);
+
+  return TRUE;
 }
 
 static void
@@ -188,7 +196,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   GError       *error = NULL;
   gboolean      skip  = FALSE;
 
-  CheeseThumbViewThreadData *data;
+  CheeseThumbViewIdleData *data;
 
   filename = g_file_get_path (file);
 
@@ -267,18 +275,13 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   if (!priv->multiplex_thumbnail_generator)
   {
-    data             = g_new0 (CheeseThumbViewThreadData, 1);
+    data             = g_slice_new0 (CheeseThumbViewIdleData);
     data->thumb_view = g_object_ref (thumb_view);
     data->file       = g_object_ref (file);
     data->iter       = iter;
 
-    if (!g_thread_create ((GThreadFunc) cheese_thumb_view_thread_append_item,
-                          data, FALSE, &error))
-    {
-      g_error ("Failed to create thumbnail thread: %s\n", error->message);
-      g_error_free (error);
-      return;
-    }
+    g_queue_push_tail (priv->thumbnails, data);
+    if (!priv->idle_id) g_idle_add (cheese_thumb_view_idle_append_item, priv->thumbnails);
   }
 }
 
@@ -558,6 +561,7 @@ cheese_thumb_view_finalize (GObject *object)
   g_object_unref (priv->factory);
   g_file_monitor_cancel (priv->photo_file_monitor);
   g_file_monitor_cancel (priv->video_file_monitor);
+  g_queue_free (priv->thumbnails);
 
   G_OBJECT_CLASS (cheese_thumb_view_parent_class)->finalize (object);
 }
@@ -611,6 +615,8 @@ cheese_thumb_view_init (CheeseThumbView *thumb_view)
 
   priv->store   = gtk_list_store_new (3, GDK_TYPE_PIXBUF, G_TYPE_STRING, G_TYPE_STRING);
   priv->n_items = 0;
+  priv->idle_id = 0;
+  priv->thumbnails = g_queue_new ();
   
   priv->fileutil = cheese_fileutil_new ();
   priv->factory = gnome_desktop_thumbnail_factory_new (GNOME_DESKTOP_THUMBNAIL_SIZE_NORMAL);
