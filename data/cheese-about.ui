@@ -1,21 +1,14 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <requires lib="gtk+" version="2.16" />
+  <requires lib="gtk+" version="2.16"/>
   <object class="GtkAboutDialog" id="aboutdialog">
-    <property name="program_name" translatable="yes">Cheese</property>
-    <property name="comments" translatable="yes">Take photos and videos with your webcam, with fun graphical effects</property>
+    <property name="can_focus">False</property>
+    <property name="type_hint">normal</property>
+    <property name="program_name">Cheese</property>
     <property name="copyright">Copyright © 2007 - 2010 daniel g. siegel &lt;dgsiegel@gnome.org&gt;</property>
-    <property name="website">http://projects.gnome.org/cheese</property>
-    <property name="website-label" translatable="yes">Cheese Website</property>
-    <property name="wrap-license">True</property>
-    <property name="logo-icon-name">cheese</property>
-    <property name="translator-credits" translatable="yes">translator-credits</property>
-    <property name="license" translatable="yes">This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/
-</property>
+    <property name="comments" translatable="yes">Take photos and videos with your webcam, with fun graphical effects</property>
+    <property name="website">http://projects.gnome.org/cheese/</property>
+    <property name="website_label" translatable="yes">Cheese Website</property>
     <property name="authors">daniel g. siegel &lt;dgsiegel@gnome.org&gt;
 Jaap A. Haitsma &lt;jaap@haitsma.org&gt;
 Filippo Argiolas &lt;fargiolas@gnome.org&gt;
@@ -47,12 +40,30 @@ Tommi Vainikainen &lt;thv@iki.fi&gt;
 Jaap A. Haitsma &lt;jaap@haitsma.org&gt;
 Felix Kaser &lt;f.kaser@gmx.net&gt;
     </property>
+    <property name="translator_credits" translatable="yes">translator-credits</property>
     <property name="artists">Andreas Nilsson &lt;andreas@andreasn.se&gt;
 Josef Vybíral &lt;josef.vybiral@gmail.com&gt;
 Kalle Persson &lt;kalle@kallepersson.se&gt;
 Lapo Calamandrei &lt;calamandrei@gmail.com&gt;
 Or Dvory &lt;gnudles@nana.co.il&gt;
-Ulisse Perusin &lt;ulisail@yahoo.it&gt;
-    </property>
+Ulisse Perusin &lt;ulisail@yahoo.it&gt;</property>
+    <property name="logo_icon_name">cheese</property>
+    <property name="license_type">gpl-2-0</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="aboutdialog-vbox1">
+        <property name="can_focus">False</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="aboutdialog-action_area1">
+            <property name="can_focus">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
   </object>
 </interface>
