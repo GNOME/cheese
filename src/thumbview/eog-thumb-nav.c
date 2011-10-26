@@ -356,13 +356,11 @@ eog_thumb_nav_constructor (GType                  type,
                            GObjectConstructParam *construct_params)
 {
   GObject            *object;
-  EogThumbNav        *nav;
   EogThumbNavPrivate *priv;
 
   object = G_OBJECT_CLASS (eog_thumb_nav_parent_class)->constructor
              (type, n_construct_properties, construct_params);
 
-  nav  = EOG_THUMB_NAV (object);
   priv = EOG_THUMB_NAV_GET_PRIVATE (object);
 
   if (priv->thumbview != NULL)
@@ -435,35 +433,12 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     nav);
 
   g_signal_connect (priv->button_left,
-                    "button-press-event",
+                    "pressed",
                     G_CALLBACK (eog_thumb_nav_start_scroll),
                     nav);
 
   g_signal_connect (priv->button_left,
-                    "button-release-event",
-                    G_CALLBACK (eog_thumb_nav_stop_scroll),
-                    nav);
-
-  priv->button_left = gtk_button_new ();
-  gtk_button_set_relief (GTK_BUTTON (priv->button_left), GTK_RELIEF_NONE);
-
-  arrow = gtk_arrow_new (GTK_ARROW_LEFT, GTK_SHADOW_ETCHED_IN);
-  gtk_container_add (GTK_CONTAINER (priv->button_left), arrow);
-
-  gtk_widget_set_size_request (GTK_WIDGET (priv->button_left), 25, 0);
-
-  g_signal_connect (priv->button_left,
-                    "clicked",
-                    G_CALLBACK (eog_thumb_nav_button_clicked),
-                    nav);
-
-  g_signal_connect (priv->button_left,
-                    "button-press-event",
-                    G_CALLBACK (eog_thumb_nav_start_scroll),
-                    nav);
-
-  g_signal_connect (priv->button_left,
-                    "button-release-event",
+                    "released",
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
@@ -524,12 +499,12 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     nav);
 
   g_signal_connect (priv->button_right,
-                    "button-press-event",
+                    "pressed",
                     G_CALLBACK (eog_thumb_nav_start_scroll),
                     nav);
 
   g_signal_connect (priv->button_right,
-                    "button-release-event",
+                    "released",
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
@@ -547,12 +522,12 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     nav);
 
   g_signal_connect (priv->button_down,
-                    "button-press-event",
+                    "pressed",
                     G_CALLBACK (eog_thumb_nav_start_scroll),
                     nav);
 
   g_signal_connect (priv->button_down,
-                    "button-release-event",
+                    "released",
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
@@ -570,12 +545,12 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     nav);
 
   g_signal_connect (priv->button_up,
-                    "button-press-event",
+                    "pressed",
                     G_CALLBACK (eog_thumb_nav_start_scroll),
                     nav);
 
   g_signal_connect (priv->button_up,
-                    "button-release-event",
+                    "released",
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
@@ -605,7 +580,6 @@ eog_thumb_nav_new (GtkWidget *thumbview,
                    gboolean   show_buttons)
 {
   EogThumbNav        *nav;
-  EogThumbNavPrivate *priv;
 
   nav = g_object_new (EOG_TYPE_THUMB_NAV,
                       "show-buttons", show_buttons,
@@ -613,8 +587,6 @@ eog_thumb_nav_new (GtkWidget *thumbview,
                       "homogeneous", FALSE,
                       "spacing", 0,
                       NULL);
-
-  priv = nav->priv;
 
   return GTK_WIDGET (nav);
 }
