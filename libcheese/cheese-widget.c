@@ -28,6 +28,16 @@
 #include "cheese-enums.h"
 #include "cheese-aspect-frame.h"
 
+/**
+ * SECTION:cheese-widget
+ * @short_description: A photo/video capture widget.
+ * @stability: Unstable
+ * @include: cheese/cheese-widget.h
+ *
+ * #CheeseWidget provides a basic photo and video capture widget, for embedding
+ * in an application.
+ */
+
 enum
 {
   READY_SIGNAL,

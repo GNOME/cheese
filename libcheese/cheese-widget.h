@@ -40,13 +40,25 @@ G_BEGIN_DECLS
 typedef struct _CheeseWidgetClass CheeseWidgetClass;
 typedef struct _CheeseWidget CheeseWidget;
 
+/**
+ * CheeseWidgetClass:
+ *
+ * Use the accessor functions below.
+ */
 struct _CheeseWidgetClass
 {
+  /*< private >*/
   GtkNotebookClass parent_class;
 };
 
+/**
+ * CheeseWidget:
+ *
+ * Use the accessor functions below.
+ */
 struct _CheeseWidget
 {
+  /*< private >*/
   GtkNotebook parent_instance;
 };
 

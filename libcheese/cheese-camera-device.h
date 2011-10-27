@@ -38,15 +38,30 @@ G_BEGIN_DECLS
 #define CHEESE_CAMERA_DEVICE_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA_DEVICE, \
                                                                       CheeseCameraDeviceClass))
 
-typedef struct
-{
-  GObject parent;
-} CheeseCameraDevice;
+typedef struct _CheeseCameraDeviceClass CheeseCameraDeviceClass;
+typedef struct _CheeseCameraDevice CheeseCameraDevice;
 
-typedef struct
+/**
+ * CheeseCameraDeviceClass:
+ *
+ * Use the accessor functions below.
+ */
+struct _CheeseCameraDeviceClass
 {
+  /*< private >*/
   GObjectClass parent_class;
-} CheeseCameraDeviceClass;
+};
+
+/**
+ * CheeseCameraDevice:
+ *
+ * Use the accessor functions below.
+ */
+struct _CheeseCameraDevice
+{
+  /*< private >*/
+  GObject parent;
+};
 
 #define CHEESE_TYPE_VIDEO_FORMAT (cheese_video_format_get_type ())
 

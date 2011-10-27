@@ -48,15 +48,15 @@
 /**
  * SECTION:cheese-camera-device-monitor
  * @short_description: Simple object to enumerate v4l devices
+ * @stability: Unstable
  * @include: cheese/cheese-camera-device-monitor.h
  *
  * #CheeseCameraDeviceMonitor provides a basic interface for
  * video4linux device enumeration and hotplugging.
  *
- * It uses either GUdev or some platform specific code to list video
- * devices.  It is also capable (right now in linux only, with the
- * udev backend) to monitor device plugging and emit a
- * CheeseCameraDeviceMonitor::added or
+ * It uses either GUdev or some platform specific code to list video devices.
+ * It is also capable (right now in Linux only, with the udev backend) to
+ * monitor device plugging and emit a CheeseCameraDeviceMonitor::added or
  * CheeseCameraDeviceMonitor::removed signal when an event happens.
  */
 

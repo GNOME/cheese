@@ -28,6 +28,16 @@
 #include "cheese-avatar-chooser.h"
 #include "um-crop-area.h"
 
+/**
+ * SECTION:cheese-avatar-chooser
+ * @short_description: A photo capture dialog for avatars
+ * @stability: Unstable
+ * @include: cheese/cheese-avatar-chooser.h
+ *
+ * #CheeseAvatarChooser presents a simple window to the user for taking a photo
+ * for use as an avatar.
+ */
+
 enum
 {
   LAST_SIGNAL

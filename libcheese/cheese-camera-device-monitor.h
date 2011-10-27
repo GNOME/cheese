@@ -41,15 +41,28 @@ G_BEGIN_DECLS
 typedef struct _CheeseCameraDeviceMonitorClass CheeseCameraDeviceMonitorClass;
 typedef struct _CheeseCameraDeviceMonitor CheeseCameraDeviceMonitor;
 
+/**
+ * CheeseCameraDeviceMonitor:
+ *
+ * Use the accessor functions below.
+ */
 struct _CheeseCameraDeviceMonitor
 {
+  /*< private >*/
   GObject parent;
 };
 
+/**
+ * CheeseCameraDeviceMonitorClass:
+ * @added: invoked when a new video capture device is connected
+ * @removed: invoked when a video capture device is removed
+ */
 struct _CheeseCameraDeviceMonitorClass
 {
+  /*< private >*/
   GObjectClass parent_class;
 
+  /*< public >*/
   void (*added)(CheeseCameraDeviceMonitor *camera,
                 const char                *id,
                 const char                *device_file,

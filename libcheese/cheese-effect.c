@@ -21,6 +21,16 @@
 
 #include "cheese-effect.h"
 
+/**
+ * SECTION:cheese-effect
+ * @short_description: An effect to apply to a video capture stream
+ * @stability: Unstable
+ * @include: cheese/cheese-effect.h
+ *
+ * #CheeseEffect provides an abstraction of an effect to apply to a stream
+ * from a video capture device.
+ */
+
 enum
 {
   PROP_O,
@@ -102,18 +112,35 @@ cheese_effect_class_init (CheeseEffectClass *klass)
   object_class->get_property = cheese_effect_get_property;
   object_class->set_property = cheese_effect_set_property;
 
+  /**
+   * CheeseEffect:name:
+   *
+   * Name of the effect.
+   */
   g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name",
                                                         NULL,
                                                         NULL,
                                                         "",
                                                         G_PARAM_READWRITE));
+
+  /**
+   * CheeseEffect:pipeline-desc:
+   *
+   * Description of the GStreamer pipeline associated with the effect.
+   */
   g_object_class_install_property (object_class, PROP_PIPELINE_DESC,
                                    g_param_spec_string ("pipeline_desc",
                                                         NULL,
                                                         NULL,
                                                         "",
                                                         G_PARAM_READWRITE));
+
+  /**
+   * CheeseEffect:control-valve:
+   *
+   * TODO.
+   */
   g_object_class_install_property (object_class, PROP_CONTROL_VALVE,
                                    g_param_spec_object ("control_valve",
                                                         NULL,
@@ -130,18 +157,30 @@ cheese_effect_is_preview_connected (CheeseEffect *self)
   return priv->control_valve != NULL;
 }
 
+/**
+ * cheese_effect_enable_preview:
+ * @effect: the #CheeseEffect to enable the preview of
+ *
+ * Enable the preview of a #CheeseEffect.
+ */
 void
-cheese_effect_enable_preview (CheeseEffect *self)
+cheese_effect_enable_preview (CheeseEffect *effect)
 {
-  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (self);
+  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (effect);
 
   g_object_set (G_OBJECT (priv->control_valve), "drop", FALSE, NULL);
 }
 
+/**
+ * cheese_effect_disable_preview:
+ * @effect: the #CheeseEffect to disable the preview of
+ *
+ * Disable the preview of a #CheeseEffect.
+ */
 void
-cheese_effect_disable_preview (CheeseEffect *self)
+cheese_effect_disable_preview (CheeseEffect *effect)
 {
-  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (self);
+  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (effect);
 
   g_object_set (G_OBJECT (priv->control_valve), "drop", TRUE, NULL);
 }
@@ -151,6 +190,13 @@ cheese_effect_init (CheeseEffect *self)
 {
 }
 
+/**
+ * cheese_effect_new:
+ *
+ * Create a new #CheeseEffect.
+ *
+ * Returns: (transfer full): a new #CheeseEffect
+ */
 CheeseEffect *
 cheese_effect_new (void)
 {
@@ -158,8 +204,10 @@ cheese_effect_new (void)
 }
 
 /**
- * cheese_effect_load_from_file: load effect from file
+ * cheese_effect_load_from_file:
  * @fname: (type filename): name of the file containing effect specification
+ *
+ * Load effect from file.
  *
  * Returns: (transfer full): a #CheeseEffect
  */
@@ -261,7 +309,9 @@ cheese_effect_load_effects_from_subdirectory (const gchar* directory,
 }
 
 /**
- * cheese_effect_load_effects: load effects from known standard directories.
+ * cheese_effect_load_effects:
+ *
+ * Load effects from known standard directories.
  *
  * Returns: (element-type Cheese.Effect) (transfer full): List of #CheeseEffect
  */
