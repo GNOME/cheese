@@ -25,6 +25,7 @@
 
 #include <glib-object.h>
 #include <gst/interfaces/xoverlay.h>
+#include "cheese-camera-device.h"
 
 G_BEGIN_DECLS
 
@@ -63,12 +64,9 @@ struct _CheeseCameraDeviceMonitorClass
   GObjectClass parent_class;
 
   /*< public >*/
-  void (*added)(CheeseCameraDeviceMonitor *camera,
-                const char                *id,
-                const char                *device_file,
-                const char                *product_name,
-                int                        api_version);
-  void (*removed)(CheeseCameraDeviceMonitor *camera, const char *id);
+  void (*added)(CheeseCameraDeviceMonitor *monitor,
+                CheeseCameraDevice        *device);
+  void (*removed)(CheeseCameraDeviceMonitor *monitor, const char *id);
 };
 
 GType                      cheese_camera_device_monitor_get_type (void) G_GNUC_CONST;

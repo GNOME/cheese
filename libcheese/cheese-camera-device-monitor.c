@@ -102,15 +102,16 @@ cheese_camera_device_monitor_error_quark (void)
 }
 
 #ifdef HAVE_UDEV
-static void
-cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
-                                    GUdevDevice               *udevice)
+
+CheeseCameraDevice*
+cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice)
 {
   const char *device_file;
   const char *product_name;
   const char *vendor;
   const char *product;
   const char *bus;
+  GError      *error = NULL;
   gint        vendor_id   = 0;
   gint        product_id  = 0;
   gint        v4l_version = 0;
@@ -181,11 +182,26 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
     g_assert_not_reached ();
   }
 
-  g_signal_emit (monitor, monitor_signals[ADDED], 0,
-                 devpath,
+  CheeseCameraDevice *device = cheese_camera_device_new (devpath,
+                                                         device_file,
+                                                         product_name,
+                                                         v4l_version,
+                                                         &error);
+
+  if (device == NULL)
+    GST_WARNING ("Device initialization for %s failed: %s ",
                  device_file,
-                 product_name,
-                 v4l_version);
+                 (error != NULL) ? error->message : "Unknown reason");
+
+  return device;
+}
+
+static void
+cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
+                                    GUdevDevice               *udevice)
+{
+  CheeseCameraDevice *device = cheese_camera_device_monitor_set_up_device (udevice);
+  g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
 }
 
 static void
@@ -360,8 +376,8 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
                                          G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                          G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
                                          NULL, NULL,
-                                         cheese_marshal_VOID__STRING_STRING_STRING_INT,
-                                         G_TYPE_NONE, 4, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT);
+                                         g_cclosure_marshal_VOID__OBJECT,
+                                         G_TYPE_NONE, 1, G_TYPE_OBJECT);
 
   /**
    * CheeseCameraDeviceMonitor::removed:

@@ -101,6 +101,8 @@ typedef struct
   CheeseVideoFormat *current_format;
 
   guint eos_timeout_id;
+
+  CheeseCameraDeviceMonitor *monitor;
 } CheeseCameraPrivate;
 
 enum
@@ -244,46 +246,29 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 
 static void
 cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
-                          const gchar               *id,
-                          const gchar               *device_file,
-                          const gchar               *product_name,
-                          gint                       api_version,
+			  CheeseCameraDevice        *device,
                           CheeseCamera              *camera)
 {
   CheeseCameraPrivate *priv  = CHEESE_CAMERA_GET_PRIVATE (camera);
-  GError              *error = NULL;
 
-  CheeseCameraDevice *device = cheese_camera_device_new (id,
-                                                         device_file,
-                                                         product_name,
-                                                         api_version,
-                                                         &error);
-
-  if (device == NULL)
-    GST_WARNING ("Device initialization for %s failed: %s ",
-                 device_file,
-                 (error != NULL) ? error->message : "Unknown reason");
-  else
-  {
-    g_ptr_array_add (priv->camera_devices, device);
-    priv->num_camera_devices++;
-  }
+  g_debug("%s", "added\n");
+  g_ptr_array_add (priv->camera_devices, device);
+  priv->num_camera_devices++;
 }
 
 static void
 cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
   CheeseCameraPrivate       *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-  CheeseCameraDeviceMonitor *monitor;
 
   priv->num_camera_devices = 0;
   priv->camera_devices     = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
 
-  monitor = cheese_camera_device_monitor_new ();
-  g_signal_connect (G_OBJECT (monitor), "added",
+  priv->monitor = cheese_camera_device_monitor_new ();
+  g_signal_connect (G_OBJECT (priv->monitor), "added",
                     G_CALLBACK (cheese_camera_add_device), camera);
-  cheese_camera_device_monitor_coldplug (monitor);
-  g_object_unref (monitor);
+
+  cheese_camera_device_monitor_coldplug (priv->monitor);
 }
 
 static gboolean
@@ -960,6 +945,9 @@ cheese_camera_finalize (GObject *object)
   /* Free CheeseCameraDevice array */
   g_ptr_array_free (priv->camera_devices, TRUE);
 
+  if (priv->monitor != NULL)
+    g_object_unref (priv->monitor);
+
   G_OBJECT_CLASS (cheese_camera_parent_class)->finalize (object);
 }
 
@@ -1096,6 +1084,7 @@ cheese_camera_init (CheeseCamera *camera)
   priv->device_name             = NULL;
   priv->photo_handler_signal_id = 0;
   priv->current_format          = NULL;
+  priv->monitor                 = NULL;
 }
 
 /**
