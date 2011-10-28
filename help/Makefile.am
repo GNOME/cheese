@@ -18,19 +18,19 @@ DOC_FIGURES = \
 	figures/settings.png
 
 DOC_PAGES = \
-	apply-effects.page \
-	burst-mode.page \
-	delete-photo.page \
-	disable-countdown.page \
-	disable-flash.page \
-	image-properties.page \
+	effects-apply.page \
 	index.page \
-	introduction.page \
-	record-video.page \
-	resolution-photo.page \
-	save-photo.page \
-	take-photo.page \
-	view-photo.page \
-	wide-mode.page
+	intruduction.page \
+	mode-wide.page \
+	photo-delete.page \
+	photo-save.page \
+	photo-take.page \
+	photo-view.page \
+	pref-burst-mode.page \
+	pref-countdown.page \
+	pref-flash.page \
+	pref-image-properties.page \
+	pred-photo-resolution.page \
+	video-record.page
 
 DOC_LINGUAS = ca cs de el en_GB es fi fr gl hu it ko nl oc pa pt_BR ru sl sv th zh_CN
