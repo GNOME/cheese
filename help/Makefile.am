@@ -20,7 +20,7 @@ DOC_FIGURES = \
 DOC_PAGES = \
 	effects-apply.page \
 	index.page \
-	intruduction.page \
+	introduction.page \
 	mode-wide.page \
 	photo-delete.page \
 	photo-save.page \
