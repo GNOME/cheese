@@ -251,9 +251,31 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 {
   CheeseCameraPrivate *priv  = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  g_debug("%s", "added\n");
   g_ptr_array_add (priv->camera_devices, device);
   priv->num_camera_devices++;
+}
+
+static void
+cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
+                             gchar                     *id,
+                             CheeseCamera              *camera)
+{
+  int i;
+
+  CheeseCameraPrivate *priv  = CHEESE_CAMERA_GET_PRIVATE (camera);
+
+  for (i = 0; i < priv->num_camera_devices; i++)
+  {
+    CheeseCameraDevice *indexDevice = (CheeseCameraDevice *) g_ptr_array_index (priv->camera_devices, i);
+    const gchar *indexDeviceId = cheese_camera_device_get_id (indexDevice);
+
+    if (strcmp (indexDeviceId, id) == 0)
+    {
+        g_ptr_array_remove (priv->camera_devices, (gpointer) indexDevice);
+        priv->num_camera_devices--;
+        break;
+    }
+  }
 }
 
 static void
@@ -267,6 +289,8 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
   priv->monitor = cheese_camera_device_monitor_new ();
   g_signal_connect (G_OBJECT (priv->monitor), "added",
                     G_CALLBACK (cheese_camera_add_device), camera);
+  g_signal_connect (G_OBJECT (priv->monitor), "removed",
+                    G_CALLBACK (cheese_camera_remove_device), camera);
 
   cheese_camera_device_monitor_coldplug (priv->monitor);
 }
