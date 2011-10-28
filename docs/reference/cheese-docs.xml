@@ -19,15 +19,33 @@
     <title>Cheese Overview</title>
     <para>
     Cheese uses your webcam to take photos and videos, applies fancy special
-    effects and lets you share the fun with others
+    effects and lets you share the fun with others. Cheese also provides two
+    libraries for use by other applications: libcheese and libcheese-gtk.
     </para>
+  </chapter>
 
-    <xi:include href="xml/cheese-widget.xml"/>
-    <xi:include href="xml/cheese-effect.xml"/>
+  <chapter>
+    <title>libcheese</title>
+    <para>
+    libcheese provides video and photo capture functionality which does not
+    require GTK+, such as enumerating video capture devices.
+    </para>
+    <xi:include href="xml/cheese-camera.xml"/>
     <xi:include href="xml/cheese-camera-device.xml"/>
     <xi:include href="xml/cheese-camera-device-monitor.xml"/>
-    <xi:include href="xml/cheese-avatar-chooser.xml"/>
+    <xi:include href="xml/cheese-effect.xml"/>
+    <xi:include href="xml/cheese-file-util.xml"/>
+  </chapter>
 
+  <chapter>
+    <title>libcheese-gtk</title>
+    <para>
+    libcheese-gtk provides video and photo capture widgets for use in GTK+
+    applications
+    </para>
+    <xi:include href="xml/cheese-avatar-chooser.xml"/>
+    <xi:include href="xml/cheese-flash.xml"/>
+    <xi:include href="xml/cheese-widget.xml"/>
   </chapter>
 
   <chapter id="object-tree">

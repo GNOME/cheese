@@ -40,26 +40,56 @@ G_BEGIN_DECLS
 #define CHEESE_IS_CAMERA_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_CAMERA))
 #define CHEESE_CAMERA_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA, CheeseCameraClass))
 
-typedef struct
-{
-  GObject parent;
-} CheeseCamera;
+typedef struct _CheeseCameraClass CheeseCameraClass;
+typedef struct _CheeseCamera CheeseCamera;
 
-typedef struct
+/**
+ * CheeseCameraClass:
+ * @photo_saved: invoked when a photo was saved to disk
+ * @photo_taken: invoked when a photo was taken
+ * @video_saved: invoked when a video was saved to disk
+ * @state_flags_changed: invoked when the state of the camera #GstElement
+ * changed
+ */
+struct _CheeseCameraClass
 {
+  /*< private >*/
   GObjectClass parent_class;
+
+  /*< public >*/
   void (*photo_saved)(CheeseCamera *camera);
   void (*photo_taken)(CheeseCamera *camera, GdkPixbuf *pixbuf);
   void (*video_saved)(CheeseCamera *camera);
   void (*state_flags_changed)(CheeseCamera *camera, GstState new_state);
-} CheeseCameraClass;
+};
 
-enum CheeseCameraError
+/**
+ * CheeseCamera:
+ *
+ * Use the accessor functions below.
+ */
+struct _CheeseCamera
+{
+  /*< private >*/
+  GObject parent;
+};
+
+/**
+ * CheeseCameraError:
+ * @CHEESE_CAMERA_ERROR_UNKNOWN: unknown error
+ * @CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND: a required GStreamer element was not
+ * found
+ * @CHEESE_CAMERA_ERROR_NO_DEVICE: a #CheeseCameraDevice was not found
+ *
+ * Errors that can occur during camera setup, when calling
+ * cheese_camera_setup().
+ */
+typedef enum
 {
   CHEESE_CAMERA_ERROR_UNKNOWN,
   CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND,
   CHEESE_CAMERA_ERROR_NO_DEVICE
-};
+} CheeseCameraError;
 
 GType         cheese_camera_get_type (void);
 CheeseCamera *cheese_camera_new (ClutterTexture *video_texture,

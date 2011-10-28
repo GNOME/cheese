@@ -29,6 +29,16 @@
 
 #include "cheese-fileutil.h"
 
+/**
+ * SECTION:cheese-file-util
+ * @short_description: File utility functions for Cheese
+ * @stability: Unstable
+ * @include: cheese/cheese-fileutil.h
+ *
+ * #CheeseFileUtil provides some helpful utility functions for looking up paths
+ * for photos and videos.
+ */
+
 G_DEFINE_TYPE (CheeseFileUtil, cheese_fileutil, G_TYPE_OBJECT)
 
 #define CHEESE_FILEUTIL_GET_PRIVATE(o) \
@@ -42,6 +52,12 @@ typedef struct
   gchar *burst_raw_name;
 } CheeseFileUtilPrivate;
 
+/**
+ * cheese_fileutil_get_video_path:
+ * @fileutil: a #CheeseFileUtil
+ *
+ * Returns: (transfer none): the Cheese video path
+ */
 const gchar *
 cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 {
@@ -50,6 +66,12 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
   return priv->video_path;
 }
 
+/**
+ * cheese_fileutil_get_photo_path:
+ * @fileutil: a #CheeseFileUtil
+ *
+ * Returns: (transfer none): the Cheese photo path
+ */
 const gchar *
 cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 {
@@ -58,12 +80,30 @@ cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
   return priv->photo_path;
 }
 
+/**
+ * cheese_fileutil_get_path_before_224:
+ * @fileutil: a #CheeseFileUtil
+ *
+ * Returns: (transfer full): the photo path for Cheese versions before 2.24
+ */
 gchar *
 cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
 {
   return g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
 }
 
+/**
+ * cheese_fileutil_get_new_media_filename:
+ * @fileutil: a #CheeseFileUtil
+ * @mode: the type of media to create a filename for
+ *
+ * Creates a filename for one of the three media typed: photo, photo burst or
+ * video. If a filename for a photo burst image was previously created, this
+ * function increments the burst count automatically. To start a new burst,
+ * first call cheese_fileutil_reset_burst().
+ *
+ * Returns: (transfer full): a new filename
+ */
 gchar *
 cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode)
 {
@@ -130,6 +170,14 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
   return filename;
 }
 
+/**
+ * cheese_fileutil_reset_burst:
+ * @fileutil: a #CheeseFileUtil
+ *
+ * Resets the burst counter, so that calling
+ * cheese_fileutil_get_new_media_filename() with a photo burst starts a new
+ * burst of photos.
+ */
 void
 cheese_fileutil_reset_burst (CheeseFileUtil *fileutil)
 {
@@ -204,6 +252,11 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   g_object_unref (settings);
 }
 
+/**
+ * cheese_fileutil_new:
+ *
+ * Returns: a new #CheeseFileUtil
+ */
 CheeseFileUtil *
 cheese_fileutil_new ()
 {

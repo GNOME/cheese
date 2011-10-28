@@ -37,6 +37,17 @@
 #include "cheese-camera-device.h"
 #include "cheese-camera-device-monitor.h"
 
+/**
+ * SECTION:cheese-camera
+ * @short_description: A representation of the video capture device inside
+ * #CheeseWidget
+ * @stability: Unstable
+ * @include: cheese/cheese-camera.h
+ *
+ * #CheeseCamera represents the video capture device used to drive a
+ * #CheeseWidget.
+ */
+
 G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 
 #define CHEESE_CAMERA_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA, CheeseCameraPrivate))
@@ -244,6 +255,15 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
   }
 }
 
+/*
+ * cheese_camera_add_device:
+ * @monitor: a #CheeseCameraDeviceMonitor
+ * @device: a #CheeseCameraDevice
+ * @camera: a #CheeseCamera
+ *
+ * Handle the CheeseCameraDeviceMonitor::added signal and add the new
+ * #CheeseCameraDevice to the list of current devices.
+ */
 static void
 cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 			  CheeseCameraDevice        *device,
@@ -255,9 +275,19 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
   priv->num_camera_devices++;
 }
 
+/*
+ * cheese_camera_remove_device:
+ * @monitor: a #CheeseCameraDeviceMonitor
+ * @uuid: UUId of a #CheeseCameraDevice
+ * @camera: a #CheeseCamera
+ *
+ * Handle the CheeseCameraDeviceMonitor::removed signal and remove the
+ * #CheeseCameraDevice associated with the UUID from the list of current
+ * devices.
+ */
 static void
 cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
-                             gchar                     *id,
+                             gchar                     *uuid,
                              CheeseCamera              *camera)
 {
   int i;
@@ -269,7 +299,7 @@ cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
     CheeseCameraDevice *indexDevice = (CheeseCameraDevice *) g_ptr_array_index (priv->camera_devices, i);
     const gchar *indexDeviceId = cheese_camera_device_get_id (indexDevice);
 
-    if (strcmp (indexDeviceId, id) == 0)
+    if (strcmp (indexDeviceId, uuid) == 0)
     {
         g_ptr_array_remove (priv->camera_devices, (gpointer) indexDevice);
         priv->num_camera_devices--;
@@ -278,6 +308,13 @@ cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
   }
 }
 
+/*
+ * cheese_camera_detect_camera_devices:
+ * @camera: a #CheeseCamera
+ *
+ * Enumerate the physical camera devices present on the system, and add them to
+ * the list of #CheeseCameraDevice objects.
+ */
 static void
 cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
@@ -522,9 +559,8 @@ cheese_camera_get_num_camera_devices (CheeseCamera *camera)
  * cheese_camera_get_selected_device:
  * @camera: a #CheeseCamera
  *
- * Returns: (transfer none): a #CheeseCameraDevice or NULL
+ * Returns: (transfer none): a #CheeseCameraDevice or %NULL
  */
-
 CheeseCameraDevice *
 cheese_camera_get_selected_device (CheeseCamera *camera)
 {
@@ -537,6 +573,12 @@ cheese_camera_get_selected_device (CheeseCamera *camera)
     return NULL;
 }
 
+/*
+ * cheese_camera_device_switch_camera_device:
+ * @camera: a #CheeseCamera
+ *
+ * Toggle the playing/recording state of the #CheeseCamera.
+ */
 void
 cheese_camera_switch_camera_device (CheeseCamera *camera)
 {
@@ -573,8 +615,10 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
 /**
  * cheese_camera_play:
  * @camera: a #CheeseCamera
+ *
+ * Set the state of the GStreamer pipeline associated with the #CheeseCamera to
+ * playing.
  */
-
 void
 cheese_camera_play (CheeseCamera *camera)
 {
@@ -608,8 +652,10 @@ cheese_camera_play (CheeseCamera *camera)
 /**
  * cheese_camera_stop:
  * @camera: a #CheeseCamera
+ *
+ * Set the state of the GStreamer pipeline associated with the #CheeseCamera to
+ * NULL.
  */
-
 void
 cheese_camera_stop (CheeseCamera *camera)
 {
@@ -702,8 +748,9 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
  * cheese_camera_set_effect:
  * @camera: a #CheeseCamera
  * @effect: a #CheeseEffect
+ *
+ * Set the @effect on the @camera.
  */
-
 void
 cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 {
@@ -717,9 +764,10 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 /**
  * cheese_camera_toggle_effects_pipeline:
  * @camera: a #CheeseCamera
- * @active: TRUE is effects pipeline is active, FALSE otherwise
+ * @active: %TRUE is effects pipeline is active, %FALSE otherwise
+ *
+ * Control whether the effects pipeline is enabled for @camera.
  */
-
 void
 cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
 {
@@ -743,7 +791,6 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
  * @effect: a #CheeseEffect
  * @texture: a #ClutterTexture
  */
-
 void
 cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
 {
@@ -788,8 +835,9 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
  * cheese_camera_start_video_recording:
  * @camera: a #CheeseCamera
  * @filename: the name of the video file that should be recorded
+ *
+ * Start a video recording with the @camera and save it to @filename.
  */
-
 void
 cheese_camera_start_video_recording (CheeseCamera *camera, const char *filename)
 {
@@ -826,8 +874,9 @@ cheese_camera_force_stop_video_recording (gpointer data)
 /**
  * cheese_camera_stop_video_recording:
  * @camera: a #CheeseCamera
+ *
+ * Stop recording video on the @camera.
  */
-
 void
 cheese_camera_stop_video_recording (CheeseCamera *camera)
 {
@@ -864,9 +913,11 @@ cheese_camera_image_done_cb (GstElement *camerabin, gchar *filename,
 /**
  * cheese_camera_take_photo:
  * @camera: a #CheeseCamera
- * @filename: name of the file to save photo to
+ * @filename: name of the file to save a photo to
  *
- * Returns: TRUE on success, FALSE if an error occurred
+ * Save a photo taken with the @camera to a new file at @filename.
+ *
+ * Returns: %TRUE on success, %FALSE if an error occurred
  */
 gboolean
 cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
@@ -911,8 +962,9 @@ cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
 /**
  * cheese_camera_take_photo_pixbuf:
  * @camera: a #CheeseCamera
+ *
+ * Returns: %TRUE if the photo was successfully captured, %FALSE otherwise
  */
-
 gboolean
 cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
 {
@@ -1044,6 +1096,12 @@ cheese_camera_class_init (CheeseCameraClass *klass)
   object_class->get_property = cheese_camera_get_property;
   object_class->set_property = cheese_camera_set_property;
 
+  /**
+   * CheeseCamera::photo-saved:
+   * @camera: a #CheeseCamera
+   *
+   * Emitted when a photo was saved to disk.
+   */
   camera_signals[PHOTO_SAVED] = g_signal_new ("photo-saved", G_OBJECT_CLASS_TYPE (klass),
                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                               G_STRUCT_OFFSET (CheeseCameraClass, photo_saved),
@@ -1051,6 +1109,12 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               g_cclosure_marshal_VOID__VOID,
                                               G_TYPE_NONE, 0);
 
+  /**
+   * CheeseCamera::photo-taken:
+   * @camera: a #CheeseCamera
+   *
+   * Emitted when a photo was taken.
+   */
   camera_signals[PHOTO_TAKEN] = g_signal_new ("photo-taken", G_OBJECT_CLASS_TYPE (klass),
                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                               G_STRUCT_OFFSET (CheeseCameraClass, photo_taken),
@@ -1058,6 +1122,12 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               g_cclosure_marshal_VOID__OBJECT,
                                               G_TYPE_NONE, 1, GDK_TYPE_PIXBUF);
 
+  /**
+   * CheeseCamera::video-saved:
+   * @camera: a #CheeseCamera
+   *
+   * Emitted when a video was saved to disk.
+   */
   camera_signals[VIDEO_SAVED] = g_signal_new ("video-saved", G_OBJECT_CLASS_TYPE (klass),
                                               G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                               G_STRUCT_OFFSET (CheeseCameraClass, video_saved),
@@ -1065,6 +1135,12 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                               g_cclosure_marshal_VOID__VOID,
                                               G_TYPE_NONE, 0);
 
+  /**
+   * CheeseCamera::state-flags-changed:
+   * @camera: a #CheeseCamera
+   *
+   * Emitted when the state of the @camera #GstElement changed.
+   */
   camera_signals[STATE_FLAGS_CHANGED] = g_signal_new ("state-flags-changed", G_OBJECT_CLASS_TYPE (klass),
                                                 G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                                 G_STRUCT_OFFSET (CheeseCameraClass, state_flags_changed),
@@ -1073,12 +1149,22 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                 G_TYPE_NONE, 1, G_TYPE_INT);
 
 
+  /**
+   * CheeseCamera:video-texture:
+   *
+   * The video texture for the #CheeseCamera to render into.
+   */
   g_object_class_install_property (object_class, PROP_VIDEO_TEXTURE,
                                    g_param_spec_pointer ("video-texture",
                                                          NULL,
                                                          NULL,
                                                          G_PARAM_READWRITE));
 
+  /**
+   * CheeseCamera:device-name:
+   *
+   * The path to the device node for the video capture device.
+   */
   g_object_class_install_property (object_class, PROP_DEVICE_NAME,
                                    g_param_spec_string ("device-name",
                                                         NULL,
@@ -1086,6 +1172,11 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                         "",
                                                         G_PARAM_READWRITE));
 
+  /**
+   * CheeseCamera:format:
+   *
+   * The format of the video capture device.
+   */
   g_object_class_install_property (object_class, PROP_FORMAT,
                                    g_param_spec_boxed ("format",
                                                        NULL,
@@ -1118,7 +1209,6 @@ cheese_camera_init (CheeseCamera *camera)
  * @x_resolution: the resolution width
  * @y_resolution: the resolution height
  */
-
 CheeseCamera *
 cheese_camera_new (ClutterTexture *video_texture, char *camera_device_name,
                    int x_resolution, int y_resolution)
@@ -1148,8 +1238,9 @@ cheese_camera_new (ClutterTexture *video_texture, char *camera_device_name,
  * cheese_camera_set_device_by_dev_file:
  * @camera: a #CheeseCamera
  * @file: the filename
+ *
+ * Set the active video capture device with the device node path.
  */
-
 void
 cheese_camera_set_device_by_dev_file (CheeseCamera *camera, const gchar *file)
 {
@@ -1183,9 +1274,10 @@ cheese_camera_set_device_by_dev_udi (CheeseCamera *camera, const gchar *udi)
  * cheese_camera_setup:
  * @camera: a #CheeseCamera
  * @id: (allow-none): the device id
- * @error: return location for a GError or NULL
+ * @error: return location for a #GError or %NULL
+ *
+ * Setup a video capture device.
  */
-
 void
 cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
 {
@@ -1266,9 +1358,9 @@ cheese_camera_setup (CheeseCamera *camera, const char *id, GError **error)
  * cheese_camera_get_camera_devices:
  * @camera: a #CheeseCamera
  *
- * Returns: (element-type Cheese.CameraDevice) (transfer container): Array of #CheeseCameraDevice
+ * Returns: (element-type Cheese.CameraDevice) (transfer container): an array
+ * of #CheeseCameraDevice
  */
-
 GPtrArray *
 cheese_camera_get_camera_devices (CheeseCamera *camera)
 {
@@ -1285,9 +1377,9 @@ cheese_camera_get_camera_devices (CheeseCamera *camera)
  * cheese_camera_get_video_formats:
  * @camera: a #CheeseCamera
  *
- * Returns: (element-type Cheese.VideoFormat) (transfer container): List of #CheeseVideoFormat
+ * Returns: (element-type Cheese.VideoFormat) (transfer container): a #GList of
+ * #CheeseVideoFormat
  */
-
 GList *
 cheese_camera_get_video_formats (CheeseCamera *camera)
 {
@@ -1303,6 +1395,12 @@ cheese_camera_get_video_formats (CheeseCamera *camera)
     return NULL;
 }
 
+/*
+ * cheese_camera_is_playing:
+ * @camera: a #CheeseCamera
+ *
+ * Returns: whether the #CheeseCamera is in the playing state
+ */
 static gboolean
 cheese_camera_is_playing (CheeseCamera *camera)
 {
@@ -1318,9 +1416,10 @@ cheese_camera_is_playing (CheeseCamera *camera)
 /**
  * cheese_camera_set_video_format:
  * @camera: a #CheeseCamera
- * format: a #CheeseVideoFormat
+ * @format: a #CheeseVideoFormat
+ *
+ * Sets a #CheeseVideoFormat on a #CheeseCamera.
  */
-
 void
 cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
 {
@@ -1347,9 +1446,8 @@ cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
  * cheese_camera_get_current_video_format:
  * @camera: a #CheeseCamera
  *
- * Returns: (transfer none): a #CheeseVideoFormat
+ * Returns: (transfer none): the #CheeseVideoFormat set on the #CheeseCamera
  */
-
 const CheeseVideoFormat *
 cheese_camera_get_current_video_format (CheeseCamera *camera)
 {
@@ -1364,11 +1462,12 @@ cheese_camera_get_current_video_format (CheeseCamera *camera)
  * cheese_camera_get_balance_property_range:
  * @camera: a #CheeseCamera
  * @property: name of the balance property
- * @min: (out): minimun value
+ * @min: (out): minimum value
  * @max: (out): maximum value
  * @def: (out): default value
+ *
+ * Returns: %TRUE if the operation was successful, %FALSE otherwise
  */
-
 gboolean
 cheese_camera_get_balance_property_range (CheeseCamera *camera,
                                           const gchar *property,
@@ -1405,7 +1504,6 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
  * @property: name of the balance property
  * @value: value to be set
  */
-
 void
 cheese_camera_set_balance_property (CheeseCamera *camera, const gchar *property, gdouble value)
 {

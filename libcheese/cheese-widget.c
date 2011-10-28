@@ -24,13 +24,14 @@
 #include <mx/mx.h>
 
 #include "cheese-widget.h"
+#include "cheese-widget-private.h"
 #include "cheese-camera.h"
 #include "cheese-enums.h"
 #include "cheese-aspect-frame.h"
 
 /**
  * SECTION:cheese-widget
- * @short_description: A photo/video capture widget.
+ * @short_description: A photo/video capture widget
  * @stability: Unstable
  * @include: cheese/cheese-widget.h
  *
@@ -49,13 +50,6 @@ enum
 {
   PROP_0,
   PROP_STATE
-};
-
-enum
-{
-  SPINNER_PAGE = 0,
-  WEBCAM_PAGE  = 1,
-  PROBLEM_PAGE = 2,
 };
 
 typedef struct
@@ -429,8 +423,8 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
  * clutter_gst_init(), and check for errors during initialization, before
  * calling this function.
  *
- * Return value: a #CheeseWidget widget.
- **/
+ * Returns: a new #CheeseWidget
+ */
 GtkWidget *
 cheese_widget_new (void)
 {
@@ -449,6 +443,12 @@ cheese_widget_get_settings (CheeseWidget *widget)
   return priv->settings;
 }
 
+/**
+ * cheese_widget_get_camera:
+ * @widget: a #CheeseWidget
+ *
+ * Returns: a #CheeseCamera for this #CheeseWidget
+ */
 GObject *
 cheese_widget_get_camera (CheeseWidget *widget)
 {
@@ -461,6 +461,12 @@ cheese_widget_get_camera (CheeseWidget *widget)
   return G_OBJECT (priv->webcam);
 }
 
+/**
+ * cheese_widget_get_video_area:
+ * @widget: a #CheeseWidget
+ *
+ * Returns: a #GtkClutterEmbed of the stream from the video capture device
+ */
 GtkWidget *
 cheese_widget_get_video_area (CheeseWidget *widget)
 {
@@ -478,7 +484,8 @@ cheese_widget_get_video_area (CheeseWidget *widget)
  * @widget: a #CheeseWidget
  * @error: return location for the error
  *
- * Listen for notify::state signals and call this when the current state is %CHEESE_WIDGET_STATE_ERROR.
+ * Listen for notify::state signals and call this when the current state is
+ * %CHEESE_WIDGET_STATE_ERROR.
  *
  * The returned #GError will contain more details on what went wrong.
  **/

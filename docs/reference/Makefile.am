@@ -50,12 +50,8 @@ CFILE_GLOB=$(top_srcdir)/libcheese/*.c
 
 # Header files to ignore when scanning.
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h
-IGNORE_HFILES=					\
-	cheese-camera.h				\
-	cheese-aspect-frame.h			\
-	cheese-fileutil.h			\
-	cheese-flash.h				\
-	cheese-widget-private.h			\
+IGNORE_HFILES= \
+	cheese-aspect-frame.h \
 	cheese-enums.h \
 	um-crop-area.h
 
@@ -77,9 +73,8 @@ expand_content_files=
 # signals and properties.
 # e.g. AM_CPPFLAGS=-I$(top_srcdir) -I$(top_builddir) $(GTK_DEBUG_FLAGS)
 # e.g. GTKDOC_LIBS=$(top_builddir)/gtk/$(gtktargetlib)
-AM_CPPFLAGS=-I$(top_srcdir) -I$(top_builddir) $(CHEESE_CFLAGS)
-GTKDOC_LIBS=\
-	$(CHEESE_LIBS) \
+AM_CFLAGS = $(CHEESE_CFLAGS)
+GTKDOC_LIBS = \
 	$(top_builddir)/libcheese.la \
 	$(top_builddir)/libcheese-gtk.la
 
@@ -93,3 +88,6 @@ include $(top_srcdir)/gtk-doc.make
 #TESTS_ENVIRONMENT = cd $(srcdir) &&
 #TESTS = $(GTKDOC_CHECK)
 #endif
+
+sgml.stamp: $(DOC_MODULE)-sections.txt
+$(DOC_MAIN_SGML_FILE): sgml.stamp

@@ -38,13 +38,25 @@ G_BEGIN_DECLS
 typedef struct _CheeseAvatarChooserClass CheeseAvatarChooserClass;
 typedef struct _CheeseAvatarChooser CheeseAvatarChooser;
 
+/**
+ * CheeseAvatarChooserClass:
+ *
+ * Use the accessor functions below.
+ */
 struct _CheeseAvatarChooserClass
 {
+  /*< private >*/
   GtkDialogClass parent_class;
 };
 
+/**
+ * CheeseAvatarChooser:
+ *
+ * Use the accessor functions below.
+ */
 struct _CheeseAvatarChooser
 {
+  /*< private >*/
   GtkDialog parent_instance;
 };
 

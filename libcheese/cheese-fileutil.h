@@ -24,7 +24,18 @@
 
 #include <glib-object.h>
 
+/**
+ * CHEESE_PHOTO_NAME_SUFFIX:
+ *
+ * The filename suffix for photos saved by Cheese.
+ */
 #define CHEESE_PHOTO_NAME_SUFFIX ".jpg"
+
+/**
+ * CHEESE_PHOTO_VIDEO_NAME_SUFFIX:
+ *
+ * the filename suffix for videos saved by Cheese.
+ */
 #define CHEESE_VIDEO_NAME_SUFFIX ".ogv"
 
 G_BEGIN_DECLS
@@ -36,16 +47,39 @@ G_BEGIN_DECLS
 #define CHEESE_IS_FILEUTIL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FILEUTIL))
 #define CHEESE_FILEUTIL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FILEUTIL, CheeseFileUtilClass))
 
-typedef struct
-{
-  GObject parent;
-} CheeseFileUtil;
+typedef struct _CheeseFileUtilClass CheeseFileUtilClass;
+typedef struct _CheeseFileUtil CheeseFileUtil;
 
-typedef struct
+/**
+ * CheeseFileUtilClass:
+ *
+ * Use the accessor functions below.
+ */
+struct _CheeseFileUtilClass
 {
+  /*< private >*/
   GObjectClass parent_class;
-} CheeseFileUtilClass;
+};
 
+/**
+ * CheeseFileUtil:
+ *
+ * Use the accessor functions below.
+ */
+struct _CheeseFileUtil
+{
+  /*< private >*/
+  GObject parent;
+};
+
+/**
+ * CheeseMediaMode:
+ * @CHEESE_MEDIA_MODE_PHOTO: photo
+ * @CHEESE_MEDIA_MODE_VIDEO: video
+ * @CHEESE_MEDIA_MODE_BURST: a burst of photos
+ *
+ * The media type.
+ */
 typedef enum
 {
   CHEESE_MEDIA_MODE_PHOTO,

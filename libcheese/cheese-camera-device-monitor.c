@@ -51,8 +51,8 @@
  * @stability: Unstable
  * @include: cheese/cheese-camera-device-monitor.h
  *
- * #CheeseCameraDeviceMonitor provides a basic interface for
- * video4linux device enumeration and hotplugging.
+ * #CheeseCameraDeviceMonitor provides a basic interface for video4linux device
+ * enumeration and hotplugging.
  *
  * It uses either GUdev or some platform specific code to list video devices.
  * It is also capable (right now in Linux only, with the udev backend) to
@@ -228,10 +228,9 @@ cheese_camera_device_monitor_uevent_cb (GUdevClient               *client,
  * cheese_camera_device_monitor_coldplug:
  * @monitor: a #CheeseCameraDeviceMonitor object.
  *
- * Will actively look for plugged in cameras and emit
- * ::added for those new cameras.
- * This is only required when your program starts, so as to connect
- * to those signals before they are emitted.
+ * Will actively look for plugged in cameras and emit ::added for those new
+ * cameras. This is only required when your program starts, so as to connect to
+ * those signals before they are emitted.
  */
 void
 cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
@@ -363,15 +362,12 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 
   /**
    * CheeseCameraDeviceMonitor::added:
-   * @device: A private object representing the newly added camera.
-   * @id: Device unique identifier.
-   * @device: Device file name  (e.g. /dev/video2).
-   * @product_name: Device product name (human readable, intended to be displayed in a UI).
-   * @api_version: Supported video4linux API: 1 for v4l, 2 for v4l2.
+   * @monitor: the #CheeseCameraDeviceMonitor that emitted the signal
+   * @device: a new #CheeseCameraDevice representing the video capture device
    *
    * The ::added signal is emitted when a camera is added, or on start-up
-   * after #cheese_camera_device_monitor_colplug is called.
-   **/
+   * after cheese_camera_device_monitor_coldplug() is called.
+   */
   monitor_signals[ADDED] = g_signal_new ("added", G_OBJECT_CLASS_TYPE (klass),
                                          G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                          G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
@@ -381,12 +377,12 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 
   /**
    * CheeseCameraDeviceMonitor::removed:
-   * @device: A private object representing the newly added camera
-   * @id: Device unique identifier.
+   * @monitor: the #CheeseCameraDeviceMonitor that emitted the signal
+   * @uuid: UUID for the device on the system
    *
-   * The ::removed signal is emitted when a camera is un-plugged, or
-   * disabled on the system.
-   **/
+   * The ::removed signal is emitted when a camera is unplugged, or disabled on
+   * the system.
+   */
   monitor_signals[REMOVED] = g_signal_new ("removed", G_OBJECT_CLASS_TYPE (klass),
                                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
                                            G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, removed),

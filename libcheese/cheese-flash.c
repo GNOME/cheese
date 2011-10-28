@@ -19,12 +19,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/* This is a "flash" object that you can create and invoke a method "flash" on to
- * flood the screen with white temporarily */
-
 #include <gtk/gtk.h>
 
-#include <cheese-camera.h>
+#include "cheese-camera.h"
 #include "cheese-flash.h"
 
 #ifdef GDK_WINDOWING_X11
@@ -34,6 +31,16 @@
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>
 #endif /* GDK_WINDOWING_X11 */
+
+/**
+ * SECTION:cheese-flash
+ * @short_description: Flash the screen, like a real camera flash
+ * @stability: Unstable
+ * @include: cheese/cheese-flash.h
+ *
+ * #CheeseFlash is an object that you can create and invoke a method "flash" on
+ * to temporarily flood the screen with white.
+ */
 
 enum
 {
@@ -271,6 +278,12 @@ cheese_flash_class_init (CheeseFlashClass *klass)
   object_class->dispose      = cheese_flash_dispose;
   object_class->finalize     = cheese_flash_finalize;
 
+  /**
+   * CheeseFlash:parent:
+   *
+   * Parent #GtkWidget for the #CheeseFlash. The flash will be fired on the
+   * screen where the parent widget is shown.
+   */
   g_object_class_install_property (object_class, PROP_PARENT,
                                    g_param_spec_object ("parent",
                                                         NULL,
@@ -318,6 +331,12 @@ cheese_flash_start_fade (gpointer data)
   return FALSE;
 }
 
+/**
+ * cheese_flash_fire:
+ * @flash: a #CheeseFlash
+ *
+ * Fire the flash.
+ */
 void
 cheese_flash_fire (CheeseFlash *flash)
 {
@@ -358,6 +377,12 @@ cheese_flash_fire (CheeseFlash *flash)
   flash_priv->flash_timeout_tag = g_timeout_add (FLASH_DURATION, cheese_flash_start_fade, (gpointer) flash);
 }
 
+/**
+ * cheese_flash_new:
+ * @parent: a parent #GtkWidget
+ *
+ * Returns: a new #CheeseFlash
+ */
 CheeseFlash *
 cheese_flash_new (GtkWidget *parent)
 {
