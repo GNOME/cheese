@@ -30,7 +30,7 @@ DOC_PAGES = \
 	pref-countdown.page \
 	pref-flash.page \
 	pref-image-properties.page \
-	pred-photo-resolution.page \
+	pref-photo-resolution.page \
 	video-record.page
 
 DOC_LINGUAS = ca cs de el en_GB es fi fr gl hu it ko nl oc pa pt_BR ru sl sv th zh_CN
