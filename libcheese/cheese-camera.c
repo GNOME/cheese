@@ -72,7 +72,7 @@ typedef enum {
 } GstCameraBinFlags;
 
 
-typedef struct
+struct _CheeseCameraPrivate
 {
   GstBus *bus;
 
@@ -114,7 +114,7 @@ typedef struct
   guint eos_timeout_id;
 
   CheeseCameraDeviceMonitor *monitor;
-} CheeseCameraPrivate;
+};
 
 enum
 {
@@ -155,7 +155,7 @@ cheese_camera_photo_data (CheeseCamera *camera, GstBuffer *buffer)
   GdkPixbuf          *pixbuf;
   const int           bits_per_pixel = 8;
   guchar             *data = NULL;
-  CheeseCameraPrivate *priv  = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv  = camera->priv;
 
   caps = gst_buffer_get_caps (buffer);
   structure = gst_caps_get_structure (caps, 0);
@@ -271,7 +271,7 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 			  CheeseCameraDevice        *device,
                           CheeseCamera              *camera)
 {
-  CheeseCameraPrivate *priv  = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv  = camera->priv;
 
   g_ptr_array_add (priv->camera_devices, device);
   priv->num_camera_devices++;
@@ -294,7 +294,7 @@ cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
 {
   int i;
 
-  CheeseCameraPrivate *priv  = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv  = camera->priv;
 
   for (i = 0; i < priv->num_camera_devices; i++)
   {
@@ -320,7 +320,7 @@ cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
 static void
 cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
-  CheeseCameraPrivate       *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate       *priv = camera->priv;
 
   priv->num_camera_devices = 0;
   priv->camera_devices     = g_ptr_array_new_with_free_func ((GDestroyNotify) g_object_unref);
@@ -346,7 +346,7 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
 static gboolean
 cheese_camera_set_camera_source (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   GError *err = NULL;
   char   *camera_input;
@@ -428,7 +428,7 @@ cheese_camera_set_error_element_not_found (GError **error, const char *factoryna
 static void
 cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
   GstElement          *video_enc;
   GstElement          *mux;
 
@@ -456,7 +456,7 @@ cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
 static gboolean
 cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   gboolean ok = TRUE;
   GstPad  *pad;
@@ -501,7 +501,7 @@ cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
 static gboolean
 cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   gboolean ok = TRUE;
   GstPad  *pad;
@@ -572,7 +572,7 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
 static int
 cheese_camera_get_num_camera_devices (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   return priv->num_camera_devices;
 }
@@ -587,7 +587,7 @@ cheese_camera_get_num_camera_devices (CheeseCamera *camera)
 CheeseCameraDevice *
 cheese_camera_get_selected_device (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   if (cheese_camera_get_num_camera_devices (camera) > 0)
     return CHEESE_CAMERA_DEVICE (
@@ -605,7 +605,7 @@ cheese_camera_get_selected_device (CheeseCamera *camera)
 void
 cheese_camera_switch_camera_device (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   /* gboolean was_recording        = FALSE; */
   gboolean pipeline_was_playing = FALSE;
@@ -645,7 +645,7 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
 void
 cheese_camera_play (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv   = camera->priv;
   CheeseCameraDevice  *device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
   GstCaps             *caps;
 
@@ -682,7 +682,7 @@ cheese_camera_play (CheeseCamera *camera)
 void
 cheese_camera_stop (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   if (priv->camerabin != NULL)
     gst_element_set_state (priv->camerabin, GST_STATE_NULL);
@@ -692,7 +692,7 @@ cheese_camera_stop (CheeseCamera *camera)
 static void
 cheese_camera_change_effect_filter (CheeseCamera *camera, GstElement *new_filter)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
   gboolean             ok;
 
   g_object_set (G_OBJECT (priv->main_valve), "drop", TRUE, NULL);
@@ -794,7 +794,7 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 void
 cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   if (active)
   {
@@ -817,7 +817,7 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
 void
 cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   GstElement *effect_filter;
   GstElement *display_element;
@@ -865,7 +865,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 void
 cheese_camera_start_video_recording (CheeseCamera *camera, const char *filename)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   g_object_set (priv->camerabin, "mode", MODE_VIDEO, NULL);
   gst_element_set_state (priv->camerabin, GST_STATE_READY);
@@ -885,7 +885,7 @@ static gboolean
 cheese_camera_force_stop_video_recording (gpointer data)
 {
   CheeseCamera        *camera = CHEESE_CAMERA (data);
-  CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv   = camera->priv;
 
   if (priv->is_recording)
   {
@@ -910,7 +910,7 @@ cheese_camera_force_stop_video_recording (gpointer data)
 void
 cheese_camera_stop_video_recording (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
   GstState             state;
 
   gst_element_get_state (priv->camerabin, &state, NULL, 0);
@@ -940,7 +940,7 @@ static void
 cheese_camera_image_done_cb (GstElement *camerabin, const gchar *filename,
                              CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
   g_signal_handler_disconnect (G_OBJECT (priv->camerabin),
                                priv->photo_handler_signal_id);
   priv->photo_handler_signal_id = 0;
@@ -960,7 +960,7 @@ cheese_camera_image_done_cb (GstElement *camerabin, const gchar *filename,
 gboolean
 cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   if (priv->photo_handler_signal_id != 0)
   {
@@ -1006,7 +1006,7 @@ cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
 gboolean
 cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
   GstCaps             *caps;
 
   if (priv->photo_handler_signal_id != 0)
@@ -1044,7 +1044,7 @@ cheese_camera_finalize (GObject *object)
   CheeseCamera *camera;
 
   camera = CHEESE_CAMERA (object);
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   cheese_camera_stop (camera);
 
@@ -1072,7 +1072,7 @@ cheese_camera_get_property (GObject *object, guint prop_id, GValue *value,
   CheeseCamera *self;
 
   self = CHEESE_CAMERA (object);
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (self);
+  CheeseCameraPrivate *priv = self->priv;
 
   switch (prop_id)
   {
@@ -1098,7 +1098,7 @@ cheese_camera_set_property (GObject *object, guint prop_id, const GValue *value,
   CheeseCamera *self;
 
   self = CHEESE_CAMERA (object);
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (self);
+  CheeseCameraPrivate *priv = self->priv;
 
   switch (prop_id)
   {
@@ -1228,7 +1228,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
 static void
 cheese_camera_init (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   priv->is_recording            = FALSE;
   priv->pipeline_is_playing     = FALSE;
@@ -1299,7 +1299,7 @@ cheese_camera_set_device_by_dev_file (CheeseCamera *camera, const gchar *file)
 static void
 cheese_camera_set_device_by_dev_uuid (CheeseCamera *camera, const gchar *uuid)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
   int                  i;
 
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
@@ -1329,7 +1329,7 @@ cheese_camera_set_device_by_dev_uuid (CheeseCamera *camera, const gchar *uuid)
 void
 cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   GError  *tmp_error = NULL;
   GstElement *video_sink;
@@ -1419,7 +1419,7 @@ cheese_camera_get_camera_devices (CheeseCamera *camera)
 
   g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
 
-  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  priv = camera->priv;
 
   return g_ptr_array_ref (priv->camera_devices);
 }
@@ -1463,7 +1463,7 @@ cheese_camera_is_playing (CheeseCamera *camera)
 
   g_return_val_if_fail (CHEESE_IS_CAMERA (camera), FALSE);
 
-  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  priv = camera->priv;
 
   return priv->pipeline_is_playing;
 }
@@ -1484,7 +1484,7 @@ cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
   g_return_if_fail (format != NULL);
 
-  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  priv = camera->priv;
 
   if (!(priv->current_format->width == format->width &&
         priv->current_format->height == format->height))
@@ -1507,7 +1507,7 @@ cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
 const CheeseVideoFormat *
 cheese_camera_get_current_video_format (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv;
 
   g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
 
@@ -1534,7 +1534,7 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
 
   g_return_val_if_fail (CHEESE_IS_CAMERA (camera), FALSE);
 
-  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  priv = camera->priv;
 
   *min = 0.0;
   *max = 1.0;
@@ -1567,7 +1567,7 @@ cheese_camera_set_balance_property (CheeseCamera *camera, const gchar *property,
 
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
-  priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  priv = camera->priv;
 
   g_object_set (G_OBJECT (priv->video_balance), property, value, NULL);
 }

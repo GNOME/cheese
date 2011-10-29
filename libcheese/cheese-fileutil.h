@@ -47,6 +47,7 @@ G_BEGIN_DECLS
 #define CHEESE_IS_FILEUTIL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FILEUTIL))
 #define CHEESE_FILEUTIL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FILEUTIL, CheeseFileUtilClass))
 
+typedef struct _CheeseFileUtilPrivate CheeseFileUtilPrivate;
 typedef struct _CheeseFileUtilClass CheeseFileUtilClass;
 typedef struct _CheeseFileUtil CheeseFileUtil;
 
@@ -70,6 +71,7 @@ struct _CheeseFileUtil
 {
   /*< private >*/
   GObject parent;
+  CheeseFileUtilPrivate *priv;
 };
 
 /**

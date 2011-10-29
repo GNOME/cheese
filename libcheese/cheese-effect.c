@@ -44,8 +44,6 @@ G_DEFINE_TYPE (CheeseEffect, cheese_effect, G_TYPE_OBJECT)
 #define CHEESE_EFFECT_GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_EFFECT, CheeseEffectPrivate))
 
-typedef struct _CheeseEffectPrivate CheeseEffectPrivate;
-
 struct _CheeseEffectPrivate
 {
   char *name;
@@ -57,7 +55,7 @@ static void
 cheese_effect_get_property (GObject *object, guint property_id,
                             GValue *value, GParamSpec *pspec)
 {
-  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (object);
+  CheeseEffectPrivate *priv = CHEESE_EFFECT (object)->priv;
 
   switch (property_id)
   {
@@ -79,7 +77,7 @@ static void
 cheese_effect_set_property (GObject *object, guint property_id,
                             const GValue *value, GParamSpec *pspec)
 {
-  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (object);
+  CheeseEffectPrivate *priv = CHEESE_EFFECT (object)->priv;
 
   switch (property_id)
   {
@@ -152,9 +150,7 @@ cheese_effect_class_init (CheeseEffectClass *klass)
 gboolean
 cheese_effect_is_preview_connected (CheeseEffect *self)
 {
-  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (self);
-
-  return priv->control_valve != NULL;
+  return self->priv->control_valve != NULL;
 }
 
 /**
@@ -166,9 +162,7 @@ cheese_effect_is_preview_connected (CheeseEffect *self)
 void
 cheese_effect_enable_preview (CheeseEffect *effect)
 {
-  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (effect);
-
-  g_object_set (G_OBJECT (priv->control_valve), "drop", FALSE, NULL);
+  g_object_set (G_OBJECT (effect->priv->control_valve), "drop", FALSE, NULL);
 }
 
 /**
@@ -180,14 +174,13 @@ cheese_effect_enable_preview (CheeseEffect *effect)
 void
 cheese_effect_disable_preview (CheeseEffect *effect)
 {
-  CheeseEffectPrivate *priv = CHEESE_EFFECT_GET_PRIVATE (effect);
-
-  g_object_set (G_OBJECT (priv->control_valve), "drop", TRUE, NULL);
+  g_object_set (G_OBJECT (effect->priv->control_valve), "drop", TRUE, NULL);
 }
 
 static void
 cheese_effect_init (CheeseEffect *self)
 {
+  self->priv = CHEESE_EFFECT_GET_PRIVATE (self);
 }
 
 /**

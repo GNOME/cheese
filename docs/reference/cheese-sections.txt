@@ -1,10 +1,12 @@
 <SECTION>
 <FILE>cheese-avatar-chooser</FILE>
 <TITLE>CheeseAvatarChooser</TITLE>
-CheeseAvatarChooserClass
 CheeseAvatarChooser
 cheese_avatar_chooser_new
 cheese_avatar_chooser_get_picture
+<SUBSECTION Private>
+CheeseAvatarChooserPrivate
+CheeseAvatarChooserClass
 <SUBSECTION Standard>
 CHEESE_AVATAR_CHOOSER
 CHEESE_IS_AVATAR_CHOOSER
@@ -41,6 +43,8 @@ cheese_camera_take_photo_pixbuf
 cheese_camera_toggle_effects_pipeline
 CheeseCameraError
 cheese_camera_setup
+<SUBSECTION Private>
+CheeseCameraPrivate
 <SUBSECTION Standard>
 CHEESE_CAMERA
 CHEESE_IS_CAMERA
@@ -54,7 +58,6 @@ CHEESE_CAMERA_GET_CLASS
 <SECTION>
 <FILE>cheese-camera-device</FILE>
 <TITLE>CheeseCameraDevice</TITLE>
-CheeseCameraDeviceClass
 CheeseCameraDevice
 CheeseVideoFormat
 cheese_camera_device_new
@@ -65,6 +68,9 @@ cheese_camera_device_get_best_format
 cheese_camera_device_get_caps_for_format
 cheese_camera_device_get_format_list
 cheese_camera_device_get_src
+<SUBSECTION Private>
+CheeseCameraDevicePrivate
+CheeseCameraDeviceClass
 <SUBSECTION Standard>
 CHEESE_CAMERA_DEVICE
 CHEESE_IS_CAMERA_DEVICE
@@ -84,6 +90,8 @@ CheeseCameraDeviceMonitorClass
 CheeseCameraDeviceMonitor
 cheese_camera_device_monitor_new
 cheese_camera_device_monitor_coldplug
+<SUBSECTION Private>
+CheeseCameraDeviceMonitorPrivate
 <SUBSECTION Standard>
 CHEESE_CAMERA_DEVICE_MONITOR
 CHEESE_IS_CAMERA_DEVICE_MONITOR
@@ -97,7 +105,6 @@ CHEESE_CAMERA_DEVICE_MONITOR_GET_CLASS
 <SECTION>
 <FILE>cheese-effect</FILE>
 <TITLE>CheeseEffect</TITLE>
-CheeseEffectClass
 CheeseEffect
 cheese_effect_new
 cheese_effect_enable_preview
@@ -105,6 +112,9 @@ cheese_effect_disable_preview
 cheese_effect_is_preview_connected
 cheese_effect_load_effects
 cheese_effect_load_from_file
+<SUBSECTION Private>
+CheeseEffectPrivate
+CheeseEffectClass
 <SUBSECTION Standard>
 CHEESE_EFFECT
 CHEESE_IS_EFFECT
@@ -118,7 +128,6 @@ CHEESE_EFFECT_GET_CLASS
 <SECTION>
 <FILE>cheese-file-util</FILE>
 <TITLE>CheeseFileUtil</TITLE>
-CheeseFileUtilClass
 CheeseFileUtil
 cheese_fileutil_new
 CHEESE_PHOTO_NAME_SUFFIX
@@ -128,6 +137,9 @@ cheese_fileutil_get_new_media_filename
 cheese_fileutil_get_photo_path
 cheese_fileutil_get_video_path
 cheese_fileutil_reset_burst
+<SUBSECTION Private>
+CheeseFileUtilPrivate
+CheeseFileUtilClass
 <SUBSECTION Standard>
 CHEESE_FILEUTIL
 CHEESE_IS_FILEUTIL
@@ -141,10 +153,12 @@ CHEESE_FILEUTIL_GET_CLASS
 <SECTION>
 <FILE>cheese-flash</FILE>
 <TITLE>CheeseFlash</TITLE>
-CheeseFlashClass
 CheeseFlash
 cheese_flash_new
 cheese_flash_fire
+<SUBSECTION Private>
+CheeseFlashPrivate
+CheeseFlashClass
 <SUBSECTION Standard>
 CHEESE_FLASH
 CHEESE_IS_FLASH
@@ -158,11 +172,13 @@ CHEESE_FLASH_GET_CLASS
 <SECTION>
 <FILE>cheese-widget</FILE>
 <TITLE>CheeseWidget</TITLE>
-CheeseWidgetClass
 CheeseWidget
 cheese_widget_new
 cheese_widget_get_error
 CheeseWidgetState
+<SUBSECTION Private>
+CheeseWidgetPrivate
+CheeseWidgetClass
 <SUBSECTION Standard>
 CHEESE_WIDGET
 CHEESE_IS_WIDGET

@@ -40,6 +40,7 @@ G_BEGIN_DECLS
 #define CHEESE_IS_CAMERA_CLASS(k)  (G_TYPE_CHECK_CLASS_TYPE ((k), CHEESE_TYPE_CAMERA))
 #define CHEESE_CAMERA_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA, CheeseCameraClass))
 
+typedef struct _CheeseCameraPrivate CheeseCameraPrivate;
 typedef struct _CheeseCameraClass CheeseCameraClass;
 typedef struct _CheeseCamera CheeseCamera;
 
@@ -72,6 +73,7 @@ struct _CheeseCamera
 {
   /*< private >*/
   GObject parent;
+  CheeseCameraPrivate *priv;
 };
 
 /**

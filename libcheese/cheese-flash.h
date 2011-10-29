@@ -31,6 +31,7 @@ G_BEGIN_DECLS
 #define CHEESE_IS_FLASH_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FLASH))
 #define CHEESE_FLASH_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FLASH, CheeseFlashClass))
 
+typedef struct _CheeseFlashPrivate CheeseFlashPrivate;
 typedef struct _CheeseFlashClass CheeseFlashClass;
 typedef struct _CheeseFlash CheeseFlash;
 
@@ -54,6 +55,7 @@ struct _CheeseFlash
 {
   /*< private >*/
   GObject parent_instance;
+  CheeseFlashPrivate *priv;
 };
 
 GType        cheese_flash_get_type (void) G_GNUC_CONST;

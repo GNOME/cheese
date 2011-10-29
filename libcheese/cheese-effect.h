@@ -41,6 +41,7 @@ G_BEGIN_DECLS
 #define CHEESE_EFFECT_GET_CLASS(obj) \
   (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_EFFECT, CheeseEffectClass))
 
+typedef struct _CheeseEffectPrivate CheeseEffectPrivate;
 typedef struct _CheeseEffectClass CheeseEffectClass;
 typedef struct _CheeseEffect CheeseEffect;
 
@@ -64,9 +65,10 @@ struct _CheeseEffect
 {
   /*< private >*/
   GObject parent;
+  CheeseEffectPrivate *priv;
 };
 
-GType cheese_effect_get_type (void);
+GType cheese_effect_get_type (void) G_GNUC_CONST;
 
 CheeseEffect *cheese_effect_new (void);
 gboolean      cheese_effect_is_preview_connected (CheeseEffect *effect);

@@ -55,7 +55,7 @@ enum
   IMAGE_PAGE  = 1,
 };
 
-typedef struct
+struct _CheeseAvatarChooserPrivate
 {
   GtkWidget *notebook;
   GtkWidget *camera;
@@ -64,7 +64,7 @@ typedef struct
   GtkWidget *take_again_button;
   CheeseFlash *flash;
   gulong photo_taken_id;
-} CheeseAvatarChooserPrivate;
+};
 
 #define CHEESE_AVATAR_CHOOSER_GET_PRIVATE(o)                     \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_AVATAR_CHOOSER, \
@@ -209,7 +209,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
   GtkWidget *frame;
 
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
+  CheeseAvatarChooserPrivate *priv = chooser->priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
 
   priv->flash = cheese_flash_new (GTK_WIDGET (chooser));
 
@@ -266,7 +266,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 static void
 cheese_avatar_chooser_finalize (GObject *object)
 {
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (object);
+  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER (object)->priv;
 
   if (priv->flash != NULL)
   {

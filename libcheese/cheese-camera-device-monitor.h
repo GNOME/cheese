@@ -25,7 +25,7 @@
 
 #include <glib-object.h>
 #include <gst/interfaces/xoverlay.h>
-#include "cheese-camera-device.h"
+#include <cheese-camera-device.h>
 
 G_BEGIN_DECLS
 
@@ -39,6 +39,7 @@ G_BEGIN_DECLS
 #define CHEESE_CAMERA_DEVICE_MONITOR_GET_CLASS(o) (G_TYPE_INSTANCE_GET_CLASS ((o), CHEESE_TYPE_CAMERA_DEVICE_MONITOR, \
                                                                               CheeseCameraDeviceMonitorClass))
 
+typedef struct _CheeseCameraDeviceMonitorPrivate CheeseCameraDeviceMonitorPrivate;
 typedef struct _CheeseCameraDeviceMonitorClass CheeseCameraDeviceMonitorClass;
 typedef struct _CheeseCameraDeviceMonitor CheeseCameraDeviceMonitor;
 
@@ -51,6 +52,7 @@ struct _CheeseCameraDeviceMonitor
 {
   /*< private >*/
   GObject parent;
+  CheeseCameraDeviceMonitorPrivate *priv;
 };
 
 /**

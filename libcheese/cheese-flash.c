@@ -64,13 +64,13 @@ G_DEFINE_TYPE (CheeseFlash, cheese_flash, G_TYPE_OBJECT);
 
 #define CHEESE_FLASH_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_FLASH, CheeseFlashPrivate))
 
-typedef struct
+struct _CheeseFlashPrivate
 {
   GtkWidget *parent;
   GtkWindow *window;
   guint flash_timeout_tag;
   guint fade_timeout_tag;
-} CheeseFlashPrivate;
+};
 
 /* Copy-pasted from totem/src/backend/video-utils.c
  * Waiting on GTK+ bug:
@@ -186,7 +186,7 @@ cheese_flash_window_draw_event_cb (GtkWidget *widget, cairo_t *cr, gpointer user
 static void
 cheese_flash_init (CheeseFlash *self)
 {
-  CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (self);
+  CheeseFlashPrivate *priv = self->priv = CHEESE_FLASH_GET_PRIVATE (self);
   cairo_region_t *input_region;
   GtkWindow *window;
 
@@ -218,7 +218,7 @@ cheese_flash_init (CheeseFlash *self)
 static void
 cheese_flash_dispose (GObject *object)
 {
-  CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (object);
+  CheeseFlashPrivate *priv = CHEESE_FLASH (object)->priv;
 
   if (priv->window != NULL)
   {
@@ -248,7 +248,7 @@ cheese_flash_set_property (GObject      *object,
                            const GValue *value,
                            GParamSpec   *pspec)
 {
-  CheeseFlashPrivate *priv = CHEESE_FLASH_GET_PRIVATE (object);
+  CheeseFlashPrivate *priv = CHEESE_FLASH (object)->priv;
 
   switch (prop_id)
   {
@@ -296,7 +296,7 @@ static gboolean
 cheese_flash_opacity_fade (gpointer data)
 {
   CheeseFlash        *flash        = data;
-  CheeseFlashPrivate *flash_priv   = CHEESE_FLASH_GET_PRIVATE (flash);
+  CheeseFlashPrivate *flash_priv   = flash->priv;
   GtkWindow          *flash_window = flash_priv->window;
   double              opacity      = gtk_window_get_opacity (flash_window);
 
@@ -316,7 +316,7 @@ cheese_flash_opacity_fade (gpointer data)
 static gboolean
 cheese_flash_start_fade (gpointer data)
 {
-  CheeseFlashPrivate *flash_priv = CHEESE_FLASH_GET_PRIVATE (CHEESE_FLASH (data));
+  CheeseFlashPrivate *flash_priv = CHEESE_FLASH (data)->priv;
 
   GtkWindow *flash_window = flash_priv->window;
 
@@ -340,7 +340,7 @@ cheese_flash_start_fade (gpointer data)
 void
 cheese_flash_fire (CheeseFlash *flash)
 {
-  CheeseFlashPrivate *flash_priv = CHEESE_FLASH_GET_PRIVATE (flash);
+  CheeseFlashPrivate *flash_priv = flash->priv;
   GtkWidget          *parent;
   GdkScreen          *screen;
   GdkRectangle        rect;

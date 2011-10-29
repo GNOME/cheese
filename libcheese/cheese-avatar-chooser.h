@@ -35,6 +35,7 @@ G_BEGIN_DECLS
 #define CHEESE_AVATAR_CHOOSER_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_AVATAR_CHOOSER, \
                                                                           CheeseAvatarChooserClass))
 
+typedef struct _CheeseAvatarChooserPrivate CheeseAvatarChooserPrivate;
 typedef struct _CheeseAvatarChooserClass CheeseAvatarChooserClass;
 typedef struct _CheeseAvatarChooser CheeseAvatarChooser;
 
@@ -58,6 +59,7 @@ struct _CheeseAvatarChooser
 {
   /*< private >*/
   GtkDialog parent_instance;
+  CheeseAvatarChooserPrivate *priv;
 };
 
 GType cheese_avatar_chooser_get_type (void) G_GNUC_CONST;

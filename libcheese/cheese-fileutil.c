@@ -44,13 +44,13 @@ G_DEFINE_TYPE (CheeseFileUtil, cheese_fileutil, G_TYPE_OBJECT)
 #define CHEESE_FILEUTIL_GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_FILEUTIL, CheeseFileUtilPrivate))
 
-typedef struct
+struct _CheeseFileUtilPrivate
 {
   gchar *video_path;
   gchar *photo_path;
   gint   burst_count;
   gchar *burst_raw_name;
-} CheeseFileUtilPrivate;
+};
 
 static gchar *
 cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
@@ -64,9 +64,7 @@ cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
 const gchar *
 cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 {
-  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
-
-  return priv->video_path;
+  return fileutil->priv->video_path;
 }
 
 /**
@@ -78,9 +76,7 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 const gchar *
 cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 {
-  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
-
-  return priv->photo_path;
+  return fileutil->priv->photo_path;
 }
 
 /*
@@ -118,7 +114,7 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
   GFile       *file;
   int          num;
 
-  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
+  CheeseFileUtilPrivate *priv = fileutil->priv;
 
   tm  = time (NULL);
   ptr = localtime (&tm);
@@ -184,7 +180,7 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
 void
 cheese_fileutil_reset_burst (CheeseFileUtil *fileutil)
 {
-  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
+  CheeseFileUtilPrivate *priv = fileutil->priv;
 
   priv->burst_count    = 0;
   priv->burst_raw_name = "";
@@ -196,7 +192,7 @@ cheese_fileutil_finalize (GObject *object)
   CheeseFileUtil *fileutil;
 
   fileutil = CHEESE_FILEUTIL (object);
-  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
+  CheeseFileUtilPrivate *priv = fileutil->priv;
 
   g_free (priv->video_path);
   g_free (priv->photo_path);
@@ -216,7 +212,7 @@ cheese_fileutil_class_init (CheeseFileUtilClass *klass)
 static void
 cheese_fileutil_init (CheeseFileUtil *fileutil)
 {
-  CheeseFileUtilPrivate *priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
+  CheeseFileUtilPrivate *priv = fileutil->priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
   priv->burst_count    = 0;
   priv->burst_raw_name = "";
