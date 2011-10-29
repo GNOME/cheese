@@ -32,9 +32,9 @@
 #define CHEESE_PHOTO_NAME_SUFFIX ".jpg"
 
 /**
- * CHEESE_PHOTO_VIDEO_NAME_SUFFIX:
+ * CHEESE_VIDEO_NAME_SUFFIX:
  *
- * the filename suffix for videos saved by Cheese.
+ * The filename suffix for videos saved by Cheese.
  */
 #define CHEESE_VIDEO_NAME_SUFFIX ".ogv"
 
@@ -78,7 +78,8 @@ struct _CheeseFileUtil
  * @CHEESE_MEDIA_MODE_VIDEO: video
  * @CHEESE_MEDIA_MODE_BURST: a burst of photos
  *
- * The media type.
+ * The media type, used for generating filenames with
+ * cheese_fileutil_get_new_media_filename().
  */
 typedef enum
 {
@@ -93,7 +94,6 @@ CheeseFileUtil *cheese_fileutil_new (void);
 
 const gchar *cheese_fileutil_get_video_path (CheeseFileUtil *fileutil);
 const gchar *cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil);
-gchar       *cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
 gchar       *cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode);
 void         cheese_fileutil_reset_burst (CheeseFileUtil *fileutil);
 

@@ -21,8 +21,26 @@ CHEESE_AVATAR_CHOOSER_GET_CLASS
 CheeseCameraClass
 CheeseCamera
 cheese_camera_new
-cheese_camera_setup
+cheese_camera_get_camera_devices
+cheese_camera_get_current_video_format
+cheese_camera_get_video_formats
+cheese_camera_set_video_format
+cheese_camera_get_selected_device
+cheese_camera_set_device_by_dev_file
+cheese_camera_set_effect
+cheese_camera_get_balance_property_range
+cheese_camera_set_balance_property
+cheese_camera_connect_effect_texture
+cheese_camera_play
+cheese_camera_stop
+cheese_camera_start_video_recording
+cheese_camera_stop_video_recording
+cheese_camera_switch_camera_device
+cheese_camera_take_photo
+cheese_camera_take_photo_pixbuf
+cheese_camera_toggle_effects_pipeline
 CheeseCameraError
+cheese_camera_setup
 <SUBSECTION Standard>
 CHEESE_CAMERA
 CHEESE_IS_CAMERA
@@ -38,10 +56,15 @@ CHEESE_CAMERA_GET_CLASS
 <TITLE>CheeseCameraDevice</TITLE>
 CheeseCameraDeviceClass
 CheeseCameraDevice
+CheeseVideoFormat
 cheese_camera_device_new
 cheese_camera_device_get_name
-cheese_camera_device_get_id
+cheese_camera_device_get_uuid
 cheese_camera_device_get_device_file
+cheese_camera_device_get_best_format
+cheese_camera_device_get_caps_for_format
+cheese_camera_device_get_format_list
+cheese_camera_device_get_src
 <SUBSECTION Standard>
 CHEESE_CAMERA_DEVICE
 CHEESE_IS_CAMERA_DEVICE
@@ -50,6 +73,8 @@ cheese_camera_device_get_type
 CHEESE_CAMERA_DEVICE_CLASS
 CHEESE_IS_CAMERA_DEVICE_CLASS
 CHEESE_CAMERA_DEVICE_GET_CLASS
+CHEESE_TYPE_VIDEO_FORMAT
+cheese_video_format_get_type
 </SECTION>
 
 <SECTION>
@@ -77,6 +102,9 @@ CheeseEffect
 cheese_effect_new
 cheese_effect_enable_preview
 cheese_effect_disable_preview
+cheese_effect_is_preview_connected
+cheese_effect_load_effects
+cheese_effect_load_from_file
 <SUBSECTION Standard>
 CHEESE_EFFECT
 CHEESE_IS_EFFECT
@@ -97,7 +125,6 @@ CHEESE_PHOTO_NAME_SUFFIX
 CHEESE_VIDEO_NAME_SUFFIX
 CheeseMediaMode
 cheese_fileutil_get_new_media_filename
-cheese_fileutil_get_path_before_224
 cheese_fileutil_get_photo_path
 cheese_fileutil_get_video_path
 cheese_fileutil_reset_burst
@@ -134,9 +161,7 @@ CHEESE_FLASH_GET_CLASS
 CheeseWidgetClass
 CheeseWidget
 cheese_widget_new
-cheese_widget_get_camera
 cheese_widget_get_error
-cheese_widget_get_video_area
 CheeseWidgetState
 <SUBSECTION Standard>
 CHEESE_WIDGET

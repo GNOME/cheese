@@ -53,6 +53,7 @@ CFILE_GLOB=$(top_srcdir)/libcheese/*.c
 IGNORE_HFILES= \
 	cheese-aspect-frame.h \
 	cheese-enums.h \
+	cheese-widget-private.h \
 	um-crop-area.h
 
 # Images to copy into HTML directory.

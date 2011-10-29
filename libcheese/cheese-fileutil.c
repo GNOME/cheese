@@ -52,11 +52,14 @@ typedef struct
   gchar *burst_raw_name;
 } CheeseFileUtilPrivate;
 
+static gchar *
+cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
+
 /**
  * cheese_fileutil_get_video_path:
  * @fileutil: a #CheeseFileUtil
  *
- * Returns: (transfer none): the Cheese video path
+ * Returns: (transfer none) (type filename): the Cheese video path
  */
 const gchar *
 cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
@@ -70,7 +73,7 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
  * cheese_fileutil_get_photo_path:
  * @fileutil: a #CheeseFileUtil
  *
- * Returns: (transfer none): the Cheese photo path
+ * Returns: (transfer none) (type filename): the Cheese photo path
  */
 const gchar *
 cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
@@ -80,13 +83,13 @@ cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
   return priv->photo_path;
 }
 
-/**
+/*
  * cheese_fileutil_get_path_before_224:
  * @fileutil: a #CheeseFileUtil
  *
- * Returns: (transfer full): the photo path for Cheese versions before 2.24
+ * Returns: (transfer full) (type filename): the photo path for Cheese versions before 2.24
  */
-gchar *
+static gchar *
 cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
 {
   return g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
@@ -102,7 +105,7 @@ cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
  * function increments the burst count automatically. To start a new burst,
  * first call cheese_fileutil_reset_burst().
  *
- * Returns: (transfer full): a new filename
+ * Returns: (transfer full) (type filename): a new filename
  */
 gchar *
 cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode)

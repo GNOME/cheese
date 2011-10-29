@@ -403,14 +403,14 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
    *
    * Current state of the widget.
    *
-   * Connect to notify::state signal to get notified about state
-   * changes. Useful to update other widgets sensitiveness when the
-   * camera is ready or to handle errors if camera setup fails.
+   * Connect to notify::state signal to get notified about state changes.
+   * Useful to update other widgets sensitivities when the camera is ready or
+   * to handle errors if camera setup fails.
    */
   g_object_class_install_property (object_class, PROP_STATE,
                                    g_param_spec_enum ("state",
-                                                      NULL,
-                                                      NULL,
+                                                      "State",
+                                                      "The current state of the widget",
                                                       CHEESE_TYPE_WIDGET_STATE,
                                                       CHEESE_WIDGET_STATE_NONE,
                                                       G_PARAM_READABLE));
@@ -445,7 +445,7 @@ cheese_widget_get_settings (CheeseWidget *widget)
   return priv->settings;
 }
 
-/**
+/*
  * cheese_widget_get_camera:
  * @widget: a #CheeseWidget
  *
@@ -463,7 +463,7 @@ cheese_widget_get_camera (CheeseWidget *widget)
   return G_OBJECT (priv->webcam);
 }
 
-/**
+/*
  * cheese_widget_get_video_area:
  * @widget: a #CheeseWidget
  *

@@ -119,8 +119,8 @@ cheese_effect_class_init (CheeseEffectClass *klass)
    */
   g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name",
-                                                        NULL,
-                                                        NULL,
+                                                        "Name",
+                                                        "Name of the effect",
                                                         "",
                                                         G_PARAM_READWRITE));
 
@@ -131,8 +131,8 @@ cheese_effect_class_init (CheeseEffectClass *klass)
    */
   g_object_class_install_property (object_class, PROP_PIPELINE_DESC,
                                    g_param_spec_string ("pipeline_desc",
-                                                        NULL,
-                                                        NULL,
+                                                        "Pipeline description",
+                                                        "Description of the GStreamer pipeline associated with the effect",
                                                         "",
                                                         G_PARAM_READWRITE));
 
@@ -143,8 +143,8 @@ cheese_effect_class_init (CheeseEffectClass *klass)
    */
   g_object_class_install_property (object_class, PROP_CONTROL_VALVE,
                                    g_param_spec_object ("control_valve",
-                                                        NULL,
-                                                        NULL,
+                                                        "Control valve",
+                                                        "TODO",
                                                         GST_TYPE_ELEMENT,
                                                         G_PARAM_READWRITE));
 }

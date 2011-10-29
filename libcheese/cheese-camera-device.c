@@ -78,17 +78,17 @@ enum
   PROP_0,
   PROP_NAME,
   PROP_FILE,
-  PROP_ID,
-  PROP_API
+  PROP_UUID,
+  PROP_V4LAPI
 };
 
 typedef struct
 {
   gchar *device;
-  gchar *id;
+  gchar *uuid;
   const gchar *src;
   gchar *name;
-  gint   api;
+  guint  v4lapi;
   GstCaps *caps;
   GList   *formats;
 
@@ -387,7 +387,7 @@ cheese_camera_device_constructed (GObject *object)
   CheeseCameraDevicePrivate *priv   =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
-  priv->src = (priv->api == 2) ? "v4l2src" : "v4lsrc";
+  priv->src = (priv->v4lapi == 2) ? "v4l2src" : "v4lsrc";
 
   cheese_camera_device_get_caps (device);
 
@@ -410,11 +410,11 @@ cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value
     case PROP_FILE:
       g_value_set_string (value, priv->device);
       break;
-    case PROP_ID:
-      g_value_set_string (value, priv->id);
+    case PROP_UUID:
+      g_value_set_string (value, priv->uuid);
       break;
-    case PROP_API:
-      g_value_set_int (value, priv->api);
+    case PROP_V4LAPI:
+      g_value_set_uint (value, priv->v4lapi);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -436,18 +436,18 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
         g_free (priv->name);
       priv->name = g_value_dup_string (value);
       break;
-    case PROP_ID:
-      if (priv->id)
-        g_free (priv->id);
-      priv->id = g_value_dup_string (value);
+    case PROP_UUID:
+      if (priv->uuid)
+        g_free (priv->uuid);
+      priv->uuid = g_value_dup_string (value);
       break;
     case PROP_FILE:
       if (priv->device)
         g_free (priv->device);
       priv->device = g_value_dup_string (value);
       break;
-    case PROP_API:
-      priv->api = g_value_get_int (value);
+    case PROP_V4LAPI:
+      priv->v4lapi = g_value_get_uint (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -463,7 +463,7 @@ cheese_camera_device_finalize (GObject *object)
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   g_free (priv->device);
-  g_free (priv->id);
+  g_free (priv->uuid);
   g_free (priv->name);
 
   gst_caps_unref (priv->caps);
@@ -494,7 +494,9 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
    */
   g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name",
-                                                        NULL, NULL, NULL,
+                                                        "Device name",
+                                                        "Human-readable name of the video capture device",
+                                                        NULL,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
@@ -504,29 +506,35 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
    */
   g_object_class_install_property (object_class, PROP_FILE,
                                    g_param_spec_string ("device-file",
-                                                        NULL, NULL, NULL,
+                                                        "Device file",
+                                                        "Path to the device node of the video capture device",
+                                                        NULL,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
-   * CheeseCameraDevice:device-id:
+   * CheeseCameraDevice:uuid:
    *
    * UUID of the video capture device.
    */
-  g_object_class_install_property (object_class, PROP_ID,
-                                   g_param_spec_string ("device-id",
-                                                        NULL, NULL, NULL,
+  g_object_class_install_property (object_class, PROP_UUID,
+                                   g_param_spec_string ("uuid",
+                                                        "Device UUID",
+                                                        "UUID of the video capture device",
+                                                        NULL,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
-   * CheeseCameraDevice:api:
+   * CheeseCameraDevice:v4l-api:
    *
    * Version of the Video4Linux API that the device supports. Currently, either
    * 1 or 2 are supported.
    */
-  g_object_class_install_property (object_class, PROP_API,
-                                   g_param_spec_int ("api", NULL, NULL,
-                                                     1, 2, 2,
-                                                     G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+  g_object_class_install_property (object_class, PROP_V4LAPI,
+                                   g_param_spec_uint ("v4l-api",
+                                                      "Video4Linux API",
+                                                      "Version of the Video4Linux API that the device supports",
+                                                      1, 2, 2,
+                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   g_type_class_add_private (klass, sizeof (CheeseCameraDevicePrivate));
 }
@@ -544,7 +552,7 @@ cheese_camera_device_init (CheeseCameraDevice *device)
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
   priv->device = NULL;
-  priv->id     = NULL;
+  priv->uuid   = NULL;
   priv->src    = NULL;
   priv->name   = g_strdup (_("Unknown device"));
   priv->caps   = gst_caps_new_empty ();
@@ -589,7 +597,8 @@ cheese_camera_device_initable_init (GInitable    *initable,
 /**
  * cheese_camera_device_new:
  * @device_id: UUID of the device, as supplied by udev
- * @device_file: path to the device node of the video capture device
+ * @device_file: (type filename): path to the device node of the video capture
+ * device
  * @product_name: human-readable name of the device, as supplied by udev
  * @api_version: version of the Video4Linux API that the device uses. Currently
  * either 1 or 2
@@ -605,15 +614,15 @@ CheeseCameraDevice *
 cheese_camera_device_new (const gchar *device_id,
                           const gchar *device_file,
                           const gchar *product_name,
-                          gint         api_version,
+                          guint        api_version,
                           GError     **error)
 {
   return CHEESE_CAMERA_DEVICE (g_initable_new (CHEESE_TYPE_CAMERA_DEVICE,
                                                NULL, error,
-                                               "device-id", device_id,
+                                               "uuid", device_id,
                                                "device-file", device_file,
                                                "name", product_name,
-                                               "api", api_version,
+                                               "v4l-api", api_version,
                                                NULL));
 }
 
@@ -622,9 +631,8 @@ cheese_camera_device_new (const gchar *device_id,
  * @device: a #CheeseCameraDevice
  *
  * Returns: (element-type Cheese.VideoFormat) (transfer container): List of
- * #CheeseVideoFormat
+ * #CheeseVideoFormat that the device supports
  */
-
 GList *
 cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 {
@@ -640,7 +648,6 @@ cheese_camera_device_get_format_list (CheeseCameraDevice *device)
  *
  * Returns: (transfer none): the human-readable name of the video capture device
  */
-
 const gchar *
 cheese_camera_device_get_name (CheeseCameraDevice *device)
 {
@@ -651,19 +658,18 @@ cheese_camera_device_get_name (CheeseCameraDevice *device)
 }
 
 /**
- * cheese_camera_device_get_id:
+ * cheese_camera_device_get_uuid:
  * @device: a #CheeseCameraDevice
  *
  * Returns: (transfer none): the UUID of the video capture device
  */
-
 const gchar *
-cheese_camera_device_get_id (CheeseCameraDevice *device)
+cheese_camera_device_get_uuid (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv =
     CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
-  return priv->id;
+  return priv->uuid;
 }
 
 /**
@@ -672,7 +678,6 @@ cheese_camera_device_get_id (CheeseCameraDevice *device)
  *
  * Returns: (transfer none)
  */
-
 const gchar *
 cheese_camera_device_get_src (CheeseCameraDevice *device)
 {
@@ -689,7 +694,6 @@ cheese_camera_device_get_src (CheeseCameraDevice *device)
  * Returns: (transfer none): the path to the device node of the video capture
  * device
  */
-
 const gchar *
 cheese_camera_device_get_device_file (CheeseCameraDevice *device)
 {
@@ -703,7 +707,8 @@ cheese_camera_device_get_device_file (CheeseCameraDevice *device)
  * cheese_camera_device_get_best_format:
  * @device: a #CheeseCameraDevice
  *
- * Returns: (transfer full): a #CheeseVideoFormat
+ * Returns: (transfer full): the highest-resolution #CheeseVideoFormat
+ * supported be the @device
  */
 
 CheeseVideoFormat *
@@ -721,9 +726,8 @@ cheese_camera_device_get_best_format (CheeseCameraDevice *device)
  * @device: a #CheeseCameraDevice
  * @format: a #CheeseVideoFormat
  *
- * Returns: (transfer full)
+ * Returns: (transfer full): the #GstCaps for the given @format on the @device
  */
-
 GstCaps *
 cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                           CheeseVideoFormat  *format)

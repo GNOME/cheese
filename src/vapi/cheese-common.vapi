@@ -65,16 +65,16 @@ namespace Cheese
   public class CameraDevice : GLib.Object, GLib.Initable
   {
     [CCode (has_construct_function = false)]
-    public CameraDevice (string device_id, string device_file, string product_name, int api_version) throws GLib.Error;
+    public CameraDevice (string uuid, string device_file, string product_name, int api_version) throws GLib.Error;
     public unowned Cheese.VideoFormat get_best_format ();
     public unowned Gst.Caps           get_caps_for_format (Cheese.VideoFormat format);
     public unowned string             get_device_file ();
     public unowned GLib.List          get_format_list ();
-    public unowned string             get_id ();
+    public unowned string             get_uuid ();
     public unowned string             get_name ();
     public unowned string             get_src ();
     [NoAccessorMethod]
-    public int api {get; construct;}
+    public uint v4l_api {get; construct;}
     public string device_file {get; construct;}
     [NoAccessorMethod]
     public string device_id {owned get; construct;}
@@ -87,7 +87,7 @@ namespace Cheese
     [CCode (has_construct_function = false)]
     public CameraDeviceMonitor ();
     public void                coldplug ();
-    public virtual signal void added (string id, string device_file, string product_name, int api_version);
+    public virtual signal void added (string uuid, string device_file, string product_name, uint api_version);
     public virtual signal void removed (string id);
   }
 
@@ -99,8 +99,6 @@ namespace Cheese
     public FileUtil ();
     [CCode (cname = "cheese_fileutil_get_new_media_filename")]
     public unowned string get_new_media_filename (Cheese.MediaMode mode);
-    [CCode (cname = "cheese_fileutil_get_path_before_224")]
-    public unowned string get_path_before_224 ();
     [CCode (cname = "cheese_fileutil_get_photo_path")]
     public unowned string get_photo_path ();
     [CCode (cname = "cheese_fileutil_get_video_path")]

@@ -65,11 +65,22 @@ struct _CheeseCameraDevice
 
 #define CHEESE_TYPE_VIDEO_FORMAT (cheese_video_format_get_type ())
 
-typedef struct
+typedef struct _CheeseVideoFormat CheeseVideoFormat;
+
+/**
+ * CheeseVideoFormat:
+ * @width: the width of of the video, in pixels
+ * @height: the height of the video, in pixels
+ *
+ * A description of the resolution, in pixels, of the format to capture with a
+ * #CheeseCameraDevice.
+ */
+struct _CheeseVideoFormat
 {
-  int width;
-  int height;
-} CheeseVideoFormat;
+  /*< public >*/
+  gint width;
+  gint height;
+};
 
 GType cheese_video_format_get_type (void) G_GNUC_CONST;
 
@@ -78,7 +89,7 @@ GType cheese_camera_device_get_type (void) G_GNUC_CONST;
 CheeseCameraDevice *cheese_camera_device_new (const gchar *device_id,
                                               const gchar *device_file,
                                               const gchar *product_name,
-                                              gint         api_version,
+                                              guint        api_version,
                                               GError     **error);
 
 GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
@@ -88,7 +99,7 @@ GList *            cheese_camera_device_get_format_list (CheeseCameraDevice *dev
 
 const gchar *cheese_camera_device_get_name (CheeseCameraDevice *device);
 const gchar *cheese_camera_device_get_src (CheeseCameraDevice *device);
-const gchar *cheese_camera_device_get_id (CheeseCameraDevice *device);
+const gchar *cheese_camera_device_get_uuid (CheeseCameraDevice *device);
 const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device);
 
 

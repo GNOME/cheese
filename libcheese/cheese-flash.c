@@ -286,8 +286,8 @@ cheese_flash_class_init (CheeseFlashClass *klass)
    */
   g_object_class_install_property (object_class, PROP_PARENT,
                                    g_param_spec_object ("parent",
-                                                        NULL,
-                                                        NULL,
+                                                        "Parent widget",
+                                                        "The flash will be fired on the screen where the parent widget is shown",
                                                         GTK_TYPE_WIDGET,
                                                         G_PARAM_WRITABLE));
 }
