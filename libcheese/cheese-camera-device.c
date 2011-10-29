@@ -95,6 +95,8 @@ typedef struct
   GError *construct_error;
 } CheeseCameraDevicePrivate;
 
+GQuark cheese_camera_device_error_quark (void);
+
 GQuark
 cheese_camera_device_error_quark (void)
 {

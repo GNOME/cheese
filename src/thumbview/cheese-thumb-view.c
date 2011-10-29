@@ -81,8 +81,8 @@ typedef struct
 } CheeseThumbViewIdleData;
 
 
-static void
-cheese_thumb_view_constructed (GObject *object);
+static void cheese_thumb_view_constructed (GObject *object);
+GtkWidget * cheese_thumb_view_new (void);
 
 static gboolean
 cheese_thumb_view_idle_append_item (gpointer data)

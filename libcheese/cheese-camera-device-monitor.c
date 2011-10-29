@@ -95,6 +95,8 @@ enum
 
 static guint monitor_signals[LAST_SIGNAL];
 
+GQuark cheese_camera_device_monitor_error_quark (void);
+
 GQuark
 cheese_camera_device_monitor_error_quark (void)
 {
@@ -102,6 +104,8 @@ cheese_camera_device_monitor_error_quark (void)
 }
 
 #ifdef HAVE_UDEV
+
+CheeseCameraDevice* cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice);
 
 CheeseCameraDevice*
 cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice)
@@ -147,7 +151,7 @@ cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice)
   if (device_file == NULL)
   {
     GST_WARNING ("Error getting V4L device");
-    return;
+    return NULL;
   }
 
   /* vbi devices support capture capability too, but cannot be used,
@@ -155,7 +159,7 @@ cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice)
   if (strstr (device_file, "vbi"))
   {
     GST_INFO ("Skipping vbi device: %s", device_file);
-    return;
+    return NULL;
   }
 
   v4l_version = g_udev_device_get_property_as_int (udevice, "ID_V4L_VERSION");
@@ -168,14 +172,14 @@ cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice)
     {
       GST_WARNING ("Device %s seems to not have the capture capability, (radio tuner?)"
                    "Removing it from device list.", device_file);
-      return;
+      return NULL;
     }
     product_name = g_udev_device_get_property (udevice, "ID_V4L_PRODUCT");
   }
   else if (v4l_version == 0)
   {
     GST_ERROR ("Fix your udev installation to include v4l_id, ignoring %s", device_file);
-    return;
+    return NULL;
   }
   else
   {

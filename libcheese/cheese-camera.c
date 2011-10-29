@@ -138,6 +138,8 @@ static guint camera_signals[LAST_SIGNAL];
 GST_DEBUG_CATEGORY (cheese_camera_cat);
 #define GST_CAT_DEFAULT cheese_camera_cat
 
+GQuark cheese_camera_error_quark (void);
+
 GQuark
 cheese_camera_error_quark (void)
 {
@@ -449,21 +451,26 @@ cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
 
   gboolean ok = TRUE;
   GstPad  *pad;
-  GError  *err = NULL;
+  GError  *tmp_error = NULL;
+
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
   priv->effects_preview_bin = gst_bin_new ("effects_preview_bin");
 
   if ((priv->effects_tee = gst_element_factory_make ("tee", "effects_tee")) == NULL)
   {
-    cheese_camera_set_error_element_not_found (error, "tee");
+    cheese_camera_set_error_element_not_found (&tmp_error, "tee");
   }
   if ((priv->effects_valve = gst_element_factory_make ("valve", "effects_valve")) == NULL)
   {
-    cheese_camera_set_error_element_not_found (error, "effects_valve");
+    cheese_camera_set_error_element_not_found (&tmp_error, "effects_valve");
   }
 
-  if (error != NULL && *error != NULL)
+  if (tmp_error != NULL)
+  {
+    g_propagate_error (error, tmp_error);
     return FALSE;
+  }
 
   gst_bin_add_many (GST_BIN (priv->effects_preview_bin),
 		    priv->effects_valve, priv->effects_tee, NULL);
@@ -584,13 +591,13 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
-  gboolean was_recording        = FALSE;
+  /* gboolean was_recording        = FALSE; */
   gboolean pipeline_was_playing = FALSE;
 
   if (priv->is_recording)
   {
     cheese_camera_stop_video_recording (camera);
-    was_recording = TRUE;
+    /* was_recording = TRUE; */
   }
 
   if (priv->pipeline_is_playing)

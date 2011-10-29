@@ -70,6 +70,8 @@ typedef struct
 
 G_DEFINE_TYPE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK);
 
+void setup_camera (CheeseWidget *widget);
+
 static GdkPixbuf *
 cheese_widget_load_pixbuf (GtkWidget  *widget,
                            const char *icon_name,

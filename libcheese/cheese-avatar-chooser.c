@@ -171,8 +171,7 @@ create_page (GtkWidget *child,
              GtkWidget *button,
              GtkWidget *extra)
 {
-  GtkWidget *vbox, *hbox;
-  GtkAlignment *align;
+  GtkWidget *vbox, *hbox, *align;
 
   vbox = gtk_vbox_new (FALSE, 8);
   gtk_box_pack_start (GTK_BOX (vbox),
