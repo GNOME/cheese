@@ -58,7 +58,8 @@ AM_CPPFLAGS = \
 	-I$(top_builddir) \
 	$(CHEESE_CFLAGS) \
 	$(CHEESE_GTK_FLAGS) \
-	$(CHEESE_WFLAGS)
+	$(CHEESE_WFLAGS) \
+	$(WARN_CFLAGS)
 
 VALAFLAGS = \
 	--thread \
