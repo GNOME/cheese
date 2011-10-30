@@ -62,7 +62,7 @@ HTML_IMAGES=
 
 # Extra SGML files that are included by $(DOC_MAIN_SGML_FILE).
 # e.g. content_files=running.sgml building.sgml changes-2.0.sgml
-content_files=version.xml
+content_files=cheese.xml version.xml
 
 # SGML files where gtk-doc abbrevations (#GtkWidget) are expanded
 # These files must be listed here *and* in content_files
@@ -86,7 +86,7 @@ include $(top_srcdir)/gtk-doc.make
 # e.g. EXTRA_DIST += version.xml.in
 
 if ENABLE_GTK_DOC
-TESTS_ENVIRONMENT = cd $(srcdir) &&
+TESTS_ENVIRONMENT = cd $(builddir) &&
 TESTS = $(GTKDOC_CHECK)
 endif
 
