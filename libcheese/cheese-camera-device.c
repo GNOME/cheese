@@ -618,8 +618,10 @@ cheese_camera_device_new (const gchar *device_id,
  * cheese_camera_device_get_format_list:
  * @device: a #CheeseCameraDevice
  *
- * Returns: (element-type Cheese.VideoFormat) (transfer container): List of
- * #CheeseVideoFormat that the device supports
+ * Get the list of #CheeseVideoFormat that the @device supports.
+ *
+ * Returns: (element-type Cheese.VideoFormat) (transfer container): list of
+ * #CheeseVideoFormat
  */
 GList *
 cheese_camera_device_get_format_list (CheeseCameraDevice *device)
@@ -630,6 +632,9 @@ cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 /**
  * cheese_camera_device_get_name:
  * @device: a #CheeseCameraDevice
+ *
+ * Get a human-readable name for the device, as reported by udev, which is
+ * suitable for display to a user.
  *
  * Returns: (transfer none): the human-readable name of the video capture device
  */
@@ -643,6 +648,8 @@ cheese_camera_device_get_name (CheeseCameraDevice *device)
  * cheese_camera_device_get_uuid:
  * @device: a #CheeseCameraDevice
  *
+ * Get the UUID of the @device, as reported by udev.
+ *
  * Returns: (transfer none): the UUID of the video capture device
  */
 const gchar *
@@ -655,7 +662,11 @@ cheese_camera_device_get_uuid (CheeseCameraDevice *device)
  * cheese_camera_device_get_src:
  * @device: a #CheeseCameraDevice
  *
- * Returns: (transfer none)
+ * Get the name of the source GStreamer element for the @device. Currently,
+ * this will be either v4lsrc or v4l2src, depending on the version of the
+ * Video4Linux API that the device supports.
+ *
+ * Returns: (transfer none): the name of the source GStreamer element
  */
 const gchar *
 cheese_camera_device_get_src (CheeseCameraDevice *device)
@@ -666,6 +677,8 @@ cheese_camera_device_get_src (CheeseCameraDevice *device)
 /**
  * cheese_camera_device_get_device_file:
  * @device: a #CheeseCameraDevice
+ *
+ * Get the path to the device node associated with the @device.
  *
  * Returns: (transfer none): the path to the device node of the video capture
  * device
@@ -680,8 +693,10 @@ cheese_camera_device_get_device_file (CheeseCameraDevice *device)
  * cheese_camera_device_get_best_format:
  * @device: a #CheeseCameraDevice
  *
- * Returns: (transfer full): the highest-resolution #CheeseVideoFormat
- * supported be the @device
+ * Get the #CheeseVideoFormat with the highest rsolution for this @device.
+ *
+ * Returns: (transfer full): the highest-resolution supported
+ * #CheeseVideoFormat
  */
 
 CheeseVideoFormat *
@@ -699,7 +714,9 @@ cheese_camera_device_get_best_format (CheeseCameraDevice *device)
  * @device: a #CheeseCameraDevice
  * @format: a #CheeseVideoFormat
  *
- * Returns: (transfer full): the #GstCaps for the given @format on the @device
+ * Get the #GstCaps for the given @format on the @device.
+ *
+ * Returns: (transfer full): the #GstCaps for the given @format
  */
 GstCaps *
 cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,

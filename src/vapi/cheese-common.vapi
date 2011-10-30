@@ -37,8 +37,8 @@ namespace Cheese
     public bool                        has_camera ();
     public void                        play ();
     public void                        set_balance_property (string property, double value);
-    public void                        set_device_by_dev_file (string file);
-    public void                        set_device_by_dev_udi (string udi);
+    public void                        set_device_by_device_node (string file);
+    public void                        set_device_by_uuid (string uuid);
     public void                        set_effect (Cheese.Effect effect);
     public void                        toggle_effects_pipeline (bool active);
     public void                        connect_effect_texture (Cheese.Effect effect, Clutter.Texture texture);

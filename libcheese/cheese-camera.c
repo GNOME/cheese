@@ -567,6 +567,9 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
  * cheese_camera_get_num_camera_devices:
  * @camera: a #CheeseCamera
  *
+ * Get the number of #CheeseCameraDevice found on the system managed by
+ * @camera.
+ *
  * Returns: the number of #CheeseCameraDevice objects on the system
  */
 static int
@@ -580,6 +583,8 @@ cheese_camera_get_num_camera_devices (CheeseCamera *camera)
 /**
  * cheese_camera_get_selected_device:
  * @camera: a #CheeseCamera
+ *
+ * Get the currently-selected #CheeseCameraDevice of the @camera.
  *
  * Returns: (transfer none): a #CheeseCameraDevice, or %NULL if there is no
  * selected device
@@ -596,11 +601,11 @@ cheese_camera_get_selected_device (CheeseCamera *camera)
     return NULL;
 }
 
-/*
- * cheese_camera_device_switch_camera_device:
+/**
+ * cheese_camera_switch_camera_device:
  * @camera: a #CheeseCamera
  *
- * Toggle the playing/recording state of the #CheeseCamera.
+ * Toggle the playing/recording state of the @camera.
  */
 void
 cheese_camera_switch_camera_device (CheeseCamera *camera)
@@ -813,6 +818,8 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
  * @camera: a #CheeseCamera
  * @effect: a #CheeseEffect
  * @texture: a #ClutterTexture
+ *
+ * Connect the supplied @texture to the @camera, using @effect.
  */
 void
 cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
@@ -877,7 +884,9 @@ cheese_camera_start_video_recording (CheeseCamera *camera, const char *filename)
 
 /*
  * cheese_camera_force_stop_video_recording:
- * @data: a #CheeseCamera on which to forcibly stop video recording
+ * @data: a #CheeseCamera
+ *
+ * Forcible stop a #CheeseCamera from recording video.
  *
  * Returns: %FALSE
  */
@@ -1000,6 +1009,9 @@ cheese_camera_take_photo (CheeseCamera *camera, const char *filename)
 /**
  * cheese_camera_take_photo_pixbuf:
  * @camera: a #CheeseCamera
+ *
+ * Take a photo with the @camera and emit it in the ::capture-start signal as a
+ * #GdkPixbuf.
  *
  * Returns: %TRUE if the photo was successfully captured, %FALSE otherwise
  */
@@ -1247,6 +1259,8 @@ cheese_camera_init (CheeseCamera *camera)
  * @x_resolution: the resolution width
  * @y_resolution: the resolution height
  *
+ * Create a new #CheeseCamera object.
+ *
  * Returns: a new #CheeseCamera
  */
 CheeseCamera *
@@ -1277,13 +1291,13 @@ cheese_camera_new (ClutterTexture *video_texture, const gchar *camera_device_nam
 /**
  * cheese_camera_set_device_by_device_node:
  * @camera: a #CheeseCamera
- * @file: the device node path
+ * @file: (type filename): the device node path
  *
  * Set the active video capture device of the @camera, matching by device node
  * path.
  */
 void
-cheese_camera_set_device_by_dev_file (CheeseCamera *camera, const gchar *file)
+cheese_camera_set_device_by_device_node (CheeseCamera *camera, const gchar *file)
 {
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
   g_object_set (camera, "device-name", file, NULL);
@@ -1453,6 +1467,8 @@ cheese_camera_get_video_formats (CheeseCamera *camera)
  * cheese_camera_is_playing:
  * @camera: a #CheeseCamera
  *
+ * Get whether the @camera is in the playing state.
+ *
  * Returns: %TRUE if the #CheeseCamera is in the playing state, %FALSE
  * otherwise
  */
@@ -1502,6 +1518,8 @@ cheese_camera_set_video_format (CheeseCamera *camera, CheeseVideoFormat *format)
  * cheese_camera_get_current_video_format:
  * @camera: a #CheeseCamera
  *
+ * Get the #CheeseVideoFormat that is currently set on the @camera.
+ *
  * Returns: (transfer none): the #CheeseVideoFormat set on the #CheeseCamera
  */
 const CheeseVideoFormat *
@@ -1521,6 +1539,9 @@ cheese_camera_get_current_video_format (CheeseCamera *camera)
  * @min: (out): minimum value
  * @max: (out): maximum value
  * @def: (out): default value
+ *
+ * Get the minimum, maximum and default values for the requested @property of
+ * the @camera.
  *
  * Returns: %TRUE if the operation was successful, %FALSE otherwise
  */
@@ -1559,6 +1580,8 @@ cheese_camera_get_balance_property_range (CheeseCamera *camera,
  * @camera: A #CheeseCamera
  * @property: name of the balance property
  * @value: value to be set
+ *
+ * Set the requested @property on the @camera to @value.
  */
 void
 cheese_camera_set_balance_property (CheeseCamera *camera, const gchar *property, gdouble value)

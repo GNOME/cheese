@@ -59,6 +59,8 @@ struct _CheeseCameraDeviceMonitor
  * CheeseCameraDeviceMonitorClass:
  * @added: invoked when a new video capture device is connected
  * @removed: invoked when a video capture device is removed
+ *
+ * Class for #CheeseCameraDeviceMonitor.
  */
 struct _CheeseCameraDeviceMonitorClass
 {

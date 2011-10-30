@@ -381,6 +381,8 @@ cheese_flash_fire (CheeseFlash *flash)
  * cheese_flash_new:
  * @parent: a parent #GtkWidget
  *
+ * Create a new #CheeseFlash, associated with the @parent widget.
+ *
  * Returns: a new #CheeseFlash
  */
 CheeseFlash *

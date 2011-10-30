@@ -147,10 +147,18 @@ cheese_effect_class_init (CheeseEffectClass *klass)
                                                         G_PARAM_READWRITE));
 }
 
+/**
+ * cheese_effect_is_preview_connected:
+ * @effect: a #CheeseEffect
+ *
+ * Get whether the @effect is connected to a video stream, for previews.
+ *
+ * Returns: %TRUE if the preview is connected, %FALSE otherwise.
+ */
 gboolean
-cheese_effect_is_preview_connected (CheeseEffect *self)
+cheese_effect_is_preview_connected (CheeseEffect *effect)
 {
-  return self->priv->control_valve != NULL;
+  return effect->priv->control_valve != NULL;
 }
 
 /**

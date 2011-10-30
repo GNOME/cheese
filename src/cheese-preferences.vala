@@ -215,7 +215,7 @@ public class Cheese.PreferencesDialog : GLib.Object
 
     combo.get_active_iter (out iter);
     combo.model.get (iter, 1, out dev);
-    camera.set_device_by_dev_file (dev.get_device_file ());
+    camera.set_device_by_device_node (dev.get_device_file ());
     camera.switch_camera_device ();
     setup_resolutions_for_device (camera.get_selected_device ());
     settings.set_string ("camera", dev.get_device_file ());

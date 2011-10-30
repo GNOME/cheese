@@ -59,6 +59,8 @@ cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
  * cheese_fileutil_get_video_path:
  * @fileutil: a #CheeseFileUtil
  *
+ * Get the path where Cheese video files are stored.
+ *
  * Returns: (transfer none) (type filename): the Cheese video path
  */
 const gchar *
@@ -70,6 +72,8 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 /**
  * cheese_fileutil_get_photo_path:
  * @fileutil: a #CheeseFileUtil
+ *
+ * Get the path where Cheese photo files are stored.
  *
  * Returns: (transfer none) (type filename): the Cheese photo path
  */
@@ -253,6 +257,8 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
 
 /**
  * cheese_fileutil_new:
+ *
+ * Create a new #CheeseFileUtil object.
  *
  * Returns: a new #CheeseFileUtil
  */
