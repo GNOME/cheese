@@ -131,6 +131,20 @@ PKG_CHECK_MODULES([CHEESE_GTK],
    $UDEV_REQUIRED
    $GNOME_VIDEO_EFFECTS_REQUIRED])
 
+# Recommend some runtime GStreamer plugins.
+AC_PATH_PROGS([GST_INSPECT], [gst-inspect-0.10 gst-inspect], [notfound])
+AS_IF([test "x$GST_INSPECT" = "xnotfound"],
+  [AC_MSG_WARN([unable to check for runtime GStreamer plugin dependencies])],
+  [GST_RUNTIME_PLUGINS="camerabin theoraenc"
+   for gst_runtime_plugin in $GST_RUNTIME_PLUGINS
+   do
+     AC_MSG_CHECKING([for $gst_runtime_plugin GStreamer plugin])
+     AS_IF([$GST_INSPECT $gst_runtime_plugin >/dev/null],
+       [AC_MSG_RESULT([found])],
+       [AC_MSG_RESULT([not found])
+        AC_MSG_WARN([$gst_runtime_plugin was not found. It needs to be installed before Cheese is run])])
+   done])
+
 AC_MSG_CHECKING([for glib-genmarshal script])
 GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
 AS_IF([test "x$GLIB_GENMARSHAL" = "x"],
