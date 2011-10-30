@@ -416,6 +416,7 @@ dist_noinst_DATA = \
 	$(service_in_files) \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
 	$(gtkdoc_srcdir)/cheese-sections.txt \
+	$(gtkdoc_srcdir)/cheese.xml \
 	$(gtkdoc_srcdir)/version.xml.in \
 	gtk-doc.make \
 	intltool-extract.in \

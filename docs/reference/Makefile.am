@@ -90,5 +90,12 @@ TESTS_ENVIRONMENT = cd $(srcdir) &&
 TESTS = $(GTKDOC_CHECK)
 endif
 
+if ENABLE_MAN
+cheese.1: cheese.xml
+	$(AM_V_GEN)xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
+
+nodist_man_MANS = cheese.1
+endif
+
 sgml.stamp: $(DOC_MODULE)-sections.txt
 $(DOC_MAIN_SGML_FILE): sgml.stamp

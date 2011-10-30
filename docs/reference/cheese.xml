@@ -1,0 +1,94 @@
+<refentry id="cheese">
+
+<refmeta>
+<refentrytitle>cheese</refentrytitle>
+<manvolnum>1</manvolnum>
+<refmiscinfo class="manual">User Commands</refmiscinfo>
+</refmeta>
+
+<refnamediv>
+<refname>Cheese</refname>
+<refpurpose>tool to take pictures and videos from your webcam</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<cmdsynopsis>
+<command>cheese</command>
+<arg choice="opt" rep="repeat">option</arg>
+</cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1><title>Description</title>
+<para>
+<command>cheese</command> uses your webcam to take photos and videos, applies
+fancy special effects and lets you share the fun with others. It was written as
+part of Google's 2007 Summer of Code lead by daniel g. siegel and mentored by
+Raphaël Slinckx. Under the hood, Cheese uses GStreamer to apply fancy effects
+to photos and videos. With Cheese it is easy to take photos of you, your
+friends, pets or whatever you want and share them with others. After the
+success of the Summer of Code, the development continued and we are still
+looking for people with nice ideas and patches ;)
+</para>
+</refsect1>
+
+<refsect1><title>Invocation</title>
+<para><command>cheese</command> takes a list of options as arguments.</para>
+
+<refsect2><title>Options</title>
+<variablelist>
+
+<varlistentry>
+<term><option>--wide</option>, <option>-w</option></term>
+<listitem><para>
+Start in wide mode, with the thumbnails to the right of the video preview.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>--device=DEVICE</option>, <option>-d DEVICE</option></term>
+<listitem><para>
+Use the supplied DEVICE as the video capture device.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>--fullscreen</option>, <option>-f</option></term>
+<listitem><para>Start in fullscreen mode.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>--help</option>, <option>-h</option></term>
+<listitem><para>Print brief help and exit.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><option>--version</option>, <option>-v</option></term>
+<listitem><para>Print the version and exit.</para></listitem>
+</varlistentry>
+
+</variablelist>
+</refsect2>
+
+</refsect1>
+
+<refsect1><title>See also</title>
+<para>Cheese help manual</para>
+</refsect1>
+
+<refsect1><title>Author</title>
+<para>
+<command>cheese</command> was written by Daniel G. Siegel
+<email>dgsiegel@gnome.org</email>, Jaap A. Haitsma
+<email>jaap@haitsma.org</email>, Filippo Argiolas
+<email>fargiolas@gnome.org</email>, Yuvaraj Pandian T
+<email>yuvipanda@yuvi.in</email>, Luciana Fujii Pontello
+<email>luciana@fujii.eti.br</email> and David King
+<email>amigadave@amigadave.com</email>.
+</para>
+
+<para>
+This manual page was written by David King
+<email>amigadave@amigadave.com</email>.
+</para>
+</refsect1>
+</refentry>

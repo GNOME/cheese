@@ -165,6 +165,16 @@ GOBJECT_INTROSPECTION_CHECK([0.6.7])
 # API documentation
 GTK_DOC_CHECK([1.14], [--flavour no-tmpl])
 
+# Manpage, generated with gtk-doc and xsltproc from DocBook XML.
+AC_ARG_ENABLE([man],
+  [AS_HELP_STRING([--disable-man], [Disable building the man page])])
+
+AS_IF([test "x$enable_man" != "xno"],
+  [AC_CHECK_PROG([have_xsltproc], [xsltproc], [yes], [no])],
+  [have_xsltproc=no])
+
+AM_CONDITIONAL([ENABLE_MAN], [test "x$have_xxsltproc" = "xyes"])
+
 # User manual
 GNOME_DOC_INIT([0.20])
 
