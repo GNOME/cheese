@@ -387,6 +387,8 @@ gtkdoc_srcdir = $(top_srcdir)/docs/reference
 
 all-local: $(bin_PROGRAMS)
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) all
+check-local:
+	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFlAGS) check
 clean-local:
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) clean
 distclean-local:
