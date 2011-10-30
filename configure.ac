@@ -45,26 +45,6 @@ AC_SUBST([LIBCHEESE_LT_VERSION], [2:4:1])
 AC_SUBST([LIBCHEESE_GTK_LT_VERSION], [20:6:0])
 
 #*******************************************************************************
-# Expanded dirs
-#*******************************************************************************
-# This macro expands DIR and assigns it to RET.
-# If DIR is NONE, then it's replaced by DEFAULT.
-# Based on AC_DEFINE_DIR
-AC_DEFUN([CHEESE_FULLPATH], [
-  test "x$prefix" = xNONE && prefix="$ac_default_prefix"
-  test "x$exec_prefix" = xNONE && exec_prefix='${prefix}'
-  ac_expand=[$]$1
-  test "x$ac_expand" = xNONE && ac_expand="[$]$2"
-  ac_expand=`eval echo [$]ac_expand`
-  $3=`eval echo [$]ac_expand`
-])
-
-# FULL_LIBEXECDIR is used for X-GNOME-Bugzilla-ExtraInfoScript expansion
-# in data/cheese.desktop.in.in
-CHEESE_FULLPATH(libexecdir, NONE, FULL_LIBEXECDIR)
-AC_SUBST(FULL_LIBEXECDIR)
-
-#*******************************************************************************
 # Internationalization
 #*******************************************************************************
 AC_SUBST([GETTEXT_PACKAGE], [$PACKAGE_TARNAME])
