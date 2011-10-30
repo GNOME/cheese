@@ -268,6 +268,20 @@ public class Cheese.PreferencesDialog : GLib.Object
   }
 
   [CCode (instance_pos = -1)]
+  public void on_dialog_help (Gtk.Button button)
+  {
+    try
+    {
+      Gtk.show_uri (this.dialog.get_screen (), "ghelp:cheese?index#preferences",
+        Gdk.CURRENT_TIME);
+    }
+    catch
+    {
+      warning ("%s", "Error showing help");
+    }
+  }
+
+  [CCode (instance_pos = -1)]
   public void on_countdown_toggle (Gtk.CheckButton checkbutton)
   {
     settings.set_boolean ("countdown", checkbutton.active);
