@@ -95,6 +95,9 @@ cheese.1: cheese.xml
 	$(AM_V_GEN)xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
 
 nodist_man_MANS = cheese.1
+
+# Already defined in gtk-doc.make.
+CLEANFILES += cheese.1
 endif
 
 sgml.stamp: $(DOC_MODULE)-sections.txt
