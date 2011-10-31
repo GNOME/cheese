@@ -173,7 +173,7 @@ AS_IF([test "x$enable_man" != "xno"],
   [AC_CHECK_PROG([have_xsltproc], [xsltproc], [yes], [no])],
   [have_xsltproc=no])
 
-AM_CONDITIONAL([ENABLE_MAN], [test "x$have_xxsltproc" = "xyes"])
+AM_CONDITIONAL([ENABLE_MAN], [test "x$have_xsltproc" = "xyes"])
 
 # User manual
 GNOME_DOC_INIT([0.20])
