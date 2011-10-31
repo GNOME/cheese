@@ -369,7 +369,7 @@ public class Cheese.MainWindow : Gtk.Window
   public void on_help_about (Gtk.Action action)
   {
     Gtk.AboutDialog about_dialog;
-    about_dialog         = (Gtk.AboutDialog)gtk_builder.get_object ("aboutdialog");
+    about_dialog         = gtk_builder.get_object ("aboutdialog") as Gtk.AboutDialog;
     about_dialog.set_transient_for (this);
     about_dialog.set_modal (true);
     about_dialog.version = Config.PACKAGE_VERSION;
@@ -1026,7 +1026,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       foreach (string key in action_sensitivities.keys)
       {
-        Gtk.Action action = (Gtk.Action)gtk_builder.get_object (key);
+        Gtk.Action action = gtk_builder.get_object (key) as Gtk.Action;
         action.sensitive = action_sensitivities.get (key);
       }
     }
@@ -1131,37 +1131,37 @@ public class Cheese.MainWindow : Gtk.Window
       error ("Error: %s", err.message);
     }
 
-    main_vbox                         = (Gtk.VBox)gtk_builder.get_object ("mainbox_normal");
-    thumbnails                        = (Gtk.Widget)gtk_builder.get_object ("thumbnails");
-    viewport_widget                   = (GtkClutter.Embed)gtk_builder.get_object ("viewport");
-    viewport                          = (Clutter.Stage)viewport_widget.get_stage ();
-    thumbnails_right                  = (Gtk.Alignment)gtk_builder.get_object ("thumbnails_right");
-    thumbnails_bottom                 = (Gtk.Alignment)gtk_builder.get_object ("thumbnails_bottom");
-    menubar                           = (Gtk.MenuBar)gtk_builder.get_object ("main_menubar");
-    leave_fullscreen_button_container = (Gtk.HBox)gtk_builder.get_object ("leave_fullscreen_button_bin");
-    photo_toggle_button               = (Gtk.ToggleButton)gtk_builder.get_object ("photo_toggle_button");
-    video_toggle_button               = (Gtk.ToggleButton)gtk_builder.get_object ("video_toggle_button");
-    burst_toggle_button               = (Gtk.ToggleButton)gtk_builder.get_object ("burst_toggle_button");
-    take_action_button                = (Gtk.Button)gtk_builder.get_object ("take_action_button");
-    take_action_button_label          = (Gtk.Label)gtk_builder.get_object ("take_action_button_internal_label");
-    take_action_button_image          = (Gtk.Image)gtk_builder.get_object ("take_action_button_internal_image");
-    effects_toggle_button             = (Gtk.ToggleButton)gtk_builder.get_object ("effects_toggle_button");
-    leave_fullscreen_button           = (Gtk.Button)gtk_builder.get_object ("leave_fullscreen_button");
-    buttons_area                      = (Gtk.HBox)gtk_builder.get_object ("buttons_area");
-    thumbnail_popup                   = (Gtk.Menu)gtk_builder.get_object ("thumbnail_popup");
+    main_vbox                         = gtk_builder.get_object ("mainbox_normal") as Gtk.VBox;
+    thumbnails                        = gtk_builder.get_object ("thumbnails") as Gtk.Widget;
+    viewport_widget                   = gtk_builder.get_object ("viewport") as GtkClutter.Embed;
+    viewport                          = viewport_widget.get_stage () as Clutter.Stage;
+    thumbnails_right                  = gtk_builder.get_object ("thumbnails_right") as Gtk.Alignment;
+    thumbnails_bottom                 = gtk_builder.get_object ("thumbnails_bottom") as Gtk.Alignment;
+    menubar                           = gtk_builder.get_object ("main_menubar") as Gtk.MenuBar;
+    leave_fullscreen_button_container = gtk_builder.get_object ("leave_fullscreen_button_bin") as Gtk.HBox;
+    photo_toggle_button               = gtk_builder.get_object ("photo_toggle_button") as Gtk.ToggleButton;
+    video_toggle_button               = gtk_builder.get_object ("video_toggle_button") as Gtk.ToggleButton;
+    burst_toggle_button               = gtk_builder.get_object ("burst_toggle_button") as Gtk.ToggleButton;
+    take_action_button                = gtk_builder.get_object ("take_action_button") as Gtk.Button;
+    take_action_button_label          = gtk_builder.get_object ("take_action_button_internal_label") as Gtk.Label;
+    take_action_button_image          = gtk_builder.get_object ("take_action_button_internal_image") as Gtk.Image;
+    effects_toggle_button             = gtk_builder.get_object ("effects_toggle_button") as Gtk.ToggleButton;
+    leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
+    buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.HBox;
+    thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
-    take_photo_action        = (Gtk.Action)gtk_builder.get_object ("take_photo");
-    take_video_action        = (Gtk.Action)gtk_builder.get_object ("take_video");
-    take_burst_action        = (Gtk.Action)gtk_builder.get_object ("take_burst");
-    photo_mode_action        = (Gtk.Action)gtk_builder.get_object ("photo_mode");
-    video_mode_action        = (Gtk.Action)gtk_builder.get_object ("video_mode");
-    burst_mode_action        = (Gtk.Action)gtk_builder.get_object ("burst_mode");
-    effects_toggle_action    = (Gtk.ToggleAction)gtk_builder.get_object ("effects_toggle");
-    countdown_action         = (Gtk.Action)gtk_builder.get_object ("countdown");
-    wide_mode_action         = (Gtk.ToggleAction)gtk_builder.get_object ("wide_mode");
-    fullscreen_action        = (Gtk.ToggleAction)gtk_builder.get_object ("fullscreen");
-    effects_page_next_action = (Gtk.Action)gtk_builder.get_object ("effects_page_next");
-    effects_page_prev_action = (Gtk.Action)gtk_builder.get_object ("effects_page_prev");
+    take_photo_action        = gtk_builder.get_object ("take_photo") as Gtk.Action;
+    take_video_action        = gtk_builder.get_object ("take_video") as Gtk.Action;
+    take_burst_action        = gtk_builder.get_object ("take_burst") as Gtk.Action;
+    photo_mode_action        = gtk_builder.get_object ("photo_mode") as Gtk.Action;
+    video_mode_action        = gtk_builder.get_object ("video_mode") as Gtk.Action;
+    burst_mode_action        = gtk_builder.get_object ("burst_mode") as Gtk.Action;
+    effects_toggle_action    = gtk_builder.get_object ("effects_toggle") as Gtk.ToggleAction;
+    countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
+    wide_mode_action         = gtk_builder.get_object ("wide_mode") as Gtk.ToggleAction;
+    fullscreen_action        = gtk_builder.get_object ("fullscreen") as Gtk.ToggleAction;
+    effects_page_next_action = gtk_builder.get_object ("effects_page_next") as Gtk.Action;
+    effects_page_prev_action = gtk_builder.get_object ("effects_page_prev") as Gtk.Action;
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
@@ -1172,12 +1172,12 @@ public class Cheese.MainWindow : Gtk.Window
                effects_toggle_button,
                leave_fullscreen_button};
 
-    video_preview           = (Clutter.Texture)clutter_builder.get_object ("video_preview");
-    viewport_layout         = (Clutter.Box)clutter_builder.get_object ("viewport_layout");
-    viewport_layout_manager = (Clutter.BinLayout)clutter_builder.get_object ("viewport_layout_manager");
-    countdown_layer         = (Clutter.Text)clutter_builder.get_object ("countdown_layer");
-    background_layer        = (Clutter.Rectangle)clutter_builder.get_object ("background");
-    error_layer             = (Clutter.Text)clutter_builder.get_object ("error_layer");
+    video_preview           = clutter_builder.get_object ("video_preview") as Clutter.Texture;
+    viewport_layout         = clutter_builder.get_object ("viewport_layout") as Clutter.Box;
+    viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
+    countdown_layer         = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
+    background_layer        = clutter_builder.get_object ("background") as Clutter.Rectangle;
+    error_layer             = clutter_builder.get_object ("error_layer") as Clutter.Text;
 
     video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;

@@ -66,34 +66,34 @@ public class Cheese.PreferencesDialog : GLib.Object
       error ("Error: %s", err.message);
     }
 
-    this.dialog = (Gtk.Dialog)builder.get_object ("cheese_prefs_dialog");
+    this.dialog = builder.get_object ("cheese_prefs_dialog") as Gtk.Dialog;
 
-    this.brightness_adjustment = (Gtk.Adjustment) builder.get_object ("brightness_adjustment");
-    this.contrast_adjustment   = (Gtk.Adjustment) builder.get_object ("contrast_adjustment");
-    this.hue_adjustment        = (Gtk.Adjustment) builder.get_object ("hue_adjustment");
-    this.saturation_adjustment = (Gtk.Adjustment) builder.get_object ("saturation_adjustment");
+    this.brightness_adjustment = builder.get_object ("brightness_adjustment") as Gtk.Adjustment;
+    this.contrast_adjustment = builder.get_object ("contrast_adjustment") as Gtk.Adjustment as Gtk.Adjustment as Gtk.Adjustment as Gtk.Adjustment;
+    this.hue_adjustment = builder.get_object ("hue_adjustment") as Gtk.Adjustment;
+    this.saturation_adjustment = builder.get_object ("saturation_adjustment") as Gtk.Adjustment;
 
     /* Here instead of in cheese-prefs.ui because of https://bugzilla.gnome.org/show_bug.cgi?id=624443 */
 
-    this.brightness_scale = (Gtk.Scale) builder.get_object ("brightness_scale");
-    this.contrast_scale   = (Gtk.Scale) builder.get_object ("contrast_scale");
-    this.hue_scale        = (Gtk.Scale) builder.get_object ("hue_scale");
-    this.saturation_scale = (Gtk.Scale) builder.get_object ("saturation_scale");
+    this.brightness_scale = builder.get_object ("brightness_scale") as Gtk.Scale;
+    this.contrast_scale = builder.get_object ("contrast_scale") as Gtk.Scale;
+    this.hue_scale = builder.get_object ("hue_scale") as Gtk.Scale;
+    this.saturation_scale = builder.get_object ("saturation_scale") as Gtk.Scale;
 
     this.brightness_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
     this.contrast_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
     this.hue_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
     this.saturation_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
 
-    this.photo_resolution_combo = (Gtk.ComboBox) builder.get_object ("photo_resolution_combo_box");
-    this.video_resolution_combo = (Gtk.ComboBox) builder.get_object ("video_resolution_combo_box");
-    this.source_combo     = (Gtk.ComboBox) builder.get_object ("camera_combo_box");
+    this.photo_resolution_combo = builder.get_object ("photo_resolution_combo_box") as Gtk.ComboBox;
+    this.video_resolution_combo = builder.get_object ("video_resolution_combo_box") as Gtk.ComboBox;
+    this.source_combo = builder.get_object ("camera_combo_box") as Gtk.ComboBox;
 
-    this.burst_repeat_spin = (Gtk.SpinButton) builder.get_object ("burst_repeat");
-    this.burst_delay_spin  = (Gtk.SpinButton) builder.get_object ("burst_delay");
+    this.burst_repeat_spin = builder.get_object ("burst_repeat") as Gtk.SpinButton;
+    this.burst_delay_spin = builder.get_object ("burst_delay") as Gtk.SpinButton;
 
-    this.countdown_check  = (Gtk.CheckButton) builder.get_object ("countdown");
-    this.flash_check  = (Gtk.CheckButton) builder.get_object ("flash");
+    this.countdown_check = builder.get_object ("countdown") as Gtk.CheckButton;
+    this.flash_check = builder.get_object ("flash") as Gtk.CheckButton;
 
     setup_combo_box_models ();
     initialize_camera_devices ();
