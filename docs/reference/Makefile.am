@@ -92,7 +92,7 @@ endif
 
 if ENABLE_MAN
 cheese.1: cheese.xml
-	$(AM_V_GEN)xsltproc -nonet http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
+	$(AM_V_GEN)xsltproc --nonet --path $(builddir) http://docbook.sourceforge.net/release/xsl/current/manpages/docbook.xsl $<
 
 nodist_man_MANS = cheese.1
 
