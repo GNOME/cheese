@@ -22,8 +22,6 @@
 using GLib;
 using Clutter;
 
-const int COUNTDOWN_START = 3;
-
 internal class Cheese.Countdown : GLib.Object
 {
   public delegate void CountdownCallback ();
@@ -38,11 +36,14 @@ internal class Cheese.Countdown : GLib.Object
 
   private static Clutter.Animation anim;
 
+  private static GLib.Settings settings;
+
   public bool running;
 
   public Countdown (Clutter.Text countdown_actor)
   {
     this.countdown_actor = countdown_actor;
+    settings             = new GLib.Settings("org.gnome.Cheese");
   }
 
   private void fade_out ()
@@ -69,7 +70,7 @@ internal class Cheese.Countdown : GLib.Object
   public void start (CountdownCallback completed_callback)
   {
     this.completed_callback = completed_callback;
-    this.current_value      = COUNTDOWN_START;
+    this.current_value = settings.get_int("countdown-duration");
     running = true;
     countdown_actor.show ();
     fade_in ();
