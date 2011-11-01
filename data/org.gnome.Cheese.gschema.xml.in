@@ -3,24 +3,24 @@
     <key name='countdown' type='b'>
       <_summary>Use a countdown</_summary>
       <_description>
-        Set to True to show countdown when taking a photo
+        Set to true to show a countdown before taking a photo
       </_description>
       <default>true</default>
     </key>
 
     <key name='countdown-duration' type='i'>
-      <range min="1" max="10"/>
       <_summary>Countdown length</_summary>
       <_description>
         The duration of the countdown before taking a photo, in seconds
       </_description>
       <default>3</default>
+      <range min='1' max='10'/>
     </key>
 
     <key name='flash' type='b'>
       <_summary>Fire flash before taking a picture</_summary>
       <_description>
-        Set to True to fire a flash before taking a picture
+        Set to true to fire a flash when taking a picture
       </_description>
       <default>true</default>
     </key>
@@ -28,81 +28,90 @@
     <key name='camera' type='s'>
       <_summary>Camera device string indicator</_summary>
       <_description>
-        The device which points to the camera (e.g. /dev/video0)
+        The path to the device node which points to the camera, for example
+        /dev/video0
       </_description>
       <default>''</default>
     </key>
 
     <key name='selected-effect' type='s'>
-      <_summary>Name of last selected effect</_summary>
+      <_summary>Last selected effect</_summary>
       <_description>
-        Name of installed effect that was selected last
+        Name of the installed effect that was selected last
       </_description>
       <default>'identity'</default>
     </key>
 
     <key name='photo-x-resolution' type='i'>
-      <_summary>Photo width resolution</_summary>
+      <_summary>Photo width</_summary>
       <_description>
-        The width resolution of the image captured from the camera
+        The width of the image captured from the camera, in pixels
       </_description>
       <default>0</default>
+      <range min='0' max='65535'/>
     </key>
 
     <key name='photo-y-resolution' type='i'>
-      <_summary>Photo height resolution</_summary>
+      <_summary>Photo height</_summary>
       <_description>
-        The height resolution of the image captured from the camera
+        The height of the image captured from the camera, in pixels
       </_description>
       <default>0</default>
+      <range min='0' max='65535'/>
     </key>
 
     <key name='video-x-resolution' type='i'>
-      <_summary>Video width resolution</_summary>
+      <_summary>Video width</_summary>
       <_description>
-        The width resolution of the video captured from the camera
+        The width of the video captured from the camera, in pixels
       </_description>
       <default>0</default>
+      <range min='0' max='65535'/>
     </key>
 
     <key name='video-y-resolution' type='i'>
-      <_summary>Video height resolution</_summary>
+      <_summary>Video height</_summary>
       <_description>
-        The height resolution of the video captured from the camera
+        The height of the video captured from the camera, in pixels
       </_description>
       <default>0</default>
+      <range min='0' max='65535'/>
     </key>
 
     <key name='brightness' type='d'>
       <_summary>Picture brightness</_summary>
       <_description>
-        Adjusts brightness level of the picture coming from the camera
+        Adjusts the brightness of the picture coming from the camera
       </_description>
-      <default>0</default>
+      <default>1</default>
+      <range min='-1' max='1'/>
     </key>
 
     <key name='contrast' type='d'>
       <_summary>Picture contrast</_summary>
       <_description>
-        Adjusts contrast level of the picture coming from the camera
+        Adjusts the contrast of the picture coming from the camera
       </_description>
       <default>1.0</default>
+      <range min='0' max='2'/>
     </key>
 
     <key name='saturation' type='d'>
       <_summary>Picture saturation</_summary>
       <_description>
-        Adjusts saturation level of the picture coming from the camera
+        Adjusts the saturation of the picture coming from the camera
       </_description>
       <default>1</default>
+      <range min='0' max='2'/>
     </key>
 
     <key name='hue' type='d'>
       <_summary>Picture hue</_summary>
       <_description>
-        Adjusts hue level of the picture coming from the camera
+        Adjusts the hue (color tint) of the picture coming from the camera
       </_description>
       <default>0</default>
+      <range min='-1' max='1'/>
     </key>
 
     <key name='video-path' type='s'>
@@ -126,9 +135,8 @@
     <key name='wide-mode' type='b'>
       <_summary>Whether to start in wide mode</_summary>
       <_description>
-        If set to true, Cheese will start up in a wide mode with the
-        image collection placed on the right-hand side. Useful with
-        small screens.
+        If set to true, Cheese will start up in wide mode, with the image
+        collection placed on the right-hand side. Useful with small screens.
       </_description>
       <default>false</default>
     </key>
@@ -136,7 +144,7 @@
     <key name='fullscreen' type='b'>
       <_summary>Whether to start in fullscreen</_summary>
       <_description>
-        If set to true, Cheese will start up in a fullscreen mode.
+        If set to true, Cheese will start up in fullscreen mode.
       </_description>
       <default>false</default>
     </key>
@@ -144,10 +152,12 @@
     <key name='burst-delay' type='i'>
       <_summary>Time between photos in burst mode</_summary>
       <_description>
-        The length of time, in milliseconds, to delay between taking
-        each photo in a burst sequence of photos.
+        The length of time, in milliseconds, to delay between taking each photo
+        in a burst sequence of photos. If the burst delay is less than the
+        countdown duration, the countdown duration will be used instead.
       </_description>
       <default>1000</default>
+      <range min='500' max='10000'/>
     </key>
 
      <key name='burst-repeat' type='i'>
@@ -156,6 +166,7 @@
         The number of photos to take in a single burst.
       </_description>
       <default>4</default>
+      <range min='1' max='100000'/>
     </key>
   </schema>
 </schemalist>
