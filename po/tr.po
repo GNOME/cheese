@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-10-23 13:27+0000\n"
-"PO-Revision-Date: 2011-10-24 21:16+0300\n"
+"POT-Creation-Date: 2011-10-31 22:01+0000\n"
+"PO-Revision-Date: 2011-11-01 12:38+0200\n"
 "Last-Translator: Muhammet Kara <muhammet.k@gmail.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -20,49 +20,17 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 1.2\n"
 
-#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:62
-msgid "Cheese"
-msgstr "Peynir"
-
-#: ../data/cheese-about.ui.h:2
+#: ../data/cheese-about.ui.h:1
 msgid "Cheese Website"
 msgstr "Peynir Web Sitesi"
 
-#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+#: ../data/cheese-about.ui.h:2 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Web kameranızdan fotoğraflar ve videolar çekip bunlara grafiksel etkiler "
 "ekler."
 
-#: ../data/cheese-about.ui.h:4
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
-msgstr ""
-"Bu program bir özgür yazılımdır ve Özgür Yazılım Vakfı tarafından yayınlanan "
-"GNU Genel Kamu Lisansı sürüm 2 ya da (tercihen) daha sonraki sürümleri "
-"altında tekrar dağıtabilir ya da değiştirebilirsiniz.\n"
-"\n"
-"Bu program faydalı olması amacıyla dağıtılmaktadır, ancak HİÇBİR GARANTİSİ "
-"YOKTUR; SATILABİLİRLİK ya da BİR AMACA UYGUNLUK gibi uygulanabilir garantisi "
-"de bulunmamaktadır. Ayrıntılar için GNU Genel Kamu Lisansı'nı inceleyiniz.\n"
-"\n"
-"Bu programla birlikte GNU Genel Kamu Lisansı'nın bir kopyasını almış "
-"olmalısınız. Eğer almadıysanız http://www.gnu.org/licenses/ adresine "
-"bakınız.\n"
-
-#: ../data/cheese-about.ui.h:10
+#: ../data/cheese-about.ui.h:3
 msgid "translator-credits"
 msgstr ""
 "Barış Çiçek <baris@teamforce.name.tr>\n"
@@ -97,7 +65,7 @@ msgid "Take _Multiple Photos"
 msgstr "_Çoklu Fotoğraf Çek"
 
 #: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:213
+#: ../libcheese/cheese-avatar-chooser.c:222
 msgid "Take a photo"
 msgstr "Fotoğraf çek"
 
@@ -249,37 +217,35 @@ msgstr "Web kamerası"
 msgid "_Countdown"
 msgstr "_Geri Sayım"
 
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:62
+msgid "Cheese"
+msgstr "Peynir"
+
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Peynir Web Kamerası Standı"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:1
-#| msgid "Adjusts brightness level of the picture coming from the webcam"
 msgid "Adjusts brightness level of the picture coming from the camera"
 msgstr "Kameradan gelen resmin parlaklık düzeyini ayarlar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:2
-#| msgid "Adjusts contrast level of the picture coming from the webcam"
 msgid "Adjusts contrast level of the picture coming from the camera"
 msgstr "Kameradan gelen resmin karşıtlık düzeyini ayarlar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:3
-#| msgid "Adjusts hue level of the picture coming from the webcam"
 msgid "Adjusts hue level of the picture coming from the camera"
 msgstr "Kameradan gelen resmin renk düzeyini ayarlar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:4
-#| msgid "Adjusts saturation level of the picture coming from the webcam"
 msgid "Adjusts saturation level of the picture coming from the camera"
 msgstr "Kameradan gelen resmin doygunluk düzeyini ayarlar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:5
-#| msgid "Webcam device string indicator"
 msgid "Camera device string indicator"
 msgstr "Kamera aygıt dizgesi belirteci"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:6
-#, fuzzy
 #| msgid ""
 #| "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
 #| "\" will be used."
@@ -287,11 +253,10 @@ msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
-"Fotoğrafların saklanacağı yolu belirti, eğer boş ise \"XDG_PHOTO/Webcam\" "
-"kullanılacak."
+"Fotoğrafların saklandığı yolu belirtir. Eğer boşsa, \"XDG_PHOTO/Webcam\" "
+"kullanılır."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:7
-#, fuzzy
 #| msgid ""
 #| "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
 #| "\" will be used."
@@ -299,8 +264,8 @@ msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
-"Videoların saklanacağı yolu belirtir, eğer boşsa \"XDG_VIDEO/Webcam\" "
-"kullanılacak."
+"Videoların saklandığı yolu belirtir. Eğer boşsa, \"XDG_VIDEO/Webcam\" "
+"kullanılır."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:8
 msgid "Fire flash before taking a picture"
@@ -308,10 +273,9 @@ msgstr "Resim çekmeden önce flaş patlat"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:9
 msgid "If set to true, Cheese will start up in a fullscreen mode."
-msgstr ""
+msgstr "Eğer etkinse, Cheese tam ekran kipinde başlar."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:10
-#, fuzzy
 #| msgid ""
 #| "If set to true, Cheese will startup in a wide mode with the image "
 #| "collection placed on the right side. Useful with small screens."
@@ -319,34 +283,31 @@ msgid ""
 "If set to true, Cheese will start up in a wide mode with the image "
 "collection placed on the right-hand side. Useful with small screens."
 msgstr ""
-"Eğer doğru ise, Cheese resim koleksiyonu sağ kenara yerleştirilecek biçimde "
-"geniş kipte başlatılacak. Küçük ekranlar için faydalıdır."
+"Eğer etkinse, Cheese resim koleksiyonu sağ kenara yerleştirilecek biçimde "
+"geniş kipte başlatılacak. Küçük ekranlar için kullanışlıdır."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:11
 msgid "Name of installed effect that was selected last"
-msgstr ""
+msgstr "Son seçilen kurulu etkinin adı"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:12
 msgid "Name of last selected effect"
 msgstr "Son seçilen etkinin adı"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:13
-#, fuzzy
 #| msgid "Number of photos in burst mode."
 msgid "Number of photos in burst mode"
-msgstr "Patlama kipinde fotoğraf sayısı."
+msgstr "Patlama kipinde fotoğraf sayısı"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:14
 msgid "Photo Path"
 msgstr "Fotoğraf Yolu"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:15
-#| msgid "Photo resolution"
 msgid "Photo height resolution"
 msgstr "Fotoğraf yükseklik çözünürlüğü"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:16
-#| msgid "Photo resolution"
 msgid "Photo width resolution"
 msgstr "Fotoğraf genişlik çözünürlüğü"
 
@@ -367,30 +328,28 @@ msgid "Picture saturation"
 msgstr "Resim dolgunluğu"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:21
-#, fuzzy
 #| msgid "Set to True to show countdown when taking a photo"
 msgid "Set to True to fire a flash before taking a picture"
-msgstr "Fotoğraf çekerken geri sayımın kullanılması için True atayın"
+msgstr ""
+"Resim çekmeden önce flaş patlatılması için Doğru (True) olarak ayarlayın."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:22
 msgid "Set to True to show countdown when taking a photo"
 msgstr "Fotoğraf çekerken geri sayımın kullanılması için True atayın"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:23
-#, fuzzy
 #| msgid "The device which points to the webcam (e.g. /dev/video0)"
 msgid "The device which points to the camera (e.g. /dev/video0)"
-msgstr "Bir web kamerasını belirten aygıt (örn. /dev/video0)"
+msgstr "Kamerayı belirten aygıt (örn. /dev/video0)"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:24
 msgid "The height resolution of the image captured from the camera"
 msgstr "Fotoğraf makinesinden yakalanacak resmin yükseklik çözünürlüğü"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:25
-#, fuzzy
 #| msgid "The height resolution of the image captured from the camera"
 msgid "The height resolution of the video captured from the camera"
-msgstr "Fotoğraf makinesinden yakalanacak resmin yükseklik çözünürlüğü"
+msgstr "Kameradan yakalanan videonun yükseklik çözünürlüğü"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:26
 msgid ""
@@ -409,16 +368,14 @@ msgid "The width resolution of the image captured from the camera"
 msgstr "Fotoğraf makinesinden yakalanacak resmin genişlik çözünürlüğü"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:29
-#, fuzzy
 #| msgid "The width resolution of the image captured from the camera"
 msgid "The width resolution of the video captured from the camera"
-msgstr "Fotoğraf makinesinden yakalanacak resmin genişlik çözünürlüğü"
+msgstr "Kameradan yakalanan videonun genişlik çözünürlüğü"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:30
-#, fuzzy
 #| msgid "Milliseconds between photos in burst mode."
 msgid "Time between photos in burst mode"
-msgstr "Patlama kipinde fotoğraflar arasındaki milisaniye."
+msgstr "Patlama kipinde fotoğraflar arasındaki süre"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:31
 msgid "Use a countdown"
@@ -429,62 +386,58 @@ msgid "Video Path"
 msgstr "Video Yolu"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:33
-#| msgid "Video resolution"
 msgid "Video height resolution"
 msgstr "Video yükseklik çözünürlüğü"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:34
-#| msgid "Video resolution"
 msgid "Video width resolution"
 msgstr "Video genişlik çözünürlüğü"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:35
-#, fuzzy
 #| msgid "Start in fullscreen mode"
 msgid "Whether to start in fullscreen"
-msgstr "Tam ekran kipinde başlat"
+msgstr "Tam ekran olarak başlatılsın mı"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:36
-#, fuzzy
 #| msgid "Start in wide mode"
 msgid "Whether to start in wide mode"
-msgstr "Geniş kipte başlat"
+msgstr "Geniş kipte başlatılsın mı"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:669
+#: ../libcheese/cheese-avatar-chooser.c:118 ../src/cheese-window.vala:669
 msgid "Shutter sound"
 msgstr "Deklanşör sesi"
 
-#: ../libcheese/cheese-avatar-chooser.c:231
+#: ../libcheese/cheese-avatar-chooser.c:240
 msgid "_Take a photo"
 msgstr "_Fotoğraf çek"
 
-#: ../libcheese/cheese-avatar-chooser.c:244
+#: ../libcheese/cheese-avatar-chooser.c:253
 msgid "_Discard photo"
 msgstr "_Fotoğrafı kaydetme"
 
-#: ../libcheese/cheese-camera-device.c:329
+#: ../libcheese/cheese-camera-device.c:334
 msgid "Device capabilities not supported"
 msgstr "Aygıt yetenekleri desteklenmedi"
 
-#: ../libcheese/cheese-camera-device.c:358
+#: ../libcheese/cheese-camera-device.c:363
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Yetenek sınaması için %s aygıtı başlatılamadı"
 
-#: ../libcheese/cheese-camera-device.c:516
+#: ../libcheese/cheese-camera-device.c:546
 msgid "Unknown device"
 msgstr "Bilinmeyen aygıt"
 
-#: ../libcheese/cheese-camera-device.c:540
+#: ../libcheese/cheese-camera-device.c:569
 msgid "Cancellable initialization not supported"
 msgstr "İptal edilebilir ilklendirme desteklenmiyor"
 
-#: ../libcheese/cheese-camera.c:1189
+#: ../libcheese/cheese-camera.c:1356
 #, c-format
 msgid "No device found"
 msgstr "Aygıt bulunamadı"
 
-#: ../libcheese/cheese-camera.c:1239
+#: ../libcheese/cheese-camera.c:1406
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Gereken GStreamer öğelerinden bir veya daha fazlası eksik: "
 
@@ -537,6 +490,33 @@ msgstr "_Resim Çekmeyi Durdur"
 #: ../src/cheese-window.vala:925
 msgid "No effects found"
 msgstr "Etki yok"
+
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see http://www.gnu.org/licenses/\n"
+#~ msgstr ""
+#~ "Bu program bir özgür yazılımdır ve Özgür Yazılım Vakfı tarafından "
+#~ "yayınlanan GNU Genel Kamu Lisansı sürüm 2 ya da (tercihen) daha sonraki "
+#~ "sürümleri altında tekrar dağıtabilir ya da değiştirebilirsiniz.\n"
+#~ "\n"
+#~ "Bu program faydalı olması amacıyla dağıtılmaktadır, ancak HİÇBİR "
+#~ "GARANTİSİ YOKTUR; SATILABİLİRLİK ya da BİR AMACA UYGUNLUK gibi "
+#~ "uygulanabilir garantisi de bulunmamaktadır. Ayrıntılar için GNU Genel "
+#~ "Kamu Lisansı'nı inceleyiniz.\n"
+#~ "\n"
+#~ "Bu programla birlikte GNU Genel Kamu Lisansı'nın bir kopyasını almış "
+#~ "olmalısınız. Eğer almadıysanız http://www.gnu.org/licenses/ adresine "
+#~ "bakınız.\n"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
