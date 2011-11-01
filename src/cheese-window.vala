@@ -785,15 +785,17 @@ public class Cheese.MainWindow : Gtk.Window
       take_action_button.tooltip_text = "Stop taking pictures";
       burst_take_photo ();
 
-      /* 3500 ms is the approximate time for countdown animation to finish, so
-         if burst-delay time is less than 3500 ms, just use 3500 ms. */
-      if (((settings.get_int ("burst-delay") - 3500) < 1000) && settings.get_boolean ("countdown"))
+      /* Use the countdown duration if it is greater than the burst delay, plus
+       * about 500 ms for taking the photo. */
+      var burst_delay = settings.get_int ("burst-delay");
+      var countdown_duration = 500 + settings.get_int ("countdown-duration") * 1000;
+      if ((burst_delay - countdown_duration) < 1000 && settings.get_boolean ("countdown"))
       {
-        burst_callback_id = GLib.Timeout.add (3500, burst_take_photo);
+        burst_callback_id = GLib.Timeout.add (countdown_duration, burst_take_photo);
       }
       else
       {
-        burst_callback_id = GLib.Timeout.add (settings.get_int ("burst-delay"), burst_take_photo);
+        burst_callback_id = GLib.Timeout.add (burst_delay, burst_take_photo);
       }
     }
     else
