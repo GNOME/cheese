@@ -33,6 +33,8 @@ public class Cheese.PreferencesDialog : GLib.Object
   private Gtk.ComboBox video_resolution_combo;
   private Gtk.ComboBox source_combo;
 
+  private Gtk.ListStore camera_model;
+
   private Gtk.Adjustment brightness_adjustment;
   private Gtk.Adjustment contrast_adjustment;
   private Gtk.Adjustment hue_adjustment;
@@ -54,6 +56,7 @@ public class Cheese.PreferencesDialog : GLib.Object
   public PreferencesDialog (Cheese.Camera camera, GLib.Settings settings)
   {
     this.camera = camera;
+
     this.settings   = settings;
 
     Gtk.Builder builder = new Gtk.Builder ();
@@ -104,6 +107,7 @@ public class Cheese.PreferencesDialog : GLib.Object
      * Stops a bunch of unnecessary signals from being fired
      */
     builder.connect_signals (this);
+    camera.notify["num-camera-devices"].connect(this.on_camera_update_num_camera_devices);
   }
 
   private void setup_combo_box_models ()
@@ -122,27 +126,14 @@ public class Cheese.PreferencesDialog : GLib.Object
 
   private void initialize_camera_devices ()
   {
-    Cheese.CameraDevice   dev;
-    unowned GLib.PtrArray devices      = camera.get_camera_devices ();
-    ListStore             camera_model = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
+    unowned GLib.PtrArray devices = camera.get_camera_devices ();
+    camera_model = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
 
     source_combo.model = camera_model;
     if (devices.len <= 1)
       source_combo.sensitive = false;
 
-    for (int i = 0; i < devices.len; i++)
-    {
-      TreeIter iter;
-      dev = (Cheese.CameraDevice) devices.index (i);
-      camera_model.append (out iter);
-      camera_model.set (iter,
-                        0, dev.get_name () + " (" + dev.get_device_file () + " )",
-                        1, dev);
-      if (camera.get_selected_device ().get_device_file () == dev.get_device_file ())
-      {
-        source_combo.set_active_iter (iter);
-      }
-    }
+    devices.foreach(add_camera_device);
 
     settings.set_string ("camera", camera.get_selected_device ().get_device_file ());
     setup_resolutions_for_device (camera.get_selected_device ());
@@ -209,8 +200,10 @@ public class Cheese.PreferencesDialog : GLib.Object
   [CCode (instance_pos = -1)]
   public void on_source_change (Gtk.ComboBox combo)
   {
-    TreeIter iter;
+    // TODO: Handle going from 1 to 0 devices, cleanly!
+    return_if_fail (camera.num_camera_devices > 0);
 
+    TreeIter iter;
     Cheese.CameraDevice dev;
 
     combo.get_active_iter (out iter);
@@ -331,6 +324,105 @@ public class Cheese.PreferencesDialog : GLib.Object
   {
     this.camera.set_balance_property ("saturation", adjustment.value);
     settings.set_double ("saturation", adjustment.value);
+  }
+
+  // A camera device was added/removed.
+  public void on_camera_update_num_camera_devices ()
+  {
+    unowned GLib.PtrArray devices = camera.get_camera_devices ();
+    Cheese.CameraDevice   dev;
+
+    // Add (if) / Remove (else) a camera device.
+    if (devices.len > camera_model.iter_n_children (null))
+    {
+      dev = (Cheese.CameraDevice) devices.index (devices.len - 1);
+      add_camera_device(dev);
+    }
+    else
+    {
+      // First camera device in the combobox.
+      TreeIter iter;
+      camera_model.get_iter_first (out iter);
+
+      // Combobox active element.
+      TreeIter active_iter;
+      Cheese.CameraDevice active_device;
+      source_combo.get_active_iter (out active_iter);
+      camera_model.get (active_iter, 1, out active_device, -1);
+
+      // Find which device was removed.
+      bool device_removed = false;
+      devices.foreach ((device) =>
+      {
+        var old_device = (Cheese.CameraDevice) device;
+        Cheese.CameraDevice new_device;
+        camera_model.get (iter, 1, out new_device, -1);
+
+        // Found the device that was removed.
+        if (strcmp (old_device.device_file, new_device.device_file) != 0)
+        {
+            remove_camera_device (iter, new_device, active_device);
+            device_removed = true;
+            // Remember, this is from the anonymous function!
+            return;
+        }
+        camera_model.iter_next (ref iter);
+      });
+
+      // Special case: the last device on the list was removed.
+      if (!device_removed)
+      {
+        Cheese.CameraDevice old_device;
+        camera_model.get (iter, 1, out old_device, -1);
+        remove_camera_device (iter, old_device, active_device);
+      }
+    }
+
+    settings.set_string ("camera", camera.get_selected_device ().get_device_file ());
+    setup_resolutions_for_device (camera.get_selected_device ());
+  }
+
+  private void add_camera_device (void *device)
+  {
+    TreeIter iter;
+    Cheese.CameraDevice dev = (Cheese.CameraDevice) device;
+
+    camera_model.append (out iter);
+    camera_model.set (iter,
+                      0, dev.get_name () + " (" + dev.get_device_file () + ")",
+                      1, dev);
+
+    if (camera.get_selected_device ().get_device_file () == dev.get_device_file ())
+        source_combo.set_active_iter (iter);
+  }
+
+  private void remove_camera_device (TreeIter iter, Cheese.CameraDevice device_node,
+                             Cheese.CameraDevice active_device_node)
+  {
+      unowned GLib.PtrArray devices = camera.get_camera_devices ();
+
+      // Check if the camera that we want to remove, is the active one
+      if (strcmp (device_node.device_file, active_device_node.device_file) == 0)
+      {
+        if (devices.len > 0)
+          set_new_available_camera_device (iter);
+        else
+          this.dialog.hide();
+      }
+      camera_model.remove (iter);
+  }
+
+  // Look for an available device and activate it.
+  private void set_new_available_camera_device (TreeIter iter)
+  {
+    TreeIter new_iter = iter;
+
+    if (!camera_model.iter_next (ref new_iter))
+    {
+      new_iter = iter;
+      camera_model.iter_previous (ref new_iter);
+    }
+    source_combo.set_active_iter (new_iter);
   }
 
   public void show ()

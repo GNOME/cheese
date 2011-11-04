@@ -56,6 +56,8 @@ namespace Cheese
     public Cheese.VideoFormat format {owned get; set;}
     [NoAccessorMethod]
     public void *video_texture {get; set;}
+    [NoAccessorMethod]
+    public uint num_camera_devices {get;}
     public virtual signal void photo_saved ();
     public virtual signal void photo_taken (Gdk.Pixbuf pixbuf);
     public virtual signal void video_saved ();

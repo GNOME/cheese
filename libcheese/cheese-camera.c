@@ -101,7 +101,7 @@ struct _CheeseCameraPrivate
   gboolean pipeline_is_playing;
   gchar *photo_filename;
 
-  gint num_camera_devices;
+  guint num_camera_devices;
   gchar *device_name;
 
   /* an array of CheeseCameraDevices */
@@ -122,6 +122,8 @@ enum
   PROP_VIDEO_TEXTURE,
   PROP_DEVICE_NAME,
   PROP_FORMAT,
+  PROP_NUM_CAMERA_DEVICES,
+  PROP_LAST
 };
 
 enum
@@ -134,6 +136,7 @@ enum
 };
 
 static guint camera_signals[LAST_SIGNAL];
+static GParamSpec *properties[PROP_LAST];
 
 GST_DEBUG_CATEGORY (cheese_camera_cat);
 #define GST_CAT_DEFAULT cheese_camera_cat
@@ -275,6 +278,8 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 
   g_ptr_array_add (priv->camera_devices, device);
   priv->num_camera_devices++;
+
+  g_object_notify_by_pspec (G_OBJECT (camera), properties[PROP_NUM_CAMERA_DEVICES]);
 }
 
 /*
@@ -305,6 +310,7 @@ cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
     {
         g_ptr_array_remove (priv->camera_devices, (gpointer) indexDevice);
         priv->num_camera_devices--;
+        g_object_notify_by_pspec (G_OBJECT (camera), properties[PROP_NUM_CAMERA_DEVICES]);
         break;
     }
   }
@@ -1097,6 +1103,9 @@ cheese_camera_get_property (GObject *object, guint prop_id, GValue *value,
     case PROP_FORMAT:
       g_value_set_boxed (value, priv->current_format);
       break;
+    case PROP_NUM_CAMERA_DEVICES:
+      g_value_set_uint (value, priv->num_camera_devices);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -1218,7 +1227,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
   g_object_class_install_property (object_class, PROP_DEVICE_NAME,
                                    g_param_spec_string ("device-name",
                                                         "Device name",
-                                                        "The path to the device node for the video capture device.",
+                                                        "The path to the device node for the video capture device",
                                                         "",
                                                         G_PARAM_READWRITE));
 
@@ -1233,6 +1242,22 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                        "The format of the video capture device",
                                                        CHEESE_TYPE_VIDEO_FORMAT,
                                                        G_PARAM_READWRITE));
+
+  /**
+   * CheeseCamera:num-camera-devices:
+   *
+   * The currently number of camera devices available for being used.
+   */
+
+  properties[PROP_NUM_CAMERA_DEVICES] = g_param_spec_uint ("num-camera-devices",
+                                                           "Number of camera devices",
+                                                           "The currently number of camera devices available on the system",
+                                                           0,
+                                                           G_MAXUINT8,
+                                                           0,
+                                                           G_PARAM_READABLE);
+
+  g_object_class_install_property (object_class, PROP_NUM_CAMERA_DEVICES, properties[PROP_NUM_CAMERA_DEVICES]);
 
   g_type_class_add_private (klass, sizeof (CheeseCameraPrivate));
 }
