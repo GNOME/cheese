@@ -46,12 +46,22 @@ internal class Cheese.Countdown : GLib.Object
     settings             = new GLib.Settings("org.gnome.Cheese");
   }
 
+  /**
+   * Fade the countdown text out, over 500 milliseconds.
+   *
+   * Once the fade-out is complete, this method calls fade_in().
+   */
   private void fade_out ()
   {
     anim      = this.countdown_actor.animate (Clutter.AnimationMode.LINEAR, 500, "opacity", 0);
     signal_id = Signal.connect_after (anim, "completed", (GLib.Callback)fade_in, this);
   }
 
+  /**
+   * Decrement the countdown text and fade it in, over 500 milliseconds.
+   *
+   * Once the fade-in is complete, this method calls fade_out().
+   */
   private void fade_in ()
   {
     if (this.current_value <= 0)
@@ -67,6 +77,11 @@ internal class Cheese.Countdown : GLib.Object
     signal_id = Signal.connect_after (anim, "completed", (GLib.Callback)fade_out, this);
   }
 
+  /**
+   * Start the countdown, using the countdown-duration GSetting for the time.
+   *
+   * @param completed_callback the callback to call upon countdown completion
+   */
   public void start (CountdownCallback completed_callback)
   {
     this.completed_callback = completed_callback;
@@ -76,6 +91,9 @@ internal class Cheese.Countdown : GLib.Object
     fade_in ();
   }
 
+  /**
+   * Stop the countdown, for example if it was interrupted by the user.
+   */
   public void stop ()
   {
     countdown_actor.hide ();

@@ -33,6 +33,9 @@ internal class Cheese.EffectsManager : GLib.Object
     effects = new ArrayList<Effect>((EqualFunc) cmp_value);
   }
 
+  /**
+   * Add the effects into the manager.
+   */
   public void load_effects ()
   {
     GLib.List<Cheese.Effect> effect_list = Cheese.Effect.load_effects ();
@@ -51,6 +54,12 @@ internal class Cheese.EffectsManager : GLib.Object
     }
   }
 
+  /**
+   * Search for and return the requested effect.
+   *
+   * @param name the name of the effect to search for
+   * @return the effect that which matches the supplied name, or null
+   */
   public Effect ? get_effect (string name)
   {
     foreach (Effect eff in effects)
@@ -61,11 +70,26 @@ internal class Cheese.EffectsManager : GLib.Object
     return null;
   }
 
+  /**
+   * Compare two effects by the pipeline description.
+   *
+   * @param a an effect to compare against
+   * @param b another effect to compare against
+   * @return true if the effects are the same, false otherwise
+   */
   private static bool cmp_value (Effect a, Effect b)
   {
     return a.pipeline_desc == b.pipeline_desc;
   }
 
+  /**
+   * A sort function for effects
+   *
+   * @param a an effect to sort against
+   * @param b another effect to sort against
+   * @return -1 if a is less than b, 0 if the effects are the same and 1 if a
+   * is greater than b
+   */
   private static int sort_value (Effect a, Effect b)
   {
     if (a.name.down () < b.name.down ())

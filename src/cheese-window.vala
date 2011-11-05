@@ -106,12 +106,22 @@ public class Cheese.MainWindow : Gtk.Window
 
   private Cheese.Effect selected_effect;
 
+  /**
+   * Destroy the main window, and shutdown the application, when quitting.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_quit (Gtk.Action action)
   {
     destroy ();
   }
 
+  /**
+   * Show the preferences dialog when requested, creating it as necessary.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_preferences_dialog (Gtk.Action action)
   {
@@ -121,6 +131,13 @@ public class Cheese.MainWindow : Gtk.Window
     preferences_dialog.show ();
   }
 
+  /**
+   * Popup a context menu when right-clicking on a thumbnail.
+   *
+   * @param iconview the thumbnail view that emitted the signal
+   * @param event the event
+   * @return false, to allow further processing of the event
+   */
   public bool on_thumbnail_mouse_button_press (Gtk.Widget      iconview,
                                                Gdk.EventButton event)
   {
@@ -153,6 +170,11 @@ public class Cheese.MainWindow : Gtk.Window
     return false;
   }
 
+  /**
+   * Open an image associated with a thumbnail in the default application.
+   *
+   * @param action the action that emitted the signal, or null
+   */
   [CCode (instance_pos = -1)]
   public void on_file_open (Gtk.Action ? action)
   {
@@ -185,6 +207,13 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Delete the requested image in the thumbview from storage.
+   *
+   * A confirmation dialog is shown to the user before deleting the file.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_file_delete (Gtk.Action action)
   {
@@ -234,6 +263,13 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Move the requested image in the thumbview to the trash.
+   *
+   * A confirmation dialog is shown to the user before moving the file.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_file_move_to_trash (Gtk.Action action)
   {
@@ -267,6 +303,13 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Move all images in the thumbview to the trash.
+   *
+   * No confirmation dialog is shown to the user before moving the files!
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_file_move_to_trash_all (Gtk.Action action)
   {
@@ -297,6 +340,14 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Save the selected file in the thumbview to an alternate storage location.
+   *
+   * A file chooser dialog is shown to the user, asking where the file should
+   * be saved and the filename.
+   *
+   * @param action the action that emitted the signal.
+   */
   [CCode (instance_pos = -1)]
   public void on_file_save_as (Gtk.Action action)
   {
@@ -352,6 +403,11 @@ public class Cheese.MainWindow : Gtk.Window
     save_as_dialog.destroy ();
   }
 
+  /**
+   * Show the Cheese help contents.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_help_contents (Gtk.Action action)
   {
@@ -365,6 +421,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Show the about dialog.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_help_about (Gtk.Action action)
   {
@@ -377,6 +438,11 @@ public class Cheese.MainWindow : Gtk.Window
     about_dialog.hide ();
   }
 
+  /**
+   * Toggle wide mode and save the preference to GSettings.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_layout_wide_mode (ToggleAction action)
   {
@@ -389,6 +455,11 @@ public class Cheese.MainWindow : Gtk.Window
     set_wide_mode (action.active);
   }
 
+  /**
+   * Toggle fullscreen mode and save the preference to GSettings.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_layout_fullscreen (ToggleAction action)
   {
@@ -401,12 +472,20 @@ public class Cheese.MainWindow : Gtk.Window
     set_fullscreen_mode (action.active);
   }
 
+  /**
+   * Change the media capture mode (photo, video or burst).
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_mode_change (RadioAction action)
   {
     set_mode ((MediaMode) action.value);
   }
 
+  /**
+   * Make the media capture mode actions sensitive.
+   */
   private void enable_mode_change ()
   {
     photo_mode_action.sensitive = true;
@@ -415,6 +494,9 @@ public class Cheese.MainWindow : Gtk.Window
     effects_toggle_action.sensitive = true;
   }
 
+  /**
+   * Make the media capture mode actions insensitive.
+   */
   private void disable_mode_change ()
   {
      photo_mode_action.sensitive = false;
@@ -423,6 +505,11 @@ public class Cheese.MainWindow : Gtk.Window
      effects_toggle_action.sensitive = false;
   }
 
+  /**
+   * Set the capture resolution, based on the current capture mode.
+   *
+   * @param mode the current capture mode (photo, video or burst)
+   */
   private void set_resolution(MediaMode mode)
   {
     if (camera == null)
@@ -461,6 +548,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Set the current media capture mode, and update the UI sensitivities.
+   *
+   * @param mode the new capture mode to set
+   */
   private void set_mode (MediaMode mode)
   {
     this.current_mode = mode;
@@ -498,6 +590,9 @@ public class Cheese.MainWindow : Gtk.Window
 }
 
   private TimeoutSource fullscreen_timeout;
+  /**
+   * Clear the fullscreen activity timeout.
+   */
   private void clear_fullscreen_timeout ()
   {
     if (fullscreen_timeout != null)
@@ -507,6 +602,10 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Set the fullscreen timeout, for hiding the UI if there is no mouse
+   * movement.
+   */
   private void set_fullscreen_timeout ()
   {
     fullscreen_timeout = new TimeoutSource (FULLSCREEN_TIMEOUT_INTERVAL);
@@ -516,17 +615,29 @@ public class Cheese.MainWindow : Gtk.Window
                                             return true; });
   }
 
+  /**
+   * Show the UI in fullscreen if there is any mouse activity.
+   *
+   * Start a new timeout at the end of every mouse pointer movement. All
+   * timeouts will be cancelled, except one created during the last movement
+   * event. Show() is called even if the button is not hidden.
+   *
+   * @param viewport the widget to check for mouse activity on
+   * @param e the (unused) event
+   */
   private bool fullscreen_motion_notify_callback (Gtk.Widget viewport, EventMotion e)
   {
-    /* Start a new timeout at the end of every mouse pointer movement.
-     * So all timeouts will be cancelled, except one at the last pointer movement.
-     * We call show even if the button isn't hidden. */
     clear_fullscreen_timeout ();
     buttons_area.show ();
     set_fullscreen_timeout ();
     return true;
   }
 
+  /**
+   * Enable or disable fullscreen mode to the requested state.
+   *
+   * @param fullscreen_mode whether to enable or disable fullscreen mode
+   */
   private void set_fullscreen_mode (bool fullscreen_mode)
   {
     /* After the first time the window has been shown using this.show_all (),
@@ -589,6 +700,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Enable or disable wide mode to the requested state.
+   *
+   * @param wide_mode whether to enable or disable wide mode
+   */
   private void set_wide_mode (bool wide_mode)
   {
     is_wide_mode = wide_mode;
@@ -638,7 +754,13 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_widget.set_size_request (-1, -1);
   }
 
-  /* To make sure that the layout manager manages the entire stage. */
+  /**
+   * Make sure that the layout manager manages the entire stage.
+   *
+   * @param actor unused
+   * @param box unused
+   * @param flags unused
+   */
   public void on_stage_resize (Clutter.Actor           actor,
                                Clutter.ActorBox        box,
                                Clutter.AllocationFlags flags)
@@ -647,12 +769,20 @@ public class Cheese.MainWindow : Gtk.Window
     this.background_layer.set_size (viewport.width, viewport.height);
   }
 
+  /**
+   * Toggle whether the countdown is active.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_countdown_toggle (ToggleAction action)
   {
     settings.set_boolean ("countdown", action.active);
   }
 
+  /**
+   * The method to call when the countdown is finished.
+   */
   private void finish_countdown_callback ()
   {
     if (action_cancelled == false)
@@ -679,6 +809,9 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   Countdown current_countdown;
+  /**
+   * Start to take a photo, starting a countdown if it is enabled.
+   */
   public void take_photo ()
   {
     if (settings.get_boolean ("countdown"))
@@ -701,6 +834,12 @@ public class Cheese.MainWindow : Gtk.Window
   private int  burst_count;
   private uint burst_callback_id;
 
+  /**
+   * Take a photo during burst mode, and increment the burst count.
+   *
+   * @return true if there are more photos to be taken in the current burst,
+   * false otherwise
+   */
   private bool burst_take_photo ()
   {
     if (is_bursting && burst_count < settings.get_int ("burst-repeat"))
@@ -716,6 +855,12 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Cancel the current activity if the escape key is pressed.
+   *
+   * @param event the key event, to check which key was pressed
+   * @return false, to allow further processing of the event
+   */
   private bool on_key_release (Gdk.EventKey event)
   {
     string key;
@@ -752,6 +897,11 @@ public class Cheese.MainWindow : Gtk.Window
     return false;
   }
 
+  /**
+   * Toggle whether video recording is active.
+   *
+   * @param is_start whether to start video recording
+   */
   public void toggle_video_recording (bool is_start)
   {
     if (is_start)
@@ -774,6 +924,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Toggle whether photo bursting is active.
+   *
+   * @param is_start whether to start capturing a photo burst
+   */
   public void toggle_photo_bursting (bool is_start)
   {
     if (is_start)
@@ -813,6 +968,12 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Take a photo or burst of photos, or record a video, based on the current
+   * capture mode.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_take_action (Gtk.Action action)
   {
@@ -832,6 +993,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Toggle the display of the effect selector.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_effects_toggle (Gtk.ToggleAction action)
   {
@@ -844,6 +1010,13 @@ public class Cheese.MainWindow : Gtk.Window
     burst_mode_action.sensitive = !action.active;
   }
 
+  /**
+   * Change the selected effect, as a new one was selected.
+   *
+   * @param source unused
+   * @param event unused
+   * @return false, to allow further event processing
+   */
   public bool on_selected_effect_change (Clutter.Actor source,
                                          Clutter.ButtonEvent event)
   {
@@ -854,6 +1027,11 @@ public class Cheese.MainWindow : Gtk.Window
     return false;
   }
 
+  /**
+   * Navigate back one page of effects.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_prev_effects_page (Gtk.Action action)
   {
@@ -863,6 +1041,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Navigate forward one page of effects.
+   *
+   * @param action the action that emitted the signal
+   */
   [CCode (instance_pos = -1)]
   public void on_next_effects_page (Gtk.Action action)
   {
@@ -872,6 +1055,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Switch to the supplied page of effects.
+   *
+   * @param number the effects page to switch to
+   */
   private void activate_effects_page (int number)
   {
     if (!is_effects_selector_active)
@@ -908,6 +1096,9 @@ public class Cheese.MainWindow : Gtk.Window
     setup_effects_page_switch_sensitivity ();
   }
 
+  /**
+   * Control the sensitivity of the effects page navigation buttons.
+   */
   private void setup_effects_page_switch_sensitivity ()
   {
     effects_page_prev_action.sensitive = (is_effects_selector_active && current_effects_page != 0);
@@ -915,6 +1106,11 @@ public class Cheese.MainWindow : Gtk.Window
       (is_effects_selector_active && current_effects_page != effects_manager.effects.size / EFFECTS_PER_PAGE);
   }
 
+  /**
+   * Toggle the visibility of the effects selector.
+   *
+   * @param active whether the selector should be active
+   */
   private void toggle_effects_selector (bool active)
   {
     is_effects_selector_active = active;
@@ -950,6 +1146,9 @@ public class Cheese.MainWindow : Gtk.Window
     setup_effects_page_switch_sensitivity ();
   }
 
+  /**
+   * Create the effects selector.
+   */
   private void setup_effects_selector ()
   {
     if (current_effects_grid == null)
@@ -1021,6 +1220,11 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   private Gee.HashMap<string, bool> action_sensitivities;
+  /**
+   * Toggle the sensitvity of the camera actions.
+   *
+   * @param active whether the camera actions should be sensitive
+   */
   public void toggle_camera_actions_sensitivities (bool active)
   {
     is_camera_actions_sensitive = active;
@@ -1080,6 +1284,11 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Update the UI based on state changes of the camera.
+   *
+   * @param new_state the new Cheese.Camera state
+   */
   private void camera_state_changed (Gst.State new_state)
   {
     if (new_state == Gst.State.PLAYING)
@@ -1093,6 +1302,10 @@ public class Cheese.MainWindow : Gtk.Window
     }
   }
 
+  /**
+   * Set wide mode active when started from the command line (and do not change
+   * the GSetting).
+   */
   public void set_startup_wide_mode ()
   {
     if (is_wide_mode)
@@ -1106,6 +1319,10 @@ public class Cheese.MainWindow : Gtk.Window
     is_command_line_startup = false;
   }
 
+  /**
+   * Set fullscreen mode active when started from the command line (and do not
+   * change the GSetting).
+   */
   public void set_startup_fullscreen_mode ()
   {
     is_command_line_startup = true;
@@ -1113,6 +1330,9 @@ public class Cheese.MainWindow : Gtk.Window
     is_command_line_startup = false;
   }
 
+  /**
+   * Load the UI from the GtkBuilder description.
+   */
   public void setup_ui ()
   {
     gtk_builder     = new Gtk.Builder ();
@@ -1238,6 +1458,11 @@ public class Cheese.MainWindow : Gtk.Window
       fullscreen_action.active = true;
   }
 
+  /**
+   * Setup the camera listed in GSettings.
+   *
+   * @param uri the uri of the device node to setup, or null
+   */
   public void setup_camera (string ? uri)
   {
     string device;
@@ -1285,6 +1510,10 @@ public class Cheese.MainWindow : Gtk.Window
     camera.state_flags_changed.connect (camera_state_changed);
     camera.play ();
   }
+
+  /**
+   * Setup the thumbview thumbnail monitors.
+   */
   public void start_thumbview_monitors ()
   {
     thumb_view.start_monitoring_video_path (fileutil.get_video_path ());

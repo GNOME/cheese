@@ -110,6 +110,9 @@ public class Cheese.PreferencesDialog : GLib.Object
     camera.notify["num-camera-devices"].connect(this.on_camera_update_num_camera_devices);
   }
 
+  /**
+   * Set up combo box cell renderers.
+   */
   private void setup_combo_box_models ()
   {
     CellRendererText cell = new CellRendererText ();
@@ -124,6 +127,9 @@ public class Cheese.PreferencesDialog : GLib.Object
     source_combo.set_attributes (cell, "text", 0);
   }
 
+  /**
+   * Initialize and populate the camera device combo box model.
+   */
   private void initialize_camera_devices ()
   {
     unowned GLib.PtrArray devices = camera.get_camera_devices ();
@@ -139,6 +145,11 @@ public class Cheese.PreferencesDialog : GLib.Object
     setup_resolutions_for_device (camera.get_selected_device ());
   }
 
+  /**
+   * Initialize and populate the resolution combo box models for the device.
+   *
+   * @param device the Cheese.CameraDevice for which to enumerate resolutions
+   */
   private void setup_resolutions_for_device (Cheese.CameraDevice device)
   {
     unowned List<VideoFormat>  formats = device.get_format_list ();
@@ -171,10 +182,10 @@ public class Cheese.PreferencesDialog : GLib.Object
       }
     }
 
-    /* Video resolution combo shows photo resolution by
-    *  default if previous user choice is not found in settings or not supported
-    *  by current device. These values are saved to settings.
-    */
+    /* Video resolution combo shows photo resolution by default if previous
+     * user choice is not found in settings or not supported by current device.
+     * These values are saved to settings.
+     */
     if (video_resolution_combo.get_active () == -1)
     {
       video_resolution_combo.set_active (photo_resolution_combo.get_active ());
@@ -183,6 +194,9 @@ public class Cheese.PreferencesDialog : GLib.Object
     }
   }
 
+  /**
+   * Take the user preferences from GSettings.
+   */
   private void initialize_values_from_settings ()
   {
     brightness_adjustment.value = settings.get_double ("brightness");
@@ -197,6 +211,11 @@ public class Cheese.PreferencesDialog : GLib.Object
     flash_check.active = settings.get_boolean ("flash");
   }
 
+  /**
+   * Update the active device to the active iter of the device combo box.
+   *
+   * @param combo the video device combo box
+   */
   [CCode (instance_pos = -1)]
   public void on_source_change (Gtk.ComboBox combo)
   {
@@ -214,6 +233,12 @@ public class Cheese.PreferencesDialog : GLib.Object
     settings.set_string ("camera", dev.get_device_file ());
   }
 
+  /**
+   * Update the current photo capture resolution to the active iter of the
+   * photo resolution combo box.
+   *
+   * @param combo the photo resolution combo box
+   */
   [CCode (instance_pos = -1)]
   public void on_photo_resolution_change (Gtk.ComboBox combo)
   {
@@ -231,6 +256,12 @@ public class Cheese.PreferencesDialog : GLib.Object
     settings.set_int ("photo-y-resolution", format.height);
   }
 
+  /**
+   * Update the current video capture resolution to the active iter of the
+   * video resolution combo box.
+   *
+   * @param combo the video resolution combo box
+   */
   [CCode (instance_pos = -1)]
   public void on_video_resolution_change (Gtk.ComboBox combo)
   {
@@ -248,18 +279,33 @@ public class Cheese.PreferencesDialog : GLib.Object
     settings.set_int ("video-y-resolution", format.height);
   }
 
+  /**
+   * Hide the dialog when it is closed, rather than deleting it.
+   *
+   * @param dialog the dialog on which the delete event was generated
+   */
   [CCode (instance_pos = -1)]
   public void on_delete (Gtk.Dialog dialog)
   {
     dialog.hide_on_delete ();
   }
 
+  /**
+   * Hide the dialog when it is closed, rather than deleting it.
+   *
+   * @param button the close button
+   */
   [CCode (instance_pos = -1)]
   public void on_dialog_close (Gtk.Button button)
   {
     this.dialog.hide ();
   }
 
+  /**
+   * Show the help for the preferences dialog.
+   *
+   * @param button the help button
+   */
   [CCode (instance_pos = -1)]
   public void on_dialog_help (Gtk.Button button)
   {
@@ -274,30 +320,61 @@ public class Cheese.PreferencesDialog : GLib.Object
     }
   }
 
+  /**
+   * Toggle the countdown GSetting when toggling the check button.
+   *
+   * @param checkbutton the countdown check button
+   */
   [CCode (instance_pos = -1)]
   public void on_countdown_toggle (Gtk.CheckButton checkbutton)
   {
     settings.set_boolean ("countdown", checkbutton.active);
   }
 
+  /**
+   * Toggle the flash GSetting when toggling the check button.
+   *
+   * @param checkbutton the flash check button
+   */
   [CCode (instance_pos = -1)]
   public void on_flash_toggle (Gtk.CheckButton checkbutton)
   {
     settings.set_boolean ("flash", checkbutton.active);
   }
 
+  /**
+   * Change the burst-repeat GSetting when changing the spin button.
+   *
+   * The burst repeat is the total number of photos to take in a single burst.
+   *
+   * @param spinbutton the burst-repeat spin button
+   */
   [CCode (instance_pos = -1)]
   public void on_burst_repeat_change (Gtk.SpinButton spinbutton)
   {
     settings.set_int ("burst-repeat", (int) spinbutton.value);
   }
 
+  /**
+   * Change the burst-delay GSetting when changing the spin button.
+   *
+   * The burst delay is the time, in milliseconds, between individual photos in
+   * a burst.
+   *
+   * @param spinbutton the burst-delay spin button
+   */
   [CCode (instance_pos = -1)]
   public void on_burst_delay_change (Gtk.SpinButton spinbutton)
   {
     settings.set_int ("burst-delay", (int) spinbutton.value * 1000);
   }
 
+  /**
+   * Change the brightness of the image, and update the GSetting, when changing
+   * the scale.
+   *
+   * @param adjustment the adjustment of the brightness Gtk.Scale
+   */
   [CCode (instance_pos = -1)]
   public void on_brightness_change (Gtk.Adjustment adjustment)
   {
@@ -305,6 +382,12 @@ public class Cheese.PreferencesDialog : GLib.Object
     settings.set_double ("brightness", adjustment.value);
   }
 
+  /**
+   * Change the contrast of the image, and update the GSetting, when changing
+   * the scale.
+   *
+   * @param adjustment the adjustment of the contrast Gtk.Scale
+   */
   [CCode (instance_pos = -1)]
   public void on_contrast_change (Gtk.Adjustment adjustment)
   {
@@ -312,6 +395,12 @@ public class Cheese.PreferencesDialog : GLib.Object
     settings.set_double ("contrast", adjustment.value);
   }
 
+  /**
+   * Change the hue of the image, and update the GSetting, when changing the
+   * scale.
+   *
+   * @param adjustment the adjustment of the hue Gtk.Scale
+   */
   [CCode (instance_pos = -1)]
   public void on_hue_change (Gtk.Adjustment adjustment)
   {
@@ -319,6 +408,12 @@ public class Cheese.PreferencesDialog : GLib.Object
     settings.set_double ("hue", adjustment.value);
   }
 
+  /**
+   * Change the saturation of the image, and update the GSetting, when changing
+   * the scale.
+   *
+   * @param adjustment the adjustment of the saturation Gtk.Scale
+   */
   [CCode (instance_pos = -1)]
   public void on_saturation_change (Gtk.Adjustment adjustment)
   {
@@ -326,8 +421,11 @@ public class Cheese.PreferencesDialog : GLib.Object
     settings.set_double ("saturation", adjustment.value);
   }
 
-  // A camera device was added/removed.
-  public void on_camera_update_num_camera_devices ()
+  /**
+   * Update the video device combo box when a camera device was added or
+   * removed.
+   */
+  private void on_camera_update_num_camera_devices ()
   {
     unowned GLib.PtrArray devices = camera.get_camera_devices ();
     Cheese.CameraDevice   dev;
@@ -382,6 +480,14 @@ public class Cheese.PreferencesDialog : GLib.Object
     setup_resolutions_for_device (camera.get_selected_device ());
   }
 
+  /**
+   * Add the supplied camera device to the device combo box model.
+   *
+   * This method is intended to be used with the foreach method of GLib
+   * containers.
+   *
+   * @param device a Cheese.CameraDevice to add to the device combo box model
+   */
   private void add_camera_device (void *device)
   {
     TreeIter iter;
@@ -396,6 +502,13 @@ public class Cheese.PreferencesDialog : GLib.Object
         source_combo.set_active_iter (iter);
   }
 
+  /**
+   * Remove the supplied camera device from the device combo box model.
+   *
+   * @param iter the iterator of the device to remove
+   * @param device_node the device to remove from the combo box model
+   * @param active_device_node the currently-active camera device
+   */
   private void remove_camera_device (TreeIter iter, Cheese.CameraDevice device_node,
                              Cheese.CameraDevice active_device_node)
   {
@@ -412,7 +525,12 @@ public class Cheese.PreferencesDialog : GLib.Object
       camera_model.remove (iter);
   }
 
-  // Look for an available device and activate it.
+  /**
+   * Search for an available camera device and activate it in the device combo
+   * box model.
+   *
+   * @param iter a device in the combo box model to search either side of
+   */
   private void set_new_available_camera_device (TreeIter iter)
   {
     TreeIter new_iter = iter;
@@ -425,11 +543,22 @@ public class Cheese.PreferencesDialog : GLib.Object
     source_combo.set_active_iter (new_iter);
   }
 
+  /**
+   * Show the dialog.
+   */
   public void show ()
   {
     this.dialog.show_all ();
   }
   
+  /**
+   * Set the current media mode (photo, video, burst).
+   *
+   * The current mode is used if the photo or video resolution is changed, in
+   * order to propagate that change to the Cheese.Camera.
+   *
+   * @param mode the media mode to set
+   */
   public void set_current_mode (MediaMode mode)
   {
     this.current_mode = mode;

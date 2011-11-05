@@ -46,6 +46,9 @@ public class Cheese.Main : Gtk.Application
     GLib.Object (application_id: app_id, flags: flags);
   }
 
+  /**
+   * Present the existing main window, or create a new one.
+   */
   public void on_app_activate ()
   {
     if (get_windows () != null)
@@ -79,6 +82,13 @@ public class Cheese.Main : Gtk.Application
      }
   }
 
+  /**
+   * Overridden method of GApplication, to handle the arguments locally.
+   *
+   * @param arguments the command-line arguments
+   * @param exit_status the exit status to return to the OS
+   * @return true if the arguments were successfully processed, false otherwise
+   */
   public override bool local_command_line ([CCode (array_null_terminated = true, array_length = false)]
                                            ref unowned string[] arguments,
                                            out int exit_status)
