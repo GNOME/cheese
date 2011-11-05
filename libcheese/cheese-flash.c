@@ -38,7 +38,7 @@
  * @stability: Unstable
  * @include: cheese/cheese-flash.h
  *
- * #CheeseFlash is an object that you can create and invoke a method "flash" on
+ * #CheeseFlash is a window that you can create and invoke a method "flash" on
  * to temporarily flood the screen with white.
  */
 
@@ -48,30 +48,47 @@ enum
   PROP_PARENT
 };
 
-/* How long to hold the flash for */
-#define FLASH_DURATION 250
+/* How long to hold the flash for, in milliseconds. */
+static const guint FLASH_DURATION = 250;
 
 /* The factor which defines how much the flash fades per frame */
-#define FLASH_FADE_FACTOR 0.95
+static const gdouble FLASH_FADE_FACTOR = 0.95;
 
 /* How many frames per second */
-#define FLASH_ANIMATION_RATE 50
+static const guint FLASH_ANIMATION_RATE = 50;
 
 /* When to consider the flash finished so we can stop fading */
-#define FLASH_LOW_THRESHOLD 0.01
+static const gdouble FLASH_LOW_THRESHOLD = 0.01;
 
-G_DEFINE_TYPE (CheeseFlash, cheese_flash, G_TYPE_OBJECT);
+G_DEFINE_TYPE (CheeseFlash, cheese_flash, GTK_TYPE_WINDOW);
 
 #define CHEESE_FLASH_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_FLASH, CheeseFlashPrivate))
 
+/*
+ * CheeseFlashPrivate:
+ * @parent: the parent #GtkWidget, for choosing on which display to fire the
+ * flash
+ * @flash_timeout_tag: signal ID of the timeout to start fading in the flash
+ * @fade_timeout_tag: signal ID of the timeout to start fading out the flash
+ *
+ * Private data for #CheeseFlash.
+ */
 struct _CheeseFlashPrivate
 {
+  /*< private >*/
   GtkWidget *parent;
-  GtkWindow *window;
   guint flash_timeout_tag;
   guint fade_timeout_tag;
 };
 
+/*
+ * get_current_desktop:
+ * @screen: the #GdkScreen containing the parent #GtkWidget
+ *
+ * Get the current desktop that the parent widget is mostly located on.
+ *
+ * Returns: the ID of the current desktop
+ */
 /* Copy-pasted from totem/src/backend/video-utils.c
  * Waiting on GTK+ bug:
  * https://bugzilla.gnome.org/show_bug.cgi?id=523574 */
@@ -108,6 +125,15 @@ get_current_desktop (GdkScreen *screen)
         return workspace;
 }
 
+/*
+ * get_work_area:
+ * @screen: the #GdkScreen of which to get the area
+ * @rect: a return location for the area
+ *
+ * Get the area of the current workspace.
+ *
+ * Returns %TRUE if the work area was succesfully found, %FALSE otherwise
+ */
 static gboolean
 get_work_area (GdkScreen      *screen,
 	       GdkRectangle   *rect)
@@ -176,8 +202,18 @@ get_work_area (GdkScreen      *screen,
 }
 #endif /* GDK_WINDOWING_X11 */
 
+/*
+ * cheese_flash_draw_event_cb:
+ * @widget: the #CheeseFlash
+ * @cr: the Cairo context
+ * @user_data: the user data of the signal
+ *
+ * Draw the flash.
+ *
+ * Returns: %TRUE
+ */
 static gboolean
-cheese_flash_window_draw_event_cb (GtkWidget *widget, cairo_t *cr, gpointer user_data)
+cheese_flash_draw_event_cb (GtkWidget *widget, cairo_t *cr, gpointer user_data)
 {
   cairo_fill (cr);
   return TRUE;
@@ -188,12 +224,10 @@ cheese_flash_init (CheeseFlash *self)
 {
   CheeseFlashPrivate *priv = self->priv = CHEESE_FLASH_GET_PRIVATE (self);
   cairo_region_t *input_region;
-  GtkWindow *window;
+  GtkWindow *window = GTK_WINDOW (self);
 
   priv->flash_timeout_tag = 0;
   priv->fade_timeout_tag  = 0;
-
-  window = GTK_WINDOW (gtk_window_new (GTK_WINDOW_POPUP));
 
   /* make it so it doesn't look like a window on the desktop (+fullscreen) */
   gtk_window_set_decorated (window, FALSE);
@@ -211,8 +245,7 @@ cheese_flash_init (CheeseFlash *self)
   gdk_window_input_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)), input_region, 0, 0);
   cairo_region_destroy (input_region);
 
-  g_signal_connect (G_OBJECT (window), "draw", G_CALLBACK (cheese_flash_window_draw_event_cb), NULL);
-  priv->window = window;
+  g_signal_connect (G_OBJECT (window), "draw", G_CALLBACK (cheese_flash_draw_event_cb), NULL);
 }
 
 static void
@@ -220,11 +253,6 @@ cheese_flash_dispose (GObject *object)
 {
   CheeseFlashPrivate *priv = CHEESE_FLASH (object)->priv;
 
-  if (priv->window != NULL)
-  {
-    gtk_widget_destroy (GTK_WIDGET (priv->window));
-    priv->window = NULL;
-  }
   if (priv->parent != NULL)
   {
     g_object_unref (priv->parent);
@@ -292,13 +320,20 @@ cheese_flash_class_init (CheeseFlashClass *klass)
                                                         G_PARAM_WRITABLE));
 }
 
+/*
+ * cheese_flash_opacity_fade:
+ * @data: the #CheeseFlash
+ *
+ * Fade the flash out.
+ *
+ * Returns: %TRUE if the fade was completed, %FALSE if the flash must continue
+ * to fade
+ */
 static gboolean
 cheese_flash_opacity_fade (gpointer data)
 {
-  CheeseFlash        *flash        = data;
-  CheeseFlashPrivate *flash_priv   = flash->priv;
-  GtkWindow          *flash_window = flash_priv->window;
-  double              opacity      = gtk_window_get_opacity (flash_window);
+  GtkWindow *flash_window = GTK_WINDOW (data);
+  gdouble opacity = gtk_window_get_opacity (flash_window);
 
   /* exponentially decrease */
   gtk_window_set_opacity (flash_window, opacity * FLASH_FADE_FACTOR);
@@ -313,12 +348,20 @@ cheese_flash_opacity_fade (gpointer data)
   return TRUE;
 }
 
+/*
+ * cheese_flash_start_fade:
+ * @data: the #CheeseFlash
+ *
+ * Add a timeout to start the fade animation.
+ *
+ * Returns: %FALSE
+ */
 static gboolean
 cheese_flash_start_fade (gpointer data)
 {
   CheeseFlashPrivate *flash_priv = CHEESE_FLASH (data)->priv;
 
-  GtkWindow *flash_window = flash_priv->window;
+  GtkWindow *flash_window = GTK_WINDOW (data);
 
   /* If the screen is non-composited, just hide and finish up */
   if (!gdk_screen_is_composited (gtk_window_get_screen (flash_window)))
@@ -348,7 +391,7 @@ cheese_flash_fire (CheeseFlash *flash)
 
   g_return_if_fail (flash_priv->parent != NULL);
 
-  GtkWindow *flash_window = flash_priv->window;
+  GtkWindow *flash_window = GTK_WINDOW (flash);
 
   if (flash_priv->flash_timeout_tag > 0)
     g_source_remove (flash_priv->flash_timeout_tag);
@@ -390,5 +433,6 @@ cheese_flash_new (GtkWidget *parent)
 {
   return g_object_new (CHEESE_TYPE_FLASH,
                        "parent", parent,
+		       "type", GTK_WINDOW_POPUP,
                        NULL);
 }

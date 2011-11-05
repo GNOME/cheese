@@ -20,6 +20,7 @@
 #ifndef _CHEESE_FLASH_H_
 #define _CHEESE_FLASH_H_
 
+#include <gtk/gtk.h>
 #include <glib-object.h>
 
 G_BEGIN_DECLS
@@ -43,7 +44,7 @@ typedef struct _CheeseFlash CheeseFlash;
 struct _CheeseFlashClass
 {
   /*< private >*/
-  GObjectClass parent_class;
+  GtkWindowClass parent_class;
 };
 
 /**
@@ -54,7 +55,7 @@ struct _CheeseFlashClass
 struct _CheeseFlash
 {
   /*< private >*/
-  GObject parent_instance;
+  GtkWindow parent_instance;
   CheeseFlashPrivate *priv;
 };
 

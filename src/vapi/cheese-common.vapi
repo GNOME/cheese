@@ -110,7 +110,7 @@ namespace Cheese
   }
 
   [CCode (cheader_filename = "cheese-flash.h")]
-  public class Flash : GLib.Object
+  public class Flash : Gtk.Window
   {
     [CCode (has_construct_function = false)]
     public Flash (Gtk.Widget parent);
