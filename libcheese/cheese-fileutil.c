@@ -48,7 +48,7 @@ struct _CheeseFileUtilPrivate
 {
   gchar *video_path;
   gchar *photo_path;
-  gint   burst_count;
+  guint  burst_count;
   gchar *burst_raw_name;
 };
 
@@ -92,7 +92,7 @@ cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 static gchar *
 cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
 {
-  return g_strjoin (G_DIR_SEPARATOR_S, g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
+  return g_build_filename (g_get_home_dir (), ".gnome2", "cheese", "media", NULL);
 }
 
 /**
@@ -100,7 +100,7 @@ cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
  * @fileutil: a #CheeseFileUtil
  * @mode: the type of media to create a filename for
  *
- * Creates a filename for one of the three media typed: photo, photo burst or
+ * Creates a filename for one of the three media types: photo, photo burst or
  * video. If a filename for a photo burst image was previously created, this
  * function increments the burst count automatically. To start a new burst,
  * first call cheese_fileutil_reset_burst().
@@ -110,42 +110,56 @@ cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil)
 gchar *
 cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode)
 {
-  struct tm   *ptr;
-  time_t       tm;
-  char         date[21];
+  GDateTime *datetime;
+  gchar       *time_string;
   const gchar *path;
-  char        *filename;
+  gchar       *filename;
   GFile       *file;
-  int          num;
+  guint        num;
 
   CheeseFileUtilPrivate *priv = fileutil->priv;
 
-  tm  = time (NULL);
-  ptr = localtime (&tm);
-  strftime (date, 20, "%F-%H%M%S", ptr);
+  datetime = g_date_time_new_now_local ();
 
-  if ((mode == CHEESE_MEDIA_MODE_PHOTO) || (mode == CHEESE_MEDIA_MODE_BURST))
-    path = cheese_fileutil_get_photo_path (fileutil);
-  else
-    path = cheese_fileutil_get_video_path (fileutil);
+  g_assert (datetime != NULL);
+
+  time_string = g_date_time_format (datetime, "%F-%H%M%S");
+  g_date_time_unref (datetime);
+
+  g_assert (time_string != NULL);
+
+  switch (mode)
+  {
+    case CHEESE_MEDIA_MODE_PHOTO:
+    case CHEESE_MEDIA_MODE_BURST:
+      path = cheese_fileutil_get_photo_path (fileutil);
+      break;
+    case CHEESE_MEDIA_MODE_VIDEO:
+      path = cheese_fileutil_get_video_path (fileutil);
+      break;
+    default:
+      g_assert_not_reached ();
+  }
 
   g_mkdir_with_parents (path, 0775);
 
-  if (mode == CHEESE_MEDIA_MODE_PHOTO)
+  switch (mode)
   {
-    filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, CHEESE_PHOTO_NAME_SUFFIX);
-  }
-  else if (mode == CHEESE_MEDIA_MODE_BURST)
-  {
-    priv->burst_count++;
-    if (strlen (priv->burst_raw_name) == 0)
-      priv->burst_raw_name = g_strdup_printf ("%s%s%s", path, G_DIR_SEPARATOR_S, date);
+    case CHEESE_MEDIA_MODE_PHOTO:
+      filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, time_string, CHEESE_PHOTO_NAME_SUFFIX);
+      break;
+    case CHEESE_MEDIA_MODE_BURST:
+      priv->burst_count++;
+      if (strlen (priv->burst_raw_name) == 0)
+        priv->burst_raw_name = g_strdup_printf ("%s%s%s", path, G_DIR_SEPARATOR_S, time_string);
 
-    filename = g_strdup_printf ("%s_%d%s", priv->burst_raw_name, priv->burst_count, CHEESE_PHOTO_NAME_SUFFIX);
-  }
-  else
-  {
-    filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, date, CHEESE_VIDEO_NAME_SUFFIX);
+      filename = g_strdup_printf ("%s_%d%s", priv->burst_raw_name, priv->burst_count, CHEESE_PHOTO_NAME_SUFFIX);
+      break;
+    case CHEESE_MEDIA_MODE_VIDEO:
+      filename = g_strdup_printf ("%s%s%s%s", path, G_DIR_SEPARATOR_S, time_string, CHEESE_VIDEO_NAME_SUFFIX);
+      break;
+    default:
+      g_assert_not_reached ();
   }
 
   file = g_file_new_for_path (filename);
@@ -158,16 +172,25 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
     g_object_unref (file);
     g_free (filename);
 
-    if (mode == CHEESE_MEDIA_MODE_PHOTO)
-      filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, CHEESE_PHOTO_NAME_SUFFIX);
-    else if (mode == CHEESE_MEDIA_MODE_BURST)
-      filename = g_strdup_printf ("%s_%d (%d)%s", priv->burst_raw_name, priv->burst_count, num, CHEESE_PHOTO_NAME_SUFFIX);
-    else
-      filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, date, num, CHEESE_VIDEO_NAME_SUFFIX);
+    switch (mode)
+    {
+      case CHEESE_MEDIA_MODE_PHOTO:
+        filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, time_string, num, CHEESE_PHOTO_NAME_SUFFIX);
+        break;
+      case CHEESE_MEDIA_MODE_BURST:
+        filename = g_strdup_printf ("%s_%d (%d)%s", priv->burst_raw_name, priv->burst_count, num, CHEESE_PHOTO_NAME_SUFFIX);
+        break;
+      case CHEESE_MEDIA_MODE_VIDEO:
+        filename = g_strdup_printf ("%s%s%s (%d)%s", path, G_DIR_SEPARATOR_S, time_string, num, CHEESE_VIDEO_NAME_SUFFIX);
+        break;
+      default:
+        g_assert_not_reached ();
+    }
 
     file = g_file_new_for_path (filename);
   }
 
+  g_free (time_string);
   g_object_unref (file);
 
   return filename;
@@ -193,9 +216,7 @@ cheese_fileutil_reset_burst (CheeseFileUtil *fileutil)
 static void
 cheese_fileutil_finalize (GObject *object)
 {
-  CheeseFileUtil *fileutil;
-
-  fileutil = CHEESE_FILEUTIL (object);
+  CheeseFileUtil *fileutil = CHEESE_FILEUTIL (object);
   CheeseFileUtilPrivate *priv = fileutil->priv;
 
   g_free (priv->video_path);
@@ -232,7 +253,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   if (!priv->video_path || strcmp (priv->video_path, "") == 0)
   {
     /* get xdg */
-    priv->video_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
+    priv->video_path = g_build_filename (g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
     if (strcmp (priv->video_path, "") == 0)
     {
       /* get "~/.gnome2/cheese/media" */
@@ -244,7 +265,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
   if (!priv->photo_path || strcmp (priv->photo_path, "") == 0)
   {
     /* get xdg */
-    priv->photo_path = g_strjoin (G_DIR_SEPARATOR_S, g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
+    priv->photo_path = g_build_filename (g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
     if (strcmp (priv->photo_path, "") == 0)
     {
       /* get "~/.gnome2/cheese/media" */
