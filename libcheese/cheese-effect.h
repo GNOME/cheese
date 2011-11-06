@@ -70,12 +70,13 @@ struct _CheeseEffect
 
 GType cheese_effect_get_type (void) G_GNUC_CONST;
 
-CheeseEffect *cheese_effect_new (void);
+CheeseEffect *cheese_effect_new (const gchar *name,
+                                 const gchar *pipeline_desc);
 gboolean      cheese_effect_is_preview_connected (CheeseEffect *effect);
 void          cheese_effect_enable_preview (CheeseEffect *effect);
 void          cheese_effect_disable_preview (CheeseEffect *effect);
 
-CheeseEffect *cheese_effect_load_from_file (const gchar *fname);
+CheeseEffect *cheese_effect_load_from_file (const gchar *filename);
 GList        *cheese_effect_load_effects (void);
 
 G_END_DECLS

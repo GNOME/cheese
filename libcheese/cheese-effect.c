@@ -46,8 +46,8 @@ G_DEFINE_TYPE (CheeseEffect, cheese_effect, G_TYPE_OBJECT)
 
 struct _CheeseEffectPrivate
 {
-  char *name;
-  char *pipeline_desc;
+  gchar *name;
+  gchar *pipeline_desc;
   GstElement *control_valve;
 };
 
@@ -113,14 +113,14 @@ cheese_effect_class_init (CheeseEffectClass *klass)
   /**
    * CheeseEffect:name:
    *
-   * Name of the effect.
+   * Name of the effect, for display in a UI.
    */
   g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name",
                                                         "Name",
                                                         "Name of the effect",
                                                         "",
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * CheeseEffect:pipeline-desc:
@@ -132,17 +132,18 @@ cheese_effect_class_init (CheeseEffectClass *klass)
                                                         "Pipeline description",
                                                         "Description of the GStreamer pipeline associated with the effect",
                                                         "",
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
    * CheeseEffect:control-valve:
    *
-   * TODO.
+   * If the control valve is active, then the effect is currently connected to
+   * a video stream, for previews.
    */
   g_object_class_install_property (object_class, PROP_CONTROL_VALVE,
                                    g_param_spec_object ("control_valve",
                                                         "Control valve",
-                                                        "TODO",
+                                                        "If the control valve is active, the effect is connected to a video stream",
                                                         GST_TYPE_ELEMENT,
                                                         G_PARAM_READWRITE));
 }
@@ -193,79 +194,89 @@ cheese_effect_init (CheeseEffect *self)
 
 /**
  * cheese_effect_new:
+ * @name: name of the effect
+ * @pipeline_desc: GStreamer pipeline of the new effect
  *
  * Create a new #CheeseEffect.
  *
  * Returns: (transfer full): a new #CheeseEffect
  */
 CheeseEffect *
-cheese_effect_new (void)
+cheese_effect_new (const gchar *name, const gchar *pipeline_desc)
 {
-  return g_object_new (CHEESE_TYPE_EFFECT, NULL);
+  return g_object_new (CHEESE_TYPE_EFFECT,
+                       "name", name,
+                       "pipeline-desc", pipeline_desc,
+                       NULL);
 }
 
 /**
  * cheese_effect_load_from_file:
- * @fname: (type filename): name of the file containing effect specification
+ * @filename: (type filename): name of the file containing the effect
+ * specification
  *
  * Load effect from file.
  *
- * Returns: (transfer full): a #CheeseEffect
+ * Returns: (transfer full): a #CheeseEffect, or %NULL on error
  */
 CheeseEffect*
-cheese_effect_load_from_file (const gchar *fname)
+cheese_effect_load_from_file (const gchar *filename)
 {
-  const gchar  *GROUP_NAME = "Effect";
+  const gchar GROUP_NAME[] = "Effect";
   gchar        *name, *desc;
   GError       *err = NULL;
-  CheeseEffect *eff = NULL;
-  GKeyFile     *kf = g_key_file_new ();
+  CheeseEffect *effect = NULL;
+  GKeyFile     *keyfile = g_key_file_new ();
 
-  g_key_file_load_from_file (kf, fname, G_KEY_FILE_NONE, &err);
+  g_key_file_load_from_file (keyfile, filename, G_KEY_FILE_NONE, &err);
   if (err != NULL)
-    goto err_kf_load;
+    goto err_keyfile_load;
 
-  name = g_key_file_get_locale_string (kf, GROUP_NAME, "Name", NULL, &err);
+  name = g_key_file_get_locale_string (keyfile, GROUP_NAME, "Name", NULL, &err);
   if (err != NULL)
     goto err_name;
 
-  desc = g_key_file_get_string (kf, GROUP_NAME, "PipelineDescription", &err);
+  desc = g_key_file_get_string (keyfile, GROUP_NAME, "PipelineDescription", &err);
   if (err != NULL)
     goto err_desc;
 
-  g_key_file_free (kf);
+  g_key_file_free (keyfile);
 
-  eff = cheese_effect_new ();
-  g_object_set (eff, "name", name, NULL);
-  g_object_set (eff, "pipeline-desc", desc, NULL);
+  effect = cheese_effect_new (name, desc);
   g_free (name);
   g_free (desc);
 
-  return eff;
+  return effect;
 
 err_desc:
     g_free (name);
 err_name:
-err_kf_load:
-    g_key_file_free (kf);
-    g_warning ("CheeseEffect: couldn't load file %s: %s", fname, err->message);
+err_keyfile_load:
+    g_key_file_free (keyfile);
+    g_warning ("CheeseEffect: couldn't load file %s: %s", filename, err->message);
     g_clear_error (&err);
     return NULL;
 }
 
-/* Returns list of effects loaded from files from @directory.
-   Only parses files ending with the '.effects' extension */
+/*
+ * cheese_effect_load_effects_from_directory:
+ * @directory: the directory in which to search for effects
+ *
+ * Only parses files ending with the '.effects' extension.
+ *
+ * Returns: (element-type Cheese.Effect) (transfer full): list of effects
+ * loaded from files from @directory, or %NULL if any errors were encountered
+ */
 static GList*
 cheese_effect_load_effects_from_directory (const gchar* directory)
 {
-  gboolean retval;
-  GError   *err = NULL;
-  GDir     *dir = NULL;
-  GList    *list = NULL;
+  gboolean is_dir;
+  GError  *err = NULL;
+  GDir    *dir = NULL;
+  GList   *list = NULL;
 
-  retval = g_file_test (directory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR);
-  if (!retval)
-    return NULL;
+  is_dir = g_file_test (directory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR);
+  g_return_val_if_fail (is_dir, NULL);
 
   dir = g_dir_open (directory, (guint) 0, &err);
   if (err != NULL)
@@ -278,32 +289,41 @@ cheese_effect_load_effects_from_directory (const gchar* directory)
   while (TRUE) {
     CheeseEffect *effect;
     gchar        *abs_path;
-    const gchar  *fname = g_dir_read_name (dir);
+    const gchar  *filename = g_dir_read_name (dir);
 
     /* no more files */
-    if (fname == NULL)
+    if (filename == NULL)
       break;
 
-    if (!g_str_has_suffix (fname, ".effect"))
+    if (!g_str_has_suffix (filename, ".effect"))
       continue;
 
-    abs_path = g_build_filename (directory, fname, NULL);
+    abs_path = g_build_filename (directory, filename, NULL);
     effect = cheese_effect_load_from_file (abs_path);
     if (effect != NULL)
-      list = g_list_append (list, effect);
+      list = g_list_prepend (list, effect);
     g_free (abs_path);
   }
   g_dir_close (dir);
 
-  return list;
+  return g_list_reverse (list);
 }
 
+/*
+ * cheese_effect_load_effects_from_subdirectory:
+ * @directory: directory from under which to load effects
+ *
+ * Get a list of effects from the gnome-video-effects subdirectory under
+ * @directory.
+ *
+ * Returns: (element-type Cheese.Effect) (transfer full): a list of
+ * #CheeseEffect, or %NULL upon failure
+ */
 static GList*
-cheese_effect_load_effects_from_subdirectory (const gchar* directory,
-                                              const gchar* subdirectory)
+cheese_effect_load_effects_from_subdirectory (const gchar* directory)
 {
   GList *list;
-  gchar *path = g_build_filename (directory, subdirectory, NULL);
+  gchar *path = g_build_filename (directory, "gnome-video-effects", NULL);
   list = cheese_effect_load_effects_from_directory (path);
   g_free (path);
   return list;
@@ -312,30 +332,32 @@ cheese_effect_load_effects_from_subdirectory (const gchar* directory,
 /**
  * cheese_effect_load_effects:
  *
- * Load effects from known standard directories.
+ * Load effects from standard directories, including the user's data directory.
  *
- * Returns: (element-type Cheese.Effect) (transfer full): List of #CheeseEffect
+ * Returns: (element-type Cheese.Effect) (transfer full): a list of
+ * #CheeseEffect, or %NULL if no effects could be found
  */
 GList*
 cheese_effect_load_effects ()
 {
-  const gchar *const*data_dirs, *dir;
-  GList *ret = NULL, *l;
+  const gchar * const *data_dirs, *dir;
+  GList *effect_list = NULL, *l;
 
   dir = g_get_user_data_dir (); /* value returned owned by GLib */
-  l = cheese_effect_load_effects_from_subdirectory (dir, "gnome-video-effects");
-  ret = g_list_concat (ret, l);
+  l = cheese_effect_load_effects_from_subdirectory (dir);
+  effect_list = g_list_concat (effect_list, l);
 
   data_dirs = g_get_system_data_dirs (); /* value returned owned by GLib */
   if (!data_dirs)
-    return ret;
+    return effect_list;
 
-  for (; *data_dirs; data_dirs++)
+  while (*data_dirs)
   {
     dir = *data_dirs;
-    l = cheese_effect_load_effects_from_subdirectory (dir, "gnome-video-effects");
-    ret = g_list_concat (ret, l);
+    l = cheese_effect_load_effects_from_subdirectory (dir);
+    effect_list = g_list_concat (effect_list, l);
+    data_dirs++;
   }
 
-  return ret;
+  return effect_list;
 }

@@ -47,9 +47,7 @@ internal class Cheese.EffectsManager : GLib.Object
     /* add identity effect as the first in the effect list */
     if (effects.size > 0)
     {
-      Effect e = new Effect ();
-      e.name          = _("No Effect");
-      e.pipeline_desc = "identity";
+      Effect e = new Effect (_("No Effect"), "identity");
       effects.insert (0, e);
     }
   }

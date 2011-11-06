@@ -7,11 +7,11 @@ namespace Cheese
   public class Effect : GLib.Object
   {
     [CCode (has_construct_function = false)]
-    public Effect ();
+    public Effect (string name, string pipeline_desc);
     [NoAccessorMethod]
-    public string name {owned get; set;}
+    public string name {owned get;}
     [NoAccessorMethod]
-    public string pipeline_desc {owned get; set;}
+    public string pipeline_desc {owned get;}
     [NoAccessorMethod]
     public Gst.Element control_valve {get; set;}
 
