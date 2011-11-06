@@ -71,12 +71,6 @@ G_DEFINE_TYPE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_O
 GST_DEBUG_CATEGORY (cheese_device_monitor_cat);
 #define GST_CAT_DEFAULT cheese_device_monitor_cat
 
-enum CheeseCameraDeviceMonitorError
-{
-  CHEESE_CAMERA_DEVICE_MONITOR_ERROR_UNKNOWN,
-  CHEESE_CAMERA_DEVICE_MONITOR_ERROR_ELEMENT_NOT_FOUND
-};
-
 struct _CheeseCameraDeviceMonitorPrivate
 {
 #ifdef HAVE_UDEV
@@ -107,8 +101,16 @@ cheese_camera_device_monitor_error_quark (void)
 
 CheeseCameraDevice* cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice);
 
+/*
+ * cheese_camera_device_monitor_set_up_device:
+ * @udevice: the device information from udev
+ *
+ * Creates a new #CheeseCameraDevice for the supplied @udevice.
+ *
+ * Returns: a new #CheeseCameraDevice
+ */
 CheeseCameraDevice*
-cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice)
+cheese_camera_device_monitor_set_up_device (GUdevDevice *udevice)
 {
   const char *device_file;
   const char *product_name;
@@ -200,6 +202,13 @@ cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice)
   return device;
 }
 
+/*
+ * cheese_camera_device_monitor_added:
+ * @monitor: a #CheeseCameraDeviceMonitor
+ * @udevice: the device information, from udev, for the device that was added
+ *
+ * Emits the ::added signal.
+ */
 static void
 cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
                                     GUdevDevice               *udevice)
@@ -208,6 +217,13 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
   g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
 }
 
+/*
+ * cheese_camera_device_monitor_removed:
+ * @monitor: a #CheeseCameraDeviceMonitor
+ * @udevice: the device information, from udev, for the device that was removed
+ *
+ * Emits the ::removed signal.
+ */
 static void
 cheese_camera_device_monitor_removed (CheeseCameraDeviceMonitor *monitor,
                                       GUdevDevice               *udevice)
@@ -216,6 +232,18 @@ cheese_camera_device_monitor_removed (CheeseCameraDeviceMonitor *monitor,
                  g_udev_device_get_property (udevice, "DEVPATH"));
 }
 
+/*
+ * cheese_camera_device_monitor_uevent_cb:
+ * @client: a #GUdevClient
+ * @action: the string representing the action type of the uevent
+ * @udevice: the #GUdevDevice to which the uevent refers
+ * @monitor: a #CheeseCameraDeviceMonitor
+ *
+ * Check if the uevent corresponds to device addition or removal, and if so,
+ * pass it on to cheese_camera_device_monitor_added() or
+ * cheese_camera_device_monitor_removed() for emitting the ::added and
+ * ::removed signals.
+ */
 static void
 cheese_camera_device_monitor_uevent_cb (GUdevClient               *client,
                                         const gchar               *action,
@@ -228,37 +256,46 @@ cheese_camera_device_monitor_uevent_cb (GUdevClient               *client,
     cheese_camera_device_monitor_added (monitor, udevice);
 }
 
+/*
+ * cheese_camera_device_monitor_add_devices:
+ * @data: the #GUdevDevice to add
+ * @user_data: the #CheeseCameraDeviceMonitor
+ *
+ * Add a #GUdevDevice representing a video capture device to the list. This
+ * method is intended to be used as a #GFunc for g_list_foreach(), during
+ * coldplug at application startup.
+ */
+static void
+cheese_camera_device_monitor_add_devices (gpointer data, gpointer user_data)
+{
+  cheese_camera_device_monitor_added ((CheeseCameraDeviceMonitor *) user_data,
+    (GUdevDevice *) data);
+  g_object_unref (data);
+}
+
 /**
  * cheese_camera_device_monitor_coldplug:
- * @monitor: a #CheeseCameraDeviceMonitor object.
+ * @monitor: a #CheeseCameraDeviceMonitor
  *
- * Will actively look for plugged in cameras and emit ::added for those new
- * cameras. This is only required when your program starts, so as to connect to
- * those signals before they are emitted.
+ * Enumerate plugged in cameras and emit ::added for those which already exist.
+ * This is only required when your program starts, so be sure to connect to
+ * at least the ::added signal before calling this function.
  */
 void
 cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
-  GList *devices, *l;
-  gint   i = 0;
+  GList *devices;
 
-  if (monitor->priv->client == NULL)
-    return;
+  g_return_if_fail (monitor->priv->client != NULL);
 
   GST_INFO ("Probing devices with udev...");
 
   devices = g_udev_client_query_by_subsystem (monitor->priv->client, "video4linux");
+  if (devices == NULL) GST_WARNING ("No device found");
 
   /* Initialize camera structures */
-  for (l = devices; l != NULL; l = l->next)
-  {
-    cheese_camera_device_monitor_added (monitor, l->data);
-    g_object_unref (l->data);
-    i++;
-  }
+  g_list_foreach (devices, cheese_camera_device_monitor_add_devices, monitor);
   g_list_free (devices);
-
-  if (i == 0) GST_WARNING ("No device found");
 }
 
 #else /* HAVE_UDEV */
@@ -373,7 +410,7 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
                                          G_STRUCT_OFFSET (CheeseCameraDeviceMonitorClass, added),
                                          NULL, NULL,
                                          g_cclosure_marshal_VOID__OBJECT,
-                                         G_TYPE_NONE, 1, G_TYPE_OBJECT);
+                                         G_TYPE_NONE, 1, CHEESE_TYPE_CAMERA_DEVICE);
 
   /**
    * CheeseCameraDeviceMonitor::removed:
