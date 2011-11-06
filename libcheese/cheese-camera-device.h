@@ -88,10 +88,10 @@ GType cheese_video_format_get_type (void) G_GNUC_CONST;
 
 GType cheese_camera_device_get_type (void) G_GNUC_CONST;
 
-CheeseCameraDevice *cheese_camera_device_new (const gchar *device_id,
-                                              const gchar *device_file,
-                                              const gchar *product_name,
-                                              guint        api_version,
+CheeseCameraDevice *cheese_camera_device_new (const gchar *uuid,
+                                              const gchar *device_node,
+                                              const gchar *name,
+                                              guint        v4l_api_version,
                                               GError     **error);
 
 GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
@@ -102,7 +102,7 @@ GList *            cheese_camera_device_get_format_list (CheeseCameraDevice *dev
 const gchar *cheese_camera_device_get_name (CheeseCameraDevice *device);
 const gchar *cheese_camera_device_get_src (CheeseCameraDevice *device);
 const gchar *cheese_camera_device_get_uuid (CheeseCameraDevice *device);
-const gchar *cheese_camera_device_get_device_file (CheeseCameraDevice *device);
+const gchar *cheese_camera_device_get_device_node (CheeseCameraDevice *device);
 
 
 

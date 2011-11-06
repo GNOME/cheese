@@ -67,19 +67,19 @@ namespace Cheese
   public class CameraDevice : GLib.Object, GLib.Initable
   {
     [CCode (has_construct_function = false)]
-    public CameraDevice (string uuid, string device_file, string product_name, int api_version) throws GLib.Error;
+    public CameraDevice (string uuid, string device_node, string name, int v4lapi_version) throws GLib.Error;
     public unowned Cheese.VideoFormat get_best_format ();
     public unowned Gst.Caps           get_caps_for_format (Cheese.VideoFormat format);
-    public unowned string             get_device_file ();
+    public unowned string             get_device_node ();
     public unowned GLib.List          get_format_list ();
     public unowned string             get_uuid ();
     public unowned string             get_name ();
     public unowned string             get_src ();
     [NoAccessorMethod]
-    public uint v4l_api {get; construct;}
-    public string device_file {get; construct;}
+    public uint v4l_api_version {get; construct;}
+    public string device_node {get; construct;}
     [NoAccessorMethod]
-    public string device_id {owned get; construct;}
+    public string uuid {owned get; construct;}
     public string name {get; construct;}
   }
 

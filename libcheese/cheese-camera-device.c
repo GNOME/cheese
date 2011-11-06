@@ -53,6 +53,18 @@ G_DEFINE_TYPE_WITH_CODE (CheeseCameraDevice, cheese_camera_device, G_TYPE_OBJECT
 
 #define CHEESE_CAMERA_DEVICE_ERROR cheese_camera_device_error_quark ()
 
+/*
+ * CheeseCameraDeviceError:
+ * @CHEESE_CAMERA_DEVICE_ERROR_UNKNOWN: unknown error
+ * @CHEESE_CAMERA_DEVICE_ERROR_NOT_SUPPORTED: cancellation of device
+ * initialisation was requested, but is not supported
+ * @CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS: unsupported GStreamer
+ * capabilities
+ * @CHEESE_CAMERA_DEVICE_ERROR_FAILED_INITIALIZATION: the device failed to
+ * initialize for capability probing
+ *
+ * Errors that can occur during device initialization.
+ */
 enum CheeseCameraDeviceError
 {
   CHEESE_CAMERA_DEVICE_ERROR_UNKNOWN,
@@ -71,24 +83,29 @@ static gchar *supported_formats[] = {
 };
 
 /* FIXME: make this configurable */
-#define CHEESE_MAXIMUM_RATE 30 /* fps */
+/*
+ * CHEESE_MAXIMUM_RATE:
+ *
+ * The maximum framerate, in frames per second.
+ */
+static const guint CHEESE_MAXIMUM_RATE = 30;
 
 enum
 {
   PROP_0,
   PROP_NAME,
-  PROP_FILE,
+  PROP_DEVICE_NODE,
   PROP_UUID,
-  PROP_V4LAPI
+  PROP_V4LAPI_VERSION
 };
 
 struct _CheeseCameraDevicePrivate
 {
-  gchar *device;
+  gchar *device_node;
   gchar *uuid;
   const gchar *src;
   gchar *name;
-  guint  v4lapi;
+  guint  v4lapi_version;
   GstCaps *caps;
   GList   *formats;
 
@@ -143,13 +160,24 @@ compare_formats (gconstpointer a, gconstpointer b)
   return (d->width * d->height - c->width * c->height);
 }
 
-static
-GstCaps *
-cheese_webcam_device_filter_caps (CheeseCameraDevice *device, const GstCaps *caps, GStrv formats)
+/*
+ * cheese_camera_device_filter_caps:
+ * @device: the #CheeseCameraDevice
+ * @caps: the #GstCaps that the device supports
+ * @formats: an array of strings of video formats, in the form axb, where a and
+ * b are in units of pixels
+ *
+ * Filter the supplied @caps with %CHEESE_MAXIMUM_RATE to only allow @formats
+ * which can reach the desired framerate.
+ *
+ * Returns: the filtered #GstCaps
+ */
+static GstCaps *
+cheese_camera_device_filter_caps (CheeseCameraDevice *device, const GstCaps *caps, GStrv formats)
 {
   GstCaps *filter;
   GstCaps *allowed;
-  gint     i;
+  guint    i;
 
   filter = gst_caps_new_simple (formats[0],
                                 "framerate", GST_TYPE_FRACTION_RANGE,
@@ -176,6 +204,13 @@ cheese_webcam_device_filter_caps (CheeseCameraDevice *device, const GstCaps *cap
   return allowed;
 }
 
+/*
+ * cheese_camera_device_add_format:
+ * @device: a #CheeseCameraDevice
+ * @format: the #CheeseVideoFormat to add
+ *
+ * Add the supplied @format to the list of formats supported by the @device.
+ */
 static void
 cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *format)
 {
@@ -195,26 +230,35 @@ cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *
   priv->formats = g_list_append (priv->formats, format);
 }
 
+/*
+ * free_format_list:
+ * @device: a #CheeseCameraDevice
+ *
+ * Free the list of video formats for the @device.
+ */
 static void
 free_format_list (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv = device->priv;
 
-  GList *l;
-
-  for (l = priv->formats; l != NULL; l = l->next)
-    g_free (l->data);
-  g_list_free (priv->formats);
+  g_list_free_full (priv->formats, g_free);
   priv->formats = NULL;
 }
 
+/*
+ * cheese_camera_device_update_format_table:
+ * @device: a #CheeseCameraDevice
+ *
+ * Clear the current list of video formats supported by the @device and create
+ * it anew.
+ */
 static void
-cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
+cheese_camera_device_update_format_table (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv = device->priv;
 
-  int i;
-  int num_structures;
+  guint i;
+  guint num_structures;
 
   free_format_list (device);
 
@@ -238,8 +282,8 @@ cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
     }
     else if (GST_VALUE_HOLDS_INT_RANGE (width))
     {
-      int min_width, max_width, min_height, max_height;
-      int cur_width, cur_height;
+      gint min_width, max_width, min_height, max_height;
+      gint cur_width, cur_height;
 
       min_width  = gst_value_get_int_range_min (width);
       max_width  = gst_value_get_int_range_max (width);
@@ -286,6 +330,12 @@ cheese_webcam_device_update_format_table (CheeseCameraDevice *device)
   }
 }
 
+/*
+ * cheese_camera_device_get_caps:
+ * @device: a #CheeseCameraDevice
+ *
+ * Probe the #GstCaps that the @device supports.
+ */
 static void
 cheese_camera_device_get_caps (CheeseCameraDevice *device)
 {
@@ -299,7 +349,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
   GError              *err = NULL;
 
   pipeline_desc = g_strdup_printf ("%s name=source device=%s ! fakesink",
-                                   priv->src, priv->device);
+                                   priv->src, priv->device_node);
   pipeline = gst_parse_launch (pipeline_desc, &err);
   if ((pipeline != NULL) && (err == NULL))
   {
@@ -320,12 +370,12 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
 
       src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
 
-      GST_LOG ("Device: %s (%s)\n", priv->name, priv->device);
+      GST_LOG ("Device: %s (%s)\n", priv->name, priv->device_node);
       pad        = gst_element_get_pad (src, "src");
       caps       = gst_pad_get_caps (pad);
-      priv->caps = cheese_webcam_device_filter_caps (device, caps, supported_formats);
+      priv->caps = cheese_camera_device_filter_caps (device, caps, supported_formats);
       if (!gst_caps_is_empty (priv->caps))
-        cheese_webcam_device_update_format_table (device);
+        cheese_camera_device_update_format_table (device);
       else
       {
         g_set_error_literal (&priv->construct_error,
@@ -361,7 +411,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
                      CHEESE_CAMERA_DEVICE_ERROR,
                      CHEESE_CAMERA_DEVICE_ERROR_FAILED_INITIALIZATION,
                      _("Failed to initialize device %s for capability probing"),
-                     priv->device);
+                     priv->device_node);
       }
     }
     gst_element_set_state (pipeline, GST_STATE_NULL);
@@ -380,7 +430,7 @@ cheese_camera_device_constructed (GObject *object)
   CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
   CheeseCameraDevicePrivate *priv   = device->priv;
 
-  priv->src = (priv->v4lapi == 2) ? "v4l2src" : "v4lsrc";
+  priv->src = (priv->v4lapi_version == 2) ? "v4l2src" : "v4lsrc";
 
   cheese_camera_device_get_caps (device);
 
@@ -399,14 +449,14 @@ cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value
     case PROP_NAME:
       g_value_set_string (value, priv->name);
       break;
-    case PROP_FILE:
-      g_value_set_string (value, priv->device);
+    case PROP_DEVICE_NODE:
+      g_value_set_string (value, priv->device_node);
       break;
     case PROP_UUID:
       g_value_set_string (value, priv->uuid);
       break;
-    case PROP_V4LAPI:
-      g_value_set_uint (value, priv->v4lapi);
+    case PROP_V4LAPI_VERSION:
+      g_value_set_uint (value, priv->v4lapi_version);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -432,13 +482,13 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
         g_free (priv->uuid);
       priv->uuid = g_value_dup_string (value);
       break;
-    case PROP_FILE:
-      if (priv->device)
-        g_free (priv->device);
-      priv->device = g_value_dup_string (value);
+    case PROP_DEVICE_NODE:
+      if (priv->device_node)
+        g_free (priv->device_node);
+      priv->device_node = g_value_dup_string (value);
       break;
-    case PROP_V4LAPI:
-      priv->v4lapi = g_value_get_uint (value);
+    case PROP_V4LAPI_VERSION:
+      priv->v4lapi_version = g_value_get_uint (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -452,7 +502,7 @@ cheese_camera_device_finalize (GObject *object)
   CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
   CheeseCameraDevicePrivate *priv   = device->priv;
 
-  g_free (priv->device);
+  g_free (priv->device_node);
   g_free (priv->uuid);
   g_free (priv->name);
 
@@ -484,19 +534,19 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
    */
   g_object_class_install_property (object_class, PROP_NAME,
                                    g_param_spec_string ("name",
-                                                        "Device name",
+                                                        "Name of the device",
                                                         "Human-readable name of the video capture device",
                                                         NULL,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
-   * CheeseCameraDevice:device-file:
+   * CheeseCameraDevice:device-node:
    *
    * Path to the device node of the video capture device.
    */
-  g_object_class_install_property (object_class, PROP_FILE,
-                                   g_param_spec_string ("device-file",
-                                                        "Device file",
+  g_object_class_install_property (object_class, PROP_DEVICE_NODE,
+                                   g_param_spec_string ("device-node",
+                                                        "Device node",
                                                         "Path to the device node of the video capture device",
                                                         NULL,
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
@@ -514,14 +564,14 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                         G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
   /**
-   * CheeseCameraDevice:v4l-api:
+   * CheeseCameraDevice:v4l-api-version:
    *
    * Version of the Video4Linux API that the device supports. Currently, either
    * 1 or 2 are supported.
    */
-  g_object_class_install_property (object_class, PROP_V4LAPI,
-                                   g_param_spec_uint ("v4l-api",
-                                                      "Video4Linux API",
+  g_object_class_install_property (object_class, PROP_V4LAPI_VERSION,
+                                   g_param_spec_uint ("v4l-api-version",
+                                                      "Video4Linux API version",
                                                       "Version of the Video4Linux API that the device supports",
                                                       1, 2, 2,
                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
@@ -540,11 +590,11 @@ cheese_camera_device_init (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv = device->priv = CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
 
-  priv->device = NULL;
-  priv->uuid   = NULL;
-  priv->src    = NULL;
-  priv->name   = g_strdup (_("Unknown device"));
-  priv->caps   = gst_caps_new_empty ();
+  priv->device_node = NULL;
+  priv->uuid = NULL;
+  priv->src = NULL;
+  priv->name = g_strdup (_("Unknown device"));
+  priv->caps = gst_caps_new_empty ();
 
   priv->formats = NULL;
 
@@ -584,11 +634,11 @@ cheese_camera_device_initable_init (GInitable    *initable,
 
 /**
  * cheese_camera_device_new:
- * @device_id: UUID of the device, as supplied by udev
- * @device_file: (type filename): path to the device node of the video capture
+ * @uuid: UUID of the device, as supplied by udev
+ * @device_node: (type filename): path to the device node of the video capture
  * device
- * @product_name: human-readable name of the device, as supplied by udev
- * @api_version: version of the Video4Linux API that the device uses. Currently
+ * @name: human-readable name of the device, as supplied by udev
+ * @v4l_api_version: version of the Video4Linux API that the device uses. Currently
  * either 1 or 2
  * @error: a location to store errors
  *
@@ -599,18 +649,18 @@ cheese_camera_device_initable_init (GInitable    *initable,
  */
 
 CheeseCameraDevice *
-cheese_camera_device_new (const gchar *device_id,
-                          const gchar *device_file,
-                          const gchar *product_name,
-                          guint        api_version,
+cheese_camera_device_new (const gchar *uuid,
+                          const gchar *device_node,
+                          const gchar *name,
+                          guint        v4l_api_version,
                           GError     **error)
 {
   return CHEESE_CAMERA_DEVICE (g_initable_new (CHEESE_TYPE_CAMERA_DEVICE,
                                                NULL, error,
-                                               "uuid", device_id,
-                                               "device-file", device_file,
-                                               "name", product_name,
-                                               "v4l-api", api_version,
+                                               "uuid", uuid,
+                                               "device-node", device_node,
+                                               "name", name,
+                                               "v4l-api-version", v4l_api_version,
                                                NULL));
 }
 
@@ -675,7 +725,7 @@ cheese_camera_device_get_src (CheeseCameraDevice *device)
 }
 
 /**
- * cheese_camera_device_get_device_file:
+ * cheese_camera_device_get_device_node:
  * @device: a #CheeseCameraDevice
  *
  * Get the path to the device node associated with the @device.
@@ -684,9 +734,10 @@ cheese_camera_device_get_src (CheeseCameraDevice *device)
  * device
  */
 const gchar *
-cheese_camera_device_get_device_file (CheeseCameraDevice *device)
+cheese_camera_device_get_device_node (CheeseCameraDevice *device)
 {
-  return device->priv->device;
+  return device->priv->device_node;
+
 }
 
 /**
@@ -724,7 +775,7 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
 {
   GstCaps *desired_caps;
   GstCaps *subset_caps;
-  gint     i;
+  guint    i;
 
   GST_INFO ("Getting caps for %dx%d", format->width, format->height);
 

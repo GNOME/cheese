@@ -141,7 +141,7 @@ public class Cheese.PreferencesDialog : GLib.Object
 
     devices.foreach(add_camera_device);
 
-    settings.set_string ("camera", camera.get_selected_device ().get_device_file ());
+    settings.set_string ("camera", camera.get_selected_device ().get_device_node ());
     setup_resolutions_for_device (camera.get_selected_device ());
   }
 
@@ -227,10 +227,10 @@ public class Cheese.PreferencesDialog : GLib.Object
 
     combo.get_active_iter (out iter);
     combo.model.get (iter, 1, out dev);
-    camera.set_device_by_device_node (dev.get_device_file ());
+    camera.set_device_by_device_node (dev.get_device_node ());
     camera.switch_camera_device ();
     setup_resolutions_for_device (camera.get_selected_device ());
-    settings.set_string ("camera", dev.get_device_file ());
+    settings.set_string ("camera", dev.get_device_node ());
   }
 
   /**
@@ -457,7 +457,7 @@ public class Cheese.PreferencesDialog : GLib.Object
         camera_model.get (iter, 1, out new_device, -1);
 
         // Found the device that was removed.
-        if (strcmp (old_device.device_file, new_device.device_file) != 0)
+        if (strcmp (old_device.device_node, new_device.device_node) != 0)
         {
             remove_camera_device (iter, new_device, active_device);
             device_removed = true;
@@ -476,7 +476,7 @@ public class Cheese.PreferencesDialog : GLib.Object
       }
     }
 
-    settings.set_string ("camera", camera.get_selected_device ().get_device_file ());
+    settings.set_string ("camera", camera.get_selected_device ().get_device_node ());
     setup_resolutions_for_device (camera.get_selected_device ());
   }
 
@@ -495,10 +495,10 @@ public class Cheese.PreferencesDialog : GLib.Object
 
     camera_model.append (out iter);
     camera_model.set (iter,
-                      0, dev.get_name () + " (" + dev.get_device_file () + ")",
+                      0, dev.get_name () + " (" + dev.get_device_node () + ")",
                       1, dev);
 
-    if (camera.get_selected_device ().get_device_file () == dev.get_device_file ())
+    if (camera.get_selected_device ().get_device_node () == dev.get_device_node ())
         source_combo.set_active_iter (iter);
   }
 
@@ -515,7 +515,7 @@ public class Cheese.PreferencesDialog : GLib.Object
       unowned GLib.PtrArray devices = camera.get_camera_devices ();
 
       // Check if the camera that we want to remove, is the active one
-      if (strcmp (device_node.device_file, active_device_node.device_file) == 0)
+      if (strcmp (device_node.device_node, active_device_node.device_node) == 0)
       {
         if (devices.len > 0)
           set_new_available_camera_device (iter);

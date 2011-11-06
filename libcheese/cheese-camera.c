@@ -367,7 +367,7 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
   for (i = 1; i < priv->num_camera_devices; i++)
   {
     CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-    if (g_strcmp0 (cheese_camera_device_get_device_file (device),
+    if (g_strcmp0 (cheese_camera_device_get_device_node (device),
                    priv->device_name) == 0)
     {
       selected_camera       = device;
@@ -379,7 +379,7 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
   camera_input = g_strdup_printf (
     "%s name=video_source device=%s",
     cheese_camera_device_get_src (selected_camera),
-    cheese_camera_device_get_device_file (selected_camera));
+    cheese_camera_device_get_device_node (selected_camera));
 
   priv->video_source = gst_parse_bin_from_description (camera_input, TRUE, &err);
   g_free (camera_input);
