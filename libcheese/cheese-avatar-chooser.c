@@ -72,6 +72,15 @@ struct _CheeseAvatarChooserPrivate
 
 G_DEFINE_TYPE (CheeseAvatarChooser, cheese_avatar_chooser, GTK_TYPE_DIALOG);
 
+/*
+ * cheese_widget_photo_taken_cb:
+ * @camera: a #CheeseCamera
+ * @pixbuf: the #GdkPixbuf of the image that was just taken
+ * @choose: a #CheeseAvatarChooser
+ *
+ * Show the image that was just taken from the camera (as @pixbuf) in the
+ * cropping tool.
+ */
 static void
 cheese_widget_photo_taken_cb (CheeseCamera        *camera,
                               GdkPixbuf           *pixbuf,
@@ -96,6 +105,14 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
   g_object_notify (G_OBJECT (chooser), "pixbuf");
 }
 
+/*
+ * take_button_clicked_cb:
+ * @button: the #GtkButton that was clicked
+ * @chooser: the #CheeseAvatarChooser
+ *
+ * Take a photo with the #CheeseCamera of @chooser. When the photo has been
+ * taken, call cheese_widget_photo_taken_cb().
+ */
 static void
 take_button_clicked_cb (GtkButton           *button,
                         CheeseAvatarChooser *chooser)
@@ -124,6 +141,13 @@ take_button_clicked_cb (GtkButton           *button,
   }
 }
 
+/*
+ * take_again_button_clicked_cb:
+ * @button: the #GtkButton that was clicked
+ * @chooser: the #CheeseAvatarChooser
+ *
+ * Switch the @chooser back to the camera view, ready to take another photo.
+ */
 static void
 take_again_button_clicked_cb (GtkButton           *button,
                               CheeseAvatarChooser *chooser)
@@ -139,6 +163,13 @@ take_again_button_clicked_cb (GtkButton           *button,
   g_object_notify (G_OBJECT (chooser), "pixbuf");
 }
 
+/* state_change_cb:
+ * @object: the #CheeseWidget on which the state changed
+ * @param_spec: the (unused) parameter specification
+ * @chooser: a #CheeseAvatarChooser
+ *
+ * Handle state changes on the #CheeseWidget, and update the UI appropriately.
+ */
 static void
 state_change_cb (GObject             *object,
                  GParamSpec          *param_spec,
@@ -166,6 +197,17 @@ state_change_cb (GObject             *object,
   }
 }
 
+/*
+ * create_page:
+ * @child: the #CheeseWidget to pack into the container
+ * @button: the #GtkButton for taking a photo
+ * @extra: an extra #GtkWidget to pack alongside the @button, or NULL
+ *
+ * Create the widgets for the #CheeseAvatarChooser and pack them into a
+ * container.
+ *
+ * Returns: a #GtkBox containing the individual #CheeseAvatarChooser widgets
+ */
 static GtkWidget *
 create_page (GtkWidget *child,
              GtkWidget *button,
@@ -307,13 +349,12 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
   /**
    * CheeseAvatarChooser:pixbuf:
    *
-   * a #GdkPixbuf object representing the cropped area of the picture, or %NULL.
-   *
-   **/
+   * A #GdkPixbuf object representing the cropped area of the picture, or %NULL.
+   */
   g_object_class_install_property (object_class, PROP_PIXBUF,
                                    g_param_spec_object ("pixbuf",
-                                                        "pixbuf",
-                                                        "a GdkPixbuf object",
+                                                        "Pixbuf",
+                                                        "A #GdkPixbuf object representing the cropped area of the picture, or %NULL.",
                                                         GDK_TYPE_PIXBUF,
                                                         G_PARAM_READABLE));
 
@@ -323,10 +364,10 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
 /**
  * cheese_avatar_chooser_new:
  *
- * Returns a new #CheeseAvatarChooser dialogue.
+ * Creates a new #CheeseAvatarChooser dialogue.
  *
- * Return value: a #CheeseAvatarChooser widget.
- **/
+ * Returns: a #CheeseAvatarChooser
+ */
 GtkWidget *
 cheese_avatar_chooser_new (void)
 {
@@ -335,13 +376,13 @@ cheese_avatar_chooser_new (void)
 
 /**
  * cheese_avatar_chooser_get_picture:
- * @chooser: a #CheeseAvatarChooser dialogue.
+ * @chooser: a #CheeseAvatarChooser dialogue
  *
- * Returns the portion of image selected through the builtin
- * cropping tool, after a picture has been captured on the webcam.
+ * Returns the portion of image selected through the builtin cropping tool,
+ * after a picture has been captured on the webcam.
  *
- * Return value: a #GdkPixbuf object, or %NULL if no picture has been taken yet.
- **/
+ * Return value: a #GdkPixbuf object, or %NULL if no picture has been taken yet
+ */
 GdkPixbuf *
 cheese_avatar_chooser_get_picture (CheeseAvatarChooser *chooser)
 {
@@ -353,7 +394,3 @@ cheese_avatar_chooser_get_picture (CheeseAvatarChooser *chooser)
 
   return um_crop_area_get_picture (UM_CROP_AREA (priv->image));
 }
-
-/*
- * vim: sw=2 ts=8 cindent noai bs=2
- */
