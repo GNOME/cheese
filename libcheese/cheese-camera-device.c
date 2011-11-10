@@ -96,8 +96,11 @@ enum
   PROP_NAME,
   PROP_DEVICE_NODE,
   PROP_UUID,
-  PROP_V4LAPI_VERSION
+  PROP_V4LAPI_VERSION,
+  PROP_LAST
 };
+
+static GParamSpec *properties[PROP_LAST];
 
 struct _CheeseCameraDevicePrivate
 {
@@ -532,36 +535,33 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
    *
    * Human-readable name of the video capture device, for display to the user.
    */
-  g_object_class_install_property (object_class, PROP_NAME,
-                                   g_param_spec_string ("name",
-                                                        "Name of the device",
-                                                        "Human-readable name of the video capture device",
-                                                        NULL,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+  properties[PROP_NAME] = g_param_spec_string ("name",
+                                               "Name of the device",
+                                               "Human-readable name of the video capture device",
+                                               NULL,
+                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   /**
    * CheeseCameraDevice:device-node:
    *
    * Path to the device node of the video capture device.
    */
-  g_object_class_install_property (object_class, PROP_DEVICE_NODE,
-                                   g_param_spec_string ("device-node",
-                                                        "Device node",
-                                                        "Path to the device node of the video capture device",
-                                                        NULL,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+  properties[PROP_DEVICE_NODE] = g_param_spec_string ("device-node",
+                                                      "Device node",
+                                                      "Path to the device node of the video capture device",
+                                                      NULL,
+                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   /**
    * CheeseCameraDevice:uuid:
    *
    * UUID of the video capture device.
    */
-  g_object_class_install_property (object_class, PROP_UUID,
-                                   g_param_spec_string ("uuid",
-                                                        "Device UUID",
-                                                        "UUID of the video capture device",
-                                                        NULL,
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+  properties[PROP_UUID] = g_param_spec_string ("uuid",
+                                               "Device UUID",
+                                               "UUID of the video capture device",
+                                               NULL,
+                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   /**
    * CheeseCameraDevice:v4l-api-version:
@@ -569,12 +569,13 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
    * Version of the Video4Linux API that the device supports. Currently, either
    * 1 or 2 are supported.
    */
-  g_object_class_install_property (object_class, PROP_V4LAPI_VERSION,
-                                   g_param_spec_uint ("v4l-api-version",
-                                                      "Video4Linux API version",
-                                                      "Version of the Video4Linux API that the device supports",
-                                                      1, 2, 2,
-                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+  properties[PROP_V4LAPI_VERSION] = g_param_spec_uint ("v4l-api-version",
+                                                       "Video4Linux API version",
+                                                       "Version of the Video4Linux API that the device supports",
+                                                       1, 2, 2,
+                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+
+  g_object_class_install_properties (object_class, PROP_LAST, properties);
 
   g_type_class_add_private (klass, sizeof (CheeseCameraDevicePrivate));
 }

@@ -36,8 +36,11 @@ enum
   PROP_O,
   PROP_NAME,
   PROP_PIPELINE_DESC,
-  PROP_CONTROL_VALVE
+  PROP_CONTROL_VALVE,
+  PROP_LAST
 };
+
+static GParamSpec *properties[PROP_LAST];
 
 G_DEFINE_TYPE (CheeseEffect, cheese_effect, G_TYPE_OBJECT)
 
@@ -115,24 +118,22 @@ cheese_effect_class_init (CheeseEffectClass *klass)
    *
    * Name of the effect, for display in a UI.
    */
-  g_object_class_install_property (object_class, PROP_NAME,
-                                   g_param_spec_string ("name",
-                                                        "Name",
-                                                        "Name of the effect",
-                                                        "",
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+  properties[PROP_NAME] = g_param_spec_string ("name",
+                                               "Name",
+                                               "Name of the effect",
+                                               "",
+                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   /**
    * CheeseEffect:pipeline-desc:
    *
    * Description of the GStreamer pipeline associated with the effect.
    */
-  g_object_class_install_property (object_class, PROP_PIPELINE_DESC,
-                                   g_param_spec_string ("pipeline_desc",
+  properties[PROP_PIPELINE_DESC] = g_param_spec_string ("pipeline-desc",
                                                         "Pipeline description",
                                                         "Description of the GStreamer pipeline associated with the effect",
                                                         "",
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
+                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
 
   /**
    * CheeseEffect:control-valve:
@@ -140,12 +141,13 @@ cheese_effect_class_init (CheeseEffectClass *klass)
    * If the control valve is active, then the effect is currently connected to
    * a video stream, for previews.
    */
-  g_object_class_install_property (object_class, PROP_CONTROL_VALVE,
-                                   g_param_spec_object ("control_valve",
+  properties[PROP_CONTROL_VALVE] = g_param_spec_object ("control-valve",
                                                         "Control valve",
                                                         "If the control valve is active, the effect is connected to a video stream",
                                                         GST_TYPE_ELEMENT,
-                                                        G_PARAM_READWRITE));
+                                                        G_PARAM_READWRITE);
+
+  g_object_class_install_properties (object_class, PROP_LAST, properties);
 }
 
 /**

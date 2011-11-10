@@ -716,7 +716,7 @@ cheese_camera_play (CheeseCamera *camera)
     gst_caps_unref (caps);
     g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
     priv->current_format = cheese_camera_device_get_best_format (device);
-    g_object_notify (G_OBJECT (camera), "format");
+    g_object_notify_by_pspec (G_OBJECT (camera), properties[PROP_FORMAT]);
     caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
   }
 
@@ -806,7 +806,7 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   GstPad     *pad;
 
   g_object_get (G_OBJECT (effect),
-                "pipeline_desc", &effect_desc,
+                "pipeline-desc", &effect_desc,
                 "name", &name, NULL);
 
   effects_pipeline_desc = g_strconcat ("ffmpegcolorspace name=colorspace1 ! ",
@@ -906,7 +906,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   g_object_set (G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
 
   control_valve = gst_element_factory_make ("valve", NULL);
-  g_object_set (G_OBJECT (effect), "control_valve", control_valve, NULL);
+  g_object_set (G_OBJECT (effect), "control-valve", control_valve, NULL);
 
   display_queue = gst_element_factory_make ("queue", NULL);
 
@@ -1278,35 +1278,32 @@ cheese_camera_class_init (CheeseCameraClass *klass)
    *
    * The video texture for the #CheeseCamera to render into.
    */
-  g_object_class_install_property (object_class, PROP_VIDEO_TEXTURE,
-                                   g_param_spec_pointer ("video-texture",
+  properties[PROP_VIDEO_TEXTURE] = g_param_spec_pointer ("video-texture",
                                                          "Video texture",
                                                          "The video texture for the CheeseCamera to render into",
-                                                         G_PARAM_READWRITE));
+                                                         G_PARAM_READWRITE);
 
   /**
    * CheeseCamera:device-node:
    *
    * The path to the device node for the video capture device.
    */
-  g_object_class_install_property (object_class, PROP_DEVICE_NODE,
-                                   g_param_spec_string ("device-node",
-                                                        "Device node",
-                                                        "The path to the device node for the video capture device",
-                                                        "",
-                                                        G_PARAM_READWRITE));
+  properties[PROP_DEVICE_NODE] = g_param_spec_string ("device-node",
+                                                      "Device node",
+                                                      "The path to the device node for the video capture device",
+                                                      "",
+                                                      G_PARAM_READWRITE);
 
   /**
    * CheeseCamera:format:
    *
    * The format of the video capture device.
    */
-  g_object_class_install_property (object_class, PROP_FORMAT,
-                                   g_param_spec_boxed ("format",
-                                                       "Video format",
-                                                       "The format of the video capture device",
-                                                       CHEESE_TYPE_VIDEO_FORMAT,
-                                                       G_PARAM_READWRITE));
+  properties[PROP_FORMAT] = g_param_spec_boxed ("format",
+                                                "Video format",
+                                                "The format of the video capture device",
+                                                CHEESE_TYPE_VIDEO_FORMAT,
+                                                G_PARAM_READWRITE);
 
   /**
    * CheeseCamera:num-camera-devices:
@@ -1322,7 +1319,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                            0,
                                                            G_PARAM_READABLE);
 
-  g_object_class_install_property (object_class, PROP_NUM_CAMERA_DEVICES, properties[PROP_NUM_CAMERA_DEVICES]);
+  g_object_class_install_properties (object_class, PROP_LAST, properties);
 
   g_type_class_add_private (klass, sizeof (CheeseCameraPrivate));
 }

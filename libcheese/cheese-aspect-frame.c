@@ -31,10 +31,12 @@ G_DEFINE_TYPE (CheeseAspectFrame, cheese_aspect_frame, MX_TYPE_BIN)
 enum
 {
   PROP_0,
-
   PROP_EXPAND,
-  PROP_RATIO
+  PROP_RATIO,
+  PROP_LAST
 };
+
+static GParamSpec *properties[PROP_LAST];
 
 struct _CheeseAspectFramePrivate
 {
@@ -304,8 +306,6 @@ cheese_aspect_frame_pick (ClutterActor       *actor,
 static void
 cheese_aspect_frame_class_init (CheeseAspectFrameClass *klass)
 {
-  GParamSpec *pspec;
-
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   ClutterActorClass *actor_class = CLUTTER_ACTOR_CLASS (klass);
 
@@ -322,21 +322,21 @@ cheese_aspect_frame_class_init (CheeseAspectFrameClass *klass)
   actor_class->paint = cheese_aspect_frame_paint;
   actor_class->pick = cheese_aspect_frame_pick;
 
-  pspec = g_param_spec_boolean ("expand",
-                                "Expand",
-                                "Fill the allocated area with the child and "
-                                "clip off the excess.",
-                                FALSE,
-                                G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-  g_object_class_install_property (object_class, PROP_EXPAND, pspec);
+  properties[PROP_EXPAND] = g_param_spec_boolean ("expand",
+                                                  "Expand",
+                                                  "Fill the allocated area with the child and "
+                                                  "clip off the excess.",
+                                                  FALSE,
+                                                  G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-  pspec = g_param_spec_float ("ratio",
-                              "Ratio",
-                              "Override the child's aspect ratio "
-                              "(width/height).",
-                              -1.f, G_MAXFLOAT, -1.f,
-                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
-  g_object_class_install_property (object_class, PROP_RATIO, pspec);
+  properties[PROP_RATIO] = g_param_spec_float ("ratio",
+                                              "Ratio",
+                                              "Override the child's aspect ratio "
+                                              "(width/height).",
+                                              -1.f, G_MAXFLOAT, -1.f,
+                                              G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+
+  g_object_class_install_properties (object_class, PROP_LAST, properties);
 }
 
 static void
@@ -364,7 +364,7 @@ cheese_aspect_frame_set_expand (CheeseAspectFrame *frame, gboolean expand)
     {
       priv->expand = expand;
       clutter_actor_queue_relayout (CLUTTER_ACTOR (frame));
-      g_object_notify (G_OBJECT (frame), "expand");
+      g_object_notify_by_pspec (G_OBJECT (frame), properties[PROP_EXPAND]);
     }
 }
 
@@ -387,7 +387,7 @@ cheese_aspect_frame_set_ratio (CheeseAspectFrame *frame, gfloat ratio)
     {
       priv->ratio = ratio;
       clutter_actor_queue_relayout (CLUTTER_ACTOR (frame));
-      g_object_notify (G_OBJECT (frame), "ratio");
+      g_object_notify_by_pspec (G_OBJECT (frame), properties[PROP_RATIO]);
     }
 }
 

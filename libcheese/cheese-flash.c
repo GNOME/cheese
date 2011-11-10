@@ -45,8 +45,11 @@
 enum
 {
   PROP_0,
-  PROP_PARENT
+  PROP_PARENT,
+  PROP_LAST
 };
+
+static GParamSpec *properties[PROP_LAST];
 
 /* How long to hold the flash for, in milliseconds. */
 static const guint FLASH_DURATION = 250;
@@ -312,12 +315,13 @@ cheese_flash_class_init (CheeseFlashClass *klass)
    * Parent #GtkWidget for the #CheeseFlash. The flash will be fired on the
    * screen where the parent widget is shown.
    */
-  g_object_class_install_property (object_class, PROP_PARENT,
-                                   g_param_spec_object ("parent",
-                                                        "Parent widget",
-                                                        "The flash will be fired on the screen where the parent widget is shown",
-                                                        GTK_TYPE_WIDGET,
-                                                        G_PARAM_WRITABLE));
+  properties[PROP_PARENT] = g_param_spec_object ("parent",
+                                                 "Parent widget",
+                                                 "The flash will be fired on the screen where the parent widget is shown",
+                                                 GTK_TYPE_WIDGET,
+                                                 G_PARAM_WRITABLE);
+
+  g_object_class_install_properties (object_class, PROP_LAST, properties);
 }
 
 /*

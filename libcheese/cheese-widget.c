@@ -49,8 +49,11 @@ enum
 enum
 {
   PROP_0,
-  PROP_STATE
+  PROP_STATE,
+  PROP_LAST
 };
+
+static GParamSpec *properties[PROP_LAST];
 
 typedef struct
 {
@@ -348,7 +351,7 @@ setup_camera (CheeseWidget *widget)
   if (priv->error != NULL)
   {
     priv->state = CHEESE_WIDGET_STATE_ERROR;
-    g_object_notify (G_OBJECT (widget), "state");
+    g_object_notify_by_pspec (G_OBJECT (widget), properties[PROP_STATE]);
     cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
   }
   else
@@ -358,7 +361,7 @@ setup_camera (CheeseWidget *widget)
     cheese_camera_set_balance_property (priv->webcam, "saturation", saturation);
     cheese_camera_set_balance_property (priv->webcam, "hue", hue);
     priv->state = CHEESE_WIDGET_STATE_READY;
-    g_object_notify (G_OBJECT (widget), "state");
+    g_object_notify_by_pspec (G_OBJECT (widget), properties[PROP_STATE]);
     cheese_camera_play (priv->webcam);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
   }
@@ -407,13 +410,14 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
    * Useful to update other widgets sensitivities when the camera is ready or
    * to handle errors if camera setup fails.
    */
-  g_object_class_install_property (object_class, PROP_STATE,
-                                   g_param_spec_enum ("state",
-                                                      "State",
-                                                      "The current state of the widget",
-                                                      CHEESE_TYPE_WIDGET_STATE,
-                                                      CHEESE_WIDGET_STATE_NONE,
-                                                      G_PARAM_READABLE));
+  properties[PROP_STATE] = g_param_spec_enum ("state",
+                                              "State",
+                                              "The current state of the widget",
+                                              CHEESE_TYPE_WIDGET_STATE,
+                                              CHEESE_WIDGET_STATE_NONE,
+                                              G_PARAM_READABLE);
+
+  g_object_class_install_properties (object_class, PROP_LAST, properties);
 
   g_type_class_add_private (klass, sizeof (CheeseWidgetPrivate));
 }

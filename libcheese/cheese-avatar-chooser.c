@@ -46,7 +46,8 @@ enum
 enum
 {
   PROP_0,
-  PROP_PIXBUF
+  PROP_PIXBUF,
+  PROP_LAST
 };
 
 enum
@@ -65,6 +66,8 @@ struct _CheeseAvatarChooserPrivate
   CheeseFlash *flash;
   gulong photo_taken_id;
 };
+
+static GParamSpec *properties[PROP_LAST];
 
 #define CHEESE_AVATAR_CHOOSER_GET_PRIVATE(o)                     \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_AVATAR_CHOOSER, \
@@ -102,7 +105,7 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
 
   gdk_threads_leave ();
 
-  g_object_notify (G_OBJECT (chooser), "pixbuf");
+  g_object_notify_by_pspec (G_OBJECT (chooser), properties[PROP_PIXBUF]);
 }
 
 /*
@@ -160,7 +163,8 @@ take_again_button_clicked_cb (GtkButton           *button,
                                      FALSE);
 
   um_crop_area_set_picture (UM_CROP_AREA (priv->image), NULL);
-  g_object_notify (G_OBJECT (chooser), "pixbuf");
+
+  g_object_notify_by_pspec (G_OBJECT (chooser), properties[PROP_PIXBUF]);
 }
 
 /* state_change_cb:
@@ -351,12 +355,13 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
    *
    * A #GdkPixbuf object representing the cropped area of the picture, or %NULL.
    */
-  g_object_class_install_property (object_class, PROP_PIXBUF,
-                                   g_param_spec_object ("pixbuf",
-                                                        "Pixbuf",
-                                                        "A #GdkPixbuf object representing the cropped area of the picture, or %NULL.",
-                                                        GDK_TYPE_PIXBUF,
-                                                        G_PARAM_READABLE));
+  properties[PROP_PIXBUF] = g_param_spec_object ("pixbuf",
+                                                 "Pixbuf",
+                                                 "A #GdkPixbuf object representing the cropped area of the picture, or %NULL.",
+                                                 GDK_TYPE_PIXBUF,
+                                                 G_PARAM_READABLE);
+
+  g_object_class_install_properties (object_class, PROP_LAST, properties);
 
   g_type_class_add_private (klass, sizeof (CheeseAvatarChooserPrivate));
 }
