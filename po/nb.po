@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-24 09:33+0200\n"
-"PO-Revision-Date: 2011-10-24 09:35+0200\n"
+"POT-Creation-Date: 2011-11-12 12:04+0100\n"
+"PO-Revision-Date: 2011-11-12 12:07+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -16,48 +16,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:62
-msgid "Cheese"
-msgstr "Cheese"
-
-#: ../data/cheese-about.ui.h:2
+#: ../data/cheese-about.ui.h:1
 msgid "Cheese Website"
 msgstr "Nettsted for Cheese"
 
-#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+#: ../data/cheese-about.ui.h:2 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ta bilder og ta opp video fra ditt webkamera med morsomme effekter"
 
-#: ../data/cheese-about.ui.h:4
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
-msgstr ""
-"Dette programmet er fri programvare. Du kan redistribuere og/eller endre "
-"programmet under betingelsene gitt i GNU General Public License som utgitt "
-"av Free Software Foundation; enten versjon 2 av lisensen, eller (hvis du "
-"ønsker det) enhver senere versjon.\n"
-"\n"
-"Programmet distribueres i håp om at programmet er nyttig, men uten NOEN "
-"GARANTI, ikke engang implisitt garanti om at det er SALGBART eller PASSER ET "
-"BESTEMT FORMÅL. Se GNU General Public License for detaljer.\n"
-"\n"
-"Du skal ha mottatt en kopi av GNU General Public License sammen med dette "
-"programmet. Hvis dette ikke er tilfelle kan du se på http://www.gnu.org/"
-"licenses/\n"
-
-#: ../data/cheese-about.ui.h:10
+#: ../data/cheese-about.ui.h:3
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
@@ -90,7 +57,7 @@ msgid "Take _Multiple Photos"
 msgstr "Ta _flere bilder"
 
 #: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:213
+#: ../libcheese/cheese-avatar-chooser.c:268
 msgid "Take a photo"
 msgstr "Ta et bilde"
 
@@ -242,24 +209,28 @@ msgstr "Kamera"
 msgid "_Countdown"
 msgstr "Ne_dtelling"
 
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:65
+msgid "Cheese"
+msgstr "Cheese"
+
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese webkamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:1
-msgid "Adjusts brightness level of the picture coming from the camera"
+msgid "Adjusts the brightness of the picture coming from the camera"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:2
-msgid "Adjusts contrast level of the picture coming from the camera"
+msgid "Adjusts the contrast of the picture coming from the camera"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:3
-msgid "Adjusts hue level of the picture coming from the camera"
+msgid "Adjusts the hue (color tint) of the picture coming from the camera"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:4
-msgid "Adjusts saturation level of the picture coming from the camera"
+msgid "Adjusts the saturation of the picture coming from the camera"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:5
@@ -267,185 +238,189 @@ msgid "Camera device string indicator"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+msgid "Countdown length"
+msgstr "Lengde på nedtelling"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
 msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
 msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
 msgid "Fire flash before taking a picture"
 msgstr ""
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
-msgid "If set to true, Cheese will start up in a fullscreen mode."
-msgstr ""
-
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:10
-msgid ""
-"If set to true, Cheese will start up in a wide mode with the image "
-"collection placed on the right-hand side. Useful with small screens."
+msgid "If set to true, Cheese will start up in fullscreen mode."
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:11
-msgid "Name of installed effect that was selected last"
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:12
-msgid "Name of last selected effect"
-msgstr ""
+msgid "Last selected effect"
+msgstr "Sist valgte effekt"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+msgid "Name of the installed effect that was selected last"
+msgstr ""
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
 #, fuzzy
 msgid "Number of photos in burst mode"
 msgstr "Antall bilder"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
 msgid "Photo Path"
 msgstr "Sti til bilde"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
-#, fuzzy
-msgid "Photo height resolution"
-msgstr "Oppløsning for bilde"
-
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:16
-#, fuzzy
-msgid "Photo width resolution"
-msgstr "Oppløsning for bilde"
+msgid "Photo height"
+msgstr "Høyde på bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:17
-#, fuzzy
-msgid "Picture brightness"
-msgstr "Lysstyrke"
+msgid "Photo width"
+msgstr "Bredde på bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+msgid "Picture brightness"
+msgstr "Lysstyrke for bilde"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
 msgid "Picture contrast"
 msgstr "Kontrast for bilde"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
 msgid "Picture hue"
 msgstr "Glød for bilde"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
 msgid "Picture saturation"
 msgstr "Metning for bilde"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
-msgid "Set to True to fire a flash before taking a picture"
-msgstr ""
-
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:22
-msgid "Set to True to show countdown when taking a photo"
+msgid "Set to true to fire a flash when taking a picture"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:23
-msgid "The device which points to the camera (e.g. /dev/video0)"
+msgid "Set to true to show a countdown before taking a photo"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:24
-msgid "The height resolution of the image captured from the camera"
+msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:25
-msgid "The height resolution of the video captured from the camera"
+msgid "The height of the image captured from the camera, in pixels"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:26
-msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a "
-"burst sequence of photos."
+msgid "The height of the video captured from the camera, in pixels"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:27
-msgid "The number of photos to take in a single burst."
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:28
-msgid "The width resolution of the image captured from the camera"
+msgid "The number of photos to take in a single burst."
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:29
-msgid "The width resolution of the video captured from the camera"
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
 msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+msgid "The width of the image captured from the camera, in pixels"
+msgstr ""
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+msgid "The width of the video captured from the camera, in pixels"
+msgstr ""
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
 #, fuzzy
 msgid "Time between photos in burst mode"
 msgstr "Pause mellom bilder (sekunder)"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
 msgid "Use a countdown"
 msgstr "Bruk nedtelling"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
 msgid "Video Path"
 msgstr "Sti til video"
 
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
-#, fuzzy
-msgid "Video height resolution"
-msgstr "Oppløsning for video"
-
-#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
-#, fuzzy
-msgid "Video width resolution"
-msgstr "Oppløsning for video"
-
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:35
-#, fuzzy
-msgid "Whether to start in fullscreen"
-msgstr "Start i fullskjermmodus"
+msgid "Video height"
+msgstr "Høyde på video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:36
-#, fuzzy
-msgid "Whether to start in wide mode"
-msgstr "Start i bred modus"
+msgid "Video width"
+msgstr "Bredde på video"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:669
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:37
+msgid "Whether to start in fullscreen"
+msgstr "Om programmet skal starte i fullskjermmodus"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:38
+msgid "Whether to start in wide mode"
+msgstr "Om programmet skal starte i bred modus"
+
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:799
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
-#: ../libcheese/cheese-avatar-chooser.c:231
+#: ../libcheese/cheese-avatar-chooser.c:286
 msgid "_Take a photo"
 msgstr "_Ta et bilde"
 
-#: ../libcheese/cheese-avatar-chooser.c:244
+#: ../libcheese/cheese-avatar-chooser.c:299
 msgid "_Discard photo"
 msgstr "_Forkast bilde"
 
-#: ../libcheese/cheese-camera-device.c:329
+#: ../libcheese/cheese-camera-device.c:387
 msgid "Device capabilities not supported"
 msgstr "Enhetens funksjoner er ikke støttet"
 
-#: ../libcheese/cheese-camera-device.c:358
+#: ../libcheese/cheese-camera-device.c:416
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Klarte ikke å initiere enhet %s for å spørre etter støttede funksjoner"
 
-#: ../libcheese/cheese-camera-device.c:516
+#: ../libcheese/cheese-camera-device.c:597
 msgid "Unknown device"
 msgstr "Ukjent enhet"
 
-#: ../libcheese/cheese-camera-device.c:540
+#: ../libcheese/cheese-camera-device.c:620
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytbar initiering er ikke støttet"
 
-#: ../libcheese/cheese-camera.c:1189
+#: ../libcheese/cheese-camera.c:1443
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet funnet"
 
-#: ../libcheese/cheese-camera.c:1239
+#: ../libcheese/cheese-camera.c:1493
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
 
-#: ../src/cheese-effects-manager.vala:48
+#: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
 msgstr "Ingen effekt"
 
@@ -469,30 +444,30 @@ msgstr "Vis versjonsinformasjon og avslutt"
 msgid "Start in fullscreen mode"
 msgstr "Start i fullskjermmodus"
 
-#: ../src/cheese-main.vala:114
+#: ../src/cheese-main.vala:124
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta bilder og video fra ditt webkamera"
 
-#: ../src/cheese-main.vala:126
+#: ../src/cheese-main.vala:136
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Kjør «%s --help» for å se en full liste med tilgjengelige "
 "kommandolinjeflagg.\n"
 
-#: ../src/cheese-main.vala:141
+#: ../src/cheese-main.vala:151
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "En annen instans av Cheese kjører allerede\n"
 
-#: ../src/cheese-window.vala:760
+#: ../src/cheese-window.vala:910
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:784
+#: ../src/cheese-window.vala:939
 msgid "Stop _Taking Pictures"
 msgstr "Stopp fo_tografering"
 
-#: ../src/cheese-window.vala:925
+#: ../src/cheese-window.vala:1123
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
