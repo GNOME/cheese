@@ -89,7 +89,7 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
                               GdkPixbuf           *pixbuf,
                               CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
+  CheeseAvatarChooserPrivate *priv = chooser->priv;
   GtkAllocation               allocation;
 
   gdk_threads_enter ();
@@ -120,7 +120,7 @@ static void
 take_button_clicked_cb (GtkButton           *button,
                         CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
+  CheeseAvatarChooserPrivate *priv = chooser->priv;
   GObject                    *camera;
 
   camera = cheese_widget_get_camera (CHEESE_WIDGET (priv->camera));
@@ -155,7 +155,7 @@ static void
 take_again_button_clicked_cb (GtkButton           *button,
                               CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
+  CheeseAvatarChooserPrivate *priv = chooser->priv;
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), WIDGET_PAGE);
   gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
@@ -179,7 +179,7 @@ state_change_cb (GObject             *object,
                  GParamSpec          *param_spec,
                  CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
+  CheeseAvatarChooserPrivate *priv = chooser->priv;
   CheeseWidgetState           state;
 
   g_object_get (object, "state", &state, NULL);
@@ -312,7 +312,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 static void
 cheese_avatar_chooser_finalize (GObject *object)
 {
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER (object)->priv;
+  CheeseAvatarChooserPrivate *priv = ((CheeseAvatarChooser *) object)->priv;
 
   if (priv->flash != NULL)
   {
@@ -327,9 +327,7 @@ static void
 cheese_avatar_chooser_get_property (GObject *object, guint prop_id,
                                     GValue *value, GParamSpec *pspec)
 {
-  CheeseAvatarChooserPrivate *priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (object);
-
-  g_return_if_fail (CHEESE_IS_AVATAR_CHOOSER (object));
+  CheeseAvatarChooserPrivate *priv = ((CheeseAvatarChooser *) object)->priv;
 
   switch (prop_id)
   {
@@ -391,11 +389,7 @@ cheese_avatar_chooser_new (void)
 GdkPixbuf *
 cheese_avatar_chooser_get_picture (CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooserPrivate *priv;
-
   g_return_val_if_fail (CHEESE_IS_AVATAR_CHOOSER (chooser), NULL);
 
-  priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
-
-  return um_crop_area_get_picture (UM_CROP_AREA (priv->image));
+  return um_crop_area_get_picture (UM_CROP_AREA (chooser->priv->image));
 }

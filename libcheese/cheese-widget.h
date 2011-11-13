@@ -37,6 +37,7 @@ G_BEGIN_DECLS
 #define CHEESE_WIDGET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_WIDGET, \
                                                                   CheeseWidgetClass))
 
+typedef struct _CheeseWidgetPrivate CheeseWidgetPrivate;
 typedef struct _CheeseWidgetClass CheeseWidgetClass;
 typedef struct _CheeseWidget CheeseWidget;
 
@@ -60,6 +61,7 @@ struct _CheeseWidget
 {
   /*< private >*/
   GtkNotebook parent_instance;
+  CheeseWidgetPrivate *priv;
 };
 
 GType cheese_widget_get_type (void) G_GNUC_CONST;
