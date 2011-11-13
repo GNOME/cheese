@@ -39,11 +39,23 @@ typedef struct _UmCropAreaClass UmCropAreaClass;
 typedef struct _UmCropArea UmCropArea;
 typedef struct _UmCropAreaPrivate UmCropAreaPrivate;
 
+/*
+ * UmCropAreaClass:
+ *
+ * Use the accessor functions below.
+ */
 struct _UmCropAreaClass {
+	/*< private >*/
         GtkDrawingAreaClass parent_class;
 };
 
+/*
+ * UmCropArea:
+ *
+ * Use the accessor functions below.
+ */
 struct _UmCropArea {
+	/*< private >*/
         GtkDrawingArea parent_instance;
         UmCropAreaPrivate *priv;
 };

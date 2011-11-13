@@ -29,6 +29,15 @@
 
 #include "um-crop-area.h"
 
+/*
+ * SECTION:um-crop-area
+ * @short_description: A cropping widget for #CheeseAvatarChooser
+ * @stability: Unstable
+ *
+ * #UmCropArea provides a simple cropping tool, used in #CheeseAvatarChooser to
+ * crop an avatar from an image taken from a webcam.
+ */
+
 struct _UmCropAreaPrivate {
         GdkPixbuf *browse_pixbuf;
         GdkPixbuf *pixbuf;
@@ -47,13 +56,33 @@ struct _UmCropAreaPrivate {
 
 G_DEFINE_TYPE (UmCropArea, um_crop_area, GTK_TYPE_DRAWING_AREA);
 
+/*
+ * shift_color_byte:
+ * @b: the color, as a single byte
+ * @shift: the amount by which to shift the color
+ *
+ * Shift the supplied color @b by the amount @shift.
+ *
+ * Returns: the shifted color
+ */
 static inline guchar
 shift_color_byte (guchar b,
-                  int    shift)
+                  gint   shift)
 {
         return CLAMP(b + shift, 0, 255);
 }
 
+/*
+ * shift_colors:
+ * @pixbuf: a #GdkPixbuf
+ * @red: amount to shift the red channel
+ * @green: amount to shift the green channel
+ * @blue: amount to shift the blue channel
+ * @alpha: amount to shift the alpha channel
+ *
+ * Shift the color channels in the supplied @pixbuf by the amounts specified by
+ * @red, @green, @blue and @alpha.
+ */
 static void
 shift_colors (GdkPixbuf *pixbuf,
               gint       red,
@@ -87,6 +116,13 @@ shift_colors (GdkPixbuf *pixbuf,
         }
 }
 
+/*
+ * update_pixbufs:
+ * @area: a #UmCropArea
+ *
+ * Update the #GdkPixbuf objects inside @area, by darkening the regions outside
+ * the current crop area.
+ */
 static void
 update_pixbufs (UmCropArea *area)
 {
@@ -160,6 +196,13 @@ update_pixbufs (UmCropArea *area)
         }
 }
 
+/*
+ * crop_widget:
+ * @area: a #UmCropArea
+ * @crop: (out caller-allocates): a return location for a #GdkRectangle
+ *
+ * Update the supplied @crop rectangle to the current crop area.
+ */
 static void
 crop_to_widget (UmCropArea    *area,
                 GdkRectangle  *crop)
@@ -170,6 +213,21 @@ crop_to_widget (UmCropArea    *area,
         crop->height = area->priv->crop.height * area->priv->scale;
 }
 
+/*
+ * Location:
+ * @OUTSIDE: outside the area
+ * @INSIDE: inside the area and not on a border
+ * @TOP: on the top border
+ * @TOP_LEFT: on the top-left corner
+ * @TOP_RIGHT: on the top-right corner
+ * @BOTTOM: on the bottom border
+ * @BOTTOM_LEFT: on the bottom-left corner
+ * @BOTTOM_RIGHT: on the bottom-right corner
+ * @LEFT: on the left border
+ * @RIGHT: on the right border
+ *
+ * The location of a point, relative to a rectangular area.
+ */
 typedef enum {
         OUTSIDE,
         INSIDE,
@@ -183,6 +241,15 @@ typedef enum {
         RIGHT
 } Location;
 
+/*
+ * um_crop_area_draw:
+ * @widget: a #UmCropArea
+ * @cr: the #cairo_t to draw to
+ *
+ * Handle the #GtkWidget::draw signal and draw the @widget.
+ *
+ * Returns: %FALSE
+ */
 static gboolean
 um_crop_area_draw (GtkWidget *widget,
                    cairo_t   *cr)
@@ -255,6 +322,19 @@ um_crop_area_draw (GtkWidget *widget,
         return FALSE;
 }
 
+/*
+ * Range:
+ * @BELOW: less than the minimum
+ * @LOWER: less than or equal to the minimum
+ * @BETWEEN: between the minimum and the maximum
+ * @UPPER: greater than or equal to the maximum
+ * @ABOVE: greater than the maximum
+ *
+ * Indicates where a number lies with respect to a minimum and maximum value.
+ * The apparent overlap is avoided by means of a threshold value.
+ *
+ * @see_also: find_range()
+ */
 typedef enum {
         BELOW,
         LOWER,
@@ -263,6 +343,19 @@ typedef enum {
         ABOVE
 } Range;
 
+/*
+ * find_range:
+ * @x: number to test
+ * @min: minimum to test against
+ * @max: maximum to test against
+ *
+ * Determine where @x lies in relation to @min and @max. A threshold is also
+ * used internally, giving fives possible states.
+ *
+ * Returns: the #Range
+ *
+ * @see_also: #Range
+ */
 static Range
 find_range (gint x,
             gint min,
@@ -281,6 +374,17 @@ find_range (gint x,
         return ABOVE;
 }
 
+/*
+ * find_location:
+ * @rect: a #GdkRectangle
+ * @x: x coordinate
+ * @y: y coordinate
+ *
+ * Find the #Location of the specified @x and @y coordinates, relative to the
+ * crop area given by @rect.
+ *
+ * Returns: the #Location
+ */
 static Location
 find_location (GdkRectangle *rect,
                gint          x,
@@ -301,6 +405,15 @@ find_location (GdkRectangle *rect,
         return location[y_range][x_range];
 }
 
+/*
+ * update_cursor:
+ * @area: a #UmCropArea
+ * @x: x coordinate
+ * @y: y coordinate
+ *
+ * Update the type of the cursor, depending on which point of the crop
+ * rectangle the pointer is over.
+ */
 static void
 update_cursor (UmCropArea *area,
                gint           x,
@@ -359,7 +472,22 @@ update_cursor (UmCropArea *area,
         }
 }
 
-static int
+/*
+ * eval_radial_line:
+ * @center_x: starting x coordinate
+ * @center_y: starting y coordinate
+ * @bounds_x: final x coordinate
+ * @bounds_y: final y coordinate
+ * @user_x: starting x coordinate for the returned y coordinate
+ *
+ * Calculate the value of y of the line from @center_x, @center_y to @bounds_x,
+ * @bounds_y, given the x value @user_x.
+ *
+ * Returns: the value of y
+ *
+ * @see_also: um_crop_area_motion_notify_event()
+ */
+static gint
 eval_radial_line (gdouble center_x, gdouble center_y,
                   gdouble bounds_x, gdouble bounds_y,
                   gdouble user_x)
@@ -370,9 +498,21 @@ eval_radial_line (gdouble center_x, gdouble center_y,
         decision_slope = (bounds_y - center_y) / (bounds_x - center_x);
         decision_intercept = -(decision_slope * bounds_x);
 
-        return (int) (decision_slope * user_x + decision_intercept);
+        return (gint) (decision_slope * user_x + decision_intercept);
 }
 
+/*
+ * um_crop_area_motion_notify_event:
+ * @widget: a #UmCropArea
+ * @event: the #GdkEventMotion
+ *
+ * Update the cropped region, and redraw it, based on the current cursor
+ * position.
+ *
+ * Returns: %FALSE
+ *
+ * @see_also: eval_radial_line()
+ */
 static gboolean
 um_crop_area_motion_notify_event (GtkWidget      *widget,
                                   GdkEventMotion *event)
@@ -634,6 +774,16 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
         return FALSE;
 }
 
+/*
+ * um_crop_area_button_press_event:
+ * @widget: a #UmCropArea
+ * @event: a #GdkEventButton
+ *
+ * Handle the mouse button being pressed on the widget, by initiating a crop
+ * region selection and redrawing the cropped area.
+ *
+ * Returns: %FALSE
+ */
 static gboolean
 um_crop_area_button_press_event (GtkWidget      *widget,
                                  GdkEventButton *event)
@@ -657,6 +807,16 @@ um_crop_area_button_press_event (GtkWidget      *widget,
         return FALSE;
 }
 
+/*
+ * um_crop_area_button_release_event:
+ * @widget: a #UmCropArea
+ * @event: a #GdkEventButton
+ *
+ * Handle the mouse button being released on the widget, by redrawing the
+ * cropped region.
+ *
+ * Returns: %FALSE
+ */
 static gboolean
 um_crop_area_button_release_event (GtkWidget      *widget,
                                    GdkEventButton *event)
@@ -735,12 +895,28 @@ um_crop_area_init (UmCropArea *area)
         area->priv->aspect = 1;
 }
 
+/*
+ * um_crop_area_new:
+ *
+ * Creates a new #UmCropArea widget.
+ *
+ * Returns: a #UmCropArea
+ */
 GtkWidget *
 um_crop_area_new (void)
 {
         return g_object_new (UM_TYPE_CROP_AREA, NULL);
 }
 
+/*
+ * um_crop_area_get_picture:
+ * @area: a #UmCropArea
+ *
+ * Returns the cropped image, or the whole image if no crop region has been
+ * set, as a #GdkPixbuf.
+ *
+ * Returns: a #GdkPixbuf
+ */
 GdkPixbuf *
 um_crop_area_get_picture (UmCropArea *area)
 {
@@ -757,12 +933,20 @@ um_crop_area_get_picture (UmCropArea *area)
                                          width, height);
 }
 
+/*
+ * um_crop_area_set_picture:
+ * @area: a #UmCropArea
+ * @pixbuf: (allow-none): the #GdkPixbuf to set, or %NULL to clear the current
+ * picture
+ *
+ * Set the image to be used inside the @area to @pixbuf.
+ */
 void
 um_crop_area_set_picture (UmCropArea *area,
                           GdkPixbuf  *pixbuf)
 {
-        int width;
-        int height;
+        gint width;
+        gint height;
 
         if (area->priv->browse_pixbuf) {
                 g_object_unref (area->priv->browse_pixbuf);
@@ -791,6 +975,14 @@ um_crop_area_set_picture (UmCropArea *area,
         gtk_widget_queue_draw (GTK_WIDGET (area));
 }
 
+/*
+ * um_crop_area_set_min_size:
+ * @area: a #UmCropArea
+ * @width: a minimum width, in pixels
+ * @height: a minimum height, in pixels
+ *
+ * Sets the minimum size that the cropped image will be allowed to have.
+ */
 void
 um_crop_area_set_min_size (UmCropArea *area,
                            gint        width,
@@ -804,6 +996,14 @@ um_crop_area_set_min_size (UmCropArea *area,
         }
 }
 
+/*
+ * um_crop_area_set_constrain_aspect:
+ * @area: a #UmCropArea
+ * @constrain: whether to constrain the aspect ratio of the cropped image
+ *
+ * Controls whether the aspect ratio of the cropped area of the image should be
+ * constrained.
+ */
 void
 um_crop_area_set_constrain_aspect (UmCropArea *area,
                                    gboolean    constrain)
