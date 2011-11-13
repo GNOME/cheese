@@ -871,20 +871,18 @@ public class Cheese.MainWindow : Gtk.Window
       if ((current_countdown != null && current_countdown.running) || is_bursting || is_recording)
       {
         action_cancelled = true;
-        if (current_mode == MediaMode.PHOTO)
+        switch (current_mode)
         {
-          current_countdown.stop ();
-          finish_countdown_callback ();
-        }
-        else
-        if (current_mode == MediaMode.BURST)
-        {
-          toggle_photo_bursting (false);
-        }
-        else
-        if (current_mode == MediaMode.VIDEO)
-        {
-          toggle_video_recording (false);
+          case MediaMode.PHOTO:
+           current_countdown.stop ();
+           finish_countdown_callback ();
+           break;
+          case MediaMode.BURST:
+            toggle_photo_bursting (false);
+            break;
+          case MediaMode.VIDEO:
+            toggle_video_recording (false);
+            break;
         }
         action_cancelled = false;
       }
