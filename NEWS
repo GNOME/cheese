@@ -1,6 +1,27 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.2.2
+  - Pre-release version bump to 3.2.2
+  - Bump required Vala version to 0.13.2
+    Required for Clutter.TableLayout in clutter-1.0.vapi, which was added
+    when Vala switched to use GIR files.
+  - Connect thumbnail nav button signals
+    The thumb nav widget crashed when clicking the buttons to scroll the
+    thumbnail view. This was caused by connecting to the wrong signals:
+    ‘button-pressed-event’ and ‘button-released-event’, rather than
+    ‘pressed’ and ‘released’. There was also some duplicate code for
+    creating the left button, which led to a GtkButton being leaked when
+    the thumb nav was created. Fixes bug 660686.
+  - Use an idle handler to generate thumbnails
+    A thread was used for generating thumbnails for CheeseThumbView, but
+    this had problems with concurrent access to the GtkListStore which
+    backs the thumb view, as in bug 648936. A simpler approach is to use an
+    idle handler, which avoids the need for acquiring the GDK lock.
+  - Added/Updated Documentation
+    - fr, courtesy of Bruno Brouard
+    - hu, courtesy of Gabor Kelemen
+
 version 3.2.1
   - configure.ac: Bump cheese version to 3.2.1
   - Do not crash if gnome-video-effects is not present
