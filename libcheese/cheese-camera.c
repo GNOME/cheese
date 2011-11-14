@@ -948,8 +948,8 @@ cheese_camera_start_video_recording (CheeseCamera *camera, const gchar *filename
   g_object_set (priv->camerabin, "mode", MODE_VIDEO, NULL);
   gst_element_set_state (priv->camerabin, GST_STATE_READY);
   g_object_set (priv->camerabin, "filename", filename, NULL);
-  g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
   gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
+  g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
   priv->is_recording = TRUE;
 }
 
