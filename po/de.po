@@ -5,79 +5,43 @@
 # Andre Klapper <ak-47@gmx.net>, 2007.
 # Wolfgang Stöggl <c72578@yahoo.de>, 2008 - 2011.
 # Hendrik Richter <hendrikr@gnome.org>, 2008, 2009.
-# Mario Blättermann <mariobl@gnome.org>, 2009-2011.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2009-2011.
 # Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2010, 2011.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-17 11:21+0100\n"
-"PO-Revision-Date: 2011-03-17 11:22+0100\n"
-"Last-Translator: Mario Blättermann <mariobl@gnome.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2011-11-01 20:38+0000\n"
+"PO-Revision-Date: 2011-11-18 14:57+0100\n"
+"Last-Translator: Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
-"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: German\n"
 
-#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:57
-msgid "Cheese"
-msgstr "Cheese"
-
-#: ../data/cheese-about.ui.h:2
+#: ../data/cheese-about.ui.h:1
 msgid "Cheese Website"
 msgstr "Cheese-Website"
 
-#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+#: ../data/cheese-about.ui.h:2 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Ein Programm, um Bilder und Videos mit einer Webcam aufzunehmen und lustige "
 "graphische Effekte hinzuzufügen"
 
-#: ../data/cheese-about.ui.h:4
-msgid ""
-"This program is free software; you can redistribute it and/or modify it under "
-"the terms of the GNU General Public License as published by the Free Software "
-"Foundation; either version 2 of the License, or (at your option) any later "
-"version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS "
-"FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more "
-"details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
-msgstr ""
-"Dieses Programm ist freie Software, Sie können sie weitergeben und/oder "
-"verändern solange Sie sich an die Regeln der GNU General Public License "
-"halten, so wie sie von der Free Software Foundation festgelegt wurden; "
-"entweder in Version 2 der Lizenz oder (nach Ihrem Ermessen) in jeder "
-"folgenden Lizenz.\n"
-"\n"
-"Dieses Programm wurde mit dem Ziel veröffentlicht, dass Sie es nützlich "
-"finden,\n"
-" jedoch OHNE JEDWEDE GARANTIE, sogar ohne eine implizite Garantie\n"
-" der VERKAUFBARKEIT oder der NUTZBARKEIT FÜR EINEN SPEZIELLEN ZWECK. Schauen "
-"Sie für weitere Informationen bitte in der GNU General Public License (GNU "
-"GPL) nach.\n"
-"\n"
-"Mit diesem Programm sollten Sie außerdem eine Kopie der GNU General Public "
-"License erhalten haben. Wenn dem nicht so ist, sehen Sie bitte auf http://www."
-"gnu.org/licenses/ nach.\n"
-
-#: ../data/cheese-about.ui.h:10
+#: ../data/cheese-about.ui.h:3
 msgid "translator-credits"
 msgstr ""
 "Daniel G. Siegel <dgsiegel@gmail.com>\n"
 "Andre Klapper <ak-47@gmx.net>\n"
 "Wolfgang Stöggl <c72578@yahoo.de>\n"
 "Nathan-J. Hirschauer <nathanhirschauer@verfriemelt.org>\n"
-"Mario Blättermann <mariobl@gnome.org>\n"
+"Mario Blättermann <mario.blaettermann@gmail.com>\n"
 "Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>"
 
 #: ../data/cheese-actions.ui.h:1
@@ -109,7 +73,7 @@ msgid "Take _Multiple Photos"
 msgstr "_Mehrere Fotos aufnehmen"
 
 #: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:210
+#: ../libcheese/cheese-avatar-chooser.c:222
 msgid "Take a photo"
 msgstr "Foto aufnehmen"
 
@@ -263,50 +227,230 @@ msgstr "Kamera"
 msgid "_Countdown"
 msgstr "_Countdown"
 
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:62
+msgid "Cheese"
+msgstr "Cheese"
+
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese Webcam-Automat"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:1
+msgid "Adjusts the brightness of the picture coming from the camera"
+msgstr "Passt die Helligkeit des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:2
+msgid "Adjusts the contrast of the picture coming from the camera"
+msgstr "Passt den Kontrast des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:3
+msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgstr "Passt den Farbton des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:4
+msgid "Adjusts the saturation of the picture coming from the camera"
+msgstr "Passt die Sättigung des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:5
+msgid "Camera device string indicator"
+msgstr "Zeichenkette zur Bezeichnung des Kameragerätes"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+msgid "Countdown length"
+msgstr "Countdown-Länge"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Legt den Pfad fest, wo die Fotos gespeichert werden. Falls leer, wird "
+"»XDG_PHOTO/Webcam« stattdessen verwendet."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Legt den Pfad fest, wo die Videos gespeichert werden. Falls leer, wird "
+"»XDG_VIDEO/Webcam« stattdessen verwendet."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
+msgid "Fire flash before taking a picture"
+msgstr "Blitz vor der Aufnahme"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:10
+msgid "If set to true, Cheese will start up in fullscreen mode."
+msgstr "Falls auf »wahr« gesetzt, startet Cheese im Vollbildmodus."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:11
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Falls auf »wahr« gesetzt, startet Cheese im breiten Modus mit der "
+"Bildersammlung auf der rechten Seite. Dies ist bei kleinen Bildschirmen "
+"sinnvoll."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:12
+msgid "Last selected effect"
+msgstr "Zuletzt ausgewählter Effekt"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+msgid "Name of the installed effect that was selected last"
+msgstr "Name des installierten Effekts, der zuletzt ausgewählt wurde"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+msgid "Number of photos in burst mode"
+msgstr "Anzahl der Fotos im Serienaufnahmemodus"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
+msgid "Photo Path"
+msgstr "Foto-Pfad"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:16
+msgid "Photo height"
+msgstr "Foto-Höhe"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:17
+msgid "Photo width"
+msgstr "Foto-Breite"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+msgid "Picture brightness"
+msgstr "Bildhelligkeit"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+msgid "Picture contrast"
+msgstr "Bildkontrast"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+msgid "Picture hue"
+msgstr "Bildfarbton"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
+msgid "Picture saturation"
+msgstr "Bildsättigung"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:22
+msgid "Set to true to fire a flash when taking a picture"
+msgstr ""
+"Auf »wahr« setzen, um bei der Aufnahme eines Bildes einen Blitz auszulösen"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:23
+msgid "Set to true to show a countdown before taking a photo"
+msgstr "Auf »wahr« setzen, um vor der Aufnahme eines Bildes rückwärts zu zählen"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:24
+msgid "The duration of the countdown before taking a photo, in seconds"
+msgstr "Die Dauer des Countdowns vor der Aufnahme eines Fotos in Sekunden"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:25
+msgid "The height of the image captured from the camera, in pixels"
+msgstr "Die Höhe des von der Kamera aufgenommenen Bildes in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:26
+msgid "The height of the video captured from the camera, in pixels"
+msgstr "Die Höhe des von der Kamera aufgenommenen Videos in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:27
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr ""
+"Die Verzögerung in Millisekunden zwischen den Aufnahmen der Fotos im "
+"Serienaufnahmemodus. Falls das Verzögerungsintervall kleiner ist als die "
+"Dauer des Countdowns, wird stattdessen die Dauer des Countdowns verwendet."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:28
+msgid "The number of photos to take in a single burst."
+msgstr "Die Anzahl der Fotos in jedem Ablauf einer Serienaufnahme."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:29
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr ""
+"Der Pfad zum Geräteknoten, der auf die Kamera verweist, zum Beispiel /dev/"
+"video0"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+msgid "The width of the image captured from the camera, in pixels"
+msgstr "Die Breite des von der Kamera aufgenommenen Bildes in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+msgid "The width of the video captured from the camera, in pixels"
+msgstr "Die Breite des von der Kamera aufgenommenen Videos in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+msgid "Time between photos in burst mode"
+msgstr "Verzögerung zwischen den Fotos im Serienaufnahmemodus"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
+msgid "Use a countdown"
+msgstr "Countdown verwenden"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
+msgid "Video Path"
+msgstr "Video-Pfad"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:35
+msgid "Video height"
+msgstr "Video-Höhe"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:36
+msgid "Video width"
+msgstr "Video-Breite"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:37
+msgid "Whether to start in fullscreen"
+msgstr "Im Vollbildmodus starten"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:38
+msgid "Whether to start in wide mode"
+msgstr "Im breiten Modus starten"
+
+#: ../libcheese/cheese-avatar-chooser.c:118 ../src/cheese-window.vala:669
 msgid "Shutter sound"
 msgstr "Verschlussgeräusch"
 
-#: ../libcheese/cheese-avatar-chooser.c:228
+#: ../libcheese/cheese-avatar-chooser.c:240
 msgid "_Take a photo"
 msgstr "Foto _aufnehmen"
 
-#: ../libcheese/cheese-avatar-chooser.c:241
+#: ../libcheese/cheese-avatar-chooser.c:253
 msgid "_Discard photo"
 msgstr "Foto _verwerfen"
 
-#: ../libcheese/cheese-camera-device.c:329
+#: ../libcheese/cheese-camera-device.c:334
 msgid "Device capabilities not supported"
 msgstr "Funktionen des Geräts werden nicht unterstützt"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:363
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr ""
 "Gerät %s konnte zur Feststellung dessen Fähigkeiten nicht initialisiert werden"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:546
 msgid "Unknown device"
 msgstr "Unbekanntes Gerät"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:569
 msgid "Cancellable initialization not supported"
 msgstr "Abbrechbare Initialisierung wird nicht unterstützt"
 
-#: ../libcheese/cheese-camera.c:1182
+#: ../libcheese/cheese-camera.c:1356
 #, c-format
 msgid "No device found"
 msgstr "Kein Gerät gefunden"
 
-#: ../libcheese/cheese-camera.c:1232
+#: ../libcheese/cheese-camera.c:1406
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ein oder mehrere GStreamer-Elemente fehlen: "
 
-#: ../src/cheese-effects-manager.vala:118
+#: ../src/cheese-effects-manager.vala:48
 msgid "No Effect"
 msgstr "Kein Effekt"
 
@@ -330,44 +474,29 @@ msgstr "Versionsinformationen anzeigen und beenden"
 msgid "Start in fullscreen mode"
 msgstr "Im Vollbildmodus starten"
 
-#: ../src/cheese-main.vala:108
+#: ../src/cheese-main.vala:114
 msgid "- Take photos and videos from your webcam"
 msgstr "Ein Programm, um Bilder und Videos mit einer Webcam aufzunehmen"
 
-#: ../src/cheese-main.vala:119
+#: ../src/cheese-main.vala:126
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Bitte geben Sie »%s --help« ein, um alle verfügbaren Optionen anzusehen.\n"
 
-#: ../src/cheese-main.vala:134
+#: ../src/cheese-main.vala:141
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Eine weitere Instanz von Cheese läuft bereits\n"
 
-#: ../src/cheese-window.vala:763
+#: ../src/cheese-window.vala:760
 msgid "Stop _Recording"
 msgstr "Aufnahme _stoppen"
 
-#: ../src/cheese-window.vala:787
+#: ../src/cheese-window.vala:784
 msgid "Stop _Taking Pictures"
 msgstr "Fo_toaufnahmen stoppen"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:927
 msgid "No effects found"
 msgstr "Kein Effekt gefunden"
-
-#~ msgid "Fullscreen"
-#~ msgstr "Vollbildmodus"
-
-#~ msgid "_Delete"
-#~ msgstr "_Löschen"
-
-#~ msgid "_Open"
-#~ msgstr "Ö_ffnen"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Einstellungen"
-
-#~ msgid "_Quit"
-#~ msgstr "_Beenden"
