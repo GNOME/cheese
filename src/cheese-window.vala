@@ -43,13 +43,13 @@ public class Cheese.MainWindow : Gtk.Window
 
   private Gtk.Widget       thumbnails;
   private GtkClutter.Embed viewport_widget;
-  private Gtk.VBox         main_vbox;
+  private Gtk.Box          main_vbox;
   private Eog.ThumbNav     thumb_nav;
   private Cheese.ThumbView thumb_view;
   private Gtk.Alignment    thumbnails_right;
   private Gtk.Alignment    thumbnails_bottom;
   private Gtk.MenuBar      menubar;
-  private Gtk.HBox         leave_fullscreen_button_container;
+  private Gtk.Box          leave_fullscreen_button_container;
   private Gtk.ToggleButton photo_toggle_button;
   private Gtk.ToggleButton video_toggle_button;
   private Gtk.ToggleButton burst_toggle_button;
@@ -58,7 +58,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.Image        take_action_button_image;
   private Gtk.ToggleButton effects_toggle_button;
   private Gtk.Button       leave_fullscreen_button;
-  private Gtk.HBox         buttons_area;
+  private Gtk.Box          buttons_area;
   private Gtk.Menu         thumbnail_popup;
 
   private Clutter.Stage     viewport;
@@ -1351,14 +1351,14 @@ public class Cheese.MainWindow : Gtk.Window
       error ("Error: %s", err.message);
     }
 
-    main_vbox                         = gtk_builder.get_object ("mainbox_normal") as Gtk.VBox;
+    main_vbox                         = gtk_builder.get_object ("mainbox_normal") as Gtk.Box;
     thumbnails                        = gtk_builder.get_object ("thumbnails") as Gtk.Widget;
     viewport_widget                   = gtk_builder.get_object ("viewport") as GtkClutter.Embed;
     viewport                          = viewport_widget.get_stage () as Clutter.Stage;
     thumbnails_right                  = gtk_builder.get_object ("thumbnails_right") as Gtk.Alignment;
     thumbnails_bottom                 = gtk_builder.get_object ("thumbnails_bottom") as Gtk.Alignment;
     menubar                           = gtk_builder.get_object ("main_menubar") as Gtk.MenuBar;
-    leave_fullscreen_button_container = gtk_builder.get_object ("leave_fullscreen_button_bin") as Gtk.HBox;
+    leave_fullscreen_button_container = gtk_builder.get_object ("leave_fullscreen_button_bin") as Gtk.Box;
     photo_toggle_button               = gtk_builder.get_object ("photo_toggle_button") as Gtk.ToggleButton;
     video_toggle_button               = gtk_builder.get_object ("video_toggle_button") as Gtk.ToggleButton;
     burst_toggle_button               = gtk_builder.get_object ("burst_toggle_button") as Gtk.ToggleButton;
@@ -1367,7 +1367,7 @@ public class Cheese.MainWindow : Gtk.Window
     take_action_button_image          = gtk_builder.get_object ("take_action_button_internal_image") as Gtk.Image;
     effects_toggle_button             = gtk_builder.get_object ("effects_toggle_button") as Gtk.ToggleButton;
     leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
-    buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.HBox;
+    buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.Box;
     thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
     take_photo_action        = gtk_builder.get_object ("take_photo") as Gtk.Action;

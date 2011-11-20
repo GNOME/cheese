@@ -2,7 +2,7 @@ using Gtk;
 namespace Eog
 {
   [CCode (cheader_filename = "thumbview/eog-thumb-nav.h")]
-  public class ThumbNav : Gtk.HBox
+  public class ThumbNav : Gtk.Box
   {
     public ThumbNav (Gtk.Widget thumbview, bool show_buttons);
     public bool get_show_buttons ();

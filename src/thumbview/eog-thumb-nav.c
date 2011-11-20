@@ -35,7 +35,7 @@
 #define EOG_THUMB_NAV_GET_PRIVATE(object) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((object), EOG_TYPE_THUMB_NAV, EogThumbNavPrivate))
 
-G_DEFINE_TYPE (EogThumbNav, eog_thumb_nav, GTK_TYPE_HBOX);
+G_DEFINE_TYPE (EogThumbNav, eog_thumb_nav, GTK_TYPE_BOX);
 
 #define EOG_THUMB_NAV_SCROLL_INC     20
 #define EOG_THUMB_NAV_SCROLL_MOVE    20
@@ -442,7 +442,7 @@ eog_thumb_nav_init (EogThumbNav *nav)
                     G_CALLBACK (eog_thumb_nav_stop_scroll),
                     nav);
 
-  priv->vbox = gtk_vbox_new (FALSE, 0);
+  priv->vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 
   priv->sw = gtk_scrolled_window_new (NULL, NULL);
 
