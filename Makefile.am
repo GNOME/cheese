@@ -2,16 +2,6 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
 
 SUBDIRS = po help
 
-marshal_data = \
-	libcheese/cheese-marshal.c \
-	libcheese/cheese-marshal.h
-
-libcheese/cheese-marshal.h: libcheese/cheese-marshal.list
-	$(AM_V_GEN)$(GLIB_GENMARSHAL) --header --prefix=cheese_marshal $< > $@
-
-libcheese/cheese-marshal.c: libcheese/cheese-marshal.list libcheese/cheese-marshal.h
-	$(AM_V_GEN)$(GLIB_GENMARSHAL) --header --body --prefix=cheese_marshal $< > $@
-
 enum_data = \
 	libcheese/cheese-enums.c \
 	libcheese/cheese-enums.h
@@ -135,7 +125,6 @@ libcheese_la_LDFLAGS = \
 
 libcheese_la_SOURCES = \
 	libcheese/cheese-enums.c \
-	libcheese/cheese-marshal.c \
 	libcheese/cheese-camera.c \
 	libcheese/cheese-camera-device.c \
 	libcheese/cheese-camera-device-monitor.c \
@@ -173,7 +162,6 @@ Cheese_3_0_gir_CFLAGS = \
 	$(CHEESE_CFLAGS)
 Cheese_3_0_gir_FILES = \
 	$(libcheese_la_SOURCES) \
-	libcheese/cheese-marshal.h \
 	libcheese/cheese-enums.h
 Cheese_3_0_gir_INCLUDES = \
 	GObject-2.0 \
@@ -425,7 +413,6 @@ dist_noinst_DATA = \
 	$(noinst_libcheese_headers) \
 	$(noinst_libcheese_gtk_headers) \
 	libcheese/cheese-gtk.symbols \
-	libcheese/cheese-marshal.list \
 	m4/introspection.m4 \
 	src/vapi/cheese-common.deps \
 	src/vapi/cheese-common.vapi \
@@ -440,7 +427,6 @@ CLEANFILES = \
 	$(desktop_DATA) \
 	$(gsettings_SCHEMAS) \
 	$(pkgconfig_DATA) \
-	$(marshal_data) \
 	$(enum_data) \
 	$(gir_DATA) \
 	$(typelib_DATA)

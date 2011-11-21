@@ -145,13 +145,6 @@ AS_IF([test "x$GST_INSPECT" = "xnotfound"],
         AC_MSG_WARN([$gst_runtime_plugin was not found. It needs to be installed before Cheese is run])])
    done])
 
-AC_MSG_CHECKING([for glib-genmarshal script])
-GLIB_GENMARSHAL=`$PKG_CONFIG --variable=glib_genmarshal glib-2.0`
-AS_IF([test "x$GLIB_GENMARSHAL" = "x"],
-  [AC_MSG_ERROR([glib-genmarshal not listed in glib-2.0 pkg-config file])],
-  [AC_SUBST([GLIB_GENMARSHAL])
-    AC_MSG_RESULT([$GLIB_GENMARSHAL])])
-
 AC_MSG_CHECKING([for glib-mkenums script])
 GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AS_IF([test "x$GLIB_MKENUMS" = "x"],

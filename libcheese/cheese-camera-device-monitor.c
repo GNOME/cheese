@@ -43,7 +43,6 @@
 #endif
 
 #include "cheese-camera-device-monitor.h"
-#include "cheese-marshal.h"
 
 /**
  * SECTION:cheese-camera-device-monitor
