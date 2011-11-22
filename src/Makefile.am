@@ -56,6 +56,7 @@ cheese_LDADD = \
 
 dist_noinst_DATA = \
 	vapi/cheese-common.deps \
+	vapi/cheese-common.vapi \
 	vapi/cheese-thumbview.vapi \
 	vapi/config.vapi \
 	vapi/eogthumbnav.vapi
