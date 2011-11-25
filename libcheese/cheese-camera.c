@@ -263,6 +263,10 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
             }
           }
         }
+      }
+      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin2") == 0)
+      {
+        structure = gst_message_get_structure (message);
         if (strcmp (gst_structure_get_name (structure), "image-done") == 0)
         {
           const gchar *filename = gst_structure_get_string (structure, "filename");
