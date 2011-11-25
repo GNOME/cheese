@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-05 14:32+0100\n"
-"PO-Revision-Date: 2011-11-05 14:49+0100\n"
+"POT-Creation-Date: 2011-11-25 10:03+0100\n"
+"PO-Revision-Date: 2011-11-25 10:04+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -64,7 +64,7 @@ msgstr "Ta _flera foton"
 
 #: ../data/cheese-actions.ui.h:8
 #: ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:222
+#: ../libcheese/cheese-avatar-chooser.c:268
 msgid "Take a photo"
 msgstr "Ta ett foto"
 
@@ -167,54 +167,58 @@ msgid "Burst mode"
 msgstr "Bildsekvensläge"
 
 #: ../data/cheese-prefs.ui.h:4
+msgid "Capture"
+msgstr "Fånga"
+
+#: ../data/cheese-prefs.ui.h:5
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Delay between photos (seconds)"
 msgstr "Fördröjning mellan foton (sekunder)"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
 msgid "Device"
 msgstr "Enhet"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:8
 msgid "Fire _Flash"
 msgstr "Avfyra bli_xt"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:9
 msgid "Hue"
 msgstr "Nyans"
 
-#: ../data/cheese-prefs.ui.h:9
-msgid "Image properties"
-msgstr "Bildegenskaper"
-
 #: ../data/cheese-prefs.ui.h:10
+msgid "Image"
+msgstr "Bild"
+
+#: ../data/cheese-prefs.ui.h:11
 msgid "Number of photos"
 msgstr "Antal foton"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:12
 msgid "Photo resolution"
 msgstr "Fotoupplösning"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:13
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: ../data/cheese-prefs.ui.h:13
+#: ../data/cheese-prefs.ui.h:14
 msgid "Saturation"
 msgstr "Mättnad"
 
-#: ../data/cheese-prefs.ui.h:14
+#: ../data/cheese-prefs.ui.h:15
 msgid "Video resolution"
 msgstr "Videoupplösning"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "Webcam"
 msgstr "Webbkamera"
 
-#: ../data/cheese-prefs.ui.h:16
+#: ../data/cheese-prefs.ui.h:17
 msgid "_Countdown"
 msgstr "Ne_dräkning"
 
@@ -379,46 +383,46 @@ msgstr "Huruvida starta i helskärmsläge"
 msgid "Whether to start in wide mode"
 msgstr "Huruvida starta i bredläge"
 
-#: ../libcheese/cheese-avatar-chooser.c:118
+#: ../libcheese/cheese-avatar-chooser.c:138
 #: ../src/cheese-window.vala:799
 msgid "Shutter sound"
 msgstr "Slutarljud"
 
-#: ../libcheese/cheese-avatar-chooser.c:240
+#: ../libcheese/cheese-avatar-chooser.c:286
 msgid "_Take a photo"
 msgstr "_Ta ett foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:253
+#: ../libcheese/cheese-avatar-chooser.c:299
 msgid "_Discard photo"
 msgstr "_Förkasta foto"
 
-#: ../libcheese/cheese-camera-device.c:334
+#: ../libcheese/cheese-camera-device.c:387
 msgid "Device capabilities not supported"
 msgstr "Enhetsförmågorna stöds inte"
 
-#: ../libcheese/cheese-camera-device.c:363
+#: ../libcheese/cheese-camera-device.c:416
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Misslyckades med att initiera enheten %s för funktionsavsökning"
 
-#: ../libcheese/cheese-camera-device.c:546
+#: ../libcheese/cheese-camera-device.c:597
 msgid "Unknown device"
 msgstr "Okänd enhet"
 
-#: ../libcheese/cheese-camera-device.c:569
+#: ../libcheese/cheese-camera-device.c:620
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytningsbar initiering stöds inte"
 
-#: ../libcheese/cheese-camera.c:1381
+#: ../libcheese/cheese-camera.c:1443
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet hittades"
 
-#: ../libcheese/cheese-camera.c:1431
+#: ../libcheese/cheese-camera.c:1493
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 
-#: ../src/cheese-effects-manager.vala:51
+#: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
 msgstr "Ingen effekt"
 
@@ -456,17 +460,20 @@ msgstr "Kör \"%s --help\" för en komplett lista över tillgängliga kommandora
 msgid "Another instance of Cheese is currently running\n"
 msgstr "En annan instans av Cheese är för närvarande igång\n"
 
-#: ../src/cheese-window.vala:910
+#: ../src/cheese-window.vala:908
 msgid "Stop _Recording"
 msgstr "S_toppa inspelning"
 
-#: ../src/cheese-window.vala:939
+#: ../src/cheese-window.vala:937
 msgid "Stop _Taking Pictures"
 msgstr "Sluta _ta bilder"
 
-#: ../src/cheese-window.vala:1123
+#: ../src/cheese-window.vala:1121
 msgid "No effects found"
 msgstr "Inga effekter hittades"
+
+#~ msgid "Image properties"
+#~ msgstr "Bildegenskaper"
 
 #~ msgid ""
 #~ "This program is free software; you can redistribute it and/or modify it "
