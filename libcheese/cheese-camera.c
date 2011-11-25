@@ -446,7 +446,6 @@ cheese_camera_set_error_element_not_found (GError **error, const gchar *factoryn
 static void
 cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
 {
-  CheeseCameraPrivate *priv = camera->priv;
   GstElement          *video_enc;
   GstElement          *mux;
 
@@ -1473,7 +1472,6 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   CheeseCameraPrivate *priv;
   GError  *tmp_error = NULL;
   GstElement *video_sink;
-  GstCaps *caps;
 
   g_return_if_fail (error == NULL || *error == NULL);
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
