@@ -43,7 +43,7 @@ public class Cheese.MainWindow : Gtk.Window
 
   private Gtk.Widget       thumbnails;
   private GtkClutter.Embed viewport_widget;
-  private Gtk.Box          main_vbox;
+  private Gtk.Grid          main_vbox;
   private Eog.ThumbNav     thumb_nav;
   private Cheese.ThumbView thumb_view;
   private Gtk.Alignment    thumbnails_right;
@@ -1351,7 +1351,7 @@ public class Cheese.MainWindow : Gtk.Window
       error ("Error: %s", err.message);
     }
 
-    main_vbox                         = gtk_builder.get_object ("mainbox_normal") as Gtk.Box;
+    main_vbox                         = gtk_builder.get_object ("mainbox_normal") as Gtk.Grid;
     thumbnails                        = gtk_builder.get_object ("thumbnails") as Gtk.Widget;
     viewport_widget                   = gtk_builder.get_object ("viewport") as GtkClutter.Embed;
     viewport                          = viewport_widget.get_stage () as Clutter.Stage;

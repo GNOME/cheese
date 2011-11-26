@@ -217,37 +217,32 @@ create_page (GtkWidget *child,
              GtkWidget *button,
              GtkWidget *extra)
 {
-  GtkWidget *vbox, *hbox, *align;
+  GtkWidget *vgrid, *hgrid, *align;
 
-  vbox = gtk_vbox_new (FALSE, 8);
-  gtk_box_pack_start (GTK_BOX (vbox),
-                      child,
-                      TRUE,
-                      TRUE,
-                      0);
+  vgrid = gtk_grid_new ();
+  gtk_grid_attach (GTK_GRID (vgrid),
+                   child, 0, 0, 1, 1);
+  gtk_widget_set_hexpand (child, TRUE);
+  gtk_widget_set_vexpand (child, TRUE);
   align = gtk_alignment_new (0.5, 0, 0, 0);
-  gtk_box_pack_start (GTK_BOX (vbox),
-                      align,
-                      FALSE,
-                      TRUE,
-                      0);
-  hbox = gtk_hbox_new (FALSE, 8);
-  gtk_container_add(GTK_CONTAINER(align), hbox);
-  gtk_box_pack_start (GTK_BOX (hbox),
-                      button,
-                      FALSE,
-                      TRUE,
-                      0);
+  gtk_widget_set_valign (align, GTK_ALIGN_END);
+  gtk_grid_attach (GTK_GRID (vgrid),
+                   align, 0, 1, 1, 1);
+  hgrid = gtk_grid_new ();
+  gtk_grid_set_column_spacing (GTK_GRID (hgrid), 8);
+  gtk_container_add(GTK_CONTAINER(align), hgrid);
+  gtk_grid_attach (GTK_GRID (hgrid),
+                   button, 0, 0, 1, 1);
+  gtk_widget_set_halign (button, GTK_ALIGN_START);
   if (extra != NULL)
   {
-    gtk_box_pack_start (GTK_BOX (hbox),
-                        extra,
-                        TRUE,
-                        TRUE,
-                        0);
+    gtk_grid_attach (GTK_GRID (hgrid),
+                     extra, 1, 0, 1, 1);
+    gtk_widget_set_hexpand (extra, TRUE);
+    gtk_widget_set_vexpand (extra, TRUE);
   }
 
-  return vbox;
+  return vgrid;
 }
 
 static void
