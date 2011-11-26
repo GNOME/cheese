@@ -276,6 +276,11 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
             g_signal_emit (camera, camera_signals[PHOTO_SAVED], 0);
           }
         }
+        else if (strcmp (gst_structure_get_name (structure), "video-done") == 0)
+        {
+          g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
+          priv->is_recording = FALSE;
+        }
       }
       break;
     }
@@ -1063,8 +1068,6 @@ cheese_camera_stop_video_recording (CheeseCamera *camera)
   if (state == GST_STATE_PLAYING)
   {
     g_signal_emit_by_name (priv->camerabin, "stop-capture", 0);
-    g_signal_emit (camera, camera_signals[VIDEO_SAVED], 0);
-    priv->is_recording = FALSE;
   }
   else
   {
