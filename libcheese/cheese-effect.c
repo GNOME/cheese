@@ -278,7 +278,8 @@ cheese_effect_load_effects_from_directory (const gchar* directory)
   GList   *list = NULL;
 
   is_dir = g_file_test (directory, G_FILE_TEST_EXISTS | G_FILE_TEST_IS_DIR);
-  g_return_val_if_fail (is_dir, NULL);
+  if (!is_dir)
+    return NULL;
 
   dir = g_dir_open (directory, (guint) 0, &err);
   if (err != NULL)
