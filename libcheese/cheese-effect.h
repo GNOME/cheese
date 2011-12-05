@@ -72,6 +72,8 @@ GType cheese_effect_get_type (void) G_GNUC_CONST;
 
 CheeseEffect *cheese_effect_new (const gchar *name,
                                  const gchar *pipeline_desc);
+const gchar * cheese_effect_get_name (CheeseEffect *effect);
+const gchar * cheese_effect_get_pipeline_desc (CheeseEffect *effect);
 gboolean      cheese_effect_is_preview_connected (CheeseEffect *effect);
 void          cheese_effect_enable_preview (CheeseEffect *effect);
 void          cheese_effect_disable_preview (CheeseEffect *effect);

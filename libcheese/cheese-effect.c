@@ -150,6 +150,35 @@ cheese_effect_class_init (CheeseEffectClass *klass)
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 }
 
+
+/**
+ * cheese_effect_get_name:
+ * @effect: a #CheeseEffect
+ *
+ * Get the human-readable name of the @effect.
+ *
+ * Returns: (transfer none): the human-readable name of the effect.
+ */
+const gchar *
+cheese_effect_get_name (CheeseEffect *effect)
+{
+  return effect->priv->name;
+}
+
+/**
+ * cheese_effect_get_pipeline_desc:
+ * @effect: a #CheeseEffect
+ *
+ * Get the Gstreamer pipeline description of the @effect.
+ *
+ * Returns: (transfer none): the Gstreamer pipeline description of the effect.
+ */
+const gchar *
+cheese_effect_get_pipeline_desc (CheeseEffect *effect)
+{
+  return effect->priv->pipeline_desc;
+}
+
 /**
  * cheese_effect_is_preview_connected:
  * @effect: a #CheeseEffect
