@@ -1,11 +1,8 @@
-include $(top_srcdir)/build-aux/gnome-doc-utils.make
-dist-hook: doc-dist-hook
+@YELP_HELP_RULES@
 
-DOC_ID = cheese
+HELP_ID = cheese
 
-DOC_INCLUDES = 
-
-DOC_FIGURES = \
+HELP_MEDIA = \
 	figures/cheese.png \
 	figures/cheese-delete.png \
 	figures/cheese-effects.png \
@@ -17,7 +14,7 @@ DOC_FIGURES = \
 	figures/image-properties.png \
 	figures/settings.png
 
-DOC_PAGES = \
+HELP_FILES = \
 	effects-apply.page \
 	index.page \
 	introduction.page \
@@ -33,4 +30,4 @@ DOC_PAGES = \
 	pref-photo-resolution.page \
 	video-record.page
 
-DOC_LINGUAS = ca cs de el en_GB es fi fr gl hu it ko lv nl oc pa pt_BR ru sl sv th zh_CN
+HELP_LINGUAS = ca cs de el en_GB es fi fr gl hu it ko lv nl oc pa pt_BR ru sl sv th zh_CN

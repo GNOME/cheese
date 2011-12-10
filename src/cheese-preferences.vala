@@ -311,7 +311,7 @@ public class Cheese.PreferencesDialog : GLib.Object
   {
     try
     {
-      Gtk.show_uri (this.dialog.get_screen (), "ghelp:cheese?index#preferences",
+      Gtk.show_uri (this.dialog.get_screen (), "help:cheese/index#preferences",
         Gdk.CURRENT_TIME);
     }
     catch

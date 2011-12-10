@@ -168,8 +168,8 @@ AS_IF([test "x$enable_man" != "xno"],
 
 AM_CONDITIONAL([ENABLE_MAN], [test "x$have_xsltproc" = "xyes"])
 
-# User manual
-GNOME_DOC_INIT([0.20])
+# Mallard help
+YELP_HELP_INIT
 
 GLIB_GSETTINGS
 #*******************************************************************************

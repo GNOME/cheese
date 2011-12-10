@@ -414,7 +414,7 @@ public class Cheese.MainWindow : Gtk.Window
     Gdk.Screen screen;
     screen = this.get_screen ();
     try {
-      Gtk.show_uri (screen, "ghelp:cheese", Gtk.get_current_event_time ());
+      Gtk.show_uri (screen, "help:cheese", Gtk.get_current_event_time ());
     } catch (Error err)
     {
       warning ("Error: %s\n", err.message);

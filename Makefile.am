@@ -443,7 +443,6 @@ MAINTAINERCLEANFILES = \
 	build-aux/config.guess \
 	build-aux/config.sub \
 	build-aux/depcomp \
-	build-aux/gnome-doc-utils.make \
 	build-aux/install-sh \
 	build-aux/ltmain.sh \
 	build-aux/missing \
