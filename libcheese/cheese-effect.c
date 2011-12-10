@@ -162,6 +162,8 @@ cheese_effect_class_init (CheeseEffectClass *klass)
 const gchar *
 cheese_effect_get_name (CheeseEffect *effect)
 {
+  g_return_val_if_fail (CHEESE_IS_EFFECT (effect), NULL);
+
   return effect->priv->name;
 }
 
@@ -176,6 +178,8 @@ cheese_effect_get_name (CheeseEffect *effect)
 const gchar *
 cheese_effect_get_pipeline_desc (CheeseEffect *effect)
 {
+  g_return_val_if_fail (CHEESE_IS_EFFECT (effect), NULL);
+
   return effect->priv->pipeline_desc;
 }
 
@@ -190,6 +194,8 @@ cheese_effect_get_pipeline_desc (CheeseEffect *effect)
 gboolean
 cheese_effect_is_preview_connected (CheeseEffect *effect)
 {
+  g_return_val_if_fail (CHEESE_IS_EFFECT (effect), FALSE);
+
   return effect->priv->control_valve != NULL;
 }
 
@@ -202,6 +208,8 @@ cheese_effect_is_preview_connected (CheeseEffect *effect)
 void
 cheese_effect_enable_preview (CheeseEffect *effect)
 {
+  g_return_if_fail (CHEESE_IS_EFFECT (effect));
+
   g_object_set (G_OBJECT (effect->priv->control_valve), "drop", FALSE, NULL);
 }
 
@@ -214,6 +222,8 @@ cheese_effect_enable_preview (CheeseEffect *effect)
 void
 cheese_effect_disable_preview (CheeseEffect *effect)
 {
+  g_return_if_fail (CHEESE_IS_EFFECT (effect));
+
   g_object_set (G_OBJECT (effect->priv->control_valve), "drop", TRUE, NULL);
 }
 
