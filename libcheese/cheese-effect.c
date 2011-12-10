@@ -289,7 +289,7 @@ err_keyfile_load:
     return NULL;
 }
 
-/**
+/*
  * cheese_effect_load_effects_from_directory:
  * @directory: the directory in which to search for effects
  *
@@ -341,7 +341,7 @@ cheese_effect_load_effects_from_directory (const gchar* directory)
   return g_list_reverse (list);
 }
 
-/**
+/*
  * cheese_effect_load_effects_from_subdirectory:
  * @directory: directory from under which to load effects
  *
