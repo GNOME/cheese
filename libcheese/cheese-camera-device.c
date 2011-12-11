@@ -648,7 +648,6 @@ cheese_camera_device_initable_init (GInitable    *initable,
  *
  * Returns: a new #CheeseCameraDevice, or %NULL
  */
-
 CheeseCameraDevice *
 cheese_camera_device_new (const gchar *uuid,
                           const gchar *device_node,
@@ -669,7 +668,7 @@ cheese_camera_device_new (const gchar *uuid,
  * cheese_camera_device_get_format_list:
  * @device: a #CheeseCameraDevice
  *
- * Get the list of #CheeseVideoFormat that the @device supports.
+ * Get the sorted list of #CheeseVideoFormat that the @device supports.
  *
  * Returns: (element-type Cheese.VideoFormat) (transfer container): list of
  * #CheeseVideoFormat
@@ -677,6 +676,8 @@ cheese_camera_device_new (const gchar *uuid,
 GList *
 cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 {
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
+
   return g_list_sort (g_list_copy (device->priv->formats), compare_formats);
 }
 
@@ -692,6 +693,8 @@ cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 const gchar *
 cheese_camera_device_get_name (CheeseCameraDevice *device)
 {
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
+
   return device->priv->name;
 }
 
@@ -706,6 +709,8 @@ cheese_camera_device_get_name (CheeseCameraDevice *device)
 const gchar *
 cheese_camera_device_get_uuid (CheeseCameraDevice *device)
 {
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
+
   return device->priv->uuid;
 }
 
@@ -722,6 +727,8 @@ cheese_camera_device_get_uuid (CheeseCameraDevice *device)
 const gchar *
 cheese_camera_device_get_src (CheeseCameraDevice *device)
 {
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
+
   return device->priv->src;
 }
 
@@ -737,8 +744,9 @@ cheese_camera_device_get_src (CheeseCameraDevice *device)
 const gchar *
 cheese_camera_device_get_device_node (CheeseCameraDevice *device)
 {
-  return device->priv->device_node;
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
+  return device->priv->device_node;
 }
 
 /**
@@ -754,6 +762,8 @@ cheese_camera_device_get_device_node (CheeseCameraDevice *device)
 CheeseVideoFormat *
 cheese_camera_device_get_best_format (CheeseCameraDevice *device)
 {
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
+
   CheeseVideoFormat *format = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
                                             cheese_camera_device_get_format_list (device)->data);
 
@@ -776,7 +786,9 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
 {
   GstCaps *desired_caps;
   GstCaps *subset_caps;
-  guint    i;
+  guint    i, length;
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
   GST_INFO ("Getting caps for %dx%d", format->width, format->height);
 
@@ -787,7 +799,8 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                       format->height,
                                       NULL);
 
-  for (i = 1; i < g_strv_length (supported_formats); i++)
+  length = g_strv_length (supported_formats);
+  for (i = 1; i < length; i++)
   {
     gst_caps_append (desired_caps,
                      gst_caps_new_simple (supported_formats[i],

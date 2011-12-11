@@ -285,7 +285,8 @@ cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
   GList *devices;
 
-  g_return_if_fail (monitor->priv->client != NULL);
+  g_return_if_fail (CHEESE_IS_CAMERA_DEVICE_MONITOR (monitor)
+    || monitor->priv->client != NULL);
 
   GST_INFO ("Probing devices with udev...");
 

@@ -387,11 +387,15 @@ cheese_flash_start_fade (gpointer data)
 void
 cheese_flash_fire (CheeseFlash *flash)
 {
-  CheeseFlashPrivate *flash_priv = flash->priv;
+  CheeseFlashPrivate *flash_priv;
   GtkWidget          *parent;
   GdkScreen          *screen;
   GdkRectangle        rect;
   int                 monitor;
+
+  g_return_if_fail (CHEESE_IS_FLASH (flash));
+
+  flash_priv = flash->priv;
 
   g_return_if_fail (flash_priv->parent != NULL);
 
