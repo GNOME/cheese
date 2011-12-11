@@ -368,6 +368,54 @@ dist_pixmaps_DATA = \
 	data/pixmaps/cheese-2.svg \
 	data/pixmaps/cheese-3.svg
 
+# Tests.
+check_PROGRAMS = tests/test-widgets
+tests_test_widgets_SOURCES = tests/test-widgets.c
+tests_test_widgets_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
+tests_test_widgets_LDADD = \
+	$(CHEESE_LIBS) \
+	$(CHEESE_GTK_LIBS) \
+	libcheese-gtk.la
+
+if CHEESE_ENABLE_TESTS
+# test: run all tests.
+test: $(check_PROGRAMS)
+	$(AM_V_at)test -z "$(check_PROGRAMS)" || MALLOC_CHECK_=2 MALLOC_PERTURB_=$$(($${RANDOM:-256} % 256)) $(GTESTER) --verbose $(check_PROGRAMS)
+
+# test-report: run tests and generate report.
+# perf-report: run tests with -m perf and generate report.
+# full-report: like test-report: with -m perf and -m slow.
+test-report perf-report full-report: $(check_PROGRAMS)
+	$(AM_V_at)test -z "$(check_PROGRAMS)" || { \
+	  case $@ in \
+	  test-report) test_options="-k";; \
+	  perf-report) test_options="-k -m=perf";; \
+	  full-report) test_options="-k -m=perf -m=slow";; \
+	  esac ; \
+	  $(GTESTER) --verbose $$test_options -o test-log.xml $(check_PROGRAMS) ; \
+	  if test -d "$(top_srcdir)/.git" ; then \
+	    REVISION=`git describe` ; \
+	  else \
+	    REVISION=$(PACKAGE_VERSION) ; \
+	  fi ; \
+	  echo '<?xml version="1.0"?>' > $@.xml ; \
+	  echo '<report-collection>' >> $@.xml ; \
+	  echo '<info>' >> $@.xml ; \
+	  echo '  <package>$(PACKAGE_NAME)</package>' >> $@.xml ; \
+	  echo '  <version>$(PACKAGE_VERSION)</version>' >> $@.xml ; \
+	  echo "  <revision>$$REVISION</revision>" >> $@.xml ; \
+	  echo '</info>' >> $@.xml ; \
+	  sed '1,1s/^<?xml\b[^>?]*?>//' < test-log.xml >> $@.xml ; \
+	  rm test-log.xml ; \
+	  echo >> $@.xml ; \
+	  echo '</report-collection>' >> $@.xml ; \
+	  $(GTESTER_REPORT) --version 2>/dev/null 1>&2 ; test "$$?" != 0 || $(GTESTER_REPORT) $@.xml >$@.html ; \
+	}
+else # !CHEESE_ENABLE_TESTS
+test:
+	echo "Test run disabled due to the lack of GLib testing utilities"
+endif
+
 # gtk-doc
 gtkdoc_builddir = $(top_builddir)/docs/reference
 gtkdoc_distdir = $(top_distdir)/docs/reference
@@ -375,7 +423,8 @@ gtkdoc_srcdir = $(top_srcdir)/docs/reference
 
 all-local: $(bin_PROGRAMS)
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) all
-check-local:
+# run make test as part of make check.
+check-local: test
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFlAGS) check
 clean-local:
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) clean
@@ -473,4 +522,4 @@ git-changelog-hook:
 		echo A git clone is required to generate a ChangeLog >&2; \
 	fi
 
-.PHONY: docs
+.PHONY: docs git-changelog-hook test test-report perf-report full-report

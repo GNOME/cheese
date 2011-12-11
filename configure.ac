@@ -145,13 +145,22 @@ AS_IF([test "x$GST_INSPECT" = "xnotfound"],
         AC_MSG_WARN([$gst_runtime_plugin was not found. It needs to be installed before Cheese is run])])
    done])
 
+# Check for GLib testing utilities.
+AC_PATH_PROG([GTESTER], [gtester], [notfound])
+AC_PATH_PROG([GTESTER_REPORT], [gtester-report], [notfound])
+AS_IF([test "x$GTESTER" = "xnotfound" -o "$GTESTER_REPORT" = "xnotfound"],
+  [AC_MSG_WARN([testing disabled as the required utilities were not found])],
+  [CHEESE_ENABLE_TESTS=true
+   AC_SUBST([GTESTER])
+   AC_SUBST([GTESTER_REPORT])])
+AM_CONDITIONAL([CHEESE_ENABLE_TESTS], [test "x$CHEESE_ENABLE_TESTS" = "xtrue"])
+
 AC_MSG_CHECKING([for glib-mkenums script])
 GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AS_IF([test "x$GLIB_MKENUMS" = "x"],
   [AC_MSG_ERROR([glib-mkenums not listed in glib-2.0 pkg-config file])],
   [AC_SUBST([GLIB_MKENUMS])
    AC_MSG_RESULT([$GLIB_MKENUMS])])
-
 
 GOBJECT_INTROSPECTION_CHECK([0.6.7])
 
