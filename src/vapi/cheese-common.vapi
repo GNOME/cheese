@@ -8,10 +8,10 @@ namespace Cheese
   {
     [CCode (has_construct_function = false)]
     public Effect (string name, string pipeline_desc);
-    [NoAccessorMethod]
-    public string name {owned get;}
-    [NoAccessorMethod]
-    public string pipeline_desc {owned get;}
+    public unowned string get_name ();
+    public unowned string get_pipeline_desc ();
+    public string name {get;}
+    public string pipeline_desc {get;}
     [NoAccessorMethod]
     public Gst.Element control_valve {get; set;}
 
