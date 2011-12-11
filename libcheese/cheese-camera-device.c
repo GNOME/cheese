@@ -234,6 +234,19 @@ cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *
 }
 
 /*
+ * free_format_list_foreach:
+ * @data: the #CheeseVideoFormat to free
+ * @user_data: unused
+ *
+ * Free the individual #CheeseVideoFormat.
+ */
+static void
+free_format_list_foreach (gpointer data, G_GNUC_UNUSED gpointer user_data)
+{
+  g_slice_free (CheeseVideoFormat, data);
+}
+
+/*
  * free_format_list:
  * @device: a #CheeseCameraDevice
  *
@@ -244,7 +257,7 @@ free_format_list (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv = device->priv;
 
-  g_list_free_full (priv->formats, g_free);
+  g_list_foreach (priv->formats, free_format_list_foreach, NULL);
   priv->formats = NULL;
 }
 
@@ -277,7 +290,7 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
 
     if (G_VALUE_HOLDS_INT (width))
     {
-      CheeseVideoFormat *format = g_new0 (CheeseVideoFormat, 1);
+      CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
 
       gst_structure_get_int (structure, "width", &(format->width));
       gst_structure_get_int (structure, "height", &(format->height));
@@ -300,7 +313,7 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
        * we use <= here (and not below) to make this work */
       while (cur_width <= max_width && cur_height <= max_height)
       {
-        CheeseVideoFormat *format = g_new0 (CheeseVideoFormat, 1);
+        CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
 
         format->width  = cur_width;
         format->height = cur_height;
@@ -315,7 +328,7 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
       cur_height = max_height;
       while (cur_width > min_width && cur_height > min_height)
       {
-        CheeseVideoFormat *format = g_new0 (CheeseVideoFormat, 1);
+        CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
 
         format->width  = cur_width;
         format->height = cur_height;
