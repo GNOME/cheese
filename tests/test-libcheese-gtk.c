@@ -25,7 +25,6 @@
 #include <clutter-gtk/clutter-gtk.h>
 #include "cheese-avatar-chooser.h"
 #include "cheese-widget.h"
-#include "cheese-fileutil.h"
 #include "um-crop-area.h"
 
 /* Test widget instantiation. */
@@ -48,42 +47,6 @@ static void test_widget ()
     select_button = gtk_test_find_widget (widget, "Select", GTK_TYPE_BUTTON);
     g_assert (select_button != NULL);
     g_assert (GTK_IS_BUTTON (select_button));
-}
-
-/* Test CheeseFileUtil */
-static void test_file_utils ()
-{
-    CheeseFileUtil *file_util;
-    gchar *first_path, *second_path, *third_path, *stub;
-    gchar *real_second, *real_third;
-    gchar **split;
-
-    file_util = cheese_fileutil_new ();
-    g_assert (file_util != NULL);
-
-    first_path = cheese_fileutil_get_new_media_filename (file_util,
-        CHEESE_MEDIA_MODE_BURST);
-    split = g_strsplit (first_path, "_1.jpg", -1);
-    stub = g_strdup (split[0]);
-
-    second_path = g_strdup_printf ("%s_2.jpg", stub);
-    third_path = g_strdup_printf ("%s_3.jpg", stub);
-
-    real_second = cheese_fileutil_get_new_media_filename (file_util,
-        CHEESE_MEDIA_MODE_BURST);
-    real_third = cheese_fileutil_get_new_media_filename (file_util,
-        CHEESE_MEDIA_MODE_BURST);
-
-    g_assert_cmpstr (real_second, ==, second_path);
-    g_assert_cmpstr (real_third, ==, third_path);
-
-    g_strfreev (split);
-    g_free (real_second);
-    g_free (real_third);
-    g_free (second_path);
-    g_free (third_path);
-    g_free (stub);
-    g_object_unref (file_util);
 }
 
 /* Test UmCropArea. */
@@ -117,9 +80,8 @@ int main (int argc, gchar *argv[])
     if (gtk_clutter_init (&argc, &argv) != CLUTTER_INIT_SUCCESS)
         return 1;
 
-    g_test_add_func ("/cheese/widgets", test_widget);
-    g_test_add_func ("/cheese/file_util", test_file_utils);
-    g_test_add_func ("/cheese/crop_area", test_crop_area);
+    g_test_add_func ("/libcheese-gtk/widgets", test_widget);
+    g_test_add_func ("/libcheese-gtk/crop_area", test_crop_area);
 
     return g_test_run ();
 }

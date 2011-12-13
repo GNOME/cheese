@@ -369,15 +369,25 @@ dist_pixmaps_DATA = \
 	data/pixmaps/cheese-3.svg
 
 # Tests.
-check_PROGRAMS = tests/test-widgets
-tests_test_widgets_SOURCES = \
+check_PROGRAMS = \
+	tests/test-libcheese \
+	tests/test-libcheese-gtk
+
+tests_test_libcheese_gtk_SOURCES = \
 	libcheese/um-crop-area.c \
-	tests/test-widgets.c
-tests_test_widgets_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
-tests_test_widgets_LDADD = \
+	tests/test-libcheese-gtk.c
+tests_test_libcheese_gtk_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
+tests_test_libcheese_gtk_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
 	libcheese-gtk.la \
+	libcheese.la
+
+tests_test_libcheese_SOURCES = \
+	tests/test-libcheese.c
+tests_test_libcheese_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
+tests_test_libcheese_LDADD = \
+	$(CHEESE_LIBS) \
 	libcheese.la
 
 if CHEESE_ENABLE_TESTS
