@@ -24,39 +24,53 @@
 #include <gst/gst.h>
 #include <clutter-gtk/clutter-gtk.h>
 #include "cheese-avatar-chooser.h"
+#include "cheese-flash.h"
 #include "cheese-widget.h"
 #include "um-crop-area.h"
 
-/* Test widget instantiation. */
-/* TODO: add widgets to a window and show them. */
-static void test_widget ()
+/* CheeseAvatarChooser */
+static void
+avatar_chooser (void)
 {
-    GtkWidget *widget, *select_button;
+    GtkWidget *chooser, *select_button;
 
-    widget = cheese_widget_new ();
-    g_assert (widget != NULL);
-    gtk_widget_destroy (widget);
-
-    widget = cheese_avatar_chooser_new ();
-    g_assert (widget != NULL);
-    g_assert (GTK_IS_WIDGET (widget));
+    chooser = gtk_test_create_widget (CHEESE_TYPE_AVATAR_CHOOSER, NULL);
+    g_assert (chooser != NULL);
 
     /* Check that all the child widgets were successfully instantiated. */
-    g_assert (gtk_test_find_widget (widget, "Take a photo", GTK_TYPE_BUTTON)
+    g_assert (gtk_test_find_widget (chooser, "Take a photo", GTK_TYPE_BUTTON)
         != NULL);
-    select_button = gtk_test_find_widget (widget, "Select", GTK_TYPE_BUTTON);
+    select_button = gtk_test_find_widget (chooser, "Select", GTK_TYPE_BUTTON);
     g_assert (select_button != NULL);
     g_assert (GTK_IS_BUTTON (select_button));
 }
 
-/* Test UmCropArea. */
-/* TODO: Test widget instantiation. */
-static void test_crop_area ()
+/* CheeseFlash */
+static void
+flash (void)
+{
+    GtkWidget *flash, *window;
+
+    window = gtk_test_create_simple_window ("CheeseFlash", "CheeseFlash test");
+    g_assert (window != NULL);
+
+    /* Window must be realised to have a GdkWindow. */
+    gtk_widget_show (window);
+
+    flash = gtk_test_create_widget (CHEESE_TYPE_FLASH, "parent", window, NULL);
+    g_assert (flash != NULL);
+
+    cheese_flash_fire (CHEESE_FLASH (flash));
+}
+
+/* UmCropArea. */
+static void
+um_crop_area (void)
 {
     GtkWidget *crop_area;
     GdkPixbuf *pixbuf, *pixbuf2;
 
-    crop_area = um_crop_area_new ();
+    crop_area = gtk_test_create_widget (UM_TYPE_CROP_AREA, NULL);
     pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB, FALSE, 8, 800, 480);
     um_crop_area_set_min_size (UM_CROP_AREA (crop_area), 200, 100);
     um_crop_area_set_picture (UM_CROP_AREA (crop_area), pixbuf);
@@ -68,7 +82,15 @@ static void test_crop_area ()
 
     g_object_unref (pixbuf);
     g_object_unref (pixbuf2);
-    g_object_unref (crop_area);
+}
+
+/* CheeseWidget */
+static void widget (void)
+{
+    GtkWidget *widget;
+
+    widget = gtk_test_create_widget (CHEESE_TYPE_WIDGET, NULL);
+    g_assert (widget != NULL);
 }
 
 int main (int argc, gchar *argv[])
@@ -80,8 +102,10 @@ int main (int argc, gchar *argv[])
     if (gtk_clutter_init (&argc, &argv) != CLUTTER_INIT_SUCCESS)
         return 1;
 
-    g_test_add_func ("/libcheese-gtk/widgets", test_widget);
-    g_test_add_func ("/libcheese-gtk/crop_area", test_crop_area);
+    g_test_add_func ("/libcheese-gtk/avatar_chooser", avatar_chooser);
+    g_test_add_func ("/libcheese-gtk/flash", flash);
+    g_test_add_func ("/libcheese-gtk/um_crop_area", um_crop_area);
+    g_test_add_func ("/libcheese-gtk/widget", widget);
 
     return g_test_run ();
 }
