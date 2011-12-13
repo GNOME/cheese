@@ -370,12 +370,15 @@ dist_pixmaps_DATA = \
 
 # Tests.
 check_PROGRAMS = tests/test-widgets
-tests_test_widgets_SOURCES = tests/test-widgets.c
+tests_test_widgets_SOURCES = \
+	libcheese/um-crop-area.c \
+	tests/test-widgets.c
 tests_test_widgets_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_test_widgets_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
-	libcheese-gtk.la
+	libcheese-gtk.la \
+	libcheese.la
 
 if CHEESE_ENABLE_TESTS
 # test: run all tests.
