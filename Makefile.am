@@ -459,7 +459,6 @@ dist-hook: git-changelog-hook
 	  dist-hook
 
 dist_noinst_DATA = \
-	build-aux/gnome-doc-utils.make \
 	ChangeLog.pre-git \
 	$(desktop_in_files) \
 	$(gsettings_in_file) \
