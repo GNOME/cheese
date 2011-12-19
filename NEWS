@@ -1,6 +1,72 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.3.3
+  - Pre-release version bump to 3.3.3
+  - Do not dist non-existent gnome-doc-utils.make
+    Fixes bug 666252.
+  - Improve tests for libcheese-gtk
+    Split the tests so that there is one per widget. Add CheeseFlash test.
+  - Improve tests for CheeseFileUtil
+    Add burst_reset test. Add photo and video path tests. Improve existing
+    burst test.
+  - Split tests for libcheese and libcheese-gtk
+  - Add simple test suite, bug 663148
+  - Add non-interactive test infrastructure
+    This is just the Makefile changes, the test itself was written
+    separately.
+  - Allocate CheeseVideoFormat with slices
+  - Check for correct types in public API
+    Use g_return_*_if_fail() to print critical warnings and return sensible
+    values if the expected type was not supplied.
+  - Add CheeseEffect accessors to VAPI file
+  - Fix tag in help
+  - Fix Latvian and Galician help translation
+    The switch to yelp-tools for building the Mallard help uncovered a
+    couple of invalid translations, due to incorrect closing tags.
+  - Use yelp-tools to build help, not gnome-doc-utils
+  - Simplify autogen.sh
+  - Check for a valid effect in CheeseEffect
+    Check that the effect passed to CheeseEffect functions is valid, and
+    return NULL and print a critical warning otherwise.
+  - Revert "effects: user ** in doc-comments to enable color highlighting"
+    This reverts commit 27b6b05723376c3ea5bf178bed59dd973f302e0a.
+
+    gtk-doc comments, started with the double-asterisk sequence, should only
+    be used for public symbols.
+  - effect: add cheese_effect_get_name and cheese_effect_get_pipeline_desc
+    Adding getters to save an allocation.
+
+    Requested in: https://bugzilla.gnome.org/show_bug.cgi?id=654448#c53
+  - effects: user ** in doc-comments to enable color highlighting
+  - libcheese: effects: don't print CRITICAL errors if directory doesn't exist
+    Applications should use cheese_effect_load_effects to load the default
+    set of effects.
+
+    cheese_effect_load_effects() calls
+    cheese_effect_load_effects_from_directory() with a list of predefined
+    places to search for effects. Some of those directories may not exist.
+
+    cheese_effect_load_effects_from_directory() shouldn't emit CRITICAL
+    messages in this condition.
+  - Replace all GtkBoxes by GtkGrids, bug 664428
+  - Added/Updated Translations
+    - es, courtesy of Daniel Mustieles
+    - he, courtesy of Yaron Shahrabani
+    - lv, courtesy of Rūdofls Mazurs
+    - nb, courtesy of Kjartan Maraas
+    - ru, courtesy of Yuri Myasoedov
+    - sv, courtesy of Daniel Nylander
+    - te, courtesy of Praveen Illa
+    - th, courtesy of Akom Chotiphantawanon
+    - zh_CN, courtesy of Wylmer Wang
+  - Added/Updated Documentation
+    - el, courtesy of Simos Xenitellis
+    - es, courtesy of Daniel Mustieles
+    - gl, courtesy of Leandro Regueiro
+    - lv, courtesy of Rūdofls Mazurs
+    - ru, courtesy of Yuri Myasoedov
+
 version 3.3.2
   - Pre-release version bump to 3.3.2
   - Remove marshaller generation rules
