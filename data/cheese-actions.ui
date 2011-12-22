@@ -64,6 +64,14 @@
           <accelerator key="O" modifiers="GDK_CONTROL_MASK"/>
         </child>
         <child>
+          <object class="GtkAction" id="share">
+            <property name="name">Share</property>
+            <property name="label" translatable="yes">Share…</property>
+            <signal name="activate" handler="cheese_main_window_on_share_files"/>
+          </object>
+          <accelerator key="H" modifiers="GDK_CONTROL_MASK"/>
+        </child>
+        <child>
           <object class="GtkAction" id="save_as">
             <property name="name">SaveAs</property>
             <property name="label" translatable="yes">Save _As…</property>
@@ -240,6 +248,8 @@
           <menuitem action="effects_page_next"/>
           <menuitem action="effects_page_prev"/>
           <separator/>
+          <menuitem action="share"/>
+          <separator/>
           <menuitem action="move_to_trash"/>
           <menuitem action="move_all_to_trash"/>
           <separator/>
@@ -252,6 +262,8 @@
       </menubar>
       <popup name="thumbnail_popup" id="thumbnail_popup">
         <menuitem action="open"/>
+        <separator/>
+        <menuitem action="share"/>
         <separator/>
         <menuitem action="save_as"/>
         <separator/>

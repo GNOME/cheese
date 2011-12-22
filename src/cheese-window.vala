@@ -31,6 +31,7 @@ using CanberraGtk;
 
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 const int EFFECTS_PER_PAGE            = 9;
+const string SENDTO_EXEC = "nautilus-sendto";
 
 public class Cheese.MainWindow : Gtk.Window
 {
@@ -85,6 +86,8 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
   private Gtk.Action       effects_page_next_action;
+  private Gtk.Action       share_action;
+  private Gtk.ActionGroup  main_actions;
 
   private bool is_fullscreen;
   private bool is_wide_mode;
@@ -105,6 +108,8 @@ public class Cheese.MainWindow : Gtk.Window
   private Cheese.PreferencesDialog preferences_dialog;
 
   private Cheese.Effect selected_effect;
+
+  private Cheese.ShareableMedia shareable_media;
 
   /**
    * Destroy the main window, and shutdown the application, when quitting.
@@ -158,7 +163,12 @@ public class Cheese.MainWindow : Gtk.Window
     {
       if (event.button == 3)
       {
-        thumbnail_popup.popup (null, thumb_view, null, event.button, event.time);
+	thumbnail_popup.popup (null, thumb_view, null, event.button, event.time);
+
+	// Check whether nautilus-sendto is installed or not. In case it is, set
+	// the "Share" action to sensitive, if it is not, set it to insensitive.
+	bool nautilus_sendto_installed = Environment.find_program_in_path(SENDTO_EXEC) != null;
+	share_action.set_sensitive (nautilus_sendto_installed);
       }
     }
     else
@@ -338,6 +348,20 @@ public class Cheese.MainWindow : Gtk.Window
       warning ("Error: %s\n", e.message);
       return;
     }
+  }
+
+  /**
+   * Share the selected file(s) in the thumbview.
+   *
+   * A dialog is shown to the user, where the technology for sharing the
+   * image or video can be selected.
+   *
+   * @param action the action that emitted the signal
+   */
+  [CCode (instance_pos = -1)]
+  public void on_share_files (Gtk.Action action)
+  {
+    shareable_media.share_files (thumb_view.get_selected_images_list ());
   }
 
   /**
@@ -1370,6 +1394,7 @@ public class Cheese.MainWindow : Gtk.Window
     buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.Box;
     thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
+    main_actions             = gtk_builder.get_object ("main_actions") as Gtk.ActionGroup;
     take_photo_action        = gtk_builder.get_object ("take_photo") as Gtk.Action;
     take_video_action        = gtk_builder.get_object ("take_video") as Gtk.Action;
     take_burst_action        = gtk_builder.get_object ("take_burst") as Gtk.Action;
@@ -1382,6 +1407,10 @@ public class Cheese.MainWindow : Gtk.Window
     fullscreen_action        = gtk_builder.get_object ("fullscreen") as Gtk.ToggleAction;
     effects_page_next_action = gtk_builder.get_object ("effects_page_next") as Gtk.Action;
     effects_page_prev_action = gtk_builder.get_object ("effects_page_prev") as Gtk.Action;
+    share_action             = gtk_builder.get_object ("share") as Gtk.Action;
+
+    shareable_media = new Cheese.ShareableMedia (this);
+    main_actions.pre_activate.connect(on_action_pre_activated);
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
@@ -1454,6 +1483,24 @@ public class Cheese.MainWindow : Gtk.Window
 
     if (settings.get_boolean ("fullscreen"))
       fullscreen_action.active = true;
+  }
+
+  /**
+   * Decide which actions will be sensitive or insensitive.
+   *
+   * @param action the action that emitted the signal.
+   */
+  public void on_action_pre_activated (Gtk.Action action)
+  {
+     if (strcmp (action.get_name(), "edit_action") == 0)
+     {
+        if (thumb_view.get_selected_images_list () != null)
+        {
+           bool nautilus_sendto_installed = Environment.find_program_in_path(SENDTO_EXEC) != null;
+           share_action.set_sensitive (nautilus_sendto_installed);
+        } else
+           share_action.set_sensitive (false);
+     }
   }
 
   /**

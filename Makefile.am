@@ -65,7 +65,8 @@ VALAFLAGS = \
 	--pkg libcanberra \
 	--pkg eogthumbnav \
 	--pkg cheese-thumbview \
-	--pkg cheese-common
+	--pkg cheese-common \
+	--pkg gdk-x11-3.0
 
 lib_LTLIBRARIES = libcheese.la libcheese-gtk.la
 
@@ -190,6 +191,7 @@ cheese_SOURCES = \
 	src/cheese-preferences.vala \
 	src/cheese-window.vala \
 	src/cheese-main.vala \
+	src/cheese-shareable-media.vala \
 	src/thumbview/cheese-thumb-view.c \
 	src/thumbview/cheese-thumbnail.c \
 	src/thumbview/eog-thumb-nav.c
