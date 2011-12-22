@@ -36,7 +36,7 @@
  *
  * The filename suffix for videos saved by Cheese.
  */
-#define CHEESE_VIDEO_NAME_SUFFIX ".ogv"
+#define CHEESE_VIDEO_NAME_SUFFIX ".webm"
 
 G_BEGIN_DECLS
 
