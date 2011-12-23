@@ -152,20 +152,19 @@ public class Cheese.PreferencesDialog : GLib.Object
    */
   private void setup_resolutions_for_device (Cheese.CameraDevice device)
   {
-    unowned List<VideoFormat>  formats = device.get_format_list ();
-    unowned Cheese.VideoFormat format;
-    ListStore                  resolution_model = new ListStore (2, typeof (string), typeof (Cheese.VideoFormat));
+    unowned List<VideoFormat> formats = device.get_format_list ();
+    ListStore resolution_model = new ListStore (2, typeof (string),
+        typeof (Cheese.VideoFormat));
 
     photo_resolution_combo.model = resolution_model;
     video_resolution_combo.model = resolution_model;
 
-    for (int i = 0; i < formats.length (); i++)
+    formats.foreach ((format) =>
     {
       TreeIter iter;
-      format = formats<VideoFormat>.nth (i).data;
       resolution_model.append (out iter);
       resolution_model.set (iter,
-                            0, format.width.to_string () + " x " + format.height.to_string (),
+                            0, format.width.to_string () + " × " + format.height.to_string (),
                             1, format);
       if (camera.get_current_video_format ().width == format.width &&
           camera.get_current_video_format ().height == format.height)
@@ -180,7 +179,7 @@ public class Cheese.PreferencesDialog : GLib.Object
       {
         video_resolution_combo.set_active_iter (iter);
       }
-    }
+    });
 
     /* Video resolution combo shows photo resolution by default if previous
      * user choice is not found in settings or not supported by current device.
