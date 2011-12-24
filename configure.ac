@@ -155,6 +155,28 @@ AS_IF([test "x$GTESTER" = "xnotfound" -o "x$GTESTER_REPORT" = "xnotfound"],
    AC_SUBST([GTESTER_REPORT])])
 AM_CONDITIONAL([CHEESE_ENABLE_TESTS], [test "x$CHEESE_ENABLE_TESTS" = "xtrue"])
 
+# Check for lcov.
+AC_ARG_ENABLE([lcov],
+  [AS_HELP_STRING([--disable-lcov], [Disable lcov code coverage testing])])
+
+AS_IF([test "x$enable_lcov" != "xno"],
+  [AC_PATH_PROG([LCOV], [lcov], [notfound])
+   AC_PATH_PROG([LCOV_GENHTML], [genhtml], [notfound])
+   AS_IF([test "x$LCOV" = "xnotfound" -o "x$LCOV_GENHTML" = "xnotfound"],
+     [have_lcov=no],
+     [have_lcov=yes])],
+  [have_lcov=no])
+
+AS_IF([test "x$have_lcov" = "xyes"],
+  [AC_SUBST([LCOV])
+   AC_SUBST([LCOV_GENHTML])
+   CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+   LDFLAGS="$LDFLAGS -lgcov"],
+  [AS_IF([test "x$enable_lcov" = "xyes"],
+     [AC_MSG_ERROR([lcov code coverage reporting requested but not found])])])
+
+AM_CONDITIONAL([CHEESE_ENABLE_LCOV], [test "x$have_lcov" = "xyes"])
+
 AC_MSG_CHECKING([for glib-mkenums script])
 GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AS_IF([test "x$GLIB_MKENUMS" = "x"],

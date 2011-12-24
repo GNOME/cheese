@@ -432,6 +432,31 @@ test:
 	echo "Test run disabled due to the lack of GLib testing utilities"
 endif
 
+# Code coverage reporting.
+if CHEESE_ENABLE_LCOV
+# Depend on full-report so that all the tests are run.
+lcov: full-report
+	$(AM_V_at)$(LCOV) --base-directory $(top_builddir) \
+		--directory $(top_builddir)/libcheese --capture \
+		--output-file cheese-lcov.info --test-name CHEESE \
+		--no-checksum --compat-libtool
+	$(AM_V_at)LANG=C $(LCOV_GENHTML) --prefix $(top_builddir) \
+		--output-directory cheese-lcov --title "Cheese code coverage" \
+		--legend --show-details cheese-lcov.info
+
+lcov-clean:
+	$(AM_V_at)$(LCOV) --directory $(top_builddir) -z
+	$(AM_V_at)rm -rf cheese-lcov.info cheese-lcov
+	$(AM_V_at)find -name '*.gcda' -exec rm -f {} +
+else # !CHEESE_ENABLE_LCOV
+lcov:
+	$(AM_V_at)echo "Code coverage reporting not available"
+
+lcov-clean:
+	$(AM_V_at)rm -rf cheese-lcov.info cheese-lcov
+	$(AM_V_at)find -name '*.gcda' -exec rm -f {} +
+endif
+
 # gtk-doc
 gtkdoc_builddir = $(top_builddir)/docs/reference
 gtkdoc_distdir = $(top_distdir)/docs/reference
@@ -442,7 +467,7 @@ all-local: $(bin_PROGRAMS)
 # run make test as part of make check.
 check-local: test
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFlAGS) check
-clean-local:
+clean-local: lcov-clean
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) clean
 distclean-local:
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) distclean
@@ -538,3 +563,4 @@ git-changelog-hook:
 	fi
 
 .PHONY: docs git-changelog-hook test test-report perf-report full-report
+.PHONY: lcov lcov-clean
