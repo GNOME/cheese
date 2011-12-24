@@ -391,9 +391,12 @@ tests_test_libcheese_LDADD = \
 	libcheese.la
 
 if CHEESE_ENABLE_TESTS
+# Not automake built-in TESTS_ENVIRONMENT!
+TEST_ENVIRONMENT = MALLOC_CHECK_=2 MALLOC_PERTURB_=$$(($${RANDOM:-256} % 256))
+
 # test: run all tests.
 test: $(check_PROGRAMS)
-	$(AM_V_at)test -z "$(check_PROGRAMS)" || MALLOC_CHECK_=2 MALLOC_PERTURB_=$$(($${RANDOM:-256} % 256)) $(GTESTER) --verbose $(check_PROGRAMS)
+	$(AM_V_at)$(TEST_ENVIRONMENT) $(GTESTER) --verbose $(check_PROGRAMS)
 
 # test-report: run tests and generate report.
 # perf-report: run tests with -m perf and generate report.
@@ -405,7 +408,7 @@ test-report perf-report full-report: $(check_PROGRAMS)
 	  perf-report) test_options="-k -m=perf";; \
 	  full-report) test_options="-k -m=perf -m=slow";; \
 	  esac ; \
-	  $(GTESTER) --verbose $$test_options -o test-log.xml $(check_PROGRAMS) ; \
+	  $(TEST_ENVIRONMENT) $(GTESTER) --verbose $$test_options -o test-log.xml $(check_PROGRAMS) ; \
 	  if test -d "$(top_srcdir)/.git" ; then \
 	    REVISION=`git describe` ; \
 	  else \
@@ -514,7 +517,7 @@ MAINTAINERCLEANFILES = \
 	omf.make \
 	xmldocs.make
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-scrollkeeper --enable-gtk-doc --enable-introspection --enable-man
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-introspection --enable-man
 
 CHANGELOG_START = 2.26.0
 
