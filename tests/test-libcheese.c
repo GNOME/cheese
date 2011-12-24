@@ -20,7 +20,25 @@
 #include "cheese-config.h"
 
 #include <glib/gi18n.h>
+#include "cheese-effect.h"
 #include "cheese-fileutil.h"
+
+/* Test CheeseEffect */
+static void
+effect_create (void)
+{
+    CheeseEffect *effect;
+    static const gchar name[] = "No effect";
+    static const gchar desc[] = "identity";
+
+    effect = cheese_effect_new (name, desc);
+    g_assert (effect != NULL);
+
+    g_assert_cmpstr (name, ==, cheese_effect_get_name (effect));
+    g_assert_cmpstr (desc, ==, cheese_effect_get_pipeline_desc (effect));
+
+    g_object_unref (effect);
+}
 
 /* Test CheeseFileUtil */
 static void
@@ -128,6 +146,8 @@ int main (int argc, gchar *argv[])
     g_type_init ();
 
     g_test_init (&argc, &argv, NULL);
+
+    g_test_add_func ("/libcheese/effect/create", effect_create);
 
     if (g_test_slow ())
     {
