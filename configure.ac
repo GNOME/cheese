@@ -2,7 +2,7 @@
 AC_PREREQ([2.64])
 AC_INIT([cheese],
         [3.3.3],
-        [http://bugzilla.gnome.org/enter_bug.cgi?product=cheese],
+        [https://bugzilla.gnome.org/enter_bug.cgi?product=cheese],
         [cheese],
         [http://projects.gnome.org/cheese/])
 
@@ -139,7 +139,7 @@ AS_IF([test "x$GST_INSPECT" = "xnotfound"],
    for gst_runtime_plugin in $GST_RUNTIME_PLUGINS
    do
      AC_MSG_CHECKING([for $gst_runtime_plugin GStreamer plugin])
-     AS_IF([$GST_INSPECT $gst_runtime_plugin >/dev/null],
+     AS_IF([$GST_INSPECT $gst_runtime_plugin >&AS_MESSAGE_LOG_FD],
        [AC_MSG_RESULT([found])],
        [AC_MSG_RESULT([not found])
         AC_MSG_WARN([$gst_runtime_plugin was not found. It needs to be installed before Cheese is run])])
@@ -148,7 +148,7 @@ AS_IF([test "x$GST_INSPECT" = "xnotfound"],
 # Check for GLib testing utilities.
 AC_PATH_PROG([GTESTER], [gtester], [notfound])
 AC_PATH_PROG([GTESTER_REPORT], [gtester-report], [notfound])
-AS_IF([test "x$GTESTER" = "xnotfound" -o "$GTESTER_REPORT" = "xnotfound"],
+AS_IF([test "x$GTESTER" = "xnotfound" -o "x$GTESTER_REPORT" = "xnotfound"],
   [AC_MSG_WARN([testing disabled as the required utilities were not found])],
   [CHEESE_ENABLE_TESTS=true
    AC_SUBST([GTESTER])
