@@ -199,7 +199,7 @@ public class Cheese.MainWindow : Gtk.Window
                                                       Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                                       Gtk.MessageType.ERROR,
                                                       Gtk.ButtonsType.OK,
-                                                      "Could not open %s",
+                                                      _("Could not open %s"),
                                                       filename);
 
       error_dialog.run ();
@@ -233,11 +233,11 @@ public class Cheese.MainWindow : Gtk.Window
                                                            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                                            Gtk.MessageType.WARNING,
                                                            Gtk.ButtonsType.NONE,
-                                                           "Are you sure you want to permanently delete the file \"%s\"?",
+                                                           _("Are you sure you want to permanently delete the file \"%s\"?"),
                                                            file.get_basename ());
       confirmation_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
       confirmation_dialog.add_button (Gtk.Stock.DELETE, Gtk.ResponseType.ACCEPT);
-      confirmation_dialog.format_secondary_text ("%s", "If you delete an item, it will be permanently lost");
+      confirmation_dialog.format_secondary_text ("%s", _("If you delete an item, it will be permanently lost"));
       response = confirmation_dialog.run ();
       confirmation_dialog.destroy ();
       if (response == Gtk.ResponseType.ACCEPT)
@@ -253,7 +253,7 @@ public class Cheese.MainWindow : Gtk.Window
                                                           Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                                           Gtk.MessageType.ERROR,
                                                           Gtk.ButtonsType.OK,
-                                                          "Could not delete %s",
+                                                          _("Could not delete %s"),
                                                           file.get_path ());
 
           error_dialog.run ();
@@ -294,7 +294,7 @@ public class Cheese.MainWindow : Gtk.Window
                                                         Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                                         Gtk.MessageType.ERROR,
                                                         Gtk.ButtonsType.OK,
-                                                        "Could not move %s to trash",
+                                                        _("Could not move %s to trash"),
                                                         file.get_path ());
 
         error_dialog.run ();
@@ -359,7 +359,7 @@ public class Cheese.MainWindow : Gtk.Window
     if (filename == null)
       return;                    /* Nothing selected. */
 
-    save_as_dialog = new FileChooserDialog ("Save File",
+    save_as_dialog = new FileChooserDialog (_("Save File"),
                                             this,
                                             Gtk.FileChooserAction.SAVE,
                                             Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
@@ -393,7 +393,7 @@ public class Cheese.MainWindow : Gtk.Window
                                                         Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                                         Gtk.MessageType.ERROR,
                                                         Gtk.ButtonsType.OK,
-                                                        "Could not save %s",
+                                                        _("Could not save %s"),
                                                         target_filename);
 
         error_dialog.run ();
@@ -906,7 +906,7 @@ public class Cheese.MainWindow : Gtk.Window
     {
       camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
       take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
-      take_action_button.tooltip_text = "Stop recording";
+      take_action_button.tooltip_text = _("Stop recording");
       take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_STOP, Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
@@ -935,7 +935,7 @@ public class Cheese.MainWindow : Gtk.Window
       this.disable_mode_change ();
       effects_toggle_action.sensitive = false;
       take_action_button_label.label  = "<b>" + _("Stop _Taking Pictures") + "</b>";
-      take_action_button.tooltip_text = "Stop taking pictures";
+      take_action_button.tooltip_text = _("Stop taking pictures");
       burst_take_photo ();
 
       /* Use the countdown duration if it is greater than the burst delay, plus
