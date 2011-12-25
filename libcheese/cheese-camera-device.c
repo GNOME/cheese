@@ -138,18 +138,8 @@ cheese_video_format_free (CheeseVideoFormat *format)
     g_slice_free (CheeseVideoFormat, format);
 }
 
-GType
-cheese_video_format_get_type (void)
-{
-  static GType our_type = 0;
-
-  if (G_UNLIKELY (our_type == 0))
-    our_type =
-      g_boxed_type_register_static ("CheeseVideoFormat",
-                                    (GBoxedCopyFunc) cheese_video_format_copy,
-                                    (GBoxedFreeFunc) cheese_video_format_free);
-  return our_type;
-}
+G_DEFINE_BOXED_TYPE (CheeseVideoFormat, cheese_video_format,
+    cheese_video_format_copy, cheese_video_format_free)
 
 /* the rest */
 
