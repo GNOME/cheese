@@ -170,7 +170,7 @@ AS_IF([test "x$enable_lcov" != "xno"],
 AS_IF([test "x$have_lcov" = "xyes"],
   [AC_SUBST([LCOV])
    AC_SUBST([LCOV_GENHTML])
-   CFLAGS="$CFLAGS -fprofile-arcs -ftest-coverage"
+   CFLAGS="$CFLAGS -O0 -fprofile-arcs -ftest-coverage"
    LDFLAGS="$LDFLAGS -lgcov"],
   [AS_IF([test "x$enable_lcov" = "xyes"],
      [AC_MSG_ERROR([lcov code coverage reporting requested but not found])])])
