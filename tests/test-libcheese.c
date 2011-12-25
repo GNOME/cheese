@@ -20,8 +20,24 @@
 #include "cheese-config.h"
 
 #include <glib/gi18n.h>
+#include "cheese-camera-device.h"
+#include "cheese-camera-device-monitor.h"
 #include "cheese-effect.h"
 #include "cheese-fileutil.h"
+
+/* Test CheeseCameraDeviceMonitor */
+static void
+cameradevicemonitor_create (void)
+{
+    CheeseCameraDeviceMonitor *monitor;
+
+    monitor = cheese_camera_device_monitor_new ();
+    g_assert (monitor != NULL);
+
+    cheese_camera_device_monitor_coldplug (monitor);
+
+    g_object_unref (monitor);
+}
 
 /* Test CheeseEffect */
 static void
@@ -107,6 +123,36 @@ fileutil_reset_burst (void)
 }
 
 static void
+fileutil_new_media_filename (void)
+{
+    CheeseFileUtil *fileutil;
+    const gchar *filename;
+
+    fileutil = cheese_fileutil_new ();
+    g_assert (fileutil != NULL);
+
+    filename = cheese_fileutil_get_new_media_filename (fileutil,
+        CHEESE_MEDIA_MODE_PHOTO);
+    g_assert (filename != NULL);
+    g_assert (g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX));
+    g_assert (!g_file_test (filename, G_FILE_TEST_EXISTS));
+
+    filename = cheese_fileutil_get_new_media_filename (fileutil,
+        CHEESE_MEDIA_MODE_BURST);
+    g_assert (filename != NULL);
+    g_assert (g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX));
+    g_assert (!g_file_test (filename, G_FILE_TEST_EXISTS));
+
+    filename = cheese_fileutil_get_new_media_filename (fileutil,
+        CHEESE_MEDIA_MODE_VIDEO);
+    g_assert (filename != NULL);
+    g_assert (g_str_has_suffix (filename, CHEESE_VIDEO_NAME_SUFFIX));
+    g_assert (!g_file_test (filename, G_FILE_TEST_EXISTS));
+
+    g_object_unref (fileutil);
+}
+
+static void
 fileutil_photo_path (void)
 {
     CheeseFileUtil *fileutil;
@@ -140,12 +186,33 @@ fileutil_video_path (void)
     g_object_unref (fileutil);
 }
 
-int main (int argc, gchar *argv[])
+/* Test CheeseVideoFormat (part of CheeseCameraDevice) */
+static void
+videoformat_create (void)
+{
+    CheeseVideoFormat *other;
+    CheeseVideoFormat format = { 640, 480 };
+
+    other = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT, &format);
+    g_assert (other != NULL);
+    g_assert_cmpint (other->width, ==, format.width);
+    g_assert_cmpint (other->height, ==, format.height);
+
+    g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, other);
+}
+
+int
+main(int argc, gchar *argv[])
 {
     g_thread_init (NULL);
     g_type_init ();
 
     g_test_init (&argc, &argv, NULL);
+
+    gst_init (&argc, &argv);
+
+    g_test_add_func ("/libcheese/cameradevicemonitor/create",
+        cameradevicemonitor_create);
 
     g_test_add_func ("/libcheese/effect/create", effect_create);
 
@@ -154,8 +221,12 @@ int main (int argc, gchar *argv[])
         g_test_add_func ("/libcheese/fileutil/burst", fileutil_burst);
         g_test_add_func ("/libcheese/fileutil/reset_burst", fileutil_reset_burst);
     }
+    g_test_add_func ("/libcheese/fileutil/new_media_filename",
+        fileutil_new_media_filename);
     g_test_add_func ("/libcheese/fileutil/photo_path", fileutil_photo_path);
     g_test_add_func ("/libcheese/fileutil/video_path", fileutil_video_path);
+
+    g_test_add_func ("/libcheese/videoformat/create", videoformat_create);
 
     return g_test_run ();
 }
