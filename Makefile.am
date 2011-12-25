@@ -43,7 +43,7 @@ AM_CPPFLAGS = \
 	-DSYSCONFDIR=\""$(sysconfdir)"\" \
 	-DLIBDIR=\""$(libdir)"\" \
 	-DPACKAGE_DATADIR=\""$(pkgdatadir)"\" \
-	-DPACKAGE_LOCALEDIR=\""$(datadir)"\" \
+	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\" \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	-I$(top_builddir) \
 	$(CHEESE_CFLAGS) \
