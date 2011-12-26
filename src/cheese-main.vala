@@ -62,6 +62,8 @@ public class Cheese.Main : Gtk.Application
 
       main_window = new Cheese.MainWindow ();
 
+      Environment.set_variable ("PULSE_PROP_media.role", "production", true);
+
       Environment.set_application_name (_("Cheese"));
       Window.set_default_icon_name ("cheese");
 
