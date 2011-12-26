@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-11-21 19:14+0000\n"
-"PO-Revision-Date: 2011-11-22 17:07+0100\n"
+"POT-Creation-Date: 2011-12-26 08:18+0000\n"
+"PO-Revision-Date: 2011-12-26 11:03+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +68,7 @@ msgid "Take _Multiple Photos"
 msgstr "Tomar _múltiples fotos"
 
 #: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:268
+#: ../libcheese/cheese-avatar-chooser.c:263
 msgid "Take a photo"
 msgstr "Tomar una foto"
 
@@ -410,37 +410,37 @@ msgstr "Indica si se debe iniciar en modo ancho"
 msgid "Shutter sound"
 msgstr "Sonido del obturador"
 
-#: ../libcheese/cheese-avatar-chooser.c:286
+#: ../libcheese/cheese-avatar-chooser.c:281
 msgid "_Take a photo"
 msgstr "_Tomar una foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:299
+#: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
 msgstr "_Descartar foto"
 
-#: ../libcheese/cheese-camera-device.c:387
+#: ../libcheese/cheese-camera-device.c:390
 msgid "Device capabilities not supported"
 msgstr "No se soportan las capacidades del dispositivo"
 
-#: ../libcheese/cheese-camera-device.c:416
+#: ../libcheese/cheese-camera-device.c:419
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Falló al inicializar el dispositivo %s para probar sus capacidades"
 
-#: ../libcheese/cheese-camera-device.c:597
+#: ../libcheese/cheese-camera-device.c:600
 msgid "Unknown device"
 msgstr "Dispositivo desconocido"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:623
 msgid "Cancellable initialization not supported"
 msgstr "No se soporta la inicialización cancelable"
 
-#: ../libcheese/cheese-camera.c:1443
+#: ../libcheese/cheese-camera.c:1489
 #, c-format
 msgid "No device found"
 msgstr "No se encontró ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1493
+#: ../libcheese/cheese-camera.c:1539
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 
@@ -484,13 +484,62 @@ msgstr ""
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Ya se está ejecutando otra instancia del Cheese\n"
 
+#: ../src/cheese-window.vala:202
+#, c-format
+#| msgid "Could not save %s"
+msgid "Could not open %s"
+msgstr "No se pudo abrir %s"
+
+#: ../src/cheese-window.vala:236
+#, c-format
+#| msgid "Are you sure you want to permanently delete \"%s\"?"
+msgid "Are you sure you want to permanently delete the file \"%s\"?"
+msgstr "¿Está seguro de que quiere eliminar permanentemente el archivo «%s»?"
+
+#: ../src/cheese-window.vala:240
+#| msgid "If you delete an item, it will be permanently lost."
+msgid "If you delete an item, it will be permanently lost"
+msgstr "Si elimina un elemento se perderá permanentemente"
+
+#: ../src/cheese-window.vala:256
+#, c-format
+#| msgid "Could not save %s"
+msgid "Could not delete %s"
+msgstr "No se pudo eliminar %s"
+
+#: ../src/cheese-window.vala:297
+#, c-format
+#| msgid "Could not save %s"
+msgid "Could not move %s to trash"
+msgstr "No se pudo mover %s a la papelera"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:362
+msgid "Save File"
+msgstr "Guardar archivo"
+
+#: ../src/cheese-window.vala:396
+#, c-format
+msgid "Could not save %s"
+msgstr "No se pudo guardar %s"
+
 #: ../src/cheese-window.vala:908
 msgid "Stop _Recording"
 msgstr "_Detener grabación"
 
+#: ../src/cheese-window.vala:909
+#| msgid "Stop _Recording"
+msgid "Stop recording"
+msgstr "Detener grabación"
+
 #: ../src/cheese-window.vala:937
 msgid "Stop _Taking Pictures"
 msgstr "Dejar de _tomar imágenes"
+
+#: ../src/cheese-window.vala:938
+#| msgid "Stop _Taking Pictures"
+msgid "Stop taking pictures"
+msgstr "Dejar de tomar imágenes"
 
 #: ../src/cheese-window.vala:1121
 msgid "No effects found"
@@ -675,12 +724,6 @@ msgstr "No se encontró ningún efecto"
 #~ "%s\n"
 #~ "%s"
 
-#~ msgid "Save File"
-#~ msgstr "Guardar archivo"
-
-#~ msgid "Could not save %s"
-#~ msgstr "No se pudo guardar %s"
-
 #~ msgid "Error while deleting"
 #~ msgstr "Error al borrar"
 
@@ -696,12 +739,6 @@ msgstr "No se encontró ningún efecto"
 #~ msgstr[1] ""
 #~ "¿Está seguro de que quiere borrar permanentemente los %'d elementos "
 #~ "seleccionados?"
-
-#~ msgid "Are you sure you want to permanently delete \"%s\"?"
-#~ msgstr "¿Está seguro de que quiere borrar permanentemente «%s»?"
-
-#~ msgid "If you delete an item, it will be permanently lost."
-#~ msgstr "Si borra un elemento se perderá permanentemente"
 
 #~ msgid "Unknown Error"
 #~ msgstr "Error desconocido"
