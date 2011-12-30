@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-10 11:39+0200\n"
-"PO-Revision-Date: 2011-12-10 11:40+0200\n"
+"POT-Creation-Date: 2011-12-30 10:57+0200\n"
+"PO-Revision-Date: 2011-12-30 10:58+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "Language: \n"
@@ -225,7 +225,7 @@ msgid "_Countdown"
 msgstr "_ספירה לאחור"
 
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:65
+#: ../src/cheese-main.vala:67
 msgid "Cheese"
 msgstr "‏Cheese"
 
@@ -398,29 +398,29 @@ msgstr "_צלם תמונה"
 msgid "_Discard photo"
 msgstr "ה_תעלמות מתמונה"
 
-#: ../libcheese/cheese-camera-device.c:387
+#: ../libcheese/cheese-camera-device.c:390
 msgid "Device capabilities not supported"
 msgstr "יכולות ההתקן אינן נתמכות"
 
-#: ../libcheese/cheese-camera-device.c:416
+#: ../libcheese/cheese-camera-device.c:419
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "ארע כשל בהפעלת ההתקן %s לתשאול יכולות"
 
-#: ../libcheese/cheese-camera-device.c:597
+#: ../libcheese/cheese-camera-device.c:600
 msgid "Unknown device"
 msgstr "התקן בלתי מוכר"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:623
 msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
-#: ../libcheese/cheese-camera.c:1443
+#: ../libcheese/cheese-camera.c:1489
 #, c-format
 msgid "No device found"
 msgstr "לא נמצא התקן"
 
-#: ../libcheese/cheese-camera.c:1493
+#: ../libcheese/cheese-camera.c:1539
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "רכיב אחד או יותר של gstreamer חסר: "
 
@@ -448,27 +448,69 @@ msgstr "Output version information and exit"
 msgid "Start in fullscreen mode"
 msgstr "הפעלה במסך מלא"
 
-#: ../src/cheese-main.vala:124
+#: ../src/cheese-main.vala:126
 msgid "- Take photos and videos from your webcam"
 msgstr "- Take photos and videos from your webcam"
 
-#: ../src/cheese-main.vala:136
+#: ../src/cheese-main.vala:138
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-main.vala:151
+#: ../src/cheese-main.vala:153
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Another instance of Cheese is currently running\n"
+
+#: ../src/cheese-window.vala:202
+#, c-format
+msgid "Could not open %s"
+msgstr "לא ניתן לפתוח את %s"
+
+#: ../src/cheese-window.vala:236
+#, c-format
+msgid "Are you sure you want to permanently delete the file \"%s\"?"
+msgstr "האם אכן ברצונך למחוק לצמיתות את הקובץ \"%s\"?"
+
+#: ../src/cheese-window.vala:240
+msgid "If you delete an item, it will be permanently lost"
+msgstr "לאחר מחיקת הפריט, הוא יאבד לנצח"
+
+#: ../src/cheese-window.vala:256
+#, c-format
+msgid "Could not delete %s"
+msgstr "לא ניתן למחוק את %s"
+
+#: ../src/cheese-window.vala:297
+#, c-format
+msgid "Could not move %s to trash"
+msgstr "לא ניתן להעביר את %s לאשפה"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:362
+msgid "Save File"
+msgstr "שמור קובץ"
+
+#: ../src/cheese-window.vala:396
+#, c-format
+msgid "Could not save %s"
+msgstr "לא ניתן לשמור את %s"
 
 #: ../src/cheese-window.vala:908
 msgid "Stop _Recording"
 msgstr "ה_פסקת ההקלטה"
 
+#: ../src/cheese-window.vala:909
+msgid "Stop recording"
+msgstr "הפסקת ההקלטה"
+
 #: ../src/cheese-window.vala:937
 msgid "Stop _Taking Pictures"
 msgstr "ע_צירת צילום התמונות"
+
+#: ../src/cheese-window.vala:938
+msgid "Stop taking pictures"
+msgstr "עצירת צילום התמונות"
 
 #: ../src/cheese-window.vala:1121
 msgid "No effects found"
@@ -633,12 +675,6 @@ msgstr "לא נמצאו אפקטים"
 #~ "%s\n"
 #~ "%s"
 
-#~ msgid "Save File"
-#~ msgstr "שמור קובץ"
-
-#~ msgid "Could not save %s"
-#~ msgstr "לא ניתן לשמור את %s"
-
 #~ msgid "Error while deleting"
 #~ msgstr "שגיאה במהלך המחיקה"
 
@@ -651,12 +687,6 @@ msgstr "לא נמצאו אפקטים"
 #~ "Are you sure you want to permanently delete the %'d selected items?"
 #~ msgstr[0] "למחוק לצמיתות את הפריט הנבחר"
 #~ msgstr[1] "למחוק לצמיתות את %'d הפריטים הנבחרים?"
-
-#~ msgid "Are you sure you want to permanently delete \"%s\"?"
-#~ msgstr "למחוק לצמיתות את \"%s\"?"
-
-#~ msgid "If you delete an item, it will be permanently lost."
-#~ msgstr "אם אתה מוחק פריט, הוא יאבד לצמיתות."
 
 #~ msgid "Unknown Error"
 #~ msgstr "שגיאה לא ידועה"
