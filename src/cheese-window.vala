@@ -112,6 +112,18 @@ public class Cheese.MainWindow : Gtk.Window
   private Cheese.ShareableMedia shareable_media;
 
   /**
+   * Responses from the delete files confirmation dialog.
+   *
+   * @param SKIP skip a single file
+   * @param SKIP_ALL skill all following files
+   */
+  enum DeleteResponse
+  {
+    SKIP = 1,
+    SKIP_ALL = 2
+  }
+
+  /**
    * Destroy the main window, and shutdown the application, when quitting.
    *
    * @param action the action that emitted the signal
@@ -218,59 +230,74 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   /**
-   * Delete the requested image in the thumbview from storage.
+   * Delete the requested image or images in the thumbview from storage.
    *
-   * A confirmation dialog is shown to the user before deleting the file.
+   * A confirmation dialog is shown to the user before deleting any files.
    *
    * @param action the action that emitted the signal
    */
   [CCode (instance_pos = -1)]
   public void on_file_delete (Gtk.Action action)
   {
-    File file;
     int response;
-    MessageDialog confirmation_dialog;
+    int error_response;
+    bool skip_all_errors = false;
 
-    GLib.List<GLib.File> files = thumb_view.get_selected_images_list ();
+    var files = thumb_view.get_selected_images_list ();
+    var files_length = files.length ();
 
-    for (int i = 0; i < files.length (); i++)
+    var confirmation_dialog = new MessageDialog.with_markup (this,
+      Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+      Gtk.MessageType.WARNING, Gtk.ButtonsType.NONE,
+      GLib.ngettext("Are you sure you want to permanently delete the file?",
+        "Are you sure you want to permanently delete %d files?",
+        files_length), files_length);
+    confirmation_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+    confirmation_dialog.add_button (Gtk.Stock.DELETE, Gtk.ResponseType.ACCEPT);
+    confirmation_dialog.format_secondary_text ("%s",
+      GLib.ngettext("If you delete an item, it will be permanently lost",
+        "If you delete the items, they will be permanently lost",
+        files_length));
+
+    response = confirmation_dialog.run ();
+    if (response == Gtk.ResponseType.ACCEPT)
     {
-      file = files<GLib.File>.nth (i).data;
-      if (file == null)
-        return;
-
-      confirmation_dialog = new MessageDialog.with_markup (this,
-                                                           Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                           Gtk.MessageType.WARNING,
-                                                           Gtk.ButtonsType.NONE,
-                                                           _("Are you sure you want to permanently delete the file \"%s\"?"),
-                                                           file.get_basename ());
-      confirmation_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
-      confirmation_dialog.add_button (Gtk.Stock.DELETE, Gtk.ResponseType.ACCEPT);
-      confirmation_dialog.format_secondary_text ("%s", _("If you delete an item, it will be permanently lost"));
-      response = confirmation_dialog.run ();
-      confirmation_dialog.destroy ();
-      if (response == Gtk.ResponseType.ACCEPT)
+      foreach (var file in files)
       {
+        if (file == null)
+          return;
+
         try
         {
           file.delete (null);
         }
         catch (Error err)
         {
-          MessageDialog error_dialog = new MessageDialog (this,
-                                                          Gtk.DialogFlags.MODAL |
-                                                          Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                          Gtk.MessageType.ERROR,
-                                                          Gtk.ButtonsType.OK,
-                                                          _("Could not delete %s"),
-                                                          file.get_path ());
+          warning ("Unable to delete file: %s", err.message);
 
-          error_dialog.run ();
-          error_dialog.destroy ();
+          if (!skip_all_errors) {
+            var error_dialog = new MessageDialog (this,
+              Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+              Gtk.MessageType.ERROR, Gtk.ButtonsType.NONE,
+              "Could not delete %s", file.get_path ());
+
+            error_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+            error_dialog.add_button ("Skip", DeleteResponse.SKIP);
+            error_dialog.add_button ("Skip all", DeleteResponse.SKIP_ALL);
+
+            error_response = error_dialog.run ();
+            if (error_response == DeleteResponse.SKIP_ALL) {
+              skip_all_errors = true;
+            } else if (error_response == Gtk.ResponseType.CANCEL) {
+              break;
+            }
+
+            error_dialog.destroy ();
+          }
         }
       }
     }
+    confirmation_dialog.destroy ();
   }
 
   /**
