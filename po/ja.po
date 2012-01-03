@@ -1,10 +1,11 @@
 # cheese ja.po.
-# Copyright (C) 2007-2011 daniel g. siegel <dgsiegel@gnome.org>
+# Copyright (C) 2007-2012 daniel g. siegel <dgsiegel@gnome.org>
 # This file is distributed under the same license as the cheese package.
 # Takeshi AIHANA <takeshi.aihana@gmail.com>, 2007,2008.
 # Kentaro Kazuhama <kazken3@gmail.com>, 2009.
 # Hideki Yamane (Debian-JP) <henrich@debian.or.jp>, 2009-2010.
-# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010-2011.
+# Hideki Yamane <henrich@debian.org>, 2011.
+# Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010-2012.
 # Hajime Taira <htaira@redhat.com>, 2011.
 #
 msgid ""
@@ -12,9 +13,9 @@ msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-22 11:27+0000\n"
-"PO-Revision-Date: 2011-03-22 21:26+0900\n"
-"Last-Translator: Hajime Taira <htaira@redhat.com>\n"
+"POT-Creation-Date: 2012-01-02 14:59+0000\n"
+"PO-Revision-Date: 2012-01-04 00:06+0900\n"
+"Last-Translator: Hideki Yamane <henrich@debian.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,53 +23,20 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:57
-msgid "Cheese"
-msgstr "Cheese"
-
-#: ../data/cheese-about.ui.h:2
+#: ../data/cheese-about.ui.h:1
 msgid "Cheese Website"
 msgstr "Cheese のウェブサイト"
 
-#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+#: ../data/cheese-about.ui.h:2 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ウェブカムで特殊効果をつけた楽しい写真や動画を撮ります"
 
-#: ../data/cheese-about.ui.h:4
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
-msgstr ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
-
-#: ../data/cheese-about.ui.h:10
+#: ../data/cheese-about.ui.h:3
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
 "kentaro kazuhama <kazken3@gmail.com>\n"
-"やまねひでき <henrich@debian.or.jp>\n"
+"やまねひでき <henrich@debian.org>\n"
 "草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
 "Hajime Taira <htaira@redhat.com>\n"
 "日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
@@ -102,7 +70,7 @@ msgid "Take _Multiple Photos"
 msgstr "複数の写真を撮る(_M)"
 
 #: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:210
+#: ../libcheese/cheese-avatar-chooser.c:263
 msgid "Take a photo"
 msgstr "写真を撮る"
 
@@ -203,102 +171,302 @@ msgid "Burst mode"
 msgstr "連写モード"
 
 #: ../data/cheese-prefs.ui.h:4
+msgid "Capture"
+msgstr ""
+
+#: ../data/cheese-prefs.ui.h:5
 msgid "Contrast"
 msgstr "コントラスト"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Delay between photos (seconds)"
 msgstr "画像表示の遅延間隔(秒)"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
 msgid "Device"
 msgstr "デバイス"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:8
 msgid "Fire _Flash"
 msgstr "フラッシュを使う(_F)"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:9
 msgid "Hue"
 msgstr "色相"
 
-#: ../data/cheese-prefs.ui.h:9
-msgid "Image properties"
-msgstr "画像のプロパティ"
-
 #: ../data/cheese-prefs.ui.h:10
+msgid "Image"
+msgstr ""
+
+#: ../data/cheese-prefs.ui.h:11
 msgid "Number of photos"
 msgstr "写真の数"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:12
 msgid "Photo resolution"
 msgstr "写真の解像度"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:13
 msgid "Preferences"
 msgstr "Cheese の設定"
 
-#: ../data/cheese-prefs.ui.h:13
+#: ../data/cheese-prefs.ui.h:14
 msgid "Saturation"
 msgstr "鮮やか"
 
-#: ../data/cheese-prefs.ui.h:14
+#: ../data/cheese-prefs.ui.h:15
 msgid "Video resolution"
 msgstr "ビデオの解像度"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "Webcam"
 msgstr "ウェブカム"
 
-#: ../data/cheese-prefs.ui.h:16
+#: ../data/cheese-prefs.ui.h:17
 msgid "_Countdown"
 msgstr "カウントダウン(_C)"
+
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:67
+msgid "Cheese"
+msgstr "Cheese"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese ウェブカム・ブース"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:1
+#, fuzzy
+msgid "Adjusts the brightness of the picture coming from the camera"
+msgstr "カメラから受け取る画像の明るさを調整します"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:2
+#, fuzzy
+msgid "Adjusts the contrast of the picture coming from the camera"
+msgstr "カメラから受け取る画像のコントラストを調整します"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:3
+#, fuzzy
+msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgstr "カメラから受け取る画像の色相を調整します"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:4
+#, fuzzy
+msgid "Adjusts the saturation of the picture coming from the camera"
+msgstr "カメラから受け取る画像の彩度を調整します"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:5
+msgid "Camera device string indicator"
+msgstr "カメラのデバイス名"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+#, fuzzy
+msgid "Countdown length"
+msgstr "カウントダウン(_C)"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"写真ファイルを保存するフォルダーです。空の場合は \"XDG_PHOTO/Webcam\" を使用"
+"します。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"動画ファイルを保存するフォルダーです。空の場合は \"XDG_VIDEO/Webcam\" を使用"
+"します。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
+msgid "Fire flash before taking a picture"
+msgstr "画像の撮影前にフラッシュを焚く"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:10
+#, fuzzy
+msgid "If set to true, Cheese will start up in fullscreen mode."
+msgstr ""
+"チェックボックスをONにした場合、Cheeseはフルスクリーンモードで起動します。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:11
+#, fuzzy
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
+msgstr ""
+"チェックボックスをONにした場合、Cheeseは画像コレクションを右手側に表示してワ"
+"イドモードで起動します。小さな画面で役に立ちます。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:12
+#, fuzzy
+msgid "Last selected effect"
+msgstr "直前に選択したエフェクトの名前"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+#, fuzzy
+msgid "Name of the installed effect that was selected last"
+msgstr "直前に選択されたインストールしたエフェクトの名前"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+msgid "Number of photos in burst mode"
+msgstr "連写モードでの画像の数"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
+msgid "Photo Path"
+msgstr "写真を保存する場所"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:16
+#, fuzzy
+msgid "Photo height"
+msgstr "写真の縦解像度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:17
+#, fuzzy
+msgid "Photo width"
+msgstr "写真を保存する場所"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+msgid "Picture brightness"
+msgstr "画像の明るさ"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+msgid "Picture contrast"
+msgstr "画像のコントラスト"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+msgid "Picture hue"
+msgstr "画像の色相"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
+msgid "Picture saturation"
+msgstr "画像の彩度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:22
+#, fuzzy
+msgid "Set to true to fire a flash when taking a picture"
+msgstr "画像を撮る時にフラッシュを焚くにはONにします"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:23
+#, fuzzy
+msgid "Set to true to show a countdown before taking a photo"
+msgstr "写真を撮るまでカウントダウンするかどうかです"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:24
+#, fuzzy
+msgid "The duration of the countdown before taking a photo, in seconds"
+msgstr "写真を撮るまでカウントダウンするかどうかです"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:25
+#, fuzzy
+msgid "The height of the image captured from the camera, in pixels"
+msgstr "カメラで取得した画像の縦解像度です"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:26
+#, fuzzy
+msgid "The height of the video captured from the camera, in pixels"
+msgstr "カメラで取得したビデオの縦解像度です"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:27
+#, fuzzy
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr "画像を連続で撮影する時の遅延の間隔をミリ秒単位の長さで設定します。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:28
+msgid "The number of photos to take in a single burst."
+msgstr "一度の連写モードで撮影する写真の数を設定します。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:29
+#, fuzzy
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr "カメラを接続しているデバイス名です (例: /dev/video0)"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+#, fuzzy
+msgid "The width of the image captured from the camera, in pixels"
+msgstr "カメラで取得した画像の横解像度です"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+#, fuzzy
+msgid "The width of the video captured from the camera, in pixels"
+msgstr "カメラで取得したビデオの横解像度です"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+msgid "Time between photos in burst mode"
+msgstr "連写モードでの写真の時間間隔"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
+msgid "Use a countdown"
+msgstr "カウントダウンする"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
+msgid "Video Path"
+msgstr "動画を保存する場所"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:35
+#, fuzzy
+msgid "Video height"
+msgstr "ビデオの縦解像度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:36
+#, fuzzy
+msgid "Video width"
+msgstr "動画を保存する場所"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:37
+msgid "Whether to start in fullscreen"
+msgstr "フルスクリーンモードで起動するかどうか"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:38
+msgid "Whether to start in wide mode"
+msgstr "ワイドモードで開始するかどうか"
+
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:799
 msgid "Shutter sound"
 msgstr "シャッター音"
 
-#: ../libcheese/cheese-avatar-chooser.c:228
+#: ../libcheese/cheese-avatar-chooser.c:281
 msgid "_Take a photo"
 msgstr "写真を撮る(_T)"
 
-#: ../libcheese/cheese-avatar-chooser.c:241
+#: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
 msgstr "写真を破棄する(_D)"
 
-#: ../libcheese/cheese-camera-device.c:329
+#: ../libcheese/cheese-camera-device.c:390
 msgid "Device capabilities not supported"
 msgstr "デバイスの機能はサポートされていません"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:419
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "デバイス %s の機能の検索のための初期化に失敗しました"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:600
 msgid "Unknown device"
 msgstr "不明なデバイス"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:623
 msgid "Cancellable initialization not supported"
 msgstr "初期化はキャンセルできません"
 
-#: ../libcheese/cheese-camera.c:1182
+#: ../libcheese/cheese-camera.c:1489
 #, c-format
 msgid "No device found"
 msgstr "デバイスが見つかりません"
 
-#: ../libcheese/cheese-camera.c:1232
+#: ../libcheese/cheese-camera.c:1539
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "必要な GStreamer エレメントが見つかりません: "
 
-#: ../src/cheese-effects-manager.vala:118
+#: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
-msgstr "特殊効果なし"
+msgstr "エフェクトなし"
 
 #: ../src/cheese-main.vala:37
 msgid "Start in wide mode"
@@ -320,346 +488,82 @@ msgstr "バージョン情報を出力して終了する"
 msgid "Start in fullscreen mode"
 msgstr "フルスクリーンモードで起動する"
 
-#: ../src/cheese-main.vala:108
+#: ../src/cheese-main.vala:126
 msgid "- Take photos and videos from your webcam"
 msgstr "- ウェブカムで写真や動画を撮る"
 
-#: ../src/cheese-main.vala:119
+#: ../src/cheese-main.vala:138
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "'%s --help' を実行して利用可能なコマンドラインオプションの完全な一覧を見る\n"
 
-#: ../src/cheese-main.vala:134
+#: ../src/cheese-main.vala:153
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "すでに他のインスタンスの Cheese が起動しています。\n"
 
-#: ../src/cheese-window.vala:763
+#: ../src/cheese-window.vala:202
+#, c-format
+msgid "Could not open %s"
+msgstr ""
+
+#: ../src/cheese-window.vala:236
+#, c-format
+msgid "Are you sure you want to permanently delete the file \"%s\"?"
+msgstr ""
+
+#: ../src/cheese-window.vala:240
+msgid "If you delete an item, it will be permanently lost"
+msgstr ""
+
+#: ../src/cheese-window.vala:256
+#, c-format
+msgid "Could not delete %s"
+msgstr ""
+
+#: ../src/cheese-window.vala:297
+#, c-format
+msgid "Could not move %s to trash"
+msgstr ""
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:362
+msgid "Save File"
+msgstr ""
+
+#: ../src/cheese-window.vala:396
+#, c-format
+msgid "Could not save %s"
+msgstr ""
+
+#: ../src/cheese-window.vala:908
 msgid "Stop _Recording"
 msgstr "録画の停止(_R)"
 
-#: ../src/cheese-window.vala:787
+#: ../src/cheese-window.vala:909
+#, fuzzy
+msgid "Stop recording"
+msgstr "録画の停止(_R)"
+
+#: ../src/cheese-window.vala:937
 msgid "Stop _Taking Pictures"
 msgstr "写真撮影を停止(_T)"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:938
+#, fuzzy
+msgid "Stop taking pictures"
+msgstr "写真撮影を停止(_T)"
+
+#: ../src/cheese-window.vala:1121
 msgid "No effects found"
-msgstr "効果が見つかりません"
+msgstr "エフェクトが見つかりません"
 
-#~ msgid "Fullscreen"
-#~ msgstr "フルスクリーン"
+#~ msgid "Image properties"
+#~ msgstr "画像のプロパティ"
 
-#~ msgid "_Delete"
-#~ msgstr "削除(_D)"
+#~ msgid "Photo width resolution"
+#~ msgstr "写真の横解像度"
 
-#~ msgid "_Open"
-#~ msgstr "開く(_O)"
-
-#~ msgid "_Preferences"
-#~ msgstr "設定(_P)"
-
-#~ msgid "_Quit"
-#~ msgstr "終了(_Q)"
-
-#~ msgid "Resolution"
-#~ msgstr "解像度"
-
-#~ msgid "%d "
-#~ msgstr "%d "
-
-#~ msgid "Enable wide mode"
-#~ msgstr "ワイドモードを有効にする"
-
-#~ msgid ""
-#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
-#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-#~ msgstr ""
-#~ "起動時に適用するいろいろな画像効果です。指定可能な値: \"mauve\" (薄紫色)、"
-#~ "\"noir_blanc\" (白黒)、\"saturation\" (鮮やか)、\"hulk\" (ハルク)、"
-#~ "\"vertical-flip\" (Y軸方向に折り返す)、 \"horizontal-flip\" (X軸方向に折り"
-#~ "返す)、\"shagadelic\" (セクシー)、\"vertigo\" (めまい)、\"edge\" (エッ"
-#~ "ジ)、\"dice\" (ダイス)、\"warp\" (ワープ)"
-
-#~ msgid "Adjusts brightness level of the picture coming from the camera"
-#~ msgstr "カメラから受け取る画像の明るさを調整します"
-
-#~ msgid "Adjusts contrast level of the picture coming from the camera"
-#~ msgstr "カメラから受け取る画像のコントラストを調整します"
-
-#~ msgid "Adjusts hue level of the picture coming from the camera"
-#~ msgstr "カメラから受け取る画像の色相を調整します"
-
-#~ msgid "Adjusts saturation level of the picture coming from the camera"
-#~ msgstr "カメラから受け取る画像の彩度を調整します"
-
-#~ msgid "Camera device string indicator"
-#~ msgstr "カメラのデバイス名"
-
-#~ msgid ""
-#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
-#~ "\" will be used."
-#~ msgstr ""
-#~ "写真のファイルを保存するフォルダで、空の場合は \"XDG_PHOTO/Webcam\" を使用"
-#~ "します。"
-
-#~ msgid ""
-#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
-#~ "\" will be used."
-#~ msgstr ""
-#~ "動画のファイルを保存するフォルダで、空の場合は \"XDG_VIDEO/Webcam\" を使用"
-#~ "します。"
-
-#~ msgid ""
-#~ "If set to true, Cheese will start up in a wide mode with the image "
-#~ "collection placed on the right-hand side. Useful with small screens."
-#~ msgstr ""
-#~ "チェックボックスをONにした場合、Cheeseは画像コレクションを右手側に表示して"
-#~ "ワイドモードで起動します。小さな画面で役に立ちます。"
-
-#~ msgid ""
-#~ "If set to true, then Cheese will have a feature allowing you to delete a "
-#~ "file immediately and in-place, instead of moving it to the trash. This "
-#~ "feature can be dangerous, so use caution."
-#~ msgstr ""
-#~ "TRUE にするとゴミ箱に送ることなしにその場でファイルを抹消します。抹消する"
-#~ "と元に戻せないので、この機能の扱いには十分に注意してください。"
-
-#~ msgid "Milliseconds between photos in burst mode."
-#~ msgstr "連続モードでの画像のミリ秒間隔。"
-
-#~ msgid "Number of photos in burst mode."
-#~ msgstr "連続モードでの画像の数。"
-
-#~ msgid "Photo Path"
-#~ msgstr "写真を保存する場所"
-
-#~ msgid "Picture brightness"
-#~ msgstr "画像の明るさ"
-
-#~ msgid "Picture contrast"
-#~ msgstr "画像のコントラスト"
-
-#~ msgid "Picture hue"
-#~ msgstr "画像の色相"
-
-#~ msgid "Picture saturation"
-#~ msgstr "画像の彩度"
-
-#~ msgid "Selected Effects"
-#~ msgstr "適用する画像効果"
-
-#~ msgid "Set to True to show countdown when taking a photo"
-#~ msgstr "写真を撮るまでカウントダウンするかどうかです。"
-
-#~ msgid "The device which points to the camera (e.g. /dev/video0)"
-#~ msgstr "カメラを接続しているデバイス名です (例: /dev/video0)"
-
-#~ msgid "The height resolution of the image captured from the camera"
-#~ msgstr "カメラで取得した画像の高さ (Y方向の解像度) です。"
-
-#~ msgid ""
-#~ "The length of time, in milliseconds, to delay between taking each photo "
-#~ "in a burst sequence of photos."
-#~ msgstr "画像を連続で撮影する時の遅延の間隔をミリ秒単位の長さで設定します。"
-
-#~ msgid "The number of photos to take in a single burst."
-#~ msgstr "一度の連続モードで撮影する画像の数を設定します。"
-
-#~ msgid "The width resolution of the image captured from the camera"
-#~ msgstr "カメラで取得した画像の幅 (X方向の解像度) です。"
-
-#~ msgid "Use a countdown"
-#~ msgstr "カウントダウンする"
-
-#~ msgid "Video Path"
-#~ msgstr "動画を保存する場所"
-
-#~ msgid "Whether to enable immediate deletion"
-#~ msgstr "ファイルを直ぐに削除してしまうかどうか"
-
-#~ msgid "Set to True to use flash when taking a photo"
-#~ msgstr "写真を撮る時にフラッシュを使うには true と設定します"
-
-#~ msgid "Use a flash"
-#~ msgstr "フラッシュを使用"
-
-#~ msgid "Switch to Burst Mode"
-#~ msgstr "連続モードに切り替え"
-
-#~ msgid "Switch to Photo Mode"
-#~ msgstr "写真のモードに切り替えます"
-
-#~ msgid "Switch to Video Mode"
-#~ msgstr "動画のモードに切り替えます"
-
-#~ msgid "Switch to the Effects Selector"
-#~ msgstr "画像の効果を選択するモードに切り替えます"
-
-#~ msgid "_Skip"
-#~ msgstr "スキップ(_S)"
-
-#~ msgid "S_kip All"
-#~ msgstr "すべてスキップ(_K)"
-
-#~ msgid "Delete _All"
-#~ msgstr "すべて削除(_A)"
-
-#~ msgid ""
-#~ "Failed to launch program to show:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "表示プログラムの起動に失敗しました:\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Save File"
-#~ msgstr "ファイルの保存"
-
-#~ msgid "Could not save %s"
-#~ msgstr "%s を保存できませんでした"
-
-#~ msgid "Error while deleting"
-#~ msgstr "削除する際にエラー"
-
-#~ msgid "The file \"%s\" cannot be deleted. Details: %s"
-#~ msgstr "\"%s\" というファイルを削除できません。詳細は次のとおりです: %s"
-
-#~ msgid "Are you sure you want to permanently delete the %'d selected item?"
-#~ msgid_plural ""
-#~ "Are you sure you want to permanently delete the %'d selected items?"
-#~ msgstr[0] "本当に指定した %'d個のアイテムを完全に抹消してもよろしいですか?"
-
-#~ msgid "Are you sure you want to permanently delete \"%s\"?"
-#~ msgstr "\"%s\" を完全に抹消してもよろしいですか?"
-
-#~ msgid "If you delete an item, it will be permanently lost."
-#~ msgstr "このアイテムを削除すると元に戻すことはできません。"
-
-#~ msgid "Unknown Error"
-#~ msgstr "原因不明のエラー"
-
-#~ msgid "Cannot move file to trash, do you want to delete immediately?"
-#~ msgstr "ファイルをゴミ箱へ移動できません。今すぐ削除してもよろしいですか?"
-
-#~ msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-#~ msgstr ""
-#~ "\"%s\" というファイルをゴミ箱へ移動できませんでした。詳細は次のとおりで"
-#~ "す: %s"
-
-#~ msgid "Really move all photos and videos to the trash?"
-#~ msgstr "本当にすべての写真と動画をゴミ箱に移動しますか?"
-
-#~ msgid "_Move to Trash"
-#~ msgstr "ゴミ箱へ移動する(_M)"
-
-#~ msgid "Unable to open help file for Cheese"
-#~ msgstr "Cheese のヘルプを開けませんでした"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version.\n"
-#~ msgstr ""
-#~ "このプログラムはフリーソフトウェアです。すなわち、フリーソフトウェア財団が"
-#~ "提供する GNU 一般公有使用許諾契約書の第二版、あるいはそれ以降の版が定める"
-#~ "条項の下で本プログラムを再頒布または変更することができます。\n"
-
-#~ msgid ""
-#~ "This program is distributed in the hope that it will be useful, but "
-#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#~ "Public License for more details.\n"
-#~ msgstr ""
-#~ "本プログラムは有用とは思いますが、頒布にあたっては市場性及び特定目的、適合"
-#~ "性についての暗黙の保証を含めて、いかなる保証も行ないません。詳細について"
-#~ "は GNU 一般公有使用許諾契約書をご覧ください。\n"
-
-#~ msgid ""
-#~ "You should have received a copy of the GNU General Public License along "
-#~ "with this program. If not, see <http://www.gnu.org/licenses/>."
-#~ msgstr ""
-#~ "あなたは本プログラムと一緒に GNU 一般公有使用許諾契約書の写しを受け取って"
-#~ "いるはずです。そうでない場合は <http://www.gnu.org/licenses/> をご覧くださ"
-#~ "い。"
-
-#~ msgid "Mauve"
-#~ msgstr "薄紫色"
-
-#~ msgid "Noir/Blanc"
-#~ msgstr "白黒"
-
-#~ msgid "Hulk"
-#~ msgstr "ハルク"
-
-#~ msgid "Vertical Flip"
-#~ msgstr "Y軸方向に折り返す"
-
-#~ msgid "Horizontal Flip"
-#~ msgstr "X軸方向に折り返す"
-
-#~ msgid "Shagadelic"
-#~ msgstr "セクシー"
-
-#~ msgid "Vertigo"
-#~ msgstr "めまい"
-
-#~ msgid "Edge"
-#~ msgstr "エッジ"
-
-#~ msgid "Dice"
-#~ msgstr "ダイス"
-
-#~ msgid "Warp"
-#~ msgstr "ワープ"
-
-#~ msgid "No camera found!"
-#~ msgstr "カメラが見つかりませんでした!"
-
-#~ msgid "Please refer to the help for further information."
-#~ msgstr "更に詳細な情報についてはヘルプを参照してください。"
-
-#~ msgid "Help on this Application"
-#~ msgstr "このアプリケーションのヘルプです"
-
-#~ msgid "_Start Recording"
-#~ msgstr "録画の開始(_S)"
-
-#~ msgid "Be verbose"
-#~ msgstr "詳細なログにする"
-
-#~ msgid "_Take another photo"
-#~ msgstr "次の写真を撮る(_T)"
-
-#~ msgid "Camera setup failed"
-#~ msgstr "カメラ設定に失敗しました"
-
-#~ msgid "Could not set the Account Photo"
-#~ msgstr "ログイン時のアカウント用フォトにセットできませんでした"
-
-#~ msgid "Media files"
-#~ msgstr "メディア・ファイル"
-
-#~ msgid "_Set As Account Photo"
-#~ msgstr "ログイン画面で使用する(_S)"
-
-#~ msgid "Send by _Mail"
-#~ msgstr "メールで送信する(_M)"
-
-#~ msgid "Send _To"
-#~ msgstr "送る(_T)..."
-
-#~ msgid "Export to F-_Spot"
-#~ msgstr "F-Spot に送る(_S)"
-
-#~ msgid "Export to _Flickr"
-#~ msgstr "Flickr に送る(_F)"
-
-#~ msgid "_Start recording"
-#~ msgstr "録画の開始(_S)"
-
-#~ msgid "Check your GStreamer installation"
-#~ msgstr "GStreamer がインストールされているか確認してください"
+#~ msgid "Video width resolution"
+#~ msgstr "ビデオの横解像度"
