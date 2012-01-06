@@ -1,13 +1,13 @@
 # Norwegian bokmål translation of cheese
 # This file is distributed under the same license as the cheese package.
-# Kjartan Maraas <kmaraas@gnome.org>, 2005-2011.
+# Kjartan Maraas <kmaraas@gnome.org>, 2005-2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-21 22:44+0100\n"
-"PO-Revision-Date: 2011-12-21 22:46+0100\n"
+"POT-Creation-Date: 2012-01-06 20:39+0100\n"
+"PO-Revision-Date: 2012-01-06 20:41+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -213,7 +213,7 @@ msgstr "Pause mellom bilder (sekunder)"
 msgid "Capture"
 msgstr "Ta bilde"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:65
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:67
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -235,7 +235,7 @@ msgstr "Lengde på nedtelling"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:4
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr ""
+msgstr "Varighet på nedtelling før bilde tas i sekunder"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:5
 msgid "Fire flash before taking a picture"
@@ -243,7 +243,7 @@ msgstr "Fyr av blitz før bildet tas"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:6
 msgid "Set to true to fire a flash when taking a picture"
-msgstr ""
+msgstr "Set til «true» for å bruke blitz når bilde tas"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:7
 msgid "Camera device string indicator"
@@ -396,20 +396,20 @@ msgstr "_Ta et bilde"
 msgid "_Discard photo"
 msgstr "_Forkast bilde"
 
-#: ../libcheese/cheese-camera-device.c:400
+#: ../libcheese/cheese-camera-device.c:390
 msgid "Device capabilities not supported"
 msgstr "Enhetens funksjoner er ikke støttet"
 
-#: ../libcheese/cheese-camera-device.c:429
+#: ../libcheese/cheese-camera-device.c:419
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Klarte ikke å initiere enhet %s for å spørre etter støttede funksjoner"
 
-#: ../libcheese/cheese-camera-device.c:610
+#: ../libcheese/cheese-camera-device.c:600
 msgid "Unknown device"
 msgstr "Ukjent enhet"
 
-#: ../libcheese/cheese-camera-device.c:633
+#: ../libcheese/cheese-camera-device.c:623
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytbar initiering er ikke støttet"
 
@@ -446,28 +446,70 @@ msgstr "Vis versjonsinformasjon og avslutt"
 msgid "Start in fullscreen mode"
 msgstr "Start i fullskjermmodus"
 
-#: ../src/cheese-main.vala:124
+#: ../src/cheese-main.vala:126
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta bilder og video fra ditt webkamera"
 
-#: ../src/cheese-main.vala:136
+#: ../src/cheese-main.vala:138
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Kjør «%s --help» for å se en full liste med tilgjengelige "
 "kommandolinjeflagg.\n"
 
-#: ../src/cheese-main.vala:151
+#: ../src/cheese-main.vala:153
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "En annen instans av Cheese kjører allerede\n"
+
+#: ../src/cheese-window.vala:202
+#, c-format
+msgid "Could not open %s"
+msgstr "Kunne ikke åpne %s"
+
+#: ../src/cheese-window.vala:236
+#, c-format
+msgid "Are you sure you want to permanently delete the file \"%s\"?"
+msgstr "Er du sikker på at du vil slette filen «%s» permanent?"
+
+#: ../src/cheese-window.vala:240
+msgid "If you delete an item, it will be permanently lost"
+msgstr "Hvis du sletter en oppføring vil den bli borte for godt"
+
+#: ../src/cheese-window.vala:256
+#, c-format
+msgid "Could not delete %s"
+msgstr "Kunne ikke slette %s"
+
+#: ../src/cheese-window.vala:297
+#, c-format
+msgid "Could not move %s to trash"
+msgstr "Kunne ikke flytte %s til papirkurven"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:362
+msgid "Save File"
+msgstr "Lagre fil"
+
+#: ../src/cheese-window.vala:396
+#, c-format
+msgid "Could not save %s"
+msgstr "Kunne ikke lagre %s"
 
 #: ../src/cheese-window.vala:908
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
+#: ../src/cheese-window.vala:909
+msgid "Stop recording"
+msgstr "Stopp opptak"
+
 #: ../src/cheese-window.vala:937
 msgid "Stop _Taking Pictures"
+msgstr "Stopp fo_tografering"
+
+#: ../src/cheese-window.vala:938
+msgid "Stop taking pictures"
 msgstr "Stopp fo_tografering"
 
 #: ../src/cheese-window.vala:1121
