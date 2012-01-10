@@ -391,7 +391,8 @@ eog_thumb_nav_class_init (EogThumbNavClass *class)
                                                          "Show Buttons",
                                                          "Whether to show navigation buttons or not",
                                                          TRUE,
-                                                         (G_PARAM_READABLE | G_PARAM_WRITABLE)));
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS));
 
   g_object_class_install_property (g_object_class,
                                    PROP_THUMB_VIEW,
@@ -399,9 +400,9 @@ eog_thumb_nav_class_init (EogThumbNavClass *class)
                                                         "Thumbnail View",
                                                         "The internal thumbnail viewer widget",
                                                         CHEESE_TYPE_THUMB_VIEW,
-                                                        (G_PARAM_CONSTRUCT_ONLY |
-                                                         G_PARAM_READABLE |
-                                                         G_PARAM_WRITABLE)));
+                                                        G_PARAM_CONSTRUCT_ONLY |
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS));
 
   g_type_class_add_private (g_object_class, sizeof (EogThumbNavPrivate));
 }

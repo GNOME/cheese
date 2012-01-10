@@ -122,7 +122,9 @@ cheese_effect_class_init (CheeseEffectClass *klass)
                                                "Name",
                                                "Name of the effect",
                                                "",
-                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                               G_PARAM_READWRITE |
+                                               G_PARAM_CONSTRUCT_ONLY |
+                                               G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseEffect:pipeline-desc:
@@ -133,7 +135,9 @@ cheese_effect_class_init (CheeseEffectClass *klass)
                                                         "Pipeline description",
                                                         "Description of the GStreamer pipeline associated with the effect",
                                                         "",
-                                                        G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_CONSTRUCT_ONLY |
+                                                        G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseEffect:control-valve:
@@ -145,7 +149,8 @@ cheese_effect_class_init (CheeseEffectClass *klass)
                                                         "Control valve",
                                                         "If the control valve is active, the effect is connected to a video stream",
                                                         GST_TYPE_ELEMENT,
-                                                        G_PARAM_READWRITE);
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 }

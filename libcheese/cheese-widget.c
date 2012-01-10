@@ -384,7 +384,8 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
                                               "The current state of the widget",
                                               CHEESE_TYPE_WIDGET_STATE,
                                               CHEESE_WIDGET_STATE_NONE,
-                                              G_PARAM_READABLE);
+                                              G_PARAM_READABLE |
+                                              G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 

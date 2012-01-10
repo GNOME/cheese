@@ -1326,7 +1326,8 @@ cheese_camera_class_init (CheeseCameraClass *klass)
   properties[PROP_VIDEO_TEXTURE] = g_param_spec_pointer ("video-texture",
                                                          "Video texture",
                                                          "The video texture for the CheeseCamera to render into",
-                                                         G_PARAM_READWRITE);
+                                                         G_PARAM_READWRITE |
+                                                         G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseCamera:device-node:
@@ -1337,7 +1338,8 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                       "Device node",
                                                       "The path to the device node for the video capture device",
                                                       "",
-                                                      G_PARAM_READWRITE);
+                                                      G_PARAM_READWRITE |
+                                                      G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseCamera:format:
@@ -1348,7 +1350,8 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                 "Video format",
                                                 "The format of the video capture device",
                                                 CHEESE_TYPE_VIDEO_FORMAT,
-                                                G_PARAM_READWRITE);
+                                                G_PARAM_READWRITE |
+                                                G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseCamera:num-camera-devices:
@@ -1362,7 +1365,8 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                            0,
                                                            G_MAXUINT8,
                                                            0,
-                                                           G_PARAM_READABLE);
+                                                           G_PARAM_READABLE |
+                                                           G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 

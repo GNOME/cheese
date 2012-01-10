@@ -352,7 +352,8 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
                                                  "Pixbuf",
                                                  "A #GdkPixbuf object representing the cropped area of the picture, or %NULL.",
                                                  GDK_TYPE_PIXBUF,
-                                                 G_PARAM_READABLE);
+                                                 G_PARAM_READABLE |
+                                                 G_PARAM_CONSTRUCT_ONLY);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 

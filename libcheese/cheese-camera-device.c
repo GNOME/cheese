@@ -542,7 +542,9 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                "Name of the device",
                                                "Human-readable name of the video capture device",
                                                NULL,
-                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                               G_PARAM_READWRITE |
+                                               G_PARAM_CONSTRUCT_ONLY |
+                                               G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseCameraDevice:device-node:
@@ -553,7 +555,9 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                       "Device node",
                                                       "Path to the device node of the video capture device",
                                                       NULL,
-                                                      G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                                      G_PARAM_READWRITE |
+                                                      G_PARAM_CONSTRUCT_ONLY |
+                                                      G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseCameraDevice:uuid:
@@ -564,7 +568,9 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                "Device UUID",
                                                "UUID of the video capture device",
                                                NULL,
-                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                               G_PARAM_READWRITE |
+                                               G_PARAM_CONSTRUCT_ONLY |
+                                               G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseCameraDevice:v4l-api-version:
@@ -576,7 +582,9 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                        "Video4Linux API version",
                                                        "Version of the Video4Linux API that the device supports",
                                                        1, 2, 2,
-                                                       G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY);
+                                                       G_PARAM_READWRITE |
+                                                       G_PARAM_CONSTRUCT_ONLY |
+                                                       G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 
