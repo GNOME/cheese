@@ -376,11 +376,7 @@ cheese_camera_device_monitor_finalize (GObject *object)
 #ifdef HAVE_UDEV
   CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR (object)->priv;
 
-  if (priv->client != NULL)
-  {
-    g_object_unref (priv->client);
-    priv->client = NULL;
-  }
+  g_clear_object (&priv->client);
 #endif /* HAVE_UDEV */
   G_OBJECT_CLASS (cheese_camera_device_monitor_parent_class)->finalize (object);
 }

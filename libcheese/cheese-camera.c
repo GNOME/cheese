@@ -1187,8 +1187,7 @@ cheese_camera_finalize (GObject *object)
   /* Free CheeseCameraDevice array */
   g_ptr_array_free (priv->camera_devices, TRUE);
 
-  if (priv->monitor != NULL)
-    g_object_unref (priv->monitor);
+  g_clear_object (&priv->monitor);
 
   G_OBJECT_CLASS (cheese_camera_parent_class)->finalize (object);
 }

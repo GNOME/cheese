@@ -309,11 +309,7 @@ cheese_avatar_chooser_finalize (GObject *object)
 {
   CheeseAvatarChooserPrivate *priv = ((CheeseAvatarChooser *) object)->priv;
 
-  if (priv->flash != NULL)
-  {
-    g_object_unref (priv->flash);
-    priv->flash = NULL;
-  }
+  g_clear_object (&priv->flash);
 
   G_OBJECT_CLASS (cheese_avatar_chooser_parent_class)->finalize (object);
 }

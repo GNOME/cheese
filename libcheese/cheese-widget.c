@@ -249,16 +249,8 @@ cheese_widget_finalize (GObject *object)
 {
   CheeseWidgetPrivate *priv = ((CheeseWidget *) object)->priv;
 
-  if (priv->settings)
-  {
-    g_object_unref (priv->settings);
-    priv->settings = NULL;
-  }
-  if (priv->webcam)
-  {
-    g_object_unref (priv->webcam);
-    priv->webcam = NULL;
-  }
+  g_clear_object (&priv->settings);
+  g_clear_object (&priv->webcam);
 
   G_OBJECT_CLASS (cheese_widget_parent_class)->finalize (object);
 }

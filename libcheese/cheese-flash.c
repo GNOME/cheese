@@ -256,11 +256,7 @@ cheese_flash_dispose (GObject *object)
 {
   CheeseFlashPrivate *priv = CHEESE_FLASH (object)->priv;
 
-  if (priv->parent != NULL)
-  {
-    g_object_unref (priv->parent);
-    priv->parent = NULL;
-  }
+  g_clear_object (&priv->parent);
 
   if (G_OBJECT_CLASS (cheese_flash_parent_class)->dispose)
     G_OBJECT_CLASS (cheese_flash_parent_class)->dispose (object);
