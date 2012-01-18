@@ -1,14 +1,14 @@
 # Cheese Swedish translation
-# Copyright (C) 2007-2011 Free Software Foundation, Inc.
+# Copyright (C) 2007-2012 Free Software Foundation, Inc.
 # This file is distributed under the same license as cheese
-# Daniel Nylander <po@danielnylander.se>, 2007, 2008, 2009, 2010, 2011.
+# Daniel Nylander <po@danielnylander.se>, 2007, 2008, 2009, 2010, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-25 10:03+0100\n"
-"PO-Revision-Date: 2011-11-25 10:04+0100\n"
+"POT-Creation-Date: 2012-01-18 12:34+0100\n"
+"PO-Revision-Date: 2012-01-18 12:36+0100\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -59,66 +59,70 @@ msgid "Save _As…"
 msgstr "Spara so_m..."
 
 #: ../data/cheese-actions.ui.h:7
+msgid "Share…"
+msgstr "Dela..."
+
+#: ../data/cheese-actions.ui.h:8
 msgid "Take _Multiple Photos"
 msgstr "Ta _flera foton"
 
-#: ../data/cheese-actions.ui.h:8
+#: ../data/cheese-actions.ui.h:9
 #: ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:268
+#: ../libcheese/cheese-avatar-chooser.c:263
 msgid "Take a photo"
 msgstr "Ta ett foto"
 
-#: ../data/cheese-actions.ui.h:9
+#: ../data/cheese-actions.ui.h:10
 msgid "Take multiple photos"
 msgstr "Ta flera foton"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:11
 msgid "_About"
 msgstr "_Om"
 
-#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-actions.ui.h:12
 msgid "_Burst"
 msgstr "_Bildsekvens"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:13
 msgid "_Cheese"
 msgstr "_Cheese"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:14
 msgid "_Contents"
 msgstr "_Innehåll"
 
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:15
 msgid "_Edit"
 msgstr "R_edigera"
 
-#: ../data/cheese-actions.ui.h:15
+#: ../data/cheese-actions.ui.h:16
 #: ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Effekter"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:17
 msgid "_Help"
 msgstr "_Hjälp"
 
-#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-actions.ui.h:18
 msgid "_Photo"
 msgstr "_Foto"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:19
 msgid "_Record a Video"
 msgstr "Spela _in en video"
 
-#: ../data/cheese-actions.ui.h:19
+#: ../data/cheese-actions.ui.h:20
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "_Ta ett foto"
 
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:21
 msgid "_Video"
 msgstr "_Video"
 
-#: ../data/cheese-actions.ui.h:21
+#: ../data/cheese-actions.ui.h:22
 msgid "_Wide Mode"
 msgstr "_Bredläge"
 
@@ -223,7 +227,7 @@ msgid "_Countdown"
 msgstr "Ne_dräkning"
 
 #: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:65
+#: ../src/cheese-main.vala:67
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -384,41 +388,41 @@ msgid "Whether to start in wide mode"
 msgstr "Huruvida starta i bredläge"
 
 #: ../libcheese/cheese-avatar-chooser.c:138
-#: ../src/cheese-window.vala:799
+#: ../src/cheese-window.vala:850
 msgid "Shutter sound"
 msgstr "Slutarljud"
 
-#: ../libcheese/cheese-avatar-chooser.c:286
+#: ../libcheese/cheese-avatar-chooser.c:281
 msgid "_Take a photo"
 msgstr "_Ta ett foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:299
+#: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
 msgstr "_Förkasta foto"
 
-#: ../libcheese/cheese-camera-device.c:387
+#: ../libcheese/cheese-camera-device.c:390
 msgid "Device capabilities not supported"
 msgstr "Enhetsförmågorna stöds inte"
 
-#: ../libcheese/cheese-camera-device.c:416
+#: ../libcheese/cheese-camera-device.c:419
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Misslyckades med att initiera enheten %s för funktionsavsökning"
 
-#: ../libcheese/cheese-camera-device.c:597
+#: ../libcheese/cheese-camera-device.c:608
 msgid "Unknown device"
 msgstr "Okänd enhet"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:631
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytningsbar initiering stöds inte"
 
-#: ../libcheese/cheese-camera.c:1443
+#: ../libcheese/cheese-camera.c:1492
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet hittades"
 
-#: ../libcheese/cheese-camera.c:1493
+#: ../libcheese/cheese-camera.c:1542
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 
@@ -446,29 +450,70 @@ msgstr "Skriv ut versionsinformation och avsluta"
 msgid "Start in fullscreen mode"
 msgstr "Starta i helskärmsläge"
 
-#: ../src/cheese-main.vala:124
+#: ../src/cheese-main.vala:126
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta foton och videor från din webbkamera"
 
-#: ../src/cheese-main.vala:136
+#: ../src/cheese-main.vala:138
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Kör \"%s --help\" för en komplett lista över tillgängliga kommandoradsflaggor.\n"
 
-#: ../src/cheese-main.vala:151
+#: ../src/cheese-main.vala:153
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "En annan instans av Cheese är för närvarande igång\n"
 
-#: ../src/cheese-window.vala:908
+#: ../src/cheese-window.vala:224
+#, c-format
+msgid "Could not open %s"
+msgstr "Kunde inte öppna %s"
+
+#: ../src/cheese-window.vala:252
+#, c-format
+msgid "Are you sure you want to permanently delete the file?"
+msgid_plural "Are you sure you want to permanently delete %d files?"
+msgstr[0] "Är du säker på att du vill permanent ta bort filen?"
+msgstr[1] "Är du säker på att du vill permanent ta bort %d filer?"
+
+#: ../src/cheese-window.vala:258
+msgid "If you delete an item, it will be permanently lost"
+msgid_plural "If you delete the items, they will be permanently lost"
+msgstr[0] "Om du tar bort ett objekt så kommer det att försvinna för alltid."
+msgstr[1] "Om du tar bort objekten så kommer de att försvinna för alltid."
+
+#: ../src/cheese-window.vala:334
+#, c-format
+msgid "Could not move %s to trash"
+msgstr "Kunde inte flytta %s till papperskorgen"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:413
+msgid "Save File"
+msgstr "Spara fil"
+
+#: ../src/cheese-window.vala:447
+#, c-format
+msgid "Could not save %s"
+msgstr "Kunde inte spara %s"
+
+#: ../src/cheese-window.vala:959
 msgid "Stop _Recording"
 msgstr "S_toppa inspelning"
 
-#: ../src/cheese-window.vala:937
+#: ../src/cheese-window.vala:960
+msgid "Stop recording"
+msgstr "Stoppa inspelning"
+
+#: ../src/cheese-window.vala:988
 msgid "Stop _Taking Pictures"
 msgstr "Sluta _ta bilder"
 
-#: ../src/cheese-window.vala:1121
+#: ../src/cheese-window.vala:989
+msgid "Stop taking pictures"
+msgstr "Sluta ta bilder"
+
+#: ../src/cheese-window.vala:1172
 msgid "No effects found"
 msgstr "Inga effekter hittades"
 
@@ -617,12 +662,6 @@ msgstr "Inga effekter hittades"
 #~ "%s\n"
 #~ "%s"
 
-#~ msgid "Save File"
-#~ msgstr "Spara fil"
-
-#~ msgid "Could not save %s"
-#~ msgstr "Kunde inte spara %s"
-
 #~ msgid "Error while deleting"
 #~ msgstr "Fel vid borttagning"
 
@@ -637,12 +676,6 @@ msgstr "Inga effekter hittades"
 #~ "Är du säker på att du vill permanent ta bort %'d markerat objekt?"
 #~ msgstr[1] ""
 #~ "Är du säker på att du vill permanent ta bort %'d markerade objekt?"
-
-#~ msgid "Are you sure you want to permanently delete \"%s\"?"
-#~ msgstr "Är du säker på att du vill permanent ta bort \"%s\"?"
-
-#~ msgid "If you delete an item, it will be permanently lost."
-#~ msgstr "Om du tar bort ett objekt kommer det att försvinna för alltid."
 
 #~ msgid "Unknown Error"
 #~ msgstr "Okänt fel"
@@ -770,9 +803,6 @@ msgstr "Inga effekter hittades"
 
 #~ msgid "The Y resolution of the image captured from the camera"
 #~ msgstr "Y-upplösningen för bilden som fångas med kameran"
-
-#~ msgid "Cannot move file to trash"
-#~ msgstr "Kan inte flytta filen till papperskorgen"
 
 #~ msgid "_Back"
 #~ msgstr "Tillb_aka"
