@@ -3,6 +3,12 @@
 [CCode (cprefix = "Cheese", lower_case_cprefix = "cheese_")]
 namespace Cheese
 {
+  [CCode (cheader_filename = "cheese.h")]
+  public static bool init([CCode (array_length_pos = 0.9)] ref unowned string[] argv);
+
+  [CCode (cheader_filename = "cheese-gtk.h")]
+  public static bool gtk_init([CCode (array_length_pos = 0.9)] ref unowned string[] argv);
+
   [CCode (cheader_filename = "cheese-effect.h")]
   public class Effect : GLib.Object
   {

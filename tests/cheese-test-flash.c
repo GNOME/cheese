@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <gtk/gtk.h>
 #include "cheese-flash.h"
 
@@ -37,5 +38,5 @@ int main (int argc, char **argv)
 
 	gtk_main ();
 
-	return 0;
+	return EXIT_SUCCESS;
 }

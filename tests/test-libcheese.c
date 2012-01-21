@@ -24,6 +24,7 @@
 #include "cheese-camera-device-monitor.h"
 #include "cheese-effect.h"
 #include "cheese-fileutil.h"
+#include "cheese.h"
 
 /* Test CheeseCameraDeviceMonitor */
 static void
@@ -209,7 +210,8 @@ main(int argc, gchar *argv[])
 
     g_test_init (&argc, &argv, NULL);
 
-    gst_init (&argc, &argv);
+    if (!cheese_init (&argc, &argv))
+        return EXIT_FAILURE;
 
     g_test_add_func ("/libcheese/cameradevicemonitor/create",
         cameradevicemonitor_create);

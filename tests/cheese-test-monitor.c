@@ -2,6 +2,7 @@
 
 #include "cheese-camera-device-monitor.h"
 #include "cheese-camera-device.h"
+#include "cheese.h"
 
 static void
 added_cb (CheeseCameraDeviceMonitor *monitor,
@@ -25,7 +26,8 @@ main (int argc, char **argv)
 {
   CheeseCameraDeviceMonitor *monitor;
 
-  gst_init (&argc, &argv);
+  if (!cheese_init (&argc, &argv))
+    return EXIT_FAILURE;
 
   monitor = cheese_camera_device_monitor_new ();
   g_signal_connect (G_OBJECT (monitor), "added",
@@ -36,5 +38,5 @@ main (int argc, char **argv)
 
   g_main_loop_run (g_main_loop_new (NULL, FALSE));
 
-  return 0;
+  return EXIT_SUCCESS;
 }

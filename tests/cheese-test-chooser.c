@@ -6,6 +6,7 @@
 #include <gst/gst.h>
 #include <clutter-gtk/clutter-gtk.h>
 #include "cheese-avatar-chooser.h"
+#include "cheese-gtk.h"
 
 static void
 response_cb (GtkDialog           *dialog,
@@ -29,14 +30,13 @@ main (int argc, char **argv)
 
   g_thread_init (NULL);
   gdk_threads_init ();
-  gst_init (&argc, &argv);
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  if (gtk_clutter_init (&argc, &argv) != CLUTTER_INIT_SUCCESS)
-    return 1;
+  if (!cheese_gtk_init (&argc, &argv))
+    return EXIT_FAILURE;
 
   window = cheese_avatar_chooser_new ();
   g_signal_connect (G_OBJECT (window), "response",
@@ -48,5 +48,5 @@ main (int argc, char **argv)
 
   gtk_widget_destroy (window);
 
-  return 0;
+  return EXIT_SUCCESS;
 }

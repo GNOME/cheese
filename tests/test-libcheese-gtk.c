@@ -27,6 +27,7 @@
 #include "cheese-flash.h"
 #include "cheese-widget.h"
 #include "um-crop-area.h"
+#include "cheese-gtk.h"
 
 /* CheeseAvatarChooser */
 static void
@@ -97,10 +98,9 @@ int main (int argc, gchar *argv[])
 {
     g_thread_init (NULL);
     gdk_threads_init ();
-    gst_init (&argc, &argv);
     gtk_test_init (&argc, &argv, NULL);
-    if (gtk_clutter_init (&argc, &argv) != CLUTTER_INIT_SUCCESS)
-        return 1;
+    if (!cheese_gtk_init (&argc, &argv))
+        return EXIT_FAILURE;
 
     g_test_add_func ("/libcheese-gtk/avatar_chooser", avatar_chooser);
     g_test_add_func ("/libcheese-gtk/flash", flash);

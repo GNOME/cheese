@@ -55,6 +55,7 @@ VALAFLAGS = \
 	--thread \
 	--vapidir $(top_srcdir)/src/vapi \
 	--pkg config \
+	--pkg posix \
 	--pkg gtk+-3.0 \
 	--pkg gmodule-2.0 \
 	--pkg gee-1.0 \

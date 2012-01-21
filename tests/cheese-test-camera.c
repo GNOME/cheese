@@ -6,6 +6,7 @@
 #include <clutter-gtk/clutter-gtk.h>
 #include <gst/gst.h>
 #include "cheese-camera.h"
+#include "cheese.h"
 
 static gboolean
 delete_callback (GtkWidget *window,
@@ -36,14 +37,16 @@ main (int argc, char **argv)
 
   g_thread_init (NULL);
   gdk_threads_init ();
-  gst_init (&argc, &argv);
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
   if (gtk_clutter_init (&argc, &argv) != CLUTTER_INIT_SUCCESS)
-    return 1;
+    return EXIT_FAILURE;
+
+  if (!cheese_init (&argc, &argv))
+    return EXIT_FAILURE;
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_default_size (GTK_WINDOW (window), 400, 300);
@@ -76,5 +79,5 @@ main (int argc, char **argv)
 
   gtk_main ();
 
-  return 0;
+  return EXIT_SUCCESS;
 }

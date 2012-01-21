@@ -4,6 +4,7 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
+#include "cheese-gtk.h"
 #include "cheese-widget.h"
 
 static gboolean
@@ -30,8 +31,8 @@ main (int argc, char **argv)
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
 
-  if (gtk_clutter_init (&argc, &argv) != CLUTTER_INIT_SUCCESS)
-    return 1;
+  if (!cheese_gtk_init (&argc, &argv))
+    return EXIT_FAILURE;
 
   window = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_default_size (GTK_WINDOW (window), 400, 300);
@@ -46,5 +47,5 @@ main (int argc, char **argv)
 
   gtk_main ();
 
-  return 0;
+  return EXIT_SUCCESS;
 }

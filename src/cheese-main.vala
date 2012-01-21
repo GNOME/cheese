@@ -172,8 +172,8 @@ public class Cheese.Main : Gtk.Application
     Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain (Config.GETTEXT_PACKAGE);
 
-    if (GtkClutter.init (ref args) != InitError.SUCCESS)
-      return 1;
+    if (!Cheese.gtk_init (ref args))
+      return Posix.EXIT_FAILURE;
 
     Cheese.Main app;
     app = new Cheese.Main ("org.gnome.Cheese", ApplicationFlags.FLAGS_NONE);
