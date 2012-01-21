@@ -96,6 +96,7 @@ libcheese_gtk_la_SOURCES = \
 	libcheese/cheese-avatar-chooser.c \
 	libcheese/cheese-aspect-frame.c \
 	libcheese/cheese-flash.c \
+	libcheese/cheese-gtk.c \
 	libcheese/cheese-widget.c \
 	libcheese/um-crop-area.c
 
@@ -130,7 +131,8 @@ libcheese_la_SOURCES = \
 	libcheese/cheese-camera-device.c \
 	libcheese/cheese-camera-device-monitor.c \
 	libcheese/cheese-effect.c \
-	libcheese/cheese-fileutil.c
+	libcheese/cheese-fileutil.c \
+	libcheese/cheese.c
 
 noinst_libcheese_headers = \
 	libcheese/cheese-camera.h \
@@ -147,6 +149,8 @@ cheese_HEADERS = \
 	libcheese/cheese-camera-device.h \
 	libcheese/cheese-camera-device-monitor.h \
 	libcheese/cheese-effect.h \
+	libcheese/cheese-gtk.h \
+	libcheese/cheese.h \
 	libcheese/cheese-widget.h
 
 if HAVE_INTROSPECTION

@@ -387,9 +387,8 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
 /**
  * cheese_widget_new:
  *
- * Creates a new #CheeseWidget. Make sure that you call gtk_clutter_init() and
- * clutter_gst_init(), and check for errors during initialization, before
- * calling this function.
+ * Creates a new #CheeseWidget. Make sure that you call cheese_gtk_init(), and
+ * check for errors during initialization, before calling this function.
  *
  * Returns: a new #CheeseWidget
  */

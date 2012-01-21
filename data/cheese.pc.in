@@ -3,11 +3,10 @@ exec_prefix=@exec_prefix@
 libdir=@libdir@
 includedir=@includedir@
 
-
-Name: libcheese
-Description: Cheese Webcam
-Version: @VERSION@
-Requires.private: gstreamer-0.10 gstreamer-plugins-base-0.10
+Name: cheese
+Description: Cheese webcam utilities
+Version: @PACKAGE_VERSION@
+Requires.private: gstreamer-0.10 gstreamer-plugins-base-0.10 clutter-gst-1.0
 Requires: clutter-1.0
 Libs: -L${libdir} -lcheese
 Cflags: -I${includedir}/cheese
