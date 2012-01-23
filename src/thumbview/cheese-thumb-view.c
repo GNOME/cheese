@@ -33,8 +33,10 @@
 
 #include "cheese-thumb-view.h"
 
-#define THUMB_VIEW_MINIMUM_WIDTH  140
-#define THUMB_VIEW_MINIMUM_HEIGHT 100
+const guint THUMB_VIEW_MINIMUM_WIDTH = 140;
+const guint THUMB_VIEW_MINIMUM_HEIGHT = 100;
+
+const gchar CHEESE_OLD_VIDEO_NAME_SUFFIX[] = ".ogv";
 
 #define CHEESE_THUMB_VIEW_GET_PRIVATE(o) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_THUMB_VIEW, CheeseThumbViewPrivate))
@@ -200,7 +202,9 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   filename = g_file_get_path (file);
 
-  if (!(g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX)) && !(g_str_has_suffix (filename, CHEESE_VIDEO_NAME_SUFFIX)))
+  if (!(g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX))
+    && !(g_str_has_suffix (filename, CHEESE_VIDEO_NAME_SUFFIX))
+    && !(g_str_has_suffix (filename, CHEESE_OLD_VIDEO_NAME_SUFFIX)))
   {
     g_free (filename);
     return;
@@ -518,7 +522,8 @@ cheese_thumb_view_fill (CheeseThumbView *thumb_view)
     /* read videos from the vid directory */
     while ((name = g_dir_read_name (dir_videos)))
     {
-      if (!(g_str_has_suffix (name, CHEESE_VIDEO_NAME_SUFFIX)))
+      if (!(g_str_has_suffix (name, CHEESE_VIDEO_NAME_SUFFIX))
+        && !(g_str_has_suffix (name, CHEESE_OLD_VIDEO_NAME_SUFFIX)))
         continue;
 
       filename = g_build_filename (path_videos, name, NULL);
