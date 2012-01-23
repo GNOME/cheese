@@ -133,7 +133,7 @@ PKG_CHECK_MODULES([CHEESE_GTK],
 AC_PATH_PROGS([GST_INSPECT], [gst-inspect-0.10 gst-inspect], [notfound])
 AS_IF([test "x$GST_INSPECT" = "xnotfound"],
   [AC_MSG_WARN([unable to check for runtime GStreamer plugin dependencies])],
-  [GST_RUNTIME_PLUGINS="camerabin theoraenc"
+  [GST_RUNTIME_PLUGINS="camerabin vp8enc webmmux"
    for gst_runtime_plugin in $GST_RUNTIME_PLUGINS
    do
      AC_MSG_CHECKING([for $gst_runtime_plugin GStreamer plugin])
