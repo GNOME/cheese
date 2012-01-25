@@ -29,6 +29,11 @@ using Gst;
 using Gee;
 using CanberraGtk;
 
+[DBus(name = "org.freedesktop.PackageKit.Modify")]
+interface PkProxy : GLib.Object {
+        public abstract async void install_package_names (uint xid, string[] packages_names, string interaction) throws IOError;
+}
+
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 const int EFFECTS_PER_PAGE            = 9;
 const string SENDTO_EXEC = "nautilus-sendto";
@@ -174,14 +179,7 @@ public class Cheese.MainWindow : Gtk.Window
     if (event.type == Gdk.EventType.BUTTON_PRESS)
     {
       if (event.button == 3)
-      {
 	thumbnail_popup.popup (null, thumb_view, null, event.button, event.time);
-
-	// Check whether nautilus-sendto is installed or not. In case it is, set
-	// the "Share" action to sensitive, if it is not, set it to insensitive.
-	bool nautilus_sendto_installed = Environment.find_program_in_path(SENDTO_EXEC) != null;
-	share_action.set_sensitive (nautilus_sendto_installed);
-      }
     }
     else
     if (event.type == Gdk.EventType.2BUTTON_PRESS)
@@ -388,7 +386,39 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_share_files (Gtk.Action action)
   {
-    shareable_media.share_files (thumb_view.get_selected_images_list ());
+    bool nautilus_sendto_installed = Environment.find_program_in_path (SENDTO_EXEC) != null;
+
+    if (!nautilus_sendto_installed)
+      install_packages ((obj, res) => {
+                        install_packages.end (res);
+                        get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.LEFT_PTR));
+                       });
+    else
+      shareable_media.share_files (thumb_view.get_selected_images_list ());
+  }
+
+  /**
+   * Install nautilus-sendto runtime dependency.
+   *
+   */
+  private async void install_packages ()
+  {
+    get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.WATCH));
+
+    try {
+      PkProxy pk_proxy = yield Bus.get_proxy (BusType.SESSION,
+                                              "org.freedesktop.PackageKit",
+                                              "/org/freedesktop/PackageKit");
+
+      string[] packages = { "nautilus-sendto" };
+      var interaction = "hide-finished,hide-warning,show-confirm-install";
+
+      yield pk_proxy.install_package_names ((uint) Gdk.X11Window.get_xid (this.get_window ()),
+                                            packages,
+                                            interaction);
+    } catch (IOError error) {
+      critical ("D-Bus error: %s\n", error.message);
+    }
   }
 
   /**
@@ -1521,12 +1551,10 @@ public class Cheese.MainWindow : Gtk.Window
   {
      if (strcmp (action.get_name(), "edit_action") == 0)
      {
-        if (thumb_view.get_selected_images_list () != null)
-        {
-           bool nautilus_sendto_installed = Environment.find_program_in_path(SENDTO_EXEC) != null;
-           share_action.set_sensitive (nautilus_sendto_installed);
-        } else
+        if (thumb_view.get_selected_images_list () == null)
            share_action.set_sensitive (false);
+        else
+           share_action.set_sensitive (true);
      }
   }
 

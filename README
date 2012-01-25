@@ -13,4 +13,6 @@ test this, you can use the 'gstreamer-properties' tool.
 
 Sharing images and videos:
 In order to be able to share images and videos from Cheese, you will need to
-install the 'nautilus-sendto' package first.
+install the 'nautilus-sendto' package first. In case you try to use the sharing
+functionality and nautilus-sendto is not installed, PackageKit will be used in
+order to install it at runtime.
