@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-17 17:12+0100\n"
-"PO-Revision-Date: 2012-01-17 17:13+0100\n"
+"POT-Creation-Date: 2012-01-25 11:15+0100\n"
+"PO-Revision-Date: 2012-01-25 11:18+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -251,13 +251,13 @@ msgstr "Set til «true» for å bruke blitz når bilde tas"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:7
 msgid "Camera device string indicator"
-msgstr ""
+msgstr "Indikator for enhetsstreng for kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:8
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
-msgstr ""
+msgstr "Sti til enhetsnode som peker til kamera. For eksempel /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:9
 msgid "Last selected effect"
@@ -273,7 +273,7 @@ msgstr "Bredde på bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:12
 msgid "The width of the image captured from the camera, in pixels"
-msgstr ""
+msgstr "Bredde på bildet som tas med kamera i piksler"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:13
 msgid "Photo height"
@@ -281,7 +281,7 @@ msgstr "Høyde på bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:14
 msgid "The height of the image captured from the camera, in pixels"
-msgstr ""
+msgstr "Høyde på bildet som tas av kamera i piksler"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:15
 msgid "Video width"
@@ -289,7 +289,7 @@ msgstr "Bredde på video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:16
 msgid "The width of the video captured from the camera, in pixels"
-msgstr ""
+msgstr "Bredde på video som tas opp med kamera i piksler"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:17
 msgid "Video height"
@@ -297,7 +297,7 @@ msgstr "Høyde på video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:18
 msgid "The height of the video captured from the camera, in pixels"
-msgstr ""
+msgstr "Høyde på video som tas opp med kamera i piksler"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:19
 msgid "Picture brightness"
@@ -305,7 +305,7 @@ msgstr "Lysstyrke for bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:20
 msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr ""
+msgstr "Justerer lysstyrke på bildet som kommer fra kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:21
 msgid "Picture contrast"
@@ -313,7 +313,7 @@ msgstr "Kontrast for bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:22
 msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr ""
+msgstr "Justerer kontrast på bildet som kommer fra kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:23
 msgid "Picture saturation"
@@ -321,7 +321,7 @@ msgstr "Metning for bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:24
 msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr ""
+msgstr "Justerer metning på bildet som kommer fra kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:25
 msgid "Picture hue"
@@ -329,7 +329,7 @@ msgstr "Glød for bilde"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:26
 msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr ""
+msgstr "Justerer glød på bildet som kommer fra kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:27
 msgid "Video Path"
@@ -417,12 +417,12 @@ msgstr "Ukjent enhet"
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytbar initiering er ikke støttet"
 
-#: ../libcheese/cheese-camera.c:1492
+#: ../libcheese/cheese-camera.c:1489
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet funnet"
 
-#: ../libcheese/cheese-camera.c:1542
+#: ../libcheese/cheese-camera.c:1539
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
 
