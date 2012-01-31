@@ -406,9 +406,9 @@ public class Cheese.MainWindow : Gtk.Window
     get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.WATCH));
 
     try {
-      PkProxy pk_proxy = yield Bus.get_proxy (BusType.SESSION,
-                                              "org.freedesktop.PackageKit",
-                                              "/org/freedesktop/PackageKit");
+      PkProxy pk_proxy = yield GLib.Bus.get_proxy (BusType.SESSION,
+                                                   "org.freedesktop.PackageKit",
+                                                   "/org/freedesktop/PackageKit");
 
       string[] packages = { "nautilus-sendto" };
       var interaction = "hide-finished,hide-warning,show-confirm-install";
