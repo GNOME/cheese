@@ -32,11 +32,15 @@
 #include <clutter-gst/clutter-gst.h>
 #include <gst/gst.h>
 #include <gst/basecamerabinsrc/gstcamerabin-enum.h>
+#include <gst/pbutils/encoding-profile.h>
 #include <X11/Xlib.h>
 
 #include "cheese-camera.h"
 #include "cheese-camera-device.h"
 #include "cheese-camera-device-monitor.h"
+
+#define CHEESE_VIDEO_ENC_PRESET "Profile Realtime"
+#define CHEESE_VIDEO_ENC_ALT_PRESET "Cheese Realtime"
 
 /**
  * SECTION:cheese-camera
@@ -449,36 +453,63 @@ cheese_camera_set_error_element_not_found (GError **error, const gchar *factoryn
  * @camera: a #CheeseCamera
  * @error: a return location for errors, or %NULL
  *
- * Sets up the video encoder explicitly, in order to be able to control
- * properties such as encoding quality.
  */
 static void
 cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
 {
-  GstElement          *video_enc;
-  GstElement          *mux;
+  CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
+  GstEncodingContainerProfile *prof;
+  GstEncodingVideoProfile *v_prof;
+  GstCaps *caps;
+  GstElement *video_enc;
+  const gchar *video_preset;
+  gboolean res;
 
-  g_return_if_fail (error == NULL || *error == NULL);
+  /* Check if we can use global preset for vp8enc. */
+  video_enc = gst_element_factory_make ("vp8enc", "vp8enc");
+  video_preset = (gchar *) &CHEESE_VIDEO_ENC_PRESET;
+  res = gst_preset_load_preset (GST_PRESET (video_enc), video_preset);
+  if (res == FALSE) {
+    g_warning("Can't find vp8enc preset: \"%s\", using alternate preset:"
+        " \"%s\". If you see this, make a bug report!",
+        video_preset, CHEESE_VIDEO_ENC_ALT_PRESET);
 
-  if ((video_enc = gst_element_factory_make ("vp8enc", "vp8enc")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "vp8enc");
-    return;
+    /* If global preset not found, then probably we use wrong preset name,
+     * or old gstreamer version. In any case, we should try to control
+     * keep poker face and not fail. DON'T FORGET TO MAKE A BUG REPORT!*/
+    video_preset = (gchar *) &CHEESE_VIDEO_ENC_ALT_PRESET;
+    res = gst_preset_load_preset (GST_PRESET (video_enc), video_preset);
+    if (res == FALSE) {
+      g_warning ("Can't find vp8enc preset: \"%s\", "
+          "creating new userspace preset.", video_preset);
+
+      /* Seems like we do first run and userspace preset do not exist.
+       * Let us create a new one. It will be probably located some where here:
+       * ~/.gstreamer-0.10/presets/GstVP8Enc.prs */
+      g_object_set (G_OBJECT (video_enc), "speed", 2, NULL);
+      g_object_set (G_OBJECT (video_enc), "max-latency", 1, NULL);
+      gst_preset_save_preset (GST_PRESET (video_enc), video_preset);
+    }
   }
-  //raluca:TODO: camerabin2 does not have 'video-encoder'
-  //g_object_set (priv->camerabin, "video-encoder", video_enc, NULL);
-  g_object_set (G_OBJECT (video_enc), "speed-level", 2, NULL);
+  gst_object_unref(video_enc);
 
-  if ((mux = gst_element_factory_make ("webmmux", "webmmux")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "webmmux");
-    return;
-  }
-  //raluca:TODO: camerabin2 does not have 'video-muxer'
-  //g_object_set (priv->camerabin, "video-muxer", mux, NULL);
-  g_object_set (G_OBJECT (mux),
-                "max-delay", (guint64) 10000000,
-                "max-page-delay", (guint64) 10000000, NULL);
+  /* create profile for webm encoding */
+  caps = gst_caps_from_string("video/webm");
+  prof = gst_encoding_container_profile_new("WebM audio/video",
+      "Standard WebM/VP8/Vorbis",
+      caps, NULL);
+
+  caps = gst_caps_from_string("video/x-vp8");
+  v_prof = gst_encoding_video_profile_new(caps, NULL, NULL, 0);
+  gst_encoding_video_profile_set_variableframerate(v_prof, TRUE);
+  gst_encoding_profile_set_preset((GstEncodingProfile*) v_prof, video_preset);
+  gst_encoding_container_profile_add_profile(prof, (GstEncodingProfile*) v_prof);
+
+  caps = gst_caps_from_string("audio/x-vorbis");
+  gst_encoding_container_profile_add_profile(prof,
+      (GstEncodingProfile*) gst_encoding_audio_profile_new(caps, NULL, NULL, 0));
+
+  g_object_set (priv->camerabin, "video-profile", prof, NULL);
 }
 
 /*
