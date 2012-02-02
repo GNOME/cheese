@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-25 11:15+0100\n"
-"PO-Revision-Date: 2012-01-25 11:18+0100\n"
+"POT-Creation-Date: 2012-02-02 13:38+0100\n"
+"PO-Revision-Date: 2012-02-02 13:40+0100\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -339,7 +339,7 @@ msgstr "Sti til video"
 msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
 "will be used."
-msgstr ""
+msgstr "Definerer stien hvor videoer lagres. Hvis denne er tom vil «XDG_VIDEO/Webcam» brukes."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:29
 msgid "Photo Path"
@@ -349,7 +349,7 @@ msgstr "Sti til bilde"
 msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
 "will be used."
-msgstr ""
+msgstr "Definerer stien hvor bilder lagres. Hvis denne er tom vil «XDG_PHOTO/Webcam» brukes."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:31
 msgid "Whether to start in wide mode"
@@ -367,7 +367,7 @@ msgstr "Om programmet skal starte i fullskjermmodus"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:34
 msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr ""
+msgstr "Hvis denne er satt til «true» vil Cheese starte i fullskjermmodus."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:35
 msgid "Time between photos in burst mode"
@@ -388,7 +388,7 @@ msgstr "Antall bilder i seriemodus"
 msgid "The number of photos to take in a single burst."
 msgstr "Antall bilder som skal tas i en enkelt serie."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:850
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:880
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
@@ -466,55 +466,55 @@ msgstr ""
 msgid "Another instance of Cheese is currently running\n"
 msgstr "En annen instans av Cheese kjører allerede\n"
 
-#: ../src/cheese-window.vala:224
+#: ../src/cheese-window.vala:222
 #, c-format
 msgid "Could not open %s"
 msgstr "Kunne ikke åpne %s"
 
-#: ../src/cheese-window.vala:252
+#: ../src/cheese-window.vala:250
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Er du sikker på at du vil slette filen permanent?"
 msgstr[1] "Er du sikker på at du vil slette %d filer permanent?"
 
-#: ../src/cheese-window.vala:258
+#: ../src/cheese-window.vala:256
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Hvis du sletter en oppføring vil den bli borte for godt"
 msgstr[1] "Hvis du sletter oppføringene vil de bli borte for godt"
 
-#: ../src/cheese-window.vala:334
+#: ../src/cheese-window.vala:332
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Kunne ikke flytte %s til papirkurven"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:413
+#: ../src/cheese-window.vala:443
 msgid "Save File"
 msgstr "Lagre fil"
 
-#: ../src/cheese-window.vala:447
+#: ../src/cheese-window.vala:477
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke lagre %s"
 
-#: ../src/cheese-window.vala:959
+#: ../src/cheese-window.vala:989
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:960
+#: ../src/cheese-window.vala:990
 msgid "Stop recording"
 msgstr "Stopp opptak"
 
-#: ../src/cheese-window.vala:988
+#: ../src/cheese-window.vala:1018
 msgid "Stop _Taking Pictures"
 msgstr "Stopp fo_tografering"
 
-#: ../src/cheese-window.vala:989
+#: ../src/cheese-window.vala:1019
 msgid "Stop taking pictures"
 msgstr "Stopp fo_tografering"
 
-#: ../src/cheese-window.vala:1172
+#: ../src/cheese-window.vala:1202
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
