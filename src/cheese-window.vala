@@ -411,11 +411,10 @@ public class Cheese.MainWindow : Gtk.Window
                                                    "/org/freedesktop/PackageKit");
 
       string[] packages = { "nautilus-sendto" };
-      var interaction = "hide-finished,hide-warning,show-confirm-install";
 
       yield pk_proxy.install_package_names ((uint) Gdk.X11Window.get_xid (this.get_window ()),
                                             packages,
-                                            interaction);
+                                            ""); // Use interaction defaults.
     } catch (IOError error) {
       critical ("D-Bus error: %s\n", error.message);
     }
