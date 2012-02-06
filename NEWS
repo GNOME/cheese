@@ -1,6 +1,60 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.3.5
+  - Use default PackageKit interaction modes
+    Do not hardcode the PackageKit interaction modes, so that distribution
+    defaults are used, for example for whether to show a confirmation dialog
+    when requesting package installation. See the comments on bug 668072 for
+    some further reasoning.
+  - Disambiguate GLib.DBus in Cheese.Window
+  - Use PackageKit for nautilus-sendto dependency
+    The user has the option to install nautilus-sendto runtime dependency
+    with PackageKit, in case it is not already installed.
+    Fixes bug 668072.
+  - Fix Slovenian help translation
+    The incorrect closing tag caused a build failure, reported by Luca
+    Bruno.
+  - Post-release version bump to 3.3.5
+    As Cheese provides shared libraries, it is more friendly to bump the
+    version after a release. As requested by Frédéric Péters.
+  - Keep generating thumbnails for Theora videos
+  - Check for VP8/WebM codecs during configure
+  - Initial switch from theora/ogg to vp8/webm
+    It is time to go webm :)
+    Fixes bug 564957 and 666718.
+  - Fix configure check for Xtst
+  - Adapt to use new cheese_init and cheese_gtk_init
+    Additionally, use EXIT_SUCCESS and EXIT_FAILURE when exiting.
+  - Add init functions to libcheese and libcheese-gtk
+    Adding wrappers around clutter_gst_init() and clutter_gtk_init() reduces
+    confusion for API users, as well as reducing link-time dependencies.
+    Provides a clean fix for bug 668292 and bug 667884.
+  - Check nautilus-sendto dependency in configure
+    Check whether nautilus-sendto is installed in the configure script. This
+    is only required in order to use the sharing functionality, so a warning
+    is presented if nautilus-sendto is not found.
+    Fixes bug 668072.
+  - Mimic Nautilus' behaviour when deleting files
+    Show one dialog to ask for confirmation of operation. For each error
+    show a dialog and allow to skip all errors, skip this error or stop
+    deleting using Cancel.
+    Fixes bug 664180.
+  - Added/Updated Translations
+    - es, courtesy of Daniel Mustieles
+    - gl, courtesy of Fran Dieguez
+    - he, courtesy of Yaron Shahrabani
+    - nb, courtesy of Kjartan Maraas
+    - sl, courtesy of Matej Urbančič
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+    - sv, courtesy of Daniel Nylander
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - gl, courtesy of Fran Dieguez
+    - sl, courtesy of Andrej Žnidaršič
+
 version 3.3.4
   - Pre-release version bump to 3.3.4
   - Add videos and picture sharing support, bug 522210
