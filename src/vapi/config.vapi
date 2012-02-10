@@ -2,9 +2,11 @@
 namespace Config
 {
   public const string GETTEXT_PACKAGE;
+  public const string DATADIR;
   public const string PACKAGE_DATADIR;
   public const string PACKAGE_LOCALEDIR;
   public const string PACKAGE_NAME;
   public const string PACKAGE_VERSION;
+  public const string PACKAGE_TARNAME;
   public const string VERSION;
 }

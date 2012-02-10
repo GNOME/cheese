@@ -31,7 +31,7 @@ using CanberraGtk;
 
 [DBus(name = "org.freedesktop.PackageKit.Modify")]
 interface PkProxy : GLib.Object {
-        public abstract async void install_package_names (uint xid, string[] packages_names, string interaction) throws IOError;
+        public abstract async void install_catalogs (uint xid, string[] catalog_files, string interaction) throws IOError;
 }
 
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
@@ -410,14 +410,41 @@ public class Cheese.MainWindow : Gtk.Window
                                                    "org.freedesktop.PackageKit",
                                                    "/org/freedesktop/PackageKit");
 
-      string[] packages = { "nautilus-sendto" };
-
-      yield pk_proxy.install_package_names ((uint) Gdk.X11Window.get_xid (this.get_window ()),
-                                            packages,
-                                            ""); // Use interaction defaults.
+      const string CATALOG = "cheese.catalog";
+      string[] catalogs = { get_data_file_dir (CATALOG) };
+      yield pk_proxy.install_catalogs ((uint) Gdk.X11Window.get_xid (this.get_window ()),
+                                       catalogs,
+                                       ""); // Use interaction defaults.
     } catch (IOError error) {
       critical ("D-Bus error: %s\n", error.message);
     }
+  }
+
+  /**
+   * Search system directories for the given filename, starting
+   * with the in-installation-time custom prefix first.
+   *
+   * @param filename the file whose path will be searched.
+   * @return the system path for the given filename.
+   */
+  private string get_data_file_dir (string filename) {
+    var system_data_dirs = Environment.get_system_data_dirs ();
+    string[] data_dirs = {};
+    data_dirs += Config.DATADIR;
+
+    foreach (var dir in system_data_dirs)
+      data_dirs += dir;
+
+    foreach (var dir in data_dirs) {
+      var absolute_path = GLib.Path.build_filename (dir, Config.PACKAGE_TARNAME,
+                                                    filename);
+      if (FileUtils.test (absolute_path, FileTest.EXISTS))
+        return absolute_path;
+    };
+
+    // Filename could not be found!
+    error ("Data file ‘%s’ could not be found in system data directories.",
+           filename);
   }
 
   /**
