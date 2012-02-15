@@ -73,7 +73,6 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.BinLayout viewport_layout_manager;
   private Clutter.Text      countdown_layer;
   private Clutter.Rectangle background_layer;
-  private Clutter.Text      error_layer;
 
   private Clutter.Box           current_effects_grid;
   private int                current_effects_page = 0;
@@ -348,42 +347,30 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_file_move_to_trash_all (Gtk.Action action)
   {
-    // TODO: Use asynchronous methods.
     try {
-      var directory = File.new_for_path (fileutil.get_photo_path ());
-      var enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, FileQueryInfoFlags.NONE);
-
-      // Trash photos.
-      trash_enumerated_files (directory.get_path (), enumerator);
-
-      directory  = File.new_for_path (fileutil.get_video_path ());
-      enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, FileQueryInfoFlags.NONE);
-
-      // Trash videos.
-      trash_enumerated_files (directory.get_path (), enumerator);
-    } catch (Error error) {
-      warning ("Error while building file trash list: %s", error.message);
-    }
-  }
-
-  /**
-   * Send the enumerated files to the trash.
-   *
-   * @param directory the directory containing the enumerated files
-   * @param enumerator the enumeration of files to send to the trash
-   */
-  private void trash_enumerated_files (string directory, FileEnumerator enumerator)
-  {
-    try {
-      FileInfo file_info;
+      File           file_to_trash;
+      FileInfo       file_info;
+      File           directory  = File.new_for_path (fileutil.get_photo_path ());
+      FileEnumerator enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
 
       while ((file_info = enumerator.next_file (null)) != null)
       {
-        var file_to_trash = File.new_for_path (GLib.Path.build_filename (directory, file_info.get_name ()));
-	file_to_trash.trash ();
+        file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
+        file_to_trash.trash (null);
       }
-    } catch (Error error) {
-      warning ("Error while trashing files: %s", error.message);
+
+      directory  = File.new_for_path (fileutil.get_video_path ());
+      enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+
+      while ((file_info = enumerator.next_file (null)) != null)
+      {
+        file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
+        file_to_trash.trash (null);
+      }
+    } catch (Error e)
+    {
+      warning ("Error: %s\n", e.message);
+      return;
     }
   }
 
@@ -1236,10 +1223,7 @@ public class Cheese.MainWindow : Gtk.Window
       video_preview.hide ();
 
       if (effects_grids.size == 0)
-      {
-        error_layer.text = _("No effects found");
-        error_layer.show ();
-      }
+        camera.show_error_layer ("No effects found");
       else
       {
         current_effects_grid.show ();
@@ -1249,9 +1233,7 @@ public class Cheese.MainWindow : Gtk.Window
     else
     {
       if (effects_grids.size == 0)
-      {
-        error_layer.hide ();
-      }
+        camera.hide_error_layer ();
       else
       {
         current_effects_grid.hide ();
@@ -1521,7 +1503,6 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
     countdown_layer         = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
     background_layer        = clutter_builder.get_object ("background") as Clutter.Rectangle;
-    error_layer             = clutter_builder.get_object ("error_layer") as Clutter.Text;
 
     video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
@@ -1604,7 +1585,6 @@ public class Cheese.MainWindow : Gtk.Window
   public void setup_camera (string ? uri)
   {
     string device;
-    double value;
 
     if (uri != null && uri.length > 0)
       device = uri;
@@ -1615,20 +1595,8 @@ public class Cheese.MainWindow : Gtk.Window
                          device,
                          settings.get_int ("photo-x-resolution"),
                          settings.get_int ("photo-y-resolution"));
-    try {
-      camera.setup (device);
-    }
-    catch (Error err)
-    {
-      video_preview.hide ();
-      warning ("Error: %s\n", err.message);
-      error_layer.text = err.message;
-      error_layer.show ();
 
-      toggle_camera_actions_sensitivities (false);
-      return;
-    }
-
+    double value;
     value = settings.get_double ("brightness");
     if (value != 0.0)
       camera.set_balance_property ("brightness", value);
@@ -1646,7 +1614,9 @@ public class Cheese.MainWindow : Gtk.Window
       camera.set_balance_property ("saturation", value);
 
     camera.state_flags_changed.connect (camera_state_changed);
-    camera.play ();
+
+    if (camera.get_camera_devices ().len != 0)
+      camera.play ();
   }
 
   /**

@@ -87,6 +87,7 @@ struct _CheeseCameraPrivate
   GstElement *video_enc;
 
   ClutterTexture *video_texture;
+  ClutterActor   *error_layer;
 
   GstElement *effect_filter;
   GstElement *video_balance, *csp_post_balance;
@@ -99,6 +100,7 @@ struct _CheeseCameraPrivate
 
   gboolean is_recording;
   gboolean pipeline_is_playing;
+  gboolean is_hotplug_device;
   gchar *photo_filename;
 
   guint num_camera_devices;
@@ -278,6 +280,36 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
 }
 
 /*
+ * cheese_camera_setup_init:
+ * @device: a #CheeseCameraDevice
+ * @camera: a #CheeseCamera
+ *
+ * Sets up the first connected camera device.
+ */
+static void
+cheese_camera_setup_init (CheeseCameraDevice        *device,
+                          CheeseCamera              *camera)
+{
+  g_printf ("Camera - cheese_camera_setup_init\n");
+  CheeseCameraPrivate *priv  = camera->priv;
+  const gchar *uuid = cheese_camera_device_get_uuid (device);
+  GError *error = NULL;
+
+  cheese_camera_setup (camera, uuid, &error);
+
+  if (error != NULL) {
+    cheese_camera_show_error_layer (camera, error->message);
+    g_error_free (error);
+  } else {
+    cheese_camera_hide_error_layer (camera);
+    if (priv->is_hotplug_device) {
+      cheese_camera_play (camera);
+      priv->is_hotplug_device = FALSE;
+    }
+  }
+}
+
+/*
  * cheese_camera_add_device:
  * @monitor: a #CheeseCameraDeviceMonitor
  * @device: a #CheeseCameraDevice
@@ -291,10 +323,15 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 			  CheeseCameraDevice        *device,
                           CheeseCamera              *camera)
 {
+  g_printf ("Cheese - cheese_camera_add_device\n");
   CheeseCameraPrivate *priv  = camera->priv;
 
   g_ptr_array_add (priv->camera_devices, device);
   priv->num_camera_devices++;
+
+  g_printf ("Number of camera devices : %i\n", priv->num_camera_devices);
+  if (priv->num_camera_devices == 1)
+    cheese_camera_setup_init (device, camera);
 
   g_object_notify_by_pspec (G_OBJECT (camera), properties[PROP_NUM_CAMERA_DEVICES]);
 }
@@ -343,6 +380,7 @@ cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
 static void
 cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
+  g_printf ("Camera - cheese_camera_detect_camera_devices\n");
   CheeseCameraPrivate       *priv = camera->priv;
 
   priv->num_camera_devices = 0;
@@ -355,6 +393,14 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
                     G_CALLBACK (cheese_camera_remove_device), camera);
 
   cheese_camera_device_monitor_coldplug (priv->monitor);
+
+  if (priv->num_camera_devices < 1)
+  {
+    cheese_camera_show_error_layer (camera, "No device found");
+    priv->is_hotplug_device = TRUE;
+    return 1;
+  }
+  return 0;
 }
 
 /*
@@ -710,6 +756,7 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
 void
 cheese_camera_play (CheeseCamera *camera)
 {
+  g_printf ("Camera - cheese_camera_play\n");
   CheeseCameraPrivate *priv;
   CheeseCameraDevice *device;
   GstCaps *caps;
@@ -717,6 +764,7 @@ cheese_camera_play (CheeseCamera *camera)
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
   priv = camera->priv;
+
   device = g_ptr_array_index (priv->camera_devices, priv->selected_device);
   caps = cheese_camera_device_get_caps_for_format (device, priv->current_format);
 
@@ -1372,16 +1420,32 @@ cheese_camera_class_init (CheeseCameraClass *klass)
 static void
 cheese_camera_init (CheeseCamera *camera)
 {
+  g_printf ("Camera - cheese_camera_init\n");
   CheeseCameraPrivate *priv = camera->priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  ClutterScript *clutter_builder = clutter_script_new();
+  const gchar *file;
+  int result;
+  GError *error = NULL;
 
   priv->is_recording            = FALSE;
   priv->pipeline_is_playing     = FALSE;
+  priv->is_hotplug_device       = FALSE;
   priv->photo_filename          = NULL;
   priv->camera_devices          = NULL;
   priv->device_node             = NULL;
   priv->photo_handler_signal_id = 0;
   priv->current_format          = NULL;
   priv->monitor                 = NULL;
+
+  file = g_build_filename (PACKAGE_DATADIR, "cheese-viewport.json", NULL);
+  result = clutter_script_load_from_file (clutter_builder, file, &error);
+
+  if (result == 0) {
+    g_error ("Error: %s\n", error->message);
+    g_error_free (error);
+  }
+
+  priv->error_layer             = CLUTTER_ACTOR (clutter_script_get_object (clutter_builder, "error_layer"));
 }
 
 /**
@@ -1396,9 +1460,11 @@ cheese_camera_init (CheeseCamera *camera)
  * Returns: a new #CheeseCamera
  */
 CheeseCamera *
-cheese_camera_new (ClutterTexture *video_texture, const gchar *camera_device_node,
+cheese_camera_new (ClutterTexture *video_texture,
+                   const gchar *camera_device_node,
                    gint x_resolution, gint y_resolution)
 {
+  g_printf ("Camera - cheese_camera_new\n");
   CheeseCamera      *camera;
   CheeseVideoFormat *format = g_slice_new (CheeseVideoFormat);
 
@@ -1416,6 +1482,8 @@ cheese_camera_new (ClutterTexture *video_texture, const gchar *camera_device_nod
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
                            "format", format, NULL);
   }
+
+  cheese_camera_detect_camera_devices (camera);
 
   return camera;
 }
@@ -1462,6 +1530,27 @@ cheese_camera_set_device_by_dev_uuid (CheeseCamera *camera, const gchar *uuid)
   }
 }
 
+void
+cheese_camera_show_error_layer (CheeseCamera *camera, char *message)
+{
+  g_printf ("Camera - cheese_camera_show_error_layer\n");
+  g_printf ("Message is %s\n", message);
+  CheeseCameraPrivate *priv = camera->priv;
+
+  clutter_actor_hide ((ClutterActor *) priv->video_texture);
+  clutter_text_set_text ((ClutterText *) priv->error_layer, message);
+  clutter_actor_show ((ClutterActor *) priv->error_layer);
+}
+
+void
+cheese_camera_hide_error_layer (CheeseCamera *camera)
+{
+  g_printf ("Camera - cheese_camera_hide_error_layer\n");
+  CheeseCameraPrivate *priv = camera->priv;
+  clutter_actor_hide ((ClutterActor *) priv->error_layer);
+  clutter_actor_show ((ClutterActor *) priv->video_texture);
+}
+
 /**
  * cheese_camera_setup:
  * @camera: a #CheeseCamera
@@ -1481,14 +1570,6 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
   priv = camera->priv;
-
-  cheese_camera_detect_camera_devices (camera);
-
-  if (priv->num_camera_devices < 1)
-  {
-    g_set_error (error, CHEESE_CAMERA_ERROR, CHEESE_CAMERA_ERROR_NO_DEVICE, _("No device found"));
-    return;
-  }
 
   if (uuid != NULL)
   {

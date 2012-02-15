@@ -102,7 +102,8 @@ CheeseCamera *cheese_camera_new (ClutterTexture *video_texture,
                                  gint            y_resolution);
 
 const CheeseVideoFormat *cheese_camera_get_current_video_format (CheeseCamera *camera);
-void                     cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error);
+void                     cheese_camera_show_error_layer (CheeseCamera *camera, char *message);
+void                     cheese_camera_hide_error_layer (CheeseCamera *camera);
 void                     cheese_camera_play (CheeseCamera *camera);
 void                     cheese_camera_stop (CheeseCamera *camera);
 void                     cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect);
