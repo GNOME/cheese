@@ -348,30 +348,42 @@ public class Cheese.MainWindow : Gtk.Window
   [CCode (instance_pos = -1)]
   public void on_file_move_to_trash_all (Gtk.Action action)
   {
+    // TODO: Use asynchronous methods.
     try {
-      File           file_to_trash;
-      FileInfo       file_info;
-      File           directory  = File.new_for_path (fileutil.get_photo_path ());
-      FileEnumerator enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+      var directory = File.new_for_path (fileutil.get_photo_path ());
+      var enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, FileQueryInfoFlags.NONE);
 
-      while ((file_info = enumerator.next_file (null)) != null)
-      {
-        file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
-        file_to_trash.trash (null);
-      }
+      // Trash photos.
+      trash_enumerated_files (directory.get_path (), enumerator);
 
       directory  = File.new_for_path (fileutil.get_video_path ());
-      enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, 0, null);
+      enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, FileQueryInfoFlags.NONE);
+
+      // Trash videos.
+      trash_enumerated_files (directory.get_path (), enumerator);
+    } catch (Error error) {
+      warning ("Error while building file trash list: %s", error.message);
+    }
+  }
+
+  /**
+   * Send the enumerated files to the trash.
+   *
+   * @param directory the directory containing the enumerated files
+   * @param enumerator the enumeration of files to send to the trash
+   */
+  private void trash_enumerated_files (string directory, FileEnumerator enumerator)
+  {
+    try {
+      FileInfo file_info;
 
       while ((file_info = enumerator.next_file (null)) != null)
       {
-        file_to_trash = File.new_for_path (fileutil.get_video_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
-        file_to_trash.trash (null);
+        var file_to_trash = File.new_for_path (GLib.Path.build_filename (directory, file_info.get_name ()));
+	file_to_trash.trash ();
       }
-    } catch (Error e)
-    {
-      warning ("Error: %s\n", e.message);
-      return;
+    } catch (Error error) {
+      warning ("Error while trashing files: %s", error.message);
     }
   }
 
