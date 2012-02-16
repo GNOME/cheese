@@ -287,7 +287,7 @@ public class Cheese.MainWindow : Gtk.Window
 
       while ((file_info = enumerator.next_file (null)) != null)
       {
-        file_to_trash = File.new_for_path (fileutil.get_photo_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
+        file_to_trash = File.new_for_path (fileutil.get_video_path () + GLib.Path.DIR_SEPARATOR_S + file_info.get_name ());
         file_to_trash.trash (null);
       }
     } catch (Error e)
