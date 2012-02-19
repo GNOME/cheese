@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <gtk/gtk.h>
+#ifdef GDK_WINDOWING_X11
+  #include <X11/Xlib.h>
+#endif
 #include <clutter-gtk/clutter-gtk.h>
 
 #include "cheese-gtk.h"
@@ -46,6 +50,10 @@ gboolean
 cheese_gtk_init (int *argc, char ***argv)
 {
     ClutterInitError error;
+
+#ifdef GDK_WINDOWING_X11
+    XInitThreads ();
+#endif
 
     error = gtk_clutter_init (argc, argv);
 
