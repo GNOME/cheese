@@ -1,6 +1,38 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.3.90
+  - Bump libcheese and libcheese-gtk versions
+  - Initialise X11 threading, bug 669845
+  - Improve sending files to the trash
+    Split off the trashing to a separate method. Use Path.build_filename
+    rather than concatenation of the strings. Simplify the logic slightly.
+  - Use video path for trashing videos, bug 670178
+    The photo path was used for deleting videos, which would fail if the
+    paths were different.
+  - Install catalog instead of individual package
+    Replaced hardcoding the nautilus-sendto package name in the code for
+    runtime installation. Instead, a catalog (cheese.catalog) is used.
+    Fixes bug 669547.
+  - Post-release version bump to 3.3.90
+  - ui: properly handle "delete-event" signal at Preferences dialog,
+    fixes bug 669384
+    this bug was resolved once before, here is a short solution description:
+    the "close" event triggered by the escape key was destroyng the dialog, so
+    when an user tries to open the Preferences dialog again what appears is
+    an empty/tiny window. Handle the "delete-event" connecting it with
+    hide_on_delete() successfully solved the problem.
+  - Added/Updated Translations
+    - be, courtesy of Yuri Matsuk
+    - et, courtesy of Mattias Põldaru
+    - ml, courtesy of Anish A
+    - nb, courtesy of Kjartan Maraas
+    - ru, courtesy of Yuri Myasoedov
+    - tr, courtesy of Muhammet Kara
+  - Added/Updated Documentation
+    - de, courtesy of Mario Blättermann
+    - fr, courtesy of Bruno Brouard
+
 version 3.3.5
   - Use default PackageKit interaction modes
     Do not hardcode the PackageKit interaction modes, so that distribution
