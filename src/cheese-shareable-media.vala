@@ -22,7 +22,6 @@
  * nautilus-sendto.
  */
 public class Cheese.ShareableMedia : GLib.Object {
-    private const string XID = "--xid=";
     private uint num_children = 0;
     Cheese.MainWindow window;
 
@@ -88,8 +87,6 @@ public class Cheese.ShareableMedia : GLib.Object {
         string[] argv = {};
         // Defined in cheese-window.vala.
         argv += SENDTO_EXEC;
-        argv += XID + "%lu".printf (
-            Gdk.X11Window.get_xid (window.get_window ()));
 
         files.foreach ((file) => argv += file.get_path ());
 
