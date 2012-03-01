@@ -87,7 +87,7 @@ struct _CheeseCameraPrivate
   GstElement *video_enc;
 
   ClutterTexture *video_texture;
-  ClutterActor   *error_layer;
+  ClutterText    *error_layer;
 
   GstElement *effect_filter;
   GstElement *video_balance, *csp_post_balance;
@@ -329,7 +329,6 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
   g_ptr_array_add (priv->camera_devices, device);
   priv->num_camera_devices++;
 
-  g_printf ("Number of camera devices : %i\n", priv->num_camera_devices);
   if (priv->num_camera_devices == 1)
     cheese_camera_setup_init (device, camera);
 
@@ -392,15 +391,16 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
   g_signal_connect (G_OBJECT (priv->monitor), "removed",
                     G_CALLBACK (cheese_camera_remove_device), camera);
 
+  if (priv->error_layer == NULL)
+    cheese_camera_error_layer_init (camera);
+
   cheese_camera_device_monitor_coldplug (priv->monitor);
 
   if (priv->num_camera_devices < 1)
   {
     cheese_camera_show_error_layer (camera, "No device found");
     priv->is_hotplug_device = TRUE;
-    return 1;
   }
-  return 0;
 }
 
 /*
@@ -1422,10 +1422,6 @@ cheese_camera_init (CheeseCamera *camera)
 {
   g_printf ("Camera - cheese_camera_init\n");
   CheeseCameraPrivate *priv = camera->priv = CHEESE_CAMERA_GET_PRIVATE (camera);
-  ClutterScript *clutter_builder = clutter_script_new();
-  const gchar *file;
-  int result;
-  GError *error = NULL;
 
   priv->is_recording            = FALSE;
   priv->pipeline_is_playing     = FALSE;
@@ -1436,6 +1432,19 @@ cheese_camera_init (CheeseCamera *camera)
   priv->photo_handler_signal_id = 0;
   priv->current_format          = NULL;
   priv->monitor                 = NULL;
+  priv->error_layer             = NULL;
+}
+
+void
+cheese_camera_error_layer_init (CheeseCamera *camera)
+{
+  g_printf ("Camera - cheese_camera_error_layer_init\n");
+
+  CheeseCameraPrivate *priv = camera->priv;
+  ClutterScript *clutter_builder = clutter_script_new();
+  GError *error;
+  const gchar *file;
+  int result;
 
   file = g_build_filename (PACKAGE_DATADIR, "cheese-viewport.json", NULL);
   result = clutter_script_load_from_file (clutter_builder, file, &error);
@@ -1445,8 +1454,10 @@ cheese_camera_init (CheeseCamera *camera)
     g_error_free (error);
   }
 
-  priv->error_layer             = CLUTTER_ACTOR (clutter_script_get_object (clutter_builder, "error_layer"));
-}
+  priv->error_layer = CLUTTER_TEXT (clutter_script_get_object (clutter_builder, "error_layer"));
+
+  //g_object_unref (clutter_builder);
+ }
 
 /**
  * cheese_camera_new:
@@ -1538,7 +1549,7 @@ cheese_camera_show_error_layer (CheeseCamera *camera, char *message)
   CheeseCameraPrivate *priv = camera->priv;
 
   clutter_actor_hide ((ClutterActor *) priv->video_texture);
-  clutter_text_set_text ((ClutterText *) priv->error_layer, message);
+  clutter_text_set_text (priv->error_layer, message);
   clutter_actor_show ((ClutterActor *) priv->error_layer);
 }
 
@@ -1551,7 +1562,7 @@ cheese_camera_hide_error_layer (CheeseCamera *camera)
   clutter_actor_show ((ClutterActor *) priv->video_texture);
 }
 
-/**
+/*
  * cheese_camera_setup:
  * @camera: a #CheeseCamera
  * @uuid: (allow-none): UUID of the video capture device, or %NULL
