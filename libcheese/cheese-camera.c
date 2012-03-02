@@ -290,7 +290,6 @@ static void
 cheese_camera_setup_init (CheeseCameraDevice        *device,
                           CheeseCamera              *camera)
 {
-  g_printf ("Camera - cheese_camera_setup_init\n");
   CheeseCameraPrivate *priv  = camera->priv;
   const gchar *uuid = cheese_camera_device_get_uuid (device);
   GError *error = NULL;
@@ -323,7 +322,6 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 			  CheeseCameraDevice        *device,
                           CheeseCamera              *camera)
 {
-  g_printf ("Cheese - cheese_camera_add_device\n");
   CheeseCameraPrivate *priv  = camera->priv;
 
   g_ptr_array_add (priv->camera_devices, device);
@@ -379,7 +377,6 @@ cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
 static void
 cheese_camera_detect_camera_devices (CheeseCamera *camera)
 {
-  g_printf ("Camera - cheese_camera_detect_camera_devices\n");
   CheeseCameraPrivate       *priv = camera->priv;
 
   priv->num_camera_devices = 0;
@@ -390,9 +387,6 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
                     G_CALLBACK (cheese_camera_add_device), camera);
   g_signal_connect (G_OBJECT (priv->monitor), "removed",
                     G_CALLBACK (cheese_camera_remove_device), camera);
-
-  if (priv->error_layer == NULL)
-    cheese_camera_error_layer_init (camera);
 
   cheese_camera_device_monitor_coldplug (priv->monitor);
 
@@ -756,7 +750,6 @@ cheese_camera_switch_camera_device (CheeseCamera *camera)
 void
 cheese_camera_play (CheeseCamera *camera)
 {
-  g_printf ("Camera - cheese_camera_play\n");
   CheeseCameraPrivate *priv;
   CheeseCameraDevice *device;
   GstCaps *caps;
@@ -1420,7 +1413,6 @@ cheese_camera_class_init (CheeseCameraClass *klass)
 static void
 cheese_camera_init (CheeseCamera *camera)
 {
-  g_printf ("Camera - cheese_camera_init\n");
   CheeseCameraPrivate *priv = camera->priv = CHEESE_CAMERA_GET_PRIVATE (camera);
 
   priv->is_recording            = FALSE;
@@ -1432,32 +1424,7 @@ cheese_camera_init (CheeseCamera *camera)
   priv->photo_handler_signal_id = 0;
   priv->current_format          = NULL;
   priv->monitor                 = NULL;
-  priv->error_layer             = NULL;
 }
-
-void
-cheese_camera_error_layer_init (CheeseCamera *camera)
-{
-  g_printf ("Camera - cheese_camera_error_layer_init\n");
-
-  CheeseCameraPrivate *priv = camera->priv;
-  ClutterScript *clutter_builder = clutter_script_new();
-  GError *error;
-  const gchar *file;
-  int result;
-
-  file = g_build_filename (PACKAGE_DATADIR, "cheese-viewport.json", NULL);
-  result = clutter_script_load_from_file (clutter_builder, file, &error);
-
-  if (result == 0) {
-    g_error ("Error: %s\n", error->message);
-    g_error_free (error);
-  }
-
-  priv->error_layer = CLUTTER_TEXT (clutter_script_get_object (clutter_builder, "error_layer"));
-
-  //g_object_unref (clutter_builder);
- }
 
 /**
  * cheese_camera_new:
@@ -1472,10 +1439,10 @@ cheese_camera_error_layer_init (CheeseCamera *camera)
  */
 CheeseCamera *
 cheese_camera_new (ClutterTexture *video_texture,
+                   ClutterText *error_texture,
                    const gchar *camera_device_node,
                    gint x_resolution, gint y_resolution)
 {
-  g_printf ("Camera - cheese_camera_new\n");
   CheeseCamera      *camera;
   CheeseVideoFormat *format = g_slice_new (CheeseVideoFormat);
 
@@ -1493,6 +1460,13 @@ cheese_camera_new (ClutterTexture *video_texture,
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
                            "format", format, NULL);
   }
+
+  // Ideally, priv->error_layer should not be passed by argument in
+  // the constructor, but imported from the .json file. We have tried
+  // this, but the error_layer does not show then, most probably due
+  // to some threading issue.
+  CheeseCameraPrivate *priv = camera->priv;
+  priv->error_layer = error_texture;
 
   cheese_camera_detect_camera_devices (camera);
 
@@ -1541,11 +1515,17 @@ cheese_camera_set_device_by_dev_uuid (CheeseCamera *camera, const gchar *uuid)
   }
 }
 
+/*
+ * cheese_camera_show_error_layer:
+ * @camera: a #CheeseCamera
+ * @message: a text message
+ *
+ * Shows the error layer with message, and hides the currently
+ * displayed video.
+ */
 void
 cheese_camera_show_error_layer (CheeseCamera *camera, char *message)
 {
-  g_printf ("Camera - cheese_camera_show_error_layer\n");
-  g_printf ("Message is %s\n", message);
   CheeseCameraPrivate *priv = camera->priv;
 
   clutter_actor_hide ((ClutterActor *) priv->video_texture);
@@ -1553,10 +1533,15 @@ cheese_camera_show_error_layer (CheeseCamera *camera, char *message)
   clutter_actor_show ((ClutterActor *) priv->error_layer);
 }
 
+/*
+ * cheese_camera_hide_error_layer:
+ * @camera: a #CheeseCamera
+ *
+ * Hides the error layer and shows the video.
+ */
 void
 cheese_camera_hide_error_layer (CheeseCamera *camera)
 {
-  g_printf ("Camera - cheese_camera_hide_error_layer\n");
   CheeseCameraPrivate *priv = camera->priv;
   clutter_actor_hide ((ClutterActor *) priv->error_layer);
   clutter_actor_show ((ClutterActor *) priv->video_texture);

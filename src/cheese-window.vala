@@ -73,6 +73,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.BinLayout viewport_layout_manager;
   private Clutter.Text      countdown_layer;
   private Clutter.Rectangle background_layer;
+  private Clutter.Text      error_layer;
 
   private Clutter.Box           current_effects_grid;
   private int                current_effects_page = 0;
@@ -1503,6 +1504,7 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
     countdown_layer         = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
     background_layer        = clutter_builder.get_object ("background") as Clutter.Rectangle;
+    error_layer             = clutter_builder.get_object ("error_layer") as Clutter.Text;
 
     video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
@@ -1592,6 +1594,7 @@ public class Cheese.MainWindow : Gtk.Window
       device = settings.get_string ("camera");
 
     camera = new Camera (video_preview,
+                         error_layer,
                          device,
                          settings.get_int ("photo-x-resolution"),
                          settings.get_int ("photo-y-resolution"));

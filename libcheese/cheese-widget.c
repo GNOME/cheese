@@ -296,6 +296,7 @@ setup_camera (CheeseWidget *widget)
 
   gdk_threads_enter ();
   priv->webcam = cheese_camera_new (CLUTTER_TEXTURE (priv->texture),
+                                    NULL,
                                     webcam_device,
                                     x_resolution,
                                     y_resolution);

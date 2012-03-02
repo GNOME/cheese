@@ -64,7 +64,7 @@ main (int argc, char **argv)
   clutter_actor_show (texture);
 
   gdk_threads_enter ();
-  camera = cheese_camera_new (CLUTTER_TEXTURE (texture), NULL, 640, 480);
+  camera = cheese_camera_new (CLUTTER_TEXTURE (texture), NULL, NULL, 640, 480);
   gdk_threads_leave ();
 
   cheese_camera_setup (camera, NULL, NULL);
