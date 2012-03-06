@@ -4,65 +4,34 @@
 #
 # Adam Pongracz <pongadam at gmail dot com>, 2008.
 # Mate Ory <orymate at gmail dot com>, 2008.
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2008, 2009, 2010, 2011.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2008, 2009, 2010, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 17:12+0100\n"
-"PO-Revision-Date: 2011-03-18 17:17+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
+"cgi?product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-01-16 22:57+0000\n"
+"PO-Revision-Date: 2012-03-06 03:29+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <gnome at fsf dot hu>\n"
-"Language: \n"
+"Language-Team: Magyar <gnome-hu-list at gnome dot org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: \n"
+"X-Generator: Lokalize 1.0\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
-#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:57
-msgid "Cheese"
-msgstr "Csííz"
-
-#: ../data/cheese-about.ui.h:2
+#: ../data/cheese-about.ui.h:1
 msgid "Cheese Website"
 msgstr "A Csííz weboldala"
 
-#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+#: ../data/cheese-about.ui.h:2 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Képek készítése és videók felvétele webkamerával, vicces grafikai "
 "effektusokkal"
 
-#: ../data/cheese-about.ui.h:4
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
-msgstr ""
-"Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software "
-"Foundation által kiadott GNU General Public License második (vagy bármely "
-"későbbi) változatában foglaltak alapján.\n"
-"\n"
-"Ezt a programot abban a reményben terjesztjük, hogy hasznos lesz, de nem "
-"vállalunk SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy a program "
-"alkalmas-e a KÖZREADÁSRA vagy EGY BIZONYOS FELADAT ELVÉGZÉSÉRE. További "
-"részletekért tanulmányozza a GNU GPL licencet.\n"
-"\n"
-"A programhoz a GNU General Public License egy példánya is jár, ha nem kapta "
-"meg, itt elolvashatja: http://www.gnu.org/licenses/.\n"
-
-#: ../data/cheese-about.ui.h:10
+#: ../data/cheese-about.ui.h:3
 msgid "translator-credits"
 msgstr ""
 "Kelemen Gábor <kelemeng at gnome dot hu>\n"
@@ -94,63 +63,68 @@ msgid "Save _As…"
 msgstr "Men_tés másként…"
 
 #: ../data/cheese-actions.ui.h:7
+#| msgid "Save _As…"
+msgid "Share…"
+msgstr "Megosztás…"
+
+#: ../data/cheese-actions.ui.h:8
 msgid "Take _Multiple Photos"
 msgstr "_Több fénykép készítése"
 
-#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:210
+#: ../data/cheese-actions.ui.h:9 ../data/cheese-main-window.ui.h:7
+#: ../libcheese/cheese-avatar-chooser.c:263
 msgid "Take a photo"
 msgstr "Fényképezés"
 
-#: ../data/cheese-actions.ui.h:9
+#: ../data/cheese-actions.ui.h:10
 msgid "Take multiple photos"
 msgstr "Több fénykép készítése"
 
-#: ../data/cheese-actions.ui.h:10
+#: ../data/cheese-actions.ui.h:11
 msgid "_About"
 msgstr "_Névjegy"
 
-#: ../data/cheese-actions.ui.h:11
+#: ../data/cheese-actions.ui.h:12
 msgid "_Burst"
 msgstr "_Sorozat"
 
-#: ../data/cheese-actions.ui.h:12
+#: ../data/cheese-actions.ui.h:13
 msgid "_Cheese"
 msgstr "_Csííz"
 
-#: ../data/cheese-actions.ui.h:13
+#: ../data/cheese-actions.ui.h:14
 msgid "_Contents"
 msgstr "_Tartalom"
 
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:15
 msgid "_Edit"
 msgstr "S_zerkesztés"
 
-#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-actions.ui.h:16 ../data/cheese-main-window.ui.h:9
 msgid "_Effects"
 msgstr "_Effektusok"
 
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:17
 msgid "_Help"
 msgstr "_Súgó"
 
-#: ../data/cheese-actions.ui.h:17
+#: ../data/cheese-actions.ui.h:18
 msgid "_Photo"
 msgstr "_Fénykép"
 
-#: ../data/cheese-actions.ui.h:18
+#: ../data/cheese-actions.ui.h:19
 msgid "_Record a Video"
 msgstr "_Videó felvétele"
 
-#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
+#: ../data/cheese-actions.ui.h:20 ../data/cheese-main-window.ui.h:11
 msgid "_Take a Photo"
 msgstr "Fény_képezés"
 
-#: ../data/cheese-actions.ui.h:20
+#: ../data/cheese-actions.ui.h:21
 msgid "_Video"
 msgstr "_Videó"
 
-#: ../data/cheese-actions.ui.h:21
+#: ../data/cheese-actions.ui.h:22
 msgid "_Wide Mode"
 msgstr "S_zéles mód"
 
@@ -199,100 +173,295 @@ msgid "Burst mode"
 msgstr "Sorozat mód"
 
 #: ../data/cheese-prefs.ui.h:4
+msgid "Capture"
+msgstr "Felvétel"
+
+#: ../data/cheese-prefs.ui.h:5
 msgid "Contrast"
 msgstr "Kontraszt"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:6
 msgid "Delay between photos (seconds)"
 msgstr "Késleltetés a fényképek között (mp)"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:7
 msgid "Device"
 msgstr "Eszköz"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:8
 msgid "Fire _Flash"
 msgstr "Vak_u villantása"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:9
 msgid "Hue"
 msgstr "Árnyalat"
 
-#: ../data/cheese-prefs.ui.h:9
-msgid "Image properties"
-msgstr "Képtulajdonságok"
-
 #: ../data/cheese-prefs.ui.h:10
+msgid "Image"
+msgstr "Kép"
+
+#: ../data/cheese-prefs.ui.h:11
 msgid "Number of photos"
 msgstr "Fényképek száma"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:12
 msgid "Photo resolution"
 msgstr "Fénykép felbontása"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:13
 msgid "Preferences"
 msgstr "Beállítások"
 
-#: ../data/cheese-prefs.ui.h:13
+#: ../data/cheese-prefs.ui.h:14
 msgid "Saturation"
 msgstr "Telítettség"
 
-#: ../data/cheese-prefs.ui.h:14
+#: ../data/cheese-prefs.ui.h:15
 msgid "Video resolution"
 msgstr "Videó felbontása"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:16
 msgid "Webcam"
 msgstr "Webkamera"
 
-#: ../data/cheese-prefs.ui.h:16
+#: ../data/cheese-prefs.ui.h:17
 msgid "_Countdown"
 msgstr "_Visszaszámlálás"
+
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:67
+msgid "Cheese"
+msgstr "Csííz"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Csííz webkamera-kezelő"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:1
+msgid "Adjusts the brightness of the picture coming from the camera"
+msgstr "A kamerából érkező kép fényerejének módosítása"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:2
+msgid "Adjusts the contrast of the picture coming from the camera"
+msgstr "A kamerából érkező kép kontrasztjának módosítása"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:3
+msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgstr "A kamerából érkező kép színárnyalatának módosítása"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:4
+msgid "Adjusts the saturation of the picture coming from the camera"
+msgstr "A kamerából érkező kép telítettségének módosítása"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:5
+msgid "Camera device string indicator"
+msgstr "Fényképezőgép-eszköz szöveges jelzője"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+#| msgid "_Countdown"
+msgid "Countdown length"
+msgstr "Visszaszámlálás hossza"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"A fényképek tárolására használt útvonal megadása. Ha üres, akkor az "
+"„XDG_PHOTO/Webcam” kerül felhasználásra."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"A videók tárolására használt útvonal megadása. Ha üres, akkor az "
+"„XDG_VIDEO//Webcam” kerül felhasználásra."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
+msgid "Fire flash before taking a picture"
+msgstr "Vaku villantása kép készítése előtt"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:10
+msgid "If set to true, Cheese will start up in fullscreen mode."
+msgstr "Ha igazra van állítva, akkor a Csííz teljes képernyős módban indul el."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:11
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Ha igazra van állítva, akkor a Csííz széles képernyős módban indul el, a "
+"képgyűjteménnyel a jobb oldalon. Kis képernyők esetén hasznos."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:12
+msgid "Last selected effect"
+msgstr "Utoljára kiválasztott effektus"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+msgid "Name of the installed effect that was selected last"
+msgstr "Az utoljára kiválasztott telepített effektus neve"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+#| msgid "Number of photos"
+msgid "Number of photos in burst mode"
+msgstr "Fényképek száma sorozat módban"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
+#| msgid "_Photo"
+msgid "Photo Path"
+msgstr "Fénykép útvonala"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:16
+#| msgid "Photo mode"
+msgid "Photo height"
+msgstr "Fénykép magassága"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:17
+#| msgid "Photo mode"
+msgid "Photo width"
+msgstr "Fénykép szélessége"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+#| msgid "Brightness"
+msgid "Picture brightness"
+msgstr "Fénykép fényereje"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+msgid "Picture contrast"
+msgstr "Fénykép kontrasztja"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+msgid "Picture hue"
+msgstr "Fénykép árnyalata"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
+#| msgid "Saturation"
+msgid "Picture saturation"
+msgstr "Fénykép telítettsége"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:22
+msgid "Set to true to fire a flash when taking a picture"
+msgstr "Állítsa igazra vaku villantásához kép készítése előtt"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:23
+msgid "Set to true to show a countdown before taking a photo"
+msgstr ""
+"Állítsa igazra visszaszámláló üzenet megjelenítéséhez kép készítése előtt"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:24
+msgid "The duration of the countdown before taking a photo, in seconds"
+msgstr "A visszaszámlálás időtartama kép készítése előtt, másodpercben"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:25
+msgid "The height of the image captured from the camera, in pixels"
+msgstr "A fényképezőgéppel készített kép magassága képpontban"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:26
+msgid "The height of the video captured from the camera, in pixels"
+msgstr "A fényképezőgéppel készített videó magassága képpontban"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:27
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr ""
+"Idő hossza ezredmásodpercben a képek készítése között sorozat módban. Ha a "
+"sorozat késleltetése rövidebb a visszaszámlálás hosszánál, akkor a "
+"visszaszámlálás hossza kerül felhasználásra."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:28
+msgid "The number of photos to take in a single burst."
+msgstr "Egy sorozatban készítendő fényképek száma."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:29
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr "A fényképezőgépre mutató eszközcsomópont útvonala, például /dev/video0"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+msgid "The width of the image captured from the camera, in pixels"
+msgstr "A fényképezőgéppel készített kép szélessége képpontban"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+msgid "The width of the video captured from the camera, in pixels"
+msgstr "A fényképezőgéppel készített videó szélessége képpontban"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+#| msgid "Delay between photos (seconds)"
+msgid "Time between photos in burst mode"
+msgstr "Késleltetés a fényképek között sorozat módban"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
+#| msgid "_Countdown"
+msgid "Use a countdown"
+msgstr "Visszaszámlálás használata"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
+#| msgid "_Video"
+msgid "Video Path"
+msgstr "Videó útvonala"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:35
+#| msgid "Video mode"
+msgid "Video height"
+msgstr "Videó magassága"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:36
+#| msgid "Video mode"
+msgid "Video width"
+msgstr "Videó szélessége"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:37
+#| msgid "Start in fullscreen mode"
+msgid "Whether to start in fullscreen"
+msgstr "Indítás teljes képernyős módban?"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:38
+#| msgid "Start in wide mode"
+msgid "Whether to start in wide mode"
+msgstr "Indítás széles módban?"
+
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:850
 msgid "Shutter sound"
 msgstr "Zárhang"
 
-#: ../libcheese/cheese-avatar-chooser.c:228
+#: ../libcheese/cheese-avatar-chooser.c:281
 msgid "_Take a photo"
 msgstr "Fény_képezés"
 
-#: ../libcheese/cheese-avatar-chooser.c:241
+#: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
 msgstr "_Fénykép eldobása"
 
-#: ../libcheese/cheese-camera-device.c:329
+#: ../libcheese/cheese-camera-device.c:390
 msgid "Device capabilities not supported"
 msgstr "Az eszköz képességei nem támogatottak"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:419
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "A(z) %s előkészítése meghiúsult a képességfelismeréshez"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:608
 msgid "Unknown device"
 msgstr "Ismeretlen eszköz"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:631
 msgid "Cancellable initialization not supported"
 msgstr "A megszakítható előkészítés nem támogatott"
 
-#: ../libcheese/cheese-camera.c:1182
+#: ../libcheese/cheese-camera.c:1492
 #, c-format
 msgid "No device found"
 msgstr "Nem található eszköz"
 
-#: ../libcheese/cheese-camera.c:1232
+#: ../libcheese/cheese-camera.c:1542
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Legalább egy szükséges GStreamer elem hiányzik: "
 
-#: ../src/cheese-effects-manager.vala:118
+#: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
 msgstr "Nincs effektus"
 
@@ -316,31 +485,102 @@ msgstr "Verzióinformációk kiírása és kilépés"
 msgid "Start in fullscreen mode"
 msgstr "Indítás teljes képernyős módban"
 
-#: ../src/cheese-main.vala:108
+#: ../src/cheese-main.vala:126
 msgid "- Take photos and videos from your webcam"
 msgstr "– Képek készítése és videók felvétele webkamerával"
 
-#: ../src/cheese-main.vala:119
+#: ../src/cheese-main.vala:138
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "A parancssori paraméterek teljes listája a „%s --help” paranccsal íratható "
 "ki.\n"
 
-#: ../src/cheese-main.vala:134
+#: ../src/cheese-main.vala:153
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Már fut a Csííz egy másik példánya.\n"
 
-#: ../src/cheese-window.vala:763
+#: ../src/cheese-window.vala:224
+#, c-format
+msgid "Could not open %s"
+msgstr "%s megnyitása nem sikerült"
+
+#: ../src/cheese-window.vala:252
+#, c-format
+msgid "Are you sure you want to permanently delete the file?"
+msgid_plural "Are you sure you want to permanently delete %d files?"
+msgstr[0] "Biztosan véglegesen törölni akarja a fájlt?"
+msgstr[1] "Biztosan véglegesen törölni akar %d fájlt?"
+
+#: ../src/cheese-window.vala:258
+msgid "If you delete an item, it will be permanently lost"
+msgid_plural "If you delete the items, they will be permanently lost"
+msgstr[0] "Ha töröl egy elemet, akkor az véglegesen elvész"
+msgstr[1] "Ha törli az elemeket, akkor azok véglegesen elvesznek"
+
+#: ../src/cheese-window.vala:334
+#, c-format
+msgid "Could not move %s to trash"
+msgstr "%s nem helyezhető át a Kukába"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:413
+msgid "Save File"
+msgstr "Fájl mentése"
+
+#: ../src/cheese-window.vala:447
+#, c-format
+msgid "Could not save %s"
+msgstr "%s nem menthető"
+
+#: ../src/cheese-window.vala:959
 msgid "Stop _Recording"
 msgstr "Fel_vétel leállítása"
 
-#: ../src/cheese-window.vala:787
+#: ../src/cheese-window.vala:960
+#| msgid "Stop _Recording"
+msgid "Stop recording"
+msgstr "Felvétel leállítása"
+
+#: ../src/cheese-window.vala:988
 msgid "Stop _Taking Pictures"
 msgstr "_Fényképezés leállítása"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:989
+#| msgid "Stop _Taking Pictures"
+msgid "Stop taking pictures"
+msgstr "Fényképezés leállítása"
+
+#: ../src/cheese-window.vala:1172
 msgid "No effects found"
 msgstr "Nem találhatók effektusok"
 
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see http://www.gnu.org/licenses/\n"
+#~ msgstr ""
+#~ "Ez egy szabad szoftver, terjesztheti és/vagy módosíthatja a Free Software "
+#~ "Foundation által kiadott GNU General Public License második (vagy bármely "
+#~ "későbbi) változatában foglaltak alapján.\n"
+#~ "\n"
+#~ "Ezt a programot abban a reményben terjesztjük, hogy hasznos lesz, de nem "
+#~ "vállalunk SEMMIFÉLE GARANCIÁT, még olyan értelemben sem, hogy a program "
+#~ "alkalmas-e a KÖZREADÁSRA vagy EGY BIZONYOS FELADAT ELVÉGZÉSÉRE. További "
+#~ "részletekért tanulmányozza a GNU GPL licencet.\n"
+#~ "\n"
+#~ "A programhoz a GNU General Public License egy példánya is jár, ha nem "
+#~ "kapta meg, itt elolvashatja: http://www.gnu.org/licenses/.\n"
+
+#~ msgid "Image properties"
+#~ msgstr "Képtulajdonságok"
