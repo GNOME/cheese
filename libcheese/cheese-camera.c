@@ -934,6 +934,33 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
 }
 
+static void
+cheese_camera_set_tags (CheeseCamera *camera)
+{
+  CheeseCameraPrivate *priv;
+  CheeseCameraDevice *device;
+  const gchar *device_name;
+  GstDateTime *datetime;
+  GstTagList *taglist;
+
+  device = cheese_camera_get_selected_device (camera);
+  device_name = cheese_camera_device_get_name (device);
+
+  datetime = gst_date_time_new_now_local_time();
+
+  taglist = gst_tag_list_new_full (
+      GST_TAG_APPLICATION_NAME, PACKAGE_STRING,
+      GST_TAG_DATE_TIME, datetime,
+      GST_TAG_DEVICE_MODEL, device_name,
+      GST_TAG_KEYWORDS, PACKAGE_NAME, NULL);
+
+  priv = camera->priv;
+  gst_tag_setter_merge_tags (GST_TAG_SETTER (priv->camerabin), taglist,
+        GST_TAG_MERGE_REPLACE);
+
+  gst_date_time_unref (datetime);
+}
+
 /**
  * cheese_camera_start_video_recording:
  * @camera: a #CheeseCamera
@@ -954,6 +981,7 @@ cheese_camera_start_video_recording (CheeseCamera *camera, const gchar *filename
   g_object_set (priv->camerabin, "mode", MODE_VIDEO, NULL);
   gst_element_set_state (priv->camerabin, GST_STATE_READY);
   g_object_set (priv->camerabin, "filename", filename, NULL);
+  cheese_camera_set_tags (camera);
   gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
   g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
   priv->is_recording = TRUE;
@@ -1078,6 +1106,7 @@ cheese_camera_take_photo (CheeseCamera *camera, const gchar *filename)
   {
     g_object_set (priv->camerabin, "filename", priv->photo_filename, NULL);
     g_object_set (priv->camerabin, "mode", MODE_IMAGE, NULL);
+    cheese_camera_set_tags (camera);
     g_signal_emit_by_name (priv->camerabin, "capture-start", 0);
   }
   else
