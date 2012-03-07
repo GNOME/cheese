@@ -934,6 +934,13 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
 }
 
+/*
+ * cheese_camera_set_tags:
+ * @camera: a #CheeseCamera
+ *
+ * Set tags on the camerabin element, such as the stream creation time and the
+ * name of the application. Call this just before starting the capture process.
+ */
 static void
 cheese_camera_set_tags (CheeseCamera *camera)
 {
