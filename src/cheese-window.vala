@@ -74,6 +74,7 @@ public class Cheese.MainWindow : Gtk.Window
   private Clutter.Text      countdown_layer;
   private Clutter.Rectangle background_layer;
   private Clutter.Text      error_layer;
+  private Clutter.Text      timeout_layer;
 
   private Clutter.Box           current_effects_grid;
   private int                current_effects_page = 0;
@@ -680,7 +681,9 @@ public class Cheese.MainWindow : Gtk.Window
     
     if (preferences_dialog != null)
       preferences_dialog.set_current_mode (current_mode);
-    
+
+    timeout_layer.hide ();
+
     switch (this.current_mode)
     {
       case MediaMode.PHOTO:
@@ -695,6 +698,8 @@ public class Cheese.MainWindow : Gtk.Window
         take_video_action.sensitive       = true;
         take_burst_action.sensitive       = false;
         take_action_button.related_action = take_video_action;
+        timeout_layer.text = "00:00:00";
+        timeout_layer.show ();
         break;
 
       case MediaMode.BURST:
@@ -886,6 +891,8 @@ public class Cheese.MainWindow : Gtk.Window
   {
     this.viewport_layout.set_size (viewport.width, viewport.height);
     this.background_layer.set_size (viewport.width, viewport.height);
+    this.timeout_layer.set_position (video_preview.width/3 + viewport.width/2,
+                                viewport.height-20);
   }
 
   /**
@@ -1024,6 +1031,10 @@ public class Cheese.MainWindow : Gtk.Window
     if (is_start)
     {
       camera.start_video_recording (fileutil.get_new_media_filename (this.current_mode));
+      /* Will be called every 1 second while
+       * update_timeout_layer returns true.
+       */
+      Timeout.add_seconds (1, update_timeout_layer);
       take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
       take_action_button.tooltip_text = _("Stop recording");
       take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_STOP, Gtk.IconSize.BUTTON);
@@ -1033,12 +1044,35 @@ public class Cheese.MainWindow : Gtk.Window
     else
     {
       camera.stop_video_recording ();
+      /* The timeout_layer always shows the "00:00:00"
+       * string when not recording, in order to notify
+       * the user about two things:
+       *   + The user is making use of the recording mode.
+       *   + The user is currently not recording.
+       */
+      timeout_layer.text = "00:00:00";
       take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
       take_action_button.tooltip_text = take_action_button.related_action.tooltip;
       take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_RECORD, Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
     }
+  }
+
+  /**
+   * Update the timeout layer displayed timer.
+   *
+   * @return false, if the source, Timeout.add_seconds (used
+   * in the toogle_video_recording method), should be removed.
+   */
+  private bool update_timeout_layer ()
+  {
+    if (is_recording) {
+      timeout_layer.text = camera.get_recorded_time ();
+      return true;
+    }
+    else
+      return false;
   }
 
   /**
@@ -1522,6 +1556,7 @@ public class Cheese.MainWindow : Gtk.Window
     countdown_layer         = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
     background_layer        = clutter_builder.get_object ("background") as Clutter.Rectangle;
     error_layer             = clutter_builder.get_object ("error_layer") as Clutter.Text;
+    timeout_layer           = clutter_builder.get_object ("timeout_layer") as Clutter.Text;
 
     video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
@@ -1529,6 +1564,7 @@ public class Cheese.MainWindow : Gtk.Window
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
     viewport.add_actor (viewport_layout);
+    viewport.add_actor (timeout_layer);
 
     viewport.allocation_changed.connect (on_stage_resize);
 
