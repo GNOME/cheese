@@ -56,6 +56,7 @@ namespace Cheese
     public bool                        switch_camera_device ();
     public bool                        take_photo (string filename);
     public bool                        take_photo_pixbuf ();
+    public string                      get_recorded_time ();
     [NoAccessorMethod]
     public string device_node {owned get; set;}
     [NoAccessorMethod]
