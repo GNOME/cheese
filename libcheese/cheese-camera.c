@@ -1766,8 +1766,6 @@ cheese_camera_set_balance_property (CheeseCamera *camera, const gchar *property,
 gchar *
 cheese_camera_get_recorded_time (CheeseCamera *camera)
 {
-  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
-
   CheeseCameraPrivate *priv = camera->priv;
   GstFormat format = GST_FORMAT_TIME;
   gint64 curtime;
@@ -1778,6 +1776,8 @@ cheese_camera_get_recorded_time (CheeseCamera *camera)
   gint minutes;
   gint seconds;
   gboolean ret = FALSE;
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
 
   videosink = gst_bin_get_by_name (GST_BIN_CAST (priv->camerabin), "videobin-filesink");
   if (videosink) {
