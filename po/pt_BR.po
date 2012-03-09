@@ -12,21 +12,24 @@
 # Michel Recondo <michel@recondo.com.br>, 2010.
 # Flamarion Jorge <jorge.flamarion@gmail.com>, 2011.
 # Guilherme Barbosa Ferreira <eu@guilhermeferreira.info>
-#
+# Gabriel Speckhahn <gabspeck@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-16 08:31+0000\n"
-"PO-Revision-Date: 2012-01-05 13:31-0400\n"
-"Last-Translator: Guilherme Barbosa Ferreira <eu@guilhermeferreira.info>\n"
-"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.com>\n"
+"POT-Creation-Date: 2012-03-10 12:43+0000\n"
+"PO-Revision-Date: 2012-03-09 16:38-0200\n"
+"Last-Translator: Gabriel Speckhahn <gabspeck@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <gnome-pt_br-list@gnome.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-DamnedLies-Scope: partial\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
@@ -47,7 +50,8 @@ msgstr ""
 "Vladimir Melo <vladimirmelo@foresightlinux.org>\n"
 "Daniel S. Koda <danielskoda@gmail.com>\n"
 "Djavan Fagundes <dnoway@gmail.com>\n"
-"Guilherme Barbosa Ferreira <eu@guilhermeferreira.info>"
+"Guilherme Barbosa Ferreira <eu@guilhermeferreira.info>\n"
+"Gabriel Speckhahn <gabspeck@gmail.com>"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "_Cheese"
@@ -70,7 +74,6 @@ msgid "_About"
 msgstr "_Sobre"
 
 #: ../data/cheese-actions.ui.h:6
-#| msgid "Save _As…"
 msgid "Share…"
 msgstr "Compartilhar…"
 
@@ -213,7 +216,7 @@ msgstr "Imagem"
 
 #: ../data/cheese-prefs.ui.h:11
 msgid "<b>Shutter</b>"
-msgstr "<b>Veneziana</b>"
+msgstr "<b>Obturador</b>"
 
 #: ../data/cheese-prefs.ui.h:12
 msgid "_Countdown"
@@ -248,48 +251,50 @@ msgid "Cheese Webcam Booth"
 msgstr "Cabine de webcam do Cheese"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:1
-#| msgid "_Countdown"
 msgid "Use a countdown"
 msgstr "Usar um contador regressivo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:2
 msgid "Set to true to show a countdown before taking a photo"
 msgstr ""
+"Defina como verdadeiro para exibir uma contagem regressiva antes de tirar "
+"uma foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:3
-#| msgid "_Countdown"
 msgid "Countdown length"
 msgstr "Duração do contador regressivo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:4
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr ""
+msgstr "A duração da contagem regressiva antes de tirar uma foto, em segundos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:5
 msgid "Fire flash before taking a picture"
-msgstr ""
+msgstr "Disparar o flash antes de tirar uma foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:6
 msgid "Set to true to fire a flash when taking a picture"
-msgstr ""
+msgstr "Defina como verdadeiro para disparar um flash ao tirar uma foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:7
 msgid "Camera device string indicator"
-msgstr ""
+msgstr "Indicador string do dispositivo da câmera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:8
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
 msgstr ""
+"O caminho para o nó de dispositivo que aponta para a câmera, por exemplo /"
+"dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:9
 msgid "Last selected effect"
-msgstr ""
+msgstr "Último efeito selecionado"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:10
 msgid "Name of the installed effect that was selected last"
-msgstr ""
+msgstr "Nome do efeito instalado que foi selecionado por último"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:11
 msgid "Photo width"
@@ -297,7 +302,7 @@ msgstr "Largura da foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:12
 msgid "The width of the image captured from the camera, in pixels"
-msgstr ""
+msgstr "A largura da imagem capturada da câmera, em pixels"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:13
 msgid "Photo height"
@@ -305,7 +310,7 @@ msgstr "Altura da foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:14
 msgid "The height of the image captured from the camera, in pixels"
-msgstr ""
+msgstr "A altura da imagem capturada da câmera, em pixels"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:15
 msgid "Video width"
@@ -313,7 +318,7 @@ msgstr "Largura de vídeo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:16
 msgid "The width of the video captured from the camera, in pixels"
-msgstr ""
+msgstr "A largura do vídeo capturado da câmera, em pixels"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:17
 msgid "Video height"
@@ -321,43 +326,39 @@ msgstr "Altura do vídeo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:18
 msgid "The height of the video captured from the camera, in pixels"
-msgstr ""
+msgstr "A altura do vídeo capturado da câmera, em pixels"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:19
-#| msgid "Brightness"
 msgid "Picture brightness"
 msgstr "Brilho da imagem"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:20
 msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr ""
+msgstr "Ajusta o brilho da imagem que vem da câmera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:21
-#| msgid "Saturation"
 msgid "Picture contrast"
 msgstr "Saturação da imagem"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:22
 msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr ""
+msgstr "Ajusta o contraste da imagem que vem da câmera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:23
-#| msgid "Saturation"
 msgid "Picture saturation"
 msgstr "Saturação da imagem"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:24
 msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr ""
+msgstr "Ajusta a saturação da imagem que vem da câmera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:25
-#| msgid "Brightness"
 msgid "Picture hue"
 msgstr "Matiz da imagem"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:26
 msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr ""
+msgstr "Ajusta a matiz (tonalidade de cor) da imagem que vem da câmera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:27
 msgid "Video Path"
@@ -368,6 +369,8 @@ msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
+"Define o caminho onde os vídeos são armazenados. Se vazio, será utilizado "
+"\"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:29
 msgid "Photo Path"
@@ -378,9 +381,10 @@ msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
+"Define o caminho onde as fotos são armazenadas. Se vazio, será utilizado "
+"\"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:31
-#| msgid "Start in wide mode"
 msgid "Whether to start in wide mode"
 msgstr "Iniciar em modo amplo"
 
@@ -389,18 +393,19 @@ msgid ""
 "If set to true, Cheese will start up in wide mode, with the image collection "
 "placed on the right-hand side. Useful with small screens."
 msgstr ""
+"Se definido como verdadeiro, o Cheese irá iniciar no modo amplo, com a "
+"coleção de imagens posicionada no lado direito. Útil para telas pequenas."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:33
-#| msgid "Start in fullscreen mode"
 msgid "Whether to start in fullscreen"
 msgstr "Iniciar no modo tela cheia"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:34
 msgid "If set to true, Cheese will start up in fullscreen mode."
 msgstr ""
+"Se definido como verdadeiro, o Cheese irá iniciar em modo de tela cheia."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:35
-#| msgid "Delay between photos (seconds)"
 msgid "Time between photos in burst mode"
 msgstr "Intervalo entre fotos  no modo explosão"
 
@@ -410,13 +415,15 @@ msgid ""
 "burst sequence of photos. If the burst delay is less than the countdown "
 "duration, the countdown duration will be used instead."
 msgstr ""
+"A duração do atraso, em milissegundos, entre cada captura de foto no modo "
+"explosão. Se o atraso da explosão for menor do que a duração da contagem "
+"regressiva, a duração desta será usada em seu lugar."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:37
 msgid "Number of photos in burst mode"
 msgstr "Número de fotos no modo explosão"
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:38
-#| msgid "Number of photos in burst mode"
 msgid "The number of photos to take in a single burst."
 msgstr "Número de fotos a serem tiradas em uma única explosão"
 
@@ -505,14 +512,12 @@ msgstr "Não foi possível abrir %s"
 
 #: ../src/cheese-window.vala:250
 #, c-format
-#| msgid "Are you sure you want to permanently delete the file \"%s\"?"
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Você tem certeza que deseja excluir permanentemente o arquivo?"
 msgstr[1] "Você tem certeza que deseja excluir permanentemente %d arquivos?"
 
 #: ../src/cheese-window.vala:256
-#| msgid "If you delete an item, it will be permanently lost"
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Se você excluir um item, ele será permanentemente perdido"
@@ -538,7 +543,6 @@ msgid "Stop _Recording"
 msgstr "_Parar gravação"
 
 #: ../src/cheese-window.vala:1028
-#| msgid "Stop _Recording"
 msgid "Stop recording"
 msgstr "Parar a gravação"
 
@@ -547,11 +551,9 @@ msgid "Stop _Taking Pictures"
 msgstr "Parar cap_tura de fotos"
 
 #: ../src/cheese-window.vala:1057
-#| msgid "Stop _Taking Pictures"
 msgid "Stop taking pictures"
 msgstr "Parar captura de fotos"
 
 #: ../src/cheese-window.vala:1240
 msgid "No effects found"
 msgstr "Nenhum efeito localizado"
-
