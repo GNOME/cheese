@@ -120,6 +120,7 @@ cheese_camera_device_monitor_set_up_device (GUdevDevice *udevice)
   gint        vendor_id   = 0;
   gint        product_id  = 0;
   gint        v4l_version = 0;
+  CheeseCameraDevice *device;
 
   const gchar *devpath = g_udev_device_get_property (udevice, "DEVPATH");
 
@@ -187,11 +188,11 @@ cheese_camera_device_monitor_set_up_device (GUdevDevice *udevice)
     g_assert_not_reached ();
   }
 
-  CheeseCameraDevice *device = cheese_camera_device_new (devpath,
-                                                         device_file,
-                                                         product_name,
-                                                         v4l_version,
-                                                         &error);
+  device = cheese_camera_device_new (devpath,
+                                     device_file,
+                                     product_name,
+                                     v4l_version,
+                                     &error);
 
   if (device == NULL)
     GST_WARNING ("Device initialization for %s failed: %s ",

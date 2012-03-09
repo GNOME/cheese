@@ -667,13 +667,14 @@ void
 cheese_camera_switch_camera_device (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv;
+  gboolean pipeline_was_playing;
 
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
   priv = camera->priv;
 
   /* gboolean was_recording        = FALSE; */
-  gboolean pipeline_was_playing = FALSE;
+  pipeline_was_playing = FALSE;
 
   if (priv->is_recording)
   {
@@ -919,15 +920,15 @@ void
 cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
 {
   CheeseCameraPrivate *priv;
-
-  g_return_if_fail (CHEESE_IS_CAMERA (camera));
-
-  priv = camera->priv;
   GstElement *effect_filter;
   GstElement *display_element;
   GstElement *display_queue;
   GstElement *control_valve;
-  gboolean    ok = TRUE;
+  gboolean ok;
+  g_return_if_fail (CHEESE_IS_CAMERA (camera));
+
+  priv = camera->priv;
+  ok = TRUE;
 
   g_object_set (G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
 
@@ -1167,9 +1168,10 @@ static void
 cheese_camera_finalize (GObject *object)
 {
   CheeseCamera *camera;
+  CheeseCameraPrivate *priv;
 
   camera = CHEESE_CAMERA (object);
-  CheeseCameraPrivate *priv = camera->priv;
+  priv = camera->priv;
 
   cheese_camera_stop (camera);
 
@@ -1194,9 +1196,10 @@ cheese_camera_get_property (GObject *object, guint prop_id, GValue *value,
                             GParamSpec *pspec)
 {
   CheeseCamera *self;
+  CheeseCameraPrivate *priv;
 
   self = CHEESE_CAMERA (object);
-  CheeseCameraPrivate *priv = self->priv;
+  priv = self->priv;
 
   switch (prop_id)
   {
@@ -1223,9 +1226,10 @@ cheese_camera_set_property (GObject *object, guint prop_id, const GValue *value,
                             GParamSpec *pspec)
 {
   CheeseCamera *self;
+  CheeseCameraPrivate *priv;
 
   self = CHEESE_CAMERA (object);
-  CheeseCameraPrivate *priv = self->priv;
+  priv = self->priv;
 
   switch (prop_id)
   {

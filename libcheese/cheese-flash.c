@@ -389,6 +389,7 @@ cheese_flash_fire (CheeseFlash *flash)
   GdkScreen          *screen;
   GdkRectangle        rect;
   int                 monitor;
+  GtkWindow *flash_window;
 
   g_return_if_fail (CHEESE_IS_FLASH (flash));
 
@@ -396,7 +397,7 @@ cheese_flash_fire (CheeseFlash *flash)
 
   g_return_if_fail (flash_priv->parent != NULL);
 
-  GtkWindow *flash_window = GTK_WINDOW (flash);
+  flash_window = GTK_WINDOW (flash);
 
   if (flash_priv->flash_timeout_tag > 0)
     g_source_remove (flash_priv->flash_timeout_tag);

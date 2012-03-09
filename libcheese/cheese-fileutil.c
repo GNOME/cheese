@@ -250,10 +250,10 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
 {
   CheeseFileUtilPrivate *priv = fileutil->priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
 
+  GSettings *settings;
+
   priv->burst_count    = 0;
   priv->burst_raw_name = "";
-
-  GSettings *settings;
 
   settings = g_settings_new ("org.gnome.Cheese");
 

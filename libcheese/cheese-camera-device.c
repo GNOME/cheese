@@ -773,10 +773,12 @@ cheese_camera_device_get_device_node (CheeseCameraDevice *device)
 CheeseVideoFormat *
 cheese_camera_device_get_best_format (CheeseCameraDevice *device)
 {
+  CheeseVideoFormat *format;
+
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
-  CheeseVideoFormat *format = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
-                                            cheese_camera_device_get_format_list (device)->data);
+  format = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
+                         cheese_camera_device_get_format_list (device)->data);
 
   GST_INFO ("%dx%d", format->width, format->height);
   return format;
