@@ -1,7 +1,7 @@
 # cheese Korean message translation
 # This file is distributed under the same license as the cheese package.
 # Changwoo Ryu <cwryu@debian.org>, 2008, 2009, 2010, 2011.
-#
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
 #
 # 참고:
 # - 이 프로그램의 이름인 "Cheese"는 "치즈"라고 표기
@@ -13,9 +13,9 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2011-03-17 13:20+0000\n"
-"PO-Revision-Date: 2011-03-19 21:58+0900\n"
-"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
+"POT-Creation-Date: 2012-03-06 09:49+0000\n"
+"PO-Revision-Date: 2012-03-10 15:25+0900\n"
+"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,278 +23,428 @@ msgstr ""
 "Language: Korean\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:57
-msgid "Cheese"
-msgstr "치즈"
-
-#: ../data/cheese-about.ui.h:2
-msgid "Cheese Website"
-msgstr "치즈 웹사이트"
-
-#: ../data/cheese-about.ui.h:3 ../data/cheese.desktop.in.in.h:3
+#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:3
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "웹카메라에서 사진과 비디오를 찍고, 재미있는 그래픽 효과를 사용할 수도 있습니"
 "다"
 
-#: ../data/cheese-about.ui.h:4
-msgid ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
-msgstr ""
-"This program is free software; you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License as published by the Free "
-"Software Foundation; either version 2 of the License, or (at your option) "
-"any later version.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-"FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-"more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program. If not, see http://www.gnu.org/licenses/\n"
+#: ../data/cheese-about.ui.h:2
+msgid "Cheese Website"
+msgstr "치즈 웹사이트"
 
-#: ../data/cheese-about.ui.h:10
+#: ../data/cheese-about.ui.h:3
 msgid "translator-credits"
-msgstr "GNOME Korea <http://gnome.or.kr/>"
+msgstr ""
+"류창우 <cwryu@debian.org>\n"
+"조성호<darkcircle.0426@gmail.com>"
 
 #: ../data/cheese-actions.ui.h:1
-msgid "Move _All to Trash"
-msgstr "모두 휴지통으로 옮기기(_A)"
-
-#: ../data/cheese-actions.ui.h:2
-msgid "Move to _Trash"
-msgstr "휴지통으로 옮기기(_T)"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Ne_xt Effects"
-msgstr "다음 효과(_X)"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "P_revious Effects"
-msgstr "이전 효과(_R)"
-
-#: ../data/cheese-actions.ui.h:5
-msgid "Record a video"
-msgstr "동영상 녹화"
-
-#: ../data/cheese-actions.ui.h:6
-msgid "Save _As…"
-msgstr "다른 이름으로 저장(_A)…"
-
-#: ../data/cheese-actions.ui.h:7
-msgid "Take _Multiple Photos"
-msgstr "사진 여러 장 찍기(_M)"
-
-#: ../data/cheese-actions.ui.h:8 ../data/cheese-main-window.ui.h:7
-#: ../libcheese/cheese-avatar-chooser.c:210
-msgid "Take a photo"
-msgstr "사진 찍기"
-
-#: ../data/cheese-actions.ui.h:9
-msgid "Take multiple photos"
-msgstr "사진 여러 장 찍기"
-
-#: ../data/cheese-actions.ui.h:10
-msgid "_About"
-msgstr "정보(_A)"
-
-#: ../data/cheese-actions.ui.h:11
-msgid "_Burst"
-msgstr "연사(_B)"
-
-#: ../data/cheese-actions.ui.h:12
 msgid "_Cheese"
 msgstr "치즈(_C)"
 
-#: ../data/cheese-actions.ui.h:13
-msgid "_Contents"
-msgstr "차례(_C)"
-
-#: ../data/cheese-actions.ui.h:14
+#: ../data/cheese-actions.ui.h:2
 msgid "_Edit"
 msgstr "편집(_E)"
 
-#: ../data/cheese-actions.ui.h:15 ../data/cheese-main-window.ui.h:9
-msgid "_Effects"
-msgstr "효과(_E)"
-
-#: ../data/cheese-actions.ui.h:16
+#: ../data/cheese-actions.ui.h:3
 msgid "_Help"
 msgstr "도움말(_H)"
+
+#: ../data/cheese-actions.ui.h:4
+msgid "_Contents"
+msgstr "차례(_C)"
+
+#: ../data/cheese-actions.ui.h:5
+msgid "_About"
+msgstr "정보(_A)"
+
+#: ../data/cheese-actions.ui.h:6
+msgid "Share…"
+msgstr "공유…"
+
+#: ../data/cheese-actions.ui.h:7
+msgid "Save _As…"
+msgstr "다른 이름으로 저장(_A)…"
+
+#: ../data/cheese-actions.ui.h:8
+msgid "Move to _Trash"
+msgstr "휴지통으로 옮기기(_T)"
+
+#: ../data/cheese-actions.ui.h:9
+msgid "Move _All to Trash"
+msgstr "모두 휴지통으로 옮기기(_A)"
+
+#: ../data/cheese-actions.ui.h:10
+msgid "_Wide Mode"
+msgstr "와이드 모드(_W)"
+
+#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:5
+msgid "_Take a Photo"
+msgstr "사진 찍기(_T)"
+
+#: ../data/cheese-actions.ui.h:12 ../data/cheese-main-window.ui.h:4
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a photo"
+msgstr "사진 찍기"
+
+#: ../data/cheese-actions.ui.h:13
+msgid "_Record a Video"
+msgstr "동영상 녹화(_R)"
+
+#: ../data/cheese-actions.ui.h:14
+msgid "Record a video"
+msgstr "동영상 녹화"
+
+#: ../data/cheese-actions.ui.h:15
+msgid "Take _Multiple Photos"
+msgstr "사진 여러 장 찍기(_M)"
+
+#: ../data/cheese-actions.ui.h:16
+msgid "Take multiple photos"
+msgstr "사진 여러 장 찍기"
 
 #: ../data/cheese-actions.ui.h:17
 msgid "_Photo"
 msgstr "사진(_P)"
 
 #: ../data/cheese-actions.ui.h:18
-msgid "_Record a Video"
-msgstr "동영상 녹화(_R)"
-
-#: ../data/cheese-actions.ui.h:19 ../data/cheese-main-window.ui.h:11
-msgid "_Take a Photo"
-msgstr "사진 찍기(_T)"
-
-#: ../data/cheese-actions.ui.h:20
 msgid "_Video"
 msgstr "비디오(_V)"
 
+#: ../data/cheese-actions.ui.h:19
+msgid "_Burst"
+msgstr "연사(_B)"
+
+#: ../data/cheese-actions.ui.h:20 ../data/cheese-main-window.ui.h:8
+msgid "_Effects"
+msgstr "효과(_E)"
+
 #: ../data/cheese-actions.ui.h:21
-msgid "_Wide Mode"
-msgstr "와이드 모드(_W)"
+msgid "P_revious Effects"
+msgstr "이전 효과(_R)"
+
+#: ../data/cheese-actions.ui.h:22
+msgid "Ne_xt Effects"
+msgstr "다음 효과(_X)"
 
 #: ../data/cheese-main-window.ui.h:1
-msgid "Effects"
-msgstr "효과"
-
-#: ../data/cheese-main-window.ui.h:2
-msgid "Leave fullscreen"
-msgstr "전체 화면 나가기"
-
-#: ../data/cheese-main-window.ui.h:3
-msgid "Next"
-msgstr "다음"
-
-#: ../data/cheese-main-window.ui.h:4
-msgid "Photo burst mode"
-msgstr "연사 모드"
-
-#: ../data/cheese-main-window.ui.h:5
 msgid "Photo mode"
 msgstr "사진 모드"
+
+#: ../data/cheese-main-window.ui.h:2
+msgid "Video mode"
+msgstr "동영상 모드"
+
+#: ../data/cheese-main-window.ui.h:3
+msgid "Photo burst mode"
+msgstr "연사 모드"
 
 #: ../data/cheese-main-window.ui.h:6
 msgid "Previous"
 msgstr "이전"
 
-#: ../data/cheese-main-window.ui.h:8
-msgid "Video mode"
-msgstr "동영상 모드"
+#: ../data/cheese-main-window.ui.h:7
+msgid "Effects"
+msgstr "효과"
+
+#: ../data/cheese-main-window.ui.h:9
+msgid "Next"
+msgstr "다음"
 
 #: ../data/cheese-main-window.ui.h:10
+msgid "Leave fullscreen"
+msgstr "전체 화면 나가기"
+
+#: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
 msgstr "전체 화면 나가기(_L)"
 
 #: ../data/cheese-prefs.ui.h:1
-msgid "<b>Shutter</b>"
-msgstr "<b>셔터</b>"
+msgid "Preferences"
+msgstr "기본 설정"
 
 #: ../data/cheese-prefs.ui.h:2
-msgid "Brightness"
-msgstr "밝기"
-
-#: ../data/cheese-prefs.ui.h:3
-msgid "Burst mode"
-msgstr "연사 모드"
-
-#: ../data/cheese-prefs.ui.h:4
-msgid "Contrast"
-msgstr "대비"
-
-#: ../data/cheese-prefs.ui.h:5
-msgid "Delay between photos (seconds)"
-msgstr "사진 찍을 시간 간격 (초 단위)"
-
-#: ../data/cheese-prefs.ui.h:6
 msgid "Device"
 msgstr "장치"
 
+#: ../data/cheese-prefs.ui.h:3
+msgid "Photo resolution"
+msgstr "사진 해상도"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Video resolution"
+msgstr "동영상 해상도"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Webcam"
+msgstr "웹카메라"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Brightness"
+msgstr "밝기"
+
 #: ../data/cheese-prefs.ui.h:7
-msgid "Fire _Flash"
-msgstr "플래시 켜기(_F)"
+msgid "Saturation"
+msgstr "색 조정"
 
 #: ../data/cheese-prefs.ui.h:8
 msgid "Hue"
 msgstr "색상"
 
 #: ../data/cheese-prefs.ui.h:9
-msgid "Image properties"
-msgstr "그림 속성"
+msgid "Contrast"
+msgstr "대비"
 
 #: ../data/cheese-prefs.ui.h:10
+msgid "Image"
+msgstr "그림"
+
+#: ../data/cheese-prefs.ui.h:11
+msgid "<b>Shutter</b>"
+msgstr "<b>셔터</b>"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "_Countdown"
+msgstr "초읽기(_C)"
+
+#: ../data/cheese-prefs.ui.h:13
+msgid "Fire _Flash"
+msgstr "플래시 켜기(_F)"
+
+#: ../data/cheese-prefs.ui.h:14
+msgid "Burst mode"
+msgstr "연사 모드"
+
+#: ../data/cheese-prefs.ui.h:15
 msgid "Number of photos"
 msgstr "사진 수"
 
-#: ../data/cheese-prefs.ui.h:11
-msgid "Photo resolution"
-msgstr "사진 해상도"
-
-#: ../data/cheese-prefs.ui.h:12
-msgid "Preferences"
-msgstr "기본 설정"
-
-#: ../data/cheese-prefs.ui.h:13
-msgid "Saturation"
-msgstr "색 조정"
-
-#: ../data/cheese-prefs.ui.h:14
-msgid "Video resolution"
-msgstr "동영상 해상도"
-
-#: ../data/cheese-prefs.ui.h:15
-msgid "Webcam"
-msgstr "웹카메라"
-
 #: ../data/cheese-prefs.ui.h:16
-msgid "_Countdown"
-msgstr "초읽기(_C)"
+msgid "Delay between photos (seconds)"
+msgstr "사진 찍을 시간 간격 (초 단위)"
+
+#: ../data/cheese-prefs.ui.h:17
+msgid "Capture"
+msgstr "찍기"
+
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:67
+msgid "Cheese"
+msgstr "치즈"
 
 #: ../data/cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "치즈 웹카메라 사진 찍기"
 
-#: ../libcheese/cheese-avatar-chooser.c:108 ../src/cheese-window.vala:672
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:1
+msgid "Use a countdown"
+msgstr "초읽기 사용"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:2
+msgid "Set to true to show a countdown before taking a photo"
+msgstr "참이면 사진을 찍을 때 초읽기를 보여줍니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:3
+msgid "Countdown length"
+msgstr "초읽기 시간"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:4
+msgid "The duration of the countdown before taking a photo, in seconds"
+msgstr "사진을 찍기 전 초읽기를 하려는 초 단위 시간입니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:5
+msgid "Fire flash before taking a picture"
+msgstr "사진을 찍기 전에 플래시 사용"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+msgid "Set to true to fire a flash when taking a picture"
+msgstr "참이면 사진을 찍을 때 플래시를 사용합니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+msgid "Camera device string indicator"
+msgstr "카메라 장치 문자열"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr "예를 들어 /dev/video0와 같이, 카메라를 가리키는 장치 노드 경로"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
+msgid "Last selected effect"
+msgstr "최근 선택한 효과"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:10
+msgid "Name of the installed effect that was selected last"
+msgstr "마지막으로 선택한 설치한 효과의 이름입니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:11
+msgid "Photo width"
+msgstr "사진 세로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:12
+msgid "The width of the image captured from the camera, in pixels"
+msgstr "카메라에서 찍을 그림의 픽셀 단위 가로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+msgid "Photo height"
+msgstr "사진 가로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+msgid "The height of the image captured from the camera, in pixels"
+msgstr "카메라에서 캡쳐한 그림의 픽셀 단위 세로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
+msgid "Video width"
+msgstr "동영상 가로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:16
+msgid "The width of the video captured from the camera, in pixels"
+msgstr "카메라에서 녹화할 비디오의 픽셀 단위 가로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:17
+msgid "Video height"
+msgstr "동영상 세로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+msgid "The height of the video captured from the camera, in pixels"
+msgstr "카메라에서 캡쳐한 그림의 픽셀 단위 가로 해상도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+msgid "Picture brightness"
+msgstr "사진 밝기"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+msgid "Adjusts the brightness of the picture coming from the camera"
+msgstr "카메라에서 오는 그림의 밝기 단계를 조정합니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
+msgid "Picture contrast"
+msgstr "사진 대비"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:22
+msgid "Adjusts the contrast of the picture coming from the camera"
+msgstr "카메라에서 오는 그림의 대비 단계를 조정합니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:23
+msgid "Picture saturation"
+msgstr "사진 채도"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:24
+msgid "Adjusts the saturation of the picture coming from the camera"
+msgstr "카메라에서 오는 그림의 채도 단계를 조정합니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:25
+msgid "Picture hue"
+msgstr "사진 색상"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:26
+msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgstr "카메라에서 오는 그림의 색상 단계를 조정합니다"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:27
+msgid "Video Path"
+msgstr "동영상 경로"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:28
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"동영상을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_VIDEO/Webcam\"을 사용합"
+"니다."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:29
+msgid "Photo Path"
+msgstr "사진 경로"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"사진을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_PHOTO/Webcam\"을 사용합니"
+"다."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "와이드 모드로 시작"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
+msgstr ""
+"참이면 와이드 모드로 시작합니다. 그림 모음을 오른쪽에 놓습니다. 화면이 작을 "
+"경우 좋습니다."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
+msgid "Whether to start in fullscreen"
+msgstr "전체 화면 모드로 시작"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
+msgid "If set to true, Cheese will start up in fullscreen mode."
+msgstr "참이면, 전체 화면 모드로 치즈를 실행합니다."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:35
+msgid "Time between photos in burst mode"
+msgstr "연사 모드에서 사진 찍는 시간 간격"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:36
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr "연사할 때 사진을 찍고 다음 번 사진을 찍을 때까지의 지연 시간 (밀리초 단위). 연사 지연시간이 초읽기 시간보다 짧으면, 초읽기 시간을 대신 사용합니다."
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:37
+msgid "Number of photos in burst mode"
+msgstr "연사 모드에서 사진 수"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:38
+msgid "The number of photos to take in a single burst."
+msgstr "한 번 연사에서 찍을 사진 수."
+
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:918
 msgid "Shutter sound"
 msgstr "셔터 소리"
 
-#: ../libcheese/cheese-avatar-chooser.c:228
+#: ../libcheese/cheese-avatar-chooser.c:281
 msgid "_Take a photo"
 msgstr "사진 찍기(_T)"
 
-#: ../libcheese/cheese-avatar-chooser.c:241
+#: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
 msgstr "사진 버리기(_D)"
 
 # capability query가 실패했을 경우
-#: ../libcheese/cheese-camera-device.c:329
+#: ../libcheese/cheese-camera-device.c:390
 msgid "Device capabilities not supported"
 msgstr "장치에서 기능 조회를 지원하지 않습니다"
 
-#: ../libcheese/cheese-camera-device.c:357
+#: ../libcheese/cheese-camera-device.c:419
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "기능을 알아보기 위한 %s 장치 초기화에 실패했습니다"
 
-#: ../libcheese/cheese-camera-device.c:515
+#: ../libcheese/cheese-camera-device.c:608
 msgid "Unknown device"
 msgstr "알 수 없는 장치"
 
-#: ../libcheese/cheese-camera-device.c:539
+#: ../libcheese/cheese-camera-device.c:631
 msgid "Cancellable initialization not supported"
 msgstr "초기화 취소를 지원하지 않습니다"
 
-#: ../libcheese/cheese-camera.c:1182
+#: ../libcheese/cheese-camera.c:1489
 #, c-format
 msgid "No device found"
 msgstr "장치가 없습니다"
 
-#: ../libcheese/cheese-camera.c:1232
+#: ../libcheese/cheese-camera.c:1539
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "필요한 GStreamer 엘리먼트가 없습니다: "
 
-#: ../src/cheese-effects-manager.vala:118
+#: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
 msgstr "효과 없음"
 
@@ -318,311 +468,68 @@ msgstr "버전 정보를 출력하고 끝납니다"
 msgid "Start in fullscreen mode"
 msgstr "전체 화면 모드로 시작합니다"
 
-#: ../src/cheese-main.vala:108
+#: ../src/cheese-main.vala:126
 msgid "- Take photos and videos from your webcam"
 msgstr "- 웹카메라에서 사진과 비디오를 찍습니다"
 
-#: ../src/cheese-main.vala:119
+#: ../src/cheese-main.vala:138
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "사용 가능한 명령어 옵션 전체 목록을 보려면 '%s --help' 명령을 실행하십시오.\n"
 
-#: ../src/cheese-main.vala:134
+#: ../src/cheese-main.vala:153
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "치즈가 이미 실행 중입니다\n"
 
-#: ../src/cheese-window.vala:763
+#: ../src/cheese-window.vala:222
+#, c-format
+msgid "Could not open %s"
+msgstr "%s 파일을 열 수 없습니다"
+
+#: ../src/cheese-window.vala:250
+#, c-format
+msgid "Are you sure you want to permanently delete the file?"
+msgid_plural "Are you sure you want to permanently delete %d files?"
+msgstr[0] "정말로 파일 %d개를 완전히 지우시겠습니까?"
+
+#: ../src/cheese-window.vala:256
+msgid "If you delete an item, it will be permanently lost"
+msgid_plural "If you delete the items, they will be permanently lost"
+msgstr[0] "항목을 지우면 되살릴 수 없게 됩니다."
+
+#: ../src/cheese-window.vala:332
+#, c-format
+msgid "Could not move %s to trash"
+msgstr "%s 파일을 휴지통으로 옮길 수 없습니다"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:481
+msgid "Save File"
+msgstr "파일 저장"
+
+#: ../src/cheese-window.vala:515
+#, c-format
+msgid "Could not save %s"
+msgstr "%s 파일을 저장할 수 없습니다"
+
+#: ../src/cheese-window.vala:1027
 msgid "Stop _Recording"
 msgstr "녹화 중지(_R)"
 
-#: ../src/cheese-window.vala:787
+#: ../src/cheese-window.vala:1028
+msgid "Stop recording"
+msgstr "녹화 중지"
+
+#: ../src/cheese-window.vala:1056
 msgid "Stop _Taking Pictures"
 msgstr "사진 찍기 중지(_T)"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:1057
+msgid "Stop taking pictures"
+msgstr "사진 찍기 중지"
+
+#: ../src/cheese-window.vala:1240
 msgid "No effects found"
 msgstr "효과가 없습니다"
-
-#~ msgid "Fullscreen"
-#~ msgstr "전체 화면"
-
-#~ msgid "_Delete"
-#~ msgstr "삭제(_D)"
-
-#~ msgid "_Open"
-#~ msgstr "열기(_O)"
-
-#~ msgid "_Preferences"
-#~ msgstr "기본 설정(_P)"
-
-#~ msgid "_Quit"
-#~ msgstr "끝내기(_Q)"
-
-#~ msgid ""
-#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
-#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-#~ msgstr ""
-#~ "시작할 때 적용할 효과. 가능한 값은 다음과 같습니다: \"mauve\", "
-#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\", \"warp\""
-
-#~ msgid "Adjusts brightness level of the picture coming from the camera"
-#~ msgstr "카메라에서 오는 그림의 밝기 단계를 조정합니다"
-
-#~ msgid "Adjusts contrast level of the picture coming from the camera"
-#~ msgstr "카메라에서 오는 그림의 대비 단계를 조정합니다"
-
-#~ msgid "Adjusts hue level of the picture coming from the camera"
-#~ msgstr "카메라에서 오는 그림의 색상 단계를 조정합니다"
-
-#~ msgid "Adjusts saturation level of the picture coming from the camera"
-#~ msgstr "카메라에서 오는 그림의 채도 단계를 조정합니다"
-
-#~ msgid "Camera device string indicator"
-#~ msgstr "카메라 장치 문자열"
-
-#~ msgid ""
-#~ "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
-#~ "\" will be used."
-#~ msgstr ""
-#~ "사진을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_PHOTO/Webcam\"을 사용합"
-#~ "니다."
-
-#~ msgid ""
-#~ "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
-#~ "\" will be used."
-#~ msgstr ""
-#~ "동영상을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_VIDEO/Webcam\"을 사용"
-#~ "합니다."
-
-#~ msgid ""
-#~ "If set to true, Cheese will start up in a wide mode with the image "
-#~ "collection placed on the right-hand side. Useful with small screens."
-#~ msgstr ""
-#~ "참이면 와이드 모드로 시작합니다. 그림 모음을 오른쪽에 놓습니다. 화면이 작"
-#~ "을 경우 좋습니다."
-
-#~ msgid ""
-#~ "If set to true, then Cheese will have a feature allowing you to delete a "
-#~ "file immediately and in-place, instead of moving it to the trash. This "
-#~ "feature can be dangerous, so use caution."
-#~ msgstr ""
-#~ "참이면 치즈에서 파일을 휴지통에 옮기지 않고 바로 삭제할 수 있는 인터페이스"
-#~ "가 생깁니다. 이 기능은 위험할 수도 있으니 주의해서 사용해야 합니다."
-
-#~ msgid "Milliseconds between photos in burst mode."
-#~ msgstr "연사 모드에서 사진 찍는 시간 간격 (밀리초 단위)."
-
-#~ msgid "Number of photos in burst mode."
-#~ msgstr "연사 모드에서 사진 수."
-
-#~ msgid "Photo Path"
-#~ msgstr "사진 경로"
-
-#~ msgid "Picture brightness"
-#~ msgstr "사진 밝기"
-
-#~ msgid "Picture contrast"
-#~ msgstr "사진 대비"
-
-#~ msgid "Picture hue"
-#~ msgstr "사진 색상"
-
-#~ msgid "Picture saturation"
-#~ msgstr "사진 채도"
-
-#~ msgid "Selected Effects"
-#~ msgstr "선택한 효과"
-
-#~ msgid "Set to True to show countdown when taking a photo"
-#~ msgstr "참이면 사진을 찍을 때 초읽기를 사용합니다"
-
-#~ msgid "Set to True to use flash when taking a photo"
-#~ msgstr "참이면 사진을 찍을 때 플래시를 사용합니다"
-
-#~ msgid "The device which points to the camera (e.g. /dev/video0)"
-#~ msgstr "카메라를 가리키는 장치 문자열 (예를 들어 /dev/video0)"
-
-#~ msgid "The height resolution of the image captured from the camera"
-#~ msgstr "카메라에서 캡쳐할 그림의 세로 해상도"
-
-#~ msgid ""
-#~ "The length of time, in milliseconds, to delay between taking each photo "
-#~ "in a burst sequence of photos."
-#~ msgstr "시간, 밀리초 단위. 연사 모드에서 사진 찍는 사이의 시간 간격."
-
-#~ msgid "The number of photos to take in a single burst."
-#~ msgstr "한 번 연사에서 찍을 사진 수."
-
-#~ msgid "The width resolution of the image captured from the camera"
-#~ msgstr "카메라에서 캡쳐할 그림의 가로 해상도"
-
-#~ msgid "Use a countdown"
-#~ msgstr "초읽기 사용"
-
-#~ msgid "Use a flash"
-#~ msgstr "플래시 사용"
-
-#~ msgid "Video Path"
-#~ msgstr "동영상 경로"
-
-#~ msgid "Whether to enable immediate deletion"
-#~ msgstr "즉시 지우기를 사용할 지 여부"
-
-#~ msgid "Switch to Burst Mode"
-#~ msgstr "연사 모드로 전환"
-
-#~ msgid "Switch to Photo Mode"
-#~ msgstr "사진 모드로 전환"
-
-#~ msgid "Switch to Video Mode"
-#~ msgstr "비디오 모드로 전환"
-
-#~ msgid "Switch to the Effects Selector"
-#~ msgstr "효과 선택 창으로 전환"
-
-#~ msgid "Resolution"
-#~ msgstr "해상도"
-
-#~ msgid "%d "
-#~ msgstr "%d "
-
-#~ msgid "_Skip"
-#~ msgstr "건너 뛰기(_S)"
-
-#~ msgid "S_kip All"
-#~ msgstr "모두 건너 뛰기(_K)"
-
-#~ msgid "Delete _All"
-#~ msgstr "모두 삭제(_A)"
-
-#~ msgid ""
-#~ "Failed to launch program to show:\n"
-#~ "%s\n"
-#~ "%s"
-#~ msgstr ""
-#~ "다음을 표시할 프로그램을 실행하는 데 실패했습니다:\n"
-#~ "%s\n"
-#~ "%s"
-
-#~ msgid "Save File"
-#~ msgstr "파일 저장"
-
-#~ msgid "Could not save %s"
-#~ msgstr "%s 파일을 저장할 수 없습니다"
-
-#~ msgid "Error while deleting"
-#~ msgstr "지우는 데 오류가 발생했습니다"
-
-#~ msgid "The file \"%s\" cannot be deleted. Details: %s"
-#~ msgstr "\"%s\" 파일을 삭제할 수 없습니다. 자세히: %s"
-
-#~ msgid "Are you sure you want to permanently delete the %'d selected item?"
-#~ msgid_plural ""
-#~ "Are you sure you want to permanently delete the %'d selected items?"
-#~ msgstr[0] "정말로 선택한 %'d개 항목을 완전히 지우시겠습니까?"
-
-#~ msgid "Are you sure you want to permanently delete \"%s\"?"
-#~ msgstr "정말로 \"%s\" 항목을 완전히 지우시겠습니까?"
-
-#~ msgid "If you delete an item, it will be permanently lost."
-#~ msgstr "항목을 지우면 되살릴 수 없게 됩니다."
-
-#~ msgid "Unknown Error"
-#~ msgstr "알 수 없는 오류"
-
-#~ msgid "Cannot move file to trash, do you want to delete immediately?"
-#~ msgstr "파일을 휴지통에 옮길 수 없습니다. 바로 지우시겠습니까?"
-
-#~ msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-#~ msgstr "\"%s\" 파일을 휴지통에 옮길 수 없습니다. 자세히: %s"
-
-#~ msgid "Really move all photos and videos to the trash?"
-#~ msgstr "정말로 모든 사진과 비디오를 휴지통에 옮기시겠습니까?"
-
-#~ msgid "_Move to Trash"
-#~ msgstr "휴지통에 옮기기(_M)"
-
-#~ msgid "Unable to open help file for Cheese"
-#~ msgstr "치즈의 도움말 파일을 열 수 없습니다"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version.\n"
-#~ msgstr ""
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version.\n"
-
-#~ msgid ""
-#~ "This program is distributed in the hope that it will be useful, but "
-#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#~ "Public License for more details.\n"
-#~ msgstr ""
-#~ "This program is distributed in the hope that it will be useful, but "
-#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#~ "Public License for more details.\n"
-
-#~ msgid ""
-#~ "You should have received a copy of the GNU General Public License along "
-#~ "with this program. If not, see <http://www.gnu.org/licenses/>."
-#~ msgstr ""
-#~ "You should have received a copy of the GNU General Public License along "
-#~ "with this program. If not, see <http://www.gnu.org/licenses/>."
-
-#~ msgid "Mauve"
-#~ msgstr "자주빛"
-
-#~ msgid "Noir/Blanc"
-#~ msgstr "느와르/흑백"
-
-#~ msgid "Hulk"
-#~ msgstr "헐크"
-
-#~ msgid "Vertical Flip"
-#~ msgstr "상하 뒤집기"
-
-#~ msgid "Horizontal Flip"
-#~ msgstr "좌우 뒤집기"
-
-# 영화 오스틴파워에서 나오는 속어
-#~ msgid "Shagadelic"
-#~ msgstr "샤방"
-
-#~ msgid "Vertigo"
-#~ msgstr "현기증"
-
-#~ msgid "Edge"
-#~ msgstr "윤곽선"
-
-#~ msgid "Dice"
-#~ msgstr "격자"
-
-#~ msgid "Warp"
-#~ msgstr "일그러짐"
-
-#~ msgid "No camera found!"
-#~ msgstr "카메라가 없습니다!"
-
-#~ msgid "Please refer to the help for further information."
-#~ msgstr "더 자세한 정보는 도움말을 참고하십시오."
-
-#~ msgid "Help on this Application"
-#~ msgstr "이 프로그램에 대한 도움말"
-
-#~ msgid "_Start Recording"
-#~ msgstr "녹화 시작(_S)"
-
-#~ msgid "Be verbose"
-#~ msgstr "자세히 출력"
-
-#~ msgid "Enable wide mode"
-#~ msgstr "와이드 모드 사용"
