@@ -425,34 +425,9 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
 static void
 cheese_camera_set_error_element_not_found (GError **error, const gchar *factoryname)
 {
-  if (error == NULL)
-    return;
+  g_return_if_fail (error == NULL || *error == NULL);
 
-  if (*error == NULL)
-  {
-    g_set_error (error, CHEESE_CAMERA_ERROR, CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND, "%s.", factoryname);
-  }
-  else
-  {
-    /* Ensure that what is found is not a substring of an element; all strings
-     * should have a ' ' or nothing to the left and a '.' or ',' to the right */
-    gchar *found = g_strrstr ((*error)->message, factoryname);
-    gchar  prev  = 0;
-    gchar  next  = 0;
-
-    if (found != NULL)
-    {
-      prev = *(found - 1);
-      next = *(found + strlen (factoryname));
-    }
-
-    if (found == NULL ||
-        ((found != (*error)->message && prev != ' ') && /* Prefix check */
-         (next != ',' && next != '.'))) /* Postfix check */
-    {
-      g_prefix_error (error, "%s, ", factoryname);
-    }
-  }
+  g_set_error (error, CHEESE_CAMERA_ERROR, CHEESE_CAMERA_ERROR_ELEMENT_NOT_FOUND, "%s%s.", _("One or more needed GStreamer elements are missing: "), factoryname);
 }
 
 /*
@@ -469,6 +444,8 @@ cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
   CheeseCameraPrivate *priv = camera->priv;
   GstElement          *video_enc;
   GstElement          *mux;
+
+  g_return_if_fail (error == NULL || *error == NULL);
 
   if ((video_enc = gst_element_factory_make ("vp8enc", "vp8enc")) == NULL)
   {
@@ -502,7 +479,6 @@ cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
 
   gboolean ok = TRUE;
   GstPad  *pad;
-  GError  *tmp_error = NULL;
 
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
@@ -510,16 +486,12 @@ cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
 
   if ((priv->effects_tee = gst_element_factory_make ("tee", "effects_tee")) == NULL)
   {
-    cheese_camera_set_error_element_not_found (&tmp_error, "tee");
+    cheese_camera_set_error_element_not_found (error, "tee");
+    return FALSE;
   }
   if ((priv->effects_valve = gst_element_factory_make ("valve", "effects_valve")) == NULL)
   {
-    cheese_camera_set_error_element_not_found (&tmp_error, "effects_valve");
-  }
-
-  if (tmp_error != NULL)
-  {
-    g_propagate_error (error, tmp_error);
+    cheese_camera_set_error_element_not_found (error, "effects_valve");
     return FALSE;
   }
 
@@ -565,14 +537,17 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "tee");
+    return FALSE;
   }
   if ((priv->main_valve = gst_element_factory_make ("valve", "main_valve")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "main_valve");
+    return FALSE;
   }
   if ((priv->effect_filter = gst_element_factory_make ("identity", "effect")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "identity");
+    return FALSE;
   }
   if ((priv->video_balance = gst_element_factory_make ("videobalance", "video_balance")) == NULL)
   {
@@ -1482,6 +1457,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   GstElement *video_sink;
   GstCaps *caps;
 
+  g_return_if_fail (error == NULL || *error == NULL);
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
   priv = camera->priv;
@@ -1503,6 +1479,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   if ((priv->camerabin = gst_element_factory_make ("camerabin", "camerabin")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "camerabin");
+    return;
   }
   g_object_set (priv->camerabin, "video-capture-height", 0,
                 "video-capture-width", 0, NULL);
@@ -1512,6 +1489,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   if ((video_sink = clutter_gst_video_sink_new (priv->video_texture)) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "cluttervideosink");
+    return;
   }
   g_object_set (G_OBJECT (video_sink), "async", FALSE, NULL);
   g_object_set (G_OBJECT (priv->camerabin), "viewfinder-sink", video_sink, NULL);
