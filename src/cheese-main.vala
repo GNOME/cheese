@@ -78,7 +78,6 @@ public class Cheese.Main : Gtk.Application
         main_window.set_startup_fullscreen_mode ();
 
       main_window.set_application (this);
-      main_window.destroy.connect (Gtk.main_quit);
       main_window.show ();
       main_window.setup_camera (device);
      }
