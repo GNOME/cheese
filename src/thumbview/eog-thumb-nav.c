@@ -31,6 +31,7 @@
 #include <glib-object.h>
 #include <gtk/gtk.h>
 #include <string.h>
+#include <math.h>
 
 #define EOG_THUMB_NAV_GET_PRIVATE(object) \
   (G_TYPE_INSTANCE_GET_PRIVATE ((object), EOG_TYPE_THUMB_NAV, EogThumbNavPrivate))
@@ -73,12 +74,25 @@ eog_thumb_nav_scroll_event (GtkWidget *widget, GdkEventScroll *event, gpointer u
 {
   EogThumbNav *nav = EOG_THUMB_NAV (user_data);
   gint         inc = EOG_THUMB_NAV_SCROLL_INC * 3;
-  gdouble      value, upper, page_size;
+  gdouble      value, upper, page_size, delta_x, delta_y;
+  gboolean smooth;
 
   nav->priv->adj = nav->priv->vertical ? nav->priv->vadj : nav->priv->hadj;
 
   switch (event->direction)
   {
+#if GTK_CHECK_VERSION (3, 3, 18)
+    /* Handle smooth scroll events from mouse wheels, bug 672311. */
+    case GDK_SCROLL_SMOOTH:
+      smooth = gdk_event_get_scroll_deltas ((const GdkEvent *) event,
+                                            &delta_x, &delta_y);
+      /* Pass through non-mouse wheel events. */
+      if (G_UNLIKELY (!smooth) || delta_x != 0.0 || fabs (delta_y) != 1.0)
+        return FALSE;
+
+      inc *= (gint) delta_y;
+      break;
+#endif
     case GDK_SCROLL_UP:
     case GDK_SCROLL_LEFT:
       inc *= -1;
