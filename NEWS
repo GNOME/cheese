@@ -1,6 +1,60 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.3.92
+  - Bump version to 3.3.92
+  - Avoid overwriting errors in CheeseCamera
+    As pointed out by Bastien Nocera in bug 671902, CheeseCamera overwrites
+    GError pointers. Avoid this by setting the error and returning
+    immediately afterwards.
+  - Move variable declarations before code in C source
+    This allows compilation to succeed with
+    ‘-Wdeclaration-after-statement -Werror=declaration-after-statement’
+    passed to GCC.
+  - Handle smooth scroll wheel events in EogThumbNav
+    Fixes bug 672311.
+  - Avoid gtk_main_quit warning on exit
+    When the last window is destroyed, GApplication will automatically exit
+    the main loop. Stops warnings like this on exit:
+
+    Gtk-CRITICAL **: gtk_main_quit: assertion `main_loops != NULL' failed
+
+    which occur with GTK+ versions 3.3.4 or greater, when GtkApplication was
+    changed to not override the GApplication mainloop.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=671904
+  - Post-release version bump to 3.3.91
+  - Added/Updated Translations
+    - ar, courtesy of Ibrahim Saed
+    - as, courtesy of Nilamdyuti Goswami
+    - bg, courtesy of Krasimir Chonov
+    - ca, courtesy of Gil Forcada
+    - da, courtesy of Kenneth Nielsen
+    - de, courtesy of Mario Blättermann
+    - en_GB, courtesy of Bruce Cowan
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fa, courtesy of Arash Mousavi
+    - fi, courtesy of Jiri Grönroos
+    - fr, courtesy of Alain Lojewski
+    - hi, courtesy of chandankumar(ciypro)
+    - hu, courtesy of Gabor Kelemen
+    - it, courtesy of Milo Casagrande
+    - km, courtesy of Seng Sutha
+    - kn
+    - ko, courtesy of Seong-ho Cho
+    - lt, courtesy of Aurimas Černius
+    - lv, courtesy of Anita Reitere
+    - nb, courtesy of Kjartan Maraas
+    - pa, courtesy of A S Alam
+    - pl, courtesy of Piotr Drąg
+    - pt_BR, courtesy of Gabriel Speckhahn
+    - ta, courtesy of Dr.T.Vasudevan
+    - ug, courtesy of Sahran
+    - uk, courtesy of Korostil Daniel
+    - zh_CN, courtesy of Wylmer Wang
+  - Added/Updated Documentation
+    - hu, courtesy of Gabor Kelemen
+
 version 3.3.90
   - Bump libcheese and libcheese-gtk versions
   - Initialise X11 threading, bug 669845
