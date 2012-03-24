@@ -77,6 +77,7 @@ struct _CheeseCameraPrivate
 
   GstElement *camerabin;
   GstElement *video_filter_bin;
+  GstElement *vfb_caps_filter;
   GstElement *effects_preview_bin;
 
   GstElement *video_source;
@@ -583,6 +584,11 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
 
   priv->video_filter_bin = gst_bin_new ("video_filter_bin");
 
+  if ((priv->vfb_caps_filter = gst_element_factory_make ("capsfilter", "vfb_caps_filter")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "capsfilter");
+    return FALSE;
+  }
   if ((priv->camera_tee = gst_element_factory_make ("tee", "camera_tee")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "tee");
@@ -612,12 +618,14 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   if (error != NULL && *error != NULL)
     return FALSE;
 
-  gst_bin_add_many (GST_BIN (priv->video_filter_bin), priv->camera_tee,
+  gst_bin_add_many (GST_BIN (priv->video_filter_bin),
+                    priv->vfb_caps_filter, priv->camera_tee,
                     priv->main_valve, priv->effect_filter,
                     priv->video_balance, priv->csp_post_balance,
                     priv->effects_preview_bin, NULL);
 
-  ok &= gst_element_link_many (priv->camera_tee, priv->main_valve,
+  ok &= gst_element_link_many (priv->vfb_caps_filter,
+                               priv->camera_tee, priv->main_valve,
                                priv->effect_filter, priv->video_balance,
                                priv->csp_post_balance, NULL);
   gst_pad_link (gst_element_get_request_pad (priv->camera_tee, "src%d"),
@@ -629,7 +637,7 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   gst_element_add_pad (priv->video_filter_bin, gst_ghost_pad_new ("src", pad));
   gst_object_unref (GST_OBJECT (pad));
 
-  pad = gst_element_get_static_pad (priv->camera_tee, "sink");
+  pad = gst_element_get_static_pad (priv->vfb_caps_filter, "sink");
   gst_element_add_pad (priv->video_filter_bin, gst_ghost_pad_new ("sink", pad));
   gst_object_unref (GST_OBJECT (pad));
 
@@ -758,7 +766,7 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
   if (!gst_caps_is_empty (caps))
   {
     GST_INFO_OBJECT (camera, "SETTING caps%" GST_PTR_FORMAT, caps);
-    g_object_set (priv->camerabin, "viewfinder-caps", caps, NULL);
+    g_object_set (priv->vfb_caps_filter, "caps", caps, NULL);
   }
   gst_caps_unref (caps);
 }
