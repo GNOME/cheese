@@ -160,8 +160,9 @@ compare_formats (gconstpointer a, gconstpointer b)
  * @formats: an array of strings of video formats, in the form axb, where a and
  * b are in units of pixels
  *
- * Filter the supplied @caps with %CHEESE_MAXIMUM_RATE to only allow @formats
- * which can reach the desired framerate.
+ * Filter the supplied @caps with %CHEESE_MAXIMUM_RATE and best rank
+ * to only allow @formats which can reach the desired framerate and
+ * most likely produced directly by webcam.
  *
  * Returns: the filtered #GstCaps
  */
@@ -170,30 +171,59 @@ cheese_camera_device_filter_caps (CheeseCameraDevice *device, const GstCaps *cap
 {
   GstCaps *filter;
   GstCaps *allowed;
-  guint    i;
+  const GstStructure *structure = NULL;
+  const gchar *format_name = NULL;
+  const GValue *val;
+  guint32 fourcc;
+  guint    a, b;
+  gboolean ret = FALSE;
 
-  filter = gst_caps_new_simple (formats[0],
+  /* The webcams can get unstable if we permanently turn them on and off.
+   * On other side we need it to find best possible format for our pipe line.
+   * Video filter need RGB, video encoders YUV/I420. Jpeg can work with RGB too.
+   * Currently there is no right solution, so we will try to get
+   * native format prioduced by webcam and try to do the best with it.
+   * v4l2src use rank system in wich native camera formats go on first
+   * plase. Most embeded cams support only one raw format (mostly YUY2),
+   * Most external cams support YUY2 and JPEG, and some expensive cams
+   * support all this and H264. Almost none of them support two different
+   * RAW formats, exept some logitech with hidden bayer stream.
+   * This is why we take first RAW format (with higest rank) and use it
+   * by default.
+   */
+
+  for (a = 0; a < gst_caps_get_size (caps); a++)
+  {
+    for (b = 0; b < g_strv_length (formats); b++)
+    {
+      structure = gst_caps_get_structure (caps, a);
+      format_name = gst_structure_get_name (structure);
+      if (strcmp (format_name, formats[b]) == 0)
+      {
+        ret = TRUE;
+        break;
+      }
+    }
+    if (ret)
+      break;
+  }
+
+  g_assert (structure || format_name);
+
+  val = gst_structure_get_value (structure, "format");
+  fourcc = gst_value_get_fourcc(val);
+  filter = gst_caps_new_simple (format_name,
+                                "format", GST_TYPE_FOURCC, fourcc,
                                 "framerate", GST_TYPE_FRACTION_RANGE,
                                 0, 1, CHEESE_MAXIMUM_RATE, 1,
                                 NULL);
-
-  for (i = 1; i < g_strv_length (formats); i++)
-  {
-    gst_caps_append (filter,
-                     gst_caps_new_simple (formats[i],
-                                          "framerate", GST_TYPE_FRACTION_RANGE,
-                                          0, 1, CHEESE_MAXIMUM_RATE, 1,
-                                          NULL));
-  }
-
-  allowed = gst_caps_intersect (caps, filter);
+  allowed = gst_caps_intersect_full (caps, filter, GST_CAPS_INTERSECT_FIRST);
 
   GST_DEBUG ("Supported caps %" GST_PTR_FORMAT, caps);
   GST_DEBUG ("Filter caps %" GST_PTR_FORMAT, filter);
   GST_DEBUG ("Filtered caps %" GST_PTR_FORMAT, allowed);
 
   gst_caps_unref (filter);
-
   return allowed;
 }
 
