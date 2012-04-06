@@ -88,7 +88,7 @@ AS_CASE([$host_os],
   [AC_MSG_RESULT([unsupported operating system])])
 
 AC_MSG_CHECKING([for gudev-1.0])
-AS_IF([test -n $UDEV_REQUIRED],
+AS_IF([test -n "$UDEV_REQUIRED"],
   [PKG_CHECK_EXISTS([$UDEV_REQUIRED],
     [AC_MSG_RESULT([found])
      AC_DEFINE([HAVE_UDEV], [], [Enable gudev support])],
