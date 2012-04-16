@@ -1,6 +1,17 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.4.1
+  - Properly quote $UDEV_REQUIRED variable, bug 673628
+    Otherwise configure fails on systems which don't have libgudev
+    installed.
+  - Post-release version bump to 3.4.1
+  - Added/Updated Translations
+    - ca@valencia, courtesy of Gil Forcada
+    - id, courtesy of Andika Triwidada
+  - Added/Updated Documentation
+    - ru, courtesy of Yuri Kozlov
+
 version 3.4.0
   - Post-release version bump to 3.4.0
   - Added/Updated Translations
