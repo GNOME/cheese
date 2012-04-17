@@ -6,15 +6,16 @@
 # Krishna Babu K <kkrothap@redhat.com>, 2008, 2009, 2010
 # Praveen Illa <mail2ipn@gmail.com>, 2011, 2012.
 # GVS.Giri (Swecha Team) <gvs.giri947@gmail.com>,2012
-# Bhuvan Krishna <bhuvan@swecha.net>
+# Bhuvan Krishna <bhuvan@swecha.net>, 2012,
+# Sasi Bhushan Boddepalli <sasi@swecha.net>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-02-19 10:39+0000\n"
-"PO-Revision-Date: 2012-03-23 23:38+0530\n"
-"Last-Translator: GVS.Giri <gvs.giri947@gmail.com>\n"
+"POT-Creation-Date: 2012-03-28 18:50+0000\n"
+"PO-Revision-Date: 2012-04-17 18:13+0530\n"
+"Last-Translator: Sasi Bhushan Boddepalli <sasi@swecha.net>\n"
 "Language-Team: Telugu <indlinux-telugu@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -403,7 +404,7 @@ msgstr "బరస్ట్ రీతిలో ఫొటోల సంఖ్య"
 msgid "The number of photos to take in a single burst."
 msgstr "ఒక ఏకైక బరస్ట్ లో తీసుకోనే ఫోటోలు సంఖ్య."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:918
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:925
 msgid "Shutter sound"
 msgstr "షట్టర్ ధ్వని"
 
@@ -432,14 +433,25 @@ msgstr "తెలియని పరికరం"
 msgid "Cancellable initialization not supported"
 msgstr "ప్రారంభింటునపుడు రద్దుచేయుటకు సహకారం లేదు"
 
-#: ../libcheese/cheese-camera.c:1489
+#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1557
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "ఒకటి లేదా అంతకన్నా ఎక్కువ Gstreamer అంశాలు తప్పిపోయినవి: "
+
+#: ../libcheese/cheese-camera.c:1505
 #, c-format
 msgid "No device found"
 msgstr "ఏ పరికరము కనుగొనబడలేదు"
 
-#: ../libcheese/cheese-camera.c:1539
-msgid "One or more needed GStreamer elements are missing: "
-msgstr "ఒకటి లేదా అంతకన్నా ఎక్కువ Gstreamer అంశాలు తప్పిపోయినవి: "
+#. Translators: This is a time format, like "09:05:02" for 9
+#. * hours, 5 minutes, and 2 seconds. You may change ":" to
+#. * the separator that your locale uses or use "%Id" instead
+#. * of "%d" if your locale uses localized digits.
+#.
+#: ../libcheese/cheese-camera.c:1794
+#, c-format
+msgctxt "time format"
+msgid "%02i:%02i:%02i"
+msgstr "%02i:%02i:%02i"
 
 #: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
@@ -465,71 +477,71 @@ msgstr "వర్షన్ సమాచారం అవుట్‌పుట్ 
 msgid "Start in fullscreen mode"
 msgstr "పూర్తితెర విధములో ప్రారంభించు"
 
-#: ../src/cheese-main.vala:126
+#: ../src/cheese-main.vala:125
 msgid "- Take photos and videos from your webcam"
 msgstr "వెబ్‌క్యామ్‌తో ఫొటోలను మరియు వీడియోలను తీయండి"
 
-#: ../src/cheese-main.vala:138
+#: ../src/cheese-main.vala:137
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "అందుబాటులోవున్న మొత్తం ఆదేశ వరుస యొక్క జాబితా ఐచ్ఛికాలను చూడటానికి '%s --help' నడుపండి.\n"
 
-#: ../src/cheese-main.vala:153
+#: ../src/cheese-main.vala:152
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "చీజ్ యొక్క మరొక ప్రక్రియ ప్రస్తుతం నడుస్తున్నది\n"
 
-#: ../src/cheese-window.vala:222
+#: ../src/cheese-window.vala:223
 #, c-format
 msgid "Could not open %s"
 msgstr "%s తెరవడం సాధ్యం కాలేదు"
 
-#: ../src/cheese-window.vala:250
+#: ../src/cheese-window.vala:251
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "మీరు శాశ్వతంగా ఇ దస్త్రని మీరు తొలగించాలని నిశ్చయించుకున్నారా?"
 msgstr[1] "మీరు శాశ్వతంగా%d దస్త్రని తొలగించడానికి నిశ్చయించుకున్నారా?"
 
-#: ../src/cheese-window.vala:256
+#: ../src/cheese-window.vala:257
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "మీరు ఒక అంశం ను తొలగిస్తే, అది శాశ్వతంగా పోతుంది"
 msgstr[1] "మీరు అంశాలను తొలగించితె అ, అవి శాశ్వతంగా పోతుంది"
 
-#: ../src/cheese-window.vala:332
+#: ../src/cheese-window.vala:333
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s కు తరలించు సాధ్యం కాలేదు"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:481
+#: ../src/cheese-window.vala:482
 msgid "Save File"
 msgstr "దస్త్రని బద్రపరుచుము "
 
-#: ../src/cheese-window.vala:515
+#: ../src/cheese-window.vala:516
 #, c-format
 msgid "Could not save %s"
 msgstr "%s దస్త్రని బద్రపరుచుట సాధ్యం కాలేదు"
 
-#: ../src/cheese-window.vala:1027
+#: ../src/cheese-window.vala:1038
 msgid "Stop _Recording"
 msgstr "రికార్డింగ్‌ను ఆపివేయండి (_R)"
 
-#: ../src/cheese-window.vala:1028
+#: ../src/cheese-window.vala:1039
 msgid "Stop recording"
 msgstr "రికార్డింగ్‌ను ఆపివేయండి"
 
-#: ../src/cheese-window.vala:1056
+#: ../src/cheese-window.vala:1090
 msgid "Stop _Taking Pictures"
 msgstr "చిత్రములను తీయుట ఆపుము (_T)"
 
-#: ../src/cheese-window.vala:1057
+#: ../src/cheese-window.vala:1091
 msgid "Stop taking pictures"
 msgstr "చిత్రములను తీయుట ఆపుము"
 
-#: ../src/cheese-window.vala:1240
+#: ../src/cheese-window.vala:1274
 msgid "No effects found"
 msgstr "ఏ ప్రభావాలు కనపడలేదు"
 
