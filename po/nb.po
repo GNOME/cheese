@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese 3.3.x\n"
+"Project-Id-Version: cheese 3.5.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-21 15:06+0100\n"
-"PO-Revision-Date: 2012-02-21 15:07+0100\n"
+"POT-Creation-Date: 2012-04-18 19:56+0200\n"
+"PO-Revision-Date: 2012-04-18 19:57+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -363,7 +363,9 @@ msgstr "Om programmet skal starte i bred modus"
 msgid ""
 "If set to true, Cheese will start up in wide mode, with the image collection "
 "placed on the right-hand side. Useful with small screens."
-msgstr "Hvis denne settes til «true» vil Cheese startes i bred modus med bildesamlingen plassert til høyre. Nyttig på små skjermer."
+msgstr ""
+"Hvis denne settes til «true» vil Cheese startes i bred modus med "
+"bildesamlingen plassert til høyre. Nyttig på små skjermer."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:33
 msgid "Whether to start in fullscreen"
@@ -382,7 +384,10 @@ msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos. If the burst delay is less than the countdown "
 "duration, the countdown duration will be used instead."
-msgstr "Lengde i millisekunder på pause mellom bilder i seriemodus. Hvis pause for serie er mindre enn varighet av nedtelling vil nedtellingsvarighet brukes i stedet."
+msgstr ""
+"Lengde i millisekunder på pause mellom bilder i seriemodus. Hvis pause for "
+"serie er mindre enn varighet av nedtelling vil nedtellingsvarighet brukes i "
+"stedet."
 
 #: ../data/org.gnome.Cheese.gschema.xml.in.h:37
 msgid "Number of photos in burst mode"
@@ -392,7 +397,7 @@ msgstr "Antall bilder i seriemodus"
 msgid "The number of photos to take in a single burst."
 msgstr "Antall bilder som skal tas i en enkelt serie."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:918
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:925
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
@@ -421,14 +426,25 @@ msgstr "Ukjent enhet"
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytbar initiering er ikke støttet"
 
-#: ../libcheese/cheese-camera.c:1489
+#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1557
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
+
+#: ../libcheese/cheese-camera.c:1505
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet funnet"
 
-#: ../libcheese/cheese-camera.c:1539
-msgid "One or more needed GStreamer elements are missing: "
-msgstr "Ett eller flere nødvendige GStreamer-elementer mangler: "
+#. Translators: This is a time format, like "09:05:02" for 9
+#. * hours, 5 minutes, and 2 seconds. You may change ":" to
+#. * the separator that your locale uses or use "%Id" instead
+#. * of "%d" if your locale uses localized digits.
+#.
+#: ../libcheese/cheese-camera.c:1794
+#, c-format
+msgctxt "time format"
+msgid "%02i:%02i:%02i"
+msgstr "%02i.%02i.%02i"
 
 #: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
@@ -454,71 +470,71 @@ msgstr "Vis versjonsinformasjon og avslutt"
 msgid "Start in fullscreen mode"
 msgstr "Start i fullskjermmodus"
 
-#: ../src/cheese-main.vala:126
+#: ../src/cheese-main.vala:125
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta bilder og video fra ditt webkamera"
 
-#: ../src/cheese-main.vala:138
+#: ../src/cheese-main.vala:137
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Kjør «%s --help» for å se en full liste med tilgjengelige "
 "kommandolinjeflagg.\n"
 
-#: ../src/cheese-main.vala:153
+#: ../src/cheese-main.vala:152
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "En annen instans av Cheese kjører allerede\n"
 
-#: ../src/cheese-window.vala:222
+#: ../src/cheese-window.vala:223
 #, c-format
 msgid "Could not open %s"
 msgstr "Kunne ikke åpne %s"
 
-#: ../src/cheese-window.vala:250
+#: ../src/cheese-window.vala:251
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Er du sikker på at du vil slette filen permanent?"
 msgstr[1] "Er du sikker på at du vil slette %d filer permanent?"
 
-#: ../src/cheese-window.vala:256
+#: ../src/cheese-window.vala:257
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Hvis du sletter en oppføring vil den bli borte for godt"
 msgstr[1] "Hvis du sletter oppføringene vil de bli borte for godt"
 
-#: ../src/cheese-window.vala:332
+#: ../src/cheese-window.vala:333
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Kunne ikke flytte %s til papirkurven"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:481
+#: ../src/cheese-window.vala:482
 msgid "Save File"
 msgstr "Lagre fil"
 
-#: ../src/cheese-window.vala:515
+#: ../src/cheese-window.vala:516
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke lagre %s"
 
-#: ../src/cheese-window.vala:1027
+#: ../src/cheese-window.vala:1038
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:1028
+#: ../src/cheese-window.vala:1039
 msgid "Stop recording"
 msgstr "Stopp opptak"
 
-#: ../src/cheese-window.vala:1056
+#: ../src/cheese-window.vala:1090
 msgid "Stop _Taking Pictures"
 msgstr "Stopp fo_tografering"
 
-#: ../src/cheese-window.vala:1057
+#: ../src/cheese-window.vala:1091
 msgid "Stop taking pictures"
 msgstr "Stopp fo_tografering"
 
-#: ../src/cheese-window.vala:1240
+#: ../src/cheese-window.vala:1274
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
