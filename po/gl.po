@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 12:10+0100\n"
-"PO-Revision-Date: 2012-02-06 12:12+0100\n"
+"POT-Creation-Date: 2012-04-19 19:29+0200\n"
+"PO-Revision-Date: 2012-04-19 19:29+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
 "Language: gl\n"
@@ -423,7 +423,7 @@ msgstr "Número de fotos no modo ráfaga"
 msgid "The number of photos to take in a single burst."
 msgstr "O número de fotos que tomar nunha sola ráfaga."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:880
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:925
 msgid "Shutter sound"
 msgstr "Son do obturador"
 
@@ -454,14 +454,25 @@ msgstr "Dispositivo descoñecido"
 msgid "Cancellable initialization not supported"
 msgstr "A inicialización cancelábel non é compatíbel"
 
-#: ../libcheese/cheese-camera.c:1489
+#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1557
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Falta un ou máis elementos necesarios de Gstreamer: "
+
+#: ../libcheese/cheese-camera.c:1505
 #, c-format
 msgid "No device found"
 msgstr "Non se atopou ningún dispositivo"
 
-#: ../libcheese/cheese-camera.c:1539
-msgid "One or more needed GStreamer elements are missing: "
-msgstr "Falta un ou máis elementos necesarios de Gstreamer: "
+#. Translators: This is a time format, like "09:05:02" for 9
+#. * hours, 5 minutes, and 2 seconds. You may change ":" to
+#. * the separator that your locale uses or use "%Id" instead
+#. * of "%d" if your locale uses localized digits.
+#.
+#: ../libcheese/cheese-camera.c:1794
+#, c-format
+msgctxt "time format"
+msgid "%02i:%02i:%02i"
+msgstr "%02i:%02i:%02i"
 
 #: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
@@ -487,72 +498,72 @@ msgstr "Mostrar información da versión e saír"
 msgid "Start in fullscreen mode"
 msgstr "Iniciar en modo de pantalla completa"
 
-#: ../src/cheese-main.vala:126
+#: ../src/cheese-main.vala:125
 msgid "- Take photos and videos from your webcam"
 msgstr "- Tome fotografías e vídeos coa súa cámara web"
 
-#: ../src/cheese-main.vala:138
+#: ../src/cheese-main.vala:137
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Executar «%s --help» para ver unha lista completa de opcións de liña de "
 "ordes dispoñíbeis.\n"
 
-#: ../src/cheese-main.vala:153
+#: ../src/cheese-main.vala:152
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Xa ten unha xanela de Cheese executándose\n"
 
-#: ../src/cheese-window.vala:222
+#: ../src/cheese-window.vala:223
 #, c-format
 msgid "Could not open %s"
 msgstr "Non foi posíbel abrir %s"
 
-#: ../src/cheese-window.vala:250
+#: ../src/cheese-window.vala:251
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Está seguro de que desexa eliminar permanentemente o ficheiro?"
 msgstr[1] "Está seguro de que desexa eliminar permanentemente %d ficheiros?"
 
-#: ../src/cheese-window.vala:256
+#: ../src/cheese-window.vala:257
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Se elimina un elemento perderase para sempre"
 msgstr[1] "Se elimina os elementos perderanse para sempre"
 
-#: ../src/cheese-window.vala:332
+#: ../src/cheese-window.vala:333
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Non foi posíbel mover %s ao lixo"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:443
+#: ../src/cheese-window.vala:482
 msgid "Save File"
 msgstr "Gardar o ficheiro"
 
-#: ../src/cheese-window.vala:477
+#: ../src/cheese-window.vala:516
 #, c-format
 msgid "Could not save %s"
 msgstr "Non foi posíbel gardar %s"
 
-#: ../src/cheese-window.vala:989
+#: ../src/cheese-window.vala:1038
 msgid "Stop _Recording"
 msgstr "_Deter a gravación"
 
-#: ../src/cheese-window.vala:990
+#: ../src/cheese-window.vala:1039
 msgid "Stop recording"
 msgstr "Deter a gravación"
 
-#: ../src/cheese-window.vala:1018
+#: ../src/cheese-window.vala:1090
 msgid "Stop _Taking Pictures"
 msgstr "Deixar de _tomar imaxes"
 
-#: ../src/cheese-window.vala:1019
+#: ../src/cheese-window.vala:1091
 msgid "Stop taking pictures"
 msgstr "Deixar de tomar imaxes"
 
-#: ../src/cheese-window.vala:1202
+#: ../src/cheese-window.vala:1274
 msgid "No effects found"
 msgstr "Non se atopou ningún efecto"
 
