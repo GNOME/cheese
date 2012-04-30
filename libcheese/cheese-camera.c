@@ -1768,39 +1768,40 @@ cheese_camera_get_recorded_time (CheeseCamera *camera)
   g_return_val_if_fail (CHEESE_IS_CAMERA (camera), NULL);
 
   CheeseCameraPrivate *priv = camera->priv;
+  GstFormat format = GST_FORMAT_TIME;
+  gint64 curtime;
+  GstElement *videosink;
   const gint TUNIT_60 = 60;
-  GstClock *clock;
-  GstClockTime base_time;
-  GstClockTime clock_time;
-  GstClockTimeDiff time_diff;
   gint total_time;
   gint hours;
   gint minutes;
   gint seconds;
+  gboolean ret = FALSE;
 
-  base_time  = gst_element_get_base_time (priv->camerabin);
-  clock = gst_element_get_clock (priv->camerabin);
-  clock_time = gst_clock_get_time (clock);
-  gst_object_unref (clock);
-  /* In order to calculate the running time of the stream,
-   * it is necessary to substract the base_time from the
-   * clock_time. The result is expressed in nanoseconds.
-   * */
-  time_diff = GST_CLOCK_DIFF (base_time, clock_time);
+  videosink = gst_bin_get_by_name (priv->camerabin, "videobin-filesink");
+  if (videosink) {
+    ret = gst_element_query_position (videosink, &format, &curtime);
+    gst_object_unref (videosink);
+  }
+  if (ret) {
 
-  // Substract seconds, minutes and hours.
-  total_time = GST_TIME_AS_SECONDS (time_diff);
-  seconds = total_time % TUNIT_60;
-  total_time = total_time - seconds;
-  minutes = (total_time % (TUNIT_60 * TUNIT_60)) / TUNIT_60;
-  total_time = total_time - (minutes * TUNIT_60);
-  hours = total_time / (TUNIT_60 * TUNIT_60);
+    // Substract seconds, minutes and hours.
+    total_time = GST_TIME_AS_SECONDS (curtime);
+    seconds = total_time % TUNIT_60;
+    total_time = total_time - seconds;
+    minutes = (total_time % (TUNIT_60 * TUNIT_60)) / TUNIT_60;
+    total_time = total_time - (minutes * TUNIT_60);
+    hours = total_time / (TUNIT_60 * TUNIT_60);
 
-  /* Translators: This is a time format, like "09:05:02" for 9
-   * hours, 5 minutes, and 2 seconds. You may change ":" to
-   * the separator that your locale uses or use "%Id" instead
-   * of "%d" if your locale uses localized digits.
-   */
-  return g_strdup_printf (C_("time format", "%02i:%02i:%02i"),
-                          hours, minutes, seconds);
+    /* Translators: This is a time format, like "09:05:02" for 9
+     * hours, 5 minutes, and 2 seconds. You may change ":" to
+     * the separator that your locale uses or use "%Id" instead
+     * of "%d" if your locale uses localized digits.
+     */
+    return g_strdup_printf (C_("time format", "%02i:%02i:%02i"),
+                            hours, minutes, seconds);
+  } else {
+    GST_WARNING ("Failed to get time from video filesink from camerabin2");
+    return "";
+  }
 }
