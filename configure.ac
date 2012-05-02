@@ -41,8 +41,8 @@ GNOME_COMPILE_WARNINGS([maximum])
 # - If binary compatibility has been broken (eg removed or changed interfaces)
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
-AC_SUBST([LIBCHEESE_LT_VERSION], [5:3:2])
-AC_SUBST([LIBCHEESE_GTK_LT_VERSION], [22:3:1])
+AC_SUBST([LIBCHEESE_LT_VERSION], [6:0:3])
+AC_SUBST([LIBCHEESE_GTK_LT_VERSION], [22:4:1])
 
 #*******************************************************************************
 # Internationalization

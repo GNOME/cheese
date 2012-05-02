@@ -1,6 +1,39 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.5.1
+  - Add cheese_camera_get_recorded_time to API doc
+  - Properly quote $UDEV_REQUIRED variable, bug 673628
+    Otherwise configure fails on systems which don't have libgudev
+    installed.
+  - Stop warnings caused by the mode buttons
+    Once we've set the related action, the label will have been synced, and
+    we won't be able to add an image to the button.
+
+    Setting "use-action-appearance" to False before setting the
+    related-action works around the problem. See GTK+ bug 671912.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=671913
+  - Show a timer when recording a video
+    Fixes bug 599729.
+  - Add documentation for cheese_camera_set_tags
+  - Add some metadata tags to produced files
+    Metadata is important for search and management applications. These tags
+    should help to track files produced by Cheese.
+
+    Signed-off-by: Oleksij Rempel (Alexey Fisher) <bug-track@fisher-privat.net>
+  - Post-release version bump to 3.5.1
+  - Added/Updated Translations
+    - el, courtesy of Tom Tryfonidis
+    - es, courtesy of Daniel Mustieles
+    - gl, courtesy of Fran Dieguez
+    - he, courtesy of Yaron Shahrabani
+    - ja, courtesy of Hideki Yamane
+    - nb, courtesy of Kjartan Maraas
+    - sl, courtesy of Matej Urbančič
+    - te, courtesy of Sasi Bhushan Boddepalli
+  - Added/Updated Documentation
+
 version 3.4.0
   - Post-release version bump to 3.4.0
   - Added/Updated Translations
