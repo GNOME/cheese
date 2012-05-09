@@ -26,6 +26,7 @@ HELP_FILES = \
 	pref-burst-mode.page \
 	pref-countdown.page \
 	pref-flash.page \
+	pref-fullscreen.page \
 	pref-image-properties.page \
 	pref-photo-resolution.page \
 	video-record.page
