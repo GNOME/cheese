@@ -214,10 +214,10 @@ cheese_flash_opacity_fade (gpointer data)
   {
     /* the flasher has finished when we reach the quit value */
     gtk_widget_hide (GTK_WIDGET (flash_window));
-    return FALSE;
+    return G_SOURCE_REMOVE;
   }
 
-  return TRUE;
+  return G_SOURCE_CONTINUE;
 }
 
 /*
@@ -239,11 +239,11 @@ cheese_flash_start_fade (gpointer data)
   if (!gdk_screen_is_composited (gtk_window_get_screen (flash_window)))
   {
     gtk_widget_hide (GTK_WIDGET (flash_window));
-    return FALSE;
+    return G_SOURCE_REMOVE;
   }
 
   flash_priv->fade_timeout_tag = g_timeout_add (1000.0 / FLASH_ANIMATION_RATE, cheese_flash_opacity_fade, data);
-  return FALSE;
+  return G_SOURCE_REMOVE;
 }
 
 /**

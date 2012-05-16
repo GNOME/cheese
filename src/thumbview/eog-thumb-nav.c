@@ -258,10 +258,10 @@ eog_thumb_nav_scroll_step (gpointer user_data)
 
     gtk_adjustment_value_changed (nav->priv->adj);
 
-    return FALSE;
+    return G_SOURCE_REMOVE;
   }
 
-  return TRUE;
+  return G_SOURCE_CONTINUE;
 }
 
 static void
