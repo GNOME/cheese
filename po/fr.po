@@ -16,9 +16,9 @@ msgstr ""
 "Project-Id-Version: cheese HEAD\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-03-03 16:26+0000\n"
-"PO-Revision-Date: 2012-02-13 11:05+0100\n"
-"Last-Translator: Alain Lojewski <allomervan@gmail.com>\n"
+"POT-Creation-Date: 2012-05-15 18:46+0000\n"
+"PO-Revision-Date: 2012-05-23 18:21+0200\n"
+"Last-Translator: Pierre Henry <pierrehenry73@yahoo.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -208,8 +208,9 @@ msgid "Image"
 msgstr "Image"
 
 #: ../data/cheese-prefs.ui.h:11
-msgid "<b>Shutter</b>"
-msgstr "<b>Déclenchement</b>"
+#| msgid "Shutter sound"
+msgid "Shutter"
+msgstr "Obturateur"
 
 #: ../data/cheese-prefs.ui.h:12
 msgid "_Countdown"
@@ -419,7 +420,7 @@ msgstr "Nombre de photos en mode rafale"
 msgid "The number of photos to take in a single burst."
 msgstr "Le nombre de photos à prendre pendant une seule rafale."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:918
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:925
 msgid "Shutter sound"
 msgstr "Bruit de l'obturateur"
 
@@ -449,14 +450,25 @@ msgstr "Périphérique inconnu"
 msgid "Cancellable initialization not supported"
 msgstr "Initialisation annulable non prise en charge"
 
-#: ../libcheese/cheese-camera.c:1489
+#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1557
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Un ou plusieurs éléments GStreamer sont manquants : "
+
+#: ../libcheese/cheese-camera.c:1505
 #, c-format
 msgid "No device found"
 msgstr "Aucun périphérique détecté"
 
-#: ../libcheese/cheese-camera.c:1539
-msgid "One or more needed GStreamer elements are missing: "
-msgstr "Un ou plusieurs éléments GStreamer sont manquants : "
+#. Translators: This is a time format, like "09:05:02" for 9
+#. * hours, 5 minutes, and 2 seconds. You may change ":" to
+#. * the separator that your locale uses or use "%Id" instead
+#. * of "%d" if your locale uses localized digits.
+#.
+#: ../libcheese/cheese-camera.c:1794
+#, c-format
+msgctxt "time format"
+msgid "%02i:%02i:%02i"
+msgstr "%02i:%02i:%02i"
 
 #: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
@@ -482,72 +494,71 @@ msgstr "Affiche les informations de version et quitte"
 msgid "Start in fullscreen mode"
 msgstr "Démarre en mode plein écran"
 
-#: ../src/cheese-main.vala:126
+#: ../src/cheese-main.vala:125
 msgid "- Take photos and videos from your webcam"
 msgstr "- Prise de photos et enregistrement de vidéos grâce à votre webcam"
 
-#: ../src/cheese-main.vala:138
+#: ../src/cheese-main.vala:137
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Exécutez '%s --help' pour afficher la liste des options disponibles en ligne "
 "de commande.\n"
 
-#: ../src/cheese-main.vala:153
+#: ../src/cheese-main.vala:152
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Une autre instance de Cheese est déjà lancée\n"
 
-#: ../src/cheese-window.vala:222
+#: ../src/cheese-window.vala:223
 #, c-format
 msgid "Could not open %s"
 msgstr "Impossible d'ouvrir %s"
 
-#: ../src/cheese-window.vala:250
+#: ../src/cheese-window.vala:251
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Voulez-vous vraiment supprimer définitivement le fichier %d ?"
 msgstr[1] "Voulez-vous vraiment supprimer définitivement les fichiers %d ?"
 
-#: ../src/cheese-window.vala:256
+#: ../src/cheese-window.vala:257
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Si vous supprimez cet élément, il sera définitivement perdu"
 msgstr[1] "Si vous supprimez ces éléments, ils seront définitivement perdus"
 
-#: ../src/cheese-window.vala:332
+#: ../src/cheese-window.vala:333
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Impossible de mettre %s à la corbeille"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:481
+#: ../src/cheese-window.vala:482
 msgid "Save File"
 msgstr "Enregistrer un fichier"
 
-#: ../src/cheese-window.vala:515
+#: ../src/cheese-window.vala:516
 #, c-format
 msgid "Could not save %s"
 msgstr "Impossible d'enregistrer %s"
 
-#: ../src/cheese-window.vala:1027
+#: ../src/cheese-window.vala:1038
 msgid "Stop _Recording"
 msgstr "_Arrêter l'enregistrement"
 
-#: ../src/cheese-window.vala:1028
+#: ../src/cheese-window.vala:1039
 msgid "Stop recording"
 msgstr "Arrêter l'enregistrement"
 
-#: ../src/cheese-window.vala:1056
+#: ../src/cheese-window.vala:1090
 msgid "Stop _Taking Pictures"
 msgstr "Arrê_ter la prise de photos"
 
-#: ../src/cheese-window.vala:1057
+#: ../src/cheese-window.vala:1091
 msgid "Stop taking pictures"
 msgstr "Arrête la prise de photos"
 
-#: ../src/cheese-window.vala:1240
+#: ../src/cheese-window.vala:1274
 msgid "No effects found"
 msgstr "Aucun effet trouvé"
-
