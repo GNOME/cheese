@@ -288,9 +288,7 @@ desktopdir = $(datadir)/applications
 desktop_in_files = data/cheese.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-@INTLTOOL_XML_NOMERGE_RULE@
-gsettings_in_file = data/org.gnome.Cheese.gschema.xml.in
-gsettings_SCHEMAS = $(gsettings_in_file:.xml.in=.xml)
+gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 @GSETTINGS_RULES@
 
 dist_pkgdata_DATA = \
@@ -502,7 +500,7 @@ dist-hook: git-changelog-hook
 dist_noinst_DATA = \
 	ChangeLog.pre-git \
 	$(desktop_in_files) \
-	$(gsettings_in_file) \
+	$(gsettings_SCHEMAS) \
 	$(service_in_files) \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
 	$(gtkdoc_srcdir)/cheese-sections.txt \
@@ -527,7 +525,6 @@ dist_noinst_SCRIPTS = \
 
 CLEANFILES = \
 	$(desktop_DATA) \
-	$(gsettings_SCHEMAS) \
 	$(pkgconfig_DATA) \
 	$(enum_data) \
 	$(gir_DATA) \

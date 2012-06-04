@@ -49,8 +49,7 @@ AC_SUBST([LIBCHEESE_GTK_LT_VERSION], [22:4:1])
 #*******************************************************************************
 AC_SUBST([GETTEXT_PACKAGE], [$PACKAGE_TARNAME])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [GETTEXT package name])
-
-IT_PROG_INTLTOOL([0.40.0])
+IT_PROG_INTLTOOL([0.50.0])
 
 #*******************************************************************************
 # Check required libraries
