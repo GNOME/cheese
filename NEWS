@@ -1,6 +1,30 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.5.2
+  - Depend on intltool 0.50 for GSettings translations
+  - Use G_SOURCE_REMOVE and _CONTINUE
+  - Use GDK provided work area code, bug 670996
+  - Remove markup from translatable string
+  - Updated help makefile
+  - Add fullscreen help page
+  - Update help index page
+  - Updated introduction help page
+  - Efstathios Iosifidis <diamond_gr@freemail.gr>
+  - Added/Updated Translations
+    - es, courtesy of Daniel Mustieles
+    - fr, courtesy of Pierre Henry
+    - gl, courtesy of Fran Dieguez
+    - he, courtesy of Yaron Shahrabani
+    - ja, courtesy of Jiro Matsuzawa
+    - nb, courtesy of Kjartan Maraas
+    - pt_BR, courtesy of Gabriel Speckhahn
+    - sl, courtesy of Matej Urbančič
+  - Added/Updated Documentation
+    - el, courtesy of Efstathios Iosifidis
+    - es, courtesy of Daniel Mustieles
+    - fr, courtesy of Bruno Brouard
+
 version 3.5.1
   - Add cheese_camera_get_recorded_time to API doc
   - Properly quote $UDEV_REQUIRED variable, bug 673628
