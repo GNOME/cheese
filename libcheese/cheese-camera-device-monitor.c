@@ -106,7 +106,8 @@ CheeseCameraDevice* cheese_camera_device_monitor_set_up_device(GUdevDevice *udev
  *
  * Creates a new #CheeseCameraDevice for the supplied @udevice.
  *
- * Returns: a new #CheeseCameraDevice
+ * Returns: a new #CheeseCameraDevice, or %NULL if @udevice was not a V4L
+ * capture device
  */
 CheeseCameraDevice*
 cheese_camera_device_monitor_set_up_device (GUdevDevice *udevice)
@@ -214,7 +215,9 @@ cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
                                     GUdevDevice               *udevice)
 {
   CheeseCameraDevice *device = cheese_camera_device_monitor_set_up_device (udevice);
-  g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
+  /* Ignore non-video devices, GNOME bug #677544. */
+  if (device)
+    g_signal_emit (monitor, monitor_signals[ADDED], 0, device);
 }
 
 /*
