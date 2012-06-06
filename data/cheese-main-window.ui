@@ -126,6 +126,7 @@
                         <property name="column-spacing">0</property>
                         <child>
                           <object class="GtkButton" id="effects_prev_page_button">
+                            <property name="use-action-appearance">False</property>
                             <property name="related-action">effects_page_prev</property>
                             <property name="width-request">32</property>
                             <property name="relief">GTK_RELIEF_NONE</property>
@@ -141,6 +142,7 @@
                           <object class="GtkToggleButton" id="effects_toggle_button">
                             <property name="vexpand">False</property>
                             <property name="hexpand">False</property>
+                            <property name="use-action-appearance">False</property>
                             <property name="related-action">effects_toggle</property>
                             <property name="tooltip_text" translatable="yes">Effects</property>
                             <child>
@@ -165,6 +167,7 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="effects_next_page_button">
+                            <property name="use-action-appearance">False</property>
                             <property name="related-action">effects_page_next</property>
                             <property name="width-request">32</property>
                             <property name="relief">GTK_RELIEF_NONE</property>
