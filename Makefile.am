@@ -164,11 +164,12 @@ INTROSPECTION_GIRS = Cheese-3.0.gir
 
 Cheese-3.0.gir: libcheese.la
 Cheese_3_0_gir_CFLAGS = \
-	-I$(srcdir) \
-	$(INCLUDES) \
+	-I$(top_srcdir)/libcheese \
+	-I$(top_builddir)/libcheese \
 	$(CHEESE_CFLAGS)
 Cheese_3_0_gir_FILES = \
 	$(libcheese_la_SOURCES) \
+	$(noinst_libcheese_headers) \
 	libcheese/cheese-enums.h
 Cheese_3_0_gir_INCLUDES = \
 	GObject-2.0 \
