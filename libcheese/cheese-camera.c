@@ -1530,19 +1530,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   g_object_set (G_OBJECT (video_sink), "async", FALSE, NULL);
   g_object_set (G_OBJECT (priv->camerabin), "viewfinder-sink", video_sink, NULL);
 
-  /* Set flags to enable conversions*/
-
-  g_object_set (G_OBJECT (priv->camerabin), "flags",
-                GST_CAMERABIN_FLAG_SOURCE_RESIZE |
-                GST_CAMERABIN_FLAG_SOURCE_COLOR_CONVERSION |
-                GST_CAMERABIN_FLAG_VIEWFINDER_SCALE |
-                GST_CAMERABIN_FLAG_AUDIO_CONVERSION |
-                GST_CAMERABIN_FLAG_IMAGE_COLOR_CONVERSION |
-                GST_CAMERABIN_FLAG_VIDEO_COLOR_CONVERSION,
-                NULL);
-
   /* Set caps to filter, so it doesn't defaults to I420 format*/
-
   caps = gst_caps_from_string ("video/x-raw-yuv; video/x-raw-rgb");
   g_object_set (G_OBJECT (priv->camerabin), "filter-caps", caps, NULL);
   gst_caps_unref (caps);
