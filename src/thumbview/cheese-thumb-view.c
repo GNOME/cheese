@@ -197,8 +197,19 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   char         *filename, *basename, *col_filename;
   GError       *error = NULL;
   gboolean      skip  = FALSE;
+  GFileInfo    *info;
+  goffset       size;
 
   CheeseThumbViewIdleData *data;
+
+  info = g_file_query_info (file, G_FILE_ATTRIBUTE_STANDARD_SIZE, 0, NULL,
+                            NULL);
+  size = g_file_info_get_size (info);
+  g_object_unref (info);
+
+  /* Ignore 0-sized files, bug 677735. */
+  if (size == 0)
+    return;
 
   filename = g_file_get_path (file);
 
