@@ -51,6 +51,7 @@ typedef struct
   GFileMonitor   *video_file_monitor;
   GnomeDesktopThumbnailFactory *factory;
   gboolean multiplex_thumbnail_generator;
+  gboolean vertical;
   guint n_items;
   guint idle_id;
   GQueue *thumbnails;
@@ -602,7 +603,10 @@ cheese_thumb_view_row_inserted_cb (GtkTreeModel    *tree_model,
   CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
   priv->n_items++;
-  gtk_widget_set_size_request (GTK_WIDGET (thumb_view), -1, -1);
+  if (!priv->vertical)
+    gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), priv->n_items);
+  else
+    gtk_widget_set_size_request (GTK_WIDGET (thumb_view), -1, -1);
 }
 
 static void
@@ -617,6 +621,8 @@ cheese_thumb_view_row_deleted_cb (GtkTreeModel    *tree_model,
     gtk_widget_set_size_request (GTK_WIDGET (thumb_view),
                                  THUMB_VIEW_MINIMUM_WIDTH,
                                  THUMB_VIEW_MINIMUM_HEIGHT);
+  else if (!priv->vertical)
+    gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), priv->n_items);
 }
 
 static void
@@ -674,7 +680,7 @@ cheese_thumb_view_constructed (GObject *object)
 
   gtk_icon_view_set_pixbuf_column (GTK_ICON_VIEW (thumb_view), 0);
 
-  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), G_MAXINT);
+  gtk_icon_view_set_columns (GTK_ICON_VIEW (thumb_view), -1);
 
   gtk_icon_view_enable_model_drag_source (GTK_ICON_VIEW (thumb_view), GDK_BUTTON1_MASK,
                                           target_table, G_N_ELEMENTS (target_table),
@@ -685,6 +691,7 @@ cheese_thumb_view_constructed (GObject *object)
                                         THUMBNAIL_BASENAME_URL_COLUMN, GTK_SORT_ASCENDING);
                                         
   cheese_thumb_view_fill (thumb_view);
+  cheese_thumb_view_set_vertical (thumb_view, FALSE);
 }
 
 GtkWidget *
@@ -694,6 +701,18 @@ cheese_thumb_view_new ()
 
   thumb_view = g_object_new (CHEESE_TYPE_THUMB_VIEW, NULL);
   return GTK_WIDGET (thumb_view);
+}
+
+void
+cheese_thumb_view_set_vertical (CheeseThumbView *thumb_view, gboolean vertical)
+{
+  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+
+  priv->vertical = vertical;
+  if (!priv->vertical && priv->n_items)
+    gtk_icon_view_set_columns(GTK_ICON_VIEW (thumb_view), priv->n_items);
+  else
+    gtk_icon_view_set_columns(GTK_ICON_VIEW (thumb_view), 1);
 }
 
 void

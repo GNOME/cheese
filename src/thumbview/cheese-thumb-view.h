@@ -54,6 +54,7 @@ GList *cheese_thumb_view_get_selected_images_list (CheeseThumbView *thumb_view);
 char * cheese_thumb_view_get_selected_image (CheeseThumbView *thumb_view);
 guint  cheese_thumb_view_get_n_selected (CheeseThumbView *thumbview);
 void   cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file);
+void   cheese_thumb_view_set_vertical (CheeseThumbView *thumb_view, gboolean vertical);
 void cheese_thumb_view_start_monitoring_photo_path (CheeseThumbView *thumbview, const char *path_photos);
 void cheese_thumb_view_start_monitoring_video_path (CheeseThumbView *thumbview, const char *path_videos);
 

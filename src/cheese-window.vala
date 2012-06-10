@@ -724,7 +724,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     if (is_wide_mode)
     {
-      thumb_view.set_columns (1);
+      thumb_view.set_vertical (true);
       thumb_nav.set_vertical (true);
       if (thumbnails_bottom.get_child () != null)
       {
@@ -737,7 +737,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
     else
     {
-      thumb_view.set_columns (5000);
+      thumb_view.set_vertical (false);
       thumb_nav.set_vertical (false);
       if (thumbnails_right.get_child () != null)
       {
