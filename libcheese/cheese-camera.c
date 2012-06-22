@@ -453,7 +453,11 @@ cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
     return;
   }
   g_object_set (priv->camerabin, "video-encoder", video_enc, NULL);
-  g_object_set (G_OBJECT (video_enc), "speed", 2, NULL);
+  /* Use a preset, or set some reasonable defaults. */
+  if (!gst_preset_load_preset (GST_PRESET (video_enc), "Profile Realtime"))
+  {
+    g_object_set (G_OBJECT (video_enc), "max-latency", 1, "speed", 2, NULL);
+  }
 
   if ((mux = gst_element_factory_make ("webmmux", "webmmux")) == NULL)
   {
