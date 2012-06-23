@@ -294,7 +294,6 @@ gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 
 dist_pkgdata_DATA = \
 	data/cheese.css \
-	data/cheese-about.ui \
 	data/cheese-actions.ui \
 	data/cheese-main-window.ui \
 	data/cheese-prefs.ui \

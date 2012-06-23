@@ -38,8 +38,17 @@ const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 const int EFFECTS_PER_PAGE            = 9;
 const string SENDTO_EXEC = "nautilus-sendto";
 
-public class Cheese.MainWindow : Gtk.Window
+public class Cheese.MainWindow : Gtk.ApplicationWindow
 {
+    // Actions for the app menu.
+    private const GLib.ActionEntry entries[] = {
+        { "shoot", on_take_action },
+        { "mode", null, "s", "'photo'", on_mode_change },
+        { "fullscreen", null, null, "false", on_layout_fullscreen },
+        { "effects", null, null, "false", on_effects_toggle },
+        { "preferences", on_preferences_dialog }
+    };
+
   private MediaMode current_mode;
 
   private Gtk.Builder    gtk_builder;
@@ -54,7 +63,6 @@ public class Cheese.MainWindow : Gtk.Window
   private Cheese.ThumbView thumb_view;
   private Gtk.Alignment    thumbnails_right;
   private Gtk.Alignment    thumbnails_bottom;
-  private Gtk.MenuBar      menubar;
   private Gtk.Box          leave_fullscreen_button_container;
   private Gtk.ToggleButton photo_toggle_button;
   private Gtk.ToggleButton video_toggle_button;
@@ -93,7 +101,6 @@ public class Cheese.MainWindow : Gtk.Window
   private Gtk.Action       effects_page_prev_action;
   private Gtk.Action       effects_page_next_action;
   private Gtk.Action       share_action;
-  private Gtk.ActionGroup  main_actions;
 
   private bool is_fullscreen;
   private bool is_wide_mode;
@@ -129,16 +136,10 @@ public class Cheese.MainWindow : Gtk.Window
     SKIP_ALL = 2
   }
 
-  /**
-   * Destroy the main window, and shutdown the application, when quitting.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_quit (Gtk.Action action)
-  {
-    destroy ();
-  }
+    public MainWindow (Gtk.Application application)
+    {
+        GLib.Object (application: application);
+    }
 
   /**
    * Show the preferences dialog when requested, creating it as necessary.
@@ -146,7 +147,7 @@ public class Cheese.MainWindow : Gtk.Window
    * @param action the action that emitted the signal
    */
   [CCode (instance_pos = -1)]
-  public void on_preferences_dialog (Gtk.Action action)
+  public void on_preferences_dialog (SimpleAction action, Variant? parameter)
   {
     if (preferences_dialog == null)
       preferences_dialog = new Cheese.PreferencesDialog (camera, settings);
@@ -524,41 +525,6 @@ public class Cheese.MainWindow : Gtk.Window
   }
 
   /**
-   * Show the Cheese help contents.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_help_contents (Gtk.Action action)
-  {
-    Gdk.Screen screen;
-    screen = this.get_screen ();
-    try {
-      Gtk.show_uri (screen, "help:cheese", Gtk.get_current_event_time ());
-    } catch (Error err)
-    {
-      warning ("Error: %s\n", err.message);
-    }
-  }
-
-  /**
-   * Show the about dialog.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_help_about (Gtk.Action action)
-  {
-    Gtk.AboutDialog about_dialog;
-    about_dialog         = gtk_builder.get_object ("aboutdialog") as Gtk.AboutDialog;
-    about_dialog.set_transient_for (this);
-    about_dialog.set_modal (true);
-    about_dialog.version = Config.PACKAGE_VERSION;
-    about_dialog.run ();
-    about_dialog.hide ();
-  }
-
-  /**
    * Toggle wide mode and save the preference to GSettings.
    *
    * @param action the action that emitted the signal
@@ -575,33 +541,23 @@ public class Cheese.MainWindow : Gtk.Window
     set_wide_mode (action.active);
   }
 
-  /**
-   * Toggle fullscreen mode and save the preference to GSettings.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_layout_fullscreen (ToggleAction action)
-  {
-    if (!is_command_line_startup)
+    /**
+     * Toggle fullscreen mode and save the preference to GSettings.
+     *
+     * @param action the action that emitted the signal
+     */
+    [CCode (instance_pos = -1)]
+    public void on_layout_fullscreen (SimpleAction action, Variant value)
     {
-     /* Don't save to settings when using -f mode from command-line, so
-      * command-line options change the mode for one run only. */
-      settings.set_boolean ("fullscreen", action.active);
-    }
-    set_fullscreen_mode (action.active);
-  }
+        if (!is_command_line_startup)
+        {
+            /* Don't save to settings when using -f mode from command-line, so
+             * command-line options change the mode for one run only. */
+            settings.set_boolean ("fullscreen", action.enabled);
+        }
 
-  /**
-   * Change the media capture mode (photo, video or burst).
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_mode_change (RadioAction action)
-  {
-    set_mode ((MediaMode) action.value);
-  }
+        set_fullscreen_mode (action.state.get_boolean ());
+    }
 
   /**
    * Make the media capture mode actions sensitive.
@@ -780,7 +736,7 @@ public class Cheese.MainWindow : Gtk.Window
       {
         thumbnails_bottom.hide ();
       }
-      menubar.hide ();
+      this.set_show_menubar (false);
       leave_fullscreen_button_container.no_show_all = false;
       leave_fullscreen_button_container.show_all ();
 
@@ -804,7 +760,7 @@ public class Cheese.MainWindow : Gtk.Window
       {
         thumbnails_bottom.show_all ();
       }
-      menubar.show_all ();
+      this.set_show_menubar (true);
       leave_fullscreen_button_container.hide ();
 
       /* Make all buttons look, uhm, Normal */
@@ -1126,7 +1082,7 @@ public class Cheese.MainWindow : Gtk.Window
    * @param action the action that emitted the signal
    */
   [CCode (instance_pos = -1)]
-  public void on_take_action (Gtk.Action action)
+  public void on_take_action (SimpleAction action, Variant? parameter)
   {
     if (current_mode == MediaMode.PHOTO)
     {
@@ -1150,15 +1106,15 @@ public class Cheese.MainWindow : Gtk.Window
    * @param action the action that emitted the signal
    */
   [CCode (instance_pos = -1)]
-  public void on_effects_toggle (Gtk.ToggleAction action)
+  public void on_effects_toggle (SimpleAction action, Variant value)
   {
-    toggle_effects_selector (action.active);
-    take_photo_action.sensitive = !action.active;
-    take_video_action.sensitive = !action.active;
-    take_burst_action.sensitive = !action.active;
-    photo_mode_action.sensitive = !action.active;
-    video_mode_action.sensitive = !action.active;
-    burst_mode_action.sensitive = !action.active;
+    toggle_effects_selector (action.enabled);
+    take_photo_action.sensitive = !action.enabled;
+    take_video_action.sensitive = !action.enabled;
+    take_burst_action.sensitive = !action.enabled;
+    photo_mode_action.sensitive = !action.enabled;
+    video_mode_action.sensitive = !action.enabled;
+    burst_mode_action.sensitive = !action.enabled;
   }
 
   /**
@@ -1401,17 +1357,14 @@ public class Cheese.MainWindow : Gtk.Window
       }
 
       /* Keep only these actions sensitive. */
-      string [] active_actions = { "cheese_action",
-                                    "edit_action",
-                                    "help_action",
-                                    "quit",
-                                    "help_contents",
-                                    "about",
-                                    "open",
-                                    "save_as",
-                                    "move_to_trash",
-                                    "delete",
-                                    "move_all_to_trash"};
+      string [] active_actions = { "quit",
+                                   "help_contents",
+                                   "about",
+                                   "open",
+                                   "save_as",
+                                   "move_to_trash",
+                                   "delete",
+                                   "move_all_to_trash"};
 
       /* Gross hack because Vala's `in` operator doesn't really work */
       bool flag;
@@ -1494,7 +1447,6 @@ public class Cheese.MainWindow : Gtk.Window
 
     try {
       gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
-      gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-about.ui"));
       gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
       gtk_builder.connect_signals (this);
 
@@ -1504,13 +1456,14 @@ public class Cheese.MainWindow : Gtk.Window
       error ("Error: %s", err.message);
     }
 
+    add_action_entries (entries, this);
+
     main_vbox                         = gtk_builder.get_object ("mainbox_normal") as Gtk.Grid;
     thumbnails                        = gtk_builder.get_object ("thumbnails") as Gtk.Widget;
     viewport_widget                   = gtk_builder.get_object ("viewport") as GtkClutter.Embed;
     viewport                          = viewport_widget.get_stage () as Clutter.Stage;
     thumbnails_right                  = gtk_builder.get_object ("thumbnails_right") as Gtk.Alignment;
     thumbnails_bottom                 = gtk_builder.get_object ("thumbnails_bottom") as Gtk.Alignment;
-    menubar                           = gtk_builder.get_object ("main_menubar") as Gtk.MenuBar;
     leave_fullscreen_button_container = gtk_builder.get_object ("leave_fullscreen_button_bin") as Gtk.Box;
     photo_toggle_button               = gtk_builder.get_object ("photo_toggle_button") as Gtk.ToggleButton;
     video_toggle_button               = gtk_builder.get_object ("video_toggle_button") as Gtk.ToggleButton;
@@ -1523,7 +1476,6 @@ public class Cheese.MainWindow : Gtk.Window
     buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.Box;
     thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
-    main_actions             = gtk_builder.get_object ("main_actions") as Gtk.ActionGroup;
     take_photo_action        = gtk_builder.get_object ("take_photo") as Gtk.Action;
     take_video_action        = gtk_builder.get_object ("take_video") as Gtk.Action;
     take_burst_action        = gtk_builder.get_object ("take_burst") as Gtk.Action;
@@ -1539,7 +1491,6 @@ public class Cheese.MainWindow : Gtk.Window
     share_action             = gtk_builder.get_object ("share") as Gtk.Action;
 
     shareable_media = new Cheese.ShareableMedia (this);
-    main_actions.pre_activate.connect(on_action_pre_activated);
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
@@ -1614,22 +1565,6 @@ public class Cheese.MainWindow : Gtk.Window
 
     if (settings.get_boolean ("fullscreen"))
       fullscreen_action.active = true;
-  }
-
-  /**
-   * Decide which actions will be sensitive or insensitive.
-   *
-   * @param action the action that emitted the signal.
-   */
-  public void on_action_pre_activated (Gtk.Action action)
-  {
-     if (strcmp (action.get_name(), "edit_action") == 0)
-     {
-        if (thumb_view.get_selected_images_list () == null)
-           share_action.set_sensitive (false);
-        else
-           share_action.set_sensitive (true);
-     }
   }
 
   /**

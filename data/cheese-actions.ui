@@ -3,57 +3,6 @@
   <requires lib="gtk+" version="2.16"/>
   <object class="GtkUIManager" id="menu_ui_man">
     <child>
-      <object class="GtkActionGroup" id="main_actions">
-        <child>
-          <object class="GtkAction" id="cheese_action">
-            <property name="name">Cheese</property>
-            <property name="label" translatable="yes">_Cheese</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkAction" id="edit_action">
-            <property name="name">Edit</property>
-            <property name="label" translatable="yes">_Edit</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkAction" id="help_action">
-            <property name="name">Help</property>
-            <property name="label" translatable="yes">_Help</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkAction" id="quit">
-            <property name="name">Quit</property>
-	    <property name="stock-id">gtk-quit</property>
-            <signal name="activate" handler="cheese_main_window_on_quit"/>
-          </object>
-          <accelerator key="q" modifiers="GDK_CONTROL_MASK"/>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkActionGroup" id="help_actions">
-        <child>
-          <object class="GtkAction" id="help_contents">
-            <property name="name">HelpContents</property>
-            <property name="label" translatable="yes">_Contents</property>
-            <property name="stock-id">gtk-help</property>
-            <signal name="activate" handler="cheese_main_window_on_help_contents"/>
-          </object>
-          <accelerator key="F1"/>
-        </child>
-        <child>
-          <object class="GtkAction" id="about">
-            <property name="name">About</property>
-            <property name="label" translatable="yes">_About</property>
-            <property name="stock-id">gtk-about</property>
-            <signal name="activate" handler="cheese_main_window_on_help_about"/>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="GtkActionGroup" id="file_actions">
         <child>
           <object class="GtkAction" id="open">
@@ -228,38 +177,6 @@
       </object>
     </child>
     <ui>
-      <menubar name="main_menubar">
-        <menu action="cheese_action">
-          <menuitem action="take_photo"/>
-          <menuitem action="take_video"/>
-          <menuitem action="take_burst"/>
-          <separator/>
-          <menuitem action="photo_mode"/>
-          <menuitem action="video_mode"/>
-          <menuitem action="burst_mode"/>
-          <separator/>
-          <menuitem action="fullscreen"/>
-          <menuitem action="wide_mode"/>
-          <separator/>
-          <menuitem action="quit"/>
-        </menu>
-        <menu action="edit_action">
-          <menuitem action="effects_toggle"/>
-          <menuitem action="effects_page_next"/>
-          <menuitem action="effects_page_prev"/>
-          <separator/>
-          <menuitem action="share"/>
-          <separator/>
-          <menuitem action="move_to_trash"/>
-          <menuitem action="move_all_to_trash"/>
-          <separator/>
-          <menuitem action="preferences"/>
-        </menu>
-        <menu action="help_action">
-          <menuitem action="help_contents"/>
-          <menuitem action="about"/>
-        </menu>
-      </menubar>
       <popup name="thumbnail_popup" id="thumbnail_popup">
         <menuitem action="open"/>
         <separator/>

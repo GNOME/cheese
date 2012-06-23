@@ -33,6 +33,12 @@ public class Cheese.Main : Gtk.Application
 
   static Cheese.MainWindow main_window;
 
+    private const GLib.ActionEntry action_entries[] = {
+        { "help", on_help },
+        { "about", on_about },
+        { "quit", on_quit }
+    };
+
   const OptionEntry[] options = {
     {"wide",       'w', 0, OptionArg.NONE,     ref wide,       N_("Start in wide mode"),                  null        },
     {"device",     'd', 0, OptionArg.FILENAME, ref device,     N_("Device to use as a camera"),           N_("DEVICE")},
@@ -60,7 +66,7 @@ public class Cheese.Main : Gtk.Application
       if (gtk_settings != null)
         gtk_settings.gtk_application_prefer_dark_theme = true;
 
-      main_window = new Cheese.MainWindow ();
+      main_window = new Cheese.MainWindow (this);
 
       Environment.set_variable ("PULSE_PROP_media.role", "production", true);
 
@@ -68,6 +74,34 @@ public class Cheese.Main : Gtk.Application
       Window.set_default_icon_name ("cheese");
 
       Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
+
+            add_action_entries (action_entries, this);
+
+            // Create the menus.
+            var menu = new GLib.Menu ();
+            var section = new GLib.Menu ();
+            menu.append_section (null, section);
+            section.append (_("_Shoot"), "app.shoot");
+            section = new GLib.Menu ();
+            menu.append_section (_("Mode:"), section);
+            section.append (_("_Photo"), "app.mode::photo");
+            section.append (_("_Video"), "app.mode::video");
+            section.append (_("_Burst"), "app.mode::burst");
+            section = new GLib.Menu ();
+            menu.append_section (null, section);
+            section.append (_("_Fullscreen"), "app.fullscreen");
+            section = new GLib.Menu ();
+            menu.append_section (null, section);
+            section.append (_("_Effects"), "app.effects");
+            section = new GLib.Menu ();
+            menu.append_section (null, section);
+            section.append (_("P_references"), "app.preferences");
+            section = new GLib.Menu ();
+            menu.append_section (null, section);
+            section.append (_("_About"), "app.about");
+            section.append (_("_Help"), "app.help");
+            section.append (_("_Quit"), "app.quit");
+            set_app_menu (menu);
 
       main_window.setup_ui ();
       main_window.start_thumbview_monitors ();
@@ -163,6 +197,91 @@ public class Cheese.Main : Gtk.Application
     }
     return true;
   }
+
+    /**
+     * Show the Cheese help contents.
+     */
+    private void on_help ()
+    {
+        var screen = main_window.get_screen ();
+        try
+        {
+            Gtk.show_uri (screen, "help:cheese", Gtk.get_current_event_time ());
+        }
+        catch (Error err)
+        {
+            message ("Error opening help: %s", err.message);
+        }
+    }
+
+    /**
+     * Show the about dialog.
+     */
+    private void on_about ()
+    {
+        string[] artists = { "Andreas Nilsson <andreas@andreasn.se>",
+            "Josef Vybíral <josef.vybiral@gmail.com>",
+            "Kalle Persson <kalle@kallepersson.se>",
+            "Lapo Calamandrei <calamandrei@gmail.com>",
+            "Or Dvory <gnudles@nana.co.il>",
+            "Ulisse Perusin <ulisail@yahoo.it>",
+            null };
+
+        string[] authors = { "daniel g. siegel <dgsiegel@gnome.org>",
+            "Jaap A. Haitsma <jaap@haitsma.org>",
+            "Filippo Argiolas <fargiolas@gnome.org>",
+            "Yuvaraj Pandian T <yuvipanda@yuvi.in>",
+            "Luciana Fujii Pontello <luciana@fujii.eti.br>",
+            "",
+            "Aidan Delaney <a.j.delaney@brighton.ac.uk>",
+            "Alex \"weej\" Jones <alex@weej.com>",
+            "Andrea Cimitan <andrea.cimitan@gmail.com>",
+            "Baptiste Mille-Mathias <bmm80@free.fr>",
+            "Cosimo Cecchi <anarki@lilik.it>",
+            "Diego Escalante Urrelo <dieguito@gmail.com>",
+            "Felix Kaser <f.kaser@gmx.net>",
+            "Gintautas Miliauskas <gintas@akl.lt>",
+            "Hans de Goede <jwrdegoede@fedoraproject.org>",
+            "James Liggett <jrliggett@cox.net>",
+            "Luca Ferretti <elle.uca@libero.it>",
+            "Mirco \"MacSlow\" Müller <macslow@bangang.de>",
+            "Patryk Zawadzki <patrys@pld-linux.org>",
+            "Ryan Zeigler <zeiglerr@gmail.com>",
+            "Sebastian Keller <sebastian-keller@gmx.de>",
+            "Steve Magoun <steve.magoun@canonical.com>",
+            "Thomas Perl <thp@thpinfo.com>",
+            "Tim Philipp Müller <tim@centricular.net>",
+            "Todd Eisenberger <teisenberger@gmail.com>",
+            "Tommi Vainikainen <thv@iki.fi>",
+            null };
+
+        string[] documenters = { "Joshua Henderson <joshhendo@gmail.com>",
+            "Jaap A. Haitsma <jaap@haitsma.org>",
+            "Felix Kaser <f.kaser@gmx.net>",
+            null };
+
+        Gtk.show_about_dialog (main_window,
+            "artists", artists,
+            "authors", authors,
+            "comments", _("Take photos and videos with your webcam, with fun graphical effects"),
+            "copyright", "Copyright © 2007 - 2010 daniel g. siegel <dgsiegel@gnome.org>",
+            "documenters", documenters,
+            "license-type", Gtk.License.GPL_2_0,
+            "logo-icon-name", Config.PACKAGE_TARNAME,
+            "program-name", _("Cheese"),
+            "translator-credits", _("translator-credits"),
+            "website", Config.PACKAGE_URL,
+            "website-label", _("Cheese Website"),
+            "version", Config.PACKAGE_VERSION);
+    }
+
+    /**
+     * Destroy the main window, and shutdown the application, when quitting.
+     */
+    private void on_quit ()
+    {
+        main_window.destroy ();
+    }
 }
 
   public int main (string[] args)
