@@ -89,6 +89,7 @@
                         <property name="vexpand">False</property>
                         <child>
                           <object class="GtkButton" id="take_action_button">
+                            <property name="action-name">app.shoot</property>
                             <property name="tooltip_text" translatable="yes">Take a photo</property>
                             <child>
                               <object class="GtkGrid" id="take_action_button_internal_hbox">

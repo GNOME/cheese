@@ -36,6 +36,7 @@ public class Cheese.Main : Gtk.Application
     private PreferencesDialog preferences_dialog;
 
     private const GLib.ActionEntry action_entries[] = {
+        { "shoot", on_shoot },
         { "mode", on_action_radio, "s", "'photo'", on_mode_change },
         { "fullscreen", on_action_toggle, null, "false", on_fullscreen_change },
         { "effects", on_action_toggle, null, "false", on_effects_change },
@@ -240,6 +241,15 @@ public class Cheese.Main : Gtk.Application
 
         // Toggle current state.
         action.change_state (new Variant.boolean (!state.get_boolean ()));
+    }
+
+    /**
+     * Handle the shoot action being activated.
+     */
+    private void on_shoot ()
+    {
+        // Shoot.
+        main_window.shoot ();
     }
 
     /**

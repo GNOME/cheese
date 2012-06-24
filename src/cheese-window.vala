@@ -40,11 +40,6 @@ const string SENDTO_EXEC = "nautilus-sendto";
 
 public class Cheese.MainWindow : Gtk.ApplicationWindow
 {
-    // Actions for the app menu.
-    private const GLib.ActionEntry entries[] = {
-        { "shoot", on_take_action }
-    };
-
     private MediaMode current_mode;
 
   private Gtk.Builder    gtk_builder;
@@ -1004,30 +999,28 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
   }
 
-  /**
-   * Take a photo or burst of photos, or record a video, based on the current
-   * capture mode.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_take_action (SimpleAction action, Variant? parameter)
-  {
-    if (current_mode == MediaMode.PHOTO)
+    /**
+     * Take a photo or burst of photos, or record a video, based on the current
+     * capture mode.
+     */
+    [CCode (instance_pos = -1)]
+    public void shoot ()
     {
-      this.take_photo ();
+        switch (current_mode)
+        {
+            case MediaMode.PHOTO:
+                take_photo ();
+                break;
+            case MediaMode.VIDEO:
+                toggle_video_recording (!is_recording);
+                break;
+            case MediaMode.BURST:
+                toggle_photo_bursting (!is_bursting);
+                break;
+            default:
+                assert_not_reached ();
+        }
     }
-    else
-    if (current_mode == MediaMode.VIDEO)
-    {
-      toggle_video_recording (!is_recording);
-    }
-    else
-    if (current_mode == MediaMode.BURST)
-    {
-      toggle_photo_bursting (!is_bursting);
-    }
-  }
 
     /**
      * Toggle the display of the effect selector.
@@ -1379,8 +1372,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
       error ("Error: %s", err.message);
     }
-
-    add_action_entries (entries, this);
 
     main_vbox                         = gtk_builder.get_object ("mainbox_normal") as Gtk.Grid;
     thumbnails                        = gtk_builder.get_object ("thumbnails") as Gtk.Widget;
