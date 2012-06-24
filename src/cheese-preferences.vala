@@ -550,17 +550,16 @@ public class Cheese.PreferencesDialog : GLib.Object
     this.dialog.show_all ();
   }
   
-  /**
-   * Set the current media mode (photo, video, burst).
-   *
-   * The current mode is used if the photo or video resolution is changed, in
-   * order to propagate that change to the Cheese.Camera.
-   *
-   * @param mode the media mode to set
-   */
-  public void set_current_mode (MediaMode mode)
-  {
-    this.current_mode = mode;
-  }
-  
+    /**
+     * Set the current media mode (photo, video or burst).
+     *
+     * The current mode is used to update the video format on the Cheese.Camera
+     * when the resolution for the current mode is changed.
+     *
+     * @param mode the media mode to set
+     */
+    public void set_current_mode (MediaMode mode)
+    {
+        current_mode = mode;
+    }
 }

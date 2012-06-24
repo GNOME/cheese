@@ -106,37 +106,6 @@
       </object>
     </child>
     <child>
-      <object class="GtkActionGroup" id="mode_actions">
-        <child>
-          <object class="GtkRadioAction" id="photo_mode">
-            <property name="name">Photo</property>
-            <property name="label" translatable="yes">_Photo</property>
-            <property name="value">0</property>
-            <property name="active">True</property>
-            <signal name="activate" handler="cheese_main_window_on_mode_change"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkRadioAction" id="video_mode">
-            <property name="name">Video</property>
-            <property name="label" translatable="yes">_Video</property>
-            <property name="group">photo_mode</property>
-            <property name="value">1</property>
-            <signal name="activate" handler="cheese_main_window_on_mode_change"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkRadioAction" id="burst_mode">
-            <property name="name">Burst</property>
-            <property name="label" translatable="yes">_Burst</property>
-            <property name="group">photo_mode</property>
-            <property name="value">2</property>
-            <signal name="activate" handler="cheese_main_window_on_mode_change"/>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="GtkActionGroup" id="effects_actions">
         <child>
           <object class="GtkToggleAction" id="effects_toggle">
@@ -162,17 +131,6 @@
             <signal name="activate" handler="cheese_main_window_on_next_effects_page"/>
           </object>
           <accelerator key="k" modifiers="GDK_CONTROL_MASK"/>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkActionGroup" id="preferences_actions">
-        <child>
-          <object class="GtkAction" id="preferences">
-            <property name="name">Preferences</property>
-            <property name="stock-id">gtk-preferences</property>
-            <signal name="activate" handler="cheese_main_window_on_preferences_dialog"/>
-          </object>
         </child>
       </object>
     </child>

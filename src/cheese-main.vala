@@ -26,14 +26,18 @@ using Gst;
 
 public class Cheese.Main : Gtk.Application
 {
-  static bool   wide;
-  static string device;
-  static bool   version;
-  static bool   fullscreen;
+    static bool wide;
+    static string device;
+    static bool version;
+    static bool fullscreen;
 
-  static Cheese.MainWindow main_window;
+    static MainWindow main_window;
+
+    private PreferencesDialog preferences_dialog;
 
     private const GLib.ActionEntry action_entries[] = {
+        { "mode", on_action_radio, "s", "'photo'", on_mode_change },
+        { "preferences", on_preferences },
         { "help", on_help },
         { "about", on_about },
         { "quit", on_quit }
@@ -111,7 +115,6 @@ public class Cheese.Main : Gtk.Application
       if (fullscreen)
         main_window.set_startup_fullscreen_mode ();
 
-      main_window.set_application (this);
       main_window.show ();
       main_window.setup_camera (device);
      }
@@ -197,6 +200,62 @@ public class Cheese.Main : Gtk.Application
     }
     return true;
   }
+
+    /**
+     * Update the current capture mode in the main window and preferences
+     * dialog.
+     *
+     * @param mode the mode to set
+     */
+    private void update_mode (MediaMode mode)
+    {
+        main_window.set_current_mode (mode);
+        preferences_dialog.set_current_mode (mode);
+    }
+
+    /**
+     * Handle radio actions by setting the new state.
+     *
+     * @param action the action which was triggered
+     * @param parameter the new value to set on the action
+     */
+    private void on_action_radio (SimpleAction action, Variant? parameter)
+    {
+        action.change_state (parameter);
+    }
+
+    /**
+     * Change the media capture mode (photo, video or burst).
+     *
+     * @param action the action that emitted the signal
+     * @param parameter the mode to switch to, or null
+     */
+    private void on_mode_change (SimpleAction action, Variant? value)
+    {
+        return_if_fail (value != null);
+
+        var state = value.get_string ();
+
+        // FIXME: Should be able to get these from the enum.
+        if (state == "photo")
+            update_mode (MediaMode.PHOTO);
+        else if (state == "video")
+            update_mode (MediaMode.VIDEO);
+        else if (state == "burst")
+            update_mode (MediaMode.BURST);
+        else
+            assert_not_reached ();
+
+        action.set_state (value);
+    }
+
+    /**
+     * Show the preferences dialog.
+     */
+    private void on_preferences ()
+    {
+        preferences_dialog.show ();
+    }
 
     /**
      * Show the Cheese help contents.

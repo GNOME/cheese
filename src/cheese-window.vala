@@ -43,13 +43,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     // Actions for the app menu.
     private const GLib.ActionEntry entries[] = {
         { "shoot", on_take_action },
-        { "mode", null, "s", "'photo'", on_mode_change },
         { "fullscreen", null, null, "false", on_layout_fullscreen },
-        { "effects", null, null, "false", on_effects_toggle },
-        { "preferences", on_preferences_dialog }
+        { "effects", null, null, "false", on_effects_toggle }
     };
 
-  private MediaMode current_mode;
+    private MediaMode current_mode;
 
   private Gtk.Builder    gtk_builder;
   private Clutter.Script clutter_builder;
@@ -91,9 +89,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Gtk.Action       take_photo_action;
   private Gtk.Action       take_video_action;
   private Gtk.Action       take_burst_action;
-  private Gtk.Action       photo_mode_action;
-  private Gtk.Action       video_mode_action;
-  private Gtk.Action       burst_mode_action;
   private Gtk.ToggleAction effects_toggle_action;
   private Gtk.ToggleAction wide_mode_action;
   private Gtk.ToggleAction fullscreen_action;
@@ -118,7 +113,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Cheese.Flash    flash;
 
   private Cheese.EffectsManager    effects_manager;
-  private Cheese.PreferencesDialog preferences_dialog;
 
   private Cheese.Effect selected_effect;
 
@@ -140,20 +134,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
         GLib.Object (application: application);
     }
-
-  /**
-   * Show the preferences dialog when requested, creating it as necessary.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_preferences_dialog (SimpleAction action, Variant? parameter)
-  {
-    if (preferences_dialog == null)
-      preferences_dialog = new Cheese.PreferencesDialog (camera, settings);
-    preferences_dialog.set_current_mode (current_mode);
-    preferences_dialog.show ();
-  }
 
   /**
    * Popup a context menu when right-clicking on a thumbnail.
@@ -559,27 +539,23 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         set_fullscreen_mode (action.state.get_boolean ());
     }
 
-  /**
-   * Make the media capture mode actions sensitive.
-   */
-  private void enable_mode_change ()
-  {
-    photo_mode_action.sensitive = true;
-    video_mode_action.sensitive = true;
-    burst_mode_action.sensitive = true;
-    effects_toggle_action.sensitive = true;
-  }
+    /**
+     * Make the media capture mode actions sensitive.
+     */
+    private void enable_mode_change ()
+    {
+        // FIXME: Set the mode action to be sensitive
+        effects_toggle_action.sensitive = true;
+    }
 
-  /**
-   * Make the media capture mode actions insensitive.
-   */
-  private void disable_mode_change ()
-  {
-     photo_mode_action.sensitive = false;
-     video_mode_action.sensitive = false;
-     burst_mode_action.sensitive = false;
-     effects_toggle_action.sensitive = false;
-  }
+    /**
+     * Make the media capture mode actions insensitive.
+     */
+    private void disable_mode_change ()
+    {
+        // FIXME: Set the mode action to be sensitive
+        effects_toggle_action.sensitive = false;
+    }
 
   /**
    * Set the capture resolution, based on the current capture mode.
@@ -631,42 +607,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    */
   private void set_mode (MediaMode mode)
   {
-    this.current_mode = mode;
-    
-    set_resolution (current_mode);
-    
-    if (preferences_dialog != null)
-      preferences_dialog.set_current_mode (current_mode);
-
-    timeout_layer.hide ();
-
-    switch (this.current_mode)
-    {
-      case MediaMode.PHOTO:
-        take_photo_action.sensitive       = true;
-        take_video_action.sensitive       = false;
-        take_burst_action.sensitive       = false;
-        take_action_button.related_action = take_photo_action;
-        break;
-
-      case MediaMode.VIDEO:
-        take_photo_action.sensitive       = false;
-        take_video_action.sensitive       = true;
-        take_burst_action.sensitive       = false;
-        take_action_button.related_action = take_video_action;
-        timeout_layer.text = "00:00:00";
-        timeout_layer.show ();
-        break;
-
-      case MediaMode.BURST:
-        take_photo_action.sensitive       = false;
-        take_video_action.sensitive       = false;
-        take_burst_action.sensitive       = true;
-        take_action_button.related_action = take_burst_action;
-        break;
-    }
-    take_action_button_label.label  = "<b>" + take_action_button.related_action.label + "</b>";
-    take_action_button.tooltip_text = take_action_button.related_action.tooltip;
 }
 
   private TimeoutSource fullscreen_timeout;
@@ -1100,22 +1040,20 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
   }
 
-  /**
-   * Toggle the display of the effect selector.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_effects_toggle (SimpleAction action, Variant value)
-  {
-    toggle_effects_selector (action.enabled);
-    take_photo_action.sensitive = !action.enabled;
-    take_video_action.sensitive = !action.enabled;
-    take_burst_action.sensitive = !action.enabled;
-    photo_mode_action.sensitive = !action.enabled;
-    video_mode_action.sensitive = !action.enabled;
-    burst_mode_action.sensitive = !action.enabled;
-  }
+    /**
+     * Toggle the display of the effect selector.
+     *
+     * @param action the action that emitted the signal
+     */
+    [CCode (instance_pos = -1)]
+    public void on_effects_toggle (SimpleAction action, Variant value)
+    {
+        toggle_effects_selector (action.enabled);
+        take_photo_action.sensitive = !action.enabled;
+        take_video_action.sensitive = !action.enabled;
+        take_burst_action.sensitive = !action.enabled;
+        // FIXME: Set the mode action to be inverse sensitivity to effects.
+    }
 
   /**
    * Change the selected effect, as a new one was selected.
@@ -1479,9 +1417,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     take_photo_action        = gtk_builder.get_object ("take_photo") as Gtk.Action;
     take_video_action        = gtk_builder.get_object ("take_video") as Gtk.Action;
     take_burst_action        = gtk_builder.get_object ("take_burst") as Gtk.Action;
-    photo_mode_action        = gtk_builder.get_object ("photo_mode") as Gtk.Action;
-    video_mode_action        = gtk_builder.get_object ("video_mode") as Gtk.Action;
-    burst_mode_action        = gtk_builder.get_object ("burst_mode") as Gtk.Action;
     effects_toggle_action    = gtk_builder.get_object ("effects_toggle") as Gtk.ToggleAction;
     countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
     wide_mode_action         = gtk_builder.get_object ("wide_mode") as Gtk.ToggleAction;
@@ -1628,4 +1563,47 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     thumb_view.start_monitoring_video_path (fileutil.get_video_path ());
     thumb_view.start_monitoring_photo_path (fileutil.get_photo_path ());
   }
+
+    /**
+     * Set the current media mode (photo, video or burst).
+     *
+     * @param mode the media mode to set
+     */
+    public void set_current_mode (MediaMode mode)
+    {
+        current_mode = mode;
+
+        set_resolution (current_mode);
+
+        timeout_layer.hide ();
+
+        switch (current_mode)
+        {
+            case MediaMode.PHOTO:
+                take_photo_action.sensitive = true;
+                take_video_action.sensitive = false;
+                take_burst_action.sensitive = false;
+                take_action_button.related_action = take_photo_action;
+                break;
+
+            case MediaMode.VIDEO:
+                take_photo_action.sensitive = false;
+                take_video_action.sensitive = true;
+                take_burst_action.sensitive = false;
+                take_action_button.related_action = take_video_action;
+                timeout_layer.text = "00:00:00";
+                timeout_layer.show ();
+                break;
+
+            case MediaMode.BURST:
+                take_photo_action.sensitive = false;
+                take_video_action.sensitive = false;
+                take_burst_action.sensitive = true;
+                take_action_button.related_action = take_burst_action;
+                break;
+        }
+
+        take_action_button_label.label  = "<b>" + take_action_button.related_action.label + "</b>";
+        take_action_button.tooltip_text = take_action_button.related_action.tooltip;
+    }
 }
