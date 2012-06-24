@@ -43,7 +43,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     // Actions for the app menu.
     private const GLib.ActionEntry entries[] = {
         { "shoot", on_take_action },
-        { "fullscreen", null, null, "false", on_layout_fullscreen },
         { "effects", null, null, "false", on_effects_toggle }
     };
 
@@ -88,7 +87,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
   private Gtk.ToggleAction effects_toggle_action;
   private Gtk.ToggleAction wide_mode_action;
-  private Gtk.ToggleAction fullscreen_action;
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
   private Gtk.Action       effects_page_next_action;
@@ -521,19 +519,19 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     /**
      * Toggle fullscreen mode and save the preference to GSettings.
      *
-     * @param action the action that emitted the signal
+     * @param fullscreen whether the window should be fullscreean
      */
     [CCode (instance_pos = -1)]
-    public void on_layout_fullscreen (SimpleAction action, Variant value)
+    public void set_fullscreen (bool fullscreen)
     {
         if (!is_command_line_startup)
         {
             /* Don't save to settings when using -f mode from command-line, so
              * command-line options change the mode for one run only. */
-            settings.set_boolean ("fullscreen", action.enabled);
+            settings.set_boolean ("fullscreen", fullscreen);
         }
 
-        set_fullscreen_mode (action.state.get_boolean ());
+        set_fullscreen_mode (fullscreen);
     }
 
     /**
@@ -673,7 +671,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       {
         thumbnails_bottom.hide ();
       }
-      this.set_show_menubar (false);
       leave_fullscreen_button_container.no_show_all = false;
       leave_fullscreen_button_container.show_all ();
 
@@ -697,7 +694,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       {
         thumbnails_bottom.show_all ();
       }
-      this.set_show_menubar (true);
       leave_fullscreen_button_container.hide ();
 
       /* Make all buttons look, uhm, Normal */
@@ -1360,7 +1356,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   public void set_startup_fullscreen_mode ()
   {
     is_command_line_startup = true;
-    fullscreen_action.set_active (true);
+    set_fullscreen (true);
     is_command_line_startup = false;
   }
 
@@ -1409,7 +1405,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     effects_toggle_action    = gtk_builder.get_object ("effects_toggle") as Gtk.ToggleAction;
     countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
     wide_mode_action         = gtk_builder.get_object ("wide_mode") as Gtk.ToggleAction;
-    fullscreen_action        = gtk_builder.get_object ("fullscreen") as Gtk.ToggleAction;
     effects_page_next_action = gtk_builder.get_object ("effects_page_next") as Gtk.Action;
     effects_page_prev_action = gtk_builder.get_object ("effects_page_prev") as Gtk.Action;
     share_action             = gtk_builder.get_object ("share") as Gtk.Action;
@@ -1486,9 +1481,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     toggle_camera_actions_sensitivities (false);
 
     this.key_release_event.connect (on_key_release);
-
-    if (settings.get_boolean ("fullscreen"))
-      fullscreen_action.active = true;
   }
 
   /**

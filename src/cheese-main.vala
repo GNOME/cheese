@@ -37,6 +37,7 @@ public class Cheese.Main : Gtk.Application
 
     private const GLib.ActionEntry action_entries[] = {
         { "mode", on_action_radio, "s", "'photo'", on_mode_change },
+        { "fullscreen", on_action_toggle, null, "false", on_fullscreen_change },
         { "preferences", on_preferences },
         { "help", on_help },
         { "about", on_about },
@@ -106,6 +107,8 @@ public class Cheese.Main : Gtk.Application
             section.append (_("_Help"), "app.help");
             section.append (_("_Quit"), "app.quit");
             set_app_menu (menu);
+
+            // FIXME: Read fullscreen state from GSettings.
 
       main_window.setup_ui ();
       main_window.start_thumbview_monitors ();
@@ -222,6 +225,37 @@ public class Cheese.Main : Gtk.Application
     private void on_action_radio (SimpleAction action, Variant? parameter)
     {
         action.change_state (parameter);
+    }
+
+    /**
+     * Handle toggle actions by toggling the current state.
+     *
+     * @param action the action which was triggered
+     * @param parameter unused
+     */
+    private void on_action_toggle (SimpleAction action, Variant? parameter)
+    {
+        var state = action.get_state ();
+
+        // Toggle current state.
+        action.change_state (new Variant.boolean (!state.get_boolean ()));
+    }
+
+    /**
+     * Handle the fullscreen state being changed.
+     *
+     * @param action the action that emitted the signal
+     * @param value the state to switch to
+     */
+    private void on_fullscreen_change (SimpleAction action, Variant? value)
+    {
+        return_if_fail (value != null);
+
+        var state = value.get_boolean ();
+
+        main_window.set_fullscreen (state);
+
+        action.set_state (value);
     }
 
     /**

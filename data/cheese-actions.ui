@@ -58,14 +58,6 @@
     <child>
       <object class="GtkActionGroup" id="layout_actions">
         <child>
-          <object class="GtkToggleAction" id="fullscreen">
-            <property name="name">Fullscreen</property>
-            <property name="stock-id">gtk-fullscreen</property>
-            <signal name="toggled" handler="cheese_main_window_on_layout_fullscreen"/>
-          </object>
-          <accelerator key="F11" modifiers=""/>
-        </child>
-        <child>
           <object class="GtkToggleAction" id="wide_mode">
             <property name="name">WideMode</property>
             <property name="label" translatable="yes">_Wide Mode</property>
