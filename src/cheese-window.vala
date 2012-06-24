@@ -42,8 +42,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 {
     // Actions for the app menu.
     private const GLib.ActionEntry entries[] = {
-        { "shoot", on_take_action },
-        { "effects", null, null, "false", on_effects_toggle }
+        { "shoot", on_take_action }
     };
 
     private MediaMode current_mode;
@@ -85,7 +84,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private int                current_effects_page = 0;
   private ArrayList<Clutter.Box> effects_grids;
 
-  private Gtk.ToggleAction effects_toggle_action;
   private Gtk.ToggleAction wide_mode_action;
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
@@ -540,7 +538,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     private void enable_mode_change ()
     {
         // FIXME: Set the mode action to be sensitive
-        effects_toggle_action.sensitive = true;
+        // FIXME: Set the effects action to be sensitive.
     }
 
     /**
@@ -549,7 +547,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     private void disable_mode_change ()
     {
         // FIXME: Set the mode action to be sensitive
-        effects_toggle_action.sensitive = false;
+        // FIXME: Set the effects action to be insensitive.
     }
 
   /**
@@ -902,7 +900,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       else
       if (is_effects_selector_active)
       {
-        effects_toggle_action.set_active (false);
+        // FIXME: Set the effects action to be inactive.
       }
     }
     return false;
@@ -973,7 +971,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
       is_bursting = true;
       this.disable_mode_change ();
-      effects_toggle_action.sensitive = false;
+      // FIXME: Set the effects action to be inactive.
       take_action_button_label.label  = "<b>" + _("Stop _Taking Pictures") + "</b>";
       take_action_button.tooltip_text = _("Stop taking pictures");
       burst_take_photo ();
@@ -1034,12 +1032,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     /**
      * Toggle the display of the effect selector.
      *
-     * @param action the action that emitted the signal
+     * @param effects whether effects should be enabled
      */
     [CCode (instance_pos = -1)]
-    public void on_effects_toggle (SimpleAction action, Variant value)
+    public void set_effects (bool effects)
     {
-        toggle_effects_selector (action.enabled);
+        toggle_effects_selector (effects);
         // FIXME: Set the mode action to be inverse sensitivity to effects.
     }
 
@@ -1056,7 +1054,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     selected_effect = source.get_data ("effect");
     camera.set_effect (selected_effect);
     settings.set_string ("selected-effect", selected_effect.name);
-    effects_toggle_action.set_active (false);
+    // FIXME: Set the effects action to be inactive.
     return false;
   }
 
@@ -1402,7 +1400,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.Box;
     thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
-    effects_toggle_action    = gtk_builder.get_object ("effects_toggle") as Gtk.ToggleAction;
     countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
     wide_mode_action         = gtk_builder.get_object ("wide_mode") as Gtk.ToggleAction;
     effects_page_next_action = gtk_builder.get_object ("effects_page_next") as Gtk.Action;

@@ -38,9 +38,10 @@ public class Cheese.Main : Gtk.Application
     private const GLib.ActionEntry action_entries[] = {
         { "mode", on_action_radio, "s", "'photo'", on_mode_change },
         { "fullscreen", on_action_toggle, null, "false", on_fullscreen_change },
+        { "effects", on_action_toggle, null, "false", on_effects_change },
         { "preferences", on_preferences },
-        { "help", on_help },
         { "about", on_about },
+        { "help", on_help },
         { "quit", on_quit }
     };
 
@@ -254,6 +255,23 @@ public class Cheese.Main : Gtk.Application
         var state = value.get_boolean ();
 
         main_window.set_fullscreen (state);
+
+        action.set_state (value);
+    }
+
+    /**
+     * Handle the effects state being changed.
+     *
+     * @param action the action that emitted the signal
+     * @param value the state to switch to
+     */
+    private void on_effects_change (SimpleAction action, Variant? value)
+    {
+        return_if_fail (value != null);
+
+        var state = value.get_boolean ();
+
+        main_window.set_effects (state);
 
         action.set_state (value);
     }

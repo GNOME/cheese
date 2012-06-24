@@ -69,13 +69,6 @@
     <child>
       <object class="GtkActionGroup" id="effects_actions">
         <child>
-          <object class="GtkToggleAction" id="effects_toggle">
-            <property name="name">Effects</property>
-            <property name="label" translatable="yes">_Effects</property>
-            <signal name="toggled" handler="cheese_main_window_on_effects_toggle"/>
-          </object>
-        </child>
-        <child>
           <object class="GtkAction" id="effects_page_prev">
             <property name="name">Previous Effects</property>
             <property name="label" translatable="yes">P_revious Effects</property>
