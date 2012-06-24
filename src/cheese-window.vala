@@ -86,9 +86,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private int                current_effects_page = 0;
   private ArrayList<Clutter.Box> effects_grids;
 
-  private Gtk.Action       take_photo_action;
-  private Gtk.Action       take_video_action;
-  private Gtk.Action       take_burst_action;
   private Gtk.ToggleAction effects_toggle_action;
   private Gtk.ToggleAction wide_mode_action;
   private Gtk.ToggleAction fullscreen_action;
@@ -825,7 +822,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     if (current_mode == MediaMode.PHOTO)
     {
-      take_photo_action.sensitive = true;
       enable_mode_change ();
     }
   }
@@ -840,7 +836,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
       if (current_mode == MediaMode.PHOTO)
       {
-        take_photo_action.sensitive = false;
         disable_mode_change ();
       }
 
@@ -947,8 +942,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
        *   + The user is currently not recording.
        */
       timeout_layer.text = "00:00:00";
-      take_action_button_label.label = "<b>" + take_action_button.related_action.label + "</b>";
-      take_action_button.tooltip_text = take_action_button.related_action.tooltip;
+      take_action_button_label.label = "<b>" + _("Record a Video") + "</b>";
+      take_action_button.tooltip_text = _("Record a video");
       take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_RECORD, Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
@@ -1007,8 +1002,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
       is_bursting = false;
       this.enable_mode_change ();
-      take_action_button_label.label  = "<b>" + take_action_button.related_action.label + "</b>";
-      take_action_button.tooltip_text = take_action_button.related_action.tooltip;
+      take_action_button_label.label  = "<b>" + _("Take Multiple Photos") + "</b>";
+      take_action_button.tooltip_text = _("Take multiple photos");
       burst_count = 0;
       fileutil.reset_burst ();
       GLib.Source.remove (burst_callback_id);
@@ -1049,9 +1044,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     public void on_effects_toggle (SimpleAction action, Variant value)
     {
         toggle_effects_selector (action.enabled);
-        take_photo_action.sensitive = !action.enabled;
-        take_video_action.sensitive = !action.enabled;
-        take_burst_action.sensitive = !action.enabled;
         // FIXME: Set the mode action to be inverse sensitivity to effects.
     }
 
@@ -1414,9 +1406,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.Box;
     thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
-    take_photo_action        = gtk_builder.get_object ("take_photo") as Gtk.Action;
-    take_video_action        = gtk_builder.get_object ("take_video") as Gtk.Action;
-    take_burst_action        = gtk_builder.get_object ("take_burst") as Gtk.Action;
     effects_toggle_action    = gtk_builder.get_object ("effects_toggle") as Gtk.ToggleAction;
     countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
     wide_mode_action         = gtk_builder.get_object ("wide_mode") as Gtk.ToggleAction;
@@ -1580,30 +1569,21 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         switch (current_mode)
         {
             case MediaMode.PHOTO:
-                take_photo_action.sensitive = true;
-                take_video_action.sensitive = false;
-                take_burst_action.sensitive = false;
-                take_action_button.related_action = take_photo_action;
+                take_action_button_label.label = "<b>" + _("Take a Photo") + "</b>";
+                take_action_button.tooltip_text = _("Take a photo");
                 break;
 
             case MediaMode.VIDEO:
-                take_photo_action.sensitive = false;
-                take_video_action.sensitive = true;
-                take_burst_action.sensitive = false;
-                take_action_button.related_action = take_video_action;
+                take_action_button_label.label = "<b>" + _("Record a Video") + "</b>";
+                take_action_button.tooltip_text = _("Record a video");
                 timeout_layer.text = "00:00:00";
                 timeout_layer.show ();
                 break;
 
             case MediaMode.BURST:
-                take_photo_action.sensitive = false;
-                take_video_action.sensitive = false;
-                take_burst_action.sensitive = true;
-                take_action_button.related_action = take_burst_action;
+                take_action_button_label.label = "<b>" + _("Take _Multiple Photos") + "</b>";
+                take_action_button.tooltip_text = _("Take multiple photos");
                 break;
         }
-
-        take_action_button_label.label  = "<b>" + take_action_button.related_action.label + "</b>";
-        take_action_button.tooltip_text = take_action_button.related_action.tooltip;
     }
 }

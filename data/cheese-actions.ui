@@ -75,37 +75,6 @@
       </object>
     </child>
     <child>
-      <object class="GtkActionGroup" id="take_actions">
-        <child>
-          <object class="GtkAction" id="take_photo">
-            <property name="name">TakePhoto</property>
-            <property name="label" translatable="yes">_Take a Photo</property>
-            <property name="tooltip" translatable="yes">Take a photo</property>
-            <signal name="activate" handler="cheese_main_window_on_take_action"/>
-          </object>
-          <accelerator key="space" modifiers=""/>
-        </child>
-        <child>
-          <object class="GtkAction" id="take_video">
-            <property name="name">TakeVideo</property>
-            <property name="label" translatable="yes">_Record a Video</property>
-            <property name="tooltip" translatable="yes">Record a video</property>
-            <signal name="activate" handler="cheese_main_window_on_take_action"/>
-          </object>
-          <accelerator key="space" modifiers=""/>
-        </child>
-        <child>
-          <object class="GtkAction" id="take_burst">
-            <property name="name">TakeBurst</property>
-            <property name="label" translatable="yes">Take _Multiple Photos</property>
-            <property name="tooltip" translatable="yes">Take multiple photos</property>
-            <signal name="activate" handler="cheese_main_window_on_take_action"/>
-          </object>
-          <accelerator key="space" modifiers=""/>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="GtkActionGroup" id="effects_actions">
         <child>
           <object class="GtkToggleAction" id="effects_toggle">
