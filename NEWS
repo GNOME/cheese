@@ -1,6 +1,94 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.5.3
+  - Add border to capture page of preferences dialog
+  - Add accelerators to menu items
+  - Make the preferences dialog work again
+    Move the Cheese.Camera to Cheese.Main and use the same camera in
+    Cheese.MainWindow and Cheese.PreferencesDialog. Setup the Camera in
+    Cheese.Main.
+  - Enable handling of the shoot action
+  - Enable effects state change action
+  - Enable handling of the fullscreen action
+  - Set photo button text based on mode state
+  - Make preferences and mode actions application-wide
+    Move PreferencesDialog from MainWindow to Main. Handle app.mode action
+    changes and update the state accordingly.
+  - Add David King to authors in about dialog
+  - Start porting to application-wide GMenu
+    Add a menu to the application, and enable application-wide actions for
+    showing the help, showing the about dialog and quitting the application.
+    Move the GtkBuilder definition of the about dialog into Cheese.Main.
+  - Update TODO
+    Remove some completed TODO items.
+  - Use a realtime preset for video encoder element
+    Use the ‘Profile Realtime’ preset for vp8enc to set reasonable defaults
+    for realtime encoding. The preset was added in gst-plugins-bad 0.10.23,
+    so fall back to reasonable defaults. Fixes bug 668560 and partially
+    fixes bug 674779.
+  - Do not add 0-sized files to the thumb view
+    Sometimes, ie when Cheese crashes when starting to record, something which
+    we need to fix, 0 bytes large files are created under ~/Videos/Webcam.
+
+    totem-video-thumbnailer does not like these, getting stuck for around a
+    minute on them, I have filed bug 677734 for this.
+
+    But even with this bug fixed, trying to add 0 byte sized files to the
+    thumb view makes no sense, and in the mean time it also neatly works
+    around this totem-video-thumbnailer bug.
+
+    Fixes bug 677735.
+  - Do not overwrite camerabin's default flags
+    The comment above this code said: "Set flags to enable conversions", but
+    camerabin has conversion enabled in the necessary places by default, all
+    the code does is add an extra, unneeded ffmpegcsp element at the
+    beginning of the pipeline.
+
+    This results in a huge number of reported caps on pads further down the
+    pipeline, which when intersected with input caps of later ffmpegcsp
+    elements leads to an explosion of possible combinations and
+    gst_caps_intersect_full starts consuming the CPU for 100% for seconds
+    (various Fedora users have reported startup delays of upto a minute).
+
+    On my test system, with a Logitech Webcam 9000 Pro, the time to create
+    the camerabin pipeline (not start, not configure, just create!) drops
+    from 7 seconds to 0.7 seconds by elimenating the unnecessary ffmpegcsp
+    element at the beginning of the pipe.
+
+    The only reason the ffmpegcsp element this patch removes could be useful
+    would be for cameras producing only JPEG data, but since Cheese always
+    uses v4l2src, and that should always be compiled with libv4l2 support
+    (otherwise a lot of camera specific video formats will not be
+    understood), libv4l2 will take care of JPEG decompression, so there
+    really is no reason for having this extra element, and thus no reason to
+    override the default camerabin flags.
+
+    Fixes bug 677731.
+
+  - Add libcheese headers to GIR source files
+  - Fix images missing from effect buttons
+    Commit 4cb11731e62b51c684993e43000c933ea97785c2 fixed the images missing
+    from the photo / video / burst buttons, but the same problem also
+    affects the previous effects-page, effects, next effects-page buttons.
+    This patch fixes them too.
+
+    Note that unlike the commit message of commit 4cb11731 suggest this
+    not only fixes the printing of warnings to the console, it also fixes
+    the pixmaps actually missing from the buttons. Fixes bug 677543.
+  - Do not add NULL devices to the camera list
+    cheese_camera_device_monitor_set_up_device() will return NULL for non
+    video devices (ie vbi & radio devices). Emitting the added signal with
+    such a NULL device, causes it to get added to the camera list, which
+    later on causes cheese to crash.
+
+    This patch fixes this by not emitting the added signal for non camera
+    devices. Fixes bug 677574.
+  - Post-release version bump to 3.5.3
+  - Added/Updated Translations
+    - as, courtesy of Nilamdyuti Goswami
+    - el, courtesy of Ioannis Zampoukas
+
 version 3.5.2
   - Depend on intltool 0.50 for GSettings translations
   - Use G_SOURCE_REMOVE and _CONTINUE
