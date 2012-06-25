@@ -232,6 +232,7 @@ public class Cheese.Main : Gtk.Application
             "Filippo Argiolas <fargiolas@gnome.org>",
             "Yuvaraj Pandian T <yuvipanda@yuvi.in>",
             "Luciana Fujii Pontello <luciana@fujii.eti.br>",
+            "David King <amigadave@amigadave.com>",
             "",
             "Aidan Delaney <a.j.delaney@brighton.ac.uk>",
             "Alex \"weej\" Jones <alex@weej.com>",
