@@ -89,7 +89,9 @@ public class Cheese.Main : Gtk.Application
             var menu = new GLib.Menu ();
             var section = new GLib.Menu ();
             menu.append_section (null, section);
-            section.append (_("_Shoot"), "app.shoot");
+            var item = new GLib.MenuItem (_("_Shoot"), "app.shoot");
+            item.set_attribute ("accel", "s", "space");
+            section.append_item (item);
             section = new GLib.Menu ();
             menu.append_section (_("Mode:"), section);
             section.append (_("_Photo"), "app.mode::photo");
@@ -97,7 +99,9 @@ public class Cheese.Main : Gtk.Application
             section.append (_("_Burst"), "app.mode::burst");
             section = new GLib.Menu ();
             menu.append_section (null, section);
-            section.append (_("_Fullscreen"), "app.fullscreen");
+            item = new GLib.MenuItem (_("_Fullscreen"), "app.fullscreen");
+            item.set_attribute ("accel", "s", "F11");
+            section.append_item (item);
             section = new GLib.Menu ();
             menu.append_section (null, section);
             section.append (_("_Effects"), "app.effects");
@@ -107,8 +111,12 @@ public class Cheese.Main : Gtk.Application
             section = new GLib.Menu ();
             menu.append_section (null, section);
             section.append (_("_About"), "app.about");
-            section.append (_("_Help"), "app.help");
-            section.append (_("_Quit"), "app.quit");
+            item = new GLib.MenuItem (_("_Help"), "app.help");
+            item.set_attribute ("accel", "s", "F1");
+            section.append_item (item);
+            item = new GLib.MenuItem (_("_Quit"), "app.quit");
+            item.set_attribute ("accel", "s", "<Primary>q");
+            section.append_item (item);
             set_app_menu (menu);
 
             // FIXME: Read fullscreen state from GSettings.
