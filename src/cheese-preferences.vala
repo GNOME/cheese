@@ -53,11 +53,11 @@ public class Cheese.PreferencesDialog : GLib.Object
   
   private MediaMode current_mode;
 
-  public PreferencesDialog (Cheese.Camera camera, GLib.Settings settings)
+  public PreferencesDialog (Cheese.Camera camera)
   {
     this.camera = camera;
 
-    this.settings   = settings;
+    settings = new GLib.Settings ("org.gnome.Cheese");
 
     Gtk.Builder builder = new Gtk.Builder ();
     try

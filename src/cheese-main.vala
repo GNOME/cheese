@@ -33,6 +33,7 @@ public class Cheese.Main : Gtk.Application
 
     static MainWindow main_window;
 
+    private Camera camera;
     private PreferencesDialog preferences_dialog;
 
     private const GLib.ActionEntry action_entries[] = {
@@ -120,8 +121,9 @@ public class Cheese.Main : Gtk.Application
       if (fullscreen)
         main_window.set_startup_fullscreen_mode ();
 
-      main_window.show ();
-      main_window.setup_camera (device);
+        main_window.show ();
+        setup_camera (device);
+        preferences_dialog = new PreferencesDialog (camera);
      }
   }
 
@@ -205,6 +207,92 @@ public class Cheese.Main : Gtk.Application
     }
     return true;
   }
+
+    /**
+     * Setup the camera listed in GSettings.
+     *
+     * @param uri the uri of the device node to setup, or null
+     */
+    public void setup_camera (string? uri)
+    {
+        var settings = new GLib.Settings ("org.gnome.Cheese");
+        string device;
+        double value;
+
+        if (uri != null && uri.length > 0)
+        {
+            device = uri;
+        }
+        else
+        {
+            device = settings.get_string ("camera");
+        }
+
+        var video_preview = main_window.get_video_preview ();
+        camera = new Camera (video_preview, device,
+            settings.get_int ("photo-x-resolution"),
+            settings.get_int ("photo-y-resolution"));
+
+        try
+        {
+            camera.setup (device);
+        }
+        catch (Error err)
+        {
+            video_preview.hide ();
+            warning ("Error: %s\n", err.message);
+            //error_layer.text = err.message;
+            //error_layer.show ();
+
+            //toggle_camera_actions_sensitivities (false);
+            return;
+        }
+
+        value = settings.get_double ("brightness");
+        if (value != 0.0)
+        {
+            camera.set_balance_property ("brightness", value);
+        }
+
+        value = settings.get_double ("contrast");
+        if (value != 1.0)
+        {
+            camera.set_balance_property ("contrast", value);
+        }
+
+        value = settings.get_double ("hue");
+        if (value != 0.0)
+        {
+            camera.set_balance_property ("hue", value);
+        }
+
+        value = settings.get_double ("saturation");
+        if (value != 1.0)
+        {
+            camera.set_balance_property ("saturation", value);
+        }
+
+        camera.state_flags_changed.connect (on_camera_state_flags_changed);
+        main_window.set_camera (camera);
+        camera.play ();
+    }
+
+    /**
+     * Handle the camera state changing.
+     *
+     * @param new_state the new Cheese.Camera state
+     */
+    private void on_camera_state_flags_changed (Gst.State new_state)
+    {
+        switch (new_state)
+        {
+            case Gst.State.PLAYING:
+                main_window.camera_state_change_playing ();
+                break;
+            default:
+                break;
+        }
+    }
 
     /**
      * Update the current capture mode in the main window and preferences

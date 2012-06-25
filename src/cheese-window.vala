@@ -1305,23 +1305,22 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
   }
 
-  /**
-   * Update the UI based on state changes of the camera.
-   *
-   * @param new_state the new Cheese.Camera state
-   */
-  private void camera_state_changed (Gst.State new_state)
-  {
-    if (new_state == Gst.State.PLAYING)
+    /**
+     * Update the UI when the camera starts playing.
+     */
+    public void camera_state_change_playing ()
     {
-      if (!is_camera_actions_sensitive)
-        toggle_camera_actions_sensitivities (true);
+        if (!is_camera_actions_sensitive)
+        {
+            toggle_camera_actions_sensitivities (true);
+        }
 
-      Effect effect = effects_manager.get_effect (settings.get_string ("selected-effect"));
-      if (effect != null)
-        camera.set_effect (effect);
+        Effect effect = effects_manager.get_effect (settings.get_string ("selected-effect"));
+        if (effect != null)
+        {
+            camera.set_effect (effect);
+        }
     }
-  }
 
   /**
    * Set wide mode active when started from the command line (and do not change
@@ -1471,58 +1470,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     this.key_release_event.connect (on_key_release);
   }
 
-  /**
-   * Setup the camera listed in GSettings.
-   *
-   * @param uri the uri of the device node to setup, or null
-   */
-  public void setup_camera (string ? uri)
-  {
-    string device;
-    double value;
-
-    if (uri != null && uri.length > 0)
-      device = uri;
-    else
-      device = settings.get_string ("camera");
-
-    camera = new Camera (video_preview,
-                         device,
-                         settings.get_int ("photo-x-resolution"),
-                         settings.get_int ("photo-y-resolution"));
-    try {
-      camera.setup (device);
-    }
-    catch (Error err)
+    public Clutter.Texture get_video_preview ()
     {
-      video_preview.hide ();
-      warning ("Error: %s\n", err.message);
-      error_layer.text = err.message;
-      error_layer.show ();
-
-      toggle_camera_actions_sensitivities (false);
-      return;
+        return video_preview;
     }
-
-    value = settings.get_double ("brightness");
-    if (value != 0.0)
-      camera.set_balance_property ("brightness", value);
-
-    value = settings.get_double ("contrast");
-    if (value != 1.0)
-      camera.set_balance_property ("contrast", value);
-
-    value = settings.get_double ("hue");
-    if (value != 0.0)
-      camera.set_balance_property ("hue", value);
-
-    value = settings.get_double ("saturation");
-    if (value != 1.0)
-      camera.set_balance_property ("saturation", value);
-
-    camera.state_flags_changed.connect (camera_state_changed);
-    camera.play ();
-  }
 
   /**
    * Setup the thumbview thumbnail monitors.
@@ -1565,5 +1516,15 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
                 take_action_button.tooltip_text = _("Take multiple photos");
                 break;
         }
+    }
+
+    /**
+     * Set the camera.
+     *
+     * @param camera the camera to set
+     */
+    public void set_camera (Camera camera)
+    {
+        this.camera = camera;
     }
 }
