@@ -96,14 +96,14 @@ libcheese_gtk_la_LDFLAGS = \
 
 libcheese_gtk_la_SOURCES = \
 	libcheese/cheese-avatar-chooser.c \
-	libcheese/cheese-aspect-frame.c \
+	libcheese/totem-aspect-frame.c \
 	libcheese/cheese-flash.c \
 	libcheese/cheese-gtk.c \
 	libcheese/cheese-widget.c \
 	libcheese/um-crop-area.c
 
 noinst_libcheese_gtk_headers = \
-	libcheese/cheese-aspect-frame.h \
+	libcheese/totem-aspect-frame.h \
 	libcheese/cheese-avatar-chooser.h \
 	libcheese/cheese-flash.h \
 	libcheese/cheese-widget.h \

@@ -51,7 +51,7 @@ CFILE_GLOB=$(top_srcdir)/libcheese/*.c
 # Header files to ignore when scanning.
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h
 IGNORE_HFILES= \
-	cheese-aspect-frame.h \
+	totem-aspect-frame.h \
 	cheese-enums.h \
 	cheese-widget-private.h \
 	um-crop-area.h \

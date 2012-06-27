@@ -21,13 +21,12 @@
 
 #include <glib/gi18n.h>
 #include <clutter-gst/clutter-gst.h>
-#include <mx/mx.h>
 
 #include "cheese-widget.h"
 #include "cheese-widget-private.h"
 #include "cheese-camera.h"
 #include "cheese-enums.h"
-#include "cheese-aspect-frame.h"
+#include "totem-aspect-frame.h"
 
 /**
  * SECTION:cheese-widget
@@ -219,11 +218,11 @@ cheese_widget_init (CheeseWidget *widget)
   priv->screen = gtk_clutter_embed_new ();
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->screen));
   clutter_stage_set_color (CLUTTER_STAGE (stage), &black);
-  frame = cheese_aspect_frame_new ();
+  frame = totem_aspect_frame_new ();
 
   priv->texture = clutter_texture_new ();
   clutter_actor_set_size (priv->texture, 400, 300);
-  mx_bin_set_child (MX_BIN (frame), priv->texture);
+  totem_aspect_frame_set_child (TOTEM_ASPECT_FRAME (frame), priv->texture);
 
   clutter_container_add_actor (CLUTTER_CONTAINER (stage), frame);
   constraint = clutter_bind_constraint_new (stage, CLUTTER_BIND_SIZE, 0.0);
