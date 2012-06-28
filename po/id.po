@@ -2,7 +2,7 @@
 # Copyright (C) 2010 THE Cheese'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Cheese package.
 #
-# Andika Triwidada <andika@gmail.com>, 2010.
+# Andika Triwidada <andika@gmail.com>, 2010, 2012.
 # Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011.
 # Vincent Sebastian The <vincent.s.the@gmail.com>, 2011.
 #
@@ -11,28 +11,26 @@ msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-06-25 21:41+0000\n"
-"PO-Revision-Date: 2011-12-28 14:54+0700\n"
-"Last-Translator: Vincent Sebastian The <vincent.s.the@gmail.com>\n"
-"Language-Team: Bahasa Indonesia <gnome-i18n-request@gnome.org>\n"
+"POT-Creation-Date: 2012-06-26 19:44+0000\n"
+"PO-Revision-Date: 2012-06-28 10:43+0700\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"Language-Team: Bahasa Indonesia <gnome@i15n.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: id\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Language: Indonesian\n"
 "X-Poedit-Country: Indonesia\n"
 "X-Generator: Lokalize 1.1\n"
 
 #: ../data/cheese-actions.ui.h:1
-#, fuzzy
-#| msgid "Save _As…"
 msgid "Share…"
-msgstr "Simp_an Sebagai..."
+msgstr "Berbagi…"
 
 #: ../data/cheese-actions.ui.h:2
 msgid "Save _As…"
-msgstr "Simp_an Sebagai..."
+msgstr "Simp_an Sebagai…"
 
 #: ../data/cheese-actions.ui.h:3
 msgid "Move to _Trash"
@@ -140,10 +138,8 @@ msgid "Image"
 msgstr "Citra"
 
 #: ../data/cheese-prefs.ui.h:11
-#, fuzzy
-#| msgid "Shutter sound"
 msgid "Shutter"
-msgstr "Suara tombol"
+msgstr "Tombol"
 
 #: ../data/cheese-prefs.ui.h:12
 msgid "_Countdown"
@@ -188,44 +184,34 @@ msgid "Use a countdown"
 msgstr "Gunakan hitung mundur"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:2
-#, fuzzy
-#| msgid "Set to True to show countdown when taking a photo"
 msgid "Set to true to show a countdown before taking a photo"
-msgstr "Tata ke benar untuk menampilkan hitung mundur saat mengambil foto"
+msgstr "Tata ke true untuk menampilkan hitung mundur saat mengambil foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:3
-#, fuzzy
-#| msgid "_Countdown"
 msgid "Countdown length"
-msgstr "_Hitung mundur"
+msgstr "Lama hitung mundur"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:4
-#, fuzzy
-#| msgid "Set to True to show countdown when taking a photo"
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr "Tata ke benar untuk menampilkan hitung mundur saat mengambil foto"
+msgstr "Lama waktu hitung mundur sebelum mengambil foto, dalam detik"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
 msgid "Fire flash before taking a picture"
-msgstr "Nyalakan blitz sebelum mengambil foto"
+msgstr "Nyalakan lampu kilat sebelum mengambil foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-#, fuzzy
-#| msgid "Set to True to show countdown when taking a photo"
 msgid "Set to true to fire a flash when taking a picture"
-msgstr "Tata ke benar untuk menampilkan hitung mundur saat mengambil foto"
+msgstr "Tata ke true untuk menyalakan lampu kilat saat mengambil foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
 msgstr "Indikator string perangkat kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
-#, fuzzy
-#| msgid "The device which points to the camera (e.g. /dev/video0)"
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
-msgstr "Perangkat yang mengacu ke kamera (mis. /dev/video0)"
+msgstr "Path ke perangkat yang mengacu ke kamera, sebagai contoh /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -272,71 +258,55 @@ msgid "Picture brightness"
 msgstr "Kecerahan foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-#, fuzzy
-#| msgid "Adjusts brightness level of the picture coming from the camera"
 msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr "Atur tingkat kecerahan gambar yang datang dari kamera"
+msgstr "Atur kecerahan gambar yang datang dari kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
 msgid "Picture contrast"
 msgstr "Kontras gambar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-#, fuzzy
-#| msgid "Adjusts contrast level of the picture coming from the camera"
 msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr "Atur tingkat kontras gambar yang datang dari kamera"
+msgstr "Atur kontras gambar yang datang dari kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
 msgid "Picture saturation"
 msgstr "Saturasi gambar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-#, fuzzy
-#| msgid "Adjusts saturation level of the picture coming from the camera"
 msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr "Atur tingkat saturasi gambar yang datang dari kamera"
+msgstr "Atur saturasi gambar yang datang dari kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
 msgid "Picture hue"
-msgstr "Corak gambar"
+msgstr "Nada warna gambar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-#, fuzzy
-#| msgid "Adjusts hue level of the picture coming from the camera"
 msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr "Atur tingkat hue gambar yang datang dari kamera"
+msgstr "Atur nada warna (hue) gambar yang datang dari kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
 msgid "Video Path"
-msgstr "Lokasi Video"
+msgstr "Path Video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-#, fuzzy
-#| msgid ""
-#| "Defines the path where the videos are stored, if empty \"XDG_VIDEO/Webcam"
-#| "\" will be used."
 msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
-"Menentukan lokasi foto disimpan, bila kosong \"XDG_VIDEO/Webcam\" akan "
+"Menentukan lokasi video disimpan. Bila kosong \"XDG_VIDEO/Webcam\" akan "
 "dipakai."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo Path"
-msgstr "Lokasi Foto"
+msgstr "Path Foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-#, fuzzy
-#| msgid ""
-#| "Defines the path where the photos are stored, if empty \"XDG_PHOTO/Webcam"
-#| "\" will be used."
 msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
-"Menentukan lokasi foto disimpan, bila kosong \"XDG_PHOTO/Webcam\" akan "
+"Menentukan lokasi foto disimpan. Bila kosong \"XDG_PHOTO/Webcam\" akan "
 "dipakai."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
@@ -344,22 +314,16 @@ msgid "Whether to start in wide mode"
 msgstr "Mulai dalam moda lebar"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
-#, fuzzy
-#| msgid ""
-#| "If set to true, Cheese will start up in a wide mode with the image "
-#| "collection placed on the right-hand side. Useful with small screens."
 msgid ""
 "If set to true, Cheese will start up in wide mode, with the image collection "
 "placed on the right-hand side. Useful with small screens."
 msgstr ""
-"Bila ditata ke benar, Cheese akan mulai pada moda lebar dengan koleksi citra "
+"Bila ditata ke true, Cheese akan mulai pada moda lebar dengan koleksi citra "
 "ditempatkan pada sisi kanan. Berguna bagi layar kecil."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
-#, fuzzy
-#| msgid "Start in fullscreen mode"
 msgid "Whether to start in fullscreen"
-msgstr "Mulai dalam mode layar penuh"
+msgstr "Apakah mulai dalam mode layar penuh"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "If set to true, Cheese will start up in fullscreen mode."
@@ -380,10 +344,8 @@ msgstr ""
 "mundur, durasi hitung mundur yang akan dipakai"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:37
-#, fuzzy
-#| msgid "Number of photos in burst mode."
 msgid "Number of photos in burst mode"
-msgstr "Banyaknya foto dalam mode rentetan."
+msgstr "Banyaknya foto dalam mode rentetan"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:38
 msgid "The number of photos to take in a single burst."
@@ -436,7 +398,7 @@ msgstr "Tidak ada perangkat yang ditemukan"
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
-msgstr ""
+msgstr "%02i:%02i:%02i"
 
 #: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
@@ -463,14 +425,12 @@ msgid "Start in fullscreen mode"
 msgstr "Mulai dalam mode layar penuh"
 
 #: ../src/cheese-main.vala:92
-#, fuzzy
-#| msgid "_Photo"
 msgid "_Shoot"
-msgstr "_Foto"
+msgstr "_Potret"
 
 #: ../src/cheese-main.vala:96
 msgid "Mode:"
-msgstr ""
+msgstr "Mode:"
 
 #: ../src/cheese-main.vala:97
 msgid "_Photo"
@@ -485,16 +445,12 @@ msgid "_Burst"
 msgstr "_Rentetan"
 
 #: ../src/cheese-main.vala:102
-#, fuzzy
-#| msgid "Fullscreen"
 msgid "_Fullscreen"
-msgstr "Layar Penuh"
+msgstr "_Layar Penuh"
 
 #: ../src/cheese-main.vala:110
-#, fuzzy
-#| msgid "Preferences"
 msgid "P_references"
-msgstr "Preferensi"
+msgstr "P_referensi"
 
 #: ../src/cheese-main.vala:113
 msgid "_About"
@@ -540,23 +496,15 @@ msgid "Could not open %s"
 msgstr "Tidak bisa membuka %s"
 
 #: ../src/cheese-window.vala:220
-#, fuzzy, c-format
-#| msgid "Are you sure you want to permanently delete the file \"%s\"?"
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
-msgstr[0] "Apakah anda yakin ingin menghapus file \"%s\"?"
-msgstr[1] "Apakah anda yakin ingin menghapus file \"%s\"?"
+msgstr[0] "Apakah Anda yakin ingin menghapus %d berkas?"
 
 #: ../src/cheese-window.vala:226
-#, fuzzy
-#| msgid "If you delete an item, it will be permanently lost"
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] ""
-"Jika anda menghapus sebuah barang, barang tersebut akan hilang secara "
-"permanen"
-msgstr[1] ""
-"Jika anda menghapus sebuah barang, barang tersebut akan hilang secara "
+"Jika Anda menghapus barang, barang tersebut akan hilang secara "
 "permanen"
 
 #: ../src/cheese-window.vala:302
@@ -583,10 +531,8 @@ msgid "Stop recording"
 msgstr "Berhenti merekam"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#, fuzzy
-#| msgid "_Record a Video"
 msgid "Record a Video"
-msgstr "_Rekam Video"
+msgstr "Rekam Video"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -602,10 +548,8 @@ msgid "Stop taking pictures"
 msgstr "Berhenti Ambil Gambar"
 
 #: ../src/cheese-window.vala:994
-#, fuzzy
-#| msgid "Take _Multiple Photos"
 msgid "Take Multiple Photos"
-msgstr "A_mbil Banyak Foto"
+msgstr "Ambil Banyak Foto"
 
 #: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
 msgid "Take multiple photos"
@@ -616,97 +560,10 @@ msgid "No effects found"
 msgstr "Tidak ada efek yang ditemukan"
 
 #: ../src/cheese-window.vala:1503
-#, fuzzy
-#| msgid "_Take a Photo"
 msgid "Take a Photo"
-msgstr "Ambil Fo_to"
+msgstr "Ambil Foto"
 
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
 msgstr "A_mbil Banyak Foto"
 
-#~ msgid "_Cheese"
-#~ msgstr "_Cheese"
-
-#~ msgid "_Contents"
-#~ msgstr "_Isi"
-
-#~ msgid "_Edit"
-#~ msgstr "_Sunting"
-
-#~ msgid "<b>Shutter</b>"
-#~ msgstr "<b>Tombol</b>"
-
-#~ msgid "Could not delete %s"
-#~ msgstr "Tidak bisa menghapus %s"
-
-#~ msgid ""
-#~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the "
-#~ "Free Software Foundation; either version 2 of the License, or (at your "
-#~ "option) any later version.\n"
-#~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but "
-#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
-#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
-#~ "Public License for more details.\n"
-#~ "\n"
-#~ "You should have received a copy of the GNU General Public License along "
-#~ "with this program. If not, see http://www.gnu.org/licenses/\n"
-#~ msgstr ""
-#~ "Program ini adalah perangkat lunak bebas; Anda dapat menyebarluaskannya "
-#~ "dan/atau mengubahnya di bawah syarat GNU General Public License "
-#~ "sebagaimana dipublikasikan oleh Free Software Foundation; baik versi 2 "
-#~ "dari Lisensi, atau (terserah pilihan Anda) versi setelahnya.\n"
-#~ "\n"
-#~ "Program ini didistribusikan dengan harapan dapat berguna, tetapi TANPA "
-#~ "ADANYA JAMINAN; termasuk tanpa jaminan DAYA JUAL atau KELAIKAN UNTUK "
-#~ "TUJUAN TERTENTU. Lihat GNU General Public License untuk rincian lebih "
-#~ "lanjut.\n"
-#~ "\n"
-#~ "Anda seharusnya menerima salinan dari GNU General Public License bersama "
-#~ "program ini. Jika tidak, lihatlah http://www.gnu.org/licenses/\n"
-
-#~ msgid "Image properties"
-#~ msgstr "Properti gambar"
-
-#~ msgid "_Delete"
-#~ msgstr "_Hapus"
-
-#~ msgid "_Open"
-#~ msgstr "_Buka"
-
-#~ msgid "_Preferences"
-#~ msgstr "_Preferensi"
-
-#~ msgid "%d "
-#~ msgstr "%d "
-
-#~ msgid "Resolution"
-#~ msgstr "Resolusi"
-
-#~ msgid ""
-#~ "A list of effects applied on startup. Possible values are: \"mauve\", "
-#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
-#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
-#~ msgstr ""
-#~ "Daftar efek yang diterapkan saat awal. Nilai yang mungkin adalah: \"mauve"
-#~ "\", \"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", "
-#~ "\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" dan "
-#~ "\"warp\""
-
-#~ msgid ""
-#~ "If set to true, then Cheese will have a feature allowing you to delete a "
-#~ "file immediately and in-place, instead of moving it to the trash. This "
-#~ "feature can be dangerous, so use caution."
-#~ msgstr ""
-#~ "Bila ditata ke benar, maka Cheese akan memiliki fitur yang memungkinkan "
-#~ "Anda untuk menghapus suatu berkas seketika, tanpa terlebih dahulu "
-#~ "memindahkannya ke tong sampah. Fitur ini bisa berbahaya, maka berhati-"
-#~ "hatilah."
-
-#~ msgid "Whether to enable immediate deletion"
-#~ msgstr "Apakah mengaktifkan penghapusan langsung"
-
-#~ msgid "Enable wide mode"
-#~ msgstr "Mengaktifkan mode lebar"
