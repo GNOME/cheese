@@ -31,4 +31,4 @@ HELP_FILES = \
 	pref-photo-resolution.page \
 	video-record.page
 
-HELP_LINGUAS = ca cs de el en_GB es fi fr gl hu it ko lv nl oc pa pt_BR ru sl sv te th zh_CN
+HELP_LINGUAS = ca cs de el en_GB es fi fr gl hu id it ko lv nl oc pa pt_BR ru sl sv te th zh_CN
