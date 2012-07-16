@@ -68,7 +68,7 @@ GSTREAMER_REQUIRED="gstreamer-plugins-base-0.10 >= $GSTREAMER_VERSION gstreamer-
 CAIRO_REQUIRED="cairo >= 1.10.0"
 PANGOCAIRO_REQUIRED="pangocairo >= 1.28.0"
 LIBRSVG_REQUIRED="librsvg-2.0 >= 2.32.0"
-CLUTTER_REQUIRED="clutter-1.0 >= 1.6.1"
+CLUTTER_REQUIRED="clutter-1.0 >= 1.10.0"
 CLUTTERGTK_REQUIRED="clutter-gtk-1.0 >= 0.91.8"
 CLUTTERGST_REQUIRED="clutter-gst-1.0 >= 1.0.0"
 GEE_REQUIRED="gee-1.0 >= 0.6.0"
