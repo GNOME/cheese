@@ -1,808 +1,589 @@
-# Simplified Chinese translation to cheese-help.
-# Copyright (C) 2009, 2010 Free Software Foundation, Inc.
-# This file is distributed under the same license as cheese package.
-# ccrecall <ccrecall@163.com>, 2009.
+# Chinese translations for cheese package
+# cheese 软件包的简体中文翻译.
+# Copyright (C) 2008, 2009, 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the cheese package.
+# YangZhang <zyangmath@gmail.com>, 2008.
+# 甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009.
 # arccos (L.Q) <boyermoore@gmail.com>, 2009.
-# YunQiang Su <wzssyqa@gmail.com>, 2010.
-# tuhaihe <1132321739qq@gmail.com>, 2012.
-# Wylmer Wang <wantinghard@gmail.com>, 2012.
+# Tao Wei <weitao1979@gmail.com>, 2010.
+# Aron Xu <aronxu@gnome.org>, 2010.
+# lainme <lainme993@gmail.com>, 2010.
+# 指冷玉笙寒 (dhyang) <dhyang555@gmail.com>, 2010.
+# ben <benbenhappy2008@gmail.com>, 2011.
+# YunQiang Su <wzssyqa@gmail.com>, 2011.
+# chiachen <luojiazhen@gmail.com>, 2011.
+# Wylmer Wang <wantinghard@gmail.com>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"POT-Creation-Date: 2012-07-02 03:21+0000\n"
-"PO-Revision-Date: 2012-07-17 22:18+0800\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-02-25 06:32+0000\n"
+"PO-Revision-Date: 2012-02-25 21:44+0800\n"
 "Last-Translator: Wylmer Wang <wantinghard@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
-msgctxt "_"
+#: ../data/cheese-about.ui.h:1 ../data/cheese.desktop.in.in.h:3
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr "使用摄像头拍照或录像，并加上有趣的图像效果"
+
+#: ../data/cheese-about.ui.h:2
+msgid "Cheese Website"
+msgstr "茄子网站"
+
+#: ../data/cheese-about.ui.h:3
 msgid "translator-credits"
 msgstr ""
-"ccrecall <ccrecall@163.com>\n"
+"YangZhang <zyangmath@gmail.com>, 2008\n"
+"甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009\n"
 "arccos (L.Q) <boyermoore@gmail.com>, 2009\n"
-"YunQiang Su <wzssyqa@gmail.com>, 2010\n"
-"tuhaihe <1132321739qq@gmail.com>, 2012\n"
-"Wylmer Wang <wantinghard@gmail.com>, 2012"
+"Tao Wei <weitao1979@gmail.com>, 2009\n"
+"Aron Xu <aronxu@gnome.org>, 2010\n"
+"lainme <lainme993@gmail.com>, 2010\n"
+"指冷玉笙寒 (dhyang) <dhyang555@gmail.com>, 2010\n"
+"ben <benbenhappy2008@gmail.com>, 2011\n"
+"YunQiang Su <wzssyqa@gmail.com>, 2011.\n"
+"chiachen <luojiazhen@gmail.com>, 2011\n"
+"Wylmer Wang<wantinghard@gmail.com>, 2011"
 
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#.
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.page:25(media)
-msgctxt "_"
-msgid ""
-"external ref='figures/cheese.png' md5='e801510f287b3db068beb2daf8989124'"
-msgstr ""
-"external ref='figures/cheese.png' md5='e801510f287b3db068beb2daf8989124'"
+#: ../data/cheese-actions.ui.h:1
+msgid "_Cheese"
+msgstr "茄子(_C)"
 
-#: C/index.page:9(credit/name) C/effects-apply.page:9(credit/name)
-#: C/introduction.page:12(credit/name) C/mode-wide.page:10(credit/name)
-#: C/photo-delete.page:10(credit/name) C/photo-save.page:10(credit/name)
-#: C/photo-take.page:15(credit/name) C/photo-view.page:10(credit/name)
-#: C/pref-burst-mode.page:10(credit/name)
-#: C/pref-countdown.page:10(credit/name) C/pref-flash.page:9(credit/name)
-#: C/pref-image-properties.page:10(credit/name)
-#: C/pref-photo-resolution.page:10(credit/name)
-#: C/video-record.page:10(credit/name)
-msgid "Julita Inca"
-msgstr "Julita Inca"
+#: ../data/cheese-actions.ui.h:2
+msgid "_Edit"
+msgstr "编辑(_E)"
 
-#: C/index.page:11(credit/years) C/effects-apply.page:11(credit/years)
-#: C/introduction.page:14(credit/years) C/mode-wide.page:12(credit/years)
-#: C/photo-delete.page:12(credit/years) C/photo-save.page:12(credit/years)
-#: C/photo-take.page:17(credit/years) C/photo-view.page:12(credit/years)
-#: C/pref-burst-mode.page:12(credit/years)
-#: C/pref-countdown.page:12(credit/years) C/pref-flash.page:11(credit/years)
-#: C/pref-image-properties.page:12(credit/years)
-#: C/pref-photo-resolution.page:12(credit/years)
-#: C/video-record.page:12(credit/years)
-msgid "2011"
-msgstr "2011"
+#: ../data/cheese-actions.ui.h:3
+msgid "_Help"
+msgstr "帮助(_H)"
 
-#: C/index.page:15(credit/name) C/effects-apply.page:14(credit/name)
-#: C/introduction.page:17(credit/name) C/mode-wide.page:15(credit/name)
-#: C/photo-delete.page:15(credit/name) C/photo-save.page:15(credit/name)
-#: C/photo-take.page:20(credit/name) C/photo-view.page:15(credit/name)
-#: C/pref-burst-mode.page:15(credit/name)
-#: C/pref-countdown.page:15(credit/name) C/pref-flash.page:14(credit/name)
-#: C/pref-fullscreen.page:9(credit/name)
-#: C/pref-image-properties.page:15(credit/name)
-#: C/pref-photo-resolution.page:15(credit/name)
-#: C/video-record.page:15(credit/name)
-msgid "Ekaterina Gerasimova"
-msgstr "Ekaterina Gerasimova"
+#: ../data/cheese-actions.ui.h:4
+msgid "_Contents"
+msgstr "内容(_C)"
 
-#: C/index.page:19(info/desc)
-msgid ""
-"Cheese lets you take photos and videos using your webcam. You can even add "
-"special effects!"
-msgstr "茄子(Cheese)可以让您使用摄像头拍照和录像。还可以添加特效哦！"
+#: ../data/cheese-actions.ui.h:5
+msgid "_About"
+msgstr "关于(_A)"
 
-#: C/index.page:24(page/title)
-msgid ""
-"<media type=\"image\" mime=\"image/png\" src=\"figures/cheese.png\" width="
-"\"40\" height=\"40\"> </media> Cheese Webcam Application"
-msgstr ""
-"<media type=\"image\" mime=\"image/png\" src=\"figures/cheese.png\" width="
-"\"40\" height=\"40\"> </media> Cheese 网络摄像头应用程序"
+#: ../data/cheese-actions.ui.h:6
+msgid "Share…"
+msgstr "共享..."
 
-#: C/index.page:31(section/title)
-msgid "Main features"
-msgstr "主要功能"
+#: ../data/cheese-actions.ui.h:7
+msgid "Save _As…"
+msgstr "另存为(_A)..."
 
-#: C/index.page:35(section/title)
+#: ../data/cheese-actions.ui.h:8
+msgid "Move to _Trash"
+msgstr "移入回收站(_T)"
+
+#: ../data/cheese-actions.ui.h:9
+msgid "Move _All to Trash"
+msgstr "全部移入回收站(_A)"
+
+#: ../data/cheese-actions.ui.h:10
+msgid "_Wide Mode"
+msgstr "宽屏模式(_W)"
+
+#: ../data/cheese-actions.ui.h:11 ../data/cheese-main-window.ui.h:5
+msgid "_Take a Photo"
+msgstr "拍照(_T)"
+
+#: ../data/cheese-actions.ui.h:12 ../data/cheese-main-window.ui.h:4
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a photo"
+msgstr "拍照"
+
+#: ../data/cheese-actions.ui.h:13
+msgid "_Record a Video"
+msgstr "录像(_R)"
+
+#: ../data/cheese-actions.ui.h:14
+msgid "Record a video"
+msgstr "录像"
+
+#: ../data/cheese-actions.ui.h:15
+msgid "Take _Multiple Photos"
+msgstr "拍摄多张照片(_M)"
+
+#: ../data/cheese-actions.ui.h:16
+msgid "Take multiple photos"
+msgstr "拍摄多张照片"
+
+#: ../data/cheese-actions.ui.h:17
+msgid "_Photo"
+msgstr "照片(_P)"
+
+#: ../data/cheese-actions.ui.h:18
+msgid "_Video"
+msgstr "视频(_V)"
+
+#: ../data/cheese-actions.ui.h:19
+msgid "_Burst"
+msgstr "连拍(_B)"
+
+#: ../data/cheese-actions.ui.h:20 ../data/cheese-main-window.ui.h:8
+msgid "_Effects"
+msgstr "效果(_E)"
+
+#: ../data/cheese-actions.ui.h:21
+msgid "P_revious Effects"
+msgstr "上一批效果(_R)"
+
+#: ../data/cheese-actions.ui.h:22
+msgid "Ne_xt Effects"
+msgstr "下一批效果(_X)"
+
+#: ../data/cheese-main-window.ui.h:1
+msgid "Photo mode"
+msgstr "单拍模式"
+
+#: ../data/cheese-main-window.ui.h:2
+msgid "Video mode"
+msgstr "视频模式"
+
+#: ../data/cheese-main-window.ui.h:3
+msgid "Photo burst mode"
+msgstr "连拍模式"
+
+#: ../data/cheese-main-window.ui.h:6
+msgid "Previous"
+msgstr "向前"
+
+#: ../data/cheese-main-window.ui.h:7
+msgid "Effects"
+msgstr "效果"
+
+#: ../data/cheese-main-window.ui.h:9
+msgid "Next"
+msgstr "向后"
+
+#: ../data/cheese-main-window.ui.h:10
+msgid "Leave fullscreen"
+msgstr "退出全屏"
+
+#: ../data/cheese-main-window.ui.h:11
+msgid "_Leave Fullscreen"
+msgstr "退出全屏(_L)"
+
+#: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
 msgstr "首选项"
 
-#: C/index.page:39(section/title)
-msgid "Common problems and questions"
-msgstr "常见问题"
-
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/effects-apply.page:45(media)
-msgctxt "_"
-msgid ""
-"external ref='figures/effects.png' md5='27139b3d1500c8caac548fab39e05c28'"
-msgstr ""
-"external ref='figures/effects.png' md5='27139b3d1500c8caac548fab39e05c28'"
-
-#: C/effects-apply.page:18(info/desc)
-msgid ""
-"Add fun effects to your photos and videos, like turning yourself green or "
-"distorting the picture like a funhouse mirror."
-msgstr ""
-"给您的照片和视频添加有趣的效果，如让您自己变绿或让照片像游乐场哈哈镜一样扭曲"
-"变形。"
-
-#: C/effects-apply.page:22(page/title)
-msgid "Apply effects to photos and videos"
-msgstr "给照片和视频添加特效"
-
-#: C/effects-apply.page:24(page/p)
-msgid "You can apply fun, interesting effects to your photos and videos:"
-msgstr "您可以给您的图片和视频添加滑稽、有趣的效果："
-
-#: C/effects-apply.page:26(item/p)
-msgid "Click <gui>Effects</gui>."
-msgstr "点击 <gui>效果</gui>。"
-
-#: C/effects-apply.page:28(item/p)
-msgid "Select the effect you want to use by clicking one of the options."
-msgstr "通过点击其中一个选项，选择您想要使用的效果。"
-
-#: C/effects-apply.page:29(item/p)
-msgid ""
-"If you like, you can select multiple effects. For example, if you select "
-"<gui>Hulk</gui> and <gui>Kung-Fu</gui>, the video will be altered to have a "
-"green shade and will show a repeated image."
-msgstr ""
-"如果喜欢，您可以选择多种效果。比如，如果您选择了 <gui>Hulk</gui> 和 <gui>功夫"
-"</gui>，视频将会变的有绿色阴影，也会展示出重复的图像。"
-
-#: C/effects-apply.page:34(item/p)
-msgid ""
-"Click <gui>Effects</gui> to hide the effects menu and return to the normal "
-"view."
-msgstr "单击 <gui>效果</gui> 隐藏效果菜单，返回到正常视图。"
-
-#: C/effects-apply.page:39(page/p)
-msgid ""
-"<app>Cheese</app> offers 34 effects, of which only 9 are shown on the first "
-"page. Click <gui>Next Effects</gui> and <gui>Previous Effects</gui> to "
-"navigate to the other pages."
-msgstr ""
-"<app>茄子</app> 提供 34 种效果，其中 9 种在第一页显示。点击 <gui>下一批效果</"
-"gui>和 <gui>上一批效果</gui> 导向至其他页面。"
-
-#: C/effects-apply.page:44(figure/title)
-msgid "Some of the effects, from left to right: Bulge, Edge and Mirror"
-msgstr "其中一些效果，从左到右：Bulge，Edge 和 Mirror"
-
-#: C/effects-apply.page:48(note/p)
-msgid ""
-"To deselect all effects, click <gui>Effects</gui> and select <gui>No Effect</"
-"gui>."
-msgstr "要取消所有效果，点击 <gui>效果</gui> ，选择 <gui>无效果</gui>。"
-
-#: C/introduction.page:21(info/desc)
-msgid "Introduction to the <app>Cheese</app> webcam application."
-msgstr "关于 <app>茄子</app> 的使用介绍。"
-
-#: C/introduction.page:24(page/title)
-msgid "Introduction"
-msgstr "使用介绍"
-
-#: C/introduction.page:26(page/p)
-msgid ""
-"<app>Cheese</app> is a webcam application that lets you take photos and "
-"record videos using your webcam. You can take multiple photos in quick "
-"succession using the <link xref=\"pref-burst-mode\"><gui>Burst</gui> mode</"
-"link> and apply <link xref=\"effects-apply\">special <gui>Effects</gui></"
-"link> to add a personal touch to them."
-msgstr ""
-"<app>茄子</app> 是一款网络摄像头应用程序，您可以用它通过摄像头拍照和录像。 "
-"您可以使用 <link xref=\"pref-burst-mode\"><gui>连拍</gui> 模式</"
-"link> 快速连拍多张照片并应用 <link xref=\"effects-apply\">特殊 <gui>效果</gui></"
-"link> 来增加您的印迹。"
-
-#: C/introduction.page:32(page/p)
-msgid ""
-"By default, <app>Cheese</app> starts in <gui>Photo</gui> mode, ready to "
-"<link xref=\"photo-take\">take a photo</link>. You need to switch to "
-"<gui>Video</gui> mode to <link xref=\"video-record\">record a video</link>."
-msgstr ""
-"<app>茄子</app> 默认以 <gui>照片</gui> 模式启动，准备让您 "
-"<link xref=\"photo-take\">拍摄照片</link>。您需要切换到 "
-"<gui>视频</gui> 模式来 <link xref=\"video-record\">录制一段视频</link>。"
-
-#: C/introduction.page:36(page/p)
-msgid ""
-"<app>Cheese</app> works with most webcams, but some older webcams may not be "
-"supported."
-msgstr ""
-"<app>Cheese</app> 可以操作绝大多数网络摄像头，但有些老的摄像头可能不支持。"
-
-#: C/mode-wide.page:19(info/desc)
-#, fuzzy
-msgid ""
-"Change the position of the photo stream so that the webcam video feed is "
-"larger."
-msgstr "改变照片集的位置，让摄像头视频输入更大。"
-
-#: C/mode-wide.page:23(page/title)
-msgid "Make the webcam video preview bigger"
-msgstr "放大摄像头视频预览"
-
-#: C/mode-wide.page:25(page/p)
-msgid ""
-"The photo stream is where photos and videos appear after you have taken or "
-"recorded them. By default, it is a horizontal strip at the bottom of the "
-"<app>Cheese</app> window."
-msgstr ""
-"照片集是在您拍照或录像后照片和视频出现的地方。默认情况下，照片集是一条水平"
-"带，位于<app>茄子</app>窗口的底部。"
-
-#: C/mode-wide.page:29(page/p)
-msgid ""
-"You can make the photo stream appear as a vertical bar. This is useful if "
-"you have a wide computer screen which is not very high; switching to a "
-"vertical layout means that there is more room to display the video feed from "
-"the webcam."
-msgstr ""
-"您也可以将照片集调整为垂直带。在屏幕高度不够的宽屏计算机上，这种视图很有用；"
-"切换到垂直布局则会有更多的空间来显示摄像头视频输入。"
-
-#: C/mode-wide.page:34(page/p)
-msgid ""
-"To switch to a vertical layout, click <guiseq><gui>Cheese</gui> <gui>Wide "
-"Mode</gui></guiseq>. To switch back to a horizontal layout, uncheck the "
-"option."
-msgstr ""
-"要切换到垂直布局，点击<guiseq><gui>茄子</gui> <gui>宽屏模式</gui></guiseq>。"
-"如果要切回到水平布局模式，取消选中该选项即可。"
-
-#: C/mode-wide.page:39(note/p)
-msgid ""
-"Another way to increase the size of the webcam preview is to make "
-"<app>Cheese</app> fullscreen. To do this, click <guiseq><gui>Cheese</"
-"gui><gui>Fullscreen</gui></guiseq> or press <key>F11</key>. To quit the "
-"fullscreen mode, press <key>F11</key>."
-msgstr ""
-"增大摄像头预览尺寸的另一种方法是：让<app>茄子</app>全屏。要打开全屏，请点击"
-"<guiseq><gui>茄子</gui><gui>全屏</gui></guiseq>或按下<key>F11</key>。要退出全"
-"屏模式，按下<key>F11</key>。"
-
-#: C/photo-delete.page:19(info/desc)
-msgid "Remove photos and videos that you no longer want to keep."
-msgstr "移除不想再保留的照片和视频。"
-
-#: C/photo-delete.page:22(page/title)
-msgid "Delete a photo or video"
-msgstr "删除照片或视频"
-
-#: C/photo-delete.page:24(page/p)
-msgid "If you no longer want a photo or video, you can permanently delete it:"
-msgstr "如果您不想再保存某些照片或视频，可以永久删除它："
-
-#: C/photo-delete.page:28(item/p)
-msgid ""
-"Find the photo or video that you want to delete in the photo stream at the "
-"bottom of the <app>Cheese</app> window."
-msgstr "在<app>茄子</app>窗口底部的照片集里面找到您想要删除的照片或视频。"
-
-#: C/photo-delete.page:32(item/p)
-msgid ""
-"Right-click it and select <gui>Delete</gui>. Alternatively, click it once to "
-"select it and press the <key>Delete</key> key."
-msgstr ""
-"右键点击，选择<gui>删除</gui>。或者，单击想要删除的照片或视频，选中后按下 "
-"<key>Delete</key> 键。"
-
-#: C/photo-delete.page:36(item/p)
-msgid ""
-"You will be asked if you want to permanently delete it. Confirm by clicking "
-"<gui>Delete</gui>; you will not be able to recover the photo."
-msgstr ""
-"此时，程序将询问您是否真的要永久删除它，单击<gui>删除</gui>确认。已删除的照片"
-"将无法恢复。"
-
-#: C/photo-delete.page:41(page/p)
-msgid ""
-"If you are not sure whether you want to permanently delete the photo or "
-"video, you can right click it and select <gui>Move to Trash</gui> instead. "
-"This will move it to the computer's <gui>Trash</gui> folder."
-msgstr ""
-"如果您不确定是否要永久删除这些照片或视频，您可以右键点击它，选择<gui>移入回收"
-"站</gui>。这会将它移动到计算机的<gui>回收站</gui>文件夹。"
-
-#: C/photo-delete.page:45(note/p)
-msgid ""
-"Cheese does not have its own <gui>Trash</gui> folder and you cannot access "
-"your computer's <gui>Trash</gui> folder from within <app>Cheese</app>."
-msgstr ""
-"茄子没有自己单独的<gui>回收站</gui>文件夹，您无法在<app>茄子</app>软件中来访"
-"问计算机上的<gui>回收站</gui>文件夹。"
-
-#: C/photo-save.page:19(info/desc)
-msgid "Save a photo or video in a different folder."
-msgstr "将照片或视频保存到另一文件夹。"
-
-#: C/photo-save.page:22(page/title)
-msgid "Save a photo or video"
-msgstr "保存照片或视频"
-
-#: C/photo-save.page:24(page/p)
-msgid ""
-"By default, Cheese saves the photos and videos in the <guiseq><gui>Pictures</"
-"gui><gui>Webcam</gui></guiseq> and <guiseq><gui>Videos</gui><gui>Webcam</"
-"gui></guiseq> folders in your user folder."
-msgstr ""
-"默认情况下，茄子将照片和视频文件保存到您的主目录下的<guiseq><gui>图片</gui>和"
-"<gui>视频</gui></guiseq>文件夹。"
-
-#: C/photo-save.page:29(page/p)
-msgid ""
-"To save an image to a different location, right-click the image in the photo "
-"stream and click <gui>Save As</gui>. Then, choose where you want to save the "
-"image."
-msgstr ""
-"要将照片保存到另一位置，请在照片集里右键点击它，选择<gui>另存为</gui>。然后，"
-"选择您想要保存该照片的位置。"
-
-#: C/photo-save.page:33(page/p)
-msgid ""
-"Alternatively, open the folder where you want to keep the image using the "
-"file manager, then drag it from the photo stream into that folder."
-msgstr ""
-"或者，通过文件管理器打开想要保存照片的文件夹，然后将照片从照片集拖入该文件"
-"夹。"
-
-#: C/photo-save.page:36(page/p)
-msgid ""
-"A new copy of the image will be saved in the new location. The old version "
-"will remain in the <guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> or "
-"<guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> folder."
-msgstr ""
-"照片的一份新副本将保存到新位置。原来那份将留在<guiseq><gui>图片</"
-"gui><gui>Webcam</gui></guiseq>或<guiseq><gui>视频</gui><gui>Webcam</gui></"
-"guiseq>文件夹中。"
-
-#: C/photo-take.page:24(info/desc)
-msgid "Use your webcam to take photos instead of videos."
-msgstr "用您的摄像头拍照而不是录像。"
-
-#: C/photo-take.page:27(page/title)
-msgid "Take photos with the webcam"
-msgstr "使用摄像头拍照"
-
-#: C/photo-take.page:29(page/p)
-msgid ""
-"Webcams can be used to take still photos, as well as videos. To take a photo:"
-msgstr "除了录像之外，摄像头也可以用来拍照。要拍照："
-
-#: C/photo-take.page:34(item/p)
-msgid ""
-"Make sure that you're in <gui>Photo mode</gui>. If you are, the button in "
-"the main window will say <gui>Take a Photo</gui>."
-msgstr ""
-"确保茄子运行在<gui>拍照模式</gui>。如果是，主窗口的按钮会显示<gui>拍照</"
-"gui>。"
-
-#: C/photo-take.page:36(item/p)
-msgid ""
-"To switch to <gui>Photo mode</gui>, click the small photo button in the "
-"bottom left of the window or click <guiseq><gui>Cheese</gui> <gui>Photo</"
-"gui></guiseq>."
-msgstr ""
-"要切换到<gui>拍照模式</gui>，点击窗口左下方的小照片按钮或点击<guiseq><gui>茄"
-"子</gui><gui>照片</gui></guiseq>。"
-
-#: C/photo-take.page:41(item/p)
-msgid "Click <gui>Take a Photo</gui> or press the <key>spacebar</key>."
-msgstr "点击<gui>拍照</gui>或按下<key>空格键</key>。"
-
-#: C/photo-take.page:44(item/p)
-msgid ""
-"There will be a short countdown, followed by a flash, and then the photo "
-"will appear in the photo stream at the bottom of the window."
-msgstr ""
-"将会有短暂的倒计时，灯光一闪，“咔嚓”，照片就出现在窗口底部的照片集里面了。"
-
-#: C/photo-take.page:49(page/p)
-msgid ""
-"The photos in the photo stream are automatically saved in the "
-"<guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> folder in your user "
-"folder. They are saved in the JPEG (<file>.jpg</file>) format."
-msgstr ""
-"照片集里面的照片将自动保存到主目录下的<guiseq><gui>图片</gui><gui>Webcam</"
-"gui></guiseq>文件夹中。它们以 JPEG(<file>.jpg</file>) 格式保存。"
-
-#: C/photo-take.page:53(page/p)
-msgid ""
-"To cancel taking a photo after you have clicked <gui>Take a Photo</gui>, "
-"press <key>Esc</key> before the countdown finishes."
-msgstr ""
-"如果您在点击<gui>拍照</gui>后想取消拍照，请在倒计时结束前按下 <key>Esc</"
-"key>。"
-
-#: C/photo-take.page:57(note/p)
-msgid ""
-"To take multiple photos in rapid succession, use <link xref=\"pref-burst-mode"
-"\">Burst mode</link>."
-msgstr ""
-"如果要快速连拍多幅照片，请使用<link xref=\"pref-burst-mode\">连拍模式</link>。"
-
-#: C/photo-view.page:19(info/desc)
-msgid "Photos and videos will automatically appear in the photo stream."
-msgstr "照片和视频会自动出现在照片集中。"
-
-#: C/photo-view.page:23(page/title)
-msgid "View a photo or video that you took"
-msgstr "查看您拍摄的照片或视频"
-
-#: C/photo-view.page:25(page/p)
-msgid ""
-"After you take a photo or record a video, it will appear in the photo stream "
-"at the bottom of the window."
-msgstr "您拍完照或录完视频后，照片或视频将出现在窗口底部的照片集里面。"
-
-#: C/photo-view.page:28(page/p)
-msgid ""
-"If you want to see a bigger version of a photo, or to play a video, double-"
-"click it. This will open it in the default photo viewer or video player."
-msgstr ""
-"如果您要看到照片的更大尺寸，或要播放录像，双击文件即可。该操作将通过默认图片"
-"浏览器或视频播放器打开它们。"
-
-#: C/photo-view.page:31(page/p)
-msgid ""
-"All of the photos and videos in the photo stream are saved in the "
-"<guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> or "
-"<guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> folders in your user "
-"folder."
-msgstr ""
-"照片集里所有的照片和视频都保存在主目录的<guiseq><gui>图片</gui><gui>Webcam</"
-"gui></guiseq> 或 <guiseq><gui>视频</gui><gui>Webcam</gui></guiseq>文件夹中。"
-
-#: C/pref-burst-mode.page:19(info/desc)
-msgid ""
-"<gui>Burst mode</gui> takes several photos rapidly. Change your pose in "
-"between each shot!"
-msgstr "<gui>连拍模式</gui>会快速拍下多张照片。记得在拍照时多摆几个 Pose 呀！"
-
-#: C/pref-burst-mode.page:23(page/title)
-msgid "Take multiple photos in quick succession"
-msgstr "快速拍下多张照片"
-
-#: C/pref-burst-mode.page:25(page/p)
-msgid ""
-"You can use <gui>Burst mode</gui> to automatically take several photos in "
-"one go, with a short pause between shots. It is particularly fun if you "
-"change your pose in between photos! To use <gui>Burst mode</gui>:"
-msgstr ""
-"您可以使用 <gui>连拍模式</gui> 一次拍摄多张照片，拍摄时中间会有短暂停顿。如果"
-"拍照时不断改变您的姿势，将会很有趣！要启用<gui>连拍模式</gui>："
-
-#: C/pref-burst-mode.page:31(item/p)
-msgid ""
-"Click <gui>Burst</gui>, the <gui>Take a Photo</gui> button will now say "
-"<gui>Take Multiple Photos</gui>."
-msgstr ""
-"点击<gui>连拍</gui>，此时<gui>拍照</gui>按钮将会显示：<gui>拍摄多张照片</"
-"gui>。"
-
-#: C/pref-burst-mode.page:33(item/p)
-msgid ""
-"Alternatively, click <guiseq><gui>Cheese</gui><gui>Burst</gui></guiseq>."
-msgstr "或者，点击<guiseq><gui>茄子</gui><gui>连拍</gui></guiseq>。"
-
-#: C/pref-burst-mode.page:36(item/p)
-msgid "Click <gui>Take Multiple Photos</gui> or press the <key>spacebar</key>."
-msgstr "点击<gui>拍摄多张照片</gui> 或按下<key>空格键</key>。"
-
-#: C/pref-burst-mode.page:38(item/p)
-msgid ""
-"By default, four photos will be taken, with a three second delay and a "
-"countdown between photos."
-msgstr "默认情况下会连拍 4 张照片，照片之间有三秒钟延迟和倒计时。"
-
-#: C/pref-burst-mode.page:43(page/p)
-msgid ""
-"Press <key>Esc</key> if you want to stop <app>Cheese</app> from taking "
-"photos at any point."
-msgstr "任何时候您都可以按下<key>Esc</key>让<app>Cheese</app>停止拍照。"
-
-#: C/pref-burst-mode.page:47(section/title)
-msgid "Change how many photos are taken and the delay between them"
-msgstr "改变连拍照片的数量和延迟时间"
-
-#: C/pref-burst-mode.page:48(section/p)
-msgid ""
-"You can change how many photos will be taken in each burst and the length of "
-"the delay between the photos:"
-msgstr "您可以修改在每次连拍时拍摄照片的数量和照片之间的延迟时间："
-
-#: C/pref-burst-mode.page:52(item/p) C/pref-image-properties.page:30(item/p)
-#: C/pref-photo-resolution.page:36(item/p)
-msgid "Click <guiseq><gui>Edit</gui><gui>Preferences</gui></guiseq>."
-msgstr "单击<guiseq><gui>编辑</gui><gui>首选项</gui></guiseq>。"
-
-#: C/pref-burst-mode.page:55(item/p)
-msgid ""
-"Change the options under <gui>Burst mode</gui> and click <gui>Close</gui>."
-msgstr "改变<gui>连拍模式</gui>下的选项，单击<gui>关闭</gui>。"
-
-#: C/pref-burst-mode.page:59(note/p)
-msgid ""
-"The delay is between the last photo taken and the start of the countdown for "
-"the next photo, not between two photos."
-msgstr ""
-"延迟是上张照片拍摄结束和下张照片倒计时开始之间的时间，不是两张照片拍摄间的时"
-"间。"
-
-#: C/pref-countdown.page:19(info/desc)
-msgid "Remove the countdown so that photos are taken instantly."
-msgstr "移除倒计时可以立即拍摄照片。"
-
-#: C/pref-countdown.page:22(page/title)
-msgid "Disable the <gui>Countdown</gui> before photos are taken"
-msgstr "禁用拍摄照片前的<gui>倒计时</gui>"
-
-#: C/pref-countdown.page:24(page/p)
-msgid ""
-"By default, <app>Cheese</app> counts down from three before taking a photo. "
-"You can disable this feature by clicking <guiseq><gui>Edit</gui> "
-"<gui>Preferences</gui></guiseq> and unchecking <gui>Countdown</gui>."
-msgstr ""
-"默认情况下，<app>茄子</app>在拍照前从 3 开始倒计时。您可以通过点击"
-"<guiseq><gui>编辑</gui> <gui>首选项</gui></guiseq>，取消选中<gui>倒计时</"
-"gui>，就可以禁用该功能。"
-
-#: C/pref-flash.page:18(info/desc)
-msgid "Stop the screen from flashing white when taking a photo."
-msgstr "拍照时禁用屏幕闪光。"
-
-#: C/pref-flash.page:21(page/title)
-msgid "Disable the flash"
-msgstr "禁用闪光灯"
-
-#: C/pref-flash.page:23(page/p)
-msgid ""
-"When you take a photo with Cheese, the computer screen briefly turns white. "
-"This provides additional light."
-msgstr "当您使用茄子拍照时，电脑屏幕会短暂变白。这会提供额外的亮光。"
-
-#: C/pref-flash.page:26(page/p)
-msgid ""
-"To disable this feature, click <guiseq><gui>Edit</gui><gui>Preferences</"
-"gui></guiseq> and uncheck <gui>Fire Flash</gui>."
-msgstr ""
-"要禁用该功能，请点击<guiseq><gui>编辑</gui><gui>首选项</gui></gui></guiseq>，"
-"取消选中<gui>闪光</gui>。"
-
-#: C/pref-fullscreen.page:13(info/desc)
-msgid "Enable and disable fullscreen mode"
-msgstr "启用和禁用全屏模式"
-
-#: C/pref-fullscreen.page:16(page/title)
-msgid "Fullscreen"
-msgstr "全屏"
-
-#: C/pref-fullscreen.page:18(page/p)
-msgid "To enable the fullscreen mode:"
-msgstr "要启用全屏模式："
-
-#: C/pref-fullscreen.page:21(item/p)
-msgid "Select <guiseq><gui>Cheese</gui><gui>Fullscreen</gui></guiseq>"
-msgstr "或者，点击<guiseq><gui>茄子</gui><gui>全屏</gui></guiseq>"
-
-#: C/pref-fullscreen.page:24(page/p)
-msgid "To disable the fullscreen mode:"
-msgstr "要禁用全屏模式："
-
-#: C/pref-fullscreen.page:27(item/p)
-msgid "Select <gui>Leave Fullscreen</gui>"
-msgstr "选择 <gui>离开全屏</gui>"
-
-#: C/pref-fullscreen.page:31(note/p)
-msgid ""
-"You can also enable and disable fullscreen mode by pressing <key>F11</key>"
-msgstr "您也可以通过按 <key>F11</key> 启用和禁用全屏模式"
-
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/pref-image-properties.page:45(media)
-msgctxt "_"
-msgid ""
-"external ref='figures/image-properties.png' "
-"md5='70c32a1dd7c9a20dabef58d0789f2a5a'"
-msgstr ""
-"external ref='figures/image-properties.png' "
-"md5='70c32a1dd7c9a20dabef58d0789f2a5a'"
-
-#: C/pref-image-properties.page:19(info/desc)
-msgid ""
-"Adjust the saturation, contrast, brightness and hue to make photos and "
-"videos look better."
-msgstr "调整饱和度、对比度、亮度和色度，让照片和视频效果更好。"
-
-#: C/pref-image-properties.page:23(page/title)
-msgid "My photos and videos look wrong"
-msgstr "我的照片和视频看起来不正常"
-
-#: C/pref-image-properties.page:25(page/p)
-msgid ""
-"If your photos or videos are too dark or the colors seem to be wrong, try "
-"adjusting their saturation, contrast, brightness and hue:"
-msgstr ""
-"如果您的照片或视频太暗或颜色看起来失真，请尝试调整下它们的饱和度、对比度、亮"
-"度和色度。"
-
-#: C/pref-image-properties.page:33(item/p)
-msgid ""
-"Under <gui>Image properties</gui>, change the sliders to find the best "
-"settings for your webcam."
-msgstr "在<gui>图像属性</gui>下，移动滑动条将摄像头调整到最佳设置。"
-
-#: C/pref-image-properties.page:37(item/p)
-msgid ""
-"Click <gui>Close</gui> and check to see if the photos and videos look better."
-msgstr "单击<gui>关闭</gui>，查看照片和视频是否看起来好一些了。"
-
-#: C/pref-image-properties.page:43(figure/title)
-msgid ""
-"Different options under <gui>Image properties</gui> (left to right): "
-"applying brightness, contrast, hue and saturation"
-msgstr ""
-"<gui>图像属性</gui>的各个选项(从左到右)分别是：应用亮度、对比度、色度和饱和度"
-
-#: C/pref-image-properties.page:50(item/title)
+#: ../data/cheese-prefs.ui.h:2
+msgid "Device"
+msgstr "设备"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "Photo resolution"
+msgstr "照片分辨率"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Video resolution"
+msgstr "视频分辨率"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Webcam"
+msgstr "摄像头"
+
+#: ../data/cheese-prefs.ui.h:6
 msgid "Brightness"
 msgstr "亮度"
 
-#: C/pref-image-properties.page:51(item/p)
-msgid ""
-"Increasing the brightness will make the photos and videos lighter. However, "
-"if you are in a dark room, increasing the brightness might make the image "
-"look more noisy."
-msgstr ""
-"增加亮度将会让照片和视频更亮。然而，如果您在暗室，增加照片亮度可能会让图片看"
-"起来噪点更多。"
-
-#: C/pref-image-properties.page:54(item/title)
-msgid "Contrast"
-msgstr "对比度"
-
-#: C/pref-image-properties.page:55(item/p)
-msgid ""
-"Setting a higher contrast will increase the difference between darker and "
-"lighter colors. If the image looks washed out, try increasing the contrast."
-msgstr ""
-"设置较高的对比度将增加暗色和亮色的差别。如果图片看起来有漂洗过的感觉，请尝试"
-"增大对比度。"
-
-#: C/pref-image-properties.page:58(item/title)
-msgid "Hue"
-msgstr "色彩值"
-
-#: C/pref-image-properties.page:59(item/p)
-msgid ""
-"Changing the hue of the image will add a tint to it. If image seems to be "
-"the wrong color (for example, too yellow), try changing the hue."
-msgstr ""
-"改变照片的色度将会给照片上色。如果照片看起来颜色不对劲（比如，太黄），请修改"
-"色度。"
-
-#: C/pref-image-properties.page:62(item/title)
+#: ../data/cheese-prefs.ui.h:7
 msgid "Saturation"
 msgstr "饱和度"
 
-#: C/pref-image-properties.page:63(item/p)
-msgid ""
-"Reducing the saturation makes the image less colorful. If colors seem too "
-"harsh, reduce the saturation."
-msgstr "减少饱和度，会让照片看起来色彩变淡。如果颜色太鲜艳，请减少饱和度。"
+#: ../data/cheese-prefs.ui.h:8
+msgid "Hue"
+msgstr "色调"
 
-#: C/pref-photo-resolution.page:19(info/desc)
+#: ../data/cheese-prefs.ui.h:9
+msgid "Contrast"
+msgstr "对比度"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Image"
+msgstr "图像"
+
+#: ../data/cheese-prefs.ui.h:11
+msgid "<b>Shutter</b>"
+msgstr "<b>快门</b>"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "_Countdown"
+msgstr "倒计时(_C)"
+
+#: ../data/cheese-prefs.ui.h:13
+msgid "Fire _Flash"
+msgstr "闪光(_F)"
+
+#: ../data/cheese-prefs.ui.h:14
+msgid "Burst mode"
+msgstr "连拍模式"
+
+#: ../data/cheese-prefs.ui.h:15
+msgid "Number of photos"
+msgstr "照片编号"
+
+#: ../data/cheese-prefs.ui.h:16
+msgid "Delay between photos (seconds)"
+msgstr "照片延迟(秒)"
+
+#: ../data/cheese-prefs.ui.h:17
+msgid "Capture"
+msgstr "抓取"
+
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:67
+msgid "Cheese"
+msgstr "茄子"
+
+#: ../data/cheese.desktop.in.in.h:2
+msgid "Cheese Webcam Booth"
+msgstr "茄子大头贴"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:1
+msgid "Use a countdown"
+msgstr "使用倒计时"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:2
+msgid "Set to true to show a countdown before taking a photo"
+msgstr "如果想在拍照前显示倒计时，请设为 true"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:3
+msgid "Countdown length"
+msgstr "倒计时长度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:4
+msgid "The duration of the countdown before taking a photo, in seconds"
+msgstr "拍照前倒计时的秒数"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:5
+msgid "Fire flash before taking a picture"
+msgstr "在拍照前闪光"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:6
+msgid "Set to true to fire a flash when taking a picture"
+msgstr "如果想在拍照时闪光，请设为 true"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:7
+msgid "Camera device string indicator"
+msgstr "相机设备字符串指示器"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:8
 msgid ""
-"The resolution of a video or photo determines how much detail you can see in "
-"it, changing it will affect the file size."
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr "指向摄像头的设备节点路径，例如 /dev/video0"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:9
+msgid "Last selected effect"
+msgstr "上次选择的效果"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:10
+msgid "Name of the installed effect that was selected last"
+msgstr "上次选择的已安装效果的数量"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:11
+msgid "Photo width"
+msgstr "照片宽度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:12
+msgid "The width of the image captured from the camera, in pixels"
+msgstr "从摄像头截取图像的宽度，单位是像素"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:13
+msgid "Photo height"
+msgstr "照片高度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:14
+msgid "The height of the image captured from the camera, in pixels"
+msgstr "从摄像头截取图像的高度，单位是像素"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:15
+msgid "Video width"
+msgstr "视频宽度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:16
+msgid "The width of the video captured from the camera, in pixels"
+msgstr "从摄像头截取视频的宽度，单位是像素"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:17
+msgid "Video height"
+msgstr "视频高度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:18
+msgid "The height of the video captured from the camera, in pixels"
+msgstr "从摄像头截取视频的高度，单位是像素"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:19
+msgid "Picture brightness"
+msgstr "照片亮度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:20
+msgid "Adjusts the brightness of the picture coming from the camera"
+msgstr "调整摄像头图像的亮度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:21
+msgid "Picture contrast"
+msgstr "照片对比度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:22
+msgid "Adjusts the contrast of the picture coming from the camera"
+msgstr "调整摄像头图像的对比度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:23
+msgid "Picture saturation"
+msgstr "照片饱和度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:24
+msgid "Adjusts the saturation of the picture coming from the camera"
+msgstr "调整摄像头图像的饱和度"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:25
+msgid "Picture hue"
+msgstr "照片色调"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:26
+msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgstr "调整摄像头图像的色调"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:27
+msgid "Video Path"
+msgstr "视频路径"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:28
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr "指定保存视频的路径。如果为空，将使用“XDG_VIDEO/Webcam”。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:29
+msgid "Photo Path"
+msgstr "照片路径"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:30
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr "指定保存照片的路径。如果为空，将使用“XDG_PHOTO/Webcam”。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:31
+msgid "Whether to start in wide mode"
+msgstr "是否以宽屏模式启动"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:32
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
 msgstr ""
-"视频或照片的分辨率决定了内容中包含多少的细节。修改分辨率会影响到文件的尺寸。"
+"如果设为 true，Cheese 会以宽屏方式启动，图集置于右侧。该方式适用于小屏幕。"
 
-#: C/pref-photo-resolution.page:24(page/title)
-msgid "Change the capture resolution of your webcam"
-msgstr "改变摄像头的分辨率"
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:33
+msgid "Whether to start in fullscreen"
+msgstr "是否以全屏模式启动"
 
-#: C/pref-photo-resolution.page:26(page/p)
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:34
+msgid "If set to true, Cheese will start up in fullscreen mode."
+msgstr "如果设为 true，Cheese 将以全屏方式启动。"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:35
+msgid "Time between photos in burst mode"
+msgstr "照片连拍间隔时间"
+
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:36
 msgid ""
-"Higher resolution generally means better quality images, but photos and "
-"videos with higher resolution take up more space on your hard disk. High "
-"resolution videos, in particular, take up a lot of space."
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
 msgstr ""
-"分辨率更高，图片质量一般会更好，但是高分辨率的照片和视频占用的硬盘空间也会更"
-"多。尤其是高分辨率的视频文件，会占用很大的硬盘空间。"
+"一组连拍照片中各照片间的延时，单位为毫秒。如果连拍延时比倒计时持续时间短，将"
+"转而使用倒计时的时长。"
 
-#: C/pref-photo-resolution.page:30(page/p)
-msgid ""
-"If you want your images to take up less disk space, reduce the resolution of "
-"your webcam. If you want better quality images, increase the resolution. To "
-"change the webcam resolution:"
-msgstr ""
-"如果您想让照片占用较少的磁盘空间，可调低摄像头的分辨率。如果您想要更高质量的"
-"图片文件，就增大分辨率。要改变摄像头的分辨率："
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:37
+msgid "Number of photos in burst mode"
+msgstr "连拍照片数"
 
-#: C/pref-photo-resolution.page:39(item/p)
-msgid ""
-"Choose a different resolution from the drop-down list. Some webcams only "
-"support one resolution, so you may not have a choice."
-msgstr ""
-"从下拉菜单中选择其他分辨率。一些摄像头只支持一种分辨率，所以您可能无法选择。"
+#: ../data/org.gnome.Cheese.gschema.xml.in.h:38
+msgid "The number of photos to take in a single burst."
+msgstr "一次连拍的照片数量。"
 
-#: C/pref-photo-resolution.page:43(item/p)
-msgid "Click <gui>Close</gui>."
-msgstr "单击<gui>关闭</gui>。"
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:918
+msgid "Shutter sound"
+msgstr "快门声"
 
-#: C/video-record.page:19(info/desc)
-msgid "Use your webcam to record short movies for sharing with friends."
-msgstr "使用摄像头录制短片，与朋友分享。"
+#: ../libcheese/cheese-avatar-chooser.c:281
+msgid "_Take a photo"
+msgstr "拍照(_T)"
 
-#: C/video-record.page:22(page/title)
-msgid "Record a video"
-msgstr "录制视频"
+#: ../libcheese/cheese-avatar-chooser.c:294
+msgid "_Discard photo"
+msgstr "丢弃照片(_D)"
 
-#: C/video-record.page:24(page/p)
-msgid "To record a video using your webcam:"
-msgstr "要使用摄像头录制视频："
+#: ../libcheese/cheese-camera-device.c:390
+msgid "Device capabilities not supported"
+msgstr "不支持该设备的全部功能"
 
-#: C/video-record.page:28(item/p)
-msgid ""
-"Make sure that you are in <gui>Video mode</gui>. If you are, the button in "
-"the middle of the window will say <gui>Start Recording</gui>."
-msgstr ""
-"确保您在<gui>视频模式</gui>模式下。如果已在该模式下，窗口中间的按钮会显示："
-"<gui>开始录像</gui>。"
+#: ../libcheese/cheese-camera-device.c:419
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "初始化设备 %s 以探测其能力时失败"
 
-#: C/video-record.page:30(item/p)
-msgid ""
-"You can switch to <gui>Video mode</gui> by clicking the button in the main "
-"window or by clicking <guiseq><gui>Cheese</gui><gui>Video</gui></guiseq>."
-msgstr ""
-"您可以通过点击主窗口上的按钮或点击<guiseq><gui>茄子</gui><gui>视频</gui></"
-"guiseq>切换到<gui>视频模式</gui>。"
+#: ../libcheese/cheese-camera-device.c:608
+msgid "Unknown device"
+msgstr "未知设备"
 
-#: C/video-record.page:34(item/p)
-msgid ""
-"Click <gui>Start Recording</gui>, or press the <key>spacebar</key>. "
-"<app>Cheese</app> will start recording from your webcam."
-msgstr ""
-"点击<gui>开始录像</gui>，或按下<key>空格键</key>。<app>茄子</app> 将开始用摄"
-"像头录像。"
+#: ../libcheese/cheese-camera-device.c:631
+msgid "Cancellable initialization not supported"
+msgstr "不支持可中断初始化"
 
-#: C/video-record.page:38(item/p)
-msgid ""
-"To stop recording, click <gui>Stop Recording</gui> or press <key>Esc</key>."
-msgstr "要停止录像，点击<gui>停止录像</gui>或按下<key>Esc</key>键。"
+#: ../libcheese/cheese-camera.c:1489
+#, c-format
+msgid "No device found"
+msgstr "未发现设备"
 
-#: C/video-record.page:43(page/p)
-msgid "Videos are saved in the Ogg Theora (<file>.ogv</file>) format."
-msgstr "视频将被保存为 Ogg Theora(<file>.ogv</file>) 格式。"
+#: ../libcheese/cheese-camera.c:1539
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "缺少所需的一个或多个 GStreamer 元素："
 
-#: C/video-record.page:45(page/p)
-msgid ""
-"After you have stopped recording, the video will automatically appear in the "
-"photo stream at the bottom of the <app>Cheese</app> window. From there, you "
-"can <link xref=\"photo-view\">play back the video</link>, upload it to a "
-"social network, post it on your blog or YouTube channel, or share it with "
-"friends by <link href=\"help:gnome-help/net-default-email\">email</link>."
-msgstr ""
-"当您停止录像后，视频将会自动出现在<app>茄子</app>窗口底部的照片集里面。在照片"
-"集中，您可以<link xref=\"photo-view\">回放视频</link>，将视频上传到社交网络，"
-"发布到您的博客或 Youtube 频道，或者通过<link href=\"help:gnome-help/net-"
-"default-email\">邮件</link>与朋友分享。"
+#: ../src/cheese-effects-manager.vala:50
+msgid "No Effect"
+msgstr "无效果"
 
-#: C/video-record.page:51(page/p)
-msgid ""
-"If you have problems sharing a video with people using other operating "
-"systems (like Windows or Mac OS), you may need to <link href=\"help:gnome-"
-"help/video-sending\">convert it to a different format</link>."
-msgstr ""
-"如果您在与使用其他操作系统(如 Windows 或 Mac OS)的朋友分享视频时出现问题，您"
-"可能需要<link href=\"help:gnome-help/video-sending\">将视频转换成其他格式</"
-"link>。"
+#: ../src/cheese-main.vala:37
+msgid "Start in wide mode"
+msgstr "以宽屏模式启动"
 
+#: ../src/cheese-main.vala:38
+msgid "Device to use as a camera"
+msgstr "用作摄像头的设备"
+
+#: ../src/cheese-main.vala:38
+msgid "DEVICE"
+msgstr "设备"
+
+#: ../src/cheese-main.vala:39
+msgid "Output version information and exit"
+msgstr "输出版本信息并退出"
+
+#: ../src/cheese-main.vala:40
+msgid "Start in fullscreen mode"
+msgstr "以全屏模式启动"
+
+#: ../src/cheese-main.vala:126
+msgid "- Take photos and videos from your webcam"
+msgstr "- 使用摄像头拍摄照片和视频"
+
+#: ../src/cheese-main.vala:138
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgstr "运行“%s --help”来查看可用命令行选项的完整列表。\n"
+
+#: ../src/cheese-main.vala:153
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "另一个 Cheese 实例已在运行\n"
+
+#: ../src/cheese-window.vala:222
+#, c-format
+msgid "Could not open %s"
+msgstr "打不开 %s"
+
+#: ../src/cheese-window.vala:250
+#, c-format
+msgid "Are you sure you want to permanently delete the file?"
+msgid_plural "Are you sure you want to permanently delete %d files?"
+msgstr[0] "您确实想永久删除这 %d 个文件吗？"
+
+#: ../src/cheese-window.vala:256
+msgid "If you delete an item, it will be permanently lost"
+msgid_plural "If you delete the items, they will be permanently lost"
+msgstr[0] "如果您删除这些项目，它们会永远消失"
+
+#: ../src/cheese-window.vala:332
+#, c-format
+msgid "Could not move %s to trash"
+msgstr "无法将 %s 移到回收站"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:481
+msgid "Save File"
+msgstr "保存文件"
+
+#: ../src/cheese-window.vala:515
+#, c-format
+msgid "Could not save %s"
+msgstr "无法保存 %s"
+
+#: ../src/cheese-window.vala:1027
+msgid "Stop _Recording"
+msgstr "停止录像(_R)"
+
+#: ../src/cheese-window.vala:1028
+msgid "Stop recording"
+msgstr "停止录像"
+
+#: ../src/cheese-window.vala:1056
+msgid "Stop _Taking Pictures"
+msgstr "停止拍照(_T)"
+
+#: ../src/cheese-window.vala:1057
+msgid "Stop taking pictures"
+msgstr "停止拍照"
+
+#: ../src/cheese-window.vala:1240
+msgid "No effects found"
+msgstr "未发现效果"
+
+#~ msgid "Image properties"
+#~ msgstr "图像属性"
+
+#~ msgid ""
+#~ "This program is free software; you can redistribute it and/or modify it "
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
+#~ "\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
+#~ "\n"
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see http://www.gnu.org/licenses/\n"
+#~ msgstr ""
+#~ "这个程序是自由软件；您可以遵照由自由软件基金会发布的 GNU 通用公共许可协议"
+#~ "或许可协议的第二版，或(由您选择)任何更新版本重新分发和/或修改它；\n"
+#~ "\n"
+#~ "这个程序本着可应用的意愿分发，但不作任何保证；甚至没有商业性的或对特定目的"
+#~ "适用性的暗指。更多细节请参看 GNU 通用公共许可协议。\n"
+#~ "\n"
+#~ "您应该已经收到这个程序附带的一份 GNU 通用公共许可协议；如果没有，查看 "
+#~ "<http://www.gnu.org/licenses/>。\n"
+
+#~ msgid "Fullscreen"
+#~ msgstr "全屏"
+
+#~ msgid "_Delete"
+#~ msgstr "删除(_D)"
+
+#~ msgid "_Open"
+#~ msgstr "打开(_O)"
+
+#~ msgid "_Preferences"
+#~ msgstr "首选项(_P)"
+
+#~ msgid "_Quit"
+#~ msgstr "退出(_Q)"
+
+#~ msgid "Next effect"
+#~ msgstr "下一个效果"
+
+#~ msgid "%d "
+#~ msgstr "%d "
