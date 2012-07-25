@@ -79,6 +79,7 @@ libcheese_gtk_la_CFLAGS = \
 
 libcheese_gtk_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
+	-DG_LOG_DOMAIN=\"cheese-gtk\" \
 	-I$(top_builddir)/libcheese \
 	-I$(top_srcdir)/libcheese \
 	-I$(top_srcdir)/src
@@ -117,6 +118,7 @@ libcheese_la_CFLAGS = \
 
 libcheese_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
+	-DG_LOG_DOMAIN=\"cheese\" \
 	-I$(top_builddir)/libcheese \
 	-I$(top_srcdir)/libcheese
 
