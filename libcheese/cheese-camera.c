@@ -1510,6 +1510,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   CheeseCameraPrivate *priv;
   GError  *tmp_error = NULL;
   GstElement *video_sink;
+  GstCaps *caps;
 
   g_return_if_fail (error == NULL || *error == NULL);
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
