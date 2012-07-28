@@ -257,7 +257,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
   gtk_dialog_add_buttons (GTK_DIALOG (chooser),
                           GTK_STOCK_CANCEL,
                           GTK_RESPONSE_REJECT,
-                          "Select",
+                          _("Select"),
                           GTK_RESPONSE_ACCEPT,
                           NULL);
   gtk_window_set_title (GTK_WINDOW (chooser), _("Take a photo"));
