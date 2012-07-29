@@ -1510,7 +1510,6 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   CheeseCameraPrivate *priv;
   GError  *tmp_error = NULL;
   GstElement *video_sink;
-  GstCaps *caps;
 
   g_return_if_fail (error == NULL || *error == NULL);
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
@@ -1552,10 +1551,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   g_object_set (G_OBJECT (video_sink), "sync", FALSE, NULL);
   g_object_set (G_OBJECT (priv->camerabin), "viewfinder-sink", video_sink, NULL);
 
-  /* Set caps to filter, so it doesn't defaults to I420 format*/
-  caps = gst_caps_from_string ("video/x-raw-yuv; video/x-raw-rgb");
-  g_object_set (G_OBJECT (priv->camerabin), "filter-caps", caps, NULL);
-  gst_caps_unref (caps);
+  /* Set flags to enable conversions*/
 
   cheese_camera_set_camera_source (camera);
   cheese_camera_set_video_recording (camera, &tmp_error);
