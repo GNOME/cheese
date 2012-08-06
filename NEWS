@@ -1,6 +1,29 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.5.5
+  - Fix zh_CN translation markup
+  - Set G_LOG_DOMAIN for libcheese and libcheese-gtk
+    Define the logging domain for the GLib logging system, so that messages
+    are prefixed with the name of the library.
+  - Fix missing translation for a string
+    https://bugzilla.gnome.org/show_bug.cgi?id=680756
+  - Post-release bump to version 3.5.5
+  - Added/Updated Translations
+    - as, courtesy of Nilamdyuti Goswami
+    - de, courtesy of Tobias Endrigkeit
+    - el, courtesy of Tom Tryfonidis
+    - es, courtesy of Daniel Mustieles
+    - gl, courtesy of Fran Dieguez
+    - gu, courtesy of "Last-Translator: \n"
+    - ja, courtesy of Jiro Matsuzawa
+    - sl, courtesy of Matej Urbančič
+    - zh_CN, courtesy of Wylmer Wang
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - zh_CN, courtesy of Wylmer Wang
+
 version 3.5.4
   - Require Clutter 1.10.0 for aspect frame changes
   - help: fixed broken links in Mallard docs
