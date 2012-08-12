@@ -2,27 +2,27 @@
 # Copyright (C) 2010 THE Cheese'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the Cheese package.
 #
-# Andika Triwidada <andika@gmail.com>, 2010, 2012.
-# Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011.
-# Vincent Sebastian The <vincent.s.the@gmail.com>, 2011.
 #
+# Andika Triwidada <andika@gmail.com>, 2010, 2012.
+# Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011, 2012.
+# Vincent Sebastian The <vincent.s.the@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-06-26 19:44+0000\n"
-"PO-Revision-Date: 2012-06-28 10:43+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
-"Language-Team: Bahasa Indonesia <gnome@i15n.org>\n"
+"POT-Creation-Date: 2012-08-12 14:44+0000\n"
+"PO-Revision-Date: 2012-08-12 22:54+0700\n"
+"Last-Translator: Dirgita <dirgitadevina@yahoo.co.id>\n"
+"Language-Team: Indonesian <gnome@i15n.org>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Language: Indonesian\n"
 "X-Poedit-Country: Indonesia\n"
-"X-Generator: Lokalize 1.1\n"
+"X-Generator: Lokalize 1.2\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
@@ -327,7 +327,7 @@ msgstr "Apakah mulai dalam mode layar penuh"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr "Bila ditata ke benar, Cheese akan mulai pada moda layar penuh"
+msgstr "Bila ditata ke benar, Cheese akan mulai pada moda layar penuh."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
@@ -354,6 +354,10 @@ msgstr "Foto yang diambil dalam suatu rentetan tunggal."
 #: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
 msgid "Shutter sound"
 msgstr "Suara tombol"
+
+#: ../libcheese/cheese-avatar-chooser.c:260
+msgid "Select"
+msgstr "Pilih"
 
 #: ../libcheese/cheese-avatar-chooser.c:281
 msgid "_Take a photo"
@@ -382,7 +386,7 @@ msgstr "Inisiasi yang dapat dibatalkan tak didukung"
 
 #: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
 msgid "One or more needed GStreamer elements are missing: "
-msgstr "Satu atau lebih elemen GStreamer yang diperlukan hilang:"
+msgstr "Satu atau lebih elemen GStreamer yang diperlukan hilang: "
 
 #: ../libcheese/cheese-camera.c:1509
 #, c-format
@@ -496,6 +500,7 @@ msgid "Could not open %s"
 msgstr "Tidak bisa membuka %s"
 
 #: ../src/cheese-window.vala:220
+#, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Apakah Anda yakin ingin menghapus %d berkas?"
@@ -504,8 +509,7 @@ msgstr[0] "Apakah Anda yakin ingin menghapus %d berkas?"
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] ""
-"Jika Anda menghapus barang, barang tersebut akan hilang secara "
-"permanen"
+"Jika Anda menghapus barang, barang tersebut akan hilang secara permanen"
 
 #: ../src/cheese-window.vala:302
 #, c-format
@@ -566,4 +570,3 @@ msgstr "Ambil Foto"
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
 msgstr "A_mbil Banyak Foto"
-
