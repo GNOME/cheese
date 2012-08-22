@@ -313,8 +313,10 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
       {
         CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
 
-        format->width  = cur_width;
-        format->height = cur_height;
+        /* Gstreamer wants resolutions for YUV formats where the width is
+         * a multiple of 8, and the height is a multiple of 2 */
+        format->width  = cur_width & ~7;
+        format->height = cur_height & ~1;
 
         cheese_camera_device_add_format (device, format);
 
@@ -328,8 +330,10 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
       {
         CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
 
-        format->width  = cur_width;
-        format->height = cur_height;
+        /* Gstreamer wants resolutions for YUV formats where the width is
+         * a multiple of 8, and the height is a multiple of 2 */
+        format->width  = cur_width & ~7;
+        format->height = cur_height & ~1;
 
         cheese_camera_device_add_format (device, format);
 
