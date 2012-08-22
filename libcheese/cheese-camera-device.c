@@ -296,6 +296,14 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
       min_height = gst_value_get_int_range_min (height);
       max_height = gst_value_get_int_range_max (height);
 
+      /* Some devices report a very small min_width / height down to reporting
+       * 0x0 as minimum resolution, which causes an infinte loop below, limit
+       * these to something reasonable. */
+      if (min_width < 160)
+        min_width = 160;
+      if (min_height < 120)
+        min_height = 120;
+
       cur_width  = min_width;
       cur_height = min_height;
 
