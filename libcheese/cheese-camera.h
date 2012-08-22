@@ -25,7 +25,6 @@
 #define __CHEESE_CAMERA_H__
 
 #include <glib-object.h>
-#include <gst/interfaces/xoverlay.h>
 #include <clutter/clutter.h>
 #include <cheese-camera-device.h>
 #include <cheese-effect.h>
