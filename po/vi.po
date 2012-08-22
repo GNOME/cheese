@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
 "POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-08-22 14:04+0700\n"
+"PO-Revision-Date: 2012-08-22 14:06+0700\n"
 "Last-Translator: Nguyễn Thái Ngọc Duy <pclouds@gmail.com>\n"
 "Language-Team: Vietnamese <vi-VN@googlegroups.com>\n"
 "Language: vi\n"
@@ -133,10 +133,9 @@ msgid "Image"
 msgstr "Ảnh"
 
 #: ../data/cheese-prefs.ui.h:11
-#, fuzzy
 #| msgid "Shutter sound"
 msgid "Shutter"
-msgstr "Âm thanh khi chụp"
+msgstr "Cửa chập"
 
 #: ../data/cheese-prefs.ui.h:12
 msgid "_Countdown"
@@ -193,11 +192,11 @@ msgstr "Đặt là True để hiện đếm ngược trước khi chụp ảnh, 
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
 msgid "Fire flash before taking a picture"
-msgstr ""
+msgstr "Hiện đèn nháy trước khi chụp"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
 msgid "Set to true to fire a flash when taking a picture"
-msgstr ""
+msgstr "Đặt để hiện đèn nháy khi chụp ảnh"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
@@ -215,7 +214,7 @@ msgstr "Hiệu ứng chọn cuối cùng"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:10
 msgid "Name of the installed effect that was selected last"
-msgstr ""
+msgstr "Tên của hiệu ứng được cài đặt được chọn lần cuối"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:11
 msgid "Photo width"
@@ -314,6 +313,8 @@ msgid ""
 "If set to true, Cheese will start up in wide mode, with the image collection "
 "placed on the right-hand side. Useful with small screens."
 msgstr ""
+"Đặt để khởi động trong chế độ rộng, với bộ sưu tập ảnh nằm bên tay phải. Hữu "
+"dụng với màn hình nhỏ."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Whether to start in fullscreen"
@@ -321,7 +322,7 @@ msgstr "Có bắt đầu ở chế độ toàn màn hình"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr ""
+msgstr "Đặt để Cheese khởi động ở chế độ toàn màn hình."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
@@ -351,7 +352,7 @@ msgstr "Âm thanh khi chụp"
 
 #: ../libcheese/cheese-avatar-chooser.c:260
 msgid "Select"
-msgstr ""
+msgstr "Chọn"
 
 #: ../libcheese/cheese-avatar-chooser.c:281
 msgid "_Take a photo"
@@ -396,7 +397,7 @@ msgstr "Không tìm thấy thiết bị"
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
-msgstr ""
+msgstr "%02i:%02i:%02i"
 
 #: ../src/cheese-effects-manager.vala:50
 msgid "No Effect"
@@ -424,11 +425,11 @@ msgstr "Bắt đầu ở chế độ toàn màn hình"
 
 #: ../src/cheese-main.vala:92
 msgid "_Shoot"
-msgstr ""
+msgstr "_Chụp"
 
 #: ../src/cheese-main.vala:96
 msgid "Mode:"
-msgstr ""
+msgstr "Chế độ:"
 
 #: ../src/cheese-main.vala:97
 msgid "_Photo"
@@ -443,16 +444,14 @@ msgid "_Burst"
 msgstr "_Hàng loạt"
 
 #: ../src/cheese-main.vala:102
-#, fuzzy
 #| msgid "Fullscreen"
 msgid "_Fullscreen"
-msgstr "Toàn màn hình"
+msgstr "_Toàn màn hình"
 
 #: ../src/cheese-main.vala:110
-#, fuzzy
 #| msgid "Preferences"
 msgid "P_references"
-msgstr "Tùy thích"
+msgstr "_Tùy thích"
 
 #: ../src/cheese-main.vala:113
 msgid "_About"
@@ -528,10 +527,9 @@ msgid "Stop recording"
 msgstr "Dừng thu"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#, fuzzy
 #| msgid "_Record a Video"
 msgid "Record a Video"
-msgstr "_Thu phim"
+msgstr "Thu phim"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -547,10 +545,9 @@ msgid "Stop taking pictures"
 msgstr "Ngừng chụp hình"
 
 #: ../src/cheese-window.vala:994
-#, fuzzy
 #| msgid "Take _Multiple Photos"
 msgid "Take Multiple Photos"
-msgstr "_Chụp nhiều ảnh"
+msgstr "Chụp nhiều ảnh"
 
 #: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
 msgid "Take multiple photos"
@@ -561,10 +558,9 @@ msgid "No effects found"
 msgstr "Không có hiệu ứng"
 
 #: ../src/cheese-window.vala:1503
-#, fuzzy
 #| msgid "_Take a Photo"
 msgid "Take a Photo"
-msgstr "_Chụp ảnh"
+msgstr "Chụp ảnh"
 
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
