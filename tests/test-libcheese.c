@@ -19,6 +19,7 @@
 
 #include "cheese-config.h"
 
+#include <stdlib.h>
 #include <glib/gi18n.h>
 #include "cheese-camera-device.h"
 #include "cheese-camera-device-monitor.h"

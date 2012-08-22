@@ -1,4 +1,5 @@
 #include <glib.h>
+#include <stdlib.h>
 
 #include "cheese-camera-device-monitor.h"
 #include "cheese-camera-device.h"
