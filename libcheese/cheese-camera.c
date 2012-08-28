@@ -608,9 +608,9 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
     cheese_camera_set_error_element_not_found (error, "videobalance");
     return FALSE;
   }
-  if ((priv->csp_post_balance = gst_element_factory_make ("ffmpegcolorspace", "csp_post_balance")) == NULL)
+  if ((priv->csp_post_balance = gst_element_factory_make ("videoconvert", "csp_post_balance")) == NULL)
   {
-    cheese_camera_set_error_element_not_found (error, "ffmpegcolorspace");
+    cheese_camera_set_error_element_not_found (error, "videoconvert");
     return FALSE;
   }
 
@@ -862,9 +862,9 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
                 "pipeline-desc", &effect_desc,
                 "name", &name, NULL);
 
-  effects_pipeline_desc = g_strconcat ("ffmpegcolorspace name=colorspace1 ! ",
+  effects_pipeline_desc = g_strconcat ("videoconvert name=colorspace1 ! ",
                                        effect_desc,
-                                       " ! ffmpegcolorspace name=colorspace2",
+                                       " ! videoconvert name=colorspace2",
                                        NULL);
   g_free (effect_desc);
   effect_filter = gst_parse_bin_from_description (effects_pipeline_desc, FALSE, &err);
