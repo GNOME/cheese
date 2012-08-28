@@ -150,35 +150,40 @@ cheese_camera_error_quark (void)
 /*
  * cheese_camera_photo_data:
  * @camera: a #CheeseCamera
- * @buffer: the #GstBuffer containing photo data
+ * @sample: the #GstSample containing photo data
  *
  * Create a #GdkPixbuf containing photo data captured from @camera, and emit it
  * in the ::photo-taken signal.
  */
 static void
-cheese_camera_photo_data (CheeseCamera *camera, GstBuffer *buffer)
+cheese_camera_photo_data (CheeseCamera *camera, GstSample *sample)
 {
+  GstBuffer          *buffer;
   GstCaps            *caps;
   const GstStructure *structure;
   gint                width, height, stride;
   GdkPixbuf          *pixbuf;
   const gint          bits_per_pixel = 8;
   guchar             *data = NULL;
+  
   CheeseCameraPrivate *priv  = camera->priv;
+  GstMapInfo         mapinfo = {0, };
 
-  caps = gst_buffer_get_caps (buffer);
+  buffer = gst_sample_get_buffer (sample);
+  caps = gst_sample_get_caps (sample);
   structure = gst_caps_get_structure (caps, 0);
   gst_structure_get_int (structure, "width", &width);
   gst_structure_get_int (structure, "height", &height);
 
-  stride = buffer->size / height;
-
-  data = g_memdup (GST_BUFFER_DATA (buffer), buffer->size);
-  pixbuf = gdk_pixbuf_new_from_data (data ? data : GST_BUFFER_DATA (buffer),
+  gst_buffer_map (buffer, &mapinfo, GST_MAP_READ);
+  stride = mapinfo.size / height;
+  data = g_memdup (mapinfo.data, mapinfo.size);
+  pixbuf = gdk_pixbuf_new_from_data (data ? data : mapinfo.data,
                                      GDK_COLORSPACE_RGB,
                                      FALSE, bits_per_pixel, width, height, stride,
                                      data ? (GdkPixbufDestroyNotify) g_free : NULL, NULL);
 
+  gst_buffer_unmap (buffer, &mapinfo);
   g_object_set (G_OBJECT (priv->camerabin), "post-previews", FALSE, NULL);
   g_signal_emit (camera, camera_signals[PHOTO_TAKEN], 0, pixbuf);
   g_object_unref (pixbuf);
@@ -246,20 +251,20 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
     case GST_MESSAGE_ELEMENT:
     {
       const GstStructure *structure;
-      GstBuffer *buffer;
+      GstSample *sample;
       const GValue *image;
       if (strcmp (GST_MESSAGE_SRC_NAME (message), "camera_source") == 0)
       {
         structure = gst_message_get_structure (message);
         if (strcmp (gst_structure_get_name (structure), "preview-image") == 0)
         {
-          if (gst_structure_has_field_typed (structure, "buffer", GST_TYPE_BUFFER))
+          if (gst_structure_has_field_typed (structure, "sample", GST_TYPE_SAMPLE))
           {
-            image = gst_structure_get_value (structure, "buffer");
+            image = gst_structure_get_value (structure, "sample");
             if (image)
             {
-              buffer = gst_value_get_buffer (image);
-              cheese_camera_photo_data (camera, buffer);
+              sample = gst_value_get_sample (image);
+              cheese_camera_photo_data (camera, sample);
             }
             else
             {
@@ -1010,7 +1015,7 @@ cheese_camera_set_tags (CheeseCamera *camera)
 
   datetime = gst_date_time_new_now_local_time();
 
-  taglist = gst_tag_list_new_full (
+  taglist = gst_tag_list_new (
       GST_TAG_APPLICATION_NAME, PACKAGE_STRING,
       GST_TAG_DATE_TIME, datetime,
       GST_TAG_DEVICE_MODEL, device_name,
@@ -1775,9 +1780,9 @@ cheese_camera_get_recorded_time (CheeseCamera *camera)
   gint seconds;
   gboolean ret = FALSE;
 
-  videosink = gst_bin_get_by_name (priv->camerabin, "videobin-filesink");
+  videosink = gst_bin_get_by_name (GST_BIN_CAST (priv->camerabin), "videobin-filesink");
   if (videosink) {
-    ret = gst_element_query_position (videosink, &format, &curtime);
+    ret = gst_element_query_position (videosink, format, &curtime);
     gst_object_unref (videosink);
   }
   if (ret) {
