@@ -234,7 +234,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
     }
     case GST_MESSAGE_STATE_CHANGED:
     {
-      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin2") == 0)
+      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin") == 0)
       {
         GstState old, new;
         gst_message_parse_state_changed (message, &old, &new, NULL);
@@ -268,7 +268,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
           }
         }
       }
-      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin2") == 0)
+      if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin") == 0)
       {
         structure = gst_message_get_structure (message);
         if (strcmp (gst_structure_get_name (structure), "image-done") == 0)
@@ -1530,9 +1530,9 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   }
 
 
-  if ((priv->camerabin = gst_element_factory_make ("camerabin2", "camerabin2")) == NULL)
+  if ((priv->camerabin = gst_element_factory_make ("camerabin", "camerabin")) == NULL)
   {
-    cheese_camera_set_error_element_not_found (error, "camerabin2");
+    cheese_camera_set_error_element_not_found (error, "camerabin");
   }
   if ((priv->camera_source = gst_element_factory_make ("wrappercamerabinsrc", "camera_source")) == NULL)
   {
@@ -1798,7 +1798,7 @@ cheese_camera_get_recorded_time (CheeseCamera *camera)
     return g_strdup_printf (C_("time format", "%02i:%02i:%02i"),
                             hours, minutes, seconds);
   } else {
-    GST_WARNING ("Failed to get time from video filesink from camerabin2");
+    GST_WARNING ("Failed to get time from video filesink from camerabin");
     return "";
   }
 }
