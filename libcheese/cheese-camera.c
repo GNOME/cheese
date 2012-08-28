@@ -1177,9 +1177,8 @@ cheese_camera_take_photo_pixbuf (CheeseCamera *camera)
     return FALSE;
   }
 
-  caps = gst_caps_new_simple ("video/x-raw-rgb",
-                              "bpp", G_TYPE_INT, 24,
-                              "depth", G_TYPE_INT, 24,
+  caps = gst_caps_new_simple ("video/x-raw",
+                              "format", G_TYPE_STRING, "RGB",
                               NULL);
   g_object_set (G_OBJECT (priv->camerabin), "post-previews", TRUE, NULL);
   g_object_set (G_OBJECT (priv->camerabin), "preview-caps", caps, NULL);

@@ -77,8 +77,7 @@ GST_DEBUG_CATEGORY (cheese_camera_device_cat);
 #define GST_CAT_DEFAULT cheese_camera_device_cat
 
 static gchar *supported_formats[] = {
-  "video/x-raw-rgb",
-  "video/x-raw-yuv",
+  "video/x-raw",
   NULL
 };
 
