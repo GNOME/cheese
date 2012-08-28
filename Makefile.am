@@ -61,7 +61,7 @@ VALAFLAGS = \
 	--pkg gee-1.0 \
 	--pkg clutter-1.0 \
 	--pkg clutter-gtk-1.0 \
-	--pkg gstreamer-0.10 \
+	--pkg gstreamer-1.0 \
 	--pkg libcanberra-gtk \
 	--pkg libcanberra \
 	--pkg eogthumbnav \

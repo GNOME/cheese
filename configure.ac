@@ -63,10 +63,10 @@ GTK_REQUIRED="gtk+-3.0 >= 3.4.4"
 GDK_REQUIRED="gdk-3.0 >= 3.3.6"
 GDK_PIXBUF_REQUIRED="gdk-pixbuf-2.0"
 LIBGNOMEDESKTOP_REQUIRED="gnome-desktop-3.0 >= 2.91.6"
-GSTREAMER_VERSION=0.10.32
-GSTREAMER_REQUIRED="gstreamer-plugins-base-0.10 >= $GSTREAMER_VERSION gstreamer-0.10 >= $GSTREAMER_VERSION gstreamer-pbutils-0.10 >= $GSTREAMER_VERSION"
-GSTREAMER_PLUGINS_BAD_VERSION=0.10.22
-GSTREAMER_PLUGINS_BAD_REQUIRED="gstreamer-plugins-bad-0.10 >= $GSTREAMER_PLUGINS_BAD_VERSION"
+GSTREAMER_VERSION=0.11.0
+GSTREAMER_REQUIRED="gstreamer-plugins-base-1.0 >= $GSTREAMER_VERSION gstreamer-1.0 >= $GSTREAMER_VERSION gstreamer-pbutils-1.0 >= $GSTREAMER_VERSION"
+GSTREAMER_PLUGINS_BAD_VERSION=0.11.0
+GSTREAMER_PLUGINS_BAD_REQUIRED="gstreamer-plugins-bad-1.0 >= $GSTREAMER_PLUGINS_BAD_VERSION"
 CAIRO_REQUIRED="cairo >= 1.10.0"
 PANGOCAIRO_REQUIRED="pangocairo >= 1.28.0"
 LIBRSVG_REQUIRED="librsvg-2.0 >= 2.32.0"
@@ -115,7 +115,6 @@ PKG_CHECK_MODULES([CHEESE],
   $CLUTTER_REQUIRED
   $CLUTTERGST_REQUIRED
   $UDEV_REQUIRED])
-CHEESE_LIBS="$CHEESE_LIBS -lgstinterfaces-0.10"
 
 PKG_CHECK_MODULES([CHEESE_GTK],
   [$GIO_REQUIRED
@@ -130,7 +129,7 @@ PKG_CHECK_MODULES([CHEESE_GTK],
    $GNOME_VIDEO_EFFECTS_REQUIRED])
 
 # Recommend some runtime GStreamer plugins.
-AC_PATH_PROGS([GST_INSPECT], [gst-inspect-0.10 gst-inspect], [notfound])
+AC_PATH_PROGS([GST_INSPECT], [gst-inspect-1.0], [notfound])
 AS_IF([test "x$GST_INSPECT" = "xnotfound"],
   [AC_MSG_WARN([unable to check for runtime GStreamer plugin dependencies])],
   [GST_RUNTIME_PLUGINS="camerabin2 vp8enc webmmux"
