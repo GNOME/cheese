@@ -625,7 +625,7 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
   ok &= gst_element_link_many (priv->camera_tee, priv->main_valve,
                                priv->effect_filter, priv->video_balance,
                                priv->csp_post_balance, NULL);
-  gst_pad_link (gst_element_get_request_pad (priv->camera_tee, "src%d"),
+  gst_pad_link (gst_element_get_request_pad (priv->camera_tee, "src_%u"),
                 gst_element_get_static_pad (priv->effects_preview_bin, "sink"));
 
   /* add ghostpads */
