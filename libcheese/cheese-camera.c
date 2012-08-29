@@ -490,7 +490,7 @@ cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
 
       /* Seems like we do first run and userspace preset do not exist.
        * Let us create a new one. It will be probably located some where here:
-       * ~/.gstreamer-0.10/presets/GstVP8Enc.prs */
+       * ~/.local/share/gstreamer-1.0/presets/GstVP8Enc.prs */
       g_object_set (G_OBJECT (video_enc), "speed", 2, NULL);
       g_object_set (G_OBJECT (video_enc), "max-latency", 1, NULL);
       gst_preset_save_preset (GST_PRESET (video_enc), video_preset);
