@@ -176,8 +176,8 @@ Cheese_3_0_gir_FILES = \
 Cheese_3_0_gir_INCLUDES = \
 	GObject-2.0 \
 	GLib-2.0 \
-	Gst-0.10 \
-	GstBase-0.10 \
+	Gst-1.0 \
+	GstBase-1.0 \
 	cairo-1.0 \
 	Clutter-1.0 \
 	GdkPixbuf-2.0
