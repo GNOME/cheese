@@ -19,6 +19,8 @@
 
 #include "cheese-config.h"
 
+#include <stdlib.h>
+
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 #include <gst/gst.h>
