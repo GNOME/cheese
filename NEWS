@@ -1,6 +1,224 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.5.91
+  - Post-release version bump to 3.5.91
+  - Fix another missing stdlib.h include
+    For EXIT_FAILURE.
+  - Bump libtool versioning after GStreamer 1.0 port
+  - Move variable declarations before code in C source
+    This allows compilation to succeed with
+    ‘-Werror=declaration-after-statement’ passed to GCC.
+  - Fix comment about preset locations
+    Update for new location in GStreamer 1.0.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=680422
+  - Update pkg-config dependencies for GStreamer 1.0
+    https://bugzilla.gnome.org/show_bug.cgi?id=680422
+  - Fix dependencies for Cheese introspection
+    Update for GStreamer 1.0.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=680422
+  - Add stdlib.h include for EXIT_SUCCESS
+  - Depend on the new clutter-gst version
+  - Update to the new pad template name
+  - Rename ffmpegcolorspace to videoconvert
+    The element was renamed in GStreamer 1.0.
+  - Update raw caps to new format
+    There is no video/x-raw-yuv or -rgb, they are both now video/x-raw with
+    a format field.
+  - Update to GStreamer 1.0 API
+  - Rename camerabin2 to camerabin
+    camerabin2 was renamed to camerabin in GStreamer 1.0.
+  - Depend on gstreamer-1.0
+  - Do not set filter-caps property on camerabin2
+    The "filter-caps" property doesn't exist on camerabin2.
+  - Re-add GstCaps variable in CheeseCamera
+    caps variable was removed during rebase, but it is still used.
+  - Fix CheeseCamera recording time reporting
+    Camerabin2 maintains its pipeline clock continuously running, this makes
+    the time reporting for video recording actually report the time since
+    camerabin2 was initialized.
+
+    This patch fixes it by querying the video filesink for the correct
+    recording time.
+  - Check for camerabin2 instead of camerabin
+  - Encode WebM/VP8 instead of OGG/Theora
+    Create WebM profile and use it with camereabin2. Also use presets for
+    vp8enc.
+  - Stop-capture is asynchronous in camerabin2
+    Wait for video-done message to signal that capture is over.
+  - Image-done message is posted by camerabin2
+    Camerabin2 is the element to post the image-done message, not the camera
+    source.
+  - Remove unused variables warnings in CheeseCamera
+  - Split setting of CheeseCamera caps from playing
+    Add new cheese_camera_set_new_caps() method, split from
+    cheese_camera_play().
+  - Set ClutterTextureVideoSink sync=false
+    Without this the sink will issue a warning:
+
+  ** (cheese:21655): WARNING **: Internal data flow problem.:
+    gstbasesink.c(3626): gst_base_sink_chain_unlocked ():
+  /GstCameraBin2:camerabin2/GstViewfinderBin:vf-bin/ClutterGstVideoSink:cluttergstvideosink0:
+    Received buffer without a new-segment. Assuming timestamps start from 0.
+
+    I'm not sure what the implications of this setting are. It might be
+    caused by the clock/time rewriting magic from camerabin2.
+  - Do not switch mode when stopping video recording
+  - Set the video resolution
+    Use the viewfinder-caps property of camerabin2, rather than the
+    set-video-resolution-fps signal of camerabin.
+  - Fix pixbuf-only capture
+    camerabin2 sends the preview-image bus message through the
+    gstwrappercamerabinsrc.
+
+    In camerabin2 if the location is NULL, it is interpreted as a "don't
+    write in a file just post the buffer as a bus message".
+  - Enable post-preview property when needed
+    When taking a photo to pixbuf, sets post-preview to enable camerabin2 to
+    send the preview message.
+  - Remove camerabin workaround
+    No longer needed with camerabin2.
+  - Convert image-done to a bus message, from a signal
+    Quote from camerabin2's PORTING guide:
+
+    In camerabin, image-done is a signal, in camerabin2, it is a bus message
+
+    Signed-off-by: Raluca Elena Podiuc <ralucaelena1985@gmail.com>
+  - Use definitions of MODE_IMAGE/VIDEO from camerabin
+   #ifndef GST_USE_UNSTABLE_API
+   #warning "camerabin enums are unstable API and may change in future."
+   #warning "You can define GST_USE_UNSTABLE_API to avoid this warning."
+   #endif
+  - Handle photo/video moved to monitored directories
+    Camerabin2 creates a temporary file, writes data to it and in the end it
+    moves it to the destination path.
+
+    Without G_FILE_MONITOR_SEND_MOVED to g_file_monitor_directory, moves
+    would be sent as DELETE + CREATE.
+
+    Unfortunately, we would also get CREATE events when the temporary file
+    was created. We cannot listen for CREATE events as temporary files would
+    be CREATEd and then CHANGEd and the thumb-view creation code would work
+    with bad data.
+
+    By using G_FILE_MONITOR_SEND_MOVED we get a single event when the file
+    is moved. As the file monitor ignores files with unknown extensions (as
+    is the case for the temporary files created by camerabin2) we could only
+    just append the new file. But because the user might also move a
+    picture/video manually from the Pictures/Webcam or Videos/Webcam
+    directories, removing the old file from the thumb-view keeps it
+    up-to-date with the state of the file system.
+
+    If camerabin2 switches away from the create-temp+move approach, to the
+    camerabin one (create the destination file directly), we're prepared
+    to handle that code with G_FILE_MONITOR_EVENT_CHANGES_DONE_HINT.
+  - Rename filename and capture-start/stop
+    Quote from camerabin2's PORTING guide:
+
+[...] is now called 'location' instead of 'filename'
+
+    The signals were renamed from capture-start/stop to start/stop-capture
+    as this is the usual naming on actions.
+  - Video filter on camera_source applies to all modes
+    If the effect is applied on camera_source, the effect will be available
+    in viewfinder and image/video capture modes.
+  - Minimal functionality based on camerabin2
+    These are the minimal changes needed to integrate camerabin2.
+
+    Support for:
+      - viewfinder (Cheese's main window)
+      - effect previews
+
+    Porting details:
+      - obviously, the name has changed to camerabin2
+      - Camerabin2 requires something special from it's "camera-source".
+
+    We use the "wrappercamerabinsrc" module provided by camerabin2 which
+    creates a "camera-source" suitable for camerabin2 based on a regular
+    video source.
+  - Depend on GTK+ 3.4.4 for GtkIconView changes
+  - Request correct number of thumbview columns
+    Rather then assuming 5000 will be enough, just set the number of columns
+    to the number of thumbnails in the view. Fixes bug 634958 and bug 678446.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Add missing stdlib.h includes
+    For the EXIT_* macro definitions.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=682491
+  - Remove unneeded XOverlay includes
+    https://bugzilla.gnome.org/show_bug.cgi?id=682490
+  - Ensure width is a multiple of 8, and height of 2
+    We ask GStreamer to use an YUV format in the pipeline, by setting the
+    camerabin's "filter-caps" to "video/x-raw-yuv", and GStreamer demands of
+    YUV format frames that their width is a multiple of 8, and their height
+    a multiple of 2.
+
+    Previous to this patch my bttv tvcard lists the following resolutions in
+    Cheese:
+    924x576 (*)
+    920x576
+    640x480
+    462x288 (*)
+    460x288 (*)
+    320x240
+    231x144 (*)
+    230x144 (*)
+    160x120
+
+    Where all the ones marked with an asterisk do not work.
+
+    After this patch the list is:
+    920x576
+    640x480
+    456x288
+    320x240
+    224x144
+    160x120
+
+    And all work.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Fix cheese_camera_device_update_format_table loop
+    Some devices report a very small min_width / height down to reporting
+    0x0 as minimum resolution, which causes an infinite loop in
+    cheese_camera_device_update_format_table().
+
+    This patch limits the minimum resultion to 160x120, both to fix the
+    infinite loop issue, and to remove ridiculous resolutions such as 2x2,
+    5x3, 11x7, 22x15 etc. which are seen in the resolution drop down on some
+    devices.
+
+    For more details on the infinite loop issue, see:
+    https://bugzilla.redhat.com/show_bug.cgi?id=850505
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Post-release version bump to 3.5.90
+  - Added/Updated Translations
+    - as, courtesy of Nilamdyuti Goswami
+    - de, courtesy of Tobias Endrigkeit
+    - gl, courtesy of Leandro Regueiro
+    - gu, courtesy of "Last-Translator: \n"
+    - he, courtesy of Yaron Shahrabani
+    - id, courtesy of Dirgita
+    - it, courtesy of Francesco Valente
+    - kn, courtesy of Shankar Prasad
+    - lt, courtesy of Aurimas Černius
+    - mr, courtesy of Sandeep Shedmake
+    - nb, courtesy of Kjartan Maraas
+    - pl, courtesy of Piotr Drąg
+    - pt, courtesy of Duarte Loreto
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+    - ta, courtesy of Dr.T.Vasudevan
+    - vi, courtesy of Nguyễn Thái Ngọc Duy
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - de, courtesy of Mario Blättermann
+
 version 3.5.5
   - Fix zh_CN translation markup
   - Set G_LOG_DOMAIN for libcheese and libcheese-gtk
