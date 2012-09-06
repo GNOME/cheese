@@ -378,6 +378,37 @@ cheese_thumb_view_monitor_cb (GFileMonitor     *file_monitor,
       cheese_thumb_view_append_item (thumb_view, file);
       break;
 
+    case G_FILE_MONITOR_EVENT_CREATED:
+    {
+      CheeseThumbViewPrivate *priv;
+      const char *path_photos;
+      char *filename;
+      GDir *dir_photos;
+      const char *name;
+      char *photo_name;
+      GFile *photo_file;
+
+      priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+      path_photos = cheese_fileutil_get_photo_path (priv->fileutil);
+      filename = g_file_get_path (file);
+      if (!strcmp(path_photos, filename))
+      {
+        dir_photos = g_dir_open (path_photos, 0, NULL);
+        while ((name = g_dir_read_name (dir_photos)))
+        {
+          if (!(g_str_has_suffix (name, CHEESE_PHOTO_NAME_SUFFIX)))
+            continue;
+          photo_name = g_build_filename (path_photos, name, NULL);
+          photo_file = g_file_new_for_path (photo_name);
+          cheese_thumb_view_append_item (thumb_view, photo_file);
+          g_free (photo_name);
+          g_object_unref (photo_file);
+        }
+        g_dir_close (dir_photos);
+      }
+      break;
+    }
+
     default:
       break;
   }
