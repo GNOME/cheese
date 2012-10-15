@@ -931,7 +931,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
        *   + The user is currently not recording.
        */
       timeout_layer.text = "00:00:00";
-      take_action_button_label.label = "<b>" + _("Record a Video") + "</b>";
+      take_action_button_label.label = "<b>" + _("_Record a Video") + "</b>";
       take_action_button.tooltip_text = _("Record a video");
       take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_RECORD, Gtk.IconSize.BUTTON);
       this.is_recording = false;
@@ -1500,12 +1500,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         switch (current_mode)
         {
             case MediaMode.PHOTO:
-                take_action_button_label.label = "<b>" + _("Take a Photo") + "</b>";
+                take_action_button_label.label = "<b>" + _("_Take a Photo") + "</b>";
                 take_action_button.tooltip_text = _("Take a photo");
                 break;
 
             case MediaMode.VIDEO:
-                take_action_button_label.label = "<b>" + _("Record a Video") + "</b>";
+                take_action_button_label.label = "<b>" + _("_Record a Video") + "</b>";
                 take_action_button.tooltip_text = _("Record a video");
                 timeout_layer.text = "00:00:00";
                 timeout_layer.show ();
