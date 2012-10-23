@@ -12,9 +12,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-08-06 17:54+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-09-24 22:39+0000\n"
+"PO-Revision-Date: 2012-10-23 16:02+0200\n"
 "Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: Greek <team@gnome.gr>\n"
 "Language: el\n"
@@ -23,8 +24,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "X-Generator: Lokalize 0.2\n"
-"X-Poedit-Language: Greek\n"
-"X-Poedit-Country: GREECE\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
@@ -66,8 +65,7 @@ msgstr "Λειτουργία βίντεο"
 msgid "Photo burst mode"
 msgstr "Λειτουργία πολλαπλής φωτογράφησης"
 
-#: ../data/cheese-main-window.ui.h:4
-#: ../libcheese/cheese-avatar-chooser.c:263
+#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
 #: ../src/cheese-window.vala:1504
 msgid "Take a photo"
 msgstr "Λήψη φωτογραφίας"
@@ -84,8 +82,7 @@ msgstr "Προηγούμενο"
 msgid "Effects"
 msgstr "Εφέ"
 
-#: ../data/cheese-main-window.ui.h:8
-#: ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
 msgid "_Effects"
 msgstr "_Εφέ"
 
@@ -119,7 +116,7 @@ msgstr "Ανάλυση βίντεο"
 
 #: ../data/cheese-prefs.ui.h:5
 msgid "Webcam"
-msgstr "Κάμερα διαδικτύου"
+msgstr "Δικτυακή κάμερα"
 
 #: ../data/cheese-prefs.ui.h:6
 msgid "Brightness"
@@ -151,7 +148,7 @@ msgstr "_Αντίστροφη μέτρηση"
 
 #: ../data/cheese-prefs.ui.h:13
 msgid "Fire _Flash"
-msgstr "Ενεργοποίηση _Φλας"
+msgstr "Ενεργοποίηση _φλας"
 
 #: ../data/cheese-prefs.ui.h:14
 msgid "Burst mode"
@@ -167,10 +164,9 @@ msgstr "Καθυστέρηση μεταξύ φωτογραφιών (δευτ)"
 
 #: ../data/cheese-prefs.ui.h:17
 msgid "Capture"
-msgstr "Σύλληψης"
+msgstr "Σύλληψη"
 
-#: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:81
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
 #: ../src/cheese-main.vala:489
 msgid "Cheese"
 msgstr "Cheese"
@@ -179,10 +175,11 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3
-#: ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Λήψη φωτογραφιών και βίντεο από την δικτυακή σας κάμερα, με διασκεδαστικά γραφικά εφέ"
+msgstr ""
+"Λήψη φωτογραφιών και βίντεο από την δικτυακή σας κάμερα, με διασκεδαστικά "
+"γραφικά εφέ"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -190,7 +187,9 @@ msgstr "Χρήση αντίστροφης μέτρησης"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:2
 msgid "Set to true to show a countdown before taking a photo"
-msgstr "Ορίστε το σε αληθής για να εμφανίζεται η αντίστροφη μέτρηση πριν τη λήψη μιας φωτογραφίας"
+msgstr ""
+"Ορίστε το σε αληθής για να εμφανίζεται η αντίστροφη μέτρηση πριν τη λήψη "
+"μιας φωτογραφίας"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:3
 msgid "Countdown length"
@@ -198,7 +197,9 @@ msgstr "Διάρκεια αντίστροφης μέτρησης"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:4
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr "Η διάρκεια της αντίστροφης μέτρησης πριν τη λήψη της φωτογραφίας, σε δευτερόλεπτα"
+msgstr ""
+"Η διάρκεια της αντίστροφης μέτρησης πριν τη λήψη της φωτογραφίας, σε "
+"δευτερόλεπτα"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
 msgid "Fire flash before taking a picture"
@@ -206,15 +207,19 @@ msgstr "Ενεργοποίησε το φλας πριν τη λήψη φωτογ
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
 msgid "Set to true to fire a flash when taking a picture"
-msgstr "Ορίστε στο σε αληθές για την ενεργοποίηση του φλας κατά τη λήψη φωτογραφίας"
+msgstr ""
+"Ορίστε στο σε αληθές για την ενεργοποίηση του φλας κατά τη λήψη φωτογραφίας"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
 msgstr "Ένδειξη συμβολοσειράς της συσκευής κάμερα"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
-msgid "The path to the device node which points to the camera, for example /dev/video0"
-msgstr "Η τοποθεσία της συσκευής που δείχνει την κάμερα, για παράδειγμα /dev/video0"
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr ""
+"Η τοποθεσία της συσκευής που δείχνει την κάμερα, για παράδειγμα /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -293,24 +298,36 @@ msgid "Video Path"
 msgstr "Διαδρομή βίντεο"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-msgid "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Καθορίζει την τοποθεσία που θα αποθηκευτούν τα βίντεο.Αν είναι κενό, θα χρησιμοποιεί το  \"XDG_VIDEO/Webcam\"."
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Καθορίζει την τοποθεσία που θα αποθηκευτούν τα βίντεο.Αν είναι κενό, θα "
+"χρησιμοποιεί το  \"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo Path"
 msgstr "Διαδρομή εικόνας"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-msgid "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Καθορίζει την τοποθεσία που θα αποθηκευτούν οι φωτογραφίες.Αν είναι κενό, θα χρησιμοποιεί το  \"XDG_VIDEO/Webcam\"."
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Καθορίζει την τοποθεσία που θα αποθηκευτούν οι φωτογραφίες.Αν είναι κενό, θα "
+"χρησιμοποιεί το  \"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Whether to start in wide mode"
 msgstr "Αν θα ξεκινήσει σε ευρεία λειτουργία"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid "If set to true, Cheese will start up in wide mode, with the image collection placed on the right-hand side. Useful with small screens."
-msgstr "Αν ορισθεί ως αληθής, το Cheese θα εκκινήσει σε ευρεία λειτουργία, με τη συλλογή φωτογραφιών τοποθετημένη στη δεξιά πλευρά. Χρήσιμο για μικρές οθόνες."
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Αν ορισθεί ως αληθής, το Cheese θα εκκινήσει σε ευρεία λειτουργία, με τη "
+"συλλογή φωτογραφιών τοποθετημένη στη δεξιά πλευρά. Χρήσιμο για μικρές οθόνες."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Whether to start in fullscreen"
@@ -318,15 +335,23 @@ msgstr "Αν θα ξεκινήσει σε λειτουργία πλήρους 
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr "Αν ορισθεί ως αληθής, το Cheese θα εκκινήσει σε λειτουργία πλήρης οθόνης."
+msgstr ""
+"Αν ορισθεί ως αληθής, το Cheese θα εκκινήσει σε λειτουργία πλήρης οθόνης."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
 msgstr "Χρόνος μεταξύ των φωτογραφιών σε λειτουργία ριπής"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:36
-msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos. If the burst delay is less than the countdown duration, the countdown duration will be used instead."
-msgstr "Η διάρκεια του χρόνου, σε χιλιοστά του δευτερολέπτου, για τη καθυστέρηση της λήψης κάθε φωτογραφίας σε μια ριπή φωτογραφιών. Αν η καθυστέρηση ριπής είναι μικρότερη από τη διάρκεια της αντίστροφης μέτρησης, τότε θα χρησιμοποιηθεί η διάρκεια της αντίστροφης μέτρησης."
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr ""
+"Η διάρκεια του χρόνου, σε χιλιοστά του δευτερολέπτου, για τη καθυστέρηση της "
+"λήψης κάθε φωτογραφίας σε μια ριπή φωτογραφιών. Αν η καθυστέρηση ριπής είναι "
+"μικρότερη από τη διάρκεια της αντίστροφης μέτρησης, τότε θα χρησιμοποιηθεί η "
+"διάρκεια της αντίστροφης μέτρησης."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:37
 msgid "Number of photos in burst mode"
@@ -336,8 +361,7 @@ msgstr "Αριθμός φωτογραφιών σε λειτουργία ριπή
 msgid "The number of photos to take in a single burst."
 msgstr "Ο αριθμός των φωτογραφιών που θα ληφθούν σε μια ριπή."
 
-#: ../libcheese/cheese-avatar-chooser.c:138
-#: ../src/cheese-window.vala:807
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
 msgid "Shutter sound"
 msgstr "Ήχος φωτοφράκτη"
 
@@ -353,29 +377,28 @@ msgstr "_Λήψη φωτογραφίας"
 msgid "_Discard photo"
 msgstr "Από_ρριψη φωτογραφίας"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "Δεν υποστηρίζονται οι δυνατότητες της συσκευής"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Αποτυχία αρχικοποίησης συσκευής %s για ανίχνευση δυνατοτήτων"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "Άγνωστη συσκευή"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "Δεν υποστηρίζεται η ακύρωση αρχικοποίησης"
 
-#: ../libcheese/cheese-camera.c:430
-#: ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ένα ή περισσότερα απαιτούμενα στοιχεία του gstreamer αγνοούνται: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "Δε βρέθηκε συσκευή"
@@ -385,7 +408,7 @@ msgstr "Δε βρέθηκε συσκευή"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -405,7 +428,7 @@ msgstr "Συσκευή για χρήση ως κάμερα"
 
 #: ../src/cheese-main.vala:52
 msgid "DEVICE"
-msgstr "DEVICE"
+msgstr "ΣΥΣΚΕΥΗ"
 
 #: ../src/cheese-main.vala:53
 msgid "Output version information and exit"
@@ -462,7 +485,9 @@ msgstr "- Λήψη φωτογραφιών και βίντεο από την δι
 #: ../src/cheese-main.vala:189
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr "Εκτελέστε '%s --help' για να δείτε την πλήρη λίστα των διαθέσιμων επιλογών γραμμής εντολών.\n"
+msgstr ""
+"Εκτελέστε '%s --help' για να δείτε την πλήρη λίστα των διαθέσιμων επιλογών "
+"γραμμής εντολών.\n"
 
 #: ../src/cheese-main.vala:204
 #, c-format
@@ -523,13 +548,11 @@ msgstr "Δια_κοπή εγγραφής"
 msgid "Stop recording"
 msgstr "Διακοπή εγγραφής"
 
-#: ../src/cheese-window.vala:934
-#: ../src/cheese-window.vala:1508
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
 msgid "Record a Video"
 msgstr "Εγγραφή βίντεο"
 
-#: ../src/cheese-window.vala:935
-#: ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
 msgstr "Εγγραφή βίντεο"
 
@@ -546,8 +569,7 @@ msgstr "Διακοπή λήψης φωτογραφιών"
 msgid "Take Multiple Photos"
 msgstr "Λήψη πολλαπλών φωτογραφιών"
 
-#: ../src/cheese-window.vala:995
-#: ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
 msgid "Take multiple photos"
 msgstr "Λήψη πολλαπλών φωτογραφιών"
 
