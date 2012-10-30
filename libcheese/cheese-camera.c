@@ -1803,6 +1803,6 @@ cheese_camera_get_recorded_time (CheeseCamera *camera)
                             hours, minutes, seconds);
   } else {
     GST_WARNING ("Failed to get time from video filesink from camerabin");
-    return "";
+    return NULL;
   }
 }
