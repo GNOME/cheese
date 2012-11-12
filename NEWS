@@ -1,6 +1,18 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.6.2
+  - Handle thumbnail directory creation, bug 671614
+  - Return NULL rather than a const empty string
+    Fix bug 687042 and bug 687123 by returning NULL from
+    cheese_camera_get_recorded_time() rather than a const empty string. The
+    returned NULL can be safely freed with g_free(), whereas freeing the
+    const string is undefined and leads to a crash with glibc.
+  - Post-release version bump to 3.6.2
+  - Added/Updated Translations
+    - el, courtesy of Tom Tryfonidis
+  - Added/Updated Documentation
+
 version 3.6.1
   - Post-release version bump to 3.6.1
   - Added/Updated Translations
