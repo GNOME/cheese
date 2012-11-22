@@ -6,18 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: as\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
-"cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-08-03 14:32+0530\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-10-29 16:16+0000\n"
+"PO-Revision-Date: 2012-11-22 15:50+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
-"Language: \n"
+"Language: as_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 1.0\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
@@ -64,7 +64,7 @@ msgstr "ফ'টো বাৰ্স্ট অৱস্থা"
 msgid "Take a photo"
 msgstr "এটা ফ'টো লওক "
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
 msgid "_Take a Photo"
 msgstr "এটা ফ'টো লওক (_T)"
 
@@ -172,6 +172,10 @@ msgstr "Cheese ৰ ৱেবকেম বুথ"
 #: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ৱেবকেমৰ সহায়ত আমোদময় গ্ৰাফিক্সসহ ফ'টো লওক আৰু ভিডিঅ' তৈয়াৰ কৰক"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "ফ'টো;ভিডিঅ';ৱেবকেম;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -288,7 +292,8 @@ msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
-"পথ যত ভিডিঅ'সমূহ সংৰক্ষণ কৰা হয় তাৰ বিৱৰণ দিয়ে। যদি ৰিক্ত, \"XDG_VIDEO/Webcam\" "
+"পথ যত ভিডিঅ'সমূহ সংৰক্ষণ কৰা হয় তাৰ বিৱৰণ দিয়ে। যদি ৰিক্ত, "
+"\"XDG_VIDEO/Webcam\" "
 "ব্যৱহাৰ কৰা হব।"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
@@ -312,7 +317,8 @@ msgid ""
 "If set to true, Cheese will start up in wide mode, with the image collection "
 "placed on the right-hand side. Useful with small screens."
 msgstr ""
-"যদি true লে সংহতি কৰা থাকে, Cheese বিস্তৃত অৱস্থাত আৰম্ভ হব, ছবি সংগ্ৰহ সোঁ হাতত "
+"যদি true লে সংহতি কৰা থাকে, Cheese বিস্তৃত অৱস্থাত আৰম্ভ হব, ছবি সংগ্ৰহ সোঁ "
+"হাতত "
 "থকাকৈ। সৰু পৰ্দাৰ সৈতে উপযোগী।"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
@@ -333,7 +339,8 @@ msgid ""
 "burst sequence of photos. If the burst delay is less than the countdown "
 "duration, the countdown duration will be used instead."
 msgstr ""
-"বাৰ্স্ট অনুক্ৰমে ফ'টো লোৱাৰ সময়ত দুটা ফ'টোত অন্তৰ্বতী সময়ৰ ব্যৱধান, মিলিছেকেণ্ডত। যদি "
+"বাৰ্স্ট অনুক্ৰমে ফ'টো লোৱাৰ সময়ত দুটা ফ'টোত অন্তৰ্বতী সময়ৰ ব্যৱধান, "
+"মিলিছেকেণ্ডত। যদি "
 "বাৰ্স্ট বিলম্ব উলোটা গণনাৰ অবধিতকে কম, উলোটা গণনা অৱধি ব্যৱহাৰ কৰা হব।"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:37
@@ -360,28 +367,28 @@ msgstr "এটা ফ'টো লওক (_T)"
 msgid "_Discard photo"
 msgstr "ফ'টো আতৰাওক (_D)"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "ডিভাইচৰ ক্ষমতাসমূহ সমৰ্থিত নহয়"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "ক্ষমতা প্ৰবিংৰ কাৰণে %s ডিভাইচ আৰম্ভ কৰিবলে ব্যৰ্থ"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "অজ্ঞাত ডিভাইচ"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "বাতিল হব লগিয়া আৰম্ভ প্ৰক্ৰীয়া সমৰ্থিত নহয়"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "একাধিক আৱশ্যক GStreamer উপাদান অনুপস্থিত আছে: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "কোনো ডিভাইচ পোৱা নগল"
@@ -391,7 +398,7 @@ msgstr "কোনো ডিভাইচ পোৱা নগল"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -478,7 +485,8 @@ msgstr "Cheese ৰ অন্য এটা উদাহৰণ ইতিমধ্�
 #: ../src/cheese-main.vala:490
 msgid "translator-credits"
 msgstr ""
-"অমিতাক্ষ ফুকন (aphukan@fedoraproject.org), নীলমদ্যুতি গোস্বামী (ngoswami@redhat."
+"অমিতাক্ষ ফুকন (aphukan@fedoraproject.org), নীলমদ্যুতি গোস্বামী "
+"(ngoswami@redhat."
 "com)"
 
 #: ../src/cheese-main.vala:492
@@ -527,8 +535,9 @@ msgid "Stop recording"
 msgstr "ৰেকৰ্ডিং বন্ধ কৰক"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "এটা ভিডিঅ' ৰেকৰ্ড কৰক"
+#| msgid "Record a Video"
+msgid "_Record a Video"
+msgstr "এটা ভিডিঅ' ৰেকৰ্ড কৰক (_R)"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -555,13 +564,12 @@ msgstr "একাধিক ফ'টো লওক"
 msgid "No effects found"
 msgstr "কোনো প্ৰভাৱ পোৱা নগল"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "এটা ফ'টো লওক"
-
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
 msgstr "একাধিক ফ'টো লওক (_M)"
+
+#~ msgid "Take a Photo"
+#~ msgstr "এটা ফ'টো লওক"
 
 #~ msgid "_Cheese"
 #~ msgstr "Cheese (_C)"
