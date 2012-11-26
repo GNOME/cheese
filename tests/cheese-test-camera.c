@@ -37,7 +37,6 @@ main (int argc, char **argv)
   ClutterActor *stage;
   ClutterActor *texture;
 
-  g_thread_init (NULL);
   gdk_threads_init ();
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);

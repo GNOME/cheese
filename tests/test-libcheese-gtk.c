@@ -98,7 +98,6 @@ static void widget (void)
 
 int main (int argc, gchar *argv[])
 {
-    g_thread_init (NULL);
     gdk_threads_init ();
     gtk_test_init (&argc, &argv, NULL);
     if (!cheese_gtk_init (&argc, &argv))

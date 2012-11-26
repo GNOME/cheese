@@ -23,7 +23,6 @@ main (int argc, char **argv)
   GtkWidget *window;
   GtkWidget *camera;
 
-  g_thread_init (NULL);
   gdk_threads_init ();
   gst_init (&argc, &argv);
 
