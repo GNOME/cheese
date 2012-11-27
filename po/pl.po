@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-01 21:15+0200\n"
-"PO-Revision-Date: 2012-09-01 21:17+0200\n"
+"POT-Creation-Date: 2012-11-27 16:58+0100\n"
+"PO-Revision-Date: 2012-11-27 16:59+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <gnomepl@aviary.pl>\n"
 "Language: pl\n"
@@ -70,7 +70,7 @@ msgstr "Tryb zdjęć seryjnych"
 msgid "Take a photo"
 msgstr "Zrób zdjęcie"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
 msgid "_Take a Photo"
 msgstr "Zrób z_djęcie"
 
@@ -181,6 +181,10 @@ msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Robienie zdjęć i nagrywanie filmów z zabawnymi efektami za pomocą kamery "
 "internetowej"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "zdjęcie;film;wideo;video;webcam;kamerka;efekty;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -378,28 +382,28 @@ msgstr "Zrób z_djęcie"
 msgid "_Discard photo"
 msgstr "_Odrzuć zdjęcie"
 
-#: ../libcheese/cheese-camera-device.c:402
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "Nieobsługiwane możliwości urządzenia"
 
-#: ../libcheese/cheese-camera-device.c:431
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Zainicjowanie urządzenia %s do sprawdzenia możliwości się nie powiodło"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "Nieznane urządzenie"
 
-#: ../libcheese/cheese-camera-device.c:643
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "Nieobsługiwane inicjowanie możliwe do anulowania"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Brak jednego lub więcej elementów GStreamer: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "Nie odnaleziono kamery"
@@ -409,7 +413,7 @@ msgstr "Nie odnaleziono kamery"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -554,8 +558,8 @@ msgid "Stop recording"
 msgstr "Zatrzymuje nagrywanie"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Nagraj wideo"
+msgid "_Record a Video"
+msgstr "_Nagraj wideo"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -581,10 +585,6 @@ msgstr "Zrób wiele zdjęć"
 #: ../src/cheese-window.vala:1147
 msgid "No effects found"
 msgstr "Nie odnaleziono efektów"
-
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Zrób zdjęcie"
 
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
