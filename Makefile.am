@@ -52,6 +52,7 @@ AM_CPPFLAGS = \
 	$(WARN_CFLAGS)
 
 VALAFLAGS = \
+	--target-glib=2.32 \
 	--thread \
 	--vapidir $(top_srcdir)/src/vapi \
 	--pkg config \
