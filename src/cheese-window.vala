@@ -1044,6 +1044,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   public bool on_selected_effect_change (Clutter.Actor source,
                                          Clutter.ButtonEvent event)
   {
+    /* Disable the effects selector after selecting an effect. */
+    toggle_effects_selector(false);
+
     selected_effect = source.get_data ("effect");
     camera.set_effect (selected_effect);
     settings.set_string ("selected-effect", selected_effect.name);
