@@ -1,6 +1,46 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.7.3
+  - Return to the video view after selecting an effect
+    Fixes bug 687879.
+  - More g_thread_init() removal
+    Add --target-glib 2.32 to the VALAFLAGS so that we don't get
+    g_thread_init() in the generated .c code.
+  - Drop calls to g_thread_init() in tests
+    Our dependency on Gtk 3.4 already gives us an indirect dependency on a
+    GLib that no longer requires these calls.
+
+    We got away with this for a while due to gstreamer's public dependency
+    on libgthread, but as of bug 689043 gstreamer no longer does this so we
+    now get link errors.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=689117
+  - Handle thumbnail directory creation, bug 671614
+  - Return NULL rather than a const empty string
+    Fix bug 687042 and bug 687123 by returning NULL from
+    cheese_camera_get_recorded_time() rather than a const empty string. The
+    returned NULL can be safely freed with g_free(), whereas freeing the
+    const string is undefined and leads to a crash with glibc.
+  - Add keywords to the desktop file
+    This makes gnome-shell search more satisfying.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=687006
+  - Add some missing mnemonics, bug 684513
+  - Post-release verson bump to 3.7.1
+  - Added/Updated Translations
+    - an, courtesy of Jorge Pérez Pérez
+    - as, courtesy of Nilamdyuti Goswami
+    - ca@valencia, courtesy of Gil Forcada
+    - el, courtesy of Tom Tryfonidis
+    - es, courtesy of Daniel Mustieles
+    - pl, courtesy of Piotr Drąg
+    - sk, courtesy of Pavol Babinčák
+    - ta, courtesy of Shantha kumar
+  - Added/Updated Documentation
+    - lv, courtesy of Rūdolfs Mazurs
+    - sl, courtesy of Andrej Žnidaršič
+
 version 3.6.0
   - Added/Updated Translations
     - bg, courtesy of Krasimir Chonov
