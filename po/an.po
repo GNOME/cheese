@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: cheese gnome-3-6\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-11-12 21:43+0000\n"
-"PO-Revision-Date: 2012-12-14 01:36+0100\n"
+"POT-Creation-Date: 2012-12-16 12:38+0000\n"
+"PO-Revision-Date: 2012-12-16 20:42+0100\n"
 "Last-Translator: Jorge Pérez Pérez <jorgtum@gmail.com>\n"
 "Language-Team: Aragonese <softaragones@googlegroups.com>\n"
 "Language: an\n"
@@ -25,7 +25,7 @@ msgstr "Compartir?"
 
 #: ../data/cheese-actions.ui.h:2
 msgid "Save _As…"
-msgstr "_Alzar como..."
+msgstr "_Alzar como…"
 
 #: ../data/cheese-actions.ui.h:3
 msgid "Move to _Trash"
@@ -60,11 +60,11 @@ msgid "Photo burst mode"
 msgstr "Modo rafaga de fotos"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1507
 msgid "Take a photo"
 msgstr "Fer una foto"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1506
 msgid "_Take a Photo"
 msgstr "Fer una fo_to"
 
@@ -173,6 +173,10 @@ msgstr "Fotomatón de camara web Cheese"
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Fe fotos y videos con a suya camara web, con divertius efectos graficos"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "foto;video;camara web;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -530,11 +534,12 @@ msgstr "_Aturar grabación"
 msgid "Stop recording"
 msgstr "Aturar grabación"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Grabar un video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1511
+#, fuzzy
+msgid "_Record a Video"
+msgstr "G_rabar un video"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1512
 msgid "Record a video"
 msgstr "Grabar un video"
 
@@ -551,18 +556,17 @@ msgstr "Deixar de tomar imachens"
 msgid "Take Multiple Photos"
 msgstr "Fer multiples fotos"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1519
 msgid "Take multiple photos"
 msgstr "Fer multiples fotos"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1150
 msgid "No effects found"
 msgstr "No s'han trobau efectos"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Fer una foto"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1518
 msgid "Take _Multiple Photos"
 msgstr "Fer _multiples fotos"
+
+#~ msgid "Take a Photo"
+#~ msgstr "Fer una foto"
