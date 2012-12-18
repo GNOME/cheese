@@ -8,19 +8,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-07-29 14:32+0100\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-12-17 23:01+0000\n"
+"PO-Revision-Date: 2012-12-18 08:32+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: \n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
-"X-Poedit-Language: Slovenian\n"
-"X-Poedit-Country: SLOVENIA\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
@@ -62,13 +63,12 @@ msgstr "Video način"
 msgid "Photo burst mode"
 msgstr "Način zaporednega zajemanja"
 
-#: ../data/cheese-main-window.ui.h:4
-#: ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
+#: ../src/cheese-window.vala:1507
 msgid "Take a photo"
 msgstr "Zajemi fotografijo"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1506
 msgid "_Take a Photo"
 msgstr "_Zajemi fotografijo"
 
@@ -80,8 +80,7 @@ msgstr "Predhodna"
 msgid "Effects"
 msgstr "Učinki"
 
-#: ../data/cheese-main-window.ui.h:8
-#: ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
 msgid "_Effects"
 msgstr "_Učinki"
 
@@ -165,8 +164,7 @@ msgstr "Zamik med zajemom fotografij (v sekundah)"
 msgid "Capture"
 msgstr "Zajemanje"
 
-#: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:81
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
 #: ../src/cheese-main.vala:489
 msgid "Cheese"
 msgstr "Cheese"
@@ -175,10 +173,15 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Foto kabina Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3
-#: ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Zajemanje slik in posnetkov s spletno kamero in obdelava z veliko grafičnimi učinki"
+msgstr ""
+"Zajemanje slik in posnetkov s spletno kamero in obdelava z veliko grafičnimi "
+"učinki"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "fotografija;video;spletne kamere;slike;posnetki;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -209,8 +212,11 @@ msgid "Camera device string indicator"
 msgstr "Določilo naprave spletne kamere"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
-msgid "The path to the device node which points to the camera, for example /dev/video0"
-msgstr "Pot do vozlišča naprave, ki določa mesto spletne kamere (primer: /dev/video0)"
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr ""
+"Pot do vozlišča naprave, ki določa mesto spletne kamere (primer: /dev/video0)"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -289,24 +295,36 @@ msgid "Video Path"
 msgstr "Pot do videa"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-msgid "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Določa pot, kjer so shranjeni posnetki. V primeru, da možnost ni izbrana, je privzeto določena pot \"XDG_VIDEO/Webcam\"."
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Določa pot, kjer so shranjeni posnetki. V primeru, da možnost ni izbrana, je "
+"privzeto določena pot \"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo Path"
 msgstr "Pot do slik"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-msgid "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Določa pot, kjer so shranjene slike. V primeru, da možnost ni izbrana, je privzeto določena pot \"XDG_PHOTO/Webcam\"."
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Določa pot, kjer so shranjene slike. V primeru, da možnost ni izbrana, je "
+"privzeto določena pot \"XDG_PHOTO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Whether to start in wide mode"
 msgstr "Ali naj se program zažene v širokem načinu"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid "If set to true, Cheese will start up in wide mode, with the image collection placed on the right-hand side. Useful with small screens."
-msgstr "Izbrana možnost omogoča, da se program zažene v širokem načinu z zbirko slik na desni strani. Možnost je koristna pri uporabi majhnih zaslonov."
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Izbrana možnost omogoča, da se program zažene v širokem načinu z zbirko slik "
+"na desni strani. Možnost je koristna pri uporabi majhnih zaslonov."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Whether to start in fullscreen"
@@ -321,8 +339,14 @@ msgid "Time between photos in burst mode"
 msgstr "Čas med zajemom fotografij v zaporednem načinu zajemanja"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:36
-msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos. If the burst delay is less than the countdown duration, the countdown duration will be used instead."
-msgstr "Čas zamika v milisekundah med zajemanjem fotografij v zaporednem načinu zajemanja. V kolikor je časovni zamik krajši od trajanja odštevanja, bo uporabljen ta čas."
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr ""
+"Čas zamika v milisekundah med zajemanjem fotografij v zaporednem načinu "
+"zajemanja. V kolikor je časovni zamik krajši od trajanja odštevanja, bo "
+"uporabljen ta čas."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:37
 msgid "Number of photos in burst mode"
@@ -332,8 +356,7 @@ msgstr "Število fotografij zajetih v zaporednem načinu zajemanja"
 msgid "The number of photos to take in a single burst."
 msgstr "Število fotografij zajetih v zaporednem načinu zajemanja"
 
-#: ../libcheese/cheese-avatar-chooser.c:138
-#: ../src/cheese-window.vala:807
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
 msgid "Shutter sound"
 msgstr "Zvok zaklopke"
 
@@ -349,29 +372,29 @@ msgstr "_Zajemi fotografijo"
 msgid "_Discard photo"
 msgstr "_Zavrzi sliko"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "Zmožnosti naprave niso podprte"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Začenjanje naprave %s za preiskovanje zmožnosti je spodletelo"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "Neznana naprava"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "Dejanje preklica začenjanja ni podprto"
 
-#: ../libcheese/cheese-camera.c:430
-#: ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
-msgstr "Enega ali več zahtevanih predmetov programa GStreamer ni mogoče najti: "
+msgstr ""
+"Enega ali več zahtevanih predmetov programa GStreamer ni mogoče najti: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "Ni mogoče najti naprave"
@@ -381,7 +404,7 @@ msgstr "Ni mogoče najti naprave"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -520,13 +543,11 @@ msgstr "_Zaustavi snemanje"
 msgid "Stop recording"
 msgstr "Zaustavi snemanje"
 
-#: ../src/cheese-window.vala:934
-#: ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Snemanje videa"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1511
+msgid "_Record a Video"
+msgstr "_Posnemi video"
 
-#: ../src/cheese-window.vala:935
-#: ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1512
 msgid "Record a video"
 msgstr "Snemanje videa"
 
@@ -543,22 +564,20 @@ msgstr "Zaustavi zajemanje slik"
 msgid "Take Multiple Photos"
 msgstr "Zajem več fotografij"
 
-#: ../src/cheese-window.vala:995
-#: ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1519
 msgid "Take multiple photos"
 msgstr "Zajem več fotografij"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1150
 msgid "No effects found"
 msgstr "Učinkov ni mogoče najti"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Zajemi fotografijo"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1518
 msgid "Take _Multiple Photos"
 msgstr "_Zajem več fotografij"
+
+#~ msgid "Take a Photo"
+#~ msgstr "Zajemi fotografijo"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Cheese"
@@ -723,7 +742,6 @@ msgstr "_Zajem več fotografij"
 #~ msgstr "Datoteke \"%s\" ni mogoče izbrisati. Podrobnosti: %s"
 
 #~ msgid "Are you sure you want to permanently delete the %'d selected item?"
-
 #~ msgid_plural ""
 #~ "Are you sure you want to permanently delete the %'d selected items?"
 #~ msgstr[0] ""
