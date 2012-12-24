@@ -2,30 +2,29 @@
 # This file is distributed under the same license as cheese
 # Copyright (C) 2007 daniel g. siegel <dgsiegel@gnome.org>
 # Copyright (C) 2009, 2010, 2012 Leandro Regueiro.
-#
 # Proxecto Trasno - Adaptación do software libre á lingua galega:  Se desexas
 # colaborar connosco, podes atopar máis información en <http://trasno.net>
-#
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
 # Ignacio Casal Quinteiro <icq@svn.gnome.org>, 2007, 2008.
 # Mancomún - Centro de Referencia e Servizos de Software Libre <g11n@mancomun.org>, 2009.
 # Anton Meixome <meixome@mancomun.org>, 2009.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010, 2011, 2012.
 # Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011, 2012.
+# Fran Dieguez <frandieguez@gnome.org>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-03 19:57+0000\n"
-"PO-Revision-Date: 2012-09-02 13:32+0200\n"
-"Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-24 20:31+0100\n"
+"PO-Revision-Date: 2012-12-24 20:31+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"Language-Team: gnome-l10n-gl@gnome.org\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
@@ -68,11 +67,11 @@ msgid "Photo burst mode"
 msgstr "Modo de ráfaga de fotos"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1507
 msgid "Take a photo"
 msgstr "Sacar unha foto"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1506
 msgid "_Take a Photo"
 msgstr "_Sacar unha foto"
 
@@ -182,6 +181,10 @@ msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Saque fotografías e vídeos coa súa cámara web, con efectos gráficos "
 "divertidos"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "foto;vídeo;cámara web;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -547,11 +550,11 @@ msgstr "_Deter a gravación"
 msgid "Stop recording"
 msgstr "Deter a gravación"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Gravar un vídeo"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1511
+msgid "_Record a Video"
+msgstr "_Gravar un vídeo"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1512
 msgid "Record a video"
 msgstr "Gravar un vídeo"
 
@@ -568,21 +571,20 @@ msgstr "Deixar de tomar imaxes"
 msgid "Take Multiple Photos"
 msgstr "Sacar varias fotos"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1519
 msgid "Take multiple photos"
 msgstr "Sacar varias fotos"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1150
 msgid "No effects found"
 msgstr "Non se atopou ningún efecto"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Sacar unha foto"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1518
 msgid "Take _Multiple Photos"
 msgstr "_Sacar varias fotos"
+
+#~ msgid "Take a Photo"
+#~ msgstr "Sacar unha foto"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Cheese"
