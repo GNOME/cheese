@@ -129,10 +129,15 @@ public class Cheese.Main : Gtk.Application
       if (fullscreen)
         main_window.set_startup_fullscreen_mode ();
 
-        main_window.show ();
-        setup_camera (device);
-        preferences_dialog = new PreferencesDialog (camera);
-     }
+      /* Shoot when the webcam capture button is pressed. */
+      main_window.add_events (Gdk.EventMask.KEY_PRESS_MASK
+                              | Gdk.EventMask.KEY_RELEASE_MASK);
+      main_window.key_press_event.connect (on_webcam_key_pressed);
+
+      main_window.show ();
+      setup_camera (device);
+      preferences_dialog = new PreferencesDialog (camera);
+    }
   }
 
   /**
@@ -283,6 +288,36 @@ public class Cheese.Main : Gtk.Application
         camera.state_flags_changed.connect (on_camera_state_flags_changed);
         main_window.set_camera (camera);
         camera.play ();
+    }
+
+    /**
+     * Handle the webcam take photo button being pressed.
+     *
+     * @param event the Gdk.KeyEvent
+     * @return true to stop other handlers being invoked, false to propagate
+     * the event further
+     */
+    private bool on_webcam_key_pressed (Gdk.EventKey event)
+    {
+        /* Ignore the event if any modifier keys are pressed. */
+        if (event.state != 0
+            && ((event.state & Gdk.ModifierType.CONTROL_MASK) != 0
+                 || (event.state & Gdk.ModifierType.MOD1_MASK) != 0
+                 || (event.state & Gdk.ModifierType.MOD3_MASK) != 0
+                 || (event.state & Gdk.ModifierType.MOD4_MASK) != 0
+                 || (event.state & Gdk.ModifierType.MOD5_MASK) != 0))
+        {
+            return false;
+        }
+
+        switch (event.keyval)
+        {
+            case Gdk.Key.WebCam:
+                on_shoot ();
+                return true;
+        }
+
+        return false;
     }
 
     /**
