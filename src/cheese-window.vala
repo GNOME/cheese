@@ -321,13 +321,13 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     // TODO: Use asynchronous methods.
     try {
       var directory = File.new_for_path (fileutil.get_photo_path ());
-      var enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, FileQueryInfoFlags.NONE);
+      var enumerator = directory.enumerate_children (FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
 
       // Trash photos.
       trash_enumerated_files (directory.get_path (), enumerator);
 
       directory  = File.new_for_path (fileutil.get_video_path ());
-      enumerator = directory.enumerate_children (FILE_ATTRIBUTE_STANDARD_NAME, FileQueryInfoFlags.NONE);
+      enumerator = directory.enumerate_children (FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
 
       // Trash videos.
       trash_enumerated_files (directory.get_path (), enumerator);
