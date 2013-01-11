@@ -1,16 +1,16 @@
 # Bulgarian translation of cheese po-file.
-# Copyright (C) 2008, 2009, 2010, 2012 Free Software Foundation, Inc.
+# Copyright (C) 2008, 2009, 2010, 2012, 2013 Free Software Foundation, Inc.
 # Copyright (C) 2010, 2011, 2012 Krasimir Chonov <mk2616@abv.bg>.
 # This file is distributed under the same license as the cheese package.
-# Alexander Shopov <ash@kambanaria.org>, 2008, 2009, 2010, 2012.
+# Alexander Shopov <ash@kambanaria.org>, 2008, 2009, 2010, 2012, 2013.
 # Krasimir Chonov <mk2616@abv.bg>, 2010, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-19 20:47+0300\n"
-"PO-Revision-Date: 2012-09-19 20:47+0300\n"
+"POT-Creation-Date: 2013-01-11 08:38+0200\n"
+"PO-Revision-Date: 2013-01-11 08:38+0200\n"
 "Last-Translator: Krasimir Chonov <mk2616@abv.bg>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -64,7 +64,7 @@ msgstr "Серия от снимки"
 msgid "Take a photo"
 msgstr "Снимане"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
 msgid "_Take a Photo"
 msgstr "_Снимане на снимка"
 
@@ -161,7 +161,7 @@ msgid "Capture"
 msgstr "Заснемане"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -169,10 +169,14 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Крива камера с Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Заснeмане на снимки и клипове с вашата уеб камера и прилагане на ефекти"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "фото;фотографии;снимки;видеоклипове;клип;камера;photo;video;webcam;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -464,23 +468,23 @@ msgstr "Помо_щ"
 msgid "_Quit"
 msgstr "_Спиране на програмата"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "— заснемане на снимки и клипове с вашата камера"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Изпълнете „%s --help“, за да видите списък с наличните опции на командния "
 "ред.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Програмата Cheese вече е стартирана \n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "Александър Шопов <ash@kambanaria.org>\n"
@@ -491,7 +495,7 @@ msgstr ""
 "Докладвайте за грешки на <a href=\"http://gnome.cult.bg/bugs\">http://gnome."
 "cult.bg/bugs</a>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Уеб сайт на Cheese"
 
@@ -537,8 +541,8 @@ msgid "Stop recording"
 msgstr "Край на запис"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Запис на клип"
+msgid "_Record a Video"
+msgstr "_Запис на клип"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -561,13 +565,9 @@ msgstr "Снимане на серия от снимки"
 msgid "Take multiple photos"
 msgstr "Снимане на серия от снимки"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1150
 msgid "No effects found"
 msgstr "Липсват ефекти"
-
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Снимане на снимка"
 
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
