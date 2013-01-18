@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the cheese package.
 # Goran Rakić <grakic@devbase.net>, 2009.
 # Miloš Popović <gpopac@gmail.com>, 2010.
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2010, 2011, 2012.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2010, 2011, 2012, 2013.
 # Branko Kokanović <branko.kokanovic@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
 "&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-08-08 10:48+0200\n"
+"POT-Creation-Date: 2012-10-29 16:16+0000\n"
+"PO-Revision-Date: 2013-01-18 09:57+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -67,7 +67,7 @@ msgstr "Rafalni režim"
 msgid "Take a photo"
 msgstr "Snimite fotku"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
 msgid "_Take a Photo"
 msgstr "_Snimi fotku"
 
@@ -175,6 +175,10 @@ msgstr "Fotoradnja „Ptičica“"
 #: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Napravite fotke i snimke vašom veb kamericom, uz zabavne efekte"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "foto;video;slike;snimak;veb kamerica;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -364,28 +368,28 @@ msgstr "_Snimi fotku"
 msgid "_Discard photo"
 msgstr "_Odbaci fotku"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "Mogućnosti uređaja nisu podržane"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Nije uspelo pokretanje uređaja %s za isprobavanje mogućnosti"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "Nepoznati uređaj"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "Nije podržano pokretanje uz mogućnost otkazivanja"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Nedostaje jedan ili više potrebnih elemenata GStrimera: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "Nisam pronašao uređaj"
@@ -395,7 +399,7 @@ msgstr "Nisam pronašao uređaj"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -472,7 +476,8 @@ msgstr "— napravite fotke i snimke veb kamericom, uz zabavne efekte"
 #: ../src/cheese-main.vala:189
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr "Pokrenite „%s --help“ da vidite potpun spisak dostupnih parametara linije "
+msgstr ""
+"Pokrenite „%s --help“ da vidite potpun spisak dostupnih parametara linije "
 "naredbi.\n"
 
 #: ../src/cheese-main.vala:204
@@ -485,7 +490,9 @@ msgid "translator-credits"
 msgstr ""
 "Goran Rakić <grakic@devbase.net>\n"
 "Branko Kokanović <branko.kokanovic@gmail.com>\n"
-"Prevod.org — prevod programa na srpski."
+"Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
+"\n"
+"http://prevod.org — prevod na srpski jezik"
 
 #: ../src/cheese-main.vala:492
 msgid "Cheese Website"
@@ -537,8 +544,9 @@ msgid "Stop recording"
 msgstr "Zaustavite snimanje"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Snimi video"
+#| msgid "Record a Video"
+msgid "_Record a Video"
+msgstr "_Snimi video"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -564,10 +572,6 @@ msgstr "Snimite više fotki"
 #: ../src/cheese-window.vala:1147
 msgid "No effects found"
 msgstr "Nisam pronašao efekte"
-
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Snimi fotku"
 
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
