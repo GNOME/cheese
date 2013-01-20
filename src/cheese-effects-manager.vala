@@ -20,53 +20,62 @@
  */
 
 using GLib;
-using Gee;
-
-const string GROUP_NAME = "Effect";
 
 internal class Cheese.EffectsManager : GLib.Object
 {
-  public ArrayList<Effect> effects;
+    public List<Effect> effects;
 
-  public EffectsManager ()
-  {
-    effects = new ArrayList<Effect>((EqualFunc) cmp_value);
-  }
-
-  /**
-   * Add the effects into the manager.
-   */
-  public void load_effects ()
-  {
-    GLib.List<Cheese.Effect> effect_list = Cheese.Effect.load_effects ();
-    for (int i = 0; i < effect_list.length (); i++)
-      effects.add (effect_list<Cheese.Effect>.nth (i).data);
-
-    effects.sort ((CompareFunc) sort_value);
-
-    /* add identity effect as the first in the effect list */
-    if (effects.size > 0)
+    public EffectsManager ()
     {
-      Effect e = new Effect (_("No Effect"), "identity");
-      effects.insert (0, e);
+        effects = new List<Effect> ();
     }
-  }
 
-  /**
-   * Search for and return the requested effect.
-   *
-   * @param name the name of the effect to search for
-   * @return the effect that which matches the supplied name, or null
-   */
-  public Effect ? get_effect (string name)
-  {
-    foreach (Effect eff in effects)
+    /**
+     * Add the effects into the manager.
+     */
+    public void load_effects ()
     {
-      if (eff.name == name)
-        return eff;
+        var loaded_effects = Cheese.Effect.load_effects ();
+        var effects_hash = new HashTable<string, Effect> (str_hash, str_equal);
+
+        foreach (var effect in loaded_effects)
+        {
+            effects_hash.insert (effect.name, effect);
+        }
+
+        effects_hash.foreach (add_effect);
+
+        /* Add identity effect as the first in the effect list. */
+        if (effects.length () > 0)
+        {
+            Effect e = new Effect (_("No Effect"), "identity");
+            effects.prepend (e);
+        }
     }
-    return null;
-  }
+
+    /**
+     * Add an effect into the manager. Used as a HFunc.
+     */
+    private void add_effect (string name, Effect effect)
+    {
+        effects.insert_sorted (effect, sort_value);
+    }
+
+    /**
+     * Search for and return the requested effect.
+     *
+     * @param name the name of the effect to search for
+     * @return the effect which matches the supplied name, or null
+     */
+    public Effect ? get_effect (string name)
+    {
+        foreach (var effect in effects)
+        {
+            if (effect.name == name)
+                return effect;
+        }
+        return null;
+    }
 
   /**
    * Compare two effects by the pipeline description.

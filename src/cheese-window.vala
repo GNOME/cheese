@@ -26,7 +26,6 @@ using Clutter;
 using Config;
 using Eog;
 using Gst;
-using Gee;
 using CanberraGtk;
 
 [DBus(name = "org.freedesktop.PackageKit.Modify")]
@@ -35,7 +34,7 @@ interface PkProxy : GLib.Object {
 }
 
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
-const int EFFECTS_PER_PAGE            = 9;
+const uint EFFECTS_PER_PAGE = 9;
 const string SENDTO_EXEC = "nautilus-sendto";
 
 public class Cheese.MainWindow : Gtk.ApplicationWindow
@@ -75,10 +74,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Clutter.Text      error_layer;
   private Clutter.Text      timeout_layer;
 
-  private Clutter.Box           current_effects_grid;
-  private int                current_effects_page = 0;
-  private ArrayList<Clutter.Box> effects_grids;
+  private Clutter.Box current_effects_grid;
+  private uint current_effects_page = 0;
+  private List<Clutter.Box> effects_grids;
 
+  private HashTable<string, bool> action_sensitivities;
   private Gtk.ToggleAction wide_mode_action;
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
@@ -1064,7 +1064,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   {
     if (current_effects_page != 0)
     {
-      activate_effects_page (current_effects_page - 1);
+      activate_effects_page ((int)current_effects_page - 1);
     }
   }
 
@@ -1076,9 +1076,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   [CCode (instance_pos = -1)]
   public void on_next_effects_page (Gtk.Action action)
   {
-    if (current_effects_page != (effects_manager.effects.size / EFFECTS_PER_PAGE))
+    if (current_effects_page != (effects_manager.effects.length () / EFFECTS_PER_PAGE))
     {
-      activate_effects_page (current_effects_page + 1);
+      activate_effects_page ((int)current_effects_page + 1);
     }
   }
 
@@ -1096,30 +1096,35 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
       viewport_layout.remove ((Clutter.Actor) current_effects_grid);
     }
-    current_effects_grid = effects_grids[number];
+    current_effects_grid = effects_grids.nth_data (number);
     current_effects_grid.set ("opacity", 0);
     viewport_layout.add ((Clutter.Actor) current_effects_grid);
     current_effects_grid.animate (Clutter.AnimationMode.LINEAR, 1000, "opacity", 255);
 
-    for (int i = 0; i < effects_manager.effects.size; i++)
+    uint i = 0;
+    foreach (var effect in effects_manager.effects)
     {
-      int           page_of_effect = i / EFFECTS_PER_PAGE;
-      Cheese.Effect effect         = effects_manager.effects[i];
-      if (page_of_effect == number)
-      {
-        if (!effect.is_preview_connected ())
+        uint page_nr = i / EFFECTS_PER_PAGE;
+        if (page_nr == number)
         {
-          Clutter.Texture texture = effect.get_data<Clutter.Texture> ("texture");
-          camera.connect_effect_texture (effect, texture);
+            if (!effect.is_preview_connected ())
+            {
+                Clutter.Texture texture = effect.get_data<Clutter.Texture> ("texture");
+                camera.connect_effect_texture (effect, texture);
+            }
+            effect.enable_preview ();
         }
-        effect.enable_preview ();
-      }
-      else
-      {
-        if (effect.is_preview_connected ())
-          effect.disable_preview ();
-      }
+        else
+        {
+            if (effect.is_preview_connected ())
+            {
+                effect.disable_preview ();
+            }
+        }
+
+	    i++;
     }
+
     setup_effects_page_switch_sensitivity ();
   }
 
@@ -1130,7 +1135,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   {
     effects_page_prev_action.sensitive = (is_effects_selector_active && current_effects_page != 0);
     effects_page_next_action.sensitive =
-      (is_effects_selector_active && current_effects_page != effects_manager.effects.size / EFFECTS_PER_PAGE);
+      (is_effects_selector_active && current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE);
   }
 
   /**
@@ -1145,7 +1150,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
       video_preview.hide ();
 
-      if (effects_grids.size == 0)
+      if (effects_grids.length () == 0)
       {
         error_layer.text = _("No effects found");
         error_layer.show ();
@@ -1153,12 +1158,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       else
       {
         current_effects_grid.show ();
-        activate_effects_page (current_effects_page);
+        activate_effects_page ((int)current_effects_page);
       }
     }
     else
     {
-      if (effects_grids.size == 0)
+      if (effects_grids.length () == 0)
       {
         error_layer.hide ();
       }
@@ -1184,26 +1189,26 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       effects_manager.load_effects ();
 
       /* Must initialize effects_grids before returning, as it is dereferenced later, bug 654671. */
-      effects_grids = new ArrayList<Clutter.Box> ();
+      effects_grids = new List<Clutter.Box> ();
 
-      if (effects_manager.effects.size == 0)
+      if (effects_manager.effects.length () == 0)
       {
         warning ("gnome-video-effects is not installed.");
         return;
       }
 
-      for (int i = 0; i <= effects_manager.effects.size / EFFECTS_PER_PAGE; i++)
+      foreach (var effect in effects_manager.effects)
       {
-        Clutter.TableLayout table_layout = new TableLayout ();
-        Clutter.Box grid = new Clutter.Box (table_layout);
-        effects_grids.add (grid);
-        table_layout.set_column_spacing (10);
-        table_layout.set_row_spacing (10);
+          Clutter.TableLayout table_layout = new TableLayout ();
+          Clutter.Box grid = new Clutter.Box (table_layout);
+          effects_grids.append (grid);
+          table_layout.set_column_spacing (10);
+          table_layout.set_row_spacing (10);
       }
 
-      for (int i = 0; i < effects_manager.effects.size; i++)
+      uint i = 0;
+      foreach (var effect in effects_manager.effects)
       {
-        Effect            effect  = effects_manager.effects[i];
         Clutter.Texture   texture = new Clutter.Texture ();
         Clutter.BinLayout layout  = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
                                                            Clutter.BinAlignment.CENTER);
@@ -1234,19 +1239,20 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
                   "x-align", Clutter.BinAlignment.CENTER,
                   "y-align", Clutter.BinAlignment.END, null);
 
-        Clutter.TableLayout table_layout = (Clutter.TableLayout) effects_grids[i / EFFECTS_PER_PAGE].layout_manager;
+        Clutter.TableLayout table_layout = (Clutter.TableLayout) effects_grids.nth_data (i / EFFECTS_PER_PAGE).layout_manager;
         table_layout.pack ((Clutter.Actor) box,
-                           (i % EFFECTS_PER_PAGE) % 3,
-                           (i % EFFECTS_PER_PAGE) / 3);
+                           ((int)(i % EFFECTS_PER_PAGE)) % 3,
+                           ((int)(i % EFFECTS_PER_PAGE)) / 3);
         table_layout.set_expand (box, false, false);
+
+        i++;
       }
 
       setup_effects_page_switch_sensitivity ();
-      current_effects_grid = effects_grids[0];
+      current_effects_grid = effects_grids.nth_data (0);
     }
   }
 
-  private Gee.HashMap<string, bool> action_sensitivities;
   /**
    * Toggle the sensitvity of the camera actions.
    *
@@ -1254,58 +1260,60 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    */
   public void toggle_camera_actions_sensitivities (bool active)
   {
-    is_camera_actions_sensitive = active;
-    if (active)
-    {
-      foreach (string key in action_sensitivities.keys)
+      is_camera_actions_sensitive = active;
+      if (active)
       {
-        Gtk.Action action = gtk_builder.get_object (key) as Gtk.Action;
-        action.sensitive = action_sensitivities.get (key);
-      }
-    }
-    else
-    {
-      action_sensitivities = new HashMap<string, bool> (GLib.str_hash);
-      GLib.SList<weak GLib.Object> objects = gtk_builder.get_objects ();
-      foreach (GLib.Object obj in objects)
-      {
-        if (obj is Gtk.Action)
-        {
-          Gtk.Action action = (Gtk.Action)obj;
-          action_sensitivities.set (action.name, action.sensitive);
-        }
-      }
-
-      /* Keep only these actions sensitive. */
-      string [] active_actions = { "quit",
-                                   "help_contents",
-                                   "about",
-                                   "open",
-                                   "save_as",
-                                   "move_to_trash",
-                                   "delete",
-                                   "move_all_to_trash"};
-
-      /* Gross hack because Vala's `in` operator doesn't really work */
-      bool flag;
-      foreach (GLib.Object obj in objects)
-      {
-        flag = false;
-        if (obj is Gtk.Action)
-        {
-          Gtk.Action action = (Gtk.Action)obj;
-          foreach (string s in active_actions)
+          var keys = action_sensitivities.get_keys ();
+          foreach (var key in keys)
           {
-            if (action.name == s)
-            {
-              flag = true;
-            }
+              Gtk.Action action = gtk_builder.get_object (key) as Gtk.Action;
+              action.sensitive = action_sensitivities.get (key);
           }
-          if (!flag)
-            ((Gtk.Action)obj).sensitive = false;
-        }
       }
-    }
+      else
+      {
+          action_sensitivities = new HashTable<string, bool> (GLib.str_hash,
+                                                              GLib.direct_equal);
+          GLib.SList<weak GLib.Object> objects = gtk_builder.get_objects ();
+          foreach (GLib.Object obj in objects)
+          {
+              if (obj is Gtk.Action)
+              {
+                  Gtk.Action action = (Gtk.Action)obj;
+                  action_sensitivities.set (action.name, action.sensitive);
+              }
+          }
+
+          /* Keep only these actions sensitive. */
+          string [] active_actions = { "quit",
+                                       "help_contents",
+                                       "about",
+                                       "open",
+                                       "save_as",
+                                       "move_to_trash",
+                                       "delete",
+                                       "move_all_to_trash"};
+
+          /* Gross hack because Vala's `in` operator doesn't really work */
+          bool flag;
+          foreach (GLib.Object obj in objects)
+          {
+              flag = false;
+              if (obj is Gtk.Action)
+              {
+                  Gtk.Action action = (Gtk.Action)obj;
+                  foreach (string s in active_actions)
+                  {
+                      if (action.name == s)
+                      {
+                          flag = true;
+                      }
+                  }
+                  if (!flag)
+                      ((Gtk.Action)obj).sensitive = false;
+              }
+          }
+      }
   }
 
     /**
