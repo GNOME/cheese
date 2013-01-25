@@ -1,18 +1,18 @@
 # Cheese Italian translation
-# Copyright (C) 2007, 2008, 2009, 2010, 2011 the cheese copyright holder
+# Copyright (C) 2007, 2008, 2009, 2010, 2011, 2012, 2013 the cheese copyright holder
 # This file is distributed under the same license as cheese
 #
 # Alessandro Falappa <alessandro@falappa.net>, 2007,2008,2009,2010,2011, 2011.
-# Milo Casagrande <milo@ubuntu.com>, 2012.
 # Francesco Valente <fvalen@redhat.com>, 2012.
+# Milo Casagrande <milo@ubuntu.com>, 2012, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-08-23 04:21+0000\n"
-"PO-Revision-Date: 2012-08-24 09:14+0000\n"
-"Last-Translator: Francesco Valente <fvalen@redhat.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-25 16:13+0100\n"
+"PO-Revision-Date: 2013-01-25 16:15+0100\n"
+"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -62,11 +62,11 @@ msgid "Photo burst mode"
 msgstr "Modalità foto a raffica"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1512
 msgid "Take a photo"
 msgstr "Scatta una foto"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "_Scatta foto"
 
@@ -163,7 +163,7 @@ msgid "Capture"
 msgstr "Cattura"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -171,11 +171,15 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cabina per webcam Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Scatta fotografie e registra video con la webcam applicando divertenti "
 "effetti grafici"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "foto;video;webcam;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -369,29 +373,29 @@ msgstr "_Scatta foto"
 msgid "_Discard photo"
 msgstr "_Scarta foto"
 
-#: ../libcheese/cheese-camera-device.c:402
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "Funzionalità del dispositivo non supportate"
 
-#: ../libcheese/cheese-camera-device.c:431
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr ""
 "Impossibile inizializzare il dispositivo %s per rilevamento funzionalità"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "Dispositivo sconosciuto"
 
-#: ../libcheese/cheese-camera-device.c:643
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "Interruzione del processo di inizializzazione non supportata"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Uno o più elementi GStreamer risultano mancanti: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "Nessun dispositivo trovato"
@@ -401,13 +405,13 @@ msgstr "Nessun dispositivo trovato"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i.%02i.%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "Nessun effetto"
 
@@ -471,27 +475,27 @@ msgstr "A_iuto"
 msgid "_Quit"
 msgstr "_Esci"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- Scatta fotografie e registra video con la webcam"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Eseguire \"%s --help\" per l'elenco completo delle opzioni a riga di "
 "comando.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Un'altra istanza di Cheese è attualmente in esecuzione\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr "Alessandro Falappa <alessandro@falappa.net>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Sito web di Cheese"
 
@@ -536,11 +540,11 @@ msgstr "Interrompi _registrazione"
 msgid "Stop recording"
 msgstr "Interrompe la registrazione"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Registra un video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+msgid "_Record a Video"
+msgstr "Registra un _video"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1517
 msgid "Record a video"
 msgstr "Registra un video"
 
@@ -557,30 +561,14 @@ msgstr "Interrompe lo scatto di fotografie"
 msgid "Take Multiple Photos"
 msgstr "Scatta foto a raffica"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1524
 msgid "Take multiple photos"
 msgstr "Scatta foto a raffica"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "Nessun effetto trovato"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Scatta una foto"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "_Scatta foto a raffica"
-
-#~ msgid "_Cheese"
-#~ msgstr "_Cheese"
-
-#~ msgid "_Contents"
-#~ msgstr "_Sommario"
-
-#~ msgid "_Edit"
-#~ msgstr "_Modifica"
-
-#~ msgid "<b>Shutter</b>"
-#~ msgstr "<b>Otturatore</b>"
