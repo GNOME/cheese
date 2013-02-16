@@ -1,920 +1,605 @@
-# German translation of the cheese manual.
-# Stefan Horning <stefan@hornings.de>, 2009.
-# Mario Blättermann <mario.blaettermann@gmail.com>, 2009-2012.
-# Wolfgang Stöggl <c72578@yahoo.de>, 2009, 2013.
-# Christian Kirbach <Christian.Kirbach@googlemail.com>, 2009.
-# Tobias Endrigkeit <tobiasendrigkeit@googlemail.com>, 2013.
+# Cheese German translation
+# Copyright (C) 2007 Daniel G. Siegel <dgsiegel@gmail.com>
+# This file is distributed under the same license as the cheese package.
+# Daniel G. Siegel <dgsiegel@gmail.com>, 2007.
+# Andre Klapper <ak-47@gmx.net>, 2007.
+# Wolfgang Stöggl <c72578@yahoo.de>, 2008-2012.
+# Hendrik Richter <hendrikr@gnome.org>, 2008, 2009.
+# Mario Blättermann <mario.blaettermann@gmail.com>, 2009-2011.
+# Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>, 2010-2012.
+# Tobias Endrigkeit <tobiasendrigkeit@googlemail.com>, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-14 18:35+0000\n"
-"PO-Revision-Date: 2013-02-16 09:08+0100\n"
-"Last-Translator: Tobias111 <tobiasendrigkeit@googlemail.com>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2012-08-22 20:11+0000\n"
+"PO-Revision-Date: 2012-08-21 13:23+0200\n"
+"Last-Translator: Tobias Endrigkeit <tobiasendrigkeit@googlemail.com>\n"
+"Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Language: German\n"
-"X-Poedit-Country: GERMANY\n"
 "X-Generator: Gtranslator 2.91.5\n"
 
-#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
-msgctxt "_"
-msgid "translator-credits"
-msgstr ""
-"Stefan Horning <stefan@hornings.de>, 2009\n"
-"Mario Blättermann <mario.blaettermann@gmail.com>, 2009-2012\n"
-"Wolfgang Stöggl <c72578@yahoo.de>, 2009"
+#: ../data/cheese-actions.ui.h:1
+msgid "Share…"
+msgstr "Freigeben …"
 
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#.
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/index.page:25(media)
-msgctxt "_"
-msgid ""
-"external ref='figures/cheese.png' md5='e801510f287b3db068beb2daf8989124'"
-msgstr "original"
+#: ../data/cheese-actions.ui.h:2
+msgid "Save _As…"
+msgstr "Speichern _unter …"
 
-#: C/index.page:9(credit/name) C/effects-apply.page:9(credit/name)
-#: C/introduction.page:12(credit/name) C/mode-wide.page:10(credit/name)
-#: C/photo-delete.page:10(credit/name) C/photo-save.page:10(credit/name)
-#: C/photo-take.page:15(credit/name) C/photo-view.page:10(credit/name)
-#: C/pref-burst-mode.page:10(credit/name)
-#: C/pref-countdown.page:10(credit/name) C/pref-flash.page:9(credit/name)
-#: C/pref-image-properties.page:10(credit/name)
-#: C/pref-photo-resolution.page:10(credit/name)
-#: C/video-record.page:10(credit/name)
-msgid "Julita Inca"
-msgstr "Julita Inca"
+#: ../data/cheese-actions.ui.h:3
+msgid "Move to _Trash"
+msgstr "In den Mülleimer _verschieben"
 
-#: C/index.page:11(credit/years) C/effects-apply.page:11(credit/years)
-#: C/introduction.page:14(credit/years) C/mode-wide.page:12(credit/years)
-#: C/photo-delete.page:12(credit/years) C/photo-save.page:12(credit/years)
-#: C/photo-take.page:17(credit/years) C/photo-view.page:12(credit/years)
-#: C/pref-burst-mode.page:12(credit/years)
-#: C/pref-countdown.page:12(credit/years) C/pref-flash.page:11(credit/years)
-#: C/pref-image-properties.page:12(credit/years)
-#: C/pref-photo-resolution.page:12(credit/years)
-#: C/video-record.page:12(credit/years)
-msgid "2011"
-msgstr "2011"
+#: ../data/cheese-actions.ui.h:4
+msgid "Move _All to Trash"
+msgstr "_Alle in den Mülleimer verschieben"
 
-#: C/index.page:15(credit/name) C/effects-apply.page:14(credit/name)
-#: C/introduction.page:17(credit/name) C/mode-wide.page:15(credit/name)
-#: C/photo-delete.page:15(credit/name) C/photo-save.page:15(credit/name)
-#: C/photo-take.page:20(credit/name) C/photo-view.page:15(credit/name)
-#: C/pref-burst-mode.page:15(credit/name)
-#: C/pref-countdown.page:15(credit/name) C/pref-flash.page:14(credit/name)
-#: C/pref-fullscreen.page:9(credit/name)
-#: C/pref-image-properties.page:15(credit/name)
-#: C/pref-photo-resolution.page:15(credit/name)
-#: C/video-record.page:15(credit/name)
-msgid "Ekaterina Gerasimova"
-msgstr "Jekaterina Gerassimowa"
+#: ../data/cheese-actions.ui.h:5
+msgid "_Wide Mode"
+msgstr "_Breitbildmodus"
 
-#: C/index.page:19(info/desc)
-msgid ""
-"Cheese lets you take photos and videos using your webcam. You can even add "
-"special effects!"
-msgstr ""
-"Mit Cheese können Sie Fotos und Videos mit Ihrer Webcam aufnehmen. Sie "
-"können sogar Spezialeffekte hinzufügen!"
+#: ../data/cheese-actions.ui.h:6
+msgid "P_revious Effects"
+msgstr "Vo_rige Effekte"
 
-#: C/index.page:24(page/title)
-msgid ""
-"<media type=\"image\" mime=\"image/png\" src=\"figures/cheese.png\" width="
-"\"40\" height=\"40\"> </media> Cheese Webcam Application"
-msgstr ""
-"<media type=\"image\" mime=\"image/png\" src=\"figures/cheese.png\" width="
-"\"40\" height=\"40\"> </media> Cheese Webcam-Automat"
+#: ../data/cheese-actions.ui.h:7
+msgid "Ne_xt Effects"
+msgstr "Nä_chste Effekte"
 
-#: C/index.page:31(section/title)
-msgid "Main features"
-msgstr "Grundlegende Funktionen"
+#: ../data/cheese-main-window.ui.h:1
+msgid "Photo mode"
+msgstr "Fotomodus"
 
-#: C/index.page:35(section/title)
+#: ../data/cheese-main-window.ui.h:2
+msgid "Video mode"
+msgstr "Videomodus"
+
+#: ../data/cheese-main-window.ui.h:3
+msgid "Photo burst mode"
+msgstr "Serienaufnahmemodus"
+
+#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
+#: ../src/cheese-window.vala:1504
+msgid "Take a photo"
+msgstr "Foto aufnehmen"
+
+#: ../data/cheese-main-window.ui.h:5
+msgid "_Take a Photo"
+msgstr "Foto _aufnehmen"
+
+# Effekt
+#: ../data/cheese-main-window.ui.h:6
+msgid "Previous"
+msgstr "Voriger"
+
+#: ../data/cheese-main-window.ui.h:7
+msgid "Effects"
+msgstr "Effekte"
+
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
+msgid "_Effects"
+msgstr "_Effekte"
+
+# Effekt
+#: ../data/cheese-main-window.ui.h:9
+msgid "Next"
+msgstr "Nächster"
+
+#: ../data/cheese-main-window.ui.h:10
+msgid "Leave fullscreen"
+msgstr "Vollbild verlassen"
+
+#: ../data/cheese-main-window.ui.h:11
+msgid "_Leave Fullscreen"
+msgstr "_Vollbild verlassen"
+
+#: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: C/index.page:39(section/title)
-msgid "Common problems and questions"
-msgstr "Häufige Probleme und Fragen"
-
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/effects-apply.page:45(media)
-msgctxt "_"
-msgid ""
-"external ref='figures/effects.png' md5='27139b3d1500c8caac548fab39e05c28'"
-msgstr "original"
-
-#: C/effects-apply.page:18(info/desc)
-msgid ""
-"Add fun effects to your photos and videos, like turning yourself green or "
-"distorting the picture like a funhouse mirror."
-msgstr ""
-"Lustige Effekte zu Ihren Fotos und Videos hinzufügen, wie grüne Verfärbungen "
-"oder Verzerrungen wie in einem Spiegelkabinett."
-
-#: C/effects-apply.page:22(page/title)
-msgid "Apply effects to photos and videos"
-msgstr "Effekte auf Fotos und Videos anwenden"
-
-#: C/effects-apply.page:24(page/p)
-msgid "You can apply fun, interesting effects to your photos and videos:"
-msgstr ""
-"Sie können lustige, interessante Effekte zu Ihren Fotos und Videos "
-"hinzufügen:"
-
-#: C/effects-apply.page:26(item/p)
-msgid "Click <gui>Effects</gui>."
-msgstr "Klicken Sie auf <gui>Effekte</gui>."
-
-#: C/effects-apply.page:28(item/p)
-msgid "Select the effect you want to use by clicking one of the options."
-msgstr "Wählen Sie den gewünschten Effekt aus, indem Sie darauf klicken."
-
-#: C/effects-apply.page:29(item/p)
-msgid ""
-"If you like, you can select multiple effects. For example, if you select "
-"<gui>Hulk</gui> and <gui>Kung-Fu</gui>, the video will be altered to have a "
-"green shade and will show a repeated image."
-msgstr ""
-"Bei Bedarf können Sie mehrere Effekte auswählen. Wenn Sie beispielsweise "
-"<gui>Hulk</gui> und <gui>Kung-Fu</gui> auswählen, erhält das Video eine "
-"grüne Schattierung und zeigt ein sich wiederholendes, in den Bewegungen "
-"verzögertes Bild."
-
-#: C/effects-apply.page:34(item/p)
-msgid ""
-"Click <gui>Effects</gui> to hide the effects menu and return to the normal "
-"view."
-msgstr ""
-"Klicken Sie auf <gui>Effekte</gui>, um das Effekte-Menü zu verbergen und zur "
-"normalen Ansicht zurückzukehren."
-
-#: C/effects-apply.page:39(page/p)
-msgid ""
-"<app>Cheese</app> offers 34 effects, of which only 9 are shown on the first "
-"page. Click <gui>Next Effects</gui> and <gui>Previous Effects</gui> to "
-"navigate to the other pages."
-msgstr ""
-"<app>Cheese</app> bietet 34 Effekte ab, wovon lediglich 9 in der ersten "
-"Seite angezeigt werden. Klicken Sie auf <gui>Nächste Effekte</gui> und "
-"<gui>Vorige Effekte</gui>, um die anderen Seiten anzuzeigen."
-
-#: C/effects-apply.page:44(figure/title)
-msgid "Some of the effects, from left to right: Bulge, Edge and Mirror"
-msgstr "Einige Effekte, von links nach rechts: Aufblähen, Ecken und Spiegel"
-
-#: C/effects-apply.page:48(note/p)
-msgid ""
-"To deselect all effects, click <gui>Effects</gui> and select <gui>No Effect</"
-"gui>."
-msgstr ""
-"Um alle Effekte abzuwählen, klicken Sie auf <gui>Effekte</gui> und wählen "
-"Sie <gui>Kein Effekt</gui>."
-
-#: C/introduction.page:21(info/desc)
-msgid "Introduction to the <app>Cheese</app> webcam application."
-msgstr "Einführung in den <app>Cheese Webcam-Automat</app>."
-
-#: C/introduction.page:24(page/title)
-msgid "Introduction"
-msgstr "Einführung"
-
-#: C/introduction.page:26(page/p)
-msgid ""
-"<app>Cheese</app> is a webcam application that lets you take photos and "
-"record videos using your webcam. You can take multiple photos in quick "
-"succession using the <link xref=\"pref-burst-mode\"><gui>Burst</gui> mode</"
-"link> and apply <link xref=\"effects-apply\">special <gui>Effects</gui></"
-"link> to add a personal touch to them."
-msgstr ""
-"<app>Cheese</app> ist ein Webcam-Automat, mit dem Sie mit Ihrer Webcam Fotos "
-"und Videos aufnehmen können. Es ist möglich, mehrere Fotos in schneller "
-"Folge aufzunehmen (mit dem <link xref=\"pref-burst-mode"
-"\"><gui>Serienaufnahmemodus</gui></link>) oder <link xref=\"effects-apply"
-"\">Effekte anwenden</link>, mit denen Sie Ihren Fotos und Videos einen "
-"persönlichen Stil verleihen."
-
-#: C/introduction.page:32(page/p)
-msgid ""
-"By default, <app>Cheese</app> starts in <gui>Photo</gui> mode, ready to "
-"<link xref=\"photo-take\">take a photo</link>. You need to switch to "
-"<gui>Video</gui> mode to <link xref=\"video-record\">record a video</link>."
-msgstr ""
-"Standardmäßig startet <app>Cheese</app> im <gui>Fotomodus</gui>, bereit zur "
-"<link xref=\"photo-take\">Aufnahme eines Fotos</link>. Sie müssen in den "
-"<gui>Videomodus</gui> wechseln, um ein <link xref=\"video-record\">Video "
-"aufzunehmen</link>."
-
-#: C/introduction.page:36(page/p)
-msgid ""
-"<app>Cheese</app> works with most webcams, but some older webcams may not be "
-"supported."
-msgstr ""
-"<app>Cheese</app> funktioniert mit den meisten Webcams, aber ältere Webcams "
-"könnten eventuell nicht unterstützt werden."
-
-#: C/mode-wide.page:19(info/desc)
-msgid ""
-"Change the position of the photo stream so that the webcam video feed is "
-"larger."
-msgstr ""
-"Die Position der Fotostrecke ändern, so dass das Bild der Webcam größer "
-"dargestellt wird."
-
-#: C/mode-wide.page:23(page/title)
-msgid "Make the webcam video preview bigger"
-msgstr "Die Videovorschau der Webcam vergrößern"
-
-#: C/mode-wide.page:25(page/p)
-msgid ""
-"The photo stream is where photos and videos appear after you have taken or "
-"recorded them. By default, it is a horizontal strip at the bottom of the "
-"<app>Cheese</app> window."
-msgstr ""
-"Die Fotostrecke ist der Bereich, in dem Fotos und Videos nach der Aufnahme "
-"erscheinen. Standardmäßig ist die Fotostrecke ein waagerechter Streifen am "
-"unteren Rand des <app>Cheese</app>-Fensters."
-
-#: C/mode-wide.page:29(page/p)
-msgid ""
-"You can make the photo stream appear as a vertical bar. This is useful if "
-"you have a wide computer screen which is not very high; switching to a "
-"vertical layout means that there is more room to display the video feed from "
-"the webcam."
-msgstr ""
-"Sie können die Fotostrecke als senkrechten Balken anzeigen lassen. Dies "
-"erscheint sinnvoll, wenn Sie über einen Breitbildschirm verfügen, der nicht "
-"allzu hoch ist. Der Wechsel in die vertikale Anordnung schafft mehr Platz "
-"zur Anzeige des Videobildes der Webcam."
-
-#: C/mode-wide.page:34(page/p)
-msgid ""
-"To switch to a vertical layout, click <guiseq><gui>Cheese</gui> <gui>Wide "
-"Mode</gui></guiseq>. To switch back to a horizontal layout, uncheck the "
-"option."
-msgstr ""
-"Um in die vertikale Anordnung zu wechseln, wählen Sie <guiseq><gui>Cheese</"
-"gui><gui>Breitbildmodus</gui></guiseq>. Um zur horizontalen Anordnung "
-"zurückzukehren, deaktivieren Sie die Option wieder."
-
-#: C/mode-wide.page:39(note/p)
-msgid ""
-"Another way to increase the size of the webcam preview is to make "
-"<app>Cheese</app> fullscreen. To do this, click <guiseq><gui>Cheese</"
-"gui><gui>Fullscreen</gui></guiseq> or press <key>F11</key>. To quit the "
-"fullscreen mode, press <key>F11</key>."
-msgstr ""
-"Eine weitere Möglichkeit zur Vergrößerung des Bildes Ihrer Webcam ist der "
-"Vollbildmodus. Wählen Sie hierzu <guiseq><gui>Cheese</"
-"gui><gui>Vollbildmodus</gui></guiseq> oder drücken Sie <key>F11</key>. Um "
-"den Vollbildmodus zu beenden, drücken Sie erneut <key>F11</key>."
-
-#: C/photo-delete.page:19(info/desc)
-msgid "Remove photos and videos that you no longer want to keep."
-msgstr "Fotos und Videos löschen, die Sie nicht mehr aufbewahren wollen."
-
-#: C/photo-delete.page:22(page/title)
-msgid "Delete a photo or video"
-msgstr "Ein Foto oder ein Video löschen"
-
-#: C/photo-delete.page:24(page/p)
-msgid "If you no longer want a photo or video, you can permanently delete it:"
-msgstr ""
-"Wenn Sie ein Foto oder Video nicht mehr benötigen, können Sie es dauerhaft "
-"löschen:"
-
-#: C/photo-delete.page:28(item/p)
-msgid ""
-"Find the photo or video that you want to delete in the photo stream at the "
-"bottom of the <app>Cheese</app> window."
-msgstr ""
-"Suchen Sie das zu löschende Foto oder Video in der Fotostrecke am unteren "
-"Rand des <app>Cheese</app>-Fensters."
-
-#: C/photo-delete.page:32(item/p)
-msgid ""
-"Right-click it and select <gui>Delete</gui>. Alternatively, click it once to "
-"select it and press the <key>Delete</key> key."
-msgstr ""
-"Klicken Sie mit der rechten Maustaste darauf und wählen Sie <gui>Löschen</"
-"gui>. Wahlweise klicken Sie einmal darauf, um es auszuwählen, und drücken "
-"Sie die <key>Entf</key>-Taste."
-
-#: C/photo-delete.page:36(item/p)
-msgid ""
-"You will be asked if you want to permanently delete it. Confirm by clicking "
-"<gui>Delete</gui>; you will not be able to recover the photo."
-msgstr ""
-"Sie werden gefragt, ob Sie tatsächlich dauerhaft löschen wollen. Bestätigen "
-"Sie durch Klicken auf <gui>Löschen</gui>. Es wird dann nicht mehr möglich "
-"sein, das Foto wiederherzustellen."
-
-#: C/photo-delete.page:41(page/p)
-msgid ""
-"If you are not sure whether you want to permanently delete the photo or "
-"video, you can right click it and select <gui>Move to Trash</gui> instead. "
-"This will move it to the computer's <gui>Trash</gui> folder."
-msgstr ""
-"Wenn Sie nicht sicher sind, ob Sie das Foto oder Video dauerhaft löschen "
-"wollen, klicken Sie mit der rechten Maustaste darauf und wählen Sie <gui>In "
-"den Mülleimer verschieben</gui>. Dadurch wird es in den <gui>Müll</gui>-"
-"Ordner des Rechners verschoben."
-
-#: C/photo-delete.page:45(note/p)
-msgid ""
-"Cheese does not have its own <gui>Trash</gui> folder and you cannot access "
-"your computer's <gui>Trash</gui> folder from within <app>Cheese</app>."
-msgstr ""
-"Cheese hat keinen eigenen <gui>Müll</gui>-Ordner. Sie können auch nicht aus "
-"<app>Cheese</app> direkt auf den <gui>Müll</gui>-Ordner des Systems "
-"zugreifen."
-
-#: C/photo-save.page:19(info/desc)
-msgid "Save a photo or video in a different folder."
-msgstr "Ein Foto oder Video in einem anderen Ordner speichern."
-
-#: C/photo-save.page:22(page/title)
-msgid "Save a photo or video"
-msgstr "Ein Foto oder ein Video speichern"
-
-#: C/photo-save.page:24(page/p)
-msgid ""
-"By default, Cheese saves the photos and videos in the <guiseq><gui>Pictures</"
-"gui><gui>Webcam</gui></guiseq> and <guiseq><gui>Videos</gui><gui>Webcam</"
-"gui></guiseq> folders in your user folder."
-msgstr ""
-"Standardmäßig speichert Cheese die Fotos und Videos in den Unterordnern "
-"<guiseq><gui>Bilder</gui><gui>Webcam</gui></guiseq> und <guiseq><gui>Videos</"
-"gui><gui>Webcam</gui></guiseq> in Ihrem persönlichen Ordner."
-
-#: C/photo-save.page:29(page/p)
-msgid ""
-"To save an image to a different location, right-click the image in the photo "
-"stream and click <gui>Save As</gui>. Then, choose where you want to save the "
-"image."
-msgstr ""
-"Um ein Foto an einem anderen Ort zu speichern, klicken Sie mit der rechten "
-"Maustaste auf das Bild in der Fotostrecke und wählen Sie <gui>Speichern "
-"unter</gui>. Anschließend wählen Sie aus, wohin Sie das Bild speichern "
-"wollen."
-
-#: C/photo-save.page:33(page/p)
-msgid ""
-"Alternatively, open the folder where you want to keep the image using the "
-"file manager, then drag it from the photo stream into that folder."
-msgstr ""
-"Wahlweise können Sie in der Dateiverwaltung den Ordner öffnen, in dem Sie "
-"das Bild speichern wollen, und es aus der Fotostrecke in den gewünschten "
-"Ordner ziehen."
-
-#: C/photo-save.page:36(page/p)
-msgid ""
-"A new copy of the image will be saved in the new location. The old version "
-"will remain in the <guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> or "
-"<guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> folder."
-msgstr ""
-"Eine Kopie des Bildes wird am neuen Ort gespeichert. Die alte Version bleibt "
-"im Ordner <guiseq><gui>Bilder</gui><gui>Webcam</gui></guiseq> oder "
-"<guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> bestehen."
-
-#: C/photo-take.page:24(info/desc)
-msgid "Use your webcam to take photos instead of videos."
-msgstr "Ihre Webcam zum Aufnehmen von Fotos anstatt Videos verwenden."
-
-#: C/photo-take.page:27(page/title)
-msgid "Take photos using a webcam"
-msgstr "Fotos mit der Webcam aufnehmen"
-
-#: C/photo-take.page:29(page/p)
-msgid ""
-"Webcams can be used to take still photos as well as videos. To take a photo:"
-msgstr ""
-"Mit Webcams können Sie sowohl Fotos als auch Videos aufnehmen. So nehmen Sie "
-"ein Foto auf:"
-
-#: C/photo-take.page:34(item/p)
-msgid ""
-"Make sure that the mode <gui style=\"menuitem\">Photo</gui> is selected in "
-"the <gui style=\"menu\">Cheese</gui> menu."
-msgstr ""
-"Stellen Sie sicher, dass der Modus <gui style=\"menuitem\">Foto</gui> im "
-"<gui style=\"menu\">Cheese</gui>-Menü ausgewählt ist."
-
-#: C/photo-take.page:38(item/p)
-msgid ""
-"Click <gui>Take a Photo</gui>. Alternatively, you can press the capture "
-"button on the webcam or the <key>spacebar</key>."
-msgstr ""
-"Klicken Sie auf <gui>Ein Foto aufnehmen</gui>. Alternativ können Sie, falls "
-"vorhanden, den Aufnahmeknopf an der Webcam oder die <key>Leertaste</key> "
-"drücken."
-
-#: C/photo-take.page:42(item/p)
-msgid ""
-"There will be a short countdown, followed by a flash, and the photo will "
-"appear in the photo stream."
-msgstr ""
-"Nach einem kurzen Countdown erscheint ein »Blitz«. Danach erscheint das Foto "
-"in der Fotostrecke."
-
-#: C/photo-take.page:47(page/p)
-msgid ""
-"The photos in the photo stream are automatically saved in the <file>/"
-"Pictures/Webcam</file> folder in your home folder. They are saved using the "
-"JPEG (<file>.jpg</file>) format."
-msgstr ""
-"Die Fotos in der Fotostrecke werden automatisch im Unterordner <file>/Bilder/"
-"Webcam</file> Ihres persönlichen Ordners gespeichert. Das verwendete "
-"Dateiformat ist JPEG (<file>.jpg</file>)."
-
-#: C/photo-take.page:51(page/p)
-msgid ""
-"To cancel taking a photo after you have clicked <gui>Take a Photo</gui>, "
-"press <key>Esc</key> before the countdown finishes."
-msgstr ""
-"Um die Aufnahme eines Fotos abzubrechen, nachdem Sie auf <gui>Ein Foto "
-"aufnehmen</gui> geklickt haben, drücken Sie die <key>Esc</key>-Taste, bevor "
-"der Countdown abgelaufen ist."
-
-#: C/photo-take.page:55(note/p)
-msgid ""
-"To take multiple photos in rapid succession, use <link xref=\"pref-burst-mode"
-"\">burst mode</link>."
-msgstr ""
-"Um mehrere Fotos in schneller Folge aufzunehmen, verwenden Sie den <link "
-"xref=\"pref-burst-mode\">Serienaufnahmemodus</link>."
-
-#: C/photo-view.page:19(info/desc)
-msgid "Photos and videos will automatically appear in the photo stream."
-msgstr "Fotos und Videos erscheinen automatisch in der Fotostrecke."
-
-#: C/photo-view.page:23(page/title)
-msgid "View a photo or video that you took"
-msgstr "Ein aufgenommenes Foto oder Video betrachten"
-
-#: C/photo-view.page:25(page/p)
-msgid ""
-"After you take a photo or record a video, it will appear in the photo stream "
-"at the bottom of the window."
-msgstr ""
-"Nachdem Sie ein Foto oder Video aufgenommen haben, erscheint es in der "
-"Fotostrecke am unteren Rand des Fensters."
-
-#: C/photo-view.page:28(page/p)
-msgid ""
-"If you want to see a bigger version of a photo, or to play a video, double-"
-"click it. This will open it in the default photo viewer or video player."
-msgstr ""
-"Wenn Sie eine größere Version des Fotos sehen oder ein Video wiedergeben "
-"wollen, doppelklicken Sie darauf. Daraufhin wird es im voreingestellten "
-"Bildbetrachter oder Video-Wiedergabeprogramm geöffnet."
-
-#: C/photo-view.page:31(page/p)
-msgid ""
-"All of the photos and videos in the photo stream are saved in the "
-"<guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> or "
-"<guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> folders in your user "
-"folder."
-msgstr ""
-"Alle Fotos und Videos in der Fotostrecke werden in den Unterordnern "
-"<guiseq><gui>Bilder</gui><gui>Webcam</gui></guiseq> oder "
-"<guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> Ihres persönlichen "
-"Ordners gespeichert."
-
-#: C/pref-burst-mode.page:19(info/desc)
-msgid ""
-"<gui>Burst mode</gui> takes several photos rapidly. Change your pose in "
-"between each shot!"
-msgstr ""
-"Bei einer <gui>Serienaufnahme</gui> werden mehrere Fotos schnell "
-"hintereinander aufgenommen. Ändern Sie Ihre Pose zwischen den Fotos!"
-
-#: C/pref-burst-mode.page:23(page/title)
-msgid "Take multiple photos in quick succession"
-msgstr "Mehrere Fotos in schneller Folge aufnehmen"
-
-#: C/pref-burst-mode.page:25(page/p)
-msgid ""
-"You can use <gui>Burst mode</gui> to automatically take several photos in "
-"one go, with a short pause between shots. It is particularly fun if you "
-"change your pose in between photos! To use <gui>Burst mode</gui>:"
-msgstr ""
-"Sie können den <gui>Serienaufnahmemodus</gui> zum automatischen Aufnehmen "
-"mehrerer Fotos in einem Arbeitsgang verwenden, mit einer kurzen Pause "
-"zwischen den einzelnen Aufnahmen. Es ist sicher lustig, wenn Sie zwischen "
-"den Aufnahmen Ihre Pose wechseln! So verwenden Sie den "
-"<gui>Serienaufnahmemodus</gui>:"
-
-#: C/pref-burst-mode.page:31(item/p)
-msgid ""
-"Click <gui>Burst</gui>, the <gui>Take a Photo</gui> button will now say "
-"<gui>Take Multiple Photos</gui>."
-msgstr ""
-"Klicken Sie auf <gui>Serienaufnahme</gui>. Der Knopf <gui>Ein Foto "
-"aufnehmen</gui> ist nun mit <gui>Mehrere Fotos aufnehmen</gui> beschriftet."
-
-#: C/pref-burst-mode.page:33(item/p)
-msgid ""
-"Alternatively, click <guiseq><gui>Cheese</gui><gui>Burst</gui></guiseq>."
-msgstr ""
-"Wahlweise klicken Sie auf <guiseq><gui>Cheese</gui><gui>Serienaufnahme</"
-"gui></guiseq>."
-
-#: C/pref-burst-mode.page:36(item/p)
-msgid "Click <gui>Take Multiple Photos</gui> or press the <key>spacebar</key>."
-msgstr ""
-"Klicken Sie auf <gui>Mehrere Fotos aufnehmen</gui> oder drücken Sie die "
-"<key>Leertaste</key>."
-
-#: C/pref-burst-mode.page:38(item/p)
-msgid ""
-"By default, four photos will be taken, with a three second delay and a "
-"countdown between photos."
-msgstr ""
-"Standardmäßig werden vier Fotos aufgenommen, mit einer Verzögerung von drei "
-"Sekunden zwischen jedem Countdown."
-
-#: C/pref-burst-mode.page:43(page/p)
-msgid ""
-"Press <key>Esc</key> if you want to stop <app>Cheese</app> from taking "
-"photos at any point."
-msgstr ""
-"Sie können jederzeit die <key>Esc</key>-Taste drücken, um die Aufnahme von "
-"Fotos durch <app>Cheese</app> zu stoppen."
-
-#: C/pref-burst-mode.page:47(section/title)
-msgid "Change how many photos are taken and the delay between them"
-msgstr "Festlegen der Anzahl der Fotos und der Aufnahmeverzögerung"
-
-#: C/pref-burst-mode.page:48(section/p)
-msgid ""
-"You can change how many photos will be taken in each burst and the length of "
-"the delay between the photos:"
-msgstr ""
-"Sie können die Anzahl der Fotso in einer Serienaufnahme sowie die "
-"Zeitverzögerung zwischen den einzelnen Fotos festlegen:"
-
-#: C/pref-burst-mode.page:52(item/p) C/pref-image-properties.page:30(item/p)
-#: C/pref-photo-resolution.page:36(item/p)
-msgid "Click <guiseq><gui>Edit</gui><gui>Preferences</gui></guiseq>."
-msgstr ""
-"Klicken Sie auf <guiseq><gui>Bearbeiten</gui><gui>Einstellungen</gui></"
-"guiseq>."
-
-#: C/pref-burst-mode.page:55(item/p)
-msgid ""
-"Change the options under <gui>Burst mode</gui> and click <gui>Close</gui>."
-msgstr ""
-"Ändern Sie die Optionen in <gui>Serienaufnahme</gui> und klicken Sie auf "
-"<gui>Schließen</gui>."
-
-#: C/pref-burst-mode.page:59(note/p)
-msgid ""
-"The delay is between the last photo taken and the start of the countdown for "
-"the next photo, not between two photos."
-msgstr ""
-"Die Zeitverzögerung bezieht sich auf das letzte aufgenommene und den Start "
-"des Countdowns für das nächste Foto, nicht auf den Abstand zwischen zwei "
-"aufeinander folgenden Fotos."
-
-#: C/pref-countdown.page:19(info/desc)
-msgid "Remove the countdown so that photos are taken instantly."
-msgstr ""
-"Löschen Sie den Countdown, so dass Fotos unverzüglich aufgenommen werden."
-
-#: C/pref-countdown.page:22(page/title)
-msgid "Disable the <gui>Countdown</gui> before photos are taken"
-msgstr "Den <gui>Countdown</gui> vor der Aufnahme von Fotos deaktivieren"
-
-#: C/pref-countdown.page:24(page/p)
-msgid ""
-"By default, <app>Cheese</app> counts down from three before taking a photo. "
-"You can disable this feature by clicking <guiseq><gui>Edit</gui> "
-"<gui>Preferences</gui></guiseq> and unchecking <gui>Countdown</gui>."
-msgstr ""
-"Standardmäßig zählt <app>Cheese</app> von 3 an rückwärts, bevor ein Foto "
-"aufgenommen wird. Sie können dieses Verhalten abschalten, indem Sie in "
-"<guiseq><gui>Bearbeiten</gui><gui>Einstellungen</gui></guiseq> die Option "
-"<gui>Countdown</gui> deaktivieren."
-
-#: C/pref-flash.page:18(info/desc)
-msgid "Stop the screen from flashing white when taking a photo."
-msgstr ""
-"Abschalten des Aufleuchten des Bildschirms bei der Aufnahme eines Fotos."
-
-#: C/pref-flash.page:21(page/title)
-msgid "Disable the flash"
-msgstr "Den Blitz deaktivieren"
-
-#: C/pref-flash.page:23(page/p)
-msgid ""
-"When you take a photo with Cheese, the computer screen briefly turns white. "
-"This provides additional light."
-msgstr ""
-"Wenn Sie ein Foto mit Cheese aufnehmen, erscheint der Bildschirm Ihres "
-"Rechners für einen kurzen Moment in Weiß. Dadurch wird zusätzliches "
-"Aufnahmelicht bereitgestellt."
-
-#: C/pref-flash.page:26(page/p)
-msgid ""
-"To disable this feature, click <guiseq><gui>Edit</gui><gui>Preferences</"
-"gui></guiseq> and uncheck <gui>Fire Flash</gui>."
-msgstr ""
-"Um dieses Funktionsmerkmal abzuschalten, klicken Sie auf "
-"<guiseq><gui>Bearbeiten</gui><gui>Einstellungen</gui></guiseq> und "
-"deaktivieren Sie <gui>Blitz auslösen</gui> deaktiviert ist."
-
-#: C/pref-fullscreen.page:13(info/desc)
-msgid "Enable and disable fullscreen mode"
-msgstr "Den Vollbildmodus ein- oder ausschalten"
-
-#: C/pref-fullscreen.page:16(page/title)
-msgid "Fullscreen"
-msgstr "Vollbild"
-
-#: C/pref-fullscreen.page:18(page/p)
-msgid "To enable the fullscreen mode:"
-msgstr "So schalten Sie den Vollbildmodus ein:"
-
-#: C/pref-fullscreen.page:21(item/p)
-msgid "Select <guiseq><gui>Cheese</gui><gui>Fullscreen</gui></guiseq>"
-msgstr ""
-"Wahlweise klicken Sie auf <guiseq><gui>Cheese</gui><gui>Vollbild</gui></"
-"guiseq>."
-
-#: C/pref-fullscreen.page:24(page/p)
-msgid "To disable the fullscreen mode:"
-msgstr "So schalten Sie den Vollbildmodus aus:"
-
-#: C/pref-fullscreen.page:27(item/p)
-msgid "Select <gui>Leave Fullscreen</gui>"
-msgstr "Wählen Sie <gui>Vollbild verlassen</gui>"
-
-#: C/pref-fullscreen.page:31(note/p)
-msgid ""
-"You can also enable and disable fullscreen mode by pressing <key>F11</key>"
-msgstr ""
-"Sie können den Vollbildmodus auch mit der Taste <key>F11</key> ein- oder "
-"ausschalten."
-
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/pref-image-properties.page:45(media)
-msgctxt "_"
-msgid ""
-"external ref='figures/image-properties.png' "
-"md5='70c32a1dd7c9a20dabef58d0789f2a5a'"
-msgstr "original"
-
-#: C/pref-image-properties.page:19(info/desc)
-msgid ""
-"Adjust the saturation, contrast, brightness and hue to make photos and "
-"videos look better."
-msgstr ""
-"Passen Sie die Sättigung, den Kontrast, die Helligkeit und den Farbton an, "
-"um das Aussehen Ihrer Fotos und Videos zu verbessern."
-
-#: C/pref-image-properties.page:23(page/title)
-msgid "My photos and videos look wrong"
-msgstr "Meine Fotos und Videos sehen nicht gut aus"
-
-#: C/pref-image-properties.page:25(page/p)
-msgid ""
-"If your photos or videos are too dark or the colors seem to be wrong, try "
-"adjusting their saturation, contrast, brightness and hue:"
-msgstr ""
-"Falls Ihre Fotos oder Videos zu dunkel sind oder die Farben nicht korrekt "
-"erscheinen, versuchen Sie die Sättigung, den Kontrast, die Helligkeit und "
-"den Farbton anzupassen:"
-
-#: C/pref-image-properties.page:33(item/p)
-msgid ""
-"Under <gui>Image properties</gui>, change the sliders to find the best "
-"settings for your webcam."
-msgstr ""
-"Bewegen Sie in <gui>Bildeigenschaften</gui> die Schieberegler, um die besten "
-"Einstellungen für Ihre Webcam zu finden."
-
-#: C/pref-image-properties.page:37(item/p)
-msgid ""
-"Click <gui>Close</gui> and check to see if the photos and videos look better."
-msgstr ""
-"Klicken Sie auf <gui>Schließen</gui> und schauen Sie, ob die Fotos und "
-"Videos nun besser aussehen."
-
-#: C/pref-image-properties.page:43(figure/title)
-msgid ""
-"Different options under <gui>Image properties</gui> (left to right): "
-"applying brightness, contrast, hue and saturation"
-msgstr ""
-"Verschiedene Optionen in <gui>Bildeigenschaften</gui> (von links nach "
-"rechts): anpassung von Helligkeit, Kontrast, Farbton und Sättigung"
-
-#: C/pref-image-properties.page:50(item/title)
+#: ../data/cheese-prefs.ui.h:2
+msgid "Device"
+msgstr "Gerät"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "Photo resolution"
+msgstr "Fotoauflösung"
+
+#: ../data/cheese-prefs.ui.h:4
+msgid "Video resolution"
+msgstr "Videoauflösung"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Webcam"
+msgstr "Kamera"
+
+#: ../data/cheese-prefs.ui.h:6
 msgid "Brightness"
 msgstr "Helligkeit"
 
-#: C/pref-image-properties.page:51(item/p)
-msgid ""
-"Increasing the brightness will make the photos and videos lighter. However, "
-"if you are in a dark room, increasing the brightness might make the image "
-"look more noisy."
-msgstr ""
-"Durch Erhöhung der Helligkeit erscheinen Videos und Fotos heller. Allerdings "
-"kann bei einer Aufnahme in einem dunklen Raum die Erhöhung der Helligkeit "
-"das Bildrauschen verstärken."
-
-#: C/pref-image-properties.page:54(item/title)
-msgid "Contrast"
-msgstr "Kontrast"
-
-#: C/pref-image-properties.page:55(item/p)
-msgid ""
-"Setting a higher contrast will increase the difference between darker and "
-"lighter colors. If the image looks washed out, try increasing the contrast."
-msgstr ""
-"Ein höherer Kontrast vergrößert den Unterschied zwischen dunkleren und "
-"helleren Farben. Falls das Bild verwaschen erscheint, versuchen Sie den "
-"Kontrast zu erhöhen."
-
-#: C/pref-image-properties.page:58(item/title)
-msgid "Hue"
-msgstr "Farbton"
-
-#: C/pref-image-properties.page:59(item/p)
-msgid ""
-"Changing the hue of the image will add a tint to it. If image seems to be "
-"the wrong color (for example, too yellow), try changing the hue."
-msgstr ""
-"Die Änderung des Farbtons bewirkt eine Anpassung der Färbung. Wenn die Farbe "
-"eines Bildes falsch erscheint, zum Beispiel durch einen Gelbstich, versuchen "
-"Sie den Farbton zu ändern."
-
-#: C/pref-image-properties.page:62(item/title)
+#: ../data/cheese-prefs.ui.h:7
 msgid "Saturation"
 msgstr "Sättigung"
 
-#: C/pref-image-properties.page:63(item/p)
+#: ../data/cheese-prefs.ui.h:8
+msgid "Hue"
+msgstr "Farbton"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Contrast"
+msgstr "Kontrast"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Image"
+msgstr "Bild"
+
+#: ../data/cheese-prefs.ui.h:11
+msgid "Shutter"
+msgstr "Verschluss"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "_Countdown"
+msgstr "_Countdown"
+
+#: ../data/cheese-prefs.ui.h:13
+msgid "Fire _Flash"
+msgstr "_Blitz auslösen"
+
+#: ../data/cheese-prefs.ui.h:14
+msgid "Burst mode"
+msgstr "Serienaufnahmemodus"
+
+#: ../data/cheese-prefs.ui.h:15
+msgid "Number of photos"
+msgstr "Anzahl der Fotos"
+
+#: ../data/cheese-prefs.ui.h:16
+msgid "Delay between photos (seconds)"
+msgstr "Verzögerung zwischen den Fotos (Sekunden)"
+
+#: ../data/cheese-prefs.ui.h:17
+msgid "Capture"
+msgstr "Aufnahme"
+
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
+#: ../src/cheese-main.vala:489
+msgid "Cheese"
+msgstr "Cheese"
+
+#: ../data/cheese.desktop.in.in.h:2
+msgid "Cheese Webcam Booth"
+msgstr "Cheese Webcam-Automat"
+
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+msgid "Take photos and videos with your webcam, with fun graphical effects"
+msgstr ""
+"Ein Programm, um Bilder und Videos mit einer Webcam aufzunehmen und lustige "
+"graphische Effekte hinzuzufügen"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:1
+msgid "Use a countdown"
+msgstr "Countdown verwenden"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:2
+msgid "Set to true to show a countdown before taking a photo"
+msgstr ""
+"Auf »wahr« setzen, um vor der Aufnahme eines Bildes rückwärts zu zählen"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:3
+msgid "Countdown length"
+msgstr "Countdown-Länge"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:4
+msgid "The duration of the countdown before taking a photo, in seconds"
+msgstr "Die Dauer des Countdowns vor der Aufnahme eines Fotos in Sekunden"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:5
+msgid "Fire flash before taking a picture"
+msgstr "Blitz vor der Aufnahme"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:6
+msgid "Set to true to fire a flash when taking a picture"
+msgstr ""
+"Auf »wahr« setzen, um bei der Aufnahme eines Bildes einen Blitz auszulösen"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:7
+msgid "Camera device string indicator"
+msgstr "Zeichenkette zur Bezeichnung des Kameragerätes"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:8
 msgid ""
-"Reducing the saturation makes the image less colorful. If colors seem too "
-"harsh, reduce the saturation."
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
 msgstr ""
-"Die Verringerung der Sättigung lässt ein Bild weniger farbig erscheinen. "
-"Falls die Farben zu grell sind, verringern Sie die Sättigung."
+"Der Pfad zum Geräteknoten, der auf die Kamera verweist, zum Beispiel /dev/"
+"video0"
 
-#: C/pref-photo-resolution.page:19(info/desc)
+#: ../data/org.gnome.Cheese.gschema.xml.h:9
+msgid "Last selected effect"
+msgstr "Zuletzt ausgewählter Effekt"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:10
+msgid "Name of the installed effect that was selected last"
+msgstr "Name des installierten Effekts, der zuletzt ausgewählt wurde"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:11
+msgid "Photo width"
+msgstr "Foto-Breite"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:12
+msgid "The width of the image captured from the camera, in pixels"
+msgstr "Die Breite des von der Kamera aufgenommenen Bildes in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:13
+msgid "Photo height"
+msgstr "Foto-Höhe"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:14
+msgid "The height of the image captured from the camera, in pixels"
+msgstr "Die Höhe des von der Kamera aufgenommenen Bildes in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:15
+msgid "Video width"
+msgstr "Video-Breite"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:16
+msgid "The width of the video captured from the camera, in pixels"
+msgstr "Die Breite des von der Kamera aufgenommenen Videos in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:17
+msgid "Video height"
+msgstr "Video-Höhe"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:18
+msgid "The height of the video captured from the camera, in pixels"
+msgstr "Die Höhe des von der Kamera aufgenommenen Videos in Pixel"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:19
+msgid "Picture brightness"
+msgstr "Bildhelligkeit"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:20
+msgid "Adjusts the brightness of the picture coming from the camera"
+msgstr "Passt die Helligkeit des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:21
+msgid "Picture contrast"
+msgstr "Bildkontrast"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:22
+msgid "Adjusts the contrast of the picture coming from the camera"
+msgstr "Passt den Kontrast des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:23
+msgid "Picture saturation"
+msgstr "Bildsättigung"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:24
+msgid "Adjusts the saturation of the picture coming from the camera"
+msgstr "Passt die Sättigung des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:25
+msgid "Picture hue"
+msgstr "Bildfarbton"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:26
+msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgstr "Passt den Farbton des von der Kamera kommenden Bildes an"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:27
+msgid "Video Path"
+msgstr "Video-Pfad"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"The resolution of a video or photo determines how much detail you can see in "
-"it, changing it will affect the file size."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
 msgstr ""
-"Die Auflösung eines Videos oder Fotos bestimmt die Detailtreue. Die Änderung "
-"der Auflösung beeinflusst die Dateigröße."
+"Legt den Pfad fest, wo die Videos gespeichert werden. Falls leer, wird "
+"»XDG_VIDEO/Webcam« stattdessen verwendet."
 
-#: C/pref-photo-resolution.page:24(page/title)
-msgid "Change the capture resolution of your webcam"
-msgstr "Die Auflösung der Aufnahme Ihrer Webcam ändern"
+#: ../data/org.gnome.Cheese.gschema.xml.h:29
+msgid "Photo Path"
+msgstr "Foto-Pfad"
 
-#: C/pref-photo-resolution.page:26(page/p)
+#: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Higher resolution generally means better quality images, but photos and "
-"videos with higher resolution take up more space on your hard disk. High "
-"resolution videos, in particular, take up a lot of space."
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
 msgstr ""
-"Eine höhere Auflösung führt generell zu Bildern höherer Qualität, aber Fotos "
-"und Videos in höheren Auflösungen benötigen mehr Platz auf Ihrer Festplatte. "
-"Insbesondere Videos benötigen sehr viel Speicherplatz."
+"Legt den Pfad fest, wo die Fotos gespeichert werden. Falls leer, wird "
+"»XDG_PHOTO/Webcam« stattdessen verwendet."
 
-#: C/pref-photo-resolution.page:30(page/p)
+#: ../data/org.gnome.Cheese.gschema.xml.h:31
+msgid "Whether to start in wide mode"
+msgstr "Im breiten Modus starten"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
-"If you want your images to take up less disk space, reduce the resolution of "
-"your webcam. If you want better quality images, increase the resolution. To "
-"change the webcam resolution:"
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
 msgstr ""
-"Um den Platzverbrauch Ihrer Bilder zu verringern, sollten Sie die Auflösung "
-"Ihrer Webcam herabsetzen. Falls Sie Bilder höherer Qualität bevorzugen, "
-"erhöhen Sie die Auflösung. So passen Sie die Auflösung Ihrer Webcam an:"
+"Falls auf »wahr« gesetzt, startet Cheese im breiten Modus mit der "
+"Bildersammlung auf der rechten Seite. Dies ist bei kleinen Bildschirmen "
+"sinnvoll."
 
-#: C/pref-photo-resolution.page:39(item/p)
+#: ../data/org.gnome.Cheese.gschema.xml.h:33
+msgid "Whether to start in fullscreen"
+msgstr "Im Vollbildmodus starten"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:34
+msgid "If set to true, Cheese will start up in fullscreen mode."
+msgstr "Falls auf »wahr« gesetzt, startet Cheese im Vollbildmodus."
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:35
+msgid "Time between photos in burst mode"
+msgstr "Verzögerung zwischen den Fotos im Serienaufnahmemodus"
+
+#: ../data/org.gnome.Cheese.gschema.xml.h:36
 msgid ""
-"Choose a different resolution from the drop-down list. Some webcams only "
-"support one resolution, so you may not have a choice."
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
 msgstr ""
-"Wählen Sie in der Auswahlliste eine andere Auflösung aus. Einige Webcams "
-"unterstützen nur eine einzige Auflösung, sa dass Sie hier keine Auswahl "
-"treffen können."
+"Die Verzögerung in Millisekunden zwischen den Aufnahmen der Fotos im "
+"Serienaufnahmemodus. Falls das Verzögerungsintervall kleiner ist als die "
+"Dauer des Countdowns, wird stattdessen die Dauer des Countdowns verwendet."
 
-#: C/pref-photo-resolution.page:43(item/p)
-msgid "Click <gui>Close</gui>."
-msgstr "Klicken Sie auf <gui>Schließen</gui>."
+#: ../data/org.gnome.Cheese.gschema.xml.h:37
+msgid "Number of photos in burst mode"
+msgstr "Anzahl der Fotos im Serienaufnahmemodus"
 
-#: C/video-record.page:19(info/desc)
-msgid "Use your webcam to record short movies for sharing with friends."
+#: ../data/org.gnome.Cheese.gschema.xml.h:38
+msgid "The number of photos to take in a single burst."
+msgstr "Die Anzahl der Fotos in jedem Ablauf einer Serienaufnahme."
+
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
+msgid "Shutter sound"
+msgstr "Verschlussgeräusch"
+
+#: ../libcheese/cheese-avatar-chooser.c:260
+msgid "Select"
+msgstr "Auswählen"
+
+#: ../libcheese/cheese-avatar-chooser.c:281
+msgid "_Take a photo"
+msgstr "Foto _aufnehmen"
+
+#: ../libcheese/cheese-avatar-chooser.c:294
+msgid "_Discard photo"
+msgstr "Foto _verwerfen"
+
+#: ../libcheese/cheese-camera-device.c:402
+msgid "Device capabilities not supported"
+msgstr "Funktionen des Geräts werden nicht unterstützt"
+
+#: ../libcheese/cheese-camera-device.c:431
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
 msgstr ""
-"Ihre Webcam zum Aufnehmen kurzer Filme zum Weitergeben an Freunde verwenden."
+"Gerät %s konnte zur Feststellung dessen Fähigkeiten nicht initialisiert "
+"werden"
 
-#: C/video-record.page:22(page/title)
+#: ../libcheese/cheese-camera-device.c:620
+msgid "Unknown device"
+msgstr "Unbekanntes Gerät"
+
+#: ../libcheese/cheese-camera-device.c:643
+msgid "Cancellable initialization not supported"
+msgstr "Abbrechbare Initialisierung wird nicht unterstützt"
+
+#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+msgid "One or more needed GStreamer elements are missing: "
+msgstr "Ein oder mehrere GStreamer-Elemente fehlen: "
+
+#: ../libcheese/cheese-camera.c:1509
+#, c-format
+msgid "No device found"
+msgstr "Kein Gerät gefunden"
+
+#. Translators: This is a time format, like "09:05:02" for 9
+#. * hours, 5 minutes, and 2 seconds. You may change ":" to
+#. * the separator that your locale uses or use "%Id" instead
+#. * of "%d" if your locale uses localized digits.
+#.
+#: ../libcheese/cheese-camera.c:1786
+#, c-format
+msgctxt "time format"
+msgid "%02i:%02i:%02i"
+msgstr "%02i:%02i:%02i"
+
+#: ../src/cheese-effects-manager.vala:50
+msgid "No Effect"
+msgstr "Kein Effekt"
+
+#: ../src/cheese-main.vala:51
+msgid "Start in wide mode"
+msgstr "Im breiten Modus starten"
+
+#: ../src/cheese-main.vala:52
+msgid "Device to use as a camera"
+msgstr "Gerät welches als Kamera benutzt werden soll"
+
+#: ../src/cheese-main.vala:52
+msgid "DEVICE"
+msgstr "GERÄT"
+
+#: ../src/cheese-main.vala:53
+msgid "Output version information and exit"
+msgstr "Versionsinformationen anzeigen und beenden"
+
+#: ../src/cheese-main.vala:54
+msgid "Start in fullscreen mode"
+msgstr "Im Vollbildmodus starten"
+
+#: ../src/cheese-main.vala:92
+msgid "_Shoot"
+msgstr "_Aufnahme"
+
+#: ../src/cheese-main.vala:96
+msgid "Mode:"
+msgstr "Modus:"
+
+#: ../src/cheese-main.vala:97
+msgid "_Photo"
+msgstr "_Foto"
+
+#: ../src/cheese-main.vala:98
+msgid "_Video"
+msgstr "V_ideo"
+
+#: ../src/cheese-main.vala:99
+msgid "_Burst"
+msgstr "_Serienaufnahme"
+
+#: ../src/cheese-main.vala:102
+msgid "_Fullscreen"
+msgstr "_Vollbild"
+
+#: ../src/cheese-main.vala:110
+msgid "P_references"
+msgstr "Ei_nstellungen"
+
+#: ../src/cheese-main.vala:113
+msgid "_About"
+msgstr "_Info"
+
+#: ../src/cheese-main.vala:114
+msgid "_Help"
+msgstr "_Hilfe"
+
+#: ../src/cheese-main.vala:117
+msgid "_Quit"
+msgstr "_Beenden"
+
+#: ../src/cheese-main.vala:177
+msgid "- Take photos and videos from your webcam"
+msgstr "Ein Programm, um Bilder und Videos mit einer Webcam aufzunehmen"
+
+#: ../src/cheese-main.vala:189
+#, c-format
+msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgstr ""
+"Bitte geben Sie »%s --help« ein, um alle verfügbaren Optionen anzusehen.\n"
+
+#: ../src/cheese-main.vala:204
+#, c-format
+msgid "Another instance of Cheese is currently running\n"
+msgstr "Eine weitere Instanz von Cheese läuft bereits\n"
+
+#: ../src/cheese-main.vala:490
+msgid "translator-credits"
+msgstr ""
+"Daniel G. Siegel <dgsiegel@gmail.com>\n"
+"Andre Klapper <ak-47@gmx.net>\n"
+"Wolfgang Stöggl <c72578@yahoo.de>\n"
+"Nathan-J. Hirschauer <nathanhirschauer@verfriemelt.org>\n"
+"Mario Blättermann <mario.blaettermann@gmail.com>\n"
+"Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>"
+
+#: ../src/cheese-main.vala:492
+msgid "Cheese Website"
+msgstr "Cheese-Website"
+
+#: ../src/cheese-window.vala:192
+#, c-format
+msgid "Could not open %s"
+msgstr "%s konnte nicht geöffnet werden"
+
+#: ../src/cheese-window.vala:220
+#, c-format
+msgid "Are you sure you want to permanently delete the file?"
+msgid_plural "Are you sure you want to permanently delete %d files?"
+msgstr[0] "Sind Sie sicher, dass Sie die Datei dauerhaft löschen wollen?"
+msgstr[1] "Sind Sie sicher, dass Sie die %d Dateien dauerhaft löschen wollen?"
+
+#: ../src/cheese-window.vala:226
+msgid "If you delete an item, it will be permanently lost"
+msgid_plural "If you delete the items, they will be permanently lost"
+msgstr[0] ""
+"Wenn Sie ein Element löschen, wird es unwiderruflich verloren gehen."
+msgstr[1] ""
+"Wenn Sie Elemente löschen, werden sie unwiderruflich verloren gehen."
+
+#: ../src/cheese-window.vala:302
+#, c-format
+msgid "Could not move %s to trash"
+msgstr "%s konnte nicht in den Müll verschoben werden"
+
+#. Nothing selected.
+#: ../src/cheese-window.vala:451
+msgid "Save File"
+msgstr "Datei speichern"
+
+#: ../src/cheese-window.vala:485
+#, c-format
+msgid "Could not save %s"
+msgstr "%s konnte nicht gespeichert werden"
+
+#: ../src/cheese-window.vala:918
+msgid "Stop _Recording"
+msgstr "Aufnahme _stoppen"
+
+#: ../src/cheese-window.vala:919
+msgid "Stop recording"
+msgstr "Aufnahme stoppen"
+
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
+msgid "Record a Video"
+msgstr "Video aufnehmen"
+
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
-msgstr "Ein Video aufnehmen"
+msgstr "Video aufnehmen"
 
-#: C/video-record.page:24(page/p)
-msgid "To record a video using your webcam:"
-msgstr "So nehmen Sie ein Video mit Ihrer Webcam auf:"
+#. FIXME: Set the effects action to be inactive.
+#: ../src/cheese-window.vala:970
+msgid "Stop _Taking Pictures"
+msgstr "Fo_toaufnahmen stoppen"
 
-#: C/video-record.page:28(item/p)
-msgid ""
-"Make sure that you are in <gui>Video mode</gui>. If you are, the button in "
-"the middle of the window will say <gui>Start Recording</gui>."
-msgstr ""
-"Stellen Sie sicher, dass Sie sich im <gui>Videomodus</gui> befinden. In "
-"diesem Fall ist der Knopf in der Mitte des Fensters mit <gui>Aufnahme "
-"starten</gui> beschriftet."
+#: ../src/cheese-window.vala:971
+msgid "Stop taking pictures"
+msgstr "Fotoaufnahmen stoppen"
 
-#: C/video-record.page:30(item/p)
-msgid ""
-"You can switch to <gui>Video mode</gui> by clicking the button in the main "
-"window or by clicking <guiseq><gui>Cheese</gui><gui>Video</gui></guiseq>."
-msgstr ""
-"Sie können in den <gui>Videomodus</gui> wechseln, indem Sie auf den Knopf im "
-"Hauptfenster klicken oder durch Wählen von <guiseq><gui>Cheese</"
-"gui><gui>Video</gui></guiseq>."
+#: ../src/cheese-window.vala:994
+msgid "Take Multiple Photos"
+msgstr "Mehrere Fotos aufnehmen"
 
-#: C/video-record.page:34(item/p)
-msgid ""
-"Click <gui>Start Recording</gui>, or press the <key>spacebar</key>. "
-"<app>Cheese</app> will start recording from your webcam."
-msgstr ""
-"Klicken Sie auf <gui>Aufnahme starten</gui> oder drücken Sie die "
-"<key>Leertaste</key>. <app>Cheese</app> beginnt nun mit der Aufnahme von "
-"Ihrer Webcam."
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+msgid "Take multiple photos"
+msgstr "Mehrere Fotos aufnehmen"
 
-#: C/video-record.page:38(item/p)
-msgid ""
-"To stop recording, click <gui>Stop Recording</gui> or press <key>Esc</key>."
-msgstr ""
-"Um die Aufnahme anzuhalten, klicken Sie auf <gui>Aufnahme stoppen</gui> oder "
-"drücken Sie die <key>Esc</key>-Taste."
+#: ../src/cheese-window.vala:1147
+msgid "No effects found"
+msgstr "Kein Effekt gefunden"
 
-#: C/video-record.page:43(page/p)
-msgid "Videos are saved in the Ogg Theora (<file>.ogv</file>) format."
-msgstr ""
-"Videos werden im Dateiformat Ogg Theora (<file>.ogv</file>) gespeichert."
+#: ../src/cheese-window.vala:1503
+msgid "Take a Photo"
+msgstr "Ein Foto aufnehmen"
 
-#: C/video-record.page:45(page/p)
-msgid ""
-"After you have stopped recording, the video will automatically appear in the "
-"photo stream at the bottom of the <app>Cheese</app> window. From there, you "
-"can <link xref=\"photo-view\">play back the video</link>, upload it to a "
-"social network, post it on your blog or YouTube channel, or share it with "
-"friends by <link href=\"help:gnome-help/net-default-email\">email</link>."
-msgstr ""
-"Nachdem Sie die Aufnahme gestoppt haben, erscheint das Video automatisch in "
-"der Fotostrecke am unteren Rand des <app>Cheese</app>-Fensters. Von dort aus "
-"können Sie das <link xref=\"photo-view\">Video wiedergeben</link>, es in ein "
-"soziales Netzwerk hochladen, in Ihrem Blog oder YouTube-Kanal posten oder "
-"<link href=\"help:gnome-help/net-default-email\">per E-Mail verschicken</"
-"link>."
+#: ../src/cheese-window.vala:1515
+msgid "Take _Multiple Photos"
+msgstr "_Mehrere Fotos aufnehmen"
 
-#: C/video-record.page:51(page/p)
-msgid ""
-"If you have problems sharing a video with people using other operating "
-"systems (like Windows or Mac OS), you may need to <link href=\"help:gnome-"
-"help/video-sending\">convert it to a different format</link>."
-msgstr ""
-"Falls Probleme bei der Weitergabe eines Videos an andere Benutzer mit "
-"anderen Betriebssystemen auftreten (wie Windows oder Mac OS), dann sollten "
-"Sie das Video <link href=\"ghelp:gnome-help/video-sending\">in ein anderes "
-"Format umwandeln</link>."
+#~ msgid "_Cheese"
+#~ msgstr "_Cheese"
 
-#~ msgid ""
-#~ "Make sure that you're in <gui>Photo mode</gui>. If you are, the button in "
-#~ "the main window will say <gui>Take a Photo</gui>."
-#~ msgstr ""
-#~ "Stellen Sie sicher, dass Sie sich im <gui>Foto-Modus</gui> befinden. Wenn "
-#~ "das der Fall ist, lautet die Aufschrift des Knopfes im Hauptfenster "
-#~ "<gui>Ein Foto aufnehmen</gui>."
+#~ msgid "_Contents"
+#~ msgstr "I_nhalt"
 
-#~ msgid ""
-#~ "To switch to <gui>Photo mode</gui>, click the small photo button in the "
-#~ "bottom left of the window or click <guiseq><gui>Cheese</gui> <gui>Photo</"
-#~ "gui></guiseq>."
-#~ msgstr ""
-#~ "Um zum <gui>Fotomodus</gui> zu wechseln, klicken Sie auf den kleinen Foto-"
-#~ "Knopf links im Fenster oder wählen Sie <guiseq><gui>Cheese</"
-#~ "gui><gui>Foto</gui></guiseq>."
+#~ msgid "<b>Shutter</b>"
+#~ msgstr "<b>Verschluss</b>"
+
+#~ msgid "Could not delete %s"
+#~ msgstr "%s konnte nicht gelöscht werden"
+
+#~ msgid "Image properties"
+#~ msgstr "Bildeinstellungen"
