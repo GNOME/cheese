@@ -1,6 +1,28 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.7.90
+  - Change schema path to standard format, bug 673965
+  - Remove libgee dependency from configure.ac
+    Since commit 4dc020519fb57a9e0fac806ce9b421a551ffa2a4 Cheese no longer
+    depends on libgee.
+  - Avoid using libgee
+    Rather than port to libgee 0.8, drop use of it entirely.
+  - Post-release version bump to 3.7.5
+  - Added/Updated Translations
+    - an, courtesy of Daniel Martinez
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - it, courtesy of Milo Casagrande
+    - pl, courtesy of Piotr Drąg
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+    - ug, courtesy of Gheyret Kenji
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - de, courtesy of Tobias111
+    - es, courtesy of Daniel Mustieles
+
 version 3.7.4
   - Eliminate an instance-used-via-static warning
   - Avoid deprecated GFile attribute syntax
