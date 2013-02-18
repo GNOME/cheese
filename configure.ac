@@ -1,7 +1,7 @@
 # Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.64])
 AC_INIT([Cheese],
-        [3.7.90],
+        [3.7.91],
         [https://bugzilla.gnome.org/enter_bug.cgi?product=cheese],
         [cheese],
         [http://projects.gnome.org/cheese/])
