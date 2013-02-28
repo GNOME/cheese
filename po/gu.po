@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Ankit Patel <ankit@redhat.com>, 2008.
-# Sweta Kothari <swkothar@redhat.com>, 2008, 2009, 2010, 2011, 2012.
+# Sweta Kothari <swkothar@redhat.com>, 2008, 2009, 2010, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: gu\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-08-08 12:43+0530\n"
+"POT-Creation-Date: 2012-10-29 16:16+0000\n"
+"PO-Revision-Date: 2013-02-28 15:57+0530\n"
 "Last-Translator: \n"
-"Language-Team: gu_IN <kde-i18n-doc@kde.org>\n"
+"Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "ફોટો બર્સ્ટ મોડ"
 msgid "Take a photo"
 msgstr "ફોટો લો"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
 msgid "_Take a Photo"
 msgstr "ફોટો લો (_T)"
 
@@ -174,6 +174,10 @@ msgstr "Cheese વેબકેમ બુથ"
 #: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "- તમારા વેબકેમમાંથી ફોટાઓ અને વીડિયો લો, ગ્રાફિકલ અસરો સાથે આનંદ મેળવો"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "ફોટો;વિડિયો;વેબકેમ;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -362,28 +366,28 @@ msgstr "ફોટો લો (_T)"
 msgid "_Discard photo"
 msgstr "ચિત્રને કાઢી નાંખો (_D)"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "ઉપકરણ ક્ષમતાઓ આધારભૂત નથી"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "પ્રોબીંગ ક્ષમતા માટે ઉપકરણ %s ને પ્રારંભ કરવામાં નિષ્ફળતા"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "અજ્ઞાત ઉપકરણ"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "રદ કરી શકાય તેવુ આરંભીકરણ આધારભૂત નથી"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "એક અથવા વધારે જરૂરી GStreamer ઘટકો ગેરહાજર છે: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "ઉપકરણ મળ્યુ નહિં"
@@ -393,7 +397,7 @@ msgstr "ઉપકરણ મળ્યુ નહિં"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -527,8 +531,9 @@ msgid "Stop recording"
 msgstr "રેકોર્ડ કરવાનું બંધ કરો"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "વિડિઓ રેકોર્ડ કરો"
+#| msgid "Record a Video"
+msgid "_Record a Video"
+msgstr "વિડિયો રેકોર્ડ કરો (_R)"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -555,13 +560,12 @@ msgstr "ઘણાબધા ફોટાઓ લો"
 msgid "No effects found"
 msgstr "કોઈ અસરો નથી"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "ફોટો લો"
-
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
 msgstr "ઘણાબધા ફોટાઓ લો (_M)"
+
+#~ msgid "Take a Photo"
+#~ msgstr "ફોટો લો"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Cheese"
