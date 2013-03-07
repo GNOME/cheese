@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
+"POT-Creation-Date: 2012-10-29 16:16+0000\n"
 "PO-Revision-Date: 2012-09-07 17:55+0300\n"
 "Last-Translator: Yuri Matsuk <yuri@matsuk.net>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
@@ -63,7 +63,7 @@ msgstr "Рэжым серыйнай здымкі"
 msgid "Take a photo"
 msgstr "_Сфатаграфаваць"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
 msgid "_Take a Photo"
 msgstr "_Сфатаграфаваць"
 
@@ -172,6 +172,10 @@ msgstr "Фотавідэабудан Cheese"
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Фота- і відэаздымкі з дапамогай сеціўнай відэакамеры, з цікавымі спецэфектамі"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "фота;фатаграфія;відэа;запіс;вэб-камера;сеціўная камера;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -363,28 +367,28 @@ msgstr "_Сфатаграфаваць"
 msgid "_Discard photo"
 msgstr "_Скасаваць фотаздымак"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "Функцыі прыстасавання не падтрымліваюцца"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Не ўдалося ініцыяваць прыстасаванне %s для апазнання яго функцый"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "Невядомае прыстасаванне"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "Ініцыяцыя з магчымасцю скасавання не падтрымліваецца"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Прынамсі адзін з патрэбных складнікаў GStreamer адсутнічае: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "Прыстасаванне не знойдзена"
@@ -394,7 +398,7 @@ msgstr "Прыстасаванне не знойдзена"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -534,8 +538,8 @@ msgid "Stop recording"
 msgstr "Спыніць запіс"
 
 #: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Запісаць відэа"
+msgid "_Record a Video"
+msgstr "_Запісаць відэа"
 
 #: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
 msgid "Record a video"
@@ -562,10 +566,7 @@ msgstr "Зрабіць некалькі фатаграфій"
 msgid "No effects found"
 msgstr "Спецэфекты не знойдзены"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Зрабіць фатаграфію"
-
 #: ../src/cheese-window.vala:1515
 msgid "Take _Multiple Photos"
 msgstr "Зрабіць _некалькі фатаграфій"
+
