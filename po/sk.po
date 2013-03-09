@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-03-05 21:38+0000\n"
-"PO-Revision-Date: 2013-03-06 17:46+0000\n"
-"Last-Translator: Pavol Babinčák <scroolik@gmail.com>\n"
+"POT-Creation-Date: 2013-03-08 18:32+0000\n"
+"PO-Revision-Date: 2013-03-08 20:09+0100\n"
+"Last-Translator: Pavol Klačanský <pavol@klacansky.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -23,13 +23,10 @@ msgstr ""
 "X-Poedit-Country: SLOVAKIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-
-# PM: je to nespisovne Nedá sa to nahradiť Podeliť sa?
 # GtkAction label
 #: ../data/cheese-actions.ui.h:1
-#, fuzzy
 msgid "Share…"
-msgstr "Zdieľať…"
+msgstr "Podeliť sa…"
 
 # GtkAction label
 #: ../data/cheese-actions.ui.h:2
@@ -71,30 +68,27 @@ msgstr "Režim fotografií"
 msgid "Video mode"
 msgstr "Režim videa"
 
- # GtkToggleButton tooltip
+# GtkToggleButton tooltip
 #: ../data/cheese-main-window.ui.h:3
 msgid "Photo burst mode"
 msgstr "Režim sekvenčného snímania"
 
-# PM: tooltipy a titulky okien prekladáme inak - nahlás bug aby to rozdelili
+# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # GtkButton tooltip; dialog title
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
 #: ../src/cheese-window.vala:1512
-#, fuzzy
 msgid "Take a photo"
 msgstr "Zosníma fotografiu"
 
-# PM: nie kde sú nápisy na tlačidlách v originále kapitalizované inde nie - skús to nahlásiť ako bug
+# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # GtkButton 
 #: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
-#, fuzzy
 msgid "_Take a Photo"
 msgstr "_Zosnímať fotografiu"
 
-# PM: je to tooltip, prečo je to také krátke, skús napísať vývojárom nech to upresnia
+# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # GtkButton tooltip
 #: ../data/cheese-main-window.ui.h:6
-#, fuzzy
 msgid "Previous"
 msgstr "Predchádzajúce"
 
@@ -108,12 +102,13 @@ msgstr "Efekty"
 msgid "_Effects"
 msgstr "_Efekty"
 
+# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # GtkButton tooltip
 #: ../data/cheese-main-window.ui.h:9
-#, fuzzy
 msgid "Next"
 msgstr "Nasledujúce"
 
+# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # GtkButton tooltip
 #: ../data/cheese-main-window.ui.h:10
 msgid "Leave fullscreen"
@@ -271,7 +266,8 @@ msgstr "Spustiť blesk pred zosnímaním fotografie"
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
 msgid "Set to true to fire a flash when taking a picture"
 msgstr ""
-"Ak je nastavené na hodnotu Pravda, pri zosnímaní fotografie bude použitý blesk"
+"Ak je nastavené na hodnotu Pravda, pri zosnímaní fotografie bude použitý "
+"blesk"
 
 # gsettings summary
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
@@ -399,7 +395,8 @@ msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
-"Cesta, kde sú uložené fotografie. Ak je prázdna, použije sa „XDG_PHOTO/Webcam“."
+"Cesta, kde sú uložené fotografie. Ak je prázdna, použije sa „XDG_PHOTO/"
+"Webcam“."
 
 # gsettings summary
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
@@ -510,10 +507,9 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-# PM: bolo by dobre keby sem dali vývojári komentár - úplne by stačil ten čo majú o tri riadky vyššie v kóde - nahlás bug
+# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # Položka v zozname
 #: ../src/cheese-effects-manager.vala:51
-#, fuzzy
 msgid "No Effect"
 msgstr "Bez efektu"
 
@@ -596,13 +592,11 @@ msgstr "U_končiť"
 msgid "- Take photos and videos from your webcam"
 msgstr "- sníma fotografie a natáča videá vašou webovou kamerou"
 
-# PM: Úplný zoznam ... zobrazíte spustením ...
 #: ../src/cheese-main.vala:194
-#, fuzzy, c-format
+#, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
-"Spustite „%s --help“ pre zobrazenie kompletného zoznamu dostupných "
-"prepínačov príkazového riadka.\n"
+"Úplný zoznam volieb prikazového riadka zobrazíte spustením „%s --help“.\n"
 
 #: ../src/cheese-main.vala:209
 #, c-format
