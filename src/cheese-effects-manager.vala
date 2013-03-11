@@ -48,6 +48,8 @@ internal class Cheese.EffectsManager : GLib.Object
         /* Add identity effect as the first in the effect list. */
         if (effects.length () > 0)
         {
+            /* Translators: a description of an effect (to be applied to images
+             *              from the webcam) which does nothing. */
             Effect e = new Effect (_("No Effect"), "identity");
             effects.prepend (e);
         }

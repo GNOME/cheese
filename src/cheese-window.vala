@@ -1509,19 +1509,19 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         {
             case MediaMode.PHOTO:
                 take_action_button_label.label = "<b>" + _("_Take a Photo") + "</b>";
-                take_action_button.tooltip_text = _("Take a photo");
+                take_action_button.tooltip_text = _("Take a photo using a webcam");
                 break;
 
             case MediaMode.VIDEO:
                 take_action_button_label.label = "<b>" + _("_Record a Video") + "</b>";
-                take_action_button.tooltip_text = _("Record a video");
+                take_action_button.tooltip_text = _("Record a video using a webcam");
                 timeout_layer.text = "00:00:00";
                 timeout_layer.show ();
                 break;
 
             case MediaMode.BURST:
                 take_action_button_label.label = "<b>" + _("Take _Multiple Photos") + "</b>";
-                take_action_button.tooltip_text = _("Take multiple photos");
+                take_action_button.tooltip_text = _("Take multiple photos using a webcam");
                 break;
         }
     }

@@ -124,7 +124,7 @@
                             <property name="related-action">effects_page_prev</property>
                             <property name="width-request">32</property>
                             <property name="relief">GTK_RELIEF_NONE</property>
-                            <property name="tooltip_text" translatable="yes">Previous</property>
+                            <property name="tooltip_text" translatable="yes">Naviagte to the previous page of effects</property>
                             <child>
                               <object class="GtkImage" id="effects_prev_page_button_image">
                                 <property name="stock">gtk-go-back</property>
@@ -165,7 +165,7 @@
                             <property name="related-action">effects_page_next</property>
                             <property name="width-request">32</property>
                             <property name="relief">GTK_RELIEF_NONE</property>
-                            <property name="tooltip_text" translatable="yes">Next</property>
+                            <property name="tooltip_text" translatable="yes">Navigate to the next page of effects</property>
                             <child>
                               <object class="GtkImage" id="effects_prev_next_button_image">
                                 <property name="stock">gtk-go-forward</property>
@@ -185,7 +185,7 @@
                           <object class="GtkButton" id="leave_fullscreen_button">
                             <property name="use-action-appearance">False</property>
                             <property name="action-name">app.fullscreen</property>
-                            <property name="tooltip_text" translatable="yes">Leave fullscreen</property>
+                            <property name="tooltip_text" translatable="yes">Leave fullscreen mode and go back to windowed mode</property>
                             <child>
                               <object class="GtkGrid" id="fullscreen_button_internal_hbox">
                                 <property name="orientation">horizontal</property>
