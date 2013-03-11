@@ -260,7 +260,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                           _("Select"),
                           GTK_RESPONSE_ACCEPT,
                           NULL);
-  gtk_window_set_title (GTK_WINDOW (chooser), _("Take a photo"));
+  gtk_window_set_title (GTK_WINDOW (chooser), _("Take a Photo"));
 
   gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
                                      GTK_RESPONSE_ACCEPT,
@@ -278,7 +278,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
   priv->camera = cheese_widget_new ();
   g_signal_connect (G_OBJECT (priv->camera), "notify::state",
                     G_CALLBACK (state_change_cb), chooser);
-  priv->take_button = gtk_button_new_with_mnemonic (_("_Take a photo"));
+  priv->take_button = gtk_button_new_with_mnemonic (_("_Take a Photo"));
   g_signal_connect (G_OBJECT (priv->take_button), "clicked",
                     G_CALLBACK (take_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_button, FALSE);
