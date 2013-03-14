@@ -5,14 +5,14 @@
 # Adam Pongracz <pongadam at gmail dot com>, 2008.
 # Mate Ory <orymate at gmail dot com>, 2008.
 # Gabor Kelemen <kelemeng at gnome dot hu>, 2008, 2009, 2010, 2011, 2012.
-# Balázs Úr <urbalazs at gmail dot com>, 2012.
+# Balázs Úr <urbalazs at gmail dot com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-29 16:16+0000\n"
-"PO-Revision-Date: 2012-12-31 18:25+0100\n"
+"POT-Creation-Date: 2013-03-11 17:13+0000\n"
+"PO-Revision-Date: 2013-03-14 23:12+0100\n"
 "Last-Translator: Balázs Úr <urbalazs at gmail dot com>\n"
 "Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
 "Language: hu\n"
@@ -62,18 +62,19 @@ msgstr "Videó mód"
 msgid "Photo burst mode"
 msgstr "Fényképsorozat mód"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "Fényképezés"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
+#| msgid "Take a photo"
+msgid "Take a photo using a webcam"
+msgstr "Fényképezés a webkamera használatával"
 
-#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "Fény_képezés"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "Előző"
+msgid "Navigate to the previous page of effects"
+msgstr "Navigálás az effektusok előző oldalára"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -84,12 +85,12 @@ msgid "_Effects"
 msgstr "_Effektusok"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "Következő"
+msgid "Navigate to the next page of effects"
+msgstr "Navigálás az effektusok következő oldalára"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "Teljes képernyő elhagyása"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "Teljes képernyős mód elhagyása és visszatérés az ablakos módhoz"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -164,7 +165,7 @@ msgid "Capture"
 msgstr "Felvétel"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Csííz"
 
@@ -172,7 +173,7 @@ msgstr "Csííz"
 msgid "Cheese Webcam Booth"
 msgstr "Csííz webkamera-kezelő"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Képek készítése és videók felvétele webkamerával, vicces grafikai "
@@ -363,9 +364,9 @@ msgstr "Zárhang"
 msgid "Select"
 msgstr "Válasszon"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "Fény_képezés"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "Fényképezés"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -408,7 +409,9 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i.%02i.%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "Nincs effektus"
 
@@ -472,30 +475,30 @@ msgstr "_Súgó"
 msgid "_Quit"
 msgstr "_Kilépés"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "– Képek készítése és videók felvétele webkamerával"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "A parancssori paraméterek teljes listája a „%s --help” paranccsal íratható "
 "ki.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Már fut a Csííz egy másik példánya.\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "Kelemen Gábor <kelemeng at gnome dot hu>\n"
 "Pongrácz Ádám <pongadam at gmail dot com>\n"
 "Őry Máté <orymate at gmail dot com>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "A Csííz weboldala"
 
@@ -540,12 +543,11 @@ msgstr "Fel_vétel leállítása"
 msgid "Stop recording"
 msgstr "Felvétel leállítása"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#| msgid "Record a Video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
 msgid "_Record a Video"
 msgstr "_Videó felvétele"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935
 msgid "Record a video"
 msgstr "Videó rögzítése"
 
@@ -562,21 +564,39 @@ msgstr "Fényképezés leállítása"
 msgid "Take Multiple Photos"
 msgstr "Több fénykép készítése"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995
 msgid "Take multiple photos"
 msgstr "Több fénykép készítése"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "Nem találhatók effektusok"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1517
+#| msgid "Record a video"
+msgid "Record a video using a webcam"
+msgstr "Videó rögzítése a webkamera használatával"
+
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "_Több fénykép készítése"
 
-#~| msgid "_Take a Photo"
-#~ msgid "Take a Photo"
-#~ msgstr "Fényképezés"
+#: ../src/cheese-window.vala:1524
+#| msgid "Take multiple photos"
+msgid "Take multiple photos using a webcam"
+msgstr "Több fénykép készítése a webkamera használatával"
+
+#~ msgid "Previous"
+#~ msgstr "Előző"
+
+#~ msgid "Next"
+#~ msgstr "Következő"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "Teljes képernyő elhagyása"
+
+#~ msgid "_Take a photo"
+#~ msgstr "Fény_képezés"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Csííz"
