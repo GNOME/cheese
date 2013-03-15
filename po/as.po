@@ -2,16 +2,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Amitakhya Phukan <aphukan@fedoraproject.org>, 2009.
-# Nilamdyuti Goswami <ngoswami@redhat.com>, 2011, 2012.
+# Nilamdyuti Goswami <ngoswami@redhat.com>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-29 16:16+0000\n"
-"PO-Revision-Date: 2012-11-22 15:50+0530\n"
+"POT-Creation-Date: 2013-03-11 17:13+0000\n"
+"PO-Revision-Date: 2013-03-15 16:28+0530\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
-"Language-Team: as_IN <kde-i18n-doc@kde.org>\n"
+"Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,18 +59,19 @@ msgstr "ভিডিঅ' অৱস্থা"
 msgid "Photo burst mode"
 msgstr "ফ'টো বাৰ্স্ট অৱস্থা"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "এটা ফ'টো লওক "
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
+#| msgid "Take a photo"
+msgid "Take a photo using a webcam"
+msgstr "ৱেবকেম ব্যৱহাৰ কৰি এটা ফ'টো লওক"
 
-#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "এটা ফ'টো লওক (_T)"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "পূৰ্বৱৰ্তী"
+msgid "Navigate to the previous page of effects"
+msgstr "প্ৰভাৱসমূহৰ পূৰ্বৱৰ্তী পৃষ্ঠালৈ যাওক"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -81,12 +82,12 @@ msgid "_Effects"
 msgstr "প্ৰভাৱসমূহ (_E)"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "পৰৱৰ্তী"
+msgid "Navigate to the next page of effects"
+msgstr "প্ৰভাৱসমূহৰ পৰৱৰ্তী পৃষ্ঠালৈ যাওক"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "সম্পূৰ্ণ পৰ্দাত প্ৰদৰ্শন বন্ধ কৰক"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "পূৰ্নপৰ্দা অৱস্থা ত্যাগ কৰক আৰু উইন্ডোড অৱস্থালৈ উভতি যাওক"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -161,7 +162,7 @@ msgid "Capture"
 msgstr "কৰগত"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -169,7 +170,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese ৰ ৱেবকেম বুথ"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ৱেবকেমৰ সহায়ত আমোদময় গ্ৰাফিক্সসহ ফ'টো লওক আৰু ভিডিঅ' তৈয়াৰ কৰক"
 
@@ -359,9 +360,9 @@ msgstr "ষাটাৰ শব্দ"
 msgid "Select"
 msgstr "বাছক"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "এটা ফ'টো লওক (_T)"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "এটা ফ'টো লওক"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -404,7 +405,9 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "প্ৰভাৱ বিহীন"
 
@@ -468,28 +471,28 @@ msgstr "সহায় (_H)"
 msgid "_Quit"
 msgstr "প্ৰস্থান (_Q)"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- ৱেবকেমৰ সহায়ত ফ'টো লওক আৰু ভিডিঅ' তৈয়াৰ কৰক"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "উপলব্ধ কমান্ড শাৰী বিকল্পসমূহ চাবলে '%s --help' চলাওক।\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Cheese ৰ অন্য এটা উদাহৰণ ইতিমধ্যে চলি আছে\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "অমিতাক্ষ ফুকন (aphukan@fedoraproject.org), নীলমদ্যুতি গোস্বামী "
 "(ngoswami@redhat."
 "com)"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Cheese ৰ ৱেব-ছাইট"
 
@@ -534,12 +537,11 @@ msgstr "ৰেকৰ্ডিং বন্ধ কৰক (_R)"
 msgid "Stop recording"
 msgstr "ৰেকৰ্ডিং বন্ধ কৰক"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#| msgid "Record a Video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
 msgid "_Record a Video"
 msgstr "এটা ভিডিঅ' ৰেকৰ্ড কৰক (_R)"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935
 msgid "Record a video"
 msgstr "এটা ভিডিঅ' ৰেকৰ্ড কৰক"
 
@@ -556,20 +558,39 @@ msgstr "ফ'টো লোৱা বন্ধ কৰক"
 msgid "Take Multiple Photos"
 msgstr "একাধিক ফ'টো লওক"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995
 msgid "Take multiple photos"
 msgstr "একাধিক ফ'টো লওক"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "কোনো প্ৰভাৱ পোৱা নগল"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1517
+#| msgid "Record a video"
+msgid "Record a video using a webcam"
+msgstr "এটা ৱেবকেম ব্যৱহাৰ কৰি এটা ভিডিঅ' ৰেকৰ্ড কৰক"
+
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "একাধিক ফ'টো লওক (_M)"
 
-#~ msgid "Take a Photo"
-#~ msgstr "এটা ফ'টো লওক"
+#: ../src/cheese-window.vala:1524
+#| msgid "Take multiple photos"
+msgid "Take multiple photos using a webcam"
+msgstr "এটা ৱেবকেম ব্যৱহাৰ কৰি একাধিক ফ'টো লওক"
+
+#~ msgid "Previous"
+#~ msgstr "পূৰ্বৱৰ্তী"
+
+#~ msgid "Next"
+#~ msgstr "পৰৱৰ্তী"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "সম্পূৰ্ণ পৰ্দাত প্ৰদৰ্শন বন্ধ কৰক"
+
+#~ msgid "_Take a photo"
+#~ msgstr "এটা ফ'টো লওক (_T)"
 
 #~ msgid "_Cheese"
 #~ msgstr "Cheese (_C)"
