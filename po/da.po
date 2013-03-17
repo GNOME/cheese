@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-16 14:48+0200\n"
-"PO-Revision-Date: 2012-09-14 00:44+0200\n"
+"POT-Creation-Date: 2013-03-17 14:49+0100\n"
+"PO-Revision-Date: 2013-03-16 18:03+0100\n"
 "Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
@@ -64,18 +64,19 @@ msgstr "Videotilstand"
 msgid "Photo burst mode"
 msgstr "Serietilstand"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
+#, fuzzy
+msgid "Take a photo using a webcam"
 msgstr "Tag et billede"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "_Tag et billede"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "Forrige"
+msgid "Navigate to the previous page of effects"
+msgstr ""
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -86,12 +87,12 @@ msgid "_Effects"
 msgstr "_Effekter"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "Næste"
+msgid "Navigate to the next page of effects"
+msgstr ""
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "Forlad fuld skærm"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr ""
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -166,7 +167,7 @@ msgid "Capture"
 msgstr "Optag"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -174,10 +175,14 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese - webkamerastand"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Tag billeder og optag video fra dit webkamera, med sjove grafiske effekter"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "billede;foto;video;webkamera;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -359,9 +364,9 @@ msgstr "Lukker lyd"
 msgid "Select"
 msgstr "Vælg"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "_Tag et billede"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "Tag et billede"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -405,7 +410,9 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "Ingen effekt"
 
@@ -469,23 +476,23 @@ msgstr "_Hjælp"
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- Tag billeder og videoer med dit webkamera"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Kør \"%s --help\" for at få en liste over alle tilgængelige "
 "kommandlinjetilvalg.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Der kører allerede en instans af Cheese\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "Anders K. Madsen\n"
@@ -494,7 +501,7 @@ msgstr ""
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Webside for Cheese"
 
@@ -539,11 +546,11 @@ msgstr "Stop _optagelse"
 msgid "Stop recording"
 msgstr "Stop optagelse"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Optag en video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+msgid "_Record a Video"
+msgstr "_Optag en video"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935
 msgid "Record a video"
 msgstr "Optag en video"
 
@@ -560,21 +567,39 @@ msgstr "Stop med at tage billeder"
 msgid "Take Multiple Photos"
 msgstr "Tag flere billeder"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995
 msgid "Take multiple photos"
 msgstr "Tag flere billeder"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "Ingen effekter fundet"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Tag et billede"
+#: ../src/cheese-window.vala:1517
+#, fuzzy
+msgid "Record a video using a webcam"
+msgstr "Optag en video"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "Tag _flere billeder"
+
+#: ../src/cheese-window.vala:1524
+#, fuzzy
+msgid "Take multiple photos using a webcam"
+msgstr "Tag flere billeder"
+
+#~ msgid "Previous"
+#~ msgstr "Forrige"
+
+#~ msgid "Next"
+#~ msgstr "Næste"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "Forlad fuld skærm"
+
+#~ msgid "_Take a photo"
+#~ msgstr "_Tag et billede"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Cheese"
@@ -618,16 +643,8 @@ msgstr "Tag _flere billeder"
 #~ msgid "Image properties"
 #~ msgstr "Billedegenskaber"
 
-#, fuzzy
-#~ msgid "_Delete"
-#~ msgstr "Slet"
-
 #~ msgid "_Open"
 #~ msgstr "_Åbn"
-
-#, fuzzy
-#~ msgid "_Preferences"
-#~ msgstr "Indstillinger"
 
 #~ msgid "Resolution"
 #~ msgstr "Opløsning"
