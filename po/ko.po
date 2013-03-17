@@ -1,7 +1,7 @@
 # cheese Korean message translation
 # This file is distributed under the same license as the cheese package.
-# Changwoo Ryu <cwryu@debian.org>, 2008, 2009, 2010, 2011.
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
+# Changwoo Ryu <cwryu@debian.org>, 2008-2011, 2013.
 #
 # 참고:
 # - 이 프로그램의 이름인 "Cheese"는 "치즈"라고 표기
@@ -11,11 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-08 09:08+0000\n"
-"PO-Revision-Date: 2012-09-09 14:36+0900\n"
-"Last-Translator: Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-03-11 17:05+0000\n"
+"PO-Revision-Date: 2013-03-17 20:39+0900\n"
+"Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: Korean\n"
 "MIME-Version: 1.0\n"
@@ -64,11 +63,11 @@ msgid "Photo burst mode"
 msgstr "연사 모드"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1512
 msgid "Take a photo"
 msgstr "사진 찍기"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "사진 찍기(_T)"
 
@@ -165,7 +164,7 @@ msgid "Capture"
 msgstr "찍기"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "치즈"
 
@@ -173,11 +172,15 @@ msgstr "치즈"
 msgid "Cheese Webcam Booth"
 msgstr "치즈 웹카메라 사진 찍기"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "웹카메라에서 사진과 비디오를 찍고, 재미있는 그래픽 효과를 사용할 수도 있습니"
 "다"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "photo;사진;video;비디오;영상;webcam;웹캠;웹카메라;캠;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -193,7 +196,7 @@ msgstr "초읽기 시간"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:4
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr "사진을 찍기 전 초읽기를 하려는 초 단위 시간입니다"
+msgstr "사진을 찍기 전 초읽기를 하려는 초 단위 시간"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
 msgid "Fire flash before taking a picture"
@@ -211,7 +214,7 @@ msgstr "카메라 장치 문자열"
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
-msgstr "예를 들어 /dev/video0와 같이, 카메라를 가리키는 장치 노드 경로"
+msgstr "카메라를 가리키는 장치 노드의 경로. 예를 들어 /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -219,39 +222,39 @@ msgstr "최근 선택한 효과"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:10
 msgid "Name of the installed effect that was selected last"
-msgstr "마지막으로 선택한 설치한 효과의 이름입니다"
+msgstr "마지막으로 선택한 설치한 효과의 이름"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:11
 msgid "Photo width"
-msgstr "사진 세로 해상도"
+msgstr "사진 너비"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:12
 msgid "The width of the image captured from the camera, in pixels"
-msgstr "카메라에서 찍을 그림의 픽셀 단위 가로 해상도"
+msgstr "카메라에서 찍는 사진의 너비, 픽셀 단위"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:13
 msgid "Photo height"
-msgstr "사진 가로 해상도"
+msgstr "사진 높이"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:14
 msgid "The height of the image captured from the camera, in pixels"
-msgstr "카메라에서 캡쳐한 그림의 픽셀 단위 세로 해상도"
+msgstr "카메라에서 찍는 사진의 높이, 픽셀 단위"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:15
 msgid "Video width"
-msgstr "동영상 가로 해상도"
+msgstr "동영상 너비"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:16
 msgid "The width of the video captured from the camera, in pixels"
-msgstr "카메라에서 녹화할 비디오의 픽셀 단위 가로 해상도"
+msgstr "카메라에서 녹화하는 영상의 너비, 픽셀 단위"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:17
 msgid "Video height"
-msgstr "동영상 세로 해상도"
+msgstr "동영상 높이"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:18
 msgid "The height of the video captured from the camera, in pixels"
-msgstr "카메라에서 캡쳐한 그림의 픽셀 단위 가로 해상도"
+msgstr "카메라에서 녹화하는 영상의 높이, 픽셀 단위"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
 msgid "Picture brightness"
@@ -404,7 +407,7 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "효과 없음"
 
@@ -442,7 +445,7 @@ msgstr "사진(_P)"
 
 #: ../src/cheese-main.vala:98
 msgid "_Video"
-msgstr "비디오(_V)"
+msgstr "동영상(_V)"
 
 #: ../src/cheese-main.vala:99
 msgid "_Burst"
@@ -468,28 +471,28 @@ msgstr "도움말(_H)"
 msgid "_Quit"
 msgstr "끝내기(_Q)"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
-msgstr "- 웹카메라에서 사진과 비디오를 찍습니다"
+msgstr "- 웹카메라에서 사진과 동영상을 찍습니다"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "사용 가능한 명령어 옵션 전체 목록을 보려면 '%s --help' 명령을 실행하십시오.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "치즈가 이미 실행 중입니다\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "류창우 <cwryu@debian.org>\n"
-"조성호<darkcircle.0426@gmail.com>"
+"조성호 <darkcircle.0426@gmail.com>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "치즈 웹사이트"
 
@@ -532,11 +535,11 @@ msgstr "녹화 중지(_R)"
 msgid "Stop recording"
 msgstr "녹화 중지"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "동영상 녹화"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+msgid "_Record a Video"
+msgstr "동영상 녹화(_R)"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1517
 msgid "Record a video"
 msgstr "동영상 녹화"
 
@@ -553,30 +556,14 @@ msgstr "사진 찍기 중지"
 msgid "Take Multiple Photos"
 msgstr "사진 여러 장 찍기"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1524
 msgid "Take multiple photos"
 msgstr "사진 여러 장 찍기"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "효과가 없습니다"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "사진 찍기"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "사진 여러 장 찍기(_M)"
-
-#~ msgid "_Cheese"
-#~ msgstr "치즈(_C)"
-
-#~ msgid "_Edit"
-#~ msgstr "편집(_E)"
-
-#~ msgid "_Contents"
-#~ msgstr "차례(_C)"
-
-#~ msgid "<b>Shutter</b>"
-#~ msgstr "<b>셔터</b>"
