@@ -4,14 +4,15 @@
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 # Raivis Dejus <orvils@gmail.com>, 2009.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2009, 2010, 2011, 2012.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2009, 2010, 2011, 2012, 2013.
 # Peteris Krisjanis <pecisk@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-17 11:28+0300\n"
-"PO-Revision-Date: 2012-09-17 11:41+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-03-11 17:05+0000\n"
+"PO-Revision-Date: 2013-03-18 14:02+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -64,11 +65,11 @@ msgid "Photo burst mode"
 msgstr "Foto šalts režīms"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1512
 msgid "Take a photo"
 msgstr "Uzņemt foto"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "Uzņem_t foto"
 
@@ -165,7 +166,7 @@ msgid "Capture"
 msgstr "Uzņemt"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -173,10 +174,14 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese foto būdiņa"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Uzņemiet fotogrāfijas un video ar savu tīmekļa kameru ar jautriem efektiem"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "foto;video;tīmekļa kamera;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -403,7 +408,7 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "Bez efektiem"
 
@@ -467,23 +472,23 @@ msgstr "_Palīdzība"
 msgid "_Quit"
 msgstr "_Iziet"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- Uzņemiet fotogrāfijas un video ar savu tīmekļa kameru"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Palaidiet “%s --help”, lai redzētu pilnu pieejamo komandrindas iespēju "
 "sarakstu.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Jau darbojas cita Cheese instance\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
@@ -493,7 +498,7 @@ msgstr ""
 "  Raivis Dejus https://launchpad.net/~orvils\n"
 "  Dāgs Ādams Grīnbergs"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Cheese mājas lapa"
 
@@ -540,11 +545,12 @@ msgstr "Pārtraukt ie_rakstīšanu"
 msgid "Stop recording"
 msgstr "Pārtraukt ierakstīšanu"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Ierakstīt video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+#| msgid "Record a Video"
+msgid "_Record a Video"
+msgstr "Ie_rakstīt video"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1517
 msgid "Record a video"
 msgstr "Ierakstīt video"
 
@@ -561,21 +567,20 @@ msgstr "Pārtraukt attēlu uzņemšanu"
 msgid "Take Multiple Photos"
 msgstr "Uzņemt vairākus foto"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1524
 msgid "Take multiple photos"
 msgstr "Uzņemt vairākus foto"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "Efekti nav atrasti"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Uzņemt foto"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "Uzņe_mt vairākus foto"
+
+#~ msgid "Take a Photo"
+#~ msgstr "Uzņemt foto"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Cheese"
