@@ -3,21 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Sandeep Shedmake <sshedmak@redhat.com>, 2008.
-# Sandeep Shedmake <sshedmak@redhat.com>, 2009, 2011, 2012.
+# Sandeep Shedmake <sshedmak@redhat.com>, 2009, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: mr\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-08-13 12:49+0530\n"
+"POT-Creation-Date: 2013-03-11 17:05+0000\n"
+"PO-Revision-Date: 2013-03-18 13:02+0530\n"
 "Last-Translator: Sandeep Shedmake <sshedmak@redhat.com>\n"
 "Language-Team: Marathi <fedora-trans-mr@redhat.com>\n"
 "Language: mr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/cheese-actions.ui.h:1
@@ -61,11 +61,11 @@ msgid "Photo burst mode"
 msgstr "छायाचित्र बर्स्ट मोड"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1512
 msgid "Take a photo"
 msgstr "छायाचित्र घ्या"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "छायाचित्र घ्या (_T)"
 
@@ -134,7 +134,6 @@ msgid "Image"
 msgstr "प्रतिमा"
 
 #: ../data/cheese-prefs.ui.h:11
-#| msgid "Shutter sound"
 msgid "Shutter"
 msgstr "शटर"
 
@@ -163,7 +162,7 @@ msgid "Capture"
 msgstr "कॅप्चर"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "चीज्"
 
@@ -171,12 +170,15 @@ msgstr "चीज्"
 msgid "Cheese Webcam Booth"
 msgstr "चीज् वेबकॅम बूथ"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "चित्रलेखीय प्रभावांसह, वेबकॅमेऱ्यातून छायाचित्र व चलचित्र घ्या"
 
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "फोटो;व्हिडिओ;वेबकॅम;"
+
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
-#| msgid "_Countdown"
 msgid "Use a countdown"
 msgstr "काउंटडाउनचा वापर करा"
 
@@ -185,7 +187,6 @@ msgid "Set to true to show a countdown before taking a photo"
 msgstr "छायाचित्र घेण्यापूर्वी काउंटडाउन दाखवण्याकरीता ट्रु असे निश्चित करा"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:3
-#| msgid "_Countdown"
 msgid "Countdown length"
 msgstr "काउंटडाउन लांबी"
 
@@ -220,7 +221,6 @@ msgid "Name of the installed effect that was selected last"
 msgstr "शेवटचे नीवडलेल्या प्रतिष्ठापीत प्रभावाचे नाव"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:11
-#| msgid "Photo mode"
 msgid "Photo width"
 msgstr "छायाचित्र रूंदी"
 
@@ -229,7 +229,6 @@ msgid "The width of the image captured from the camera, in pixels"
 msgstr "कॅमेरापासून प्राप्त प्रतिमाची रूंदी, पिक्सेल्स्मध्ये"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:13
-#| msgid "Photo mode"
 msgid "Photo height"
 msgstr "छायाचित्र ऊंची"
 
@@ -238,7 +237,6 @@ msgid "The height of the image captured from the camera, in pixels"
 msgstr "कॅमेरापासून प्राप्त प्रतिमाची ऊंची, पिक्सेल्स्मध्ये"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:15
-#| msgid "Video mode"
 msgid "Video width"
 msgstr "व्हिडिओ रूंदी"
 
@@ -247,7 +245,6 @@ msgid "The width of the video captured from the camera, in pixels"
 msgstr "कॅमेरापासून प्राप्त व्हिडिओची रूंदी, पिक्सेल्स्मध्ये"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:17
-#| msgid "Video mode"
 msgid "Video height"
 msgstr "व्हिडिओ ऊंची"
 
@@ -256,7 +253,6 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "कॅमेरापासून प्राप्त व्हिडिओची ऊंची, पिक्सेल्स्मध्ये"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-#| msgid "Brightness"
 msgid "Picture brightness"
 msgstr "छायाचित्र तेजपणा"
 
@@ -273,7 +269,6 @@ msgid "Adjusts the contrast of the picture coming from the camera"
 msgstr "कॅमेरापासून प्राप्त छायाचित्राचे काँट्रास्ट सुस्थित करतो"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-#| msgid "Saturation"
 msgid "Picture saturation"
 msgstr "छायाचित्र संपृक्तता"
 
@@ -290,7 +285,6 @@ msgid "Adjusts the hue (color tint) of the picture coming from the camera"
 msgstr "कॅमेरापासून प्राप्त छायाचित्राचे ह्यु (रंग टिंट) सुस्थित करतो"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-#| msgid "_Video"
 msgid "Video Path"
 msgstr "व्हिडिओ मार्ग"
 
@@ -300,10 +294,10 @@ msgid ""
 "will be used."
 msgstr ""
 "व्हिडिओज् साठवले जाते ते मार्ग निर्देशीत करतो. रिकामे असल्यास, "
-"\"XDG_VIDEO/Webcam\" वापरले जाईल."
+"\"XDG_VIDEO/Webcam\" "
+"वापरले जाईल."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-#| msgid "_Photo"
 msgid "Photo Path"
 msgstr "छायाचित्र मार्ग"
 
@@ -313,10 +307,10 @@ msgid ""
 "will be used."
 msgstr ""
 "छायाचित्र साठवले जाते ते मार्ग निर्देशीत करतो. रिकामे असल्यास, "
-"\"XDG_PHOTO//Webcam\" वापरले जाईल."
+"\"XDG_PHOTO//Webcam\" "
+"वापरले जाईल."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
-#| msgid "Start in wide mode"
 msgid "Whether to start in wide mode"
 msgstr "वाइड मोडमध्ये सुरू करायचे"
 
@@ -326,10 +320,10 @@ msgid ""
 "placed on the right-hand side. Useful with small screens."
 msgstr ""
 "खरे निश्चित केल्यास, चीज् वाइड मोडमध्ये सुरू होईल, उजव्या बाजूवरील प्रतिमा "
-"स्थित केली जाते. लहान पडद्यांसह उपयोगी ठरते."
+"स्थित केली जाते. "
+"लहान पडद्यांसह उपयोगी ठरते."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
-#| msgid "Start in fullscreen mode"
 msgid "Whether to start in fullscreen"
 msgstr "पडदाभरमध्ये सुरू करायचे"
 
@@ -338,7 +332,6 @@ msgid "If set to true, Cheese will start up in fullscreen mode."
 msgstr "ट्रु असे ठरवल्यास, चीज् पडदाभर मोडमध्ये सुरू होईल."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:35
-#| msgid "Delay between photos (seconds)"
 msgid "Time between photos in burst mode"
 msgstr "बर्स्ट मोडमध्ये छायाचित्र अंतर्गत फोटोज्"
 
@@ -349,12 +342,12 @@ msgid ""
 "duration, the countdown duration will be used instead."
 msgstr ""
 "बर्स्ट मोडमध्ये छायाचित्रांच्या श्रृंखलातील प्रत्येक छायाचित्र अंतर्गत होणारा "
-"विलंब वेळेची लांबी, मिलिसेकेंदात. "
-"बर्स्ट विलंब काउंटडाउन कालावधीपेक्षा कमी असल्यास, काउंटडाउन कालावधीचा "
-"त्याऐवजी वापर केला जाईल."
+"विलंब वेळेची "
+"लांबी, मिलिसेकेंदात. बर्स्ट विलंब काउंटडाउन कालावधीपेक्षा कमी असल्यास, "
+"काउंटडाउन "
+"कालावधीचा त्याऐवजी वापर केला जाईल."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:37
-#| msgid "Number of photos"
 msgid "Number of photos in burst mode"
 msgstr "बर्स्ट मोडमध्ये छायाचित्राची संख्या"
 
@@ -378,28 +371,28 @@ msgstr "छायाचित्र घ्या (_T)"
 msgid "_Discard photo"
 msgstr "छायाचित्र नाकारा (_D)"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "साधन क्षमता समर्थीत नाही"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "क्षमता शोधकरीता साधन %s सुरू करण्यास अपयशी"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "अपरिचीत साधन"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "प्रारंभिक रद्द समर्थीत नाही"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "एक किंवा जास्त आवश्यक GStreamer घटके आढळले नाही: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "साधन आढळले नाही"
@@ -409,13 +402,13 @@ msgstr "साधन आढळले नाही"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "प्रभाव नाही"
 
@@ -460,12 +453,10 @@ msgid "_Burst"
 msgstr "बर्स्ट (_B)"
 
 #: ../src/cheese-main.vala:102
-#| msgid "_Leave Fullscreen"
 msgid "_Fullscreen"
 msgstr "पडदाभर (_F)"
 
 #: ../src/cheese-main.vala:110
-#| msgid "Preferences"
 msgid "P_references"
 msgstr "पसंती (_r)"
 
@@ -481,28 +472,28 @@ msgstr "मदत करा(_H)"
 msgid "_Quit"
 msgstr "बाहेर पडा (_Q)"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- वेबकॅमपासून छायाचित्र व चलचित्र घ्या"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "उपलब्ध आदेश ओळ पर्याय दर्शविण्याकरीता '%s --help' चालवा.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "सध्या चीज् ची अन्य घटना सुरू आहे\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "संदीप शेडमाके <sandeep.shedmake@gmail.com>, 2008; संदीप शेडमाके <"
 "sshedmak@redhat."
 "com>, 2009, 2011."
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "चीज् संकेतस्थळ"
 
@@ -544,16 +535,15 @@ msgid "Stop _Recording"
 msgstr "रेकॉर्डिंग बंद करा (_R)"
 
 #: ../src/cheese-window.vala:919
-#| msgid "Stop _Recording"
 msgid "Stop recording"
 msgstr "रेकॉर्डिंग बंद करा"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#| msgid "_Record a Video"
-msgid "Record a Video"
-msgstr "व्हिडिओ रेकॉर्ड करा"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+#| msgid "Record a Video"
+msgid "_Record a Video"
+msgstr "व्हिडिओ रेकॉर्ड करा (_R)"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1517
 msgid "Record a video"
 msgstr "व्हिडीओ रेकॉर्ड करा"
 
@@ -563,31 +553,28 @@ msgid "Stop _Taking Pictures"
 msgstr "चित्र घेणे बंद करा (_T)"
 
 #: ../src/cheese-window.vala:971
-#| msgid "Stop _Taking Pictures"
 msgid "Stop taking pictures"
 msgstr "छायाचित्र घेणे बंद करा"
 
 #: ../src/cheese-window.vala:994
-#| msgid "Take _Multiple Photos"
 msgid "Take Multiple Photos"
 msgstr "अनेक छायाचित्र घ्या"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1524
 msgid "Take multiple photos"
 msgstr "अनेक छायाचित्र घ्या (_T)"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "प्रभाव आढळले नाही"
 
-#: ../src/cheese-window.vala:1503
-#| msgid "_Take a Photo"
-msgid "Take a Photo"
-msgstr "छायाचित्र घ्या"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "अनेक छायाचित्र घ्या (_M)"
+
+#~| msgid "_Take a Photo"
+#~ msgid "Take a Photo"
+#~ msgstr "छायाचित्र घ्या"
 
 #~ msgid ""
 #~ "This program is free software; you can redistribute it and/or modify it "
