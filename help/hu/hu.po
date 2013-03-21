@@ -2,25 +2,25 @@
 # Copyright (C) 2011, 2012. Free Software Foundation, Inc.
 # This file is distributed under the same license as the cheese package.
 #
-# Gabor Kelemen <kelemeng at gnome dot hu>, 2011, 2012.
+# Gabor Kelemen <kelemeng at gnome dot hu>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"POT-Creation-Date: 2012-07-02 03:21+0000\n"
-"PO-Revision-Date: 2012-09-13 13:23+0200\n"
+"POT-Creation-Date: 2013-03-11 17:06+0000\n"
+"PO-Revision-Date: 2013-03-21 10:54+0100\n"
 "Last-Translator: Gabor Kelemen <kelemeng at gnome dot hu>\n"
-"Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
+"Language-Team: Hungarian <gnome-hu-list at gnome dot org>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.4\n"
-"Language: hu\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Kelemen Gábor <kelemeng at gnome dot hu>, 2011, 2012."
+msgstr "Kelemen Gábor <kelemeng at gnome dot hu>, 2011, 2012, 2013."
 
 #. This is a reference to an external file such as an image or video. When
 #. the file changes, the md5 hash will change to let you know you need to
@@ -76,9 +76,6 @@ msgid "Ekaterina Gerasimova"
 msgstr "Ekaterina Gerasimova"
 
 #: C/index.page:19(info/desc)
-#| msgid ""
-#| "Cheese lets you take pictures and make videos using your webcam. You can "
-#| "even add special effects!"
 msgid ""
 "Cheese lets you take photos and videos using your webcam. You can even add "
 "special effects!"
@@ -87,9 +84,6 @@ msgstr ""
 "speciális effektusokat is alkalmazhat!"
 
 #: C/index.page:24(page/title)
-#| msgid ""
-#| "<media type=\"image\" mime=\"image/png\" src=\"figures/cheese.png\" width="
-#| "\"40\" height=\"40\"> </media> Cheese Webcam Booth"
 msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"figures/cheese.png\" width="
 "\"40\" height=\"40\"> </media> Cheese Webcam Application"
@@ -185,7 +179,6 @@ msgstr ""
 "gui> gombot, és válassza a <gui>Nincsenek effektusok</gui> lehetőséget."
 
 #: C/introduction.page:21(info/desc)
-#| msgid "Introduction to the <app>Cheese Webcam Booth</app>."
 msgid "Introduction to the <app>Cheese</app> webcam application."
 msgstr "A <app>Csííz</app> webkamera-kezelő bemutatása."
 
@@ -194,14 +187,6 @@ msgid "Introduction"
 msgstr "Bevezetés"
 
 #: C/introduction.page:26(page/p)
-#| msgid ""
-#| "<app>Cheese</app> is a fun webcam booth application which lets you take "
-#| "photos and record videos using your webcam. By using <app>Cheese</app>, "
-#| "you can make funny, original photos and videos that you can easily share "
-#| "with others. It can take multiple photos in quick succession (using the "
-#| "<link xref=\"burst-mode\"><gui>Burst mode</gui></link>) and lets you "
-#| "<link xref=\"apply-effects\">apply effects</link> that add a special, "
-#| "fancy or funny touch to your photos and videos."
 msgid ""
 "<app>Cheese</app> is a webcam application that lets you take photos and "
 "record videos using your webcam. You can take multiple photos in quick "
@@ -212,25 +197,18 @@ msgstr ""
 "A <app>Csííz</app> egy webkamera-kezelő alkalmazás, amellyel fényképeket és "
 "videókat készíthet webkamerája használatával. Egymás után több fényképet is "
 "készíthet a <link xref=\"burst-mode\"><gui>sorozat mód</gui></link> "
-"használatával, és <link xref=\"apply-effects\">effektusokat is alkalmazhat<"
-"/link>, amelyekkel fényképeit és videóit személyesebbé teheti."
+"használatával, és <link xref=\"apply-effects\">effektusokat is alkalmazhat</"
+"link>, amelyekkel fényképeit és videóit személyesebbé teheti."
 
 #: C/introduction.page:32(page/p)
-#| msgid ""
-#| "By default, <app>Cheese</app> starts in <gui>Photo mode</gui>, ready to "
-#| "<link xref=\"take-photo\">take a photo</link>. You need to switch to "
-#| "<gui>Video mode</gui> to <link xref=\"record-video\">record a video</"
-#| "link> or switch to <gui>Burst mode</gui> to <link xref=\"burst-mode"
-#| "\">take multiple photos at once</link>."
 msgid ""
 "By default, <app>Cheese</app> starts in <gui>Photo</gui> mode, ready to "
 "<link xref=\"photo-take\">take a photo</link>. You need to switch to "
 "<gui>Video</gui> mode to <link xref=\"video-record\">record a video</link>."
 msgstr ""
-"Alapesetben a <app>Csííz</app> <gui>fénykép módban</gui> indul, <link "
-"xref=\"photo-take\">fényképek készítésére</link> készen. <link "
-"xref=\"video-record\">Videó felvételéhez</link> át kell váltania <gui>videó "
-"módba</gui>."
+"Alapesetben a <app>Csííz</app> <gui>fénykép módban</gui> indul, <link xref="
+"\"photo-take\">fényképek készítésére</link> készen. <link xref=\"video-record"
+"\">Videó felvételéhez</link> át kell váltania <gui>videó módba</gui>."
 
 #: C/introduction.page:36(page/p)
 msgid ""
@@ -406,59 +384,63 @@ msgid "Use your webcam to take photos instead of videos."
 msgstr "Webkamera használata videók helyett fényképek készítésére."
 
 #: C/photo-take.page:27(page/title)
-msgid "Take photos with the webcam"
+#| msgid "Take photos with the webcam"
+msgid "Take photos using a webcam"
 msgstr "Fényképek készítése a webkamerával"
 
 #: C/photo-take.page:29(page/p)
+#| msgid ""
+#| "Webcams can be used to take still photos, as well as videos. To take a "
+#| "photo:"
 msgid ""
-"Webcams can be used to take still photos, as well as videos. To take a photo:"
+"Webcams can be used to take still photos as well as videos. To take a photo:"
 msgstr ""
 "A webkamerák használhatók a videók mellett állóképek készítésére is. Fénykép "
 "készítéséhez:"
 
 #: C/photo-take.page:34(item/p)
 msgid ""
-"Make sure that you're in <gui>Photo mode</gui>. If you are, the button in "
-"the main window will say <gui>Take a Photo</gui>."
+"Make sure that the mode <gui style=\"menuitem\">Photo</gui> is selected in "
+"the <gui style=\"menu\">Cheese</gui> menu."
 msgstr ""
-"Győződjön meg róla, hogy <gui>Fénykép módban</gui> van. Ebben az esetben a "
-"főablakban lévő gomb felirata <gui>Fényképezés</gui> lesz."
+"Győződjön meg róla, hogy a <gui style=\"menuitem\">Fénykép</gui> pont van "
+"kiválasztva a <gui style=\"menu\">Csííz</gui> menüben."
 
-#: C/photo-take.page:36(item/p)
+#: C/photo-take.page:38(item/p)
+#| msgid "Click <gui>Take a Photo</gui> or press the <key>spacebar</key>."
 msgid ""
-"To switch to <gui>Photo mode</gui>, click the small photo button in the "
-"bottom left of the window or click <guiseq><gui>Cheese</gui> <gui>Photo</"
-"gui></guiseq>."
-msgstr ""
-"A <gui>Fénykép módba</gui> váltáshoz kattintson a kis fénykép gombra az "
-"ablak bal alsó sarkában, vagy válassza a <guiseq><gui>Csííz</"
-"gui><gui>Fénykép</gui></guiseq> menüpontot."
-
-#: C/photo-take.page:41(item/p)
-msgid "Click <gui>Take a Photo</gui> or press the <key>spacebar</key>."
+"Click <gui>Take a Photo</gui>. Alternatively, you can press the capture "
+"button on the webcam or the <key>spacebar</key>."
 msgstr ""
 "Nyomja meg a <gui>Fényképezés</gui> gombot, vagy a <key>szóköz</key> "
-"billentyűt."
+"billentyűt, vagy a webkamera felvétel gombját."
 
-#: C/photo-take.page:44(item/p)
+#: C/photo-take.page:42(item/p)
+#| msgid ""
+#| "There will be a short countdown, followed by a flash, and then the photo "
+#| "will appear in the photo stream at the bottom of the window."
 msgid ""
-"There will be a short countdown, followed by a flash, and then the photo "
-"will appear in the photo stream at the bottom of the window."
+"There will be a short countdown, followed by a flash, and the photo will "
+"appear in the photo stream."
 msgstr ""
 "Egy rövid visszaszámlálás után felvillan az ablak, és a fénykép megjelenik "
-"az ablak alján lévő fényképsávban."
+"a fényképsávban."
 
-#: C/photo-take.page:49(page/p)
+#: C/photo-take.page:47(page/p)
+#| msgid ""
+#| "The photos in the photo stream are automatically saved in the "
+#| "<guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> folder in your user "
+#| "folder. They are saved in the JPEG (<file>.jpg</file>) format."
 msgid ""
-"The photos in the photo stream are automatically saved in the "
-"<guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> folder in your user "
-"folder. They are saved in the JPEG (<file>.jpg</file>) format."
+"The photos in the photo stream are automatically saved in the <file>/"
+"Pictures/Webcam</file> folder in your home folder. They are saved using the "
+"JPEG (<file>.jpg</file>) format."
 msgstr ""
-"A fényképsáv fényképei a saját mappájában lévő <guiseq><gui>Képek</"
-"gui><gui>Webcam</gui></guiseq> mappába kerülnek mentésre, JPEG (<file>.jpg</"
+"A fényképsáv fényképei a saját mappájában lévő <file>Képek/Webcam</file> "
+"mappába kerülnek mentésre, JPEG (<file>.jpg</"
 "file>) formátumban."
 
-#: C/photo-take.page:53(page/p)
+#: C/photo-take.page:51(page/p)
 msgid ""
 "To cancel taking a photo after you have clicked <gui>Take a Photo</gui>, "
 "press <key>Esc</key> before the countdown finishes."
@@ -467,16 +449,16 @@ msgstr ""
 "megszakításához nyomja meg az <key>Esc</key> billentyűt a visszaszámlálás "
 "alatt."
 
-#: C/photo-take.page:57(note/p)
+#: C/photo-take.page:55(note/p)
 #| msgid ""
-#| "To take multiple photos in rapid succession, use <link xref=\"burst-mode"
-#| "\">Burst mode</link>."
+#| "To take multiple photos in rapid succession, use <link xref=\"pref-burst-"
+#| "mode\">Burst mode</link>."
 msgid ""
 "To take multiple photos in rapid succession, use <link xref=\"pref-burst-mode"
-"\">Burst mode</link>."
+"\">burst mode</link>."
 msgstr ""
 "Több kép gyors egymásutánban történő készítéséhez használja a <link "
-"xref=\"pref-burst-mode\">Sorozat módot</link>."
+"xref=\"pref-burst-mode\">sorozat módot</link>."
 
 #: C/photo-view.page:19(info/desc)
 msgid "Photos and videos will automatically appear in the photo stream."
@@ -664,8 +646,6 @@ msgid "To enable the fullscreen mode:"
 msgstr "Teljes képernyős mód bekapcsolása:"
 
 #: C/pref-fullscreen.page:21(item/p)
-#| msgid ""
-#| "Alternatively, click <guiseq><gui>Cheese</gui><gui>Burst</gui></guiseq>."
 msgid "Select <guiseq><gui>Cheese</gui><gui>Fullscreen</gui></guiseq>"
 msgstr ""
 "Válassza a <guiseq><gui>Csííz</gui><gui>Teljes képernyő</gui></guiseq> "
@@ -889,13 +869,6 @@ msgid "Videos are saved in the Ogg Theora (<file>.ogv</file>) format."
 msgstr "A videók Ogg Theora (<file>.ogv</file>) formátumban kerülnek mentésre."
 
 #: C/video-record.page:45(page/p)
-#| msgid ""
-#| "After you have stopped recording, the video will automatically appear in "
-#| "the photo stream at the bottom of the <app>Cheese</app> window. From "
-#| "there, you can <link xref=\"view-photo\">play back the video</link>, "
-#| "upload it to a social network, post it on your blog or YouTube channel, "
-#| "or share it with friends by <link href=\"help:gnome-help/net-default-email"
-#| "\">email</link>."
 msgid ""
 "After you have stopped recording, the video will automatically appear in the "
 "photo stream at the bottom of the <app>Cheese</app> window. From there, you "
@@ -904,8 +877,8 @@ msgid ""
 "friends by <link href=\"help:gnome-help/net-default-email\">email</link>."
 msgstr ""
 "A felvétel leállítása után a videó automatikusan megjelenik a <app>Csííz</"
-"app> ablak alján lévő fényképsávban. Innen <link xref=\"photo-view\">"
-"lejátszhatja a videót</link>, feltöltheti egy közösségi hálózatra, "
+"app> ablak alján lévő fényképsávban. Innen <link xref=\"photo-view"
+"\">lejátszhatja a videót</link>, feltöltheti egy közösségi hálózatra, "
 "beküldheti blogjára vagy YouTube csatornájára, vagy megoszthatja barátaival "
 "<link href=\"help:gnome-help/net-default-email\">e-mailban</link>."
 
@@ -918,6 +891,22 @@ msgstr ""
 "Ha a videó más operációs rendszerek (Windows, Mac OS) felhasználóival való "
 "megosztása problémákat okoz, akkor <link href=\"help:gnome-help/video-sending"
 "\">konvertálja másik formátumba</link> a videót."
+
+#~ msgid ""
+#~ "Make sure that you're in <gui>Photo mode</gui>. If you are, the button in "
+#~ "the main window will say <gui>Take a Photo</gui>."
+#~ msgstr ""
+#~ "Győződjön meg róla, hogy <gui>Fénykép módban</gui> van. Ebben az esetben "
+#~ "a főablakban lévő gomb felirata <gui>Fényképezés</gui> lesz."
+
+#~ msgid ""
+#~ "To switch to <gui>Photo mode</gui>, click the small photo button in the "
+#~ "bottom left of the window or click <guiseq><gui>Cheese</gui> <gui>Photo</"
+#~ "gui></guiseq>."
+#~ msgstr ""
+#~ "A <gui>Fénykép módba</gui> váltáshoz kattintson a kis fénykép gombra az "
+#~ "ablak bal alsó sarkában, vagy válassza a <guiseq><gui>Csííz</"
+#~ "gui><gui>Fénykép</gui></guiseq> menüpontot."
 
 #~| msgid "Cheese Webcam Booth"
 #~ msgctxt "link"
