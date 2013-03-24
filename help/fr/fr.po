@@ -14,13 +14,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese doc fr\n"
-"POT-Creation-Date: 2012-07-02 03:21+0000\n"
-"PO-Revision-Date: 2012-09-24 10:35+0200\n"
-"Last-Translator: Bruno Brouard <annoa.b@gmail.com>\n"
+"POT-Creation-Date: 2013-03-23 23:19+0000\n"
+"PO-Revision-Date: 2013-03-23 23:24+0100\n"
+"Last-Translator: Mickael Albertus <mickael.albertus@gmail.com>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -31,7 +33,8 @@ msgstr ""
 "Yannick Tailliez <ytdispatch-libre@yahoo.com>, 2008\n"
 "Laurent Coudeur <laurentc@iol.ie>, 2009\n"
 "Luc Pionchon <pionchon.luc@gmail.com>, 2011\n"
-"Luc Guillemin <luc.guillemin@gmail.com>, 2011"
+"Luc Guillemin <luc.guillemin@gmail.com>, 2011\n"
+"Mickael Albertus <mickael.albertus@gmail.com>, 2013"
 
 #. This is a reference to an external file such as an image or video. When
 #. the file changes, the md5 hash will change to let you know you need to
@@ -399,59 +402,51 @@ msgid "Use your webcam to take photos instead of videos."
 msgstr "Utiliser sa webcam pour faire des photos plutôt que des vidéos."
 
 #: C/photo-take.page:27(page/title)
-msgid "Take photos with the webcam"
+msgid "Take photos using a webcam"
 msgstr "Prise de photos avec la webcam"
 
 #: C/photo-take.page:29(page/p)
 msgid ""
-"Webcams can be used to take still photos, as well as videos. To take a photo:"
+"Webcams can be used to take still photos as well as videos. To take a photo:"
 msgstr ""
 "Les webcams permettent de prendre aussi bien des photos que des vidéos. Pour "
 "prendre une photo :"
 
 #: C/photo-take.page:34(item/p)
 msgid ""
-"Make sure that you're in <gui>Photo mode</gui>. If you are, the button in "
-"the main window will say <gui>Take a Photo</gui>."
+"Make sure that the mode <gui style=\"menuitem\">Photo</gui> is selected in "
+"the <gui style=\"menu\">Cheese</gui> menu."
 msgstr ""
-"Vérifiez que vous êtes dans le <gui>Mode photo</gui>. Si c'est le cas, le "
-"bouton de la fenêtre principale affiche <gui>Prendre une photo</gui>."
+"Assurez-vous que le mode <gui style=\"menuitem\">Photo</gui> soit "
+"sélectionné dans le menu de <gui style=\"menu\">Cheese</gui>."
 
-#: C/photo-take.page:36(item/p)
+#: C/photo-take.page:38(item/p)
 msgid ""
-"To switch to <gui>Photo mode</gui>, click the small photo button in the "
-"bottom left of the window or click <guiseq><gui>Cheese</gui> <gui>Photo</"
-"gui></guiseq>."
+"Click <gui>Take a Photo</gui>. Alternatively, you can press the capture "
+"button on the webcam or the <key>spacebar</key>."
 msgstr ""
-"Pour passer au <gui>mode photo</gui>, cliquez sur le bouton contenant une "
-"petite photo en bas à gauche de la fenêtre ou cliquez sur "
-"<guiseq><gui>Cheese</gui> <gui>Photo</gui></guiseq>."
+"Cliquez sur <gui>Prendre une photo</gui>. Vous pouvez aussi actionner le "
+"bouton de la caméra ou appuyer sur la <key>barre d'espace</key>."
 
-#: C/photo-take.page:41(item/p)
-msgid "Click <gui>Take a Photo</gui> or press the <key>spacebar</key>."
-msgstr ""
-"Cliquez sur <gui>Prendre une photo</gui> ou appuyez sur la <key>barre "
-"d'espace</key>."
-
-#: C/photo-take.page:44(item/p)
+#: C/photo-take.page:42(item/p)
 msgid ""
-"There will be a short countdown, followed by a flash, and then the photo "
-"will appear in the photo stream at the bottom of the window."
+"There will be a short countdown, followed by a flash, and the photo will "
+"appear in the photo stream."
 msgstr ""
 "Un court retardateur est affiché, suivi d'un flash, puis la photo apparaît "
-"dans le flux d'images en bas de la fenêtre."
+"dans le flux d'images."
 
-#: C/photo-take.page:49(page/p)
+#: C/photo-take.page:47(page/p)
 msgid ""
-"The photos in the photo stream are automatically saved in the "
-"<guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> folder in your user "
-"folder. They are saved in the JPEG (<file>.jpg</file>) format."
+"The photos in the photo stream are automatically saved in the <file>/"
+"Pictures/Webcam</file> folder in your home folder. They are saved using the "
+"JPEG (<file>.jpg</file>) format."
 msgstr ""
 "Les photos du flux d'images sont automatiquement enregistrées dans le "
-"dossier <guiseq><gui>Images</gui><gui>Webcam</gui></guiseq> de votre dossier "
-"personnel. Elles sont enregistrées dans le format JPEG (<file>.jpg</file>)."
+"dossier <file>/Images/Webcam</file> de votre dossier personnel. Elles sont "
+"enregistrées au format JPEG (<file>.jpg</file>)."
 
-#: C/photo-take.page:53(page/p)
+#: C/photo-take.page:51(page/p)
 msgid ""
 "To cancel taking a photo after you have clicked <gui>Take a Photo</gui>, "
 "press <key>Esc</key> before the countdown finishes."
@@ -460,10 +455,10 @@ msgstr ""
 "photo</gui>, appuyez sur la touche <key>Échap</key> avant la fin du "
 "retardateur."
 
-#: C/photo-take.page:57(note/p)
+#: C/photo-take.page:55(note/p)
 msgid ""
 "To take multiple photos in rapid succession, use <link xref=\"pref-burst-mode"
-"\">Burst mode</link>."
+"\">burst mode</link>."
 msgstr ""
 "Pour prendre plusieurs photos les unes à la suite des autres, utilisez le "
 "<link xref=\"pref-burst-mode\">mode rafale</link>."
@@ -905,6 +900,22 @@ msgstr ""
 "d'autres systèmes d'exploitation (comme Windows ou Mac OS), vous pouvez "
 "avoir besoin de <link href=\"help:gnome-help/video-sending\">les convertir "
 "dans un autre format</link>."
+
+#~ msgid ""
+#~ "Make sure that you're in <gui>Photo mode</gui>. If you are, the button in "
+#~ "the main window will say <gui>Take a Photo</gui>."
+#~ msgstr ""
+#~ "Vérifiez que vous êtes dans le <gui>Mode photo</gui>. Si c'est le cas, le "
+#~ "bouton de la fenêtre principale affiche <gui>Prendre une photo</gui>."
+
+#~ msgid ""
+#~ "To switch to <gui>Photo mode</gui>, click the small photo button in the "
+#~ "bottom left of the window or click <guiseq><gui>Cheese</gui> <gui>Photo</"
+#~ "gui></guiseq>."
+#~ msgstr ""
+#~ "Pour passer au <gui>mode photo</gui>, cliquez sur le bouton contenant une "
+#~ "petite photo en bas à gauche de la fenêtre ou cliquez sur "
+#~ "<guiseq><gui>Cheese</gui> <gui>Photo</gui></guiseq>."
 
 #~ msgctxt "link"
 #~ msgid "Cheese Webcam Booth"
