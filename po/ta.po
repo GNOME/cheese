@@ -11,14 +11,14 @@
 # I. Felix <ifelix@redhat.com>, 2008, 2009.
 # Dr.T.vasudevan <agnihot3@gmail.com>, 2009.
 # Dr.T.Vasudevan <agnihot3@gmail.com>, 2009, 2010, 2012.
-# Shantha kumar <shkumar@redhat.com>, 2012.
+# Shantha kumar <shkumar@redhat.com>, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master.ta\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug."
 "cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-29 16:16+0000\n"
-"PO-Revision-Date: 2012-12-17 18:04+0530\n"
+"POT-Creation-Date: 2013-03-23 23:20+0000\n"
+"PO-Revision-Date: 2013-03-25 14:02+0530\n"
 "Last-Translator: Shantha kumar <shkumar@redhat.com>\n"
 "Language-Team: American English <>\n"
 "Language: \n"
@@ -70,18 +70,19 @@ msgstr "வீடியோ முறைமை"
 msgid "Photo burst mode"
 msgstr "புகைப்பட வெடிப்பு முறைமை"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "ஒரு போட்டோ எடுக்கவும் "
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
+#| msgid "Take a photo"
+msgid "Take a photo using a webcam"
+msgstr "வெப்கேமைப் பயன்படுத்தி ஒரு புகைப்படம் எடுக்கவும்"
 
-#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "முந்தைய"
+msgid "Navigate to the previous page of effects"
+msgstr "விளைவுகளின் முந்தைய பக்கத்திற்குச் செல்லவும்"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -92,12 +93,12 @@ msgid "_Effects"
 msgstr "விளைவுகள் (_E)"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "அடுத்து"
+msgid "Navigate to the next page of effects"
+msgstr "விளைவுகளின் அடுத்த பக்கத்திற்குச் செல்லவும்"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "முழுத்திரையை விட்டு விலகவும்"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "முழுத் திரைப் பயன்முறையிலிருந்து வெளியேறி சாளர பயன்முறைக்குத் திரும்பவும்"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -172,7 +173,7 @@ msgid "Capture"
 msgstr "பிடிப்பு"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "சீஸ்"
 
@@ -180,7 +181,7 @@ msgstr "சீஸ்"
 msgid "Cheese Webcam Booth"
 msgstr "சீஸ் வெப்கேம் பூத்"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "வெப்கேம் மூலம் வேடிக்கையான பட அமைப்பு விளைவுகளுடன் போட்டோ மற்றும் வீடீயோ எடுங்கள்"
 
@@ -368,9 +369,9 @@ msgstr "ஷட்டர் ஒலி"
 msgid "Select"
 msgstr "தேர்ந்தெடு"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "ஒரு போட்டோ எடுக்கவும் "
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -413,7 +414,9 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "விளைவு ஏதுமில்லை"
 
@@ -477,26 +480,26 @@ msgstr "உதவி (_H)"
 msgid "_Quit"
 msgstr "வெளியேறு (_Q)"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- வெப்கேம் மூலம் போட்டோ மற்றும் வீடியோ எடுங்கள்"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "'%s --help' ஐ இயக்கி இருக்கும் கட்டளை வடி விருப்பங்களின் முழுப்பட்டியலையும் காட்டு.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "சீஸ் நிரலின் ஒரு பதிவு ஏற்கெனெவே இயங்கிக்கொண்டு இருக்கிறது\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr "I. Felix <ifelix@redhat.com>, Dr. T. Vasudevan <agnihot3@gmail.com>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "சீஸ் இணைய தளம்"
 
@@ -541,12 +544,11 @@ msgstr "பதிவை நிறுத்தவும் (_R)"
 msgid "Stop recording"
 msgstr "பதிவை நிறுத்தவும்"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#| msgid "Record a Video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
 msgid "_Record a Video"
 msgstr "வீடியோ ஒன்றை பதிவு செய்க  (_R)"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935
 msgid "Record a video"
 msgstr "வீடியோ ஒன்றை பதிவு செய்க"
 
@@ -563,20 +565,39 @@ msgstr "படங்கள் எடுப்பதை நிறுத்து�
 msgid "Take Multiple Photos"
 msgstr "பல படங்கள் எடுக்கவும்"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995
 msgid "Take multiple photos"
 msgstr "பல படங்கள் எடுக்கவும்"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "விளைவுகள் எதுவும் கிடைக்கவில்லை"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1517
+#| msgid "Record a video"
+msgid "Record a video using a webcam"
+msgstr "வெப்கேமைப் பயன்படுத்தி வீடியோ ஒன்றை பதிவு செய்யவும்"
+
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "பல படங்கள் எடுக்கவும் (_M)"
 
-#~ msgid "Take a Photo"
-#~ msgstr "ஒரு போட்டோ எடுக்கவும் "
+#: ../src/cheese-window.vala:1524
+#| msgid "Take multiple photos"
+msgid "Take multiple photos using a webcam"
+msgstr "வெப்கேமைப் பயன்படுத்தி பல புகைப்படங்களை எடுக்கவும்"
+
+#~ msgid "Previous"
+#~ msgstr "முந்தைய"
+
+#~ msgid "Next"
+#~ msgstr "அடுத்து"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "முழுத்திரையை விட்டு விலகவும்"
+
+#~ msgid "_Take a photo"
+#~ msgstr "ஒரு போட்டோ எடுக்கவும் (_T)"
 
 #~ msgid "_Cheese"
 #~ msgstr "சீஸ் (_C)"
