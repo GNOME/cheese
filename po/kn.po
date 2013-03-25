@@ -2,21 +2,21 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Shankar Prasad <svenkate@redhat.com>, 2008, 2009, 2010, 2011, 2012.
+# Shankar Prasad <svenkate@redhat.com>, 2008, 2009, 2010, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master.kn\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-08-10 16:30+0530\n"
+"POT-Creation-Date: 2013-03-11 17:05+0000\n"
+"PO-Revision-Date: 2013-03-25 23:25+0530\n"
 "Last-Translator: Shankar Prasad <svenkate@redhat.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms:  nplurals=2; plural=(n != 1);\n"
 
 #: ../data/cheese-actions.ui.h:1
@@ -60,11 +60,11 @@ msgid "Photo burst mode"
 msgstr "ಚಿತ್ರ ಸ್ಫೋಟ ಕ್ರಮ"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1512
 msgid "Take a photo"
 msgstr "ಒಂದು ಚಿತ್ರವನ್ನು ತೆಗೆದುಕೊಳ್ಳಿ"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "ಒಂದು ಚಿತ್ರವನ್ನು ತೆಗೆದುಕೋ(_T)"
 
@@ -133,7 +133,6 @@ msgid "Image"
 msgstr "ಚಿತ್ರ"
 
 #: ../data/cheese-prefs.ui.h:11
-#| msgid "Shutter sound"
 msgid "Shutter"
 msgstr "ಶಟರ್"
 
@@ -162,7 +161,7 @@ msgid "Capture"
 msgstr "ಸೆರೆಹಿಡಿ"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "ಚೀಸ್"
 
@@ -170,12 +169,16 @@ msgstr "ಚೀಸ್"
 msgid "Cheese Webcam Booth"
 msgstr "ಚೀಸ್ ವೆಬ್‌ಕ್ಯಾಮ್ ಬೂತ್"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "ನಿಮ್ಮ ವೆಬ್‌ಕ್ಯಾಮ್‌ ಅನ್ನು ಬಳಸಿಕೊಂಡು ತಮಾಷೆಯ ಗ್ರಾಫಿಕಲ್ ಪರಿಣಾಮಗಳೊಂದಿಗೆ "
 "ಚಿತ್ರಗಳನ್ನು ಹಾಗು "
 "ವಿಡಿಯೋಗಳನ್ನು ತೆಗೆಯಿರಿ"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "ಫೋಟೊ;ವೀಡಿಯೊ;ವೆಬ್‌ಕ್ಯಾಮ್"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -374,28 +377,28 @@ msgstr "ಒಂದು ಚಿತ್ರವನ್ನು ತೆಗೆ(_T)"
 msgid "_Discard photo"
 msgstr "ಚಿತ್ರವನ್ನು ತಿರಸ್ಕರಿಸು(_D)"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "ಸಾಧನ ಸಾಮರ್ಥ್ಯಗಳಿಗೆ ಬೆಂಬಲವಿಲ್ಲ"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "ತನಿಖೆಯ ಸಲುವಾಗಿ %s ಎಂಬ ಸಾಧನವನ್ನು ಆರಂಭಿಸುವಲ್ಲಿ ವಿಫಲಗೊಂಡಿದೆ"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "ಗೊತ್ತಿರದ ಸಾಧನ"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "ರದ್ದುಗೊಳಿಸಬಹುದಾದ ಆರಂಭಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "ಅಗತ್ಯವಿರುವ ಒಂದು ಅಥವ ಹೆಚ್ಚಿನ Gstreamer ಘಟಕಗಳು ಕಾಣೆಯಾಗಿವೆ: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "ಯಾವುದೆ ಸಾಧನವು ಕಂಡು ಬಂದಿಲ್ಲ"
@@ -405,13 +408,13 @@ msgstr "ಯಾವುದೆ ಸಾಧನವು ಕಂಡು ಬಂದಿಲ್ಲ
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1802
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "ಯಾವುದೆ ಪರಿಣಾಮ ಇಲ್ಲ"
 
@@ -456,12 +459,10 @@ msgid "_Burst"
 msgstr "ಸ್ಫೋಟ (_B)"
 
 #: ../src/cheese-main.vala:102
-#| msgid "Fullscreen"
 msgid "_Fullscreen"
 msgstr "ಪೂರ್ಣತೆರೆ (_F)"
 
 #: ../src/cheese-main.vala:110
-#| msgid "Preferences"
 msgid "P_references"
 msgstr "ಆದ್ಯತೆಗಳು (_r)"
 
@@ -477,28 +478,28 @@ msgstr "ನೆರವು(_H)"
 msgid "_Quit"
 msgstr "ನಿರ್ಗಮಿಸು (_Q)"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr ""
 "- ನಿಮ್ಮ ವೆಬ್‌ಕ್ಯಾಮ್‌ ಅನ್ನು ಬಳಸಿಕೊಂಡು ಚಿತ್ರಗಳನ್ನು ಹಾಗು ವಿಡಿಯೋಗಳನ್ನು ಸೆರೆ "
 "ಹಿಡಿಯಿರಿ"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "ಲಭ್ಯವಿರುವ ಎಲ್ಲಾ ಆಜ್ಞಾ ಸಾಲಿನ ಆಯ್ಕೆಗಳನ್ನು ನೋಡಲು '%s --help' ಅನ್ನು ಚಲಾಯಿಸಿ.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "ಚೀಸ್‌ ಪ್ರಸಕ್ತ ಇನ್ನೊಂದು ಕಡೆಯಲ್ಲಿ ಚಾಲನೆಯಲ್ಲಿದೆ\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr "ಶಂಕರ್ ಪ್ರಸಾದ್ ಎಂ. ವಿ. <svenkate@redhat.com>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "ಚೀಸ್ ಜಾಲತಾಣ"
 
@@ -543,12 +544,12 @@ msgstr "ರೆಕಾರ್ಡು ಮಾಡುವುದನ್ನು ನಿಲ್�
 msgid "Stop recording"
 msgstr "ರೆಕಾರ್ಡು ಮಾಡುವುದನ್ನು ನಿಲ್ಲಿಸು"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#| msgid "_Record a Video"
-msgid "Record a Video"
-msgstr "ಒಂದು ವೀಡಿಯೊವನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡು"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+#| msgid "Record a Video"
+msgid "_Record a Video"
+msgstr "ಒಂದು ವೀಡಿಯೊವನ್ನು ರೆಕಾರ್ಡ್ ಮಾಡು (_R)"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1517
 msgid "Record a video"
 msgstr "ಒಂದು ವೀಡಿಯೊವನ್ನು ರೆಕಾರ್ಡು ಮಾಡಿ"
 
@@ -562,26 +563,24 @@ msgid "Stop taking pictures"
 msgstr "ಚಿತ್ರಗಳನ್ನು ತೆಗೆಯುವುದನ್ನು ನಿಲ್ಲಿಸು"
 
 #: ../src/cheese-window.vala:994
-#| msgid "Take _Multiple Photos"
 msgid "Take Multiple Photos"
 msgstr "ಅನೇಕ ಚಿತ್ರಗಳನ್ನು ತೆಗೆದುಕೊ"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1524
 msgid "Take multiple photos"
 msgstr "ಅನೇಕ ಚಿತ್ರವನ್ನು ತೆಗೆದುಕೊಳ್ಳಿ"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "ಯಾವುದೆ ಪರಿಣಾಮಗಳು ಕಂಡು ಬಂದಿಲ್ಲ"
 
-#: ../src/cheese-window.vala:1503
-#| msgid "_Take a Photo"
-msgid "Take a Photo"
-msgstr "ಒಂದು ಚಿತ್ರವನ್ನು ತೆಗೆದುಕೋ"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "ಅನೇಕ ಚಿತ್ರವನ್ನು ತೆಗೆದುಕೊ (_M)"
+
+#~| msgid "_Take a Photo"
+#~ msgid "Take a Photo"
+#~ msgstr "ಒಂದು ಚಿತ್ರವನ್ನು ತೆಗೆದುಕೋ"
 
 #~ msgid "_Cheese"
 #~ msgstr "ಚೀಸ್(_C)"
