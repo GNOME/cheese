@@ -974,8 +974,8 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 
   effect_filter = cheese_camera_element_from_effect (camera, effect);
 
-  display_element = clutter_gst_video_sink_new (texture);
-  g_object_set (G_OBJECT (display_element), "async", FALSE, NULL);
+  display_element = gst_element_factory_make ("cluttersink", "cluttersink");
+  g_object_set (G_OBJECT (display_element), "async", FALSE, "texture", texture, NULL);
 
   gst_bin_add_many (GST_BIN (priv->video_filter_bin), control_valve, effect_filter, display_queue, display_element, NULL);
 
@@ -1546,11 +1546,12 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
 
   /* Create a clutter-gst sink and set it as camerabin sink*/
 
-  if ((video_sink = clutter_gst_video_sink_new (priv->video_texture)) == NULL)
+  if ((video_sink = gst_element_factory_make ("cluttersink", "cluttersink")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "cluttervideosink");
     return;
   }
+  g_object_set (G_OBJECT (video_sink), "texture", priv->video_texture, NULL);
   g_object_set (G_OBJECT (video_sink), "async", FALSE, NULL);
   g_object_set (G_OBJECT (video_sink), "sync", FALSE, NULL);
   g_object_set (G_OBJECT (priv->camerabin), "viewfinder-sink", video_sink, NULL);
