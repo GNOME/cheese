@@ -974,7 +974,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 
   effect_filter = cheese_camera_element_from_effect (camera, effect);
 
-  display_element = gst_element_factory_make ("cluttersink", "cluttersink");
+  display_element = gst_element_factory_make ("cluttersink", NULL);
   g_object_set (G_OBJECT (display_element), "async", FALSE, "texture", texture, NULL);
 
   gst_bin_add_many (GST_BIN (priv->video_filter_bin), control_valve, effect_filter, display_queue, display_element, NULL);
