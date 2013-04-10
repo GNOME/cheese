@@ -3,23 +3,23 @@
 # This file is distributed under the same license as the cheese package.
 #
 # Baris Cicek <baris@teamforce.name.tr>, 2008, 2009, 2011.
-# Muhammet Kara <muhammetk@acikkaynak.name.tr>, 2011, 2012.
+# Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-09-03 19:57+0000\n"
-"PO-Revision-Date: 2012-08-13 05:25+0300\n"
-"Last-Translator: Muhammet Kara <muhammetk@acikkaynak.name.tr>\n"
-"Language-Team: Türkçe <gnome-turk@gnome.org>\n"
+"POT-Creation-Date: 2013-03-11 17:13+0000\n"
+"PO-Revision-Date: 2013-04-11 00:50+0300\n"
+"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
+"Language-Team: Turkish <gnome-turk@gnome.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 1.2\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
@@ -61,18 +61,19 @@ msgstr "Video kipi"
 msgid "Photo burst mode"
 msgstr "Şipşak kipi"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "Fotoğraf çek"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
+#| msgid "Take a photo"
+msgid "Take a photo using a webcam"
+msgstr "Web kamerası kullanarak fotoğraf çek"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "_Fotoğraf Çek"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "Geri"
+msgid "Navigate to the previous page of effects"
+msgstr "Önceki efekt sayfasına git"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -83,12 +84,12 @@ msgid "_Effects"
 msgstr "_Etkiler"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "İleri"
+msgid "Navigate to the next page of effects"
+msgstr "Sonraki efekt sayfasına git"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "Tam ekrandan çık"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "Tam ekran kipinden çık ve pencereli kipe geri dön"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -163,7 +164,7 @@ msgid "Capture"
 msgstr "Yakala"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Peynir"
 
@@ -171,11 +172,15 @@ msgstr "Peynir"
 msgid "Cheese Webcam Booth"
 msgstr "Peynir Web Kamerası Standı"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Web kameranızdan fotoğraflar ve videolar çekip bunlara grafiksel etkiler "
 "ekler."
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "fotoğraf;video;görüntü;web kamerası;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -360,9 +365,9 @@ msgstr "Deklanşör sesi"
 msgid "Select"
 msgstr "Seç"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "_Fotoğraf çek"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "Fotoğraf Çek"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -405,7 +410,9 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "Etki Yok"
 
@@ -469,27 +476,27 @@ msgstr "_Yardım"
 msgid "_Quit"
 msgstr "_Çık"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- Web kameranızdan fotoğraf ve video çekin"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Bütün  yardım fonksiyonları listesi için '%s --help' komutunu girin.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Cheese'in başka bir kopyası çalışıyor.\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "Barış Çiçek <baris@teamforce.name.tr>\n"
 "Muhammet Kara <muhammet.k@gmail.com>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Peynir Web Sitesi"
 
@@ -532,11 +539,12 @@ msgstr "_Kaydı Durdur"
 msgid "Stop recording"
 msgstr "Kaydı durdur"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "Video Kaydet"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+#| msgid "Record a Video"
+msgid "_Record a Video"
+msgstr "Video _Kaydet"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935
 msgid "Record a video"
 msgstr "Video Kaydet"
 
@@ -553,21 +561,39 @@ msgstr "Resim çekmeyi durdur"
 msgid "Take Multiple Photos"
 msgstr "Çoklu Fotoğraf Çek"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995
 msgid "Take multiple photos"
 msgstr "Çoklu fotoğraf çek"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "Etki yok"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "Fotoğraf Çek"
+#: ../src/cheese-window.vala:1517
+#| msgid "Record a video"
+msgid "Record a video using a webcam"
+msgstr "Web kamerası kullanarak video kaydet"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "_Çoklu Fotoğraf Çek"
+
+#: ../src/cheese-window.vala:1524
+#| msgid "Take multiple photos"
+msgid "Take multiple photos using a webcam"
+msgstr "Web kamerası kullanarak çoklu fotoğraf çek"
+
+#~ msgid "Previous"
+#~ msgstr "Geri"
+
+#~ msgid "Next"
+#~ msgstr "İleri"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "Tam ekrandan çık"
+
+#~ msgid "_Take a photo"
+#~ msgstr "_Fotoğraf çek"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Peynir"
