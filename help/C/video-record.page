@@ -1,19 +1,22 @@
 <page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
       type="topic" style="task"
       id="video-record">
+
   <info>
-    <link type="guide" xref="index#main"/>
-    <revision version="3.0" date="2011-08-25" status="candidate"/>
-    <revision version="3.1" date="2011-09-05" status="review"/>
+    <link type="guide" xref="index#main" group="#first"/>
+    <revision pkgversion="3.0" date="2011-08-25" status="candidate"/>
+    <revision pkgversion="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.8" date="2013-04-15" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
-      <email>yrazes@gmail.com</email>
+      <email its:translate="no">yrazes@gmail.com</email>
       <years>2011</years>
     </credit>
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
-      <email>kittykat3756@gmail.com</email>
+      <email its:translate="no">kittykat3756@gmail.com</email>
     </credit>
 
     <desc>Use your webcam to record short movies for sharing with friends.</desc>
@@ -26,13 +29,16 @@
   <steps>
     <item>
       <p>Make sure that you are in <gui>Video mode</gui>. If you are, the button
-      in the middle of the window will say <gui>Start Recording</gui>.</p>
+      in the middle of the window will say <gui style="button">Record a
+      Video</gui>.</p>
       <p>You can switch to <gui>Video mode</gui> by clicking the button in the
-      main window or by clicking <guiseq><gui>Cheese</gui><gui>Video</gui></guiseq>.</p>
+      main window or by selecting
+      <guiseq><gui>Cheese</gui><gui>Video</gui></guiseq>.</p>
     </item>
     <item>
-      <p>Click <gui>Start Recording</gui>, or press the <key>spacebar</key>.
-      <app>Cheese</app> will start recording from your webcam.</p>
+      <p>Click <gui style="button">Record a Video</gui>, or press the
+      <key>Space</key>. <app>Cheese</app> will start recording a video using
+      your webcam.</p>
     </item>
     <item>
      <p>To stop recording, click <gui>Stop Recording</gui> or press
@@ -50,6 +56,7 @@
 
   <p>If you have problems sharing a video with people using other operating
   systems (like Windows or Mac OS), you may need to
-  <link href="help:gnome-help/video-sending">convert it to a different format</link>.</p>
+  <link href="help:gnome-help/video-sending">convert it to a different
+  format</link>.</p>
 
 </page>
