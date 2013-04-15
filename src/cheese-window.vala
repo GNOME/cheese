@@ -53,7 +53,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Cheese.ThumbView thumb_view;
   private Gtk.Alignment    thumbnails_right;
   private Gtk.Alignment    thumbnails_bottom;
-  private Gtk.Box          leave_fullscreen_button_container;
+  private Gtk.Grid leave_fullscreen_button_container;
   private Gtk.ToggleButton photo_toggle_button;
   private Gtk.ToggleButton video_toggle_button;
   private Gtk.ToggleButton burst_toggle_button;
@@ -62,7 +62,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Gtk.Image        take_action_button_image;
   private Gtk.ToggleButton effects_toggle_button;
   private Gtk.Button       leave_fullscreen_button;
-  private Gtk.Box          buttons_area;
+  private Gtk.Grid buttons_area;
   private Gtk.Menu         thumbnail_popup;
 
   private Clutter.Stage     viewport;
@@ -1389,7 +1389,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     viewport                          = viewport_widget.get_stage () as Clutter.Stage;
     thumbnails_right                  = gtk_builder.get_object ("thumbnails_right") as Gtk.Alignment;
     thumbnails_bottom                 = gtk_builder.get_object ("thumbnails_bottom") as Gtk.Alignment;
-    leave_fullscreen_button_container = gtk_builder.get_object ("leave_fullscreen_button_bin") as Gtk.Box;
+    leave_fullscreen_button_container = gtk_builder.get_object ("leave_fullscreen_button_bin") as Gtk.Grid;
     photo_toggle_button               = gtk_builder.get_object ("photo_toggle_button") as Gtk.ToggleButton;
     video_toggle_button               = gtk_builder.get_object ("video_toggle_button") as Gtk.ToggleButton;
     burst_toggle_button               = gtk_builder.get_object ("burst_toggle_button") as Gtk.ToggleButton;
@@ -1398,7 +1398,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     take_action_button_image          = gtk_builder.get_object ("take_action_button_internal_image") as Gtk.Image;
     effects_toggle_button             = gtk_builder.get_object ("effects_toggle_button") as Gtk.ToggleButton;
     leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
-    buttons_area                      = gtk_builder.get_object ("buttons_area") as Gtk.Box;
+    buttons_area = gtk_builder.get_object ("buttons_area") as Gtk.Grid;
     thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
     countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
