@@ -1,24 +1,27 @@
 <page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
       type="topic" style="task"
       id="photo-take">
+
   <info>
-    <link type="guide" xref="index#main"/>
+    <link type="guide" xref="index#main" group="#first"/>
     <link type="seealso" xref="pref-flash"/>
     <link type="seealso" xref="pref-countdown"/>
     <link type="seealso" xref="photo-view"/>
     <link type="seealso" xref="photo-delete"/>
 
-    <revision version="3.0" date="2011-08-25" status="candidate"/>
-    <revision version="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.0" date="2011-08-25" status="candidate"/>
+    <revision pkgversion="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.8" date="2013-04-15" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
-      <email>yrazes@gmail.com</email>
+      <email its:translate="no">yrazes@gmail.com</email>
       <years>2011</years>
     </credit>
     <credit type="author editor">
       <name>Ekaterina Gerasimova</name>
-      <email>kittykat3756@gmail.com</email>
+      <email its:translate="no">kittykat3756@gmail.com</email>
     </credit>
 
     <desc>Use your webcam to take photos instead of videos.</desc>
@@ -36,7 +39,7 @@
     </item>
     <item>
       <p>Click <gui>Take a Photo</gui>. Alternatively, you can press the
-      capture button on the webcam or the <key>spacebar</key>.</p>
+      capture button on the webcam or the <key>Space</key> key.</p>
     </item>
     <item>
       <p>There will be a short countdown, followed by a flash, and the photo
@@ -53,7 +56,7 @@
 
   <note>
     <p>To take multiple photos in rapid succession, use
-    <link xref="pref-burst-mode">burst mode</link>.</p>
+    <link xref="burst-mode">burst mode</link>.</p>
   </note>
 
 </page>

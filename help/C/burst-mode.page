@@ -1,19 +1,22 @@
 <page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
       type="topic" style="task"
-      id="pref-burst-mode">
+      id="burst-mode">
+
   <info>
-    <link type="guide" xref="index#main"/>
-    <revision version="3.0" date="2011-08-24" status="candidate"/>
-    <revision version="3.1" date="2011-09-05" status="review"/>
+    <link type="guide" xref="index#main" group="#first"/>
+    <revision pkgversion="3.0" date="2011-08-24" status="candidate"/>
+    <revision pkgversion="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.8" date="2013-04-15" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
-      <email>yrazes@gmail.com</email>
+      <email its:translate="no">yrazes@gmail.com</email>
       <years>2011</years>
     </credit>
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
-      <email>kittykat3756@gmail.com</email>
+      <email its:translate="no">kittykat3756@gmail.com</email>
     </credit>
 
     <desc><gui>Burst mode</gui> takes several photos rapidly. Change your pose
@@ -49,12 +52,14 @@
   of the delay between the photos:</p>
   <steps>
     <item>
-      <p>Click <guiseq><gui>Edit</gui><gui>Preferences</gui></guiseq>.</p>
+      <p>Select
+      <guiseq><gui>Cheese</gui><gui>Preferences</gui><gui>Capture</gui></guiseq>.</p>
     </item>
     <item>
       <p>Change the options under <gui>Burst mode</gui> and click <gui>Close</gui>.</p>
     </item>
   </steps>
+
   <note>
     <p>The delay is between the last photo taken and the start of the countdown
     for the next photo, not between two photos.</p>
