@@ -1,6 +1,36 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.8.1
+  - Update help for 3.8
+    Mark author emails as not translatable. Correct "version" to
+    "pkgversion" in revision tags. Update instructions for app menu and new
+    preference dialog tabs. Stub mode-wide.page because the instructions are
+    wrong.
+  - Replace GtkBox casts with GtkGrid casts
+    This manifested as the "Leave Fullscreen" button not being displayed
+    when switching into fullscreen mode. Fixes bug 691454.
+  - cheese-camera: Fix creation of effects previews
+    Since many previews are created, with many cluttersinks, we can't name
+    the cluttersinks all the same. Passing NULL as the name of the element
+    will let gstreamer choose the name.
+  - libcheese: Fix deprecated clutter sink creation
+    Create cluttersink with element_factory_make.
+  - Depend on valac 0.18 for gstreamer-1.0
+    gstreamer-1.0 vala bindings is only available on valac-0.18.
+  - [l10n] Updated Turkish translation
+  - libcheese doesn't need gnome-desktop
+    So don't link to it.
+    https://bugzilla.gnome.org/show_bug.cgi?id=694288
+  - Fixed syntax in translation of Keywords string
+  - Post-release bump to 3.8.1
+  - Added/Updated Translations
+    - kn, courtesy of Daniel Mustieles
+    - tr, courtesy of Muhammet Kara
+    - uk, courtesy of Daniel Korostil
+  - Added/Updated Documentation
+    - ca, courtesy of Gerard Alcorlo Bofill
+
 version 3.8.0
   - Fix translations of keywords in .desktop files
   - Post-release version bump to 3.8.0
