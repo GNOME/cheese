@@ -28,15 +28,15 @@ internal class Cheese.Countdown : GLib.Object
 
   private Clutter.Text countdown_actor;
 
-  private static CountdownCallback completed_callback;
+  private CountdownCallback completed_callback;
 
-  private static int current_value = 0;
+  private int current_value = 0;
 
-  private static ulong signal_id;
+  private ulong signal_id;
 
-  private static Clutter.Animation anim;
+  private Clutter.Animation anim;
 
-  private static GLib.Settings settings;
+  private GLib.Settings settings;
 
   public bool running;
 
