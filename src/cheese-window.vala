@@ -70,7 +70,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Clutter.Texture   video_preview;
   private Clutter.BinLayout viewport_layout_manager;
   private Clutter.Text      countdown_layer;
-  private Clutter.Rectangle background_layer;
+  private Clutter.Actor background_layer;
   private Clutter.Text      error_layer;
   private Clutter.Text      timeout_layer;
 
@@ -1216,10 +1216,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         var box = new Clutter.Actor ();
         box.set_layout_manager (layout);
         Clutter.Text      text = new Clutter.Text ();
-        Clutter.Rectangle rect = new Clutter.Rectangle ();
+        var rect = new Clutter.Actor ();
 
         rect.opacity = 128;
-        rect.color   = Clutter.Color.from_string ("black");
+        rect.background_color = Clutter.Color.from_string ("black");
 
         texture.keep_aspect_ratio = true;
         box.add_child (texture);
@@ -1428,7 +1428,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     viewport_layout = clutter_builder.get_object ("viewport_layout") as Clutter.Actor;
     viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
     countdown_layer         = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
-    background_layer        = clutter_builder.get_object ("background") as Clutter.Rectangle;
+    background_layer = clutter_builder.get_object ("background") as Clutter.Actor;
     error_layer             = clutter_builder.get_object ("error_layer") as Clutter.Text;
     timeout_layer           = clutter_builder.get_object ("timeout_layer") as Clutter.Text;
 
