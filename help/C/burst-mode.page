@@ -7,38 +7,37 @@
     <link type="guide" xref="index#main" group="#first"/>
     <revision pkgversion="3.0" date="2011-08-24" status="candidate"/>
     <revision pkgversion="3.1" date="2011-09-05" status="review"/>
-    <revision pkgversion="3.8" date="2013-04-15" status="review"/>
+    <revision pkgversion="3.8" date="2013-04-19" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
       <email its:translate="no">yrazes@gmail.com</email>
       <years>2011</years>
     </credit>
-    <credit type="editor">
+    <credit type="author copyright editor">
       <name>Ekaterina Gerasimova</name>
       <email its:translate="no">kittykat3756@gmail.com</email>
+      <years>2011, 2013</years>
     </credit>
 
-    <desc><gui>Burst mode</gui> takes several photos rapidly. Change your pose
-    in between each shot!</desc>
+    <desc>Capture several photos with one button press. Change your pose in between each shot!</desc>
   </info>
 
-  <title>Take multiple photos in quick succession</title>
+  <title>Take photos in quick succession using <gui>Burst</gui> mode</title>
 
-  <p>You can use <gui>Burst mode</gui> to automatically take several photos in
-  one go, with a short pause between shots. It is particularly fun if you
-  change your pose in between photos! To use <gui>Burst mode</gui>:</p>
+  <p>Use <gui>Burst</gui> mode to automatically take several photos in a row.
+  It is particularly fun if you change your pose in between photos! To use
+  <gui>Burst</gui> mode:</p>
 
   <steps>
     <item>
-      <p>Click <gui>Burst</gui>, the <gui>Take a Photo</gui> button will now say
-      <gui>Take Multiple Photos</gui>.</p>
-      <p>Alternatively, click <guiseq><gui>Cheese</gui><gui>Burst</gui></guiseq>.</p>
+      <p>Select <guiseq><gui style="menu">Cheese</gui>
+      <gui style="menuitem">Burst</gui></guiseq>.</p>
     </item>
     <item>
-      <p>Click <gui>Take Multiple Photos</gui> or press the
-      <key>spacebar</key>.</p>
-      <p>By default, four photos will be taken, with a three second delay and a
+      <p>Press <gui style="button">Take Multiple Photos</gui> or press the
+      <key>Space</key> key.</p>
+      <p>By default, four photos will be taken, with a one second delay and a
       countdown between photos.</p>
     </item>
   </steps>
@@ -47,23 +46,41 @@
   photos at any point.</p>
 
 <section id="burst-preferences">
-  <title>Change how many photos are taken and the delay between them</title>
+  <title>Change <gui>Burst</gui> preferences</title>
+
   <p>You can change how many photos will be taken in each burst and the length
   of the delay between the photos:</p>
+
   <steps>
     <item>
       <p>Select
-      <guiseq><gui>Cheese</gui><gui>Preferences</gui><gui>Capture</gui></guiseq>.</p>
+      <guiseq><gui style="menu">Cheese</gui><gui style="menuitem">Preferences</gui><gui style="tab">Capture</gui></guiseq>.</p>
     </item>
     <item>
-      <p>Change the options under <gui>Burst mode</gui> and click <gui>Close</gui>.</p>
+      <p>Edit the preference settings:</p>
+      <terms>
+        <item>
+          <title>Countdown</title>
+          <p>Countdown from three before the photo is taken.</p>
+        </item>
+        <item>
+          <title>Fire flash</title>
+          <p>Your screen will flash when a photo is taken.</p>
+        </item>
+        <item>
+          <title>Number of photos</title>
+          <p>The number of photos that will be taken in a single burst.</p>
+        </item>
+        <item>
+          <title>Delay between photos (seconds)</title>
+          <p>The delay between the last photo and the start of the next
+          countdown. If <gui>Countdown</gui> is disabled, this is the delay
+          between photos.</p>
+        </item>
+      </terms>
     </item>
   </steps>
 
-  <note>
-    <p>The delay is between the last photo taken and the start of the countdown
-    for the next photo, not between two photos.</p>
-  </note>
 </section>
 
 </page>
