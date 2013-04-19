@@ -66,7 +66,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Gtk.Menu         thumbnail_popup;
 
   private Clutter.Stage     viewport;
-  private Clutter.Box       viewport_layout;
+  private Clutter.Actor viewport_layout;
   private Clutter.Texture   video_preview;
   private Clutter.BinLayout viewport_layout_manager;
   private Clutter.Text      countdown_layer;
@@ -74,9 +74,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Clutter.Text      error_layer;
   private Clutter.Text      timeout_layer;
 
-  private Clutter.Box current_effects_grid;
+  private Clutter.Actor current_effects_grid;
   private uint current_effects_page = 0;
-  private List<Clutter.Box> effects_grids;
+  private List<Clutter.Actor> effects_grids;
 
   private HashTable<string, bool> action_sensitivities;
   private Gtk.ToggleAction wide_mode_action;
@@ -1094,11 +1094,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     current_effects_page = number;
     if (viewport_layout.get_children ().index (current_effects_grid) != -1)
     {
-      viewport_layout.remove ((Clutter.Actor) current_effects_grid);
+      viewport_layout.remove_child (current_effects_grid);
     }
     current_effects_grid = effects_grids.nth_data (number);
     current_effects_grid.set ("opacity", 0);
-    viewport_layout.add ((Clutter.Actor) current_effects_grid);
+    viewport_layout.add_child (current_effects_grid);
     current_effects_grid.animate (Clutter.AnimationMode.LINEAR, 1000, "opacity", 255);
 
     uint i = 0;
@@ -1189,7 +1189,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       effects_manager.load_effects ();
 
       /* Must initialize effects_grids before returning, as it is dereferenced later, bug 654671. */
-      effects_grids = new List<Clutter.Box> ();
+      effects_grids = new List<Clutter.Actor> ();
 
       if (effects_manager.effects.length () == 0)
       {
@@ -1200,7 +1200,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       foreach (var effect in effects_manager.effects)
       {
           Clutter.TableLayout table_layout = new TableLayout ();
-          Clutter.Box grid = new Clutter.Box (table_layout);
+          var grid = new Clutter.Actor ();
+          grid.set_layout_manager (table_layout);
           effects_grids.append (grid);
           table_layout.set_column_spacing (10);
           table_layout.set_row_spacing (10);
@@ -1212,7 +1213,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         Clutter.Texture   texture = new Clutter.Texture ();
         Clutter.BinLayout layout  = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
                                                            Clutter.BinAlignment.CENTER);
-        Clutter.Box       box  = new Clutter.Box (layout);
+        var box = new Clutter.Actor ();
+        box.set_layout_manager (layout);
         Clutter.Text      text = new Clutter.Text ();
         Clutter.Rectangle rect = new Clutter.Rectangle ();
 
@@ -1220,7 +1222,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         rect.color   = Clutter.Color.from_string ("black");
 
         texture.keep_aspect_ratio = true;
-        box.pack ((Clutter.Actor) texture, null, null);
+        box.add_child (texture);
         box.reactive = true;
         box.set_data ("effect", effect);
         effect.set_data ("texture", texture);
@@ -1231,13 +1233,17 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         text.color = Clutter.Color.from_string ("white");
 
         rect.height = text.height + 5;
-        box.pack ((Clutter.Actor) rect,
-                  "x-align", Clutter.BinAlignment.FILL,
-                  "y-align", Clutter.BinAlignment.END, null);
+        rect.x_align = Clutter.ActorAlign.FILL;
+        rect.y_align = Clutter.ActorAlign.END;
+        rect.x_expand = true;
+        rect.y_expand = true;
+        box.add_child (rect);
 
-        box.pack ((Clutter.Actor) text,
-                  "x-align", Clutter.BinAlignment.CENTER,
-                  "y-align", Clutter.BinAlignment.END, null);
+        text.x_align = Clutter.ActorAlign.CENTER;
+        text.y_align = Clutter.ActorAlign.END;
+        text.x_expand = true;
+        text.y_expand = true;
+        box.add_child (text);
 
         Clutter.TableLayout table_layout = (Clutter.TableLayout) effects_grids.nth_data (i / EFFECTS_PER_PAGE).layout_manager;
         table_layout.pack ((Clutter.Actor) box,
@@ -1419,7 +1425,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
                leave_fullscreen_button};
 
     video_preview           = clutter_builder.get_object ("video_preview") as Clutter.Texture;
-    viewport_layout         = clutter_builder.get_object ("viewport_layout") as Clutter.Box;
+    viewport_layout = clutter_builder.get_object ("viewport_layout") as Clutter.Actor;
     viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
     countdown_layer         = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
     background_layer        = clutter_builder.get_object ("background") as Clutter.Rectangle;
@@ -1428,11 +1434,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
-    viewport.add_actor (background_layer);
+    viewport.add_child (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
 
-    viewport.add_actor (viewport_layout);
-    viewport.add_actor (timeout_layer);
+    viewport.add_child (viewport_layout);
+    viewport.add_child (timeout_layer);
 
     viewport.allocation_changed.connect (on_stage_resize);
 
