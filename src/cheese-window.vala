@@ -371,10 +371,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     bool nautilus_sendto_installed = Environment.find_program_in_path (SENDTO_EXEC) != null;
 
     if (!nautilus_sendto_installed)
-      install_packages ((obj, res) => {
-                        install_packages.end (res);
-                        get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.LEFT_PTR));
-                       });
+      install_packages.begin ((obj, res) => {
+                              install_packages.end (res);
+                              get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.LEFT_PTR));
+                             });
     else
       shareable_media.share_files (thumb_view.get_selected_images_list ());
   }
