@@ -1246,10 +1246,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         box.add_child (text);
 
         Clutter.TableLayout table_layout = (Clutter.TableLayout) effects_grids.nth_data (i / EFFECTS_PER_PAGE).layout_manager;
-        table_layout.pack ((Clutter.Actor) box,
-                           ((int)(i % EFFECTS_PER_PAGE)) % 3,
+        table_layout.pack (box, ((int)(i % EFFECTS_PER_PAGE)) % 3,
                            ((int)(i % EFFECTS_PER_PAGE)) / 3);
-        table_layout.set_expand (box, false, false);
 
         i++;
       }
