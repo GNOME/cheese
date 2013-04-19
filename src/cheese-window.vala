@@ -1097,9 +1097,14 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       viewport_layout.remove_child (current_effects_grid);
     }
     current_effects_grid = effects_grids.nth_data (number);
-    current_effects_grid.set ("opacity", 0);
+    current_effects_grid.opacity = 0;
     viewport_layout.add_child (current_effects_grid);
-    current_effects_grid.animate (Clutter.AnimationMode.LINEAR, 1000, "opacity", 255);
+    current_effects_grid.save_easing_state ();
+    current_effects_grid.set_easing_mode (Clutter.AnimationMode.LINEAR);
+    current_effects_grid.set_easing_duration (500);
+    current_effects_grid.opacity = 255;
+    current_effects_grid.restore_easing_state ();
+
 
     uint i = 0;
     foreach (var effect in effects_manager.effects)

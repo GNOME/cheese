@@ -19,25 +19,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using GLib;
-using Clutter;
-
 internal class Cheese.Countdown : GLib.Object
 {
   public delegate void CountdownCallback ();
-
   private Clutter.Text countdown_actor;
-
   private CountdownCallback completed_callback;
-
   private int current_value = 0;
-
-  private ulong signal_id;
-
-  private Clutter.Animation anim;
-
   private GLib.Settings settings;
-
   public bool running;
 
   public Countdown (Clutter.Text countdown_actor)
@@ -53,8 +41,14 @@ internal class Cheese.Countdown : GLib.Object
    */
   private void fade_out ()
   {
-    anim      = this.countdown_actor.animate (Clutter.AnimationMode.LINEAR, 500, "opacity", 0);
-    signal_id = Signal.connect_after (anim, "completed", (GLib.Callback)fade_in, this);
+    var pulse_out = new Clutter.PropertyTransition ("opacity");
+    pulse_out.set_duration (500);
+    pulse_out.set_from_value (255);
+    pulse_out.set_to_value (0);
+    pulse_out.remove_on_complete = true;
+    pulse_out.completed.connect (fade_in);
+
+    this.countdown_actor.add_transition ("pulse-out", pulse_out);
   }
 
   /**
@@ -73,8 +67,14 @@ internal class Cheese.Countdown : GLib.Object
     this.countdown_actor.text = this.current_value.to_string ();
     this.current_value--;
 
-    anim      = this.countdown_actor.animate (Clutter.AnimationMode.LINEAR, 500, "opacity", 255);
-    signal_id = Signal.connect_after (anim, "completed", (GLib.Callback)fade_out, this);
+    var pulse_in = new Clutter.PropertyTransition ("opacity");
+    pulse_in.set_duration (500);
+    pulse_in.set_from_value (0);
+    pulse_in.set_to_value (255);
+    pulse_in.remove_on_complete = true;
+    pulse_in.completed.connect (fade_out);
+
+    this.countdown_actor.add_transition ("pulse-in", pulse_in);
   }
 
   /**
@@ -97,7 +97,7 @@ internal class Cheese.Countdown : GLib.Object
   public void stop ()
   {
     countdown_actor.hide ();
-    SignalHandler.disconnect (anim, signal_id);
+    countdown_actor.remove_all_transitions ();
     running = false;
   }
 }
