@@ -15,8 +15,8 @@
     </key>
 
     <key type='b' name='flash'>
-      <summary>Fire flash before taking a picture</summary>
-      <description>Set to true to fire a flash when taking a picture</description>
+      <summary>Fire flash before taking a photo</summary>
+      <description>Set to true to fire a flash before taking a photo</description>
       <default>true</default>
     </key>
 
@@ -61,41 +61,41 @@
     </key>
 
     <key type='d' name='brightness'>
-      <summary>Picture brightness</summary>
-      <description>Adjusts the brightness of the picture coming from the camera</description>
+      <summary>Image brightness</summary>
+      <description>Adjusts the brightness of the image coming from the camera</description>
       <default>0</default>
       <range min='-1' max='1'/>
     </key>
 
     <key type='d' name='contrast'>
-      <summary>Picture contrast</summary>
-      <description>Adjusts the contrast of the picture coming from the camera</description>
+      <summary>Image contrast</summary>
+      <description>Adjusts the contrast of the image coming from the camera</description>
       <default>1.0</default>
       <range min='0' max='2'/>
     </key>
 
     <key type='d' name='saturation'>
-      <summary>Picture saturation</summary>
-      <description>Adjusts the saturation of the picture coming from the camera</description>
+      <summary>Image saturation</summary>
+      <description>Adjusts the saturation of the image coming from the camera</description>
       <default>1</default>
       <range min='0' max='2'/>
     </key>
 
     <key type='d' name='hue'>
-      <summary>Picture hue</summary>
-      <description>Adjusts the hue (color tint) of the picture coming from the camera</description>
+      <summary>Image hue</summary>
+      <description>Adjusts the hue (color tint) of the image coming from the camera</description>
       <default>0</default>
       <range min='-1' max='1'/>
     </key>
 
     <key type='s' name='video-path'>
-      <summary>Video Path</summary>
+      <summary>Video path</summary>
       <description>Defines the path where the videos are stored. If empty, "XDG_VIDEO/Webcam" will be used.</description>
       <default>''</default>
     </key>
 
     <key type='s' name='photo-path'>
-      <summary>Photo Path</summary>
+      <summary>Photo path</summary>
       <description>Defines the path where the photos are stored. If empty, "XDG_PHOTO/Webcam" will be used.</description>
       <default>''</default>
     </key>
@@ -119,7 +119,7 @@
       <range min='500' max='10000'/>
     </key>
 
-     <key type='i' name='burst-repeat'>
+    <key type='i' name='burst-repeat'>
       <summary>Number of photos in burst mode</summary>
       <description>The number of photos to take in a single burst.</description>
       <default>4</default>
