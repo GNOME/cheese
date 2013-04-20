@@ -51,7 +51,7 @@ AM_CPPFLAGS = \
 	$(CHEESE_WFLAGS) \
 	$(WARN_CFLAGS)
 
-VALAFLAGS = \
+AM_VALAFLAGS = \
 	--target-glib=2.32 \
 	--thread \
 	--vapidir $(top_srcdir)/src/vapi \
