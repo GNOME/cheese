@@ -58,7 +58,7 @@ IT_PROG_INTLTOOL([0.50.0])
 
 GLIB_REQUIRED="glib-2.0 >= 2.28.0"
 GOBJECT_REQUIRED="gobject-2.0 >= 2.28.0"
-GIO_REQUIRED="gio-2.0 >= 2.28.0"
+GIO_REQUIRED="gio-2.0 >= 2.32.0"
 GTK_REQUIRED="gtk+-3.0 >= 3.4.4"
 GDK_REQUIRED="gdk-3.0 >= 3.3.6"
 GDK_PIXBUF_REQUIRED="gdk-pixbuf-2.0"
@@ -70,7 +70,7 @@ GSTREAMER_PLUGINS_BAD_REQUIRED="gstreamer-plugins-bad-1.0 >= $GSTREAMER_PLUGINS_
 CAIRO_REQUIRED="cairo >= 1.10.0"
 PANGOCAIRO_REQUIRED="pangocairo >= 1.28.0"
 LIBRSVG_REQUIRED="librsvg-2.0 >= 2.32.0"
-CLUTTER_REQUIRED="clutter-1.0 >= 1.10.0"
+CLUTTER_REQUIRED="clutter-1.0 >= 1.12.0"
 CLUTTERGTK_REQUIRED="clutter-gtk-1.0 >= 0.91.8"
 CLUTTERGST_REQUIRED="clutter-gst-2.0 >= 1.9.0"
 LIBCANBERRA_REQUIRED="libcanberra-gtk3 >= 0.26"
