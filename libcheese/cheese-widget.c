@@ -217,7 +217,7 @@ cheese_widget_init (CheeseWidget *widget)
   /* Webcam page */
   priv->screen = gtk_clutter_embed_new ();
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->screen));
-  clutter_stage_set_color (CLUTTER_STAGE (stage), &black);
+  clutter_actor_set_background_color (stage, &black);
   frame = totem_aspect_frame_new ();
 
   priv->texture = clutter_texture_new ();
