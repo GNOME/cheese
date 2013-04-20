@@ -224,7 +224,7 @@ cheese_widget_init (CheeseWidget *widget)
   clutter_actor_set_size (priv->texture, 400, 300);
   totem_aspect_frame_set_child (TOTEM_ASPECT_FRAME (frame), priv->texture);
 
-  clutter_container_add_actor (CLUTTER_CONTAINER (stage), frame);
+  clutter_actor_add_child (stage, frame);
   constraint = clutter_bind_constraint_new (stage, CLUTTER_BIND_SIZE, 0.0);
   clutter_actor_add_constraint_with_name (frame, "size", constraint);
 

@@ -59,7 +59,7 @@ main (int argc, char **argv)
   texture = clutter_texture_new ();
 
   clutter_actor_set_size (texture, 400, 300);
-  clutter_container_add_actor (CLUTTER_CONTAINER (stage), texture);
+  clutter_actor_add_child (stage, texture);
 
   gtk_widget_show (screen);
   clutter_actor_show (texture);
