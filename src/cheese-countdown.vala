@@ -23,7 +23,7 @@ internal class Cheese.Countdown : GLib.Object
 {
   public delegate void CountdownCallback ();
   private Clutter.Text countdown_actor;
-  private CountdownCallback completed_callback;
+  private unowned CountdownCallback completed_callback;
   private int current_value = 0;
   private GLib.Settings settings;
   public bool running;
