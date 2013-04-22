@@ -5,23 +5,23 @@
 #
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-29 16:16+0000\n"
-"PO-Revision-Date: 2012-12-16 21:00+0100\n"
+"POT-Creation-Date: 2013-04-19 19:40+0000\n"
+"PO-Revision-Date: 2013-04-22 17:30+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
+"Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Gtranslator 2.91.5\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
@@ -63,18 +63,19 @@ msgstr "Modo vídeo"
 msgid "Photo burst mode"
 msgstr "Modo ráfaga de fotos"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "Tomar una foto"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
+#| msgid "Take a photo"
+msgid "Take a photo using a webcam"
+msgstr "Tomar una foto usando una cámara web"
 
-#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "_Tomar una foto"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "Anterior"
+msgid "Navigate to the previous page of effects"
+msgstr "Navegar a la página de efectos anterior"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -85,12 +86,12 @@ msgid "_Effects"
 msgstr "Efecto_s"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "Siguiente"
+msgid "Navigate to the next page of effects"
+msgstr "Navegar a la siguiente página de efectos"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "Salir de pantalla completa"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "Salir del modo a pantalla completa y volver al modo ventana"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -145,8 +146,9 @@ msgid "_Countdown"
 msgstr "_Cuenta atrás"
 
 #: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
-msgstr "_Disparo del flash"
+#| msgid "Fire _Flash"
+msgid "Fire _flash"
+msgstr "_Disparar flash"
 
 #: ../data/cheese-prefs.ui.h:14
 msgid "Burst mode"
@@ -165,7 +167,7 @@ msgid "Capture"
 msgstr "Capturar"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -173,7 +175,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Fotomatón de cámara web Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Tome fotografías y vídeos con su cámara web, con divertidos efectos gráficos"
@@ -199,11 +201,13 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "La duración de la cuenta atrás antes de tomar una foto, en segundos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
+#| msgid "Fire flash before taking a picture"
+msgid "Fire flash before taking a photo"
 msgstr "Disparar el flash antes de tomar una foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
+#| msgid "Set to true to fire a flash when taking a picture"
+msgid "Set to true to fire a flash before taking a photo"
 msgstr "Establecer a cierto para disparar el flash al tomar una foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
@@ -258,39 +262,48 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "La altura del vídeo capturado por la cámara, en píxeles"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
+#| msgid "Picture brightness"
+msgid "Image brightness"
 msgstr "Brillo de la imagen"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
+#| msgid "Adjusts the brightness of the picture coming from the camera"
+msgid "Adjusts the brightness of the image coming from the camera"
 msgstr "Ajusta el brillo de la imagen que proviene de la cámara"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
+#| msgid "Picture contrast"
+msgid "Image contrast"
 msgstr "Contraste de la imagen"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
+#| msgid "Adjusts the contrast of the picture coming from the camera"
+msgid "Adjusts the contrast of the image coming from the camera"
 msgstr "Ajusta el contraste de la imagen que proviene de la cámara"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
+#| msgid "Picture saturation"
+msgid "Image saturation"
 msgstr "Saturación de la imagen"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr "Ajusta el nivel de saturación de la imagen que proviene de la cámara"
+#| msgid "Adjusts the saturation of the picture coming from the camera"
+msgid "Adjusts the saturation of the image coming from the camera"
+msgstr "Ajusta la saturación de la imagen que proviene de la cámara"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
+#| msgid "Image"
+msgid "Image hue"
 msgstr "Tono de la imagen"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+#| msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
 msgstr "Ajusta el tono de la imagen que proviene de la cámara"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
+#| msgid "Video Path"
+msgid "Video path"
 msgstr "Ruta de los vídeos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
@@ -302,7 +315,8 @@ msgstr ""
 "\"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
+#| msgid "Photo Path"
+msgid "Photo path"
 msgstr "Ruta de las fotos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
@@ -364,9 +378,9 @@ msgstr "Sonido del obturador"
 msgid "Select"
 msgstr "Seleccionar"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "_Tomar una foto"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "Tomar una foto"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -389,7 +403,7 @@ msgstr "Dispositivo desconocido"
 msgid "Cancellable initialization not supported"
 msgstr "No se soporta la inicialización cancelable"
 
-#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1568
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 
@@ -403,13 +417,15 @@ msgstr "No se encontró ningún dispositivo"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1802
+#: ../libcheese/cheese-camera.c:1803
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "Sin efectos"
 
@@ -473,23 +489,23 @@ msgstr "Ay_uda"
 msgid "_Quit"
 msgstr "_Salir"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr ": Tomar fotografías y vídeos con su cámara web"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr ""
 "Ejecutar «%s --help» para ver una lista completa de opciones de línea de "
 "comandos disponibles.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Ya se está ejecutando otra instancia del Cheese\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "Daniel Mustieles <daniel.mustieles@gmail.com>, 2011-2012\n"
@@ -497,7 +513,7 @@ msgstr ""
 "Ricardo González Castro <rick@jinlabs.com>, 2007\n"
 "Diego Escalante Urrelo <diegoe@gnome.org>, 2007"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Página web de Cheese"
 
@@ -542,12 +558,11 @@ msgstr "_Detener grabación"
 msgid "Stop recording"
 msgstr "Detener grabación"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#| msgid "Record a Video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
 msgid "_Record a Video"
 msgstr "_Grabar un vídeo"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935
 msgid "Record a video"
 msgstr "Grabar un vídeo"
 
@@ -564,20 +579,42 @@ msgstr "Dejar de tomar imágenes"
 msgid "Take Multiple Photos"
 msgstr "Tomar múltiples fotos"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995
 msgid "Take multiple photos"
 msgstr "Tomar múltiples fotos"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "No se encontró ningún efecto"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1517
+#| msgid "Record a video"
+msgid "Record a video using a webcam"
+msgstr "Grabar un vídeo usando una cámara web"
+
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "Tomar _múltiples fotos"
 
-#~ msgid "Take a Photo"
-#~ msgstr "Tomar una foto"
+#: ../src/cheese-window.vala:1524
+#| msgid "Take multiple photos"
+msgid "Take multiple photos using a webcam"
+msgstr "Tomar varias fotos usando una cámara web"
+
+#~ msgid "Previous"
+#~ msgstr "Anterior"
+
+#~ msgid "Next"
+#~ msgstr "Siguiente"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "Salir de pantalla completa"
+
+#~ msgid "Picture hue"
+#~ msgstr "Tono de la imagen"
+
+#~ msgid "_Take a photo"
+#~ msgstr "_Tomar una foto"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Cheese"
