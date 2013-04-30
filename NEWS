@@ -1,6 +1,110 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.1
+  - Fix UI string in avatar chooser test
+  - Use AM_VALAFLAGS rather than VALAFLAGS
+  - Avoid Vala warning about copying delegates
+    Mark the variable in which CountdownCallback is stored as unowned, as it
+    is simply a pointer to the callback.
+  - Use "autocluttersink" instead of "cluttersink"
+  - Use clutter_actor_set_background_color
+    Instead of the deprecated cltuter_stage_set_color, use
+    clutter_actor_set_background_color.
+  - Use clutter_actor_add_child
+    Instead of using the deprecated clutter_container_add_actor, use
+    clutter_actor_add_child.
+  - Avoid deprecated clutter_actor_animate
+    Use implicit animation instead.
+  - Avoid deprecated clutter_table_layout_set_expand
+    Use the "expand-x" and "expand-y" properties on ClutterActor instead
+    (which are both set to false by default).
+  - Use ClutterActor rather than ClutterRectangle
+  - User ClutterActor rather than ClutterBox
+    ClutterBox is deprecated.
+  - Bump required versions of Clutter and GIO
+    GIO 2.32 or above is required for GMenu support and Clutter 1.12 is
+    required to make use of new API to avoid deprecation warnings when using
+    Clutter 1.12 or above.
+  - Avoid Vala compiler warning about implicit begin
+  - Fix cheese_thumb_view_new() prototype
+  - Remove some unnecessary "static" keywords
+    This avoids some warnings from the Vala compiler.
+  - Update burst mode help page
+    Improve the wording, add more details about the preference dialog.
+  - Update the gschema to use "photo" and "image"
+    Use "photo" and "image" instead of "picture" so that the schema
+    descriptions are more consistent and precise.
+  - Improve "Fire Flash" string in the Preferences
+    Change "Fire Flash" to "Fire flash" because it is not a title, so should
+    not use header capitalisation.
+  - Fix typos in help
+  - Update help for 3.8
+    Mark author emails as not translatable. Correct "version" to
+    "pkgversion" in revision tags. Update instructions for app menu and new
+    preference dialog tabs. Stub mode-wide.page because the instructions are
+    wrong.
+  - Replace GtkBox casts with GtkGrid casts
+    This manifested as the "Leave Fullscreen" button not being displayed
+    when switching into fullscreen mode. Fixed bug 691454.
+  - libcheese doesn't need gnome-desktop
+    So don't link to it.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=694288
+  - cheese-camera: Fix creation of effects previews
+    Since many previews are created, with many cluttersinks, we can't name
+    the cluttersinks all the same. Passing NULL as the name of the element
+    will let gstreamer choose the name.
+  - libcheese: Fix deprecated clutter sink creation
+    Create cluttersink with element_factory_make.
+  - Depend on valac 0.18 for gstreamer-1.0
+    gstreamer-1.0 vala bindings is only available on valac-0.18.
+  - Update icon in user help to be untranslatable
+  - Fix translations of keywords in .desktop files
+  - Improve more translatable strings, bug 695459
+    Disambiguate the "Take a photo" string further.
+  - Improve some translatable strings, bug 695459
+    Add a translator comment and extend some translatable strings to make
+    the context more clear.
+  - Post-release bump to 3.7.92
+  - Added/Updated Translations
+    - as, courtesy of Nilamdyuti Goswami
+    - be, courtesy of Yuri Matsuk
+    - ca, courtesy of xavier
+    - ca@valencia, courtesy of xavier
+    - cs, courtesy of Marek Černocký
+    - da, courtesy of Kenneth Nielsen
+    - de, courtesy of Mario Blättermann
+    - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+    - es, courtesy of Daniel Mustieles
+    - fa, courtesy of Arash Mousavi
+    - fi, courtesy of Jiri Grönroos
+    - fr, courtesy of Pierre Henry
+    - gl, courtesy of Fran Dieguez
+    - hi, courtesy of raj
+    - hu, courtesy of Balázs Úr
+    - ko, courtesy of Changwoo Ryu
+    - lv, courtesy of Rūdolfs Mazurs
+    - ml, courtesy of Anish A
+    - nl, courtesy of Reinout van Schouwen
+    - or, courtesy of Manoj Kumar Giri
+    - pt_BR, courtesy of Enrico Nicoletto
+    - pt, courtesy of Duarte Loreto
+    - sk, courtesy of Pavol Klačanský
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+    - ta, courtesy of Shantha kumar
+    - tr, courtesy of Muhammet Kara
+    - uk, courtesy of Daniel Korostil
+  - Added/Updated Documentation
+    - ca, courtesy of Gerard Alcorlo Bofill
+    - de, courtesy of Tobias111
+    - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+    - es, courtesy of Daniel Mustieles
+    - fr, courtesy of Mickael Albertus
+    - hu, courtesy of Gabor Kelemen
+    - pt_BR, courtesy of Enrico Nicoletto
+
 version 3.7.91
   - Post-release bump to bersion 3.7.91
   - Added/Updated Translations
