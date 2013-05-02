@@ -3,23 +3,22 @@
 # This file is distributed under the same license as the cheese package
 #
 # Deni Bačić <baccic@gmail.com>, 2007.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2012.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007 - 2013.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-12-17 23:01+0000\n"
-"PO-Revision-Date: 2012-12-18 08:32+0100\n"
+"POT-Creation-Date: 2013-04-30 07:49+0000\n"
+"PO-Revision-Date: 2013-05-02 22:25+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
 "X-Generator: Poedit 1.5.4\n"
 
@@ -63,18 +62,18 @@ msgstr "Video način"
 msgid "Photo burst mode"
 msgstr "Način zaporednega zajemanja"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1507
-msgid "Take a photo"
-msgstr "Zajemi fotografijo"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1521
+msgid "Take a photo using a webcam"
+msgstr "Zajemi fotografijo s spletno kamero"
 
-#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1506
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1520
 msgid "_Take a Photo"
 msgstr "_Zajemi fotografijo"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "Predhodna"
+msgid "Navigate to the previous page of effects"
+msgstr "Pojdi na predhodno stran učinkov"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -85,12 +84,12 @@ msgid "_Effects"
 msgstr "_Učinki"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "Naslednja"
+msgid "Navigate to the next page of effects"
+msgstr "Pojdi na naslednjo stran učinkov"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "Zapusti celozaslonski način"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "Zapusti celozaslonski način in se vrni v okenskega"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -145,7 +144,7 @@ msgid "_Countdown"
 msgstr "_Odštevanje"
 
 #: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
+msgid "Fire _flash"
 msgstr "Sproži _bliskavico"
 
 #: ../data/cheese-prefs.ui.h:14
@@ -165,7 +164,7 @@ msgid "Capture"
 msgstr "Zajemanje"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -173,7 +172,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Foto kabina Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Zajemanje slik in posnetkov s spletno kamero in obdelava z veliko grafičnimi "
@@ -200,11 +199,11 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "Trajanje odštevanja pred zajemanjem slike v sekundah"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
+msgid "Fire flash before taking a photo"
 msgstr "Sproži bliskavico pred zajemom slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
+msgid "Set to true to fire a flash before taking a photo"
 msgstr "Ali naj se med zajemanjem slike sproži bliskavica"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
@@ -259,39 +258,39 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "Višina videa zajetega s kamero v točkah"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
+msgid "Image brightness"
 msgstr "Svetlost slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr "Prilagajanje ravni svetlosti slike zajete s spletno kamero"
+msgid "Adjusts the brightness of the image coming from the camera"
+msgstr "Prilagajanje ravni svetlosti slike zajete s kamero"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
+msgid "Image contrast"
 msgstr "Kontrast slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr "Prilagajanje kontrasta slike zajete s spletno kamero"
+msgid "Adjusts the contrast of the image coming from the camera"
+msgstr "Prilagajanje kontrasta slike zajete s kamero"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
+msgid "Image saturation"
 msgstr "Nasičenost slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr "Prilagajanje nasičenosti slike zajete s spletno kamero"
+msgid "Adjusts the saturation of the image coming from the camera"
+msgstr "Prilagajanje nasičenosti slike zajete s kamero"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
+msgid "Image hue"
 msgstr "Odtenek slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr "Prilagajanje odtenkov slike zajete s spletno kamero"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
+msgstr "Prilagajanje odtenkov slike zajete s kamero"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
+msgid "Video path"
 msgstr "Pot do videa"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
@@ -303,7 +302,7 @@ msgstr ""
 "privzeto določena pot \"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
+msgid "Photo path"
 msgstr "Pot do slik"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
@@ -364,9 +363,9 @@ msgstr "Zvok zaklopke"
 msgid "Select"
 msgstr "Izberi"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "_Zajemi fotografijo"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "Zajemi fotografijo"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -389,12 +388,12 @@ msgstr "Neznana naprava"
 msgid "Cancellable initialization not supported"
 msgstr "Dejanje preklica začenjanja ni podprto"
 
-#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1574
 msgid "One or more needed GStreamer elements are missing: "
 msgstr ""
 "Enega ali več zahtevanih predmetov programa GStreamer ni mogoče najti: "
 
-#: ../libcheese/cheese-camera.c:1527
+#: ../libcheese/cheese-camera.c:1533
 #, c-format
 msgid "No device found"
 msgstr "Ni mogoče najti naprave"
@@ -404,13 +403,15 @@ msgstr "Ni mogoče najti naprave"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1802
+#: ../libcheese/cheese-camera.c:1809
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "Brez učinka"
 
@@ -474,27 +475,27 @@ msgstr "Pomo_č"
 msgid "_Quit"
 msgstr "_Končaj"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- Zajemanje slik in posnetkov s spletno kamero"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Za popoln seznam možnosti ukazne vrstice zaženite '%s --help'.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "En primerek programa je trenutno že zagnan.\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "Deni Bačić <baccic@gmail.com>,\n"
 "Matej Urbančič <mateju@svn.gnome.org>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Spletišče Cheese"
 
@@ -543,11 +544,11 @@ msgstr "_Zaustavi snemanje"
 msgid "Stop recording"
 msgstr "Zaustavi snemanje"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1511
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1525
 msgid "_Record a Video"
 msgstr "_Posnemi video"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1512
+#: ../src/cheese-window.vala:935
 msgid "Record a video"
 msgstr "Snemanje videa"
 
@@ -564,20 +565,40 @@ msgstr "Zaustavi zajemanje slik"
 msgid "Take Multiple Photos"
 msgstr "Zajem več fotografij"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1519
+#: ../src/cheese-window.vala:995
 msgid "Take multiple photos"
 msgstr "Zajem več fotografij"
 
-#: ../src/cheese-window.vala:1150
+#: ../src/cheese-window.vala:1160
 msgid "No effects found"
 msgstr "Učinkov ni mogoče najti"
 
-#: ../src/cheese-window.vala:1518
+#: ../src/cheese-window.vala:1526
+msgid "Record a video using a webcam"
+msgstr "Zajemanje videa s spletno kamero"
+
+#: ../src/cheese-window.vala:1532
 msgid "Take _Multiple Photos"
 msgstr "_Zajem več fotografij"
 
-#~ msgid "Take a Photo"
-#~ msgstr "Zajemi fotografijo"
+#: ../src/cheese-window.vala:1533
+msgid "Take multiple photos using a webcam"
+msgstr "Zajemanje več zaporednih slik s spletno kamero"
+
+#~ msgid "Previous"
+#~ msgstr "Predhodna"
+
+#~ msgid "Next"
+#~ msgstr "Naslednja"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "Zapusti celozaslonski način"
+
+#~ msgid "Picture hue"
+#~ msgstr "Odtenek slike"
+
+#~ msgid "_Take a photo"
+#~ msgstr "_Zajemi fotografijo"
 
 #~ msgid "_Cheese"
 #~ msgstr "_Cheese"
