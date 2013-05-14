@@ -34,6 +34,11 @@ internal class Cheese.Countdown : GLib.Object
     settings             = new GLib.Settings("org.gnome.Cheese");
   }
 
+  ~Countdown ()
+  {
+    stop ();
+  }
+
   /**
    * Fade the countdown text out, over 500 milliseconds.
    *
