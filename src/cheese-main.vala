@@ -412,6 +412,11 @@ public class Cheese.Main : Gtk.Application
 
         var state = value.get_boolean ();
 
+        var shoot = this.lookup_action ("shoot") as SimpleAction;
+
+        // The effects selector and shooting are mutually exclusive.
+        shoot.set_enabled (!state);
+
         main_window.set_effects (state);
 
         action.set_state (value);
