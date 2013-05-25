@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-12-20 13:52+0200\n"
-"PO-Revision-Date: 2012-12-20 13:53+0200\n"
+"POT-Creation-Date: 2013-05-25 11:31+0300\n"
+"PO-Revision-Date: 2013-05-25 11:34+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: he\n"
 "Language: \n"
@@ -59,19 +59,19 @@ msgid "Photo burst mode"
 msgstr "מצב צילום רציף"
 
 #: ../data/cheese-main-window.ui.h:4
-#: ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1507
-msgid "Take a photo"
-msgstr "צילום תמונה"
+#: ../src/cheese-window.vala:1521
+msgid "Take a photo using a webcam"
+msgstr "צילום תמונה בעזרת מצלמת הרשת"
 
 #: ../data/cheese-main-window.ui.h:5
-#: ../src/cheese-window.vala:1506
+#: ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1520
 msgid "_Take a Photo"
 msgstr "_צילום תמונה"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "הקודם"
+msgid "Navigate to the previous page of effects"
+msgstr "לנווט לעמוד האפקטים הקודם"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
@@ -83,12 +83,12 @@ msgid "_Effects"
 msgstr "_אפקטים"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "הבא"
+msgid "Navigate to the next page of effects"
+msgstr "לנווט לעמוד האפקטים הבא"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "יציאה ממסך מלא"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "לצאת ממצב מסך מלא ולחזור לתצוגת חלון"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -143,8 +143,8 @@ msgid "_Countdown"
 msgstr "_ספירה לאחור"
 
 #: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
-msgstr "הפעלת ה_בזק"
+msgid "Fire _flash"
+msgstr "הפעלת המ_בזק"
 
 #: ../data/cheese-prefs.ui.h:14
 msgid "Burst mode"
@@ -164,7 +164,7 @@ msgstr "לכידה"
 
 #: ../data/cheese.desktop.in.in.h:1
 #: ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:529
 msgid "Cheese"
 msgstr "‏Cheese"
 
@@ -173,7 +173,7 @@ msgid "Cheese Webcam Booth"
 msgstr "תא הצילום של Cheese"
 
 #: ../data/cheese.desktop.in.in.h:3
-#: ../src/cheese-main.vala:484
+#: ../src/cheese-main.vala:524
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "צילום תמונות וסרטים בעזרת מצלמת האינטרנט שלך והוספת אפקטים גרפיים משעשעים"
 
@@ -198,12 +198,12 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "The duration of the countdown before taking a photo, in seconds"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
-msgstr "Fire flash before taking a picture"
+msgid "Fire flash before taking a photo"
+msgstr "Fire flash before taking a photo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
-msgstr "Set to true to fire a flash when taking a picture"
+msgid "Set to true to fire a flash before taking a photo"
+msgstr "Set to true to fire a flash before taking a photo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
@@ -254,48 +254,48 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "The height of the video captured from the camera, in pixels"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
-msgstr "Picture brightness"
+msgid "Image brightness"
+msgstr "Image brightness"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr "Adjusts the brightness of the picture coming from the camera"
+msgid "Adjusts the brightness of the image coming from the camera"
+msgstr "Adjusts the brightness of the image coming from the camera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
-msgstr "Picture contrast"
+msgid "Image contrast"
+msgstr "Image contrast"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr "Adjusts the contrast of the picture coming from the camera"
+msgid "Adjusts the contrast of the image coming from the camera"
+msgstr "Adjusts the contrast of the image coming from the camera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
-msgstr "Picture saturation"
+msgid "Image saturation"
+msgstr "Image saturation"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr "Adjusts the saturation of the picture coming from the camera"
+msgid "Adjusts the saturation of the image coming from the camera"
+msgstr "Adjusts the saturation of the image coming from the camera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
-msgstr "Picture hue"
+msgid "Image hue"
+msgstr "Image hue"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr "Adjusts the hue (color tint) of the picture coming from the camera"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
+msgstr "Adjusts the hue (color tint) of the image coming from the camera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
-msgstr "Video Path"
+msgid "Video path"
+msgstr "Video path"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be used."
 msgstr "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be used."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
-msgstr "Photo Path"
+msgid "Photo path"
+msgstr "Photo path"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" will be used."
@@ -342,9 +342,9 @@ msgstr "צליל הצמצם"
 msgid "Select"
 msgstr "בחירה"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "_צלם תמונה"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "צילום תמונה"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -368,11 +368,11 @@ msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
 #: ../libcheese/cheese-camera.c:453
-#: ../libcheese/cheese-camera.c:1567
+#: ../libcheese/cheese-camera.c:1574
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "רכיב אחד או יותר של gstreamer חסר: "
 
-#: ../libcheese/cheese-camera.c:1527
+#: ../libcheese/cheese-camera.c:1533
 #, c-format
 msgid "No device found"
 msgstr "לא נמצא התקן"
@@ -382,13 +382,15 @@ msgstr "לא נמצא התקן"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1802
+#: ../libcheese/cheese-camera.c:1809
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "ללא אפקט"
 
@@ -452,21 +454,21 @@ msgstr "ע_זרה"
 msgid "_Quit"
 msgstr "י_ציאה"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "- Take photos and videos from your webcam"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "Run '%s --help' to see a full list of available command line options.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Another instance of Cheese is currently running\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:530
 msgid "translator-credits"
 msgstr ""
 "יאיר הרשקוביץ <yairhr@gmail.com>\n"
@@ -475,7 +477,7 @@ msgstr ""
 "פרויקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:532
 msgid "Cheese Website"
 msgstr "אתר האינטרנט של Cheese"
 
@@ -521,12 +523,11 @@ msgid "Stop recording"
 msgstr "הפסקת ההקלטה"
 
 #: ../src/cheese-window.vala:934
-#: ../src/cheese-window.vala:1511
+#: ../src/cheese-window.vala:1525
 msgid "_Record a Video"
 msgstr "הק_לטת וידאו"
 
 #: ../src/cheese-window.vala:935
-#: ../src/cheese-window.vala:1512
 msgid "Record a video"
 msgstr "הקלטת וידאו"
 
@@ -544,20 +545,39 @@ msgid "Take Multiple Photos"
 msgstr "צילום מספר תמונות"
 
 #: ../src/cheese-window.vala:995
-#: ../src/cheese-window.vala:1519
 msgid "Take multiple photos"
 msgstr "צילום מספר תמונות"
 
-#: ../src/cheese-window.vala:1150
+#: ../src/cheese-window.vala:1160
 msgid "No effects found"
 msgstr "לא נמצאו אפקטים"
 
-#: ../src/cheese-window.vala:1518
+#: ../src/cheese-window.vala:1526
+msgid "Record a video using a webcam"
+msgstr "הקלטת וידאו בעזרת מצלמת הרשת"
+
+#: ../src/cheese-window.vala:1532
 msgid "Take _Multiple Photos"
 msgstr "_צילום מספר תמונות"
 
-#~ msgid "Take a Photo"
-#~ msgstr "צילום תמונה"
+#: ../src/cheese-window.vala:1533
+msgid "Take multiple photos using a webcam"
+msgstr "צילום מספר תמונות בעזרת מצלמת הרשת"
+
+#~ msgid "Previous"
+#~ msgstr "הקודם"
+
+#~ msgid "Next"
+#~ msgstr "הבא"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "יציאה ממסך מלא"
+
+#~ msgid "Picture hue"
+#~ msgstr "Picture hue"
+
+#~ msgid "_Take a photo"
+#~ msgstr "_צלם תמונה"
 
 #~ msgid "_Cheese"
 #~ msgstr "ל_חייך"
