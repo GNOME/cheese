@@ -6,20 +6,24 @@
 # Žygimantas Beručka <zygis@gnome.org>, 2010, 2012.
 # Rimas Kudelis <rq@akl.lt>, 2010.
 # Algimantas Margevičius <gymka@mail.ru>, 2011.
+# Aurimas Černius <aurisc4@gmail.com>, 2013.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-29 16:16+0000\n"
-"PO-Revision-Date: 2013-01-14 22:38+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2013-04-19 19:40+0000\n"
+"PO-Revision-Date: 2013-05-26 22:20+0300\n"
 "Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
-"Language-Team: Lithuanian\n"
+"Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Gtranslator 2.91.6\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/cheese-actions.ui.h:1
@@ -62,37 +66,35 @@ msgstr "Vaizdo įrašo veiksena"
 msgid "Photo burst mode"
 msgstr "Fotografijų pliūpsninė veiksena"
 
-#: ../data/cheese-main-window.ui.h:4
-#: ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "Fotografuoti"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
+#| msgid "Take a photo"
+msgid "Take a photo using a webcam"
+msgstr "Fotografuoti naudojant internetinę kamerą"
 
-#: ../data/cheese-main-window.ui.h:5
-#: ../src/cheese-window.vala:1503
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
+#: ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "_Fotografuoti"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "Ankstesnis"
+msgid "Navigate to the previous page of effects"
+msgstr "Eiti į ankstesnį efektų puslapį"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
 msgstr "_Efektai"
 
-#: ../data/cheese-main-window.ui.h:8
-#: ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
 msgid "_Effects"
 msgstr "_Efektai"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "Kitas"
+msgid "Navigate to the next page of effects"
+msgstr "Eiti į kitą efektų puslapį"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "Palikti viso ekrano veikseną"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "Palikti viso ekrano veikseną ir grįžti į lango veikseną"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -147,8 +149,9 @@ msgid "_Countdown"
 msgstr "_Atgalinis skaičiavimas"
 
 #: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
-msgstr "_Blykstė"
+#| msgid "Fire _Flash"
+msgid "Fire _flash"
+msgstr "_Blykstelėti"
 
 #: ../data/cheese-prefs.ui.h:14
 msgid "Burst mode"
@@ -166,9 +169,8 @@ msgstr "Intervalas tarp nuotraukų (sekundėmis)"
 msgid "Capture"
 msgstr "Fotografuoti"
 
-#: ../data/cheese.desktop.in.in.h:1
-#: ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -176,10 +178,10 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese internetinės kameros programa"
 
-#: ../data/cheese.desktop.in.in.h:3
-#: ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Fotografuokite ir filmuokite internetine kamera, naudokite smagius efektus"
+msgstr ""
+"Fotografuokite ir filmuokite internetine kamera, naudokite smagius efektus"
 
 #: ../data/cheese.desktop.in.in.h:4
 msgid "photo;video;webcam;"
@@ -202,19 +204,23 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "Atgalinės atskaitos trukmė sekundėmis prieš fotografuojant"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
+#| msgid "Fire flash before taking a picture"
+msgid "Fire flash before taking a photo"
 msgstr "Prieš fotografuojant blykstelti"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
-msgstr "Pasirinkus bus fotografuojama su blykste"
+#| msgid "Set to true to fire a flash when taking a picture"
+msgid "Set to true to fire a flash before taking a photo"
+msgstr "Nustačius teigiamai bus fotografuojama su blykste"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
 msgstr "Kameros įrenginio sekos indikatorius"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
-msgid "The path to the device node which points to the camera, for example /dev/video0"
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
 msgstr "Kelias iki įrenginio mazgo, kuris nukreipia į kamerą, pvz. /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
@@ -258,60 +264,82 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "Vaizdo įrašo, gauto iš kameros, aukštis pikseliais"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
-msgstr "Nuotraukos šviesumas"
+#| msgid "Picture brightness"
+msgid "Image brightness"
+msgstr "Paveikslėlio šviesumas"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr "Reguliuoja kameros teikiamo vaizdo šviesumą"
+#| msgid "Adjusts the brightness of the picture coming from the camera"
+msgid "Adjusts the brightness of the image coming from the camera"
+msgstr "Reguliuoja kameros sukuriamo paveikslėlio šviesumą"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
-msgstr "Nuotraukos kontrastas"
+#| msgid "Picture contrast"
+msgid "Image contrast"
+msgstr "Paveikslėlio kontrastas"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr "Reguliuoja kameros teikiamo vaizdo kontrastą"
+#| msgid "Adjusts the contrast of the picture coming from the camera"
+msgid "Adjusts the contrast of the image coming from the camera"
+msgstr "Reguliuoja kameros sukuriamo paveikslėlio kontrastą"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
+#| msgid "Picture saturation"
+msgid "Image saturation"
 msgstr "Paveikslėlio grynis"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr "Reguliuoja kameros teikiamo vaizdo grynį"
+#| msgid "Adjusts the saturation of the picture coming from the camera"
+msgid "Adjusts the saturation of the image coming from the camera"
+msgstr "Reguliuoja kameros sukuriamo paveikslėlio grynį"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
-msgstr "Paveikslėlio atspalvis"
+#| msgid "Image"
+msgid "Image hue"
+msgstr "Paveikslėlio atspalvis"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr "Reguliuoja kameros teikiamo vaizdo spalvų atspalvį"
+#| msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
+msgstr "Reguliuoja kameros teikiamo paveikslėlio atspalvį"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
+#| msgid "Video Path"
+msgid "Video path"
 msgstr "Vaizdo įrašų kelias"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-msgid "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Nurodo kelią, kur bus saugomi vaizdo įrašai. Nenurodžius, bus naudojamas „XDG_VIDEO/Webcam“."
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"Nurodo kelią, kur bus saugomi vaizdo įrašai. Nenurodžius, bus naudojamas "
+"„XDG_VIDEO/Webcam“."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
+#| msgid "Photo Path"
+msgid "Photo path"
 msgstr "Nuotraukų kelias"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-msgid "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Nurodo kelią, kur bus saugomos nuotraukos. Nenurodžius, bus naudojamas „XDG_PHOTO/Webcam“."
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"Nurodo kelią, kur bus saugomos nuotraukos. Nenurodžius, bus naudojamas "
+"„XDG_PHOTO/Webcam“."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Whether to start in wide mode"
 msgstr "Ar pradėti darbą plačiojoje veiksenoje"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid "If set to true, Cheese will start up in wide mode, with the image collection placed on the right-hand side. Useful with small screens."
-msgstr "Pažymėjus šią parinktį, Cheese bus paleista plačiojoje veiksenoje, kur paveikslėlių galerija yra dešinėje pusėje. Tai patogu turint mažesnį ekraną."
+msgid ""
+"If set to true, Cheese will start up in wide mode, with the image collection "
+"placed on the right-hand side. Useful with small screens."
+msgstr ""
+"Pažymėjus šią parinktį, Cheese bus paleista plačiojoje veiksenoje, kur "
+"paveikslėlių galerija yra dešinėje pusėje. Tai patogu turint mažesnį ekraną."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Whether to start in fullscreen"
@@ -326,8 +354,14 @@ msgid "Time between photos in burst mode"
 msgstr "Intervalas tarp nuotraukų pliūpsnio veiksenoje"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:36
-msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos. If the burst delay is less than the countdown duration, the countdown duration will be used instead."
-msgstr "Laiko tarpas (milisekundėmis), kurį bus laukiama tarp fotografavimų pliūpsnio veiksenoje. Jei pliūpsnio vėlavimas yra mažesnis nei atgalinės atskaitos trukmė, bus naudojama atskaitos trukmė."
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr ""
+"Laiko tarpas (milisekundėmis), kurį bus laukiama tarp fotografavimų "
+"pliūpsnio veiksenoje. Jei pliūpsnio vėlavimas yra mažesnis nei atgalinės "
+"atskaitos trukmė, bus naudojama atskaitos trukmė."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:37
 msgid "Number of photos in burst mode"
@@ -337,8 +371,7 @@ msgstr "Nuotraukų skaičius vieno pliūpsnio veiksenoje"
 msgid "The number of photos to take in a single burst."
 msgstr "Nuotraukų skaičius viename pliūpsnyje."
 
-#: ../libcheese/cheese-avatar-chooser.c:138
-#: ../src/cheese-window.vala:807
+#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
 msgid "Shutter sound"
 msgstr "Užrakto garsas"
 
@@ -346,9 +379,9 @@ msgstr "Užrakto garsas"
 msgid "Select"
 msgstr "Pasirinkti"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "_Fotografuoti"
+#: ../libcheese/cheese-avatar-chooser.c:263
+msgid "Take a Photo"
+msgstr "Fotografuoti"
 
 #: ../libcheese/cheese-avatar-chooser.c:294
 msgid "_Discard photo"
@@ -371,8 +404,7 @@ msgstr "Nežinomas įrenginys"
 msgid "Cancellable initialization not supported"
 msgstr "Atšauktina inicializacija nepalaikoma"
 
-#: ../libcheese/cheese-camera.c:453
-#: ../libcheese/cheese-camera.c:1567
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1568
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Nėra vieno ar daugiau reikalingų GStreamer elementų:"
 
@@ -386,13 +418,15 @@ msgstr "Įrenginių nerasta"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1802
+#: ../libcheese/cheese-camera.c:1803
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
 msgid "No Effect"
 msgstr "Jokių efektų"
 
@@ -456,25 +490,26 @@ msgstr "_Žinynas"
 msgid "_Quit"
 msgstr "_Baigti darbą"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
 msgstr "– Fotografuokite ir filmuokite savo internetine kamera"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr "Paleiskite „%s --help“ visų galimų komandų eilutės parinkčių sąrašui gauti.\n"
+msgstr ""
+"Paleiskite „%s --help“ visų galimų komandų eilutės parinkčių sąrašui gauti.\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "Jau veikia kitas Cheese egzempliorius\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr "Gintautas Miliauskas <gintas@akl.lt>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "Cheese tinklalapis"
 
@@ -521,14 +556,11 @@ msgstr "_Sustabdyti įrašymą"
 msgid "Stop recording"
 msgstr "Sustabdyti įrašymą"
 
-#: ../src/cheese-window.vala:934
-#: ../src/cheese-window.vala:1508
-#| msgid "Record a Video"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
 msgid "_Record a Video"
 msgstr "Į_rašyti vaizdo įrašą"
 
 #: ../src/cheese-window.vala:935
-#: ../src/cheese-window.vala:1509
 msgid "Record a video"
 msgstr "Įrašyti vaizdo įrašą"
 
@@ -546,17 +578,24 @@ msgid "Take Multiple Photos"
 msgstr "Fotografuoti keletą kartų"
 
 #: ../src/cheese-window.vala:995
-#: ../src/cheese-window.vala:1516
 msgid "Take multiple photos"
 msgstr "Fotografuoti keletą kartų"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "Efektų nerasta"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1517
+#| msgid "Record a video"
+msgid "Record a video using a webcam"
+msgstr "Įrašyti vaizdo įrašą naudojant internetinę kamerą"
+
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "Fotografuoti _keletą kartų"
 
-#~ msgid "Take a Photo"
-#~ msgstr "Fotografuoti"
+#: ../src/cheese-window.vala:1524
+#| msgid "Take multiple photos"
+msgid "Take multiple photos using a webcam"
+msgstr "Fotografuoti keletą kartų naudojant internetinę kamerą"
+
