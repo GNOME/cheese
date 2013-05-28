@@ -1,6 +1,20 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.2
+  - Make maintainer.sh compliant with POSIX sh
+  - Post-release bump to 3.9.2
+  - Disable the shoot action if the effects are shown
+    Fixes bug 700317.
+  - Stop the running countdown on destruction
+    Fixes bug 700315.
+  - Added/Updated Translations
+    - he, courtesy of Yaron Shahrabani
+    - lt, courtesy of Aurimas Černius
+    - nb, courtesy of Kjartan Maraas
+    - sk, courtesy of Pavol Klačanský
+    - sl, courtesy of Matej Urbančič
+
 version 3.9.1
   - Fix UI string in avatar chooser test
   - Use AM_VALAFLAGS rather than VALAFLAGS
