@@ -30,7 +30,7 @@ SUBJECT="ANNOUNCE: $PACKAGE_NAME $PACKAGE_VERSION released"
 ###############################################
 ###############################################
 
-function show_help() {
+show_help() {
   echo "OPTIONS"
   echo "  -n --prepare-news [TAG]     - prepare news file"
   echo "  -l --list-changes [TAG]     - list the changes"
@@ -40,7 +40,7 @@ function show_help() {
   exit
 }
 
-function check_tag() {
+check_tag() {
   if [ -z $1 ]; then
     echo "TAG missing, please specify the tag of the last release"
     echo
@@ -52,8 +52,8 @@ function check_tag() {
   fi
 }
 
-function create_release_mail() {
-  IFS=. read one two three <<< "$PACKAGE_VERSION"
+create_release_mail() {
+  IFS=. echo "$PACKAGE_VERSION" | read one two three
   PACKAGE_DOWNLOAD="$GNOME_SERVER$PACKAGE_MODULE/$one.$two/"
 
   NEWS_LINE_BEGIN=`expr 1 + $(grep -m2 -n "version [0-9]\+.[0-9]\+" $PACKAGE_NEWS_FILE | grep $PACKAGE_VERSION | sed "s/:.*$//")`
@@ -90,15 +90,15 @@ $PACKAGE_WEBSITE
 "
 
   URL="mailto:$TO?subject=$SUBJECT&body=$TEMPLATE"
-  gnome-open "$URL"
+  xdg-open "$URL"
 }
 
 
-function diff_files() {
+diff_files() {
   git diff $TAG..HEAD --name-only -- $1 | grep "\.po$"
 }
 
-function list_translators() {
+list_translators() {
   PO_FILES=$(diff_files po)
   HELP_FILES=$(diff_files help)
 
@@ -116,7 +116,7 @@ function list_translators() {
   ) | sort | uniq
 }
 
-function list_changes() {
+list_changes() {
   git log $TAG.. --pretty="format:  - %s%n%b" --no-color | \
     fmt --split-only | \
     sed "s/^ *\([A-Za-z]\)/    \1/"
@@ -157,4 +157,3 @@ case "$1" in
             show_help
             ;;
 esac
-
