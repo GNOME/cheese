@@ -102,6 +102,7 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
   gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
                                      GTK_RESPONSE_ACCEPT,
                                      TRUE);
+  gtk_widget_set_sensitive (priv->take_button, TRUE);
 
   gdk_threads_leave ();
 
@@ -126,6 +127,7 @@ take_button_clicked_cb (GtkButton           *button,
   camera = cheese_widget_get_camera (CHEESE_WIDGET (priv->camera));
   if (priv->photo_taken_id == 0)
   {
+    gtk_widget_set_sensitive (priv->take_button, FALSE);
     priv->photo_taken_id = g_signal_connect (G_OBJECT (camera), "photo-taken",
                                              G_CALLBACK (cheese_widget_photo_taken_cb), chooser);
   }
