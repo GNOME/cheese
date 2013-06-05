@@ -28,14 +28,8 @@ using Eog;
 using Gst;
 using CanberraGtk;
 
-[DBus(name = "org.freedesktop.PackageKit.Modify")]
-interface PkProxy : GLib.Object {
-        public abstract async void install_catalogs (uint xid, string[] catalog_files, string interaction) throws IOError;
-}
-
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 const uint EFFECTS_PER_PAGE = 9;
-const string SENDTO_EXEC = "nautilus-sendto";
 
 public class Cheese.MainWindow : Gtk.ApplicationWindow
 {
@@ -83,7 +77,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
   private Gtk.Action       effects_page_next_action;
-  private Gtk.Action       share_action;
 
   private bool is_fullscreen;
   private bool is_wide_mode;
@@ -103,8 +96,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Cheese.EffectsManager    effects_manager;
 
   private Cheese.Effect selected_effect;
-
-  private Cheese.ShareableMedia shareable_media;
 
   /**
    * Responses from the delete files confirmation dialog.
@@ -354,51 +345,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       }
     } catch (Error error) {
       warning ("Error while trashing files: %s", error.message);
-    }
-  }
-
-  /**
-   * Share the selected file(s) in the thumbview.
-   *
-   * A dialog is shown to the user, where the technology for sharing the
-   * image or video can be selected.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_share_files (Gtk.Action action)
-  {
-    bool nautilus_sendto_installed = Environment.find_program_in_path (SENDTO_EXEC) != null;
-
-    if (!nautilus_sendto_installed)
-      install_packages.begin ((obj, res) => {
-                              install_packages.end (res);
-                              get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.LEFT_PTR));
-                             });
-    else
-      shareable_media.share_files (thumb_view.get_selected_images_list ());
-  }
-
-  /**
-   * Install nautilus-sendto runtime dependency.
-   *
-   */
-  private async void install_packages ()
-  {
-    get_window ().set_cursor (new Gdk.Cursor (Gdk.CursorType.WATCH));
-
-    try {
-      PkProxy pk_proxy = yield GLib.Bus.get_proxy (BusType.SESSION,
-                                                   "org.freedesktop.PackageKit",
-                                                   "/org/freedesktop/PackageKit");
-
-      const string CATALOG = "cheese.catalog";
-      string[] catalogs = { get_data_file_dir (CATALOG) };
-      yield pk_proxy.install_catalogs ((uint) Gdk.X11Window.get_xid (this.get_window ()),
-                                       catalogs,
-                                       ""); // Use interaction defaults.
-    } catch (IOError error) {
-      critical ("D-Bus error: %s\n", error.message);
     }
   }
 
@@ -1414,9 +1360,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     wide_mode_action         = gtk_builder.get_object ("wide_mode") as Gtk.ToggleAction;
     effects_page_next_action = gtk_builder.get_object ("effects_page_next") as Gtk.Action;
     effects_page_prev_action = gtk_builder.get_object ("effects_page_prev") as Gtk.Action;
-    share_action             = gtk_builder.get_object ("share") as Gtk.Action;
-
-    shareable_media = new Cheese.ShareableMedia (this);
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */

@@ -200,7 +200,6 @@ cheese_SOURCES = \
 	src/cheese-preferences.vala \
 	src/cheese-window.vala \
 	src/cheese-main.vala \
-	src/cheese-shareable-media.vala \
 	src/thumbview/cheese-thumb-view.c \
 	src/thumbview/cheese-thumbnail.c \
 	src/thumbview/eog-thumb-nav.c
@@ -375,10 +374,6 @@ dist_pixmaps_DATA = \
 	data/pixmaps/cheese-1.svg \
 	data/pixmaps/cheese-2.svg \
 	data/pixmaps/cheese-3.svg
-
-catalogdir = $(pkgdatadir)
-dist_catalog_DATA = \
-	data/cheese.catalog
 
 # Tests.
 check_PROGRAMS = \

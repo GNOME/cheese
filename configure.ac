@@ -140,24 +140,6 @@ AS_IF([test "x$GST_INSPECT" = "xnotfound"],
         AC_MSG_WARN([$gst_runtime_plugin was not found. It needs to be installed before Cheese is run])])
    done])
 
-# Check for nautilus-sendto runtime dependency.
-NAUTILUS_SENDTO_DEP_MSG="This is a runtime dependency just needed for using the sharing functionality in Cheese."
-NAUTILUS_SENDTO_REQUIRED=2.91.0
-AC_PATH_PROGS([NAUTILUS_SENDTO], [nautilus-sendto], [notfound])
-AS_IF([test "x$NAUTILUS_SENDTO" = "xnotfound"],
-  [AC_MSG_WARN([Unable to find nautilus-sendto >= $NAUTILUS_SENDTO_REQUIRED in the path. $NAUTILUS_SENDTO_DEP_MSG])],
-  [NAUTILUS_SENDTO_SYSTEM=`nautilus-sendto --version 2>/dev/null | $SED 's/nautilus-sendto //'`
-   AS_IF([echo $NAUTILUS_SENDTO_SYSTEM | $GREP 'version' >/dev/null],
-     [AC_MSG_WARN([Unable to check the version of nautilus-sendto, it is \
-probably too old. At least $NAUTILUS_SENDTO_REQUIRED is required. \
-$NAUTILUS_SENDTO_DEP_MSG])],
-      [AS_VERSION_COMPARE([$NAUTILUS_SENDTO_SYSTEM], [$NAUTILUS_SENDTO_REQUIRED],
-         [NS_VERSION_COMPARE=0], [NS_VERSION_COMPARE=1], [NS_VERSION_COMPARE=1])
-       AS_IF([test $NS_VERSION_COMPARE = 0],
-         [AC_MSG_WARN([Unable to find nautilus-sendto >= \
-$NAUTILUS_SENDTO_REQUIRED in the path. The current installed version is \
-$NAUTILUS_SENDTO_SYSTEM. $NAUTILUS_SENDTO_DEP_MSG])])])])
-
 # Check for GLib testing utilities.
 AC_PATH_PROG([GTESTER], [gtester], [notfound])
 AC_PATH_PROG([GTESTER_REPORT], [gtester-report], [notfound])
