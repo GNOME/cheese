@@ -19,20 +19,20 @@ msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-09-23 03:04+0800\n"
-"Last-Translator: YunQiang Su <wzssyqa@gmail.com>\n"
+"POT-Creation-Date: 2013-05-13 21:22+0000\n"
+"PO-Revision-Date: 2013-05-25 17:55+0800\n"
+"Last-Translator: tuhaihe <1132321739qq@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bits\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.5\n"
+"X-Generator: Poedit 1.5.4\n"
 
 #: ../data/cheese-actions.ui.h:1
 msgid "Share…"
-msgstr "共享..."
+msgstr "分享..."
 
 #: ../data/cheese-actions.ui.h:2
 msgid "Save _As…"
@@ -71,11 +71,11 @@ msgid "Photo burst mode"
 msgstr "连拍模式"
 
 #: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
+#: ../src/cheese-window.vala:1512
 msgid "Take a photo"
 msgstr "拍照"
 
-#: ../data/cheese-main-window.ui.h:5
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
 msgid "_Take a Photo"
 msgstr "拍照(_T)"
 
@@ -172,7 +172,7 @@ msgid "Capture"
 msgstr "抓取"
 
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../src/cheese-main.vala:524
 msgid "Cheese"
 msgstr "茄子"
 
@@ -180,9 +180,13 @@ msgstr "茄子"
 msgid "Cheese Webcam Booth"
 msgstr "茄子大头贴"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "使用摄像头拍照或录像，并加上有趣的图像效果"
+
+#: ../data/cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "photo;video;webcam;视频;摄像头;拍照;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -366,28 +370,28 @@ msgstr "拍照(_T)"
 msgid "_Discard photo"
 msgstr "丢弃照片(_D)"
 
-#: ../libcheese/cheese-camera-device.c:390
+#: ../libcheese/cheese-camera-device.c:401
 msgid "Device capabilities not supported"
 msgstr "不支持该设备的全部功能"
 
-#: ../libcheese/cheese-camera-device.c:419
+#: ../libcheese/cheese-camera-device.c:430
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "初始化设备 %s 以探测其能力时失败"
 
-#: ../libcheese/cheese-camera-device.c:608
+#: ../libcheese/cheese-camera-device.c:619
 msgid "Unknown device"
 msgstr "未知设备"
 
-#: ../libcheese/cheese-camera-device.c:631
+#: ../libcheese/cheese-camera-device.c:642
 msgid "Cancellable initialization not supported"
 msgstr "不支持可中断初始化"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1568
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 GStreamer 元素："
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1527
 #, c-format
 msgid "No device found"
 msgstr "未发现设备"
@@ -397,13 +401,13 @@ msgstr "未发现设备"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1803
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "无效果"
 
@@ -467,21 +471,21 @@ msgstr "帮助(_H)"
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-main.vala:182
 msgid "- Take photos and videos from your webcam"
-msgstr "- 使用摄像头拍摄照片和视频"
+msgstr "- 使用摄像头拍照和视频"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-main.vala:194
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options.\n"
 msgstr "运行“%s --help”来查看可用命令行选项的完整列表。\n"
 
-#: ../src/cheese-main.vala:204
+#: ../src/cheese-main.vala:209
 #, c-format
 msgid "Another instance of Cheese is currently running\n"
 msgstr "另一个 Cheese 实例已在运行\n"
 
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-main.vala:525
 msgid "translator-credits"
 msgstr ""
 "YangZhang <zyangmath@gmail.com>, 2008\n"
@@ -494,16 +498,17 @@ msgstr ""
 "ben <benbenhappy2008@gmail.com>, 2011\n"
 "YunQiang Su <wzssyqa@gmail.com>, 2011.\n"
 "chiachen <luojiazhen@gmail.com>, 2011\n"
-"Wylmer Wang<wantinghard@gmail.com>, 2011"
+"Wylmer Wang<wantinghard@gmail.com>, 2011\n"
+"tuhaihe <1132321739qq@gmail.com>, 2013"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-main.vala:527
 msgid "Cheese Website"
 msgstr "茄子网站"
 
 #: ../src/cheese-window.vala:192
 #, c-format
 msgid "Could not open %s"
-msgstr "打不开 %s"
+msgstr "无法打开 %s"
 
 #: ../src/cheese-window.vala:220
 #, c-format
@@ -539,11 +544,11 @@ msgstr "停止录像(_R)"
 msgid "Stop recording"
 msgstr "停止录像"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-msgid "Record a Video"
-msgstr "录像"
+#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+msgid "_Record a Video"
+msgstr "录像(_R)"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1517
 msgid "Record a video"
 msgstr "录像"
 
@@ -560,21 +565,20 @@ msgstr "停止拍照"
 msgid "Take Multiple Photos"
 msgstr "拍摄多张照片"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1524
 msgid "Take multiple photos"
 msgstr "拍摄多张照片"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1155
 msgid "No effects found"
 msgstr "未发现效果"
 
-#: ../src/cheese-window.vala:1503
-msgid "Take a Photo"
-msgstr "拍照"
-
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1523
 msgid "Take _Multiple Photos"
 msgstr "拍摄多张照片(_M)"
+
+#~ msgid "Take a Photo"
+#~ msgstr "拍照"
 
 #~ msgid "_Cheese"
 #~ msgstr "茄子(_C)"
