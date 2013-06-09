@@ -89,7 +89,7 @@ struct _CheeseCameraPrivate
   ClutterTexture *video_texture;
 
   GstElement *effect_filter;
-  GstElement *video_balance, *csp_post_balance;
+  GstElement *video_balance;
   GstElement *camera_tee, *effects_tee;
   GstElement *main_valve, *effects_valve;
 
@@ -608,29 +608,22 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
     cheese_camera_set_error_element_not_found (error, "videobalance");
     return FALSE;
   }
-  if ((priv->csp_post_balance = gst_element_factory_make ("videoconvert", "csp_post_balance")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "videoconvert");
-    return FALSE;
-  }
 
   if (error != NULL && *error != NULL)
     return FALSE;
 
   gst_bin_add_many (GST_BIN (priv->video_filter_bin), priv->camera_tee,
                     priv->main_valve, priv->effect_filter,
-                    priv->video_balance, priv->csp_post_balance,
-                    priv->effects_preview_bin, NULL);
+                    priv->video_balance, priv->effects_preview_bin, NULL);
 
   ok &= gst_element_link_many (priv->camera_tee, priv->main_valve,
-                               priv->effect_filter, priv->video_balance,
-                               priv->csp_post_balance, NULL);
+                               priv->effect_filter, priv->video_balance, NULL);
   gst_pad_link (gst_element_get_request_pad (priv->camera_tee, "src_%u"),
                 gst_element_get_static_pad (priv->effects_preview_bin, "sink"));
 
   /* add ghostpads */
 
-  pad = gst_element_get_static_pad (priv->csp_post_balance, "src");
+  pad = gst_element_get_static_pad (priv->video_balance, "src");
   gst_element_add_pad (priv->video_filter_bin, gst_ghost_pad_new ("src", pad));
   gst_object_unref (GST_OBJECT (pad));
 
@@ -765,7 +758,9 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
     GST_INFO_OBJECT (camera, "SETTING caps %" GST_PTR_FORMAT, caps);
     g_object_set (gst_bin_get_by_name (GST_BIN (priv->video_source),
                   "video_source_filter"), "caps", caps, NULL);
-    g_object_set (priv->camerabin, "viewfinder-caps", caps, NULL);
+    g_object_set (priv->camerabin, "viewfinder-caps", caps,
+                  "image-capture-caps", caps, "video-capture-caps", caps,
+                  NULL);
   }
   gst_caps_unref (caps);
 }
