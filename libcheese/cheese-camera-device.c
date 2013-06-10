@@ -837,6 +837,7 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
   }
 
   subset_caps = gst_caps_intersect (desired_caps, device->priv->caps);
+  subset_caps = gst_caps_simplify (subset_caps);
   gst_caps_unref (desired_caps);
 
   GST_INFO ("Got %" GST_PTR_FORMAT, subset_caps);
