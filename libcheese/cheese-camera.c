@@ -426,11 +426,7 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
 
   if (priv->video_source == NULL)
   {
-    if (err != NULL)
-    {
-      g_error_free (err);
-      err = NULL;
-    }
+    g_clear_error(&err);
     return FALSE;
   }
 
@@ -868,7 +864,7 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
   g_free (effects_pipeline_desc);
   if (!effect_filter || (err != NULL))
   {
-    g_error_free (err);
+    g_clear_error (&err);
     g_warning ("Error with effect filter %s. Ignored", name);
     g_free (name);
     return NULL;
