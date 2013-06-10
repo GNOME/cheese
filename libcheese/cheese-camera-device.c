@@ -109,10 +109,26 @@ struct _CheeseCameraDevicePrivate
   gchar *name;
   guint  v4lapi_version;
   GstCaps *caps;
-  GList   *formats;
+  GList   *formats; /* list members are CheeseVideoFormatFull structs. */
 
   GError *construct_error;
 };
+
+/*
+ * This is our private version of CheeseVideoFormat, with extra fields added
+ * at the end. IMPORTANT the first fields *must* be kept in sync with the
+ * public CheeseVideoFormat, since in various places we cast pointers to
+ * CheeseVideoFormatFull to CheeseVideoFormat.
+ */
+typedef struct
+{
+  /* CheeseVideoFormat members keep synced with cheese-camera-device.h! */
+  gint width;
+  gint height;
+  /*< private >*/
+  gint fr_numerator;
+  gint fr_denominator;
+} CheeseVideoFormatFull;
 
 GQuark cheese_camera_device_error_quark (void);
 
@@ -145,8 +161,8 @@ G_DEFINE_BOXED_TYPE (CheeseVideoFormat, cheese_video_format,
 static gint
 compare_formats (gconstpointer a, gconstpointer b)
 {
-  const CheeseVideoFormat *c = a;
-  const CheeseVideoFormat *d = b;
+  const CheeseVideoFormatFull *c = a;
+  const CheeseVideoFormatFull *d = b;
 
   /* descending sort for rectangle area */
   return (d->width * d->height - c->width * c->height);
@@ -197,27 +213,145 @@ cheese_camera_device_filter_caps (CheeseCameraDevice *device, GstCaps *caps, GSt
 }
 
 /*
+ * cheese_camera_device_get_highest_framerate:
+ * @framerate: a #GValue holding a framerate cap
+ * @numerator: destination to store the numerator of the highest rate
+ * @denominator: destination to store the denominator of the highest rate
+ *
+ * Get the numerator and denominator for the highest framerate stored in
+ * a framerate cap.
+ *
+ * Note this function does not handle framerate ranges, if @framerate
+ * contains a range it will return 0/0 as framerate
+ */
+static void
+cheese_camera_device_get_highest_framerate (const GValue *framerate,
+                                            gint *numerator, gint *denominator)
+{
+  *numerator = 0;
+  *denominator = 0;
+
+  if (GST_VALUE_HOLDS_FRACTION (framerate))
+  {
+    *numerator = gst_value_get_fraction_numerator (framerate);
+    *denominator = gst_value_get_fraction_denominator (framerate);
+  }
+  else if (GST_VALUE_HOLDS_ARRAY (framerate))
+  {
+    float curr, highest = 0;
+    guint i, size = gst_value_array_get_size (framerate);
+
+    for (i = 0; i < size; i++)
+    {
+      const GValue *val = gst_value_array_get_value (framerate, i);
+
+      if (!GST_VALUE_HOLDS_FRACTION (val) ||
+          gst_value_get_fraction_denominator (val) == 0) {
+        continue;
+      }
+
+      curr = (float)gst_value_get_fraction_numerator (val) /
+             (float)gst_value_get_fraction_denominator (val);
+
+      if (curr > highest && curr <= CHEESE_MAXIMUM_RATE)
+      {
+        highest = curr;
+        *numerator = gst_value_get_fraction_numerator (val);
+        *denominator = gst_value_get_fraction_denominator (val);
+      }
+    }
+  }
+  else if (GST_VALUE_HOLDS_LIST (framerate))
+  {
+    float curr, highest = 0;
+    guint i, size = gst_value_list_get_size (framerate);
+
+    for (i = 0; i < size; i++)
+    {
+      const GValue *val = gst_value_list_get_value(framerate, i);
+
+      if (!GST_VALUE_HOLDS_FRACTION (val) ||
+          gst_value_get_fraction_denominator (val) == 0)
+      {
+        continue;
+      }
+
+      curr = (float)gst_value_get_fraction_numerator (val) /
+             (float)gst_value_get_fraction_denominator (val);
+
+      if (curr > highest && curr <= CHEESE_MAXIMUM_RATE)
+      {
+        highest = curr;
+        *numerator = gst_value_get_fraction_numerator (val);
+        *denominator = gst_value_get_fraction_denominator (val);
+      }
+    }
+  }
+}
+
+/*
+ * cheese_camera_device_format_update_framerate:
+ * @format: the #CheeseVideoFormatFull to update the framerate of
+ * @framerate: a #GValue holding a framerate cap
+ *
+ * This function updates the framerate in @format with the highest framerate
+ * from @framerate, if @framerate contains a framerate higher then the
+ * framerate currently stored in @format.
+ */
+static void
+cheese_camera_device_format_update_framerate (CheeseVideoFormatFull *format,
+                                              const GValue *framerate)
+{
+  float high, curr = (float)format->fr_numerator / format->fr_denominator;
+  gint high_numerator, high_denominator;
+
+  cheese_camera_device_get_highest_framerate (framerate, &high_numerator,
+                                              &high_denominator);
+  if (high_denominator == 0)
+    return;
+
+  high = (float)high_numerator / (float)high_denominator;
+
+  if (high > curr) {
+    format->fr_numerator = high_numerator;
+    format->fr_denominator = high_denominator;
+    GST_INFO ("%dx%d new framerate %d/%d", format->width, format->height,
+              format->fr_numerator, format->fr_denominator);
+  }
+}
+
+/*
  * cheese_camera_device_add_format:
  * @device: a #CheeseCameraDevice
- * @format: the #CheeseVideoFormat to add
+ * @format: the #CheeseVideoFormatFull to add
  *
  * Add the supplied @format to the list of formats supported by the @device.
  */
 static void
-cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *format)
+cheese_camera_device_add_format (CheeseCameraDevice *device,
+                                 CheeseVideoFormatFull *format,
+                                 const GValue *framerate)
 {
-  CheeseCameraDevicePrivate *priv =  device->priv;
+  CheeseCameraDevicePrivate *priv = device->priv;
   GList *l;
 
-  for (l = priv->formats; l != NULL; l = l->next)
+  for (l = priv->formats; l != NULL; l = g_list_next (l))
   {
-    CheeseVideoFormat *item = l->data;
+    CheeseVideoFormatFull *item = l->data;
+
     if ((item != NULL) &&
         (item->width == format->width) &&
-        (item->height == format->height)) return;
+        (item->height == format->height))
+    {
+      cheese_camera_device_format_update_framerate (item, framerate);
+      return;
+    }
   }
 
-  GST_INFO ("%dx%d", format->width, format->height);
+  cheese_camera_device_get_highest_framerate (framerate, &format->fr_numerator,
+                                              &format->fr_denominator);
+  GST_INFO ("%dx%d framerate %d/%d", format->width, format->height,
+            format->fr_numerator, format->fr_denominator);
 
   priv->formats = g_list_insert_sorted (priv->formats, format,
                                         compare_formats);
@@ -225,15 +359,15 @@ cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *
 
 /*
  * free_format_list_foreach:
- * @data: the #CheeseVideoFormat to free
+ * @data: the #CheeseVideoFormatFull to free
  * @user_data: unused
  *
- * Free the individual #CheeseVideoFormat.
+ * Free the individual #CheeseVideoFormatFull.
  */
 static void
 free_format_list_foreach (gpointer data, G_GNUC_UNUSED gpointer user_data)
 {
-  g_slice_free (CheeseVideoFormat, data);
+  g_slice_free (CheeseVideoFormatFull, data);
 }
 
 /*
@@ -272,19 +406,20 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
   for (i = 0; i < num_structures; i++)
   {
     GstStructure *structure;
-    const GValue *width, *height;
+    const GValue *width, *height, *framerate;
     structure = gst_caps_get_structure (priv->caps, i);
 
     width  = gst_structure_get_value (structure, "width");
     height = gst_structure_get_value (structure, "height");
+    framerate = gst_structure_get_value (structure, "framerate");
 
     if (G_VALUE_HOLDS_INT (width))
     {
-      CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
+      CheeseVideoFormatFull *format = g_slice_new0 (CheeseVideoFormatFull);
 
       gst_structure_get_int (structure, "width", &(format->width));
       gst_structure_get_int (structure, "height", &(format->height));
-      cheese_camera_device_add_format (device, format);
+      cheese_camera_device_add_format (device, format, framerate);
     }
     else if (GST_VALUE_HOLDS_INT_RANGE (width))
     {
@@ -311,14 +446,14 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
        * we use <= here (and not below) to make this work */
       while (cur_width <= max_width && cur_height <= max_height)
       {
-        CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
+        CheeseVideoFormatFull *format = g_slice_new0 (CheeseVideoFormatFull);
 
         /* Gstreamer wants resolutions for YUV formats where the width is
          * a multiple of 8, and the height is a multiple of 2 */
         format->width  = cur_width & ~7;
         format->height = cur_height & ~1;
 
-        cheese_camera_device_add_format (device, format);
+        cheese_camera_device_add_format (device, format, framerate);
 
         cur_width  *= 2;
         cur_height *= 2;
@@ -328,14 +463,14 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
       cur_height = max_height;
       while (cur_width > min_width && cur_height > min_height)
       {
-        CheeseVideoFormat *format = g_slice_new0 (CheeseVideoFormat);
+        CheeseVideoFormatFull *format = g_slice_new0 (CheeseVideoFormatFull);
 
         /* Gstreamer wants resolutions for YUV formats where the width is
          * a multiple of 8, and the height is a multiple of 2 */
         format->width  = cur_width & ~7;
         format->height = cur_height & ~1;
 
-        cheese_camera_device_add_format (device, format);
+        cheese_camera_device_add_format (device, format, framerate);
 
         cur_width  /= 2;
         cur_height /= 2;
