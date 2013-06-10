@@ -424,7 +424,7 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
   priv->video_source = gst_parse_bin_from_description (camera_input, TRUE, &err);
   g_free (camera_input);
 
-  if (priv->video_source == NULL || priv->camera_source == NULL)
+  if (priv->video_source == NULL)
   {
     if (err != NULL)
     {
@@ -433,7 +433,6 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
     }
     return FALSE;
   }
-  g_object_set (priv->camera_source, "video-source", priv->video_source, NULL);
 
   return TRUE;
 }
@@ -770,6 +769,7 @@ cheese_camera_play (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
   cheese_camera_set_new_caps (camera);
+  g_object_set (priv->camera_source, "video-source", priv->video_source, NULL);
   gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
   priv->pipeline_is_playing = TRUE;
 }
