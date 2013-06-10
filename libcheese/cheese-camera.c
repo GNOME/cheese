@@ -417,7 +417,7 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
   }
 
   camera_input = g_strdup_printf (
-    "%s name=video_source device=%s",
+    "%s name=video_source device=%s ! capsfilter name=video_source_filter",
     cheese_camera_device_get_src (selected_camera),
     cheese_camera_device_get_device_node (selected_camera));
 
@@ -762,7 +762,9 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
 
   if (!gst_caps_is_empty (caps))
   {
-    GST_INFO_OBJECT (camera, "SETTING caps%" GST_PTR_FORMAT, caps);
+    GST_INFO_OBJECT (camera, "SETTING caps %" GST_PTR_FORMAT, caps);
+    g_object_set (gst_bin_get_by_name (GST_BIN (priv->video_source),
+                  "video_source_filter"), "caps", caps, NULL);
     g_object_set (priv->camerabin, "viewfinder-caps", caps, NULL);
   }
   gst_caps_unref (caps);
