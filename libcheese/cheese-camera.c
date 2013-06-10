@@ -400,6 +400,9 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
   guint               i;
   CheeseCameraDevice *selected_camera;
 
+  if (priv->video_source)
+    gst_object_unref (priv->video_source);
+
   /* If we have a matching video device use that one, otherwise use the first */
   priv->selected_device = 0;
   selected_camera       = g_ptr_array_index (priv->camera_devices, 0);
