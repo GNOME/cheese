@@ -321,6 +321,33 @@ cheese_camera_device_format_update_framerate (CheeseVideoFormatFull *format,
 }
 
 /*
+ * cheese_camera_device_find_full_format:
+ * @device: a #CheeseCameraDevice
+ * @format: #CheeseVideoFormat to find the matching #CheeseVideoFormatFull for
+ *
+ * Find a #CheeseVideoFormatFull matching the passed in #CheeseVideoFormat.
+ */
+static CheeseVideoFormatFull *
+cheese_camera_device_find_full_format (CheeseCameraDevice *device,
+                                       CheeseVideoFormat* format)
+{
+  GList *l;
+
+  for (l = device->priv->formats; l != NULL; l = g_list_next (l))
+  {
+    CheeseVideoFormatFull *item = l->data;
+
+    if ((item != NULL) &&
+        (item->width == format->width) && (item->height == format->height))
+    {
+      return item;
+    }
+  }
+
+  return NULL;
+}
+
+/*
  * cheese_camera_device_add_format:
  * @device: a #CheeseCameraDevice
  * @format: the #CheeseVideoFormatFull to add
@@ -333,19 +360,16 @@ cheese_camera_device_add_format (CheeseCameraDevice *device,
                                  const GValue *framerate)
 {
   CheeseCameraDevicePrivate *priv = device->priv;
-  GList *l;
+  CheeseVideoFormatFull *existing;
 
-  for (l = priv->formats; l != NULL; l = g_list_next (l))
+  existing = cheese_camera_device_find_full_format (device,
+                                                    (CheeseVideoFormat *)format);
+
+  if (existing)
   {
-    CheeseVideoFormatFull *item = l->data;
-
-    if ((item != NULL) &&
-        (item->width == format->width) &&
-        (item->height == format->height))
-    {
-      cheese_camera_device_format_update_framerate (item, framerate);
-      return;
-    }
+    g_slice_free (CheeseVideoFormatFull, format);
+    cheese_camera_device_format_update_framerate (existing, framerate);
+    return;
   }
 
   cheese_camera_device_get_highest_framerate (framerate, &format->fr_numerator,
