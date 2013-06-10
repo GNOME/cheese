@@ -165,7 +165,7 @@ compare_formats (gconstpointer a, gconstpointer b)
  * Returns: the filtered #GstCaps
  */
 static GstCaps *
-cheese_camera_device_filter_caps (CheeseCameraDevice *device, const GstCaps *caps, GStrv formats)
+cheese_camera_device_filter_caps (CheeseCameraDevice *device, GstCaps *caps, GStrv formats)
 {
   GstCaps *filter;
   GstCaps *allowed;
