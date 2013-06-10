@@ -955,6 +955,26 @@ cheese_camera_device_get_best_format (CheeseCameraDevice *device)
   return format;
 }
 
+static GstCaps *
+cheese_camera_device_format_to_caps (const char *media_type,
+                                     CheeseVideoFormatFull *format)
+{
+  if (format->fr_numerator != 0 && format->fr_denominator != 0)
+  {
+    return gst_caps_new_simple (media_type,
+                                "framerate", GST_TYPE_FRACTION,
+                                format->fr_numerator, format->fr_denominator,
+                                "width", G_TYPE_INT, format->width,
+                                "height", G_TYPE_INT, format->height, NULL);
+  }
+  else
+  {
+    return gst_caps_new_simple (media_type,
+                                "width", G_TYPE_INT, format->width,
+                                "height", G_TYPE_INT, format->height, NULL);
+  }
+}
+
 /**
  * cheese_camera_device_get_caps_for_format:
  * @device: a #CheeseCameraDevice
@@ -968,31 +988,35 @@ GstCaps *
 cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
                                           CheeseVideoFormat  *format)
 {
+  CheeseVideoFormatFull *full_format;
   GstCaps *desired_caps;
   GstCaps *subset_caps;
   guint    i, length;
 
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
-  GST_INFO ("Getting caps for %dx%d", format->width, format->height);
+  full_format = cheese_camera_device_find_full_format (device, format);
 
-  desired_caps = gst_caps_new_simple (supported_formats[0],
-                                      "width", G_TYPE_INT,
-                                      format->width,
-                                      "height", G_TYPE_INT,
-                                      format->height,
-                                      NULL);
+  if (!full_format)
+  {
+    GST_INFO ("Getting caps for %dx%d: no such format!",
+              format->width, format->height);
+    return gst_caps_new_empty ();
+  }
 
+  GST_INFO ("Getting caps for %dx%d @ %d/%d fps",
+            full_format->width, full_format->height,
+            full_format->fr_numerator, full_format->fr_denominator);
+
+  desired_caps = cheese_camera_device_format_to_caps(supported_formats[0],
+                                                     full_format);
   length = g_strv_length (supported_formats);
+
   for (i = 1; i < length; i++)
   {
     gst_caps_append (desired_caps,
-                     gst_caps_new_simple (supported_formats[i],
-                                          "width", G_TYPE_INT,
-                                          format->width,
-                                          "height", G_TYPE_INT,
-                                          format->height,
-                                          NULL));
+                     cheese_camera_device_format_to_caps (supported_formats[i],
+                                                          full_format));
   }
 
   subset_caps = gst_caps_intersect (desired_caps, device->priv->caps);
