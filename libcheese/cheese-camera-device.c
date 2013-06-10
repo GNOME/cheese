@@ -219,7 +219,8 @@ cheese_camera_device_add_format (CheeseCameraDevice *device, CheeseVideoFormat *
 
   GST_INFO ("%dx%d", format->width, format->height);
 
-  priv->formats = g_list_append (priv->formats, format);
+  priv->formats = g_list_insert_sorted (priv->formats, format,
+                                        compare_formats);
 }
 
 /*
@@ -700,7 +701,7 @@ cheese_camera_device_get_format_list (CheeseCameraDevice *device)
 {
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
-  return g_list_sort (g_list_copy (device->priv->formats), compare_formats);
+  return g_list_copy (device->priv->formats);
 }
 
 /**
@@ -789,7 +790,7 @@ cheese_camera_device_get_best_format (CheeseCameraDevice *device)
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
   format = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
-                         cheese_camera_device_get_format_list (device)->data);
+                         device->priv->formats->data);
 
   GST_INFO ("%dx%d", format->width, format->height);
   return format;
