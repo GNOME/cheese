@@ -59,18 +59,6 @@ G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 
 #define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
 
-typedef enum {
-  GST_CAMERABIN_FLAG_SOURCE_RESIZE               = (1 << 0),
-  GST_CAMERABIN_FLAG_SOURCE_COLOR_CONVERSION     = (1 << 1),
-  GST_CAMERABIN_FLAG_VIEWFINDER_COLOR_CONVERSION = (1 << 2),
-  GST_CAMERABIN_FLAG_VIEWFINDER_SCALE            = (1 << 3),
-  GST_CAMERABIN_FLAG_AUDIO_CONVERSION            = (1 << 4),
-  GST_CAMERABIN_FLAG_DISABLE_AUDIO               = (1 << 5),
-  GST_CAMERABIN_FLAG_IMAGE_COLOR_CONVERSION      = (1 << 6),
-  GST_CAMERABIN_FLAG_VIDEO_COLOR_CONVERSION      = (1 << 7)
-} GstCameraBinFlags;
-
-
 struct _CheeseCameraPrivate
 {
   GstBus *bus;
