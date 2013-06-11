@@ -811,10 +811,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         }
         action_cancelled = false;
       }
-      else
-      if (is_effects_selector_active)
+      else if (is_effects_selector_active)
       {
-        // FIXME: Set the effects action to be inactive.
+        effects_toggle_button.set_active (false);
       }
     }
     return false;
@@ -950,7 +949,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     public void set_effects (bool effects)
     {
         toggle_effects_selector (effects);
-        // FIXME: Set the mode action to be inverse sensitivity to effects.
     }
 
   /**
@@ -964,12 +962,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
                                          Clutter.ButtonEvent event)
   {
     /* Disable the effects selector after selecting an effect. */
-    toggle_effects_selector(false);
+    effects_toggle_button.set_active (false);
 
     selected_effect = source.get_data ("effect");
     camera.set_effect (selected_effect);
     settings.set_string ("selected-effect", selected_effect.name);
-    // FIXME: Set the effects action to be inactive.
     return false;
   }
 
