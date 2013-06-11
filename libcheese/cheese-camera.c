@@ -76,7 +76,7 @@ struct _CheeseCameraPrivate
 
   ClutterTexture *video_texture;
 
-  GstElement *effect_filter;
+  GstElement *effect_filter, *effects_capsfilter;
   GstElement *video_balance;
   GstElement *camera_tee, *effects_tee;
   GstElement *main_valve, *effects_valve;
@@ -516,27 +516,39 @@ cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
   CheeseCameraPrivate *priv = camera->priv;
 
   gboolean ok = TRUE;
+  GstElement *scale;
   GstPad  *pad;
 
   g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
 
   priv->effects_preview_bin = gst_bin_new ("effects_preview_bin");
 
-  if ((priv->effects_tee = gst_element_factory_make ("tee", "effects_tee")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "tee");
-    return FALSE;
-  }
   if ((priv->effects_valve = gst_element_factory_make ("valve", "effects_valve")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "effects_valve");
     return FALSE;
   }
+  if ((scale = gst_element_factory_make ("videoscale", "effects_scale")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "videoscale");
+    return FALSE;
+  }
+  if ((priv->effects_capsfilter = gst_element_factory_make ("capsfilter", "effects_capsfilter")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "capsfilter");
+    return FALSE;
+  }
+  if ((priv->effects_tee = gst_element_factory_make ("tee", "effects_tee")) == NULL)
+  {
+    cheese_camera_set_error_element_not_found (error, "tee");
+    return FALSE;
+  }
 
-  gst_bin_add_many (GST_BIN (priv->effects_preview_bin),
-		    priv->effects_valve, priv->effects_tee, NULL);
+  gst_bin_add_many (GST_BIN (priv->effects_preview_bin), priv->effects_valve,
+                    scale, priv->effects_capsfilter, priv->effects_tee, NULL);
 
-  ok &= gst_element_link_many (priv->effects_valve, priv->effects_tee, NULL);
+  ok &= gst_element_link_many (priv->effects_valve, scale,
+                           priv->effects_capsfilter, priv->effects_tee, NULL);
 
   /* add ghostpads */
 
@@ -721,6 +733,8 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
   CheeseCameraPrivate *priv;
   CheeseCameraDevice *device;
   GstCaps *caps;
+  gchar *caps_desc;
+  int width, height;
 
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
@@ -745,6 +759,19 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
     g_object_set (priv->camerabin, "viewfinder-caps", caps,
                   "image-capture-caps", caps, "video-capture-caps", caps,
                   NULL);
+    gst_caps_unref (caps);
+
+    width = priv->current_format->width;
+    width = width > 640 ? 640 : width;
+    height = width * priv->current_format->height
+             / priv->current_format->width;
+    /* GStreamer will crash if this is not a multiple of 2! */
+    height = (height + 1) & ~1;
+    caps_desc = g_strdup_printf ("video/x-raw, width=%d, height=%d", width,
+                                 height);
+    caps = gst_caps_from_string (caps_desc);
+    g_free (caps_desc);
+    g_object_set (priv->effects_capsfilter, "caps", caps, NULL);
   }
   gst_caps_unref (caps);
 }
