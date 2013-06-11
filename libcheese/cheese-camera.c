@@ -892,7 +892,10 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
-  effect_filter = cheese_camera_element_from_effect (camera, effect);
+  if (strcmp (cheese_effect_get_pipeline_desc (effect), "identity") == 0)
+    effect_filter = gst_element_factory_make ("identity", "effect");
+  else
+    effect_filter = cheese_camera_element_from_effect (camera, effect);
   if (effect_filter != NULL)
     cheese_camera_change_effect_filter (camera, effect_filter);
 }
