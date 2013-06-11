@@ -80,6 +80,7 @@ struct _CheeseCameraPrivate
   GstElement *video_balance;
   GstElement *camera_tee, *effects_tee;
   GstElement *main_valve, *effects_valve;
+  gchar *current_effect_desc;
 
   gboolean is_recording;
   gboolean pipeline_is_playing;
@@ -599,6 +600,7 @@ cheese_camera_create_video_filter_bin (CheeseCamera *camera, GError **error)
     cheese_camera_set_error_element_not_found (error, "identity");
     return FALSE;
   }
+  priv->current_effect_desc = g_strdup("identity");
   if ((priv->video_balance = gst_element_factory_make ("videobalance", "video_balance")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "videobalance");
@@ -915,16 +917,29 @@ cheese_camera_element_from_effect (CheeseCamera *camera, CheeseEffect *effect)
 void
 cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
 {
+  const gchar *effect_desc = cheese_effect_get_pipeline_desc (effect);
   GstElement *effect_filter;
 
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
-  if (strcmp (cheese_effect_get_pipeline_desc (effect), "identity") == 0)
+  if (strcmp (camera->priv->current_effect_desc, effect_desc) == 0)
+  {
+    GST_INFO_OBJECT (camera, "Effect is: \"%s\", not updating", effect_desc);
+    return;
+  }
+
+  GST_INFO_OBJECT (camera, "Changing effect to: \"%s\"", effect_desc);
+
+  if (strcmp (effect_desc, "identity") == 0)
     effect_filter = gst_element_factory_make ("identity", "effect");
   else
     effect_filter = cheese_camera_element_from_effect (camera, effect);
   if (effect_filter != NULL)
+  {
     cheese_camera_change_effect_filter (camera, effect_filter);
+    g_free (camera->priv->current_effect_desc);
+    camera->priv->current_effect_desc = g_strdup(effect_desc);
+  }
 }
 
 /**
@@ -1232,6 +1247,7 @@ cheese_camera_finalize (GObject *object)
 
   if (priv->photo_filename)
     g_free (priv->photo_filename);
+  g_free (priv->current_effect_desc);
   g_free (priv->device_node);
   g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
 
