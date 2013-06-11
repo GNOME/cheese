@@ -81,8 +81,6 @@ struct _CheeseCameraPrivate
   GstElement *camera_tee, *effects_tee;
   GstElement *main_valve, *effects_valve;
 
-  GstCaps *preview_caps;
-
   gboolean is_recording;
   gboolean pipeline_is_playing;
   gchar *photo_filename;
