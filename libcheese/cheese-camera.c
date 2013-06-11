@@ -919,7 +919,8 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
   if (active)
   {
     g_object_set (G_OBJECT (priv->effects_valve), "drop", FALSE, NULL);
-    g_object_set (G_OBJECT (priv->main_valve), "drop", TRUE, NULL);
+    if (!priv->is_recording)
+      g_object_set (G_OBJECT (priv->main_valve), "drop", TRUE, NULL);
   }
   else
   {
