@@ -935,24 +935,44 @@ cheese_camera_device_get_device_node (CheeseCameraDevice *device)
  * cheese_camera_device_get_best_format:
  * @device: a #CheeseCameraDevice
  *
- * Get the #CheeseVideoFormat with the highest rsolution for this @device.
+ * Get the #CheeseVideoFormat with the highest resolution with a width greater
+ * than 640 pixels and a framerate of greater than 15 FPS for this @device. If
+ * no such format is found, get the highest available resolution instead.
  *
  * Returns: (transfer full): the highest-resolution supported
  * #CheeseVideoFormat
  */
-
 CheeseVideoFormat *
 cheese_camera_device_get_best_format (CheeseCameraDevice *device)
 {
-  CheeseVideoFormat *format;
+  CheeseVideoFormatFull *format = NULL;
+  GList *l;
 
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
-  format = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT,
-                         device->priv->formats->data);
+  /* Check for the highest resolution with width >= 640 and FPS >= 15. */
+  for (l = device->priv->formats; l != NULL; l = g_list_next (l))
+  {
+    CheeseVideoFormatFull *item = l->data;
+    float frame_rate = (float)item->fr_numerator / (float)item->fr_denominator;
 
-  GST_INFO ("%dx%d", format->width, format->height);
-  return format;
+    if (item->width >= 640 && frame_rate >= 15)
+    {
+      format = item;
+      break;
+    }
+  }
+
+  /* Else simply return the highest resolution. */
+  if (!format)
+  {
+    format = device->priv->formats->data;
+  }
+
+  GST_INFO ("%dx%d@%d/%d", format->width, format->height,
+            format->fr_numerator, format->fr_denominator);
+
+  return g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT, format);
 }
 
 static GstCaps *
