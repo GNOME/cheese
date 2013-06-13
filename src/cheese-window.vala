@@ -578,9 +578,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         thumbnails_bottom.remove (thumb_nav);
       }
       thumbnails_right.add (thumb_nav);
-      thumbnails_right.show_all ();
-      thumbnails_right.resize_children ();
-      thumbnails_bottom.hide ();
+
+            if (!is_fullscreen)
+            {
+                thumbnails_right.show_all ();
+                thumbnails_bottom.hide ();
+            }
     }
     else
     {
@@ -591,9 +594,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         thumbnails_right.remove (thumb_nav);
       }
       thumbnails_bottom.add (thumb_nav);
-      thumbnails_bottom.show_all ();
-      thumbnails_bottom.resize_children ();
-      thumbnails_right.hide ();
+
+            if (!is_fullscreen)
+            {
+                thumbnails_bottom.show_all ();
+                thumbnails_right.hide ();
+            }
     }
 
     /* handy trick to keep the window to the desired size while not
