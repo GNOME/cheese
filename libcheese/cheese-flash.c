@@ -76,29 +76,13 @@ struct _CheeseFlashPrivate
   guint fade_timeout_tag;
 };
 
-/*
- * cheese_flash_draw_event_cb:
- * @widget: the #CheeseFlash
- * @cr: the Cairo context
- * @user_data: the user data of the signal
- *
- * Draw the flash.
- *
- * Returns: %TRUE
- */
-static gboolean
-cheese_flash_draw_event_cb (GtkWidget *widget, cairo_t *cr, gpointer user_data)
-{
-  cairo_fill (cr);
-  return TRUE;
-}
-
 static void
 cheese_flash_init (CheeseFlash *self)
 {
   CheeseFlashPrivate *priv = self->priv = CHEESE_FLASH_GET_PRIVATE (self);
   cairo_region_t *input_region;
   GtkWindow *window = GTK_WINDOW (self);
+  const GdkRGBA white = { 1.0, 1.0, 1.0, 1.0 };
 
   priv->flash_timeout_tag = 0;
   priv->fade_timeout_tag  = 0;
@@ -113,13 +97,15 @@ cheese_flash_init (CheeseFlash *self)
   gtk_window_set_accept_focus (window, FALSE);
   gtk_window_set_focus_on_map (window, FALSE);
 
+  /* Make it white */
+  gtk_widget_override_background_color (GTK_WIDGET (window), GTK_STATE_NORMAL,
+                                        &white);
+
   /* Don't consume input */
   gtk_widget_realize (GTK_WIDGET (window));
   input_region = cairo_region_create ();
   gdk_window_input_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)), input_region, 0, 0);
   cairo_region_destroy (input_region);
-
-  g_signal_connect (G_OBJECT (window), "draw", G_CALLBACK (cheese_flash_draw_event_cb), NULL);
 }
 
 static void
