@@ -136,8 +136,7 @@ public class Cheese.PreferencesDialog : GLib.Object
     camera_model = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
 
     source_combo.model = camera_model;
-    if (devices.len <= 1)
-      source_combo.sensitive = false;
+    source_combo.sensitive = false;
 
     devices.foreach(add_camera_device);
 
@@ -499,6 +498,9 @@ public class Cheese.PreferencesDialog : GLib.Object
 
     if (camera.get_selected_device ().get_device_node () == dev.get_device_node ())
         source_combo.set_active_iter (iter);
+
+    if (camera_model.iter_n_children (null) > 1)
+      source_combo.sensitive = true;
   }
 
   /**
@@ -522,6 +524,9 @@ public class Cheese.PreferencesDialog : GLib.Object
           this.dialog.hide();
       }
       camera_model.remove (iter);
+
+      if (camera_model.iter_n_children (null) <= 1)
+        source_combo.sensitive = false;
   }
 
   /**
