@@ -205,6 +205,13 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   info = g_file_query_info (file, G_FILE_ATTRIBUTE_STANDARD_SIZE, 0, NULL,
                             NULL);
+  if (!info)
+  {
+    /* This is normal since photos first get created with a tmpname, ie:
+     * "2013-06-13-113155.jpg.DQRGYW" and then moved to their final name,
+     * we will get another append_item call for the final name. */
+    return;
+  }
   size = g_file_info_get_size (info);
   g_object_unref (info);
 
