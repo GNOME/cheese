@@ -384,12 +384,11 @@ cheese_camera_device_add_format (CheeseCameraDevice *device,
 /*
  * free_format_list_foreach:
  * @data: the #CheeseVideoFormatFull to free
- * @user_data: unused
  *
  * Free the individual #CheeseVideoFormatFull.
  */
 static void
-free_format_list_foreach (gpointer data, G_GNUC_UNUSED gpointer user_data)
+free_format_list_foreach (gpointer data)
 {
   g_slice_free (CheeseVideoFormatFull, data);
 }
@@ -405,7 +404,7 @@ free_format_list (CheeseCameraDevice *device)
 {
   CheeseCameraDevicePrivate *priv = device->priv;
 
-  g_list_foreach (priv->formats, free_format_list_foreach, NULL);
+  g_list_free_full (priv->formats, free_format_list_foreach);
   priv->formats = NULL;
 }
 
