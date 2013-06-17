@@ -349,33 +349,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   }
 
   /**
-   * Search system directories for the given filename, starting
-   * with the in-installation-time custom prefix first.
-   *
-   * @param filename the file whose path will be searched.
-   * @return the system path for the given filename.
-   */
-  private string get_data_file_dir (string filename) {
-    var system_data_dirs = Environment.get_system_data_dirs ();
-    string[] data_dirs = {};
-    data_dirs += Config.DATADIR;
-
-    foreach (var dir in system_data_dirs)
-      data_dirs += dir;
-
-    foreach (var dir in data_dirs) {
-      var absolute_path = GLib.Path.build_filename (dir, Config.PACKAGE_TARNAME,
-                                                    filename);
-      if (FileUtils.test (absolute_path, FileTest.EXISTS))
-        return absolute_path;
-    };
-
-    // Filename could not be found!
-    error ("Data file ‘%s’ could not be found in system data directories.",
-           filename);
-  }
-
-  /**
    * Save the selected file in the thumbview to an alternate storage location.
    *
    * A file chooser dialog is shown to the user, asking where the file should
