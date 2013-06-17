@@ -1,6 +1,127 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.3
+  - Add documentation for CheeseCamera signals
+  - Remove unused Cheese.MainWindow.get_data_file_dir
+  - Make the flash background white
+  - Fix assertion failures when taking a photo
+    Before this patch, Cheese would log the following each time the user
+    takes a photo:
+
+    (cheese:21719): GLib-GIO-CRITICAL **: g_file_info_get_size: assertion
+    `G_IS_FILE_INFO (info)' failed
+
+    (cheese:21719): GLib-GObject-CRITICAL **: g_object_unref: assertion
+    `G_IS_OBJECT (object)' failed
+  - Fix updating sensitivity of device selection combo
+    If Cheese was started with 1 device, and then a second was added, the
+    device selection stayed insensitive, making it impossible to select the
+    second device.
+
+    This fixes the problem, and also makes the combo insensitive again when
+    going from >= 2 devices to <= 1 device.
+  - Downscale image for effects-preview pipeline
+    Having the whole effects-preview bin deal with ie 1280x800 images is not
+    very useful, especially since even when fullscreen on a full-HD monitor,
+    the preview images are smaller then 640xXXX. This useless high-res
+    processing for 9 preview images in parallel brings my 2nd gen
+    core i5 @ 3.1 GHz to its knees, resulting in a non fluid preview panel.
+
+    Also after clicking through all effect preview pages, so that all effect
+    preview textures are connected, cheese will use 1 GB of *resident* RAM
+    with the example 1280x800 capture resolution.
+
+    This patch improves this by downscaling the images from the video-source
+    to 640xXXX where XXX is determined by the original resolution
+    aspect-ratio.
+
+    After this patch the effects preview framerate is much smoother, and the
+    latency is noticably less. As a bonus the maximal resident size of
+    Cheese in this example is reduced to 350 MB.
+  - Do not block the main valve while recording
+    Otherwise frames intended for the recording are dropped.
+  - Only add videoconvert elements where necessary
+    The "no effect" effect is our default value, and thus worth optimizing a
+    bit. Clearly in the "no effect" effect case adding a videoconvert
+    element both before and after the element is not needed.
+
+    Note we also don't add the videoconvert elements when creating the
+    initial pipeline, so this also keeps the way the pipeline looks
+    initially and when "no-effect" is selected consistent.
+
+    When starting Cheese with "no-effect" selected, this shaves off another
+    130 ms of the initial pipeline creation time.
+  - Drop unused preview_caps variable
+  - Simplify returned GstCaps
+    In cheese_camera_device_get_caps_for_format, simplify the returned caps.
+    This results in much simpler caps, which as main advantage that they are
+    way easier to read when trawling to debug logs.
+  - Fix cheese_camera_device_get_best_format memleak
+    cheese_camera_device_get_best_format() calls
+    cheese_camera_device_get_format_list(), which returns a sorted copy of
+    the format lists, then takes the first element of that list, and
+    returns a copy of that element. While never freeing the list copy.
+
+    This patch fixes this leak by simply making the priv->formats list
+    sorted so that cheese_camera_device_get_best_format can use it directly
+    without the need to make (and then later free) a copy.
+  - Fix cheese_camera_device_filter_caps warning
+  - Remove unused GstCameraBinFlags enum
+  - Fix video-source memleak when switching cameras
+  - Improve error handling in CheeseCamera
+    Simplify error cleanup in cheese_camera_set_camera_source(). Do not call
+    g_error_free() on a possible NULL error in
+    cheese_camera_element_from_effect().
+  - Fix no-video-after-switching-resolution problem
+    There is a bug in wrappercamerabinsrc which causes it to lose its
+    video-source setting after the pipeline has started, so on a
+    stop/re-start, as when changing resolution, its video-source has become
+    NULL, and there is no longer video.
+
+    This patch works around this by moving the setting of the video-source
+    property to cheese_camera_play(), so that it gets (re)set each time
+    before starting the pipeline.
+
+    I've also written a patch fixing the underlying cause, but since the
+    workaround is simple, and has no adverse effects when the underlying
+    issue is fixed, it seems a good idea to have this workaround in Cheese,
+    see here for the gst-plugins-bad fix:
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=701915
+  - Remove extranous csp_post_balance element
+    camerabin2 already has a videoconvert element both before and after its
+    video-source-filter element, so ending the video-source-filter bin with
+    a videoconvert element puts 2 videoconvert elements behind each other,
+    which is not really useful.
+  - Add a capsfilter to the video-source bin
+    This serves 2 purposes. Firstly, it forces GStreamer to actually run the
+    video source at the configured resolution, rather then say run it at
+    1600x1200 @ 5 fps and downscale that to 800x600 (still at 5 fps), as
+    GStreamer opts to do with my Logitech Webcam Pro 9000, when left to its
+    own auto negotiate code. Secondly, by greatly reducing the amount of
+    advertised caps (this cam supports lots of different resolutions at many
+    different framerates per resolution), it avoids a caps intersect
+    "explosion", reducing the pipeline caps negotiation.
+  - Remove nautilus-sendto sharing support
+    As nautilus-sendto can now only share by email, the sharing can be
+    handled by a photo management application, or directy by the email
+    client.
+  - Avoid assert when taking avatar photos too quickly
+    If the take photo button was pressed while a photo was being taken, an
+    assert would be triggered by the failed call to
+    cheese_camera_take_photo_pixbuf(). Avoid this by setting the take photo
+    button insensitive while a photo is being taken, and setting it
+    sensitive after the photo has been taken. Fixes bug 699596.
+  - Post-release bump to 3.9.3
+  - Added/Updated Translations
+    - hu, courtesy of Balázs Úr
+    - ja, courtesy of Noriko Mizumoto
+    - th, courtesy of Akom Chotiphantawanon
+    - zh_CN, courtesy of tuhaihe
+  - Added/Updated Documentation
+    - de, courtesy of Christian Kirbach
+
 version 3.9.2
   - Make maintainer.sh compliant with POSIX sh
   - Post-release bump to 3.9.2
