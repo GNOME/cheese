@@ -313,7 +313,7 @@ public class Cheese.Main : Gtk.Application
         switch (event.keyval)
         {
             case Gdk.Key.WebCam:
-                on_shoot ();
+                activate_action ("shoot", null);
                 return true;
         }
 
