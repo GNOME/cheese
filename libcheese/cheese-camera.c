@@ -1333,6 +1333,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
   /**
    * CheeseCamera::photo-taken:
    * @camera: a #CheeseCamera
+   * @pixbuf: a #GdkPixbuf of the photo which was taken
    *
    * Emitted when a photo was taken.
    */
@@ -1359,6 +1360,7 @@ cheese_camera_class_init (CheeseCameraClass *klass)
   /**
    * CheeseCamera::state-flags-changed:
    * @camera: a #CheeseCamera
+   * @state: the #GstState which @camera changed to
    *
    * Emitted when the state of the @camera #GstElement changed.
    */
