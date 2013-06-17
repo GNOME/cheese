@@ -84,6 +84,7 @@ struct _CheeseCameraPrivate
 
   gboolean is_recording;
   gboolean pipeline_is_playing;
+  gboolean effect_pipeline_is_playing;
   gchar *photo_filename;
 
   guint num_camera_devices;
@@ -231,7 +232,11 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
         GstState old, new;
         gst_message_parse_state_changed (message, &old, &new, NULL);
         if (new == GST_STATE_PLAYING)
+        {
           g_signal_emit (camera, camera_signals[STATE_FLAGS_CHANGED], 0, new);
+          cheese_camera_toggle_effects_pipeline (camera,
+                                            priv->effect_pipeline_is_playing);
+        }
       }
       break;
     }
@@ -784,6 +789,8 @@ cheese_camera_play (CheeseCamera *camera)
   CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
   cheese_camera_set_new_caps (camera);
   g_object_set (priv->camera_source, "video-source", priv->video_source, NULL);
+  g_object_set (priv->main_valve, "drop", FALSE, NULL);
+  g_object_set (priv->effects_valve, "drop", FALSE, NULL);
   gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
   priv->pipeline_is_playing = TRUE;
 }
@@ -969,6 +976,7 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
     g_object_set (G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
     g_object_set (G_OBJECT (priv->main_valve), "drop", FALSE, NULL);
   }
+  priv->effect_pipeline_is_playing = active;
 }
 
 /**
