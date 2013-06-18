@@ -945,6 +945,35 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
 
     /**
+     * Show an error.
+     *
+     * @param error the error to display, or null to hide the error layer
+     */
+    public void show_error (string? error)
+    {
+        if (error != null)
+        {
+            current_effects_grid.hide ();
+            video_preview.hide ();
+            error_layer.text = error;
+            error_layer.show ();
+        }
+        else
+        {
+            error_layer.hide ();
+
+            if (is_effects_selector_active)
+            {
+                current_effects_grid.show ();
+            }
+            else
+            {
+                video_preview.show ();
+            }
+        }
+    }
+
+    /**
      * Toggle the display of the effect selector.
      *
      * @param effects whether effects should be enabled
@@ -1063,45 +1092,34 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       (is_effects_selector_active && current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE);
   }
 
-  /**
-   * Toggle the visibility of the effects selector.
-   *
-   * @param active whether the selector should be active
-   */
-  private void toggle_effects_selector (bool active)
-  {
-    is_effects_selector_active = active;
-    if (active)
+    /**
+     * Toggle the visibility of the effects selector.
+     *
+     * @param active whether the selector should be active
+     */
+    private void toggle_effects_selector (bool active)
     {
-      video_preview.hide ();
+        is_effects_selector_active = active;
 
-      if (effects_grids.length () == 0)
-      {
-        error_layer.text = _("No effects found");
-        error_layer.show ();
-      }
-      else
-      {
-        current_effects_grid.show ();
-        activate_effects_page ((int)current_effects_page);
-      }
-    }
-    else
-    {
-      if (effects_grids.length () == 0)
-      {
-        error_layer.hide ();
-      }
-      else
-      {
-        current_effects_grid.hide ();
-      }
-      video_preview.show ();
-    }
+        if (effects_grids.length () == 0)
+        {
+            show_error (active ? _("No effects found") : null);
+        }
+        else if (active)
+        {
+            video_preview.hide ();
+            current_effects_grid.show ();
+            activate_effects_page ((int)current_effects_page);
+        }
+        else
+        {
+            current_effects_grid.hide ();
+            video_preview.show ();
+        }
 
-    camera.toggle_effects_pipeline (active);
-    setup_effects_page_switch_sensitivity ();
-  }
+        camera.toggle_effects_pipeline (active);
+        setup_effects_page_switch_sensitivity ();
+    }
 
   /**
    * Create the effects selector.
@@ -1250,6 +1268,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     public void camera_state_change_playing ()
     {
+        show_error (null);
+
         if (!is_camera_actions_sensitive)
         {
             toggle_camera_actions_sensitivities (true);
