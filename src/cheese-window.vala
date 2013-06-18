@@ -730,6 +730,38 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
   }
 
+    /**
+     * Cancel the current action (if any)
+     */
+    private bool cancel_running_action ()
+    {
+        if ((current_countdown != null && current_countdown.running)
+            || is_bursting || is_recording)
+        {
+            action_cancelled = true;
+
+            switch (current_mode)
+            {
+                case MediaMode.PHOTO:
+                    current_countdown.stop ();
+                    finish_countdown_callback ();
+                    break;
+                case MediaMode.BURST:
+                    toggle_photo_bursting (false);
+                    break;
+                case MediaMode.VIDEO:
+                    toggle_video_recording (false);
+                    break;
+            }
+
+            action_cancelled = false;
+
+            return true;
+        }
+
+        return false;
+    }
+
   /**
    * Cancel the current activity if the escape key is pressed.
    *
@@ -743,23 +775,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     key = Gdk.keyval_name (event.keyval);
     if (strcmp (key, "Escape") == 0)
     {
-      if ((current_countdown != null && current_countdown.running) || is_bursting || is_recording)
+      if (cancel_running_action ())
       {
-        action_cancelled = true;
-        switch (current_mode)
-        {
-          case MediaMode.PHOTO:
-           current_countdown.stop ();
-           finish_countdown_callback ();
-           break;
-          case MediaMode.BURST:
-            toggle_photo_bursting (false);
-            break;
-          case MediaMode.VIDEO:
-            toggle_video_recording (false);
-            break;
-        }
-        action_cancelled = false;
+        return false;
       }
       else if (is_effects_selector_active)
       {
@@ -1168,6 +1186,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     public void camera_state_change_null ()
     {
+        cancel_running_action ();
+
         if (!error_layer.visible)
         {
             show_error (_("There was an error playing video from the webcam"));
