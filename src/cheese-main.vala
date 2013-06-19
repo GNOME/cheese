@@ -42,8 +42,8 @@ public class Cheese.Main : Gtk.Application
         { "fullscreen", on_action_toggle, null, "false", on_fullscreen_change },
         { "effects", on_action_toggle, null, "false", on_effects_change },
         { "preferences", on_preferences },
-        { "about", on_about },
         { "help", on_help },
+        { "about", on_about },
         { "quit", on_quit }
     };
 
@@ -110,10 +110,10 @@ public class Cheese.Main : Gtk.Application
             section.append (_("P_references"), "app.preferences");
             section = new GLib.Menu ();
             menu.append_section (null, section);
-            section.append (_("_About"), "app.about");
             item = new GLib.MenuItem (_("_Help"), "app.help");
             item.set_attribute ("accel", "s", "F1");
             section.append_item (item);
+            section.append (_("_About"), "app.about");
             item = new GLib.MenuItem (_("_Quit"), "app.quit");
             item.set_attribute ("accel", "s", "<Primary>q");
             section.append_item (item);
