@@ -534,6 +534,7 @@ cheese_camera_create_effects_preview_bin (CheeseCamera *camera, GError **error)
     cheese_camera_set_error_element_not_found (error, "effects_valve");
     return FALSE;
   }
+  g_object_set (G_OBJECT (priv->effects_valve), "drop", TRUE, NULL);
   if ((scale = gst_element_factory_make ("videoscale", "effects_scale")) == NULL)
   {
     cheese_camera_set_error_element_not_found (error, "videoscale");
@@ -790,7 +791,6 @@ cheese_camera_play (CheeseCamera *camera)
   cheese_camera_set_new_caps (camera);
   g_object_set (priv->camera_source, "video-source", priv->video_source, NULL);
   g_object_set (priv->main_valve, "drop", FALSE, NULL);
-  g_object_set (priv->effects_valve, "drop", FALSE, NULL);
   gst_element_set_state (priv->camerabin, GST_STATE_PLAYING);
   priv->pipeline_is_playing = TRUE;
 }
@@ -1029,6 +1029,7 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
   gst_element_set_state (effect_filter, GST_STATE_PLAYING);
   gst_element_set_state (display_queue, GST_STATE_PLAYING);
   gst_element_set_state (display_element, GST_STATE_PLAYING);
+  gst_element_set_locked_state (display_element, TRUE);
 
   if (!ok)
       g_warning ("Could not create effects pipeline");
