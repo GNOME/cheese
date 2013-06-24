@@ -451,8 +451,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     private void enable_mode_change ()
     {
-        // FIXME: Set the mode action to be sensitive
-        // FIXME: Set the effects action to be sensitive.
+        var mode = this.application.lookup_action ("mode") as SimpleAction;
+        mode.set_enabled (true);
+        var effects = this.application.lookup_action ("effects") as SimpleAction;
+        effects.set_enabled (true);
     }
 
     /**
@@ -460,8 +462,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     private void disable_mode_change ()
     {
-        // FIXME: Set the mode action to be sensitive
-        // FIXME: Set the effects action to be insensitive.
+        var mode = this.application.lookup_action ("mode") as SimpleAction;
+        mode.set_enabled (false);
+        var effects = this.application.lookup_action ("effects") as SimpleAction;
+        effects.set_enabled (false);
     }
 
   /**
