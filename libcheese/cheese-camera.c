@@ -184,7 +184,7 @@ cheese_camera_photo_data (CheeseCamera *camera, GstSample *sample)
  * @camera: the #CheeseCamera
  *
  * Process messages create by the @camera on the @bus. Emit
- * ::state-flags-changes if the state of the camera has changed.
+ * ::state-flags-changed if the state of the camera has changed.
  */
 static void
 cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *camera)
@@ -216,12 +216,15 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       gst_message_parse_error (message, &err, &debug);
 
       if (err && err->message) {
-        g_warning ("%s\n", err->message);
+        g_warning ("%s: %s\n", err->message, debug);
         g_error_free (err);
       } else {
         g_warning ("Unparsable GST_MESSAGE_ERROR message.\n");
       }
 
+      cheese_camera_stop (camera);
+      g_signal_emit (camera, camera_signals[STATE_FLAGS_CHANGED], 0,
+                     GST_STATE_NULL);
       g_free (debug);
       break;
     }

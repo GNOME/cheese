@@ -254,10 +254,8 @@ public class Cheese.Main : Gtk.Application
         {
             video_preview.hide ();
             warning ("Error: %s\n", err.message);
-            //error_layer.text = err.message;
-            //error_layer.show ();
+            main_window.show_error (err.message);
 
-            //toggle_camera_actions_sensitivities (false);
             return;
         }
 
@@ -331,6 +329,9 @@ public class Cheese.Main : Gtk.Application
         {
             case Gst.State.PLAYING:
                 main_window.camera_state_change_playing ();
+                break;
+            case Gst.State.NULL:
+                main_window.camera_state_change_null ();
                 break;
             default:
                 break;

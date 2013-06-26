@@ -1282,6 +1282,15 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         }
     }
 
+    /**
+     * Report an error as the camerabin switched to the NULL state.
+     */
+    public void camera_state_change_null ()
+    {
+        show_error (_("There was an error playing video from the webcam"));
+        toggle_camera_actions_sensitivities (false);
+    }
+
   /**
    * Set wide mode active when started from the command line (and do not change
    * the GSetting).
