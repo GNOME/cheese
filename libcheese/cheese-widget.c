@@ -180,6 +180,9 @@ cheese_widget_set_problem_page (CheeseWidget *widget,
 {
   CheeseWidgetPrivate *priv = widget->priv;
 
+    priv->state = CHEESE_WIDGET_STATE_ERROR;
+    g_object_notify_by_pspec (G_OBJECT (widget), properties[PROP_STATE]);
+
   gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), PROBLEM_PAGE);
   g_object_set_data_full (G_OBJECT (priv->problem),
                           "icon-name", g_strdup (icon_name), g_free);
@@ -273,6 +276,30 @@ cheese_widget_get_property (GObject *object, guint prop_id,
   }
 }
 
+/*
+ * webcam_state_changed:
+ * @camera: the camera on which there was a state change
+ * @state: the new state
+ * @widget: the widget which should be updated
+ *
+ * Handle the state of the @camera changing, and update @widget accordingly,
+ * such as by displaying an error.
+ */
+static void
+webcam_state_changed (CheeseCamera *camera, GstState state,
+                      CheeseWidget *widget)
+{
+    switch (state)
+    {
+        case GST_STATE_NULL:
+            cheese_widget_set_problem_page (widget, "error");
+            break;
+        default:
+            /* TODO: Handle other cases. */
+            break;
+    }
+}
+
 void
 setup_camera (CheeseWidget *widget)
 {
@@ -310,8 +337,6 @@ setup_camera (CheeseWidget *widget)
 
   if (priv->error != NULL)
   {
-    priv->state = CHEESE_WIDGET_STATE_ERROR;
-    g_object_notify_by_pspec (G_OBJECT (widget), properties[PROP_STATE]);
     cheese_widget_set_problem_page (CHEESE_WIDGET (widget), "error");
   }
   else
@@ -322,6 +347,8 @@ setup_camera (CheeseWidget *widget)
     cheese_camera_set_balance_property (priv->webcam, "hue", hue);
     priv->state = CHEESE_WIDGET_STATE_READY;
     g_object_notify_by_pspec (G_OBJECT (widget), properties[PROP_STATE]);
+    g_signal_connect (priv->webcam, "state-flags-changed",
+                      G_CALLBACK (webcam_state_changed), widget);
     cheese_camera_play (priv->webcam);
     gtk_notebook_set_current_page (GTK_NOTEBOOK (widget), WEBCAM_PAGE);
   }
