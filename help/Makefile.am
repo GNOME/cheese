@@ -19,6 +19,7 @@ HELP_FILES = \
 	effects-apply.page \
 	index.page \
 	introduction.page \
+	legal.xml \
 	photo-delete.page \
 	photo-save.page \
 	photo-take.page \
