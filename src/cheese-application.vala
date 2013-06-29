@@ -434,7 +434,6 @@ public class Cheese.Application : Gtk.Application
 
         main_window.set_fullscreen (state);
 
-        settings.set_boolean ("fullscreen", state);
         action.set_state (value);
     }
 
@@ -455,7 +454,6 @@ public class Cheese.Application : Gtk.Application
 
         main_window.set_wide_mode (state);
 
-        settings.set_boolean ("wide-mode", state);
         action.set_state (value);
     }
 

@@ -48,17 +48,6 @@
       </object>
     </child>
     <child>
-      <object class="GtkActionGroup" id="layout_actions">
-        <child>
-          <object class="GtkToggleAction" id="wide_mode">
-            <property name="name">WideMode</property>
-            <property name="label" translatable="yes">_Wide Mode</property>
-            <signal name="toggled" handler="cheese_main_window_on_layout_wide_mode"/>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
       <object class="GtkActionGroup" id="effects_actions">
         <child>
           <object class="GtkAction" id="effects_page_prev">

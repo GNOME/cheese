@@ -73,7 +73,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private List<Clutter.Actor> effects_grids;
 
   private HashTable<string, bool> action_sensitivities;
-  private Gtk.ToggleAction wide_mode_action;
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
   private Gtk.Action       effects_page_next_action;
@@ -85,7 +84,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private bool is_effects_selector_active;
   private bool is_camera_actions_sensitive;
   private bool action_cancelled;
-  private bool is_command_line_startup;
 
   private Gtk.Button[] buttons;
 
@@ -411,38 +409,13 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     save_as_dialog.destroy ();
   }
 
-  /**
-   * Toggle wide mode and save the preference to GSettings.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_layout_wide_mode (ToggleAction action)
-  {
-    if (!is_command_line_startup)
-    {
-     /* Don't save to settings when using -w mode from command-line, so
-      * command-line options change the mode for one run only. */
-      settings.set_boolean ("wide-mode", action.active);
-    }
-    set_wide_mode (action.active);
-  }
-
     /**
-     * Toggle fullscreen mode and save the preference to GSettings.
+     * Toggle fullscreen mode.
      *
-     * @param fullscreen whether the window should be fullscreean
+     * @param fullscreen whether the window should be fullscreen
      */
-    [CCode (instance_pos = -1)]
     public void set_fullscreen (bool fullscreen)
     {
-        if (!is_command_line_startup)
-        {
-            /* Don't save to settings when using -f mode from command-line, so
-             * command-line options change the mode for one run only. */
-            settings.set_boolean ("fullscreen", fullscreen);
-        }
-
         set_fullscreen_mode (fullscreen);
     }
 
@@ -569,15 +542,15 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    *
    * @param fullscreen_mode whether to enable or disable fullscreen mode
    */
-  private void set_fullscreen_mode (bool fullscreen_mode)
+  private void set_fullscreen_mode (bool fullscreen)
   {
     /* After the first time the window has been shown using this.show_all (),
      * the value of leave_fullscreen_button_container.no_show_all should be set to false
      * So that the next time leave_fullscreen_button_container.show_all () is called, the button is actually shown
      * FIXME: If this code can be made cleaner/clearer, please do */
 
-    is_fullscreen = fullscreen_mode;
-    if (fullscreen_mode)
+    is_fullscreen = fullscreen;
+    if (fullscreen)
     {
       if (is_wide_mode)
       {
@@ -1292,34 +1265,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
 
   /**
-   * Set wide mode active when started from the command line (and do not change
-   * the GSetting).
-   */
-  public void set_startup_wide_mode ()
-  {
-    if (is_wide_mode)
-    {
-      /* Cheese was already in wide mode, avoid setting it again. */
-      return;
-    }
-
-    is_command_line_startup = true;
-    wide_mode_action.set_active (true);
-    is_command_line_startup = false;
-  }
-
-  /**
-   * Set fullscreen mode active when started from the command line (and do not
-   * change the GSetting).
-   */
-  public void set_startup_fullscreen_mode ()
-  {
-    is_command_line_startup = true;
-    set_fullscreen (true);
-    is_command_line_startup = false;
-  }
-
-  /**
    * Load the UI from the GtkBuilder description.
    */
   public void setup_ui ()
@@ -1360,7 +1305,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
     countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
-    wide_mode_action         = gtk_builder.get_object ("wide_mode") as Gtk.ToggleAction;
     effects_page_next_action = gtk_builder.get_object ("effects_page_next") as Gtk.Action;
     effects_page_prev_action = gtk_builder.get_object ("effects_page_prev") as Gtk.Action;
 
@@ -1416,14 +1360,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      * if the widget is not realized */
     viewport_widget.realize ();
 
-    /* call set_active instead of our set_wide_mode so that the toggle
-     * action state is updated */
-    wide_mode_action.set_active (settings.get_boolean ("wide-mode"));
-
-    /* apparently set_active doesn't emit toggled nothing has
-     * changed, do it manually */
-    if (!settings.get_boolean ("wide-mode"))
-      wide_mode_action.toggled ();
+    set_wide_mode (false);
 
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
