@@ -855,7 +855,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      * Take a photo or burst of photos, or record a video, based on the current
      * capture mode.
      */
-    [CCode (instance_pos = -1)]
     public void shoot ()
     {
         switch (current_mode)
@@ -908,7 +907,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      *
      * @param effects whether effects should be enabled
      */
-    [CCode (instance_pos = -1)]
     public void set_effects (bool effects)
     {
         toggle_effects_selector (effects);
