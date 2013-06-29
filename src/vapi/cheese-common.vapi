@@ -4,10 +4,10 @@
 namespace Cheese
 {
   [CCode (cheader_filename = "cheese.h")]
-  public static bool init([CCode (array_length_pos = 0.9)] ref unowned string[] argv);
+  public static bool init([CCode (array_length_cname = "argc", array_length_pos = 0.5)] ref unowned string[]? argv);
 
   [CCode (cheader_filename = "cheese-gtk.h")]
-  public static bool gtk_init([CCode (array_length_pos = 0.9)] ref unowned string[] argv);
+  public static bool gtk_init([CCode (array_length_cname = "argc", array_length_pos = 0.5)] ref unowned string[]? argv);
 
   [CCode (cheader_filename = "cheese-effect.h")]
   public class Effect : GLib.Object

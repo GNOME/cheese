@@ -38,8 +38,8 @@
 
 /**
  * cheese_gtk_init:
- * @argc: pointer to the argument list count
- * @argv: pointer to the argument list vector
+ * @argc: (allow-none): pointer to the argument list count
+ * @argv: (allow-none): pointer to the argument list vector
  *
  * Initialize libcheese-gtk, by initializing Clutter, GStreamer and GTK+. This
  * automatically calls cheese_init(), initializing libcheese.
