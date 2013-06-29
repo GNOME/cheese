@@ -38,13 +38,6 @@
           </object>
           <accelerator key="Delete" modifiers="GDK_SHIFT_MASK"/>
         </child>
-        <child>
-          <object class="GtkAction" id="move_all_to_trash">
-            <property name="name">RemoveAll</property>
-            <property name="label" translatable="yes">Move _All to Trash</property>
-            <signal name="activate" handler="cheese_main_window_on_file_move_to_trash_all"/>
-          </object>
-        </child>
       </object>
     </child>
     <child>

@@ -298,55 +298,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   }
 
   /**
-   * Move all images in the thumbview to the trash.
-   *
-   * No confirmation dialog is shown to the user before moving the files!
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_file_move_to_trash_all (Gtk.Action action)
-  {
-    // TODO: Use asynchronous methods.
-    try {
-      var directory = File.new_for_path (fileutil.get_photo_path ());
-      var enumerator = directory.enumerate_children (FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
-
-      // Trash photos.
-      trash_enumerated_files (directory.get_path (), enumerator);
-
-      directory  = File.new_for_path (fileutil.get_video_path ());
-      enumerator = directory.enumerate_children (FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
-
-      // Trash videos.
-      trash_enumerated_files (directory.get_path (), enumerator);
-    } catch (Error error) {
-      warning ("Error while building file trash list: %s", error.message);
-    }
-  }
-
-  /**
-   * Send the enumerated files to the trash.
-   *
-   * @param directory the directory containing the enumerated files
-   * @param enumerator the enumeration of files to send to the trash
-   */
-  private void trash_enumerated_files (string directory, FileEnumerator enumerator)
-  {
-    try {
-      FileInfo file_info;
-
-      while ((file_info = enumerator.next_file (null)) != null)
-      {
-        var file_to_trash = File.new_for_path (GLib.Path.build_filename (directory, file_info.get_name ()));
-	file_to_trash.trash ();
-      }
-    } catch (Error error) {
-      warning ("Error while trashing files: %s", error.message);
-    }
-  }
-
-  /**
    * Save the selected file in the thumbview to an alternate storage location.
    *
    * A file chooser dialog is shown to the user, asking where the file should
@@ -1211,8 +1162,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
                                        "open",
                                        "save_as",
                                        "move_to_trash",
-                                       "delete",
-                                       "move_all_to_trash"};
+                                       "delete" };
 
           /* Gross hack because Vala's `in` operator doesn't really work */
           bool flag;
