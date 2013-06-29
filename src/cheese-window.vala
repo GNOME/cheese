@@ -72,7 +72,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private uint current_effects_page = 0;
   private List<Clutter.Actor> effects_grids;
 
-  private HashTable<string, bool> action_sensitivities;
   private Gtk.Action       countdown_action;
   private Gtk.Action       effects_page_prev_action;
   private Gtk.Action       effects_page_next_action;
@@ -82,7 +81,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private bool is_recording;       /* Video Recording Flag */
   private bool is_bursting;
   private bool is_effects_selector_active;
-  private bool is_camera_actions_sensitive;
   private bool action_cancelled;
 
   private Gtk.Button[] buttons;
@@ -1128,79 +1126,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
   }
 
-  /**
-   * Toggle the sensitvity of the camera actions.
-   *
-   * @param active whether the camera actions should be sensitive
-   */
-  public void toggle_camera_actions_sensitivities (bool active)
-  {
-      is_camera_actions_sensitive = active;
-      if (active)
-      {
-          var keys = action_sensitivities.get_keys ();
-          foreach (var key in keys)
-          {
-              Gtk.Action action = gtk_builder.get_object (key) as Gtk.Action;
-              action.sensitive = action_sensitivities.get (key);
-          }
-      }
-      else
-      {
-          action_sensitivities = new HashTable<string, bool> (GLib.str_hash,
-                                                              GLib.direct_equal);
-          GLib.SList<weak GLib.Object> objects = gtk_builder.get_objects ();
-          foreach (GLib.Object obj in objects)
-          {
-              if (obj is Gtk.Action)
-              {
-                  Gtk.Action action = (Gtk.Action)obj;
-                  action_sensitivities.set (action.name, action.sensitive);
-              }
-          }
-
-          /* Keep only these actions sensitive. */
-          string [] active_actions = { "quit",
-                                       "help_contents",
-                                       "about",
-                                       "open",
-                                       "save_as",
-                                       "move_to_trash",
-                                       "delete" };
-
-          /* Gross hack because Vala's `in` operator doesn't really work */
-          bool flag;
-          foreach (GLib.Object obj in objects)
-          {
-              flag = false;
-              if (obj is Gtk.Action)
-              {
-                  Gtk.Action action = (Gtk.Action)obj;
-                  foreach (string s in active_actions)
-                  {
-                      if (action.name == s)
-                      {
-                          flag = true;
-                      }
-                  }
-                  if (!flag)
-                      ((Gtk.Action)obj).sensitive = false;
-              }
-          }
-      }
-  }
-
     /**
      * Update the UI when the camera starts playing.
      */
     public void camera_state_change_playing ()
     {
         show_error (null);
-
-        if (!is_camera_actions_sensitive)
-        {
-            toggle_camera_actions_sensitivities (true);
-        }
 
         Effect effect = effects_manager.get_effect (settings.get_string ("selected-effect"));
         if (effect != null)
@@ -1215,7 +1146,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     public void camera_state_change_null ()
     {
         show_error (_("There was an error playing video from the webcam"));
-        toggle_camera_actions_sensitivities (false);
     }
 
   /**
@@ -1318,8 +1248,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
-
-    toggle_camera_actions_sensitivities (false);
 
     this.key_release_event.connect (on_key_release);
   }

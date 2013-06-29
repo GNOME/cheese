@@ -316,6 +316,13 @@ public class Cheese.Application : Gtk.Application
             camera.set_balance_property ("saturation", value);
         }
 
+        var effects = this.lookup_action ("effects") as SimpleAction;
+        var mode = this.lookup_action ("mode") as SimpleAction;
+        var shoot = this.lookup_action ("shoot") as SimpleAction;
+        effects.set_enabled (false);
+        mode.set_enabled (false);
+        shoot.set_enabled (false);
+
         camera.state_flags_changed.connect (on_camera_state_flags_changed);
         main_window.set_camera (camera);
         camera.play ();
@@ -358,12 +365,33 @@ public class Cheese.Application : Gtk.Application
      */
     private void on_camera_state_flags_changed (Gst.State new_state)
     {
+        var effects = this.lookup_action ("effects") as SimpleAction;
+        var mode = this.lookup_action ("mode") as SimpleAction;
+        var shoot = this.lookup_action ("shoot") as SimpleAction;
+
         switch (new_state)
         {
             case Gst.State.PLAYING:
+                if (effects.state.get_boolean ())
+                {
+                    mode.set_enabled (false);
+                    shoot.set_enabled (false);
+                }
+                else
+                {
+                    mode.set_enabled (true);
+                    shoot.set_enabled (true);
+                }
+
+                effects.set_enabled (true);
+
                 main_window.camera_state_change_playing ();
                 break;
             case Gst.State.NULL:
+                effects.set_enabled (false);
+                mode.set_enabled (false);
+                shoot.set_enabled (false);
+
                 main_window.camera_state_change_null ();
                 break;
             default:
@@ -470,9 +498,11 @@ public class Cheese.Application : Gtk.Application
         var state = value.get_boolean ();
 
         var shoot = this.lookup_action ("shoot") as SimpleAction;
+        var mode = this.lookup_action ("mode") as SimpleAction;
 
-        // The effects selector and shooting are mutually exclusive.
+        // Effects selection and shooting/mode changes are mutually exclusive.
         shoot.set_enabled (!state);
+        mode.set_enabled (!state);
 
         main_window.set_effects (state);
 
