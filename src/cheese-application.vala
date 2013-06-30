@@ -55,35 +55,62 @@ public class Cheese.Application : Gtk.Application
     {null}
   };
 
-    public Application (string app_id)
+    public Application ()
     {
-        GLib.Object (application_id: app_id);
+        GLib.Object (application_id: "org.gnome.Cheese");
     }
 
-  /**
-   * Present the existing main window, or create a new one.
-   */
-  public void on_app_activate ()
-  {
-    if (get_windows () != null)
-      main_window.present ();
-    else
+    /**
+     * Perform one-time initialization tasks.
+     */
+    protected override void startup ()
     {
-      // Prefer a dark GTK+ theme, bug 660628.
-      var gtk_settings = Gtk.Settings.get_default ();
-      if (gtk_settings != null)
-        gtk_settings.gtk_application_prefer_dark_theme = true;
+        Environment.set_prgname ("cheese");
+        Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.PACKAGE_LOCALEDIR);
+        Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
+        Intl.textdomain (Config.GETTEXT_PACKAGE);
 
-      main_window = new Cheese.MainWindow (this);
+        add_action_entries (action_entries, this);
 
-      Environment.set_variable ("PULSE_PROP_media.role", "production", true);
+        string[] args = { null };
+        unowned string[] arguments = args;
 
-      Environment.set_application_name (_("Cheese"));
-      Window.set_default_icon_name ("cheese");
+        if (!Cheese.gtk_init (ref arguments))
+        {
+            error ("Unable to initialize libcheese-gtk");
+        }
 
-      Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
+        // Calls gtk_init() with no arguments.
+        base.startup ();
+    }
 
-            add_action_entries (action_entries, this);
+    /**
+     * Present the existing main window, or create a new one.
+     */
+    protected override void activate ()
+    {
+        if (get_windows () != null)
+        {
+            main_window.present ();
+        }
+        else
+        {
+            // Prefer a dark GTK+ theme, bug 660628.
+            var gtk_settings = Gtk.Settings.get_default ();
+            if (gtk_settings != null)
+            {
+                gtk_settings.gtk_application_prefer_dark_theme = true;
+            }
+
+            main_window = new Cheese.MainWindow (this);
+
+            Environment.set_variable ("PULSE_PROP_media.role", "production",
+                                      true);
+
+            Environment.set_application_name (_("Cheese"));
+            Window.set_default_icon_name ("cheese");
+
+            Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
 
             // Create the menus.
             var menu = new GLib.Menu ();
@@ -121,105 +148,112 @@ public class Cheese.Application : Gtk.Application
 
             // FIXME: Read fullscreen state from GSettings.
 
-      main_window.setup_ui ();
-      main_window.start_thumbview_monitors ();
+            // FIXME: Push these into the main window initialization.
+            main_window.setup_ui ();
+            main_window.start_thumbview_monitors ();
 
-      if (wide)
-        main_window.set_startup_wide_mode ();
-      if (fullscreen)
-        main_window.set_startup_fullscreen_mode ();
+            if (wide)
+            {
+                main_window.set_startup_wide_mode ();
+            }
+            if (fullscreen)
+            {
+                main_window.set_startup_fullscreen_mode ();
+            }
 
-      /* Shoot when the webcam capture button is pressed. */
-      main_window.add_events (Gdk.EventMask.KEY_PRESS_MASK
-                              | Gdk.EventMask.KEY_RELEASE_MASK);
-      main_window.key_press_event.connect (on_webcam_key_pressed);
+            /* Shoot when the webcam capture button is pressed. */
+            main_window.add_events (Gdk.EventMask.KEY_PRESS_MASK
+                                    | Gdk.EventMask.KEY_RELEASE_MASK);
+            main_window.key_press_event.connect (on_webcam_key_pressed);
 
-      main_window.show ();
-      setup_camera (device);
-      preferences_dialog = new PreferencesDialog (camera);
+            main_window.show ();
+            setup_camera (device);
+            preferences_dialog = new PreferencesDialog (camera);
+        }
     }
-  }
 
-  /**
-   * Overridden method of GApplication, to handle the arguments locally.
-   *
-   * @param arguments the command-line arguments
-   * @param exit_status the exit status to return to the OS
-   * @return true if the arguments were successfully processed, false otherwise
-   */
-  public override bool local_command_line ([CCode (array_null_terminated = true, array_length = false)]
-                                           ref unowned string[] arguments,
-                                           out int exit_status)
-  {
-    // Try to register.
-    try
+    /**
+     * Overridden method of GApplication, to handle the arguments locally.
+     *
+     * @param arguments the command-line arguments
+     * @param exit_status the exit status to return to the OS
+     * @return true if the arguments were successfully processed, false
+     * otherwise
+     */
+    protected override bool local_command_line ([CCode (array_null_terminated = true, array_length = false)]
+                                                ref unowned string[] argv,
+                                                out int exit_status)
     {
-      register();
-    }
-    catch (Error e)
-    {
-      stdout.printf ("Error: %s\n", e.message);
-      exit_status = 1;
-      return true;
-    }
+        // Try to register.
+        try
+        {
+            register ();
+        }
+        catch (Error e)
+        {
+            warning ("Unable to register application: %s", e.message);
+            exit_status = 1;
+            return true;
+        }
 
-    // Workaround until bug 642885 is solved.
-    unowned string[] local_args = arguments;
+        // Workaround until bug 642885 is solved.
+        unowned string[] arguments = argv;
+        var n_args = arguments.length;
 
-    // Check command line parameters.
-    int n_args = local_args.length;
-    if (n_args <= 1)
-    {
-      Gst.init (ref local_args);
-      activate ();
-      exit_status = 0;
+        if (n_args <= 1)
+        {
+            activate ();
+            exit_status = 0;
+        }
+        else
+        {
+            try
+            {
+                var context = new OptionContext (_("- Take photos and videos from your webcam"));
+                context.set_translation_domain (Config.GETTEXT_PACKAGE);
+                context.set_help_enabled (true);
+                context.add_main_entries (options, null);
+                context.add_group (Gtk.get_option_group (true));
+                context.add_group (Clutter.get_option_group ());
+                context.add_group (Gst.init_get_option_group ());
+                context.parse (ref arguments);
+            }
+            catch (OptionError e)
+            {
+                warning ("%s", e.message);
+                stdout.printf (_("Run '%s --help' to see a full list of available command line options."),
+                               arguments[0]);
+                stdout.printf ("\n");
+                exit_status = 1;
+                return true;
+            }
+
+            if (version)
+            {
+                stdout.printf ("%s %s\n", Config.PACKAGE_NAME,
+                               Config.PACKAGE_VERSION);
+                exit_status = 1;
+                return true;
+            }
+
+            // Remote instance, process commands locally.
+            if (get_is_remote ())
+            {
+                stdout.printf (_("Another instance of Cheese is currently running"));
+                stdout.printf ("\n");
+                exit_status = 1;
+                return true;
+            }
+            // Primary instance.
+            else
+            {
+                activate ();
+                exit_status = 0;
+            }
+        }
+
+        return base.local_command_line (ref arguments, out exit_status);
     }
-    else
-    {
-      // Set parser.
-      try
-      {
-        var context = new OptionContext (_("- Take photos and videos from your webcam"));
-        context.set_translation_domain (Config.GETTEXT_PACKAGE);
-        context.set_help_enabled (true);
-        context.add_main_entries (options, null);
-        context.add_group (Gtk.get_option_group (true));
-        context.add_group (Clutter.get_option_group ());
-        context.add_group (Gst.init_get_option_group ());
-        context.parse (ref local_args);
-      }
-      catch (OptionError e)
-      {
-        stdout.printf ("%s\n", e.message);
-        stdout.printf (_("Run '%s --help' to see a full list of available command line options.\n"), arguments[0]);
-        exit_status = 1;
-        return true;
-      }
-
-      if (version)
-      {
-        stdout.printf ("%s %s\n", Config.PACKAGE_NAME, Config.PACKAGE_VERSION);
-        exit_status = 1;
-        return true;
-      }
-
-      //Remote instance process commands locally.
-      if (get_is_remote ())
-      {
-          stdout.printf (_("Another instance of Cheese is currently running\n"));
-          exit_status = 1;
-          return true;
-      }
-      //Primary instance.
-      else
-      {
-        Gst.init (ref local_args);
-        activate ();
-        exit_status=0;
-      }
-    }
-    return true;
-  }
 
     /**
      * Setup the camera listed in GSettings.

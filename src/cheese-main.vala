@@ -20,20 +20,5 @@
 
 int main (string[] args)
 {
-    Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.PACKAGE_LOCALEDIR);
-    Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
-    Intl.textdomain (Config.GETTEXT_PACKAGE);
-
-    if (!Cheese.gtk_init (ref args))
-    {
-        return Posix.EXIT_FAILURE;
-    }
-
-    Cheese.Application app;
-    app = new Cheese.Application ("org.gnome.Cheese");
-
-    app.activate.connect (app.on_app_activate);
-    int status = app.run (args);
-
-    return status;
+    return new Cheese.Application ().run (args);
 }
