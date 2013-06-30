@@ -195,6 +195,7 @@ bin_PROGRAMS = cheese
 
 # cheese-main.vala must go at the end of the Vala sources.
 cheese_SOURCES = \
+	src/cheese-application.vala \
 	src/cheese-countdown.vala \
 	src/cheese-effects-manager.vala \
 	src/cheese-preferences.vala \
