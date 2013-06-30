@@ -26,6 +26,8 @@ using Gst;
 
 public class Cheese.Application : Gtk.Application
 {
+    private GLib.Settings settings;
+
     static bool wide;
     static string device;
     static bool version;
@@ -39,7 +41,9 @@ public class Cheese.Application : Gtk.Application
     private const GLib.ActionEntry action_entries[] = {
         { "shoot", on_shoot },
         { "mode", on_action_radio, "s", "'photo'", on_mode_change },
-        { "fullscreen", on_action_toggle, null, "false", on_fullscreen_change },
+        { "fullscreen", on_action_toggle, null, "false",
+          on_fullscreen_change },
+        { "wide-mode", on_action_toggle, null, "false", on_wide_mode_change },
         { "effects", on_action_toggle, null, "false", on_effects_change },
         { "preferences", on_preferences },
         { "help", on_help },
@@ -47,13 +51,17 @@ public class Cheese.Application : Gtk.Application
         { "quit", on_quit }
     };
 
-  const OptionEntry[] options = {
-    {"wide",       'w', 0, OptionArg.NONE,     ref wide,       N_("Start in wide mode"),                  null        },
-    {"device",     'd', 0, OptionArg.FILENAME, ref device,     N_("Device to use as a camera"),           N_("DEVICE")},
-    {"version",    'v', 0, OptionArg.NONE,     ref version,    N_("Output version information and exit"), null        },
-    {"fullscreen", 'f', 0, OptionArg.NONE,     ref fullscreen, N_("Start in fullscreen mode"),            null        },
-    {null}
-  };
+    const OptionEntry[] options = {
+        { "wide", 'w', 0, OptionArg.NONE, ref wide, N_("Start in wide mode"),
+          null  },
+        { "device", 'd', 0, OptionArg.FILENAME, ref device,
+          N_("Device to use as a camera"), N_("DEVICE") },
+        { "version", 'v', 0, OptionArg.NONE, ref version,
+          N_("Output version information and exit"), null },
+        { "fullscreen", 'f', 0, OptionArg.NONE, ref fullscreen,
+          N_("Start in fullscreen mode"), null },
+        { null }
+    };
 
     public Application ()
     {
@@ -70,6 +78,8 @@ public class Cheese.Application : Gtk.Application
         Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
         Intl.textdomain (Config.GETTEXT_PACKAGE);
 
+        settings = new GLib.Settings ("org.gnome.Cheese");
+
         add_action_entries (action_entries, this);
 
         string[] args = { null };
@@ -85,18 +95,15 @@ public class Cheese.Application : Gtk.Application
     }
 
     /**
-     * Present the existing main window, or create a new one.
+     * Ensure that the main window has been shown, camera set up and so on.
      */
-    protected override void activate ()
+    private void common_init ()
     {
-        if (get_windows () != null)
-        {
-            main_window.present ();
-        }
-        else
+        if (this.get_windows () == null)
         {
             // Prefer a dark GTK+ theme, bug 660628.
             var gtk_settings = Gtk.Settings.get_default ();
+
             if (gtk_settings != null)
             {
                 gtk_settings.gtk_application_prefer_dark_theme = true;
@@ -146,20 +153,9 @@ public class Cheese.Application : Gtk.Application
             section.append_item (item);
             set_app_menu (menu);
 
-            // FIXME: Read fullscreen state from GSettings.
-
             // FIXME: Push these into the main window initialization.
             main_window.setup_ui ();
             main_window.start_thumbview_monitors ();
-
-            if (wide)
-            {
-                main_window.set_startup_wide_mode ();
-            }
-            if (fullscreen)
-            {
-                main_window.set_startup_fullscreen_mode ();
-            }
 
             /* Shoot when the webcam capture button is pressed. */
             main_window.add_events (Gdk.EventMask.KEY_PRESS_MASK
@@ -167,8 +163,24 @@ public class Cheese.Application : Gtk.Application
             main_window.key_press_event.connect (on_webcam_key_pressed);
 
             main_window.show ();
-            setup_camera (device);
+            setup_camera ();
             preferences_dialog = new PreferencesDialog (camera);
+            this.add_window (main_window);
+        }
+    }
+
+    /**
+     * Present the existing main window, or create a new one.
+     */
+    protected override void activate ()
+    {
+        if (this.get_windows () != null)
+        {
+            main_window.present ();
+        }
+        else
+        {
+            common_init ();
         }
     }
 
@@ -213,9 +225,6 @@ public class Cheese.Application : Gtk.Application
                 context.set_translation_domain (Config.GETTEXT_PACKAGE);
                 context.set_help_enabled (true);
                 context.add_main_entries (options, null);
-                context.add_group (Gtk.get_option_group (true));
-                context.add_group (Clutter.get_option_group ());
-                context.add_group (Gst.init_get_option_group ());
                 context.parse (ref arguments);
             }
             catch (OptionError e)
@@ -236,20 +245,23 @@ public class Cheese.Application : Gtk.Application
                 return true;
             }
 
-            // Remote instance, process commands locally.
-            if (get_is_remote ())
+            if (device != null)
             {
-                stdout.printf (_("Another instance of Cheese is currently running"));
-                stdout.printf ("\n");
-                exit_status = 1;
-                return true;
+                settings.set_string ("camera", device);
             }
-            // Primary instance.
-            else
+
+            if (fullscreen)
             {
-                activate ();
-                exit_status = 0;
+                activate_action ("fullscreen", null);
             }
+
+            if (wide)
+            {
+                activate_action ("wide-mode", null);
+            }
+
+            activate ();
+            exit_status = 0;
         }
 
         return base.local_command_line (ref arguments, out exit_status);
@@ -257,23 +269,10 @@ public class Cheese.Application : Gtk.Application
 
     /**
      * Setup the camera listed in GSettings.
-     *
-     * @param uri the uri of the device node to setup, or null
      */
-    public void setup_camera (string? uri)
+    public void setup_camera ()
     {
-        var settings = new GLib.Settings ("org.gnome.Cheese");
-        string device;
         double value;
-
-        if (uri != null && uri.length > 0)
-        {
-            device = uri;
-        }
-        else
-        {
-            device = settings.get_string ("camera");
-        }
 
         var video_preview = main_window.get_video_preview ();
         camera = new Camera (video_preview, device,
@@ -430,8 +429,33 @@ public class Cheese.Application : Gtk.Application
 
         var state = value.get_boolean ();
 
+        // Action can be activated before activate ().
+        common_init ();
+
         main_window.set_fullscreen (state);
 
+        settings.set_boolean ("fullscreen", state);
+        action.set_state (value);
+    }
+
+    /**
+     * Handle the wide-mode state being changed.
+     *
+     * @param action the action that emitted the signal
+     * @param value the state to switch to
+     */
+    private void on_wide_mode_change (SimpleAction action, Variant? value)
+    {
+        return_if_fail (value != null);
+
+        var state = value.get_boolean ();
+
+        // Action can be activated before activate ().
+        common_init ();
+
+        main_window.set_wide_mode (state);
+
+        settings.set_boolean ("wide-mode", state);
         action.set_state (value);
     }
 

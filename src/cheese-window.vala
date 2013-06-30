@@ -634,7 +634,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    *
    * @param wide_mode whether to enable or disable wide mode
    */
-  private void set_wide_mode (bool wide_mode)
+  public void set_wide_mode (bool wide_mode)
   {
     is_wide_mode = wide_mode;
 
