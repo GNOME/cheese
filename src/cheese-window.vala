@@ -913,12 +913,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   /**
    * Change the selected effect, as a new one was selected.
    *
-   * @param source unused
-   * @param event unused
-   * @return false, to allow further event processing
+   * @param tap unused
+   * @param source the actor (with associated effect) that was selected
    */
-  public bool on_selected_effect_change (Clutter.Actor source,
-                                         Clutter.ButtonEvent event)
+  public void on_selected_effect_change (Clutter.TapAction tap,
+                                         Clutter.Actor source)
   {
     /* Disable the effects selector after selecting an effect. */
     effects_toggle_button.set_active (false);
@@ -926,7 +925,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     selected_effect = source.get_data ("effect");
     camera.set_effect (selected_effect);
     settings.set_string ("selected-effect", selected_effect.name);
-    return false;
   }
 
   /**
@@ -1093,10 +1091,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         texture.keep_aspect_ratio = true;
         box.add_child (texture);
         box.reactive = true;
+        var tap = new Clutter.TapAction ();
+        box.add_action (tap);
+        tap.tap.connect (on_selected_effect_change);
         box.set_data ("effect", effect);
         effect.set_data ("texture", texture);
-
-        box.button_release_event.connect (on_selected_effect_change);
 
         text.text  = effect.name;
         text.color = Clutter.Color.from_string ("white");
