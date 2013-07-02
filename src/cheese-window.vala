@@ -1249,7 +1249,66 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     setup_effects_selector ();
 
     this.key_release_event.connect (on_key_release);
+        this.configure_event.connect (on_configure_event);
   }
+
+    /**
+     * Switch the main window into wide mode if it is too tall to fit into the
+     * work area of the monitor on which it is displayed.
+     *
+     * @param window the main Cheese window
+     * @param event the configure event with the new window dimensions
+     */
+    private bool on_configure_event (Gtk.Widget window,
+                                     Gdk.EventConfigure event)
+    {
+        var screen = window.get_screen ();
+        var monitor_id = screen.get_monitor_at_window (window.get_window ());
+        var rect = screen.get_monitor_workarea (monitor_id);
+        var wide_mode = this.application.lookup_action ("wide-mode") as SimpleAction;
+        var wide = wide_mode.state.get_boolean ();
+
+        if (rect.height < event.height && !wide)
+        {
+            /* If the window is too tall to fit on the work area, and wide
+             * mode is not enabled, enable it. */
+            this.application.activate_action ("wide-mode", null);
+            return false;
+        }
+
+        float width;
+        float height;
+        video_preview.get_size (out width, out height);
+
+        // Return early if the video preview is not active.
+        if (width < 1.0 || height < 1.0)
+        {
+            return false;
+        }
+
+        /* Sizes are about 1.5 times larger than THUMB_VIEW_MINIMUM_HEIGHT and
+         * _WIDTH. */
+        if (wide)
+        {
+            if (event.height > (140 + height))
+            {
+                /* If there is extra space above and below the video preview,
+                 * enable wide mode if it is not already enabled. */
+                this.application.activate_action ("wide-mode", null);
+            }
+        }
+        else
+        {
+            if (event.width > (200 + width))
+            {
+                /* If there is extra width next to the video preview, enable
+                 * wide mode if it is not already enabled. */
+                this.application.activate_action ("wide-mode", null);
+            }
+        }
+
+        return false;
+    }
 
     public Clutter.Texture get_video_preview ()
     {
