@@ -73,11 +73,6 @@ public class Cheese.Application : Gtk.Application
      */
     protected override void startup ()
     {
-        Environment.set_prgname ("cheese");
-        Intl.bindtextdomain (Config.GETTEXT_PACKAGE, Config.PACKAGE_LOCALEDIR);
-        Intl.bind_textdomain_codeset (Config.GETTEXT_PACKAGE, "UTF-8");
-        Intl.textdomain (Config.GETTEXT_PACKAGE);
-
         settings = new GLib.Settings ("org.gnome.Cheese");
 
         add_action_entries (action_entries, this);
