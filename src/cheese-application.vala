@@ -272,7 +272,12 @@ public class Cheese.Application : Gtk.Application
      */
     public void setup_camera ()
     {
-        double value;
+        var effects = this.lookup_action ("effects") as SimpleAction;
+        var mode = this.lookup_action ("mode") as SimpleAction;
+        var shoot = this.lookup_action ("shoot") as SimpleAction;
+        effects.set_enabled (false);
+        mode.set_enabled (false);
+        shoot.set_enabled (false);
 
         var video_preview = main_window.get_video_preview ();
         camera = new Camera (video_preview, device,
@@ -286,11 +291,13 @@ public class Cheese.Application : Gtk.Application
         catch (Error err)
         {
             video_preview.hide ();
-            warning ("Error: %s\n", err.message);
+            message ("Error during camera setup: %s\n", err.message);
             main_window.show_error (err.message);
 
             return;
         }
+
+        double value;
 
         value = settings.get_double ("brightness");
         if (value != 0.0)
@@ -315,13 +322,6 @@ public class Cheese.Application : Gtk.Application
         {
             camera.set_balance_property ("saturation", value);
         }
-
-        var effects = this.lookup_action ("effects") as SimpleAction;
-        var mode = this.lookup_action ("mode") as SimpleAction;
-        var shoot = this.lookup_action ("shoot") as SimpleAction;
-        effects.set_enabled (false);
-        mode.set_enabled (false);
-        shoot.set_enabled (false);
 
         camera.state_flags_changed.connect (on_camera_state_flags_changed);
         main_window.set_camera (camera);
