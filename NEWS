@@ -1,6 +1,150 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.4
+  - Move gettext initialization to main()
+    Ensure that gettext is always initialized, regardless of whether the
+    running instance is the primary instance.
+  - Make actions insensitive when no webcam is present
+    Set the "effects", "mode" and "shoot" actions insensitive when no camera
+    devices are found on startup. Fixes bug 693070.
+  - Remove TODO
+  - Add touch event handler for selecting effects
+    Use a ClutterTapAction on each effect to allow either a mouse click or a
+    touch tap to select effects. Depend on Clutter 1.13.2 for
+    ClutterTapAction. Fixes bug 692745.
+  - Updated POTFILES.in and POTFILES.skip
+  - Move action sensitivity handling to Application
+  - Remove unnecessary instance_pos attribute
+    The instance_pos attribute is only used in Cheese when connecting
+    signals from actions to handlers with GtkBuilder.
+  - Do not show thumbnails in fullscreen
+    This can happen when toggling the wide mode action while fullscreen mode
+    is active. Also remove the unnecessary resize calls.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Remove unused move_all_to_trash action
+  - Remove wide-mode and fullscreen GSettings keys
+    Both wide mode and fullscreen mode can be set with toggle actions, and
+    there is little reason for the state to persist across application
+    restart.
+  - Mark cheese_[gtk_]init() arguments as allow-none
+    It is reasonable to pass NULL for argc and argv.
+  - Refactor command-line argument handling
+    Only handle Cheese options on the command line; handle library options
+    with environment variables instead. Use actions from the command-line
+    parser to switch to wide mode and fullscreen mode.
+  - Refactor Application startup
+    Override default handlers rather than connecting to signals. Add
+    startup() and use it to initialize cheese-gtk and gettext.
+  - Split main() and Application into separate files
+  - um-crop-area.c: Relicense to GPLv2+
+    This makes the file fit in better with the rest of Cheese,
+    license-wise.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=703239
+  - Remove stale help translations
+    Many translations have not been updated since the switch to Mallard
+    help, so remove them from HELP_LINGUAS to make the distribution smaller
+    and speed up building.
+  - Handle NULL state errors in CheeseAvatarChooser
+    Fixes remainder of bug 703123.
+  - Show an error message if the camera state is NULL
+    If there is a GST_MESSAGE_ERROR, stop the stream and emit
+    ::state-flags-changed on the CheeseCamera. Handle the state change in
+    CheeseWindow by showing a generic error message. This message can easily
+    occur if the video device is busy, such as when another application is
+    using the webcam.
+
+    Fixes bug 703123.
+  - Add CheeseWindow.show_error() method
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Fix being paused when effect valves are closed
+    The move to autocluttersink in 3.9 causes a regression compared to 3.8,
+    where if an effect's control valve is closed the pipeline will never
+    transition from paused to playing since the cluttersink is stuck in
+    paused.
+
+    This regression can be triggered the following way:
+    1) Go the effect selector
+    2) Go to the next page in the effect selector, so that the now connected
+    effects from the first page get their control valve set to closed
+    3) Change resolution or device, so that the pipeline gets stopped and
+    started again
+
+    After 3) the pipeline will be stuck in pause, as the cluttersinks of the
+    effect previews are stuck in pause.
+
+    The cause for this is that with the move to autocluttersink we are no
+    longer setting the sink's "async" property, see commit 424afdaa 'Use
+    "autocluttersink" instead of "cluttersink"'.
+
+    Setting the "async" property is no longer (easily) doable, since
+    autocluttersink is a gstbin derived object which has the actual sink
+    embedded.
+
+    Instead this patch fixes the stuck in pause problem by locking the
+    autocluttersinks of the effect previews into the playing state.
+
+    Note that no longer setting of the async property on the sink is also
+    the root cause of the issue fixed by my patch titled: "Set all valves
+    open on play". The opening of the main valve is still necessary, since
+    locking the viewfinder sink's state to PLAYING does not seem a good
+    idea, the opening of the effects-valve on play OTOH is no longer
+    necessary.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Use shoot action when handling the webcam button
+    Rather then calling on_shoot directly, call the action, so that if shoot
+    is disabled, it also cannot be triggered through the webcam button.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Set all valves open on play
+    If some valves are closed on play, GStreamer will wait for the valves to
+    open before moving from paused to playing, and a frozen image is shown.
+
+    This does not happen on startup since on startup all valves are open,
+    nor does it happen when changing video-format directly after startup,
+    since all valves will still be open. As soon as
+    cheese_camera_toggle_effects_pipeline() has been called once, any
+    subsequent attempt to change the video format (and thus stopping and
+    re-starting the pipeline) will result in a frozen image.
+
+    This patch fixes this by opening all valves on play, and calling
+    cheese_camera_toggle_effects_pipeline() with the last active value after
+    the pipeline transitions to the playing state.
+
+    This has the added advantage that unlike before the effects valve will
+    be closed on startup, rather then staying open till the first call to
+    cheese_camera_toggle_effects_pipeline().
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Avoid setting the same effect again
+    Check for the current effect being the same as the one set and if so,
+    ignore the change.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Disable effects and mode actions while shooting
+  - Fix de-activation of effects button
+    So that the user does not need to click twice on the effect button
+    to change
+    the effect (after the first time the effect was changed).
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=698399
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Reorder Help and About in the app menu
+    Move Help to be above About in the application menu so that it complies
+    with the HIG.
+  - Post-release bump to 3.9.4
+  - Added/Updated Translations
+    - cs, courtesy of Marek Černocký
+    - de, courtesy of Benjamin Steinwender
+    - es, courtesy of Daniel Mustieles
+    - nb, courtesy of Kjartan Maraas
+  - Added/Updated Documentation
+    - pt_BR, courtesy of Rafael Ferreira
+
 version 3.9.3
   - Add documentation for CheeseCamera signals
   - Remove unused Cheese.MainWindow.get_data_file_dir
