@@ -117,42 +117,51 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         GLib.Object (application: application);
     }
 
-  /**
-   * Popup a context menu when right-clicking on a thumbnail.
-   *
-   * @param iconview the thumbnail view that emitted the signal
-   * @param event the event
-   * @return false, to allow further processing of the event
-   */
-  public bool on_thumbnail_mouse_button_press (Gtk.Widget      iconview,
-                                               Gdk.EventButton event)
-  {
-    Gtk.TreePath path;
-    path = thumb_view.get_path_at_pos ((int) event.x, (int) event.y);
-
-    if (path == null)
-      return false;
-
-    if (!thumb_view.path_is_selected (path))
+    /**
+    * Popup a context menu when right-clicking on a thumbnail.
+    *
+    * @param iconview the thumbnail view that emitted the signal
+    * @param event the event
+    * @return false to allow further processing of the event, true to indicate
+    * that the event was handled completely
+    */
+    public bool on_thumbnail_button_press_event (Gtk.Widget iconview,
+                                                 Gdk.EventButton event)
     {
-      thumb_view.unselect_all ();
-      thumb_view.select_path (path);
-      thumb_view.set_cursor (path, null, false);
-    }
+        Gtk.TreePath path;
+        path = thumb_view.get_path_at_pos ((int) event.x, (int) event.y);
 
-    if (event.type == Gdk.EventType.BUTTON_PRESS)
-    {
-      if (event.button == 3)
-	thumbnail_popup.popup (null, thumb_view, null, event.button, event.time);
-    }
-    else
-    if (event.type == Gdk.EventType.2BUTTON_PRESS)
-    {
-      on_file_open ();
-    }
+        if (path == null)
+        {
+            return false;
+        }
 
-    return false;
-  }
+        if (!thumb_view.path_is_selected (path))
+        {
+            thumb_view.unselect_all ();
+            thumb_view.select_path (path);
+            thumb_view.set_cursor (path, null, false);
+        }
+
+        if (event.type == Gdk.EventType.BUTTON_PRESS)
+        {
+            Gdk.Event* button_press = (Gdk.Event*)(&event);
+
+            if (button_press->triggers_context_menu ())
+            {
+                thumbnail_popup.popup (null, thumb_view, null, event.button,
+                                       event.time);
+            }
+            else if (event.type == Gdk.EventType.2BUTTON_PRESS)
+            {
+                on_file_open ();
+            }
+
+            return true;
+        }
+
+        return false;
+    }
 
   /**
    * Open an image associated with a thumbnail in the default application.
@@ -1244,7 +1253,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     Gtk.StyleContext.add_provider_for_screen (screen, css, STYLE_PROVIDER_PRIORITY_USER);
 
-    thumb_view.button_press_event.connect (on_thumbnail_mouse_button_press);
+    thumb_view.button_press_event.connect (on_thumbnail_button_press_event);
 
     this.add (main_vbox);
     main_vbox.show_all ();
