@@ -33,6 +33,15 @@ const uint EFFECTS_PER_PAGE = 9;
 
 public class Cheese.MainWindow : Gtk.ApplicationWindow
 {
+    private const GLib.ActionEntry actions[] = {
+        { "file-open", on_file_open },
+        { "file-saveas", on_file_saveas },
+        { "file-trash", on_file_trash },
+        { "file-delete", on_file_delete },
+        { "effects-next", on_effects_next },
+        { "effects-previous", on_effects_previous }
+    };
+
     private MediaMode current_mode;
 
   private Gtk.Builder    gtk_builder;
@@ -73,8 +82,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private List<Clutter.Actor> effects_grids;
 
   private Gtk.Action       countdown_action;
-  private Gtk.Action       effects_page_prev_action;
-  private Gtk.Action       effects_page_next_action;
 
   private bool is_fullscreen;
   private bool is_wide_mode;
@@ -141,7 +148,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     else
     if (event.type == Gdk.EventType.2BUTTON_PRESS)
     {
-      on_file_open (null);
+      on_file_open ();
     }
 
     return false;
@@ -149,11 +156,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
   /**
    * Open an image associated with a thumbnail in the default application.
-   *
-   * @param action the action that emitted the signal, or null
    */
-  [CCode (instance_pos = -1)]
-  public void on_file_open (Gtk.Action ? action)
+  private void on_file_open ()
   {
     string filename, uri;
 
@@ -188,11 +192,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    * Delete the requested image or images in the thumbview from storage.
    *
    * A confirmation dialog is shown to the user before deleting any files.
-   *
-   * @param action the action that emitted the signal
    */
-  [CCode (instance_pos = -1)]
-  public void on_file_delete (Gtk.Action action)
+  private void on_file_delete ()
   {
     int response;
     int error_response;
@@ -259,11 +260,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    * Move the requested image in the thumbview to the trash.
    *
    * A confirmation dialog is shown to the user before moving the file.
-   *
-   * @param action the action that emitted the signal
    */
-  [CCode (instance_pos = -1)]
-  public void on_file_move_to_trash (Gtk.Action action)
+  private void on_file_trash ()
   {
     File file;
 
@@ -300,11 +298,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    *
    * A file chooser dialog is shown to the user, asking where the file should
    * be saved and the filename.
-   *
-   * @param action the action that emitted the signal.
    */
-  [CCode (instance_pos = -1)]
-  public void on_file_save_as (Gtk.Action action)
+  private void on_file_saveas ()
   {
     string            filename, basename;
     FileChooserDialog save_as_dialog;
@@ -927,33 +922,28 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     settings.set_string ("selected-effect", selected_effect.name);
   }
 
-  /**
-   * Navigate back one page of effects.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_prev_effects_page (Gtk.Action action)
-  {
-    if (current_effects_page != 0)
+    /**
+     * Navigate back one page of effects.
+     */
+    private void on_effects_previous ()
     {
-      activate_effects_page ((int)current_effects_page - 1);
+        if (current_effects_page != 0)
+        {
+            activate_effects_page ((int)current_effects_page - 1);
+        }
     }
-  }
 
-  /**
-   * Navigate forward one page of effects.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_next_effects_page (Gtk.Action action)
-  {
-    if (current_effects_page != (effects_manager.effects.length () / EFFECTS_PER_PAGE))
+    /**
+     * Navigate forward one page of effects.
+     */
+    private void on_effects_next ()
     {
-      activate_effects_page ((int)current_effects_page + 1);
+        if (current_effects_page != (effects_manager.effects.length ()
+                                     / EFFECTS_PER_PAGE))
+        {
+            activate_effects_page ((int)current_effects_page + 1);
+        }
     }
-  }
 
   /**
    * Switch to the supplied page of effects.
@@ -1006,15 +996,19 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     setup_effects_page_switch_sensitivity ();
   }
 
-  /**
-   * Control the sensitivity of the effects page navigation buttons.
-   */
-  private void setup_effects_page_switch_sensitivity ()
-  {
-    effects_page_prev_action.sensitive = (is_effects_selector_active && current_effects_page != 0);
-    effects_page_next_action.sensitive =
-      (is_effects_selector_active && current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE);
-  }
+    /**
+     * Control the sensitivity of the effects page navigation buttons.
+     */
+    private void setup_effects_page_switch_sensitivity ()
+    {
+        var effects_next = this.lookup_action ("effects-next") as SimpleAction;
+        var effects_previous = this.lookup_action ("effects-previous") as SimpleAction;
+
+        effects_next.set_enabled (is_effects_selector_active
+                                  && current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE);
+        effects_previous.set_enabled (is_effects_selector_active
+                                      && current_effects_page != 0);
+    }
 
     /**
      * Toggle the visibility of the effects selector.
@@ -1158,8 +1152,26 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     flash           = new Flash (this);
     settings        = new GLib.Settings ("org.gnome.Cheese");
 
+        var menu = new GLib.Menu ();
+        var section = new GLib.Menu ();
+        menu.append_section (null, section);
+        var item = new GLib.MenuItem (_("Open"), "win.file-open");
+        item.set_attribute ("accel", "s", "<Primary>o");
+        section.append_item (item);
+        item = new GLib.MenuItem (_("Save _As…"), "win.file-saveas");
+        item.set_attribute ("accel", "s", "<Primary>S");
+        section.append_item (item);
+        item = new GLib.MenuItem (_("Move to _Trash"), "win.file-trash");
+        item.set_attribute ("accel", "s", "Delete");
+        section.append_item (item);
+        item = new GLib.MenuItem (_("Delete"), "win.file-delete");
+        item.set_attribute ("accel", "s", "<Shift>Delete");
+        section.append_item (item);
+        thumbnail_popup = new Gtk.Menu.from_model (menu);
+
+        this.add_action_entries (actions, this);
+
     try {
-      gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-actions.ui"));
       gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
       gtk_builder.connect_signals (this);
 
@@ -1185,11 +1197,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     effects_toggle_button             = gtk_builder.get_object ("effects_toggle_button") as Gtk.ToggleButton;
     leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
     buttons_area = gtk_builder.get_object ("buttons_area") as Gtk.Grid;
-    thumbnail_popup                   = gtk_builder.get_object ("thumbnail_popup") as Gtk.Menu;
 
     countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
-    effects_page_next_action = gtk_builder.get_object ("effects_page_next") as Gtk.Action;
-    effects_page_prev_action = gtk_builder.get_object ("effects_page_prev") as Gtk.Action;
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
@@ -1220,6 +1229,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     thumb_view = new Cheese.ThumbView ();
     thumb_nav  = new Eog.ThumbNav (thumb_view, false);
+        thumbnail_popup.attach_to_widget (thumb_view, null);
 
     Gtk.CssProvider css;
     try
