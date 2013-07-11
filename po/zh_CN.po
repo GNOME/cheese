@@ -3,7 +3,7 @@
 # Copyright (C) 2008, 2009, 2010 Free Software Foundation, Inc.
 # This file is distributed under the same license as the cheese package.
 # YangZhang <zyangmath@gmail.com>, 2008.
-# 甘露 (Gan Lu) <rhythm.gan@gmail.com>, 2009.
+# 甘露 (Lu Gan) <rhythm.gan@gmail.com>, 2009, 2013
 # arccos (L.Q) <boyermoore@gmail.com>, 2009.
 # Tao Wei <weitao1979@gmail.com>, 2010.
 # Aron Xu <aronxu@gnome.org>, 2010.
@@ -19,42 +19,30 @@ msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-05-13 21:22+0000\n"
-"PO-Revision-Date: 2013-05-25 17:55+0800\n"
-"Last-Translator: tuhaihe <1132321739qq@gmail.com>\n"
+"POT-Creation-Date: 2013-07-07 22:21+0000\n"
+"PO-Revision-Date: 2013-07-06 16:53+0800\n"
+"Last-Translator: 甘露(Lu Gan) <rhythm.gan@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
 
 #: ../data/cheese-actions.ui.h:1
-msgid "Share…"
-msgstr "分享..."
-
-#: ../data/cheese-actions.ui.h:2
 msgid "Save _As…"
 msgstr "另存为(_A)..."
 
-#: ../data/cheese-actions.ui.h:3
+#: ../data/cheese-actions.ui.h:2
 msgid "Move to _Trash"
 msgstr "移入回收站(_T)"
 
-#: ../data/cheese-actions.ui.h:4
-msgid "Move _All to Trash"
-msgstr "全部移入回收站(_A)"
-
-#: ../data/cheese-actions.ui.h:5
-msgid "_Wide Mode"
-msgstr "宽屏模式(_W)"
-
-#: ../data/cheese-actions.ui.h:6
+#: ../data/cheese-actions.ui.h:3
 msgid "P_revious Effects"
 msgstr "上一批效果(_R)"
 
-#: ../data/cheese-actions.ui.h:7
+#: ../data/cheese-actions.ui.h:4
 msgid "Ne_xt Effects"
 msgstr "下一批效果(_X)"
 
@@ -70,34 +58,34 @@ msgstr "视频模式"
 msgid "Photo burst mode"
 msgstr "连拍模式"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1512
-msgid "Take a photo"
-msgstr "拍照"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1285
+msgid "Take a photo using a webcam"
+msgstr "使用网络摄像头拍照"
 
-#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1511
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
+#: ../src/cheese-window.vala:1284
 msgid "_Take a Photo"
 msgstr "拍照(_T)"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "向前"
+msgid "Navigate to the previous page of effects"
+msgstr "导航到前一页效果"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
 msgstr "效果"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
 msgid "_Effects"
 msgstr "效果(_E)"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "向后"
+msgid "Navigate to the next page of effects"
+msgstr "导航到下一页效果"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "退出全屏"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "离开全屏模式并回到窗口模式"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -152,7 +140,7 @@ msgid "_Countdown"
 msgstr "倒计时(_C)"
 
 #: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
+msgid "Fire _flash"
 msgstr "闪光(_F)"
 
 #: ../data/cheese-prefs.ui.h:14
@@ -171,8 +159,8 @@ msgstr "照片延迟(秒)"
 msgid "Capture"
 msgstr "抓取"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:524
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
+#: ../src/cheese-application.vala:611
 msgid "Cheese"
 msgstr "茄子"
 
@@ -180,7 +168,7 @@ msgstr "茄子"
 msgid "Cheese Webcam Booth"
 msgstr "茄子大头贴"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "使用摄像头拍照或录像，并加上有趣的图像效果"
 
@@ -205,11 +193,11 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "拍照前倒计时的秒数"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
+msgid "Fire flash before taking a photo"
 msgstr "在拍照前闪光"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
+msgid "Set to true to fire a flash before taking a photo"
 msgstr "如果想在拍照时闪光，请设为 true"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
@@ -263,39 +251,39 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "从摄像头截取视频的高度，单位是像素"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
-msgstr "照片亮度"
+msgid "Image brightness"
+msgstr "图像亮度"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr "调整摄像头图像的亮度"
+msgid "Adjusts the brightness of the image coming from the camera"
+msgstr "调整摄像头所拍摄图像的亮度"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
-msgstr "照片对比度"
+msgid "Image contrast"
+msgstr "图像对比度"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr "调整摄像头图像的对比度"
+msgid "Adjusts the contrast of the image coming from the camera"
+msgstr "调整摄像头所拍摄图像的对比度"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
-msgstr "照片饱和度"
+msgid "Image saturation"
+msgstr "图像饱和度"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr "调整摄像头图像的饱和度"
+msgid "Adjusts the saturation of the image coming from the camera"
+msgstr "调整摄像头所拍摄图像的饱和度"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
-msgstr "照片色调"
+msgid "Image hue"
+msgstr "图像色调"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr "调整摄像头图像的色调"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
+msgstr "调整摄像头所拍摄图像的色调(色彩明暗)"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
+msgid "Video path"
 msgstr "视频路径"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
@@ -305,7 +293,7 @@ msgid ""
 msgstr "指定保存视频的路径。如果为空，将使用“XDG_VIDEO/Webcam”。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
+msgid "Photo path"
 msgstr "照片路径"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
@@ -315,29 +303,10 @@ msgid ""
 msgstr "指定保存照片的路径。如果为空，将使用“XDG_PHOTO/Webcam”。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
-msgid "Whether to start in wide mode"
-msgstr "是否以宽屏模式启动"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid ""
-"If set to true, Cheese will start up in wide mode, with the image collection "
-"placed on the right-hand side. Useful with small screens."
-msgstr ""
-"如果设为 true，Cheese 会以宽屏方式启动，图集置于右侧。该方式适用于小屏幕。"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:33
-msgid "Whether to start in fullscreen"
-msgstr "是否以全屏模式启动"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:34
-msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr "如果设为 true，Cheese 将以全屏方式启动。"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
 msgstr "照片连拍间隔时间"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:36
+#: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos. If the burst delay is less than the countdown "
@@ -346,52 +315,35 @@ msgstr ""
 "一组连拍照片中各照片间的延时，单位为毫秒。如果连拍延时比倒计时持续时间短，将"
 "转而使用倒计时的时长。"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:37
+#: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
 msgstr "连拍照片数"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:38
+#: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "The number of photos to take in a single burst."
 msgstr "一次连拍的照片数量。"
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
+#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:658
 msgid "Shutter sound"
 msgstr "快门声"
 
-#: ../libcheese/cheese-avatar-chooser.c:260
+#: ../libcheese/cheese-avatar-chooser.c:262
 msgid "Select"
 msgstr "选择"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "拍照(_T)"
+#: ../libcheese/cheese-avatar-chooser.c:265
+msgid "Take a Photo"
+msgstr "拍照"
 
-#: ../libcheese/cheese-avatar-chooser.c:294
+#: ../libcheese/cheese-avatar-chooser.c:296
 msgid "_Discard photo"
 msgstr "丢弃照片(_D)"
 
-#: ../libcheese/cheese-camera-device.c:401
-msgid "Device capabilities not supported"
-msgstr "不支持该设备的全部功能"
-
-#: ../libcheese/cheese-camera-device.c:430
-#, c-format
-msgid "Failed to initialize device %s for capability probing"
-msgstr "初始化设备 %s 以探测其能力时失败"
-
-#: ../libcheese/cheese-camera-device.c:619
-msgid "Unknown device"
-msgstr "未知设备"
-
-#: ../libcheese/cheese-camera-device.c:642
-msgid "Cancellable initialization not supported"
-msgstr "不支持可中断初始化"
-
-#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1568
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1617
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 GStreamer 元素："
 
-#: ../libcheese/cheese-camera.c:1527
+#: ../libcheese/cheese-camera.c:1576
 #, c-format
 msgid "No device found"
 msgstr "未发现设备"
@@ -401,91 +353,99 @@ msgstr "未发现设备"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1803
+#: ../libcheese/cheese-camera.c:1852
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:51
-msgid "No Effect"
-msgstr "无效果"
+#: ../libcheese/cheese-camera-device.c:402
+msgid "Device capabilities not supported"
+msgstr "不支持该设备的全部功能"
 
-#: ../src/cheese-main.vala:51
+#: ../libcheese/cheese-camera-device.c:431
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "初始化设备 %s 以探测其能力时失败"
+
+#: ../libcheese/cheese-camera-device.c:620
+msgid "Unknown device"
+msgstr "未知设备"
+
+#: ../libcheese/cheese-camera-device.c:643
+msgid "Cancellable initialization not supported"
+msgstr "不支持可中断初始化"
+
+#: ../src/cheese-application.vala:55
 msgid "Start in wide mode"
 msgstr "以宽屏模式启动"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "Device to use as a camera"
 msgstr "用作摄像头的设备"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "DEVICE"
 msgstr "设备"
 
-#: ../src/cheese-main.vala:53
+#: ../src/cheese-application.vala:60
 msgid "Output version information and exit"
 msgstr "输出版本信息并退出"
 
-#: ../src/cheese-main.vala:54
+#: ../src/cheese-application.vala:62
 msgid "Start in fullscreen mode"
 msgstr "以全屏模式启动"
 
-#: ../src/cheese-main.vala:92
+#: ../src/cheese-application.vala:121
 msgid "_Shoot"
 msgstr "拍摄(_S)"
 
-#: ../src/cheese-main.vala:96
+#: ../src/cheese-application.vala:125
 msgid "Mode:"
 msgstr "模式："
 
-#: ../src/cheese-main.vala:97
+#: ../src/cheese-application.vala:126
 msgid "_Photo"
 msgstr "照片(_P)"
 
-#: ../src/cheese-main.vala:98
+#: ../src/cheese-application.vala:127
 msgid "_Video"
 msgstr "视频(_V)"
 
-#: ../src/cheese-main.vala:99
+#: ../src/cheese-application.vala:128
 msgid "_Burst"
 msgstr "连拍(_B)"
 
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-application.vala:131
 msgid "_Fullscreen"
 msgstr "全屏(_F)"
 
-#: ../src/cheese-main.vala:110
+#: ../src/cheese-application.vala:139
 msgid "P_references"
 msgstr "首选项(_R)"
 
-#: ../src/cheese-main.vala:113
-msgid "_About"
-msgstr "关于(_A)"
-
-#: ../src/cheese-main.vala:114
+#: ../src/cheese-application.vala:142
 msgid "_Help"
 msgstr "帮助(_H)"
 
-#: ../src/cheese-main.vala:117
+#: ../src/cheese-application.vala:145
+msgid "_About"
+msgstr "关于(_A)"
+
+#: ../src/cheese-application.vala:146
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: ../src/cheese-main.vala:182
+#: ../src/cheese-application.vala:219
 msgid "- Take photos and videos from your webcam"
 msgstr "- 使用摄像头拍照和视频"
 
-#: ../src/cheese-main.vala:194
+#: ../src/cheese-application.vala:228
 #, c-format
-msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr "运行“%s --help”来查看可用命令行选项的完整列表。\n"
+msgid "Run '%s --help' to see a full list of available command line options."
+msgstr "运行“%s --help”来查看可用命令行选项的完整列表。"
 
-#: ../src/cheese-main.vala:209
-#, c-format
-msgid "Another instance of Cheese is currently running\n"
-msgstr "另一个 Cheese 实例已在运行\n"
-
-#: ../src/cheese-main.vala:525
+#: ../src/cheese-application.vala:612
 msgid "translator-credits"
 msgstr ""
 "YangZhang <zyangmath@gmail.com>, 2008\n"
@@ -501,84 +461,141 @@ msgstr ""
 "Wylmer Wang<wantinghard@gmail.com>, 2011\n"
 "tuhaihe <1132321739qq@gmail.com>, 2013"
 
-#: ../src/cheese-main.vala:527
+#: ../src/cheese-application.vala:614
 msgid "Cheese Website"
 msgstr "茄子网站"
 
-#: ../src/cheese-window.vala:192
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
+msgid "No Effect"
+msgstr "无效果"
+
+#: ../src/cheese-window.vala:179
 #, c-format
 msgid "Could not open %s"
 msgstr "无法打开 %s"
 
-#: ../src/cheese-window.vala:220
+#: ../src/cheese-window.vala:207
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "您确实想永久删除这 %d 个文件吗？"
 
-#: ../src/cheese-window.vala:226
+#: ../src/cheese-window.vala:213
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "如果您删除这些项目，它们会永远消失"
 
-#: ../src/cheese-window.vala:302
+#: ../src/cheese-window.vala:289
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "无法将 %s 移到回收站"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:451
+#: ../src/cheese-window.vala:317
 msgid "Save File"
 msgstr "保存文件"
 
-#: ../src/cheese-window.vala:485
+#: ../src/cheese-window.vala:351
 #, c-format
 msgid "Could not save %s"
 msgstr "无法保存 %s"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:768
 msgid "Stop _Recording"
 msgstr "停止录像(_R)"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:769
 msgid "Stop recording"
 msgstr "停止录像"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:784 ../src/cheese-window.vala:1289
 msgid "_Record a Video"
 msgstr "录像(_R)"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1517
+#: ../src/cheese-window.vala:785
 msgid "Record a video"
 msgstr "录像"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:970
+#: ../src/cheese-window.vala:820
 msgid "Stop _Taking Pictures"
 msgstr "停止拍照(_T)"
 
-#: ../src/cheese-window.vala:971
+#: ../src/cheese-window.vala:821
 msgid "Stop taking pictures"
 msgstr "停止拍照"
 
-#: ../src/cheese-window.vala:994
+#: ../src/cheese-window.vala:844
 msgid "Take Multiple Photos"
 msgstr "拍摄多张照片"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1524
+#: ../src/cheese-window.vala:845
 msgid "Take multiple photos"
 msgstr "拍摄多张照片"
 
-#: ../src/cheese-window.vala:1155
+#: ../src/cheese-window.vala:1030
 msgid "No effects found"
 msgstr "未发现效果"
 
-#: ../src/cheese-window.vala:1523
+#: ../src/cheese-window.vala:1147
+msgid "There was an error playing video from the webcam"
+msgstr "播放网络摄像头录制的视频时出错"
+
+#: ../src/cheese-window.vala:1290
+msgid "Record a video using a webcam"
+msgstr "使用网络摄像头录制一段视频"
+
+#: ../src/cheese-window.vala:1296
 msgid "Take _Multiple Photos"
 msgstr "拍摄多张照片(_M)"
 
-#~ msgid "Take a Photo"
-#~ msgstr "拍照"
+#: ../src/cheese-window.vala:1297
+msgid "Take multiple photos using a webcam"
+msgstr "使用网络摄像头拍摄多张照片"
+
+#~ msgid "Share…"
+#~ msgstr "分享..."
+
+#~ msgid "Move _All to Trash"
+#~ msgstr "全部移入回收站(_A)"
+
+#~ msgid "_Wide Mode"
+#~ msgstr "宽屏模式(_W)"
+
+#~ msgid "Previous"
+#~ msgstr "向前"
+
+#~ msgid "Next"
+#~ msgstr "向后"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "退出全屏"
+
+#~ msgid "Picture hue"
+#~ msgstr "照片色调"
+
+#~ msgid "Whether to start in wide mode"
+#~ msgstr "是否以宽屏模式启动"
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in wide mode, with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "如果设为 true，Cheese 会以宽屏方式启动，图集置于右侧。该方式适用于小屏幕。"
+
+#~ msgid "Whether to start in fullscreen"
+#~ msgstr "是否以全屏模式启动"
+
+#~ msgid "If set to true, Cheese will start up in fullscreen mode."
+#~ msgstr "如果设为 true，Cheese 将以全屏方式启动。"
+
+#~ msgid "_Take a photo"
+#~ msgstr "拍照(_T)"
+
+#~ msgid "Another instance of Cheese is currently running\n"
+#~ msgstr "另一个 Cheese 实例已在运行\n"
 
 #~ msgid "_Cheese"
 #~ msgstr "茄子(_C)"
