@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese 3.9.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-04 11:20+0200\n"
-"PO-Revision-Date: 2013-07-04 11:21+0200\n"
+"POT-Creation-Date: 2013-07-18 13:44+0200\n"
+"PO-Revision-Date: 2013-07-18 13:44+0200\n"
 "Last-Translator: Kjartan Maraas <kmaraas@gnome.org>\n"
 "Language-Team: Norsk bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: \n"
@@ -15,22 +15,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../data/cheese-actions.ui.h:1
-msgid "Save _As…"
-msgstr "L_agre som …"
-
-#: ../data/cheese-actions.ui.h:2
-msgid "Move to _Trash"
-msgstr "Flytt til _papirkurv"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "P_revious Effects"
-msgstr "Fo_rrige effekter"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Ne_xt Effects"
-msgstr "N_este effekter"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -44,12 +28,12 @@ msgstr "Videomodus"
 msgid "Photo burst mode"
 msgstr "Bildeseriemodus"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1285
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1304
 msgid "Take a photo using a webcam"
 msgstr "Ta et bilde med webkamera"
 
 #: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
-#: ../src/cheese-window.vala:1284
+#: ../src/cheese-window.vala:1303
 msgid "_Take a Photo"
 msgstr "_Ta et bilde"
 
@@ -61,7 +45,7 @@ msgstr "Gå til forrige side med effekter"
 msgid "Effects"
 msgstr "Effekter"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:141
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
 msgid "_Effects"
 msgstr "_Effekter"
 
@@ -145,8 +129,8 @@ msgstr "Pause mellom bilder (sekunder)"
 msgid "Capture"
 msgstr "Ta bilde"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:117
-#: ../src/cheese-application.vala:616
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
+#: ../src/cheese-application.vala:611
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -154,7 +138,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese webkamera"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:611
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ta bilder og ta opp video fra ditt webkamera med morsomme effekter"
 
@@ -314,7 +298,7 @@ msgstr "Antall bilder i seriemodus"
 msgid "The number of photos to take in a single burst."
 msgstr "Antall bilder som skal tas i en enkelt serie."
 
-#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:658
+#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:662
 msgid "Shutter sound"
 msgstr "Lyd for lukker"
 
@@ -387,60 +371,61 @@ msgstr "Vis versjonsinformasjon og avslutt"
 msgid "Start in fullscreen mode"
 msgstr "Start i fullskjermmodus"
 
-#: ../src/cheese-application.vala:126
+#: ../src/cheese-application.vala:121
 msgid "_Shoot"
 msgstr "_Trykk"
 
-#: ../src/cheese-application.vala:130
+#: ../src/cheese-application.vala:125
 msgid "Mode:"
 msgstr "Modus:"
 
-#: ../src/cheese-application.vala:131
+#: ../src/cheese-application.vala:126
 msgid "_Photo"
 msgstr "_Bilde"
 
-#: ../src/cheese-application.vala:132
+#: ../src/cheese-application.vala:127
 msgid "_Video"
 msgstr "_Video"
 
-#: ../src/cheese-application.vala:133
+#: ../src/cheese-application.vala:128
 msgid "_Burst"
 msgstr "_Serie"
 
-#: ../src/cheese-application.vala:136
+#: ../src/cheese-application.vala:131
 msgid "_Fullscreen"
 msgstr "_Fullskjerm"
 
-#: ../src/cheese-application.vala:144
+#: ../src/cheese-application.vala:139
 msgid "P_references"
 msgstr "B_rukervalg"
 
-#: ../src/cheese-application.vala:147
+#: ../src/cheese-application.vala:142
 msgid "_Help"
 msgstr "_Hjelp"
 
-#: ../src/cheese-application.vala:150
+#: ../src/cheese-application.vala:145
 msgid "_About"
 msgstr "_Om"
 
-#: ../src/cheese-application.vala:151
+#: ../src/cheese-application.vala:146
 msgid "_Quit"
 msgstr "A_vslutt"
 
-#: ../src/cheese-application.vala:224
+#: ../src/cheese-application.vala:219
 msgid "- Take photos and videos from your webcam"
 msgstr "- Ta bilder og video fra ditt webkamera"
 
-#: ../src/cheese-application.vala:233
+#: ../src/cheese-application.vala:228
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
-msgstr "Kjør «%s --help» for å se en full liste med tilgjengelige kommandolinjeflagg."
+msgstr ""
+"Kjør «%s --help» for å se en full liste med tilgjengelige kommandolinjeflagg."
 
-#: ../src/cheese-application.vala:617
+#: ../src/cheese-application.vala:612
 msgid "translator-credits"
 msgstr "Kjartan Maraas <kmaraas@gnome.org>"
 
-#: ../src/cheese-application.vala:619
+#: ../src/cheese-application.vala:614
 msgid "Cheese Website"
 msgstr "Nettsted for Cheese"
 
@@ -450,88 +435,104 @@ msgstr "Nettsted for Cheese"
 msgid "No Effect"
 msgstr "Ingen effekt"
 
-#: ../src/cheese-window.vala:179
+#: ../src/cheese-window.vala:192
 #, c-format
 msgid "Could not open %s"
 msgstr "Kunne ikke åpne %s"
 
-#: ../src/cheese-window.vala:207
+#: ../src/cheese-window.vala:217
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Er du sikker på at du vil slette filen permanent?"
 msgstr[1] "Er du sikker på at du vil slette %d filer permanent?"
 
-#: ../src/cheese-window.vala:213
+#: ../src/cheese-window.vala:223
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Hvis du sletter en oppføring vil den bli borte for godt"
 msgstr[1] "Hvis du sletter oppføringene vil de bli borte for godt"
 
-#: ../src/cheese-window.vala:289
+#: ../src/cheese-window.vala:296
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Kunne ikke flytte %s til papirkurven"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:317
+#: ../src/cheese-window.vala:321
 msgid "Save File"
 msgstr "Lagre fil"
 
-#: ../src/cheese-window.vala:351
+#: ../src/cheese-window.vala:355
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke lagre %s"
 
-#: ../src/cheese-window.vala:768
+#: ../src/cheese-window.vala:772
 msgid "Stop _Recording"
 msgstr "Sto_pp opptak"
 
-#: ../src/cheese-window.vala:769
+#: ../src/cheese-window.vala:773
 msgid "Stop recording"
 msgstr "Stopp opptak"
 
-#: ../src/cheese-window.vala:784 ../src/cheese-window.vala:1289
+#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1308
 msgid "_Record a Video"
 msgstr "_Ta opp en video"
 
-#: ../src/cheese-window.vala:785
+#: ../src/cheese-window.vala:789
 msgid "Record a video"
 msgstr "Ta opp en video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:824
 msgid "Stop _Taking Pictures"
 msgstr "Stopp fo_tografering"
 
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:825
 msgid "Stop taking pictures"
 msgstr "Stopp fo_tografering"
 
-#: ../src/cheese-window.vala:844
+#: ../src/cheese-window.vala:848
 msgid "Take Multiple Photos"
 msgstr "Ta flere bilder"
 
-#: ../src/cheese-window.vala:845
+#: ../src/cheese-window.vala:849
 msgid "Take multiple photos"
 msgstr "Ta flere bilder"
 
-#: ../src/cheese-window.vala:1030
+#: ../src/cheese-window.vala:1033
 msgid "No effects found"
 msgstr "Ingen effekter funnet"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1150
 msgid "There was an error playing video from the webcam"
 msgstr "Det oppsto en feil ved avspilling av video fra nettkamera"
 
-#: ../src/cheese-window.vala:1290
+#: ../src/cheese-window.vala:1167
+msgid "Open"
+msgstr "Åpne"
+
+#: ../src/cheese-window.vala:1170
+msgid "Save _As…"
+msgstr "L_agre som …"
+
+#: ../src/cheese-window.vala:1173
+msgid "Move to _Trash"
+msgstr "Flytt til _papirkurv"
+
+#: ../src/cheese-window.vala:1176
+msgid "Delete"
+msgstr "Slett"
+
+#: ../src/cheese-window.vala:1309
 msgid "Record a video using a webcam"
 msgstr "Ta opp en video med webkamera"
 
-#: ../src/cheese-window.vala:1296
+#: ../src/cheese-window.vala:1315
 msgid "Take _Multiple Photos"
 msgstr "Ta _flere bilder"
 
-#: ../src/cheese-window.vala:1297
+#: ../src/cheese-window.vala:1316
 msgid "Take multiple photos using a webcam"
 msgstr "Ta flere bilder med webkamera"
