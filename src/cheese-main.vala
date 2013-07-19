@@ -257,7 +257,13 @@ public class Cheese.Main : Gtk.Application
             //error_layer.text = err.message;
             //error_layer.show ();
 
-            //toggle_camera_actions_sensitivities (false);
+            var shoot = this.lookup_action ("shoot") as SimpleAction;
+            var effects = this.lookup_action ("effects") as SimpleAction;
+            var mode = this.lookup_action ("mode") as SimpleAction;
+
+            shoot.set_enabled (false);
+            effects.set_enabled (false);
+            mode.set_enabled (false);
             return;
         }
 
