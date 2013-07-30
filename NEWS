@@ -1,6 +1,28 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.5
+  - Remove cheese-actions.ui from po/POTFILES.in
+    Fixes bug 704119.
+  - Refactor thumbnail context menu event handling
+    Use Gdk.Event.triggers_context_menu() rather than checking if the
+    secondary button was pressed. Return true if the event was handled, to
+    stop further event propagation.
+  - Use GAction for thumbnail popup menu actions
+  - Post-release version bump to 3.9.5
+  - Added/Updated Translations
+    - cs, courtesy of Marek Černocký
+    - es, courtesy of Daniel Mustieles
+    - nb, courtesy of Kjartan Maraas
+    - pt_BR, courtesy of Enrico Nicoletto
+    - sk, courtesy of Pavol Klačanský
+    - tg, courtesy of Victor Ibragimov
+    - zh_CN, courtesy of 甘露(Lu Gan)
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - pt_BR, courtesy of Enrico Nicoletto
+
 version 3.9.4
   - Move gettext initialization to main()
     Ensure that gettext is always initialized, regardless of whether the
