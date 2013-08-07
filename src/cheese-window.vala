@@ -1147,7 +1147,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     public void camera_state_change_null ()
     {
-        show_error (_("There was an error playing video from the webcam"));
+        if (!error_layer.visible)
+        {
+            show_error (_("There was an error playing video from the webcam"));
+        }
     }
 
   /**
