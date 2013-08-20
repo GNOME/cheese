@@ -1,6 +1,48 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.90
+  - Fix tag in German translation
+  - Remove help translations with incompatible license
+    Since the license of the help was changed to CC-BY-SA 3.0 Unported, the
+    translations must have license that is compatible. Some licenses were
+    declared to be the same as the "Cheese package", which would be the GNU
+    GPL 2 or later, which is incompatible with CC-BY-SA 3.0 Unported.
+
+    Remove the problematic translations, as they cannot be distributed with
+    Cheese unless the license header is updated by the contributors. Fixes
+    bug 705568/
+  - Change license in header of Chinese simplified translation for help
+  - Updated Brazilian Portuguese translation (with header showing properly
+    the license)
+  - License help under CC-BY-SA 3.0 Unported
+    The help was not explicitly under a license, as described in bug 703238.
+    Specify the license as CC-BY-SA 3.0 to match with other GNOME help:
+
+    https://wiki.gnome.org/DocumentationProject/Licensing
+
+    License clarification approved by help contributors (found with
+    "git shortlog help/C/*.page") as listed below:
+
+    Signed-off-by: Jeremy Bicha <jbicha@ubuntu.com>
+    Signed-off-by: Ekaterina Gerasimova <kittykat3756@gmail.com>
+    Signed-off-by: Michael Hill <mdhill@gnome.org>
+    Signed-off-by: Tiffany Ann Antopolski <tiffany.antopolski@gmail.com>
+    Signed-off-by: Julita Inca <jinca@gnome.org>
+  - Post-release version bump to 3.9.90
+  - Added/Updated Translations
+    - cs, courtesy of Marek Černocký
+    - de, courtesy of Benjamin Steinwender
+    - gl, courtesy of Fran Dieguez
+    - he, courtesy of Yaron Shahrabani
+    - sl, courtesy of Matej Urbančič
+    - th, courtesy of Akom Chotiphantawanon
+  - Added/Updated Documentation
+    - cs, courtesy of Marek Černocký
+    - de, courtesy of Christian Kirbach
+    - pt_BR, courtesy of Enrico Nicoletto
+    - zh_CN, courtesy of Wylmer Wang
+
 version 3.9.5
   - Remove cheese-actions.ui from po/POTFILES.in
     Fixes bug 704119.
