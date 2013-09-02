@@ -1,6 +1,59 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.91
+  - Do not override errors in camera_state_change_null
+    If a more detailed error has already been set (through a GError return
+    from libcheese), do not override it when changing state to null.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Fix memory leak when freeing video formats
+    Free the GList, as well as the video formats in the list.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Improve cheese_camera_device_get_best_format()
+    If a camera device which can do 1600x900 at 10 FPS and 1280x800 @ 25
+    FPS, then 1600x900 is not really the best format, as 10 FPS leads to a
+    bad user experience.
+
+    Improve the situation by constraining
+    cheese_camera_device_get_best_format() to return the format with the
+    highest resolution with a width greater than 640 pixels and a framerate
+    of greater the 15 FPS.
+
+    If no mode matching the widh >= 640 && frame_rate >= 15 criteria is found,
+    get_best_format will behave as before as simply return the highest
+    resolution
+    mode.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Limit caps to the maximum framerate
+    Limit the caps returned by cheese_camera_device_get_caps_for_format() to
+    the maximum framerate supported at the requested resolution. This is
+    necessary because GStreamer first selects a format and then a framerate,
+    resulting in it picking for 1280x720 as an example, YUYV @ 15 FPS,
+    instead of MJPEG @ 30 FPS (which will be converted to i420 by the
+    videoconvert element in camerabin2), or at 1600x1200 YUYV @ 5 fps
+    instead of MJPEG @ 10 fps.
+
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Add cheese_camera_device_find_full_format() helper
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Keep track of highest available camera framerates
+    Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+  - Add git repository information to DOAP file
+  - Post-release version bump to 3.9.91
+  - Added/Updated Translations
+    - be, courtesy of Yuri Matsuk
+    - hu, courtesy of Balázs Úr
+    - it, courtesy of Milo Casagrande
+    - lt, courtesy of Aurimas Černius
+    - pl, courtesy of Piotr Drąg
+  - Added/Updated Documentation
+    - es, courtesy of Daniel Mustieles
+    - hu, courtesy of Gabor Kelemen
+    - id, courtesy of Andika Triwidada
+
 version 3.9.90
   - Fix tag in German translation
   - Remove help translations with incompatible license
