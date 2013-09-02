@@ -1,13 +1,13 @@
 # Ягор Кур'яновіч <me@sontan.name>, 2009.
-# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2011.
-# Yuri Matsuk <yuri@matsuk.net>, 2011.
+# Ihar Hrachyshka <ihar.hrachyshka@gmail.com>, 2011, 2013.
+# Yuri Matsuk <yuri@matsuk.net>, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-10-29 16:16+0000\n"
+"POT-Creation-Date: 2013-08-07 01:17+0000\n"
 "PO-Revision-Date: 2012-09-07 17:55+0300\n"
 "Last-Translator: Yuri Matsuk <yuri@matsuk.net>\n"
 "Language-Team: Belarusian <i18n-bel-gnome@googlegroups.com>\n"
@@ -17,34 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: UTF-8\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-
-#: ../data/cheese-actions.ui.h:1
-msgid "Share…"
-msgstr "Апублікаваць..."
-
-#: ../data/cheese-actions.ui.h:2
-msgid "Save _As…"
-msgstr "Захаваць _як..."
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Move to _Trash"
-msgstr "Вы_кінуць у сметніцу"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move _All to Trash"
-msgstr "_Выкінуць усё ў сметніцу"
-
-#: ../data/cheese-actions.ui.h:5
-msgid "_Wide Mode"
-msgstr "_Шырокаэкранны рэжым"
-
-#: ../data/cheese-actions.ui.h:6
-msgid "P_revious Effects"
-msgstr "_Папярэднія спецэфекты"
-
-#: ../data/cheese-actions.ui.h:7
-msgid "Ne_xt Effects"
-msgstr "_Наступныя спецэфекты"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -58,34 +30,34 @@ msgstr "Відэaрэжым"
 msgid "Photo burst mode"
 msgstr "Рэжым серыйнай здымкі"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "_Сфатаграфаваць"
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1304
+msgid "Take a photo using a webcam"
+msgstr "Сфатаграфаваць сеціўнай камерай"
 
-#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1503
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
+#: ../src/cheese-window.vala:1303
 msgid "_Take a Photo"
 msgstr "_Сфатаграфаваць"
 
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "Папярэдні"
+msgid "Navigate to the previous page of effects"
+msgstr "Перайсці на папярэднюю старонку спецэфектаў"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
 msgstr "Спецэфекты"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
 msgid "_Effects"
 msgstr "Спец_эфекты"
 
 #: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "Наступны"
+msgid "Navigate to the next page of effects"
+msgstr "Перайсці на наступную старонку спецэфектаў"
 
 #: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "_Выйсці з поўнаэкраннага рэжыму"
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "Выйсці з поўнаэкраннага рэжыму ў рэжым акна"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -140,7 +112,7 @@ msgid "_Countdown"
 msgstr "_Адваротны адлік"
 
 #: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
+msgid "Fire _flash"
 msgstr "_Успышка"
 
 #: ../data/cheese-prefs.ui.h:14
@@ -159,8 +131,8 @@ msgstr "Прамежак паміж фотаздымкамі (у секунда�
 msgid "Capture"
 msgstr "Здымка"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
+#: ../src/cheese-application.vala:611
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -168,7 +140,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Фотавідэабудан Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Фота- і відэаздымкі з дапамогай сеціўнай відэакамеры, з цікавымі спецэфектамі"
@@ -194,12 +166,12 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "Працягласць адваротнага адліку пры здымцы, у секундах"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
-msgstr "Ужываць успышку для здымкі"
+msgid "Fire flash before taking a photo"
+msgstr "Ужываць успышку для фатаграфавання"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
-msgstr "Уключыце гэту настройку, каб ужываць успышку для здымкі"
+msgid "Set to true to fire a flash before taking a photo"
+msgstr "Уключыце гэту настройку, каб ужываць успышку для фатаграфавання"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
@@ -254,39 +226,39 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "Вышыня відэа, атрыманага з камеры, у пікселах"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
+msgid "Image brightness"
 msgstr "Яркасць выявы"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
+msgid "Adjusts the brightness of the image coming from the camera"
 msgstr "Падстройка ўзроўню яркасці выявы, якая прыходзіць з камеры"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
+msgid "Image contrast"
 msgstr "Кантраснасць выявы"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
+msgid "Adjusts the contrast of the image coming from the camera"
 msgstr "Падстройка ўзроўню кантраснасці выявы, якая прыходзіць з камеры"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
+msgid "Image saturation"
 msgstr "Насычанасць выявы"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
+msgid "Adjusts the saturation of the image coming from the camera"
 msgstr "Падстройка ўзроўню насычанасці выявы, якая прыходзіць з камеры"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
+msgid "Image hue"
 msgstr "Тон выявы"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
 msgstr "Падстройка ўзроўню тону выявы, якая прыходзіць з камеры"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
+msgid "Video path"
 msgstr "Сцежка відэа"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
@@ -298,7 +270,7 @@ msgstr ""
 "\"XDG_VIDEO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
+msgid "Photo path"
 msgstr "Сцежка фотаздымкаў"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
@@ -310,31 +282,10 @@ msgstr ""
 "\"XDG_PHOTO/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
-msgid "Whether to start in wide mode"
-msgstr "Ці трэба запускаць у шырокафарматным рэжыме"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid ""
-"If set to true, Cheese will start up in wide mode, with the image collection "
-"placed on the right-hand side. Useful with small screens."
-msgstr ""
-"Калі ўключана, Cheese будзе пачынаць працу ў шырокафарматным рэжыме і з "
-"калекцыяй выяў з правага боку. Гэта магчымасць карысная для невялікіх "
-"экранаў."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:33
-msgid "Whether to start in fullscreen"
-msgstr "Ці трэба запускаць у поўнаэкранным рэжыме"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:34
-msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr "Калі ўключана, Cheese будзе пачынаць працу ў поўнаэкранным рэжыме."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
 msgstr "Затрымка паміж здымкамі пры серыйнай здымцы"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:36
+#: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos. If the burst delay is less than the countdown "
@@ -343,52 +294,35 @@ msgstr ""
 "Затрымка ў мілісекундах паміж серыйнымі здымкамі. Калі гэта затрымка меншая "
 "за адваротны адлік, будзе ўжыты апошні."
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:37
+#: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
 msgstr "Колькасць фотаздымкаў у рэжыме серыйнай здымкі"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:38
+#: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "The number of photos to take in a single burst."
 msgstr "Колькасць здымкаў у адной серыі."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
+#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:662
 msgid "Shutter sound"
 msgstr "Гук затвора"
 
-#: ../libcheese/cheese-avatar-chooser.c:260
+#: ../libcheese/cheese-avatar-chooser.c:262
 msgid "Select"
 msgstr "Выбраць"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "_Сфатаграфаваць"
+#: ../libcheese/cheese-avatar-chooser.c:265
+msgid "Take a Photo"
+msgstr "Сфатаграфаваць"
 
-#: ../libcheese/cheese-avatar-chooser.c:294
+#: ../libcheese/cheese-avatar-chooser.c:296
 msgid "_Discard photo"
 msgstr "_Скасаваць фотаздымак"
 
-#: ../libcheese/cheese-camera-device.c:401
-msgid "Device capabilities not supported"
-msgstr "Функцыі прыстасавання не падтрымліваюцца"
-
-#: ../libcheese/cheese-camera-device.c:430
-#, c-format
-msgid "Failed to initialize device %s for capability probing"
-msgstr "Не ўдалося ініцыяваць прыстасаванне %s для апазнання яго функцый"
-
-#: ../libcheese/cheese-camera-device.c:619
-msgid "Unknown device"
-msgstr "Невядомае прыстасаванне"
-
-#: ../libcheese/cheese-camera-device.c:642
-msgid "Cancellable initialization not supported"
-msgstr "Ініцыяцыя з магчымасцю скасавання не падтрымліваецца"
-
-#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1617
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Прынамсі адзін з патрэбных складнікаў GStreamer адсутнічае: "
 
-#: ../libcheese/cheese-camera.c:1527
+#: ../libcheese/cheese-camera.c:1576
 #, c-format
 msgid "No device found"
 msgstr "Прыстасаванне не знойдзена"
@@ -398,108 +332,122 @@ msgstr "Прыстасаванне не знойдзена"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1802
+#: ../libcheese/cheese-camera.c:1852
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
-msgid "No Effect"
-msgstr "Без спецэфектаў"
+#: ../libcheese/cheese-camera-device.c:402
+msgid "Device capabilities not supported"
+msgstr "Функцыі прыстасавання не падтрымліваюцца"
 
-#: ../src/cheese-main.vala:51
+#: ../libcheese/cheese-camera-device.c:431
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "Не ўдалося ініцыяваць прыстасаванне %s для апазнання яго функцый"
+
+#: ../libcheese/cheese-camera-device.c:620
+msgid "Unknown device"
+msgstr "Невядомае прыстасаванне"
+
+#: ../libcheese/cheese-camera-device.c:643
+msgid "Cancellable initialization not supported"
+msgstr "Ініцыяцыя з магчымасцю скасавання не падтрымліваецца"
+
+#: ../src/cheese-application.vala:55
 msgid "Start in wide mode"
 msgstr "Запусціць у шырокаэкранным рэжыме"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "Device to use as a camera"
 msgstr "Прыстасаванне відэакамеры"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "DEVICE"
 msgstr "ПРЫСТАСАВАННЕ"
 
-#: ../src/cheese-main.vala:53
+#: ../src/cheese-application.vala:60
 msgid "Output version information and exit"
 msgstr "Вывесці інфармацыю аб нумары версіі праграмы і выйсці"
 
-#: ../src/cheese-main.vala:54
+#: ../src/cheese-application.vala:62
 msgid "Start in fullscreen mode"
 msgstr "Запусціць у поўнаэкранным рэжыме"
 
-#: ../src/cheese-main.vala:92
+#: ../src/cheese-application.vala:121
 msgid "_Shoot"
 msgstr "_Здымак"
 
-#: ../src/cheese-main.vala:96
+#: ../src/cheese-application.vala:125
 msgid "Mode:"
 msgstr "Рэжым:"
 
-#: ../src/cheese-main.vala:97
+#: ../src/cheese-application.vala:126
 msgid "_Photo"
 msgstr "_Фота"
 
-#: ../src/cheese-main.vala:98
+#: ../src/cheese-application.vala:127
 msgid "_Video"
 msgstr "_Відэа"
 
-#: ../src/cheese-main.vala:99
+#: ../src/cheese-application.vala:128
 msgid "_Burst"
 msgstr "С_ерыя"
 
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-application.vala:131
 msgid "_Fullscreen"
 msgstr "На ўвесь _экран"
 
-#: ../src/cheese-main.vala:110
+#: ../src/cheese-application.vala:139
 msgid "P_references"
 msgstr "_Настройкі"
 
-#: ../src/cheese-main.vala:113
-msgid "_About"
-msgstr "_Аб праграме"
-
-#: ../src/cheese-main.vala:114
+#: ../src/cheese-application.vala:142
 msgid "_Help"
 msgstr "_Дапамога"
 
-#: ../src/cheese-main.vala:117
+#: ../src/cheese-application.vala:145
+msgid "_About"
+msgstr "_Аб праграме"
+
+#: ../src/cheese-application.vala:146
 msgid "_Quit"
 msgstr "_Выйсці"
 
-#: ../src/cheese-main.vala:177
+#: ../src/cheese-application.vala:219
 msgid "- Take photos and videos from your webcam"
 msgstr "- Фота- і відэаздымкі з дапамогай сеціўнай відэакамеры"
 
-#: ../src/cheese-main.vala:189
+#: ../src/cheese-application.vala:228
 #, c-format
-msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Каб убачыць поўны спіс магчымых опцый загаднага радка, выканайце \"%s --help"
-"\".\n"
+"\"."
 
-#: ../src/cheese-main.vala:204
-#, c-format
-msgid "Another instance of Cheese is currently running\n"
-msgstr "Праграма Cheese ужо запушчана\n"
-
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-application.vala:612
 msgid "translator-credits"
 msgstr ""
 "Ягор Кур'яновіч <me@sontan.name>\n"
 "Ihar Hrachyshka <ihar.hrachyshka@gmail.com>"
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-application.vala:614
 msgid "Cheese Website"
 msgstr "Сеціўная пляцоўка Cheese"
+
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:53
+msgid "No Effect"
+msgstr "Без спецэфектаў"
 
 #: ../src/cheese-window.vala:192
 #, c-format
 msgid "Could not open %s"
 msgstr "Не ўдалося адкрыць %s"
 
-#: ../src/cheese-window.vala:220
+#: ../src/cheese-window.vala:217
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
@@ -507,66 +455,93 @@ msgstr[0] "Вы сапраўды хочаце незваротна выдалі�
 msgstr[1] "Вы сапраўды хочаце незваротна выдаліць гэтыя %d файлы?"
 msgstr[2] "Вы сапраўды хочаце незваротна выдаліць гэтыя %d файлаў?"
 
-#: ../src/cheese-window.vala:226
+#: ../src/cheese-window.vala:223
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Выдаленне незваротнае"
 msgstr[1] "Выдаленне незваротнае"
 msgstr[2] "Выдаленне незваротнае"
 
-#: ../src/cheese-window.vala:302
+#: ../src/cheese-window.vala:296
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Не ўдалося выкінуць %s у сметніцу"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:451
+#: ../src/cheese-window.vala:321
 msgid "Save File"
 msgstr "Захаванне файла"
 
-#: ../src/cheese-window.vala:485
+#: ../src/cheese-window.vala:355
 #, c-format
 msgid "Could not save %s"
 msgstr "Не ўдалося захаваць %s"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:772
 msgid "Stop _Recording"
 msgstr "Сп_ыніць запіс"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:773
 msgid "Stop recording"
 msgstr "Спыніць запіс"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
+#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1308
 msgid "_Record a Video"
 msgstr "_Запісаць відэа"
 
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:789
 msgid "Record a video"
 msgstr "Запісаць відэа"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:970
+#: ../src/cheese-window.vala:824
 msgid "Stop _Taking Pictures"
 msgstr "Спыніць ф_отаздымку"
 
-#: ../src/cheese-window.vala:971
+#: ../src/cheese-window.vala:825
 msgid "Stop taking pictures"
 msgstr "Спыніць фотаздымку"
 
-#: ../src/cheese-window.vala:994
+#: ../src/cheese-window.vala:848
 msgid "Take Multiple Photos"
 msgstr "Зрабіць некалькі фатаграфій"
 
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:849
 msgid "Take multiple photos"
 msgstr "Зрабіць некалькі фатаграфій"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1033
 msgid "No effects found"
 msgstr "Спецэфекты не знойдзены"
 
-#: ../src/cheese-window.vala:1515
+#: ../src/cheese-window.vala:1150
+msgid "There was an error playing video from the webcam"
+msgstr "Узнікла памылка падчас прайгравання відэа з сеціўнай камеры"
+
+#: ../src/cheese-window.vala:1167
+msgid "Open"
+msgstr "Адкрыць"
+
+#: ../src/cheese-window.vala:1170
+msgid "Save _As…"
+msgstr "Захаваць _як..."
+
+#: ../src/cheese-window.vala:1173
+msgid "Move to _Trash"
+msgstr "Вы_кінуць у сметніцу"
+
+#: ../src/cheese-window.vala:1176
+msgid "Delete"
+msgstr "Выдаліць"
+
+#: ../src/cheese-window.vala:1309
+msgid "Record a video using a webcam"
+msgstr "Запісаць відэа сеціўнай камерай"
+
+#: ../src/cheese-window.vala:1315
 msgid "Take _Multiple Photos"
 msgstr "Зрабіць _некалькі фатаграфій"
 
+#: ../src/cheese-window.vala:1316
+msgid "Take multiple photos using a webcam"
+msgstr "Зрабіць некалькі фатаграфій сеціўнай камерай"
