@@ -381,6 +381,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         mode.set_enabled (true);
         var effects = this.application.lookup_action ("effects") as SimpleAction;
         effects.set_enabled (true);
+        var preferences = this.application.lookup_action ("preferences") as SimpleAction;
+        preferences.set_enabled (true);
     }
 
     /**
@@ -392,6 +394,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         mode.set_enabled (false);
         var effects = this.application.lookup_action ("effects") as SimpleAction;
         effects.set_enabled (false);
+        var preferences = this.application.lookup_action ("preferences") as SimpleAction;
+        preferences.set_enabled (false);
     }
 
   /**
