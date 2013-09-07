@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 22:28+0200\n"
-"PO-Revision-Date: 2013-08-25 22:27+0200\n"
+"POT-Creation-Date: 2013-09-07 19:28+0200\n"
+"PO-Revision-Date: 2013-09-07 19:28+0200\n"
 "Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -33,12 +33,12 @@ msgstr "Modalità video"
 msgid "Photo burst mode"
 msgstr "Modalità foto a raffica"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1304
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1307
 msgid "Take a photo using a webcam"
 msgstr "Scatta una foto con la webcam"
 
 #: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
-#: ../src/cheese-window.vala:1303
+#: ../src/cheese-window.vala:1306
 msgid "_Take a Photo"
 msgstr "_Scatta foto"
 
@@ -160,7 +160,7 @@ msgstr "Usa un conto alla rovescia"
 #: ../data/org.gnome.Cheese.gschema.xml.h:2
 msgid "Set to true to show a countdown before taking a photo"
 msgstr ""
-"Impostare a VERO per mostrare un conto alla rovescia nello scattere "
+"Impostare a VERO per mostrare un conto alla rovescia prima di scattare "
 "un'immagine"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:3
@@ -345,21 +345,22 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i.%02i.%02i"
 
-#: ../libcheese/cheese-camera-device.c:402
+#: ../libcheese/cheese-camera-device.c:560
 msgid "Device capabilities not supported"
 msgstr "Funzionalità del dispositivo non supportate"
 
-#: ../libcheese/cheese-camera-device.c:431
+#: ../libcheese/cheese-camera-device.c:589
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr ""
-"Impossibile inizializzare il dispositivo %s per rilevamento funzionalità"
+"Impossibile inizializzare il dispositivo %s per il rilevamento delle "
+"funzionalità"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:778
 msgid "Unknown device"
 msgstr "Dispositivo sconosciuto"
 
-#: ../libcheese/cheese-camera-device.c:643
+#: ../libcheese/cheese-camera-device.c:801
 msgid "Cancellable initialization not supported"
 msgstr "Interruzione del processo di inizializzazione non supportata"
 
@@ -490,7 +491,7 @@ msgstr "Interrompi _registrazione"
 msgid "Stop recording"
 msgstr "Interrompe la registrazione"
 
-#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1308
+#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1311
 msgid "_Record a Video"
 msgstr "Registra un _video"
 
@@ -519,34 +520,34 @@ msgstr "Scatta foto a raffica"
 msgid "No effects found"
 msgstr "Nessun effetto trovato"
 
-#: ../src/cheese-window.vala:1150
+#: ../src/cheese-window.vala:1152
 msgid "There was an error playing video from the webcam"
 msgstr "Si è verificato un errore nel riprodurre il video dalla webcam"
 
-#: ../src/cheese-window.vala:1167
+#: ../src/cheese-window.vala:1170
 msgid "Open"
 msgstr "Apri"
 
-#: ../src/cheese-window.vala:1170
+#: ../src/cheese-window.vala:1173
 msgid "Save _As…"
 msgstr "Sa_lva come..."
 
-#: ../src/cheese-window.vala:1173
+#: ../src/cheese-window.vala:1176
 msgid "Move to _Trash"
 msgstr "Sposta nel ce_stino"
 
-#: ../src/cheese-window.vala:1176
+#: ../src/cheese-window.vala:1179
 msgid "Delete"
 msgstr "Elimina"
 
-#: ../src/cheese-window.vala:1309
+#: ../src/cheese-window.vala:1312
 msgid "Record a video using a webcam"
 msgstr "Registra un video con la webcam"
 
-#: ../src/cheese-window.vala:1315
+#: ../src/cheese-window.vala:1318
 msgid "Take _Multiple Photos"
 msgstr "_Scatta foto a raffica"
 
-#: ../src/cheese-window.vala:1316
+#: ../src/cheese-window.vala:1319
 msgid "Take multiple photos using a webcam"
 msgstr "Scatta foto a raffica con la webcam"
