@@ -19,8 +19,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using GLib;
-
 internal class Cheese.EffectsManager : GLib.Object
 {
     public List<Effect> effects;
@@ -60,7 +58,18 @@ internal class Cheese.EffectsManager : GLib.Object
      */
     private void add_effect (string name, Effect effect)
     {
-        effects.insert_sorted (effect, sort_value);
+        try
+        {
+            // Test effect to see if it can be created. Bug 702995.
+            Gst.parse_bin_from_description (effect.pipeline_desc, false, null,
+                                            Gst.ParseFlags.FATAL_ERRORS);
+            effects.insert_sorted (effect, sort_value);
+        }
+        catch (Error err)
+        {
+            debug ("Effect '%s' did not parse correctly, skipping: %s",
+                   effect.name, err.message);
+        }
     }
 
     /**
