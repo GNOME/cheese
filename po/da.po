@@ -1,8 +1,9 @@
 # Cheese Danish translation
-# Copyright (C) 2008-09 daniel g. siegel <dgsiegel@gmail.com>
+# Copyright (C) 2008-09, 2013 daniel g. siegel <dgsiegel@gmail.com>
 # This file is distributed under the same license as cheese
 # Anders K. Madsen <madsen@lillesvin.net>, 2007.
 # Kenneth Nielsen <k.nielsen81@mail.com>, 2008-12.
+# Ask Hjorth Larsen <asklarsen@gmail.com>, 2013.
 #
 # Ordliste
 # burst (i burst mode) -> serietilstand
@@ -14,43 +15,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-17 14:49+0100\n"
-"PO-Revision-Date: 2013-03-16 18:03+0100\n"
-"Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
+"POT-Creation-Date: 2013-09-15 18:43+0200\n"
+"PO-Revision-Date: 2013-09-15 15:47+0200\n"
+"Last-Translator: Ask Hjorth Larsen <asklarsen@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-
-#: ../data/cheese-actions.ui.h:1
-msgid "Share…"
-msgstr "Del…"
-
-#: ../data/cheese-actions.ui.h:2
-msgid "Save _As…"
-msgstr "Gem _som…"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Move to _Trash"
-msgstr "Flyt til _papirkurv"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move _All to Trash"
-msgstr "Flyt _alle til papirkurv"
-
-#: ../data/cheese-actions.ui.h:5
-msgid "_Wide Mode"
-msgstr "_Bred tilstand"
-
-#: ../data/cheese-actions.ui.h:6
-msgid "P_revious Effects"
-msgstr "Fo_rrige effekt"
-
-#: ../data/cheese-actions.ui.h:7
-msgid "Ne_xt Effects"
-msgstr "Næ_ste effekt"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -64,35 +37,34 @@ msgstr "Videotilstand"
 msgid "Photo burst mode"
 msgstr "Serietilstand"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1512
-#, fuzzy
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1307
 msgid "Take a photo using a webcam"
-msgstr "Tag et billede"
+msgstr "Tag et billede med et webkamera"
 
-#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
-#: ../src/cheese-window.vala:1511
+#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
+#: ../src/cheese-window.vala:1306
 msgid "_Take a Photo"
 msgstr "_Tag et billede"
 
 #: ../data/cheese-main-window.ui.h:6
 msgid "Navigate to the previous page of effects"
-msgstr ""
+msgstr "Gå til forrige effektside"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Effects"
 msgstr "Effekter"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
 msgid "_Effects"
 msgstr "_Effekter"
 
 #: ../data/cheese-main-window.ui.h:9
 msgid "Navigate to the next page of effects"
-msgstr ""
+msgstr "Gå til næste effektside"
 
 #: ../data/cheese-main-window.ui.h:10
 msgid "Leave fullscreen mode and go back to windowed mode"
-msgstr ""
+msgstr "Forlad fuldskærmstilstand og gå tilbage til vinduestilstand"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "_Leave Fullscreen"
@@ -147,8 +119,8 @@ msgid "_Countdown"
 msgstr "_Nedtælling"
 
 #: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
-msgstr "Affyr _blitz"
+msgid "Fire _flash"
+msgstr "Udløs _blitz"
 
 #: ../data/cheese-prefs.ui.h:14
 msgid "Burst mode"
@@ -166,8 +138,8 @@ msgstr "Forsinkelse mellem billeder (sek.)"
 msgid "Capture"
 msgstr "Optag"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:524
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
+#: ../src/cheese-application.vala:611
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -175,7 +147,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese - webkamerastand"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Tag billeder og optag video fra dit webkamera, med sjove grafiske effekter"
@@ -201,12 +173,12 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "Varigheden af nedtællingen før fotografering i sekunder"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
-msgstr "Affyr blitzen før der tages et billede"
+msgid "Fire flash before taking a photo"
+msgstr "Udløs blitzen før der tages et billede"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
-msgstr "Sæt til sand, hvis der skal bruges blitz ved fotografering"
+msgid "Set to true to fire a flash before taking a photo"
+msgstr "Sæt til sand, hvis der skal bruges blitz før fotografering"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
@@ -259,39 +231,39 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "Højden i pixel af videoen optaget med kameraet"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
+msgid "Image brightness"
 msgstr "Billedlysstyrke"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
+msgid "Adjusts the brightness of the image coming from the camera"
 msgstr "Justerer lysstyrken af billedet fra kameraet"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
+msgid "Image contrast"
 msgstr "Billedkontrast"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
+msgid "Adjusts the contrast of the image coming from the camera"
 msgstr "Justerer kontrasten af billedet fra kameraet"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
+msgid "Image saturation"
 msgstr "Billedmætning"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
+msgid "Adjusts the saturation of the image coming from the camera"
 msgstr "Justerer mætningen af billedet fra kameraet"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
-msgstr "Billedfarvetone"
+msgid "Image hue"
+msgstr "Farvetone for billede"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
 msgstr "Justerer farvetonen af billedet fra kameraet"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
+msgid "Video path"
 msgstr "Videosti"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
@@ -303,7 +275,7 @@ msgstr ""
 "\"XDG_VIDEO/Webcam\" blive brugt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
+msgid "Photo path"
 msgstr "Billedsti"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
@@ -315,30 +287,10 @@ msgstr ""
 "\"XDG_PHOTO/Webcam\" blive brugt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
-msgid "Whether to start in wide mode"
-msgstr "Hvorvidt der skal startes i bredtilstand"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid ""
-"If set to true, Cheese will start up in wide mode, with the image collection "
-"placed on the right-hand side. Useful with small screens."
-msgstr ""
-"Hvis sat til sand, vil Cheese starte op i en bredtilstand med "
-"billedsamlingen placeret på højre side. Nyttigt ved små skærme."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:33
-msgid "Whether to start in fullscreen"
-msgstr "Hvorvidt der startes i fuldskærmstilstand"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:34
-msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr "Hvis indstillet til sand vil Cheese starte op i fuldskærmstilstand."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
 msgstr "Tid mellem billeder i serietilstand"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:36
+#: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos. If the burst delay is less than the countdown "
@@ -348,53 +300,35 @@ msgstr ""
 "billeder. Hvis forsinkelsen er mindre end nedtællingslængden, vil "
 "sidstnævnte blive brugt."
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:37
+#: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
 msgstr "Antal billeder i serietilstand"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:38
+#: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "The number of photos to take in a single burst."
 msgstr "Antallet af billeder der skal tages i en enkelt serie (burst)."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
+#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:662
 msgid "Shutter sound"
 msgstr "Lukker lyd"
 
-#: ../libcheese/cheese-avatar-chooser.c:260
+#: ../libcheese/cheese-avatar-chooser.c:262
 msgid "Select"
 msgstr "Vælg"
 
-#: ../libcheese/cheese-avatar-chooser.c:263
+#: ../libcheese/cheese-avatar-chooser.c:265
 msgid "Take a Photo"
 msgstr "Tag et billede"
 
-#: ../libcheese/cheese-avatar-chooser.c:294
+#: ../libcheese/cheese-avatar-chooser.c:296
 msgid "_Discard photo"
 msgstr "_Kassér foto"
 
-#: ../libcheese/cheese-camera-device.c:401
-msgid "Device capabilities not supported"
-msgstr "Enheds funktioner ikke understøttet"
-
-#: ../libcheese/cheese-camera-device.c:430
-#, c-format
-msgid "Failed to initialize device %s for capability probing"
-msgstr ""
-"Kunne ikke initialisere enheden %s med henblik på kompatibilitetsundersøgelse"
-
-#: ../libcheese/cheese-camera-device.c:619
-msgid "Unknown device"
-msgstr "Ukendt enhed"
-
-#: ../libcheese/cheese-camera-device.c:642
-msgid "Cancellable initialization not supported"
-msgstr "Annullerbar opstart ikke understøttet"
-
-#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1567
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1617
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Et eller flere gstreamer-elementer mangler: "
 
-#: ../libcheese/cheese-camera.c:1527
+#: ../libcheese/cheese-camera.c:1576
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhed fundet"
@@ -404,190 +338,259 @@ msgstr "Ingen enhed fundet"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1802
+#: ../libcheese/cheese-camera.c:1852
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#. Translators: a description of an effect (to be applied to images
-#. *              from the webcam) which does nothing.
-#: ../src/cheese-effects-manager.vala:53
-msgid "No Effect"
-msgstr "Ingen effekt"
+#: ../libcheese/cheese-camera-device.c:560
+msgid "Device capabilities not supported"
+msgstr "Enheds funktioner ikke understøttet"
 
-#: ../src/cheese-main.vala:51
+#: ../libcheese/cheese-camera-device.c:589
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr ""
+"Kunne ikke initialisere enheden %s med henblik på kompatibilitetsundersøgelse"
+
+#: ../libcheese/cheese-camera-device.c:778
+msgid "Unknown device"
+msgstr "Ukendt enhed"
+
+#: ../libcheese/cheese-camera-device.c:801
+msgid "Cancellable initialization not supported"
+msgstr "Annullerbar opstart ikke understøttet"
+
+#: ../src/cheese-application.vala:55
 msgid "Start in wide mode"
 msgstr "Start i bred tilstand"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "Device to use as a camera"
 msgstr "Enheden der skal bruges som kamera"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "DEVICE"
 msgstr "ENHED"
 
-#: ../src/cheese-main.vala:53
+#: ../src/cheese-application.vala:60
 msgid "Output version information and exit"
 msgstr "Skriv versionsinformation og afslut"
 
-#: ../src/cheese-main.vala:54
+#: ../src/cheese-application.vala:62
 msgid "Start in fullscreen mode"
 msgstr "Start i fuldskærmstilstand"
 
-#: ../src/cheese-main.vala:92
+#: ../src/cheese-application.vala:121
 msgid "_Shoot"
 msgstr "_Skyd"
 
-#: ../src/cheese-main.vala:96
+#: ../src/cheese-application.vala:125
 msgid "Mode:"
 msgstr "Tilstand:"
 
-#: ../src/cheese-main.vala:97
+#: ../src/cheese-application.vala:126
 msgid "_Photo"
 msgstr "_Billede"
 
-#: ../src/cheese-main.vala:98
+#: ../src/cheese-application.vala:127
 msgid "_Video"
 msgstr "_Video"
 
-#: ../src/cheese-main.vala:99
+#: ../src/cheese-application.vala:128
 msgid "_Burst"
 msgstr "_Serie"
 
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-application.vala:131
 msgid "_Fullscreen"
 msgstr "_Fuldskærm"
 
-#: ../src/cheese-main.vala:110
+#: ../src/cheese-application.vala:139
 msgid "P_references"
 msgstr "_Indstillinger"
 
-#: ../src/cheese-main.vala:113
-msgid "_About"
-msgstr "_Om"
-
-#: ../src/cheese-main.vala:114
+#: ../src/cheese-application.vala:142
 msgid "_Help"
 msgstr "_Hjælp"
 
-#: ../src/cheese-main.vala:117
+#: ../src/cheese-application.vala:145
+msgid "_About"
+msgstr "_Om"
+
+#: ../src/cheese-application.vala:146
 msgid "_Quit"
 msgstr "_Afslut"
 
-#: ../src/cheese-main.vala:182
+#: ../src/cheese-application.vala:219
 msgid "- Take photos and videos from your webcam"
 msgstr "- Tag billeder og videoer med dit webkamera"
 
-#: ../src/cheese-main.vala:194
+#: ../src/cheese-application.vala:228
 #, c-format
-msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Kør \"%s --help\" for at få en liste over alle tilgængelige "
-"kommandlinjetilvalg.\n"
+"kommandlinjetilvalg."
 
-#: ../src/cheese-main.vala:209
-#, c-format
-msgid "Another instance of Cheese is currently running\n"
-msgstr "Der kører allerede en instans af Cheese\n"
-
-#: ../src/cheese-main.vala:525
+#: ../src/cheese-application.vala:612
 msgid "translator-credits"
 msgstr ""
 "Anders K. Madsen\n"
 "Kenneth Nielsen\n"
+"Ask Hjorth Larsen\n"
 "\n"
 "Dansk-gruppen <dansk@dansk-gruppen.dk>\n"
 "Mere info: http://www.dansk-gruppen.dk"
 
-#: ../src/cheese-main.vala:527
+#: ../src/cheese-application.vala:614
 msgid "Cheese Website"
 msgstr "Webside for Cheese"
+
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:51
+msgid "No Effect"
+msgstr "Ingen effekt"
 
 #: ../src/cheese-window.vala:192
 #, c-format
 msgid "Could not open %s"
 msgstr "Kunne ikke åbne %s"
 
-#: ../src/cheese-window.vala:220
+#: ../src/cheese-window.vala:217
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Er du sikker på, at du permanent vil slette filen?"
 msgstr[1] "Er du sikker på, at du permanent vil slette %d filer?"
 
-#: ../src/cheese-window.vala:226
+#: ../src/cheese-window.vala:223
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Hvis du sletter et element, vil det gå permanent tabt"
 msgstr[1] "Hvis du sletter elementerne, vil de gå permanent tabt"
 
-#: ../src/cheese-window.vala:302
+#: ../src/cheese-window.vala:296
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Kan ikke flytte %s til papirkurven"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:451
+#: ../src/cheese-window.vala:321
 msgid "Save File"
 msgstr "Gem fil"
 
-#: ../src/cheese-window.vala:485
+#: ../src/cheese-window.vala:355
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke gemme %s"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:772
 msgid "Stop _Recording"
 msgstr "Stop _optagelse"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:773
 msgid "Stop recording"
 msgstr "Stop optagelse"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1311
 msgid "_Record a Video"
 msgstr "_Optag en video"
 
-#: ../src/cheese-window.vala:935
+#: ../src/cheese-window.vala:789
 msgid "Record a video"
 msgstr "Optag en video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:970
+#: ../src/cheese-window.vala:824
 msgid "Stop _Taking Pictures"
 msgstr "Stop med at _tage billeder"
 
-#: ../src/cheese-window.vala:971
+#: ../src/cheese-window.vala:825
 msgid "Stop taking pictures"
 msgstr "Stop med at tage billeder"
 
-#: ../src/cheese-window.vala:994
+#: ../src/cheese-window.vala:848
 msgid "Take Multiple Photos"
 msgstr "Tag flere billeder"
 
-#: ../src/cheese-window.vala:995
+#: ../src/cheese-window.vala:849
 msgid "Take multiple photos"
 msgstr "Tag flere billeder"
 
-#: ../src/cheese-window.vala:1155
+#: ../src/cheese-window.vala:1033
 msgid "No effects found"
 msgstr "Ingen effekter fundet"
 
-#: ../src/cheese-window.vala:1517
-#, fuzzy
-msgid "Record a video using a webcam"
-msgstr "Optag en video"
+#: ../src/cheese-window.vala:1152
+msgid "There was an error playing video from the webcam"
+msgstr "Der opstod en fejl under afspilning af video fra webkamera"
 
-#: ../src/cheese-window.vala:1523
+#: ../src/cheese-window.vala:1170
+msgid "Open"
+msgstr "Åbn"
+
+#: ../src/cheese-window.vala:1173
+msgid "Save _As…"
+msgstr "Gem _som…"
+
+#: ../src/cheese-window.vala:1176
+msgid "Move to _Trash"
+msgstr "Flyt til _papirkurv"
+
+#: ../src/cheese-window.vala:1179
+msgid "Delete"
+msgstr "Slet"
+
+#: ../src/cheese-window.vala:1312
+msgid "Record a video using a webcam"
+msgstr "Optag en video med et webkamera"
+
+#: ../src/cheese-window.vala:1318
 msgid "Take _Multiple Photos"
 msgstr "Tag _flere billeder"
 
-#: ../src/cheese-window.vala:1524
-#, fuzzy
+#: ../src/cheese-window.vala:1319
 msgid "Take multiple photos using a webcam"
-msgstr "Tag flere billeder"
+msgstr "Tag flere billeder med et webkamera"
+
+#~ msgid "Share…"
+#~ msgstr "Del…"
+
+#~ msgid "Move _All to Trash"
+#~ msgstr "Flyt _alle til papirkurv"
+
+#~ msgid "_Wide Mode"
+#~ msgstr "_Bred tilstand"
+
+#~ msgid "P_revious Effects"
+#~ msgstr "Fo_rrige effekt"
+
+#~ msgid "Ne_xt Effects"
+#~ msgstr "Næ_ste effekt"
+
+#~ msgid "Picture hue"
+#~ msgstr "Billedfarvetone"
+
+#~ msgid "Whether to start in wide mode"
+#~ msgstr "Hvorvidt der skal startes i bredtilstand"
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in wide mode, with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "Hvis sat til sand, vil Cheese starte op i en bredtilstand med "
+#~ "billedsamlingen placeret på højre side. Nyttigt ved små skærme."
+
+#~ msgid "Whether to start in fullscreen"
+#~ msgstr "Hvorvidt der startes i fuldskærmstilstand"
+
+#~ msgid "If set to true, Cheese will start up in fullscreen mode."
+#~ msgstr "Hvis indstillet til sand vil Cheese starte op i fuldskærmstilstand."
+
+#~ msgid "Another instance of Cheese is currently running\n"
+#~ msgstr "Der kører allerede en instans af Cheese\n"
 
 #~ msgid "Previous"
 #~ msgstr "Forrige"
@@ -643,9 +646,6 @@ msgstr "Tag flere billeder"
 #~ msgid "Image properties"
 #~ msgstr "Billedegenskaber"
 
-#~ msgid "_Open"
-#~ msgstr "_Åbn"
-
 #~ msgid "Resolution"
 #~ msgstr "Opløsning"
 
@@ -697,9 +697,6 @@ msgstr "Tag flere billeder"
 
 #~ msgid "S_kip All"
 #~ msgstr "S_pring alle over"
-
-#~ msgid "Delete _All"
-#~ msgstr "Slet _alle"
 
 #~ msgid ""
 #~ "Failed to launch program to show:\n"
