@@ -1,6 +1,66 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.9.92
+  - Close the preferences if the action is disabled
+    When shooting, the preferences action is disabled. If the preferences
+    dialog is shown, the resolution and capture device can still be changed,
+    so hide the dialog when the preferences action is disabled.
+  - Disable the preferences action while shooting
+    Changing the resolution or camera device while recording can lead to a
+    crash, so avoid the problem by disabling the preferences action whenever
+    the mode change actions are disabled. Fixes bug 670782.
+  - Fix video recording with GStreamer >= 1.1.4
+    GStreamer >= 1.1.4 requires fully specifying the video-capture-source
+    caps,
+    otherwise Cheese prints this:
+
+(cheese:22606): cheese-WARNING **: Filter caps do not completely specify
+    the output format: gstcapsfilter.c(348): gst_capsfilter_prepare_buf ():
+/GstCameraBin:camerabin/GstCapsFilter:videobin-capsfilter:
+    Output caps are unfixed: video/x-raw, framerate=(fraction)30/1,
+    width=(int)640, height=(int)480, format=(string){ YUY2,
+    YV12, BGR, RGB, I420 }, pixel-aspect-ratio=(fraction)1/1,
+    interlace-mode=(string)progressive
+
+    and video-recording is broken. Fixes bug 707391.
+
+  - Skip loading effects with missing plugins
+    If effects modules are missing, do not load them into EffectsManager to
+    skip showing them in the UI. Fixes bug 702995.
+  - Fix categories in .desktop file, bug 707373
+    gnome-software uses the desktop file categories to sort the applications
+    it shows. This commit fixes the categories according to the freedesktop
+    spec, so that Cheese will appear in the correct category.
+
+    For more information:
+    http://standards.freedesktop.org/menu-spec/latest/apa.html
+    http://standards.freedesktop.org/menu-spec/latest/apas02.html
+  - Drop wrong license lines from Galician translations for docs
+  - Post-release version bump to 3.9.92
+  - Added/Updated Translations
+    - as, courtesy of Nilamdyuti Goswami
+    - be, courtesy of Yuri Matsuk
+    - da, courtesy of Ask Hjorth Larsen
+    - fi, courtesy of Jiri Grönroos
+    - fr, courtesy of Alain Lojewski
+    - ga, courtesy of Seán de Búrca
+    - hu, courtesy of Balázs Úr
+    - id, courtesy of Andika Triwidada
+    - it, courtesy of Milo Casagrande
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Aurimas Černius
+    - lv, courtesy of Rūdolfs Mazurs
+    - pl, courtesy of Piotr Drąg
+    - ru, courtesy of Yuri Myasoedov
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+  - Added/Updated Documentation
+    - es, courtesy of Daniel Mustieles
+    - gl, courtesy of Fran Dieguez
+    - hu, courtesy of Gabor Kelemen
+    - id, courtesy of Andika Triwidada
+
 version 3.9.91
   - Do not override errors in camera_state_change_null
     If a more detailed error has already been set (through a GError return
