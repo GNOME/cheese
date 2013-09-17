@@ -554,6 +554,14 @@ public class Cheese.PreferencesDialog : GLib.Object
   {
     this.dialog.show_all ();
   }
+
+    /**
+     * Hide the dialog.
+     */
+    public void hide ()
+    {
+        this.dialog.hide ();
+    }
   
     /**
      * Set the current media mode (photo, video or burst).

@@ -160,6 +160,8 @@ public class Cheese.Application : Gtk.Application
             main_window.show ();
             setup_camera ();
             preferences_dialog = new PreferencesDialog (camera);
+            var preferences = this.lookup_action ("preferences");
+            preferences.notify["enabled"].connect (on_preferences_enabled);
             this.add_window (main_window);
         }
     }
@@ -621,5 +623,18 @@ public class Cheese.Application : Gtk.Application
     private void on_quit ()
     {
         main_window.destroy ();
+    }
+
+    /**
+     * Close the preferences dialog when the preferences action is disabled.
+     */
+    private void on_preferences_enabled ()
+    {
+        var preferences = this.lookup_action ("preferences");
+
+        if (!preferences.enabled)
+        {
+            preferences_dialog.hide ();
+        }
     }
 }
