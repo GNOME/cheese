@@ -499,6 +499,7 @@ dist_noinst_DATA = \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
 	$(service_in_files) \
+	build-aux/test-driver \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
 	$(gtkdoc_srcdir)/cheese-sections.txt \
 	$(gtkdoc_srcdir)/cheese.xml \
@@ -542,6 +543,7 @@ MAINTAINERCLEANFILES = \
 	build-aux/install-sh \
 	build-aux/ltmain.sh \
 	build-aux/missing \
+	build-aux/test-driver \
 	aclocal.m4 \
 	config.h.n \
 	$(gsettings_SCHEMAS:.xml=.valid) \

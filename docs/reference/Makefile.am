@@ -88,7 +88,6 @@ include $(top_srcdir)/gtk-doc.make
 # e.g. EXTRA_DIST += version.xml.in
 
 if ENABLE_GTK_DOC
-TESTS_ENVIRONMENT = cd $(builddir) &&
 TESTS = $(GTKDOC_CHECK)
 endif
 
