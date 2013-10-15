@@ -242,7 +242,7 @@ cheese_CPPFLAGS = \
 	-I$(top_srcdir)/libcheese \
 	-I$(top_srcdir)/src
 
-cheese_CFLAGS = -export-dynamic
+cheese_CFLAGS = -export-dynamic -w
 
 cheese_LDADD = \
 	libcheese.la \
