@@ -196,7 +196,6 @@ cheese_widget_init (CheeseWidget *widget)
   CheeseWidgetPrivate *priv = widget->priv = CHEESE_WIDGET_GET_PRIVATE (widget);
   GtkWidget           *box;
   ClutterActor        *stage, *frame;
-  ClutterConstraint   *constraint;
   ClutterColor black = { 0x00, 0x00, 0x00, 0xff };
 
   priv->state = CHEESE_WIDGET_STATE_NONE;
@@ -227,9 +226,8 @@ cheese_widget_init (CheeseWidget *widget)
   clutter_actor_set_size (priv->texture, 400, 300);
   totem_aspect_frame_set_child (TOTEM_ASPECT_FRAME (frame), priv->texture);
 
+  clutter_actor_set_layout_manager (stage, clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_FILL, CLUTTER_BIN_ALIGNMENT_FILL));
   clutter_actor_add_child (stage, frame);
-  constraint = clutter_bind_constraint_new (stage, CLUTTER_BIND_SIZE, 0.0);
-  clutter_actor_add_constraint_with_name (frame, "size", constraint);
 
   gtk_widget_show (priv->screen);
   clutter_actor_show (priv->texture);
