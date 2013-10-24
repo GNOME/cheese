@@ -203,7 +203,6 @@ state_change_cb (GObject             *object,
  * create_page:
  * @child: the #CheeseWidget to pack into the container
  * @button: the #GtkButton for taking a photo
- * @extra: an extra #GtkWidget to pack alongside the @button, or NULL
  *
  * Create the widgets for the #CheeseAvatarChooser and pack them into a
  * container.
@@ -212,33 +211,28 @@ state_change_cb (GObject             *object,
  */
 static GtkWidget *
 create_page (GtkWidget *child,
-             GtkWidget *button,
-             GtkWidget *extra)
+             GtkWidget *button)
 {
-  GtkWidget *vgrid, *hgrid, *align;
+  GtkWidget *vgrid, *bar;
+  GtkStyleContext *context;
 
   vgrid = gtk_grid_new ();
   gtk_grid_attach (GTK_GRID (vgrid),
                    child, 0, 0, 1, 1);
   gtk_widget_set_hexpand (child, TRUE);
   gtk_widget_set_vexpand (child, TRUE);
-  align = gtk_alignment_new (0.5, 0, 0, 0);
-  gtk_widget_set_valign (align, GTK_ALIGN_END);
+
+  bar = gtk_header_bar_new ();
+  context = gtk_widget_get_style_context (GTK_WIDGET (bar));
+  gtk_style_context_remove_class (context, "header-bar");
+  gtk_style_context_add_class (context, "inline-toolbar");
+  gtk_style_context_add_class (context, "toolbar");
+  gtk_style_context_add_class (context, GTK_STYLE_CLASS_HORIZONTAL);
+
+  g_object_set (G_OBJECT (button), "margin-top", 6, "margin-bottom", 6, NULL);
+  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (bar), button);
   gtk_grid_attach (GTK_GRID (vgrid),
-                   align, 0, 1, 1, 1);
-  hgrid = gtk_grid_new ();
-  gtk_grid_set_column_spacing (GTK_GRID (hgrid), 8);
-  gtk_container_add(GTK_CONTAINER(align), hgrid);
-  gtk_grid_attach (GTK_GRID (hgrid),
-                   button, 0, 0, 1, 1);
-  gtk_widget_set_halign (button, GTK_ALIGN_START);
-  if (extra != NULL)
-  {
-    gtk_grid_attach (GTK_GRID (hgrid),
-                     extra, 1, 0, 1, 1);
-    gtk_widget_set_hexpand (extra, TRUE);
-    gtk_widget_set_vexpand (extra, TRUE);
-  }
+                   bar, 0, 1, 1, 1);
 
   return vgrid;
 }
@@ -281,7 +275,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                     G_CALLBACK (take_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_button, FALSE);
   gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                            create_page (priv->camera, priv->take_button, NULL),
+                            create_page (priv->camera, priv->take_button),
                             gtk_label_new ("webcam"));
 
   /* Image tab */
@@ -294,7 +288,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                     G_CALLBACK (take_again_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_again_button, FALSE);
   gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                            create_page (frame, priv->take_again_button, NULL),
+                            create_page (frame, priv->take_again_button),
                             gtk_label_new ("image"));
 
   gtk_widget_show_all (gtk_dialog_get_content_area (GTK_DIALOG (chooser)));
