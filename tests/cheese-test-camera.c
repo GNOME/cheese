@@ -37,8 +37,6 @@ main (int argc, char **argv)
   ClutterActor *stage;
   ClutterActor *texture;
 
-  gdk_threads_init ();
-
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
@@ -64,9 +62,7 @@ main (int argc, char **argv)
   gtk_widget_show (screen);
   clutter_actor_show (texture);
 
-  gdk_threads_enter ();
   camera = cheese_camera_new (CLUTTER_TEXTURE (texture), NULL, 640, 480);
-  gdk_threads_leave ();
 
   cheese_camera_setup (camera, NULL, NULL);
 

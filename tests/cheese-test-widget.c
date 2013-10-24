@@ -23,7 +23,6 @@ main (int argc, char **argv)
   GtkWidget *window;
   GtkWidget *camera;
 
-  gdk_threads_init ();
   gst_init (&argc, &argv);
 
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALEDIR);
