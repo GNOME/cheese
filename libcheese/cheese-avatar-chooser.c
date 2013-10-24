@@ -241,6 +241,8 @@ static void
 cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
   GtkWidget *frame;
+  GtkWidget *image;
+  GtkSizeGroup *sizegroup;
 
   CheeseAvatarChooserPrivate *priv = chooser->priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
 
@@ -270,7 +272,9 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
   priv->camera = cheese_widget_new ();
   g_signal_connect (G_OBJECT (priv->camera), "notify::state",
                     G_CALLBACK (state_change_cb), chooser);
-  priv->take_button = gtk_button_new_with_mnemonic (_("_Take a Photo"));
+  image = gtk_image_new_from_icon_name ("camera-photo-symbolic", GTK_ICON_SIZE_SMALL_TOOLBAR);
+  priv->take_button = gtk_button_new ();
+  gtk_button_set_image (GTK_BUTTON (priv->take_button), image);
   g_signal_connect (G_OBJECT (priv->take_button), "clicked",
                     G_CALLBACK (take_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_button, FALSE);
@@ -283,13 +287,17 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
   frame       = gtk_frame_new (NULL);
   gtk_container_add (GTK_CONTAINER (frame), priv->image);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
-  priv->take_again_button = gtk_button_new_with_mnemonic (_("_Discard photo"));
+  priv->take_again_button = gtk_button_new_with_mnemonic (_("_Take Another Picture"));
   g_signal_connect (G_OBJECT (priv->take_again_button), "clicked",
                     G_CALLBACK (take_again_button_clicked_cb), chooser);
   gtk_widget_set_sensitive (priv->take_again_button, FALSE);
   gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
                             create_page (frame, priv->take_again_button),
                             gtk_label_new ("image"));
+
+  sizegroup = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
+  gtk_size_group_add_widget (sizegroup, priv->take_button);
+  gtk_size_group_add_widget (sizegroup, priv->take_again_button);
 
   gtk_widget_show_all (gtk_dialog_get_content_area (GTK_DIALOG (chooser)));
 }
