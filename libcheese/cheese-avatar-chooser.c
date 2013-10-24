@@ -261,6 +261,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                                      FALSE);
 
   priv->notebook = gtk_notebook_new ();
+  g_object_set(G_OBJECT (priv->notebook), "margin", 12, NULL);
   gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
   gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
 
