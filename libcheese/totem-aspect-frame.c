@@ -22,6 +22,8 @@
  * Boston, MA 02111-1307, USA.
  */
 
+#include <math.h>
+
 #include "totem-aspect-frame.h"
 
 G_DEFINE_TYPE (TotemAspectFrame, totem_aspect_frame, CLUTTER_TYPE_ACTOR)
@@ -41,6 +43,7 @@ enum
 struct _TotemAspectFramePrivate
 {
   guint expand : 1;
+  gdouble rotation;
 };
 
 
@@ -134,6 +137,104 @@ totem_aspect_frame_get_preferred_height (ClutterActor *actor,
 }
 
 static void
+totem_aspect_frame_get_size (TotemAspectFrame *frame,
+                             gdouble           rotation,
+                             gfloat           *width,
+                             gfloat           *height)
+{
+  ClutterActorBox box;
+  gfloat w, h;
+
+  clutter_actor_get_allocation_box (CLUTTER_ACTOR (frame), &box);
+
+  if (fmod (rotation, 180.0) == 90.0)
+    {
+      w = box.y2 - box.y1;
+      h = box.x2 - box.x1;
+    }
+  else
+    {
+      w = box.x2 - box.x1;
+      h = box.y2 - box.y1;
+    }
+
+  if (width)
+    *width = w;
+  if (height)
+    *height = h;
+}
+
+static void
+_get_allocation (ClutterActor *actor,
+                 gfloat       *width,
+                 gfloat       *height)
+{
+  ClutterActorBox box;
+
+  clutter_actor_get_allocation_box (actor, &box);
+
+  if (width)
+    *width = box.x2 - box.x1;
+  if (height)
+    *height = box.y2 - box.y1;
+}
+
+static void
+totem_aspect_frame_set_rotation_internal (TotemAspectFrame *frame,
+					  gdouble           rotation,
+					  gboolean          animate)
+{
+  TotemAspectFramePrivate *priv = frame->priv;
+  ClutterActor *actor;
+  gfloat frame_width, frame_height;
+  gfloat child_width, child_height;
+  gfloat child_dest_width, child_dest_height;
+  gdouble frame_aspect;
+  gdouble child_aspect;
+
+  actor = clutter_actor_get_child_at_index (CLUTTER_ACTOR (frame), 0);
+  if (!actor)
+    return;
+
+  totem_aspect_frame_get_size (frame, rotation,
+                               &frame_width, &frame_height);
+  _get_allocation (actor, &child_width, &child_height);
+
+  if (child_width <= 0.0f || child_height <= 0.0f)
+    return;
+
+  frame_aspect = frame_width / frame_height;
+  child_aspect = child_width / child_height;
+
+  if ((frame_aspect < child_aspect) ^ priv->expand)
+    {
+      child_dest_width = frame_width;
+      child_dest_height = frame_width / child_aspect;
+    }
+  else
+    {
+      child_dest_height = frame_height;
+      child_dest_width = frame_height * child_aspect;
+    }
+
+  clutter_actor_set_pivot_point (actor, 0.5, 0.5);
+
+  if (animate)
+    {
+      clutter_actor_save_easing_state (actor);
+      clutter_actor_set_easing_duration (actor, 500);
+    }
+
+  clutter_actor_set_rotation_angle (actor, CLUTTER_Z_AXIS, rotation);
+  clutter_actor_set_scale (actor,
+                           child_dest_width / child_width,
+                           child_dest_height / child_height);
+
+  if (animate)
+    clutter_actor_restore_easing_state (actor);
+}
+
+static void
 totem_aspect_frame_allocate (ClutterActor           *actor,
                              const ClutterActorBox  *box,
                              ClutterAllocationFlags  flags)
@@ -153,7 +254,11 @@ totem_aspect_frame_allocate (ClutterActor           *actor,
 
   box_width = box->x2 - box->x1;
   box_height = box->y2 - box->y1;
+
   clutter_actor_get_preferred_size (child, NULL, NULL, &width, &height);
+
+  if (width <= 0.0f || height <= 0.0f)
+    return;
 
   aspect = box_width / box_height;
   child_aspect = width / height;
@@ -175,6 +280,9 @@ totem_aspect_frame_allocate (ClutterActor           *actor,
   child_box.y2 = child_box.y1 + height;
 
   clutter_actor_allocate (child, &child_box, flags);
+
+  totem_aspect_frame_set_rotation_internal (TOTEM_ASPECT_FRAME (actor),
+                                            priv->rotation, FALSE);
 }
 
 static void
@@ -194,39 +302,9 @@ totem_aspect_frame_paint (ClutterActor *actor)
 
       clutter_actor_get_size (actor, &width, &height);
 
-      /* Special-case textures and just munge their coordinates.
-       * This avoids clipping, which can break Clutter's batching.
-       */
-      if (CLUTTER_IS_TEXTURE (child))
-        {
-          guint8 opacity;
-          gfloat x, y, tx, ty;
-          CoglHandle material;
-
-          clutter_actor_get_position (child, &x, &y);
-
-          material =
-            clutter_texture_get_cogl_material (CLUTTER_TEXTURE (child));
-          opacity = clutter_actor_get_paint_opacity (child);
-          cogl_material_set_color4ub (material,
-                                      opacity, opacity, opacity, opacity);
-          cogl_set_source (material);
-
-          tx = (width / (width - (x * 2.f))) / 2.f;
-          ty = (height / (height - (y * 2.f))) / 2.f;
-
-          cogl_rectangle_with_texture_coords (0.0, 0.0,
-                                              width,
-                                              height,
-                                              0.5f - tx, 0.5f - ty,
-                                              0.5f + tx, 0.5f + ty);
-        }
-      else
-        {
-          cogl_clip_push_rectangle (0.0, 0.0, width, height);
-          clutter_actor_paint (child);
-          cogl_clip_pop ();
-        }
+      cogl_clip_push_rectangle (0.0, 0.0, width, height);
+      clutter_actor_paint (child);
+      cogl_clip_pop ();
     }
   else
     clutter_actor_paint (child);
@@ -242,9 +320,7 @@ totem_aspect_frame_pick (ClutterActor       *actor,
 
   clutter_actor_get_allocation_box (actor, &box);
 
-  cogl_set_source_color4ub (color->red, color->green,
-                            color->blue, color->alpha);
-  cogl_rectangle (box.x1, box.y1, box.x2, box.y2);
+  CLUTTER_ACTOR_CLASS (totem_aspect_frame_parent_class)->pick (actor, color);
 
   child = clutter_actor_get_child_at_index (actor, 0);
 
@@ -295,6 +371,7 @@ static void
 totem_aspect_frame_init (TotemAspectFrame *self)
 {
   self->priv = ASPECT_FRAME_PRIVATE (self);
+  clutter_actor_set_pivot_point (CLUTTER_ACTOR (self), 0.5f, 0.5f);
 }
 
 ClutterActor *
@@ -314,8 +391,9 @@ totem_aspect_frame_set_expand (TotemAspectFrame *frame, gboolean expand)
   if (priv->expand != expand)
     {
       priv->expand = expand;
-      clutter_actor_queue_relayout (CLUTTER_ACTOR (frame));
       g_object_notify (G_OBJECT (frame), "expand");
+
+      totem_aspect_frame_set_rotation_internal (frame, priv->rotation, TRUE);
     }
 }
 
@@ -333,4 +411,41 @@ totem_aspect_frame_set_child   (TotemAspectFrame *frame,
   g_return_if_fail (TOTEM_IS_ASPECT_FRAME (frame));
 
   clutter_actor_add_child (CLUTTER_ACTOR (frame), child);
+}
+
+void
+totem_aspect_frame_set_rotation (TotemAspectFrame *frame,
+				 gdouble           rotation)
+{
+  g_return_if_fail (TOTEM_IS_ASPECT_FRAME (frame));
+  g_return_if_fail (fmod (rotation, 90.0) == 0.0);
+
+  rotation = fmod (rotation, 360.0);
+
+  /* When animating, make sure that we go in the right direction,
+   * otherwise we'll spin in the wrong direction going back to 0 from 270 */
+  if (rotation == 0.0 && frame->priv->rotation == 270.0)
+    rotation = 360.0;
+  else if (rotation == 90.0 && frame->priv->rotation == 360.0)
+    totem_aspect_frame_set_rotation_internal (frame, 0.0, FALSE);
+  else if (rotation == 270.0 && fmod (frame->priv->rotation, 360.0) == 0.0)
+    totem_aspect_frame_set_rotation_internal (frame, 360.0, FALSE);
+
+  g_debug ("Setting rotation to '%lf'", rotation);
+
+  frame->priv->rotation = rotation;
+  totem_aspect_frame_set_rotation_internal (frame, rotation, TRUE);
+}
+
+gdouble
+totem_aspect_frame_get_rotation (TotemAspectFrame *frame)
+{
+  gdouble rotation;
+
+  g_return_val_if_fail (TOTEM_IS_ASPECT_FRAME (frame), 0.0);
+
+  rotation = fmod (frame->priv->rotation, 360.0);
+  g_debug ("Got rotation %lf", rotation);
+
+  return rotation;
 }
