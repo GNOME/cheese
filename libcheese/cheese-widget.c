@@ -218,12 +218,12 @@ cheese_widget_init (CheeseWidget *widget)
 
   /* Webcam page */
   priv->screen = gtk_clutter_embed_new ();
+  gtk_widget_set_size_request (priv->screen, 460, 345);
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->screen));
   clutter_actor_set_background_color (stage, &black);
   frame = totem_aspect_frame_new ();
 
   priv->texture = clutter_texture_new ();
-  clutter_actor_set_size (priv->texture, 400, 300);
   totem_aspect_frame_set_child (TOTEM_ASPECT_FRAME (frame), priv->texture);
 
   clutter_actor_set_layout_manager (stage, clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_FILL, CLUTTER_BIN_ALIGNMENT_FILL));

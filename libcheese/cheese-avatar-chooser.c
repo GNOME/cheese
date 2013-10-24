@@ -297,8 +297,6 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                             create_page (frame, priv->take_again_button, NULL),
                             gtk_label_new ("image"));
 
-  gtk_window_set_default_size (GTK_WINDOW (chooser), 400, 300);
-
   gtk_widget_show_all (gtk_dialog_get_content_area (GTK_DIALOG (chooser)));
 }
 
