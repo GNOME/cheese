@@ -182,8 +182,12 @@ update_pixbufs (UmCropArea *area)
                 shift_colors (area->priv->color_shifted, -32, -32, -32, 0);
 
                 if (area->priv->scale == 0.0) {
-                        area->priv->crop.width = 2 * area->priv->base_width / scale;
-                        area->priv->crop.height = 2 * area->priv->base_height / scale;
+                        gdouble crop_scale;
+
+                        crop_scale = MIN (gdk_pixbuf_get_width (area->priv->pixbuf) / area->priv->base_width * 0.8,
+                                          gdk_pixbuf_get_height (area->priv->pixbuf) / area->priv->base_height * 0.8);
+                        area->priv->crop.width = crop_scale * area->priv->base_width / scale;
+                        area->priv->crop.height = crop_scale * area->priv->base_height / scale;
                         area->priv->crop.x = (gdk_pixbuf_get_width (area->priv->browse_pixbuf) - area->priv->crop.width) / 2;
                         area->priv->crop.y = (gdk_pixbuf_get_height (area->priv->browse_pixbuf) - area->priv->crop.height) / 2;
                 }
