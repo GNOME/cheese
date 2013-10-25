@@ -922,6 +922,9 @@ um_crop_area_get_picture (UmCropArea *area)
 {
         gint width, height;
 
+        if (area->priv->browse_pixbuf == NULL)
+                return NULL;
+
         width = gdk_pixbuf_get_width (area->priv->browse_pixbuf);
         height = gdk_pixbuf_get_height (area->priv->browse_pixbuf);
         width = MIN (area->priv->crop.width, width - area->priv->crop.x);
