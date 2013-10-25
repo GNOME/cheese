@@ -26,6 +26,7 @@
 #include "cheese-widget-private.h"
 #include "cheese-flash.h"
 #include "cheese-avatar-chooser.h"
+#include "cheese-avatar-widget.h"
 #include "um-crop-area.h"
 
 /**
@@ -58,13 +59,7 @@ enum
 
 struct _CheeseAvatarChooserPrivate
 {
-  GtkWidget *notebook;
-  GtkWidget *camera;
-  GtkWidget *image;
-  GtkWidget *take_button;
-  GtkWidget *take_again_button;
-  CheeseFlash *flash;
-  gulong photo_taken_id;
+  GtkWidget *widget;
 };
 
 static GParamSpec *properties[PROP_LAST];
@@ -75,178 +70,25 @@ static GParamSpec *properties[PROP_LAST];
 
 G_DEFINE_TYPE (CheeseAvatarChooser, cheese_avatar_chooser, GTK_TYPE_DIALOG);
 
-/*
- * cheese_widget_photo_taken_cb:
- * @camera: a #CheeseCamera
- * @pixbuf: the #GdkPixbuf of the image that was just taken
- * @choose: a #CheeseAvatarChooser
- *
- * Show the image that was just taken from the camera (as @pixbuf) in the
- * cropping tool.
- */
 static void
-cheese_widget_photo_taken_cb (CheeseCamera        *camera,
-                              GdkPixbuf           *pixbuf,
-                              CheeseAvatarChooser *chooser)
+update_select_button (CheeseAvatarWidget  *widget,
+                      GParamSpec          *pspec,
+                      CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooserPrivate *priv = chooser->priv;
-  GtkAllocation               allocation;
+  GdkPixbuf *pixbuf;
 
-  gtk_widget_get_allocation (priv->camera, &allocation);
-  gtk_widget_set_size_request (priv->image, allocation.width, allocation.height);
-
-  um_crop_area_set_picture (UM_CROP_AREA (priv->image), pixbuf);
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), IMAGE_PAGE);
+  g_object_get (G_OBJECT (widget), "pixbuf", &pixbuf, NULL);
   gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
                                      GTK_RESPONSE_ACCEPT,
-                                     TRUE);
-  gtk_widget_set_sensitive (priv->take_button, TRUE);
-
-  g_object_notify_by_pspec (G_OBJECT (chooser), properties[PROP_PIXBUF]);
-}
-
-/*
- * take_button_clicked_cb:
- * @button: the #GtkButton that was clicked
- * @chooser: the #CheeseAvatarChooser
- *
- * Take a photo with the #CheeseCamera of @chooser. When the photo has been
- * taken, call cheese_widget_photo_taken_cb().
- */
-static void
-take_button_clicked_cb (GtkButton           *button,
-                        CheeseAvatarChooser *chooser)
-{
-  CheeseAvatarChooserPrivate *priv = chooser->priv;
-  GObject                    *camera;
-
-  camera = cheese_widget_get_camera (CHEESE_WIDGET (priv->camera));
-  if (priv->photo_taken_id == 0)
-  {
-    gtk_widget_set_sensitive (priv->take_button, FALSE);
-    priv->photo_taken_id = g_signal_connect (G_OBJECT (camera), "photo-taken",
-                                             G_CALLBACK (cheese_widget_photo_taken_cb), chooser);
-  }
-  if (cheese_camera_take_photo_pixbuf (CHEESE_CAMERA (camera)))
-  {
-    cheese_flash_fire (CHEESE_FLASH (priv->flash));
-    ca_gtk_play_for_widget (GTK_WIDGET (chooser), 0,
-                            CA_PROP_EVENT_ID, "camera-shutter",
-                            CA_PROP_MEDIA_ROLE, "event",
-                            CA_PROP_EVENT_DESCRIPTION, _("Shutter sound"),
-                            NULL);
-  }
-  else
-  {
-    g_assert_not_reached ();
-  }
-}
-
-/*
- * take_again_button_clicked_cb:
- * @button: the #GtkButton that was clicked
- * @chooser: the #CheeseAvatarChooser
- *
- * Switch the @chooser back to the camera view, ready to take another photo.
- */
-static void
-take_again_button_clicked_cb (GtkButton           *button,
-                              CheeseAvatarChooser *chooser)
-{
-  CheeseAvatarChooserPrivate *priv = chooser->priv;
-
-  gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), WIDGET_PAGE);
-  gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
-                                     GTK_RESPONSE_ACCEPT,
-                                     FALSE);
-
-  um_crop_area_set_picture (UM_CROP_AREA (priv->image), NULL);
-
-  g_object_notify_by_pspec (G_OBJECT (chooser), properties[PROP_PIXBUF]);
-}
-
-/* state_change_cb:
- * @object: the #CheeseWidget on which the state changed
- * @param_spec: the (unused) parameter specification
- * @chooser: a #CheeseAvatarChooser
- *
- * Handle state changes on the #CheeseWidget, and update the UI appropriately.
- */
-static void
-state_change_cb (GObject             *object,
-                 GParamSpec          *param_spec,
-                 CheeseAvatarChooser *chooser)
-{
-  CheeseAvatarChooserPrivate *priv = chooser->priv;
-  CheeseWidgetState           state;
-
-  g_object_get (object, "state", &state, NULL);
-
-  switch (state)
-  {
-    case CHEESE_WIDGET_STATE_READY:
-      gtk_widget_set_sensitive (priv->take_button, TRUE);
-      gtk_widget_set_sensitive (priv->take_again_button, TRUE);
-      break;
-    case CHEESE_WIDGET_STATE_ERROR:
-      gtk_widget_set_sensitive (priv->take_button, FALSE);
-      gtk_widget_set_sensitive (priv->take_again_button, FALSE);
-      break;
-    case CHEESE_WIDGET_STATE_NONE:
-      break;
-    default:
-      g_assert_not_reached ();
-  }
-}
-
-/*
- * create_page:
- * @child: the #CheeseWidget to pack into the container
- * @button: the #GtkButton for taking a photo
- *
- * Create the widgets for the #CheeseAvatarChooser and pack them into a
- * container.
- *
- * Returns: a #GtkBox containing the individual #CheeseAvatarChooser widgets
- */
-static GtkWidget *
-create_page (GtkWidget *child,
-             GtkWidget *button)
-{
-  GtkWidget *vgrid, *bar;
-  GtkStyleContext *context;
-
-  vgrid = gtk_grid_new ();
-  gtk_grid_attach (GTK_GRID (vgrid),
-                   child, 0, 0, 1, 1);
-  gtk_widget_set_hexpand (child, TRUE);
-  gtk_widget_set_vexpand (child, TRUE);
-
-  bar = gtk_header_bar_new ();
-  context = gtk_widget_get_style_context (GTK_WIDGET (bar));
-  gtk_style_context_remove_class (context, "header-bar");
-  gtk_style_context_add_class (context, "inline-toolbar");
-  gtk_style_context_add_class (context, "toolbar");
-  gtk_style_context_add_class (context, GTK_STYLE_CLASS_HORIZONTAL);
-
-  g_object_set (G_OBJECT (button), "margin-top", 6, "margin-bottom", 6, NULL);
-  gtk_header_bar_set_custom_title (GTK_HEADER_BAR (bar), button);
-  gtk_grid_attach (GTK_GRID (vgrid),
-                   bar, 0, 1, 1, 1);
-
-  return vgrid;
+                                     pixbuf != NULL);
+  if (pixbuf)
+    g_object_unref (pixbuf);
 }
 
 static void
 cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
-  GtkWidget *frame;
-  GtkWidget *image;
-  GtkSizeGroup *sizegroup;
-
   CheeseAvatarChooserPrivate *priv = chooser->priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
-
-  priv->flash = cheese_flash_new (GTK_WIDGET (chooser));
 
   gtk_dialog_add_buttons (GTK_DIALOG (chooser),
                           GTK_STOCK_CANCEL,
@@ -260,57 +102,17 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                                      GTK_RESPONSE_ACCEPT,
                                      FALSE);
 
-  priv->notebook = gtk_notebook_new ();
-  g_object_set(G_OBJECT (priv->notebook), "margin", 12, NULL);
-  gtk_notebook_set_show_border (GTK_NOTEBOOK (priv->notebook), FALSE);
-  gtk_notebook_set_show_tabs (GTK_NOTEBOOK (priv->notebook), FALSE);
+  g_object_set (G_OBJECT (gtk_dialog_get_action_area (GTK_DIALOG (chooser))), "margin", 8, NULL);
 
+  priv->widget = cheese_avatar_widget_new ();
+  gtk_widget_show (priv->widget);
   gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (chooser))),
-                      priv->notebook,
-                      TRUE, TRUE, 8);
+                      priv->widget,
+                      TRUE, TRUE, 0);
 
-  /* Camera tab */
-  priv->camera = cheese_widget_new ();
-  g_signal_connect (G_OBJECT (priv->camera), "notify::state",
-                    G_CALLBACK (state_change_cb), chooser);
-  image = gtk_image_new_from_icon_name ("camera-photo-symbolic", GTK_ICON_SIZE_SMALL_TOOLBAR);
-  priv->take_button = gtk_button_new ();
-  gtk_button_set_image (GTK_BUTTON (priv->take_button), image);
-  g_signal_connect (G_OBJECT (priv->take_button), "clicked",
-                    G_CALLBACK (take_button_clicked_cb), chooser);
-  gtk_widget_set_sensitive (priv->take_button, FALSE);
-  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                            create_page (priv->camera, priv->take_button),
-                            gtk_label_new ("webcam"));
+  g_signal_connect (G_OBJECT (priv->widget), "notify::pixbuf",
+                    G_CALLBACK (update_select_button), chooser);
 
-  /* Image tab */
-  priv->image = um_crop_area_new ();
-  frame       = gtk_frame_new (NULL);
-  gtk_container_add (GTK_CONTAINER (frame), priv->image);
-  gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
-  priv->take_again_button = gtk_button_new_with_mnemonic (_("_Take Another Picture"));
-  g_signal_connect (G_OBJECT (priv->take_again_button), "clicked",
-                    G_CALLBACK (take_again_button_clicked_cb), chooser);
-  gtk_widget_set_sensitive (priv->take_again_button, FALSE);
-  gtk_notebook_append_page (GTK_NOTEBOOK (priv->notebook),
-                            create_page (frame, priv->take_again_button),
-                            gtk_label_new ("image"));
-
-  sizegroup = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-  gtk_size_group_add_widget (sizegroup, priv->take_button);
-  gtk_size_group_add_widget (sizegroup, priv->take_again_button);
-
-  gtk_widget_show_all (gtk_dialog_get_content_area (GTK_DIALOG (chooser)));
-}
-
-static void
-cheese_avatar_chooser_finalize (GObject *object)
-{
-  CheeseAvatarChooserPrivate *priv = ((CheeseAvatarChooser *) object)->priv;
-
-  g_clear_object (&priv->flash);
-
-  G_OBJECT_CLASS (cheese_avatar_chooser_parent_class)->finalize (object);
 }
 
 static void
@@ -322,7 +124,7 @@ cheese_avatar_chooser_get_property (GObject *object, guint prop_id,
   switch (prop_id)
   {
     case PROP_PIXBUF:
-      g_value_set_object (value, um_crop_area_get_picture (UM_CROP_AREA (priv->image)));
+      g_value_set_object (value, cheese_avatar_widget_get_picture (CHEESE_AVATAR_WIDGET (priv->widget)));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -335,7 +137,6 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
 {
   GObjectClass   *object_class = G_OBJECT_CLASS (klass);
 
-  object_class->finalize     = cheese_avatar_chooser_finalize;
   object_class->get_property = cheese_avatar_chooser_get_property;
 
   /**
@@ -381,5 +182,5 @@ cheese_avatar_chooser_get_picture (CheeseAvatarChooser *chooser)
 {
   g_return_val_if_fail (CHEESE_IS_AVATAR_CHOOSER (chooser), NULL);
 
-  return um_crop_area_get_picture (UM_CROP_AREA (chooser->priv->image));
+  return cheese_avatar_widget_get_picture (CHEESE_AVATAR_WIDGET (chooser->priv->widget));
 }
