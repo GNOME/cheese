@@ -107,7 +107,7 @@ libcheese_gtk_la_SOURCES = \
 noinst_libcheese_gtk_headers = \
 	libcheese/totem-aspect-frame.h \
 	libcheese/cheese-avatar-chooser.h \
-	libcheese/cheese-avatar-widget.c \
+	libcheese/cheese-avatar-widget.h \
 	libcheese/cheese-flash.h \
 	libcheese/cheese-widget.h \
 	libcheese/cheese-widget-private.h \
