@@ -1,6 +1,67 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.11.1
+  - Add CheeseAvatarWidget to API reference
+  - Fix CheeseAvatarChooser test
+
+    There is no longer a button with the label "Take a Photo", so remove the
+    test which tries to find it.
+  - Distribute cheese-avatar-widget.h
+  - Add CheeseAvatarWidget
+    A stand-alone widget for avatar capture, like the avatar chooser but
+    without the precanned dialogue.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710874
+  - Set a reasonable default size for avatar cropping
+    The default is based on the minimum 48x48 size. Instead we should be
+    cropping to nearly the maximum size of the image, which would still show
+    the crop handles but would not discard most of the captured image.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710874
+  - Add margins to CheeseAvatarChooser
+    https://bugzilla.gnome.org/show_bug.cgi?id=710874
+  - Rename the CheeseAvatarChooser buttons
+    As per mockups:
+    https://raw.github.com/gnome-design-team/gnome-mockups/master/avatar-chooser/avatar-chooser.png
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710874
+  - Style the CheeseAvatarChooser button bar
+    Style the button bar underneath the video widget properly.
+
+    As per mockups:
+    https://raw.github.com/gnome-design-team/gnome-mockups/master/avatar-chooser/avatar-chooser.png
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710874
+  - Set a nice default size on CheeseWidget
+    As per mockups:
+
+    https://raw.github.com/gnome-design-team/gnome-mockups/master/avatar-chooser/avatar-chooser.png
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710874
+  - Avoid warnings with no pixbuf in UmCropArea
+    https://bugzilla.gnome.org/show_bug.cgi?id=710874
+  - Use a layout manager instead of constraints
+    This reduces property changes for every little change in the stage's
+    properties.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710821
+  - Update TotemAspectFrame from totem
+    https://bugzilla.gnome.org/show_bug.cgi?id=710821
+  - Remove gdk_threads* calls
+    And bump the GDK and GTK+ required version to 3.6.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710821
+  - Adapt to Automake test-driver changes
+    Distribute test-driver script and do not use cd in TESTS_ENVIRONMENT.
+  - Post-release version bump to 3.11.1
+  - Added/Updated Translations
+    - ca@valencia, courtesy of Josep Sànchez
+    - fa, courtesy of Arash Mousavi
+    - pt, courtesy of António Lima
+  - Added/Updated Documentation
+    - fr, courtesy of Mickael Albertus
+
 version 3.10.0
   - Post-release version bump to 3.10.0
   - Added/Updated Translations
