@@ -41,8 +41,6 @@ avatar_chooser (void)
     g_assert (chooser != NULL);
 
     /* Check that all the child widgets were successfully instantiated. */
-    g_assert (gtk_test_find_widget (chooser, "Take a Photo", GTK_TYPE_BUTTON)
-        != NULL);
     select_button = gtk_test_find_widget (chooser, "Select", GTK_TYPE_BUTTON);
     g_assert (select_button != NULL);
     g_assert (GTK_IS_BUTTON (select_button));
