@@ -9,15 +9,16 @@
 # Mohammed Sadiq <sadiqpkp@gmail.com>, 2012.
 # Balasankar C <c.balasankar@gmail.com>, 2013.
 # Anish A <aneesh.nl@gmail.com>, 2013.
+# Anish Sheela <aneesh.nl@gmail.com>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-04-25 15:39+0000\n"
-"PO-Revision-Date: 2013-04-26 00:54+0530\n"
-"Last-Translator: Anish A <aneesh.nl@gmail.com>\n"
-"Language-Team: Swatantra Malayalam Computing\n"
+"POT-Creation-Date: 2013-10-28 22:20+0000\n"
+"PO-Revision-Date: 2013-10-30 21:39+0530\n"
+"Last-Translator: Anish Sheela <aneesh.nl@gmail.com>\n"
+"Language-Team: Swatantra Malayalam Computing <discuss@lists.smc.org.in>\n"
 "Language: ml\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,34 +27,6 @@ msgstr ""
 "X-Generator: Virtaal 0.7.1\n"
 "X-DamnedLies-Scope: partial\n"
 "X-Project-Style: gnome\n"
-
-#: ../data/cheese-actions.ui.h:1
-msgid "Share…"
-msgstr "പങ്കുവെക്കുക..."
-
-#: ../data/cheese-actions.ui.h:2
-msgid "Save _As…"
-msgstr "പേരു് _മാറ്റി സൂക്ഷിയ്ക്കുക..."
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Move to _Trash"
-msgstr "ച_വറ്റുകുട്ടയിലേയ്ക്കു് മാറ്റുക"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move _All to Trash"
-msgstr "_എല്ലാം ചവറ്റുകുട്ടയിലേക്കു് നീക്കുക"
-
-#: ../data/cheese-actions.ui.h:5
-msgid "_Wide Mode"
-msgstr "_വീതിയുള്ള തരം"
-
-#: ../data/cheese-actions.ui.h:6
-msgid "P_revious Effects"
-msgstr "_കഴിഞ്ഞ പ്രഭാവങ്ങള്‍"
-
-#: ../data/cheese-actions.ui.h:7
-msgid "Ne_xt Effects"
-msgstr "_അടുത്ത പ്രഭാവങ്ങള്‍"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -67,12 +40,11 @@ msgstr "ചലച്ചിത്രരൂപത്തിലുള്ള തര�
 msgid "Photo burst mode"
 msgstr "ഫോട്ടോ ബഴ്സ്റ്റ് മോഡ്"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1521
+#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1311
 msgid "Take a photo using a webcam"
 msgstr "വെബ്കാം ഉപയോഗിച്ച് ഒരു ഫോട്ടോ എടുക്കുക"
 
-#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:281
-#: ../src/cheese-window.vala:1520
+#: ../data/cheese-main-window.ui.h:5 ../src/cheese-window.vala:1310
 msgid "_Take a Photo"
 msgstr "ഒരു ഫോട്ടോ _എടുക്കുക"
 
@@ -84,7 +56,7 @@ msgstr "പ്രഭാവങ്ങളുടെ മുൻപിലത്തെ �
 msgid "Effects"
 msgstr "പ്രഭാവങ്ങള്‍"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
 msgid "_Effects"
 msgstr "_പ്രഭാവങ്ങള്‍"
 
@@ -168,8 +140,8 @@ msgstr "ചിത്രങ്ങൾക്കിടയിലുള്ള താ�
 msgid "Capture"
 msgstr "പിടിക്കുക"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:524
+#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
+#: ../src/cheese-application.vala:613
 msgid "Cheese"
 msgstr "ചീസ്"
 
@@ -177,7 +149,7 @@ msgstr "ചീസ്"
 msgid "Cheese Webcam Booth"
 msgstr "ചീസിന്റെ വെബ്കാം ബൂത്ത്"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:519
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:608
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "നിങ്ങളുടെ വെബ്കാം ഉപയോഗിച്ചു് നല്ല രസമുള്ള ഗ്രാഫിക്കല്‍ എഫക്ടുകളോടുകൂടിയ ഫോട്ടോകളും വീഡിയോകളും "
@@ -318,30 +290,10 @@ msgstr ""
 "ഉപയോഗിക്കപ്പെടും."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
-msgid "Whether to start in wide mode"
-msgstr "വീതിയുള്ള മോഡില്‍ ആരംഭിക്കണമോ എന്നു്"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid ""
-"If set to true, Cheese will start up in wide mode, with the image collection "
-"placed on the right-hand side. Useful with small screens."
-msgstr ""
-"true ആയി സജ്ജമെങ്കില്‍, ചിത്ര ശേഖരണം വലത്തു് വശത്തു് ലഭ്യമാക്കി ചീസ് വീതിയുള്ള മോഡില്‍ "
-"ആരംഭിക്കുന്നു. ചെറിയ സ്ക്രീനുകള്‍ക്കു് കൂടുതല്‍ ഉപയോഗപ്പെടുന്നു."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:33
-msgid "Whether to start in fullscreen"
-msgstr "മുഴുവന്‍ സ്ക്രീനില്‍ തുടങ്ങേണമോ എന്ന്"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:34
-msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr "true ആയി സജ്ജമാക്കിയെങ്കില്‍, ചീസ് സ്ക്രീനിന്റെ പൂര്‍ണ്ണ വലിപ്പത്തില്‍ ആരംഭിയ്ക്കുന്നു."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
 msgstr "ബഴ്സ്റ്റ് മോഡില്‍ ഫോട്ടോകള്‍ക്കിടയിലുള്ള താമസം (സെക്കന്‍ഡുകളില്‍)"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:36
+#: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos. If the burst delay is less than the countdown "
@@ -351,54 +303,35 @@ msgstr ""
 "ക്രമത്തിന്റെ താമസം കൌണ്ട്ഡൌണിനെക്കാള്‍ കുറവാണെങ്കില്‍  കൌണ്ട്ഡൌണ്‍ സമയം ഇതിന്നുപകരം "
 "ഉപയോഗിക്കുന്നതാണ്."
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:37
+#: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
 msgstr "ബഴ്സ്റ്റ് മോഡില്‍ ഫോട്ടോകളുടെ എണ്ണം"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:38
+#: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "The number of photos to take in a single burst."
 msgstr "ഒറ്റ ബേസ്റ്റില്‍ എടുക്കേണ്ട ഫോട്ടോകളുടെ എണ്ണം"
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
-msgid "Shutter sound"
-msgstr "ഷട്ടര്‍ ശബ്ദം"
-
-#: ../libcheese/cheese-avatar-chooser.c:260
+#: ../libcheese/cheese-avatar-chooser.c:96
 msgid "Select"
 msgstr "തെരഞ്ഞെടുക്കുക"
 
-#: ../libcheese/cheese-avatar-chooser.c:263
+#: ../libcheese/cheese-avatar-chooser.c:99
 msgid "Take a Photo"
 msgstr "ഒരു ഫോട്ടോ എടുക്കുക"
 
-#: ../libcheese/cheese-avatar-chooser.c:294
-msgid "_Discard photo"
-msgstr "ഫോട്ടോ _കളയുക"
+#: ../libcheese/cheese-avatar-widget.c:134 ../src/cheese-window.vala:666
+msgid "Shutter sound"
+msgstr "ഷട്ടര്‍ ശബ്ദം"
 
-#: ../libcheese/cheese-camera-device.c:401
-msgid "Device capabilities not supported"
-msgstr "ഉപകരണത്തിന്റെ കഴിവുകള്‍ പിന്തുണയ്ക്കുന്നില്ല."
+#: ../libcheese/cheese-avatar-widget.c:272
+msgid "_Take Another Picture"
+msgstr "വേറൊരു ചിത്രം എടുക്കു (_T)"
 
-#: ../libcheese/cheese-camera-device.c:430
-#, c-format
-msgid "Failed to initialize device %s for capability probing"
-msgstr ""
-"%s ഉപകരണത്തെ കഴിവുകള്‍ കണ്ടെത്തനുള്ള പരിശോധനയ്ക്ക് വിധേയമാക്കാനായുള്ള പ്രാഥമിക സജ്ജീകരണത്തിന് "
-"കഴിയുന്നില്ല"
-
-#: ../libcheese/cheese-camera-device.c:619
-msgid "Unknown device"
-msgstr "അജ്ഞാത ഉപകരണം"
-
-#: ../libcheese/cheese-camera-device.c:642
-msgid "Cancellable initialization not supported"
-msgstr "റദ്ദാക്കാവുന്ന പ്രാഥമിക സജ്ജീകരണം പിന്‍തുണയ്ക്കുന്നില്ല"
-
-#: ../libcheese/cheese-camera.c:453 ../libcheese/cheese-camera.c:1574
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "ഒന്നോ അതിലധികമോ ജിസ്ട്രീമര്‍ മൂലകങ്ങള്‍ കാണാനില്ല:"
 
-#: ../libcheese/cheese-camera.c:1533
+#: ../libcheese/cheese-camera.c:1584
 #, c-format
 msgid "No device found"
 msgstr "ഉപകരണമൊന്നും കണ്ടില്ല"
@@ -408,94 +341,102 @@ msgstr "ഉപകരണമൊന്നും കണ്ടില്ല"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1809
+#: ../libcheese/cheese-camera.c:1860
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#. Translators: a description of an effect (to be applied to images
-#. *              from the webcam) which does nothing.
-#: ../src/cheese-effects-manager.vala:53
-msgid "No Effect"
-msgstr "പ്രഭാവമില്ല"
+#: ../libcheese/cheese-camera-device.c:560
+msgid "Device capabilities not supported"
+msgstr "ഉപകരണത്തിന്റെ കഴിവുകള്‍ പിന്തുണയ്ക്കുന്നില്ല."
 
-#: ../src/cheese-main.vala:51
+#: ../libcheese/cheese-camera-device.c:589
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr ""
+"%s ഉപകരണത്തെ കഴിവുകള്‍ കണ്ടെത്തനുള്ള പരിശോധനയ്ക്ക് വിധേയമാക്കാനായുള്ള പ്രാഥമിക സജ്ജീകരണത്തിന് "
+"കഴിയുന്നില്ല"
+
+#: ../libcheese/cheese-camera-device.c:778
+msgid "Unknown device"
+msgstr "അജ്ഞാത ഉപകരണം"
+
+#: ../libcheese/cheese-camera-device.c:801
+msgid "Cancellable initialization not supported"
+msgstr "റദ്ദാക്കാവുന്ന പ്രാഥമിക സജ്ജീകരണം പിന്‍തുണയ്ക്കുന്നില്ല"
+
+#: ../src/cheese-application.vala:55
 msgid "Start in wide mode"
 msgstr "വീതിയുള്ള മോഡില്‍ ആരംഭിക്കുക"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "Device to use as a camera"
 msgstr "ക്യാമറയായി ഉപയോഗിക്കേണ്ട ഉപകരണം"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:58
 msgid "DEVICE"
 msgstr "ഉപകരണം"
 
-#: ../src/cheese-main.vala:53
+#: ../src/cheese-application.vala:60
 msgid "Output version information and exit"
 msgstr "പതിപ്പിന്റെ വിവരം ലഭ്യമാക്കി പുറത്തു് കടക്കുക"
 
-#: ../src/cheese-main.vala:54
+#: ../src/cheese-application.vala:62
 msgid "Start in fullscreen mode"
 msgstr "മുഴുവന്‍ സ്ക്രീനില്‍ തുടങ്ങുക"
 
-#: ../src/cheese-main.vala:92
+#: ../src/cheese-application.vala:121
 msgid "_Shoot"
 msgstr "_ഷൂട്ട് ചെയ്യുക"
 
-#: ../src/cheese-main.vala:96
+#: ../src/cheese-application.vala:125
 msgid "Mode:"
 msgstr "മോഡ്:"
 
-#: ../src/cheese-main.vala:97
+#: ../src/cheese-application.vala:126
 msgid "_Photo"
 msgstr "_ഫോട്ടോ("
 
-#: ../src/cheese-main.vala:98
+#: ../src/cheese-application.vala:127
 msgid "_Video"
 msgstr "_ചലച്ചിത്രം"
 
-#: ../src/cheese-main.vala:99
+#: ../src/cheese-application.vala:128
 msgid "_Burst"
 msgstr "_ബഴ്സ്റ്റ്"
 
-#: ../src/cheese-main.vala:102
+#: ../src/cheese-application.vala:131
 msgid "_Fullscreen"
 msgstr "സ്ക്രീന്‍ പൂര്‍ണ്ണ_വലിപ്പത്തില്‍"
 
-#: ../src/cheese-main.vala:110
+#: ../src/cheese-application.vala:139
 msgid "P_references"
 msgstr "മുന്‍_ഗണനകള്‍"
 
-#: ../src/cheese-main.vala:113
-msgid "_About"
-msgstr "_കുറിച്ച്"
-
-#: ../src/cheese-main.vala:114
+#: ../src/cheese-application.vala:142
 msgid "_Help"
 msgstr "സ_ഹായം"
 
-#: ../src/cheese-main.vala:117
+#: ../src/cheese-application.vala:145
+msgid "_About"
+msgstr "_കുറിച്ച്"
+
+#: ../src/cheese-application.vala:146
 msgid "_Quit"
 msgstr "പു_റത്തു് കടക്കുക"
 
-#: ../src/cheese-main.vala:182
+#: ../src/cheese-application.vala:221
 msgid "- Take photos and videos from your webcam"
 msgstr "- നിങ്ങളുടെ വെബ്കാമിൽ നിന്നും ഫോട്ടോകളും വീഡിയോകളും എടുക്കുക"
 
-#: ../src/cheese-main.vala:194
+#: ../src/cheese-application.vala:230
 #, c-format
-msgid "Run '%s --help' to see a full list of available command line options.\n"
+msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
-"ലഭ്യമായ കമാന്റ് ലൈന്‍ ഐച്ഛികങ്ങളുടെ മുഴുവന്‍ പട്ടികയും ലഭ്യമാക്കുവാന്‍ '%s --help' ചെയ്യുക.\n"
+"ലഭ്യമായ കമാന്റ് ലൈന്‍ ഐച്ഛികങ്ങളുടെ മുഴുവന്‍ പട്ടികയും ലഭ്യമാക്കുവാന്‍ '%s --help' പ്രവര്‍ത്തിപ്പിക്കു"
 
-#: ../src/cheese-main.vala:209
-#, c-format
-msgid "Another instance of Cheese is currently running\n"
-msgstr "ചീസിന്റെ മറ്റൊരവസരം ഇപ്പോള്‍ പ്രവര്‍ത്തിച്ചുകൊണ്ടിരിക്കുന്നുണ്ട്\n"
-
-#: ../src/cheese-main.vala:525
+#: ../src/cheese-application.vala:614
 msgid "translator-credits"
 msgstr ""
 "അനി പീറ്റര്‍ <peter.ani@gmail.com>\n"
@@ -504,23 +445,29 @@ msgstr ""
 "അനീഷ് എ (Anish A)<aneesh.nl@gmail.com>\n"
 "Mohammed Sadiq <sadiqpkp@gmail.com>"
 
-#: ../src/cheese-main.vala:527
+#: ../src/cheese-application.vala:616
 msgid "Cheese Website"
 msgstr "ചീസിന്റെ വെബ്സൈറ്റ്"
+
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:51
+msgid "No Effect"
+msgstr "പ്രഭാവമില്ല"
 
 #: ../src/cheese-window.vala:192
 #, c-format
 msgid "Could not open %s"
 msgstr "%s തുറക്കുവാന്‍ സാധിക്കുന്നില്ല"
 
-#: ../src/cheese-window.vala:220
+#: ../src/cheese-window.vala:217
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "ഈ പ്രമാണം എന്നെന്നേയ്ക്കുമായി നീക്കം ചെയ്യണമെന്നു് നിങ്ങള്‍ക്കുറപ്പുണ്ടോ?"
 msgstr[1] "%d പ്രമാണങ്ങള്‍ എന്നെന്നേയ്ക്കുമായി നീക്കം ചെയ്യണമെന്നു് നിങ്ങള്‍ക്കുറപ്പുണ്ടോ?"
 
-#: ../src/cheese-window.vala:226
+#: ../src/cheese-window.vala:223
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] ""
@@ -528,69 +475,126 @@ msgstr[0] ""
 msgstr[1] ""
 "നിങ്ങൾ ഈ വസ്തുക്കളെ നീഅക്കം ചെയ്യുകയാണെങ്കില്‍ വ എന്നെന്നേയ്ക്കുമായി നഷ്ടപ്പെടുന്നതായിരിയ്ക്കും."
 
-#: ../src/cheese-window.vala:302
+#: ../src/cheese-window.vala:296
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s ചവറ്റു കൊട്ടയിലേക്ക് നീക്കാന്‍ സാധിക്കുന്നില്ല"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:451
+#: ../src/cheese-window.vala:321
 msgid "Save File"
 msgstr "ഫയല്‍ സൂക്ഷിക്കുക"
 
-#: ../src/cheese-window.vala:485
+#: ../src/cheese-window.vala:355
 #, c-format
 msgid "Could not save %s"
 msgstr "%s സൂക്ഷിക്കുവാന്‍ സാധിക്കുന്നില്ല"
 
-#: ../src/cheese-window.vala:918
+#: ../src/cheese-window.vala:776
 msgid "Stop _Recording"
 msgstr "_സൂക്ഷിക്കൽ നിര്‍ത്തുക"
 
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:777
 msgid "Stop recording"
 msgstr "സൂക്ഷിക്കൽ നിര്‍ത്തുക"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1525
+#: ../src/cheese-window.vala:792 ../src/cheese-window.vala:1315
 msgid "_Record a Video"
 msgstr "ഒരു ചലച്ചിത്രം _സൂക്ഷിക്കുക"
 
-#: ../src/cheese-window.vala:935
+#: ../src/cheese-window.vala:793
 msgid "Record a video"
 msgstr "ഒരു ചലചിത്രം സൂക്ഷിക്കുക"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:970
+#: ../src/cheese-window.vala:828
 msgid "Stop _Taking Pictures"
 msgstr "ചിത്രങ്ങളെടുക്കുന്നത് _നിറുത്തുക"
 
-#: ../src/cheese-window.vala:971
+#: ../src/cheese-window.vala:829
 msgid "Stop taking pictures"
 msgstr "ചിത്രങ്ങളെടുക്കുന്നത് നിറുത്തുക"
 
-#: ../src/cheese-window.vala:994
+#: ../src/cheese-window.vala:852
 msgid "Take Multiple Photos"
 msgstr "അനവധി ചിത്രങ്ങൾ എടുക്കുക"
 
-#: ../src/cheese-window.vala:995
+#: ../src/cheese-window.vala:853
 msgid "Take multiple photos"
 msgstr "അനവധി ചിത്രങ്ങൾ എടുക്കുക"
 
-#: ../src/cheese-window.vala:1160
+#: ../src/cheese-window.vala:1037
 msgid "No effects found"
 msgstr "പ്രഭാവങ്ങള്‍ ഒന്നും കാണുന്നില്ല"
 
-#: ../src/cheese-window.vala:1526
+#: ../src/cheese-window.vala:1156
+msgid "There was an error playing video from the webcam"
+msgstr "വെബ്കാമില്‍ നിന്നുള്ള ചലചിത്രം പ്രവര്‍ത്തിപ്പിക്കുന്നതില്‍ പിഴവ്"
+
+#: ../src/cheese-window.vala:1174
+msgid "Open"
+msgstr "തുറക്കുക"
+
+#: ../src/cheese-window.vala:1177
+msgid "Save _As…"
+msgstr "പേരു് _മാറ്റി സൂക്ഷിയ്ക്കുക..."
+
+#: ../src/cheese-window.vala:1180
+msgid "Move to _Trash"
+msgstr "ച_വറ്റുകുട്ടയിലേയ്ക്കു് മാറ്റുക"
+
+#: ../src/cheese-window.vala:1183
+msgid "Delete"
+msgstr "ഇല്ലാതാക്കു"
+
+#: ../src/cheese-window.vala:1316
 msgid "Record a video using a webcam"
 msgstr "ഒരു ചലചിത്രം വെബ്ക്യാം ഉപയോഗിച്ച് പകര്‍ത്തുക"
 
-#: ../src/cheese-window.vala:1532
+#: ../src/cheese-window.vala:1322
 msgid "Take _Multiple Photos"
 msgstr "_അനവധി ചിത്രങ്ങൾഎടുക്കുക"
 
-#: ../src/cheese-window.vala:1533
+#: ../src/cheese-window.vala:1323
 msgid "Take multiple photos using a webcam"
 msgstr "വെബ്കാം ഉപയോഗിച്ച് അനവധി ഫോട്ടോ എടുക്കുക"
+
+#~ msgid "Share…"
+#~ msgstr "പങ്കുവെക്കുക..."
+
+#~ msgid "Move _All to Trash"
+#~ msgstr "_എല്ലാം ചവറ്റുകുട്ടയിലേക്കു് നീക്കുക"
+
+#~ msgid "_Wide Mode"
+#~ msgstr "_വീതിയുള്ള തരം"
+
+#~ msgid "P_revious Effects"
+#~ msgstr "_കഴിഞ്ഞ പ്രഭാവങ്ങള്‍"
+
+#~ msgid "Ne_xt Effects"
+#~ msgstr "_അടുത്ത പ്രഭാവങ്ങള്‍"
+
+#~ msgid "Whether to start in wide mode"
+#~ msgstr "വീതിയുള്ള മോഡില്‍ ആരംഭിക്കണമോ എന്നു്"
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in wide mode, with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "true ആയി സജ്ജമെങ്കില്‍, ചിത്ര ശേഖരണം വലത്തു് വശത്തു് ലഭ്യമാക്കി ചീസ് വീതിയുള്ള മോഡില്‍ "
+#~ "ആരംഭിക്കുന്നു. ചെറിയ സ്ക്രീനുകള്‍ക്കു് കൂടുതല്‍ ഉപയോഗപ്പെടുന്നു."
+
+#~ msgid "Whether to start in fullscreen"
+#~ msgstr "മുഴുവന്‍ സ്ക്രീനില്‍ തുടങ്ങേണമോ എന്ന്"
+
+#~ msgid "If set to true, Cheese will start up in fullscreen mode."
+#~ msgstr "true ആയി സജ്ജമാക്കിയെങ്കില്‍, ചീസ് സ്ക്രീനിന്റെ പൂര്‍ണ്ണ വലിപ്പത്തില്‍ ആരംഭിയ്ക്കുന്നു."
+
+#~ msgid "_Discard photo"
+#~ msgstr "ഫോട്ടോ _കളയുക"
+
+#~ msgid "Another instance of Cheese is currently running\n"
+#~ msgstr "ചീസിന്റെ മറ്റൊരവസരം ഇപ്പോള്‍ പ്രവര്‍ത്തിച്ചുകൊണ്ടിരിക്കുന്നുണ്ട്\n"
 
 #~ msgid "Previous"
 #~ msgstr "കഴിഞ്ഞത്"
