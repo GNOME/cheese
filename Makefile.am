@@ -150,6 +150,7 @@ noinst_libcheese_headers = \
 # FIXME when we have a .pc file, and sonames
 cheesedir = $(includedir)/cheese
 cheese_HEADERS = \
+	libcheese/cheese-avatar-widget.h \
 	libcheese/cheese-avatar-chooser.h \
 	libcheese/cheese-camera.h \
 	libcheese/cheese-camera-device.h \
