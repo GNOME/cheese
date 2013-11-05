@@ -1495,21 +1495,18 @@ cheese_camera_new (ClutterTexture *video_texture, const gchar *camera_device_nod
                    gint x_resolution, gint y_resolution)
 {
   CheeseCamera      *camera;
-  CheeseVideoFormat *format = g_slice_new (CheeseVideoFormat);
-
-  format->width  = x_resolution;
-  format->height = y_resolution;
+  CheeseVideoFormat format = { x_resolution, y_resolution };
 
   if (camera_device_node)
   {
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
                            "device-node", camera_device_node,
-                           "format", format, NULL);
+                           "format", &format, NULL);
   }
   else
   {
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
-                           "format", format, NULL);
+                           "format", &format, NULL);
   }
 
   return camera;
