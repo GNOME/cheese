@@ -98,8 +98,6 @@ cheese_camera_device_monitor_error_quark (void)
 
 #ifdef HAVE_UDEV
 
-CheeseCameraDevice* cheese_camera_device_monitor_set_up_device(GUdevDevice *udevice);
-
 /*
  * cheese_camera_device_monitor_set_up_device:
  * @udevice: the device information from udev
@@ -109,7 +107,7 @@ CheeseCameraDevice* cheese_camera_device_monitor_set_up_device(GUdevDevice *udev
  * Returns: a new #CheeseCameraDevice, or %NULL if @udevice was not a V4L
  * capture device
  */
-CheeseCameraDevice*
+static CheeseCameraDevice*
 cheese_camera_device_monitor_set_up_device (GUdevDevice *udevice)
 {
   const char *device_file;
