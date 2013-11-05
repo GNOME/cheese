@@ -257,29 +257,36 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
 
   settings = g_settings_new ("org.gnome.Cheese");
 
-  g_settings_get (settings, "video-path", "s", &priv->video_path);
-  g_settings_get (settings, "photo-path", "s", &priv->photo_path);
+  priv->video_path = g_settings_get_string (settings, "video-path");
+  priv->photo_path = g_settings_get_string (settings, "photo-path");
 
   /* get the video path from gsettings, xdg or hardcoded */
-  if (!priv->video_path || strcmp (priv->video_path, "") == 0)
+  if (!priv->video_path || (*priv->video_path == '\0'))
   {
+    g_free (priv->video_path);
+
     /* get xdg */
     priv->video_path = g_build_filename (g_get_user_special_dir (G_USER_DIRECTORY_VIDEOS), "Webcam", NULL);
-    if (strcmp (priv->video_path, "") == 0)
+    if (priv->video_path == '\0')
     {
+      g_free (priv->video_path);
+
       /* get "~/.gnome2/cheese/media" */
       priv->video_path = cheese_fileutil_get_path_before_224 (fileutil);
     }
   }
 
   /* get the photo path from gsettings, xdg or hardcoded */
-  if (!priv->photo_path || strcmp (priv->photo_path, "") == 0)
+  if (!priv->photo_path || (*priv->photo_path == '\0'))
   {
+    g_free (priv->photo_path);
+
     /* get xdg */
     priv->photo_path = g_build_filename (g_get_user_special_dir (G_USER_DIRECTORY_PICTURES), "Webcam", NULL);
-    if (strcmp (priv->photo_path, "") == 0)
+    if (priv->photo_path == '\0')
     {
       /* get "~/.gnome2/cheese/media" */
+      g_free (priv->photo_path);
       priv->photo_path = cheese_fileutil_get_path_before_224 (fileutil);
     }
   }
