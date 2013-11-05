@@ -195,7 +195,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   GtkIconTheme *icon_theme;
   GdkPixbuf    *pixbuf = NULL;
   GtkTreePath  *path;
-  char         *filename, *basename, *col_filename;
+  char         *filename, *basename;
   GError       *error = NULL;
   gboolean      skip  = FALSE;
   GFileInfo    *info;
@@ -231,13 +231,19 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 
   if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
   {
+    gchar *col_filename;
+
     /* check if the selected item is the first, else go through the store */
     gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &col_filename, -1);
+    /* FIXME: col_filename is in GLib filename encoding, not ASCII. */
     if (g_ascii_strcasecmp (col_filename, filename))
     {
       while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter))
       {
+        g_free (col_filename);
+
         gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &col_filename, -1);
+        /* FIXME: col_filename is in GLib filename encoding, not ASCII. */
         if (!g_ascii_strcasecmp (col_filename, filename))
         {
           skip = TRUE;
@@ -253,6 +259,10 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
     g_free (filename);
 
     if (skip) return;
+  }
+  else
+  {
+    g_free (filename);
   }
 
   if (priv->multiplex_thumbnail_generator)
@@ -293,6 +303,7 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
   path = gtk_tree_model_get_path (GTK_TREE_MODEL (priv->store), &iter);
   gtk_icon_view_scroll_to_path (GTK_ICON_VIEW (thumb_view), path,
                                 TRUE, 1.0, 0.5);
+  gtk_tree_path_free (path);
 
   if (pixbuf) g_object_unref (pixbuf);
 
