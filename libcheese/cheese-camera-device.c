@@ -548,7 +548,10 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
       GST_LOG ("Device: %s (%s)\n", priv->name, priv->device_node);
       pad        = gst_element_get_static_pad (src, "src");
       caps       = gst_pad_get_allowed_caps (pad);
+
+      gst_caps_unref (priv->caps);
       priv->caps = cheese_camera_device_filter_caps (device, caps, supported_formats);
+
       if (!gst_caps_is_empty (priv->caps))
         cheese_camera_device_update_format_table (device);
       else
