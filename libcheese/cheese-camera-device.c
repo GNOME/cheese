@@ -185,14 +185,11 @@ cheese_camera_device_filter_caps (CheeseCameraDevice *device, GstCaps *caps, GSt
 {
   GstCaps *filter;
   GstCaps *allowed;
-  guint    i;
+  gsize i;
 
-  filter = gst_caps_new_simple (formats[0],
-                                "framerate", GST_TYPE_FRACTION_RANGE,
-                                0, 1, CHEESE_MAXIMUM_RATE, 1,
-                                NULL);
+  filter = gst_caps_new_empty ();
 
-  for (i = 1; i < g_strv_length (formats); i++)
+  for (i = 0; formats[i] != NULL; i++)
   {
     gst_caps_append (filter,
                      gst_caps_new_simple (formats[i],
@@ -1010,7 +1007,7 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
   CheeseVideoFormatFull *full_format;
   GstCaps *desired_caps;
   GstCaps *subset_caps;
-  guint    i, length;
+  gsize i;
 
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
 
@@ -1027,11 +1024,9 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
             full_format->width, full_format->height,
             full_format->fr_numerator, full_format->fr_denominator);
 
-  desired_caps = cheese_camera_device_format_to_caps(supported_formats[0],
-                                                     full_format);
-  length = g_strv_length (supported_formats);
+  desired_caps = gst_caps_new_empty ();
 
-  for (i = 1; i < length; i++)
+  for (i = 0; supported_formats[i] != NULL; i++)
   {
     gst_caps_append (desired_caps,
                      cheese_camera_device_format_to_caps (supported_formats[i],
