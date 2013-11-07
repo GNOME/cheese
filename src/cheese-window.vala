@@ -775,7 +775,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       Timeout.add_seconds (1, update_timeout_layer);
       take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
       take_action_button.tooltip_text = _("Stop recording");
-      take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_STOP, Gtk.IconSize.BUTTON);
+      take_action_button_image.set_from_icon_name ("media-playback-stop-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
     }
@@ -791,7 +791,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       timeout_layer.text = "00:00:00";
       take_action_button_label.label = "<b>" + _("_Record a Video") + "</b>";
       take_action_button.tooltip_text = _("Record a video");
-      take_action_button_image.set_from_stock (Gtk.Stock.MEDIA_RECORD, Gtk.IconSize.BUTTON);
+      take_action_button_image.set_from_icon_name ("camera-web-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
     }
