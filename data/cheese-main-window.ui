@@ -153,20 +153,8 @@
                             <property name="action-name">app.fullscreen</property>
                             <property name="tooltip_text" translatable="yes">Leave fullscreen mode and go back to windowed mode</property>
                             <child>
-                              <object class="GtkGrid" id="fullscreen_button_internal_hbox">
-                                <property name="orientation">horizontal</property>
-                                <property name="column-spacing">2</property>
-                                <child>
-                                  <object class="GtkImage" id="fullscreen_button_internal_image">
-                                    <property name="stock">gtk-leave-fullscreen</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="fullscreen_button_internal_label">
-                                    <property name="label" translatable="yes">_Leave Fullscreen</property>
-                                    <property name="use_underline">True</property>
-                                  </object>
-                                </child>
+                              <object class="GtkImage" id="fullscreen_button_internal_image">
+                                <property name="icon-name">view-restore-symbolic</property>
                               </object>
                             </child>
                           </object>
