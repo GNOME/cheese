@@ -81,8 +81,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private uint current_effects_page = 0;
   private List<Clutter.Actor> effects_grids;
 
-  private Gtk.Action       countdown_action;
-
   private bool is_fullscreen;
   private bool is_wide_mode;
   private bool is_recording;       /* Video Recording Flag */
@@ -1210,8 +1208,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     effects_toggle_button             = gtk_builder.get_object ("effects_toggle_button") as Gtk.ToggleButton;
     leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
         buttons_area = gtk_builder.get_object ("buttons_area") as Gtk.Widget;
-
-    countdown_action         = gtk_builder.get_object ("countdown") as Gtk.Action;
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
