@@ -36,11 +36,13 @@
                   <object class="GtkGrid" id="buttons_area">
                     <property name="orientation">horizontal</property>
                     <child>
-                      <object class="GtkGrid" id="mode_toggle_buttons">
-                        <property name="column-spacing">2</property>
+                      <object class="GtkBox" id="mode_toggle_buttons">
+                        <property name="orientation">horizontal</property>
+                        <style>
+                          <class name="linked"/>
+                        </style>
                         <child>
                           <object class="GtkToggleButton" id="photo_toggle_button">
-                            <property name="use-action-appearance">False</property>
                             <property name="action-name">app.mode</property>
                             <property name="action-target">"photo"</property>
                             <property name="tooltip_text" translatable="yes">Photo mode</property>
@@ -49,7 +51,6 @@
                         </child>
                         <child>
                           <object class="GtkToggleButton" id="video_toggle_button">
-                            <property name="use-action-appearance">False</property>
                             <property name="action-name">app.mode</property>
                             <property name="action-target">"video"</property>
                             <property name="tooltip_text" translatable="yes">Video mode</property>
@@ -58,7 +59,6 @@
                         </child>
                         <child>
                           <object class="GtkToggleButton" id="burst_toggle_button">
-                            <property name="use-action-appearance">False</property>
                             <property name="action-name">app.mode</property>
                             <property name="action-target">"burst"</property>
                             <property name="tooltip_text" translatable="yes">Photo burst mode</property>
