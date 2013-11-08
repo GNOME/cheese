@@ -317,44 +317,12 @@ appsicon32dir = $(iconthemedir)/32x32/apps
 appsicon48dir = $(iconthemedir)/48x48/apps
 appsicon256dir = $(iconthemedir)/256x256/apps
 
-actionsicon16dir = $(iconthemedir)/16x16/actions
-actionsicon22dir = $(iconthemedir)/22x22/actions
-actionsicon24dir = $(iconthemedir)/24x24/actions
-actionsicon32dir = $(iconthemedir)/32x32/actions
-actionsicon48dir = $(iconthemedir)/48x48/actions
-actionsiconscalabledir = $(iconthemedir)/scalable/actions
-
 dist_appsicon16_DATA = data/icons/16x16/cheese.png
 dist_appsicon22_DATA = data/icons/22x22/cheese.png
 dist_appsicon24_DATA = data/icons/24x24/cheese.png
 dist_appsicon32_DATA = data/icons/32x32/cheese.png
 dist_appsicon48_DATA = data/icons/48x48/cheese.png
 dist_appsicon256_DATA = data/icons/256x256/cheese.png
-
-dist_actionsicon16_DATA = \
-	data/icons/16x16/actions/browse-webcam-effects.png \
-	data/icons/16x16/actions/cheese-take-burst.png \
-	data/icons/16x16/actions/cheese-take-photo.png
-dist_actionsicon22_DATA = \
-	data/icons/22x22/actions/browse-webcam-effects.png \
-	data/icons/22x22/actions/cheese-take-burst.png \
-	data/icons/22x22/actions/cheese-take-photo.png
-dist_actionsicon24_DATA = \
-	data/icons/24x24/actions/browse-webcam-effects.png \
-	data/icons/24x24/actions/cheese-take-burst.png \
-	data/icons/24x24/actions/cheese-take-photo.png
-dist_actionsicon32_DATA = \
-	data/icons/32x32/actions/browse-webcam-effects.png \
-	data/icons/32x32/actions/cheese-take-burst.png \
-	data/icons/32x32/actions/cheese-take-photo.png
-dist_actionsicon48_DATA = \
-	data/icons/48x48/actions/browse-webcam-effects.png \
-	data/icons/48x48/actions/cheese-take-burst.png \
-	data/icons/48x48/actions/cheese-take-photo.png
-dist_actionsiconscalable_DATA = \
-	data/icons/scalable/actions/browse-webcam-effects.svg \
-	data/icons/scalable/actions/cheese-take-burst.svg \
-	data/icons/scalable/actions/cheese-take-photo.svg
 
 update_icon_cache = gtk-update-icon-cache --ignore-theme-index --force
 

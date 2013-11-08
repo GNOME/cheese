@@ -44,11 +44,7 @@
                             <property name="action-name">app.mode</property>
                             <property name="action-target">"photo"</property>
                             <property name="tooltip_text" translatable="yes">Photo mode</property>
-                            <child>
-                              <object class="GtkImage" id="photo_toggle_button_image">
-                                <property name="icon-name">cheese-take-photo</property>
-                              </object>
-                            </child>
+			    <property name="label" translatable="yes">Photo</property>
                           </object>
                         </child>
                         <child>
@@ -57,11 +53,7 @@
                             <property name="action-name">app.mode</property>
                             <property name="action-target">"video"</property>
                             <property name="tooltip_text" translatable="yes">Video mode</property>
-                            <child>
-                              <object class="GtkImage" id="video_toggle_button_image">
-                                <property name="icon-name">video-x-generic</property>
-                              </object>
-                            </child>
+                            <property name="label" translatable="yes">Video</property>
                           </object>
                         </child>
                         <child>
@@ -70,11 +62,7 @@
                             <property name="action-name">app.mode</property>
                             <property name="action-target">"burst"</property>
                             <property name="tooltip_text" translatable="yes">Photo burst mode</property>
-                            <child>
-                              <object class="GtkImage" id="burst_toggle_button_image">
-                                <property name="icon-name">cheese-take-burst</property>
-                              </object>
-                            </child>
+                            <property name="label" translatable="yes">Burst</property>
                           </object>
                         </child>
                       </object>
@@ -102,7 +90,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkLabel" id="take_action_button_internal_label">
-                                    <property name="label" translatable="yes">_Take a Photo</property>
                                     <property name="use-underline">True</property>
                                     <property name="use-markup">True</property>
                                     <property name="margin-left">15</property>
@@ -126,7 +113,7 @@
                             <property name="tooltip_text" translatable="yes">Navigate to the previous page of effects</property>
                             <child>
                               <object class="GtkImage" id="effects_prev_page_button_image">
-                                <property name="stock">gtk-go-back</property>
+                                <property name="icon_name">go-previous-symbolic</property>
                               </object>
                             </child>
                           </object>
@@ -142,11 +129,6 @@
                                 <property name="orientation">horizontal</property>
                                 <property name="visible">True</property>
                                 <property name="column-spacing">2</property>
-                                <child>
-                                  <object class="GtkImage" id="effects_toggle_button_internal_image">
-                                    <property name="icon_name">browse-webcam-effects</property>
-                                  </object>
-                                </child>
                                 <child>
                                   <object class="GtkLabel" id="effects_toggle_button_internal_label">
                                     <property name="label" translatable="yes">_Effects</property>
@@ -166,7 +148,7 @@
                             <property name="tooltip_text" translatable="yes">Navigate to the next page of effects</property>
                             <child>
                               <object class="GtkImage" id="effects_prev_next_button_image">
-                                <property name="stock">gtk-go-forward</property>
+                                <property name="icon_name">go-next-symbolic</property>
                               </object>
                             </child>
                           </object>

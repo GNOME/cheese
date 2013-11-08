@@ -773,7 +773,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
        * update_timeout_layer returns true.
        */
       Timeout.add_seconds (1, update_timeout_layer);
-      take_action_button_label.label = "<b>" + _("Stop _Recording") + "</b>";
       take_action_button.tooltip_text = _("Stop recording");
       take_action_button_image.set_from_icon_name ("media-playback-stop-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = true;
@@ -789,7 +788,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
        *   + The user is currently not recording.
        */
       timeout_layer.text = "00:00:00";
-      take_action_button_label.label = "<b>" + _("_Record a Video") + "</b>";
       take_action_button.tooltip_text = _("Record a video");
       take_action_button_image.set_from_icon_name ("camera-web-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = false;
@@ -825,7 +823,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       is_bursting = true;
       this.disable_mode_change ();
       // FIXME: Set the effects action to be inactive.
-      take_action_button_label.label  = "<b>" + _("Stop _Taking Pictures") + "</b>";
       take_action_button.tooltip_text = _("Stop taking pictures");
       burst_take_photo ();
 
@@ -849,7 +846,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
       is_bursting = false;
       this.enable_mode_change ();
-      take_action_button_label.label  = "<b>" + _("Take Multiple Photos") + "</b>";
       take_action_button.tooltip_text = _("Take multiple photos");
       burst_count = 0;
       fileutil.reset_burst ();
@@ -1307,19 +1303,16 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         switch (current_mode)
         {
             case MediaMode.PHOTO:
-                take_action_button_label.label = "<b>" + _("_Take a Photo") + "</b>";
                 take_action_button.tooltip_text = _("Take a photo using a webcam");
                 break;
 
             case MediaMode.VIDEO:
-                take_action_button_label.label = "<b>" + _("_Record a Video") + "</b>";
                 take_action_button.tooltip_text = _("Record a video using a webcam");
                 timeout_layer.text = "00:00:00";
                 timeout_layer.show ();
                 break;
 
             case MediaMode.BURST:
-                take_action_button_label.label = "<b>" + _("Take _Multiple Photos") + "</b>";
                 take_action_button.tooltip_text = _("Take multiple photos using a webcam");
                 break;
         }
