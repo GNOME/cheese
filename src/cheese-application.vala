@@ -112,30 +112,13 @@ public class Cheese.Application : Gtk.Application
             Environment.set_application_name (_("Cheese"));
             Window.set_default_icon_name ("cheese");
 
-            Gtk.IconTheme.get_default ().append_search_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "icons"));
-
             // Create the menus.
             var menu = new GLib.Menu ();
             var section = new GLib.Menu ();
             menu.append_section (null, section);
-            var item = new GLib.MenuItem (_("_Shoot"), "app.shoot");
-            item.set_attribute ("accel", "s", "space");
-            section.append_item (item);
-            section = new GLib.Menu ();
-            menu.append_section (_("Mode:"), section);
-            section.append (_("_Photo"), "app.mode::photo");
-            section.append (_("_Video"), "app.mode::video");
-            section.append (_("_Burst"), "app.mode::burst");
-            section = new GLib.Menu ();
-            menu.append_section (null, section);
-            item = new GLib.MenuItem (_("_Fullscreen"), "app.fullscreen");
+            var item = new GLib.MenuItem (_("_Fullscreen"), "app.fullscreen");
             item.set_attribute ("accel", "s", "F11");
             section.append_item (item);
-            section = new GLib.Menu ();
-            menu.append_section (null, section);
-            section.append (_("_Effects"), "app.effects");
-            section = new GLib.Menu ();
-            menu.append_section (null, section);
             section.append (_("P_references"), "app.preferences");
             section = new GLib.Menu ();
             menu.append_section (null, section);
@@ -147,6 +130,8 @@ public class Cheese.Application : Gtk.Application
             item.set_attribute ("accel", "s", "<Primary>q");
             section.append_item (item);
             set_app_menu (menu);
+
+            this.add_accelerator ("space", "app.shoot", null);
 
             // FIXME: Push these into the main window initialization.
             main_window.setup_ui ();
