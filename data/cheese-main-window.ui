@@ -80,21 +80,8 @@
                             <property name="action-name">app.shoot</property>
                             <property name="tooltip_text" translatable="yes">Take a photo using a webcam</property>
                             <child>
-                              <object class="GtkGrid" id="take_action_button_internal_hbox">
-                                <property name="orientation">horizontal</property>
-                                <property name="column-spacing">2</property>
-                                <child>
-                                  <object class="GtkImage" id="take_action_button_internal_image">
-                                    <property name="icon_name">camera-web-symbolic</property>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkLabel" id="take_action_button_internal_label">
-                                    <property name="use-underline">True</property>
-                                    <property name="use-markup">True</property>
-                                    <property name="margin-left">15</property>
-                                  </object>
-                                </child>
+                              <object class="GtkImage" id="take_action_button_internal_image">
+                                <property name="icon_name">camera-web-symbolic</property>
                               </object>
                             </child>
                           </object>
