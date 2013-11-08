@@ -23,11 +23,10 @@
             </child>
             <child>
               <object class="GtkAlignment" id="action_area_alignment">
-                <property name="left_padding">24</property>
-                <property name="right_padding">24</property>
                 <property name="hexpand">True</property>
                 <child>
                   <object class="GtkBox" id="buttons_area">
+                    <property name="border-width">6</property>
                     <property name="orientation">horizontal</property>
                     <child>
                       <object class="GtkBox" id="mode_toggle_buttons">
