@@ -217,8 +217,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       GLib.ngettext("Are you sure you want to permanently delete the file?",
         "Are you sure you want to permanently delete %d files?",
         files_length), files_length);
-    confirmation_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
-    confirmation_dialog.add_button (Gtk.Stock.DELETE, Gtk.ResponseType.ACCEPT);
+    confirmation_dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
+    confirmation_dialog.add_button (_("_Delete"), Gtk.ResponseType.ACCEPT);
     confirmation_dialog.format_secondary_text ("%s",
       GLib.ngettext("If you delete an item, it will be permanently lost",
         "If you delete the items, they will be permanently lost",
@@ -246,7 +246,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
               Gtk.MessageType.ERROR, Gtk.ButtonsType.NONE,
               "Could not delete %s", file.get_path ());
 
-            error_dialog.add_button (Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL);
+            error_dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
             error_dialog.add_button ("Skip", DeleteResponse.SKIP);
             error_dialog.add_button ("Skip all", DeleteResponse.SKIP_ALL);
 
@@ -321,8 +321,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     save_as_dialog = new FileChooserDialog (_("Save File"),
                                             this,
                                             Gtk.FileChooserAction.SAVE,
-                                            Gtk.Stock.CANCEL, Gtk.ResponseType.CANCEL,
-                                            Gtk.Stock.SAVE, Gtk.ResponseType.ACCEPT,
+                                            _("_Cancel"), Gtk.ResponseType.CANCEL,
+                                            _("Save"), Gtk.ResponseType.ACCEPT,
                                             null);
 
     save_as_dialog.do_overwrite_confirmation = true;
