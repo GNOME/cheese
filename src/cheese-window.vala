@@ -47,6 +47,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private Gtk.Builder    gtk_builder;
   private Clutter.Script clutter_builder;
 
+  private Gtk.HeaderBar header_bar;
   private GLib.Settings settings;
 
   private Gtk.Widget       thumbnails;
@@ -776,6 +777,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       take_action_button_image.set_from_icon_name ("media-playback-stop-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
+      header_bar.set_title (_("Stop Recording"));
     }
     else
     {
@@ -791,6 +793,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       take_action_button_image.set_from_icon_name ("camera-web-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
+      header_bar.set_title (_("Record a video"));
     }
   }
 
@@ -823,6 +826,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       this.disable_mode_change ();
       // FIXME: Set the effects action to be inactive.
       take_action_button.tooltip_text = _("Stop taking pictures");
+      header_bar.set_title (_("Stop taking pictures"));
       burst_take_photo ();
 
       /* Use the countdown duration if it is greater than the burst delay, plus
@@ -846,6 +850,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       is_bursting = false;
       this.enable_mode_change ();
       take_action_button.tooltip_text = _("Take multiple photos");
+      header_bar.set_title (_("Take multiple photos"));
       burst_count = 0;
       fileutil.reset_burst ();
       GLib.Source.remove (burst_callback_id);
@@ -1208,6 +1213,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     effects_toggle_button             = gtk_builder.get_object ("effects_toggle_button") as Gtk.ToggleButton;
     leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
         buttons_area = gtk_builder.get_object ("buttons_area") as Gtk.Widget;
+        header_bar = gtk_builder.get_object ("header-bar") as Gtk.HeaderBar;
 
     /* Array contains all 'buttons', for easier manipulation
      * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
@@ -1257,6 +1263,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     this.add (main_vbox);
     main_vbox.show_all ();
+    this.set_titlebar(header_bar);
 
     /* needed for the sizing tricks in set_wide_mode (allocation is 0
      * if the widget is not realized */
@@ -1301,16 +1308,19 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         {
             case MediaMode.PHOTO:
                 take_action_button.tooltip_text = _("Take a photo using a webcam");
+                header_bar.set_title (_("Take a photo"));
                 break;
 
             case MediaMode.VIDEO:
                 take_action_button.tooltip_text = _("Record a video using a webcam");
+                header_bar.set_title (_("Record a video"));
                 timeout_layer.text = "00:00:00";
                 timeout_layer.show ();
                 break;
 
             case MediaMode.BURST:
                 take_action_button.tooltip_text = _("Take multiple photos using a webcam");
+                header_bar.set_title (_("Take multiple photos"));
                 break;
         }
     }

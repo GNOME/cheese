@@ -1,6 +1,15 @@
 <?xml version="1.0"?>
 <interface>
-  <requires lib="gtk+" version="3.6"/>
+  <requires lib="gtk+" version="3.10"/>
+  <object class ="GtkHeaderBar" id="header-bar">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Take a photo</property>
+    <property name="show-close-button">True</property>
+    <style>
+      <class name="titlebar"/>
+    </style>
+  </object>
   <object class="GtkBox" id="mainbox_normal">
     <property name="orientation">vertical</property>
     <property name="events">GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK</property>
