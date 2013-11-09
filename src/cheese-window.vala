@@ -768,7 +768,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       take_action_button_image.set_from_icon_name ("media-playback-stop-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = true;
       this.disable_mode_change ();
-      header_bar.set_title (_("Stop Recording"));
     }
     else
     {
@@ -784,7 +783,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       take_action_button_image.set_from_icon_name ("camera-web-symbolic", Gtk.IconSize.BUTTON);
       this.is_recording = false;
       this.enable_mode_change ();
-      header_bar.set_title (_("Record a video"));
     }
   }
 
@@ -817,7 +815,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       this.disable_mode_change ();
       // FIXME: Set the effects action to be inactive.
       take_action_button.tooltip_text = _("Stop taking pictures");
-      header_bar.set_title (_("Stop taking pictures"));
       burst_take_photo ();
 
       /* Use the countdown duration if it is greater than the burst delay, plus
@@ -841,7 +838,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       is_bursting = false;
       this.enable_mode_change ();
       take_action_button.tooltip_text = _("Take multiple photos");
-      header_bar.set_title (_("Take multiple photos"));
       burst_count = 0;
       fileutil.reset_burst ();
       GLib.Source.remove (burst_callback_id);
@@ -1041,6 +1037,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
         camera.toggle_effects_pipeline (active);
         setup_effects_page_switch_sensitivity ();
+        update_header_bar_title ();
     }
 
   /**
@@ -1291,30 +1288,54 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         current_mode = mode;
 
         set_resolution (current_mode);
-
+        update_header_bar_title ();
         timeout_layer.hide ();
 
         switch (current_mode)
         {
             case MediaMode.PHOTO:
                 take_action_button.tooltip_text = _("Take a photo using a webcam");
-                header_bar.set_title (_("Take a photo"));
                 break;
 
             case MediaMode.VIDEO:
                 take_action_button.tooltip_text = _("Record a video using a webcam");
-                header_bar.set_title (_("Record a video"));
                 timeout_layer.text = "00:00:00";
                 timeout_layer.show ();
                 break;
 
             case MediaMode.BURST:
                 take_action_button.tooltip_text = _("Take multiple photos using a webcam");
-                header_bar.set_title (_("Take multiple photos"));
                 break;
         }
     }
 
+     /**
+     * Set the header bar title.
+     */
+    public void update_header_bar_title ()
+    {
+        if (is_effects_selector_active)
+        {
+            header_bar.set_title (_("Choose an Effect"));
+        }
+        else
+        {
+            switch (current_mode)
+            {
+                case MediaMode.PHOTO:
+                    header_bar.set_title (_("Take a Photo"));
+                    break;
+
+                case MediaMode.VIDEO:
+                    header_bar.set_title (_("Record a Video"));
+                    break;
+
+                case MediaMode.BURST:
+                    header_bar.set_title (_("Take Multiple Photos"));
+                    break;
+            }
+        }
+    }
     /**
      * Set the camera.
      *
