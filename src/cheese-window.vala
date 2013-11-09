@@ -89,8 +89,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private bool is_effects_selector_active;
   private bool action_cancelled;
 
-  private Gtk.Button[] buttons;
-
   private Cheese.Camera   camera;
   private Cheese.FileUtil fileutil;
   private Cheese.Flash    flash;
@@ -511,12 +509,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       leave_fullscreen_button_container.no_show_all = false;
       leave_fullscreen_button_container.show_all ();
 
-      /* Make all buttons look 'flat' */
-      foreach (Gtk.Button b in buttons)
-      {
-        if (b.get_name () != "take_action_button")
-          b.relief = Gtk.ReliefStyle.NONE;
-      }
       this.fullscreen ();
       viewport_widget.motion_notify_event.connect (fullscreen_motion_notify_callback);
       set_fullscreen_timeout ();
@@ -532,13 +524,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         thumbnails_bottom.show_all ();
       }
       leave_fullscreen_button_container.hide ();
-
-      /* Make all buttons look, uhm, Normal */
-      foreach (Gtk.Button b in buttons)
-      {
-        if (b.get_name () != "take_action_button")
-          b.relief = Gtk.ReliefStyle.NORMAL;
-      }
 
       /* Stop timer so buttons_area does not get hidden after returning from
        * fullscreen mode */
@@ -1202,15 +1187,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
         buttons_area = gtk_builder.get_object ("buttons_area") as Gtk.Widget;
         header_bar = gtk_builder.get_object ("header-bar") as Gtk.HeaderBar;
-
-    /* Array contains all 'buttons', for easier manipulation
-     * IMPORTANT: IF ANOTHER BUTTON IS ADDED UNDER THE VIEWPORT, ADD IT TO THIS ARRAY */
-    buttons = {photo_toggle_button,
-               video_toggle_button,
-               burst_toggle_button,
-               take_action_button,
-               effects_toggle_button,
-               leave_fullscreen_button};
 
     video_preview           = clutter_builder.get_object ("video_preview") as Clutter.Texture;
     viewport_layout = clutter_builder.get_object ("viewport_layout") as Clutter.Actor;
