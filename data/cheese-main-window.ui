@@ -93,6 +93,9 @@
                     <child>
                       <object class="GtkBox" id="effects_actions_pack">
                         <property name="orientation">horizontal</property>
+                        <style>
+                          <class name="linked"/>
+                        </style>
                         <child>
                           <object class="GtkButton" id="effects_prev_page_button">
                             <property name="action-name">win.effects-previous</property>
