@@ -440,15 +440,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
   }
 
-  /**
-   * Set the current media capture mode, and update the UI sensitivities.
-   *
-   * @param mode the new capture mode to set
-   */
-  private void set_mode (MediaMode mode)
-  {
-}
-
   private TimeoutSource fullscreen_timeout;
   /**
    * Clear the fullscreen activity timeout.
@@ -1271,7 +1262,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     set_wide_mode (false);
 
-    set_mode (MediaMode.PHOTO);
     setup_effects_selector ();
 
     this.key_release_event.connect (on_key_release);
