@@ -31,6 +31,7 @@ using CanberraGtk;
 const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 const uint EFFECTS_PER_PAGE = 9;
 
+[GtkTemplate (ui = "/org/gnome/Cheese/cheese-main-window.ui")]
 public class Cheese.MainWindow : Gtk.ApplicationWindow
 {
     private const GLib.ActionEntry actions[] = {
@@ -44,39 +45,43 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     private MediaMode current_mode;
 
-  private Gtk.Builder    gtk_builder;
-  private Clutter.Script clutter_builder;
+    private Clutter.Script clutter_builder;
 
-  private Gtk.HeaderBar header_bar;
-  private GLib.Settings settings;
+    [GtkChild]
+    private Gtk.HeaderBar header_bar;
 
-  private Gtk.Widget       thumbnails;
-  private GtkClutter.Embed viewport_widget;
-  private Gtk.Widget main_vbox;
-  private Eog.ThumbNav     thumb_nav;
-  private Cheese.ThumbView thumb_view;
-  private Gtk.Alignment    thumbnails_right;
-  private Gtk.Alignment    thumbnails_bottom;
-    private Gtk.Widget leave_fullscreen_button_container;
-  private Gtk.ToggleButton photo_toggle_button;
-  private Gtk.ToggleButton video_toggle_button;
-  private Gtk.ToggleButton burst_toggle_button;
-  private Gtk.Button       take_action_button;
-  private Gtk.Label        take_action_button_label;
-  private Gtk.Image        take_action_button_image;
-  private Gtk.ToggleButton effects_toggle_button;
-  private Gtk.Button       leave_fullscreen_button;
+    private GLib.Settings settings;
+
+    [GtkChild]
+    private GtkClutter.Embed viewport_widget;
+    [GtkChild]
+    private Gtk.Widget main_vbox;
+    private Eog.ThumbNav thumb_nav;
+    private Cheese.ThumbView thumb_view;
+    [GtkChild]
+    private Gtk.Alignment thumbnails_right;
+    [GtkChild]
+    private Gtk.Alignment thumbnails_bottom;
+    [GtkChild]
+    private Gtk.Widget leave_fullscreen_button_box;
+    [GtkChild]
+    private Gtk.Button take_action_button;
+    [GtkChild]
+    private Gtk.Image take_action_button_image;
+    [GtkChild]
+    private Gtk.ToggleButton effects_toggle_button;
+    [GtkChild]
     private Gtk.Widget buttons_area;
-  private Gtk.Menu         thumbnail_popup;
+    private Gtk.Menu thumbnail_popup;
 
-  private Clutter.Stage     viewport;
-  private Clutter.Actor viewport_layout;
-  private Clutter.Texture   video_preview;
-  private Clutter.BinLayout viewport_layout_manager;
-  private Clutter.Text      countdown_layer;
-  private Clutter.Actor background_layer;
-  private Clutter.Text      error_layer;
-  private Clutter.Text      timeout_layer;
+    private Clutter.Stage viewport;
+    private Clutter.Actor viewport_layout;
+    private Clutter.Texture video_preview;
+    private Clutter.BinLayout viewport_layout_manager;
+    private Clutter.Text countdown_layer;
+    private Clutter.Actor background_layer;
+    private Clutter.Text error_layer;
+    private Clutter.Text timeout_layer;
 
   private Clutter.Actor current_effects_grid;
   private uint current_effects_page = 0;
@@ -491,8 +496,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private void set_fullscreen_mode (bool fullscreen)
   {
     /* After the first time the window has been shown using this.show_all (),
-     * the value of leave_fullscreen_button_container.no_show_all should be set to false
-     * So that the next time leave_fullscreen_button_container.show_all () is called, the button is actually shown
+     * the value of leave_fullscreen_button_box.no_show_all should be set to false
+     * So that the next time leave_fullscreen_button_box.show_all () is called, the button is actually shown
      * FIXME: If this code can be made cleaner/clearer, please do */
 
     is_fullscreen = fullscreen;
@@ -506,8 +511,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       {
         thumbnails_bottom.hide ();
       }
-      leave_fullscreen_button_container.no_show_all = false;
-      leave_fullscreen_button_container.show_all ();
+      leave_fullscreen_button_box.no_show_all = false;
+      leave_fullscreen_button_box.show_all ();
 
       this.fullscreen ();
       viewport_widget.motion_notify_event.connect (fullscreen_motion_notify_callback);
@@ -523,7 +528,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       {
         thumbnails_bottom.show_all ();
       }
-      leave_fullscreen_button_container.hide ();
+      leave_fullscreen_button_box.hide ();
 
       /* Stop timer so buttons_area does not get hidden after returning from
        * fullscreen mode */
@@ -1135,7 +1140,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    */
   public void setup_ui ()
   {
-    gtk_builder     = new Gtk.Builder ();
         clutter_builder = new Clutter.Script ();
     fileutil        = new FileUtil ();
     flash           = new Flash (this);
@@ -1160,41 +1164,24 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
         this.add_action_entries (actions, this);
 
-    try {
-      gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
-      gtk_builder.connect_signals (this);
-
+        try
+        {
             clutter_builder.load_from_resource ("/org/gnome/Cheese/cheese-viewport.json");
-    } catch (Error err)
-    {
-      error ("Error: %s", err.message);
-    }
+        }
+        catch (Error err)
+        {
+            error ("Error: %s", err.message);
+        }
 
-        main_vbox = gtk_builder.get_object ("mainbox_normal") as Gtk.Widget;
-    thumbnails                        = gtk_builder.get_object ("thumbnails") as Gtk.Widget;
-    viewport_widget                   = gtk_builder.get_object ("viewport") as GtkClutter.Embed;
-    viewport                          = viewport_widget.get_stage () as Clutter.Stage;
-    thumbnails_right                  = gtk_builder.get_object ("thumbnails_right") as Gtk.Alignment;
-    thumbnails_bottom                 = gtk_builder.get_object ("thumbnails_bottom") as Gtk.Alignment;
-    leave_fullscreen_button_container = gtk_builder.get_object ("leave_fullscreen_button_bin") as Gtk.Widget;
-    photo_toggle_button               = gtk_builder.get_object ("photo_toggle_button") as Gtk.ToggleButton;
-    video_toggle_button               = gtk_builder.get_object ("video_toggle_button") as Gtk.ToggleButton;
-    burst_toggle_button               = gtk_builder.get_object ("burst_toggle_button") as Gtk.ToggleButton;
-    take_action_button                = gtk_builder.get_object ("take_action_button") as Gtk.Button;
-    take_action_button_label          = gtk_builder.get_object ("take_action_button_internal_label") as Gtk.Label;
-    take_action_button_image          = gtk_builder.get_object ("take_action_button_internal_image") as Gtk.Image;
-    effects_toggle_button             = gtk_builder.get_object ("effects_toggle_button") as Gtk.ToggleButton;
-    leave_fullscreen_button           = gtk_builder.get_object ("leave_fullscreen_button") as Gtk.Button;
-        buttons_area = gtk_builder.get_object ("buttons_area") as Gtk.Widget;
-        header_bar = gtk_builder.get_object ("header-bar") as Gtk.HeaderBar;
+        viewport = viewport_widget.get_stage () as Clutter.Stage;
 
-    video_preview           = clutter_builder.get_object ("video_preview") as Clutter.Texture;
-    viewport_layout = clutter_builder.get_object ("viewport_layout") as Clutter.Actor;
-    viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
-    countdown_layer         = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
-    background_layer = clutter_builder.get_object ("background") as Clutter.Actor;
-    error_layer             = clutter_builder.get_object ("error_layer") as Clutter.Text;
-    timeout_layer           = clutter_builder.get_object ("timeout_layer") as Clutter.Text;
+        video_preview = clutter_builder.get_object ("video_preview") as Clutter.Texture;
+        viewport_layout = clutter_builder.get_object ("viewport_layout") as Clutter.Actor;
+        viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
+        countdown_layer = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
+        background_layer = clutter_builder.get_object ("background") as Clutter.Actor;
+        error_layer = clutter_builder.get_object ("error_layer") as Clutter.Text;
+        timeout_layer = clutter_builder.get_object ("timeout_layer") as Clutter.Text;
 
     video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
@@ -1226,10 +1213,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     Gtk.StyleContext.add_provider_for_screen (screen, css, STYLE_PROVIDER_PRIORITY_USER);
 
     thumb_view.button_press_event.connect (on_thumbnail_button_press_event);
-
-    this.add (main_vbox);
-    main_vbox.show_all ();
-    this.set_titlebar(header_bar);
 
     /* needed for the sizing tricks in set_wide_mode (allocation is 0
      * if the widget is not realized */
@@ -1290,7 +1273,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      /**
      * Set the header bar title.
      */
-    public void update_header_bar_title ()
+    private void update_header_bar_title ()
     {
         if (is_effects_selector_active)
         {

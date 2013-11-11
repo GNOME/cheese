@@ -198,6 +198,7 @@ endif
 noinst_resource_files = \
 	data/cheese.css \
 	data/cheese-viewport.json \
+	data/cheese-main-window.ui \
 	data/cheese-prefs.ui
 
 src/cheese-resource.c src/cheese-resource.h: data/cheese.gresource.xml Makefile $(noinst_resource_files)
@@ -312,8 +313,6 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 @GSETTINGS_RULES@
 
-dist_pkgdata_DATA = \
-	data/cheese-main-window.ui
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \
