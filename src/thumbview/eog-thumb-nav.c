@@ -127,12 +127,10 @@ eog_thumb_nav_vadj_changed (GtkAdjustment *vadj, gpointer user_data)
 {
   EogThumbNav        *nav;
   EogThumbNavPrivate *priv;
-  gboolean            ltr;
   gdouble             value, upper, page_size;
 
   nav  = EOG_THUMB_NAV (user_data);
   priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
-  ltr  = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
   g_object_get (vadj,
                 "value", &value,
@@ -172,12 +170,10 @@ eog_thumb_nav_vadj_value_changed (GtkAdjustment *vadj, gpointer user_data)
 {
   EogThumbNav        *nav;
   EogThumbNavPrivate *priv;
-  gboolean            ltr;
   gdouble             value, upper, page_size;
 
   nav  = EOG_THUMB_NAV (user_data);
   priv = EOG_THUMB_NAV_GET_PRIVATE (nav);
-  ltr  = gtk_widget_get_direction (priv->sw) == GTK_TEXT_DIR_LTR;
 
   g_object_get (vadj,
                 "value", &value,
