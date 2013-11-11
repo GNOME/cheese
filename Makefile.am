@@ -52,9 +52,10 @@ AM_CPPFLAGS = \
 	$(WARN_CFLAGS)
 
 AM_VALAFLAGS = \
-	--target-glib=2.32 \
+	--target-glib=2.38 \
 	--thread \
 	--vapidir $(top_srcdir)/src/vapi \
+	--gresources $(top_srcdir)/data/cheese.gresource.xml \
 	--pkg config \
 	--pkg posix \
 	--pkg gtk+-3.0 \
@@ -196,7 +197,8 @@ endif
 
 noinst_resource_files = \
 	data/cheese.css \
-	data/cheese-viewport.json
+	data/cheese-viewport.json \
+	data/cheese-prefs.ui
 
 src/cheese-resource.c src/cheese-resource.h: data/cheese.gresource.xml Makefile $(noinst_resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/data --generate --c-name cheese $<
@@ -311,8 +313,7 @@ gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 @GSETTINGS_RULES@
 
 dist_pkgdata_DATA = \
-	data/cheese-main-window.ui \
-	data/cheese-prefs.ui
+	data/cheese-main-window.ui
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \
