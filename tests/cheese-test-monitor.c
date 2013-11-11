@@ -26,6 +26,7 @@ int
 main (int argc, char **argv)
 {
   CheeseCameraDeviceMonitor *monitor;
+  GMainLoop *mainloop;
 
   if (!cheese_init (&argc, &argv))
     return EXIT_FAILURE;
@@ -37,7 +38,9 @@ main (int argc, char **argv)
                     G_CALLBACK (removed_cb), NULL);
   cheese_camera_device_monitor_coldplug (monitor);
 
-  g_main_loop_run (g_main_loop_new (NULL, FALSE));
+  mainloop = g_main_loop_new (NULL, FALSE);
+  g_main_loop_run (mainloop);
+  g_main_loop_unref (mainloop);
 
   return EXIT_SUCCESS;
 }
