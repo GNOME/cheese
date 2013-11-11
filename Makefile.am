@@ -194,7 +194,16 @@ typelibdir = $(libdir)/girepository-1.0
 typelib_DATA = Cheese-3.0.typelib
 endif
 
+noinst_resource_files = \
+	data/cheese.css
+
+src/cheese-resource.c src/cheese-resource.h: data/cheese.gresource.xml Makefile $(noinst_resource_files)
+	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/data --generate --c-name cheese $<
+
 bin_PROGRAMS = cheese
+
+nodist_cheese_SOURCES = \
+	src/cheese-resource.c
 
 # cheese-main.vala must go at the end of the Vala sources.
 cheese_SOURCES = \
@@ -207,6 +216,9 @@ cheese_SOURCES = \
 	src/thumbview/cheese-thumb-view.c \
 	src/thumbview/cheese-thumbnail.c \
 	src/thumbview/eog-thumb-nav.c
+
+nodist_cheese_HEADERS = \
+	src/cheese-resource.h
 
 noinst_HEADERS = \
 	src/thumbview/cheese-thumb-view.h \
@@ -298,7 +310,6 @@ gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 @GSETTINGS_RULES@
 
 dist_pkgdata_DATA = \
-	data/cheese.css \
 	data/cheese-main-window.ui \
 	data/cheese-prefs.ui \
 	data/cheese-viewport.json
@@ -469,7 +480,8 @@ dist_noinst_DATA = \
 	ChangeLog.pre-git \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
-	$(service_in_files) \
+	$(noinst_resource_files) \
+	data/cheese.gresource.xml \
 	build-aux/test-driver \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
 	$(gtkdoc_srcdir)/cheese-sections.txt \
@@ -497,7 +509,9 @@ CLEANFILES = \
 	$(pkgconfig_DATA) \
 	$(enum_data) \
 	$(gir_DATA) \
-	$(typelib_DATA)
+	$(typelib_DATA) \
+	src/cheese-resource.c \
+	src/cheese-resource.h
 
 DISTCLEANFILES = \
 	libcheese_la_vala.stamp \

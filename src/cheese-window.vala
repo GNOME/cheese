@@ -1210,16 +1210,18 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     thumb_nav  = new Eog.ThumbNav (thumb_view, false);
         thumbnail_popup.attach_to_widget (thumb_view, null);
 
-    Gtk.CssProvider css;
-    try
-    {
-      css = new Gtk.CssProvider();
-      css.load_from_path (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese.css"));
-    }
-    catch (Error e)
-    {
-      stdout.printf ("Error: %s\n", e.message);
-    }
+        Gtk.CssProvider css;
+        try
+        {
+            var file = File.new_for_uri ("resource:///org/gnome/Cheese/cheese.css");
+            css = new Gtk.CssProvider ();
+            css.load_from_file (file);
+        }
+        catch (Error e)
+        {
+            // TODO: Use parsing-error signal.
+            error ("Error parsing CSS: %s\n", e.message);
+        }
 
     Gtk.StyleContext.add_provider_for_screen (screen, css, STYLE_PROVIDER_PRIORITY_USER);
 
