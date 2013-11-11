@@ -195,7 +195,8 @@ typelib_DATA = Cheese-3.0.typelib
 endif
 
 noinst_resource_files = \
-	data/cheese.css
+	data/cheese.css \
+	data/cheese-viewport.json
 
 src/cheese-resource.c src/cheese-resource.h: data/cheese.gresource.xml Makefile $(noinst_resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/data --generate --c-name cheese $<
@@ -311,8 +312,7 @@ gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 
 dist_pkgdata_DATA = \
 	data/cheese-main-window.ui \
-	data/cheese-prefs.ui \
-	data/cheese-viewport.json
+	data/cheese-prefs.ui
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \

@@ -1136,7 +1136,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   public void setup_ui ()
   {
     gtk_builder     = new Gtk.Builder ();
-    clutter_builder = new Clutter.Script ();
+        clutter_builder = new Clutter.Script ();
     fileutil        = new FileUtil ();
     flash           = new Flash (this);
     settings        = new GLib.Settings ("org.gnome.Cheese");
@@ -1164,7 +1164,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       gtk_builder.add_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-main-window.ui"));
       gtk_builder.connect_signals (this);
 
-      clutter_builder.load_from_file (GLib.Path.build_filename (Config.PACKAGE_DATADIR, "cheese-viewport.json"));
+            clutter_builder.load_from_resource ("/org/gnome/Cheese/cheese-viewport.json");
     } catch (Error err)
     {
       error ("Error: %s", err.message);
