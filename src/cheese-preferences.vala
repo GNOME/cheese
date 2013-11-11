@@ -76,17 +76,10 @@ public class Cheese.PreferencesDialog : GLib.Object
     this.hue_adjustment = builder.get_object ("hue_adjustment") as Gtk.Adjustment;
     this.saturation_adjustment = builder.get_object ("saturation_adjustment") as Gtk.Adjustment;
 
-    /* Here instead of in cheese-prefs.ui because of https://bugzilla.gnome.org/show_bug.cgi?id=624443 */
-
     this.brightness_scale = builder.get_object ("brightness_scale") as Gtk.Scale;
     this.contrast_scale = builder.get_object ("contrast_scale") as Gtk.Scale;
     this.hue_scale = builder.get_object ("hue_scale") as Gtk.Scale;
     this.saturation_scale = builder.get_object ("saturation_scale") as Gtk.Scale;
-
-    this.brightness_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
-    this.contrast_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
-    this.hue_scale.add_mark (0, Gtk.PositionType.BOTTOM, null);
-    this.saturation_scale.add_mark (1, Gtk.PositionType.BOTTOM, null);
 
     this.photo_resolution_combo = builder.get_object ("photo_resolution_combo_box") as Gtk.ComboBox;
     this.video_resolution_combo = builder.get_object ("video_resolution_combo_box") as Gtk.ComboBox;
@@ -192,22 +185,25 @@ public class Cheese.PreferencesDialog : GLib.Object
     }
   }
 
-  /**
-   * Take the user preferences from GSettings.
-   */
-  private void initialize_values_from_settings ()
-  {
-    brightness_adjustment.value = settings.get_double ("brightness");
-    contrast_adjustment.value   = settings.get_double ("contrast");
-    hue_adjustment.value        = settings.get_double ("hue");
-    saturation_adjustment.value = settings.get_double ("saturation");
+    /**
+     * Take the user preferences from GSettings.
+     */
+    private void initialize_values_from_settings ()
+    {
+      brightness_adjustment.value = settings.get_double ("brightness");
+      contrast_adjustment.value   = settings.get_double ("contrast");
+      hue_adjustment.value        = settings.get_double ("hue");
+      saturation_adjustment.value = settings.get_double ("saturation");
 
-    burst_repeat_spin.value = settings.get_int ("burst-repeat");
-    burst_delay_spin.value  = settings.get_int ("burst-delay") / 1000;
+        settings.bind ("burst-repeat", burst_repeat_spin, "value",
+                       SettingsBindFlags.DEFAULT);
+      burst_delay_spin.value  = settings.get_int ("burst-delay") / 1000;
 
-    countdown_check.active = settings.get_boolean ("countdown");
-    flash_check.active = settings.get_boolean ("flash");
-  }
+        settings.bind ("countdown", countdown_check, "active",
+                       SettingsBindFlags.DEFAULT);
+        settings.bind ("flash", flash_check, "active",
+                       SettingsBindFlags.DEFAULT);
+    }
 
   /**
    * Update the active device to the active iter of the device combo box.
@@ -316,41 +312,6 @@ public class Cheese.PreferencesDialog : GLib.Object
     {
       warning ("%s", "Error showing help");
     }
-  }
-
-  /**
-   * Toggle the countdown GSetting when toggling the check button.
-   *
-   * @param checkbutton the countdown check button
-   */
-  [CCode (instance_pos = -1)]
-  public void on_countdown_toggle (Gtk.CheckButton checkbutton)
-  {
-    settings.set_boolean ("countdown", checkbutton.active);
-  }
-
-  /**
-   * Toggle the flash GSetting when toggling the check button.
-   *
-   * @param checkbutton the flash check button
-   */
-  [CCode (instance_pos = -1)]
-  public void on_flash_toggle (Gtk.CheckButton checkbutton)
-  {
-    settings.set_boolean ("flash", checkbutton.active);
-  }
-
-  /**
-   * Change the burst-repeat GSetting when changing the spin button.
-   *
-   * The burst repeat is the total number of photos to take in a single burst.
-   *
-   * @param spinbutton the burst-repeat spin button
-   */
-  [CCode (instance_pos = -1)]
-  public void on_burst_repeat_change (Gtk.SpinButton spinbutton)
-  {
-    settings.set_int ("burst-repeat", (int) spinbutton.value);
   }
 
   /**
