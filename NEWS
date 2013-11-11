@@ -1,6 +1,26 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.10.2
+  - Fix leak in CheeseCameraDeviceMonitor test
+  - Fixed unused-but-set warning in EogThumbNav
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=711841
+  - Fix memory leak in cheese_camera_device_get_caps()
+  - Fix cheese_thumb_view_append_item() memory leaks
+
+    Fix several memory leaks found with valgrind.
+  - Fix memory leak when creating a new CheeseCamera
+  - Fix some memory leaks in cheese_fileutil_init()
+  - Make static string array const
+  - Simplify looping over GStrv
+  - Updated Greek translation
+  - Post-release version bump to 3.10.2
+  - Added/Updated Translations
+    - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+  - Added/Updated Documentation
+    - fr, courtesy of Mickael Albertus
+
 version 3.10.1
   - Adapt to Automake test-driver changes
     Distribute test-driver script and do not use cd in TESTS_ENVIRONMENT.
