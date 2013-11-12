@@ -113,23 +113,9 @@ public class Cheese.Application : Gtk.Application
             Window.set_default_icon_name ("cheese");
 
             // Create the menus.
-            var menu = new GLib.Menu ();
-            var section = new GLib.Menu ();
-            menu.append_section (null, section);
-            var item = new GLib.MenuItem (_("_Fullscreen"), "app.fullscreen");
-            item.set_attribute ("accel", "s", "F11");
-            section.append_item (item);
-            section.append (_("P_references"), "app.preferences");
-            section = new GLib.Menu ();
-            menu.append_section (null, section);
-            item = new GLib.MenuItem (_("_Help"), "app.help");
-            item.set_attribute ("accel", "s", "F1");
-            section.append_item (item);
-            section.append (_("_About"), "app.about");
-            item = new GLib.MenuItem (_("_Quit"), "app.quit");
-            item.set_attribute ("accel", "s", "<Primary>q");
-            section.append_item (item);
-            set_app_menu (menu);
+            var builder = new Gtk.Builder.from_resource ("/org/gnome/Cheese/cheese-appmenu.ui");
+            var appmenu = builder.get_object ("appmenu") as GLib.MenuModel;
+            this.set_app_menu (appmenu);
 
             this.add_accelerator ("space", "app.shoot", null);
 

@@ -198,6 +198,7 @@ endif
 noinst_resource_files = \
 	data/cheese.css \
 	data/cheese-viewport.json \
+	data/cheese-appmenu.ui \
 	data/cheese-main-window.ui \
 	data/cheese-prefs.ui
 
