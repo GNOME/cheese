@@ -265,14 +265,15 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
     g_free (filename);
   }
 
-  if (priv->multiplex_thumbnail_generator)
-  {
-    char *f;
+    if (priv->multiplex_thumbnail_generator)
+    {
+        gchar *f;
 
-    f      = g_strdup_printf ("%s/pixmaps/cheese-%i.svg", PACKAGE_DATADIR, g_random_int_range (1, 4));
-    pixbuf = gdk_pixbuf_new_from_file (f, NULL);
-    g_free (f);
-  }
+        f = g_strdup_printf ("/org/gnome/Cheese/pixmaps/cheese-%i.svg",
+                             g_random_int_range (1, 4));
+        pixbuf = gdk_pixbuf_new_from_resource (f, NULL);
+        g_free (f);
+    }
   else
   {
     icon_theme = gtk_icon_theme_get_default ();

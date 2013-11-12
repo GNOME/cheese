@@ -291,8 +291,9 @@ cheese_thumbnail_add_frame (GdkPixbuf **pixbuf)
 void
 cheese_thumbnail_init (void)
 {
-  if (frame == NULL)
-  {
-    frame = gdk_pixbuf_new_from_file (PACKAGE_DATADIR "/pixmaps/thumbnail-frame.png", NULL);
-  }
+    if (frame == NULL)
+    {
+        frame = gdk_pixbuf_new_from_resource ("/org/gnome/Cheese/pixmaps/thumbnail-frame.png",
+                                              NULL);
+    }
 }

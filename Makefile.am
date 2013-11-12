@@ -200,7 +200,11 @@ noinst_resource_files = \
 	data/cheese-viewport.json \
 	data/cheese-appmenu.ui \
 	data/cheese-main-window.ui \
-	data/cheese-prefs.ui
+	data/cheese-prefs.ui \
+	data/pixmaps/cheese-1.svg \
+	data/pixmaps/cheese-2.svg \
+	data/pixmaps/cheese-3.svg \
+	data/pixmaps/thumbnail-frame.png
 
 src/cheese-resource.c src/cheese-resource.h: data/cheese.gresource.xml Makefile $(noinst_resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/data --generate --c-name cheese $<
@@ -349,14 +353,6 @@ install-update-icon-cache:
 uninstall-update-icon-cache:
 	$(AM_V_at)$(POST_UNINSTALL)
 	test -n "$(DESTDIR)" || $(update_icon_cache) "$(iconthemedir)"
-
-pixmapsdir = $(pkgdatadir)/pixmaps
-dist_pixmaps_DATA = \
-	data/pixmaps/thumbnail-frame.png \
-	data/pixmaps/camera-icon.svg \
-	data/pixmaps/cheese-1.svg \
-	data/pixmaps/cheese-2.svg \
-	data/pixmaps/cheese-3.svg
 
 # Tests.
 check_PROGRAMS = \
