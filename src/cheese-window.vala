@@ -618,17 +618,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   }
 
   /**
-   * Toggle whether the countdown is active.
-   *
-   * @param action the action that emitted the signal
-   */
-  [CCode (instance_pos = -1)]
-  public void on_countdown_toggle (ToggleAction action)
-  {
-    settings.set_boolean ("countdown", action.active);
-  }
-
-  /**
    * The method to call when the countdown is finished.
    */
   private void finish_countdown_callback ()
