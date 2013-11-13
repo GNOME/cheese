@@ -315,9 +315,13 @@ desktopdir = $(datadir)/applications
 desktop_in_files = data/cheese.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
-@GSETTINGS_RULES@
+@APPDATA_XML_RULES@
+@INTLTOOL_XML_RULE@
+appdata_in_files = data/cheese.appdata.xml.in
+appdata_XML = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
 
+@GSETTINGS_RULES@
+gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 
 pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = \
@@ -478,6 +482,7 @@ dist_noinst_DATA = \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
 	$(noinst_resource_files) \
+	$(appdata_in_files) \
 	data/cheese.gresource.xml \
 	build-aux/test-driver \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
@@ -502,6 +507,7 @@ dist_noinst_SCRIPTS = \
 	autogen.sh
 
 CLEANFILES = \
+	$(appdata_XML) \
 	$(desktop_DATA) \
 	$(pkgconfig_DATA) \
 	$(enum_data) \

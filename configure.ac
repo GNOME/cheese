@@ -205,6 +205,9 @@ AM_CONDITIONAL([ENABLE_MAN], [test "x$have_manutils" = "xyes"])
 # Mallard help
 YELP_HELP_INIT
 
+# AppData
+APPDATA_XML
+
 GLIB_GSETTINGS
 #*******************************************************************************
 
