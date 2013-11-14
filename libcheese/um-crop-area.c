@@ -861,6 +861,8 @@ um_crop_area_finalize (GObject *object)
                 g_object_unref (area->priv->color_shifted);
                 area->priv->color_shifted = NULL;
         }
+
+        G_OBJECT_CLASS (um_crop_area_parent_class)->finalize (object);
 }
 
 static void
