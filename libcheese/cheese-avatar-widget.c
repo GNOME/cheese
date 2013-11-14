@@ -63,6 +63,7 @@ struct _CheeseAvatarWidgetPrivate
   GtkWidget *image;
   GtkWidget *take_button;
   GtkWidget *take_again_button;
+  GtkSizeGroup *sizegroup;
   CheeseFlash *flash;
   gulong photo_taken_id;
 };
@@ -237,7 +238,6 @@ cheese_avatar_widget_init (CheeseAvatarWidget *widget)
 {
   GtkWidget *frame;
   GtkWidget *image;
-  GtkSizeGroup *sizegroup;
 
   CheeseAvatarWidgetPrivate *priv = widget->priv = CHEESE_AVATAR_WIDGET_GET_PRIVATE (widget);
 
@@ -277,9 +277,9 @@ cheese_avatar_widget_init (CheeseAvatarWidget *widget)
                             create_page (frame, priv->take_again_button),
                             gtk_label_new ("image"));
 
-  sizegroup = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
-  gtk_size_group_add_widget (sizegroup, priv->take_button);
-  gtk_size_group_add_widget (sizegroup, priv->take_again_button);
+  priv->sizegroup = gtk_size_group_new (GTK_SIZE_GROUP_HORIZONTAL);
+  gtk_size_group_add_widget (priv->sizegroup, priv->take_button);
+  gtk_size_group_add_widget (priv->sizegroup, priv->take_again_button);
 
   gtk_widget_show_all (GTK_WIDGET (widget));
 }
@@ -290,6 +290,7 @@ cheese_avatar_widget_finalize (GObject *object)
   CheeseAvatarWidgetPrivate *priv = ((CheeseAvatarWidget *) object)->priv;
 
   g_clear_object (&priv->flash);
+  g_clear_object (&priv->sizegroup);
 
   G_OBJECT_CLASS (cheese_avatar_widget_parent_class)->finalize (object);
 }
