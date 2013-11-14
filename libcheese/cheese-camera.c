@@ -496,18 +496,22 @@ cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
   prof = gst_encoding_container_profile_new("WebM audio/video",
       "Standard WebM/VP8/Vorbis",
       caps, NULL);
+  gst_caps_unref (caps);
 
   caps = gst_caps_from_string("video/x-vp8");
   v_prof = gst_encoding_video_profile_new(caps, NULL, NULL, 0);
   gst_encoding_video_profile_set_variableframerate(v_prof, TRUE);
   gst_encoding_profile_set_preset((GstEncodingProfile*) v_prof, video_preset);
   gst_encoding_container_profile_add_profile(prof, (GstEncodingProfile*) v_prof);
+  gst_caps_unref (caps);
 
   caps = gst_caps_from_string("audio/x-vorbis");
   gst_encoding_container_profile_add_profile(prof,
       (GstEncodingProfile*) gst_encoding_audio_profile_new(caps, NULL, NULL, 0));
+  gst_caps_unref (caps);
 
   g_object_set (priv->camerabin, "video-profile", prof, NULL);
+  gst_encoding_profile_unref (prof);
 }
 
 /*
