@@ -425,6 +425,8 @@ cheese_thumb_view_monitor_cb (GFileMonitor     *file_monitor,
         }
         g_dir_close (dir_photos);
       }
+
+      g_free (filename);
       break;
     }
 
