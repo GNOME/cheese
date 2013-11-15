@@ -93,6 +93,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   private bool is_bursting;
   private bool is_effects_selector_active;
   private bool action_cancelled;
+    private bool was_maximized;
 
   private Cheese.Camera   camera;
   private Cheese.FileUtil fileutil;
@@ -117,6 +118,16 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     public MainWindow (Gtk.Application application)
     {
         GLib.Object (application: application);
+    }
+
+    private bool on_window_state_change_event (Gtk.Widget widget,
+                                               Gdk.EventWindowState event)
+    {
+        was_maximized = (((event.new_window_state - event.changed_mask)
+                          & Gdk.WindowState.MAXIMIZED) != 0);
+
+        window_state_event.disconnect (on_window_state_change_event);
+        return false;
     }
 
     /**
@@ -466,6 +477,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     fullscreen_timeout.attach (null);
     fullscreen_timeout.set_callback (() => {buttons_area.hide ();
                                             clear_fullscreen_timeout ();
+                                            this.fullscreen ();
                                             return true; });
   }
 
@@ -483,6 +495,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
                                                     EventMotion e)
     {
         clear_fullscreen_timeout ();
+        this.unfullscreen ();
+        this.maximize ();
         buttons_area.show ();
         set_fullscreen_timeout ();
         return true;
@@ -503,6 +517,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     is_fullscreen = fullscreen;
     if (fullscreen)
     {
+            window_state_event.connect (on_window_state_change_event);
+
       if (is_wide_mode)
       {
         thumbnails_right.hide ();
@@ -537,6 +553,15 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       buttons_area.show ();
       viewport_widget.motion_notify_event.disconnect (fullscreen_motion_notify_callback);
       this.unfullscreen ();
+
+            if (was_maximized)
+            {
+                this.maximize ();
+            }
+            else
+            {
+                this.unmaximize ();
+            }
     }
   }
 
