@@ -131,22 +131,6 @@ namespace Cheese
     public int height;
     public int width;
   }
-  [CCode (cprefix = "CHEESE_CAMERA_EFFECT_", has_type_id = false, cheader_filename = "cheese-camera.h")]
-  public enum CameraEffect
-  {
-    NO_EFFECT,
-    MAUVE,
-    NOIR_BLANC,
-    SATURATION,
-    HULK,
-    VERTICAL_FLIP,
-    HORIZONTAL_FLIP,
-    SHAGADELIC,
-    VERTIGO,
-    EDGE,
-    DICE,
-    WARP
-  }
   [CCode (cprefix = "CHEESE_MEDIA_MODE_", has_type_id = false, cheader_filename = "cheese-fileutil.h")]
   public enum MediaMode
   {
