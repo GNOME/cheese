@@ -104,6 +104,22 @@ cheese_effect_set_property (GObject *object, guint property_id,
 }
 
 static void
+cheese_effect_finalize (GObject *object)
+{
+    CheeseEffect *effect;
+    CheeseEffectPrivate *priv;
+
+    effect = CHEESE_EFFECT (object);
+    priv = effect->priv;
+
+    g_clear_pointer (&priv->name, g_free);
+    g_clear_pointer (&priv->pipeline_desc, g_free);
+    g_clear_pointer (&priv->control_valve, gst_object_unref);
+
+    G_OBJECT_CLASS (cheese_effect_parent_class)->finalize (object);
+}
+
+static void
 cheese_effect_class_init (CheeseEffectClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
@@ -112,6 +128,7 @@ cheese_effect_class_init (CheeseEffectClass *klass)
 
   object_class->get_property = cheese_effect_get_property;
   object_class->set_property = cheese_effect_set_property;
+  object_class->finalize = cheese_effect_finalize;
 
   /**
    * CheeseEffect:name:
