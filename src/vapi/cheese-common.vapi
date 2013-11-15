@@ -39,7 +39,7 @@ namespace Cheese
     public unowned Cheese.VideoFormat  get_current_video_format ();
     public int                         get_num_camera_devices ();
     public unowned Cheese.CameraDevice get_selected_device ();
-    public unowned GLib.List           get_video_formats ();
+    public GLib.List<unowned Cheese.VideoFormat> get_video_formats ();
     public bool                        has_camera ();
     public void                        play ();
     public void                        set_balance_property (string property, double value);

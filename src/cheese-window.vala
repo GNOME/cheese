@@ -410,7 +410,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     if (camera == null)
       return;
 
-    unowned GLib.List<VideoFormat> formats = camera.get_video_formats ();
+    var formats = camera.get_video_formats ();
 
     if (formats == null)
       return;

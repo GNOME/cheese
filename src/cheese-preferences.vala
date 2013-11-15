@@ -116,7 +116,7 @@ public PreferencesDialog (Cheese.Camera camera)
    */
   private void setup_resolutions_for_device (Cheese.CameraDevice device)
   {
-    unowned List<VideoFormat> formats = device.get_format_list ();
+    var formats = device.get_format_list ();
     ListStore resolution_model = new ListStore (2, typeof (string),
         typeof (Cheese.VideoFormat));
 
