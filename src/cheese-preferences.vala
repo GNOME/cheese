@@ -210,7 +210,7 @@ public PreferencesDialog (Cheese.Camera camera)
   {
     TreeIter iter;
 
-    unowned Cheese.VideoFormat format;
+    Cheese.VideoFormat format;
 
     combo.get_active_iter (out iter);
     combo.model.get (iter, 1, out format);
@@ -233,7 +233,7 @@ public PreferencesDialog (Cheese.Camera camera)
   {
     TreeIter iter;
 
-    unowned Cheese.VideoFormat format;
+    Cheese.VideoFormat format;
 
     combo.get_active_iter (out iter);
     combo.model.get (iter, 1, out format);

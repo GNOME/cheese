@@ -125,7 +125,7 @@ namespace Cheese
   }
 
   [Compact]
-  [CCode (type_id = "CHEESE_TYPE_VIDEO_FORMAT", cheader_filename = "cheese-camera-device.h")]
+  [CCode (type_id = "CHEESE_TYPE_VIDEO_FORMAT", cheader_filename = "cheese-camera-device.h", copy_function = "g_boxed_copy", free_function = "g_boxed_free")]
   public class VideoFormat
   {
     public int height;
