@@ -75,10 +75,10 @@ namespace Cheese
   {
     [CCode (has_construct_function = false)]
     public CameraDevice (string uuid, string device_node, string name, int v4lapi_version) throws GLib.Error;
-    public unowned Cheese.VideoFormat get_best_format ();
-    public unowned Gst.Caps           get_caps_for_format (Cheese.VideoFormat format);
+    public Cheese.VideoFormat get_best_format ();
+    public Gst.Caps get_caps_for_format (Cheese.VideoFormat format);
     public unowned string             get_device_node ();
-    public unowned GLib.List          get_format_list ();
+    public GLib.List<unowned Cheese.VideoFormat> get_format_list ();
     public unowned string             get_uuid ();
     public unowned string             get_name ();
     public unowned string             get_src ();
