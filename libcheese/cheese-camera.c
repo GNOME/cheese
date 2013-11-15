@@ -1084,6 +1084,7 @@ cheese_camera_set_tags (CheeseCamera *camera)
         GST_TAG_MERGE_REPLACE);
 
   gst_date_time_unref (datetime);
+  gst_tag_list_unref (taglist);
 }
 
 /**
