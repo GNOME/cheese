@@ -323,41 +323,54 @@ cheese_thumb_view_append_item (CheeseThumbView *thumb_view, GFile *file)
 void
 cheese_thumb_view_remove_item (CheeseThumbView *thumb_view, GFile *file)
 {
-  CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
+    CheeseThumbViewPrivate *priv = CHEESE_THUMB_VIEW_GET_PRIVATE (thumb_view);
 
-  char       *path;
-  GtkTreeIter iter;
-  char       *filename;
-  gboolean    found = FALSE;
+    gchar *filename;
+    GtkTreeIter iter;
+    gboolean found = FALSE;
 
-  filename = g_file_get_path (file);
+    filename = g_file_get_path (file);
 
-  if (!gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
-  {
-    /* a single item was on the thumbview but it's been already removed */
-    return;
-  }
-
-  /* check if the selected item is the first, else go through the store */
-  gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &path, -1);
-  if (g_ascii_strcasecmp (path, filename))
-  {
-    while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store), &iter))
+    if (gtk_tree_model_get_iter_first (GTK_TREE_MODEL (priv->store), &iter))
     {
-      gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter, THUMBNAIL_URL_COLUMN, &path, -1);
-      if (!g_ascii_strcasecmp (path, filename))
-      {
-        found = TRUE;
-        break;
-      }
+        gchar *col_filename;
+
+        gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                            THUMBNAIL_URL_COLUMN, &col_filename, -1);
+
+        /* FIXME: col_filename is in GLib filename encoding, not ASCII. */
+        if (g_ascii_strcasecmp (col_filename, filename))
+        {
+            while (gtk_tree_model_iter_next (GTK_TREE_MODEL (priv->store),
+                                             &iter))
+            {
+                g_free (col_filename);
+
+                gtk_tree_model_get (GTK_TREE_MODEL (priv->store), &iter,
+                                    THUMBNAIL_URL_COLUMN, &col_filename, -1);
+
+                /* FIXME: col_filename is in GLib filename encoding, not ASCII. */
+                if (!g_ascii_strcasecmp (col_filename, filename))
+                {
+                    found = TRUE;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            found = TRUE;
+        }
+
+            g_free (col_filename);
+            g_free (filename);
     }
-  }
-  else
-  {
-    found = TRUE;
-  }
-  g_free (path);
-  g_free (filename);
+    else
+    {
+        /* A single item was in the thumbview but it's been already removed. */
+        g_free (filename);
+        return;
+    }
 
   if (!found) return;
 
