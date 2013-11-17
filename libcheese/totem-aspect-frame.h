@@ -53,13 +53,10 @@ G_BEGIN_DECLS
 
 typedef struct _TotemAspectFrame TotemAspectFrame;
 typedef struct _TotemAspectFrameClass TotemAspectFrameClass;
-typedef struct _TotemAspectFramePrivate TotemAspectFramePrivate;
 
 struct _TotemAspectFrame
 {
   ClutterActor parent;
-
-  TotemAspectFramePrivate *priv;
 };
 
 struct _TotemAspectFrameClass

@@ -55,10 +55,6 @@ static const guint FLASH_ANIMATION_RATE = 50;
 /* When to consider the flash finished so we can stop fading */
 static const gdouble FLASH_LOW_THRESHOLD = 0.01;
 
-G_DEFINE_TYPE (CheeseFlash, cheese_flash, GTK_TYPE_WINDOW);
-
-#define CHEESE_FLASH_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_FLASH, CheeseFlashPrivate))
-
 /*
  * CheeseFlashPrivate:
  * @parent: the parent #GtkWidget, for choosing on which display to fire the
@@ -76,10 +72,12 @@ struct _CheeseFlashPrivate
   guint fade_timeout_tag;
 };
 
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseFlash, cheese_flash, GTK_TYPE_WINDOW)
+
 static void
 cheese_flash_init (CheeseFlash *self)
 {
-  CheeseFlashPrivate *priv = self->priv = CHEESE_FLASH_GET_PRIVATE (self);
+  CheeseFlashPrivate *priv = self->priv = cheese_flash_get_instance_private (self);
   cairo_region_t *input_region;
   GtkWindow *window = GTK_WINDOW (self);
   const GdkRGBA white = { 1.0, 1.0, 1.0, 1.0 };
@@ -155,8 +153,6 @@ static void
 cheese_flash_class_init (CheeseFlashClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (CheeseFlashPrivate));
 
   object_class->set_property = cheese_flash_set_property;
   object_class->dispose      = cheese_flash_dispose;

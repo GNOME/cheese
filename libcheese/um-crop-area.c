@@ -54,7 +54,7 @@ struct _UmCropAreaPrivate {
         gdouble aspect;
 };
 
-G_DEFINE_TYPE (UmCropArea, um_crop_area, GTK_TYPE_DRAWING_AREA);
+G_DEFINE_TYPE_WITH_PRIVATE (UmCropArea, um_crop_area, GTK_TYPE_DRAWING_AREA)
 
 /*
  * shift_color_byte:
@@ -126,6 +126,7 @@ shift_colors (GdkPixbuf *pixbuf,
 static void
 update_pixbufs (UmCropArea *area)
 {
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         gint width;
         gint height;
         GtkAllocation allocation;
@@ -140,13 +141,13 @@ update_pixbufs (UmCropArea *area)
         gtk_widget_get_allocation (widget, &allocation);
         context = gtk_widget_get_style_context (widget);
 
-        if (area->priv->pixbuf == NULL ||
-            gdk_pixbuf_get_width (area->priv->pixbuf) != allocation.width ||
-            gdk_pixbuf_get_height (area->priv->pixbuf) != allocation.height) {
-                if (area->priv->pixbuf != NULL)
-                        g_object_unref (area->priv->pixbuf);
-                area->priv->pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
-                                                     gdk_pixbuf_get_has_alpha (area->priv->browse_pixbuf),
+        if (priv->pixbuf == NULL ||
+            gdk_pixbuf_get_width (priv->pixbuf) != allocation.width ||
+            gdk_pixbuf_get_height (priv->pixbuf) != allocation.height) {
+                if (priv->pixbuf != NULL)
+                        g_object_unref (priv->pixbuf);
+                priv->pixbuf = gdk_pixbuf_new (GDK_COLORSPACE_RGB,
+                                                     gdk_pixbuf_get_has_alpha (priv->browse_pixbuf),
                                                      8,
                                                      allocation.width, allocation.height);
 
@@ -154,10 +155,10 @@ update_pixbufs (UmCropArea *area)
                 pixel = (((gint)(color.red * 1.0)) << 16) |
                         (((gint)(color.green * 1.0)) << 8) |
                          ((gint)(color.blue * 1.0));
-                gdk_pixbuf_fill (area->priv->pixbuf, pixel);
+                gdk_pixbuf_fill (priv->pixbuf, pixel);
 
-                width = gdk_pixbuf_get_width (area->priv->browse_pixbuf);
-                height = gdk_pixbuf_get_height (area->priv->browse_pixbuf);
+                width = gdk_pixbuf_get_width (priv->browse_pixbuf);
+                height = gdk_pixbuf_get_height (priv->browse_pixbuf);
 
                 scale = allocation.height / (gdouble)height;
                 if (scale * width > allocation.width)
@@ -168,35 +169,35 @@ update_pixbufs (UmCropArea *area)
                 dest_x = (allocation.width - dest_width) / 2;
                 dest_y = (allocation.height - dest_height) / 2,
 
-                gdk_pixbuf_scale (area->priv->browse_pixbuf,
-                                  area->priv->pixbuf,
+                gdk_pixbuf_scale (priv->browse_pixbuf,
+                                  priv->pixbuf,
                                   dest_x, dest_y,
                                   dest_width, dest_height,
                                   dest_x, dest_y,
                                   scale, scale,
                                   GDK_INTERP_BILINEAR);
 
-                if (area->priv->color_shifted)
-                        g_object_unref (area->priv->color_shifted);
-                area->priv->color_shifted = gdk_pixbuf_copy (area->priv->pixbuf);
-                shift_colors (area->priv->color_shifted, -32, -32, -32, 0);
+                if (priv->color_shifted)
+                        g_object_unref (priv->color_shifted);
+                priv->color_shifted = gdk_pixbuf_copy (priv->pixbuf);
+                shift_colors (priv->color_shifted, -32, -32, -32, 0);
 
-                if (area->priv->scale == 0.0) {
+                if (priv->scale == 0.0) {
                         gdouble crop_scale;
 
-                        crop_scale = MIN (gdk_pixbuf_get_width (area->priv->pixbuf) / area->priv->base_width * 0.8,
-                                          gdk_pixbuf_get_height (area->priv->pixbuf) / area->priv->base_height * 0.8);
-                        area->priv->crop.width = crop_scale * area->priv->base_width / scale;
-                        area->priv->crop.height = crop_scale * area->priv->base_height / scale;
-                        area->priv->crop.x = (gdk_pixbuf_get_width (area->priv->browse_pixbuf) - area->priv->crop.width) / 2;
-                        area->priv->crop.y = (gdk_pixbuf_get_height (area->priv->browse_pixbuf) - area->priv->crop.height) / 2;
+                        crop_scale = MIN (gdk_pixbuf_get_width (priv->pixbuf) / priv->base_width * 0.8,
+                                          gdk_pixbuf_get_height (priv->pixbuf) / priv->base_height * 0.8);
+                        priv->crop.width = crop_scale * priv->base_width / scale;
+                        priv->crop.height = crop_scale * priv->base_height / scale;
+                        priv->crop.x = (gdk_pixbuf_get_width (priv->browse_pixbuf) - priv->crop.width) / 2;
+                        priv->crop.y = (gdk_pixbuf_get_height (priv->browse_pixbuf) - priv->crop.height) / 2;
                 }
 
-                area->priv->scale = scale;
-                area->priv->image.x = dest_x;
-                area->priv->image.y = dest_y;
-                area->priv->image.width = dest_width;
-                area->priv->image.height = dest_height;
+                priv->scale = scale;
+                priv->image.x = dest_x;
+                priv->image.y = dest_y;
+                priv->image.width = dest_width;
+                priv->image.height = dest_height;
         }
 }
 
@@ -211,10 +212,12 @@ static void
 crop_to_widget (UmCropArea    *area,
                 GdkRectangle  *crop)
 {
-        crop->x = area->priv->image.x + area->priv->crop.x * area->priv->scale;
-        crop->y = area->priv->image.y + area->priv->crop.y * area->priv->scale;
-        crop->width = area->priv->crop.width * area->priv->scale;
-        crop->height = area->priv->crop.height * area->priv->scale;
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+
+        crop->x = priv->image.x + priv->crop.x * priv->scale;
+        crop->y = priv->image.y + priv->crop.y * priv->scale;
+        crop->width = priv->crop.width * priv->scale;
+        crop->height = priv->crop.height * priv->scale;
 }
 
 /*
@@ -258,31 +261,32 @@ static gboolean
 um_crop_area_draw (GtkWidget *widget,
                    cairo_t   *cr)
 {
+        UmCropArea *area = UM_CROP_AREA (widget);
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         GdkRectangle crop;
         gint width, height;
-        UmCropArea *uarea = UM_CROP_AREA (widget);
 
-        if (uarea->priv->browse_pixbuf == NULL)
+        if (priv->browse_pixbuf == NULL)
                 return FALSE;
 
-        update_pixbufs (uarea);
+        update_pixbufs (area);
 
-        width = gdk_pixbuf_get_width (uarea->priv->pixbuf);
-        height = gdk_pixbuf_get_height (uarea->priv->pixbuf);
-        crop_to_widget (uarea, &crop);
+        width = gdk_pixbuf_get_width (priv->pixbuf);
+        height = gdk_pixbuf_get_height (priv->pixbuf);
+        crop_to_widget (area, &crop);
 
-        gdk_cairo_set_source_pixbuf (cr, uarea->priv->color_shifted, 0, 0);
+        gdk_cairo_set_source_pixbuf (cr, priv->color_shifted, 0, 0);
         cairo_rectangle (cr, 0, 0, width, crop.y);
         cairo_rectangle (cr, 0, crop.y, crop.x, crop.height);
         cairo_rectangle (cr, crop.x + crop.width, crop.y, width - crop.x - crop.width, crop.height);
         cairo_rectangle (cr, 0, crop.y + crop.height, width, height - crop.y - crop.height);
         cairo_fill (cr);
 
-        gdk_cairo_set_source_pixbuf (cr, uarea->priv->pixbuf, 0, 0);
+        gdk_cairo_set_source_pixbuf (cr, priv->pixbuf, 0, 0);
         cairo_rectangle (cr, crop.x, crop.y, crop.width, crop.height);
         cairo_fill (cr);
 
-        if (uarea->priv->active_region != OUTSIDE) {
+        if (priv->active_region != OUTSIDE) {
                 gint x1, x2, y1, y2;
                 cairo_set_source_rgb (cr, 1, 1, 1);
                 cairo_set_line_width (cr, 1.0);
@@ -423,11 +427,12 @@ update_cursor (UmCropArea *area,
                gint           x,
                gint           y)
 {
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         gint cursor_type;
         GdkRectangle crop;
         gint region;
 
-        region = area->priv->active_region;
+        region = priv->active_region;
         if (region == OUTSIDE) {
                 crop_to_widget (area, &crop);
                 region = find_location (&crop, x, y);
@@ -468,11 +473,11 @@ update_cursor (UmCropArea *area,
 		g_assert_not_reached ();
         }
 
-        if (cursor_type != area->priv->current_cursor) {
+        if (cursor_type != priv->current_cursor) {
                 GdkCursor *cursor = gdk_cursor_new (cursor_type);
                 gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (area)), cursor);
                 g_object_unref (cursor);
-                area->priv->current_cursor = cursor_type;
+                priv->current_cursor = cursor_type;
         }
 }
 
@@ -522,6 +527,7 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
                                   GdkEventMotion *event)
 {
         UmCropArea *area = UM_CROP_AREA (widget);
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         gint x, y;
         gint delta_x, delta_y;
         gint width, height;
@@ -533,7 +539,7 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
         gdouble center_x, center_y;
         gint min_width, min_height;
 
-        if (area->priv->browse_pixbuf == NULL)
+        if (priv->browse_pixbuf == NULL)
                 return FALSE;
 
         update_cursor (area, event->x, event->y);
@@ -543,26 +549,26 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
                                     damage.x - 1, damage.y - 1,
                                     damage.width + 2, damage.height + 2);
 
-        pb_width = gdk_pixbuf_get_width (area->priv->browse_pixbuf);
-        pb_height = gdk_pixbuf_get_height (area->priv->browse_pixbuf);
+        pb_width = gdk_pixbuf_get_width (priv->browse_pixbuf);
+        pb_height = gdk_pixbuf_get_height (priv->browse_pixbuf);
 
-        x = (event->x - area->priv->image.x) / area->priv->scale;
-        y = (event->y - area->priv->image.y) / area->priv->scale;
+        x = (event->x - priv->image.x) / priv->scale;
+        y = (event->y - priv->image.y) / priv->scale;
 
-        delta_x = x - area->priv->last_press_x;
-        delta_y = y - area->priv->last_press_y;
-        area->priv->last_press_x = x;
-        area->priv->last_press_y = y;
+        delta_x = x - priv->last_press_x;
+        delta_y = y - priv->last_press_y;
+        priv->last_press_x = x;
+        priv->last_press_y = y;
 
-        left = area->priv->crop.x;
-        right = area->priv->crop.x + area->priv->crop.width - 1;
-        top = area->priv->crop.y;
-        bottom = area->priv->crop.y + area->priv->crop.height - 1;
+        left = priv->crop.x;
+        right = priv->crop.x + priv->crop.width - 1;
+        top = priv->crop.y;
+        bottom = priv->crop.y + priv->crop.height - 1;
 
         center_x = (left + right) / 2.0;
         center_y = (top + bottom) / 2.0;
 
-        switch (area->priv->active_region) {
+        switch (priv->active_region) {
         case INSIDE:
                 width = right - left + 1;
                 height = bottom - top + 1;
@@ -599,101 +605,101 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
                 break;
 
         case TOP_LEFT:
-                if (area->priv->aspect < 0) {
+                if (priv->aspect < 0) {
                         top = y;
                         left = x;
                 }
                 else if (y < eval_radial_line (center_x, center_y, left, top, x)) {
                         top = y;
-                        new_width = (bottom - top) * area->priv->aspect;
+                        new_width = (bottom - top) * priv->aspect;
                         left = right - new_width;
                 }
                 else {
                         left = x;
-                        new_height = (right - left) / area->priv->aspect;
+                        new_height = (right - left) / priv->aspect;
                         top = bottom - new_height;
                 }
                 break;
 
         case TOP:
                 top = y;
-                if (area->priv->aspect > 0) {
-                        new_width = (bottom - top) * area->priv->aspect;
+                if (priv->aspect > 0) {
+                        new_width = (bottom - top) * priv->aspect;
                         right = left + new_width;
                 }
                 break;
 
         case TOP_RIGHT:
-                if (area->priv->aspect < 0) {
+                if (priv->aspect < 0) {
                         top = y;
                         right = x;
                 }
                 else if (y < eval_radial_line (center_x, center_y, right, top, x)) {
                         top = y;
-                        new_width = (bottom - top) * area->priv->aspect;
+                        new_width = (bottom - top) * priv->aspect;
                         right = left + new_width;
                 }
                 else {
                         right = x;
-                        new_height = (right - left) / area->priv->aspect;
+                        new_height = (right - left) / priv->aspect;
                         top = bottom - new_height;
                 }
                 break;
 
         case LEFT:
                 left = x;
-                if (area->priv->aspect > 0) {
-                        new_height = (right - left) / area->priv->aspect;
+                if (priv->aspect > 0) {
+                        new_height = (right - left) / priv->aspect;
                         bottom = top + new_height;
                 }
                 break;
 
         case BOTTOM_LEFT:
-                if (area->priv->aspect < 0) {
+                if (priv->aspect < 0) {
                         bottom = y;
                         left = x;
                 }
                 else if (y < eval_radial_line (center_x, center_y, left, bottom, x)) {
                         left = x;
-                        new_height = (right - left) / area->priv->aspect;
+                        new_height = (right - left) / priv->aspect;
                         bottom = top + new_height;
                 }
                 else {
                         bottom = y;
-                        new_width = (bottom - top) * area->priv->aspect;
+                        new_width = (bottom - top) * priv->aspect;
                         left = right - new_width;
                 }
                 break;
 
         case RIGHT:
                 right = x;
-                if (area->priv->aspect > 0) {
-                        new_height = (right - left) / area->priv->aspect;
+                if (priv->aspect > 0) {
+                        new_height = (right - left) / priv->aspect;
                         bottom = top + new_height;
                 }
                 break;
 
         case BOTTOM_RIGHT:
-                if (area->priv->aspect < 0) {
+                if (priv->aspect < 0) {
                         bottom = y;
                         right = x;
                 }
                 else if (y < eval_radial_line (center_x, center_y, right, bottom, x)) {
                         right = x;
-                        new_height = (right - left) / area->priv->aspect;
+                        new_height = (right - left) / priv->aspect;
                         bottom = top + new_height;
                 }
                 else {
                         bottom = y;
-                        new_width = (bottom - top) * area->priv->aspect;
+                        new_width = (bottom - top) * priv->aspect;
                         right = left + new_width;
                 }
                 break;
 
         case BOTTOM:
                 bottom = y;
-                if (area->priv->aspect > 0) {
-                        new_width = (bottom - top) * area->priv->aspect;
+                if (priv->aspect > 0) {
+                        new_width = (bottom - top) * priv->aspect;
                         right= left + new_width;
                 }
                 break;
@@ -702,12 +708,12 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
                 return FALSE;
         }
 
-        min_width = area->priv->base_width / area->priv->scale;
-        min_height = area->priv->base_height / area->priv->scale;
+        min_width = priv->base_width / priv->scale;
+        min_height = priv->base_height / priv->scale;
 
         width = right - left + 1;
         height = bottom - top + 1;
-        if (area->priv->aspect < 0) {
+        if (priv->aspect < 0) {
                 if (left < 0)
                         left = 0;
                 if (top < 0)
@@ -720,7 +726,7 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
                 width = right - left + 1;
                 height = bottom - top + 1;
 
-                switch (area->priv->active_region) {
+                switch (priv->active_region) {
                 case LEFT:
                 case TOP_LEFT:
                 case BOTTOM_LEFT:
@@ -737,7 +743,7 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
                 default: ;
                 }
 
-                switch (area->priv->active_region) {
+                switch (priv->active_region) {
                 case TOP:
                 case TOP_LEFT:
                 case TOP_RIGHT:
@@ -758,17 +764,17 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
                 if (left < 0 || top < 0 ||
                     right > pb_width || bottom > pb_height ||
                     width < min_width || height < min_height) {
-                        left = area->priv->crop.x;
-                        right = area->priv->crop.x + area->priv->crop.width - 1;
-                        top = area->priv->crop.y;
-                        bottom = area->priv->crop.y + area->priv->crop.height - 1;
+                        left = priv->crop.x;
+                        right = priv->crop.x + priv->crop.width - 1;
+                        top = priv->crop.y;
+                        bottom = priv->crop.y + priv->crop.height - 1;
                 }
         }
 
-        area->priv->crop.x = left;
-        area->priv->crop.y = top;
-        area->priv->crop.width = right - left + 1;
-        area->priv->crop.height = bottom - top + 1;
+        priv->crop.x = left;
+        priv->crop.y = top;
+        priv->crop.width = right - left + 1;
+        priv->crop.height = bottom - top + 1;
 
         crop_to_widget (area, &damage);
         gtk_widget_queue_draw_area (widget,
@@ -793,16 +799,17 @@ um_crop_area_button_press_event (GtkWidget      *widget,
                                  GdkEventButton *event)
 {
         UmCropArea *area = UM_CROP_AREA (widget);
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         GdkRectangle crop;
 
-        if (area->priv->browse_pixbuf == NULL)
+        if (priv->browse_pixbuf == NULL)
                 return FALSE;
 
         crop_to_widget (area, &crop);
 
-        area->priv->last_press_x = (event->x - area->priv->image.x) / area->priv->scale;
-        area->priv->last_press_y = (event->y - area->priv->image.y) / area->priv->scale;
-        area->priv->active_region = find_location (&crop, event->x, event->y);
+        priv->last_press_x = (event->x - priv->image.x) / priv->scale;
+        priv->last_press_y = (event->y - priv->image.y) / priv->scale;
+        priv->active_region = find_location (&crop, event->x, event->y);
 
         gtk_widget_queue_draw_area (widget,
                                     crop.x - 1, crop.y - 1,
@@ -826,16 +833,17 @@ um_crop_area_button_release_event (GtkWidget      *widget,
                                    GdkEventButton *event)
 {
         UmCropArea *area = UM_CROP_AREA (widget);
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         GdkRectangle crop;
 
-        if (area->priv->browse_pixbuf == NULL)
+        if (priv->browse_pixbuf == NULL)
                 return FALSE;
 
         crop_to_widget (area, &crop);
 
-        area->priv->last_press_x = -1;
-        area->priv->last_press_y = -1;
-        area->priv->active_region = OUTSIDE;
+        priv->last_press_x = -1;
+        priv->last_press_y = -1;
+        priv->active_region = OUTSIDE;
 
         gtk_widget_queue_draw_area (widget,
                                     crop.x - 1, crop.y - 1,
@@ -847,19 +855,19 @@ um_crop_area_button_release_event (GtkWidget      *widget,
 static void
 um_crop_area_finalize (GObject *object)
 {
-        UmCropArea *area = UM_CROP_AREA (object);
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (UM_CROP_AREA (object));
 
-        if (area->priv->browse_pixbuf) {
-                g_object_unref (area->priv->browse_pixbuf);
-                area->priv->browse_pixbuf = NULL;
+        if (priv->browse_pixbuf) {
+                g_object_unref (priv->browse_pixbuf);
+                priv->browse_pixbuf = NULL;
         }
-        if (area->priv->pixbuf) {
-                g_object_unref (area->priv->pixbuf);
-                area->priv->pixbuf = NULL;
+        if (priv->pixbuf) {
+                g_object_unref (priv->pixbuf);
+                priv->pixbuf = NULL;
         }
-        if (area->priv->color_shifted) {
-                g_object_unref (area->priv->color_shifted);
-                area->priv->color_shifted = NULL;
+        if (priv->color_shifted) {
+                g_object_unref (priv->color_shifted);
+                priv->color_shifted = NULL;
         }
 
         G_OBJECT_CLASS (um_crop_area_parent_class)->finalize (object);
@@ -876,29 +884,26 @@ um_crop_area_class_init (UmCropAreaClass *klass)
         widget_class->button_press_event = um_crop_area_button_press_event;
         widget_class->button_release_event = um_crop_area_button_release_event;
         widget_class->motion_notify_event = um_crop_area_motion_notify_event;
-
-        g_type_class_add_private (klass, sizeof (UmCropAreaPrivate));
 }
 
 static void
 um_crop_area_init (UmCropArea *area)
 {
-        area->priv = (G_TYPE_INSTANCE_GET_PRIVATE ((area), UM_TYPE_CROP_AREA,
-                                                   UmCropAreaPrivate));
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
 
         gtk_widget_add_events (GTK_WIDGET (area), GDK_POINTER_MOTION_MASK |
                                GDK_BUTTON_PRESS_MASK |
                                GDK_BUTTON_RELEASE_MASK);
 
-        area->priv->scale = 0.0;
-        area->priv->image.x = 0;
-        area->priv->image.y = 0;
-        area->priv->image.width = 0;
-        area->priv->image.height = 0;
-        area->priv->active_region = OUTSIDE;
-        area->priv->base_width = 48;
-        area->priv->base_height = 48;
-        area->priv->aspect = 1;
+        priv->scale = 0.0;
+        priv->image.x = 0;
+        priv->image.y = 0;
+        priv->image.width = 0;
+        priv->image.height = 0;
+        priv->active_region = OUTSIDE;
+        priv->base_width = 48;
+        priv->base_height = 48;
+        priv->aspect = 1;
 }
 
 /*
@@ -926,19 +931,20 @@ um_crop_area_new (void)
 GdkPixbuf *
 um_crop_area_get_picture (UmCropArea *area)
 {
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         gint width, height;
 
-        if (area->priv->browse_pixbuf == NULL)
+        if (priv->browse_pixbuf == NULL)
                 return NULL;
 
-        width = gdk_pixbuf_get_width (area->priv->browse_pixbuf);
-        height = gdk_pixbuf_get_height (area->priv->browse_pixbuf);
-        width = MIN (area->priv->crop.width, width - area->priv->crop.x);
-        height = MIN (area->priv->crop.height, height - area->priv->crop.y);
+        width = gdk_pixbuf_get_width (priv->browse_pixbuf);
+        height = gdk_pixbuf_get_height (priv->browse_pixbuf);
+        width = MIN (priv->crop.width, width - priv->crop.x);
+        height = MIN (priv->crop.height, height - priv->crop.y);
 
-        return gdk_pixbuf_new_subpixbuf (area->priv->browse_pixbuf,
-                                         area->priv->crop.x,
-                                         area->priv->crop.y,
+        return gdk_pixbuf_new_subpixbuf (priv->browse_pixbuf,
+                                         priv->crop.x,
+                                         priv->crop.y,
                                          width, height);
 }
 
@@ -954,15 +960,16 @@ void
 um_crop_area_set_picture (UmCropArea *area,
                           GdkPixbuf  *pixbuf)
 {
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         gint width;
         gint height;
 
-        if (area->priv->browse_pixbuf) {
-                g_object_unref (area->priv->browse_pixbuf);
-                area->priv->browse_pixbuf = NULL;
+        if (priv->browse_pixbuf) {
+                g_object_unref (priv->browse_pixbuf);
+                priv->browse_pixbuf = NULL;
         }
         if (pixbuf) {
-                area->priv->browse_pixbuf = g_object_ref (pixbuf);
+                priv->browse_pixbuf = g_object_ref (pixbuf);
                 width = gdk_pixbuf_get_width (pixbuf);
                 height = gdk_pixbuf_get_height (pixbuf);
         } else {
@@ -970,16 +977,16 @@ um_crop_area_set_picture (UmCropArea *area,
                 height = 0;
         }
 
-        area->priv->crop.width = 2 * area->priv->base_width;
-        area->priv->crop.height = 2 * area->priv->base_height;
-        area->priv->crop.x = (width - area->priv->crop.width) / 2;
-        area->priv->crop.y = (height - area->priv->crop.height) / 2;
+        priv->crop.width = 2 * priv->base_width;
+        priv->crop.height = 2 * priv->base_height;
+        priv->crop.x = (width - priv->crop.width) / 2;
+        priv->crop.y = (height - priv->crop.height) / 2;
 
-        area->priv->scale = 0.0;
-        area->priv->image.x = 0;
-        area->priv->image.y = 0;
-        area->priv->image.width = 0;
-        area->priv->image.height = 0;
+        priv->scale = 0.0;
+        priv->image.x = 0;
+        priv->image.y = 0;
+        priv->image.width = 0;
+        priv->image.height = 0;
 
         gtk_widget_queue_draw (GTK_WIDGET (area));
 }
@@ -997,11 +1004,12 @@ um_crop_area_set_min_size (UmCropArea *area,
                            gint        width,
                            gint        height)
 {
-        area->priv->base_width = width;
-        area->priv->base_height = height;
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        priv->base_width = width;
+        priv->base_height = height;
 
-        if (area->priv->aspect > 0) {
-                area->priv->aspect = area->priv->base_width / (gdouble)area->priv->base_height;
+        if (priv->aspect > 0) {
+                priv->aspect = priv->base_width / (gdouble)priv->base_height;
         }
 }
 
@@ -1017,11 +1025,13 @@ void
 um_crop_area_set_constrain_aspect (UmCropArea *area,
                                    gboolean    constrain)
 {
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+
         if (constrain) {
-                area->priv->aspect = area->priv->base_width / (gdouble)area->priv->base_height;
+                priv->aspect = priv->base_width / (gdouble)priv->base_height;
         }
         else {
-                area->priv->aspect = -1;
+                priv->aspect = -1;
         }
 }
 

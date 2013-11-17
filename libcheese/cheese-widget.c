@@ -66,11 +66,7 @@ struct _CheeseWidgetPrivate
   GError *error;
 };
 
-#define CHEESE_WIDGET_GET_PRIVATE(o)                     \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_WIDGET, \
-                                CheeseWidgetPrivate))
-
-G_DEFINE_TYPE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK);
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK);
 
 void setup_camera (CheeseWidget *widget);
 
@@ -193,7 +189,7 @@ cheese_widget_set_problem_page (CheeseWidget *widget,
 static void
 cheese_widget_init (CheeseWidget *widget)
 {
-  CheeseWidgetPrivate *priv = widget->priv = CHEESE_WIDGET_GET_PRIVATE (widget);
+  CheeseWidgetPrivate *priv = widget->priv = cheese_widget_get_instance_private (widget);
   GtkWidget           *box;
   ClutterActor        *stage, *frame;
   ClutterColor black = { 0x00, 0x00, 0x00, 0xff };
@@ -398,8 +394,6 @@ cheese_widget_class_init (CheeseWidgetClass *klass)
                                               G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
-
-  g_type_class_add_private (klass, sizeof (CheeseWidgetPrivate));
 }
 
 /**

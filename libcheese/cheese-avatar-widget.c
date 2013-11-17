@@ -70,11 +70,7 @@ struct _CheeseAvatarWidgetPrivate
 
 static GParamSpec *properties[PROP_LAST];
 
-#define CHEESE_AVATAR_WIDGET_GET_PRIVATE(o)                     \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_AVATAR_WIDGET, \
-                                CheeseAvatarWidgetPrivate))
-
-G_DEFINE_TYPE (CheeseAvatarWidget, cheese_avatar_widget, GTK_TYPE_BIN);
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseAvatarWidget, cheese_avatar_widget, GTK_TYPE_BIN);
 
 /*
  * cheese_widget_photo_taken_cb:
@@ -239,7 +235,7 @@ cheese_avatar_widget_init (CheeseAvatarWidget *widget)
   GtkWidget *frame;
   GtkWidget *image;
 
-  CheeseAvatarWidgetPrivate *priv = widget->priv = CHEESE_AVATAR_WIDGET_GET_PRIVATE (widget);
+  CheeseAvatarWidgetPrivate *priv = widget->priv = cheese_avatar_widget_get_instance_private (widget);
 
   priv->flash = cheese_flash_new (GTK_WIDGET (widget));
 
@@ -332,8 +328,6 @@ cheese_avatar_widget_class_init (CheeseAvatarWidgetClass *klass)
                                                  G_PARAM_READABLE);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
-
-  g_type_class_add_private (klass, sizeof (CheeseAvatarWidgetPrivate));
 }
 
 /**

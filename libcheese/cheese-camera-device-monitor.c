@@ -59,17 +59,6 @@
  * CheeseCameraDeviceMonitor::removed signal when an event happens.
  */
 
-G_DEFINE_TYPE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_OBJECT)
-
-#define CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o),                               \
-                                                                                  CHEESE_TYPE_CAMERA_DEVICE_MONITOR, \
-                                                                                  CheeseCameraDeviceMonitorPrivate))
-
-#define CHEESE_CAMERA_DEVICE_MONITOR_ERROR cheese_camera_device_monitor_error_quark ()
-
-GST_DEBUG_CATEGORY (cheese_device_monitor_cat);
-#define GST_CAT_DEFAULT cheese_device_monitor_cat
-
 struct _CheeseCameraDeviceMonitorPrivate
 {
 #ifdef HAVE_UDEV
@@ -78,6 +67,13 @@ struct _CheeseCameraDeviceMonitorPrivate
   guint filler;
 #endif /* HAVE_UDEV */
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_OBJECT)
+
+#define CHEESE_CAMERA_DEVICE_MONITOR_ERROR cheese_camera_device_monitor_error_quark ()
+
+GST_DEBUG_CATEGORY (cheese_device_monitor_cat);
+#define GST_CAT_DEFAULT cheese_device_monitor_cat
 
 enum
 {
@@ -424,15 +420,13 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
                                            NULL, NULL,
                                            g_cclosure_marshal_VOID__STRING,
                                            G_TYPE_NONE, 1, G_TYPE_STRING);
-
-  g_type_class_add_private (klass, sizeof (CheeseCameraDeviceMonitorPrivate));
 }
 
 static void
 cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 {
 #ifdef HAVE_UDEV
-  CheeseCameraDeviceMonitorPrivate *priv = monitor->priv = CHEESE_CAMERA_DEVICE_MONITOR_GET_PRIVATE (monitor);
+  CheeseCameraDeviceMonitorPrivate *priv = monitor->priv = cheese_camera_device_monitor_get_instance_private (monitor);
   const gchar *const subsystems[] = {"video4linux", NULL};
 
   priv->client = g_udev_client_new (subsystems);

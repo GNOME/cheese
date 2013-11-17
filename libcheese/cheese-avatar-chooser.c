@@ -64,11 +64,7 @@ struct _CheeseAvatarChooserPrivate
 
 static GParamSpec *properties[PROP_LAST];
 
-#define CHEESE_AVATAR_CHOOSER_GET_PRIVATE(o)                     \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_AVATAR_CHOOSER, \
-                                CheeseAvatarChooserPrivate))
-
-G_DEFINE_TYPE (CheeseAvatarChooser, cheese_avatar_chooser, GTK_TYPE_DIALOG);
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseAvatarChooser, cheese_avatar_chooser, GTK_TYPE_DIALOG);
 
 static void
 update_select_button (CheeseAvatarWidget  *widget,
@@ -88,7 +84,7 @@ update_select_button (CheeseAvatarWidget  *widget,
 static void
 cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
-  CheeseAvatarChooserPrivate *priv = chooser->priv = CHEESE_AVATAR_CHOOSER_GET_PRIVATE (chooser);
+  CheeseAvatarChooserPrivate *priv = chooser->priv = cheese_avatar_chooser_get_instance_private (chooser);
 
   gtk_dialog_add_buttons (GTK_DIALOG (chooser),
                           _("_Cancel"),
@@ -151,8 +147,6 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
                                                  G_PARAM_READABLE);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
-
-  g_type_class_add_private (klass, sizeof (CheeseAvatarChooserPrivate));
 }
 
 /**

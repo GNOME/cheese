@@ -53,12 +53,6 @@
  * #CheeseWidget.
  */
 
-G_DEFINE_TYPE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
-
-#define CHEESE_CAMERA_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA, CheeseCameraPrivate))
-
-#define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
-
 struct _CheeseCameraPrivate
 {
   GstBus *bus;
@@ -101,6 +95,12 @@ struct _CheeseCameraPrivate
 
   CheeseCameraDeviceMonitor *monitor;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
+
+#define CHEESE_CAMERA_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA, CheeseCameraPrivate))
+
+#define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
 
 enum
 {
@@ -1464,14 +1464,12 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                            G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
-
-  g_type_class_add_private (klass, sizeof (CheeseCameraPrivate));
 }
 
 static void
 cheese_camera_init (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = camera->priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = camera->priv = cheese_camera_get_instance_private (camera);
 
   priv->is_recording            = FALSE;
   priv->pipeline_is_playing     = FALSE;

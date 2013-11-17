@@ -39,11 +39,6 @@
  * for photos and videos.
  */
 
-G_DEFINE_TYPE (CheeseFileUtil, cheese_fileutil, G_TYPE_OBJECT)
-
-#define CHEESE_FILEUTIL_GET_PRIVATE(o) \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_FILEUTIL, CheeseFileUtilPrivate))
-
 struct _CheeseFileUtilPrivate
 {
   gchar *video_path;
@@ -51,6 +46,8 @@ struct _CheeseFileUtilPrivate
   guint  burst_count;
   gchar *burst_raw_name;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseFileUtil, cheese_fileutil, G_TYPE_OBJECT)
 
 static gchar *
 cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
@@ -241,14 +238,12 @@ cheese_fileutil_class_init (CheeseFileUtilClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
   object_class->finalize = cheese_fileutil_finalize;
-
-  g_type_class_add_private (klass, sizeof (CheeseFileUtilPrivate));
 }
 
 static void
 cheese_fileutil_init (CheeseFileUtil *fileutil)
 {
-  CheeseFileUtilPrivate *priv = fileutil->priv = CHEESE_FILEUTIL_GET_PRIVATE (fileutil);
+  CheeseFileUtilPrivate *priv = fileutil->priv = cheese_fileutil_get_instance_private (fileutil);
 
   GSettings *settings;
 

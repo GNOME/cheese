@@ -57,7 +57,6 @@ struct _UmCropAreaClass {
 struct _UmCropArea {
 	/*< private >*/
         GtkDrawingArea parent_instance;
-        UmCropAreaPrivate *priv;
 };
 
 GType      um_crop_area_get_type             (void) G_GNUC_CONST;

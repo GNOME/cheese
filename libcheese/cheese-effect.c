@@ -42,17 +42,14 @@ enum
 
 static GParamSpec *properties[PROP_LAST];
 
-G_DEFINE_TYPE (CheeseEffect, cheese_effect, G_TYPE_OBJECT)
-
-#define CHEESE_EFFECT_GET_PRIVATE(o) \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_EFFECT, CheeseEffectPrivate))
-
 struct _CheeseEffectPrivate
 {
   gchar *name;
   gchar *pipeline_desc;
   GstElement *control_valve;
 };
+
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseEffect, cheese_effect, G_TYPE_OBJECT)
 
 static void
 cheese_effect_get_property (GObject *object, guint property_id,
@@ -123,8 +120,6 @@ static void
 cheese_effect_class_init (CheeseEffectClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
-
-  g_type_class_add_private (klass, sizeof (CheeseEffectPrivate));
 
   object_class->get_property = cheese_effect_get_property;
   object_class->set_property = cheese_effect_set_property;
@@ -252,7 +247,7 @@ cheese_effect_disable_preview (CheeseEffect *effect)
 static void
 cheese_effect_init (CheeseEffect *self)
 {
-  self->priv = CHEESE_EFFECT_GET_PRIVATE (self);
+  self->priv = cheese_effect_get_instance_private (self);
 }
 
 /**

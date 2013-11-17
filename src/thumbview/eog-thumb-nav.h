@@ -32,7 +32,6 @@ G_BEGIN_DECLS
 
 typedef struct _EogThumbNav EogThumbNav;
 typedef struct _EogThumbNavClass EogThumbNavClass;
-typedef struct _EogThumbNavPrivate EogThumbNavPrivate;
 
 #define EOG_TYPE_THUMB_NAV (eog_thumb_nav_get_type ())
 #define EOG_THUMB_NAV(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), EOG_TYPE_THUMB_NAV, EogThumbNav))
@@ -44,8 +43,6 @@ typedef struct _EogThumbNavPrivate EogThumbNavPrivate;
 struct _EogThumbNav
 {
   GtkBox base_instance;
-
-  EogThumbNavPrivate *priv;
 };
 
 struct _EogThumbNavClass

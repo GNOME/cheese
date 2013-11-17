@@ -26,24 +26,19 @@
 
 #include "totem-aspect-frame.h"
 
-G_DEFINE_TYPE (TotemAspectFrame, totem_aspect_frame, CLUTTER_TYPE_ACTOR)
+typedef struct 
+{
+  guint expand : 1;
+  gdouble rotation;
+} TotemAspectFramePrivate;
 
-#define ASPECT_FRAME_PRIVATE(o)                         \
-  (G_TYPE_INSTANCE_GET_PRIVATE ((o),                    \
-                                TOTEM_TYPE_ASPECT_FRAME,   \
-                                TotemAspectFramePrivate))
+G_DEFINE_TYPE_WITH_PRIVATE (TotemAspectFrame, totem_aspect_frame, CLUTTER_TYPE_ACTOR)
 
 enum
 {
   PROP_0,
 
   PROP_EXPAND,
-};
-
-struct _TotemAspectFramePrivate
-{
-  guint expand : 1;
-  gdouble rotation;
 };
 
 
@@ -184,7 +179,7 @@ totem_aspect_frame_set_rotation_internal (TotemAspectFrame *frame,
 					  gdouble           rotation,
 					  gboolean          animate)
 {
-  TotemAspectFramePrivate *priv = frame->priv;
+  TotemAspectFramePrivate *priv = totem_aspect_frame_get_instance_private (frame);
   ClutterActor *actor;
   gfloat frame_width, frame_height;
   gfloat child_width, child_height;
@@ -243,7 +238,7 @@ totem_aspect_frame_allocate (ClutterActor           *actor,
   ClutterActorBox child_box;
   gfloat aspect, child_aspect, width, height, box_width, box_height;
 
-  TotemAspectFramePrivate *priv = TOTEM_ASPECT_FRAME (actor)->priv;
+  TotemAspectFramePrivate *priv = totem_aspect_frame_get_instance_private (TOTEM_ASPECT_FRAME (actor));
 
   CLUTTER_ACTOR_CLASS (totem_aspect_frame_parent_class)->
     allocate (actor, box, flags);
@@ -289,7 +284,7 @@ static void
 totem_aspect_frame_paint (ClutterActor *actor)
 {
   ClutterActor *child;
-  TotemAspectFramePrivate *priv = TOTEM_ASPECT_FRAME (actor)->priv;
+  TotemAspectFramePrivate *priv = totem_aspect_frame_get_instance_private (TOTEM_ASPECT_FRAME (actor));
 
   child = clutter_actor_get_child_at_index (actor, 0);
 
@@ -316,7 +311,7 @@ totem_aspect_frame_pick (ClutterActor       *actor,
 {
   ClutterActorBox box;
   ClutterActor *child;
-  TotemAspectFramePrivate *priv = TOTEM_ASPECT_FRAME (actor)->priv;
+  TotemAspectFramePrivate *priv = totem_aspect_frame_get_instance_private (TOTEM_ASPECT_FRAME (actor));
 
   clutter_actor_get_allocation_box (actor, &box);
 
@@ -345,8 +340,6 @@ totem_aspect_frame_class_init (TotemAspectFrameClass *klass)
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
   ClutterActorClass *actor_class = CLUTTER_ACTOR_CLASS (klass);
 
-  g_type_class_add_private (klass, sizeof (TotemAspectFramePrivate));
-
   object_class->get_property = totem_aspect_frame_get_property;
   object_class->set_property = totem_aspect_frame_set_property;
   object_class->dispose = totem_aspect_frame_dispose;
@@ -370,7 +363,6 @@ totem_aspect_frame_class_init (TotemAspectFrameClass *klass)
 static void
 totem_aspect_frame_init (TotemAspectFrame *self)
 {
-  self->priv = ASPECT_FRAME_PRIVATE (self);
   clutter_actor_set_pivot_point (CLUTTER_ACTOR (self), 0.5f, 0.5f);
 }
 
@@ -387,7 +379,7 @@ totem_aspect_frame_set_expand (TotemAspectFrame *frame, gboolean expand)
 
   g_return_if_fail (TOTEM_IS_ASPECT_FRAME (frame));
 
-  priv = frame->priv;
+  priv = totem_aspect_frame_get_instance_private (frame); 
   if (priv->expand != expand)
     {
       priv->expand = expand;
@@ -400,8 +392,11 @@ totem_aspect_frame_set_expand (TotemAspectFrame *frame, gboolean expand)
 gboolean
 totem_aspect_frame_get_expand (TotemAspectFrame *frame)
 {
+  TotemAspectFramePrivate *priv;
+
   g_return_val_if_fail (TOTEM_IS_ASPECT_FRAME (frame), FALSE);
-  return frame->priv->expand;
+  priv = totem_aspect_frame_get_instance_private (frame); 
+  return priv->expand;
 }
 
 void
@@ -417,34 +412,39 @@ void
 totem_aspect_frame_set_rotation (TotemAspectFrame *frame,
 				 gdouble           rotation)
 {
+  TotemAspectFramePrivate *priv;
+
   g_return_if_fail (TOTEM_IS_ASPECT_FRAME (frame));
   g_return_if_fail (fmod (rotation, 90.0) == 0.0);
 
+  priv = totem_aspect_frame_get_instance_private (frame); 
   rotation = fmod (rotation, 360.0);
 
   /* When animating, make sure that we go in the right direction,
    * otherwise we'll spin in the wrong direction going back to 0 from 270 */
-  if (rotation == 0.0 && frame->priv->rotation == 270.0)
+  if (rotation == 0.0 && priv->rotation == 270.0)
     rotation = 360.0;
-  else if (rotation == 90.0 && frame->priv->rotation == 360.0)
+  else if (rotation == 90.0 && priv->rotation == 360.0)
     totem_aspect_frame_set_rotation_internal (frame, 0.0, FALSE);
-  else if (rotation == 270.0 && fmod (frame->priv->rotation, 360.0) == 0.0)
+  else if (rotation == 270.0 && fmod (priv->rotation, 360.0) == 0.0)
     totem_aspect_frame_set_rotation_internal (frame, 360.0, FALSE);
 
   g_debug ("Setting rotation to '%lf'", rotation);
 
-  frame->priv->rotation = rotation;
+  priv->rotation = rotation;
   totem_aspect_frame_set_rotation_internal (frame, rotation, TRUE);
 }
 
 gdouble
 totem_aspect_frame_get_rotation (TotemAspectFrame *frame)
 {
+  TotemAspectFramePrivate *priv;
   gdouble rotation;
 
   g_return_val_if_fail (TOTEM_IS_ASPECT_FRAME (frame), 0.0);
 
-  rotation = fmod (frame->priv->rotation, 360.0);
+  priv = totem_aspect_frame_get_instance_private (frame); 
+  rotation = fmod (priv->rotation, 360.0);
   g_debug ("Got rotation %lf", rotation);
 
   return rotation;
