@@ -1,6 +1,132 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.11.2
+  - Show top bar when moving mouse in fullscreen mode
+
+    Store whether the window was maximized before entering fullscreeen mode,
+    and return to the same state when exiting fullscreen.
+
+    https://wiki.gnome.org/Design/Apps/Cheese#Full_Screen
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=711811
+  - Use new G_DEFINE_TYPE_WITH_PRIVATE macro
+  - Remove obsolete enum type files
+  - Fix memory leak in cheese_thumb_view_remove_item()
+  - Add a finalize method to CheeseEffect
+
+    The data in CheeseEffectPrivate was not being freed, leading to memory
+    leaks.
+  - Fix memory leak in cheese_thumb_view_monitor_cb()
+  - Remove obsolete CheeseCameraEffect from VAPI
+  - Fix cheese_camera_get_video_formats() in VAPI
+  - CheeseCamera VAPI fixes
+  - Fix memory leak in cheese_camera_set_tags()
+  - Mark CheeseVideoFormat as a boxed type in the VAPI
+
+    It was only marked as a compact struct, and so was never freed.
+  - Mark CheeseFileutil strings as owned
+
+    The strings were marked as unowned, which meant that the Vala compiler
+    did not emit free functions and the strings were leaked.
+  - Fix leaks in cheese_camera_set_video_recording()
+  - Fix leak of GtkSizeGroup in CheeseAvatarWidget
+  - Chain up to finalize in UmCropArea
+  - Add AppData description
+  - Fixed deprecated warning in on_countdown_toggle
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=712151
+  - Preprocess thumbnail frame PNG in GResource
+
+    Also, add SVG images which were forgotten in the last commit.
+  - Move PNG and SVG images into GResource
+  - Add domain attribute to GtkBuilder interfaces
+  - Move application menu into GtkBuilder resource
+  - Make CheeseMainWindow a template widget
+  - Make CheesePreferencesDialog a template widget
+  - Move ClutterScript JSON into GResource
+  - Use GResource for CSS snippet
+  - Refactor GtkScale code in CheesePreferences
+    Move mark definitions into GtkBuilder. Convert GtkHScale to GtkScale
+
+    with a horizontal orientation. Use g_settings_bind() to link GSettings
+    values to UI elements, and remove unnecessary signal handlers.
+  - Fix leak in CheeseCameraDeviceMonitor test
+  - Fixed unused-but-set warning in EogThumbNav
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=711841
+  - Link the effect browsing buttons together
+  - Make all buttons have GTK_RELIEF_NORMAL
+  - Change header bar when choosing effects
+
+    https://wiki.gnome.org/GnomeGoals/HeaderBars
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=711714
+  - Remove unused CheeseWindow.set_mode ()
+  - Change titlebar to use GtkHeaderBar
+
+    https://wiki.gnome.org/GnomeGoals/HeaderBars
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=711714
+  - Remove unused countdown_action
+  - Add a border around the button area box
+  - Convert some GtkGrid widgets to GtkBox
+  - Remove mode and shoot actions from the app menu
+
+    The current GNOME HIG suggests that actions which are already accessible
+    from the application window should not be duplicated in the application
+    menu:
+
+    https://wiki.gnome.org/Design/HIG/ApplicationMenus
+  - Use symbolic icon for leave fullscreen button
+  - Make shoot action button wider
+  - Link mode buttons together
+  - Avoid using GtkStock, as it is deprecated
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=710217
+  - Centered the capture icon
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=711680
+  - Change stock icons to symbolic icons
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=711680
+  - Use symbolic icons for photo and video button
+
+    Using the stock "record" icon for taking photos is misleading, so use a
+    symbolic "webcam" icon for both taking a photo and recording a video.
+    Update the "stop" icon to also be a symbolic icon.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=668599
+  - Depend on GTK+ 3.10.0 for GtkHeaderBar
+  - Fix memory leak in cheese_camera_device_get_caps()
+  - Fix cheese_thumb_view_append_item() memory leaks
+
+    Fix several memory leaks found with valgrind.
+  - Fix memory leak when creating a new CheeseCamera
+  - Fix some memory leaks in cheese_fileutil_init()
+  - Make static string array const
+  - Simplify looping over GStrv
+  - Make cheese_camera_device_monitor_set_up_device static
+  - Revert "Use ClutterGst 3.0"
+
+    This reverts commit 5061d1cdaf7ad9eb733047455b5b5d7a4551eb93. The
+    jhbuild 3.12 moduleset is using the clutter-gst-2.0 branch.
+  - libcheese: Export cheese_avatar_widget_new
+  - libcheese: Distribute cheese-avatar-widget.h
+
+    So external consumers can use it.
+  - Use ClutterGst 3.0
+  - Post-release version bump to 3.11.2
+  - Added/Updated Translations
+    - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+    - es, courtesy of Daniel Mustieles
+    - gl, courtesy of Fran Dieguez
+    - ml, courtesy of Anish Sheela
+    - sl, courtesy of Matej Urbančič
+    - ta, courtesy of Shantha kumar
+    - th, courtesy of Akom Chotiphantawanon
+  - Added/Updated Documentation
+
 version 3.11.1
   - Add CheeseAvatarWidget to API reference
   - Fix CheeseAvatarChooser test
