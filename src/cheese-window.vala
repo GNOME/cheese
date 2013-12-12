@@ -1062,7 +1062,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   [CCode (instance_pos = -1)]
   public void on_prev_effects_page (Gtk.Action action)
   {
-    if (current_effects_page != 0)
+    if (is_previous_effects_page ())
     {
       activate_effects_page ((int)current_effects_page - 1);
     }
@@ -1076,7 +1076,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
   [CCode (instance_pos = -1)]
   public void on_next_effects_page (Gtk.Action action)
   {
-    if (current_effects_page != (effects_manager.effects.length () / EFFECTS_PER_PAGE))
+    if (is_next_effects_page ())
     {
       activate_effects_page ((int)current_effects_page + 1);
     }
@@ -1133,10 +1133,21 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    */
   private void setup_effects_page_switch_sensitivity ()
   {
-    effects_page_prev_action.sensitive = (is_effects_selector_active && current_effects_page != 0);
-    effects_page_next_action.sensitive =
-      (is_effects_selector_active && current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE);
+    effects_page_prev_action.sensitive = is_effects_selector_active
+                                         && is_previous_effects_page ();
+    effects_page_next_action.sensitive = is_effects_selector_active
+                                         && is_next_effects_page ();
   }
+
+    private bool is_next_effects_page ()
+    {
+        return current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE;
+    }
+
+    private bool is_previous_effects_page ()
+    {
+        return current_effects_page != 0;
+    }
 
   /**
    * Toggle the visibility of the effects selector.
