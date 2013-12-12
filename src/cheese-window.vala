@@ -940,7 +940,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     private void on_effects_previous ()
     {
-        if (current_effects_page != 0)
+        if (is_previous_effects_page ())
         {
             activate_effects_page ((int)current_effects_page - 1);
         }
@@ -951,8 +951,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     private void on_effects_next ()
     {
-        if (current_effects_page != (effects_manager.effects.length ()
-                                     / EFFECTS_PER_PAGE))
+        if (is_next_effects_page ())
         {
             activate_effects_page ((int)current_effects_page + 1);
         }
@@ -1018,9 +1017,19 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         var effects_previous = this.lookup_action ("effects-previous") as SimpleAction;
 
         effects_next.set_enabled (is_effects_selector_active
-                                  && current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE);
+                                  && is_next_effects_page ());
         effects_previous.set_enabled (is_effects_selector_active
-                                      && current_effects_page != 0);
+                                      && is_previous_effects_page ());
+    }
+
+    private bool is_next_effects_page ()
+    {
+        return current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE;
+    }
+
+    private bool is_previous_effects_page ()
+    {
+        return current_effects_page != 0;
     }
 
     /**
