@@ -1141,7 +1141,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     private bool is_next_effects_page ()
     {
-        return current_effects_page != effects_manager.effects.length () / EFFECTS_PER_PAGE;
+        return (current_effects_page + 1) * EFFECTS_PER_PAGE < effects_manager.effects.length ();
     }
 
     private bool is_previous_effects_page ()
