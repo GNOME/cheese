@@ -1,6 +1,29 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.11.3
+  - Validate AppData XML during distcheck
+
+    Force validation of AppData XML during distcheck, if a recent enough
+    version of appdata-tools is available.
+  - Fix an empty last page in the effects selector
+
+    If there were exactly the same number of effects available as were shown
+    in the effects selector, an empty last page was shown. Fix a condition
+    to test that there are more spaces for effects in the selector than
+    there are available effects. Fixes bug 720178.
+  - Refactor effects page next/previous logic
+
+    Add is_next_effects_page() and is_previous_effects_page() to
+    CheeseWindow.
+  - Post-release version bump to 3.11.3
+  - Added/Updated Translations
+    - eo, courtesy of Ryan Lortie
+    - gl, courtesy of Fran Dieguez
+    - pt_BR, courtesy of Fábio Nogueira
+    - ta, courtesy of Shantha kumar
+    - th, courtesy of Akom Chotiphantawanon
+
 version 3.11.2
   - Show top bar when moving mouse in fullscreen mode
 
