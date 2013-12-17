@@ -539,7 +539,11 @@ MAINTAINERCLEANFILES = \
 	omf.make \
 	xmldocs.make
 
-DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc --enable-introspection --enable-man
+DISTCHECK_CONFIGURE_FLAGS = \
+	--enable-appdata-check \
+	--enable-gtk-doc \
+	--enable-introspection \
+	--enable-man
 
 CHANGELOG_START = 2.26.0
 
