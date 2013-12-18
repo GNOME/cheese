@@ -5,7 +5,7 @@
 PACKAGE_NAME="Cheese"
 PACKAGE_NEWS_FILE="NEWS"
 PACKAGE_ABOUT="Take photos and videos with your webcam, with fun graphical effects"
-PACKAGE_WEBSITE="http://projects.gnome.org/cheese/"
+PACKAGE_WEBSITE="https://wiki.gnome.org/Apps/Cheese/"
 GNOME_SERVER="http://download.gnome.org/sources/"
 
 TO="gnome-announce-list@gnome.org"
@@ -20,7 +20,7 @@ if [ ! -d ".git" ]; then
 fi
 
 PACKAGE_MODULE=$(echo $PACKAGE_NAME | tr "[:upper:]" "[:lower:]")
-PACKAGE_SCREENSHOTS="${PACKAGE_WEBSITE}tour"
+PACKAGE_SCREENSHOTS="${PACKAGE_WEBSITE}Tour"
 PACKAGE_VERSION=$(cat $PACKAGE_NEWS_FILE | grep -m1 version | awk '{ print $2 }')
 #PACKAGE_VERSION=$(cat configure.ac | grep AC_INIT | awk '{print $2}' | sed "s/)//")
 PACKAGE_VERSION=$(cat configure.ac | grep -A 1 AC_INIT | grep -o "[0-9]\.[0-9]\{1,2\}\.[0-9]\{1,2\}")

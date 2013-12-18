@@ -4,7 +4,7 @@ AC_INIT([Cheese],
         [3.11.4],
         [https://bugzilla.gnome.org/enter_bug.cgi?product=cheese],
         [cheese],
-        [http://projects.gnome.org/cheese/])
+        [https://wiki.gnome.org/Apps/Cheese])
 
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([cheese-config.h])
