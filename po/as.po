@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Amitakhya Phukan <aphukan@fedoraproject.org>, 2009.
-# Nilamdyuti Goswami <ngoswami@redhat.com>, 2011, 2012, 2013.
+# Nilamdyuti Goswami <ngoswami@redhat.com>, 2011, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: as\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-06 16:04+0000\n"
-"PO-Revision-Date: 2013-09-12 14:30+0530\n"
+"POT-Creation-Date: 2013-12-18 14:38+0000\n"
+"PO-Revision-Date: 2014-01-21 20:33+0630\n"
 "Last-Translator: Nilamdyuti Goswami <ngoswami@redhat.com>\n"
 "Language-Team: Assamese <kde-i18n-doc@kde.org>\n"
 "Language: as_IN\n"
@@ -19,50 +19,81 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-appmenu.ui.h:1
+msgid "_Fullscreen"
+msgstr "সম্পূৰ্ণপৰ্দা (_F)"
+
+#: ../data/cheese-appmenu.ui.h:2
+msgid "P_references"
+msgstr "পছন্দসমূহ (_r)"
+
+#: ../data/cheese-appmenu.ui.h:3 ../data/cheese-prefs.ui.h:18
+msgid "_Help"
+msgstr "সহায় (_H)"
+
+#: ../data/cheese-appmenu.ui.h:4
+msgid "_About"
+msgstr "বিষয়ে (_A)"
+
+#: ../data/cheese-appmenu.ui.h:5
+msgid "_Quit"
+msgstr "প্ৰস্থান (_Q)"
+
+#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:95
+#: ../src/cheese-window.vala:1311
+msgid "Take a Photo"
+msgstr "এটা ফ'টো লওক"
+
+#: ../data/cheese-main-window.ui.h:2
 msgid "Photo mode"
 msgstr "ফ'টো অৱস্থা"
 
-#: ../data/cheese-main-window.ui.h:2
+#: ../data/cheese-main-window.ui.h:3
+#| msgid "_Photo"
+msgid "Photo"
+msgstr "ফ'টো"
+
+#: ../data/cheese-main-window.ui.h:4
 msgid "Video mode"
 msgstr "ভিডিঅ' অৱস্থা"
 
-#: ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-main-window.ui.h:5
+#| msgid "_Video"
+msgid "Video"
+msgstr "ভিডিঅ'"
+
+#: ../data/cheese-main-window.ui.h:6
 msgid "Photo burst mode"
 msgstr "ফ'টো বাৰ্স্ট অৱস্থা"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1304
+#: ../data/cheese-main-window.ui.h:7
+#| msgid "_Burst"
+msgid "Burst"
+msgstr "বাৰ্স্ট"
+
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1282
 msgid "Take a photo using a webcam"
 msgstr "ৱেবকেম ব্যৱহাৰ কৰি এটা ফ'টো লওক"
 
-#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
-#: ../src/cheese-window.vala:1303
-msgid "_Take a Photo"
-msgstr "এটা ফ'টো লওক (_T)"
-
-#: ../data/cheese-main-window.ui.h:6
+#: ../data/cheese-main-window.ui.h:9
 msgid "Navigate to the previous page of effects"
 msgstr "প্ৰভাৱসমূহৰ পূৰ্বৱৰ্তী পৃষ্ঠালৈ যাওক"
 
-#: ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-main-window.ui.h:10
 msgid "Effects"
 msgstr "প্ৰভাৱসমূহ"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
+#: ../data/cheese-main-window.ui.h:11
 msgid "_Effects"
 msgstr "প্ৰভাৱসমূহ (_E)"
 
-#: ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-main-window.ui.h:12
 msgid "Navigate to the next page of effects"
 msgstr "প্ৰভাৱসমূহৰ পৰৱৰ্তী পৃষ্ঠালৈ যাওক"
 
-#: ../data/cheese-main-window.ui.h:10
+#: ../data/cheese-main-window.ui.h:13
 msgid "Leave fullscreen mode and go back to windowed mode"
 msgstr "পূৰ্নপৰ্দা অৱস্থা ত্যাগ কৰক আৰু উইন্ডোড অৱস্থালৈ উভতি যাওক"
-
-#: ../data/cheese-main-window.ui.h:11
-msgid "_Leave Fullscreen"
-msgstr "সম্পূৰ্ণ পৰ্দাত প্ৰদৰ্শন বন্ধ কৰা হ'ব (_L)"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
@@ -113,7 +144,6 @@ msgid "_Countdown"
 msgstr "উলোটা গণনা (_C)"
 
 #: ../data/cheese-prefs.ui.h:13
-#| msgid "Fire _Flash"
 msgid "Fire _flash"
 msgstr "ফ্লেশ জ্বলাওক (_f)"
 
@@ -133,8 +163,42 @@ msgstr "ফ'টোত অন্তৰ্বৰ্তী বিৰতি (ছে�
 msgid "Capture"
 msgstr "কৰগত"
 
+#: ../data/cheese-prefs.ui.h:19
+msgid "_Close"
+msgstr "বন্ধ কৰক (_C)"
+
+#: ../data/cheese.appdata.xml.in.h:1
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
+msgstr ""
+"Cheese এ আপোনাৰ ৱেবকেম ব্যৱহাৰ কৰি ফ'টো আৰু ভিডিঅ' লয়, মনোহাৰী বিশেষ "
+"প্ৰভাৱসমূহ "
+"প্ৰয়োগ কৰে আৰু অন্যৰ সৈতে আনন্দ অংশীদাৰী কৰাৰ সুযোগ দিয়ে।"
+
+#: ../data/cheese.appdata.xml.in.h:2
+msgid ""
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"বাৰস্ট অৱস্থা ব্যৱহাৰ কৰি দ্ৰুত অৱধিত কেইবাটাও ফ'টো লওক। আপোনাক এটা ভঙ্গি "
+"ধৰাৰ সময় "
+"দিবলৈ কাউন্টডাউন ব্যৱহাৰ কৰক, আৰু ফ্লেশ্বৰ বাবে অপেক্ষা কৰক!"
+
+#: ../data/cheese.appdata.xml.in.h:3
+msgid ""
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
+msgstr ""
+"অভ্যন্তৰীকভাৱে, Cheese এ ফ'টো আৰু ভিডিঅ'সমূহত মনোহাৰী প্ৰভাৱসমূহ দিবলৈ "
+"GStreamer "
+"ব্যৱহাৰ কৰে। Cheese ব্যৱহাৰ কৰি আপোনাৰ, আপোনাৰ বন্ধুৰ, চেনেহুৱা অথবা আপুনি "
+"বিচৰা "
+"যিকোনো বস্তুৰ ফ'টো লব পাৰিব আৰু অন্যৰ সৈতে অংশীদাৰী কৰিব পাৰিব।"
+
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:611
+#: ../src/cheese-application.vala:584
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -142,7 +206,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cheese ৰ ৱেবকেম বুথ"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ৱেবকেমৰ সহায়ত আমোদময় গ্ৰাফিক্সসহ ফ'টো লওক আৰু ভিডিঅ' তৈয়াৰ কৰক"
 
@@ -167,12 +231,10 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "ফ'টো লোৱাৰ আগত উলোটা গণনা কৰাৰ অবধি, ছেকেণ্ডত"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-#| msgid "Fire flash before taking a picture"
 msgid "Fire flash before taking a photo"
 msgstr "এটা ছবি লোৱাৰ আগত ফ্লেশ জ্বলাব"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-#| msgid "Set to true to fire a flash when taking a picture"
 msgid "Set to true to fire a flash before taking a photo"
 msgstr "ফ'টো লোৱাৰ আগত এটা ফ্লেশ জ্বলাবলে true লে সংহতি কৰক"
 
@@ -227,47 +289,38 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "কেমেৰাৰ পৰা প্ৰাপ্ত ভিডিঅ'ৰ উচ্চতা, পিক্সেলসমূহত"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-#| msgid "Picture brightness"
 msgid "Image brightness"
 msgstr "ছবিৰ উজ্জ্বলতা"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-#| msgid "Adjusts the brightness of the picture coming from the camera"
 msgid "Adjusts the brightness of the image coming from the camera"
 msgstr "কেমেৰাৰ পৰা অহা ছবিৰ উজ্জ্বলতা নিয়ন্ত্ৰণ কৰে"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-#| msgid "Picture contrast"
 msgid "Image contrast"
 msgstr "ছবিৰ প্ৰভেদ"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-#| msgid "Adjusts the contrast of the picture coming from the camera"
 msgid "Adjusts the contrast of the image coming from the camera"
 msgstr "কেমেৰাৰ পৰা অহা ছবিৰ প্ৰভেদ নিয়ন্ত্ৰণ কৰে"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-#| msgid "Picture saturation"
 msgid "Image saturation"
 msgstr "ছবিৰ সংপৃক্তকৰণ"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-#| msgid "Adjusts the saturation of the picture coming from the camera"
 msgid "Adjusts the saturation of the image coming from the camera"
 msgstr "কেমেৰাৰ পৰা প্ৰাপ্ত ছবিৰ সংপৃক্তকৰণ নিয়ন্ত্ৰণ কৰে"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-#| msgid "Image"
 msgid "Image hue"
 msgstr "ছবিৰ হিউ"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-#| msgid "Adjusts the hue (color tint) of the picture coming from the camera"
 msgid "Adjusts the hue (color tint) of the image coming from the camera"
 msgstr "কেমেৰাৰ পৰা প্ৰাপ্ত ছবিৰ হিউ (ৰঙৰ গাঢ়তা) নিয়ন্ত্ৰণ কৰে"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-#| msgid "Video Path"
 msgid "Video path"
 msgstr "ভিডিঅ' পথ"
 
@@ -281,7 +334,6 @@ msgstr ""
 "ব্যৱহাৰ কৰা হব।"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-#| msgid "Photo Path"
 msgid "Photo path"
 msgstr "ফ'টোৰ পথ"
 
@@ -315,27 +367,30 @@ msgstr "বাৰ্স্ট অৱস্থাত ফ'টোৰ সংখ্�
 msgid "The number of photos to take in a single burst."
 msgstr "এটা বাৰ্স্টত যি সংখ্যক ফ'টো নিয়া হ'ব ।"
 
-#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:662
+#: ../libcheese/cheese-avatar-chooser.c:90 ../src/cheese-window.vala:233
+#: ../src/cheese-window.vala:262 ../src/cheese-window.vala:337
+msgid "_Cancel"
+msgstr "বাতিল কৰক (_C)"
+
+#: ../libcheese/cheese-avatar-chooser.c:92
+#| msgid "Select"
+msgid "_Select"
+msgstr "বাছক (_S)"
+
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:661
 msgid "Shutter sound"
 msgstr "ষাটাৰ শব্দ"
 
-#: ../libcheese/cheese-avatar-chooser.c:262
-msgid "Select"
-msgstr "বাছক"
+#: ../libcheese/cheese-avatar-widget.c:268
+#| msgid "Stop _Taking Pictures"
+msgid "_Take Another Picture"
+msgstr "অন্য এটা ছবি লওক (_T)"
 
-#: ../libcheese/cheese-avatar-chooser.c:265
-msgid "Take a Photo"
-msgstr "এটা ফ'টো লওক"
-
-#: ../libcheese/cheese-avatar-chooser.c:296
-msgid "_Discard photo"
-msgstr "ফ'টো আতৰাওক (_D)"
-
-#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1617
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "একাধিক আৱশ্যক GStreamer উপাদান অনুপস্থিত আছে: "
 
-#: ../libcheese/cheese-camera.c:1576
+#: ../libcheese/cheese-camera.c:1584
 #, c-format
 msgid "No device found"
 msgstr "কোনো ডিভাইচ পোৱা নগল"
@@ -345,26 +400,26 @@ msgstr "কোনো ডিভাইচ পোৱা নগল"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1852
+#: ../libcheese/cheese-camera.c:1860
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:402
+#: ../libcheese/cheese-camera-device.c:562
 msgid "Device capabilities not supported"
 msgstr "ডিভাইচৰ ক্ষমতাসমূহ সমৰ্থিত নহয়"
 
-#: ../libcheese/cheese-camera-device.c:431
+#: ../libcheese/cheese-camera-device.c:591
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "ক্ষমতা প্ৰবিংৰ কাৰণে %s ডিভাইচ আৰম্ভ কৰিবলে ব্যৰ্থ"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:780
 msgid "Unknown device"
 msgstr "অজ্ঞাত ডিভাইচ"
 
-#: ../libcheese/cheese-camera-device.c:643
+#: ../libcheese/cheese-camera-device.c:803
 msgid "Cancellable initialization not supported"
 msgstr "বাতিল হব লগিয়া আৰম্ভ প্ৰক্ৰীয়া সমৰ্থিত নহয়"
 
@@ -388,178 +443,159 @@ msgstr "আউটপুট সংস্কৰণৰ তথ্য প্ৰদৰ
 msgid "Start in fullscreen mode"
 msgstr "সমপূৰ্ণ পৰ্দা অৱস্থাত আৰম্ভ কৰক"
 
-#: ../src/cheese-application.vala:121
-msgid "_Shoot"
-msgstr "লওক (_S)"
-
-#: ../src/cheese-application.vala:125
-msgid "Mode:"
-msgstr "অৱস্থা:"
-
-#: ../src/cheese-application.vala:126
-msgid "_Photo"
-msgstr "ফ'টো (_P)"
-
-#: ../src/cheese-application.vala:127
-msgid "_Video"
-msgstr "ভিডিঅ' (_V)"
-
-#: ../src/cheese-application.vala:128
-msgid "_Burst"
-msgstr "বাৰ্স্ট (_B)"
-
-#: ../src/cheese-application.vala:131
-msgid "_Fullscreen"
-msgstr "সম্পূৰ্ণপৰ্দা (_F)"
-
-#: ../src/cheese-application.vala:139
-msgid "P_references"
-msgstr "পছন্দসমূহ (_r)"
-
-#: ../src/cheese-application.vala:142
-msgid "_Help"
-msgstr "সহায় (_H)"
-
-#: ../src/cheese-application.vala:145
-msgid "_About"
-msgstr "বিষয়ে (_A)"
-
-#: ../src/cheese-application.vala:146
-msgid "_Quit"
-msgstr "প্ৰস্থান (_Q)"
-
-#: ../src/cheese-application.vala:219
+#: ../src/cheese-application.vala:192
 msgid "- Take photos and videos from your webcam"
 msgstr "- ৱেবকেমৰ সহায়ত ফ'টো লওক আৰু ভিডিঅ' তৈয়াৰ কৰক"
 
-#: ../src/cheese-application.vala:228
+#: ../src/cheese-application.vala:201
 #, c-format
-#| msgid ""
-#| "Run '%s --help' to see a full list of available command line options.\n"
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "উপলব্ধ কমান্ড শাৰী বিকল্পসমূহৰ এটা সম্পূৰ্ণ তালিকা চাবলৈ '%s --help' চলাওক।"
 
-#: ../src/cheese-application.vala:612
+#: ../src/cheese-application.vala:585
 msgid "translator-credits"
 msgstr ""
 "অমিতাক্ষ ফুকন (aphukan@fedoraproject.org), নীলমদ্যুতি গোস্বামী "
 "(ngoswami@redhat."
 "com)"
 
-#: ../src/cheese-application.vala:614
+#: ../src/cheese-application.vala:587
 msgid "Cheese Website"
 msgstr "Cheese ৰ ৱেব-ছাইট"
 
 #. Translators: a description of an effect (to be applied to images
 #. *              from the webcam) which does nothing.
-#: ../src/cheese-effects-manager.vala:53
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "প্ৰভাৱ বিহীন"
 
-#: ../src/cheese-window.vala:192
+#: ../src/cheese-window.vala:205
 #, c-format
 msgid "Could not open %s"
 msgstr "%s খোলিব নোৱাৰি"
 
-#: ../src/cheese-window.vala:217
+#: ../src/cheese-window.vala:230
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "আপুনি নিশ্চিতৰূপে ফাইলক স্থায়ীৰূপে আঁতৰাবলৈ ইচ্ছুক নে ?"
 msgstr[1] "আপুনি নিশ্চিতৰূপে %d ফাইলসমূহক স্থায়ীৰূপে আঁতৰাবলৈ ইচ্ছুক নে ?"
 
-#: ../src/cheese-window.vala:223
+#: ../src/cheese-window.vala:234
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "মচি পেলাওক (_D)"
+
+#: ../src/cheese-window.vala:236
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "যদি আপুনি এটা বস্তু মচি পেলায়, ই স্থায়ীভাৱে হেৰাই যাব"
 msgstr[1] "যদি আপুনি বস্তুবোৰ মচি পেলায়, সিহত স্থায়ীভাৱে হেৰাই যাব"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:309
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s ক আবৰ্জনালে স্থানান্তৰ কৰিব নোৱাৰি"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:321
+#: ../src/cheese-window.vala:334
 msgid "Save File"
 msgstr "ফাইল সংৰক্ষণ কৰক"
 
-#: ../src/cheese-window.vala:355
+#: ../src/cheese-window.vala:338
+#| msgid "Save File"
+msgid "Save"
+msgstr "সংৰক্ষণ কৰক"
+
+#: ../src/cheese-window.vala:368
 #, c-format
 msgid "Could not save %s"
 msgstr "%s সংৰক্ষণ কৰিবলৈ ব্যৰ্থ"
 
-#: ../src/cheese-window.vala:772
-msgid "Stop _Recording"
-msgstr "ৰেকৰ্ডিং বন্ধ কৰক (_R)"
-
-#: ../src/cheese-window.vala:773
+#: ../src/cheese-window.vala:771
 msgid "Stop recording"
 msgstr "ৰেকৰ্ডিং বন্ধ কৰক"
 
-#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1308
-msgid "_Record a Video"
-msgstr "এটা ভিডিঅ' ৰেকৰ্ড কৰক (_R)"
-
-#: ../src/cheese-window.vala:789
+#: ../src/cheese-window.vala:786
 msgid "Record a video"
 msgstr "এটা ভিডিঅ' ৰেকৰ্ড কৰক"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:824
-msgid "Stop _Taking Pictures"
-msgstr "ফ'টো লোৱা বন্ধ কৰক (_T)"
-
-#: ../src/cheese-window.vala:825
+#: ../src/cheese-window.vala:821
 msgid "Stop taking pictures"
 msgstr "ফ'টো লোৱা বন্ধ কৰক"
 
-#: ../src/cheese-window.vala:848
-msgid "Take Multiple Photos"
-msgstr "একাধিক ফ'টো লওক"
-
-#: ../src/cheese-window.vala:849
+#: ../src/cheese-window.vala:844
 msgid "Take multiple photos"
 msgstr "একাধিক ফ'টো লওক"
 
-#: ../src/cheese-window.vala:1033
+#: ../src/cheese-window.vala:1038
 msgid "No effects found"
 msgstr "কোনো প্ৰভাৱ পোৱা নগল"
 
-#: ../src/cheese-window.vala:1150
+#: ../src/cheese-window.vala:1158
 msgid "There was an error playing video from the webcam"
 msgstr "ৱেবকেমৰ পৰা ভিডিঅ' চলাওতে এটা ত্ৰুটি হৈছিল"
 
-#: ../src/cheese-window.vala:1167
-#| msgid "_Open"
+#: ../src/cheese-window.vala:1175
 msgid "Open"
 msgstr "খোলক"
 
-#: ../src/cheese-window.vala:1170
+#: ../src/cheese-window.vala:1178
 msgid "Save _As…"
 msgstr "এই ধৰণে সংৰক্ষণ কৰক (_A)..."
 
-#: ../src/cheese-window.vala:1173
+#: ../src/cheese-window.vala:1181
 msgid "Move to _Trash"
 msgstr "আবৰ্জনাৰ বাকচলৈ নিয়ক (_T)"
 
-#: ../src/cheese-window.vala:1176
-#| msgid "_Delete"
+#: ../src/cheese-window.vala:1184
 msgid "Delete"
 msgstr "মচি পেলাওক"
 
-#: ../src/cheese-window.vala:1309
+#: ../src/cheese-window.vala:1286
 msgid "Record a video using a webcam"
 msgstr "এটা ৱেবকেম ব্যৱহাৰ কৰি এটা ভিডিঅ' ৰেকৰ্ড কৰক"
 
-#: ../src/cheese-window.vala:1315
-msgid "Take _Multiple Photos"
-msgstr "একাধিক ফ'টো লওক (_M)"
-
-#: ../src/cheese-window.vala:1316
+#: ../src/cheese-window.vala:1292
 msgid "Take multiple photos using a webcam"
 msgstr "এটা ৱেবকেম ব্যৱহাৰ কৰি একাধিক ফ'টো লওক"
+
+#: ../src/cheese-window.vala:1304
+#| msgid "No Effect"
+msgid "Choose an Effect"
+msgstr "এটা প্ৰভাৱ বাছক"
+
+#: ../src/cheese-window.vala:1315
+#| msgid "_Record a Video"
+msgid "Record a Video"
+msgstr "এটা ভিডিঅ' ৰেকৰ্ড কৰক"
+
+#: ../src/cheese-window.vala:1319
+msgid "Take Multiple Photos"
+msgstr "একাধিক ফ'টো লওক"
+
+#~ msgid "_Take a Photo"
+#~ msgstr "এটা ফ'টো লওক (_T)"
+
+#~ msgid "_Leave Fullscreen"
+#~ msgstr "সম্পূৰ্ণ পৰ্দাত প্ৰদৰ্শন বন্ধ কৰা হ'ব (_L)"
+
+#~ msgid "_Discard photo"
+#~ msgstr "ফ'টো আতৰাওক (_D)"
+
+#~ msgid "_Shoot"
+#~ msgstr "লওক (_S)"
+
+#~ msgid "Mode:"
+#~ msgstr "অৱস্থা:"
+
+#~ msgid "Stop _Recording"
+#~ msgstr "ৰেকৰ্ডিং বন্ধ কৰক (_R)"
+
+#~ msgid "Take _Multiple Photos"
+#~ msgstr "একাধিক ফ'টো লওক (_M)"
 
 #~ msgid "Share…"
 #~ msgstr "অংশীদাৰী কৰক…"
