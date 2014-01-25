@@ -2,66 +2,95 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Yosef Or Boczko <yoseforb@gmail.com>, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-31 09:43+0300\n"
-"PO-Revision-Date: 2013-07-31 09:44+0200\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: he\n"
+"POT-Creation-Date: 2014-01-26 00:39+0200\n"
+"PO-Revision-Date: 2014-01-26 00:52+0200\n"
+"Last-Translator: Yosef Or Boczko <yoseforb@gmail.com>\n"
+"Language-Team: עברית <>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
-#: ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-appmenu.ui.h:1
+msgid "_Fullscreen"
+msgstr "מ_סך מלא"
+
+#: ../data/cheese-appmenu.ui.h:2
+msgid "P_references"
+msgstr "ה_עדפות"
+
+#: ../data/cheese-appmenu.ui.h:3 ../data/cheese-prefs.ui.h:18
+msgid "_Help"
+msgstr "ע_זרה"
+
+#: ../data/cheese-appmenu.ui.h:4
+msgid "_About"
+msgstr "על _אודות"
+
+#: ../data/cheese-appmenu.ui.h:5
+msgid "_Quit"
+msgstr "י_ציאה"
+
+#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:95
+#: ../src/cheese-window.vala:1311
+msgid "Take a Photo"
+msgstr "צילום תמונה"
+
+#: ../data/cheese-main-window.ui.h:2
 msgid "Photo mode"
 msgstr "מצב תמונה"
 
-#: ../data/cheese-main-window.ui.h:2
+#: ../data/cheese-main-window.ui.h:3
+msgid "Photo"
+msgstr "תמונה"
+
+#: ../data/cheese-main-window.ui.h:4
 msgid "Video mode"
 msgstr "מצב וידאו"
 
-#: ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-main-window.ui.h:5
+msgid "Video"
+msgstr "וידאו"
+
+#: ../data/cheese-main-window.ui.h:6
 msgid "Photo burst mode"
 msgstr "מצב צילום רציף"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1304
+#: ../data/cheese-main-window.ui.h:7
+msgid "Burst"
+msgstr "צילום רציף"
+
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1282
 msgid "Take a photo using a webcam"
 msgstr "צילום תמונה בעזרת מצלמת הרשת"
 
-#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
-#: ../src/cheese-window.vala:1303
-msgid "_Take a Photo"
-msgstr "_צילום תמונה"
-
-#: ../data/cheese-main-window.ui.h:6
+#: ../data/cheese-main-window.ui.h:9
 msgid "Navigate to the previous page of effects"
 msgstr "לנווט לעמוד האפקטים הקודם"
 
-#: ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-main-window.ui.h:10
 msgid "Effects"
 msgstr "אפקטים"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
+#: ../data/cheese-main-window.ui.h:11
 msgid "_Effects"
 msgstr "_אפקטים"
 
-#: ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-main-window.ui.h:12
 msgid "Navigate to the next page of effects"
 msgstr "לנווט לעמוד האפקטים הבא"
 
-#: ../data/cheese-main-window.ui.h:10
+#: ../data/cheese-main-window.ui.h:13
 msgid "Leave fullscreen mode and go back to windowed mode"
 msgstr "לצאת ממצב מסך מלא ולחזור לתצוגת חלון"
-
-#: ../data/cheese-main-window.ui.h:11
-msgid "_Leave Fullscreen"
-msgstr "י_ציאה ממסך מלא"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
@@ -131,8 +160,38 @@ msgstr "השהיה בין התמונות (שניות)"
 msgid "Capture"
 msgstr "לכידה"
 
+#: ../data/cheese-prefs.ui.h:19
+msgid "_Close"
+msgstr "_סגירה"
+
+#: ../data/cheese.appdata.xml.in.h:1
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
+msgstr ""
+"‏Cheese משתמש במצלמת הרשת שלך כדי לצלם תמונות וסרטים, להחיל אפקטים מהודרים "
+"מיוחדים ולאפשר לך לחלוק את הכיף עם אחרים."
+
+#: ../data/cheese.appdata.xml.in.h:2
+msgid ""
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"ניתן לקחת תמונות רבות ברצף מהיר באמצעות מצב צילום רציף. ניתן להשתמש בספירה "
+"לאחור כדי לתת לעצמך זמן לעשות תנוחה ולהמתין להבזק!"
+
+#: ../data/cheese.appdata.xml.in.h:3
+msgid ""
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
+msgstr ""
+"מתחת למכסה המנוע, Cheese משתמש ב־GStreamer להחלת אפקטים מהודרים לתמונות "
+"ולסרטים. עם Cheese קל לצלם תמונות שלך, של החברים שלך, חיות מחמד או כל מה "
+"שאתה רוצה ולשתף עם אחרים."
+
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:611
+#: ../src/cheese-application.vala:584
 msgid "Cheese"
 msgstr "‏Cheese"
 
@@ -140,7 +199,7 @@ msgstr "‏Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "תא הצילום של Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "צילום תמונות וסרטים בעזרת מצלמת האינטרנט שלך והוספת אפקטים גרפיים משעשעים"
@@ -303,27 +362,28 @@ msgstr "Number of photos in burst mode"
 msgid "The number of photos to take in a single burst."
 msgstr "The number of photos to take in a single burst."
 
-#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:662
+#: ../libcheese/cheese-avatar-chooser.c:90 ../src/cheese-window.vala:233
+#: ../src/cheese-window.vala:262 ../src/cheese-window.vala:337
+msgid "_Cancel"
+msgstr "_ביטול"
+
+#: ../libcheese/cheese-avatar-chooser.c:92
+msgid "_Select"
+msgstr "_בחירה"
+
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:661
 msgid "Shutter sound"
 msgstr "צליל הצמצם"
 
-#: ../libcheese/cheese-avatar-chooser.c:262
-msgid "Select"
-msgstr "בחירה"
+#: ../libcheese/cheese-avatar-widget.c:268
+msgid "_Take Another Picture"
+msgstr "ל_צלם תמונה נוספת"
 
-#: ../libcheese/cheese-avatar-chooser.c:265
-msgid "Take a Photo"
-msgstr "צילום תמונה"
-
-#: ../libcheese/cheese-avatar-chooser.c:296
-msgid "_Discard photo"
-msgstr "ה_תעלמות מתמונה"
-
-#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1617
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "רכיב אחד או יותר של gstreamer חסר: "
 
-#: ../libcheese/cheese-camera.c:1576
+#: ../libcheese/cheese-camera.c:1584
 #, c-format
 msgid "No device found"
 msgstr "לא נמצא התקן"
@@ -333,26 +393,26 @@ msgstr "לא נמצא התקן"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1852
+#: ../libcheese/cheese-camera.c:1860
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:402
+#: ../libcheese/cheese-camera-device.c:562
 msgid "Device capabilities not supported"
 msgstr "יכולות ההתקן אינן נתמכות"
 
-#: ../libcheese/cheese-camera-device.c:431
+#: ../libcheese/cheese-camera-device.c:591
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "ארע כשל בהפעלת ההתקן %s לתשאול יכולות"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:780
 msgid "Unknown device"
 msgstr "התקן בלתי מוכר"
 
-#: ../libcheese/cheese-camera-device.c:643
+#: ../libcheese/cheese-camera-device.c:803
 msgid "Cancellable initialization not supported"
 msgstr "תהליך הפעלה הניתן לביטול אינו נתמך"
 
@@ -376,175 +436,158 @@ msgstr "Output version information and exit"
 msgid "Start in fullscreen mode"
 msgstr "הפעלה במסך מלא"
 
-#: ../src/cheese-application.vala:121
-msgid "_Shoot"
-msgstr "_שוט"
-
-#: ../src/cheese-application.vala:125
-msgid "Mode:"
-msgstr "מצב:"
-
-#: ../src/cheese-application.vala:126
-msgid "_Photo"
-msgstr "_תמונה"
-
-#: ../src/cheese-application.vala:127
-msgid "_Video"
-msgstr "_וידאו"
-
-#: ../src/cheese-application.vala:128
-msgid "_Burst"
-msgstr "צילום _רציף"
-
-#: ../src/cheese-application.vala:131
-msgid "_Fullscreen"
-msgstr "מ_סך מלא"
-
-#: ../src/cheese-application.vala:139
-msgid "P_references"
-msgstr "ה_עדפות"
-
-#: ../src/cheese-application.vala:142
-msgid "_Help"
-msgstr "ע_זרה"
-
-#: ../src/cheese-application.vala:145
-msgid "_About"
-msgstr "על _אודות"
-
-#: ../src/cheese-application.vala:146
-msgid "_Quit"
-msgstr "י_ציאה"
-
-#: ../src/cheese-application.vala:219
+#: ../src/cheese-application.vala:192
 msgid "- Take photos and videos from your webcam"
 msgstr "- Take photos and videos from your webcam"
 
-#: ../src/cheese-application.vala:228
+#: ../src/cheese-application.vala:201
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr "Run '%s --help' to see a full list of available command line options."
 
-#: ../src/cheese-application.vala:612
+#: ../src/cheese-application.vala:585
 msgid "translator-credits"
 msgstr ""
 "יאיר הרשקוביץ <yairhr@gmail.com>\n"
 "‏He-he-6 https://launchpad.net/~he-he-6\n"
 "‏ירון שהרבני <sh.yaron@gmail.com>\n"
+"יוסף אור בוצ׳קו <yoseforb@gnome.org>\n"
+"\n"
 "פרויקט תרגום GNOME לעברית:\n"
 "‏http://gnome-il.berlios.de"
 
-#: ../src/cheese-application.vala:614
+#: ../src/cheese-application.vala:587
 msgid "Cheese Website"
 msgstr "אתר האינטרנט של Cheese"
 
 #. Translators: a description of an effect (to be applied to images
 #. *              from the webcam) which does nothing.
-#: ../src/cheese-effects-manager.vala:53
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "ללא אפקט"
 
-#: ../src/cheese-window.vala:192
+#: ../src/cheese-window.vala:205
 #, c-format
 msgid "Could not open %s"
 msgstr "לא ניתן לפתוח את %s"
 
-#: ../src/cheese-window.vala:217
+#: ../src/cheese-window.vala:230
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "האם אכן ברצונך למחוק את הקובץ לצמיתות?"
 msgstr[1] "האם אכן ברצונך למחוק את %d הקבצים לצמיתות?"
 
-#: ../src/cheese-window.vala:223
+#: ../src/cheese-window.vala:234
+msgid "_Delete"
+msgstr "_מחיקה"
+
+#: ../src/cheese-window.vala:236
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "לאחר מחיקת פריט, הוא יאבד לנצח"
 msgstr[1] "לאחר מחיקת פריטים, הם יאבדו לנצח"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:309
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "לא ניתן להעביר את %s לאשפה"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:321
+#: ../src/cheese-window.vala:334
 msgid "Save File"
-msgstr "שמור קובץ"
+msgstr "שמירת קובץ"
 
-#: ../src/cheese-window.vala:355
+#: ../src/cheese-window.vala:338
+msgid "Save"
+msgstr "שמירה"
+
+#: ../src/cheese-window.vala:368
 #, c-format
 msgid "Could not save %s"
 msgstr "לא ניתן לשמור את %s"
 
-#: ../src/cheese-window.vala:772
-msgid "Stop _Recording"
-msgstr "ה_פסקת ההקלטה"
-
-#: ../src/cheese-window.vala:773
+#: ../src/cheese-window.vala:771
 msgid "Stop recording"
 msgstr "הפסקת ההקלטה"
 
-#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1308
-msgid "_Record a Video"
-msgstr "הק_לטת וידאו"
-
-#: ../src/cheese-window.vala:789
+#: ../src/cheese-window.vala:786
 msgid "Record a video"
 msgstr "הקלטת וידאו"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:824
-msgid "Stop _Taking Pictures"
-msgstr "ע_צירת צילום התמונות"
-
-#: ../src/cheese-window.vala:825
+#: ../src/cheese-window.vala:821
 msgid "Stop taking pictures"
 msgstr "עצירת צילום התמונות"
 
-#: ../src/cheese-window.vala:848
-msgid "Take Multiple Photos"
-msgstr "צילום מספר תמונות"
-
-#: ../src/cheese-window.vala:849
+#: ../src/cheese-window.vala:844
 msgid "Take multiple photos"
 msgstr "צילום מספר תמונות"
 
-#: ../src/cheese-window.vala:1033
+#: ../src/cheese-window.vala:1038
 msgid "No effects found"
 msgstr "לא נמצאו אפקטים"
 
-#: ../src/cheese-window.vala:1150
+#: ../src/cheese-window.vala:1158
 msgid "There was an error playing video from the webcam"
 msgstr "אירעה שגיאה בהצגת וידאו ממצלמת הרשת"
 
-#: ../src/cheese-window.vala:1167
+#: ../src/cheese-window.vala:1175
 msgid "Open"
 msgstr "פתיחה"
 
-#: ../src/cheese-window.vala:1170
+#: ../src/cheese-window.vala:1178
 msgid "Save _As…"
 msgstr "שמירה _בשם..."
 
-#: ../src/cheese-window.vala:1173
+#: ../src/cheese-window.vala:1181
 msgid "Move to _Trash"
 msgstr "העברה ל_אשפה"
 
-#: ../src/cheese-window.vala:1176
+#: ../src/cheese-window.vala:1184
 msgid "Delete"
 msgstr "מחיקה"
 
-#: ../src/cheese-window.vala:1309
+#: ../src/cheese-window.vala:1286
 msgid "Record a video using a webcam"
 msgstr "הקלטת וידאו בעזרת מצלמת הרשת"
 
-#: ../src/cheese-window.vala:1315
-msgid "Take _Multiple Photos"
-msgstr "_צילום מספר תמונות"
-
-#: ../src/cheese-window.vala:1316
+#: ../src/cheese-window.vala:1292
 msgid "Take multiple photos using a webcam"
 msgstr "צילום מספר תמונות בעזרת מצלמת הרשת"
+
+#: ../src/cheese-window.vala:1304
+msgid "Choose an Effect"
+msgstr "בחירת אפקט"
+
+#: ../src/cheese-window.vala:1315
+msgid "Record a Video"
+msgstr "הקלטת וידאו"
+
+#: ../src/cheese-window.vala:1319
+msgid "Take Multiple Photos"
+msgstr "צילום מספר תמונות"
+
+#~ msgid "_Take a Photo"
+#~ msgstr "_צילום תמונה"
+
+#~ msgid "_Leave Fullscreen"
+#~ msgstr "י_ציאה ממסך מלא"
+
+#~ msgid "_Discard photo"
+#~ msgstr "ה_תעלמות מתמונה"
+
+#~ msgid "_Shoot"
+#~ msgstr "_שוט"
+
+#~ msgid "Mode:"
+#~ msgstr "מצב:"
+
+#~ msgid "Stop _Recording"
+#~ msgstr "ה_פסקת ההקלטה"
+
+#~ msgid "Take _Multiple Photos"
+#~ msgstr "_צילום מספר תמונות"
 
 #~ msgid "Share…"
 #~ msgstr "שיתוף…"
