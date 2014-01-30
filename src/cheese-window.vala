@@ -1075,12 +1075,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
       foreach (var effect in effects_manager.effects)
       {
-          Clutter.TableLayout table_layout = new TableLayout ();
+          Clutter.GridLayout grid_layout = new GridLayout ();
           var grid = new Clutter.Actor ();
-          grid.set_layout_manager (table_layout);
+          grid.set_layout_manager (grid_layout);
           effects_grids.append (grid);
-          table_layout.set_column_spacing (10);
-          table_layout.set_row_spacing (10);
+          grid_layout.set_column_spacing (10);
+          grid_layout.set_row_spacing (10);
       }
 
       uint i = 0;
@@ -1122,9 +1122,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         text.y_expand = true;
         box.add_child (text);
 
-        Clutter.TableLayout table_layout = (Clutter.TableLayout) effects_grids.nth_data (i / EFFECTS_PER_PAGE).layout_manager;
-        table_layout.pack (box, ((int)(i % EFFECTS_PER_PAGE)) % 3,
-                           ((int)(i % EFFECTS_PER_PAGE)) / 3);
+        var grid_layout = effects_grids.nth_data (i / EFFECTS_PER_PAGE).layout_manager as GridLayout;
+        grid_layout.attach (box, ((int)(i % EFFECTS_PER_PAGE)) % 3,
+                            ((int)(i % EFFECTS_PER_PAGE)) / 3, 1, 1);
 
         i++;
       }
