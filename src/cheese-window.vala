@@ -71,6 +71,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     [GtkChild]
     private Gtk.ToggleButton effects_toggle_button;
     [GtkChild]
+    private Gtk.Image effects_prev_page_button_image;
+    [GtkChild]
+    private Gtk.Image effects_next_page_button_image;
+    [GtkChild]
     private Gtk.Widget buttons_area;
     private Gtk.Menu thumbnail_popup;
 
@@ -118,6 +122,17 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     public MainWindow (Gtk.Application application)
     {
         GLib.Object (application: application);
+
+        if (get_direction () == Gtk.TextDirection.RTL)
+        {
+            effects_prev_page_button_image.icon_name = "go-previous-rtl-symbolic";
+            effects_next_page_button_image.icon_name = "go-next-rtl-symbolic";
+        }
+        else
+        {
+            effects_prev_page_button_image.icon_name = "go-previous-symbolic";
+            effects_next_page_button_image.icon_name = "go-next-symbolic";
+        }
     }
 
     private bool on_window_state_change_event (Gtk.Widget widget,
