@@ -1,6 +1,42 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.11.5
+  - Apply style classes to some main window buttons
+    https://wiki.gnome.org/HowDoI/Buttons
+  - Fix the page navigation icons in RTL
+    https://bugzilla.gnome.org/show_bug.cgi?id=723569
+  - Replace deprecated use of ClutterTableLayout
+    Use ClutterGridLayout instead.
+  - Replace deprecated gtk_window_*_opacity()
+    Use gtk_widget_*_opacity() instead.
+  - Disable C warnings for Vala code, bug 710218
+    They generally cannot be resolved in Vala and make the build confusing.
+  - Add programming languages to DOAP file
+  - Clean up Cheese Effects screenshot and decrease filesize (bug 700352)
+  - Update FSF Address
+    https://bugzilla.gnome.org/show_bug.cgi?id=721536
+  - Update project homepage
+
+  - Post-release version bump to 3.11.4
+  - Added/Updated Translations
+    - as, courtesy of Nilamdyuti Goswami
+    - cs, courtesy of Marek Černocký
+    - he, courtesy of Yosef Or Boczko
+    - id, courtesy of Andika Triwidada
+    - kn, courtesy of Daniel Mustieles
+    - lt, courtesy of Aurimas Černius
+    - nb, courtesy of Kjartan Maraas
+    - sk, courtesy of Pavol Klačanský
+    - tg, courtesy of Victor Ibragimov
+    - zh_CN, courtesy of Tong Hui
+    - zh_HK, courtesy of Chao-Hsiung Liao
+    - zh_TW, courtesy of Chao-Hsiung Liao
+  - Added/Updated Documentation
+    - cs, courtesy of Marek Černocký
+    - el, courtesy of Dimitris Spingos (Δημήτρης Σπίγγος)
+    - es, courtesy of Daniel Mustieles
+
 version 3.11.3
   - Validate AppData XML during distcheck
 
