@@ -437,14 +437,14 @@ lcov: full-report
 lcov-clean:
 	$(AM_V_at)$(LCOV) --directory $(top_builddir) -z
 	$(AM_V_at)rm -rf cheese-lcov.info cheese-lcov
-	$(AM_V_at)find -name '*.gcda' -exec rm -f {} +
+	$(AM_V_at)find . -name '*.gcda' -exec rm -f {} +
 else # !CHEESE_ENABLE_LCOV
 lcov:
 	$(AM_V_at)echo "Code coverage reporting not available"
 
 lcov-clean:
 	$(AM_V_at)rm -rf cheese-lcov.info cheese-lcov
-	$(AM_V_at)find -name '*.gcda' -exec rm -f {} +
+	$(AM_V_at)find . -name '*.gcda' -exec rm -f {} +
 endif
 
 # gtk-doc
@@ -459,7 +459,7 @@ check-local: test
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFlAGS) check
 clean-local: lcov-clean
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) clean
-	find -name '*.gcno' -exec rm -f {} +
+	find . -name '*.gcno' -exec rm -f {} +
 distclean-local:
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) distclean
 docs: $(lib_LTLIBRARIES)
