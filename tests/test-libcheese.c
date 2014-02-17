@@ -206,8 +206,6 @@ videoformat_create (void)
 int
 main(int argc, gchar *argv[])
 {
-    g_type_init ();
-
     g_test_init (&argc, &argv, NULL);
 
     if (!cheese_init (&argc, &argv))
