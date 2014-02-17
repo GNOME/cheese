@@ -577,7 +577,7 @@ public class Cheese.Application : Gtk.Application
             "artists", artists,
             "authors", authors,
             "comments", _("Take photos and videos with your webcam, with fun graphical effects"),
-            "copyright", "Copyright © 2007 - 2010 daniel g. siegel <dgsiegel@gnome.org>",
+            "copyright", "Copyright © 2011 - 2014 David King <amigadave@amigadave.com>\nCopyright © 2007 - 2011 daniel g. siegel <dgsiegel@gnome.org>",
             "documenters", documenters,
             "license-type", Gtk.License.GPL_2_0,
             "logo-icon-name", Config.PACKAGE_TARNAME,
