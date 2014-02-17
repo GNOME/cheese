@@ -1,6 +1,18 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.11.90
+  - Remove g_type_init() from test-libcheese.c
+  - Update copyright in about dialogue
+  - Fix find usage on FreeBSD and POSIX, bug 724091
+    POSIX find requires a path as an argument.
+  - Post-release version bump to 3.11.90
+  - Added/Updated Translations
+    - de, courtesy of Benjamin Steinwender
+    - uk, courtesy of Daniel Korostil
+  - Added/Updated Documentation
+    - de, courtesy of Jonatan Zeidler
+
 version 3.11.5
   - Apply style classes to some main window buttons
     https://wiki.gnome.org/HowDoI/Buttons
