@@ -1,13 +1,16 @@
 <page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
       type="topic" style="task"
-      id="full-screen">
+      id="pref-fullscreen">
+
   <info>
-    <revision version="3.6" date="2012-05-09" status="stub"/>
     <link type="guide" xref="index#preferences"/>
-	
+    <revision pkgversion="3.6" date="2012-05-09" status="stub"/>
+    <revision pkgversion="3.12" date="2014-02-21" status="review"/>
+
     <credit type="author">
       <name>Ekaterina Gerasimova</name>
-      <email>kittykat3756@gmail.com</email>
+      <email its:translate="no">kittykat3756@gmail.com</email>
     </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
@@ -17,19 +20,17 @@
 
   <title>Fullscreen</title>
 
-  <p>To enable the fullscreen mode:</p>
+  <p>To enable or disable the fullscreen mode:</p>
 
   <steps>
     <item><p>Select <guiseq><gui>Cheese</gui><gui>Fullscreen</gui></guiseq></p></item>
   </steps>
 
-  <p>To disable the fullscreen mode:</p>
-
-  <steps>
-    <item><p>Select <gui>Leave Fullscreen</gui></p></item>
-  </steps>
+  <p>If you cannot see the <gui style="menu">Cheese</gui> menu in fullscreen
+  mode, move your mouse or tap your touchscreen.</p>
 
   <note style="tip">
-    <p>You can also enable and disable fullscreen mode by pressing <key>F11</key></p>
+    <p>You can also enable and disable fullscreen mode by pressing
+    <key>F11</key>.</p>
   </note>
 </page>
