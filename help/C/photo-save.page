@@ -1,42 +1,41 @@
 <page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
       type="topic" style="task"
       id="photo-save">
+
   <info>
     <link type="guide" xref="index#main"/>
-    <revision version="3.0" date="2011-08-25" status="review"/>
-    <revision version="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.0" date="2011-08-25" status="review"/>
+    <revision pkgversion="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.12" date="2014-02-21" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
-      <email>yrazes@gmail.com</email>
+      <email its:translate="no">yrazes@gmail.com</email>
       <years>2011</years>
     </credit>
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
-      <email>kittykat3756@gmail.com</email>
+      <email its:translate="no">kittykat3756@gmail.com</email>
     </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Save a photo or video in a different folder.</desc>
+    <desc>Save a photo or video to a different folder.</desc>
   </info>
 
   <title>Save a photo or video</title>
 
   <p>By default, Cheese saves the photos and videos in the
-  <guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> and
-  <guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> folders in your user
-  folder.</p>
+  <file>Pictures/Webcam</file> and <file>Videos/Webcam</file> folders in your
+  user folder.</p>
 
   <p>To save an image to a different location, right-click the image in the
-  photo stream and click <gui>Save As</gui>. Then, choose where you want to save
-  the image.</p>
-
-  <p>Alternatively, open the folder where you want to keep the image using the
-  file manager, then drag it from the photo stream into that folder.</p>
+  photo stream and click <gui>Save As…</gui>. Then, choose where you want to
+  save the image.</p>
 
   <p>A new copy of the image will be saved in the new location. The old version
-  will remain in the <guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> or
-  <guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> folder.</p>
+  will remain in the <file>Pictures/Webcam</file> or <file>Videos/Webcam</file>
+  folder.</p>
 
 </page>

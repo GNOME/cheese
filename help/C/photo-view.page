@@ -1,37 +1,45 @@
 <page xmlns="http://projectmallard.org/1.0/"
+      xmlns:its="http://www.w3.org/2005/11/its"
       type="topic" style="task"
       id="photo-view">
+
   <info>
     <link type="guide" xref="index#main"/>
-    <revision version="3.0" date="2011-08-25" status="candidate"/>
-    <revision version="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.0" date="2011-08-25" status="candidate"/>
+    <revision pkgversion="3.1" date="2011-09-05" status="review"/>
+    <revision pkgversion="3.12" date="2014-02-21" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
-      <email>yrazes@gmail.com</email>
+      <email its:translate="no">yrazes@gmail.com</email>
       <years>2011</years>
     </credit>
     <credit type="editor">
       <name>Ekaterina Gerasimova</name>
-      <email>kittykat3756@gmail.com</email>
+      <email its:translate="no">kittykat3756@gmail.com</email>
     </credit>
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Photos and videos will automatically appear in the photo stream.</desc>
+    <desc>Photos and videos will automatically appear in the photo
+    stream.</desc>
   </info>
 
 
   <title>View a photo or video that you took</title>
 
   <p>After you take a photo or record a video, it will appear in the photo
-  stream at the bottom of the window.</p>
+  stream at the bottom of the window. You can right-click it and press
+  <gui style="menuitem">Open</gui> to open it in the photo viewer or video
+  player application.</p>
 
+<!-- TODO: This is a bug, it doesn't work right now.
   <p>If you want to see a bigger version of a photo, or to play a video,
-  double-click it. This will open it in the default photo viewer or video player.</p>
+  double-click it. This will open it in the default photo viewer or video
+  player.</p>-->
 
   <p>All of the photos and videos in the photo stream are saved in the
-  <guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> or
-  <guiseq><gui>Videos</gui><gui>Webcam</gui></guiseq> folders in your user folder.</p>
+  <file>Pictures/Webcam</file> or <file>Videos/Webcam</file> folders in your
+  user folder.</p>
 
 </page>

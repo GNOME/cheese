@@ -8,6 +8,7 @@
     <revision pkgversion="3.0" date="2011-08-25" status="candidate"/>
     <revision pkgversion="3.1" date="2011-09-05" status="review"/>
     <revision pkgversion="3.8" date="2013-04-15" status="review"/>
+    <revision pkgversion="3.12" date="2014-02-21" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
@@ -21,7 +22,8 @@
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Use your webcam to record short movies for sharing with friends.</desc>
+    <desc>Use your webcam to record short movies for sharing with
+    friends.</desc>
   </info>
 
   <title>Record a video</title>
@@ -30,31 +32,26 @@
 
   <steps>
     <item>
-      <p>Make sure that you are in <gui>Video mode</gui>. If you are, the button
-      in the middle of the window will say <gui style="button">Record a
-      Video</gui>.</p>
-      <p>You can switch to <gui>Video mode</gui> by clicking the button in the
-      main window or by selecting
-      <guiseq><gui>Cheese</gui><gui>Video</gui></guiseq>.</p>
+      <p>Make sure that you are in <gui>Video</gui> mode. If you are, the
+      <gui style="button">Video</gui> button will be selected on the left side
+      of the screen.</p>
     </item>
     <item>
-      <p>Click <gui style="button">Record a Video</gui>, or press the
-      <key>Space</key> key. <app>Cheese</app> will start recording a video
-      using your webcam.</p>
+      <p>Click the <gui style="button">Record a video using a webcam</gui>
+      button in the middle of the bottom panel, or press the
+      <key>Space</key> key, to start recording the video.</p>
     </item>
     <item>
-     <p>To stop recording, click <gui>Stop Recording</gui> or press
-     <key>Esc</key>.</p>
+     <p>To stop recording, press the same button again. You can also press the 
+     <key>Esc</key> or <key>Space</key> key to stop recording.</p>
     </item>
   </steps>
 
-  <p>Videos are saved in the Ogg Theora (<file>.ogv</file>) format.</p>
+  <p>Videos are saved in the WebM (<file>.webm</file>) format.</p>
 
   <p>After you have stopped recording, the video will automatically appear in
   the photo stream at the bottom of the <app>Cheese</app> window. From there,
-  you can <link xref="photo-view">play back the video</link>, upload it to a
-  social network, post it on your blog or YouTube channel, or share it with
-  friends by <link href="help:gnome-help/net-default-email">email</link>.</p>
+  you can <link xref="photo-view">open</link> or delete the video.</p>
 
   <p>If you have problems sharing a video with people using other operating
   systems (like Windows or Mac OS), you may need to

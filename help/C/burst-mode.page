@@ -8,6 +8,7 @@
     <revision pkgversion="3.0" date="2011-08-24" status="candidate"/>
     <revision pkgversion="3.1" date="2011-09-05" status="review"/>
     <revision pkgversion="3.8" date="2013-04-19" status="review"/>
+    <revision pkgversion="3.12" date="2014-02-21" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
@@ -22,10 +23,10 @@
 
     <include href="legal.xml" xmlns="http://www.w3.org/2001/XInclude"/>
 
-    <desc>Capture several photos with one button press. Change your pose in between each shot!</desc>
+    <desc>Capture several photos with one button press in <gui>Burst</gui> mode. Change your pose in between each shot!</desc>
   </info>
 
-  <title>Take photos in quick succession using <gui>Burst</gui> mode</title>
+  <title>Take photos in quick succession</title>
 
   <p>Use <gui>Burst</gui> mode to automatically take several photos in a row.
   It is particularly fun if you change your pose in between photos! To use
@@ -33,19 +34,22 @@
 
   <steps>
     <item>
-      <p>Select <guiseq><gui style="menu">Cheese</gui>
-      <gui style="menuitem">Burst</gui></guiseq>.</p>
+      <p>Make sure that you are in <gui>Burst</gui> mode. If you are, the
+      <gui style="button">Burst</gui> button will be selected on the left side
+      of the screen.</p>
     </item>
     <item>
-      <p>Press <gui style="button">Take Multiple Photos</gui> or press the
-      <key>Space</key> key.</p>
+      <p>Click the <gui style="button">Take multiple photos using a
+      webcam</gui> button in the middle of the bottom panel, or press the
+      <key>Space</key> key, to start taking photos.</p>
       <p>By default, four photos will be taken, with a one second delay and a
       countdown between photos.</p>
     </item>
+    <item>
+      <p>To stop recording, press the same button again. You can also press the
+      <key>Esc</key> or <key>Space</key> key to stop recording.</p>
+    </item>
   </steps>
-
-  <p>Press <key>Esc</key> if you want to stop <app>Cheese</app> from taking
-  photos at any point.</p>
 
 <section id="burst-preferences">
   <title>Change <gui>Burst</gui> preferences</title>
@@ -75,9 +79,12 @@
         </item>
         <item>
           <title>Delay between photos (seconds)</title>
-          <p>The delay between the last photo and the start of the next
+          <p>The delay between two photos. If you have the <gui>Countdown</gui>
+          enabled, then this delay needs to be set to over four seconds for it
+          to have any effect.</p>
+          <!--<p>The delay between the last photo and the start of the next
           countdown. If <gui>Countdown</gui> is disabled, this is the delay
-          between photos.</p>
+          between photos.</p>-->
         </item>
       </terms>
     </item>

@@ -13,6 +13,7 @@
     <revision pkgversion="3.0" date="2011-08-25" status="candidate"/>
     <revision pkgversion="3.1" date="2011-09-05" status="review"/>
     <revision pkgversion="3.8" date="2013-04-15" status="review"/>
+    <revision pkgversion="3.12" date="2014-02-21" status="review"/>
 
     <credit type="author copyright">
       <name>Julita Inca</name>
@@ -29,19 +30,21 @@
     <desc>Use your webcam to take photos instead of videos.</desc>
   </info>
 
-  <title>Take photos using a webcam</title>
+  <title>Take photos</title>
 
   <p>Webcams can be used to take still photos as well as videos. To take a
   photo:</p>
 
   <steps>
     <item>
-      <p>Make sure that the mode <gui style="menuitem">Photo</gui> is selected
-      in the <gui style="menu">Cheese</gui> menu.</p>
+      <p>Make sure that you are in <gui>Photo</gui> mode. If you are, the
+      <gui style="button">Photo</gui> button will be selected on the left side
+      of the screen.</p>
     </item>
     <item>
-      <p>Click <gui>Take a Photo</gui>. Alternatively, you can press the
-      capture button on the webcam or the <key>Space</key> key.</p>
+      <p>Click the <gui style="button">Take a photo using a webcam</gui>
+      button in the middle of the bottom panel, or press the
+      <key>Space</key> key, to take the photo.</p>
     </item>
     <item>
       <p>There will be a short countdown, followed by a flash, and the photo
@@ -50,7 +53,7 @@
   </steps>
 
   <p>The photos in the photo stream are automatically saved in the
-  <file>/Pictures/Webcam</file> folder in your home folder. They are saved
+  <file>Pictures/Webcam</file> folder in your home folder. They are saved
   using the JPEG (<file>.jpg</file>) format.</p>
 
   <p>To cancel taking a photo after you have clicked <gui>Take a Photo</gui>,
@@ -58,7 +61,7 @@
 
   <note>
     <p>To take multiple photos in rapid succession, use
-    <link xref="burst-mode">burst mode</link>.</p>
+    <link xref="burst-mode"><gui>Burst</gui> mode</link>.</p>
   </note>
 
 </page>
