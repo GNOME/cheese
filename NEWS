@@ -1,6 +1,24 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.11.91
+  - Work around non-existent Makefile during clean
+  - Mark help images as untranslatable
+    Delete translations of images that don't need them and of images that
+    aren't used any more.
+  - Review index and pref help for 3.12
+  - Update intro and features help for 3.12
+  - Post-release version bump to 3.11.91
+  - Added/Updated Translations
+    - be, courtesy of Yuri Matsuk
+    - cs, courtesy of Marek Černocký
+    - fr, courtesy of Alain Lojewski
+    - hu, courtesy of Gabor Kelemen
+  - Added/Updated Documentation
+    - cs, courtesy of Marek Černocký
+    - es, courtesy of Daniel Mustieles
+    - hu, courtesy of Gabor Kelemen
+
 version 3.11.90
   - Remove g_type_init() from test-libcheese.c
   - Update copyright in about dialogue
