@@ -458,7 +458,9 @@ all-local: $(bin_PROGRAMS)
 check-local: test
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFlAGS) check
 clean-local: lcov-clean
-	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) clean
+	cd $(gtkdoc_builddir) && if test -e Makefile ; then \
+		$(MAKE) $(AM_MAKEFLAGS) clean ; \
+	fi
 	find . -name '*.gcno' -exec rm -f {} +
 distclean-local:
 	cd $(gtkdoc_builddir) && $(MAKE) $(AM_MAKEFLAGS) distclean
