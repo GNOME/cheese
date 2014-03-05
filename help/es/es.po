@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese-help.master\n"
-"POT-Creation-Date: 2014-02-24 04:06+0000\n"
-"PO-Revision-Date: 2014-02-24 16:24+0100\n"
+"POT-Creation-Date: 2014-03-03 04:06+0000\n"
+"PO-Revision-Date: 2014-03-03 14:40+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -59,7 +59,6 @@ msgstr "2011, 2013"
 
 #. (itstool) path: info/desc
 #: C/burst-mode.page:26
-#, fuzzy
 #| msgid ""
 #| "Capture several photos with one button press. Change your pose in between "
 #| "each shot!"
@@ -67,11 +66,11 @@ msgid ""
 "Capture several photos with one button press in <gui>Burst</gui> mode. "
 "Change your pose in between each shot!"
 msgstr ""
-"Capturar varias fotos pulsando sólo un botón. Cambie su postura entre ellas."
+"Haga varias fotos pulsando sólo un botón en modo <gui>Ráfaga</gui>. Cambie "
+"su postura entre ellas."
 
 #. (itstool) path: page/title
 #: C/burst-mode.page:29
-#| msgid "Take photos in quick succession using <gui>Burst</gui> mode"
 msgid "Take photos in quick succession"
 msgstr "Hacer fotos en una rápida sucesión"
 
@@ -93,10 +92,12 @@ msgid ""
 "\"button\">Burst</gui> button will be selected on the left side of the "
 "screen."
 msgstr ""
+"Asegúrese de que está en modo <gui>Ráfaga</gui>. Si lo está, el botón <gui "
+"style=\"button\">Ráfaga</gui> estará seleccionado en la parte izquierda de "
+"la pantalla."
 
 #. (itstool) path: item/p
 #: C/burst-mode.page:42
-#, fuzzy
 #| msgid ""
 #| "Press <gui style=\"button\">Take Multiple Photos</gui> or press the "
 #| "<key>Space</key> key."
@@ -105,8 +106,9 @@ msgid ""
 "button in the middle of the bottom panel, or press the <key>Space</key> key, "
 "to start taking photos."
 msgstr ""
-"Pulse <gui style=\"button\">Tomar múltiples fotos</gui> o pulse la "
-"<key>barra espaciadora</key>."
+"Pulse el botón <gui style=\"button\">Tomar múltiples fotos usando una cámara "
+"web</gui> en el medio del panel inferior o pulse la tecla <key>Espacio</key> "
+"para empezar a hacer las fotos."
 
 #. (itstool) path: item/p
 #: C/burst-mode.page:45
@@ -123,6 +125,9 @@ msgid ""
 "To stop recording, press the same button again. You can also press the "
 "<key>Esc</key> or <key>Space</key> key to stop recording."
 msgstr ""
+"Para detener la grabación, pulse el mismo botón otra vez. También puede "
+"pulsar las teclas <key>Esc</key> o <key>Space</key> para detener la "
+"grabación."
 
 #. (itstool) path: section/title
 #: C/burst-mode.page:55
@@ -194,18 +199,8 @@ msgid ""
 "then this delay needs to be set to over four seconds for it to have any "
 "effect."
 msgstr ""
-
-#. (itstool) path: media
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/effects-apply.page:49
-msgctxt "_"
-msgid ""
-"external ref='figures/effects.png' md5='4b44c90de3523b77e9f4bf32d83c9009'"
-msgstr ""
-"external ref='figures/effects.png' md5='4b44c90de3523b77e9f4bf32d83c9009'"
+"El retardo entre dos fotos. Si tiene activada la <gui>Cuenta atrás</gui> el "
+"retardo se debe configurar por encima de 4 segundos para que haga efecto."
 
 #. (itstool) path: info/desc
 #: C/effects-apply.page:24
@@ -228,25 +223,21 @@ msgstr "Puede aplicar efectos interesantes y divertidos a sus fotos y vídeos:"
 
 #. (itstool) path: item/p
 #: C/effects-apply.page:34
-#| msgid "Click <gui>Effects</gui>."
 msgid "Click <gui style=\"button\">Effects</gui>."
 msgstr "Pulse <gui style=\"button\">Efectos</gui>."
 
 #. (itstool) path: item/p
 #: C/effects-apply.page:37
-#, fuzzy
 #| msgid "Select the effect you want to use by clicking one of the options."
 msgid ""
 "Select the effect you want to use by clicking one of the options or select "
 "<gui>No Effect</gui> if you don't want to use one."
-msgstr "Seleccione el efecto que quiere usar pulsando una de las opciones."
+msgstr ""
+"Seleccione el efecto que quiere usar pulsando una de las opciones o "
+"seleccione <gui>Sin efecto</gui> si no quiere usar ninguno."
 
 #. (itstool) path: page/p
 #: C/effects-apply.page:42
-#| msgid ""
-#| "<app>Cheese</app> offers 34 effects, of which only 9 are shown on the "
-#| "first page. Click <gui>Next Effects</gui> and <gui>Previous Effects</gui> "
-#| "to navigate to the other pages."
 msgid ""
 "<app>Cheese</app> offers 35 effects, of which only 9 are shown on the first "
 "page. Click the back and forward arrows next to <gui style=\"button"
@@ -381,7 +372,6 @@ msgstr "Pulse con el botón derecho y seleccione <gui>Eliminar</gui>."
 
 #. (itstool) path: item/p
 #: C/photo-delete.page:41
-#, fuzzy
 #| msgid ""
 #| "You will be asked if you want to permanently delete it. Confirm by "
 #| "clicking <gui>Delete</gui>; you will not be able to recover the photo."
@@ -390,7 +380,7 @@ msgid ""
 "<gui>Delete</gui>; you will not be able to recover the photo or video."
 msgstr ""
 "Se le preguntará si quiere eliminarla permanentemente. Confírmelo pulsando "
-"<gui>Eliminar</gui>; no podrá recuperar la foto."
+"<gui>Eliminar</gui>; no podrá recuperar la foto o el vídeo."
 
 #. (itstool) path: page/p
 #: C/photo-delete.page:47
@@ -415,7 +405,6 @@ msgstr ""
 
 #. (itstool) path: info/desc
 #: C/photo-save.page:24
-#| msgid "Save a photo or video in a different folder."
 msgid "Save a photo or video to a different folder."
 msgstr "Guardar una foto o un vídeo en una carpeta diferente."
 
@@ -426,7 +415,6 @@ msgstr "Guardar una foto o un vídeo"
 
 #. (itstool) path: page/p
 #: C/photo-save.page:29
-#, fuzzy
 #| msgid ""
 #| "By default, Cheese saves the photos and videos in the "
 #| "<guiseq><gui>Pictures</gui><gui>Webcam</gui></guiseq> and "
@@ -436,13 +424,12 @@ msgid ""
 "By default, Cheese saves the photos and videos in the <file>Pictures/Webcam</"
 "file> and <file>Videos/Webcam</file> folders in your user folder."
 msgstr ""
-"De forma predeterminada Cheese guarda las fotos y vídeos en las carpetas "
-"<guiseq><gui>Imágenes</gui><gui>Webcam</gui></guiseq> y <guiseq><gui>Vídeos</"
-"gui><gui>Webcam</gui></guiseq> dentro de su carpeta de usuario."
+"De manera predeterminada Cheese guarda las fotos y vídeos en las carpetas "
+"<file>Imágenes/Webcam</file> y <file>Vídeos/Webcam</file> dentro de su "
+"carpeta personal."
 
 #. (itstool) path: page/p
 #: C/photo-save.page:33
-#, fuzzy
 #| msgid ""
 #| "To save an image to a different location, right-click the image in the "
 #| "photo stream and click <gui>Save As</gui>. Then, choose where you want to "
@@ -453,12 +440,11 @@ msgid ""
 "the image."
 msgstr ""
 "Para guardar una imagen en una ubicación diferente pulse con el botón "
-"derecho del ratón sobre la colección de imágenes y pulse <gui>Guardar como</"
+"derecho del ratón sobre la colección de imágenes y pulse <gui>Guardar como…</"
 "gui>. Después, elija dónde quiere guardar la imagen."
 
 #. (itstool) path: page/p
 #: C/photo-save.page:37
-#, fuzzy
 #| msgid ""
 #| "A new copy of the image will be saved in the new location. The old "
 #| "version will remain in the <guiseq><gui>Pictures</gui><gui>Webcam</gui></"
@@ -469,9 +455,8 @@ msgid ""
 "file> folder."
 msgstr ""
 "Se guardará una copia nueva de la imagen en la nueva ubicación. La versión "
-"anterior seguirá permaneciendo en la carpeta <guiseq><gui>Imágenes</"
-"gui><gui>Webcam</gui></guiseq> or <guiseq><gui>Vídeos</gui><gui>Webcam</"
-"gui></guiseq>."
+"anterior seguirá permaneciendo en las carpeta <file>Imágenes/Webcam</file> o "
+"<file>Vídeos/Webcam</file>."
 
 #. (itstool) path: info/desc
 #: C/photo-take.page:30
@@ -480,7 +465,6 @@ msgstr "Usar su cámara web para hacer fotos en lugar de vídeos."
 
 #. (itstool) path: page/title
 #: C/photo-take.page:33
-#| msgid "Taking a photo"
 msgid "Take photos"
 msgstr "Hacer fotos"
 
@@ -494,7 +478,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/photo-take.page:40
-#, fuzzy
 #| msgid ""
 #| "Make sure that you're in <gui>Photo mode</gui>. If you are, the button in "
 #| "the main window will say <gui>Take a Photo</gui>."
@@ -503,8 +486,9 @@ msgid ""
 "\"button\">Photo</gui> button will be selected on the left side of the "
 "screen."
 msgstr ""
-"Asegúrese de que está en el <gui>Modo foto</gui>. Si lo está, el botón de la "
-"ventana principal dirá <gui>Tomar una foto</gui>."
+"Asegúrese de que está en el modo <gui>Foto</gui>. Si lo está, el botón <gui "
+"style=\"button\">Foto</gui> estará seleccionado en la parte izquierda de la "
+"pantalla."
 
 #. (itstool) path: item/p
 #: C/photo-take.page:45
@@ -619,7 +603,6 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/pref-countdown.page:28
-#| msgid "Disable the <gui>Countdown</gui> before photos are taken"
 msgid "Disable the <gui>Countdown</gui>"
 msgstr "Desactivar la <gui>Cuenta atrás</gui>"
 
@@ -685,7 +668,6 @@ msgstr "Pantalla completa"
 
 #. (itstool) path: page/p
 #: C/pref-fullscreen.page:23
-#| msgid "To disable the fullscreen mode:"
 msgid "To enable or disable the fullscreen mode:"
 msgstr "Para activar o desactivar el modo a pantalla completa:"
 
@@ -712,20 +694,6 @@ msgid ""
 msgstr ""
 "También puede activar y desactivar el modo pantalla completa pulsando "
 "<key>F11</key>"
-
-#. (itstool) path: media
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/pref-image-properties.page:51
-msgctxt "_"
-msgid ""
-"external ref='figures/image-properties.png' "
-"md5='70c32a1dd7c9a20dabef58d0789f2a5a'"
-msgstr ""
-"external ref='figures/image-properties.png' "
-"md5='70c32a1dd7c9a20dabef58d0789f2a5a'"
 
 #. (itstool) path: info/desc
 #: C/pref-image-properties.page:26
@@ -987,6 +955,20 @@ msgstr ""
 "sistemas operativos (como Windows o Mac OS) puede necesitar <link href="
 "\"ghelp:gnome-help/#video-sending\">convertirlo a un formato diferente</"
 "link>."
+
+#~ msgctxt "_"
+#~ msgid ""
+#~ "external ref='figures/effects.png' md5='4b44c90de3523b77e9f4bf32d83c9009'"
+#~ msgstr ""
+#~ "external ref='figures/effects.png' md5='4b44c90de3523b77e9f4bf32d83c9009'"
+
+#~ msgctxt "_"
+#~ msgid ""
+#~ "external ref='figures/image-properties.png' "
+#~ "md5='70c32a1dd7c9a20dabef58d0789f2a5a'"
+#~ msgstr ""
+#~ "external ref='figures/image-properties.png' "
+#~ "md5='70c32a1dd7c9a20dabef58d0789f2a5a'"
 
 #~ msgid ""
 #~ "Select <guiseq><gui style=\"menu\">Cheese</gui> <gui style=\"menuitem"
