@@ -18,7 +18,7 @@ AM_SILENT_RULES([yes])
 # Check for programs
 AC_PROG_CC
 AM_PROG_CC_C_O
-AM_PROG_VALAC([0.22.0])
+AM_PROG_VALAC([0.23.3])
 
 # Initialize libtool
 LT_PREREQ([2.2])
@@ -56,7 +56,7 @@ IT_PROG_INTLTOOL([0.50.0])
 #*******************************************************************************
 
 
-GLIB_REQUIRED="glib-2.0 >= 2.38.0"
+GLIB_REQUIRED="glib-2.0 >= 2.39.90"
 GTK_REQUIRED="gtk+-3.0 >= 3.10.0"
 GDK_PIXBUF_REQUIRED="gdk-pixbuf-2.0"
 LIBGNOMEDESKTOP_REQUIRED="gnome-desktop-3.0 >= 2.91.6"

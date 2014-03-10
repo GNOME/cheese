@@ -28,10 +28,7 @@ public class Cheese.Application : Gtk.Application
 {
     private GLib.Settings settings;
 
-    static bool wide;
     static string device;
-    static bool version;
-    static bool fullscreen;
 
     static MainWindow main_window;
 
@@ -52,20 +49,23 @@ public class Cheese.Application : Gtk.Application
     };
 
     const OptionEntry[] options = {
-        { "wide", 'w', 0, OptionArg.NONE, ref wide, N_("Start in wide mode"),
+        { "wide", 'w', 0, OptionArg.NONE, null, N_("Start in wide mode"),
           null  },
-        { "device", 'd', 0, OptionArg.FILENAME, ref device,
+        { "device", 'd', 0, OptionArg.FILENAME, null,
           N_("Device to use as a camera"), N_("DEVICE") },
-        { "version", 'v', 0, OptionArg.NONE, ref version,
+        { "version", 'v', 0, OptionArg.NONE, null,
           N_("Output version information and exit"), null },
-        { "fullscreen", 'f', 0, OptionArg.NONE, ref fullscreen,
+        { "fullscreen", 'f', 0, OptionArg.NONE, null,
           N_("Start in fullscreen mode"), null },
         { null }
     };
 
     public Application ()
     {
-        GLib.Object (application_id: "org.gnome.Cheese");
+        GLib.Object (application_id: "org.gnome.Cheese",
+                     flags: ApplicationFlags.HANDLES_COMMAND_LINE);
+
+        this.add_main_option_entries (options);
     }
 
     /**
@@ -152,87 +152,40 @@ public class Cheese.Application : Gtk.Application
         }
     }
 
-    /**
-     * Overridden method of GApplication, to handle the arguments locally.
-     *
-     * @param arguments the command-line arguments
-     * @param exit_status the exit status to return to the OS
-     * @return true if the arguments were successfully processed, false
-     * otherwise
-     */
-    protected override bool local_command_line ([CCode (array_null_terminated = true, array_length = false)]
-                                                ref unowned string[] argv,
-                                                out int exit_status)
+    protected override int command_line (ApplicationCommandLine cl)
     {
-        // Try to register.
-        try
+        var opts = cl.get_options_dict ();
+
+        if (opts.lookup ("device", "^ay", out device, null))
         {
-            register ();
-        }
-        catch (Error e)
-        {
-            warning ("Unable to register application: %s", e.message);
-            exit_status = 1;
-            return true;
+            settings.set_string ("camera", device);
         }
 
-        // Workaround until bug 642885 is solved.
-        unowned string[] arguments = argv;
-        var n_args = arguments.length;
-
-        if (n_args <= 1)
+        if (opts.contains ("fullscreen"))
         {
-            activate ();
-            exit_status = 0;
-        }
-        else
-        {
-            try
-            {
-                var context = new OptionContext (_("- Take photos and videos from your webcam"));
-                context.set_translation_domain (Config.GETTEXT_PACKAGE);
-                context.set_help_enabled (true);
-                context.add_main_entries (options, null);
-                context.parse (ref arguments);
-            }
-            catch (OptionError e)
-            {
-                warning ("%s", e.message);
-                stdout.printf (_("Run '%s --help' to see a full list of available command line options."),
-                               arguments[0]);
-                stdout.printf ("\n");
-                exit_status = 1;
-                return true;
-            }
-
-            if (version)
-            {
-                stdout.printf ("%s %s\n", Config.PACKAGE_NAME,
-                               Config.PACKAGE_VERSION);
-                exit_status = 1;
-                return true;
-            }
-
-            if (device != null)
-            {
-                settings.set_string ("camera", device);
-            }
-
-            if (fullscreen)
-            {
-                activate_action ("fullscreen", null);
-            }
-
-            if (wide)
-            {
-                activate_action ("wide-mode", null);
-            }
-
-            activate ();
-            exit_status = 0;
+            activate_action ("fullscreen", null);
         }
 
-        return base.local_command_line (ref arguments, out exit_status);
+        if (opts.contains ("wide"))
+        {
+            activate_action ("wide-mode", null);
+        }
+
+        this.activate ();
+
+        return 0;
+    }
+
+    protected override int handle_local_options (VariantDict opts)
+    {
+        if (opts.contains ("version"))
+        {
+            stdout.printf ("%s %s\n", Config.PACKAGE_NAME,
+                           Config.PACKAGE_VERSION);
+            return 0;
+        }
+
+        return -1;
     }
 
     /**
