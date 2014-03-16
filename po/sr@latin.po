@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the cheese package.
 # Goran Rakić <grakic@devbase.net>, 2009.
 # Miloš Popović <gpopac@gmail.com>, 2010.
-# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2010, 2011, 2012, 2013.
+# Miroslav Nikolić <miroslavnikolic@rocketmail.com>, 2010—2014.
 # Branko Kokanović <branko.kokanovic@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
 "&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-08-06 16:04+0000\n"
-"PO-Revision-Date: 2013-09-06 22:03+0200\n"
+"POT-Creation-Date: 2014-03-15 16:05+0000\n"
+"PO-Revision-Date: 2014-03-15 19:51+0200\n"
 "Last-Translator: Miroslav Nikolić <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: Serbian <gnom@prevod.org>\n"
 "Language: sr\n"
@@ -22,50 +22,81 @@ msgstr ""
 "n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Project-Style: gnome\n"
 
-#: ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-appmenu.ui.h:1
+msgid "_Fullscreen"
+msgstr "Preko _celog ekrana"
+
+#: ../data/cheese-appmenu.ui.h:2
+msgid "P_references"
+msgstr "_Postavke"
+
+#: ../data/cheese-appmenu.ui.h:3 ../data/cheese-prefs.ui.h:18
+msgid "_Help"
+msgstr "Po_moć"
+
+#: ../data/cheese-appmenu.ui.h:4
+msgid "_About"
+msgstr "_O programu"
+
+#: ../data/cheese-appmenu.ui.h:5
+msgid "_Quit"
+msgstr "_Izađi"
+
+#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:95
+#: ../src/cheese-window.vala:1326
+msgid "Take a Photo"
+msgstr "Snimite fotku"
+
+#: ../data/cheese-main-window.ui.h:2
 msgid "Photo mode"
 msgstr "Režim slikanja"
 
-#: ../data/cheese-main-window.ui.h:2
+#: ../data/cheese-main-window.ui.h:3
+#| msgid "_Photo"
+msgid "Photo"
+msgstr "Fotografija"
+
+#: ../data/cheese-main-window.ui.h:4
 msgid "Video mode"
 msgstr "Video režim"
 
-#: ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-main-window.ui.h:5
+#| msgid "_Video"
+msgid "Video"
+msgstr "Video"
+
+#: ../data/cheese-main-window.ui.h:6
 msgid "Photo burst mode"
 msgstr "Rafalni režim"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1304
+#: ../data/cheese-main-window.ui.h:7
+#| msgid "_Burst"
+msgid "Burst"
+msgstr "Rafal"
+
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1297
 msgid "Take a photo using a webcam"
 msgstr "Snimite fotku koristeći veb kamericu"
 
-#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
-#: ../src/cheese-window.vala:1303
-msgid "_Take a Photo"
-msgstr "_Snimi fotku"
-
-#: ../data/cheese-main-window.ui.h:6
+#: ../data/cheese-main-window.ui.h:9
 msgid "Navigate to the previous page of effects"
 msgstr "Idite na prethodnu stranicu sa efektima"
 
-#: ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-main-window.ui.h:10
 msgid "Effects"
 msgstr "Efekti"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
+#: ../data/cheese-main-window.ui.h:11
 msgid "_Effects"
 msgstr "_Efekti"
 
-#: ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-main-window.ui.h:12
 msgid "Navigate to the next page of effects"
 msgstr "Idite na sledeću stranicu sa efektima"
 
-#: ../data/cheese-main-window.ui.h:10
+#: ../data/cheese-main-window.ui.h:13
 msgid "Leave fullscreen mode and go back to windowed mode"
 msgstr "Napustite režim preko celog ekrana i vratite se na režim prozora"
-
-#: ../data/cheese-main-window.ui.h:11
-msgid "_Leave Fullscreen"
-msgstr "_Napusti ceo ekran"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
@@ -116,7 +147,6 @@ msgid "_Countdown"
 msgstr "_Odbrojavaj"
 
 #: ../data/cheese-prefs.ui.h:13
-#| msgid "Fire _Flash"
 msgid "Fire _flash"
 msgstr "Okini _blic"
 
@@ -136,8 +166,39 @@ msgstr "Zastoj (u sekundama)"
 msgid "Capture"
 msgstr "Snimanje"
 
+#: ../data/cheese-prefs.ui.h:19
+msgid "_Close"
+msgstr "_Zatvori"
+
+#: ../data/cheese.appdata.xml.in.h:1
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
+msgstr ""
+"Ptičica koristi vašu veb kamericu za snimanje fotografija i video zapisa, "
+"primenjuje kičaste naročite efekte i dopušta vam da se zabavite sa ostalima."
+
+#: ../data/cheese.appdata.xml.in.h:2
+msgid ""
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"Snimite nekoliko fotografija u rafalnom režimu. Koristite odbrojavanje da "
+"date sebi vremena da se namestite, i da sačekate na blic!"
+
+#: ../data/cheese.appdata.xml.in.h:3
+msgid ""
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
+msgstr ""
+"Ispod haube, Ptičica koristi Gstrimer da primeni lepe efekte na "
+"fotografijama i video zapisima. Sa Ptičicom ćete lako uslikati vas, vaše "
+"prijatelje, kućne ljubimce ili šta god drugo poželite i da fotografije "
+"podelite sa drugima."
+
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:611
+#: ../src/cheese-application.vala:584
 msgid "Cheese"
 msgstr "Ptičica"
 
@@ -145,7 +206,7 @@ msgstr "Ptičica"
 msgid "Cheese Webcam Booth"
 msgstr "Fotoradnja „Ptičica“"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Napravite fotke i snimke vašom veb kamericom, uz zabavne efekte"
 
@@ -170,12 +231,10 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "Trajanje brojača pre snimanja fotke, u sekundama"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-#| msgid "Fire flash before taking a picture"
 msgid "Fire flash before taking a photo"
 msgstr "Okidanje blica pre snimanja"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-#| msgid "Set to true to fire a flash when taking a picture"
 msgid "Set to true to fire a flash before taking a photo"
 msgstr "Izaberite ovo da bi blic bio okinut prilikom snimanja fotke"
 
@@ -230,47 +289,38 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "Visina videa koji hvata veb kamera, u tačkama"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-#| msgid "Picture brightness"
 msgid "Image brightness"
 msgstr "Osvetljenost slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-#| msgid "Adjusts the brightness of the picture coming from the camera"
 msgid "Adjusts the brightness of the image coming from the camera"
 msgstr "Reguliše osvetljenost slike koju hvata veb kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-#| msgid "Picture contrast"
 msgid "Image contrast"
 msgstr "Kontrast slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-#| msgid "Adjusts the contrast of the picture coming from the camera"
 msgid "Adjusts the contrast of the image coming from the camera"
 msgstr "Reguliše kontrast slike koju hvata veb kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-#| msgid "Picture saturation"
 msgid "Image saturation"
 msgstr "Zasićenost slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-#| msgid "Adjusts the saturation of the picture coming from the camera"
 msgid "Adjusts the saturation of the image coming from the camera"
 msgstr "Reguliše zasićenost slike koju hvata veb kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-#| msgid "Image"
 msgid "Image hue"
 msgstr "Nijansa slike"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-#| msgid "Adjusts the hue (color tint) of the picture coming from the camera"
 msgid "Adjusts the hue (color tint) of the image coming from the camera"
 msgstr "Reguliše nijanse slike koju hvata veb kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-#| msgid "Video Path"
 msgid "Video path"
 msgstr "Putanja za snimke"
 
@@ -283,7 +333,6 @@ msgstr ""
 "korišćeno „$XDG_VIDEO/Webcam“."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-#| msgid "Photo Path"
 msgid "Photo path"
 msgstr "Putanja za fotke"
 
@@ -317,27 +366,30 @@ msgstr "Broj slika u rafalnom režimu"
 msgid "The number of photos to take in a single burst."
 msgstr "Broj slika koje se snimaju u jednom rafalu."
 
-#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:662
+#: ../libcheese/cheese-avatar-chooser.c:90 ../src/cheese-window.vala:248
+#: ../src/cheese-window.vala:277 ../src/cheese-window.vala:352
+msgid "_Cancel"
+msgstr "_Otkaži"
+
+#: ../libcheese/cheese-avatar-chooser.c:92
+#| msgid "Select"
+msgid "_Select"
+msgstr "_Izaberi"
+
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:676
 msgid "Shutter sound"
 msgstr "Zvuk škljocanja"
 
-#: ../libcheese/cheese-avatar-chooser.c:262
-msgid "Select"
-msgstr "Izaberi"
+#: ../libcheese/cheese-avatar-widget.c:268
+#| msgid "Stop _Taking Pictures"
+msgid "_Take Another Picture"
+msgstr "_Snimi još jednu sliku"
 
-#: ../libcheese/cheese-avatar-chooser.c:265
-msgid "Take a Photo"
-msgstr "Snimite fotku"
-
-#: ../libcheese/cheese-avatar-chooser.c:296
-msgid "_Discard photo"
-msgstr "_Odbaci fotku"
-
-#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1617
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Nedostaje jedan ili više potrebnih elemenata Gstrimera: "
 
-#: ../libcheese/cheese-camera.c:1576
+#: ../libcheese/cheese-camera.c:1584
 #, c-format
 msgid "No device found"
 msgstr "Nisam pronašao uređaj"
@@ -347,26 +399,26 @@ msgstr "Nisam pronašao uređaj"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1852
+#: ../libcheese/cheese-camera.c:1860
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02d:%02d:%02d"
 
-#: ../libcheese/cheese-camera-device.c:402
+#: ../libcheese/cheese-camera-device.c:562
 msgid "Device capabilities not supported"
 msgstr "Mogućnosti uređaja nisu podržane"
 
-#: ../libcheese/cheese-camera-device.c:431
+#: ../libcheese/cheese-camera-device.c:591
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "Nije uspelo pokretanje uređaja %s za isprobavanje mogućnosti"
 
-#: ../libcheese/cheese-camera-device.c:620
+#: ../libcheese/cheese-camera-device.c:780
 msgid "Unknown device"
 msgstr "Nepoznati uređaj"
 
-#: ../libcheese/cheese-camera-device.c:643
+#: ../libcheese/cheese-camera-device.c:803
 msgid "Cancellable initialization not supported"
 msgstr "Nije podržano pokretanje uz mogućnost otkazivanja"
 
@@ -390,60 +442,18 @@ msgstr "Ispisuje podatke o izdanju i izlazi"
 msgid "Start in fullscreen mode"
 msgstr "Pokreće se u režimu preko celog ekrana"
 
-#: ../src/cheese-application.vala:121
-msgid "_Shoot"
-msgstr "_Snimi"
-
-#: ../src/cheese-application.vala:125
-msgid "Mode:"
-msgstr "Režim:"
-
-#: ../src/cheese-application.vala:126
-msgid "_Photo"
-msgstr "_Fotka"
-
-#: ../src/cheese-application.vala:127
-msgid "_Video"
-msgstr "_Video"
-
-#: ../src/cheese-application.vala:128
-msgid "_Burst"
-msgstr "_Rafal"
-
-#: ../src/cheese-application.vala:131
-msgid "_Fullscreen"
-msgstr "Preko _celog ekrana"
-
-#: ../src/cheese-application.vala:139
-msgid "P_references"
-msgstr "_Postavke"
-
-#: ../src/cheese-application.vala:142
-msgid "_Help"
-msgstr "Po_moć"
-
-#: ../src/cheese-application.vala:145
-msgid "_About"
-msgstr "_O programu"
-
-#: ../src/cheese-application.vala:146
-msgid "_Quit"
-msgstr "_Izađi"
-
-#: ../src/cheese-application.vala:219
+#: ../src/cheese-application.vala:192
 msgid "- Take photos and videos from your webcam"
 msgstr "— napravite fotke i snimke veb kamericom, uz zabavne efekte"
 
-#: ../src/cheese-application.vala:228
+#: ../src/cheese-application.vala:201
 #, c-format
-#| msgid ""
-#| "Run '%s --help' to see a full list of available command line options.\n"
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Pokrenite „%s --help“ da vidite čitav spisak dostupnih mogućnosti linije "
 "naredbi."
 
-#: ../src/cheese-application.vala:612
+#: ../src/cheese-application.vala:585
 msgid "translator-credits"
 msgstr ""
 "Goran Rakić <grakic@devbase.net>\n"
@@ -452,22 +462,22 @@ msgstr ""
 "\n"
 "http://prevod.org — prevod na srpski jezik"
 
-#: ../src/cheese-application.vala:614
+#: ../src/cheese-application.vala:587
 msgid "Cheese Website"
 msgstr "Veb strana Ptičice"
 
 #. Translators: a description of an effect (to be applied to images
 #. *              from the webcam) which does nothing.
-#: ../src/cheese-effects-manager.vala:53
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "Bez efekta"
 
-#: ../src/cheese-window.vala:192
+#: ../src/cheese-window.vala:220
 #, c-format
 msgid "Could not open %s"
 msgstr "Ne mogu da otvorim %s"
 
-#: ../src/cheese-window.vala:217
+#: ../src/cheese-window.vala:245
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
@@ -476,7 +486,12 @@ msgstr[1] "Da li ste sigurni da želite trajno da obrišete %d datoteke?"
 msgstr[2] "Da li ste sigurni da želite trajno da obrišete %d datoteka?"
 msgstr[3] "Da li ste sigurni da želite trajno da obrišete jednu datoteku?"
 
-#: ../src/cheese-window.vala:223
+#: ../src/cheese-window.vala:249
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "_Obriši"
+
+#: ../src/cheese-window.vala:251
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Ako obrišete stavku, biće trajno izgubljena"
@@ -484,86 +499,106 @@ msgstr[1] "Ako obrišete stavke, biće trajno izgubljene"
 msgstr[2] "Ako obrišete stavke, biće trajno izgubljene"
 msgstr[3] "Ako obrišete stavku, biće trajno izgubljena"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:324
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Ne mogu da premestim „%s“ u korpu"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:321
+#: ../src/cheese-window.vala:349
 msgid "Save File"
 msgstr "Sačuvaj datoteku"
 
-#: ../src/cheese-window.vala:355
+#: ../src/cheese-window.vala:353
+#| msgid "Save File"
+msgid "Save"
+msgstr "Sačuvaj"
+
+#: ../src/cheese-window.vala:383
 #, c-format
 msgid "Could not save %s"
 msgstr "Ne mogu da sačuvam „%s“"
 
-#: ../src/cheese-window.vala:772
-msgid "Stop _Recording"
-msgstr "_Zaustavi snimanje"
-
-#: ../src/cheese-window.vala:773
+#: ../src/cheese-window.vala:786
 msgid "Stop recording"
 msgstr "Zaustavite snimanje"
 
-#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1308
-msgid "_Record a Video"
-msgstr "_Snimi video"
-
-#: ../src/cheese-window.vala:789
+#: ../src/cheese-window.vala:801
 msgid "Record a video"
 msgstr "Snimite video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:824
-msgid "Stop _Taking Pictures"
-msgstr "Zaustavi _slikanje"
-
-#: ../src/cheese-window.vala:825
+#: ../src/cheese-window.vala:836
 msgid "Stop taking pictures"
 msgstr "Zaustavite pravljenje slika"
 
-#: ../src/cheese-window.vala:848
-msgid "Take Multiple Photos"
-msgstr "Snimi više fotki"
-
-#: ../src/cheese-window.vala:849
+#: ../src/cheese-window.vala:859
 msgid "Take multiple photos"
 msgstr "Snimite više fotki"
 
-#: ../src/cheese-window.vala:1033
+#: ../src/cheese-window.vala:1053
 msgid "No effects found"
 msgstr "Nisam pronašao efekte"
 
-#: ../src/cheese-window.vala:1150
+#: ../src/cheese-window.vala:1173
 msgid "There was an error playing video from the webcam"
 msgstr "Došlo je do greške puštanja snimka sa veb kamere"
 
-#: ../src/cheese-window.vala:1167
+#: ../src/cheese-window.vala:1190
 msgid "Open"
 msgstr "Otvori"
 
-#: ../src/cheese-window.vala:1170
+#: ../src/cheese-window.vala:1193
 msgid "Save _As…"
 msgstr "Sačuvaj _kao…"
 
-#: ../src/cheese-window.vala:1173
+#: ../src/cheese-window.vala:1196
 msgid "Move to _Trash"
 msgstr "Premesti u _smeće"
 
-#: ../src/cheese-window.vala:1176
+#: ../src/cheese-window.vala:1199
 msgid "Delete"
 msgstr "Obriši"
 
-#: ../src/cheese-window.vala:1309
+#: ../src/cheese-window.vala:1301
 msgid "Record a video using a webcam"
 msgstr "Snimite video koristeći veb kamericu"
 
-#: ../src/cheese-window.vala:1315
-msgid "Take _Multiple Photos"
-msgstr "Snimi _više fotki"
-
-#: ../src/cheese-window.vala:1316
+#: ../src/cheese-window.vala:1307
 msgid "Take multiple photos using a webcam"
 msgstr "Snimite više fotki koristeći veb kamericu"
+
+#: ../src/cheese-window.vala:1319
+#| msgid "No Effect"
+msgid "Choose an Effect"
+msgstr "Izaberite efekat"
+
+#: ../src/cheese-window.vala:1330
+#| msgid "_Record a Video"
+msgid "Record a Video"
+msgstr "Snimite video"
+
+#: ../src/cheese-window.vala:1334
+msgid "Take Multiple Photos"
+msgstr "Snimi više fotki"
+
+#~ msgid "_Take a Photo"
+#~ msgstr "_Snimi fotku"
+
+#~ msgid "_Leave Fullscreen"
+#~ msgstr "_Napusti ceo ekran"
+
+#~ msgid "_Discard photo"
+#~ msgstr "_Odbaci fotku"
+
+#~ msgid "_Shoot"
+#~ msgstr "_Snimi"
+
+#~ msgid "Mode:"
+#~ msgstr "Režim:"
+
+#~ msgid "Stop _Recording"
+#~ msgstr "_Zaustavi snimanje"
+
+#~ msgid "Take _Multiple Photos"
+#~ msgstr "Snimi _više fotki"
