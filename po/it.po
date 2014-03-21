@@ -9,62 +9,94 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-07 19:28+0200\n"
-"PO-Revision-Date: 2013-09-07 19:28+0200\n"
-"Last-Translator: Milo Casagrande <milo@ubuntu.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-03-16 04:06+0000\n"
+"PO-Revision-Date: 2014-03-20 23:04+0100\n"
+"Last-Translator: Giuseppe Pignataro <anubisteam01@gmail.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8-bit\n"
+"Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: ../data/cheese-main-window.ui.h:1
+#: ../data/cheese-appmenu.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Schermo intero"
+
+#: ../data/cheese-appmenu.ui.h:2
+msgid "P_references"
+msgstr "P_referenze"
+
+#: ../data/cheese-appmenu.ui.h:3 ../data/cheese-prefs.ui.h:18
+msgid "_Help"
+msgstr "A_iuto"
+
+#: ../data/cheese-appmenu.ui.h:4
+msgid "_About"
+msgstr "I_nformazioni"
+
+#: ../data/cheese-appmenu.ui.h:5
+msgid "_Quit"
+msgstr "_Esci"
+
+#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:95
+#: ../src/cheese-window.vala:1326
+msgid "Take a Photo"
+msgstr "Scatta una foto"
+
+#: ../data/cheese-main-window.ui.h:2
 msgid "Photo mode"
 msgstr "Modalità foto"
 
-#: ../data/cheese-main-window.ui.h:2
+#: ../data/cheese-main-window.ui.h:3
+#| msgid "_Photo"
+msgid "Photo"
+msgstr "Foto"
+
+#: ../data/cheese-main-window.ui.h:4
 msgid "Video mode"
 msgstr "Modalità video"
 
-#: ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-main-window.ui.h:5
+#| msgid "_Video"
+msgid "Video"
+msgstr "Video"
+
+#: ../data/cheese-main-window.ui.h:6
 msgid "Photo burst mode"
 msgstr "Modalità foto a raffica"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1307
+#: ../data/cheese-main-window.ui.h:7
+#| msgid "_Burst"
+msgid "Burst"
+msgstr "Raffica"
+
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1297
 msgid "Take a photo using a webcam"
 msgstr "Scatta una foto con la webcam"
 
-#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
-#: ../src/cheese-window.vala:1306
-msgid "_Take a Photo"
-msgstr "_Scatta foto"
-
-#: ../data/cheese-main-window.ui.h:6
+#: ../data/cheese-main-window.ui.h:9
 msgid "Navigate to the previous page of effects"
 msgstr "Va alla pagina precedente degli effetti"
 
-#: ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-main-window.ui.h:10
 msgid "Effects"
 msgstr "Effetti"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
+#: ../data/cheese-main-window.ui.h:11
 msgid "_Effects"
 msgstr "_Effetti"
 
-#: ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-main-window.ui.h:12
 msgid "Navigate to the next page of effects"
 msgstr "Va alla pagina successiva degli effetti"
 
-#: ../data/cheese-main-window.ui.h:10
+#: ../data/cheese-main-window.ui.h:13
 msgid "Leave fullscreen mode and go back to windowed mode"
 msgstr "Esce dalla modalità a schermo intero e torna alla finestra normale"
-
-#: ../data/cheese-main-window.ui.h:11
-msgid "_Leave Fullscreen"
-msgstr "_Finestra normale"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
@@ -134,8 +166,39 @@ msgstr "Intervallo tra le foto (secondi)"
 msgid "Capture"
 msgstr "Cattura"
 
+#: ../data/cheese-prefs.ui.h:19
+msgid "_Close"
+msgstr "_Chiudi"
+
+#: ../data/cheese.appdata.xml.in.h:1
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
+msgstr ""
+"Cheese usa la webcam per catturare foto e video, applicare fantastici "
+"effetti speciali e permette di condividere il divertimento con gli altri."
+
+#: ../data/cheese.appdata.xml.in.h:2
+msgid ""
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"Scatta foto multiple in veloce successione con la modalità raffica. Usa il "
+"conto alla rovescia per avere il tempo di metterti in posa e aspetta il "
+"flash!"
+
+#: ../data/cheese.appdata.xml.in.h:3
+msgid ""
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
+msgstr ""
+"Sotto il cofano, Cheese usa GStreamer per applicare fantastici effetti a "
+"foto e video. Con Cheese è facile scattare foto di te, dei tuoi amici, dei "
+"tuoi animali o di qualsiasi cosa ti piaccia e condividerlo con gli altri."
+
 #: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:611
+#: ../src/cheese-application.vala:584
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -143,7 +206,7 @@ msgstr "Cheese"
 msgid "Cheese Webcam Booth"
 msgstr "Cabina per webcam Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:606
+#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Scatta fotografie e registra video con la webcam applicando divertenti "
@@ -309,27 +372,30 @@ msgstr "Numero di foto nella modalità a raffica"
 msgid "The number of photos to take in a single burst."
 msgstr "Il numero di foto da scattare in una singola raffica."
 
-#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:662
+#: ../libcheese/cheese-avatar-chooser.c:90 ../src/cheese-window.vala:248
+#: ../src/cheese-window.vala:277 ../src/cheese-window.vala:352
+msgid "_Cancel"
+msgstr "A_nnulla"
+
+#: ../libcheese/cheese-avatar-chooser.c:92
+#| msgid "Select"
+msgid "_Select"
+msgstr "_Seleziona"
+
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:676
 msgid "Shutter sound"
 msgstr "Suono dell'otturatore"
 
-#: ../libcheese/cheese-avatar-chooser.c:262
-msgid "Select"
-msgstr "Seleziona"
+#: ../libcheese/cheese-avatar-widget.c:268
+#| msgid "Stop _Taking Pictures"
+msgid "_Take Another Picture"
+msgstr "Sca_tta un'altra foto"
 
-#: ../libcheese/cheese-avatar-chooser.c:265
-msgid "Take a Photo"
-msgstr "Scatta una foto"
-
-#: ../libcheese/cheese-avatar-chooser.c:296
-msgid "_Discard photo"
-msgstr "_Scarta foto"
-
-#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1617
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Uno o più elementi GStreamer risultano mancanti: "
 
-#: ../libcheese/cheese-camera.c:1576
+#: ../libcheese/cheese-camera.c:1584
 #, c-format
 msgid "No device found"
 msgstr "Nessun dispositivo trovato"
@@ -339,28 +405,28 @@ msgstr "Nessun dispositivo trovato"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1852
+#: ../libcheese/cheese-camera.c:1860
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i.%02i.%02i"
 
-#: ../libcheese/cheese-camera-device.c:560
+#: ../libcheese/cheese-camera-device.c:562
 msgid "Device capabilities not supported"
 msgstr "Funzionalità del dispositivo non supportate"
 
-#: ../libcheese/cheese-camera-device.c:589
+#: ../libcheese/cheese-camera-device.c:591
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr ""
 "Impossibile inizializzare il dispositivo %s per il rilevamento delle "
 "funzionalità"
 
-#: ../libcheese/cheese-camera-device.c:778
+#: ../libcheese/cheese-camera-device.c:780
 msgid "Unknown device"
 msgstr "Dispositivo sconosciuto"
 
-#: ../libcheese/cheese-camera-device.c:801
+#: ../libcheese/cheese-camera-device.c:803
 msgid "Cancellable initialization not supported"
 msgstr "Interruzione del processo di inizializzazione non supportata"
 
@@ -384,170 +450,156 @@ msgstr "Mostra informazioni di versione ed esce"
 msgid "Start in fullscreen mode"
 msgstr "Avvia in modalità schermo intero"
 
-#: ../src/cheese-application.vala:121
-msgid "_Shoot"
-msgstr "_Cattura"
-
-#: ../src/cheese-application.vala:125
-msgid "Mode:"
-msgstr "Modalità:"
-
-#: ../src/cheese-application.vala:126
-msgid "_Photo"
-msgstr "_Foto"
-
-#: ../src/cheese-application.vala:127
-msgid "_Video"
-msgstr "_Video"
-
-#: ../src/cheese-application.vala:128
-msgid "_Burst"
-msgstr "_Raffica"
-
-#: ../src/cheese-application.vala:131
-msgid "_Fullscreen"
-msgstr "_Schermo intero"
-
-#: ../src/cheese-application.vala:139
-msgid "P_references"
-msgstr "P_referenze"
-
-#: ../src/cheese-application.vala:142
-msgid "_Help"
-msgstr "A_iuto"
-
-#: ../src/cheese-application.vala:145
-msgid "_About"
-msgstr "I_nformazioni"
-
-#: ../src/cheese-application.vala:146
-msgid "_Quit"
-msgstr "_Esci"
-
-#: ../src/cheese-application.vala:219
+#: ../src/cheese-application.vala:192
 msgid "- Take photos and videos from your webcam"
 msgstr "- Scatta fotografie e registra video con la webcam"
 
-#: ../src/cheese-application.vala:228
+#: ../src/cheese-application.vala:201
 #, c-format
 msgid "Run '%s --help' to see a full list of available command line options."
 msgstr ""
 "Eseguire «%s --help» per l'elenco completo delle opzioni a riga di comando."
 
-#: ../src/cheese-application.vala:612
+#: ../src/cheese-application.vala:585
 msgid "translator-credits"
 msgstr ""
 "Milo Casagrande <milo@ubuntu.com>\n"
-"Alessandro Falappa <alessandro@falappa.net>"
+"Alessandro Falappa <alessandro@falappa.net>\n"
+"Giuseppe Pignataro <anubisteam01@gmail.com>"
 
-#: ../src/cheese-application.vala:614
+#: ../src/cheese-application.vala:587
 msgid "Cheese Website"
 msgstr "Sito web di Cheese"
 
 #. Translators: a description of an effect (to be applied to images
 #. *              from the webcam) which does nothing.
-#: ../src/cheese-effects-manager.vala:53
+#: ../src/cheese-effects-manager.vala:51
 msgid "No Effect"
 msgstr "Nessun effetto"
 
-#: ../src/cheese-window.vala:192
+#: ../src/cheese-window.vala:220
 #, c-format
 msgid "Could not open %s"
 msgstr "Impossibile aprire %s"
 
-#: ../src/cheese-window.vala:217
+#: ../src/cheese-window.vala:245
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Eliminare veramente il file?"
 msgstr[1] "Eliminare veramente %d file?"
 
-#: ../src/cheese-window.vala:223
+#: ../src/cheese-window.vala:249
+#| msgid "Delete"
+msgid "_Delete"
+msgstr "_Elimina"
+
+#: ../src/cheese-window.vala:251
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Se viene eliminato un elemento, questo sarà perso per sempre"
 msgstr[1] "Se vengono eliminati gli elementi, questi saranno persi per sempre"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:324
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Impossibile spostare %s nel cestino"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:321
+#: ../src/cheese-window.vala:349
 msgid "Save File"
 msgstr "Salva file"
 
-#: ../src/cheese-window.vala:355
+#: ../src/cheese-window.vala:353
+#| msgid "Save File"
+msgid "Save"
+msgstr "Salva "
+
+#: ../src/cheese-window.vala:383
 #, c-format
 msgid "Could not save %s"
 msgstr "Impossibile salvare %s"
 
-#: ../src/cheese-window.vala:772
-msgid "Stop _Recording"
-msgstr "Interrompi _registrazione"
-
-#: ../src/cheese-window.vala:773
+#: ../src/cheese-window.vala:786
 msgid "Stop recording"
 msgstr "Interrompe la registrazione"
 
-#: ../src/cheese-window.vala:788 ../src/cheese-window.vala:1311
-msgid "_Record a Video"
-msgstr "Registra un _video"
-
-#: ../src/cheese-window.vala:789
+#: ../src/cheese-window.vala:801
 msgid "Record a video"
 msgstr "Registra un video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:824
-msgid "Stop _Taking Pictures"
-msgstr "Interrompi _scatto fotografie"
-
-#: ../src/cheese-window.vala:825
+#: ../src/cheese-window.vala:836
 msgid "Stop taking pictures"
 msgstr "Interrompe lo scatto di fotografie"
 
-#: ../src/cheese-window.vala:848
-msgid "Take Multiple Photos"
-msgstr "Scatta foto a raffica"
-
-#: ../src/cheese-window.vala:849
+#: ../src/cheese-window.vala:859
 msgid "Take multiple photos"
 msgstr "Scatta foto a raffica"
 
-#: ../src/cheese-window.vala:1033
+#: ../src/cheese-window.vala:1053
 msgid "No effects found"
 msgstr "Nessun effetto trovato"
 
-#: ../src/cheese-window.vala:1152
+#: ../src/cheese-window.vala:1173
 msgid "There was an error playing video from the webcam"
 msgstr "Si è verificato un errore nel riprodurre il video dalla webcam"
 
-#: ../src/cheese-window.vala:1170
+#: ../src/cheese-window.vala:1190
 msgid "Open"
 msgstr "Apri"
 
-#: ../src/cheese-window.vala:1173
+#: ../src/cheese-window.vala:1193
 msgid "Save _As…"
 msgstr "Sa_lva come..."
 
-#: ../src/cheese-window.vala:1176
+#: ../src/cheese-window.vala:1196
 msgid "Move to _Trash"
 msgstr "Sposta nel ce_stino"
 
-#: ../src/cheese-window.vala:1179
+#: ../src/cheese-window.vala:1199
 msgid "Delete"
 msgstr "Elimina"
 
-#: ../src/cheese-window.vala:1312
+#: ../src/cheese-window.vala:1301
 msgid "Record a video using a webcam"
 msgstr "Registra un video con la webcam"
 
-#: ../src/cheese-window.vala:1318
-msgid "Take _Multiple Photos"
-msgstr "_Scatta foto a raffica"
-
-#: ../src/cheese-window.vala:1319
+#: ../src/cheese-window.vala:1307
 msgid "Take multiple photos using a webcam"
 msgstr "Scatta foto a raffica con la webcam"
+
+#: ../src/cheese-window.vala:1319
+#| msgid "No Effect"
+msgid "Choose an Effect"
+msgstr "Seleziona un effetto"
+
+#: ../src/cheese-window.vala:1330
+#| msgid "_Record a Video"
+msgid "Record a Video"
+msgstr "Registra un video"
+
+#: ../src/cheese-window.vala:1334
+msgid "Take Multiple Photos"
+msgstr "Scatta foto a raffica"
+
+#~ msgid "_Take a Photo"
+#~ msgstr "_Scatta foto"
+
+#~ msgid "_Leave Fullscreen"
+#~ msgstr "_Finestra normale"
+
+#~ msgid "_Discard photo"
+#~ msgstr "_Scarta foto"
+
+#~ msgid "_Shoot"
+#~ msgstr "_Cattura"
+
+#~ msgid "Mode:"
+#~ msgstr "Modalità:"
+
+#~ msgid "Stop _Recording"
+#~ msgstr "Interrompi _registrazione"
+
+#~ msgid "Take _Multiple Photos"
+#~ msgstr "_Scatta foto a raffica"
