@@ -98,8 +98,6 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                                      GTK_RESPONSE_ACCEPT,
                                      FALSE);
 
-  g_object_set (G_OBJECT (gtk_dialog_get_action_area (GTK_DIALOG (chooser))), "margin", 8, NULL);
-
   priv->widget = cheese_avatar_widget_new ();
   gtk_widget_show (priv->widget);
   gtk_box_pack_start (GTK_BOX (gtk_dialog_get_content_area (GTK_DIALOG (chooser))),
