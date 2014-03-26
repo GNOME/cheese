@@ -84,6 +84,7 @@ update_select_button (CheeseAvatarWidget  *widget,
 static void
 cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
+  GtkWidget *button;
   CheeseAvatarChooserPrivate *priv = chooser->priv = cheese_avatar_chooser_get_instance_private (chooser);
 
   gtk_dialog_add_buttons (GTK_DIALOG (chooser),
@@ -93,6 +94,11 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
                           GTK_RESPONSE_ACCEPT,
                           NULL);
   gtk_window_set_title (GTK_WINDOW (chooser), _("Take a Photo"));
+
+  button = gtk_dialog_get_widget_for_response (GTK_DIALOG (chooser),
+                                               GTK_RESPONSE_ACCEPT);
+  gtk_style_context_add_class (gtk_widget_get_style_context (button),
+                               GTK_STYLE_CLASS_SUGGESTED_ACTION);
 
   gtk_dialog_set_response_sensitive (GTK_DIALOG (chooser),
                                      GTK_RESPONSE_ACCEPT,
