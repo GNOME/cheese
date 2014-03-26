@@ -88,7 +88,7 @@ cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 
   gtk_dialog_add_buttons (GTK_DIALOG (chooser),
                           _("_Cancel"),
-                          GTK_RESPONSE_REJECT,
+                          GTK_RESPONSE_CANCEL,
                           _("_Select"),
                           GTK_RESPONSE_ACCEPT,
                           NULL);
@@ -159,7 +159,7 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
 GtkWidget *
 cheese_avatar_chooser_new (void)
 {
-  return g_object_new (CHEESE_TYPE_AVATAR_CHOOSER, NULL);
+  return g_object_new (CHEESE_TYPE_AVATAR_CHOOSER, "use-header-bar", TRUE, NULL);
 }
 
 /**
