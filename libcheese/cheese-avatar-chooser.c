@@ -19,7 +19,7 @@
 
 #include "cheese-config.h"
 
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 #include <canberra-gtk.h>
 
 #include "cheese-camera.h"
