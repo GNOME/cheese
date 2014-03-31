@@ -27,6 +27,7 @@ using Gst;
 public class Cheese.Application : Gtk.Application
 {
     private GLib.Settings settings;
+    private uint inhibited = 0;
 
     static string device;
 
@@ -307,6 +308,11 @@ public class Cheese.Application : Gtk.Application
                 effects.set_enabled (true);
 
                 main_window.camera_state_change_playing ();
+
+                inhibited = this.inhibit (main_window,
+                                          Gtk.ApplicationInhibitFlags.SWITCH
+                                          | Gtk.ApplicationInhibitFlags.IDLE,
+                                          _("Webcam in use"));
                 break;
             case Gst.State.NULL:
                 effects.set_enabled (false);
@@ -314,6 +320,11 @@ public class Cheese.Application : Gtk.Application
                 shoot.set_enabled (false);
 
                 main_window.camera_state_change_null ();
+
+                if (inhibited != 0)
+                {
+                    this.uninhibit (inhibited);
+                }
                 break;
             default:
                 break;
