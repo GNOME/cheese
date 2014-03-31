@@ -11,7 +11,7 @@ AC_CONFIG_HEADERS([cheese-config.h])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_MACRO_DIR([m4])
 
-AM_INIT_AUTOMAKE([1.11 -Wall -Wno-portability dist-xz no-define no-dist-gzip nostdinc subdir-objects])
+AM_INIT_AUTOMAKE([1.12 -Wall -Wno-portability dist-xz no-define no-dist-gzip nostdinc subdir-objects])
 AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 
