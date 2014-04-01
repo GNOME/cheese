@@ -218,6 +218,7 @@ docs/reference/version.xml
 data/cheese.pc
 data/cheese-gtk.pc
 data/cheese.desktop.in
+data/org.gnome.Cheese.service
 help/Makefile
 po/Makefile.in
 ])

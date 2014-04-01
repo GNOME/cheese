@@ -320,6 +320,9 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 appdata_in_files = data/cheese.appdata.xml.in
 appdata_XML = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
 
+servicedir = $(datadir)/dbus-1/services
+service_DATA = data/org.gnome.Cheese.service
+
 @GSETTINGS_RULES@
 gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
 
