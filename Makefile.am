@@ -55,7 +55,7 @@ AM_VALAFLAGS = \
 	--target-glib=2.38 \
 	--thread \
 	--vapidir $(top_srcdir)/src/vapi \
-	--gresources $(top_srcdir)/data/cheese.gresource.xml \
+	--gresources $(top_srcdir)/data/org.gnome.Cheese.gresource.xml \
 	--pkg config \
 	--pkg posix \
 	--pkg gtk+-3.0 \
@@ -206,7 +206,7 @@ noinst_resource_files = \
 	data/pixmaps/cheese-3.svg \
 	data/pixmaps/thumbnail-frame.png
 
-src/cheese-resource.c src/cheese-resource.h: data/cheese.gresource.xml Makefile $(noinst_resource_files)
+src/cheese-resource.c src/cheese-resource.h: data/org.gnome.Cheese.gresource.xml Makefile $(noinst_resource_files)
 	$(AM_V_GEN) $(GLIB_COMPILE_RESOURCES) --target=$@ --sourcedir=$(srcdir)/data --generate --c-name cheese $<
 
 bin_PROGRAMS = cheese
@@ -312,12 +312,12 @@ tests_test_webcam_button_LDADD = $(XTEST_LIBS)
 
 @INTLTOOL_DESKTOP_RULE@
 desktopdir = $(datadir)/applications
-desktop_in_files = data/cheese.desktop.in
+desktop_in_files = data/org.gnome.Cheese.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 @APPDATA_XML_RULES@
 @INTLTOOL_XML_RULE@
-appdata_in_files = data/cheese.appdata.xml.in
+appdata_in_files = data/org.gnome.Cheese.appdata.xml.in
 appdata_XML = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
 
 servicedir = $(datadir)/dbus-1/services
@@ -488,7 +488,7 @@ dist_noinst_DATA = \
 	$(gsettings_SCHEMAS) \
 	$(noinst_resource_files) \
 	$(appdata_in_files) \
-	data/cheese.gresource.xml \
+	data/org.gnome.Cheese.gresource.xml \
 	build-aux/test-driver \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
 	$(gtkdoc_srcdir)/cheese-sections.txt \
