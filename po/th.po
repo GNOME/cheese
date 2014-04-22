@@ -1,17 +1,17 @@
 # Thai translation of cheese.
-# Copyright (C) 2008-2013 Free Software Foundation, Inc.
+# Copyright (C) 2008-2014 Free Software Foundation, Inc.
 # This file is distributed under the same license as the cheese package.
 # Theppitak Karoonboonyanan <thep@linux.thai.net, 2008, 2010.
 # Pornpimon Pradabsri <kanom7448@hotmail.com>, 2008.
-# Akom Chotiphantawanon <knight2000@gmail.com>, 2008-2013.
+# Akom Chotiphantawanon <knight2000@gmail.com>, 2008-2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-12 10:47+0000\n"
-"PO-Revision-Date: 2013-12-16 18:24+0700\n"
+"POT-Creation-Date: 2014-04-19 03:03+0000\n"
+"PO-Revision-Date: 2014-04-22 12:59+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -42,8 +42,8 @@ msgstr "เ_กี่ยวกับ"
 msgid "_Quit"
 msgstr "_ออก"
 
-#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:95
-#: ../src/cheese-window.vala:1311
+#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:96
+#: ../src/cheese-window.vala:1346
 msgid "Take a Photo"
 msgstr "ถ่ายภาพ"
 
@@ -71,7 +71,7 @@ msgstr "โหมดภาพถ่ายต่อเนื่อง"
 msgid "Burst"
 msgstr "ภาพถ่ายต่อเนื่อง"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1282
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1317
 msgid "Take a photo using a webcam"
 msgstr "ถ่ายภาพโดยใช้เว็บแคม"
 
@@ -167,7 +167,7 @@ msgstr "การจับภาพ"
 msgid "_Close"
 msgstr "ปิ_ด"
 
-#: ../data/cheese.appdata.xml.in.h:1
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:1
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
@@ -175,7 +175,7 @@ msgstr ""
 "ชีสใช้เว็บแคมของคุณในการถ่ายภาพและวีดิทัศน์ เติมลูกเล่นพิเศษแพรวพราว "
 "และให้คุณแบ่งปันความสนุกกับคนอื่นๆ"
 
-#: ../data/cheese.appdata.xml.in.h:2
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
@@ -183,7 +183,7 @@ msgstr ""
 "ถ่ายภาพหลายภาพต่อๆ กันอย่างรวดเร็วด้วยโหมดถ่ายต่อเนื่อง  "
 "ใช้การนับถอยหลังเพื่อให้เวลาตัวคุณเองที่จะวางท่าและรอแฟลช!"
 
-#: ../data/cheese.appdata.xml.in.h:3
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 msgid ""
 "Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
@@ -193,20 +193,21 @@ msgstr ""
 "กับชีสแล้วเป็นเรื่องง่ายในการถ่ายภาพของคุณ เพื่อนของคุณ สัตว์เลี้ยง หรือภาพใดๆ ที่คุณต้องการ "
 "และแบ่งปันให้กับคนอื่นๆ"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:584
+#: ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:548
 msgid "Cheese"
 msgstr "ชีส"
 
-#: ../data/cheese.desktop.in.in.h:2
+#: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "บูทเว็บแคมชีส"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
+#: ../data/org.gnome.Cheese.desktop.in.in.h:3
+#: ../src/cheese-application.vala:543
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ พร้อมใส่ลูกเล่นสนุกๆ"
 
-#: ../data/cheese.desktop.in.in.h:4
+#: ../data/org.gnome.Cheese.desktop.in.in.h:4
 msgid "photo;video;webcam;"
 msgstr "ภาพถ่าย;วีดิทัศน์;เว็บแคม;"
 
@@ -357,16 +358,16 @@ msgstr "จำนวนของภาพในโหมดถ่ายต่อ
 msgid "The number of photos to take in a single burst."
 msgstr "จำนวนของภาพที่จะถ่ายในโหมดต่อเนื่องแต่ละครั้ง"
 
-#: ../libcheese/cheese-avatar-chooser.c:90 ../src/cheese-window.vala:233
-#: ../src/cheese-window.vala:262 ../src/cheese-window.vala:337
+#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:248
+#: ../src/cheese-window.vala:277 ../src/cheese-window.vala:352
 msgid "_Cancel"
 msgstr "_ยกเลิก"
 
-#: ../libcheese/cheese-avatar-chooser.c:92
+#: ../libcheese/cheese-avatar-chooser.c:93
 msgid "_Select"
 msgstr "เ_ลือก"
 
-#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:661
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:676
 msgid "Shutter sound"
 msgstr "เสียงชัตเตอร์"
 
@@ -411,40 +412,35 @@ msgstr "อุปกรณ์ไม่ทราบชนิด"
 msgid "Cancellable initialization not supported"
 msgstr "ไม่รองรับการตั้งต้นอุปกรณ์แบบยกเลิกได้"
 
-#: ../src/cheese-application.vala:55
+#: ../src/cheese-application.vala:53
 msgid "Start in wide mode"
 msgstr "เริ่มต้นในโหมดจอกว้าง"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "Device to use as a camera"
 msgstr "อุปกรณ์จะที่ใช้เป็นกล้อง"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "DEVICE"
 msgstr "อุปกรณ์"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:58
 msgid "Output version information and exit"
 msgstr "แสดงข้อมูลรุ่นของโปรแกรมแล้วจบการทำงาน"
 
-#: ../src/cheese-application.vala:62
+#: ../src/cheese-application.vala:60
 msgid "Start in fullscreen mode"
 msgstr "เริ่มต้นในโหมดเต็มจอ"
 
-#: ../src/cheese-application.vala:192
-msgid "- Take photos and videos from your webcam"
-msgstr "- ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ"
+#: ../src/cheese-application.vala:315
+msgid "Webcam in use"
+msgstr "เว็บแคมใช้งานอยู่"
 
-#: ../src/cheese-application.vala:201
-#, c-format
-msgid "Run '%s --help' to see a full list of available command line options."
-msgstr "เรียก '%s --help' เพื่อดูตัวเลือกทั้งหมดที่มีของบรรทัดคำสั่ง"
-
-#: ../src/cheese-application.vala:585
+#: ../src/cheese-application.vala:549
 msgid "translator-credits"
 msgstr "Akom Chotiphantawanon <knight2000@gmail.com>"
 
-#: ../src/cheese-application.vala:587
+#: ../src/cheese-application.vala:551
 msgid "Cheese Website"
 msgstr "เว็บไซต์ของชีส"
 
@@ -454,105 +450,112 @@ msgstr "เว็บไซต์ของชีส"
 msgid "No Effect"
 msgstr "ไม่มีลูกเล่น"
 
-#: ../src/cheese-window.vala:205
+#: ../src/cheese-window.vala:220
 #, c-format
 msgid "Could not open %s"
 msgstr "ไม่สามารถเปิด %s"
 
-#: ../src/cheese-window.vala:230
+#: ../src/cheese-window.vala:245
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "ยืนยันว่าต้องการลบ %d แฟ้มอย่างถาวรหรือไม่?"
 
-#: ../src/cheese-window.vala:234
+#: ../src/cheese-window.vala:249
 msgid "_Delete"
 msgstr "_ลบ"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:251
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "ถ้าคุณลบ รายการ(เหล่า)นี้จะหายไปอย่างถาวร"
 
-#: ../src/cheese-window.vala:309
+#: ../src/cheese-window.vala:324
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "ไม่สามารถย้าย %s ไปลงถังขยะได้"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:334
+#: ../src/cheese-window.vala:349
 msgid "Save File"
 msgstr "บันทึกแฟ้ม"
 
-#: ../src/cheese-window.vala:338
+#: ../src/cheese-window.vala:353
 msgid "Save"
 msgstr "บันทึก"
 
-#: ../src/cheese-window.vala:368
+#: ../src/cheese-window.vala:383
 #, c-format
 msgid "Could not save %s"
 msgstr "ไม่สามารถบันทึก %s"
 
-#: ../src/cheese-window.vala:771
+#: ../src/cheese-window.vala:804
 msgid "Stop recording"
 msgstr "หยุดอัด"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:819
 msgid "Record a video"
 msgstr "อัดวีดิทัศน์"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:854
 msgid "Stop taking pictures"
 msgstr "หยุดถ่ายภาพ"
 
-#: ../src/cheese-window.vala:844
+#: ../src/cheese-window.vala:877
 msgid "Take multiple photos"
 msgstr "ถ่ายหลายภาพ"
 
-#: ../src/cheese-window.vala:1038
+#: ../src/cheese-window.vala:1071
 msgid "No effects found"
 msgstr "ไม่พบลูกเล่น"
 
-#: ../src/cheese-window.vala:1158
+#: ../src/cheese-window.vala:1193
 msgid "There was an error playing video from the webcam"
 msgstr "เกิดข้อผิดพลาดขณะเล่นวีดิทัศน์จากเว็บแคม"
 
-#: ../src/cheese-window.vala:1175
+#: ../src/cheese-window.vala:1210
 msgid "Open"
 msgstr "เปิด"
 
-#: ../src/cheese-window.vala:1178
+#: ../src/cheese-window.vala:1213
 msgid "Save _As…"
 msgstr "บันทึกเป็_น…"
 
-#: ../src/cheese-window.vala:1181
+#: ../src/cheese-window.vala:1216
 msgid "Move to _Trash"
 msgstr "ทิ้งลง_ถังขยะ"
 
-#: ../src/cheese-window.vala:1184
+#: ../src/cheese-window.vala:1219
 msgid "Delete"
 msgstr "ลบ"
 
-#: ../src/cheese-window.vala:1286
+#: ../src/cheese-window.vala:1321
 msgid "Record a video using a webcam"
 msgstr "อัดวีดิทัศน์โดยใช้เว็บแคม"
 
-#: ../src/cheese-window.vala:1292
+#: ../src/cheese-window.vala:1327
 msgid "Take multiple photos using a webcam"
 msgstr "ถ่ายภาพหลายภาพโดยใช้เว็บแคม"
 
-#: ../src/cheese-window.vala:1304
+#: ../src/cheese-window.vala:1339
 msgid "Choose an Effect"
 msgstr "เลือกลูกเล่น"
 
-#: ../src/cheese-window.vala:1315
+#: ../src/cheese-window.vala:1350
 msgid "Record a Video"
 msgstr "อัดวีดิทัศน์"
 
-#: ../src/cheese-window.vala:1319
+#: ../src/cheese-window.vala:1354
 msgid "Take Multiple Photos"
 msgstr "ถ่ายหลายภาพ"
+
+#~ msgid "- Take photos and videos from your webcam"
+#~ msgstr "- ถ่ายภาพและวีดิทัศน์จากเว็บแคมของคุณ"
+
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options."
+#~ msgstr "เรียก '%s --help' เพื่อดูตัวเลือกทั้งหมดที่มีของบรรทัดคำสั่ง"
 
 #~ msgid "_Take a Photo"
 #~ msgstr "_ถ่ายภาพ"
