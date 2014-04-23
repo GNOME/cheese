@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-18 14:38+0000\n"
-"PO-Revision-Date: 2014-01-17 12:18+0100\n"
+"POT-Creation-Date: 2014-04-23 03:02+0000\n"
+"PO-Revision-Date: 2014-04-23 15:30+0100\n"
 "Last-Translator: Marek Černocký <marek@manet.cz>\n"
 "Language-Team: Czech <gnome-cs-list@gnome.org>\n"
 "Language: cs\n"
@@ -44,8 +44,8 @@ msgstr "O _aplikaci"
 msgid "_Quit"
 msgstr "U_končit"
 
-#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:95
-#: ../src/cheese-window.vala:1311
+#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:96
+#: ../src/cheese-window.vala:1346
 msgid "Take a Photo"
 msgstr "Pořízení fotky"
 
@@ -73,7 +73,7 @@ msgstr "Režim snímání v sérii"
 msgid "Burst"
 msgstr "Série"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1282
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1317
 msgid "Take a photo using a webcam"
 msgstr "Pořídit fotku pomocí webové kamery"
 
@@ -169,7 +169,7 @@ msgstr "Snímání"
 msgid "_Close"
 msgstr "_Zavřít"
 
-#: ../data/cheese.appdata.xml.in.h:1
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:1
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
@@ -177,7 +177,7 @@ msgstr ""
 "Cheese používá vaši webovou kameru k pořizování fotek a videí, na které pak "
 "aplikuje speciální efekty a umožní vám je sdílet s ostatními."
 
-#: ../data/cheese.appdata.xml.in.h:2
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
@@ -186,7 +186,7 @@ msgstr ""
 "Použijte odpočítávání, abyste měli čas zaujmout pózu a vyčkejte než vyletí "
 "ptáček."
 
-#: ../data/cheese.appdata.xml.in.h:3
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 msgid ""
 "Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
@@ -196,22 +196,23 @@ msgstr ""
 "na fotky a videa. S Cheese snadno pořídíte fotky jak sebe, tak svých přátel, "
 "mazlíčků nebo čehokoliv, co chcete sdílet s ostatními."
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:584
+#: ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:548
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2
+#: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Fotobudka Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
+#: ../data/org.gnome.Cheese.desktop.in.in.h:3
+#: ../src/cheese-application.vala:543
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Pořizujte obrázky a videoklipy webovou kamerou, se zábavnými grafickými "
 "efekty"
 
-#: ../data/cheese.desktop.in.in.h:4
+#: ../data/org.gnome.Cheese.desktop.in.in.h:4
 msgid "photo;video;webcam;"
 msgstr "fotka;fotky;snímek;snímky;video;webkamera;webová kamera;"
 
@@ -368,16 +369,16 @@ msgstr "Počet snímů v režimu snímání v sérii"
 msgid "The number of photos to take in a single burst."
 msgstr "Počet fotek pořízených v jednom cyklu snímání v sérii"
 
-#: ../libcheese/cheese-avatar-chooser.c:90 ../src/cheese-window.vala:233
-#: ../src/cheese-window.vala:262 ../src/cheese-window.vala:337
+#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:248
+#: ../src/cheese-window.vala:277 ../src/cheese-window.vala:352
 msgid "_Cancel"
 msgstr "_Zrušit"
 
-#: ../libcheese/cheese-avatar-chooser.c:92
+#: ../libcheese/cheese-avatar-chooser.c:93
 msgid "_Select"
 msgstr "_Vybrat"
 
-#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:661
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:676
 msgid "Shutter sound"
 msgstr "Zvuk záklopky"
 
@@ -424,38 +425,31 @@ msgstr "Neznámé zařízení"
 msgid "Cancellable initialization not supported"
 msgstr "Zrušitelné spouštění není podporováno"
 
-#: ../src/cheese-application.vala:55
+#: ../src/cheese-application.vala:53
 msgid "Start in wide mode"
 msgstr "Spustit v režimu na šířku"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "Device to use as a camera"
 msgstr "Zařízení, které se má použít jako fotoaparát"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "DEVICE"
 msgstr "ZAŘÍZENÍ"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:58
 msgid "Output version information and exit"
 msgstr "Vypsat informace o verzi a skončit"
 
-#: ../src/cheese-application.vala:62
+#: ../src/cheese-application.vala:60
 msgid "Start in fullscreen mode"
 msgstr "Spustit v režimu celé obrazovky"
 
-#: ../src/cheese-application.vala:192
-msgid "- Take photos and videos from your webcam"
-msgstr "– pořídit si snímky a videoklipy svojí webovou kamerou"
+#: ../src/cheese-application.vala:315
+msgid "Webcam in use"
+msgstr "Webkamera se používá"
 
-#: ../src/cheese-application.vala:201
-#, c-format
-msgid "Run '%s --help' to see a full list of available command line options."
-msgstr ""
-"Spuštěním „%s --help“ zobrazíte seznam všech dostupných přepínačů příkazové "
-"řádky."
-
-#: ../src/cheese-application.vala:585
+#: ../src/cheese-application.vala:549
 msgid "translator-credits"
 msgstr ""
 "Vítězslav Kotrla <vitko@post.cz>\n"
@@ -463,7 +457,7 @@ msgstr ""
 "Lucas Lommer <llommer@svn.gnome.org>\n"
 "Marek Černocký <marek@manet.cz>"
 
-#: ../src/cheese-application.vala:587
+#: ../src/cheese-application.vala:551
 msgid "Cheese Website"
 msgstr "Domovská stránka projektu Cheese"
 
@@ -473,12 +467,12 @@ msgstr "Domovská stránka projektu Cheese"
 msgid "No Effect"
 msgstr "Bez efektů"
 
-#: ../src/cheese-window.vala:205
+#: ../src/cheese-window.vala:220
 #, c-format
 msgid "Could not open %s"
 msgstr "Nelze otevřít %s"
 
-#: ../src/cheese-window.vala:230
+#: ../src/cheese-window.vala:245
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
@@ -486,93 +480,93 @@ msgstr[0] "Jste si jisti, že chcete tento soubor vymazat?"
 msgstr[1] "Jste si jisti, že chcete tyto %d soubory vymazat?"
 msgstr[2] "Jste si jisti, že chcete těchto %d souborů vymazat?"
 
-#: ../src/cheese-window.vala:234
+#: ../src/cheese-window.vala:249
 msgid "_Delete"
 msgstr "_Smazat"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:251
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Pokud tuto položku vymažete, bude navždy ztracena"
 msgstr[1] "Pokud tyto položky vymažete, budou navždy ztraceny"
 msgstr[2] "Pokud tyto položky vymažete, budou navždy ztraceny"
 
-#: ../src/cheese-window.vala:309
+#: ../src/cheese-window.vala:324
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Položku %s nelze přesunout do koše"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:334
+#: ../src/cheese-window.vala:349
 msgid "Save File"
 msgstr "Uložit soubor"
 
-#: ../src/cheese-window.vala:338
+#: ../src/cheese-window.vala:353
 msgid "Save"
 msgstr "Uložit"
 
-#: ../src/cheese-window.vala:368
+#: ../src/cheese-window.vala:383
 #, c-format
 msgid "Could not save %s"
 msgstr "Soubor %s nelze uložit"
 
-#: ../src/cheese-window.vala:771
+#: ../src/cheese-window.vala:804
 msgid "Stop recording"
 msgstr "Zastavit nahrávání"
 
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:819
 msgid "Record a video"
 msgstr "Nahrát video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:854
 msgid "Stop taking pictures"
 msgstr "Zastavit pořizování snímků"
 
-#: ../src/cheese-window.vala:844
+#: ../src/cheese-window.vala:877
 msgid "Take multiple photos"
 msgstr "Pořídit více snímků"
 
-#: ../src/cheese-window.vala:1038
+#: ../src/cheese-window.vala:1071
 msgid "No effects found"
 msgstr "Nebyly nalezeny žádné efekty"
 
-#: ../src/cheese-window.vala:1158
+#: ../src/cheese-window.vala:1193
 msgid "There was an error playing video from the webcam"
 msgstr "Při přehrávání videa z webové kamery se vyskytla chyba"
 
-#: ../src/cheese-window.vala:1175
+#: ../src/cheese-window.vala:1210
 msgid "Open"
 msgstr "Otevřít"
 
-#: ../src/cheese-window.vala:1178
+#: ../src/cheese-window.vala:1213
 msgid "Save _As…"
 msgstr "Uložit _jako…"
 
-#: ../src/cheese-window.vala:1181
+#: ../src/cheese-window.vala:1216
 msgid "Move to _Trash"
 msgstr "Přesunou_t do koše"
 
-#: ../src/cheese-window.vala:1184
+#: ../src/cheese-window.vala:1219
 msgid "Delete"
 msgstr "Smazat"
 
-#: ../src/cheese-window.vala:1286
+#: ../src/cheese-window.vala:1321
 msgid "Record a video using a webcam"
 msgstr "Nahrát video pomocí webové kamery"
 
-#: ../src/cheese-window.vala:1292
+#: ../src/cheese-window.vala:1327
 msgid "Take multiple photos using a webcam"
 msgstr "Pořídit více snímků pomocí webové kamery"
 
-#: ../src/cheese-window.vala:1304
+#: ../src/cheese-window.vala:1339
 msgid "Choose an Effect"
 msgstr "Výběr efektu"
 
-#: ../src/cheese-window.vala:1315
+#: ../src/cheese-window.vala:1350
 msgid "Record a Video"
 msgstr "Nah_rát video"
 
-#: ../src/cheese-window.vala:1319
+#: ../src/cheese-window.vala:1354
 msgid "Take Multiple Photos"
 msgstr "Pořídit více snímků"
