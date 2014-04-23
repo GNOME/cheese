@@ -12,18 +12,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: el\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
-"&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-11-13 09:48+0000\n"
-"PO-Revision-Date: 2013-11-13 17:14+0300\n"
-"Last-Translator: Dimitris Spingos (Δημήτρης Σπίγγος) <dmtrs32@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2014-04-23 03:02+0000\n"
+"PO-Revision-Date: 2014-04-23 14:08+0200\n"
+"Last-Translator: Tom Tryfonidis <tomtryf@gmail.com>\n"
 "Language-Team: team@gnome.gr\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 1.6.4\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/cheese-appmenu.ui.h:1
@@ -46,8 +46,8 @@ msgstr "_Περί"
 msgid "_Quit"
 msgstr "_Τερματισμός"
 
-#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:99
-#: ../src/cheese-window.vala:1276
+#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:96
+#: ../src/cheese-window.vala:1346
 msgid "Take a Photo"
 msgstr "Λήψη φωτογραφίας"
 
@@ -73,11 +73,11 @@ msgstr "Λειτουργία πολλαπλής φωτογράφησης"
 
 #: ../data/cheese-main-window.ui.h:7
 msgid "Burst"
-msgstr "Πολλαπλή λήψη"
+msgstr "Πολλαπλή φωτογράφηση"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1247
+#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1317
 msgid "Take a photo using a webcam"
-msgstr "Λήψη φωτογραφίας με χρήση ιστοκάμερας"
+msgstr "Λήψη φωτογραφίας με χρήση δικτυακής κάμερας"
 
 #: ../data/cheese-main-window.ui.h:9
 msgid "Navigate to the previous page of effects"
@@ -172,16 +172,16 @@ msgstr "Σύλληψη"
 msgid "_Close"
 msgstr "_Κλείσιμο"
 
-#: ../data/cheese.appdata.xml.in.h:1
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:1
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
-"Το Cheese χρησιμοποιεί την ιστοκάμερά σας για να πάρει φωτογραφίες και "
+"Το Cheese χρησιμοποιεί την δικτυακή κάμερα σας για να πάρει φωτογραφίες και "
 "βίντεο, εφαρμόζει φανταχτερές ειδικές επιδράσεις και σας επιτρέπει να "
 "μοιραστείτε το κέφι με άλλους."
 
-#: ../data/cheese.appdata.xml.in.h:2
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
@@ -190,7 +190,7 @@ msgstr ""
 "φωτογράφησης. Χρησιμοποιήστε την αντίστροφη μέτρηση για να δώσετε στον "
 "εαυτόν σας χρόνο για να πάρει μια πόζα και περιμένετε για την αναλαμπή!"
 
-#: ../data/cheese.appdata.xml.in.h:3
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 msgid ""
 "Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
@@ -201,24 +201,25 @@ msgstr ""
 "να πάρετε φωτογραφίες δικές σας, των φίλων σας, κατοικίδιων ή ο,τιδήποτε "
 "θέλετε και να μοιραστείτε με άλλους."
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:584
+#: ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:548
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/cheese.desktop.in.in.h:2
+#: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
-msgstr "Booth ιστοκάμερα Cheese"
+msgstr "Booth δικτυακή κάμερα Cheese"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
+#: ../data/org.gnome.Cheese.desktop.in.in.h:3
+#: ../src/cheese-application.vala:543
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Λήψη φωτογραφιών και βίντεο από την δικτυακή σας κάμερα, με διασκεδαστικά "
 "γραφικά εφέ"
 
-#: ../data/cheese.desktop.in.in.h:4
+#: ../data/org.gnome.Cheese.desktop.in.in.h:4
 msgid "photo;video;webcam;"
-msgstr "φωτογραφία;βίντεο;ιστοκάμερα;"
+msgstr "φωτογραφία;βίντεο;ιστοκάμερα;δικτυακή κάμερα;photo;video;webcam;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -358,7 +359,7 @@ msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
-msgstr "Χρόνος μεταξύ των φωτογραφιών σε λειτουργία ριπής"
+msgstr "Χρόνος μεταξύ των φωτογραφιών σε λειτουργία πολλαπλής φωτογράφησης"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
@@ -373,34 +374,34 @@ msgstr ""
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
-msgstr "Αριθμός φωτογραφιών σε λειτουργία ριπής"
+msgstr "Αριθμός φωτογραφιών σε λειτουργία πολλαπλής φωτογράφησης"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "The number of photos to take in a single burst."
 msgstr "Ο αριθμός των φωτογραφιών που θα ληφθούν σε μια ριπή."
 
-#: ../libcheese/cheese-avatar-chooser.c:94 ../src/cheese-window.vala:222
-#: ../src/cheese-window.vala:251 ../src/cheese-window.vala:326
+#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:248
+#: ../src/cheese-window.vala:277 ../src/cheese-window.vala:352
 msgid "_Cancel"
 msgstr "_Aκύρωση"
 
-#: ../libcheese/cheese-avatar-chooser.c:96
+#: ../libcheese/cheese-avatar-chooser.c:93
 msgid "_Select"
 msgstr "Επι_λογή"
 
-#: ../libcheese/cheese-avatar-widget.c:134 ../src/cheese-window.vala:636
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:676
 msgid "Shutter sound"
 msgstr "Ήχος φωτοφράκτη"
 
-#: ../libcheese/cheese-avatar-widget.c:272
+#: ../libcheese/cheese-avatar-widget.c:268
 msgid "_Take Another Picture"
 msgstr "_Λήψη άλλης εικόνας"
 
-#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1622
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ένα ή περισσότερα απαιτούμενα στοιχεία του gstreamer αγνοούνται: "
 
-#: ../libcheese/cheese-camera.c:1581
+#: ../libcheese/cheese-camera.c:1584
 #, c-format
 msgid "No device found"
 msgstr "Δε βρέθηκε συσκευή"
@@ -410,7 +411,7 @@ msgstr "Δε βρέθηκε συσκευή"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1857
+#: ../libcheese/cheese-camera.c:1860
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -433,37 +434,31 @@ msgstr "Άγνωστη συσκευή"
 msgid "Cancellable initialization not supported"
 msgstr "Δεν υποστηρίζεται η ακύρωση αρχικοποίησης"
 
-#: ../src/cheese-application.vala:55
+#: ../src/cheese-application.vala:53
 msgid "Start in wide mode"
 msgstr "Εκκίνηση σε λειτουργία ευρείας εικόνας"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "Device to use as a camera"
 msgstr "Συσκευή για χρήση ως κάμερα"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "DEVICE"
 msgstr "ΣΥΣΚΕΥΗ"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:58
 msgid "Output version information and exit"
 msgstr "Προβολή πληροφοριών έκδοσης και έξοδος"
 
-#: ../src/cheese-application.vala:62
+#: ../src/cheese-application.vala:60
 msgid "Start in fullscreen mode"
 msgstr "Εκκίνηση σε λειτουργία πλήρους οθόνης"
 
-#: ../src/cheese-application.vala:192
-msgid "- Take photos and videos from your webcam"
-msgstr "- Λήψη φωτογραφιών και βίντεο από την δικτυακή κάμερά σας"
+#: ../src/cheese-application.vala:315
+msgid "Webcam in use"
+msgstr "Δικτυακή κάμερα σε χρήση"
 
-#: ../src/cheese-application.vala:201
-#, c-format
-msgid "Run '%s --help' to see a full list of available command line options."
-msgstr ""
-"Εκτελέστε '%s --help' για να δείτε την πλήρη λίστα των διαθέσιμων εντολών."
-
-#: ../src/cheese-application.vala:585
+#: ../src/cheese-application.vala:549
 msgid "translator-credits"
 msgstr ""
 "Ελληνική μεταφραστική ομάδα GNOME\n"
@@ -473,7 +468,7 @@ msgstr ""
 " Ευστάθιος Ιωσηφίδης <iosifidis@opensuse.org>\n"
 "Για περισσότερα δείτε http://www.gnome.gr/"
 
-#: ../src/cheese-application.vala:587
+#: ../src/cheese-application.vala:551
 msgid "Cheese Website"
 msgstr "Ιστοσελίδα του Cheese"
 
@@ -483,107 +478,115 @@ msgstr "Ιστοσελίδα του Cheese"
 msgid "No Effect"
 msgstr "Δίχως εφέ"
 
-#: ../src/cheese-window.vala:194
+#: ../src/cheese-window.vala:220
 #, c-format
 msgid "Could not open %s"
 msgstr "Δεν ήταν δυνατόν να ανοίξει το %s"
 
-#: ../src/cheese-window.vala:219
+#: ../src/cheese-window.vala:245
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Είστε σίγουροι ότι επιθυμείτε να διαγράψετε μόνιμα το αρχείο;"
 msgstr[1] "Είστε σίγουροι ότι επιθυμείτε να διαγράψετε μόνιμα %d τα αρχεία;"
 
-#: ../src/cheese-window.vala:223
+#: ../src/cheese-window.vala:249
 msgid "_Delete"
 msgstr "_Διαγραφή"
 
-#: ../src/cheese-window.vala:225
+#: ../src/cheese-window.vala:251
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Αν διαγράψετε ένα αντικείμενο, θα χαθεί οριστικά"
 msgstr[1] "Αν διαγράψετε τα αντικείμενα, θα χαθούν οριστικά"
 
-#: ../src/cheese-window.vala:298
+#: ../src/cheese-window.vala:324
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Αδυναμία μετακίνησης %s στα απορρίμματα"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:323
+#: ../src/cheese-window.vala:349
 msgid "Save File"
 msgstr "Αποθήκευση αρχείου"
 
-#: ../src/cheese-window.vala:327
+#: ../src/cheese-window.vala:353
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: ../src/cheese-window.vala:357
+#: ../src/cheese-window.vala:383
 #, c-format
 msgid "Could not save %s"
 msgstr "Αδυναμία αποθήκευσης του %s"
 
-#: ../src/cheese-window.vala:746
+#: ../src/cheese-window.vala:804
 msgid "Stop recording"
 msgstr "Διακοπή εγγραφής"
 
-#: ../src/cheese-window.vala:761
+#: ../src/cheese-window.vala:819
 msgid "Record a video"
 msgstr "Εγγραφή βίντεο"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:796
+#: ../src/cheese-window.vala:854
 msgid "Stop taking pictures"
 msgstr "Διακοπή λήψης φωτογραφιών"
 
-#: ../src/cheese-window.vala:819
+#: ../src/cheese-window.vala:877
 msgid "Take multiple photos"
 msgstr "Λήψη πολλαπλών φωτογραφιών"
 
-#: ../src/cheese-window.vala:1003
+#: ../src/cheese-window.vala:1071
 msgid "No effects found"
 msgstr "Δε βρέθηκαν εφέ"
 
-#: ../src/cheese-window.vala:1123
+#: ../src/cheese-window.vala:1193
 msgid "There was an error playing video from the webcam"
-msgstr "Παρουσιάστηκε σφάλμα αναπαραγωγής βίντεο από την webcam"
+msgstr "Παρουσιάστηκε σφάλμα αναπαραγωγής βίντεο από την δικτυακή κάμερα"
 
-#: ../src/cheese-window.vala:1140
+#: ../src/cheese-window.vala:1210
 msgid "Open"
 msgstr "Άνοιγμα"
 
-#: ../src/cheese-window.vala:1143
+#: ../src/cheese-window.vala:1213
 msgid "Save _As…"
 msgstr "Αποθήκευση _ως…"
 
-#: ../src/cheese-window.vala:1146
+#: ../src/cheese-window.vala:1216
 msgid "Move to _Trash"
 msgstr "Μετακίνηση στα απορρίμμα_τα"
 
-#: ../src/cheese-window.vala:1149
+#: ../src/cheese-window.vala:1219
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: ../src/cheese-window.vala:1251
+#: ../src/cheese-window.vala:1321
 msgid "Record a video using a webcam"
-msgstr "Εγγραφή βίντεο με χρήση ιστοκάμερας"
+msgstr "Εγγραφή βίντεο με χρήση δικτυακής κάμερας"
 
-#: ../src/cheese-window.vala:1257
+#: ../src/cheese-window.vala:1327
 msgid "Take multiple photos using a webcam"
-msgstr "Λήψη πολλαπλών φωτογραφιών με χρήση ιστοκάμερας"
+msgstr "Λήψη πολλαπλών φωτογραφιών με χρήση δικτυακής κάμερας"
 
-#: ../src/cheese-window.vala:1269
+#: ../src/cheese-window.vala:1339
 msgid "Choose an Effect"
 msgstr "Επιλογή επίδρασης"
 
-#: ../src/cheese-window.vala:1280
+#: ../src/cheese-window.vala:1350
 msgid "Record a Video"
 msgstr "Εγγραφή βίντεο"
 
-#: ../src/cheese-window.vala:1284
+#: ../src/cheese-window.vala:1354
 msgid "Take Multiple Photos"
 msgstr "Λήψη πολλαπλών φωτογραφιών"
+
+#~ msgid "- Take photos and videos from your webcam"
+#~ msgstr "- Λήψη φωτογραφιών και βίντεο από την δικτυακή κάμερά σας"
+
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options."
+#~ msgstr ""
+#~ "Εκτελέστε '%s --help' για να δείτε την πλήρη λίστα των διαθέσιμων εντολών."
 
 #~ msgid "_Take a Photo"
 #~ msgstr "_Λήψη φωτογραφίας"
