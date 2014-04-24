@@ -47,7 +47,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     private Clutter.Script clutter_builder;
 
-    [GtkChild]
+    private Gtk.Builder header_bar_ui = new Gtk.Builder.from_resource ("/org/gnome/Cheese/headerbar.ui");
+
     private Gtk.HeaderBar header_bar;
 
     private GLib.Settings settings;
@@ -123,6 +124,16 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
         GLib.Object (application: application);
 
+        header_bar = header_bar_ui.get_object ("header_bar") as Gtk.HeaderBar;
+
+        Gtk.Settings settings = Gtk.Settings.get_default ();
+
+        if (settings.gtk_dialogs_use_header)
+        {
+            header_bar.visible = true;
+            this.set_titlebar (header_bar);
+        }
+
         if (get_direction () == Gtk.TextDirection.RTL)
         {
             effects_prev_page_button_image.icon_name = "go-previous-rtl-symbolic";
@@ -133,6 +144,12 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
             effects_prev_page_button_image.icon_name = "go-previous-symbolic";
             effects_next_page_button_image.icon_name = "go-next-symbolic";
         }
+    }
+
+    private void set_window_title (string title)
+    {
+        header_bar.set_title (title);
+        this.set_title (title);
     }
 
     private bool on_window_state_change_event (Gtk.Widget widget,
@@ -1316,22 +1333,22 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
         if (is_effects_selector_active)
         {
-            header_bar.set_title (_("Choose an Effect"));
+            set_window_title (_("Choose an Effect"));
         }
         else
         {
             switch (current_mode)
             {
                 case MediaMode.PHOTO:
-                    header_bar.set_title (_("Take a Photo"));
+                    set_window_title (_("Take a Photo"));
                     break;
 
                 case MediaMode.VIDEO:
-                    header_bar.set_title (_("Record a Video"));
+                    set_window_title (_("Record a Video"));
                     break;
 
                 case MediaMode.BURST:
-                    header_bar.set_title (_("Take Multiple Photos"));
+                    set_window_title (_("Take Multiple Photos"));
                     break;
             }
         }
