@@ -153,6 +153,21 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 }
 
+static gboolean
+dialogs_use_header (void)
+{
+    GtkSettings *settings;
+    gboolean use_header;
+
+    settings = gtk_settings_get_default ();
+
+    g_object_get (G_OBJECT (settings),
+                  "gtk-dialogs-use-header", &use_header,
+                  NULL);
+
+    return use_header;
+}
+
 /**
  * cheese_avatar_chooser_new:
  *
@@ -163,7 +178,8 @@ cheese_avatar_chooser_class_init (CheeseAvatarChooserClass *klass)
 GtkWidget *
 cheese_avatar_chooser_new (void)
 {
-  return g_object_new (CHEESE_TYPE_AVATAR_CHOOSER, "use-header-bar", TRUE, NULL);
+  return g_object_new (CHEESE_TYPE_AVATAR_CHOOSER, "use-header-bar",
+                       dialogs_use_header (), NULL);
 }
 
 /**
