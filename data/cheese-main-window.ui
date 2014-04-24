@@ -2,17 +2,6 @@
 <interface domain="cheese">
   <requires lib="gtk+" version="3.10"/>
     <template class="CheeseMainWindow" parent="GtkApplicationWindow">
-        <child type="titlebar">
-  <object class="GtkHeaderBar" id="header_bar">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Take a Photo</property>
-    <property name="show-close-button">True</property>
-    <style>
-      <class name="titlebar"/>
-    </style>
-  </object>
-        </child>
         <child>
   <object class="GtkBox" id="main_vbox">
     <property name="orientation">vertical</property>
