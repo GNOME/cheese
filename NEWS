@@ -1,6 +1,49 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.13.1
+  - Updated POTFILES.in
+  - Use a traditional title bar when requested
+    Not all environments desire header bars. We use the
+    'gtk-shell-shows-menubar' setting to decide whether to use the header
+    bar.
+    https://bugzilla.gnome.org/show_bug.cgi?id=728866
+  - Use avatar chooser headerbar only when requested
+    Use headerbar in the avatar chooser dialog only when necessary according
+    to the "gtk-shell-shows-menubar" setting.
+    https://bugzilla.gnome.org/show_bug.cgi?id=728866
+  - Rename desktop file and set DBusActivatable=true
+    Rename AppData and GResource XML in line with desktop file changes.
+  - Add D-Bus service file
+    Allow the application to be D-Bus activated by running with the
+    --gapplication-service argument.
+  - Remove old maintainers from DOAP file
+  - Stop the running action when an error occurs
+    https://bugzilla.gnome.org/show_bug.cgi?id=707386
+  - Inhibit user switching and session idle
+    As recording video from a webcam is undesirable when combined with
+    switching users, inhibit switching and session idling.
+    https://bugzilla.gnome.org/show_bug.cgi?id=694214
+  - Depend on Automake 1.12 for test-driver support
+    https://bugzilla.gnome.org/show_bug.cgi?id=710420
+  - Fix untranslated strings in libcheese
+    https://bugzilla.gnome.org/show_bug.cgi?id=727082
+  - Use suggested-action style for Select button
+  - Remove the border from the chooser action area
+  - Use headerbar in the avatar chooser dialog
+    Bump GTK+ requirement for the new GtkDialog property.
+    https://bugzilla.gnome.org/show_bug.cgi?id=727076
+  - Post-release version bump to 3.13.1
+  - Added/Updated Translations
+    - cs, courtesy of Marek Černocký
+    - el, courtesy of Tom Tryfonidis
+    - nl, courtesy of Erwin Poeze
+    - sl, courtesy of Matej Urbančič
+    - th, courtesy of Akom Chotiphantawanon
+  - Added/Updated Documentation
+    - el, courtesy of Tom Tryfonidis
+    - id, courtesy of Andika Triwidada
+
 version 3.12.0
   - Post-release version bump to 3.12.0
   - Added/Updated Translations
