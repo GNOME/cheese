@@ -31,4 +31,4 @@ HELP_FILES = \
 	pref-resolution.page \
 	video-record.page
 
-HELP_LINGUAS = ca cs de el es fr gl hu id pt_BR ru sl zh_CN
+HELP_LINGUAS = ca cs de el es fi fr gl hu id pt_BR ru sl zh_CN
