@@ -1,6 +1,27 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.12.2
+  - Use a traditional title bar when requested
+    Not all environments desire header bars. We use the
+    'gtk-dialogs-use-header' setting to decide whether to use the header
+    bar.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=728866
+  - Use avatar chooser headerbar only when requested
+    Use headerbar in the avatar chooser dialog only when necessary according
+    to the "gtk-dialogs-use-header" setting.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=728866
+  - Added/Updated Translations
+    - ca@valencia, courtesy of Pau Iranzo
+    - el, courtesy of Tom Tryfonidis
+    - id, courtesy of Dirgita
+    - nl, courtesy of Erwin Poeze
+  - Added/Updated Documentation
+    - el, courtesy of Tom Tryfonidis
+    - pt_BR, courtesy of Rafael Fonseca
+
 version 3.12.1
   - Fix Brazilian Portuguese help translation
   - Fix untranslated strings in libcheese
