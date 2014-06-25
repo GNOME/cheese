@@ -21,8 +21,6 @@ response_cb (GtkDialog           *dialog,
     g_message ("got pixbuf captured");
     g_object_get (G_OBJECT (chooser), "pixbuf", &pixbuf, NULL);
   }
-
-  gtk_main_quit ();
 }
 
 int
@@ -43,7 +41,7 @@ main (int argc, char **argv)
 
   gtk_widget_show_all (window);
 
-  gtk_main ();
+  gtk_dialog_run (GTK_DIALOG (window));
 
   gtk_widget_destroy (window);
 
