@@ -85,26 +85,19 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkAlignment" id="action_button_alignment">
-                        <property name="xscale">0</property>
-                        <property name="yscale">0</property>
+                      <object class="GtkButton" id="take_action_button">
+                        <property name="action-name">app.shoot</property>
+                        <property name="tooltip_text" translatable="yes">Take a photo using a webcam</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">False</property>
                         <property name="visible">True</property>
+                        <style>
+                          <class name="image-button"/>
+                        </style>
                         <child>
-                          <object class="GtkButton" id="take_action_button">
-                            <property name="action-name">app.shoot</property>
-                            <property name="tooltip_text" translatable="yes">Take a photo using a webcam</property>
+                          <object class="GtkImage" id="take_action_button_image">
+                            <property name="icon-name">camera-web-symbolic</property>
                             <property name="visible">True</property>
-                            <style>
-                              <class name="image-button"/>
-                            </style>
-                            <child>
-                              <object class="GtkImage" id="take_action_button_image">
-                                <property name="icon-name">camera-web-symbolic</property>
-                                <property name="visible">True</property>
-                              </object>
-                            </child>
                           </object>
                         </child>
                       </object>
