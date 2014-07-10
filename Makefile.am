@@ -198,10 +198,10 @@ endif
 noinst_resource_files = \
 	data/cheese.css \
 	data/cheese-viewport.json \
-	data/cheese-appmenu.ui \
 	data/cheese-main-window.ui \
 	data/cheese-prefs.ui \
 	data/headerbar.ui \
+	data/menus.ui \
 	data/pixmaps/cheese-1.svg \
 	data/pixmaps/cheese-2.svg \
 	data/pixmaps/cheese-3.svg \

@@ -3,7 +3,6 @@
     <gresource prefix='/org/gnome/Cheese'>
         <file>cheese.css</file>
         <file>cheese-viewport.json</file>
-        <file preprocess="xml-stripblanks">cheese-appmenu.ui</file>
         <file preprocess="xml-stripblanks">cheese-main-window.ui</file>
         <file preprocess="xml-stripblanks">cheese-prefs.ui</file>
         <file preprocess="xml-stripblanks">headerbar.ui</file>
@@ -11,6 +10,9 @@
         <file>pixmaps/cheese-2.svg</file>
         <file>pixmaps/cheese-3.svg</file>
         <file preprocess="to-pixdata">pixmaps/thumbnail-frame.png</file>
+    </gresource>
+    <gresource prefix='/org/gnome/Cheese/gtk'>
+        <file preprocess="xml-stripblanks">menus.ui</file>
     </gresource>
 </gresources>
 

@@ -113,11 +113,6 @@ public class Cheese.Application : Gtk.Application
             Environment.set_application_name (_("Cheese"));
             Window.set_default_icon_name ("cheese");
 
-            // Create the menus.
-            var builder = new Gtk.Builder.from_resource ("/org/gnome/Cheese/cheese-appmenu.ui");
-            var appmenu = builder.get_object ("appmenu") as GLib.MenuModel;
-            this.set_app_menu (appmenu);
-
             this.add_accelerator ("space", "app.shoot", null);
 
             // FIXME: Push these into the main window initialization.
