@@ -74,6 +74,7 @@ struct _CheeseFlashPrivate
   GtkWidget *parent;
   guint flash_timeout_tag;
   guint fade_timeout_tag;
+  gdouble opacity;
 };
 
 static void
@@ -86,6 +87,7 @@ cheese_flash_init (CheeseFlash *self)
 
   priv->flash_timeout_tag = 0;
   priv->fade_timeout_tag  = 0;
+  priv->opacity = 1.0;
 
   /* make it so it doesn't look like a window on the desktop (+fullscreen) */
   gtk_window_set_decorated (window, FALSE);
@@ -191,16 +193,23 @@ static gboolean
 cheese_flash_opacity_fade (gpointer data)
 {
   GtkWindow *flash_window = GTK_WINDOW (data);
-  gdouble opacity = gtk_window_get_opacity (flash_window);
+  CheeseFlashPrivate *flash_priv;
+
+  flash_priv = CHEESE_FLASH (data)->priv;
 
   /* exponentially decrease */
-  gtk_window_set_opacity (flash_window, opacity * FLASH_FADE_FACTOR);
+  flash_priv->opacity *= FLASH_FADE_FACTOR;
 
-  if (opacity <= FLASH_LOW_THRESHOLD)
+  if (flash_priv->opacity <= FLASH_LOW_THRESHOLD)
   {
     /* the flasher has finished when we reach the quit value */
     gtk_widget_hide (GTK_WIDGET (flash_window));
+    flash_priv->fade_timeout_tag = 0;
     return G_SOURCE_REMOVE;
+  }
+  else
+  {
+    gtk_window_set_opacity (flash_window, flash_priv->opacity);
   }
 
   return G_SOURCE_CONTINUE;
@@ -229,6 +238,7 @@ cheese_flash_start_fade (gpointer data)
   }
 
   flash_priv->fade_timeout_tag = g_timeout_add (1000.0 / FLASH_ANIMATION_RATE, cheese_flash_opacity_fade, data);
+  flash_priv->flash_timeout_tag = 0;
   return G_SOURCE_REMOVE;
 }
 
@@ -257,9 +267,18 @@ cheese_flash_fire (CheeseFlash *flash)
   flash_window = GTK_WINDOW (flash);
 
   if (flash_priv->flash_timeout_tag > 0)
+  {
     g_source_remove (flash_priv->flash_timeout_tag);
+    flash_priv->flash_timeout_tag = 0;
+  }
+
   if (flash_priv->fade_timeout_tag > 0)
+  {
     g_source_remove (flash_priv->fade_timeout_tag);
+    flash_priv->fade_timeout_tag = 0;
+  }
+
+  flash_priv->opacity = 1.0;
 
   parent  = gtk_widget_get_toplevel (flash_priv->parent);
   screen  = gtk_widget_get_screen (parent);
