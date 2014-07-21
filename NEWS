@@ -1,6 +1,36 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.13.4
+  - Track flash opacity explicitly
+    Retrieving the opacity of the flash, reducing it by an exponentially
+    small step, and setting it again does not always actually decrease the
+    widget's opacity, and so the fading does not actually terminate.
+
+    Incidentally, also unset the flash timeout tags to avoid calling
+    g_source_remove() spuriously.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=733433
+  - Use a better fallback image location
+    https://bugzilla.gnome.org/show_bug.cgi?id=731032
+  - Use new GtkApplication appmenu resource handling
+  - Match desktop file name in AppData
+    Update the AppData reference to the desktop file, as it was not changed
+    when the desktop file was renamed.
+  - Avoid crash during delete-event in chooser test
+  - Added/Updated Translations
+    - ca@valencia, courtesy of Pau Iranzo
+    - es, courtesy of Daniel Mustieles
+    - gl, courtesy of Fran Dieguez
+    - he, courtesy of Yosef Or Boczko
+    - hu, courtesy of Balázs Úr
+    - id, courtesy of Andika Triwidada
+    - nb, courtesy of Kjartan Maraas
+    - pt_BR, courtesy of Enrico Nicoletto
+    - zh_TW, courtesy of Cheng-Chia Tseng
+  - Added/Updated Documentation
+    - fi, courtesy of Sami Jaktholm
+
 version 3.13.1
   - Updated POTFILES.in
   - Use a traditional title bar when requested
