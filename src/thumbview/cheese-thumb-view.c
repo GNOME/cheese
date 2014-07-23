@@ -782,6 +782,9 @@ cheese_thumb_view_set_vertical (CheeseThumbView *thumb_view, gboolean vertical)
     gtk_icon_view_set_columns(GTK_ICON_VIEW (thumb_view), priv->n_items);
   else
     gtk_icon_view_set_columns(GTK_ICON_VIEW (thumb_view), 1);
+
+  gtk_widget_set_hexpand (GTK_WIDGET (thumb_view), !vertical);
+  gtk_widget_set_vexpand (GTK_WIDGET (thumb_view), vertical);
 }
 
 void

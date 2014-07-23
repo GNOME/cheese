@@ -28,7 +28,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkAlignment" id="action_area_alignment">
+              <object class="GtkBox" id="action_area_alignment">
                 <property name="hexpand">True</property>
                 <property name="visible">True</property>
                 <child>
@@ -186,9 +186,8 @@
           </object>
         </child>
         <child>
-          <object class="GtkAlignment" id="thumbnails_right">
+          <object class="GtkBox" id="thumbnails_right">
             <property name="visible">False</property>
-            <property name="vexpand">False</property>
             <child>
               <placeholder/>
             </child>
@@ -197,9 +196,8 @@
       </object>
     </child>
     <child>
-      <object class="GtkAlignment" id="thumbnails_bottom">
+      <object class="GtkBox" id="thumbnails_bottom">
         <property name="visible">False</property>
-        <property name="vexpand">False</property>
         <child>
           <placeholder/>
         </child>

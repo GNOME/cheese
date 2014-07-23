@@ -60,9 +60,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     private Eog.ThumbNav thumb_nav;
     private Cheese.ThumbView thumb_view;
     [GtkChild]
-    private Gtk.Alignment thumbnails_right;
+    private Gtk.Box thumbnails_right;
     [GtkChild]
-    private Gtk.Alignment thumbnails_bottom;
+    private Gtk.Box thumbnails_bottom;
     [GtkChild]
     private Gtk.Widget leave_fullscreen_button_box;
     [GtkChild]
@@ -617,7 +617,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
       thumb_view.set_vertical (true);
       thumb_nav.set_vertical (true);
-      if (thumbnails_bottom.get_child () != null)
+      if (thumbnails_bottom.get_children () != null)
       {
         thumbnails_bottom.remove (thumb_nav);
       }
@@ -633,7 +633,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
       thumb_view.set_vertical (false);
       thumb_nav.set_vertical (false);
-      if (thumbnails_right.get_child () != null)
+      if (thumbnails_right.get_children () != null)
       {
         thumbnails_right.remove (thumb_nav);
       }
