@@ -735,6 +735,8 @@ cheese_thumb_view_constructed (GObject *object)
   CheeseThumbView *thumb_view = CHEESE_THUMB_VIEW (object);
   CheeseThumbViewPrivate *priv = cheese_thumb_view_get_instance_private (thumb_view);
   
+  G_OBJECT_CLASS (cheese_thumb_view_parent_class)->constructed (object);
+
   gtk_icon_view_set_model (GTK_ICON_VIEW (thumb_view), GTK_TREE_MODEL (priv->store));
 
   gtk_widget_set_size_request (GTK_WIDGET (thumb_view),
