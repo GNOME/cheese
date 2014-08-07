@@ -162,6 +162,20 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         return false;
     }
 
+    private void do_thumb_view_popup_menu (Gtk.Widget widget,
+                                           uint button,
+                                           uint time)
+    {
+        thumbnail_popup.popup (null, widget, null, button, time);
+    }
+
+    private bool on_thumb_view_popup_menu (Gtk.Widget thumbview)
+    {
+        do_thumb_view_popup_menu (thumbview, 0, 0);
+
+        return true;
+    }
+
     /**
     * Popup a context menu when right-clicking on a thumbnail.
     *
@@ -190,18 +204,18 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
         if (event.type == Gdk.EventType.BUTTON_PRESS)
         {
-            Gdk.Event* button_press = (Gdk.Event*)(&event);
+            Gdk.Event* button_press = (Gdk.Event*)(event);
 
             if (button_press->triggers_context_menu ())
             {
-                thumbnail_popup.popup (null, thumb_view, null, event.button,
-                                       event.time);
+                do_thumb_view_popup_menu (thumb_view, event.button,
+                                          event.time);
+                return true;
             }
-            else if (event.type == Gdk.EventType.2BUTTON_PRESS)
-            {
-                on_file_open ();
-            }
-
+        }
+        else if (event.type == Gdk.EventType.2BUTTON_PRESS)
+        {
+            on_file_open ();
             return true;
         }
 
@@ -1272,6 +1286,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     thumb_view = new Cheese.ThumbView ();
     thumb_nav  = new Eog.ThumbNav (thumb_view, false);
         thumbnail_popup.attach_to_widget (thumb_view, null);
+        thumb_view.popup_menu.connect (on_thumb_view_popup_menu);
 
         Gtk.CssProvider css;
         try
