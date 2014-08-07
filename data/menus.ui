@@ -28,4 +28,28 @@
             </item>
         </section>
     </menu>
+    <menu id="thumbview-menu">
+        <section>
+            <item>
+                <attribute name="accel">&lt;Primary&gt;o</attribute>
+                <attribute name="label" translatable="yes">Open</attribute>
+                <attribute name="action">win.file-open</attribute>
+            </item>
+            <item>
+                <attribute name="accel">&lt;Primary&gt;s</attribute>
+                <attribute name="label" translatable="yes">Save _As…</attribute>
+                <attribute name="action">win.file-saveas</attribute>
+            </item>
+            <item>
+                <attribute name="accel">Delete</attribute>
+                <attribute name="label" translatable="yes">Move to _Trash</attribute>
+                <attribute name="action">win.file-trash</attribute>
+            </item>
+            <item>
+                <attribute name="accel">&lt;Shift&gt;Delete</attribute>
+                <attribute name="label" translatable="yes">Delete</attribute>
+                <attribute name="action">win.file-delete</attribute>
+            </item>
+        </section>
+    </menu>
 </interface>

@@ -1235,21 +1235,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     flash           = new Flash (this);
     settings        = new GLib.Settings ("org.gnome.Cheese");
 
-        var menu = new GLib.Menu ();
-        var section = new GLib.Menu ();
-        menu.append_section (null, section);
-        var item = new GLib.MenuItem (_("Open"), "win.file-open");
-        item.set_attribute ("accel", "s", "<Primary>o");
-        section.append_item (item);
-        item = new GLib.MenuItem (_("Save _As…"), "win.file-saveas");
-        item.set_attribute ("accel", "s", "<Primary>S");
-        section.append_item (item);
-        item = new GLib.MenuItem (_("Move to _Trash"), "win.file-trash");
-        item.set_attribute ("accel", "s", "Delete");
-        section.append_item (item);
-        item = new GLib.MenuItem (_("Delete"), "win.file-delete");
-        item.set_attribute ("accel", "s", "<Shift>Delete");
-        section.append_item (item);
+        var menu = application.get_menu_by_id ("thumbview-menu");
         thumbnail_popup = new Gtk.Menu.from_model (menu);
 
         this.add_action_entries (actions, this);
