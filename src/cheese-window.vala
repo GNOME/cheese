@@ -72,10 +72,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     [GtkChild]
     private Gtk.ToggleButton effects_toggle_button;
     [GtkChild]
-    private Gtk.Image effects_prev_page_button_image;
-    [GtkChild]
-    private Gtk.Image effects_next_page_button_image;
-    [GtkChild]
     private Gtk.Widget buttons_area;
     private Gtk.Menu thumbnail_popup;
 
@@ -132,17 +128,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         {
             header_bar.visible = true;
             this.set_titlebar (header_bar);
-        }
-
-        if (get_direction () == Gtk.TextDirection.RTL)
-        {
-            effects_prev_page_button_image.icon_name = "go-previous-rtl-symbolic";
-            effects_next_page_button_image.icon_name = "go-next-rtl-symbolic";
-        }
-        else
-        {
-            effects_prev_page_button_image.icon_name = "go-previous-symbolic";
-            effects_next_page_button_image.icon_name = "go-next-symbolic";
         }
     }
 
