@@ -60,6 +60,9 @@ public class Cheese.PreferencesDialog : Gtk.Dialog
 
 public PreferencesDialog (Cheese.Camera camera)
 {
+    var gtk_settings = Gtk.Settings.get_default ();
+    Object (use_header_bar: gtk_settings.gtk_dialogs_use_header ? 1 : 0);
+
     this.camera = camera;
 
     settings = new GLib.Settings ("org.gnome.Cheese");
