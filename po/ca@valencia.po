@@ -1,7 +1,7 @@
 # Traducció del Cheese al Català
 # Copyright (C) 2008 Free Software Foundation, Inc.
 # This file is distributed under the same license as the Cheese package.
-# Gil Forcada <gilforcada@guifi.net>, 2008, 2009, 2010, 2011.
+# Gil Forcada <gilforcada@guifi.net>, 2008, 2009, 2010, 2011, 2014.
 # xavier <catala.xavier@gmail.com>, 2013.
 # Josep Sànchez <papapep@gmx.com>, 2013.
 #
@@ -9,35 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-09 00:29+0200\n"
-"PO-Revision-Date: 2014-03-01 11:08+0100\n"
-"Last-Translator: Pau Iranzo <paugnu@gmail.com>\n"
+"POT-Creation-Date: 2014-08-17 01:38+0200\n"
+"PO-Revision-Date: 2014-08-17 01:37+0200\n"
+"Last-Translator: Gil Forcada <gilforcada@guifi.net>\n"
 "Language-Team: Catalan <tradgnome@softcatala.org>\n"
 "Language: ca-XV\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: ../data/cheese-appmenu.ui.h:1
-msgid "_Fullscreen"
-msgstr "Pantalla _completa"
-
-#: ../data/cheese-appmenu.ui.h:2
-msgid "P_references"
-msgstr "_Preferències"
-
-#: ../data/cheese-appmenu.ui.h:3 ../data/cheese-prefs.ui.h:18
-msgid "_Help"
-msgstr "_Ajuda"
-
-#: ../data/cheese-appmenu.ui.h:4
-msgid "_About"
-msgstr "_Quant a"
-
-#: ../data/cheese-appmenu.ui.h:5
-msgid "_Quit"
-msgstr "I_x"
+"Content-Transfer-Encoding: 8bits\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -63,7 +43,7 @@ msgstr "Mode seqüència de fotos"
 msgid "Burst"
 msgstr "Seqüència"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1334
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1320
 msgid "Take a photo using a webcam"
 msgstr "Fes una foto amb la càmera web"
 
@@ -91,78 +71,114 @@ msgstr "Ix del mode pantalla completa i torna al mode finestra"
 msgid "Preferences"
 msgstr "Preferències"
 
-#: ../data/cheese-prefs.ui.h:2
-msgid "Device"
-msgstr "Dispositiu"
+#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+msgid "_Help"
+msgstr "_Ajuda"
 
 #: ../data/cheese-prefs.ui.h:3
-msgid "Photo resolution"
-msgstr "Resolució de la foto"
-
-#: ../data/cheese-prefs.ui.h:4
-msgid "Video resolution"
-msgstr "Resolució del vídeo"
-
-#: ../data/cheese-prefs.ui.h:5
-msgid "Webcam"
-msgstr "Càmera web"
-
-#: ../data/cheese-prefs.ui.h:6
-msgid "Brightness"
-msgstr "Brillantor"
-
-#: ../data/cheese-prefs.ui.h:7
-msgid "Saturation"
-msgstr "Saturació"
-
-#: ../data/cheese-prefs.ui.h:8
-msgid "Hue"
-msgstr "To"
-
-#: ../data/cheese-prefs.ui.h:9
-msgid "Contrast"
-msgstr "Contrast"
-
-#: ../data/cheese-prefs.ui.h:10
-msgid "Image"
-msgstr "Imatge"
-
-#: ../data/cheese-prefs.ui.h:11
-msgid "Shutter"
-msgstr "Disparador"
-
-#: ../data/cheese-prefs.ui.h:12
-msgid "_Countdown"
-msgstr "_Temporitzador"
-
-#: ../data/cheese-prefs.ui.h:13
-msgid "Fire _flash"
-msgstr "Dispara el _flaix"
-
-#: ../data/cheese-prefs.ui.h:14
-msgid "Burst mode"
-msgstr "Mode seqüència"
-
-#: ../data/cheese-prefs.ui.h:15
-msgid "Number of photos"
-msgstr "Nombre de fotos"
-
-#: ../data/cheese-prefs.ui.h:16
-msgid "Delay between photos (seconds)"
-msgstr "Temps d'espera entre fotos (segons)"
-
-#: ../data/cheese-prefs.ui.h:17
-msgid "Capture"
-msgstr "Captura"
-
-#: ../data/cheese-prefs.ui.h:19
 msgid "_Close"
 msgstr "_Tanca"
 
+#: ../data/cheese-prefs.ui.h:4
+msgid "Device"
+msgstr "Dispositiu"
+
+#: ../data/cheese-prefs.ui.h:5
+msgid "Photo resolution"
+msgstr "Resolució de la foto"
+
+#: ../data/cheese-prefs.ui.h:6
+msgid "Video resolution"
+msgstr "Resolució del vídeo"
+
+#: ../data/cheese-prefs.ui.h:7
+msgid "Webcam"
+msgstr "Càmera web"
+
+#: ../data/cheese-prefs.ui.h:8
+msgid "Brightness"
+msgstr "Brillantor"
+
+#: ../data/cheese-prefs.ui.h:9
+msgid "Saturation"
+msgstr "Saturació"
+
+#: ../data/cheese-prefs.ui.h:10
+msgid "Hue"
+msgstr "To"
+
+#: ../data/cheese-prefs.ui.h:11
+msgid "Contrast"
+msgstr "Contrast"
+
+#: ../data/cheese-prefs.ui.h:12
+msgid "Image"
+msgstr "Imatge"
+
+#: ../data/cheese-prefs.ui.h:13
+msgid "Shutter"
+msgstr "Disparador"
+
+#: ../data/cheese-prefs.ui.h:14
+msgid "_Countdown"
+msgstr "_Temporitzador"
+
+#: ../data/cheese-prefs.ui.h:15
+msgid "Fire _flash"
+msgstr "Dispara el _flaix"
+
+#: ../data/cheese-prefs.ui.h:16
+msgid "Burst mode"
+msgstr "Mode seqüència"
+
+#: ../data/cheese-prefs.ui.h:17
+msgid "Number of photos"
+msgstr "Nombre de fotos"
+
+#: ../data/cheese-prefs.ui.h:18
+msgid "Delay between photos (seconds)"
+msgstr "Temps d'espera entre fotos (segons)"
+
+#: ../data/cheese-prefs.ui.h:19
+msgid "Capture"
+msgstr "Captura"
+
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:96
-#: ../src/cheese-window.vala:1363
+#: ../src/cheese-window.vala:1349
 msgid "Take a Photo"
 msgstr "Fes una foto"
+
+#: ../data/menus.ui.h:1
+msgid "_Fullscreen"
+msgstr "Pantalla _completa"
+
+#: ../data/menus.ui.h:2
+msgid "P_references"
+msgstr "_Preferències"
+
+#: ../data/menus.ui.h:4
+msgid "_About"
+msgstr "_Quant a"
+
+#: ../data/menus.ui.h:5
+msgid "_Quit"
+msgstr "I_x"
+
+#: ../data/menus.ui.h:6
+msgid "Open"
+msgstr "Obri"
+
+#: ../data/menus.ui.h:7
+msgid "Save _As…"
+msgstr "_Anomena i guarda…"
+
+#: ../data/menus.ui.h:8
+msgid "Move to _Trash"
+msgstr "Mou-lo a la _paperera"
+
+#: ../data/menus.ui.h:9
+msgid "Delete"
+msgstr "Suprimeix"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:1
 msgid ""
@@ -192,7 +208,7 @@ msgstr ""
 "vulgueu i compartir-les amb els altres."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:1
-#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:548
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -201,7 +217,7 @@ msgid "Cheese Webcam Booth"
 msgstr "Cabina de fotografia del Cheese"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:3
-#: ../src/cheese-application.vala:543
+#: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Feu fotos i vídeos amb la càmera web, amb efectes gràfics divertits"
 
@@ -365,8 +381,8 @@ msgstr "Nombre de fotografies en el mode seqüència"
 msgid "The number of photos to take in a single burst."
 msgstr "El nombre de fotos a fer en una sola seqüència."
 
-#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:265
-#: ../src/cheese-window.vala:294 ../src/cheese-window.vala:369
+#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:264
+#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
@@ -374,7 +390,7 @@ msgstr "_Cancel·la"
 msgid "_Select"
 msgstr "_Selecciona"
 
-#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:693
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:692
 msgid "Shutter sound"
 msgstr "So del disparador"
 
@@ -439,16 +455,15 @@ msgstr "Mostra la informació de la versió i ix"
 msgid "Start in fullscreen mode"
 msgstr "Inicia en mode a pantalla completa"
 
-#: ../src/cheese-application.vala:315
-#, fuzzy
+#: ../src/cheese-application.vala:310
 msgid "Webcam in use"
-msgstr "Càmera web"
+msgstr "S'utilitza la càmera web"
 
-#: ../src/cheese-application.vala:549
+#: ../src/cheese-application.vala:544
 msgid "translator-credits"
 msgstr "Gil Forcada <gilforcada@guifi.net>"
 
-#: ../src/cheese-application.vala:551
+#: ../src/cheese-application.vala:546
 msgid "Cheese Website"
 msgstr "Lloc web del Cheese"
 
@@ -458,134 +473,88 @@ msgstr "Lloc web del Cheese"
 msgid "No Effect"
 msgstr "Sense efectes"
 
-#: ../src/cheese-window.vala:237
+#: ../src/cheese-window.vala:236
 #, c-format
 msgid "Could not open %s"
 msgstr "No s'ha pogut obrir %s"
 
-#: ../src/cheese-window.vala:262
+#: ../src/cheese-window.vala:261
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Segur que voleu suprimir permanentment el fitxer?"
 msgstr[1] "Segur que voleu suprimir permanentment «%d» fitxers?"
 
-#: ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:265
 msgid "_Delete"
 msgstr "Su_primeix"
 
-#: ../src/cheese-window.vala:268
+#: ../src/cheese-window.vala:267
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Si suprimiu un element, es perdrà per sempre."
 msgstr[1] "Si suprimiu els elements, es perdran per sempre."
 
-#: ../src/cheese-window.vala:341
+#: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "No s'ha pogut moure el fitxer %s a la paperera"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:366
+#: ../src/cheese-window.vala:365
 msgid "Save File"
 msgstr "Guarda el fitxer"
 
-#: ../src/cheese-window.vala:370
+#: ../src/cheese-window.vala:369
 msgid "Save"
 msgstr "Guarda"
 
-#: ../src/cheese-window.vala:400
+#: ../src/cheese-window.vala:399
 #, c-format
 msgid "Could not save %s"
 msgstr "No s'ha pogut guardar %s"
 
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:820
 msgid "Stop recording"
 msgstr "Para l'enregistrament"
 
-#: ../src/cheese-window.vala:836
+#: ../src/cheese-window.vala:835
 msgid "Record a video"
 msgstr "Enregistra un vídeo"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:871
+#: ../src/cheese-window.vala:870
 msgid "Stop taking pictures"
 msgstr "No faces més fotos"
 
-#: ../src/cheese-window.vala:894
+#: ../src/cheese-window.vala:893
 msgid "Take multiple photos"
 msgstr "Fes diverses fotos"
 
-#: ../src/cheese-window.vala:1088
+#: ../src/cheese-window.vala:1087
 msgid "No effects found"
 msgstr "No s'ha trobat cap efecte"
 
-#: ../src/cheese-window.vala:1210
+#: ../src/cheese-window.vala:1209
 msgid "There was an error playing video from the webcam"
 msgstr "S'ha produït un error en reproduir el vídeo de la càmera web"
 
-#: ../src/cheese-window.vala:1227
-msgid "Open"
-msgstr "Obri"
-
-#: ../src/cheese-window.vala:1230
-msgid "Save _As…"
-msgstr "_Anomena i guarda…"
-
-#: ../src/cheese-window.vala:1233
-msgid "Move to _Trash"
-msgstr "Mou-lo a la _paperera"
-
-#: ../src/cheese-window.vala:1236
-msgid "Delete"
-msgstr "Suprimeix"
-
-#: ../src/cheese-window.vala:1338
+#: ../src/cheese-window.vala:1324
 msgid "Record a video using a webcam"
 msgstr "Enregistra un vídeo amb la càmera web"
 
-#: ../src/cheese-window.vala:1344
+#: ../src/cheese-window.vala:1330
 msgid "Take multiple photos using a webcam"
 msgstr "Fes diverses fotos amb la càmera web"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1342
 msgid "Choose an Effect"
 msgstr "Trieu un efecte"
 
-#: ../src/cheese-window.vala:1367
+#: ../src/cheese-window.vala:1353
 msgid "Record a Video"
 msgstr "Enregistra un vídeo"
 
-#: ../src/cheese-window.vala:1371
+#: ../src/cheese-window.vala:1357
 msgid "Take Multiple Photos"
 msgstr "Fes diverses fotos"
-
-#~ msgid "- Take photos and videos from your webcam"
-#~ msgstr "- Fes fotos i vídeos amb la càmera web"
-
-#~ msgid ""
-#~ "Run '%s --help' to see a full list of available command line options."
-#~ msgstr ""
-#~ "Executeu «%s --help» per veure tota la llista d'opcions disponibles des "
-#~ "de la línia d'ordres."
-
-#~ msgid "_Take a Photo"
-#~ msgstr "Fes una f_oto"
-
-#~ msgid "_Leave Fullscreen"
-#~ msgstr "_Surt de la pantalla completa"
-
-#~ msgid "_Discard photo"
-#~ msgstr "_Descarta la foto"
-
-#~ msgid "_Shoot"
-#~ msgstr "_Dispara"
-
-#~ msgid "Mode:"
-#~ msgstr "Mode:"
-
-#~ msgid "Stop _Recording"
-#~ msgstr "Atura l'e_nregistrament"
-
-#~ msgid "Take _Multiple Photos"
-#~ msgstr "Fes _diverses fotos"
