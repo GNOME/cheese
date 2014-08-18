@@ -298,7 +298,8 @@ EXAMPLES = \
 	tests/cheese-test-chooser \
 	tests/cheese-test-flash \
 	tests/cheese-test-monitor \
-	tests/cheese-test-widget
+	tests/cheese-test-widget \
+	tests/test-service-client
 
 if HAVE_XTEST
 noinst_PROGRAMS = \
@@ -318,6 +319,8 @@ tests_cheese_test_chooser_SOURCES = tests/cheese-test-chooser.c
 tests_cheese_test_flash_SOURCES = tests/cheese-test-flash.c
 tests_cheese_test_monitor_SOURCES = tests/cheese-test-monitor.c
 tests_cheese_test_widget_SOURCES = tests/cheese-test-widget.c
+tests_test_service_client_SOURCES = tests/test-service-client.c
+nodist_tests_test_service_client_SOURCES = service/camera.c
 tests_test_webcam_button_SOURCES = tests/test-webcam-button.c
 
 tests_cheese_test_camera_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
@@ -325,6 +328,8 @@ tests_cheese_test_chooser_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_cheese_test_flash_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_cheese_test_monitor_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_cheese_test_widget_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
+tests_test_service_client_CPPFLAGS = \
+	$(EXAMPLES_CPPFLAGS) -I$(top_builddir)/service
 tests_test_webcam_button_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 
 tests_cheese_test_camera_LDADD = \
@@ -351,6 +356,7 @@ tests_cheese_test_widget_LDADD = \
 	$(CHEESE_GTK_LIBS) \
 	libcheese.la \
 	libcheese-gtk.la
+tests_test_service_client_LDADD = $(CHEESE_GTK_LIBS)
 tests_test_webcam_button_LDADD = $(XTEST_LIBS)
 
 @INTLTOOL_DESKTOP_RULE@
