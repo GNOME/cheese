@@ -251,6 +251,48 @@ cheese_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS)
 
+libexec_PROGRAMS = \
+	gnome-camera-service
+
+service/camera.c: service/camera.h
+service/camera.h: Makefile data/org.gnome.Camera.xml
+	$(AM_V_GEN) $(GDBUS_CODEGEN) --interface-prefix org.gnome.Camera. \
+		--generate-c-code service/camera \
+		--c-namespace Gc $(srcdir)/data/org.gnome.Camera.xml
+
+BUILT_SOURCES = \
+	$(nodist_gnome_camera_service_SOURCES)
+
+gnome_camera_service_SOURCES = \
+	service/gc-application.c \
+	service/gc-camera-client.c \
+	service/gc-camera-manager.c \
+	service/gc-client-monitor.c \
+	service/gc-main.c
+
+noinst_gnome_camera_service_headers = \
+	service/gc-application.h \
+	service/gc-camera-client.h \
+	service/gc-camera-manager.h \
+	service/gc-client-monitor.h
+
+nodist_gnome_camera_service_headers = \
+	service/camera.h
+
+nodist_gnome_camera_service_SOURCES = \
+	service/camera.c
+
+gnome_camera_service_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	-I$(top_builddir)/service \
+	-I$(top_srcdir)/libcheese
+
+gnome_camera_service_CFLAGS = \
+	$(CHEESE_GTK_CFLAGS)
+
+gnome_camera_service_LDADD = \
+	libcheese-gtk.la
+
 EXAMPLES = \
 	tests/cheese-test-camera \
 	tests/cheese-test-chooser \
@@ -322,7 +364,9 @@ appdata_in_files = data/org.gnome.Cheese.appdata.xml.in
 appdata_XML = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
 
 servicedir = $(datadir)/dbus-1/services
-service_DATA = data/org.gnome.Cheese.service
+service_DATA = \
+	data/org.gnome.Camera.service \
+	data/org.gnome.Cheese.service
 
 @GSETTINGS_RULES@
 gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
@@ -485,11 +529,14 @@ dist-hook: git-changelog-hook
 
 dist_noinst_DATA = \
 	ChangeLog.pre-git \
+	COPYING.GPL3 \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
+	$(noinst_gnome_camera_service_headers) \
 	$(noinst_resource_files) \
 	$(appdata_in_files) \
 	data/org.gnome.Cheese.gresource.xml \
+	data/org.gnome.Camera.xml \
 	build-aux/test-driver \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
 	$(gtkdoc_srcdir)/cheese-sections.txt \
@@ -519,6 +566,8 @@ CLEANFILES = \
 	$(enum_data) \
 	$(gir_DATA) \
 	$(typelib_DATA) \
+	$(nodist_gnome_camera_service_headers) \
+	$(nodist_gnome_camera_service_SOURCES) \
 	src/cheese-resource.c \
 	src/cheese-resource.h
 

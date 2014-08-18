@@ -1,0 +1,50 @@
+<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN" "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node name="/org/gnome/Camera">
+    <!-- org.gnome.Camera:
+         @short_description: Use the available camera devices
+
+         The camera interface is used to take photos with the available camera
+         devices.
+    -->
+    <interface name="org.gnome.Camera.Manager">
+        <!-- GetClient:
+             @chooser: The object path of a new client object
+             @short_description: Get a client object for showing a photo dialog
+
+             Use the obtained client object to show a dialog for taking photos
+             and videos using a webcam.
+        -->
+        <method name="GetClient">
+            <arg name="client" type="o" direction="out"/>
+        </method>
+    </interface>
+
+    <!-- org.gnome.Camera.Client:
+         @short_description: Play images and videos from a camera
+    -->
+    <interface name="org.gnome.Camera.Client">
+        <!-- ImageData:
+             @short_description: Image data for photo from webcam
+
+             The PNG image data, Base64-encoded, from the photo taken by the
+             webcam, and cropped by the user.
+        -->
+        <property name="ImageData" type="s" access="read">
+            <annotation name="org.freedesktop.DBus.Property.EmitsChangedSignal" value="invalidates"/>
+        </property>
+        <!-- ShowChooser:
+             @short_description: Show the webcam chooser dialog
+        -->
+        <method name="ShowChooser">
+        </method>
+        <!-- UserDone:
+             @photo_taken: Whether a photo was taken or not
+             @image_data: The image data as a Base64-encoded PNG, or empty
+             @short_description: Indicates that the dialog was closed
+        -->
+        <signal name="UserDone">
+            <arg name="photo_taken" type="b" />
+            <arg name="image_data" type="s" />
+        </signal>
+    </interface>
+</node>
