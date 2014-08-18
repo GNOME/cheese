@@ -7,7 +7,7 @@ AC_INIT([Cheese],
         [https://wiki.gnome.org/Apps/Cheese])
 
 AC_CONFIG_AUX_DIR([build-aux])
-AC_CONFIG_HEADERS([cheese-config.h])
+AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([configure.ac])
 AC_CONFIG_MACRO_DIR([m4])
 

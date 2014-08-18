@@ -19,7 +19,7 @@
  * Written by: Matthias Clasen <mclasen@redhat.com>
  */
 
-#include "cheese-config.h"
+#include "config.h"
 
 #include <stdlib.h>
 

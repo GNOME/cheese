@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "cheese-config.h"
+#include "config.h"
 
 #include <glib/gi18n-lib.h>
 #include <clutter-gst/clutter-gst.h>

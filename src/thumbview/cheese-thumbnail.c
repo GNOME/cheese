@@ -23,7 +23,7 @@
  */
 
 #ifdef HAVE_CONFIG_H
-  #include <cheese-config.h>
+  #include <config.h>
 #endif
 
 #include "cheese-thumbnail.h"
