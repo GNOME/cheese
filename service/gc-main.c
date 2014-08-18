@@ -19,9 +19,9 @@
 #include "config.h"
 
 #include <gio/gio.h>
-#include <cheese/cheese-gtk.h>
 #include <clutter-gtk/clutter-gtk.h>
 
+#include "cheese-gtk.h"
 #include "gc-application.h"
 
 int

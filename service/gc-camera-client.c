@@ -19,8 +19,7 @@
 #include "config.h"
 
 #include "gc-camera-client.h"
-
-#include <cheese/cheese-avatar-chooser.h>
+#include "cheese-avatar-chooser.h"
 
 typedef struct
 {
