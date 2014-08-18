@@ -1,6 +1,47 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.13.90
+  - Add simple service client example
+  - Import basic camera D-Bus service
+  - Use new metadata_license in AppData description
+  - Use config.h instead of cheese-config.h
+    Use a standard filename for the genereated configuration header.
+  - Use GtkIconTheme built-in RTL support
+  - Move thumbview popup menu to GtkBuilder file
+  - Refactor thumb view popup menu handling
+    Popup the thumb view context menu in response to the popup-menu signal
+    on GtkWidget.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=724905
+  - Optionally use a header bar in the preferences
+    Make the preferences dialog pay attention to the gtk-dialogs-use-header
+    GtkSetting.
+  - doap category apps
+  - Fix button alignment in main window
+  - Avoid using deprecated GtkAlignment in main window
+  - Avoid xalign property in preferences dialog
+    Use halign on GtkWidget instead.
+  - Avoid deprecated margin-left GtkWidget property
+    Use margin-start instead.
+  - Avoid GtkCellArea critical warnings in thumb view
+    GTK+ switched from using constructor() to constructed() in GtkIconView,
+    which exposed that Cheese does not chain up in the CheeseThumbView (a
+    GtkIconView subclass) constructed() vfunc. Chain up at the start of
+    constructed() so that the construct-only properties of the GtkIconView
+    are set before calling icon view API.
+  - Avoid using deprecated GtkAlignment
+  - Post-release version bump to 3.13.90
+  - Added/Updated Translations
+    - as, courtesy of Nilamdyuti Goswami
+    - ca, courtesy of Gil Forcada
+    - ca@valencia, courtesy of Gil Forcada
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - lt, courtesy of Aurimas Černius
+    - sv, courtesy of Anders Jonsson
+  - Added/Updated Documentation
+    - hu, courtesy of Balázs Úr
+
 version 3.13.4
   - Track flash opacity explicitly
     Retrieving the opacity of the flash, reducing it by an exponentially
