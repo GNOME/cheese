@@ -291,7 +291,8 @@ gnome_camera_service_CFLAGS = \
 	$(CHEESE_GTK_CFLAGS)
 
 gnome_camera_service_LDADD = \
-	libcheese-gtk.la
+	libcheese-gtk.la \
+	$(CHEESE_GTK_LIBS)
 
 EXAMPLES = \
 	tests/cheese-test-camera \
