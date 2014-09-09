@@ -24,6 +24,8 @@ internal class Cheese.Countdown : GLib.Object
   public delegate void CountdownCallback ();
   private Clutter.Text countdown_actor;
   private unowned CountdownCallback completed_callback;
+  private Clutter.PropertyTransition pulse_in;
+  private Clutter.PropertyTransition pulse_out;
   private int current_value = 0;
   private GLib.Settings settings;
   public bool running;
@@ -46,14 +48,13 @@ internal class Cheese.Countdown : GLib.Object
    */
   private void fade_out ()
   {
-    var pulse_out = new Clutter.PropertyTransition ("opacity");
+    pulse_out = new Clutter.PropertyTransition ("opacity");
     pulse_out.set_duration (500);
     pulse_out.set_from_value (255);
     pulse_out.set_to_value (0);
-    pulse_out.remove_on_complete = true;
     pulse_out.completed.connect (fade_in);
-
-    this.countdown_actor.add_transition ("pulse-out", pulse_out);
+    pulse_out.animatable = countdown_actor;
+    pulse_out.start ();
   }
 
   /**
@@ -72,14 +73,13 @@ internal class Cheese.Countdown : GLib.Object
     this.countdown_actor.text = this.current_value.to_string ();
     this.current_value--;
 
-    var pulse_in = new Clutter.PropertyTransition ("opacity");
+    pulse_in = new Clutter.PropertyTransition ("opacity");
     pulse_in.set_duration (500);
     pulse_in.set_from_value (0);
     pulse_in.set_to_value (255);
-    pulse_in.remove_on_complete = true;
     pulse_in.completed.connect (fade_out);
-
-    this.countdown_actor.add_transition ("pulse-in", pulse_in);
+    pulse_in.animatable = countdown_actor;
+    pulse_in.start ();
   }
 
   /**
