@@ -178,11 +178,7 @@ Cheese_3_0_gir_FILES = \
 	$(noinst_libcheese_headers) \
 	libcheese/cheese-enums.h
 Cheese_3_0_gir_INCLUDES = \
-	GObject-2.0 \
-	GLib-2.0 \
 	Gst-1.0 \
-	GstBase-1.0 \
-	cairo-1.0 \
 	Clutter-1.0 \
 	GdkPixbuf-2.0
 Cheese_3_0_gir_LIBS = libcheese.la
