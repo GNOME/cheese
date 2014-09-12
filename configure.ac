@@ -200,7 +200,7 @@ AM_CONDITIONAL([ENABLE_MAN], [test "x$have_manutils" = "xyes"])
 YELP_HELP_INIT
 
 # AppData
-APPDATA_XML
+APPSTREAM_XML
 
 GLIB_GSETTINGS
 #*******************************************************************************

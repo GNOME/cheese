@@ -361,10 +361,10 @@ desktopdir = $(datadir)/applications
 desktop_in_files = data/org.gnome.Cheese.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
-@APPDATA_XML_RULES@
+@APPSTREAM_XML_RULES@
 @INTLTOOL_XML_RULE@
-appdata_in_files = data/org.gnome.Cheese.appdata.xml.in
-appdata_XML = $(appdata_in_files:.appdata.xml.in=.appdata.xml)
+appstream_in_files = data/org.gnome.Cheese.appdata.xml.in
+appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
 
 servicedir = $(datadir)/dbus-1/services
 service_DATA = \
@@ -537,7 +537,7 @@ dist_noinst_DATA = \
 	$(gsettings_SCHEMAS) \
 	$(noinst_gnome_camera_service_headers) \
 	$(noinst_resource_files) \
-	$(appdata_in_files) \
+	$(appstream_in_files) \
 	data/org.gnome.Cheese.gresource.xml \
 	data/org.gnome.Camera.xml \
 	build-aux/test-driver \
