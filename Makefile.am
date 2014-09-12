@@ -546,9 +546,6 @@ dist_noinst_DATA = \
 	$(gtkdoc_srcdir)/cheese.xml \
 	$(gtkdoc_srcdir)/version.xml.in \
 	gtk-doc.make \
-	intltool-extract.in \
-	intltool-merge.in \
-	intltool-update.in \
 	$(noinst_libcheese_headers) \
 	$(noinst_libcheese_gtk_headers) \
 	libcheese/cheese-gtk.symbols \
@@ -576,9 +573,6 @@ CLEANFILES = \
 
 DISTCLEANFILES = \
 	libcheese_la_vala.stamp \
-	intltool-extract \
-	intltool-merge \
-	intltool-update \
 	po/.intltool-merge-cache
 
 MAINTAINERCLEANFILES = \
