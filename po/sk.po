@@ -10,110 +10,76 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-12-12 10:47+0000\n"
-"PO-Revision-Date: 2013-07-14 14:17+0200\n"
-"Last-Translator: Pavol Klačanský <pavol@klacansky.com>\n"
+"POT-Creation-Date: 2014-09-14 15:03+0000\n"
+"PO-Revision-Date: 2014-09-14 21:06+0100\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: Slovak <gnome-sk-list@gnome.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
-"X-Poedit-Language: Slovak\n"
-"X-Poedit-Country: SLOVAKIA\n"
 "X-Poedit-SourceCharset: utf-8\n"
-
-# menu item
-#: ../data/cheese-appmenu.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Celá obrazovka"
-
-# menu item
-#: ../data/cheese-appmenu.ui.h:2
-msgid "P_references"
-msgstr "Nas_tavenia"
-
-# menu item
-#: ../data/cheese-appmenu.ui.h:3 ../data/cheese-prefs.ui.h:18
-msgid "_Help"
-msgstr "_Pomocník"
-
-# menu item
-#: ../data/cheese-appmenu.ui.h:4
-msgid "_About"
-msgstr "_O programe"
-
-# menu item
-#: ../data/cheese-appmenu.ui.h:5
-msgid "_Quit"
-msgstr "U_končiť"
-
-#: ../data/cheese-main-window.ui.h:1 ../libcheese/cheese-avatar-chooser.c:95
-#: ../src/cheese-window.vala:1311
-msgid "Take a Photo"
-msgstr "Zosnímať fotku"
+"X-Generator: Poedit 1.5.4\n"
 
 # GtkToggleButton tooltip
-#: ../data/cheese-main-window.ui.h:2
+#: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
 msgstr "Režim fotografií"
 
 # menu item
-#: ../data/cheese-main-window.ui.h:3
-#, fuzzy
+#: ../data/cheese-main-window.ui.h:2
 #| msgid "_Photo"
 msgid "Photo"
-msgstr "_Fotografia"
+msgstr "Fotografia"
 
 # GtkToggleButton tooltip
-#: ../data/cheese-main-window.ui.h:4
+#: ../data/cheese-main-window.ui.h:3
 msgid "Video mode"
 msgstr "Režim videa"
 
 # menu item
-#: ../data/cheese-main-window.ui.h:5
-#, fuzzy
+#: ../data/cheese-main-window.ui.h:4
 #| msgid "_Video"
 msgid "Video"
-msgstr "_Video"
+msgstr "Video"
 
 # GtkToggleButton tooltip
-#: ../data/cheese-main-window.ui.h:6
+#: ../data/cheese-main-window.ui.h:5
 msgid "Photo burst mode"
 msgstr "Režim sekvenčného snímania"
 
 # menu item
-#: ../data/cheese-main-window.ui.h:7
-#, fuzzy
+#: ../data/cheese-main-window.ui.h:6
 #| msgid "_Burst"
 msgid "Burst"
-msgstr "_Sekvenčné snímanie"
+msgstr "Sekvenčné snímanie"
 
 # * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # GtkButton tooltip; dialog title
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-window.vala:1282
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1320
 msgid "Take a photo using a webcam"
 msgstr "Zosníma fotografiu použitím webovej kamery"
 
-#: ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-main-window.ui.h:8
 msgid "Navigate to the previous page of effects"
 msgstr "Presunie na predchádzajúcu stranu s efektami"
 
 # GtkTogleButton tooltip
-#: ../data/cheese-main-window.ui.h:10
+#: ../data/cheese-main-window.ui.h:9
 msgid "Effects"
 msgstr "Efekty"
 
-# GtkButton 
-#: ../data/cheese-main-window.ui.h:11
+# GtkButton
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Effects"
 msgstr "_Efekty"
 
-#: ../data/cheese-main-window.ui.h:12
+#: ../data/cheese-main-window.ui.h:11
 msgid "Navigate to the next page of effects"
 msgstr "Presunie na ďalšiu stranu s efektami"
 
-#: ../data/cheese-main-window.ui.h:13
+#: ../data/cheese-main-window.ui.h:12
 msgid "Leave fullscreen mode and go back to windowed mode"
 msgstr "Opustí celoobrazovkový režim"
 
@@ -122,108 +88,165 @@ msgstr "Opustí celoobrazovkový režim"
 msgid "Preferences"
 msgstr "Nastavenia"
 
+# menu item
+#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+msgid "_Help"
+msgstr "_Pomocník"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "_Close"
+msgstr "_Zavrieť"
+
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:4
 msgid "Device"
 msgstr "Zariadenie"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:5
 msgid "Photo resolution"
 msgstr "Rozlíšenie fotografie"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:6
 msgid "Video resolution"
 msgstr "Rozlíšenie videa"
 
 # tab
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:7
 msgid "Webcam"
 msgstr "Webová kamera"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:8
 msgid "Brightness"
 msgstr "Jas"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Saturation"
 msgstr "Sýtosť"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Hue"
 msgstr "Odtieň"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
 msgid "Contrast"
 msgstr "Kontrast"
 
 # tab
-#: ../data/cheese-prefs.ui.h:10
+#: ../data/cheese-prefs.ui.h:12
 msgid "Image"
 msgstr "Obraz"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Shutter"
 msgstr "Uzávierka"
 
 # GtkCheckButtonl label
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
 msgid "_Countdown"
 msgstr "Č_asovač"
 
 # GtkCheckButtonl label
-#: ../data/cheese-prefs.ui.h:13
+#: ../data/cheese-prefs.ui.h:15
 msgid "Fire _flash"
 msgstr "Spustiť _blesk"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:14
+#: ../data/cheese-prefs.ui.h:16
 msgid "Burst mode"
 msgstr "Režim sekvenčného snímania"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:17
 msgid "Number of photos"
 msgstr "Počet fotografií"
 
 # GtkLabel label
-#: ../data/cheese-prefs.ui.h:16
+#: ../data/cheese-prefs.ui.h:18
 msgid "Delay between photos (seconds)"
 msgstr "Prestávka medzi fotografiami (v sekundách)"
 
 # tab
-#: ../data/cheese-prefs.ui.h:17
+#: ../data/cheese-prefs.ui.h:19
 msgid "Capture"
 msgstr "Zachytenie"
 
-#: ../data/cheese-prefs.ui.h:19
-msgid "_Close"
-msgstr ""
+#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:96
+#: ../src/cheese-window.vala:1349
+msgid "Take a Photo"
+msgstr "Zosnímať fotku"
 
-#: ../data/cheese.appdata.xml.in.h:1
+# menu item
+#: ../data/menus.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Celá obrazovka"
+
+# menu item
+#: ../data/menus.ui.h:2
+msgid "P_references"
+msgstr "Nas_tavenia"
+
+# menu item
+#: ../data/menus.ui.h:4
+msgid "_About"
+msgstr "_O programe"
+
+# menu item
+#: ../data/menus.ui.h:5
+msgid "_Quit"
+msgstr "U_končiť"
+
+#: ../data/menus.ui.h:6
+msgid "Open"
+msgstr "Otvoriť"
+
+# GtkAction label
+#: ../data/menus.ui.h:7
+msgid "Save _As…"
+msgstr "Uložiť _ako…"
+
+# GtkAction label
+#: ../data/menus.ui.h:8
+msgid "Move to _Trash"
+msgstr "Presunúť do _koša"
+
+#: ../data/menus.ui.h:9
+msgid "Delete"
+msgstr "Odstrániť"
+
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:1
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
+"Program Cheese využíva vašu webovú kameru na zachytenie fotografií a videí, "
+"aplikuje zábavné špeciálne efekty a umožňuje vám zdieľať zábavu s ostatnými."
 
-#: ../data/cheese.appdata.xml.in.h:2
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
 msgstr ""
+"Zachyťte viacero fotografií rýchlo za sebou v režime sekvenčného snímania. "
+"Použite časovač na odpočítavanie času, počas ktorého zapózujete a budete "
+"čakať na blesk!"
 
-#: ../data/cheese.appdata.xml.in.h:3
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 msgid ""
 "Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
 "whatever you want and share them with others."
 msgstr ""
+"Pod kapotou programu Cheese je GStreamer, pomocou ktorého sa aplikujú "
+"zábavné efekty na fotografie a videá. S programom Cheese viete jednoducho "
+"zachytiť fotografie vás, vašich priateľov, zvierat alebo čohokoľvek chcete a "
+"sprístupniť to ostatným."
 
 # Myslím, že "Cheese" by sme mali preložiť. Už len preto, že to slovo je
 # ťažko vysloviteľné pre toho, kto angličtine vôbec nerozumie: Che-é-se
@@ -235,25 +258,26 @@ msgstr ""
 # PŠ: Sýýýr znie dobre... Ešte by som porozmýšľal nad [Číííz] (aj s tými zátvorkami). Je to ale na prekladateľovi.
 # PM: aj ja som za poslovenčenie názvu
 # desktop entry name
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:584
+#: ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
 msgid "Cheese"
 msgstr "Cheese"
 
 # destktop entry FullName
-#: ../data/cheese.desktop.in.in.h:2
+#: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "Cheese - fotobúdka"
 
 # desktop entry comment
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:579
+#: ../data/org.gnome.Cheese.desktop.in.in.h:3
+#: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
 "Sníma fotografie a natáča videá vašou webovou kamerou, so zábavnými "
 "grafickými efektami"
 
 # desktop entry keywords
-#: ../data/cheese.desktop.in.in.h:4
+#: ../data/org.gnome.Cheese.desktop.in.in.h:4
 msgid "photo;video;webcam;"
 msgstr "fotka;fotografia;video;webová kamera;"
 
@@ -445,19 +469,18 @@ msgstr "Počet fotografií v režime sekvenčného snímania"
 msgid "The number of photos to take in a single burst."
 msgstr "Počet naraz zosnímaných fotografií v jednom sekvenčnom snímaní."
 
-#: ../libcheese/cheese-avatar-chooser.c:90 ../src/cheese-window.vala:233
-#: ../src/cheese-window.vala:262 ../src/cheese-window.vala:337
+#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:264
+#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
 msgid "_Cancel"
-msgstr ""
+msgstr "_Zrušiť"
 
 # button
-#: ../libcheese/cheese-avatar-chooser.c:92
-#, fuzzy
+#: ../libcheese/cheese-avatar-chooser.c:93
 #| msgid "Select"
 msgid "_Select"
-msgstr "Vybrať"
+msgstr "_Vybrať"
 
-#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:661
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:692
 msgid "Shutter sound"
 msgstr "Zvuk uzávierky"
 
@@ -504,47 +527,43 @@ msgid "Cancellable initialization not supported"
 msgstr "Zrušiteľná inicializácia nie je podporovaná"
 
 # cmd desc
-#: ../src/cheese-application.vala:55
+#: ../src/cheese-application.vala:53
 msgid "Start in wide mode"
 msgstr "Spustí v širokouhlom režime"
 
 # cmd desc
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "Device to use as a camera"
 msgstr "Zariadenie, ktoré sa má použiť ako kamera"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "DEVICE"
 msgstr "ZARIADENIE"
 
 # cmd desc
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:58
 msgid "Output version information and exit"
 msgstr "Zobrazí informácie o verzii a skončí"
 
 # cmd desc
-#: ../src/cheese-application.vala:62
+#: ../src/cheese-application.vala:60
 msgid "Start in fullscreen mode"
 msgstr "Spustí v celoobrazovkovom režime"
 
-# option context
-#: ../src/cheese-application.vala:192
-msgid "- Take photos and videos from your webcam"
-msgstr "- sníma fotografie a natáča videá vašou webovou kamerou"
+# tab
+#: ../src/cheese-application.vala:310
+#| msgid "Webcam"
+msgid "Webcam in use"
+msgstr "Webová kamera sa používa"
 
-#: ../src/cheese-application.vala:201
-#, c-format
-msgid "Run '%s --help' to see a full list of available command line options."
-msgstr ""
-"Úplný zoznam volieb prikazového riadka zobrazíte spustením „%s --help“."
-
-#: ../src/cheese-application.vala:585
+#: ../src/cheese-application.vala:544
 msgid "translator-credits"
 msgstr ""
 "Miroslav Biňas <mirek@host.sk>\n"
-"Pavol Babinčák <scroolik@gmail.com>"
+"Pavol Babinčák <scroolik@gmail.com>\n"
+"Dušan Kazik <prescott66@gmail.com>"
 
-#: ../src/cheese-application.vala:587
+#: ../src/cheese-application.vala:546
 msgid "Cheese Website"
 msgstr "Web stránka Cheese"
 
@@ -556,12 +575,12 @@ msgstr "Web stránka Cheese"
 msgid "No Effect"
 msgstr "Bez efektu"
 
-#: ../src/cheese-window.vala:205
+#: ../src/cheese-window.vala:236
 #, c-format
 msgid "Could not open %s"
 msgstr "Nepodarilo sa otvoriť %s"
 
-#: ../src/cheese-window.vala:230
+#: ../src/cheese-window.vala:261
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
@@ -569,144 +588,92 @@ msgstr[0] "Naozaj chcete navždy odstrániť %d vybraných súborov?"
 msgstr[1] "Naozaj chcete navždy odstrániť vybraný súbor?"
 msgstr[2] "Naozaj chcete navždy odstrániť %d vybrané súbory?"
 
-#: ../src/cheese-window.vala:234
-#, fuzzy
+#: ../src/cheese-window.vala:265
 #| msgid "Delete"
 msgid "_Delete"
-msgstr "Odstrániť"
+msgstr "_Odstrániť"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:267
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Ak položky odstránite, budú navždy stratené."
 msgstr[1] "Ak položku odstránite, bude navždy stratená."
 msgstr[2] "Ak položky odstránite, budú navždy stratené."
 
-#: ../src/cheese-window.vala:309
+#: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Nepodarilo sa presunúť %s do koša"
 
 # file chooser dialog title
 #. Nothing selected.
-#: ../src/cheese-window.vala:334
+#: ../src/cheese-window.vala:365
 msgid "Save File"
 msgstr "Uloženie súboru"
 
-# file chooser dialog title
-#: ../src/cheese-window.vala:338
-#, fuzzy
+# button
+#: ../src/cheese-window.vala:369
 #| msgid "Save File"
 msgid "Save"
-msgstr "Uloženie súboru"
+msgstr "Uložiť"
 
-#: ../src/cheese-window.vala:368
+#: ../src/cheese-window.vala:399
 #, c-format
 msgid "Could not save %s"
 msgstr "Nepodarilo sa uložiť %s"
 
 # button tooltip
-#: ../src/cheese-window.vala:771
+#: ../src/cheese-window.vala:820
 msgid "Stop recording"
 msgstr "Zastaví nahrávanie"
 
 # button tooltip
-#: ../src/cheese-window.vala:786
+#: ../src/cheese-window.vala:835
 msgid "Record a video"
 msgstr "Nahrá video"
 
 # button tooltip
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:821
+#: ../src/cheese-window.vala:870
 msgid "Stop taking pictures"
 msgstr "Zastaví snímanie fotografií"
 
 # button tooltip
-#: ../src/cheese-window.vala:844
+#: ../src/cheese-window.vala:893
 msgid "Take multiple photos"
 msgstr "Zosníma viacero fotografií"
 
-#: ../src/cheese-window.vala:1038
+#: ../src/cheese-window.vala:1087
 msgid "No effects found"
 msgstr "Žiadne efekty neboli nájdené"
 
-#: ../src/cheese-window.vala:1158
+#: ../src/cheese-window.vala:1209
 msgid "There was an error playing video from the webcam"
 msgstr "Vyskytla sa chyba pri prehrávaní videa z webovej kamery"
 
-#: ../src/cheese-window.vala:1175
-msgid "Open"
-msgstr "Otvoriť"
-
-# GtkAction label
-#: ../src/cheese-window.vala:1178
-msgid "Save _As…"
-msgstr "Uložiť _ako…"
-
-# GtkAction label
-#: ../src/cheese-window.vala:1181
-msgid "Move to _Trash"
-msgstr "Presunúť do _koša"
-
-#: ../src/cheese-window.vala:1184
-msgid "Delete"
-msgstr "Odstrániť"
-
 # button tooltip
-#: ../src/cheese-window.vala:1286
+#: ../src/cheese-window.vala:1324
 msgid "Record a video using a webcam"
 msgstr "Nahrá video použitím webovej kamery"
 
 # button tooltip
-#: ../src/cheese-window.vala:1292
+#: ../src/cheese-window.vala:1330
 msgid "Take multiple photos using a webcam"
 msgstr "Zosníma viacero fotografií použitím webovej kamery"
 
-# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
-# Položka v zozname
-#: ../src/cheese-window.vala:1304
-#, fuzzy
+# window title
+#: ../src/cheese-window.vala:1342
 #| msgid "No Effect"
 msgid "Choose an Effect"
-msgstr "Bez efektu"
+msgstr "Výber efektu"
 
-# button
-#: ../src/cheese-window.vala:1315
-#, fuzzy
+# window title
+#: ../src/cheese-window.vala:1353
 #| msgid "_Record a Video"
 msgid "Record a Video"
-msgstr "_Nahrať video"
+msgstr "Nahrávanie videa"
 
 # button
-#: ../src/cheese-window.vala:1319
+#: ../src/cheese-window.vala:1357
 msgid "Take Multiple Photos"
 msgstr "Zosnímať viacero fotografií"
-
-# * https://bugzilla.gnome.org/show_bug.cgi?id=695459
-# GtkButton 
-#~ msgid "_Take a Photo"
-#~ msgstr "_Zosnímať fotografiu"
-
-# GtkButton 
-#~ msgid "_Leave Fullscreen"
-#~ msgstr "_Opustiť celoobrazovkový režim"
-
-# menu item
-#~ msgid "_Shoot"
-#~ msgstr "_Zosnímať"
-
-# menu section
-#~ msgid "Mode:"
-#~ msgstr "Režim:"
-
-# button
-#~ msgid "Stop _Recording"
-#~ msgstr "_Zastaviť nahrávanie"
-
-# button
-#~ msgid "Stop _Taking Pictures"
-#~ msgstr "Zastaviť _snímanie fotografií"
-
-# button
-#~ msgid "Take _Multiple Photos"
-#~ msgstr "Zosnímať _viacero fotografií"
