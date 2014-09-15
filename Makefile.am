@@ -560,7 +560,7 @@ dist_noinst_SCRIPTS = \
 	autogen.sh
 
 CLEANFILES = \
-	$(appdata_XML) \
+	$(appstream_XML) \
 	$(desktop_DATA) \
 	$(pkgconfig_DATA) \
 	$(enum_data) \

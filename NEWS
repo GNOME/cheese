@@ -1,7 +1,34 @@
 ChangeLog for Cheese
 --------------------
 
-version 3.13.91
+version 3.13.92
+  - Remove outdated GTK+ version check
+  - Use APPSTREAM_XML instead of APPDATA_XML
+  - Remove outdated intltool build rules
+    The intltool-* scripts are not included in the distribution any longer.
+  - Update .pc file Requires and Requires.private
+  - Remove some unnecessary pkg-config dependencies
+  - Fix crash when animating countdown
+    https://bugzilla.gnome.org/show_bug.cgi?id=735285
+  - Post-release version bump to 3.13.91
+  - Added/Updated Translations
+    - bn_IN
+    - de, courtesy of Wolfgang Stoeggl
+    - el, courtesy of Tom Tryfonidis
+    - fi, courtesy of Jiri Grönroos
+    - fr, courtesy of Alain Lojewski
+    - gu
+    - kn
+    - ko, courtesy of Changwoo Ryu
+    - lv, courtesy of Rūdolfs Mazurs
+    - or, courtesy of Manoj Kumar Giri
+    - pl, courtesy of Piotr Drąg
+    - ru, courtesy of Yuri Myasoedov
+    - sk, courtesy of Dušan Kazik
+    - sl, courtesy of Matej Urbančič
+    - sl, courtesy of Shantha Kumar
+
+version 3.13.90.1
   - Explicitly link gnome-camera-service to libraries
     https://bugzilla.gnome.org/show_bug.cgi?id=735040
   - Fix libcheese header include in camera service
