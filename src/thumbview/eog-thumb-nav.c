@@ -79,7 +79,6 @@ eog_thumb_nav_scroll_event (GtkWidget *widget, GdkEventScroll *event, gpointer u
 
   switch (event->direction)
   {
-#if GTK_CHECK_VERSION (3, 3, 18)
     /* Handle smooth scroll events from mouse wheels, bug 672311. */
     case GDK_SCROLL_SMOOTH:
       smooth = gdk_event_get_scroll_deltas ((const GdkEvent *) event,
@@ -90,7 +89,6 @@ eog_thumb_nav_scroll_event (GtkWidget *widget, GdkEventScroll *event, gpointer u
 
       inc *= (gint) delta_y;
       break;
-#endif
     case GDK_SCROLL_UP:
     case GDK_SCROLL_LEFT:
       inc *= -1;
