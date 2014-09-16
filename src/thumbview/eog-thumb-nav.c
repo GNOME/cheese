@@ -619,6 +619,8 @@ eog_thumb_nav_get_show_buttons (EogThumbNav *nav)
 
   g_return_val_if_fail (EOG_IS_THUMB_NAV (nav), FALSE);
 
+  priv = eog_thumb_nav_get_instance_private (nav);
+
   return priv->show_buttons;
 }
 
