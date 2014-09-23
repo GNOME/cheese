@@ -3,7 +3,7 @@
 # Copyright (C) 2011 Gnome Telugu Contributors.
 # Copyright (C) 2012 Swecha Telugu Localisation Team <localization@swecha.net>.
 # This file is distributed under the same license as the cheese package.
-# Krishna Babu K <kkrothap@redhat.com>, 2008, 2009, 2010, 2012.
+# Krishna Babu K <kkrothap@redhat.com>, 2008, 2009, 2010, 2012, 2014.
 # Praveen Illa <mail2ipn@gmail.com>, 2011, 2012.
 # GVS.Giri (Swecha Team) <gvs.giri947@gmail.com>,2012.
 # Bhuvan Krishna <bhuvan@swecha.net>, 2012,.
@@ -13,172 +13,221 @@ msgstr ""
 "Project-Id-Version: cheese.master.te\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2012-07-29 09:59+0000\n"
-"PO-Revision-Date: 2012-09-19 01:10+0530\n"
+"POT-Creation-Date: 2014-09-23 15:07+0000\n"
+"PO-Revision-Date: 2014-09-24 05:08+0530\n"
 "Last-Translator: Krishnababu Krothapalli <kkrothap@redhat.com>\n"
-"Language-Team: Telugu <Fedora-trans-te@redhat.com>\n"
+"Language-Team: Telugu <kde-i18n-doc@kde.org>\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bits\n"
-"X-Generator: Lokalize 1.4\n"
+"X-Generator: Lokalize 1.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-
-#: ../data/cheese-actions.ui.h:1
-msgid "Share…"
-msgstr "పంచుకొను..."
-
-#: ../data/cheese-actions.ui.h:2
-msgid "Save _As…"
-msgstr "ఇలా భద్రపరుచు...(_A)"
-
-#: ../data/cheese-actions.ui.h:3
-msgid "Move to _Trash"
-msgstr "చెత్తబుట్టకు తరలించు (_T)"
-
-#: ../data/cheese-actions.ui.h:4
-msgid "Move _All to Trash"
-msgstr "అన్నిటిని చెత్తబుట్టకు తరలించు (_A)"
-
-#: ../data/cheese-actions.ui.h:5
-msgid "_Wide Mode"
-msgstr "వెడల్పు రీతి (_W)"
-
-#: ../data/cheese-actions.ui.h:6
-msgid "P_revious Effects"
-msgstr "మునుపటి ప్రభావాలు (_r)"
-
-#: ../data/cheese-actions.ui.h:7
-msgid "Ne_xt Effects"
-msgstr "తరువాత ప్రభావాలు (_x)"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
 msgstr "ఫొటో రీతి"
 
 #: ../data/cheese-main-window.ui.h:2
+msgid "Photo"
+msgstr "ఫొటో"
+
+#: ../data/cheese-main-window.ui.h:3
 msgid "Video mode"
 msgstr "వీడియో రీతి"
 
-#: ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-main-window.ui.h:4
+msgid "Video"
+msgstr "వీడియో"
+
+#: ../data/cheese-main-window.ui.h:5
 msgid "Photo burst mode"
 msgstr "ఫొటో బరస్ట్ రీతి"
 
-#: ../data/cheese-main-window.ui.h:4 ../libcheese/cheese-avatar-chooser.c:263
-#: ../src/cheese-window.vala:1504
-msgid "Take a photo"
-msgstr "ఒక ఫొటో తీయండి (_T)"
-
-#: ../data/cheese-main-window.ui.h:5
-msgid "_Take a Photo"
-msgstr "ఒక ఫొటో తీయండి (_T)"
-
 #: ../data/cheese-main-window.ui.h:6
-msgid "Previous"
-msgstr "మునుపటి"
+msgid "Burst"
+msgstr "బర్స్ట్"
 
-#: ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1320
+msgid "Take a photo using a webcam"
+msgstr "వెబ్‌కామ్ ఉపయోగించి ఒక ఫొటో తీయండి"
+
+#: ../data/cheese-main-window.ui.h:8
+msgid "Navigate to the previous page of effects"
+msgstr "ప్రభావాల మునుపటి పేజీనకు వెళ్ళుము"
+
+#: ../data/cheese-main-window.ui.h:9
 msgid "Effects"
 msgstr "ప్రభావాలు"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-main.vala:107
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Effects"
 msgstr "ప్రభావాలు (_E)"
 
-#: ../data/cheese-main-window.ui.h:9
-msgid "Next"
-msgstr "తరువాత"
-
-#: ../data/cheese-main-window.ui.h:10
-msgid "Leave fullscreen"
-msgstr "పూర్తితెరను వదులుము"
-
 #: ../data/cheese-main-window.ui.h:11
-msgid "_Leave Fullscreen"
-msgstr "పూర్తితెరను వదిలిపెట్టు (_L)"
+msgid "Navigate to the next page of effects"
+msgstr "ప్రభావాల తరువాతి పేజీకు వెళ్ళుము"
+
+#: ../data/cheese-main-window.ui.h:12
+msgid "Leave fullscreen mode and go back to windowed mode"
+msgstr "పూర్తితెర రీతిని విడిచి విండో రీతినకు వెళ్ళుము"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
 msgstr "ప్రాధాన్యతలు"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+msgid "_Help"
+msgstr "సహాయం (_H)"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "_Close"
+msgstr "మూసివేయి (_C)"
+
+#: ../data/cheese-prefs.ui.h:4
 msgid "Device"
 msgstr "పరికరము"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:5
 msgid "Photo resolution"
 msgstr "ఫొటో విభాజకత"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:6
 msgid "Video resolution"
 msgstr "వీడియో విభాజకత"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:7
 msgid "Webcam"
 msgstr "వెబ్‌కామ్"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:8
 msgid "Brightness"
 msgstr "ప్రకాశము"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Saturation"
 msgstr "తారాస్థితి"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Hue"
 msgstr "వన్నె"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
 msgid "Contrast"
 msgstr "వ్యత్యాసం"
 
-#: ../data/cheese-prefs.ui.h:10
+#: ../data/cheese-prefs.ui.h:12
 msgid "Image"
 msgstr "బొమ్మ"
 
-#: ../data/cheese-prefs.ui.h:11
-#| msgid "Shutter sound"
+#: ../data/cheese-prefs.ui.h:13
 msgid "Shutter"
 msgstr "షట్టర్"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
 msgid "_Countdown"
 msgstr "లెక్కింపును వాడు (_C)"
 
-#: ../data/cheese-prefs.ui.h:13
-msgid "Fire _Flash"
-msgstr "ఫైర్ ఫ్లాష్ (_F)"
+#: ../data/cheese-prefs.ui.h:15
+msgid "Fire _flash"
+msgstr "ఫ్లాష్ వేయి (_f)"
 
-#: ../data/cheese-prefs.ui.h:14
+#: ../data/cheese-prefs.ui.h:16
 msgid "Burst mode"
 msgstr "బరస్ట్ రీతి"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:17
 msgid "Number of photos"
 msgstr "ఫొటోల సంఖ్య"
 
-#: ../data/cheese-prefs.ui.h:16
+#: ../data/cheese-prefs.ui.h:18
 msgid "Delay between photos (seconds)"
 msgstr "ఫొటోల మధ్య నిడివి సమయం (సెకన్లలో)"
 
-#: ../data/cheese-prefs.ui.h:17
+#: ../data/cheese-prefs.ui.h:19
 msgid "Capture"
 msgstr "బంధించు"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-main.vala:81
-#: ../src/cheese-main.vala:489
+#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:96
+#: ../src/cheese-window.vala:1349
+msgid "Take a Photo"
+msgstr "ఒక ఫొటో తీయండి"
+
+#: ../data/menus.ui.h:1
+msgid "_Fullscreen"
+msgstr "పూర్తితెర (_F)"
+
+#: ../data/menus.ui.h:2
+msgid "P_references"
+msgstr "అభీష్టాలు (_P)"
+
+#: ../data/menus.ui.h:4
+msgid "_About"
+msgstr "గురించి (_A)"
+
+#: ../data/menus.ui.h:5
+msgid "_Quit"
+msgstr "నిష్క్రమించు (_Q)"
+
+#: ../data/menus.ui.h:6
+msgid "Open"
+msgstr "తెరువుము"
+
+#: ../data/menus.ui.h:7
+msgid "Save _As…"
+msgstr "ఇలా భద్రపరుచు...(_A)"
+
+#: ../data/menus.ui.h:8
+msgid "Move to _Trash"
+msgstr "చెత్తబుట్టకు తరలించు (_T)"
+
+#: ../data/menus.ui.h:9
+msgid "Delete"
+msgstr "తొలగించు"
+
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:1
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
+msgstr ""
+"ఫొటోలను మరియు వీడియోలను తీయుటకు చీజ్ మీ వెబ్‌కామ్‌ను ఉపయోగించును, మరియు ఫాన్సీ స్పెషన్ ఎఫెక్ట్స్‌ను వాటిపై "
+"వర్తింపచేసి ఇతరులతో పంచుకోనిస్తుంది."
+
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2
+msgid ""
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"బర్స్ట్ రీతినందు పలు ఫోటోలను త్వరితంగా వరుసగా తీయవచ్చు. మీ కావలసిన ఫోజులో, ఫ్లాష్ కోసం ఆగి ఫోటో "
+"తీసుకొనుటకు కౌంట్‌డౌన్ ఉపయోగించండి."
+
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3
+msgid ""
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
+msgstr ""
+"ఫోటోలకు మరియు వీడియోలకు ఫాన్సీ ప్రభావాలను వర్తింపచేయుటకు చీజ్ GStreamer ఉపయోగించును. చీజ్‌తో "
+"సులువుగా మీవి, మీ స్నేహితులవి, మీ పెంపుడు జంతువులవి మీకు కావలసినట్లు ఫోటోలు తీసుకొని ఇతరులతో "
+"పంచుకొనవచ్చు."
+
+#: ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
 msgid "Cheese"
 msgstr "చీజ్"
 
-#: ../data/cheese.desktop.in.in.h:2
+#: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "చీజ్ వెబ్‌కామ్ బూత్"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-main.vala:484
+#: ../data/org.gnome.Cheese.desktop.in.in.h:3
+#: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr ""
-"సరదా గ్రాఫికల్ ప్రభావాలను వాడి వెబ్‌క్యామ్‌తో ఫోటోలను మరియు వీడియోలను తీయండి"
+msgstr "సరదా గ్రాఫికల్ ప్రభావాలను వాడి వెబ్‌క్యామ్‌తో ఫోటోలను మరియు వీడియోలను తీయండి"
+
+#: ../data/org.gnome.Cheese.desktop.in.in.h:4
+msgid "photo;video;webcam;"
+msgstr "ఫోటో;వీడియో;వెబ్‌కామ్;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -197,12 +246,12 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "సెకన్లలో ఒక ఫోటో తీసుకునే ముందు విలోమ కాల వ్యవధి,"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-msgid "Fire flash before taking a picture"
-msgstr "ఒక చిత్రాన్ని తీసుకునే ముందు ఫ్లాష్ వెలగలి"
+msgid "Fire flash before taking a photo"
+msgstr "ఫొటో తీయడానికి ముందుగా ఫ్లాష్ వేయి"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-msgid "Set to true to fire a flash when taking a picture"
-msgstr "ఒక చిత్రాన్ని తీసుకొని ఒక ఫ్లాష్ వెలగుటా కు నిజమైన దీన్ని అమర్చండి"
+msgid "Set to true to fire a flash before taking a photo"
+msgstr "ఫొటో తీయడానికి ముందుగా ఫ్లాష్ వేయుటకు true కు అమర్చుము"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
@@ -212,8 +261,7 @@ msgstr "కెమేరా పరికరము స్ట్రింగు స
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
-msgstr ""
-"ఉదాహరణకు / dev/video0 కోసం, కెమెరా కు సూచిక ఇది పరికరంలోని ఉపయుక్త మార్గానికి"
+msgstr "ఉదాహరణకు / dev/video0 కోసం, కెమెరా కు సూచిక ఇది పరికరంలోని ఉపయుక్త మార్గానికి"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -256,142 +304,102 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "పిక్సెల్స్ లో కెమెరా ద్వారా బంధించి వీడియో ఎత్తు,"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-msgid "Picture brightness"
+msgid "Image brightness"
 msgstr "చిత్రం ప్రకాశత"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-msgid "Adjusts the brightness of the picture coming from the camera"
-msgstr "కెమెరా నుండి వస్తున్న చిత్రంలో ప్రకాశాన్ని సర్దుబాటు చేస్తుంది"
+msgid "Adjusts the brightness of the image coming from the camera"
+msgstr "కేమెరా నుండి వస్తున్న చిత్రం ప్రకాశత సర్దుబాటు చేయి"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-msgid "Picture contrast"
-msgstr "చిత్రము వ్యత్యాసం"
+msgid "Image contrast"
+msgstr "చిత్రము కాంట్రాస్ట్"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-msgid "Adjusts the contrast of the picture coming from the camera"
-msgstr "చిత్రంలో విరుద్ధంగా కెమెరా నుండి వస్తున్న సర్దుబాటు"
+msgid "Adjusts the contrast of the image coming from the camera"
+msgstr "కేమెరా నుండి వస్తున్న చిత్రం కాంట్రాస్ట్ సర్దుబాటు చేయి"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-msgid "Picture saturation"
+msgid "Image saturation"
 msgstr "చిత్రము తారాస్థితి"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-msgid "Adjusts the saturation of the picture coming from the camera"
-msgstr "కెమెరా నుండి వస్తున్న చిత్రానికి సంతృప్తీకర సర్దుబాటు"
+msgid "Adjusts the saturation of the image coming from the camera"
+msgstr "కెమెరా నుండి వస్తున్న చిత్రపు తారాస్థాయి సర్దుబాటు చేయి"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-msgid "Picture hue"
-msgstr "చిత్రం వన్నె"
+msgid "Image hue"
+msgstr "చిత్రం హ్యూ"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-msgid "Adjusts the hue (color tint) of the picture coming from the camera"
-msgstr "చిత్రానికి వన్నె (లేత రంగు) కెమెరా నుండి వస్తున్న సర్దుబాటు"
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
+msgstr "కేమెరా నుండి వస్తున్న చిత్రం హ్యూ (కలర్ టింట్) సర్దుబాటు చేయి"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-msgid "Video Path"
-msgstr "వీడియో పథం"
+msgid "Video path"
+msgstr "వీడియో పాత్"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
 "will be used."
 msgstr ""
-"వీడియోలు నిల్వ ఇక్కడ నుండి నిర్వచిస్తుంది. ఖాళీ ఉంటే, \"XDG_VIDEO / వెబ్కాం\" "
-"ఉపయోగించబడుతుంది."
+"వీడియోలు నిల్వ ఇక్కడ నుండి నిర్వచిస్తుంది. ఖాళీ ఉంటే, \"XDG_VIDEO / వెబ్కాం\" ఉపయోగించబడుతుంది."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-msgid "Photo Path"
-msgstr "ఫొటో పథం"
+msgid "Photo path"
+msgstr "ఫొటో పాత్"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
 "will be used."
 msgstr ""
-"ఫోటోలు నిల్వ ఇక్కడ నుండి నిర్వచిస్తుంది. ఖాళీ ఉంటే, \"XDG_PHOTO / వెబ్కాం\" "
-"ఉపయోగించబడుతుంది."
+"ఫోటోలు నిల్వ ఇక్కడ నుండి నిర్వచిస్తుంది. ఖాళీ ఉంటే, \"XDG_PHOTO / వెబ్కాం\" ఉపయోగించబడుతుంది."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
-msgid "Whether to start in wide mode"
-msgstr "విస్తృత రీతిలో ప్రారంభించాలా వద్దా"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid ""
-"If set to true, Cheese will start up in wide mode, with the image collection "
-"placed on the right-hand side. Useful with small screens."
-msgstr ""
-"నిజమైన అమరిక చేస్తే, చీజ్ కుడి చేతి వైపు ఉంచుతారు చిత్రం సేకరణ తోవిశాలమైన "
-"రీతి లో ప్రారంభమవుతుంది. చిన్న "
-"తెరలు తో ఉపయోగకరమైన."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:33
-msgid "Whether to start in fullscreen"
-msgstr "పూర్తితెర విధములో ప్రారంభించాలా వద్దా"
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:34
-msgid "If set to true, Cheese will start up in fullscreen mode."
-msgstr "నిజమైన అమరిక చేస్తే, చీజ్ పూర్తితెర రీతి లో ప్రారంభమవుతుంది."
-
-#: ../data/org.gnome.Cheese.gschema.xml.h:35
 msgid "Time between photos in burst mode"
 msgstr "బరస్ట్ రీతిలో ఫొటోల మధ్య సమయం"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:36
+#: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
 "The length of time, in milliseconds, to delay between taking each photo in a "
 "burst sequence of photos. If the burst delay is less than the countdown "
 "duration, the countdown duration will be used instead."
 msgstr ""
-"మిల్లిసెకన్లు లో సమయం,, ఫోటోలు ఒక పేలవచ్చు క్రమంలో ప్రతి ఫోటో తీసుకొని మధ్య "
-"ఆలస్యం. పేలవచ్చు ఆలస్యం "
+"మిల్లిసెకన్లు లో సమయం,, ఫోటోలు ఒక పేలవచ్చు క్రమంలో ప్రతి ఫోటో తీసుకొని మధ్య ఆలస్యం. పేలవచ్చు ఆలస్యం "
 "విలోమ వ్యవధి కన్నా తక్కువ ఉంటే, విలోమ వ్యవధి బదులు ఉపయోగించబడుతుంది."
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:37
+#: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
 msgstr "బరస్ట్ రీతిలో ఫొటోల సంఖ్య"
 
-#: ../data/org.gnome.Cheese.gschema.xml.h:38
+#: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "The number of photos to take in a single burst."
 msgstr "ఒక ఏకైక బరస్ట్ లో తీసుకోనే ఫోటోలు సంఖ్య."
 
-#: ../libcheese/cheese-avatar-chooser.c:138 ../src/cheese-window.vala:807
+#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:264
+#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+msgid "_Cancel"
+msgstr "రద్దుచేయి (_C)"
+
+#: ../libcheese/cheese-avatar-chooser.c:93
+msgid "_Select"
+msgstr "ఎంపికచేయి (_S)"
+
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:692
 msgid "Shutter sound"
 msgstr "షట్టర్ ధ్వని"
 
-#: ../libcheese/cheese-avatar-chooser.c:260
-msgid "Select"
-msgstr "ఎంపికచేయి"
+#: ../libcheese/cheese-avatar-widget.c:268
+msgid "_Take Another Picture"
+msgstr "ఇంకో ఫోటో తీయి (_T)"
 
-#: ../libcheese/cheese-avatar-chooser.c:281
-msgid "_Take a photo"
-msgstr "ఒక ఫొటోను తీయండి (_T)"
-
-#: ../libcheese/cheese-avatar-chooser.c:294
-msgid "_Discard photo"
-msgstr "ఫొటోను తీసివేయి (_D)"
-
-#: ../libcheese/cheese-camera-device.c:390
-msgid "Device capabilities not supported"
-msgstr "పరికరపు సామర్థ్యాలు సహకరించుటలేదు"
-
-#: ../libcheese/cheese-camera-device.c:419
-#, c-format
-msgid "Failed to initialize device %s for capability probing"
-msgstr "సామర్థ్య కారణముల వలన %s పరికరమును ప్రారంభించుటలో విఫలమైంది"
-
-#: ../libcheese/cheese-camera-device.c:608
-msgid "Unknown device"
-msgstr "తెలియని పరికరం"
-
-#: ../libcheese/cheese-camera-device.c:631
-msgid "Cancellable initialization not supported"
-msgstr "ప్రారంభింటునపుడు రద్దుచేయుటకు సహకారం లేదు"
-
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1549
+#: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "ఒకటి లేదా అంతకన్నా ఎక్కువ Gstreamer అంశాలు తప్పిపోయినవి: "
 
-#: ../libcheese/cheese-camera.c:1509
+#: ../libcheese/cheese-camera.c:1584
 #, c-format
 msgid "No device found"
 msgstr "ఏ పరికరము కనుగొనబడలేదు"
@@ -401,184 +409,232 @@ msgstr "ఏ పరికరము కనుగొనబడలేదు"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1786
+#: ../libcheese/cheese-camera.c:1860
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../src/cheese-effects-manager.vala:50
-msgid "No Effect"
-msgstr "ఏ ప్రభావములేదు"
+#: ../libcheese/cheese-camera-device.c:562
+msgid "Device capabilities not supported"
+msgstr "పరికరపు సామర్థ్యాలు సహకరించుటలేదు"
 
-#: ../src/cheese-main.vala:51
+#: ../libcheese/cheese-camera-device.c:591
+#, c-format
+msgid "Failed to initialize device %s for capability probing"
+msgstr "సామర్థ్య కారణముల వలన %s పరికరమును ప్రారంభించుటలో విఫలమైంది"
+
+#: ../libcheese/cheese-camera-device.c:780
+msgid "Unknown device"
+msgstr "తెలియని పరికరం"
+
+#: ../libcheese/cheese-camera-device.c:803
+msgid "Cancellable initialization not supported"
+msgstr "ప్రారంభింటునపుడు రద్దుచేయుటకు సహకారం లేదు"
+
+#: ../src/cheese-application.vala:53
 msgid "Start in wide mode"
 msgstr "వెడల్పు రీతిలో ప్రారంభించు"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:56
 msgid "Device to use as a camera"
 msgstr "కెమెరా లాగా వాడవలసిన పరికరం"
 
-#: ../src/cheese-main.vala:52
+#: ../src/cheese-application.vala:56
 msgid "DEVICE"
 msgstr "పరికరం"
 
-#: ../src/cheese-main.vala:53
+#: ../src/cheese-application.vala:58
 msgid "Output version information and exit"
 msgstr "వర్షన్ సమాచారం అవుట్‌పుట్ చూపించి నిష్క్రమించు"
 
-#: ../src/cheese-main.vala:54
+#: ../src/cheese-application.vala:60
 msgid "Start in fullscreen mode"
 msgstr "పూర్తితెర విధములో ప్రారంభించు"
 
-#: ../src/cheese-main.vala:92
-msgid "_Shoot"
-msgstr "షూట్ (_S)"
+#: ../src/cheese-application.vala:310
+msgid "Webcam in use"
+msgstr "వెబ్‌కామ్ వినియోగంలో ఉంది"
 
-#: ../src/cheese-main.vala:96
-msgid "Mode:"
-msgstr "రీతి:"
-
-#: ../src/cheese-main.vala:97
-msgid "_Photo"
-msgstr "ఫొటో (_P)"
-
-#: ../src/cheese-main.vala:98
-msgid "_Video"
-msgstr "వీడియో (_V)"
-
-#: ../src/cheese-main.vala:99
-msgid "_Burst"
-msgstr "బరస్ట్ (_B)"
-
-#: ../src/cheese-main.vala:102
-#| msgid "_Leave Fullscreen"
-msgid "_Fullscreen"
-msgstr "పూర్తితెర (_F)"
-
-#: ../src/cheese-main.vala:110
-#| msgid "Preferences"
-msgid "P_references"
-msgstr "అభీష్టాలు (_P)"
-
-#: ../src/cheese-main.vala:113
-msgid "_About"
-msgstr "గురించి (_A)"
-
-#: ../src/cheese-main.vala:114
-msgid "_Help"
-msgstr "సహాయం (_H)"
-
-#: ../src/cheese-main.vala:117
-msgid "_Quit"
-msgstr "నిష్క్రమించు (_Q)"
-
-#: ../src/cheese-main.vala:177
-msgid "- Take photos and videos from your webcam"
-msgstr "వెబ్‌క్యామ్‌తో ఫొటోలను మరియు వీడియోలను తీయండి"
-
-#: ../src/cheese-main.vala:189
-#, c-format
-msgid "Run '%s --help' to see a full list of available command line options.\n"
-msgstr ""
-"అందుబాటులోవున్న మొత్తం ఆదేశ వరుస యొక్క జాబితా ఐచ్ఛికాలను చూడటానికి '%s "
-"--help' నడుపండి.\n"
-
-#: ../src/cheese-main.vala:204
-#, c-format
-msgid "Another instance of Cheese is currently running\n"
-msgstr "చీజ్ యొక్క మరొక ప్రక్రియ ప్రస్తుతం నడుస్తున్నది\n"
-
-#: ../src/cheese-main.vala:490
+#: ../src/cheese-application.vala:544
 msgid "translator-credits"
 msgstr ""
 "కృష్ణబాబు <kkrothap@redhat.com> 2008\n"
 "Praveen Illa <mail2ipn@gmail.com>, 2011."
 
-#: ../src/cheese-main.vala:492
+#: ../src/cheese-application.vala:546
 msgid "Cheese Website"
 msgstr "చీజ్ వెబ్‌సైట్"
 
-#: ../src/cheese-window.vala:192
+#. Translators: a description of an effect (to be applied to images
+#. *              from the webcam) which does nothing.
+#: ../src/cheese-effects-manager.vala:51
+msgid "No Effect"
+msgstr "ఏ ప్రభావములేదు"
+
+#: ../src/cheese-window.vala:236
 #, c-format
 msgid "Could not open %s"
 msgstr "%s తెరవడం సాధ్యం కాలేదు"
 
-#: ../src/cheese-window.vala:220
+#: ../src/cheese-window.vala:261
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "మీరు శాశ్వతంగా ఇ దస్త్రని మీరు తొలగించాలని నిశ్చయించుకున్నారా?"
 msgstr[1] "మీరు శాశ్వతంగా%d దస్త్రని తొలగించడానికి నిశ్చయించుకున్నారా?"
 
-#: ../src/cheese-window.vala:226
+#: ../src/cheese-window.vala:265
+msgid "_Delete"
+msgstr "తొలగించు (_D)"
+
+#: ../src/cheese-window.vala:267
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "మీరు ఒక అంశం ను తొలగిస్తే, అది శాశ్వతంగా పోతుంది"
 msgstr[1] "మీరు అంశాలను తొలగించితె అ, అవి శాశ్వతంగా పోతుంది"
 
-#: ../src/cheese-window.vala:302
+#: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s కు తరలించు సాధ్యం కాలేదు"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:451
+#: ../src/cheese-window.vala:365
 msgid "Save File"
 msgstr "దస్త్రని బద్రపరుచుము "
 
-#: ../src/cheese-window.vala:485
+#: ../src/cheese-window.vala:369
+msgid "Save"
+msgstr "భద్రపరచు"
+
+#: ../src/cheese-window.vala:399
 #, c-format
 msgid "Could not save %s"
 msgstr "%s దస్త్రని బద్రపరుచుట సాధ్యం కాలేదు"
 
-#: ../src/cheese-window.vala:918
-msgid "Stop _Recording"
-msgstr "రికార్డింగ్‌ను ఆపివేయండి (_R)"
-
-#: ../src/cheese-window.vala:919
+#: ../src/cheese-window.vala:820
 msgid "Stop recording"
 msgstr "రికార్డింగ్‌ను ఆపివేయండి"
 
-#: ../src/cheese-window.vala:934 ../src/cheese-window.vala:1508
-#| msgid "_Record a Video"
-msgid "Record a Video"
-msgstr "ఒక వీడియో రికార్డుచేయి"
-
-#: ../src/cheese-window.vala:935 ../src/cheese-window.vala:1509
+#: ../src/cheese-window.vala:835
 msgid "Record a video"
 msgstr "ఒక వీడియోను రికార్డుచేయి (_R)"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:970
-msgid "Stop _Taking Pictures"
-msgstr "చిత్రములను తీయుట ఆపుము (_T)"
-
-#: ../src/cheese-window.vala:971
+#: ../src/cheese-window.vala:870
 msgid "Stop taking pictures"
 msgstr "చిత్రములను తీయుట ఆపుము"
 
-#: ../src/cheese-window.vala:994
-#| msgid "Take _Multiple Photos"
-msgid "Take Multiple Photos"
-msgstr "బహుళ ఫొటోలను తీయండి"
-
-#: ../src/cheese-window.vala:995 ../src/cheese-window.vala:1516
+#: ../src/cheese-window.vala:893
 msgid "Take multiple photos"
 msgstr "బహుళ ఫొటోలను తీయండి (_T)"
 
-#: ../src/cheese-window.vala:1147
+#: ../src/cheese-window.vala:1087
 msgid "No effects found"
 msgstr "ఏ ప్రభావాలు కనపడలేదు"
 
-#: ../src/cheese-window.vala:1503
-#| msgid "_Take a Photo"
-msgid "Take a Photo"
-msgstr "ఒక ఫొటో తీయండి"
+#: ../src/cheese-window.vala:1209
+msgid "There was an error playing video from the webcam"
+msgstr "వెబ్‌కా నుండి వీడియోను ప్లే చేయుటలో ఒక దోషంవుంది."
 
-#: ../src/cheese-window.vala:1515
-msgid "Take _Multiple Photos"
-msgstr "బహుళ ఫొటోలను తీయండి (_T)"
+#: ../src/cheese-window.vala:1324
+msgid "Record a video using a webcam"
+msgstr "వెబ్‌కామ్ ఉపయోగించి ఒక వీడియోను రికార్డుచేయి"
+
+#: ../src/cheese-window.vala:1330
+msgid "Take multiple photos using a webcam"
+msgstr "వెబ్‌కామ్ ఉపయోగించి పలు ఫొటోలు తీయి"
+
+#: ../src/cheese-window.vala:1342
+msgid "Choose an Effect"
+msgstr "ఒక ప్రభావము ఎంచు"
+
+#: ../src/cheese-window.vala:1353
+msgid "Record a Video"
+msgstr "ఒక వీడియో రికార్డుచేయి"
+
+#: ../src/cheese-window.vala:1357
+msgid "Take Multiple Photos"
+msgstr "బహుళ ఫొటోలను తీయండి"
+
+#~ msgid "Share…"
+#~ msgstr "పంచుకొను..."
+
+#~ msgid "Move _All to Trash"
+#~ msgstr "అన్నిటిని చెత్తబుట్టకు తరలించు (_A)"
+
+#~ msgid "_Wide Mode"
+#~ msgstr "వెడల్పు రీతి (_W)"
+
+#~ msgid "P_revious Effects"
+#~ msgstr "మునుపటి ప్రభావాలు (_r)"
+
+#~ msgid "Ne_xt Effects"
+#~ msgstr "తరువాత ప్రభావాలు (_x)"
+
+#~ msgid "_Take a Photo"
+#~ msgstr "ఒక ఫొటో తీయండి (_T)"
+
+#~ msgid "Previous"
+#~ msgstr "మునుపటి"
+
+#~ msgid "Next"
+#~ msgstr "తరువాత"
+
+#~ msgid "Leave fullscreen"
+#~ msgstr "పూర్తితెరను వదులుము"
+
+#~ msgid "_Leave Fullscreen"
+#~ msgstr "పూర్తితెరను వదిలిపెట్టు (_L)"
+
+#~ msgid "Picture hue"
+#~ msgstr "చిత్రం వన్నె"
+
+#~ msgid "Whether to start in wide mode"
+#~ msgstr "విస్తృత రీతిలో ప్రారంభించాలా వద్దా"
+
+#~ msgid ""
+#~ "If set to true, Cheese will start up in wide mode, with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "నిజమైన అమరిక చేస్తే, చీజ్ కుడి చేతి వైపు ఉంచుతారు చిత్రం సేకరణ తోవిశాలమైన రీతి లో ప్రారంభమవుతుంది. "
+#~ "చిన్న తెరలు తో ఉపయోగకరమైన."
+
+#~ msgid "Whether to start in fullscreen"
+#~ msgstr "పూర్తితెర విధములో ప్రారంభించాలా వద్దా"
+
+#~ msgid "If set to true, Cheese will start up in fullscreen mode."
+#~ msgstr "నిజమైన అమరిక చేస్తే, చీజ్ పూర్తితెర రీతి లో ప్రారంభమవుతుంది."
+
+#~ msgid "_Take a photo"
+#~ msgstr "ఒక ఫొటోను తీయండి (_T)"
+
+#~ msgid "_Discard photo"
+#~ msgstr "ఫొటోను తీసివేయి (_D)"
+
+#~ msgid "_Shoot"
+#~ msgstr "షూట్ (_S)"
+
+#~ msgid "Mode:"
+#~ msgstr "రీతి:"
+
+#~ msgid "- Take photos and videos from your webcam"
+#~ msgstr "వెబ్‌క్యామ్‌తో ఫొటోలను మరియు వీడియోలను తీయండి"
+
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgstr ""
+#~ "అందుబాటులోవున్న మొత్తం ఆదేశ వరుస యొక్క జాబితా ఐచ్ఛికాలను చూడటానికి '%s --help' నడుపండి.\n"
+
+#~ msgid "Another instance of Cheese is currently running\n"
+#~ msgstr "చీజ్ యొక్క మరొక ప్రక్రియ ప్రస్తుతం నడుస్తున్నది\n"
+
+#~ msgid "Stop _Recording"
+#~ msgstr "రికార్డింగ్‌ను ఆపివేయండి (_R)"
+
+#~ msgid "Take _Multiple Photos"
+#~ msgstr "బహుళ ఫొటోలను తీయండి (_T)"
 
 #~ msgid "_Cheese"
 #~ msgstr "చీజ్ (_C)"
