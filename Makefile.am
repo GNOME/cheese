@@ -87,6 +87,7 @@ libcheese_gtk_la_CPPFLAGS = \
 
 libcheese_gtk_la_LIBADD = \
 	libcheese.la \
+	$(LIBM) \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS)
 

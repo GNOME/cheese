@@ -24,6 +24,9 @@ AM_PROG_VALAC([0.23.3])
 LT_PREREQ([2.2])
 LT_INIT([disable-static])
 
+# Find an appropriate libm, for fmod()
+LT_LIB_M
+
 PKG_PROG_PKG_CONFIG([0.24])
 
 AC_SUBST([CHEESE_WFLAGS], ["-Wall -DGSEAL_ENABLE"])
