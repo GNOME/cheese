@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the cheese package.
 # Mahyar Moqimi <mahyar.moqimi@gmail.com>, 2010.
 # Ali Badiee <dr_ervina@ymail.com>, 2010.
-# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2013.
+# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2013, 2014.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2013-10-06 20:12+0000\n"
-"PO-Revision-Date: 2013-10-11 16:00+0330\n"
+"POT-Creation-Date: 2014-10-06 15:05+0000\n"
+"PO-Revision-Date: 2014-10-10 22:50+0330\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian <>\n"
 "Language: fa\n"
@@ -20,137 +20,211 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 1.6.9\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
 msgstr "حالت عکس"
 
 #: ../data/cheese-main-window.ui.h:2
+msgid "Photo"
+msgstr "عکس"
+
+#: ../data/cheese-main-window.ui.h:3
 msgid "Video mode"
 msgstr "حالت ویدئویی"
 
-#: ../data/cheese-main-window.ui.h:3
+#: ../data/cheese-main-window.ui.h:4
+msgid "Video"
+msgstr "ویدئو"
+
+#: ../data/cheese-main-window.ui.h:5
 msgid "Photo burst mode"
 msgstr "حالت عکس پی در پی"
 
-#: ../data/cheese-main-window.ui.h:4 ../src/cheese-window.vala:1311
-#| msgid "Take a photo"
+#: ../data/cheese-main-window.ui.h:6
+msgid "Burst"
+msgstr "پی در پی"
+
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1320
 msgid "Take a photo using a webcam"
 msgstr "یک عکس از طریق وبکم بگیرید"
 
-#: ../data/cheese-main-window.ui.h:5 ../libcheese/cheese-avatar-chooser.c:283
-#: ../src/cheese-window.vala:1310
-msgid "_Take a Photo"
-msgstr "_یک عکس بگیرید"
-
-#: ../data/cheese-main-window.ui.h:6
+#: ../data/cheese-main-window.ui.h:8
 msgid "Navigate to the previous page of effects"
 msgstr "حرکت به صفحه قبل در جلوه‌ها"
 
-#: ../data/cheese-main-window.ui.h:7
+#: ../data/cheese-main-window.ui.h:9
 msgid "Effects"
 msgstr "جلوه‌ها"
 
-#: ../data/cheese-main-window.ui.h:8 ../src/cheese-application.vala:136
+#: ../data/cheese-main-window.ui.h:10
 msgid "_Effects"
 msgstr "_جلوه‌ها"
 
-#: ../data/cheese-main-window.ui.h:9
+#: ../data/cheese-main-window.ui.h:11
 msgid "Navigate to the next page of effects"
 msgstr "حرکت به سمت صفحه بعد در جلوه‌ها"
 
-#: ../data/cheese-main-window.ui.h:10
+#: ../data/cheese-main-window.ui.h:12
 msgid "Leave fullscreen mode and go back to windowed mode"
 msgstr "ترک حالت تمام‌صفحه و برگشتن به حالت پنجره‌ای"
-
-#: ../data/cheese-main-window.ui.h:11
-msgid "_Leave Fullscreen"
-msgstr "_ترک حالت تمام‌صفحه"
 
 #: ../data/cheese-prefs.ui.h:1
 msgid "Preferences"
 msgstr "ترجیحات"
 
-#: ../data/cheese-prefs.ui.h:2
+#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+msgid "_Help"
+msgstr "_راهنما"
+
+#: ../data/cheese-prefs.ui.h:3
+msgid "_Close"
+msgstr "_بستن"
+
+#: ../data/cheese-prefs.ui.h:4
 msgid "Device"
 msgstr "دستگاه"
 
-#: ../data/cheese-prefs.ui.h:3
+#: ../data/cheese-prefs.ui.h:5
 msgid "Photo resolution"
 msgstr "تفکیک‌پذیری عکس"
 
-#: ../data/cheese-prefs.ui.h:4
+#: ../data/cheese-prefs.ui.h:6
 msgid "Video resolution"
 msgstr "تفکیک‌پذیری ویدیو"
 
-#: ../data/cheese-prefs.ui.h:5
+#: ../data/cheese-prefs.ui.h:7
 msgid "Webcam"
 msgstr "وبکم"
 
-#: ../data/cheese-prefs.ui.h:6
+#: ../data/cheese-prefs.ui.h:8
 msgid "Brightness"
 msgstr "روشنایی"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:9
 msgid "Saturation"
 msgstr "غلظت"
 
-#: ../data/cheese-prefs.ui.h:8
+#: ../data/cheese-prefs.ui.h:10
 msgid "Hue"
 msgstr "پرده"
 
-#: ../data/cheese-prefs.ui.h:9
+#: ../data/cheese-prefs.ui.h:11
 msgid "Contrast"
 msgstr "شفافیت"
 
-#: ../data/cheese-prefs.ui.h:10
+#: ../data/cheese-prefs.ui.h:12
 msgid "Image"
 msgstr "عکس"
 
-#: ../data/cheese-prefs.ui.h:11
+#: ../data/cheese-prefs.ui.h:13
 msgid "Shutter"
 msgstr "شاتر"
 
-#: ../data/cheese-prefs.ui.h:12
+#: ../data/cheese-prefs.ui.h:14
 msgid "_Countdown"
 msgstr "_شمارش معکوس"
 
-#: ../data/cheese-prefs.ui.h:13
-#| msgid "Fire _Flash"
+#: ../data/cheese-prefs.ui.h:15
 msgid "Fire _flash"
 msgstr "_فلش زدن"
 
-#: ../data/cheese-prefs.ui.h:14
+#: ../data/cheese-prefs.ui.h:16
 msgid "Burst mode"
 msgstr "حالت پی در پی"
 
-#: ../data/cheese-prefs.ui.h:15
+#: ../data/cheese-prefs.ui.h:17
 msgid "Number of photos"
 msgstr "تعداد عکس‌ها"
 
-#: ../data/cheese-prefs.ui.h:16
+#: ../data/cheese-prefs.ui.h:18
 msgid "Delay between photos (seconds)"
 msgstr "وقفه­ی بین عکسها (ثانیه)"
 
-#: ../data/cheese-prefs.ui.h:17
+#: ../data/cheese-prefs.ui.h:19
 msgid "Capture"
 msgstr "گرفتن"
 
-#: ../data/cheese.desktop.in.in.h:1 ../src/cheese-application.vala:112
-#: ../src/cheese-application.vala:613
+#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:96
+#: ../src/cheese-window.vala:1349
+msgid "Take a Photo"
+msgstr "یک عکس بگیرید"
+
+#: ../data/menus.ui.h:1
+msgid "_Fullscreen"
+msgstr "_تمام‌صفحه"
+
+#: ../data/menus.ui.h:2
+msgid "P_references"
+msgstr "_ترجیحات"
+
+#: ../data/menus.ui.h:4
+msgid "_About"
+msgstr "_درباره"
+
+#: ../data/menus.ui.h:5
+msgid "_Quit"
+msgstr "_خروج"
+
+#: ../data/menus.ui.h:6
+msgid "Open"
+msgstr "بازکردن"
+
+#: ../data/menus.ui.h:7
+msgid "Save _As…"
+msgstr "ذخیره _به‌نام..."
+
+#: ../data/menus.ui.h:8
+msgid "Move to _Trash"
+msgstr "انداختن در _زباله‌دان"
+
+#: ../data/menus.ui.h:9
+msgid "Delete"
+msgstr "حذف"
+
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:1
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
+msgstr ""
+"چیز از وبکم شما برای گرفتن عکس و ویدئو استفاده می‌کند، جلوه‌های زیبا با آنها "
+"اضافه می‌کند و اجازه می‌دهد این تفریح را با بقیه به‌اشتراک بگذارید."
+
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2
+msgid ""
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"با حالت پی‌درپی، پشت سر هم با سرعت زیاد عکس بگیرید. با شمارش‌معکوس به خودتان "
+"فرصت بدهید که ژست بگیرید و برای فلاش صبر کنید!"
+
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3
+msgid ""
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
+msgstr ""
+"در زیر کاپوت، چیز از GStreamer برای اعمال جلوه های گرافیکی به عکس‌ها و "
+"ویدئوها استفاده می‌کند. با چیز خیلی راحت می‌توانید از خود، از دوستان یا "
+"حیوان‌خونگی خود یا هرچیز دیگری عکس بگیرید و آنها را با دیگران به‌اشتراک "
+"بگذارید."
+
+#: ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
 msgid "Cheese"
 msgstr "چیز"
 
-#: ../data/cheese.desktop.in.in.h:2
+#: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Cheese Webcam Booth"
 msgstr "باجه وبکم چیز"
 
-#: ../data/cheese.desktop.in.in.h:3 ../src/cheese-application.vala:608
+#: ../data/org.gnome.Cheese.desktop.in.in.h:3
+#: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "با وب‌کم خود با جلوه‌های جذاب گرافیکی عکس و ویدیو بگیرید"
 
-#: ../data/cheese.desktop.in.in.h:4
+#: ../data/org.gnome.Cheese.desktop.in.in.h:4
 msgid "photo;video;webcam;"
 msgstr "عکس;ویدیو;وبکم;"
 
@@ -171,12 +245,10 @@ msgid "The duration of the countdown before taking a photo, in seconds"
 msgstr "مدت زمان شمارش‌معکوس قبل از گرفتن عکس، به ثانیه"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
-#| msgid "Fire flash before taking a picture"
 msgid "Fire flash before taking a photo"
 msgstr "فلش زدن قبل از گرفتن عکس"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
-#| msgid "Set to true to fire a flash when taking a picture"
 msgid "Set to true to fire a flash before taking a photo"
 msgstr "بر روی درست تنظیم کنید تا قبل از گرفتن عکس فلش بزند"
 
@@ -231,47 +303,38 @@ msgid "The height of the video captured from the camera, in pixels"
 msgstr "ارتفاع ویدئو گرفته شده توسط دوربین، به پیکلسل"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
-#| msgid "Picture brightness"
 msgid "Image brightness"
 msgstr "روشنایی عکس"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
-#| msgid "Adjusts the brightness of the picture coming from the camera"
 msgid "Adjusts the brightness of the image coming from the camera"
 msgstr "تنظیم روشنایی عکسی که از دوربین می‌آید"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
-#| msgid "Picture contrast"
 msgid "Image contrast"
 msgstr "سایه روشن عکس"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
-#| msgid "Adjusts the contrast of the picture coming from the camera"
 msgid "Adjusts the contrast of the image coming from the camera"
 msgstr "تنظیم سایه روشن عکسی که از دوربین می‌آید"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
-#| msgid "Picture saturation"
 msgid "Image saturation"
 msgstr "غلظت عکس"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
-#| msgid "Adjusts the saturation of the picture coming from the camera"
 msgid "Adjusts the saturation of the image coming from the camera"
 msgstr "تنظیم غلظت عکسی که از دوربین می‌آید"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
-#| msgid "Image"
 msgid "Image hue"
 msgstr "پرده عکس"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
-#| msgid "Adjusts the hue (color tint) of the picture coming from the camera"
 msgid "Adjusts the hue (color tint) of the image coming from the camera"
 msgstr "تنظیم پرده‌ی عکسی که از دوربین می‌آید."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
-#| msgid "Video Path"
 msgid "Video path"
 msgstr "مسیر ویدئو"
 
@@ -284,7 +347,6 @@ msgstr ""
 "Webcam» استفاده خواهد شد."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
-#| msgid "Photo Path"
 msgid "Photo path"
 msgstr "مسیر عکس"
 
@@ -318,22 +380,22 @@ msgstr "تعداد عکس‌ها در حالت پی در پی"
 msgid "The number of photos to take in a single burst."
 msgstr "تعداد عکس‌هایی که در حالت پی‌درپی گرفته می‌شود."
 
-#: ../libcheese/cheese-avatar-chooser.c:140 ../src/cheese-window.vala:666
+#: ../libcheese/cheese-avatar-chooser.c:91 ../src/cheese-window.vala:264
+#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+msgid "_Cancel"
+msgstr ""
+
+#: ../libcheese/cheese-avatar-chooser.c:93
+msgid "_Select"
+msgstr "_انتخاب"
+
+#: ../libcheese/cheese-avatar-widget.c:131 ../src/cheese-window.vala:692
 msgid "Shutter sound"
 msgstr "صدای شاتر"
 
-#: ../libcheese/cheese-avatar-chooser.c:262
-msgid "Select"
-msgstr "انتخاب"
-
-#: ../libcheese/cheese-avatar-chooser.c:265
-#| msgid "_Take a Photo"
-msgid "Take a Photo"
-msgstr "یک عکس بگیرید"
-
-#: ../libcheese/cheese-avatar-chooser.c:296
-msgid "_Discard photo"
-msgstr "_دور انداختن عکس"
+#: ../libcheese/cheese-avatar-widget.c:268
+msgid "_Take Another Picture"
+msgstr "_گرفتن یک عکس دیگر"
 
 #: ../libcheese/cheese-camera.c:446 ../libcheese/cheese-camera.c:1625
 msgid "One or more needed GStreamer elements are missing: "
@@ -355,103 +417,55 @@ msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%I02i:%I02i:%I02i"
 
-#: ../libcheese/cheese-camera-device.c:560
+#: ../libcheese/cheese-camera-device.c:562
 msgid "Device capabilities not supported"
 msgstr "از توانایی‌های دستگاه پشتیبانی نمی‌شود"
 
-#: ../libcheese/cheese-camera-device.c:589
+#: ../libcheese/cheese-camera-device.c:591
 #, c-format
 msgid "Failed to initialize device %s for capability probing"
 msgstr "مقداردهی اولیه دستگاه %s برای قابلیت کاوش شکست خورد"
 
-#: ../libcheese/cheese-camera-device.c:778
+#: ../libcheese/cheese-camera-device.c:780
 msgid "Unknown device"
 msgstr "دستگاه ناشناخته"
 
-#: ../libcheese/cheese-camera-device.c:801
+#: ../libcheese/cheese-camera-device.c:803
 msgid "Cancellable initialization not supported"
 msgstr "راه‌اندازی قابل انصراف پشتیبانی نمی‌شود"
 
-#: ../src/cheese-application.vala:55
+#: ../src/cheese-application.vala:53
 msgid "Start in wide mode"
 msgstr "راه‌اندازی در حالت گسترده"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "Device to use as a camera"
 msgstr "دستگاه به عنوان دوربین"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:56
 msgid "DEVICE"
 msgstr "DEVICE"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:58
 msgid "Output version information and exit"
 msgstr "دادن خروجی اطلاعات نسخه و خروج"
 
-#: ../src/cheese-application.vala:62
+#: ../src/cheese-application.vala:60
 msgid "Start in fullscreen mode"
 msgstr "راه‌اندازی در حالت تمام‌صفحه"
 
-#: ../src/cheese-application.vala:121
-msgid "_Shoot"
-msgstr "_گرفتن"
+#: ../src/cheese-application.vala:310
+msgid "Webcam in use"
+msgstr "وبکم درحال استفاده است"
 
-#: ../src/cheese-application.vala:125
-msgid "Mode:"
-msgstr "حالت:"
-
-#: ../src/cheese-application.vala:126
-msgid "_Photo"
-msgstr "_عکس"
-
-#: ../src/cheese-application.vala:127
-msgid "_Video"
-msgstr "_ویدئو"
-
-#: ../src/cheese-application.vala:128
-msgid "_Burst"
-msgstr "_پی در پی"
-
-#: ../src/cheese-application.vala:131
-msgid "_Fullscreen"
-msgstr "_تمام‌صفحه"
-
-#: ../src/cheese-application.vala:139
-msgid "P_references"
-msgstr "_ترجیحات"
-
-#: ../src/cheese-application.vala:142
-msgid "_Help"
-msgstr "_راهنما"
-
-#: ../src/cheese-application.vala:145
-msgid "_About"
-msgstr "_درباره"
-
-#: ../src/cheese-application.vala:146
-msgid "_Quit"
-msgstr "_خروج"
-
-#: ../src/cheese-application.vala:221
-msgid "- Take photos and videos from your webcam"
-msgstr "- با وب‌کم خود عکس و ویدیو بگیرید"
-
-#: ../src/cheese-application.vala:230
-#, c-format
-#| msgid ""
-#| "Run '%s --help' to see a full list of available command line options.\n"
-msgid "Run '%s --help' to see a full list of available command line options."
-msgstr ""
-"فرمان «%s --help» را اجرا کنید تا لیست کامل گزینه‌های خط­ فرمان را مشاهده کنید."
-
-#: ../src/cheese-application.vala:614
+#: ../src/cheese-application.vala:544
 msgid "translator-credits"
 msgstr ""
 "آرش موسوی <mousavi.arash@gmail.com>\n"
 "مهیار مقیمی <mahyar.moqimi@gmail.com>\n"
 "علی بدیعی <dr_ervina@ymail.com>"
 
-#: ../src/cheese-application.vala:616
+#: ../src/cheese-application.vala:546
 msgid "Cheese Website"
 msgstr "پایگاه‌وب چیز"
 
@@ -461,107 +475,121 @@ msgstr "پایگاه‌وب چیز"
 msgid "No Effect"
 msgstr "بدون جلوه"
 
-#: ../src/cheese-window.vala:192
+#: ../src/cheese-window.vala:236
 #, c-format
 msgid "Could not open %s"
 msgstr "نمی‌توان %s را باز کرد"
 
-#: ../src/cheese-window.vala:217
+#: ../src/cheese-window.vala:261
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "آیا مطمئنید که می‌خواهید %Id پرونده را برای همیشه حذف کنید؟"
 
-#: ../src/cheese-window.vala:223
+#: ../src/cheese-window.vala:265
+msgid "_Delete"
+msgstr "_حذف"
+
+#: ../src/cheese-window.vala:267
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "اگر موردی را حذف کنید، برای همیشه از بین می‌رود"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "نمی‌توان %s را به زباله‌دان منتقل کرد"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:321
+#: ../src/cheese-window.vala:365
 msgid "Save File"
 msgstr "ذخیره پرونده"
 
-#: ../src/cheese-window.vala:355
+#: ../src/cheese-window.vala:369
+msgid "Save"
+msgstr "ذخیره"
+
+#: ../src/cheese-window.vala:399
 #, c-format
 msgid "Could not save %s"
 msgstr "نمی‌توان %s را ذخیره کرد"
 
-#: ../src/cheese-window.vala:776
-msgid "Stop _Recording"
-msgstr "توقف _ضبط"
-
-#: ../src/cheese-window.vala:777
+#: ../src/cheese-window.vala:820
 msgid "Stop recording"
 msgstr "توقف ضبط"
 
-#: ../src/cheese-window.vala:792 ../src/cheese-window.vala:1315
-msgid "_Record a Video"
-msgstr "_ضبط یک ویدئو"
-
-#: ../src/cheese-window.vala:793
+#: ../src/cheese-window.vala:835
 msgid "Record a video"
 msgstr "ضبط یک ویدئو"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:828
-msgid "Stop _Taking Pictures"
-msgstr "توقف _گرفتن عکس"
-
-#: ../src/cheese-window.vala:829
+#: ../src/cheese-window.vala:870
 msgid "Stop taking pictures"
 msgstr "توقف گرفتن عکس"
 
-#: ../src/cheese-window.vala:852
-msgid "Take Multiple Photos"
-msgstr "گرفتن چندین عکس"
-
-#: ../src/cheese-window.vala:853
+#: ../src/cheese-window.vala:893
 msgid "Take multiple photos"
 msgstr "گرفتن چندین عکس"
 
-#: ../src/cheese-window.vala:1037
+#: ../src/cheese-window.vala:1087
 msgid "No effects found"
 msgstr "جلوه‌ایی پیدا نشد"
 
-#: ../src/cheese-window.vala:1156
+#: ../src/cheese-window.vala:1209
 msgid "There was an error playing video from the webcam"
 msgstr "یک خطا هنگام پخش ویدئو از وبکم رخ داد"
 
-#: ../src/cheese-window.vala:1174
-msgid "Open"
-msgstr "بازکردن"
-
-#: ../src/cheese-window.vala:1177
-msgid "Save _As…"
-msgstr "ذخیره _به‌نام..."
-
-#: ../src/cheese-window.vala:1180
-msgid "Move to _Trash"
-msgstr "انداختن در _زباله‌دان"
-
-#: ../src/cheese-window.vala:1183
-msgid "Delete"
-msgstr "حذف"
-
-#: ../src/cheese-window.vala:1316
-#| msgid "Record a video"
+#: ../src/cheese-window.vala:1324
 msgid "Record a video using a webcam"
 msgstr "ضبط یک ویدئو از طریق وبکم"
 
-#: ../src/cheese-window.vala:1322
-msgid "Take _Multiple Photos"
-msgstr "گرفتن _چندین عکس"
-
-#: ../src/cheese-window.vala:1323
-#| msgid "Take multiple photos"
+#: ../src/cheese-window.vala:1330
 msgid "Take multiple photos using a webcam"
 msgstr "گرفتن چندین عکس از طریق یک وبکم"
+
+#: ../src/cheese-window.vala:1342
+msgid "Choose an Effect"
+msgstr "انتخاب یک جلوه"
+
+#: ../src/cheese-window.vala:1353
+msgid "Record a Video"
+msgstr "ضبط یک ویدئو"
+
+#: ../src/cheese-window.vala:1357
+msgid "Take Multiple Photos"
+msgstr "گرفتن چندین عکس"
+
+#~ msgid "_Take a Photo"
+#~ msgstr "_یک عکس بگیرید"
+
+#~ msgid "_Leave Fullscreen"
+#~ msgstr "_ترک حالت تمام‌صفحه"
+
+#~ msgid "_Discard photo"
+#~ msgstr "_دور انداختن عکس"
+
+#~ msgid "_Shoot"
+#~ msgstr "_گرفتن"
+
+#~ msgid "Mode:"
+#~ msgstr "حالت:"
+
+#~ msgid "- Take photos and videos from your webcam"
+#~ msgstr "- با وب‌کم خود عکس و ویدیو بگیرید"
+
+#~| msgid ""
+#~| "Run '%s --help' to see a full list of available command line options.\n"
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options."
+#~ msgstr ""
+#~ "فرمان «%s --help» را اجرا کنید تا لیست کامل گزینه‌های خط­ فرمان را مشاهده "
+#~ "کنید."
+
+#~ msgid "Stop _Recording"
+#~ msgstr "توقف _ضبط"
+
+#~ msgid "Take _Multiple Photos"
+#~ msgstr "گرفتن _چندین عکس"
 
 #~ msgid "Share…"
 #~ msgstr "به‌اشتراک‌گذاری..."
