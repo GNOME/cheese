@@ -94,7 +94,7 @@ typedef enum
   CHEESE_CAMERA_ERROR_NO_DEVICE
 } CheeseCameraError;
 
-GType         cheese_camera_get_type (void) G_GNUC_CONST;
+GType         cheese_camera_get_type (void);
 CheeseCamera *cheese_camera_new (ClutterTexture *video_texture,
                                  const gchar    *camera_device_node,
                                  gint            x_resolution,

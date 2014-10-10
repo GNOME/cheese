@@ -64,7 +64,7 @@ struct _CheeseWidget
   CheeseWidgetPrivate *priv;
 };
 
-GType cheese_widget_get_type (void) G_GNUC_CONST;
+GType cheese_widget_get_type (void);
 
 GtkWidget *cheese_widget_new (void);
 void       cheese_widget_get_error (CheeseWidget *widget, GError **error);

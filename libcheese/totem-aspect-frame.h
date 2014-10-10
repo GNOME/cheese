@@ -62,7 +62,7 @@ struct _TotemAspectFrameClass
   ClutterActorClass parent_class;
 };
 
-GType           totem_aspect_frame_get_type     (void) G_GNUC_CONST;
+GType           totem_aspect_frame_get_type     (void);
 
 ClutterActor *  totem_aspect_frame_new          (void);
 

@@ -68,7 +68,7 @@ struct _CheeseEffect
   CheeseEffectPrivate *priv;
 };
 
-GType cheese_effect_get_type (void) G_GNUC_CONST;
+GType cheese_effect_get_type (void);
 
 CheeseEffect *cheese_effect_new (const gchar *name,
                                  const gchar *pipeline_desc);

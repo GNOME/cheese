@@ -84,9 +84,9 @@ struct _CheeseVideoFormat
   gint height;
 };
 
-GType cheese_video_format_get_type (void) G_GNUC_CONST;
+GType cheese_video_format_get_type (void);
 
-GType cheese_camera_device_get_type (void) G_GNUC_CONST;
+GType cheese_camera_device_get_type (void);
 
 CheeseCameraDevice *cheese_camera_device_new (const gchar *uuid,
                                               const gchar *device_node,

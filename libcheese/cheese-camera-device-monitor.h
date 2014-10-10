@@ -72,7 +72,7 @@ struct _CheeseCameraDeviceMonitorClass
   void (*removed)(CheeseCameraDeviceMonitor *monitor, const gchar *uuid);
 };
 
-GType                      cheese_camera_device_monitor_get_type (void) G_GNUC_CONST;
+GType                      cheese_camera_device_monitor_get_type (void);
 CheeseCameraDeviceMonitor *cheese_camera_device_monitor_new (void);
 void                       cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor);
 

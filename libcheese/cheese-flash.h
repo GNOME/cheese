@@ -59,7 +59,7 @@ struct _CheeseFlash
   CheeseFlashPrivate *priv;
 };
 
-GType        cheese_flash_get_type (void) G_GNUC_CONST;
+GType        cheese_flash_get_type (void);
 CheeseFlash *cheese_flash_new (GtkWidget *parent);
 
 void cheese_flash_fire (CheeseFlash *flash);

@@ -62,7 +62,7 @@ struct _CheeseAvatarWidget
   CheeseAvatarWidgetPrivate *priv;
 };
 
-GType cheese_avatar_widget_get_type (void) G_GNUC_CONST;
+GType cheese_avatar_widget_get_type (void);
 
 GtkWidget *cheese_avatar_widget_new (void);
 GdkPixbuf *cheese_avatar_widget_get_picture (CheeseAvatarWidget *widget);

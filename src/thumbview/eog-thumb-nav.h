@@ -50,7 +50,7 @@ struct _EogThumbNavClass
   GtkBoxClass parent_class;
 };
 
-GType eog_thumb_nav_get_type (void) G_GNUC_CONST;
+GType eog_thumb_nav_get_type (void);
 
 GtkWidget *eog_thumb_nav_new (GtkWidget *thumbview,
                               gboolean   show_buttons);

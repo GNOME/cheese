@@ -31,7 +31,7 @@ libcheese/cheese-enums.h: $(cheese_enum_headers)
 		--fhead "#include <glib-object.h>\n\n" \
 		--fhead "G_BEGIN_DECLS\n\n" \
 		--fprod "/* enumerations from @filename@ */\n" \
-		--vhead "GType @enum_name@_get_type (void) G_GNUC_CONST;\n" \
+		--vhead "GType @enum_name@_get_type (void);\n" \
 		--vhead "#define CHEESE_TYPE_@ENUMSHORT@ (@enum_name@_get_type())\n" \
 		--ftail "G_END_DECLS\n\n" \
 		--ftail "#endif /* CHEESE_ENUMS_H_ */" \
