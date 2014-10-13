@@ -1,6 +1,17 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.14.1
+  - Use LT_LIB_M to find the math library
+    libcheese-gtk needs to link with -lm to find the fmod function.
+  - Avoid dereferencing an uninitialized variable
+    Found with Coverity (CID 56653).
+  - Post-release version bump to 3.14.1
+  - Added/Updated Translations
+    - fa, courtesy of Arash Mousavi
+    - it, courtesy of Milo Casagrande
+    - te, courtesy of Krishnababu Krothapalli
+
 version 3.14.0
   - Add gstreamer-plugins-bad-1.0 to GStreamer check
     It is needed for the camerabin2 header.
