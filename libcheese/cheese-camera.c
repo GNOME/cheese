@@ -98,8 +98,6 @@ struct _CheeseCameraPrivate
 
 G_DEFINE_TYPE_WITH_PRIVATE (CheeseCamera, cheese_camera, G_TYPE_OBJECT)
 
-#define CHEESE_CAMERA_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA, CheeseCameraPrivate))
-
 #define CHEESE_CAMERA_ERROR cheese_camera_error_quark ()
 
 enum
@@ -189,7 +187,7 @@ cheese_camera_photo_data (CheeseCamera *camera, GstSample *sample)
 static void
 cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
 
   switch (GST_MESSAGE_TYPE (message))
   {
@@ -455,7 +453,7 @@ cheese_camera_set_error_element_not_found (GError **error, const gchar *factoryn
 static void
 cheese_camera_set_video_recording (CheeseCamera *camera, GError **error)
 {
-  CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
   GstEncodingContainerProfile *prof;
   GstEncodingVideoProfile *v_prof;
   GstCaps *caps;
@@ -802,7 +800,7 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
 void
 cheese_camera_play (CheeseCamera *camera)
 {
-  CheeseCameraPrivate *priv   = CHEESE_CAMERA_GET_PRIVATE (camera);
+  CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
   cheese_camera_set_new_caps (camera);
   g_object_set (priv->camera_source, "video-source", priv->video_source, NULL);
   g_object_set (priv->main_valve, "drop", FALSE, NULL);
