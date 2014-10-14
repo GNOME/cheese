@@ -44,13 +44,6 @@ static gboolean cheese_camera_device_initable_init (GInitable    *initable,
                                                     GCancellable *cancellable,
                                                     GError      **error);
 
-G_DEFINE_TYPE_WITH_CODE (CheeseCameraDevice, cheese_camera_device, G_TYPE_OBJECT,
-                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE,
-                                                cheese_camera_device_initable_iface_init))
-
-#define CHEESE_CAMERA_DEVICE_GET_PRIVATE(o) (G_TYPE_INSTANCE_GET_PRIVATE ((o), CHEESE_TYPE_CAMERA_DEVICE, \
-                                                                          CheeseCameraDevicePrivate))
-
 #define CHEESE_CAMERA_DEVICE_ERROR cheese_camera_device_error_quark ()
 
 /*
@@ -113,6 +106,12 @@ struct _CheeseCameraDevicePrivate
 
   GError *construct_error;
 };
+
+G_DEFINE_TYPE_WITH_CODE (CheeseCameraDevice, cheese_camera_device,
+                         G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (CheeseCameraDevice)
+                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE,
+                                                cheese_camera_device_initable_iface_init))
 
 /*
  * This is our private version of CheeseVideoFormat, with extra fields added
@@ -759,8 +758,6 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                        G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
-
-  g_type_class_add_private (klass, sizeof (CheeseCameraDevicePrivate));
 }
 
 static void
@@ -772,7 +769,7 @@ cheese_camera_device_initable_iface_init (GInitableIface *iface)
 static void
 cheese_camera_device_init (CheeseCameraDevice *device)
 {
-  CheeseCameraDevicePrivate *priv = device->priv = CHEESE_CAMERA_DEVICE_GET_PRIVATE (device);
+  CheeseCameraDevicePrivate *priv = device->priv = cheese_camera_device_get_instance_private (device);
 
   priv->device_node = NULL;
   priv->uuid = NULL;
