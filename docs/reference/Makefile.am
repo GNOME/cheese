@@ -54,8 +54,7 @@ IGNORE_HFILES= \
 	totem-aspect-frame.h \
 	cheese-enums.h \
 	cheese-widget-private.h \
-	um-crop-area.h \
-	cheese-marshal.h
+	um-crop-area.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png
