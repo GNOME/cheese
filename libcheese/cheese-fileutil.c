@@ -63,9 +63,13 @@ cheese_fileutil_get_path_before_224 (CheeseFileUtil *fileutil);
 const gchar *
 cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 {
+    CheeseFileUtilPrivate *priv;
+
   g_return_val_if_fail (CHEESE_IS_FILEUTIL (fileutil), NULL);
 
-  return fileutil->priv->video_path;
+    priv = cheese_fileutil_get_instance_private (fileutil);
+
+    return priv->video_path;
 }
 
 /**
@@ -79,9 +83,13 @@ cheese_fileutil_get_video_path (CheeseFileUtil *fileutil)
 const gchar *
 cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil)
 {
+    CheeseFileUtilPrivate *priv;
+
   g_return_val_if_fail (CHEESE_IS_FILEUTIL (fileutil), NULL);
 
-  return fileutil->priv->photo_path;
+    priv = cheese_fileutil_get_instance_private (fileutil);
+
+    return priv->photo_path;
 }
 
 /*
@@ -121,7 +129,7 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
 
   g_return_val_if_fail (CHEESE_IS_FILEUTIL (fileutil), NULL);
 
-  priv = fileutil->priv;
+    priv = cheese_fileutil_get_instance_private (fileutil);
 
   datetime = g_date_time_new_now_local ();
 
@@ -215,7 +223,7 @@ cheese_fileutil_reset_burst (CheeseFileUtil *fileutil)
 
   g_return_if_fail (CHEESE_IS_FILEUTIL (fileutil));
 
-  priv = fileutil->priv;
+    priv = cheese_fileutil_get_instance_private (fileutil);
 
   priv->burst_count    = 0;
   priv->burst_raw_name = "";
@@ -225,7 +233,7 @@ static void
 cheese_fileutil_finalize (GObject *object)
 {
   CheeseFileUtil *fileutil = CHEESE_FILEUTIL (object);
-  CheeseFileUtilPrivate *priv = fileutil->priv;
+    CheeseFileUtilPrivate *priv = cheese_fileutil_get_instance_private (fileutil);;
 
   g_free (priv->video_path);
   g_free (priv->photo_path);
@@ -243,7 +251,7 @@ cheese_fileutil_class_init (CheeseFileUtilClass *klass)
 static void
 cheese_fileutil_init (CheeseFileUtil *fileutil)
 {
-    CheeseFileUtilPrivate *priv = fileutil->priv = cheese_fileutil_get_instance_private (fileutil);
+    CheeseFileUtilPrivate *priv = cheese_fileutil_get_instance_private (fileutil);
 
     GSettings *settings;
 

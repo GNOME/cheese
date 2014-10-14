@@ -281,14 +281,19 @@ cheese_camera_device_monitor_add_devices (gpointer data, gpointer user_data)
 void
 cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor)
 {
+    CheeseCameraDeviceMonitorPrivate *priv;
   GList *devices;
 
-  g_return_if_fail (CHEESE_IS_CAMERA_DEVICE_MONITOR (monitor)
-    || monitor->priv->client != NULL);
+    g_return_if_fail (CHEESE_IS_CAMERA_DEVICE_MONITOR (monitor));
+
+    priv = cheese_camera_device_monitor_get_instance_private (monitor);
+
+    g_return_if_fail (priv->client != NULL);
 
   GST_INFO ("Probing devices with udev...");
 
-  devices = g_udev_client_query_by_subsystem (monitor->priv->client, "video4linux");
+    devices = g_udev_client_query_by_subsystem (priv->client, "video4linux");
+
   if (devices == NULL) GST_WARNING ("No device found");
 
   /* Initialize camera structures */
@@ -372,7 +377,9 @@ static void
 cheese_camera_device_monitor_finalize (GObject *object)
 {
 #ifdef HAVE_UDEV
-  CheeseCameraDeviceMonitorPrivate *priv = CHEESE_CAMERA_DEVICE_MONITOR (object)->priv;
+    CheeseCameraDeviceMonitorPrivate *priv;
+
+    priv = cheese_camera_device_monitor_get_instance_private (CHEESE_CAMERA_DEVICE_MONITOR (object));
 
   g_clear_object (&priv->client);
 #endif /* HAVE_UDEV */
@@ -426,7 +433,7 @@ static void
 cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
 {
 #ifdef HAVE_UDEV
-  CheeseCameraDeviceMonitorPrivate *priv = monitor->priv = cheese_camera_device_monitor_get_instance_private (monitor);
+    CheeseCameraDeviceMonitorPrivate *priv = cheese_camera_device_monitor_get_instance_private (monitor);
   const gchar *const subsystems[] = {"video4linux", NULL};
 
   priv->client = g_udev_client_new (subsystems);

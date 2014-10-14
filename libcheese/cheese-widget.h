@@ -61,7 +61,7 @@ struct _CheeseWidget
 {
   /*< private >*/
   GtkNotebook parent_instance;
-  CheeseWidgetPrivate *priv;
+  void *unused;
 };
 
 GType cheese_widget_get_type (void);

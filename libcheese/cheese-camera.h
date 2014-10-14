@@ -74,7 +74,7 @@ struct _CheeseCamera
 {
   /*< private >*/
   GObject parent;
-  CheeseCameraPrivate *priv;
+  void *unused;
 };
 
 /**

@@ -78,7 +78,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (CheeseFlash, cheese_flash, GTK_TYPE_WINDOW)
 static void
 cheese_flash_init (CheeseFlash *self)
 {
-  CheeseFlashPrivate *priv = self->priv = cheese_flash_get_instance_private (self);
+    CheeseFlashPrivate *priv = cheese_flash_get_instance_private (self);
   cairo_region_t *input_region;
   GtkWindow *window = GTK_WINDOW (self);
   const GdkRGBA white = { 1.0, 1.0, 1.0, 1.0 };
@@ -111,19 +111,11 @@ cheese_flash_init (CheeseFlash *self)
 static void
 cheese_flash_dispose (GObject *object)
 {
-  CheeseFlashPrivate *priv = CHEESE_FLASH (object)->priv;
+    CheeseFlashPrivate *priv = cheese_flash_get_instance_private (CHEESE_FLASH (object));
 
   g_clear_object (&priv->parent);
 
-  if (G_OBJECT_CLASS (cheese_flash_parent_class)->dispose)
     G_OBJECT_CLASS (cheese_flash_parent_class)->dispose (object);
-}
-
-static void
-cheese_flash_finalize (GObject *object)
-{
-  if (G_OBJECT_CLASS (cheese_flash_parent_class)->finalize)
-    G_OBJECT_CLASS (cheese_flash_parent_class)->finalize (object);
 }
 
 static void
@@ -132,7 +124,7 @@ cheese_flash_set_property (GObject      *object,
                            const GValue *value,
                            GParamSpec   *pspec)
 {
-  CheeseFlashPrivate *priv = CHEESE_FLASH (object)->priv;
+    CheeseFlashPrivate *priv = cheese_flash_get_instance_private (CHEESE_FLASH (object));
 
   switch (prop_id)
   {
@@ -158,7 +150,6 @@ cheese_flash_class_init (CheeseFlashClass *klass)
 
   object_class->set_property = cheese_flash_set_property;
   object_class->dispose      = cheese_flash_dispose;
-  object_class->finalize     = cheese_flash_finalize;
 
   /**
    * CheeseFlash:parent:
@@ -223,7 +214,7 @@ cheese_flash_opacity_fade (gpointer data)
 static gboolean
 cheese_flash_start_fade (gpointer data)
 {
-  CheeseFlashPrivate *flash_priv = CHEESE_FLASH (data)->priv;
+    CheeseFlashPrivate *priv = cheese_flash_get_instance_private (CHEESE_FLASH (data));
 
   GtkWindow *flash_window = GTK_WINDOW (data);
 
@@ -234,8 +225,8 @@ cheese_flash_start_fade (gpointer data)
     return G_SOURCE_REMOVE;
   }
 
-  flash_priv->fade_timeout_tag = g_timeout_add (1000.0 / FLASH_ANIMATION_RATE, cheese_flash_opacity_fade, data);
-  flash_priv->flash_timeout_tag = 0;
+    priv->fade_timeout_tag = g_timeout_add (1000.0 / FLASH_ANIMATION_RATE, cheese_flash_opacity_fade, data);
+    priv->flash_timeout_tag = 0;
   return G_SOURCE_REMOVE;
 }
 
@@ -248,7 +239,7 @@ cheese_flash_start_fade (gpointer data)
 void
 cheese_flash_fire (CheeseFlash *flash)
 {
-  CheeseFlashPrivate *flash_priv;
+    CheeseFlashPrivate *priv;
   GtkWidget          *parent;
   GdkScreen          *screen;
   GdkRectangle        rect, work_rect;
@@ -257,27 +248,27 @@ cheese_flash_fire (CheeseFlash *flash)
 
   g_return_if_fail (CHEESE_IS_FLASH (flash));
 
-  flash_priv = flash->priv;
+    priv = cheese_flash_get_instance_private (flash);
 
-  g_return_if_fail (flash_priv->parent != NULL);
+    g_return_if_fail (priv->parent != NULL);
 
   flash_window = GTK_WINDOW (flash);
 
-  if (flash_priv->flash_timeout_tag > 0)
-  {
-    g_source_remove (flash_priv->flash_timeout_tag);
-    flash_priv->flash_timeout_tag = 0;
-  }
+    if (priv->flash_timeout_tag > 0)
+    {
+        g_source_remove (priv->flash_timeout_tag);
+        priv->flash_timeout_tag = 0;
+    }
 
-  if (flash_priv->fade_timeout_tag > 0)
-  {
-    g_source_remove (flash_priv->fade_timeout_tag);
-    flash_priv->fade_timeout_tag = 0;
-  }
+    if (priv->fade_timeout_tag > 0)
+    {
+        g_source_remove (priv->fade_timeout_tag);
+        priv->fade_timeout_tag = 0;
+    }
 
-  flash_priv->opacity = 1.0;
+    priv->opacity = 1.0;
 
-  parent  = gtk_widget_get_toplevel (flash_priv->parent);
+    parent = gtk_widget_get_toplevel (priv->parent);
   screen  = gtk_widget_get_screen (parent);
   monitor = gdk_screen_get_monitor_at_window (screen,
 					      gtk_widget_get_window (parent));
@@ -292,7 +283,7 @@ cheese_flash_fire (CheeseFlash *flash)
 
   gtk_widget_set_opacity (GTK_WIDGET (flash_window), 1);
   gtk_widget_show_all (GTK_WIDGET (flash_window));
-  flash_priv->flash_timeout_tag = g_timeout_add (FLASH_DURATION, cheese_flash_start_fade, (gpointer) flash);
+    priv->flash_timeout_tag = g_timeout_add (FLASH_DURATION, cheese_flash_start_fade, (gpointer) flash);
 }
 
 /**

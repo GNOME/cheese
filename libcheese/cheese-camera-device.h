@@ -62,7 +62,7 @@ struct _CheeseCameraDevice
 {
   /*< private >*/
   GObject parent;
-  CheeseCameraDevicePrivate *priv;
+  void *unused;
 };
 
 #define CHEESE_TYPE_VIDEO_FORMAT (cheese_video_format_get_type ())

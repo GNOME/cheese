@@ -56,7 +56,7 @@ struct _CheeseFlash
 {
   /*< private >*/
   GtkWindow parent_instance;
-  CheeseFlashPrivate *priv;
+  void *unused;
 };
 
 GType        cheese_flash_get_type (void);

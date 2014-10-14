@@ -59,7 +59,7 @@ struct _CheeseAvatarWidget
 {
   /*< private >*/
   GtkBin parent_instance;
-  CheeseAvatarWidgetPrivate *priv;
+  void *unused;
 };
 
 GType cheese_avatar_widget_get_type (void);

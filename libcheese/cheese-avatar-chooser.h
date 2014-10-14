@@ -59,7 +59,7 @@ struct _CheeseAvatarChooser
 {
   /*< private >*/
   GtkDialog parent_instance;
-  CheeseAvatarChooserPrivate *priv;
+  void *unused;
 };
 
 GType cheese_avatar_chooser_get_type (void);

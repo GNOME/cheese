@@ -40,11 +40,6 @@
 
 enum
 {
-  LAST_SIGNAL
-};
-
-enum
-{
   PROP_0,
   PROP_PIXBUF,
   PROP_LAST
@@ -86,9 +81,10 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
                               GdkPixbuf           *pixbuf,
                               CheeseAvatarWidget  *widget)
 {
-  CheeseAvatarWidgetPrivate *priv = widget->priv;
+    CheeseAvatarWidgetPrivate *priv;
   GtkAllocation               allocation;
 
+    priv = cheese_avatar_widget_get_instance_private (widget);
   gtk_widget_get_allocation (priv->camera, &allocation);
   gtk_widget_set_size_request (priv->image, allocation.width, allocation.height);
 
@@ -112,9 +108,10 @@ static void
 take_button_clicked_cb (GtkButton           *button,
                         CheeseAvatarWidget *widget)
 {
-  CheeseAvatarWidgetPrivate *priv = widget->priv;
+    CheeseAvatarWidgetPrivate *priv;
   GObject                    *camera;
 
+    priv = cheese_avatar_widget_get_instance_private (widget);
   camera = cheese_widget_get_camera (CHEESE_WIDGET (priv->camera));
   if (priv->photo_taken_id == 0)
   {
@@ -148,7 +145,9 @@ static void
 take_again_button_clicked_cb (GtkButton           *button,
                               CheeseAvatarWidget *widget)
 {
-  CheeseAvatarWidgetPrivate *priv = widget->priv;
+    CheeseAvatarWidgetPrivate *priv;
+
+    priv = cheese_avatar_widget_get_instance_private (widget);
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), WIDGET_PAGE);
 
@@ -169,10 +168,12 @@ state_change_cb (GObject             *object,
                  GParamSpec          *param_spec,
                  CheeseAvatarWidget  *widget)
 {
-  CheeseAvatarWidgetPrivate *priv = widget->priv;
+  CheeseAvatarWidgetPrivate *priv;
   CheeseWidgetState           state;
 
   g_object_get (object, "state", &state, NULL);
+
+    priv = cheese_avatar_widget_get_instance_private (widget);
 
   switch (state)
   {
@@ -232,10 +233,11 @@ create_page (GtkWidget *child,
 static void
 cheese_avatar_widget_init (CheeseAvatarWidget *widget)
 {
+    CheeseAvatarWidgetPrivate *priv;
   GtkWidget *frame;
   GtkWidget *image;
 
-  CheeseAvatarWidgetPrivate *priv = widget->priv = cheese_avatar_widget_get_instance_private (widget);
+    priv = cheese_avatar_widget_get_instance_private (widget);
 
   priv->flash = cheese_flash_new (GTK_WIDGET (widget));
 
@@ -283,7 +285,9 @@ cheese_avatar_widget_init (CheeseAvatarWidget *widget)
 static void
 cheese_avatar_widget_finalize (GObject *object)
 {
-  CheeseAvatarWidgetPrivate *priv = ((CheeseAvatarWidget *) object)->priv;
+    CheeseAvatarWidgetPrivate *priv;
+
+    priv = cheese_avatar_widget_get_instance_private (CHEESE_AVATAR_WIDGET (object));
 
   g_clear_object (&priv->flash);
   g_clear_object (&priv->sizegroup);
@@ -295,7 +299,9 @@ static void
 cheese_avatar_widget_get_property (GObject *object, guint prop_id,
                                     GValue *value, GParamSpec *pspec)
 {
-  CheeseAvatarWidgetPrivate *priv = ((CheeseAvatarWidget *) object)->priv;
+    CheeseAvatarWidgetPrivate *priv;
+
+    priv = cheese_avatar_widget_get_instance_private (CHEESE_AVATAR_WIDGET (object));
 
   switch (prop_id)
   {
@@ -355,7 +361,11 @@ cheese_avatar_widget_new (void)
 GdkPixbuf *
 cheese_avatar_widget_get_picture (CheeseAvatarWidget *widget)
 {
+    CheeseAvatarWidgetPrivate *priv;
+
   g_return_val_if_fail (CHEESE_IS_AVATAR_WIDGET (widget), NULL);
 
-  return um_crop_area_get_picture (UM_CROP_AREA (widget->priv->image));
+    priv = cheese_avatar_widget_get_instance_private (widget);
+
+    return um_crop_area_get_picture (UM_CROP_AREA (priv->image));
 }

@@ -51,7 +51,7 @@ struct _CheeseCameraDeviceMonitor
 {
   /*< private >*/
   GObject parent;
-  CheeseCameraDeviceMonitorPrivate *priv;
+  void *unused;
 };
 
 /**

@@ -71,7 +71,7 @@ struct _CheeseFileUtil
 {
   /*< private >*/
   GObject parent;
-  CheeseFileUtilPrivate *priv;
+  void *unused;
 };
 
 /**

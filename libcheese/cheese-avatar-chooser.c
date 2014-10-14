@@ -41,20 +41,9 @@
 
 enum
 {
-  LAST_SIGNAL
-};
-
-enum
-{
   PROP_0,
   PROP_PIXBUF,
   PROP_LAST
-};
-
-enum
-{
-  WIDGET_PAGE = 0,
-  IMAGE_PAGE  = 1,
 };
 
 struct _CheeseAvatarChooserPrivate
@@ -85,7 +74,7 @@ static void
 cheese_avatar_chooser_init (CheeseAvatarChooser *chooser)
 {
   GtkWidget *button;
-  CheeseAvatarChooserPrivate *priv = chooser->priv = cheese_avatar_chooser_get_instance_private (chooser);
+    CheeseAvatarChooserPrivate *priv = cheese_avatar_chooser_get_instance_private (chooser);
 
   gtk_dialog_add_buttons (GTK_DIALOG (chooser),
                           _("_Cancel"),
@@ -119,7 +108,11 @@ static void
 cheese_avatar_chooser_get_property (GObject *object, guint prop_id,
                                     GValue *value, GParamSpec *pspec)
 {
-  CheeseAvatarChooserPrivate *priv = ((CheeseAvatarChooser *) object)->priv;
+    CheeseAvatarChooser *chooser;
+    CheeseAvatarChooserPrivate *priv;
+
+    chooser = CHEESE_AVATAR_CHOOSER (object);
+    priv = cheese_avatar_chooser_get_instance_private (chooser);
 
   switch (prop_id)
   {
@@ -194,7 +187,10 @@ cheese_avatar_chooser_new (void)
 GdkPixbuf *
 cheese_avatar_chooser_get_picture (CheeseAvatarChooser *chooser)
 {
+    CheeseAvatarChooserPrivate *priv;
   g_return_val_if_fail (CHEESE_IS_AVATAR_CHOOSER (chooser), NULL);
 
-  return cheese_avatar_widget_get_picture (CHEESE_AVATAR_WIDGET (chooser->priv->widget));
+    priv = cheese_avatar_chooser_get_instance_private (chooser);
+
+    return cheese_avatar_widget_get_picture (CHEESE_AVATAR_WIDGET (priv->widget));
 }

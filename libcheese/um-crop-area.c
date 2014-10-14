@@ -38,7 +38,7 @@
  * crop an avatar from an image taken from a webcam.
  */
 
-struct _UmCropAreaPrivate {
+typedef struct {
         GdkPixbuf *browse_pixbuf;
         GdkPixbuf *pixbuf;
         GdkPixbuf *color_shifted;
@@ -52,7 +52,7 @@ struct _UmCropAreaPrivate {
         gint base_width;
         gint base_height;
         gdouble aspect;
-};
+} UmCropAreaPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (UmCropArea, um_crop_area, GTK_TYPE_DRAWING_AREA)
 

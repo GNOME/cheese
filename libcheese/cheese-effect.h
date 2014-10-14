@@ -65,7 +65,7 @@ struct _CheeseEffect
 {
   /*< private >*/
   GObject parent;
-  CheeseEffectPrivate *priv;
+  void *unused;
 };
 
 GType cheese_effect_get_type (void);

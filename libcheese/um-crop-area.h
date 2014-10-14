@@ -37,7 +37,6 @@ G_BEGIN_DECLS
 
 typedef struct _UmCropAreaClass UmCropAreaClass;
 typedef struct _UmCropArea UmCropArea;
-typedef struct _UmCropAreaPrivate UmCropAreaPrivate;
 
 /*
  * UmCropAreaClass:
