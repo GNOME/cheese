@@ -66,7 +66,7 @@ struct _CheeseWidgetPrivate
   GError *error;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK);
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK)
 
 static GdkPixbuf *
 cheese_widget_load_pixbuf (GtkWidget  *widget,

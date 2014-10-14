@@ -64,7 +64,7 @@ struct _CheeseAvatarChooserPrivate
 
 static GParamSpec *properties[PROP_LAST];
 
-G_DEFINE_TYPE_WITH_PRIVATE (CheeseAvatarChooser, cheese_avatar_chooser, GTK_TYPE_DIALOG);
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseAvatarChooser, cheese_avatar_chooser, GTK_TYPE_DIALOG)
 
 static void
 update_select_button (CheeseAvatarWidget  *widget,

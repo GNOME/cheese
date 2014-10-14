@@ -70,7 +70,7 @@ struct _CheeseAvatarWidgetPrivate
 
 static GParamSpec *properties[PROP_LAST];
 
-G_DEFINE_TYPE_WITH_PRIVATE (CheeseAvatarWidget, cheese_avatar_widget, GTK_TYPE_BIN);
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseAvatarWidget, cheese_avatar_widget, GTK_TYPE_BIN)
 
 /*
  * cheese_widget_photo_taken_cb:

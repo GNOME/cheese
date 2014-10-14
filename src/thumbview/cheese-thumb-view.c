@@ -52,7 +52,7 @@ typedef struct
   GQueue *thumbnails;
 } CheeseThumbViewPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (CheeseThumbView, cheese_thumb_view, GTK_TYPE_ICON_VIEW);
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseThumbView, cheese_thumb_view, GTK_TYPE_ICON_VIEW)
 
 enum
 {
