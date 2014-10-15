@@ -52,9 +52,9 @@ CFILE_GLOB=$(top_srcdir)/libcheese/*.c
 # e.g. IGNORE_HFILES=gtkdebug.h gtkintl.h
 IGNORE_HFILES= \
 	totem-aspect-frame.h \
+	cheese-crop-area.h \
 	cheese-enums.h \
-	cheese-widget-private.h \
-	um-crop-area.h
+	cheese-widget-private.h
 
 # Images to copy into HTML directory.
 # e.g. HTML_IMAGES=$(top_srcdir)/gtk/stock-icons/stock_about_24.png
