@@ -100,20 +100,20 @@ libcheese_gtk_la_LDFLAGS = \
 libcheese_gtk_la_SOURCES = \
 	libcheese/cheese-avatar-chooser.c \
 	libcheese/cheese-avatar-widget.c \
+	libcheese/cheese-crop-area.c \
 	libcheese/totem-aspect-frame.c \
 	libcheese/cheese-flash.c \
 	libcheese/cheese-gtk.c \
-	libcheese/cheese-widget.c \
-	libcheese/um-crop-area.c
+	libcheese/cheese-widget.c
 
 noinst_libcheese_gtk_headers = \
 	libcheese/totem-aspect-frame.h \
 	libcheese/cheese-avatar-chooser.h \
 	libcheese/cheese-avatar-widget.h \
+	libcheese/cheese-crop-area.h \
 	libcheese/cheese-flash.h \
 	libcheese/cheese-widget.h \
-	libcheese/cheese-widget-private.h \
-	libcheese/um-crop-area.h
+	libcheese/cheese-widget-private.h
 
 libcheese_la_CFLAGS = \
 	$(CHEESE_CFLAGS) \
@@ -416,7 +416,7 @@ check_PROGRAMS = \
 	tests/test-libcheese-gtk
 
 tests_test_libcheese_gtk_SOURCES = \
-	libcheese/um-crop-area.c \
+	libcheese/cheese-crop-area.c \
 	tests/test-libcheese-gtk.c
 tests_test_libcheese_gtk_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_test_libcheese_gtk_LDADD = \

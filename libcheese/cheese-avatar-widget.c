@@ -26,7 +26,7 @@
 #include "cheese-widget-private.h"
 #include "cheese-flash.h"
 #include "cheese-avatar-widget.h"
-#include "um-crop-area.h"
+#include "cheese-crop-area.h"
 
 /**
  * SECTION:cheese-avatar-widget
@@ -88,7 +88,7 @@ cheese_widget_photo_taken_cb (CheeseCamera        *camera,
   gtk_widget_get_allocation (priv->camera, &allocation);
   gtk_widget_set_size_request (priv->image, allocation.width, allocation.height);
 
-  um_crop_area_set_picture (UM_CROP_AREA (priv->image), pixbuf);
+  cheese_crop_area_set_picture (CHEESE_CROP_AREA (priv->image), pixbuf);
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), IMAGE_PAGE);
 
   gtk_widget_set_sensitive (priv->take_button, TRUE);
@@ -151,7 +151,7 @@ take_again_button_clicked_cb (GtkButton           *button,
 
   gtk_notebook_set_current_page (GTK_NOTEBOOK (priv->notebook), WIDGET_PAGE);
 
-  um_crop_area_set_picture (UM_CROP_AREA (priv->image), NULL);
+  cheese_crop_area_set_picture (CHEESE_CROP_AREA (priv->image), NULL);
 
   g_object_notify_by_pspec (G_OBJECT (widget), properties[PROP_PIXBUF]);
 }
@@ -263,7 +263,7 @@ cheese_avatar_widget_init (CheeseAvatarWidget *widget)
                             gtk_label_new ("webcam"));
 
   /* Image tab */
-  priv->image = um_crop_area_new ();
+  priv->image = cheese_crop_area_new ();
   frame = gtk_frame_new (NULL);
   gtk_container_add (GTK_CONTAINER (frame), priv->image);
   gtk_frame_set_shadow_type (GTK_FRAME (frame), GTK_SHADOW_ETCHED_IN);
@@ -306,7 +306,7 @@ cheese_avatar_widget_get_property (GObject *object, guint prop_id,
   switch (prop_id)
   {
     case PROP_PIXBUF:
-      g_value_set_object (value, um_crop_area_get_picture (UM_CROP_AREA (priv->image)));
+      g_value_set_object (value, cheese_crop_area_get_picture (CHEESE_CROP_AREA (priv->image)));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -367,5 +367,5 @@ cheese_avatar_widget_get_picture (CheeseAvatarWidget *widget)
 
     priv = cheese_avatar_widget_get_instance_private (widget);
 
-    return um_crop_area_get_picture (UM_CROP_AREA (priv->image));
+    return cheese_crop_area_get_picture (CHEESE_CROP_AREA (priv->image));
 }

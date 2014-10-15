@@ -27,14 +27,14 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
-#include "um-crop-area.h"
+#include "cheese-crop-area.h"
 
 /*
- * SECTION:um-crop-area
+ * SECTION:cheese-crop-area
  * @short_description: A cropping widget for #CheeseAvatarChooser
  * @stability: Unstable
  *
- * #UmCropArea provides a simple cropping tool, used in #CheeseAvatarChooser to
+ * #CheeseCropArea provides a simple cropping tool, used in #CheeseAvatarChooser to
  * crop an avatar from an image taken from a webcam.
  */
 
@@ -52,9 +52,9 @@ typedef struct {
         gint base_width;
         gint base_height;
         gdouble aspect;
-} UmCropAreaPrivate;
+} CheeseCropAreaPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE (UmCropArea, um_crop_area, GTK_TYPE_DRAWING_AREA)
+G_DEFINE_TYPE_WITH_PRIVATE (CheeseCropArea, cheese_crop_area, GTK_TYPE_DRAWING_AREA)
 
 /*
  * shift_color_byte:
@@ -118,15 +118,15 @@ shift_colors (GdkPixbuf *pixbuf,
 
 /*
  * update_pixbufs:
- * @area: a #UmCropArea
+ * @area: a #CheeseCropArea
  *
  * Update the #GdkPixbuf objects inside @area, by darkening the regions outside
  * the current crop area.
  */
 static void
-update_pixbufs (UmCropArea *area)
+update_pixbufs (CheeseCropArea *area)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         gint width;
         gint height;
         GtkAllocation allocation;
@@ -203,16 +203,16 @@ update_pixbufs (UmCropArea *area)
 
 /*
  * crop_widget:
- * @area: a #UmCropArea
+ * @area: a #CheeseCropArea
  * @crop: (out caller-allocates): a return location for a #GdkRectangle
  *
  * Update the supplied @crop rectangle to the current crop area.
  */
 static void
-crop_to_widget (UmCropArea    *area,
+crop_to_widget (CheeseCropArea    *area,
                 GdkRectangle  *crop)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
 
         crop->x = priv->image.x + priv->crop.x * priv->scale;
         crop->y = priv->image.y + priv->crop.y * priv->scale;
@@ -249,8 +249,8 @@ typedef enum {
 } Location;
 
 /*
- * um_crop_area_draw:
- * @widget: a #UmCropArea
+ * cheese_crop_area_draw:
+ * @widget: a #CheeseCropArea
  * @cr: the #cairo_t to draw to
  *
  * Handle the #GtkWidget::draw signal and draw the @widget.
@@ -258,11 +258,11 @@ typedef enum {
  * Returns: %FALSE
  */
 static gboolean
-um_crop_area_draw (GtkWidget *widget,
+cheese_crop_area_draw (GtkWidget *widget,
                    cairo_t   *cr)
 {
-        UmCropArea *area = UM_CROP_AREA (widget);
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropArea *area = CHEESE_CROP_AREA (widget);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         GdkRectangle crop;
         gint width, height;
 
@@ -415,7 +415,7 @@ find_location (GdkRectangle *rect,
 
 /*
  * update_cursor:
- * @area: a #UmCropArea
+ * @area: a #CheeseCropArea
  * @x: x coordinate
  * @y: y coordinate
  *
@@ -423,11 +423,11 @@ find_location (GdkRectangle *rect,
  * rectangle the pointer is over.
  */
 static void
-update_cursor (UmCropArea *area,
+update_cursor (CheeseCropArea *area,
                gint           x,
                gint           y)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         gint cursor_type;
         GdkRectangle crop;
         gint region;
@@ -494,7 +494,7 @@ update_cursor (UmCropArea *area,
  *
  * Returns: the value of y
  *
- * @see_also: um_crop_area_motion_notify_event()
+ * @see_also: cheese_crop_area_motion_notify_event()
  */
 static gint
 eval_radial_line (gdouble center_x, gdouble center_y,
@@ -511,8 +511,8 @@ eval_radial_line (gdouble center_x, gdouble center_y,
 }
 
 /*
- * um_crop_area_motion_notify_event:
- * @widget: a #UmCropArea
+ * cheese_crop_area_motion_notify_event:
+ * @widget: a #CheeseCropArea
  * @event: the #GdkEventMotion
  *
  * Update the cropped region, and redraw it, based on the current cursor
@@ -523,11 +523,11 @@ eval_radial_line (gdouble center_x, gdouble center_y,
  * @see_also: eval_radial_line()
  */
 static gboolean
-um_crop_area_motion_notify_event (GtkWidget      *widget,
+cheese_crop_area_motion_notify_event (GtkWidget      *widget,
                                   GdkEventMotion *event)
 {
-        UmCropArea *area = UM_CROP_AREA (widget);
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropArea *area = CHEESE_CROP_AREA (widget);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         gint x, y;
         gint delta_x, delta_y;
         gint width, height;
@@ -785,8 +785,8 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
 }
 
 /*
- * um_crop_area_button_press_event:
- * @widget: a #UmCropArea
+ * cheese_crop_area_button_press_event:
+ * @widget: a #CheeseCropArea
  * @event: a #GdkEventButton
  *
  * Handle the mouse button being pressed on the widget, by initiating a crop
@@ -795,11 +795,11 @@ um_crop_area_motion_notify_event (GtkWidget      *widget,
  * Returns: %FALSE
  */
 static gboolean
-um_crop_area_button_press_event (GtkWidget      *widget,
+cheese_crop_area_button_press_event (GtkWidget      *widget,
                                  GdkEventButton *event)
 {
-        UmCropArea *area = UM_CROP_AREA (widget);
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropArea *area = CHEESE_CROP_AREA (widget);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         GdkRectangle crop;
 
         if (priv->browse_pixbuf == NULL)
@@ -819,8 +819,8 @@ um_crop_area_button_press_event (GtkWidget      *widget,
 }
 
 /*
- * um_crop_area_button_release_event:
- * @widget: a #UmCropArea
+ * cheese_crop_area_button_release_event:
+ * @widget: a #CheeseCropArea
  * @event: a #GdkEventButton
  *
  * Handle the mouse button being released on the widget, by redrawing the
@@ -829,11 +829,11 @@ um_crop_area_button_press_event (GtkWidget      *widget,
  * Returns: %FALSE
  */
 static gboolean
-um_crop_area_button_release_event (GtkWidget      *widget,
+cheese_crop_area_button_release_event (GtkWidget      *widget,
                                    GdkEventButton *event)
 {
-        UmCropArea *area = UM_CROP_AREA (widget);
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropArea *area = CHEESE_CROP_AREA (widget);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         GdkRectangle crop;
 
         if (priv->browse_pixbuf == NULL)
@@ -853,9 +853,9 @@ um_crop_area_button_release_event (GtkWidget      *widget,
 }
 
 static void
-um_crop_area_finalize (GObject *object)
+cheese_crop_area_finalize (GObject *object)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (UM_CROP_AREA (object));
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (CHEESE_CROP_AREA (object));
 
         if (priv->browse_pixbuf) {
                 g_object_unref (priv->browse_pixbuf);
@@ -870,26 +870,26 @@ um_crop_area_finalize (GObject *object)
                 priv->color_shifted = NULL;
         }
 
-        G_OBJECT_CLASS (um_crop_area_parent_class)->finalize (object);
+        G_OBJECT_CLASS (cheese_crop_area_parent_class)->finalize (object);
 }
 
 static void
-um_crop_area_class_init (UmCropAreaClass *klass)
+cheese_crop_area_class_init (CheeseCropAreaClass *klass)
 {
         GObjectClass   *object_class = G_OBJECT_CLASS (klass);
         GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-        object_class->finalize = um_crop_area_finalize;
-        widget_class->draw = um_crop_area_draw;
-        widget_class->button_press_event = um_crop_area_button_press_event;
-        widget_class->button_release_event = um_crop_area_button_release_event;
-        widget_class->motion_notify_event = um_crop_area_motion_notify_event;
+        object_class->finalize = cheese_crop_area_finalize;
+        widget_class->draw = cheese_crop_area_draw;
+        widget_class->button_press_event = cheese_crop_area_button_press_event;
+        widget_class->button_release_event = cheese_crop_area_button_release_event;
+        widget_class->motion_notify_event = cheese_crop_area_motion_notify_event;
 }
 
 static void
-um_crop_area_init (UmCropArea *area)
+cheese_crop_area_init (CheeseCropArea *area)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
 
         gtk_widget_add_events (GTK_WIDGET (area), GDK_POINTER_MOTION_MASK |
                                GDK_BUTTON_PRESS_MASK |
@@ -907,21 +907,21 @@ um_crop_area_init (UmCropArea *area)
 }
 
 /*
- * um_crop_area_new:
+ * cheese_crop_area_new:
  *
- * Creates a new #UmCropArea widget.
+ * Creates a new #CheeseCropArea widget.
  *
- * Returns: a #UmCropArea
+ * Returns: a #CheeseCropArea
  */
 GtkWidget *
-um_crop_area_new (void)
+cheese_crop_area_new (void)
 {
-        return g_object_new (UM_TYPE_CROP_AREA, NULL);
+        return g_object_new (CHEESE_TYPE_CROP_AREA, NULL);
 }
 
 /*
- * um_crop_area_get_picture:
- * @area: a #UmCropArea
+ * cheese_crop_area_get_picture:
+ * @area: a #CheeseCropArea
  *
  * Returns the cropped image, or the whole image if no crop region has been
  * set, as a #GdkPixbuf.
@@ -929,9 +929,9 @@ um_crop_area_new (void)
  * Returns: a #GdkPixbuf
  */
 GdkPixbuf *
-um_crop_area_get_picture (UmCropArea *area)
+cheese_crop_area_get_picture (CheeseCropArea *area)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         gint width, height;
 
         if (priv->browse_pixbuf == NULL)
@@ -949,18 +949,18 @@ um_crop_area_get_picture (UmCropArea *area)
 }
 
 /*
- * um_crop_area_set_picture:
- * @area: a #UmCropArea
+ * cheese_crop_area_set_picture:
+ * @area: a #CheeseCropArea
  * @pixbuf: (allow-none): the #GdkPixbuf to set, or %NULL to clear the current
  * picture
  *
  * Set the image to be used inside the @area to @pixbuf.
  */
 void
-um_crop_area_set_picture (UmCropArea *area,
+cheese_crop_area_set_picture (CheeseCropArea *area,
                           GdkPixbuf  *pixbuf)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         gint width;
         gint height;
 
@@ -992,19 +992,19 @@ um_crop_area_set_picture (UmCropArea *area,
 }
 
 /*
- * um_crop_area_set_min_size:
- * @area: a #UmCropArea
+ * cheese_crop_area_set_min_size:
+ * @area: a #CheeseCropArea
  * @width: a minimum width, in pixels
  * @height: a minimum height, in pixels
  *
  * Sets the minimum size that the cropped image will be allowed to have.
  */
 void
-um_crop_area_set_min_size (UmCropArea *area,
-                           gint        width,
-                           gint        height)
+cheese_crop_area_set_min_size (CheeseCropArea *area,
+                               gint width,
+                               gint height)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
         priv->base_width = width;
         priv->base_height = height;
 
@@ -1014,18 +1014,18 @@ um_crop_area_set_min_size (UmCropArea *area,
 }
 
 /*
- * um_crop_area_set_constrain_aspect:
- * @area: a #UmCropArea
+ * cheese_crop_area_set_constrain_aspect:
+ * @area: a #CheeseCropArea
  * @constrain: whether to constrain the aspect ratio of the cropped image
  *
  * Controls whether the aspect ratio of the cropped area of the image should be
  * constrained.
  */
 void
-um_crop_area_set_constrain_aspect (UmCropArea *area,
-                                   gboolean    constrain)
+cheese_crop_area_set_constrain_aspect (CheeseCropArea *area,
+                                       gboolean constrain)
 {
-        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        CheeseCropAreaPrivate *priv = cheese_crop_area_get_instance_private (area);
 
         if (constrain) {
                 priv->aspect = priv->base_width / (gdouble)priv->base_height;

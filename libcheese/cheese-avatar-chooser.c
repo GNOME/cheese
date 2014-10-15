@@ -27,7 +27,7 @@
 #include "cheese-flash.h"
 #include "cheese-avatar-chooser.h"
 #include "cheese-avatar-widget.h"
-#include "um-crop-area.h"
+#include "cheese-crop-area.h"
 
 /**
  * SECTION:cheese-avatar-chooser
