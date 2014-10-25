@@ -463,7 +463,7 @@ test-report perf-report full-report: $(check_PROGRAMS)
 	  echo '  <version>$(PACKAGE_VERSION)</version>' >> $@.xml ; \
 	  echo "  <revision>$$REVISION</revision>" >> $@.xml ; \
 	  echo '</info>' >> $@.xml ; \
-	  sed '1,1s/^<?xml\b[^>?]*?>//' < test-log.xml >> $@.xml ; \
+	  $(SED) '1,1s/^<?xml\b[^>?]*?>//' < test-log.xml >> $@.xml ; \
 	  rm test-log.xml ; \
 	  echo >> $@.xml ; \
 	  echo '</report-collection>' >> $@.xml ; \
