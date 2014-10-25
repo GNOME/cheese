@@ -215,9 +215,7 @@ docs/reference/Makefile
 docs/reference/version.xml
 data/cheese.pc
 data/cheese-gtk.pc
-data/org.gnome.Camera.service
 data/org.gnome.Cheese.desktop.in
-data/org.gnome.Cheese.service
 help/Makefile
 po/Makefile.in
 ])

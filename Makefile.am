@@ -367,10 +367,17 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 appstream_in_files = data/org.gnome.Cheese.appdata.xml.in
 appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
 
+data/org.gnome.Cheese.service: data/org.gnome.Cheese.service.in
+	$(AM_V_GEN)$(SED) -e "s|[@]bindir[@]|$(bindir)|" $< > $@
+
+data/org.gnome.Camera.service: data/org.gnome.Camera.service.in
+	$(AM_V_GEN)$(SED) -e "s|[@]libexecdir[@]|$(libexecdir)|" $< > $@
+
 servicedir = $(datadir)/dbus-1/services
-service_DATA = \
-	data/org.gnome.Camera.service \
-	data/org.gnome.Cheese.service
+service_in_files = \
+	data/org.gnome.Camera.service.in \
+	data/org.gnome.Cheese.service.in
+service_DATA = $(service_in_files:.service.in=.service)
 
 @GSETTINGS_RULES@
 gsettings_SCHEMAS = data/org.gnome.Cheese.gschema.xml
@@ -534,11 +541,12 @@ dist-hook: git-changelog-hook
 dist_noinst_DATA = \
 	ChangeLog.pre-git \
 	COPYING.GPL3 \
+	$(appstream_in_files) \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
 	$(noinst_gnome_camera_service_headers) \
 	$(noinst_resource_files) \
-	$(appstream_in_files) \
+	$(service_in_files) \
 	data/org.gnome.Cheese.gresource.xml \
 	data/org.gnome.Camera.xml \
 	build-aux/test-driver \
@@ -566,6 +574,7 @@ CLEANFILES = \
 	$(pkgconfig_DATA) \
 	$(enum_data) \
 	$(gir_DATA) \
+	$(service_DATA) \
 	$(typelib_DATA) \
 	$(nodist_gnome_camera_service_headers) \
 	$(nodist_gnome_camera_service_SOURCES) \
