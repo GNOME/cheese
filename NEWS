@@ -1,6 +1,43 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.15.1
+  - Substitute bindir and libexecdir in Makefile.am
+    Rather than substituting the values of libexecdir and bindir during
+    configure, which might include some unexpanded shell variables, expand
+    and substitute them as targets in Makefile.am instead.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=726095
+  - Use AC_PROG_SED in configure.ac
+  - Remove old marshaller header from doc ignore list
+  - Use get_instance_private() instead of priv pointer
+    Use the generated macro rather than storing a pointer to the private
+    struct within the object.
+  - Drop some trailing semicolons after macros
+  - Use new-style private struct in CheeseCameraDevice
+  - Use _get_instance_private() consistently in camera
+    Use the new cheese_camera_get_instance_private() instead of the old
+    macro.
+  - Bump required Vala version for get_menu_by_id()
+    Use the get the given menu from GtkApplication.
+  - Refactor setup_camera() in CheeseWidget
+    Remove superfluous prototype. Use GSettings convenience getters. Reduce
+    scope of some variables.
+  - Avoid using G_GNUC_CONST on _get_type()
+    As the g_type_ensure() documentation notes, it is incorrect to mark a
+    _get_type() method with G_GNUC_CONST, as it as a side effect the first
+    time it is called.
+  - Use LT_LIB_M to find the math library
+    libcheese-gtk needs to link with -lm to find the fmod function.
+  - Avoid dereferencing an uninitialized variable
+    Found with Coverity (CID 56653).
+  - Post-release version bump to 3.15.1
+  - Added/Updated Translations
+    - fa, courtesy of Arash Mousavi
+    - it, courtesy of Milo Casagrande
+    - te, courtesy of Krishnababu Krothapalli
+  - Added/Updated Documentation
+
 version 3.14.0
   - Add gstreamer-plugins-bad-1.0 to GStreamer check
     It is needed for the camerabin2 header.
