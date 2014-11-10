@@ -1,6 +1,25 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.14.2
+  - Add name and summary elements to AppData
+    Pacify appstream-util validate.
+  - Limit default size for avatar cropping
+    Commit c605ad3578ff66452bd7b01d257f31c64e7905ef enlarged default size
+    for cropping avatars thus crop rectangle could be easily bigger then
+    image. The crop rectagle can't be modified and cc_crop_area_get_picture
+    causes errors if the rectangle is bigger, because it has negative
+    coordinates. Limit the default size to fit the image also.
+    https://bugzilla.gnome.org/show_bug.cgi?id=739870
+  - Substitute bindir and libexecdir in Makefile.am
+    Rather than substituting the values of libexecdir and bindir during
+    configure, which might include some unexpanded shell variables, expand
+    and substitute them as targets in Makefile.am instead.
+    https://bugzilla.gnome.org/show_bug.cgi?id=726095
+  - Use AC_PROG_SED in configure.ac
+  - Bump required Vala version for get_menu_by_id()
+    Used to get the given menu from GtkApplication.
+
 version 3.14.1
   - Use LT_LIB_M to find the math library
     libcheese-gtk needs to link with -lm to find the fmod function.
