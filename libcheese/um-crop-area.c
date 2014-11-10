@@ -185,8 +185,11 @@ update_pixbufs (UmCropArea *area)
                 if (priv->scale == 0.0) {
                         gdouble crop_scale;
 
-                        crop_scale = MIN (gdk_pixbuf_get_width (priv->pixbuf) / priv->base_width * 0.8,
-                                          gdk_pixbuf_get_height (priv->pixbuf) / priv->base_height * 0.8);
+                        /* Scale the crop rectangle to 80% of the area, or less to fit the image */
+                        crop_scale = MIN (MIN ((gdouble)gdk_pixbuf_get_width (priv->pixbuf) / priv->base_width * 0.8,
+                                               (gdouble)dest_width / priv->base_width),
+                                          MIN ((gdouble)gdk_pixbuf_get_height (priv->pixbuf) / priv->base_height * 0.8,
+                                               (gdouble)dest_height / priv->base_height));
                         priv->crop.width = crop_scale * priv->base_width / scale;
                         priv->crop.height = crop_scale * priv->base_height / scale;
                         priv->crop.x = (gdk_pixbuf_get_width (priv->browse_pixbuf) - priv->crop.width) / 2;
