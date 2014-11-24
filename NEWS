@@ -1,6 +1,21 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.15.2
+  - Fix Nepali desktop file keywords translation
+  - Add name and summary elements to AppData
+    Pacify appstream-util validate.
+  - Limit default size for avatar cropping
+    Commit c605ad3578ff66452bd7b01d257f31c64e7905ef enlarged default size
+    for cropping avatars thus crop rectangle could be easily bigger then
+    image. The crop rectagle can't be modified and cc_crop_area_get_picture
+    causes errors if the rectangle is bigger, because it has negative
+    coordinates. Limit the default size to fit the image also.
+    https://bugzilla.gnome.org/show_bug.cgi?id=739870
+  - Added/Updated Translations
+    - fi, courtesy of Jiri Grönroos
+    - ne, courtesy of Pawan Chitrakar
+
 version 3.15.1
   - Substitute bindir and libexecdir in Makefile.am
     Rather than substituting the values of libexecdir and bindir during
