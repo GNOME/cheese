@@ -183,13 +183,15 @@ update_pixbufs (UmCropArea *area)
                 shift_colors (priv->color_shifted, -32, -32, -32, 0);
 
                 if (priv->scale == 0.0) {
-                        gdouble crop_scale;
+                        gdouble scale_to_80, scale_to_image, crop_scale;
 
                         /* Scale the crop rectangle to 80% of the area, or less to fit the image */
-                        crop_scale = MIN (MIN ((gdouble)gdk_pixbuf_get_width (priv->pixbuf) / priv->base_width * 0.8,
-                                               (gdouble)dest_width / priv->base_width),
-                                          MIN ((gdouble)gdk_pixbuf_get_height (priv->pixbuf) / priv->base_height * 0.8,
-                                               (gdouble)dest_height / priv->base_height));
+                        scale_to_80 = MIN ((gdouble)gdk_pixbuf_get_width (priv->pixbuf) * 0.8 / priv->base_width,
+                                           (gdouble)gdk_pixbuf_get_height (priv->pixbuf) * 0.8 / priv->base_height);
+                        scale_to_image = MIN ((gdouble)dest_width / priv->base_width,
+                                              (gdouble)dest_height / priv->base_height);
+                        crop_scale = MIN (scale_to_80, scale_to_image);
+
                         priv->crop.width = crop_scale * priv->base_width / scale;
                         priv->crop.height = crop_scale * priv->base_height / scale;
                         priv->crop.x = (gdk_pixbuf_get_width (priv->browse_pixbuf) - priv->crop.width) / 2;
