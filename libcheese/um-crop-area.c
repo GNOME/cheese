@@ -850,6 +850,15 @@ um_crop_area_button_release_event (GtkWidget      *widget,
 }
 
 static void
+um_crop_area_set_size_request (UmCropArea *area)
+{
+        UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
+        gtk_widget_set_size_request (GTK_WIDGET (area),
+                                     priv->base_width,
+                                     priv->base_height);
+}
+
+static void
 um_crop_area_finalize (GObject *object)
 {
         UmCropAreaPrivate *priv = um_crop_area_get_instance_private (UM_CROP_AREA (object));
@@ -901,6 +910,8 @@ um_crop_area_init (UmCropArea *area)
         priv->base_width = 48;
         priv->base_height = 48;
         priv->aspect = 1;
+
+        um_crop_area_set_size_request (area);
 }
 
 /*
@@ -1004,6 +1015,8 @@ um_crop_area_set_min_size (UmCropArea *area,
         UmCropAreaPrivate *priv = um_crop_area_get_instance_private (area);
         priv->base_width = width;
         priv->base_height = height;
+
+        um_crop_area_set_size_request (area);
 
         if (priv->aspect > 0) {
                 priv->aspect = priv->base_width / (gdouble)priv->base_height;
