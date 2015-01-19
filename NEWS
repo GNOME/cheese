@@ -1,6 +1,25 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.15.4
+  - Ignore intermediate file with Automake 1.15
+  - Removed obsolete variables in autogen.sh
+  - um-crop-area: Fix deprecated API usage
+    https://bugzilla.gnome.org/show_bug.cgi?id=742530
+  - um-crop-area: Enforce a minimum size
+    Otherwise, if callers aren't careful, users could resize us so small
+    that we'd crash inside gdk_pixbuf_scale() .
+    https://bugzilla.gnome.org/show_bug.cgi?id=742530
+  - um-crop-area: Fix background rendering around the picture
+    Instead of trying to fill the displayed pixbuf with the background
+    color (and failing at that), just make the pixbuf be an aspect correct
+    scaled size of the original picture and draw it at the correct offset
+    on the draw vfunc.
+    This allows us to get rid of deprecated gtk+ API usage and fixes the
+    background around the picture ending up black despite de code's
+    intent.
+    https://bugzilla.gnome.org/show_bug.cgi?id=742530
+
 version 3.15.3
   - Refactor crop area scaling code
     Recently committed patch f9d576e was modified before applying it into
