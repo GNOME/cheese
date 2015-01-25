@@ -229,7 +229,7 @@ cheese_widget_init (CheeseWidget *widget)
   clutter_actor_set_background_color (stage, &black);
   frame = totem_aspect_frame_new ();
 
-  priv->texture = clutter_texture_new ();
+  priv->texture = clutter_actor_new ();
   totem_aspect_frame_set_child (TOTEM_ASPECT_FRAME (frame), priv->texture);
 
   clutter_actor_set_layout_manager (stage, clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_FILL, CLUTTER_BIN_ALIGNMENT_FILL));
@@ -314,7 +314,7 @@ setup_camera (CheeseWidget *widget)
     y_resolution = g_settings_get_int (priv->settings, "photo-y-resolution");
     webcam_device = g_settings_get_string (priv->settings, "camera");
 
-    priv->webcam = cheese_camera_new (CLUTTER_TEXTURE (priv->texture),
+    priv->webcam = cheese_camera_new (priv->texture,
                                       webcam_device, x_resolution,
                                       y_resolution);
 

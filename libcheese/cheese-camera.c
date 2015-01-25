@@ -70,7 +70,7 @@ struct _CheeseCameraPrivate
   GstElement *audio_enc;
   GstElement *video_enc;
 
-  ClutterTexture *video_texture;
+  ClutterActor *video_texture;
 
   GstElement *effect_filter, *effects_capsfilter;
   GstElement *video_balance;
@@ -153,7 +153,7 @@ cheese_camera_photo_data (CheeseCamera *camera, GstSample *sample)
   GdkPixbuf          *pixbuf;
   const gint          bits_per_pixel = 8;
   guchar             *data = NULL;
-  
+
     CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
   GstMapInfo         mapinfo = {0, };
 
@@ -983,6 +983,12 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
   priv->effect_pipeline_is_playing = active;
 }
 
+static void
+cheese_camera_connected_size_change_cb (ClutterGstContent *content, gint width, gint height, ClutterActor *actor)
+{
+  clutter_actor_set_size (actor, width, height);
+}
+
 /**
  * cheese_camera_connect_effect_texture:
  * @camera: a #CheeseCamera
@@ -992,7 +998,7 @@ cheese_camera_toggle_effects_pipeline (CheeseCamera *camera, gboolean active)
  * Connect the supplied @texture to the @camera, using @effect.
  */
 void
-cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterTexture *texture)
+cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect, ClutterActor *texture)
 {
   CheeseCameraPrivate *priv;
   GstElement *effect_filter;
@@ -1014,14 +1020,15 @@ cheese_camera_connect_effect_texture (CheeseCamera *camera, CheeseEffect *effect
 
   effect_filter = cheese_camera_element_from_effect (camera, effect);
 
-  display_element = gst_element_factory_make ("autocluttersink", NULL);
-  if (display_element == NULL)
-  {
-    g_critical ("Unable to create a Clutter sink");
-    return;
-  }
-  g_object_set (G_OBJECT (display_element), "async-handling", FALSE, "texture",
-                texture, NULL);
+  display_element = GST_ELEMENT (clutter_gst_video_sink_new ());
+  g_object_set (G_OBJECT (texture),
+                "content", g_object_new (CLUTTER_GST_TYPE_CONTENT,
+                                         "sink", display_element,
+                                         NULL),
+                NULL);
+
+  g_signal_connect (G_OBJECT (clutter_actor_get_content (texture)),
+                    "size-change", G_CALLBACK (cheese_camera_connected_size_change_cb), texture);
 
   gst_bin_add_many (GST_BIN (priv->video_filter_bin), control_valve, effect_filter, display_queue, display_element, NULL);
 
@@ -1476,7 +1483,7 @@ cheese_camera_init (CheeseCamera *camera)
  * Returns: a new #CheeseCamera
  */
 CheeseCamera *
-cheese_camera_new (ClutterTexture *video_texture, const gchar *camera_device_node,
+cheese_camera_new (ClutterActor *video_texture, const gchar *camera_device_node,
                    gint x_resolution, gint y_resolution)
 {
   CheeseCamera      *camera;
@@ -1510,6 +1517,14 @@ cheese_camera_set_device (CheeseCamera *camera, CheeseCameraDevice *device)
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
   g_object_set (camera, "device", device, NULL);
+}
+
+static void
+cheese_camera_size_change_cb (ClutterGstContent *content, gint width, gint height, CheeseCamera* camera)
+{
+  CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
+
+  clutter_actor_set_size (priv->video_texture, width, height);
 }
 
 /**
@@ -1558,14 +1573,15 @@ cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **
 
   /* Create a clutter-gst sink and set it as camerabin sink*/
 
-  if ((video_sink = gst_element_factory_make ("autocluttersink",
-                                              "cluttersink")) == NULL)
-  {
-    cheese_camera_set_error_element_not_found (error, "autocluttersink");
-    return;
-  }
-  g_object_set (G_OBJECT (video_sink), "texture", priv->video_texture,
-                "async-handling", FALSE, NULL);
+  video_sink = GST_ELEMENT (clutter_gst_video_sink_new ());
+  g_object_set (G_OBJECT (priv->video_texture),
+                "content", g_object_new (CLUTTER_GST_TYPE_CONTENT,
+                                         "sink", video_sink,
+                                         NULL),
+                NULL);
+  g_signal_connect (G_OBJECT (clutter_actor_get_content (priv->video_texture)),
+                    "size-change", G_CALLBACK(cheese_camera_size_change_cb), camera);
+
   g_object_set (G_OBJECT (priv->camerabin), "viewfinder-sink", video_sink, NULL);
 
   /* Set flags to enable conversions*/

@@ -77,7 +77,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     private Clutter.Stage viewport;
     private Clutter.Actor viewport_layout;
-    private Clutter.Texture video_preview;
+    private Clutter.Actor video_preview;
     private Clutter.BinLayout viewport_layout_manager;
     private Clutter.Text countdown_layer;
     private Clutter.Actor background_layer;
@@ -1236,7 +1236,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
         viewport = viewport_widget.get_stage () as Clutter.Stage;
 
-        video_preview = clutter_builder.get_object ("video_preview") as Clutter.Texture;
+        video_preview = clutter_builder.get_object ("video_preview") as Clutter.Actor;
         viewport_layout = clutter_builder.get_object ("viewport_layout") as Clutter.Actor;
         viewport_layout_manager = clutter_builder.get_object ("viewport_layout_manager") as Clutter.BinLayout;
         countdown_layer = clutter_builder.get_object ("countdown_layer") as Clutter.Text;
@@ -1244,7 +1244,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         error_layer = clutter_builder.get_object ("error_layer") as Clutter.Text;
         timeout_layer = clutter_builder.get_object ("timeout_layer") as Clutter.Text;
 
-    video_preview.keep_aspect_ratio = true;
     video_preview.request_mode      = Clutter.RequestMode.HEIGHT_FOR_WIDTH;
     viewport.add_child (background_layer);
     viewport_layout.set_layout_manager (viewport_layout_manager);
@@ -1287,7 +1286,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     this.key_release_event.connect (on_key_release);
   }
 
-    public Clutter.Texture get_video_preview ()
+    public Clutter.Actor get_video_preview ()
     {
         return video_preview;
     }

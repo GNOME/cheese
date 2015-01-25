@@ -33,7 +33,7 @@ namespace Cheese
   public class Camera : GLib.Object
   {
     [CCode (has_construct_function = false)]
-    public Camera (Clutter.Texture video_texture, string camera_device_node, int x_resolution, int y_resolution);
+    public Camera (Clutter.Actor video_texture, string camera_device_node, int x_resolution, int y_resolution);
     public bool                        get_balance_property_range (string property, double min, double max, double def);
     public unowned GLib.PtrArray       get_camera_devices ();
     public unowned Cheese.VideoFormat  get_current_video_format ();
@@ -46,7 +46,7 @@ namespace Cheese
     public void                        set_device (Cheese.CameraDevice device);
     public void                        set_effect (Cheese.Effect effect);
     public void                        toggle_effects_pipeline (bool active);
-    public void                        connect_effect_texture (Cheese.Effect effect, Clutter.Texture texture);
+    public void                        connect_effect_texture (Cheese.Effect effect, Clutter.Actor texture);
     public void                        set_video_format (Cheese.VideoFormat format);
     public void                        setup (string udi) throws GLib.Error;
     public void                        start_video_recording (string filename);

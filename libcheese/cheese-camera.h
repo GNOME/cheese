@@ -95,19 +95,19 @@ typedef enum
 } CheeseCameraError;
 
 GType         cheese_camera_get_type (void);
-CheeseCamera *cheese_camera_new (ClutterTexture *video_texture,
-                                 const gchar    *camera_device_node,
-                                 gint            x_resolution,
-                                 gint            y_resolution);
+CheeseCamera *cheese_camera_new (ClutterActor *video_texture,
+                                 const gchar  *camera_device_node,
+                                 gint          x_resolution,
+                                 gint          y_resolution);
 
 const CheeseVideoFormat *cheese_camera_get_current_video_format (CheeseCamera *camera);
 void                     cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **error);
 void                     cheese_camera_play (CheeseCamera *camera);
 void                     cheese_camera_stop (CheeseCamera *camera);
 void                     cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect);
-void                     cheese_camera_connect_effect_texture (CheeseCamera   *camera,
-                                                               CheeseEffect   *effect,
-                                                               ClutterTexture *texture);
+void                     cheese_camera_connect_effect_texture (CheeseCamera *camera,
+                                                               CheeseEffect *effect,
+                                                               ClutterActor *texture);
 void                cheese_camera_start_video_recording (CheeseCamera *camera, const gchar *filename);
 void                cheese_camera_stop_video_recording (CheeseCamera *camera);
 gboolean            cheese_camera_take_photo (CheeseCamera *camera, const gchar *filename);

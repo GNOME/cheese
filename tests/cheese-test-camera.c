@@ -54,7 +54,7 @@ main (int argc, char **argv)
 
   screen = gtk_clutter_embed_new ();
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (screen));
-  texture = clutter_texture_new ();
+  texture = clutter_actor_new ();
 
   clutter_actor_set_size (texture, 400, 300);
   clutter_actor_add_child (stage, texture);
@@ -62,7 +62,7 @@ main (int argc, char **argv)
   gtk_widget_show (screen);
   clutter_actor_show (texture);
 
-  camera = cheese_camera_new (CLUTTER_TEXTURE (texture), NULL, 640, 480);
+  camera = cheese_camera_new (texture, NULL, 640, 480);
 
   cheese_camera_setup (camera, NULL, NULL);
 
