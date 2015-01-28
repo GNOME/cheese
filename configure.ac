@@ -53,6 +53,7 @@ AC_SUBST([LIBCHEESE_GTK_LT_VERSION], [24:19:1])
 #*******************************************************************************
 AC_SUBST([GETTEXT_PACKAGE], [$PACKAGE_TARNAME])
 AC_DEFINE_UNQUOTED([GETTEXT_PACKAGE], ["$GETTEXT_PACKAGE"], [GETTEXT package name])
+AX_REQUIRE_DEFINED([IT_PROG_INTLTOOL])
 IT_PROG_INTLTOOL([0.50.0])
 
 #*******************************************************************************
@@ -173,9 +174,11 @@ AS_IF([test "x$GLIB_MKENUMS" = "x"],
   [AC_SUBST([GLIB_MKENUMS])
    AC_MSG_RESULT([$GLIB_MKENUMS])])
 
+AX_REQUIRE_DEFINED([GOBJECT_INTROSPECTION_CHECK])
 GOBJECT_INTROSPECTION_CHECK([0.6.7])
 
 # API documentation
+AX_REQUIRE_DEFINED([GTK_DOC_CHECK])
 GTK_DOC_CHECK([1.14], [--flavour no-tmpl])
 
 # Manpage, generated with gtk-doc and xsltproc from DocBook XML.
@@ -201,9 +204,11 @@ AS_IF([test "x$enable_man" != "xno"],
 AM_CONDITIONAL([ENABLE_MAN], [test "x$have_manutils" = "xyes"])
 
 # Mallard help
+AX_REQUIRE_DEFINED([YELP_HELP_INIT])
 YELP_HELP_INIT
 
 # AppData
+AX_REQUIRE_DEFINED([APPSTREAM_XML])
 APPSTREAM_XML
 
 GLIB_GSETTINGS
