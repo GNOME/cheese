@@ -32,7 +32,6 @@ PKG_PROG_PKG_CONFIG([0.24])
 
 AC_SUBST([CHEESE_WFLAGS], ["-Wall -DGSEAL_ENABLE"])
 
-GNOME_MAINTAINER_MODE_DEFINES
 GNOME_COMPILE_WARNINGS([maximum])
 
 #*******************************************************************************
