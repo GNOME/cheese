@@ -283,14 +283,10 @@ static void
 webcam_state_changed (CheeseCamera *camera, GstState state,
                       CheeseWidget *widget)
 {
-    switch (state)
+    if (state == GST_STATE_NULL)
     {
-        case GST_STATE_NULL:
-            cheese_widget_set_problem_page (widget, "error");
-            break;
-        default:
-            /* TODO: Handle other cases. */
-            break;
+        cheese_widget_set_problem_page (widget, "error");
+        /* TODO: Handle other cases. */
     }
 }
 

@@ -190,10 +190,11 @@ static void
 cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
+    GstMessageType type;
 
-  switch (GST_MESSAGE_TYPE (message))
-  {
-    case GST_MESSAGE_WARNING:
+    type = GST_MESSAGE_TYPE (message);
+
+    if (type == GST_MESSAGE_WARNING)
     {
       GError *err = NULL;
       gchar *debug = NULL;
@@ -207,9 +208,8 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       }
 
       g_free (debug);
-      break;
     }
-    case GST_MESSAGE_ERROR:
+    else if (type == GST_MESSAGE_ERROR)
     {
       GError *err = NULL;
       gchar *debug = NULL;
@@ -226,9 +226,8 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
       g_signal_emit (camera, camera_signals[STATE_FLAGS_CHANGED], 0,
                      GST_STATE_NULL);
       g_free (debug);
-      break;
     }
-    case GST_MESSAGE_STATE_CHANGED:
+    else if (type == GST_MESSAGE_STATE_CHANGED)
     {
       if (strcmp (GST_MESSAGE_SRC_NAME (message), "camerabin") == 0)
       {
@@ -241,9 +240,8 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
                                             priv->effect_pipeline_is_playing);
         }
       }
-      break;
     }
-    case GST_MESSAGE_ELEMENT:
+    else if (type == GST_MESSAGE_ELEMENT)
     {
       const GstStructure *structure;
       GstSample *sample;
@@ -286,13 +284,7 @@ cheese_camera_bus_message_cb (GstBus *bus, GstMessage *message, CheeseCamera *ca
           priv->is_recording = FALSE;
         }
       }
-      break;
     }
-    default:
-    {
-      break;
-    }
-  }
 }
 
 /*
