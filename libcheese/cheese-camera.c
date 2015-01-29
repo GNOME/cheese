@@ -1538,7 +1538,7 @@ static void
 cheese_camera_set_device_by_dev_uuid (CheeseCamera *camera, const gchar *uuid)
 {
     CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
-  gint                 i;
+    guint i;
 
   for (i = 0; i < priv->num_camera_devices; i++)
   {
