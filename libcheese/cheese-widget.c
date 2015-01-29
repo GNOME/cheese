@@ -158,6 +158,7 @@ cheese_widget_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
 
     context = gtk_widget_get_style_context (spinner);
     gtk_style_context_get_color (context, gtk_style_context_get_state (context), &fg);
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
     gtk_style_context_get_background_color (context, gtk_style_context_get_state (context), &bg);
 
     gtk_widget_override_color (spinner, i, &bg);
@@ -165,6 +166,7 @@ cheese_widget_spinner_invert (GtkWidget *spinner, GtkWidget *parent)
 
     gtk_widget_override_color (parent, i, &bg);
     gtk_widget_override_background_color (parent, i, &fg);
+G_GNUC_END_IGNORE_DEPRECATIONS
   }
 }
 
@@ -217,7 +219,9 @@ cheese_widget_init (CheeseWidget *widget)
   clutter_actor_set_background_color (stage, &black);
   frame = totem_aspect_frame_new ();
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   priv->texture = clutter_texture_new ();
+G_GNUC_END_IGNORE_DEPRECATIONS
   totem_aspect_frame_set_child (TOTEM_ASPECT_FRAME (frame), priv->texture);
 
   clutter_actor_set_layout_manager (stage, clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_FILL, CLUTTER_BIN_ALIGNMENT_FILL));

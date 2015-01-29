@@ -54,7 +54,9 @@ main (int argc, char **argv)
 
   screen = gtk_clutter_embed_new ();
   stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (screen));
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   texture = clutter_texture_new ();
+G_GNUC_END_IGNORE_DEPRECATIONS
 
   clutter_actor_set_size (texture, 400, 300);
   clutter_actor_add_child (stage, texture);

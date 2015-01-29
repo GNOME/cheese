@@ -98,8 +98,11 @@ cheese_flash_init (CheeseFlash *self)
   gtk_window_set_focus_on_map (window, FALSE);
 
   /* Make it white */
+/* FIXME: Use a custom style provider. */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
   gtk_widget_override_background_color (GTK_WIDGET (window), GTK_STATE_NORMAL,
                                         &white);
+G_GNUC_END_IGNORE_DEPRECATIONS
 
   /* Don't consume input */
   gtk_widget_realize (GTK_WIDGET (window));

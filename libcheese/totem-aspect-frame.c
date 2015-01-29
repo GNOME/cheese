@@ -296,9 +296,12 @@ totem_aspect_frame_paint (ClutterActor *actor)
 
       clutter_actor_get_size (actor, &width, &height);
 
+/* FIXME: Avoid using deprecated COGL API (check Totem). */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
       cogl_clip_push_rectangle (0.0, 0.0, width, height);
       clutter_actor_paint (child);
       cogl_clip_pop ();
+G_GNUC_END_IGNORE_DEPRECATIONS
     }
   else
     clutter_actor_paint (child);
@@ -323,9 +326,12 @@ totem_aspect_frame_pick (ClutterActor       *actor,
 
   if (priv->expand)
     {
+/* FIXME: Avoid using deprecated COGL API (check Totem). */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
       cogl_clip_push_rectangle (0.0, 0.0, box.x2 - box.x1, box.y2 - box.y1);
       clutter_actor_paint (child);
       cogl_clip_pop ();
+G_GNUC_END_IGNORE_DEPRECATIONS
     }
   else
     clutter_actor_paint (child);
