@@ -31,6 +31,8 @@
 #include <clutter/clutter.h>
 #include <clutter-gst/clutter-gst.h>
 #include <gst/gst.h>
+/* Avoid a warning. */
+#define GST_USE_UNSTABLE_API
 #include <gst/basecamerabinsrc/gstcamerabin-enum.h>
 #include <gst/pbutils/encoding-profile.h>
 #include <X11/Xlib.h>
