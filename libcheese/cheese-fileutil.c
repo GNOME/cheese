@@ -163,7 +163,10 @@ cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMod
     case CHEESE_MEDIA_MODE_BURST:
       priv->burst_count++;
       if (strlen (priv->burst_raw_name) == 0)
+      {
+        g_free (priv->burst_raw_name);
         priv->burst_raw_name = g_strdup_printf ("%s%s%s", path, G_DIR_SEPARATOR_S, time_string);
+      }
 
       filename = g_strdup_printf ("%s_%d%s", priv->burst_raw_name, priv->burst_count, CHEESE_PHOTO_NAME_SUFFIX);
       break;
@@ -226,7 +229,8 @@ cheese_fileutil_reset_burst (CheeseFileUtil *fileutil)
     priv = cheese_fileutil_get_instance_private (fileutil);
 
   priv->burst_count    = 0;
-  priv->burst_raw_name = "";
+  g_free (priv->burst_raw_name);
+  priv->burst_raw_name = g_strdup ("");
 }
 
 static void
@@ -237,6 +241,7 @@ cheese_fileutil_finalize (GObject *object)
 
   g_free (priv->video_path);
   g_free (priv->photo_path);
+  g_free (priv->burst_raw_name);
   G_OBJECT_CLASS (cheese_fileutil_parent_class)->finalize (object);
 }
 
@@ -256,7 +261,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
     GSettings *settings;
 
     priv->burst_count = 0;
-    priv->burst_raw_name = "";
+    priv->burst_raw_name = g_strdup ("");
 
     settings = g_settings_new ("org.gnome.Cheese");
 
