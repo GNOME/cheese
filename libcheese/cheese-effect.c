@@ -416,7 +416,7 @@ cheese_effect_load_effects_from_subdirectory (const gchar* directory)
  * #CheeseEffect, or %NULL if no effects could be found
  */
 GList*
-cheese_effect_load_effects ()
+cheese_effect_load_effects (void)
 {
   const gchar * const *data_dirs, *dir;
   GList *effect_list = NULL, *l;

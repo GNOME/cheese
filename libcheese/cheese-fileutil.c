@@ -314,7 +314,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
  * Returns: a new #CheeseFileUtil
  */
 CheeseFileUtil *
-cheese_fileutil_new ()
+cheese_fileutil_new (void)
 {
   static CheeseFileUtil *fileutil = NULL;
 
