@@ -30,9 +30,7 @@ LT_LIB_M
 
 PKG_PROG_PKG_CONFIG([0.24])
 
-AC_SUBST([CHEESE_WFLAGS], ["-Wall"])
-
-GNOME_COMPILE_WARNINGS([maximum])
+AX_COMPILER_FLAGS([WARN_CFLAGS], [WARN_LDFLAGS], [no])
 
 #*******************************************************************************
 # Libraries

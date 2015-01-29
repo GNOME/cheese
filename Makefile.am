@@ -48,7 +48,6 @@ AM_CPPFLAGS = \
 	-I$(top_builddir) \
 	$(CHEESE_CFLAGS) \
 	$(CHEESE_GTK_FLAGS) \
-	$(CHEESE_WFLAGS) \
 	$(WARN_CFLAGS)
 
 AM_VALAFLAGS = \
@@ -75,8 +74,7 @@ lib_LTLIBRARIES = libcheese.la libcheese-gtk.la
 
 libcheese_gtk_la_CFLAGS = \
 	$(CHEESE_CFLAGS) \
-	$(CHEESE_GTK_CFLAGS) \
-	$(CHEESE_WFLAGS)
+	$(CHEESE_GTK_CFLAGS)
 
 libcheese_gtk_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
@@ -95,7 +93,8 @@ libcheese_gtk_la_LDFLAGS = \
 	-version-info $(LIBCHEESE_GTK_LT_VERSION) \
 	-export-symbols $(top_srcdir)/libcheese/cheese-gtk.symbols \
 	-no-undefined \
-	$(AM_LDFLAGS)
+	$(AM_LDFLAGS) \
+	$(WARN_LDFLAGS)
 
 libcheese_gtk_la_SOURCES = \
 	libcheese/cheese-avatar-chooser.c \
@@ -117,8 +116,7 @@ noinst_libcheese_gtk_headers = \
 
 libcheese_la_CFLAGS = \
 	$(CHEESE_CFLAGS) \
-	$(CHEESE_GTK_CFLAGS) \
-	$(CHEESE_WFLAGS)
+	$(CHEESE_GTK_CFLAGS)
 
 libcheese_la_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
@@ -131,7 +129,8 @@ libcheese_la_LIBADD = \
 
 libcheese_la_LDFLAGS = \
 	-version-info $(LIBCHEESE_LT_VERSION) \
-	$(AM_LDFLAGS)
+	$(AM_LDFLAGS) \
+	$(WARN_LDFLAGS)
 
 libcheese_la_SOURCES = \
 	libcheese/cheese-enums.c \
@@ -165,7 +164,7 @@ cheese_HEADERS = \
 if HAVE_INTROSPECTION
 -include $(INTROSPECTION_MAKEFILE)
 INTROSPECTION_COMPILER_ARGS = --includedir=$(top_srcdir)
-INTROSPECTION_SCANNER_ARGS = --add-include-path=$(top_srcdir) --warn-all
+INTROSPECTION_SCANNER_ARGS = --add-include-path=$(top_srcdir)
 
 INTROSPECTION_GIRS = Cheese-3.0.gir
 
@@ -173,7 +172,8 @@ Cheese-3.0.gir: libcheese.la
 Cheese_3_0_gir_CFLAGS = \
 	-I$(top_srcdir)/libcheese \
 	-I$(top_builddir)/libcheese \
-	$(CHEESE_CFLAGS)
+	$(CHEESE_CFLAGS) \
+	$(WARN_CFLAGS)
 Cheese_3_0_gir_FILES = \
 	$(libcheese_la_SOURCES) \
 	$(noinst_libcheese_headers) \
@@ -183,7 +183,10 @@ Cheese_3_0_gir_INCLUDES = \
 	Clutter-1.0 \
 	GdkPixbuf-2.0
 Cheese_3_0_gir_LIBS = libcheese.la
-Cheese_3_0_gir_SCANNERFLAGS = --verbose --warn-all --pkg-export cheese
+Cheese_3_0_gir_SCANNERFLAGS = \
+	--verbose \
+	$(WARN_SCANNERFLAGS) \
+	--pkg-export cheese
 
 girdir = $(datadir)/gir-1.0
 gir_DATA = $(INTROSPECTION_GIRS)
@@ -246,7 +249,8 @@ cheese_LDADD = \
 	libcheese.la \
 	libcheese-gtk.la \
 	$(CHEESE_LIBS) \
-	$(CHEESE_GTK_LIBS)
+	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS)
 
 libexec_PROGRAMS = \
 	gnome-camera-service
@@ -289,7 +293,8 @@ gnome_camera_service_CFLAGS = \
 
 gnome_camera_service_LDADD = \
 	libcheese-gtk.la \
-	$(CHEESE_GTK_LIBS)
+	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS)
 
 EXAMPLES = \
 	tests/cheese-test-camera \
@@ -333,29 +338,34 @@ tests_test_webcam_button_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_cheese_test_camera_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS) \
 	libcheese.la
 tests_cheese_test_chooser_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS) \
 	libcheese.la \
 	libcheese-gtk.la
 tests_cheese_test_flash_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS) \
 	libcheese.la \
 	libcheese-gtk.la
 tests_cheese_test_monitor_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS) \
 	libcheese.la \
 	libcheese-gtk.la
 tests_cheese_test_widget_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS) \
 	libcheese.la \
 	libcheese-gtk.la
-tests_test_service_client_LDADD = $(CHEESE_GTK_LIBS)
-tests_test_webcam_button_LDADD = $(XTEST_LIBS)
+tests_test_service_client_LDADD = $(CHEESE_GTK_LIBS) $(WARN_LDFLAGS)
+tests_test_webcam_button_LDADD = $(XTEST_LIBS) $(WARN_LDFLAGS)
 
 @INTLTOOL_DESKTOP_RULE@
 desktopdir = $(datadir)/applications
@@ -429,6 +439,7 @@ tests_test_libcheese_gtk_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_test_libcheese_gtk_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS) \
+	$(WARN_LDFLAGS) \
 	libcheese-gtk.la \
 	libcheese.la
 
@@ -437,6 +448,7 @@ tests_test_libcheese_SOURCES = \
 tests_test_libcheese_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_test_libcheese_LDADD = \
 	$(CHEESE_LIBS) \
+	$(WARN_LDFLAGS) \
 	libcheese.la
 
 if CHEESE_ENABLE_TESTS
