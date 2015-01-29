@@ -129,10 +129,10 @@ cheese_flash_set_property (GObject      *object,
   switch (prop_id)
   {
     case PROP_PARENT: {
-      GObject *object;
-      object = g_value_get_object (value);
+      GObject *parent;
+      parent = g_value_get_object (value);
       if (object != NULL)
-        priv->parent = g_object_ref (object);
+        priv->parent = g_object_ref (parent);
       else
         priv->parent = NULL;
     }
