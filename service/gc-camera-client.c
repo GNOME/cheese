@@ -66,7 +66,7 @@ gc_camera_client_set_image_data_from_pixbuf (GcCameraClient *self,
     }
 
     g_free (priv->image_data);
-    priv->image_data = g_base64_encode (buffer, length);
+    priv->image_data = g_base64_encode ((const guchar *)buffer, length);
     g_free (buffer);
 
     g_object_notify_by_pspec (G_OBJECT (self), properties[PROP_IMAGE_DATA]);
