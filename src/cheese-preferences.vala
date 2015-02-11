@@ -101,7 +101,7 @@ public PreferencesDialog (Cheese.Camera camera)
   private void initialize_camera_devices ()
   {
     unowned GLib.PtrArray devices = camera.get_camera_devices ();
-    camera_model = new ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
+    camera_model = new Gtk.ListStore (2, typeof (string), typeof (Cheese.CameraDevice));
 
     source_combo.model = camera_model;
     source_combo.sensitive = false;
@@ -120,7 +120,7 @@ public PreferencesDialog (Cheese.Camera camera)
   private void setup_resolutions_for_device (Cheese.CameraDevice device)
   {
     var formats = device.get_format_list ();
-    ListStore resolution_model = new ListStore (2, typeof (string),
+    Gtk.ListStore resolution_model = new Gtk.ListStore (2, typeof (string),
         typeof (Cheese.VideoFormat));
 
     photo_resolution_combo.model = resolution_model;
