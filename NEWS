@@ -1,6 +1,29 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.15.90
+  - Avoid warnings from -Wswitch-enum
+    Check switch statements where several cases are intentionally not
+    handled by using an if instead.
+  - Avoid a preprocessor warning
+  - Fix const cast warnings
+  - Fix signedness comparison error
+  - Fix shadowed variable
+  - Remove old-style function definitions
+  - Fix signed comparison warning in camera service
+  - Update gtkdoc_jh_path_xml_catalog.m4 from gtk-doc
+  - Remove use of GSEAL_ENABLE
+    It is no longer useful with GTK+ 3, where every widget has been sealed.
+  - Remove use of GNOME_MAINTAINER_MODE_DEFINES
+    https://wiki.gnome.org/Projects/GnomeCommon/Migration
+  - Drop use of gnome-autogen.sh
+    https://wiki.gnome.org/Projects/GnomeCommon/Migration
+  - preferences: resolve ambiguous 'ListStore' usage
+    There is now a GLib.ListStore as well, so make sure we use the full name
+    Gtk.ListStore to avoid an ambiguous reference.
+  - Added/Updated Translations
+    - an, courtesy of Daniel Martinez
+
 version 3.15.4
   - Ignore intermediate file with Automake 1.15
   - Removed obsolete variables in autogen.sh
