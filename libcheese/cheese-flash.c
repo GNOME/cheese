@@ -64,14 +64,14 @@ static const gdouble FLASH_LOW_THRESHOLD = 0.01;
  *
  * Private data for #CheeseFlash.
  */
-struct _CheeseFlashPrivate
+typedef struct
 {
   /*< private >*/
   GtkWidget *parent;
   guint flash_timeout_tag;
   guint fade_timeout_tag;
   gdouble opacity;
-};
+} CheeseFlashPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (CheeseFlash, cheese_flash, GTK_TYPE_WINDOW)
 

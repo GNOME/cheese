@@ -17,35 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _CHEESE_FLASH_H_
-#define _CHEESE_FLASH_H_
+#ifndef CHEESE_FLASH_H_
+#define CHEESE_FLASH_H_
 
 #include <gtk/gtk.h>
 #include <glib-object.h>
 
 G_BEGIN_DECLS
-
-#define CHEESE_TYPE_FLASH (cheese_flash_get_type ())
-#define CHEESE_FLASH(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_FLASH, CheeseFlash))
-#define CHEESE_FLASH_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_FLASH, CheeseFlashClass))
-#define CHEESE_IS_FLASH(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_FLASH))
-#define CHEESE_IS_FLASH_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FLASH))
-#define CHEESE_FLASH_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FLASH, CheeseFlashClass))
-
-typedef struct _CheeseFlashPrivate CheeseFlashPrivate;
-typedef struct _CheeseFlashClass CheeseFlashClass;
-typedef struct _CheeseFlash CheeseFlash;
-
-/**
- * CheeseFlashClass:
- *
- * Use the accessor functions below.
- */
-struct _CheeseFlashClass
-{
-  /*< private >*/
-  GtkWindowClass parent_class;
-};
 
 /**
  * CheeseFlash:
@@ -59,11 +37,12 @@ struct _CheeseFlash
   void *unused;
 };
 
-GType        cheese_flash_get_type (void);
-CheeseFlash *cheese_flash_new (GtkWidget *parent);
+#define CHEESE_TYPE_FLASH (cheese_flash_get_type ())
+G_DECLARE_FINAL_TYPE (CheeseFlash, cheese_flash, CHEESE, FLASH, GtkWindow)
 
+CheeseFlash *cheese_flash_new (GtkWidget *parent);
 void cheese_flash_fire (CheeseFlash *flash);
 
 G_END_DECLS
 
-#endif /* _CHEESE_FLASH_H_ */
+#endif /* CHEESE_FLASH_H_ */

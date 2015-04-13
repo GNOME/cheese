@@ -46,10 +46,10 @@ enum
   PROP_LAST
 };
 
-struct _CheeseAvatarChooserPrivate
+typedef struct
 {
   GtkWidget *widget;
-};
+} CheeseAvatarChooserPrivate;
 
 static GParamSpec *properties[PROP_LAST];
 

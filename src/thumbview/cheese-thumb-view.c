@@ -38,6 +38,11 @@ const guint THUMB_VIEW_MINIMUM_HEIGHT = 100;
 
 const gchar CHEESE_OLD_VIDEO_NAME_SUFFIX[] = ".ogv";
 
+struct _CheeseThumbView
+{
+  GtkIconView parent;
+};
+
 typedef struct
 {
   GtkListStore *store;

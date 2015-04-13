@@ -33,6 +33,11 @@
 #include <string.h>
 #include <math.h>
 
+struct _EogThumbNav
+{
+  GtkBox base_instance;
+};
+
 typedef struct
 {
   gboolean show_buttons;

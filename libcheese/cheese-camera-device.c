@@ -94,7 +94,7 @@ enum
 
 static GParamSpec *properties[PROP_LAST];
 
-struct _CheeseCameraDevicePrivate
+typedef struct
 {
   gchar *device_node;
   gchar *uuid;
@@ -105,7 +105,7 @@ struct _CheeseCameraDevicePrivate
   GList   *formats; /* list members are CheeseVideoFormatFull structs. */
 
   GError *construct_error;
-};
+} CheeseCameraDevicePrivate;
 
 G_DEFINE_TYPE_WITH_CODE (CheeseCameraDevice, cheese_camera_device,
                          G_TYPE_OBJECT,

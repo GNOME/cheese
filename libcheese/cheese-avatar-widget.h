@@ -17,38 +17,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef _CHEESE_AVATAR_WIDGET_H_
-#define _CHEESE_AVATAR_WIDGET_H_
+#ifndef CHEESE_AVATAR_WIDGET_H_
+#define CHEESE_AVATAR_WIDGET_H_
 
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
 G_BEGIN_DECLS
-
-#define CHEESE_TYPE_AVATAR_WIDGET (cheese_avatar_widget_get_type ())
-#define CHEESE_AVATAR_WIDGET(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_AVATAR_WIDGET, \
-                                                                           CheeseAvatarWidget))
-#define CHEESE_AVATAR_WIDGET_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_AVATAR_WIDGET, \
-                                                                        CheeseAvatarWidgetClass))
-#define CHEESE_IS_AVATAR_WIDGET(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_AVATAR_WIDGET))
-#define CHEESE_IS_AVATAR_WIDGET_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_AVATAR_WIDGET))
-#define CHEESE_AVATAR_WIDGET_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_AVATAR_WIDGET, \
-                                                                          CheeseAvatarWidgetClass))
-
-typedef struct _CheeseAvatarWidgetPrivate CheeseAvatarWidgetPrivate;
-typedef struct _CheeseAvatarWidgetClass CheeseAvatarWidgetClass;
-typedef struct _CheeseAvatarWidget CheeseAvatarWidget;
-
-/**
- * CheeseAvatarWidgetClass:
- *
- * Use the accessor functions below.
- */
-struct _CheeseAvatarWidgetClass
-{
-  /*< private >*/
-  GtkBinClass parent_class;
-};
 
 /**
  * CheeseAvatarWidget:
@@ -62,11 +37,12 @@ struct _CheeseAvatarWidget
   void *unused;
 };
 
-GType cheese_avatar_widget_get_type (void);
+#define CHEESE_TYPE_AVATAR_WIDGET (cheese_avatar_widget_get_type ())
+G_DECLARE_FINAL_TYPE (CheeseAvatarWidget, cheese_avatar_widget, CHEESE, AVATAR_WIDGET, GtkBin)
 
 GtkWidget *cheese_avatar_widget_new (void);
 GdkPixbuf *cheese_avatar_widget_get_picture (CheeseAvatarWidget *widget);
 
 G_END_DECLS
 
-#endif /* _CHEESE_AVATAR_WIDGET_H_ */
+#endif /* CHEESE_AVATAR_WIDGET_H_ */

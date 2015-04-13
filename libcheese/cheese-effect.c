@@ -42,12 +42,12 @@ enum
 
 static GParamSpec *properties[PROP_LAST];
 
-struct _CheeseEffectPrivate
+typedef struct
 {
   gchar *name;
   gchar *pipeline_desc;
   GstElement *control_valve;
-};
+} CheeseEffectPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (CheeseEffect, cheese_effect, G_TYPE_OBJECT)
 

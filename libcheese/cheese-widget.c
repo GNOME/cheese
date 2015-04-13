@@ -54,7 +54,19 @@ enum
 
 static GParamSpec *properties[PROP_LAST];
 
-struct _CheeseWidgetPrivate
+/**
+ * CheeseWidget:
+ *
+ * Use the accessor functions below.
+ */
+struct _CheeseWidget
+{
+  /*< private >*/
+  GtkNotebook parent_instance;
+  void *unused;
+};
+
+typedef struct
 {
   GtkWidget *spinner;
   GtkWidget *screen;
@@ -64,7 +76,7 @@ struct _CheeseWidgetPrivate
   CheeseCamera *webcam;
   CheeseWidgetState state;
   GError *error;
-};
+} CheeseWidgetPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (CheeseWidget, cheese_widget, GTK_TYPE_NOTEBOOK)
 

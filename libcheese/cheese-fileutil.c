@@ -39,13 +39,13 @@
  * for photos and videos.
  */
 
-struct _CheeseFileUtilPrivate
+typedef struct
 {
   gchar *video_path;
   gchar *photo_path;
   guint  burst_count;
   gchar *burst_raw_name;
-};
+} CheeseFileUtilPrivate;
 
 G_DEFINE_TYPE_WITH_PRIVATE (CheeseFileUtil, cheese_fileutil, G_TYPE_OBJECT)
 

@@ -51,7 +51,7 @@ enum
   IMAGE_PAGE  = 1,
 };
 
-struct _CheeseAvatarWidgetPrivate
+typedef struct
 {
   GtkWidget *notebook;
   GtkWidget *camera;
@@ -61,7 +61,7 @@ struct _CheeseAvatarWidgetPrivate
   GtkSizeGroup *sizegroup;
   CheeseFlash *flash;
   gulong photo_taken_id;
-};
+} CheeseAvatarWidgetPrivate;
 
 static GParamSpec *properties[PROP_LAST];
 

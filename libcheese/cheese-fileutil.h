@@ -19,8 +19,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CHEESE_FILEUTIL_H__
-#define __CHEESE_FILEUTIL_H__
+#ifndef CHEESE_FILEUTIL_H_
+#define CHEESE_FILEUTIL_H_
 
 #include <glib-object.h>
 
@@ -39,28 +39,6 @@
 #define CHEESE_VIDEO_NAME_SUFFIX ".webm"
 
 G_BEGIN_DECLS
-
-#define CHEESE_TYPE_FILEUTIL (cheese_fileutil_get_type ())
-#define CHEESE_FILEUTIL(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), CHEESE_TYPE_FILEUTIL, CheeseFileUtil))
-#define CHEESE_FILEUTIL_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), CHEESE_TYPE_FILEUTIL, CheeseFileUtilClass))
-#define CHEESE_IS_FILEUTIL(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), CHEESE_TYPE_FILEUTIL))
-#define CHEESE_IS_FILEUTIL_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), CHEESE_TYPE_FILEUTIL))
-#define CHEESE_FILEUTIL_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), CHEESE_TYPE_FILEUTIL, CheeseFileUtilClass))
-
-typedef struct _CheeseFileUtilPrivate CheeseFileUtilPrivate;
-typedef struct _CheeseFileUtilClass CheeseFileUtilClass;
-typedef struct _CheeseFileUtil CheeseFileUtil;
-
-/**
- * CheeseFileUtilClass:
- *
- * Use the accessor functions below.
- */
-struct _CheeseFileUtilClass
-{
-  /*< private >*/
-  GObjectClass parent_class;
-};
 
 /**
  * CheeseFileUtil:
@@ -91,9 +69,10 @@ typedef enum
 } CheeseMediaMode;
 
 
-GType           cheese_fileutil_get_type (void);
-CheeseFileUtil *cheese_fileutil_new (void);
+#define CHEESE_TYPE_FILEUTIL (cheese_fileutil_get_type ())
+G_DECLARE_FINAL_TYPE (CheeseFileUtil, cheese_fileutil, CHEESE, FILEUTIL, GObject)
 
+CheeseFileUtil *cheese_fileutil_new (void);
 const gchar *cheese_fileutil_get_video_path (CheeseFileUtil *fileutil);
 const gchar *cheese_fileutil_get_photo_path (CheeseFileUtil *fileutil);
 gchar       *cheese_fileutil_get_new_media_filename (CheeseFileUtil *fileutil, CheeseMediaMode mode);

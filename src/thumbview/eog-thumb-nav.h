@@ -19,8 +19,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifndef __EOG_THUMB_NAV_H__
-#define __EOG_THUMB_NAV_H__
+#ifndef EOG_THUMB_NAV_H_
+#define EOG_THUMB_NAV_H_
 
 #include "cheese-thumb-view.h"
 
@@ -30,27 +30,8 @@
 
 G_BEGIN_DECLS
 
-typedef struct _EogThumbNav EogThumbNav;
-typedef struct _EogThumbNavClass EogThumbNavClass;
-
 #define EOG_TYPE_THUMB_NAV (eog_thumb_nav_get_type ())
-#define EOG_THUMB_NAV(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), EOG_TYPE_THUMB_NAV, EogThumbNav))
-#define EOG_THUMB_NAV_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), EOG_TYPE_THUMB_NAV, EogThumbNavClass))
-#define EOG_IS_THUMB_NAV(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EOG_TYPE_THUMB_NAV))
-#define EOG_IS_THUMB_NAV_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), EOG_TYPE_THUMB_NAV))
-#define EOG_THUMB_NAV_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj), EOG_TYPE_THUMB_NAV, EogThumbNavClass))
-
-struct _EogThumbNav
-{
-  GtkBox base_instance;
-};
-
-struct _EogThumbNavClass
-{
-  GtkBoxClass parent_class;
-};
-
-GType eog_thumb_nav_get_type (void);
+G_DECLARE_FINAL_TYPE (EogThumbNav, eog_thumb_nav, EOG, THUMB_NAV, GtkBox)
 
 GtkWidget *eog_thumb_nav_new (GtkWidget *thumbview,
                               gboolean   show_buttons);
@@ -71,4 +52,4 @@ void eog_thumb_nav_set_policy (EogThumbNav  *nav,
 
 G_END_DECLS
 
-#endif /* __EOG_THUMB_NAV_H__ */
+#endif /* EOG_THUMB_NAV_H__ */
