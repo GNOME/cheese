@@ -50,12 +50,14 @@ struct _CheeseCameraDevice
  * A description of the resolution, in pixels, of the format to capture with a
  * #CheeseCameraDevice.
  */
-typedef struct
+struct _CheeseVideoFormat
 {
   /*< public >*/
   gint width;
   gint height;
-} CheeseVideoFormat;
+};
+
+typedef struct _CheeseVideoFormat CheeseVideoFormat;
 
 GType cheese_video_format_get_type (void);
 
