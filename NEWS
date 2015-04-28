@@ -1,6 +1,21 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.17.1
+  - Silence a gtk-doc undeclared symbol warning
+    Split the typedef of CheeseVideoFormat out, so that gtk-doc does not
+    report an undeclared symbol.
+  - Use G_DECLARE_FINAL_TYPE where possible
+  - icon: install symbolic to symbolic size
+    rather than installing to scalable size, we install
+    to symbolic due to the nominal size of 16x16
+  - Provide a symbolic variant of the application icon
+    Used for the High Contrast theme.
+    The symbolic size has been introduced to hicolor to cope with
+    the nominal size of 16x16 rather than the backward compatible
+    128x128.
+    https://bugzilla.gnome.org/show_bug.cgi?id=747013
+
 version 3.16.0
   - Added/Updated Translations
     - vi, courtesy of Trần Ngọc Quân
