@@ -10,16 +10,16 @@ added_cb (CheeseCameraDeviceMonitor *monitor,
 	  CheeseCameraDevice        *device,
 	  gpointer                   user_data)
 {
-  g_message ("Added new device with ID '%s'", cheese_camera_device_get_uuid (device));
+  g_message ("Added new device with name '%s'", cheese_camera_device_get_name (device));
   g_object_unref (device);
 }
 
 static void
 removed_cb (CheeseCameraDeviceMonitor *monitor,
-            const gchar               *uuid,
+            const gchar               *name,
             gpointer                   user_data)
 {
-  g_message ("Removed device with ID '%s'", uuid);
+  g_message ("Removed device with name '%s'", name);
 }
 
 int

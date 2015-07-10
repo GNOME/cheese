@@ -86,9 +86,7 @@ enum
 {
   PROP_0,
   PROP_NAME,
-  PROP_DEVICE_NODE,
-  PROP_UUID,
-  PROP_V4LAPI_VERSION,
+  PROP_DEVICE,
   PROP_LAST
 };
 
@@ -96,15 +94,12 @@ static GParamSpec *properties[PROP_LAST];
 
 typedef struct
 {
-  gchar *device_node;
-  gchar *uuid;
-  const gchar *src;
-  gchar *name;
-  guint  v4lapi_version;
-  GstCaps *caps;
-  GList   *formats; /* list members are CheeseVideoFormatFull structs. */
+  GstDevice *device;
+  gchar     *name;
+  GstCaps   *caps;
+  GList     *formats; /* list members are CheeseVideoFormatFull structs. */
 
-  GError *construct_error;
+  GError    *construct_error;
 } CheeseCameraDevicePrivate;
 
 G_DEFINE_TYPE_WITH_CODE (CheeseCameraDevice, cheese_camera_device,
@@ -520,101 +515,34 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
 static void
 cheese_camera_device_get_caps (CheeseCameraDevice *device)
 {
-    CheeseCameraDevicePrivate *priv;
-  gchar               *pipeline_desc;
-  GstElement          *pipeline;
-  GstStateChangeReturn ret;
-  GstMessage          *msg;
-  GstBus              *bus;
-  GError              *err = NULL;
+  CheeseCameraDevicePrivate *priv;
+  GstCaps *caps;
 
-    priv = cheese_camera_device_get_instance_private (device);
-  pipeline_desc = g_strdup_printf ("%s name=source device=%s ! fakesink",
-                                   priv->src, priv->device_node);
-  pipeline = gst_parse_launch (pipeline_desc, &err);
-  if ((pipeline != NULL) && (err == NULL))
+  priv = cheese_camera_device_get_instance_private (device);
+
+  caps = gst_device_get_caps (priv->device);
+  if (caps == NULL)
+    caps = gst_caps_new_empty_simple ("video/x-raw");
+
+  gst_caps_unref (priv->caps);
+  priv->caps = cheese_camera_device_filter_caps (device, caps, supported_formats);
+
+  if (!gst_caps_is_empty (priv->caps))
+    cheese_camera_device_update_format_table (device);
+  else
   {
-    /* Start the pipeline and wait for max. 10 seconds for it to start up */
-    gst_element_set_state (pipeline, GST_STATE_READY);
-    ret = gst_element_get_state (pipeline, NULL, NULL, 10 * GST_SECOND);
-
-    /* Check if any error messages were posted on the bus */
-    bus = gst_element_get_bus (pipeline);
-    msg = gst_bus_pop_filtered (bus, GST_MESSAGE_ERROR);
-    gst_object_unref (bus);
-
-    if ((msg == NULL) && (ret == GST_STATE_CHANGE_SUCCESS))
-    {
-      GstElement *src;
-      GstPad     *pad;
-      GstCaps    *caps;
-
-      src = gst_bin_get_by_name (GST_BIN (pipeline), "source");
-
-      GST_LOG ("Device: %s (%s)\n", priv->name, priv->device_node);
-      pad        = gst_element_get_static_pad (src, "src");
-      caps       = gst_pad_get_allowed_caps (pad);
-
-      gst_caps_unref (priv->caps);
-      priv->caps = cheese_camera_device_filter_caps (device, caps, supported_formats);
-
-      if (!gst_caps_is_empty (priv->caps))
-        cheese_camera_device_update_format_table (device);
-      else
-      {
-        g_set_error_literal (&priv->construct_error,
-                             CHEESE_CAMERA_DEVICE_ERROR,
-                             CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS,
-                             _("Device capabilities not supported"));
-      }
-
-      gst_object_unref (pad);
-      gst_caps_unref (caps);
-      gst_object_unref (src);
-    }
-    else
-    {
-      if (msg)
-      {
-        gchar *dbg_info = NULL;
-        gst_message_parse_error (msg, &err, &dbg_info);
-        GST_WARNING ("Failed to start the capability probing pipeline");
-        GST_WARNING ("Error from element %s: %s, %s",
-                     GST_OBJECT_NAME (msg->src),
-                     err->message,
-                     (dbg_info) ? dbg_info : "no extra debug detail");
-        g_error_free (err);
-        err = NULL;
-
-        /* construct_error is meant to be displayed in the UI
-         * (although it currently isn't displayed in cheese),
-         * err->message from gstreamer is too technical for this
-         * purpose, the idea is warn the user about an error and point
-         * him to the logs for more info */
-        g_set_error (&priv->construct_error,
-                     CHEESE_CAMERA_DEVICE_ERROR,
-                     CHEESE_CAMERA_DEVICE_ERROR_FAILED_INITIALIZATION,
-                     _("Failed to initialize device %s for capability probing"),
-                     priv->device_node);
-      }
-    }
-    gst_element_set_state (pipeline, GST_STATE_NULL);
-    gst_object_unref (pipeline);
+    g_set_error_literal (&priv->construct_error,
+                         CHEESE_CAMERA_DEVICE_ERROR,
+                         CHEESE_CAMERA_DEVICE_ERROR_UNSUPPORTED_CAPS,
+                         _("Device capabilities not supported"));
   }
-
-  if (err)
-    g_error_free (err);
-
-  g_free (pipeline_desc);
+  gst_caps_unref (caps);
 }
 
 static void
 cheese_camera_device_constructed (GObject *object)
 {
   CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
-    CheeseCameraDevicePrivate *priv = cheese_camera_device_get_instance_private (device);
-
-  priv->src = (priv->v4lapi_version == 2) ? "v4l2src" : "v4lsrc";
 
   cheese_camera_device_get_caps (device);
 
@@ -633,14 +561,8 @@ cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value
     case PROP_NAME:
       g_value_set_string (value, priv->name);
       break;
-    case PROP_DEVICE_NODE:
-      g_value_set_string (value, priv->device_node);
-      break;
-    case PROP_UUID:
-      g_value_set_string (value, priv->uuid);
-      break;
-    case PROP_V4LAPI_VERSION:
-      g_value_set_uint (value, priv->v4lapi_version);
+    case PROP_DEVICE:
+      g_value_set_object (value, priv->device);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -657,22 +579,15 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
   switch (prop_id)
   {
     case PROP_NAME:
-      if (priv->name)
-        g_free (priv->name);
+      g_free (priv->name);
       priv->name = g_value_dup_string (value);
       break;
-    case PROP_UUID:
-      if (priv->uuid)
-        g_free (priv->uuid);
-      priv->uuid = g_value_dup_string (value);
-      break;
-    case PROP_DEVICE_NODE:
-      if (priv->device_node)
-        g_free (priv->device_node);
-      priv->device_node = g_value_dup_string (value);
-      break;
-    case PROP_V4LAPI_VERSION:
-      priv->v4lapi_version = g_value_get_uint (value);
+    case PROP_DEVICE:
+      if (priv->device)
+        g_object_unref (priv->device);
+      priv->device = g_value_dup_object (value);
+      g_free (priv->name);
+      priv->name = gst_device_get_display_name (priv->device);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -686,8 +601,7 @@ cheese_camera_device_finalize (GObject *object)
   CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
     CheeseCameraDevicePrivate *priv = cheese_camera_device_get_instance_private (device);
 
-  g_free (priv->device_node);
-  g_free (priv->uuid);
+  g_object_unref (priv->device);
   g_free (priv->name);
 
   gst_caps_unref (priv->caps);
@@ -725,44 +639,17 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                G_PARAM_STATIC_STRINGS);
 
   /**
-   * CheeseCameraDevice:device-node:
+   * CheeseCameraDevice:device:
    *
-   * Path to the device node of the video capture device.
+   * GStreamer device object of the video capture device.
    */
-  properties[PROP_DEVICE_NODE] = g_param_spec_string ("device-node",
-                                                      "Device node",
-                                                      "Path to the device node of the video capture device",
-                                                      NULL,
-                                                      G_PARAM_READWRITE |
-                                                      G_PARAM_CONSTRUCT_ONLY |
-                                                      G_PARAM_STATIC_STRINGS);
-
-  /**
-   * CheeseCameraDevice:uuid:
-   *
-   * UUID of the video capture device.
-   */
-  properties[PROP_UUID] = g_param_spec_string ("uuid",
-                                               "Device UUID",
-                                               "UUID of the video capture device",
-                                               NULL,
-                                               G_PARAM_READWRITE |
-                                               G_PARAM_CONSTRUCT_ONLY |
-                                               G_PARAM_STATIC_STRINGS);
-
-  /**
-   * CheeseCameraDevice:v4l-api-version:
-   *
-   * Version of the Video4Linux API that the device supports. Currently, either
-   * 1 or 2 are supported.
-   */
-  properties[PROP_V4LAPI_VERSION] = g_param_spec_uint ("v4l-api-version",
-                                                       "Video4Linux API version",
-                                                       "Version of the Video4Linux API that the device supports",
-                                                       1, 2, 2,
-                                                       G_PARAM_READWRITE |
-                                                       G_PARAM_CONSTRUCT_ONLY |
-                                                       G_PARAM_STATIC_STRINGS);
+  properties[PROP_DEVICE] = g_param_spec_object ("device",
+                                                 "Device",
+                                                 "The GStreamer device object of the video capture device",
+                                                 GST_TYPE_DEVICE,
+                                                 G_PARAM_READWRITE |
+                                                 G_PARAM_CONSTRUCT_ONLY |
+                                                 G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 }
@@ -815,32 +702,21 @@ cheese_camera_device_initable_init (GInitable    *initable,
 
 /**
  * cheese_camera_device_new:
- * @uuid: UUID of the device, as supplied by udev
- * @device_node: (type filename): path to the device node of the video capture
- * device
- * @name: human-readable name of the device, as supplied by udev
- * @v4l_api_version: version of the Video4Linux API that the device uses. Currently
- * either 1 or 2
+ * @device: The GStreamer the device, as supplied by GstDeviceMonitor
  * @error: a location to store errors
  *
- * Tries to create a new #CheeseCameraDevice with the supplied parameters. If
+ * Tries to create a new #CheeseCameraDevice with the supplied device. If
  * construction fails, %NULL is returned, and @error is set.
  *
  * Returns: a new #CheeseCameraDevice, or %NULL
  */
 CheeseCameraDevice *
-cheese_camera_device_new (const gchar *uuid,
-                          const gchar *device_node,
-                          const gchar *name,
-                          guint        v4l_api_version,
-                          GError     **error)
+cheese_camera_device_new (GstDevice *device,
+                          GError    **error)
 {
   return CHEESE_CAMERA_DEVICE (g_initable_new (CHEESE_TYPE_CAMERA_DEVICE,
                                                NULL, error,
-                                               "uuid", uuid,
-                                               "device-node", device_node,
-                                               "name", name,
-                                               "v4l-api-version", v4l_api_version,
+                                               "device", device,
                                                NULL));
 }
 
@@ -887,36 +763,14 @@ cheese_camera_device_get_name (CheeseCameraDevice *device)
 }
 
 /**
- * cheese_camera_device_get_uuid:
- * @device: a #CheeseCameraDevice
- *
- * Get the UUID of the @device, as reported by udev.
- *
- * Returns: (transfer none): the UUID of the video capture device
- */
-const gchar *
-cheese_camera_device_get_uuid (CheeseCameraDevice *device)
-{
-    CheeseCameraDevicePrivate *priv;
-
-  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
-
-    priv = cheese_camera_device_get_instance_private (device);
-
-    return priv->uuid;
-}
-
-/**
  * cheese_camera_device_get_src:
  * @device: a #CheeseCameraDevice
  *
- * Get the name of the source GStreamer element for the @device. Currently,
- * this will be either v4lsrc or v4l2src, depending on the version of the
- * Video4Linux API that the device supports.
+ * Get the source GStreamer element for the @device.
  *
- * Returns: (transfer none): the name of the source GStreamer element
+ * Returns: (transfer full): the source GStreamer element
  */
-const gchar *
+GstElement *
 cheese_camera_device_get_src (CheeseCameraDevice *device)
 {
     CheeseCameraDevicePrivate *priv;
@@ -925,28 +779,7 @@ cheese_camera_device_get_src (CheeseCameraDevice *device)
 
     priv = cheese_camera_device_get_instance_private (device);
 
-    return priv->src;
-}
-
-/**
- * cheese_camera_device_get_device_node:
- * @device: a #CheeseCameraDevice
- *
- * Get the path to the device node associated with the @device.
- *
- * Returns: (transfer none): the path to the device node of the video capture
- * device
- */
-const gchar *
-cheese_camera_device_get_device_node (CheeseCameraDevice *device)
-{
-    CheeseCameraDevicePrivate *priv;
-
-  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
-
-    priv = cheese_camera_device_get_instance_private (device);
-
-    return priv->device_node;
+    return gst_device_create_element (priv->device, NULL);
 }
 
 /**

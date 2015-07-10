@@ -43,8 +43,7 @@ namespace Cheese
     public bool                        has_camera ();
     public void                        play ();
     public void                        set_balance_property (string property, double value);
-    public void                        set_device_by_device_node (string file);
-    public void                        set_device_by_uuid (string uuid);
+    public void                        set_device (Cheese.CameraDevice device);
     public void                        set_effect (Cheese.Effect effect);
     public void                        toggle_effects_pipeline (bool active);
     public void                        connect_effect_texture (Cheese.Effect effect, Clutter.Texture texture);
@@ -77,17 +76,13 @@ namespace Cheese
     public CameraDevice (string uuid, string device_node, string name, int v4lapi_version) throws GLib.Error;
     public Cheese.VideoFormat get_best_format ();
     public Gst.Caps get_caps_for_format (Cheese.VideoFormat format);
-    public unowned string             get_device_node ();
     public GLib.List<unowned Cheese.VideoFormat> get_format_list ();
-    public unowned string             get_uuid ();
     public unowned string             get_name ();
-    public unowned string             get_src ();
+    public Gst.Element                get_src ();
     [NoAccessorMethod]
-    public uint v4l_api_version {get; construct;}
-    public string device_node {get; construct;}
+    public Gst.Device device {get; construct;}
     [NoAccessorMethod]
-    public string uuid {owned get; construct;}
-    public string name {get; construct;}
+    public string name {get;}
   }
 
   [CCode (cheader_filename = "cheese-camera-device-monitor.h")]
@@ -96,8 +91,8 @@ namespace Cheese
     [CCode (has_construct_function = false)]
     public CameraDeviceMonitor ();
     public void                coldplug ();
-    public virtual signal void added (string uuid, string device_file, string product_name, uint api_version);
-    public virtual signal void removed (string id);
+    public virtual signal void added (Gst.Device device);
+    public virtual signal void removed (Gst.Device device);
   }
 
 

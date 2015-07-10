@@ -63,7 +63,7 @@ IT_PROG_INTLTOOL([0.50.0])
 GLIB_REQUIRED="glib-2.0 >= 2.39.90"
 GTK_REQUIRED="gtk+-3.0 >= 3.13.4"
 GDK_PIXBUF_REQUIRED="gdk-pixbuf-2.0"
-GSTREAMER_REQUIRED="gstreamer-pbutils-1.0 gstreamer-plugins-bad-1.0"
+GSTREAMER_REQUIRED="gstreamer-pbutils-1.0 gstreamer-plugins-bad-1.0 >= 1.4"
 LIBGNOMEDESKTOP_REQUIRED="gnome-desktop-3.0"
 CLUTTER_REQUIRED="clutter-1.0 >= 1.13.2"
 CLUTTERGTK_REQUIRED="clutter-gtk-1.0"

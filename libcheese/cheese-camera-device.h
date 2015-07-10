@@ -64,10 +64,7 @@ GType cheese_video_format_get_type (void);
 #define CHEESE_TYPE_CAMERA_DEVICE (cheese_camera_device_get_type ())
 G_DECLARE_FINAL_TYPE (CheeseCameraDevice, cheese_camera_device, CHEESE, CAMERA_DEVICE, GObject)
 
-CheeseCameraDevice *cheese_camera_device_new (const gchar *uuid,
-                                              const gchar *device_node,
-                                              const gchar *name,
-                                              guint        v4l_api_version,
+CheeseCameraDevice *cheese_camera_device_new (GstDevice   *device,
                                               GError     **error);
 
 GstCaps *cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
@@ -76,9 +73,7 @@ CheeseVideoFormat *cheese_camera_device_get_best_format (CheeseCameraDevice *dev
 GList *            cheese_camera_device_get_format_list (CheeseCameraDevice *device);
 
 const gchar *cheese_camera_device_get_name (CheeseCameraDevice *device);
-const gchar *cheese_camera_device_get_src (CheeseCameraDevice *device);
-const gchar *cheese_camera_device_get_uuid (CheeseCameraDevice *device);
-const gchar *cheese_camera_device_get_device_node (CheeseCameraDevice *device);
+GstElement * cheese_camera_device_get_src (CheeseCameraDevice *device);
 
 G_END_DECLS
 

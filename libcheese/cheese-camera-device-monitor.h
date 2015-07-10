@@ -67,9 +67,10 @@ struct _CheeseCameraDeviceMonitorClass
   GObjectClass parent_class;
 
   /*< public >*/
-  void (*added)(CheeseCameraDeviceMonitor *monitor,
-                CheeseCameraDevice        *device);
-  void (*removed)(CheeseCameraDeviceMonitor *monitor, const gchar *uuid);
+  void (*added)   (CheeseCameraDeviceMonitor *monitor,
+                   CheeseCameraDevice        *device);
+  void (*removed) (CheeseCameraDeviceMonitor *monitor,
+                   CheeseCameraDevice        *device);
 };
 
 GType                      cheese_camera_device_monitor_get_type (void);

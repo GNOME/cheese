@@ -84,7 +84,7 @@ struct _CheeseCameraPrivate
   gchar *photo_filename;
 
   guint num_camera_devices;
-  gchar *device_node;
+  CheeseCameraDevice *device;
 
   /* an array of CheeseCameraDevices */
   GPtrArray *camera_devices;
@@ -106,7 +106,7 @@ enum
 {
   PROP_0,
   PROP_VIDEO_TEXTURE,
-  PROP_DEVICE_NODE,
+  PROP_DEVICE,
   PROP_FORMAT,
   PROP_NUM_CAMERA_DEVICES,
   PROP_LAST
@@ -312,34 +312,23 @@ cheese_camera_add_device (CheeseCameraDeviceMonitor *monitor,
 /*
  * cheese_camera_remove_device:
  * @monitor: a #CheeseCameraDeviceMonitor
- * @uuid: UUId of a #CheeseCameraDevice
+ * @device: a #CheeseCameraDevice
  * @camera: a #CheeseCamera
  *
  * Handle the CheeseCameraDeviceMonitor::removed signal and remove the
- * #CheeseCameraDevice associated with the UUID from the list of current
- * devices.
+ * #CheeseCameraDevice from the list of current devices.
  */
 static void
 cheese_camera_remove_device (CheeseCameraDeviceMonitor *monitor,
-                             const gchar               *uuid,
+			     CheeseCameraDevice        *device,
                              CheeseCamera              *camera)
 {
-  guint i;
+  CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
 
-    CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
-
-  for (i = 0; i < priv->num_camera_devices; i++)
+  if (g_ptr_array_remove (priv->camera_devices, (gpointer) device))
   {
-    CheeseCameraDevice *device = (CheeseCameraDevice *) g_ptr_array_index (priv->camera_devices, i);
-    const gchar *device_uuid = cheese_camera_device_get_uuid (device);
-
-    if (strcmp (device_uuid, uuid) == 0)
-    {
-        g_ptr_array_remove (priv->camera_devices, (gpointer) device);
-        priv->num_camera_devices--;
-        g_object_notify_by_pspec (G_OBJECT (camera), properties[PROP_NUM_CAMERA_DEVICES]);
-        break;
-    }
+     priv->num_camera_devices--;
+     g_object_notify_by_pspec (G_OBJECT (camera), properties[PROP_NUM_CAMERA_DEVICES]);
   }
 }
 
@@ -381,44 +370,47 @@ cheese_camera_set_camera_source (CheeseCamera *camera)
 {
     CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
 
-  GError *err = NULL;
-  gchar  *camera_input;
-
-  guint               i;
+  guint i;
   CheeseCameraDevice *selected_camera;
+  GstElement *src, *filter;
+  GstPad *srcpad;
 
   if (priv->video_source)
     gst_object_unref (priv->video_source);
 
   /* If we have a matching video device use that one, otherwise use the first */
   priv->selected_device = 0;
-  selected_camera       = g_ptr_array_index (priv->camera_devices, 0);
+  selected_camera = g_ptr_array_index (priv->camera_devices, 0);
 
   for (i = 1; i < priv->num_camera_devices; i++)
   {
-    CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-    if (g_strcmp0 (cheese_camera_device_get_device_node (device),
-                   priv->device_node) == 0)
+    CheeseCameraDevice *dev = g_ptr_array_index (priv->camera_devices, i);
+    if (dev == priv->device)
     {
-      selected_camera       = device;
+      selected_camera       = dev;
       priv->selected_device = i;
       break;
     }
   }
 
-  camera_input = g_strdup_printf (
-    "%s name=video_source device=%s ! capsfilter name=video_source_filter",
-    cheese_camera_device_get_src (selected_camera),
-    cheese_camera_device_get_device_node (selected_camera));
-
-  priv->video_source = gst_parse_bin_from_description (camera_input, TRUE, &err);
-  g_free (camera_input);
-
+  priv->video_source = gst_bin_new (NULL);
   if (priv->video_source == NULL)
   {
-    g_clear_error(&err);
     return FALSE;
   }
+
+  src = cheese_camera_device_get_src (selected_camera);
+  gst_bin_add (GST_BIN (priv->video_source), src);
+
+  filter = gst_element_factory_make ("capsfilter", "video_source_filter");
+  gst_bin_add (GST_BIN (priv->video_source), filter);
+
+  gst_element_link (src, filter);
+
+  srcpad = gst_element_get_static_pad (filter, "src");
+  gst_element_add_pad (priv->video_source,
+                       gst_ghost_pad_new ("src", srcpad));
+  gst_object_unref (srcpad);
 
   return TRUE;
 }
@@ -1270,7 +1262,7 @@ cheese_camera_finalize (GObject *object)
   if (priv->photo_filename)
     g_free (priv->photo_filename);
   g_free (priv->current_effect_desc);
-  g_free (priv->device_node);
+  g_object_unref (priv->device);
   g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
 
   /* Free CheeseCameraDevice array */
@@ -1296,8 +1288,8 @@ cheese_camera_get_property (GObject *object, guint prop_id, GValue *value,
     case PROP_VIDEO_TEXTURE:
       g_value_set_pointer (value, priv->video_texture);
       break;
-    case PROP_DEVICE_NODE:
-      g_value_set_string (value, priv->device_node);
+    case PROP_DEVICE:
+      g_value_set_object (value, priv->device);
       break;
     case PROP_FORMAT:
       g_value_set_boxed (value, priv->current_format);
@@ -1326,9 +1318,9 @@ cheese_camera_set_property (GObject *object, guint prop_id, const GValue *value,
     case PROP_VIDEO_TEXTURE:
       priv->video_texture = g_value_get_pointer (value);
       break;
-    case PROP_DEVICE_NODE:
-      g_free (priv->device_node);
-      priv->device_node = g_value_dup_string (value);
+    case PROP_DEVICE:
+      g_object_unref (priv->device);
+      priv->device = g_value_dup_object (value);
       break;
     case PROP_FORMAT:
       if (priv->current_format != NULL)
@@ -1422,16 +1414,16 @@ cheese_camera_class_init (CheeseCameraClass *klass)
                                                          G_PARAM_STATIC_STRINGS);
 
   /**
-   * CheeseCamera:device-node:
+   * CheeseCamera:device:
    *
-   * The path to the device node for the video capture device.
+   * The device object to capture from.
    */
-  properties[PROP_DEVICE_NODE] = g_param_spec_string ("device-node",
-                                                      "Device node",
-                                                      "The path to the device node for the video capture device",
-                                                      "",
-                                                      G_PARAM_READWRITE |
-                                                      G_PARAM_STATIC_STRINGS);
+  properties[PROP_DEVICE] = g_param_spec_object ("device",
+                                                 "Device",
+                                                 "The device object to capture from",
+                                                 CHEESE_TYPE_CAMERA_DEVICE,
+                                                 G_PARAM_READWRITE |
+                                                 G_PARAM_STATIC_STRINGS);
 
   /**
    * CheeseCamera:format:
@@ -1506,57 +1498,30 @@ cheese_camera_new (ClutterTexture *video_texture, const gchar *camera_device_nod
 }
 
 /**
- * cheese_camera_set_device_by_device_node:
+ * cheese_camera_set_device:
  * @camera: a #CheeseCamera
- * @file: (type filename): the device node path
+ * @device: the device object
  *
- * Set the active video capture device of the @camera, matching by device node
- * path.
+ * Set the active video capture device of the @camera.
  */
 void
-cheese_camera_set_device_by_device_node (CheeseCamera *camera, const gchar *file)
+cheese_camera_set_device (CheeseCamera *camera, CheeseCameraDevice *device)
 {
   g_return_if_fail (CHEESE_IS_CAMERA (camera));
 
-  g_object_set (camera, "device-node", file, NULL);
-}
-
-/*
- * cheese_camera_set_device_by_uuid:
- * @camera: a #CheeseCamera
- * @uuid: UUID of a #CheeseCameraDevice
- *
- * Set the active video capture device of the @camera, matching by UUID.
- */
-static void
-cheese_camera_set_device_by_dev_uuid (CheeseCamera *camera, const gchar *uuid)
-{
-    CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
-    guint i;
-
-  for (i = 0; i < priv->num_camera_devices; i++)
-  {
-    CheeseCameraDevice *device = g_ptr_array_index (priv->camera_devices, i);
-    if (strcmp (cheese_camera_device_get_uuid (device), uuid) == 0)
-    {
-      g_object_set (camera,
-                    "device-node", cheese_camera_device_get_uuid (device),
-                    NULL);
-      break;
-    }
-  }
+  g_object_set (camera, "device", device, NULL);
 }
 
 /**
  * cheese_camera_setup:
  * @camera: a #CheeseCamera
- * @uuid: (allow-none): UUID of the video capture device, or %NULL
+ * @device: (allow-none): the video capture device, or %NULL
  * @error: return location for a #GError, or %NULL
  *
  * Setup a video capture device.
  */
 void
-cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
+cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **error)
 {
   CheeseCameraPrivate *priv;
   GError  *tmp_error = NULL;
@@ -1575,9 +1540,9 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
     return;
   }
 
-  if (uuid != NULL)
+  if (device != NULL)
   {
-    cheese_camera_set_device_by_dev_uuid (camera, uuid);
+    cheese_camera_set_device (camera, device);
   }
 
 
