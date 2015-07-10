@@ -1596,7 +1596,7 @@ cheese_camera_setup (CheeseCamera *camera, const gchar *uuid, GError **error)
   if ((video_sink = gst_element_factory_make ("autocluttersink",
                                               "cluttersink")) == NULL)
   {
-    cheese_camera_set_error_element_not_found (error, "cluttervideosink");
+    cheese_camera_set_error_element_not_found (error, "autocluttersink");
     return;
   }
   g_object_set (G_OBJECT (video_sink), "texture", priv->video_texture,
