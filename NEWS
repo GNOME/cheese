@@ -1,6 +1,22 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.17.90
+  - Bump the SONAME as the ABI has changed for the clutter-gst-3.0 change
+    and GstDeviceMonitor port.
+  - libcheese: port to clutter-gst 3.0
+    https://bugzilla.gnome.org/show_bug.cgi?id=743496
+  - Fix documentation tests after GstDeviceMonitor
+  - device-monitor: port to GstDeviceMonitor
+    Use GstDeviceMonitor to monitor the GStreamer devices.
+  - camera: avoid confusing error message
+    Report about the name of the missing element instead of some other
+    unrelated string.
+  - Added/Updated Translations
+    - oc, courtesy of Yannig MARCHEGAY (Kokoyaya)
+    - pt, courtesy of Tiago S.
+    - tg, courtesy of Victor Ibragimov
+
 version 3.17.1
   - Silence a gtk-doc undeclared symbol warning
     Split the typedef of CheeseVideoFormat out, so that gtk-doc does not
