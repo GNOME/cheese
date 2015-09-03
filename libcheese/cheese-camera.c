@@ -1474,7 +1474,7 @@ cheese_camera_init (CheeseCamera *camera)
 /**
  * cheese_camera_new:
  * @video_texture: a #ClutterTexture
- * @camera_device_node: (allow-none): the device node path
+ * @name: (allow-none): the name of the device
  * @x_resolution: the resolution width
  * @y_resolution: the resolution height
  *
@@ -1483,19 +1483,25 @@ cheese_camera_init (CheeseCamera *camera)
  * Returns: a new #CheeseCamera
  */
 CheeseCamera *
-cheese_camera_new (ClutterActor *video_texture, const gchar *camera_device_node,
+cheese_camera_new (ClutterActor *video_texture, const gchar *name,
                    gint x_resolution, gint y_resolution)
 {
   CheeseCamera      *camera;
   CheeseVideoFormat format = { x_resolution, y_resolution };
 
-  if (camera_device_node)
+  if (name)
   {
+    /* FIXME: Implement device creation from a name. */
+    g_critical ("%s",
+                "Creating a camera from a device name is not implemented!");
+  }
+#if 0
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
-                           "device-node", camera_device_node,
+                           "device", device,
                            "format", &format, NULL);
   }
   else
+#endif
   {
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
                            "format", &format, NULL);

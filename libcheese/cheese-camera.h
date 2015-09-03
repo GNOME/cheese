@@ -96,7 +96,7 @@ typedef enum
 
 GType         cheese_camera_get_type (void);
 CheeseCamera *cheese_camera_new (ClutterActor *video_texture,
-                                 const gchar  *camera_device_node,
+                                 const gchar  *name,
                                  gint          x_resolution,
                                  gint          y_resolution);
 
