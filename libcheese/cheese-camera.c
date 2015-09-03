@@ -95,6 +95,8 @@ struct _CheeseCameraPrivate
 
   guint eos_timeout_id;
 
+  gchar *initial_name;
+
   CheeseCameraDeviceMonitor *monitor;
 };
 
@@ -1275,6 +1277,7 @@ cheese_camera_finalize (GObject *object)
   /* Free CheeseCameraDevice array */
   g_ptr_array_free (priv->camera_devices, TRUE);
 
+  g_free (priv->initial_name);
   g_clear_object (&priv->monitor);
 
   G_OBJECT_CLASS (cheese_camera_parent_class)->finalize (object);
@@ -1486,28 +1489,20 @@ CheeseCamera *
 cheese_camera_new (ClutterActor *video_texture, const gchar *name,
                    gint x_resolution, gint y_resolution)
 {
-  CheeseCamera      *camera;
-  CheeseVideoFormat format = { x_resolution, y_resolution };
+    CheeseCamera      *camera;
+    CheeseVideoFormat format = { x_resolution, y_resolution };
 
-  if (name)
-  {
-    /* FIXME: Implement device creation from a name. */
-    g_critical ("%s",
-                "Creating a camera from a device name is not implemented!");
-  }
-#if 0
-    camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
-                           "device", device,
-                           "format", &format, NULL);
-  }
-  else
-#endif
-  {
     camera = g_object_new (CHEESE_TYPE_CAMERA, "video-texture", video_texture,
                            "format", &format, NULL);
-  }
 
-  return camera;
+    if (name)
+    {
+        CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
+
+        priv->initial_name = g_strdup (name);
+    }
+
+    return camera;
 }
 
 /**
@@ -1564,6 +1559,22 @@ cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **
   if (device != NULL)
   {
     cheese_camera_set_device (camera, device);
+  }
+  else
+  {
+    guint i;
+
+    for (i = 0; i < priv->num_camera_devices; i++)
+    {
+      device = g_ptr_array_index (priv->camera_devices, i);
+
+      if (g_strcmp0 (cheese_camera_device_get_name (device),
+                     priv->initial_name) == 0)
+      {
+        cheese_camera_set_device (camera, device);
+        break;
+      }
+    }
   }
 
 
