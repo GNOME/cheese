@@ -1271,7 +1271,7 @@ cheese_camera_finalize (GObject *object)
   if (priv->photo_filename)
     g_free (priv->photo_filename);
   g_free (priv->current_effect_desc);
-  g_object_unref (priv->device);
+  g_clear_object (&priv->device);
   g_boxed_free (CHEESE_TYPE_VIDEO_FORMAT, priv->current_format);
 
   /* Free CheeseCameraDevice array */
