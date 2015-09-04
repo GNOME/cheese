@@ -1329,7 +1329,7 @@ cheese_camera_set_property (GObject *object, guint prop_id, const GValue *value,
       priv->video_texture = g_value_get_pointer (value);
       break;
     case PROP_DEVICE:
-      g_object_unref (priv->device);
+      g_clear_object (&priv->device);
       priv->device = g_value_dup_object (value);
       break;
     case PROP_FORMAT:
