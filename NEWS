@@ -1,6 +1,50 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.17.92
+  - Maintain aspect ratio when resizing preview window
+
+    Set content-gravity on the preview actor to
+    CLUTTER_CONTENT_GRAVITY_RESIZE_ASPECT.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=754988
+  - libcheese: Fix a run-time warning
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=754556
+  - libcheese: Fix warning on exit
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=754556
+  - Support a default CheeseCamera device
+
+    Accept a name, stash it inside the camera and then search through all
+    the devices present on the system when setting up the camera. If a match
+    is found, use it, otherwise continue to setup the first device.
+  - Avoid crash when creating the default CheeseWidget
+
+    Update the device argument to cheese_camera_new() to reflect the new use
+    of GstDeviceMonitor, by renaming the device_node argument to name. Emit
+    a critical warning if passing a name, as creating a device by name is
+    not yet supported.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=754506
+  - Added/Updated Translations
+    - cs, courtesy of Marek Černocký
+    - de, courtesy of Bernd Homuth
+    - el, courtesy of Tom Tryfonidis
+    - fa, courtesy of Arash Mousavi
+    - fi, courtesy of Jiri Grönroos
+    - fr, courtesy of Alain Lojewski
+    - gl, courtesy of Fran Dieguez
+    - id, courtesy of Andika Triwidada
+    - is, courtesy of Sveinn í Felli
+    - it, courtesy of Milo Casagrande
+    - ja, courtesy of Tsuji Kento
+    - kk, courtesy of Baurzhan Muftakhidinov
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Aurimas Černius
+    - nb, courtesy of Kjartan Maraas
+    - tr, courtesy of Muhammet Kara
+
 version 3.17.91
   - Add GenericName to desktop file
     https://bugzilla.gnome.org/show_bug.cgi?id=754255
