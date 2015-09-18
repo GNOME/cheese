@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-05 15:11+0000\n"
-"PO-Revision-Date: 2015-09-05 22:31+0200\n"
+"POT-Creation-Date: 2015-09-18 07:49+0000\n"
+"PO-Revision-Date: 2015-09-18 14:12+0200\n"
 "Last-Translator: Bernd Homuth <dev@hmt.im>\n"
 "Language-Team: Deutsch <gnome-de@gnome.org>\n"
 "Language: de\n"
@@ -208,7 +208,7 @@ msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
-"Cheese nutzt Ihre Kamera, um Fotos und Videos aufzunehmen, originelle "
+"Cheese nutzt Ihre Webcam, um Fotos und Videos aufzunehmen, originelle "
 "Effekte anzuwenden und den Spaß mit anderen zu teilen."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
@@ -232,7 +232,6 @@ msgstr ""
 "anderen zu teilen."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
-#| msgid "Cheese Webcam Booth"
 msgid "Webcam Booth"
 msgstr "Webcam-Automat"
 
@@ -242,7 +241,7 @@ msgstr "Cheese Webcam-Automat"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:5
 msgid "photo;video;webcam;"
-msgstr "Foto;Video;Webcam;"
+msgstr "Foto;Video;Webcam;Kamera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -447,7 +446,7 @@ msgstr "Unbekanntes Gerät"
 
 #: ../libcheese/cheese-camera-device.c:687
 msgid "Cancellable initialization not supported"
-msgstr "Abbrechbare Initialisierung wird nicht unterstützt"
+msgstr "Abbrechen während der Initialisierung wird nicht unterstützt"
 
 #: ../src/cheese-application.vala:53
 msgid "Start in wide mode"
@@ -471,7 +470,7 @@ msgstr "Im Vollbildmodus starten"
 
 #: ../src/cheese-application.vala:310
 msgid "Webcam in use"
-msgstr "Kamera in Verwendung"
+msgstr "Verwendete Webcam"
 
 #: ../src/cheese-application.vala:544
 msgid "translator-credits"
@@ -481,7 +480,8 @@ msgstr ""
 "Wolfgang Stöggl <c72578@yahoo.de>\n"
 "Nathan-J. Hirschauer <nathanhirschauer@verfriemelt.org>\n"
 "Mario Blättermann <mario.blaettermann@gmail.com>\n"
-"Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>"
+"Paul Seyfert <pseyfert@mathphys.fsk.uni-heidelberg.de>\n"
+"Bernd Homuth <dev@hmt.im>"
 
 #: ../src/cheese-application.vala:546
 msgid "Cheese Website"
@@ -512,10 +512,22 @@ msgstr "_Löschen"
 #: ../src/cheese-window.vala:267
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
-msgstr[0] ""
-"Wenn Sie ein Element löschen, wird es unwiderruflich verloren gehen."
-msgstr[1] ""
-"Wenn Sie Elemente löschen, werden sie unwiderruflich verloren gehen."
+msgstr[0] "Wenn Sie ein Element löschen, geht es unwiderruflich verloren."
+msgstr[1] "Wenn Sie Elemente löschen, gehen sie unwiderruflich verloren."
+
+#: ../src/cheese-window.vala:291
+#, c-format
+#| msgid "Could not save %s"
+msgid "Could not delete %s"
+msgstr "%s konnte nicht gelöscht werden"
+
+#: ../src/cheese-window.vala:294
+msgid "Skip"
+msgstr "Überspringen"
+
+#: ../src/cheese-window.vala:295
+msgid "Skip all"
+msgstr "Alle überspringen"
 
 #: ../src/cheese-window.vala:340
 #, c-format
@@ -559,16 +571,15 @@ msgstr "Kein Effekt gefunden"
 
 #: ../src/cheese-window.vala:1209
 msgid "There was an error playing video from the webcam"
-msgstr ""
-"Ein Fehler ist beim Abspielen des Videosignals von der Webcam aufgetreten"
+msgstr "Ein Fehler ist beim Abspielen des Webcam-Videosignals aufgetreten"
 
 #: ../src/cheese-window.vala:1323
 msgid "Record a video using a webcam"
-msgstr "Ein Video mit der Web-Kamera aufnehmen"
+msgstr "Ein Video mit der Webcam aufnehmen"
 
 #: ../src/cheese-window.vala:1329
 msgid "Take multiple photos using a webcam"
-msgstr "Mehrere Fotos mit der Web-Kamera aufnehmen"
+msgstr "Mehrere Fotos mit der Webcam aufnehmen"
 
 #: ../src/cheese-window.vala:1341
 msgid "Choose an Effect"
