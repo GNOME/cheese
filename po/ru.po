@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: cheese gnome-2-22\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-17 03:12+0000\n"
-"PO-Revision-Date: 2015-09-17 12:42+0300\n"
+"POT-Creation-Date: 2015-09-18 15:12+0000\n"
+"PO-Revision-Date: 2015-09-18 23:15+0300\n"
 "Last-Translator: Stas Solovey <whats_up@tut.by>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
@@ -228,7 +228,6 @@ msgstr ""
 "сделанные фотографии."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
-#| msgid "Cheese Webcam Booth"
 msgid "Webcam Booth"
 msgstr "Фотовидеобудка"
 
@@ -509,6 +508,20 @@ msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Если вы удалите элемент, он будет безвозвратно утерян"
 msgstr[1] "Если вы удалите элементы, они будут безвозвратно утеряны"
 msgstr[2] "Если вы удалите элементы, они будут безвозвратно утеряны"
+
+#: ../src/cheese-window.vala:291
+#, c-format
+#| msgid "Could not save %s"
+msgid "Could not delete %s"
+msgstr "Не удалось удалить %s"
+
+#: ../src/cheese-window.vala:294
+msgid "Skip"
+msgstr "Пропустить"
+
+#: ../src/cheese-window.vala:295
+msgid "Skip all"
+msgstr "Пропустить все"
 
 #: ../src/cheese-window.vala:340
 #, c-format
