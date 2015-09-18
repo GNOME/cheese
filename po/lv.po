@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-16 03:12+0000\n"
-"PO-Revision-Date: 2015-09-16 14:22+0300\n"
+"POT-Creation-Date: 2015-09-18 15:12+0000\n"
+"PO-Revision-Date: 2015-09-18 22:59+0300\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -226,7 +226,6 @@ msgstr ""
 "bildes un ar tām dalīties ar citiem."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
-#| msgid "Cheese Webcam Booth"
 msgid "Webcam Booth"
 msgstr "Foto būdiņa"
 
@@ -507,6 +506,20 @@ msgstr[0] "Ja izdzēsīsiet vienumu, tas būs neatgriezeniski zudis"
 msgstr[1] "Ja izdzēsīsiet šos vienumus, tie būs neatgriezeniski zuduši"
 msgstr[2] "Ja izdzēsīsiet šos vienumus, tie būs neatgriezeniski zuduši"
 
+#: ../src/cheese-window.vala:291
+#, c-format
+#| msgid "Could not save %s"
+msgid "Could not delete %s"
+msgstr "Nevarēja izdzēst %s"
+
+#: ../src/cheese-window.vala:294
+msgid "Skip"
+msgstr "Izlaist"
+
+#: ../src/cheese-window.vala:295
+msgid "Skip all"
+msgstr "Izlaist visu"
+
 #: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
@@ -570,3 +583,4 @@ msgstr "Ierakstīt video"
 #: ../src/cheese-window.vala:1356
 msgid "Take Multiple Photos"
 msgstr "Uzņemt vairākus foto"
+
