@@ -288,11 +288,11 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
             var error_dialog = new MessageDialog (this,
               Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
               Gtk.MessageType.ERROR, Gtk.ButtonsType.NONE,
-              "Could not delete %s", file.get_path ());
+              _("Could not delete %s"), file.get_path ());
 
             error_dialog.add_button (_("_Cancel"), Gtk.ResponseType.CANCEL);
-            error_dialog.add_button ("Skip", DeleteResponse.SKIP);
-            error_dialog.add_button ("Skip all", DeleteResponse.SKIP_ALL);
+            error_dialog.add_button (_("Skip"), DeleteResponse.SKIP);
+            error_dialog.add_button (_("Skip all"), DeleteResponse.SKIP_ALL);
 
             error_response = error_dialog.run ();
             if (error_response == DeleteResponse.SKIP_ALL) {
