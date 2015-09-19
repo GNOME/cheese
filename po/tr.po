@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-06 03:11+0000\n"
-"PO-Revision-Date: 2015-09-06 07:13+0300\n"
+"POT-Creation-Date: 2015-09-19 03:12+0000\n"
+"PO-Revision-Date: 2015-09-19 10:46+0300\n"
 "Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
 "Language-Team: Türkçe <gnome-turk@gnome.org>\n"
 "Language: tr\n"
@@ -226,7 +226,6 @@ msgstr ""
 "paylaşmak çok kolay."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
-#| msgid "Cheese Webcam Booth"
 msgid "Webcam Booth"
 msgstr "Web Kamerası Standı"
 
@@ -502,6 +501,21 @@ msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Eğer bu öğeleri silerseniz, kalıcı olarak kaybolacaklar"
 
+#: ../src/cheese-window.vala:291
+#, c-format
+msgid "Could not delete %s"
+msgstr "%s silinemedi"
+
+#: ../src/cheese-window.vala:294
+#| msgid "_Skip"
+msgid "Skip"
+msgstr "Atla"
+
+#: ../src/cheese-window.vala:295
+#| msgid "S_kip All"
+msgid "Skip all"
+msgstr "Tümünü atla"
+
 #: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
@@ -661,9 +675,6 @@ msgstr "Çoklu Fotoğraf Çek"
 #~ msgid "<b>Shutter</b>"
 #~ msgstr "<b>Deklanşör</b>"
 
-#~ msgid "Could not delete %s"
-#~ msgstr "%s silinemedi"
-
 #~ msgid "Image properties"
 #~ msgstr "Resim özellikleri"
 
@@ -774,12 +785,6 @@ msgstr "Çoklu Fotoğraf Çek"
 
 #~ msgid "Please refer to the help for further information."
 #~ msgstr "Lütfen daha fazla bilgi için yardıma başvurun."
-
-#~ msgid "_Skip"
-#~ msgstr "_Geç"
-
-#~ msgid "S_kip All"
-#~ msgstr "Hepsini _Geç"
 
 #~ msgid "Delete _All"
 #~ msgstr "Hepsini _Sil"
