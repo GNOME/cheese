@@ -1149,6 +1149,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         texture.content_gravity = Clutter.ContentGravity.RESIZE_ASPECT;
         box.add_child (texture);
         box.reactive = true;
+        box.min_height = 40;
+        box.min_width = 50;
         var tap = new Clutter.TapAction ();
         box.add_action (tap);
         tap.tap.connect (on_selected_effect_change);
