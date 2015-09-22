@@ -1029,7 +1029,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         {
             if (!effect.is_preview_connected ())
             {
-                Clutter.Texture texture = effect.get_data<Clutter.Texture> ("texture");
+                Clutter.Actor texture = effect.get_data<Clutter.Actor> ("texture");
                 camera.connect_effect_texture (effect, texture);
             }
             effect.enable_preview ();
@@ -1135,9 +1135,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       uint i = 0;
       foreach (var effect in effects_manager.effects)
       {
-        Clutter.Texture   texture = new Clutter.Texture ();
-        Clutter.BinLayout layout  = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
-                                                           Clutter.BinAlignment.CENTER);
+        Clutter.Actor texture = new Clutter.Actor ();
+        Clutter.BinLayout layout = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
+                                                          Clutter.BinAlignment.CENTER);
         var box = new Clutter.Actor ();
         box.set_layout_manager (layout);
         Clutter.Text      text = new Clutter.Text ();
@@ -1146,7 +1146,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         rect.opacity = 128;
         rect.background_color = Clutter.Color.from_string ("black");
 
-        texture.keep_aspect_ratio = true;
+        texture.content_gravity = Clutter.ContentGravity.RESIZE_ASPECT;
         box.add_child (texture);
         box.reactive = true;
         var tap = new Clutter.TapAction ();

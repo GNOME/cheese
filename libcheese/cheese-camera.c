@@ -995,7 +995,7 @@ cheese_camera_connected_size_change_cb (ClutterGstContent *content, gint width, 
  * cheese_camera_connect_effect_texture:
  * @camera: a #CheeseCamera
  * @effect: a #CheeseEffect
- * @texture: a #ClutterTexture
+ * @texture: a #ClutterActor
  *
  * Connect the supplied @texture to the @camera, using @effect.
  */
@@ -1476,7 +1476,7 @@ cheese_camera_init (CheeseCamera *camera)
 
 /**
  * cheese_camera_new:
- * @video_texture: a #ClutterTexture
+ * @video_texture: an actor in which to render the video
  * @name: (allow-none): the name of the device
  * @x_resolution: the resolution width
  * @y_resolution: the resolution height
