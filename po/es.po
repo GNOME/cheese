@@ -2,20 +2,21 @@
 # Cheese Spanish translation
 # Copyright (C) 2007 daniel g. siegel <dgsiegel@gnome.org>
 # This file is distributed under the same license as cheese
-#
+# 
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
+# 
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015., 2015.
 #
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-08-31 03:10+0000\n"
-"PO-Revision-Date: 2015-08-31 \n"
+"POT-Creation-Date: 2015-09-22 03:15+0000\n"
+"PO-Revision-Date: 2015-09-22 11:19+0200\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
-"Language-Team: Spanish <gnome-es-list@gnome.org>\n"
+"Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -225,7 +226,6 @@ msgstr ""
 "amigos, sus mascotas o lo que quiera compartir con otros."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
-#| msgid "Cheese Webcam Booth"
 msgid "Webcam Booth"
 msgstr "Fotomatón de cámara web"
 
@@ -408,11 +408,11 @@ msgstr "Sonido del obturador"
 msgid "_Take Another Picture"
 msgstr "Tomar o_tra foto"
 
-#: ../libcheese/cheese-camera.c:430 ../libcheese/cheese-camera.c:1596
+#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Faltan uno o más elementos necesarios de GStreamer: "
 
-#: ../libcheese/cheese-camera.c:1554
+#: ../libcheese/cheese-camera.c:1555
 #, c-format
 msgid "No device found"
 msgstr "No se encontró ningún dispositivo"
@@ -422,7 +422,7 @@ msgstr "No se encontró ningún dispositivo"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1831
+#: ../libcheese/cheese-camera.c:1848
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -503,6 +503,21 @@ msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Si elimina un elemento se perderá permanentemente"
 msgstr[1] "Si elimina los elementos se perderán permanentemente"
+
+#: ../src/cheese-window.vala:291
+#, c-format
+msgid "Could not delete %s"
+msgstr "No se pudo eliminar %s"
+
+#: ../src/cheese-window.vala:294
+#| msgid "_Skip"
+msgid "Skip"
+msgstr "Omitir"
+
+#: ../src/cheese-window.vala:295
+#| msgid "S_kip All"
+msgid "Skip all"
+msgstr "Omitir todo"
 
 #: ../src/cheese-window.vala:340
 #, c-format
@@ -665,10 +680,6 @@ msgstr "Tomar múltiples fotos"
 #~ msgid "<b>Shutter</b>"
 #~ msgstr "<b>Obturador</b>"
 
-#~| msgid "Could not save %s"
-#~ msgid "Could not delete %s"
-#~ msgstr "No se pudo eliminar %s"
-
 #~ msgid "Image properties"
 #~ msgstr "Propiedades de la imagen"
 
@@ -817,12 +828,6 @@ msgstr "Tomar múltiples fotos"
 
 #~ msgid "Please refer to the help for further information."
 #~ msgstr "Para obtener más información consulte la ayuda."
-
-#~ msgid "_Skip"
-#~ msgstr "_Saltar"
-
-#~ msgid "S_kip All"
-#~ msgstr "Sal_tar todo"
 
 #~ msgid "Delete _All"
 #~ msgstr "Borrar _todo"
