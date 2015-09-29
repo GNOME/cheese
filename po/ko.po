@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-05 15:11+0000\n"
-"PO-Revision-Date: 2015-09-06 04:06+0900\n"
+"POT-Creation-Date: 2015-09-29 03:15+0000\n"
+"PO-Revision-Date: 2015-09-29 18:20+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: Korean\n"
@@ -49,7 +49,7 @@ msgstr "연사 모드"
 msgid "Burst"
 msgstr "연사"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "웹캠으로 사진을 찍습니다"
 
@@ -150,7 +150,7 @@ msgid "Capture"
 msgstr "찍기"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "사진 찍기"
 
@@ -500,6 +500,19 @@ msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "항목을 지우면 되살릴 수 없게 됩니다."
 
+#: ../src/cheese-window.vala:291
+#, c-format
+msgid "Could not delete %s"
+msgstr "%s 파일을 삭제할 수 없습니다"
+
+#: ../src/cheese-window.vala:294
+msgid "Skip"
+msgstr "건너뛰기"
+
+#: ../src/cheese-window.vala:295
+msgid "Skip all"
+msgstr "모두 건너뛰기"
+
 #: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
@@ -540,38 +553,26 @@ msgstr "사진 여러 장 찍기"
 msgid "No effects found"
 msgstr "효과가 없습니다"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "웹캠에서 만든 동영상을 재생하는데 오류가 발생했습니다"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "웹캠으로 동영상을 녹화합니다"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "웹캠으로 사진 여러 장을 찍습니다"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "효과 선택"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "동영상 녹화"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "사진 여러 장 찍기"
-
-#~ msgid "Failed to initialize device %s for capability probing"
-#~ msgstr "기능을 알아보기 위한 %s 장치 초기화에 실패했습니다"
-
-#~ msgid "- Take photos and videos from your webcam"
-#~ msgstr "- 웹카메라에서 사진과 동영상을 찍습니다"
-
-#~ msgid ""
-#~ "Run '%s --help' to see a full list of available command line options."
-#~ msgstr ""
-#~ "사용 가능한 명령어 옵션 전체 목록을 보려면 '%s --help' 명령을 실행하십시"
-#~ "오."
