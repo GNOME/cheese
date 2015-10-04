@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-05 15:11+0000\n"
-"PO-Revision-Date: 2015-09-05 19:39+0300\n"
+"POT-Creation-Date: 2015-10-03 03:15+0000\n"
+"PO-Revision-Date: 2015-10-03 09:06+0300\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -51,7 +51,7 @@ msgstr "Sarjakuvaustila"
 msgid "Burst"
 msgstr "Sarjakuva"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "Ota kuva web-kameralla"
 
@@ -152,7 +152,7 @@ msgid "Capture"
 msgstr "Ota kuva"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "Ota kuva"
 
@@ -229,7 +229,6 @@ msgstr ""
 "tai mistä ikinä haluat."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
-#| msgid "Cheese Webcam Booth"
 msgid "Webcam Booth"
 msgstr "Valokuvakoppi"
 
@@ -508,6 +507,20 @@ msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Jos poistat kohteen, se hävitetään lopullisesti"
 msgstr[1] "Jos poistat kohteet, ne hävitetään lopullisesti"
 
+#: ../src/cheese-window.vala:291
+#, c-format
+#| msgid "Could not save %s"
+msgid "Could not delete %s"
+msgstr "Tiedoston %s poistaminen epäonnistui"
+
+#: ../src/cheese-window.vala:294
+msgid "Skip"
+msgstr "Ohita"
+
+#: ../src/cheese-window.vala:295
+msgid "Skip all"
+msgstr "Ohita kaikki"
+
 #: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
@@ -548,27 +561,27 @@ msgstr "Ota useita kuvia"
 msgid "No effects found"
 msgstr "Tehosteita ei löytynyt"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "Web-kamerasta videota avattaessa tapahtui virhe"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "Nauhoita video web-kameralla"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "Ota useita kuvia web-kameralla"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "Valitse tehoste"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "Nauhoita video"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "Ota useita kuvia"
 
