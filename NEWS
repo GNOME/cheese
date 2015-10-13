@@ -1,6 +1,30 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.18.1
+  - Fix resizing and scaling of video preview
+    Allow the preview to expand, and set a reasonable minimum height and
+    width.
+  - Set a minimum effect actor size
+    This allows the effects previews to expand with the size of the window.
+  - Replace some stray references to ClutterTexture
+    Fix rendering into effects previews, although the size of the previews
+    is still incorrect.
+    https://bugzilla.gnome.org/show_bug.cgi?id=755084
+  - Fix German desktop file translation
+  - Added/Updated Translations
+    - ar, courtesy of Khaled Hosny
+    - de, courtesy of Bernd Homuth
+    - eo, courtesy of Kristjan SCHMIDT
+    - es, courtesy of Daniel Mustieles
+    - fi, courtesy of Jiri Grönroos
+    - fur, courtesy of Fabio Tomat
+    - it, courtesy of Milo Casagrande
+    - ko, courtesy of Changwoo Ryu
+    - vi, courtesy of Trần Ngọc Quân
+  - Added/Updated Documentation
+    - ko, courtesy of Youngbin Han
+
 version 3.18.0
   - Mark forgotten strings for translation
     Not a string freeze break.
