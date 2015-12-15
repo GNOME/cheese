@@ -76,25 +76,6 @@ LIBCANBERRA_REQUIRED="libcanberra-gtk3 >= 0.26"
 X11_REQUIRED="x11"
 GNOME_VIDEO_EFFECTS_REQUIRED="gnome-video-effects"
 
-# Libtool requires this, but it is only expanded once anyway.
-AC_CANONICAL_HOST
-
-AC_MSG_CHECKING([host operating system])
-AS_CASE([$host_os],
-  [*linux-*], [AC_MSG_RESULT([Linux])
-    UDEV_REQUIRED="gudev-1.0"],
-  [AC_MSG_RESULT([unsupported operating system])])
-
-AC_MSG_CHECKING([for gudev-1.0])
-AS_IF([test -n "$UDEV_REQUIRED"],
-  [PKG_CHECK_EXISTS([$UDEV_REQUIRED],
-    [AC_MSG_RESULT([found])
-     AC_DEFINE([HAVE_UDEV], [], [Enable gudev support])],
-    [AC_MSG_ERROR([$UDEV_REQUIRED not found])])],
-  [AC_MSG_RESULT([not needed])])
-
-AC_CHECK_HEADERS([sys/videoio.h])
-
 AC_CHECK_HEADER([X11/extensions/XTest.h],
   [AC_CHECK_LIB([Xtst], [XTestFakeKeyEvent],
     [AC_SUBST([XTEST_LIBS], ["-lX11 -lXtst"])])])
@@ -107,14 +88,12 @@ PKG_CHECK_MODULES([CHEESE],
   $GSTREAMER_REQUIRED
   $LIBGNOMEDESKTOP_REQUIRED
   $CLUTTER_REQUIRED
-  $CLUTTERGST_REQUIRED
-  $UDEV_REQUIRED])
+  $CLUTTERGST_REQUIRED])
 
 PKG_CHECK_MODULES([CHEESE_GTK],
   [$GTK_REQUIRED
    $CLUTTERGTK_REQUIRED
-   $LIBCANBERRA_REQUIRED
-   $UDEV_REQUIRED])
+   $LIBCANBERRA_REQUIRED])
 
 PKG_CHECK_EXISTS([$GNOME_VIDEO_EFFECTS_REQUIRED],
                  [],
