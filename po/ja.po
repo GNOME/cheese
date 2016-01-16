@@ -8,16 +8,17 @@
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010-2012.
 # Hajime Taira <htaira@redhat.com>, 2011-2014.
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
-# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013-2015.
 # Tsuji Kento <tuziemon@pclives.org>, 2015.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-13 03:12+0000\n"
-"PO-Revision-Date: 2015-09-13 20:51+0900\n"
-"Last-Translator: Tsuji Kento <tuziemon@pclives.org>\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2015-12-29 04:14+0000\n"
+"PO-Revision-Date: 2015-12-29 16:01+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +50,7 @@ msgstr "連写モード"
 msgid "Burst"
 msgstr "連写"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "ウェブカムを使って写真を撮ります"
 
@@ -150,7 +151,7 @@ msgid "Capture"
 msgstr "キャプチャ"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "写真を撮る"
 
@@ -200,16 +201,30 @@ msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ウェブカムでエフェクトをつけた楽しい写真やビデオを撮ります"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:4
-msgid "Cheese uses your webcam to take photos and videos, applies fancy special effects and lets you share the fun with others."
-msgstr "Cheese は、ウェブカムを使って写真やビデオを撮ることができます。写真やビデオに豪華なエフェクトを適用したり、友達と共有して楽しむことができます。"
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
+msgstr ""
+"Cheese は、ウェブカムを使って写真やビデオを撮ることができます。写真やビデオに"
+"豪華なエフェクトを適用したり、友達と共有して楽しむことができます。"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
-msgid "Take multiple photos in quick succession with burst mode. Use the countdown to give yourself time to strike a pose, and wait for the flash!"
-msgstr "連射モードで連続写真を撮ることができます。セルフタイマー機能も利用でき、しっかりポーズを決めて撮影できます。"
+msgid ""
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"連射モードで連続写真を撮ることができます。セルフタイマー機能も利用でき、しっ"
+"かりポーズを決めて撮影できます。"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:6
-msgid "Under the hood, Cheese uses GStreamer to apply fancy effects to photos and videos. With Cheese it is easy to take photos of you, your friends, pets or whatever you want and share them with others."
-msgstr "Cheese が写真やビデオに豪華なエフェクトを適用するために裏では GStreamer を使用しています。Cheese を使うことで、自分や友人の写真、好きなペットを撮り、他のユーザーと共有することも簡単にできます。"
+msgid ""
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
+msgstr ""
+"Cheese が写真やビデオに豪華なエフェクトを適用するために裏では GStreamer を使"
+"用しています。Cheese を使うことで、自分や友人の写真、好きなペットを撮り、他の"
+"ユーザーと共有することも簡単にできます。"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Webcam Booth"
@@ -221,7 +236,9 @@ msgstr "Cheese ウェブカム・ブース"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:5
 msgid "photo;video;webcam;"
-msgstr "photo;video;webcam;フォト;写真;ビデオ;動画;ウェブカム;ウェブカメラ;movie;ムービー;"
+msgstr ""
+"photo;video;webcam;フォト;写真;ビデオ;動画;ウェブカム;ウェブカメラ;movie;ムー"
+"ビー;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -252,7 +269,9 @@ msgid "Camera device string indicator"
 msgstr "カメラのデバイス名"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
-msgid "The path to the device node which points to the camera, for example /dev/video0"
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
 msgstr "カメラを接続しているデバイスノードへのパスです (例: /dev/video0)。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
@@ -332,24 +351,36 @@ msgid "Video path"
 msgstr "ビデオを保存する場所"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-msgid "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be used."
-msgstr "ビデオを保存するフォルダーです。空の場合は \"XDG_VIDEO/Webcam\" を使用します。"
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
+"will be used."
+msgstr ""
+"ビデオを保存するフォルダーです。空の場合は \"XDG_VIDEO/Webcam\" を使用しま"
+"す。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
 msgstr "写真を保存する場所"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-msgid "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" will be used."
-msgstr "写真を保存するフォルダーです。空の場合は \"XDG_PHOTO/Webcam\" を使用します。"
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
+"will be used."
+msgstr ""
+"写真を保存するフォルダーです。空の場合は \"XDG_PHOTO/Webcam\" を使用します。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
 msgstr "連写モードでの写真の時間間隔"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
-msgid "The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos. If the burst delay is less than the countdown duration, the countdown duration will be used instead."
-msgstr "写真を連続で撮影する時の遅延の間隔をミリ秒単位の長さで設定します。 遅延の間隔がカウントダウンより短い場合は、カウントダウンの長さが 適用されます。"
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr ""
+"写真を連続で撮影する時の遅延の間隔をミリ秒単位の長さで設定します。 遅延の間隔"
+"がカウントダウンより短い場合は、カウントダウンの長さが 適用されます。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
@@ -475,6 +506,19 @@ msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "ファイルを削除すると、元に戻せなくなります。"
 msgstr[1] "ファイルを削除すると、元に戻せなくなります。"
 
+#: ../src/cheese-window.vala:291
+#, c-format
+msgid "Could not delete %s"
+msgstr "%s を削除できませんでした"
+
+#: ../src/cheese-window.vala:294
+msgid "Skip"
+msgstr "スキップ"
+
+#: ../src/cheese-window.vala:295
+msgid "Skip all"
+msgstr "すべてスキップ"
+
 #: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
@@ -515,27 +559,27 @@ msgstr "複数の写真を撮る"
 msgid "No effects found"
 msgstr "エフェクトが見つかりません"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "ウェブカムからビデオを再生する際にエラーが発生しました"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "ウェブカムを使ってビデオを撮影する"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "ウェブカムを使って複数の写真を撮ります"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "エフェクトを選択する"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "ビデオを撮影する"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "複数の写真を撮る"
 
@@ -560,8 +604,11 @@ msgstr "複数の写真を撮る"
 #~ msgid "- Take photos and videos from your webcam"
 #~ msgstr "- ウェブカムで写真やビデオを撮る"
 
-#~ msgid "Run '%s --help' to see a full list of available command line options."
-#~ msgstr "'%s --help' を実行して利用可能なコマンドラインオプションの完全な一覧を参照してください。"
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options."
+#~ msgstr ""
+#~ "'%s --help' を実行して利用可能なコマンドラインオプションの完全な一覧を参照"
+#~ "してください。"
 
 #~ msgid "Stop _Recording"
 #~ msgstr "録画の停止(_R)"
@@ -599,8 +646,12 @@ msgstr "複数の写真を撮る"
 #~ msgid "Whether to start in wide mode"
 #~ msgstr "ワイドモードで開始するかどうか"
 
-#~ msgid "If set to true, Cheese will start up in wide mode, with the image collection placed on the right-hand side. Useful with small screens."
-#~ msgstr "ONにした場合、Cheeseはワイドモードで起動され、画像コレクションが 右側に表示されます。小さな画面で役に立ちます。"
+#~ msgid ""
+#~ "If set to true, Cheese will start up in wide mode, with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
+#~ msgstr ""
+#~ "ONにした場合、Cheeseはワイドモードで起動され、画像コレクションが 右側に表"
+#~ "示されます。小さな画面で役に立ちます。"
 
 #~ msgid "Whether to start in fullscreen"
 #~ msgstr "フルスクリーンモードで起動するかどうか"
