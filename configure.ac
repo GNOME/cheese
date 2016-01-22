@@ -15,6 +15,10 @@ AM_INIT_AUTOMAKE([1.12 -Wall -Wno-portability dist-xz no-define no-dist-gzip nos
 AM_MAINTAINER_MODE([enable])
 AM_SILENT_RULES([yes])
 
+dnl https://github.com/cgwalters/build-api
+dnl We don't support separate builddir when building from git
+echo \#buildapi-variable-no-builddir >/dev/null
+
 # Check for programs
 AC_PROG_CC
 AM_PROG_CC_C_O
