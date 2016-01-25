@@ -1,25 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2013, 2014 David King <davidk@gnome.org -->
-<application>
-    <id type="desktop">org.gnome.Cheese.desktop</id>
-    <metadata_license>CC0-1.0</metadata_license>
-<!-- Both taken from the desktop file. -->
-    <_name>Cheese</_name>
-    <_summary>Take photos and videos with your webcam, with fun graphical effects</_summary>
-    <description>
-        <_p>Cheese uses your webcam to take photos and videos, applies fancy
-        special effects and lets you share the fun with others.</_p>
-        <_p>Take multiple photos in quick succession with burst mode. Use the
-        countdown to give yourself time to strike a pose, and wait for the
-        flash!</_p>
-        <_p>Under the hood, Cheese uses GStreamer to apply fancy effects to
-        photos and videos. With Cheese it is easy to take photos of you, your
-        friends, pets or whatever you want and share them with others.</_p>
-    </description>
-    <url type="homepage">https://wiki.gnome.org/Apps/Cheese</url>
-    <screenshots>
-        <screenshot type="default">http://amigadave.com/temp/cheese-default.png</screenshot>
-    </screenshots>
-    <updatecontact>davidk@gnome.org</updatecontact>
-    <project_group>GNOME</project_group>
-</application>
+<component type="desktop">
+  <id>org.gnome.Cheese.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+
+  <!-- Both taken from the desktop file. -->
+  <_name>Cheese</_name>
+  <_summary>Take photos and videos with your webcam, with fun graphical effects</_summary>
+  <description>
+    <_p>
+      Cheese uses your webcam to take photos and videos, applies fancy
+      special effects and lets you share the fun with others.
+    </_p>
+    <_p>
+      Take multiple photos in quick succession with burst mode.
+      Use the countdown to give yourself time to strike a pose, and wait for the
+      flash!
+    </_p>
+    <_p>
+      Under the hood, Cheese uses GStreamer to apply fancy effects to
+      photos and videos.
+      With Cheese it is easy to take photos of you, your friends, pets or
+      whatever you want and share them with others.
+    </_p>
+  </description>
+  <url type="homepage">https://wiki.gnome.org/Apps/Cheese</url>
+  <url type="bugtracker">https://bugzilla.gnome.org/enter_bug.cgi?product=cheese</url>
+  <url type="donation">http://www.gnome.org/friends/</url>
+  <url type="help">https://help.gnome.org/users/cheese/stable</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>http://amigadave.com/temp/cheese-default.png</image>
+    </screenshot>
+  </screenshots>
+  <update_contact>davidk@gnome.org</update_contact>
+  <project_group>GNOME</project_group>
+  <translation type="gettext">cheese</translation>
+  <project_license><!-- Insert SPDX ID Here --></project_license>
+</component>
