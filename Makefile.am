@@ -397,13 +397,13 @@ appsicon48dir = $(iconthemedir)/48x48/apps
 appsicon256dir = $(iconthemedir)/256x256/apps
 appsiconsymbolicdir = $(iconthemedir)/symbolic/apps
 
-dist_appsicon16_DATA = data/icons/16x16/cheese.png
-dist_appsicon22_DATA = data/icons/22x22/cheese.png
-dist_appsicon24_DATA = data/icons/24x24/cheese.png
-dist_appsicon32_DATA = data/icons/32x32/cheese.png
-dist_appsicon48_DATA = data/icons/48x48/cheese.png
-dist_appsicon256_DATA = data/icons/256x256/cheese.png
-dist_appsiconsymbolic_DATA = data/icons/symbolic/cheese-symbolic.svg
+dist_appsicon16_DATA = data/icons/16x16/org.gnome.Cheese.png
+dist_appsicon22_DATA = data/icons/22x22/org.gnome.Cheese.png
+dist_appsicon24_DATA = data/icons/24x24/org.gnome.Cheese.png
+dist_appsicon32_DATA = data/icons/32x32/org.gnome.Cheese.png
+dist_appsicon48_DATA = data/icons/48x48/org.gnome.Cheese.png
+dist_appsicon256_DATA = data/icons/256x256/org.gnome.Cheese.png
+dist_appsiconsymbolic_DATA = data/icons/symbolic/org.gnome.Cheese-symbolic.svg
 
 update_icon_cache = gtk-update-icon-cache --ignore-theme-index --force
 
