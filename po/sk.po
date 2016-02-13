@@ -9,10 +9,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N"
-"+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-18 07:49+0000\n"
-"PO-Revision-Date: 2015-09-18 16:46+0200\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-02-13 04:15+0000\n"
+"PO-Revision-Date: 2016-02-13 09:32+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7\n"
 
 # GtkToggleButton tooltip
 #: ../data/cheese-main-window.ui.h:1
@@ -55,7 +55,7 @@ msgstr "Sekvenčné snímanie"
 
 # * https://bugzilla.gnome.org/show_bug.cgi?id=695459
 # GtkButton tooltip; dialog title
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "Zosníma fotografiu použitím webovej kamery"
 
@@ -175,7 +175,8 @@ msgstr "Prestávka medzi fotografiami (v sekundách)"
 msgid "Capture"
 msgstr "Zachytenie"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85 ../src/cheese-window.vala:1348
+#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "Zosnímať fotku"
 
@@ -228,40 +229,47 @@ msgstr "Odstrániť"
 # PM: aj ja som za poslovenčenie názvu
 # desktop entry name
 #. Both taken from the desktop file.
-#: ../data/org.gnome.Cheese.appdata.xml.in.h:2 ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2
+#: ../data/org.gnome.Cheese.desktop.in.in.h:1
 #: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
 msgid "Cheese"
 msgstr "Cheese"
 
 # desktop entry comment
-#: ../data/org.gnome.Cheese.appdata.xml.in.h:3 ../data/org.gnome.Cheese.desktop.in.in.h:4
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3
+#: ../data/org.gnome.Cheese.desktop.in.in.h:4
 #: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Sníma fotografie a natáča videá vašou webovou kamerou, so zábavnými grafickými efektami"
+msgstr ""
+"Sníma fotografie a natáča videá vašou webovou kamerou, so zábavnými "
+"grafickými efektami"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:4
 msgid ""
-"Cheese uses your webcam to take photos and videos, applies fancy special effects and lets you share the fun "
-"with others."
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
 msgstr ""
-"Program Cheese využíva vašu webovú kameru na zachytenie fotografií a videí, aplikuje zábavné špeciálne efekty a "
-"umožňuje vám zdieľať zábavu s ostatnými."
+"Program Cheese využíva vašu webovú kameru na zachytenie fotografií a videí, "
+"aplikuje zábavné špeciálne efekty a umožňuje vám zdieľať zábavu s ostatnými."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
 msgid ""
-"Take multiple photos in quick succession with burst mode. Use the countdown to give yourself time to strike a "
-"pose, and wait for the flash!"
+"Take multiple photos in quick succession with burst mode. Use the countdown "
+"to give yourself time to strike a pose, and wait for the flash!"
 msgstr ""
-"Zachyťte viacero fotografií rýchlo za sebou v režime sekvenčného snímania. Použite časovač na odpočítavanie "
-"času, počas ktorého zapózujete a budete čakať na blesk!"
+"Zachyťte viacero fotografií rýchlo za sebou v režime sekvenčného snímania. "
+"Použite časovač na odpočítavanie času, počas ktorého zapózujete a budete "
+"čakať na blesk!"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:6
 msgid ""
-"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and videos. With Cheese it is easy to "
-"take photos of you, your friends, pets or whatever you want and share them with others."
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
 msgstr ""
-"Pod kapotou programu Cheese je GStreamer, pomocou ktorého sa aplikujú zábavné efekty na fotografie a videá. S "
-"programom Cheese viete jednoducho zachytiť fotografie vás, vašich priateľov, zvierat alebo čohokoľvek chcete a "
+"Pod kapotou programu Cheese je GStreamer, pomocou ktorého sa aplikujú "
+"zábavné efekty na fotografie a videá. S programom Cheese viete jednoducho "
+"zachytiť fotografie vás, vašich priateľov, zvierat alebo čohokoľvek chcete a "
 "sprístupniť to ostatným."
 
 # destktop entry FullName
@@ -287,7 +295,8 @@ msgstr "Použiť časovač"
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:2
 msgid "Set to true to show a countdown before taking a photo"
-msgstr "Ak je nastavené na hodnotu Pravda, pred snímaním fotky bude zobrazený časovač"
+msgstr ""
+"Ak je nastavené na hodnotu Pravda, pred snímaním fotky bude zobrazený časovač"
 
 # gsettings summary
 #: ../data/org.gnome.Cheese.gschema.xml.h:3
@@ -307,7 +316,9 @@ msgstr "Spustiť blesk pred zosnímaním fotografie"
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:6
 msgid "Set to true to fire a flash before taking a photo"
-msgstr "Ak je nastavené na hodnotu Pravda, pri zosnímaní fotografie bude použitý blesk"
+msgstr ""
+"Ak je nastavené na hodnotu Pravda, pri zosnímaní fotografie bude použitý "
+"blesk"
 
 # gsettings summary
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
@@ -316,7 +327,9 @@ msgstr "Názov zariadenia kamery"
 
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
-msgid "The path to the device node which points to the camera, for example /dev/video0"
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
 msgstr "Cesta k súboru zariadeniu kamery, napríklad /dev/video0"
 
 # gsettings summary
@@ -416,8 +429,12 @@ msgstr "Cesta k videám"
 
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-msgid "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be used."
-msgstr "Cesta, kde sú uložené videá. Ak je prázdna, použije sa „XDG_VIDEO/Webcam“."
+msgid ""
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
+msgstr ""
+"Cesta, kde sú uložené videá. Ak je prázdna, použije sa „XDG_VIDEOS_DIR/"
+"Webcam“."
 
 # gsettings summary
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
@@ -426,8 +443,12 @@ msgstr "Cesta k fotografiám"
 
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-msgid "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" will be used."
-msgstr "Cesta, kde sú uložené fotografie. Ak je prázdna, použije sa „XDG_PHOTO/Webcam“."
+msgid ""
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
+msgstr ""
+"Cesta, kde sú uložené fotografie. Ak je prázdna, použije sa "
+"„XDG_PICTURES_DIR/Webcam“."
 
 # gsettings summary
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
@@ -437,11 +458,13 @@ msgstr "Čas medzi fotografiami v režime sekvenčného snímania"
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos. If the "
-"burst delay is less than the countdown duration, the countdown duration will be used instead."
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
 msgstr ""
-"Dĺžka prestávky, v milisekundách, pred snímaním každej fotografie v režime sekvenčného snímania. Keď je dĺžka "
-"prestávky kratšia ako dĺžka časovača, bude použitá hodnota časovača."
+"Dĺžka prestávky, v milisekundách, pred snímaním každej fotografie v režime "
+"sekvenčného snímania. Keď je dĺžka prestávky kratšia ako dĺžka časovača, "
+"bude použitá hodnota časovača."
 
 # gsettings summary
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
@@ -453,8 +476,8 @@ msgstr "Počet fotografií v režime sekvenčného snímania"
 msgid "The number of photos to take in a single burst."
 msgstr "Počet naraz zosnímaných fotografií v jednom sekvenčnom snímaní."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264 ../src/cheese-window.vala:293
-#: ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
+#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
 msgid "_Cancel"
 msgstr "_Zrušiť"
 
@@ -635,34 +658,35 @@ msgstr "Zosníma viacero fotografií"
 msgid "No effects found"
 msgstr "Žiadne efekty neboli nájdené"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "Vyskytla sa chyba pri prehrávaní videa z webovej kamery"
 
 # button tooltip
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "Nahrá video použitím webovej kamery"
 
 # button tooltip
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "Zosníma viacero fotografií použitím webovej kamery"
 
 # window title
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "Výber efektu"
 
 # window title
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "Nahrávanie videa"
 
 # button
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "Zosnímať viacero fotografií"
 
 #~ msgid "Failed to initialize device %s for capability probing"
-#~ msgstr "Zlyhala inicializácia zariadenia %s pre zistenie podporovaných funkcií"
+#~ msgstr ""
+#~ "Zlyhala inicializácia zariadenia %s pre zistenie podporovaných funkcií"
