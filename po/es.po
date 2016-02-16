@@ -6,15 +6,15 @@
 # Ricardo González Castro <rick@jinlabs.com>, 2007.
 # Jorge González <jorgegonz@svn.gnome.org>, 2007, 2008, 2009, 2010, 2011.
 # 
-# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015., 2015.
+# Daniel Mustieles <daniel.mustieles@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015., 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-22 03:15+0000\n"
-"PO-Revision-Date: 2015-09-22 11:19+0200\n"
+"POT-Creation-Date: 2016-02-15 04:14+0000\n"
+"PO-Revision-Date: 2016-02-15 13:57+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
 "Language: \n"
@@ -48,7 +48,7 @@ msgstr "Modo ráfaga de fotos"
 msgid "Burst"
 msgstr "Ráfaga"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "Tomar una foto usando una cámara web"
 
@@ -149,7 +149,7 @@ msgid "Capture"
 msgstr "Capturar"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "Tomar una foto"
 
@@ -349,24 +349,30 @@ msgid "Video path"
 msgstr "Ruta de los vídeos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
+#| msgid ""
+#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
+#| "\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Define la ruta donde se almacenarán los vídeos. Si está vacío se usará "
-"\"XDG_VIDEO/Webcam\"."
+"Define la ruta donde se almacenan los vídeos. Si está vacío se usará "
+"\"XDG_VIDEOS_DIR/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
 msgstr "Ruta de las fotos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
+#| msgid ""
+#| "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
+#| "\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Define la ruta donde se almacenarán las fotos, si está vacío se usará "
-"\"XDG_PHOTO/Webcam\"."
+"Define la ruta donde se almacenan las fotos, si está vacío se usará "
+"\"XDG_PICTURES_DIR/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -510,12 +516,10 @@ msgid "Could not delete %s"
 msgstr "No se pudo eliminar %s"
 
 #: ../src/cheese-window.vala:294
-#| msgid "_Skip"
 msgid "Skip"
 msgstr "Omitir"
 
 #: ../src/cheese-window.vala:295
-#| msgid "S_kip All"
 msgid "Skip all"
 msgstr "Omitir todo"
 
@@ -559,27 +563,27 @@ msgstr "Tomar múltiples fotos"
 msgid "No effects found"
 msgstr "No se encontró ningún efecto"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "Hubo un error al reproducir el vídeo de la cámara web"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "Grabar un vídeo usando una cámara web"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "Tomar varias fotos usando una cámara web"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "Elegir un efecto"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "Grabar un vídeo"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "Tomar múltiples fotos"
 
