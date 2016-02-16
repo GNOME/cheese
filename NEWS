@@ -1,6 +1,60 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.19.90
+  - Use same alias as upstream for XDG directories
+    https://bugzilla.gnome.org/show_bug.cgi?id=761952
+  - Rename icon to match application namespace
+    This is required in preparation for xdg-app.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=761197
+  - Drop udev dependency
+    All that udev was used for is now covered by GstDeviceMonitor.
+  - Add a missing tag to the AppData file
+  - Update the AppData to spec version 0.7+
+  - build-sys: Annotate we don't support srcdir != builddir from git
+    Due to vala.
+  - Fix resizing and scaling of video preview
+    Allow the preview to expand, and set a reasonable minimum height and
+    width.
+  - Set a minimum effect actor size
+    This allows the effects previews to expand with the size of the window.
+  - Replace some stray references to ClutterTexture
+    Fix rendering into effects previews, although the size of the previews
+    is still incorrect.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=755084
+  - Fix German desktop file translation
+  - Added/Updated Translations
+    - an, courtesy of Daniel
+    - ar, courtesy of Khaled Hosny
+    - de, courtesy of Mario Blättermann
+    - eo, courtesy of Kristjan SCHMIDT
+    - es, courtesy of Daniel Mustieles
+    - eu, courtesy of Inaki Larranaga Murgoitio
+    - fi, courtesy of Jiri Grönroos
+    - fur, courtesy of Fabio Tomat
+    - he, courtesy of Yosef Or Boczko
+    - hu, courtesy of Meskó Balázs
+    - it, courtesy of Milo Casagrande
+    - ja, courtesy of Jiro Matsuzawa
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Aurimas Černius
+    - pl, courtesy of Piotr Drąg
+    - pt_BR, courtesy of Rafael Fontenelle
+    - sk, courtesy of Dušan Kazik
+    - sl, courtesy of Matej Urbančič
+    - sv, courtesy of Anders Jonsson
+    - th, courtesy of Akom Chotiphantawanon
+    - uk, courtesy of Daniel Korostil
+    - vi, courtesy of Trần Ngọc Quân
+    - zh_CN, courtesy of Dean Chen
+  - Added/Updated Documentation
+    - es, courtesy of Daniel Mustieles
+    - ko, courtesy of Youngbin Han
+    - nl, courtesy of Hannie Dumoleyn
+    - sv, courtesy of Sebastian Rasmussen
+
 version 3.18.0
   - Mark forgotten strings for translation
     Not a string freeze break.
