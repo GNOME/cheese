@@ -4,15 +4,15 @@
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
 # Raivis Dejus <orvils@gmail.com>, 2009.
-# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2009, 2010, 2011, 2012, 2013, 2014, 2015.
+# Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016.
 # Peteris Krisjanis <pecisk@gmail.com>, 2010.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-18 15:12+0000\n"
-"PO-Revision-Date: 2015-09-18 22:59+0300\n"
+"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&"
+"keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2016-03-01 16:14+0000\n"
+"PO-Revision-Date: 2016-03-01 20:47+0200\n"
 "Last-Translator: Rūdolfs Mazurs <rudolfs.mazurs@gmail.com>\n"
 "Language-Team: Latvian <lata-l10n@googlegroups.com>\n"
 "Language: lv\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 "X-Launchpad-Export-Date: 2009-01-04 12:24+0000\n"
 
 #: ../data/cheese-main-window.ui.h:1
@@ -48,7 +48,7 @@ msgstr "Foto šalts režīms"
 msgid "Burst"
 msgstr "Šalts"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "Uzņemt fotogrāfiju ar tīmekļa kameru"
 
@@ -149,7 +149,7 @@ msgid "Capture"
 msgstr "Uzņemt"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "Uzņemt foto"
 
@@ -348,11 +348,15 @@ msgid "Video path"
 msgstr "Video ceļš"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
+#| msgid ""
+#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
+#| "\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Nosaka ceļu, kur tiek saglabāti video. Ja tukšs, tiks izmantots “XDG_VIDEO/"
+"Nosaka ceļu, kur tiek saglabāti video. Ja tukšs, tiks izmantots "
+"“XDG_VIDEOS_DIR/"
 "Webcam”."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
@@ -360,12 +364,15 @@ msgid "Photo path"
 msgstr "Foto ceļš"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
+#| msgid ""
+#| "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
+#| "\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
 msgstr ""
 "Definē ceļu, kur tiek saglabātas fotogrāfijas. Ja tukšs, tiks izmantots "
-"“XDG_PHOTO/Webcam”."
+"“XDG_PICTURES_DIR/Webcam”."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -508,7 +515,6 @@ msgstr[2] "Ja izdzēsīsiet šos vienumus, tie būs neatgriezeniski zuduši"
 
 #: ../src/cheese-window.vala:291
 #, c-format
-#| msgid "Could not save %s"
 msgid "Could not delete %s"
 msgstr "Nevarēja izdzēst %s"
 
@@ -560,27 +566,27 @@ msgstr "Uzņemt vairākus foto"
 msgid "No effects found"
 msgstr "Efekti nav atrasti"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "Gadījās kļūda, atskaņojot video no tīmekļa kameras"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "Ierakstīt video, izmantojot tīmekļa kameru"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "Uzņemt vairākus foto, izmantojot tīmekļa kameru"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "Izvēlieties efektu"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "Ierakstīt video"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "Uzņemt vairākus foto"
 
