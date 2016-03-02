@@ -8,15 +8,15 @@
 # Tommi Vainikainen <Tommi.Vainikainen@iki.fi>, 2008-2011.
 # Ilkka Tuohela <hile@iki.fi>, 2008.
 # Timo Jyrinki <timo.jyrinki@iki.fi>, 2010.
-# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2014, 2015.
+# Jiri Grönroos <jiri.gronroos+l10n@iki.fi>, 2012, 2013, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-03 03:15+0000\n"
-"PO-Revision-Date: 2015-10-03 09:06+0300\n"
+"POT-Creation-Date: 2016-03-02 16:16+0000\n"
+"PO-Revision-Date: 2016-03-02 22:13+0200\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos+l10n@iki.fi>\n"
 "Language-Team: suomi <gnome-fi-laatu@lists.sourceforge.net>\n"
 "Language: fi\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 "X-POT-Import-Date: 2012-02-19 15:16:40+0000\n"
 
 #: ../data/cheese-main-window.ui.h:1
@@ -351,24 +351,30 @@ msgid "Video path"
 msgstr "Videoiden tallennuspolku"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
+#| msgid ""
+#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
+#| "\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Polku johon videotiedostot tallennetaan. Oletusarvoisesti käytetään polkua "
-"\"XDG_VIDEO/Webcam\"."
+"Polku, johon videotiedostot tallennetaan. Oletusarvoisesti käytetään polkua "
+"\"XDG_VIDEO_DIR/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
 msgstr "Valokuvien tallennuspolku"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
+#| msgid ""
+#| "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
+#| "\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Polku johon kuvatiedostot tallennetaan. Oletusarvoisesti käytetään polkua "
-"\"XDG_PHOTO/Webcam\"."
+"Polku, johon kuvatiedostot tallennetaan. Oletusarvoisesti käytetään polkua "
+"\"XDG_PHOTO_DIR/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -509,7 +515,6 @@ msgstr[1] "Jos poistat kohteet, ne hävitetään lopullisesti"
 
 #: ../src/cheese-window.vala:291
 #, c-format
-#| msgid "Could not save %s"
 msgid "Could not delete %s"
 msgstr "Tiedoston %s poistaminen epäonnistui"
 
