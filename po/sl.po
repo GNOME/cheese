@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the cheese package
 #
 # Deni Bačić <baccic@gmail.com>, 2007.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007-2015.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007-2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-12-13 16:13+0000\n"
-"PO-Revision-Date: 2015-12-13 19:28+0100\n"
+"POT-Creation-Date: 2016-03-03 21:27+0100\n"
+"PO-Revision-Date: 2016-03-03 21:28+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
 "Language: sl_SI\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.4\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -350,11 +350,11 @@ msgstr "Pot do videa"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Določa pot, kjer so shranjeni posnetki. V primeru, da možnost ni izbrana, je "
-"privzeto določena pot \"XDG_VIDEO/Webcam\"."
+"Določa pot, kjer so shranjeni video posnetki. Če polje ni izpolnjeno, bo "
+"uporabljena mapa\"XDG_VIDEOS_DIR/Webcam\""
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -362,11 +362,11 @@ msgstr "Pot do slik"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Določa pot, kjer so shranjene slike. V primeru, da možnost ni izbrana, je "
-"privzeto določena pot \"XDG_PHOTO/Webcam\"."
+"Določa pot, kjer so shranjene slike. Če polje ni izpolnjeno, bo uporabljena "
+"mapa\"XDG_PICTURES_DIR/Webcam\""
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -582,6 +582,20 @@ msgstr "Snemanje videa"
 #: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "Zajem več fotografij"
+
+#~ msgid ""
+#~ "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Določa pot, kjer so shranjeni posnetki. V primeru, da možnost ni izbrana, "
+#~ "je privzeto določena pot \"XDG_VIDEO/Webcam\"."
+
+#~ msgid ""
+#~ "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
+#~ "\" will be used."
+#~ msgstr ""
+#~ "Določa pot, kjer so shranjene slike. V primeru, da možnost ni izbrana, je "
+#~ "privzeto določena pot \"XDG_PHOTO/Webcam\"."
 
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr "Začenjanje naprave %s za preiskovanje zmožnosti je spodletelo"
