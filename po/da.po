@@ -1,29 +1,29 @@
-# Cheese Danish translation
+# Danish translation for Cheese.
 # Copyright (C) 2008-09, 2013 daniel g. siegel <dgsiegel@gmail.com>
 # This file is distributed under the same license as cheese
 # Anders K. Madsen <madsen@lillesvin.net>, 2007.
 # Kenneth Nielsen <k.nielsen81@mail.com>, 2008-12, 2014.
 # Ask Hjorth Larsen <asklarsen@gmail.com>, 2013.
-#
+# scootergrisen, 2015, 2016.
 # Ordliste
 # burst (i burst mode) -> serietilstand
 # photo -> billede
-#
 # Ordlistkontrol version 1
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-20 20:16+0200\n"
-"PO-Revision-Date: 2015-09-20 19:07+0200\n"
-"Last-Translator: Kenneth Nielsen <k.nielsen81@gmail.com>\n"
+"POT-Creation-Date: 2016-03-19 02:43+0100\n"
+"PO-Revision-Date: 2016-03-03 00:50+0200\n"
+"Last-Translator: scootergrisen\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -49,7 +49,7 @@ msgstr "Serietilstand"
 msgid "Burst"
 msgstr "Serie"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "Tag et billede med et webkamera"
 
@@ -143,14 +143,14 @@ msgstr "Antal billeder"
 
 #: ../data/cheese-prefs.ui.h:18
 msgid "Delay between photos (seconds)"
-msgstr "Forsinkelse mellem billeder (sek.)"
+msgstr "Forsinkelse mellem billeder (sekunder)"
 
 #: ../data/cheese-prefs.ui.h:19
 msgid "Capture"
 msgstr "Optag"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "Tag et billede"
 
@@ -239,7 +239,7 @@ msgstr "Cheese - webkamerastand"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:5
 msgid "photo;video;webcam;"
-msgstr "billede;foto;video;webkamera;"
+msgstr "billede;foto;video;webcam;webkamera;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -273,7 +273,7 @@ msgstr "Kamerasenhedsindikatorstreng"
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
-msgstr "Stien til kameraets enhedsfil f.eks. /dev/video0"
+msgstr "Stien til kameraets enhedsfil. F.eks. /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -353,11 +353,11 @@ msgstr "Videosti"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Definerer den sti hvor videoer vil blive gemt. Hvis den er tom vil "
-"\"XDG_VIDEO/Webcam\" blive brugt."
+"Definerer stien hvor videoer vil blive gemt. Hvis den er tom vil "
+"\"XDG_VIDEOS_DIR/Webcam\" blive brugt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -365,11 +365,11 @@ msgstr "Billedsti"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Definerer den sti hvor billeder vil blive gemt. Hvis den er tom vil "
-"\"XDG_PHOTO/Webcam\" blive brugt."
+"Definerer stien hvor billeder vil blive gemt. Hvis den er tom vil "
+"\"XDG_PICTURES_DIR/Webcam\" blive brugt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -561,27 +561,27 @@ msgstr "Tag flere billeder"
 msgid "No effects found"
 msgstr "Ingen effekter fundet"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "Der opstod en fejl under afspilning af video fra webkamera"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "Optag en video med et webkamera"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "Tag flere billeder med et webkamera"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "Vælg en effekt"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "Optag en video"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "Tag flere billeder"
 
