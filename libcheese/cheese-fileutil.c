@@ -26,6 +26,7 @@
 #include <glib.h>
 #include <gio/gio.h>
 #include <string.h>
+#include <glib/gi18n-lib.h>
 
 #include "cheese-fileutil.h"
 
@@ -279,7 +280,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
         /* Get XDG. */
         if (video_path)
         {
-            priv->video_path = g_build_filename (video_path, "Webcam", NULL);
+            priv->video_path = g_build_filename (video_path, _("Webcam"), NULL);
         }
         else
         {
@@ -299,7 +300,7 @@ cheese_fileutil_init (CheeseFileUtil *fileutil)
         /* Get XDG. */
         if (photo_path)
         {
-            priv->photo_path = g_build_filename (photo_path, "Webcam", NULL);
+            priv->photo_path = g_build_filename (photo_path, _("Webcam"), NULL);
         }
         else
         {
