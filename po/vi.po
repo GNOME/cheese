@@ -1,18 +1,18 @@
 # Vietnamese translation for Cheese.
 # Bản dịch tiếng Việt dành cho Cheese.
-# Copyright © 2015 GNOME i18n Project for Vietnamese.
+# Copyright © 2016 GNOME i18n Project for Vietnamese.
 # This file is distributed under the same license as the cheese package.
 # Clytie Siddall <clytie@riverland.net.au>, 2008, 2009.
 # Nguyễn Thái Ngọc Duy <pclouds@gmail.com>, 2008, 2012.
-# Trần Ngọc Quân <vnwildman@gmail.com>, 2014, 2015.
+# Trần Ngọc Quân <vnwildman@gmail.com>, 2014, 2015, 2016.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese master\n"
+"Project-Id-Version: cheese gnome-3-20\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-25 15:15+0000\n"
-"PO-Revision-Date: 2015-09-26 07:16+0700\n"
+"POT-Creation-Date: 2016-03-26 16:16+0000\n"
+"PO-Revision-Date: 2016-03-27 07:29+0700\n"
 "Last-Translator: Trần Ngọc Quân <vnwildman@gmail.com>\n"
 "Language-Team: Vietnamese <gnome-vi-list@gnome.org>\n"
 "Language: vi\n"
@@ -233,7 +233,7 @@ msgstr "Trang chủ Cheese"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:5
 msgid "photo;video;webcam;"
-msgstr "photo;chụp;chup;thu;ảnh;anh;video;quay;phim;phim;webcam;"
+msgstr "photo;chụp;chup;thu;ảnh;anh;video;quay;phim;webcam;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -267,7 +267,7 @@ msgstr "Chuỗi chỉ thị máy ảnh"
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
-msgstr "Chuỗi thiết bị mà chỉ tới máy ảnh, ví dụ như /dev/video0"
+msgstr "Đường dẫn đến nút thiết bị mà chỉ tới máy ảnh, ví dụ như /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -347,11 +347,11 @@ msgstr "Đường dẫn phim"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"Xác định đường dẫn theo đó cần lưu lại các phim. Bỏ trống thì dùng "
-"“XDG_VIDEO/Webcam”."
+"Xác định đường dẫn để các phim được lưu tại đó. Bỏ trống thì dùng "
+"\"XDG_VIDEOS_DIR/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -359,11 +359,11 @@ msgstr "Đường dẫn ảnh chụp"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
 msgstr ""
 "Định nghĩa đường dẫn nơi dùng để lưu các ảnh chụp. Bỏ trống thì dùng "
-"“XDG_PHOTO/Webcam”."
+"\"XDG_PICTURES_DIR/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
