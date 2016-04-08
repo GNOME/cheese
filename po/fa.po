@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-11 03:12+0000\n"
-"PO-Revision-Date: 2015-09-11 23:46+0430\n"
+"POT-Creation-Date: 2016-04-08 15:16+0000\n"
+"PO-Revision-Date: 2016-04-08 20:59+0430\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian <>\n"
 "Language: fa\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -46,7 +46,7 @@ msgstr "حالت عکس پی در پی"
 msgid "Burst"
 msgstr "پی در پی"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "یک عکس از طریق وبکم بگیرید"
 
@@ -147,7 +147,7 @@ msgid "Capture"
 msgstr "گرفتن"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "یک عکس بگیرید"
 
@@ -197,29 +197,29 @@ msgstr "با وب‌کم خود با جلوه‌های جذاب گرافیکی �
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:4
 msgid ""
-"Cheese uses your webcam to take photos and videos, applies fancy special effects and "
-"lets you share the fun with others."
+"Cheese uses your webcam to take photos and videos, applies fancy special "
+"effects and lets you share the fun with others."
 msgstr ""
-"چیز از وبکم شما برای گرفتن عکس و ویدئو استفاده می‌کند، جلوه‌های زیبا با آنها اضافه "
-"می‌کند و اجازه می‌دهد این تفریح را با بقیه به‌اشتراک بگذارید."
+"چیز از وبکم شما برای گرفتن عکس و ویدئو استفاده می‌کند، جلوه‌های زیبا با آنها "
+"اضافه می‌کند و اجازه می‌دهد این تفریح را با بقیه به‌اشتراک بگذارید."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
 msgid ""
-"Take multiple photos in quick succession with burst mode. Use the countdown to give "
-"yourself time to strike a pose, and wait for the flash!"
+"Take multiple photos in quick succession with burst mode. Use the countdown to "
+"give yourself time to strike a pose, and wait for the flash!"
 msgstr ""
-"با حالت پی‌درپی، پشت سر هم با سرعت زیاد عکس بگیرید. با شمارش‌معکوس به خودتان فرصت بدهید "
-"که ژست بگیرید و برای فلاش صبر کنید!"
+"با حالت پی‌درپی، پشت سر هم با سرعت زیاد عکس بگیرید. با شمارش‌معکوس به خودتان "
+"فرصت بدهید که ژست بگیرید و برای فلاش صبر کنید!"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:6
 msgid ""
-"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and videos. "
-"With Cheese it is easy to take photos of you, your friends, pets or whatever you want "
-"and share them with others."
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and "
+"videos. With Cheese it is easy to take photos of you, your friends, pets or "
+"whatever you want and share them with others."
 msgstr ""
-"در زیر کاپوت، چیز از GStreamer برای اعمال جلوه های گرافیکی به عکس‌ها و ویدئوها استفاده "
-"می‌کند. با چیز خیلی راحت می‌توانید از خود، از دوستان یا حیوان‌خونگی خود یا هرچیز دیگری "
-"عکس بگیرید و آنها را با دیگران به‌اشتراک بگذارید."
+"در زیر کاپوت، چیز از GStreamer برای اعمال جلوه های گرافیکی به عکس‌ها و ویدئوها "
+"استفاده می‌کند. با چیز خیلی راحت می‌توانید از خود، از دوستان یا حیوان‌خونگی خود "
+"یا هرچیز دیگری عکس بگیرید و آنها را با دیگران به‌اشتراک بگذارید."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Webcam Booth"
@@ -262,7 +262,8 @@ msgid "Camera device string indicator"
 msgstr "شاخص رشته‌ی دستگاه دوربین"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
-msgid "The path to the device node which points to the camera, for example /dev/video0"
+msgid ""
+"The path to the device node which points to the camera, for example /dev/video0"
 msgstr "مسیر به گره دستگاه که به دوربین اشاره دارد، برای مثال dev/video0/"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
@@ -343,11 +344,11 @@ msgstr "مسیر ویدئو"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" will be "
-"used."
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/Webcam"
+"\" will be used."
 msgstr ""
-"مسیری که ویدئوها در آن ذخیره می‌شوند را ثبت می‌کند. اگر خالی باشد «XDG_VIDEO/Webcam» "
-"استفاده خواهد شد."
+"مسیری که ویدئوها در آن ذخیره می‌شوند را تعیین می‌کند. اگر خالی باشد "
+"«XDG_VIDEOS_DIR/Webcam» استفاده خواهد شد."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -355,11 +356,11 @@ msgstr "مسیر عکس"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" will be "
-"used."
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
 msgstr ""
-"مسیری که عکس‌ها در آن ذخیره می‌شوند را ثبت می‌کند. اگر خالی باشد «XDG_PHOTO/Webcam» "
-"استفاده خواهد شد."
+"مسیری که عکس‌ها در آن ذخیره می‌شوند را تعیین می‌کند. اگر خالی باشد "
+"«XDG_PICTURES_DIR/Webcam» استفاده خواهد شد."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -367,12 +368,13 @@ msgstr "وقفه­ی بین عکسها در حالت پی در پی"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a burst "
-"sequence of photos. If the burst delay is less than the countdown duration, the "
-"countdown duration will be used instead."
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
 msgstr ""
-"طول زمان، به میلی‌ثانیه، برای ایجاد مکث بین هر عکس در حالت پی‌درپی. اگر مکث در حالت "
-"پی‌درپی کمتر از مدت زمان شمارش معکوس باشد، مدت زمان شمارش معکوس به‌جای آن استفاده می‌شود."
+"طول زمان، به میلی‌ثانیه، برای ایجاد مکث بین هر عکس در حالت پی‌درپی. اگر مکث در "
+"حالت پی‌درپی کمتر از مدت زمان شمارش معکوس باشد، مدت زمان شمارش معکوس به‌جای آن "
+"استفاده می‌شود."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
@@ -492,6 +494,19 @@ msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "اگر موردی را حذف کنید، برای همیشه از بین می‌رود"
 
+#: ../src/cheese-window.vala:291
+#, c-format
+msgid "Could not delete %s"
+msgstr "نمی‌توان %s را حذف کرد"
+
+#: ../src/cheese-window.vala:294
+msgid "Skip"
+msgstr "پرش"
+
+#: ../src/cheese-window.vala:295
+msgid "Skip all"
+msgstr "پرش از همه"
+
 #: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
@@ -532,27 +547,27 @@ msgstr "گرفتن چندین عکس"
 msgid "No effects found"
 msgstr "جلوه‌ایی پیدا نشد"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "یک خطا هنگام پخش ویدئو از وبکم رخ داد"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "ضبط یک ویدئو از طریق وبکم"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "گرفتن چندین عکس از طریق یک وبکم"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "انتخاب یک جلوه"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "ضبط یک ویدئو"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "گرفتن چندین عکس"
 
@@ -577,10 +592,12 @@ msgstr "گرفتن چندین عکس"
 #~ msgid "- Take photos and videos from your webcam"
 #~ msgstr "- با وب‌کم خود عکس و ویدیو بگیرید"
 
-#~| msgid "Run '%s --help' to see a full list of available command line options.\n"
+#~| msgid ""
+#~| "Run '%s --help' to see a full list of available command line options.\n"
 #~ msgid "Run '%s --help' to see a full list of available command line options."
 #~ msgstr ""
-#~ "فرمان «%s --help» را اجرا کنید تا لیست کامل گزینه‌های خط­ فرمان را مشاهده کنید."
+#~ "فرمان «%s --help» را اجرا کنید تا لیست کامل گزینه‌های خط­ فرمان را مشاهده "
+#~ "کنید."
 
 #~ msgid "Stop _Recording"
 #~ msgstr "توقف _ضبط"
@@ -619,11 +636,11 @@ msgstr "گرفتن چندین عکس"
 #~ msgstr "اینکه در حالت گسترده راه‌اندازی شود"
 
 #~ msgid ""
-#~ "If set to true, Cheese will start up in wide mode, with the image collection "
-#~ "placed on the right-hand side. Useful with small screens."
+#~ "If set to true, Cheese will start up in wide mode, with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
 #~ msgstr ""
-#~ "اگر بر روی درست تنظیم شود، چیز در حالت گسترده اجرا می‌شود همراه با مجموعه عکس‌ها در "
-#~ "سمت راست. برای نمایشگرهای کوچک مناسب است."
+#~ "اگر بر روی درست تنظیم شود، چیز در حالت گسترده اجرا می‌شود همراه با مجموعه "
+#~ "عکس‌ها در سمت راست. برای نمایشگرهای کوچک مناسب است."
 
 #~ msgid "Whether to start in fullscreen"
 #~ msgstr "اینکه در حالت تمام‌صفحه راه‌اندازی شود یا خیر"
