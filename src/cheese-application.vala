@@ -111,7 +111,7 @@ public class Cheese.Application : Gtk.Application
                                       true);
 
             Environment.set_application_name (_("Cheese"));
-            Window.set_default_icon_name ("cheese");
+            Window.set_default_icon_name ("org.gnome.Cheese");
 
             this.add_accelerator ("space", "app.shoot", null);
 
