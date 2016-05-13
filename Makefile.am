@@ -603,7 +603,7 @@ MAINTAINERCLEANFILES = \
 	omf.make \
 	xmldocs.make
 
-DISTCHECK_CONFIGURE_FLAGS = \
+AM_DISTCHECK_CONFIGURE_FLAGS = \
 	--enable-appdata-check \
 	--enable-gtk-doc \
 	--enable-introspection \
