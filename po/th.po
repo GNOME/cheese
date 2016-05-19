@@ -1,17 +1,17 @@
 # Thai translation of cheese.
-# Copyright (C) 2008-2015 Free Software Foundation, Inc.
+# Copyright (C) 2008-2016 Free Software Foundation, Inc.
 # This file is distributed under the same license as the cheese package.
 # Theppitak Karoonboonyanan <thep@linux.thai.net, 2008, 2010.
 # Pornpimon Pradabsri <kanom7448@hotmail.com>, 2008.
-# Akom Chotiphantawanon <knight2000@gmail.com>, 2008-2015.
+# Akom Chotiphantawanon <knight2000@gmail.com>, 2008-2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-24 15:15+0000\n"
-"PO-Revision-Date: 2015-11-10 11:52+0700\n"
+"POT-Creation-Date: 2016-03-24 14:20+0000\n"
+"PO-Revision-Date: 2016-05-19 15:40+0700\n"
 "Last-Translator: Akom Chotiphantawanon <knight2000@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
 "Language: th\n"
@@ -94,7 +94,8 @@ msgstr "ความละเอียดของภาพ"
 msgid "Video resolution"
 msgstr "ความละเอียดของวีดิทัศน์"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "เว็บแคม"
 
@@ -346,9 +347,9 @@ msgstr "พาธที่เก็บวีดิทัศน์"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr "กำหนดที่เก็บวีดิทัศน์ ถ้าไม่กำหนดไว้จะใช้ \"XDG_VIDEO/Webcam\" แทน"
+"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+"Webcam\" will be used."
+msgstr "กำหนดที่เก็บวีดิทัศน์ ถ้าไม่กำหนดไว้จะใช้ \"XDG_VIDEOS_DIR/Webcam\" แทน"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -356,9 +357,9 @@ msgstr "พาธที่เก็บภาพถ่าย"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr "กำหนดที่เก็บภาพถ่าย ถ้าไม่กำหนดไว้จะใช้ \"XDG_PHOTO/Webcam\" แทน"
+"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
+"Webcam\" will be used."
+msgstr "กำหนดที่เก็บภาพถ่าย ถ้าไม่กำหนดไว้จะใช้ \"XDG_PICTURES_DIR/Webcam\" แทน"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
