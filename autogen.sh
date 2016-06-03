@@ -4,6 +4,8 @@
 srcdir=`dirname $0`
 test -z "$srcdir" && srcdir=.
 
+olddir=`pwd`
+
 (test -f $srcdir/configure.ac) || {
         echo "**Error**: Directory "\`$srcdir\'" does not look like the top-level project directory"
         exit 1
@@ -18,6 +20,8 @@ if [ "$#" = 0 -a "x$NOCONFIGURE" = "x" ]; then
         echo "" >&2
 fi
 
+cd "$srcdir"
+
 # if the AC_CONFIG_MACRO_DIR() macro is used, create that directory
 # This is a automake bug fixed in automake 1.13.2
 # See http://debbugs.gnu.org/cgi/bugreport.cgi?bug=13514
@@ -31,6 +35,8 @@ set -x
 gtkdocize --copy || exit 1
 intltoolize --force --copy --automake || exit 1
 autoreconf --verbose --force --install -Wno-portability || exit 1
+
+cd "$olddir"
 
 if [ "$NOCONFIGURE" = "" ]; then
         $srcdir/configure "$@" || exit 1
