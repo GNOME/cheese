@@ -1,6 +1,46 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.21.3
+  - Ensure autogen works in non-srcdir builds
+    Only the configure script should be run from the build directory; the
+    rest of the ancillary tools that modify the sources and generate the
+    configure script itself need to be run inside the source directory.
+  - Use AM_DISTCHECK_CONFIGURE_FLAGS
+    DISTCHECK_CONFIGURE_FLAGS is for users and packagers to override
+    distcheck options, while AM_DISTCHECK_CONFIGURE_FLAGS is for the
+    maintainer of the software.
+
+    https://www.gnu.org/software/automake/manual/automake.html#DISTCHECK_005fCONFIGURE_005fFLAGS
+  - Explicitly mark the GSettings schema for intltool
+    As recommended in the GSettings documentation.
+  - Add gettext-domain the GSettings schema
+  - Fix fallback application icon name
+    https://bugzilla.gnome.org/show_bug.cgi?id=765874
+  - fileutil: implement translation of Webcam folder
+    In this commit I added the feature that folder containing captured
+    photos and videos has a name that suits the locale is used by system.
+
+    The problem is that folder to save captured pics and videos has strict
+    name "Webcam".
+
+    To fix this problem I used gettext method.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=761958
+  - Added/Updated Translations
+    - bg, courtesy of Alexander Shopov
+    - fa, courtesy of Arash Mousavi
+    - fur, courtesy of Fabio Tomat
+    - id, courtesy of Andika Triwidada
+    - oc, courtesy of Cédric Valmary (totenoc.eu)
+    - pt_BR, courtesy of Enrico Nicoletto
+    - ro, courtesy of Jobava
+    - th, courtesy of Akom Chotiphantawanon
+    - uk, courtesy of Daniel Korostil
+    - vi, courtesy of Trần Ngọc Quân
+  - Added/Updated Documentation
+    - pt_BR, courtesy of Enrico Nicoletto
+
 version 3.20.0
   - Added/Updated Translations
     - cs, courtesy of Marek Černocký
