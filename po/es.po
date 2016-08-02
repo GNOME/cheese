@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: cheese.master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-15 04:14+0000\n"
+"POT-Creation-Date: 2016-07-14 20:55+0000\n"
 "PO-Revision-Date: 2016-02-15 13:57+0100\n"
 "Last-Translator: Daniel Mustieles <daniel.mustieles@gmail.com>\n"
 "Language-Team: Español; Castellano <gnome-es-list@gnome.org>\n"
@@ -96,7 +96,8 @@ msgstr "Resolución de la foto"
 msgid "Video resolution"
 msgstr "Resolución del vídeo"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Cámara web"
 
@@ -349,9 +350,6 @@ msgid "Video path"
 msgstr "Ruta de los vídeos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-#| msgid ""
-#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
-#| "\" will be used."
 msgid ""
 "Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
 "Webcam\" will be used."
@@ -364,9 +362,6 @@ msgid "Photo path"
 msgstr "Ruta de las fotos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-#| msgid ""
-#| "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
-#| "\" will be used."
 msgid ""
 "Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
 "Webcam\" will be used."
