@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: cheese gnome-3-6\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-16 03:15+0000\n"
-"PO-Revision-Date: 2016-04-16 10:28+0200\n"
+"POT-Creation-Date: 2016-11-10 15:25+0000\n"
+"PO-Revision-Date: 2016-11-10 18:50+0100\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.8\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -91,7 +91,8 @@ msgstr "Risoluzion Foto"
 msgid "Video resolution"
 msgstr "Risoluzion Video"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Webcam"
 
@@ -346,11 +347,11 @@ msgstr "Percors video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Definìs il percors dulà che i videos a saran plaçâts. Se lassât vueit, al "
-"vegnarà doprât \"XDG_VIDEOS_DIR/Webcam\"."
+"vegnarà doprât “XDG_VIDEOS_DIR/Webcam”."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -358,11 +359,11 @@ msgstr "Percors foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Definìs il percors dulà che a saran plaçadis lis fotos. Se lassât vueit, al "
-"vegnarà doprât \"XDG_PICTURES_DIR/Webcam\"."
+"vegnarà doprât “XDG_PICTURES_DIR/Webcam”."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
