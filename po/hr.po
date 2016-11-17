@@ -8,8 +8,9 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-06-18 15:22+0000\n"
-"PO-Revision-Date: 2016-09-22 22:26+0200\n"
+"POT-Creation-Date: 2016-11-10 15:25+0000\n"
+"PO-Revision-Date: 2016-11-17 12:02+0100\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/cheese-main-window.ui.h:1
@@ -92,7 +92,8 @@ msgstr "Razlučivost fotografije"
 msgid "Video resolution"
 msgstr "Razlučivost snimke"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Web kamera"
 
@@ -348,8 +349,8 @@ msgstr "Putanja snimke"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Određuje putanju gdje se video snimke spremaju. Ako je prazno koristiti će "
 "se \"XDG_VIDEOS_DIR/Webcam\"."
@@ -360,8 +361,8 @@ msgstr "Putanja fotografije"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Određuje putanju gdje se fotografije spremaju. Ako je prazno koristiti će se "
 "\"XDG_PICTURES_DIR/Webcam\""
