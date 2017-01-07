@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-13 04:15+0000\n"
-"PO-Revision-Date: 2016-02-13 09:32+0100\n"
+"POT-Creation-Date: 2016-12-08 21:58+0000\n"
+"PO-Revision-Date: 2017-01-07 16:48+0100\n"
 "Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
 "Language-Team: slovenčina <>\n"
 "Language: sk\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 1 : (n>=2 && n<=4) ? 2 : 0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 
 # GtkToggleButton tooltip
 #: ../data/cheese-main-window.ui.h:1
@@ -111,7 +111,8 @@ msgid "Video resolution"
 msgstr "Rozlíšenie videa"
 
 # tab
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Webová kamera"
 
@@ -430,8 +431,8 @@ msgstr "Cesta k videám"
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Cesta, kde sú uložené videá. Ak je prázdna, použije sa „XDG_VIDEOS_DIR/"
 "Webcam“."
@@ -444,8 +445,8 @@ msgstr "Cesta k fotografiám"
 # gsettings description
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Cesta, kde sú uložené fotografie. Ak je prázdna, použije sa "
 "„XDG_PICTURES_DIR/Webcam“."
