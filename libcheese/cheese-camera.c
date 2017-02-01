@@ -733,7 +733,7 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
 {
   CheeseCameraPrivate *priv;
   CheeseCameraDevice *device;
-  GstCaps *caps, *i420_caps, *video_caps;
+  GstCaps *caps;
   gchar *caps_desc;
   int width, height;
 
@@ -761,13 +761,10 @@ cheese_camera_set_new_caps (CheeseCamera *camera)
                   "image-capture-caps", caps, NULL);
 
     /* GStreamer >= 1.1.4 expects fully-specified video-capture-source caps. */
-    i420_caps = gst_caps_new_simple ("video/x-raw",
-                                     "format", G_TYPE_STRING, "I420", NULL);
-    video_caps = gst_caps_intersect (caps, i420_caps);
-    g_object_set (priv->camerabin, "video-capture-caps", video_caps, NULL);
+    caps = gst_caps_fixate (caps);
 
-    gst_caps_unref (i420_caps);
-    gst_caps_unref (video_caps);
+    g_object_set (priv->camerabin, "video-capture-caps", caps, NULL);
+
     gst_caps_unref (caps);
 
     width = priv->current_format->width;
