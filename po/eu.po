@@ -4,21 +4,21 @@
 #
 # Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2008, 2009, 2010, 2011.
 # Julen Ruiz Aizpuru <julenx@gmail.com>, 2011.
-# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2015, 2016.
+# Iñaki Larrañaga Murgoitio <dooteo@zundan.com>, 2012, 2013, 2014, 2015, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-15 15:02+0100\n"
-"PO-Revision-Date: 2016-03-15 15:03+0100\n"
-"Last-Translator: dooteo <dooteo@zundan.com>\n"
-"Language-Team: Basque <librezale@librezale.org>\n"
+"POT-Creation-Date: 2017-02-05 17:17+0100\n"
+"PO-Revision-Date: 2017-01-27 08:40+0100\n"
+"Last-Translator: Iñaki Larrañaga Murgoitio <dooteo@zundan.com>\n"
+"Language-Team: Basque <librezale@librezale.eus>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Lokalize 1.5\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/cheese-main-window.ui.h:1
@@ -93,7 +93,8 @@ msgstr "Argazkiaren bereizmena"
 msgid "Video resolution"
 msgstr "Bideoaren bereizmena"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Web-kamera"
 
@@ -353,11 +354,11 @@ msgstr "Bideoaren bide-izena"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Bideoak gordetzen diren lekuaren bide-izena zehazten du. Hutsik egonez gero, "
-"\"DG_VIDEOS_DIR/Webcam\" erabiliko da."
+"“XDG_VIDEOS_DIR/Webcam“ erabiliko da."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -365,11 +366,11 @@ msgstr "Argazkiaren bide-izena"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Argazkiak gordetzen diren lekuaren bide-izena zehazten du. Hutsik egonez "
-"gero, \"XDG_PICTURES_DIR/Webcam\" erabiliko da."
+"gero, “XDG_PICTURES_DIR/Webcam“ erabiliko da."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -411,11 +412,11 @@ msgstr "Obturadorearen soinua"
 msgid "_Take Another Picture"
 msgstr "_Hartu beste argazkia"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1610
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Gstreamer-en beharrezko elementu bat (edo gehiago) falta da: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1552
 #, c-format
 msgid "No device found"
 msgstr "Ez da gailurik aurkitu"
@@ -425,7 +426,7 @@ msgstr "Ez da gailurik aurkitu"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1845
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -521,7 +522,7 @@ msgstr "Saltatu denak"
 #: ../src/cheese-window.vala:340
 #, c-format
 msgid "Could not move %s to trash"
-msgstr "Ezin izan da \"%s\" zakarrontzira bota"
+msgstr "Ezin izan da “%s“ zakarrontzira bota"
 
 #. Nothing selected.
 #: ../src/cheese-window.vala:365
