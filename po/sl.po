@@ -3,25 +3,24 @@
 # This file is distributed under the same license as the cheese package
 #
 # Deni Bačić <baccic@gmail.com>, 2007.
-# Matej Urbančič <mateju@svn.gnome.org>, 2007-2016.
+# Matej Urbančič <mateju@svn.gnome.org>, 2007–2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-03 21:27+0100\n"
-"PO-Revision-Date: 2016-03-03 21:28+0100\n"
+"POT-Creation-Date: 2017-02-14 08:40+0100\n"
+"PO-Revision-Date: 2017-02-14 08:40+0100\n"
 "Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
 "Language-Team: Slovenian GNOME Translation Team <gnome-si@googlegroups.com>\n"
-"Language: sl\n"
+"Language: sl_SI\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
-"%100==4 ? 3 : 0);\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.9\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -95,7 +94,8 @@ msgstr "Ločljivost fotografije"
 msgid "Video resolution"
 msgstr "Ločljivost videa"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Spletna kamera"
 
@@ -350,11 +350,11 @@ msgstr "Pot do videa"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Določa pot, kjer so shranjeni video posnetki. Če polje ni izpolnjeno, bo "
-"uporabljena mapa\"XDG_VIDEOS_DIR/Webcam\""
+"Določa pot, kjer so shranjeni videi. Če vrednosti ni določena bo uporabljena "
+"mapa »XDG_PICTURES_DIR/Webcam«."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -362,11 +362,11 @@ msgstr "Pot do slik"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Določa pot, kjer so shranjene slike. Če polje ni izpolnjeno, bo uporabljena "
-"mapa\"XDG_PICTURES_DIR/Webcam\""
+"Določa pot, kjer so shranjene slike. Če vrednosti ni določena bo uporabljena "
+"mapa »XDG_PICTURES_DIR/Webcam«."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -407,12 +407,12 @@ msgstr "Zvok zaklopke"
 msgid "_Take Another Picture"
 msgstr "_Zajemi novo sliko"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1610
 msgid "One or more needed GStreamer elements are missing: "
 msgstr ""
 "Enega ali več zahtevanih predmetov programa GStreamer ni mogoče najti: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1552
 #, c-format
 msgid "No device found"
 msgstr "Ni mogoče najti naprave"
@@ -422,7 +422,7 @@ msgstr "Ni mogoče najti naprave"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1845
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -467,8 +467,8 @@ msgstr "Spletna kamera v uporabi"
 #: ../src/cheese-application.vala:544
 msgid "translator-credits"
 msgstr ""
-"Deni Bačić <baccic@gmail.com>,\n"
-"Matej Urbančič <mateju@svn.gnome.org>"
+"Matej Urbančič <mateju@svn.gnome.org>\n"
+"Deni Bačić"
 
 #: ../src/cheese-application.vala:546
 msgid "Cheese Website"
@@ -582,6 +582,20 @@ msgstr "Snemanje videa"
 #: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "Zajem več fotografij"
+
+#~ msgid ""
+#~ "Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+#~ "Webcam\" will be used."
+#~ msgstr ""
+#~ "Določa pot, kjer so shranjeni video posnetki. Če polje ni izpolnjeno, bo "
+#~ "uporabljena mapa\"XDG_VIDEOS_DIR/Webcam\""
+
+#~ msgid ""
+#~ "Defines the path where the photos are stored. If empty, "
+#~ "\"XDG_PICTURES_DIR/Webcam\" will be used."
+#~ msgstr ""
+#~ "Določa pot, kjer so shranjene slike. Če polje ni izpolnjeno, bo "
+#~ "uporabljena mapa\"XDG_PICTURES_DIR/Webcam\""
 
 #~ msgid ""
 #~ "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
