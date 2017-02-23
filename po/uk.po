@@ -2,13 +2,13 @@
 # Copyright (C) Free Software Foundation
 # This file is distributed under the same license as the cheese package.
 # Maxim Dziumanenko <dziumanenko@gmail.com>, 2008-2009, 2011.
-# Daniel Korostil <ted.korostiled@gmail.com>, 2013, 2014, 2015, 2016.
+# Daniel Korostil <ted.korostiled@gmail.com>, 2013, 2014, 2015, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-03-22 19:41+0200\n"
-"PO-Revision-Date: 2016-03-22 19:42+0300\n"
+"POT-Creation-Date: 2017-02-23 16:41+0200\n"
+"PO-Revision-Date: 2017-02-23 16:47+0300\n"
 "Last-Translator: Daniel Korostil <ted.korostiled@gmail.com>\n"
 "Language-Team: linux.org.ua\n"
 "Language: uk\n"
@@ -92,7 +92,8 @@ msgstr "Роздільність фотографії"
 msgid "Video resolution"
 msgstr "Роздільність відео"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Веб-камера"
 
@@ -348,11 +349,11 @@ msgstr "Шлях до відеозаписів"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Визначає шлях до каталогу, у якому будуть зберігатися відеозаписи. Якщо ключ "
-"не вказано, буде використано шлях «XDG_VIDEOS_DIR/Webcam»"
+"не вказано, буде використано шлях «XDG_VIDEOS_DIR/Webcam»."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -360,11 +361,11 @@ msgstr "Шлях до фотографій"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Визначає шлях до каталогу, у якому будуть зберігатися фотографії. Якщо ключа "
-"не вказано, буде використано шлях «XDG_PICTURES_DIR/Webcam»"
+"не вказано, буде використано шлях «XDG_PICTURES_DIR/Webcam»."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -405,11 +406,11 @@ msgstr "Звук затвору"
 msgid "_Take Another Picture"
 msgstr "_Зробити ще один знімок"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1610
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Нема одного чи декількох компонентів GStreamer: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1552
 #, c-format
 msgid "No device found"
 msgstr "Пристрій не знайдено"
@@ -419,7 +420,7 @@ msgstr "Пристрій не знайдено"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1845
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
