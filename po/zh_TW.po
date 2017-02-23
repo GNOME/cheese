@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: cheese 3.3.5\n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-09-19 15:13+0000\n"
-"PO-Revision-Date: 2015-09-19 23:42+0800\n"
+"POT-Creation-Date: 2016-12-08 21:58+0000\n"
+"PO-Revision-Date: 2017-02-23 08:14+0800\n"
 "Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese/Traditional <zh-l10n@lists.linux.org.tw>\n"
 "Language: zh_TW\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.12\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -43,7 +43,7 @@ msgstr "相片連拍模式"
 msgid "Burst"
 msgstr "連拍"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1319
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
 msgstr "使用網路攝影機照相"
 
@@ -91,7 +91,8 @@ msgstr "相片解析度"
 msgid "Video resolution"
 msgstr "影片解析度"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "網路攝影機"
 
@@ -144,7 +145,7 @@ msgid "Capture"
 msgstr "擷取"
 
 #: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1348
+#: ../src/cheese-window.vala:1350
 msgid "Take a Photo"
 msgstr "照相"
 
@@ -342,9 +343,9 @@ msgstr "影片路徑"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
-msgstr "定義影片儲存的路徑。如果保持空白則會使用「XDG_VIDEO/Webcam」。"
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
+msgstr "定義影片儲存的路徑。如果保持空白則會使用「XDG_VIDEOS_DIR/Webcam」。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -352,9 +353,9 @@ msgstr "相片路徑"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
-msgstr "定義相片儲存的路徑。如果保持空白則會使用「XDG_PHOTO/Webcam」。"
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
+msgstr "定義相片儲存的路徑。如果保持空白則會使用「XDG_PICTURES_DIR/Webcam」。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -542,27 +543,27 @@ msgstr "拍攝多張相片"
 msgid "No effects found"
 msgstr "找不到任何效果"
 
-#: ../src/cheese-window.vala:1209
+#: ../src/cheese-window.vala:1211
 msgid "There was an error playing video from the webcam"
 msgstr "播放網路攝影機視訊時發生錯誤"
 
-#: ../src/cheese-window.vala:1323
+#: ../src/cheese-window.vala:1325
 msgid "Record a video using a webcam"
 msgstr "使用網路攝影機錄製影片"
 
-#: ../src/cheese-window.vala:1329
+#: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
 msgstr "使用網路攝影機拍攝多張相片"
 
-#: ../src/cheese-window.vala:1341
+#: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
 msgstr "選擇一種效果"
 
-#: ../src/cheese-window.vala:1352
+#: ../src/cheese-window.vala:1354
 msgid "Record a Video"
 msgstr "錄製影片"
 
-#: ../src/cheese-window.vala:1356
+#: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
 msgstr "拍攝多張照片"
 
