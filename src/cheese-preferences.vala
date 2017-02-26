@@ -455,7 +455,12 @@ public PreferencesDialog (Cheese.Camera camera)
         else
           this.hide ();
       }
+
+#if VALA_0_36
+      camera_model.remove (ref iter);
+#else
       camera_model.remove (iter);
+#endif
 
       if (camera_model.iter_n_children (null) <= 1)
         source_combo.sensitive = false;
