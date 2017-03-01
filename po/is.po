@@ -1,14 +1,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016.
+# Sveinn í Felli <sv1@fellsnet.is>, 2015, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-08-16 08:18+0000\n"
-"PO-Revision-Date: 2016-10-11 07:29+0000\n"
+"POT-Creation-Date: 2016-12-04 14:10+0000\n"
+"PO-Revision-Date: 2017-03-01 11:40+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -201,13 +201,16 @@ msgid ""
 "effects and lets you share the fun with others."
 msgstr ""
 "Cheese notar vefmyndavélina til að taka ljósmyndir og myndskeið, beitir "
-"flottum sjónbrellum og gerir þér kleift að deila skemmtilegheitunum með öðrum."
+"flottum sjónbrellum og gerir þér kleift að deila skemmtilegheitunum með "
+"öðrum."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
 msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
 msgstr ""
+"Taktu margar myndir í einu með runuham. Notaðu niðurteljarann ef þú vilt taka "
+"þér stöðu og bíddu svo eftir leifturljósinu."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:6
 msgid ""
@@ -215,7 +218,8 @@ msgid ""
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
 "whatever you want and share them with others."
 msgstr ""
-"Undir húddinu notar Cheese GStreamer fyrir allskyns sjónbrellur á ljósmyndir "
+"Undir húddinu styðst Cheese við GStreamer fyrir allskyns sjónbrellur á "
+"ljósmyndir "
 "og myndskeið. Með Cheese er einfalt að taka myndir af sjálfum þér, vinum "
 "þínum, gæludýrunum eða hverju sem er og deila þeim með öðrum."
 
@@ -264,8 +268,7 @@ msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
 msgstr ""
-"Slóð að tengipunkti tækis sem vísar á myndavélina, til dæmis /dev/"
-"video0"
+"Slóð að tengipunkti tækis sem vísar á myndavélina, til dæmis /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -349,8 +352,7 @@ msgid ""
 "Webcam\" will be used."
 msgstr ""
 "Skilgreinir slóðina þar sem myndskeið eru geymd. Ef þetta er autt, verður "
-"\"XDG_VIDEOS_DIR/"
-"Webcam\" notað."
+"\"XDG_VIDEOS_DIR/Webcam\" notað."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -362,8 +364,7 @@ msgid ""
 "Webcam\" will be used."
 msgstr ""
 "Skilgreinir slóðina þar sem ljósmyndir eru geymdar. Ef þetta er autt, verður "
-"\"XDG_PICTURES_DIR/"
-"Webcam\" notað."
+"\"XDG_PICTURES_DIR/Webcam\" notað."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -498,7 +499,6 @@ msgstr[1] "Ef þú eyðir hlutunum, hverfa þeir fyrir fullt og allt"
 
 #: ../src/cheese-window.vala:291
 #, c-format
-#| msgid "Could not save %s"
 msgid "Could not delete %s"
 msgstr "Gat ekki eytt %s"
 
