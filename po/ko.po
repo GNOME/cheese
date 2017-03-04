@@ -1,7 +1,7 @@
 # cheese Korean message translation
 # This file is distributed under the same license as the cheese package.
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
-# Changwoo Ryu <cwryu@debian.org>, 2008-2011, 2013-2016.
+# Changwoo Ryu <cwryu@debian.org>, 2008-2011, 2013-2017.
 #
 # 참고:
 # - 이 프로그램의 이름인 "Cheese"는 "치즈"라고 표기
@@ -11,10 +11,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-12 16:14+0000\n"
-"PO-Revision-Date: 2016-03-13 03:15+0900\n"
+"POT-Creation-Date: 2017-03-03 17:17+0000\n"
+"PO-Revision-Date: 2017-03-04 03:19+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -95,7 +95,8 @@ msgstr "사진 해상도"
 msgid "Video resolution"
 msgstr "동영상 해상도"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "웹카메라"
 
@@ -349,9 +350,11 @@ msgstr "동영상 경로"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
-msgstr "동영상을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_VIDEO_DIR/Webcam\"을 사용합니다."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
+msgstr ""
+"동영상을 저장할 경로를 지정합니다. 비어 있으면 “XDG_VIDEOS_DIR/웹카메라”를 사"
+"용합니다."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -359,9 +362,11 @@ msgstr "사진 경로"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
-msgstr "사진을 저장할 경로를 지정합니다. 비어 있으면 \"XDG_PICTURES_DIR/Webcam\"을 사용합니다."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
+msgstr ""
+"사진을 저장할 경로를 지정합니다. 비어 있으면 “XDG_PICTURES_DIR/웹카메라”를 사"
+"용합니다."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -401,11 +406,11 @@ msgstr "셔터 소리"
 msgid "_Take Another Picture"
 msgstr "사진 계속 찍기(_T)"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1610
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "필요한 GStreamer 엘리먼트가 없습니다: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1552
 #, c-format
 msgid "No device found"
 msgstr "장치가 없습니다"
@@ -415,7 +420,7 @@ msgstr "장치가 없습니다"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1845
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
