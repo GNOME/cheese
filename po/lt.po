@@ -11,11 +11,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: lt\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-05 16:14+0000\n"
-"PO-Revision-Date: 2016-03-05 21:03+0200\n"
-"Last-Translator: Aurimas Černius <aurisc4@gmail.com>\n"
+"POT-Creation-Date: 2017-03-03 17:17+0000\n"
+"PO-Revision-Date: 2017-03-03 19:41+0200\n"
+"Last-Translator: Moo\n"
 "Language-Team: Lietuvių <gnome-lt@lists.akl.lt>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/cheese-main-window.ui.h:1
@@ -98,7 +98,8 @@ msgstr "Nuotraukų skiriamoji geba"
 msgid "Video resolution"
 msgstr "Vaizdo įrašų skiriamoji geba"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Žiniatinklio kamera"
 
@@ -352,12 +353,9 @@ msgid "Video path"
 msgstr "Vaizdo įrašų kelias"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-#| msgid ""
-#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
-#| "\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Nurodo kelią, kur bus saugomi vaizdo įrašai. Nenurodžius, bus naudojamas "
 "„XDG_VIDEOS_DIR/Webcam“."
@@ -367,12 +365,9 @@ msgid "Photo path"
 msgstr "Nuotraukų kelias"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-#| msgid ""
-#| "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
-#| "\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Nurodo kelią, kur bus saugomos nuotraukos. Nenurodžius, bus naudojamas "
 "„XDG_PICTURES_DIR/Webcam“."
@@ -416,11 +411,11 @@ msgstr "Užrakto garsas"
 msgid "_Take Another Picture"
 msgstr "_Padaryti dar vieną nuotrauką"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1610
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Nėra vieno ar daugiau reikalingų GStreamer elementų:"
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1552
 #, c-format
 msgid "No device found"
 msgstr "Įrenginių nerasta"
@@ -430,7 +425,7 @@ msgstr "Įrenginių nerasta"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1845
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
