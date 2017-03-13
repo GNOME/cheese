@@ -10,19 +10,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese gnome-2-22\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-04 16:16+0000\n"
-"PO-Revision-Date: 2016-03-04 23:32+0300\n"
-"Last-Translator: Stas Solovey <whats_up@tut.by>\n"
+"POT-Creation-Date: 2017-03-03 17:17+0000\n"
+"PO-Revision-Date: 2017-03-13 21:06+0400\n"
+"Last-Translator: Yuri Myasoedov <ymyasoedov@yandex.ru>\n"
 "Language-Team: Русский <gnome-cyr@gnome.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -96,7 +96,8 @@ msgstr "Разрешение фотоснимков"
 msgid "Video resolution"
 msgstr "Разрешение видео"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Веб-камера"
 
@@ -351,14 +352,11 @@ msgid "Video path"
 msgstr "Путь к видео"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-#| msgid ""
-#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
-#| "\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Указывает путь для сохранения видео. Если не заполнено, то используется "
+"Указывает путь для сохранения видео. Если не указано, то используется "
 "«XDG_VIDEOS_DIR/Webcam»."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
@@ -366,15 +364,12 @@ msgid "Photo path"
 msgstr "Путь к фотографиям"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-#| msgid ""
-#| "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
-#| "\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Указывает путь для сохранения фотоснимков. Если не заполнено, то "
-"используется «XDG_PICTURES_DIR/Webcam»."
+"Указывает путь для сохранения фотоснимков. Если не указано, то используется "
+"«XDG_PICTURES_DIR/Webcam»."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -415,11 +410,11 @@ msgstr "Звук затвора"
 msgid "_Take Another Picture"
 msgstr "_Сделать другой снимок"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1610
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Один или более компонентов GStreamer отсутствуют:"
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1552
 #, c-format
 msgid "No device found"
 msgstr "Устройства не найдены"
@@ -429,7 +424,7 @@ msgstr "Устройства не найдены"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1845
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
