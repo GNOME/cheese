@@ -65,10 +65,6 @@ struct _CheeseCameraPrivate
 
   GstElement *video_source;
   GstElement *camera_source;
-  GstElement *video_file_sink;
-  GstElement *audio_source;
-  GstElement *audio_enc;
-  GstElement *video_enc;
 
   ClutterActor *video_texture;
 
@@ -88,12 +84,8 @@ struct _CheeseCameraPrivate
 
   /* an array of CheeseCameraDevices */
   GPtrArray *camera_devices;
-  gint x_resolution;
-  gint y_resolution;
   guint selected_device;
   CheeseVideoFormat *current_format;
-
-  guint eos_timeout_id;
 
   gchar *initial_name;
 
