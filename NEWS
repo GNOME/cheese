@@ -1,6 +1,53 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.24.0
+  - Fix build with new vala
+  - camera: don't use hardcoded format
+    Use gst_caps_fixate() to select the best format instead of trying to
+    filter out a hardcoded format. Some cameras might not produce this
+    format and thus fail to work.
+  - Use Unicode in translatable strings
+    See https://developer.gnome.org/hig/stable/typography.html
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=772263
+  - Added/Updated Translations
+    - be, courtesy of Yuras Shumovich
+    - ca, courtesy of Gil Forcada
+    - cs, courtesy of Marek Černocký
+    - da, courtesy of scootergrisen
+    - de, courtesy of Paul Seyfert
+    - el, courtesy of Efstathios Iosifidis
+    - es, courtesy of Daniel Mustieles
+    - eu, courtesy of Iñaki Larrañaga Murgoitio
+    - fi, courtesy of Jiri Grönroos
+    - fr, courtesy of Charles Monzat
+    - fur, courtesy of Fabio Tomat
+    - gl, courtesy of Fran Dieguez
+    - hr, courtesy of gogo
+    - hu, courtesy of Gabor Kelemen
+    - id, courtesy of Kukuh Syafaat
+    - is, courtesy of Sveinn í Felli
+    - it, courtesy of Milo Casagrande
+    - kk, courtesy of Baurzhan Muftakhidinov
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Moo
+    - lv, courtesy of Rūdolfs Mazurs
+    - nb, courtesy of Kjartan Maraas
+    - oc, courtesy of Cédric Valmary (totenoc.eu)
+    - pl, courtesy of Piotr Drąg
+    - pt_BR, courtesy of Rafael Fontenelle
+    - pt, courtesy of Tiago Santos
+    - ru, courtesy of Yuri Myasoedov
+    - sk, courtesy of Dušan Kazik
+    - sl, courtesy of Matej Urbančič
+    - sr, courtesy of Мирослав Николић
+    - sr@latin, courtesy of Miroslav Nikolić
+    - sv, courtesy of Anders Jonsson
+    - uk, courtesy of Daniel Korostil
+    - vi, courtesy of Trần Ngọc Quân
+    - zh_TW, courtesy of Cheng-Chia Tseng
+
 version 3.22.0
 version 3.21.92
   - Add Language headers to po files
