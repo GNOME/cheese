@@ -472,6 +472,11 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
       if (min_height < 120)
         min_height = 120;
 
+      if (max_width > 5120)
+        max_width = 5120;
+      if (max_height > 3840)
+        max_height = 3840;
+
       cur_width  = min_width;
       cur_height = min_height;
 
