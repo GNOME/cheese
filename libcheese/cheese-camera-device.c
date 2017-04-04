@@ -280,6 +280,16 @@ cheese_camera_device_get_highest_framerate (const GValue *framerate,
       }
     }
   }
+  else if (GST_VALUE_HOLDS_FRACTION_RANGE (framerate))
+  {
+    const GValue *val = gst_value_get_fraction_range_max (framerate);
+
+    if (GST_VALUE_HOLDS_FRACTION (val))
+    {
+      *numerator = gst_value_get_fraction_numerator (val);
+      *denominator = gst_value_get_fraction_denominator (val);
+    }
+  }
 }
 
 /*
