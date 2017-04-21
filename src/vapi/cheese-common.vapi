@@ -48,7 +48,7 @@ namespace Cheese
     public void                        toggle_effects_pipeline (bool active);
     public void                        connect_effect_texture (Cheese.Effect effect, Clutter.Actor texture);
     public void                        set_video_format (Cheese.VideoFormat format);
-    public void                        setup (string udi) throws GLib.Error;
+    public void                        setup (Cheese.CameraDevice? device = null) throws GLib.Error;
     public void                        start_video_recording (string filename);
     public void                        stop ();
     public void                        stop_video_recording ();

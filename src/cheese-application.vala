@@ -203,7 +203,7 @@ public class Cheese.Application : Gtk.Application
 
         try
         {
-            camera.setup (device);
+            camera.setup ();
         }
         catch (Error err)
         {
