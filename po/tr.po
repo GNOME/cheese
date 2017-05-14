@@ -5,22 +5,24 @@
 # Baris Cicek <baris@teamforce.name.tr>, 2008, 2009, 2011.
 # Yaşar Şentürk <yasarix@gmail.com>, 2014.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016.
+# Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-19 16:15+0000\n"
-"PO-Revision-Date: 2016-03-19 20:16+0200\n"
-"Last-Translator: Muhammet Kara <muhammetk@gmail.com>\n"
-"Language-Team: Turkish <gnome-turk@gnome.org>\n"
+"POT-Creation-Date: 2017-04-12 15:19+0000\n"
+"PO-Revision-Date: 2017-05-13 16:36+0300\n"
+"Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
+"Language-Team: Türkçe <>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -52,7 +54,7 @@ msgstr "Web kamerası kullanarak fotoğraf çek"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Navigate to the previous page of effects"
-msgstr "Önceki efekt sayfasına git"
+msgstr "Önceki etki sayfasına git"
 
 #: ../data/cheese-main-window.ui.h:9
 msgid "Effects"
@@ -64,7 +66,7 @@ msgstr "_Etkiler"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "Navigate to the next page of effects"
-msgstr "Sonraki efekt sayfasına git"
+msgstr "Sonraki etki sayfasına git"
 
 #: ../data/cheese-main-window.ui.h:12
 msgid "Leave fullscreen mode and go back to windowed mode"
@@ -94,7 +96,8 @@ msgstr "Fotoğraf çözünürlüğü"
 msgid "Video resolution"
 msgstr "Video çözünürlüğü"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Web kamerası"
 
@@ -124,7 +127,7 @@ msgstr "Deklanşör"
 
 #: ../data/cheese-prefs.ui.h:14
 msgid "_Countdown"
-msgstr "_Geri Sayım"
+msgstr "_Geri sayım"
 
 #: ../data/cheese-prefs.ui.h:15
 msgid "Fire _flash"
@@ -177,7 +180,7 @@ msgstr "Farklı _Kaydet..."
 
 #: ../data/menus.ui.h:8
 msgid "Move to _Trash"
-msgstr "Çöp'e _Taşı"
+msgstr "Çöp’e _Taşı"
 
 #: ../data/menus.ui.h:9
 msgid "Delete"
@@ -195,16 +198,15 @@ msgstr "Peynir"
 #: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
-"Web kameranızdan fotoğraflar ve videolar çekip bunlara grafiksel etkiler "
-"ekler."
+"Web kameranızdan fotoğraflar ve videolar çekip bunlara görsel etkiler ekler."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:4
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
-"Chese web kameranızı kullanarak fotoğraf ve video çeker, hoş etkiler uygular "
-"ve eğlenceyi başkalarıyla paylaşmanıza olanak tanır."
+"Peynir; web kameranızı kullanarak fotoğraf ve video çeker, hoş etkiler "
+"uygular ve eğlenceyi başkalarıyla paylaşmanıza olanak tanır."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
 msgid ""
@@ -220,8 +222,8 @@ msgid ""
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
 "whatever you want and share them with others."
 msgstr ""
-"Cheese fotoğraflarınıza ve videolarınıza hoş etkiler vermek için perde "
-"arkasında GStreamer'i kullanır. Cheese ile kendinizin, arkadaşlarınızın, "
+"Peynir, fotoğraflarınıza ve videolarınıza hoş etkiler vermek için perde "
+"arkasında GStreamer'i kullanır. Peynir ile kendinizin, arkadaşlarınızın, "
 "hayvanlarınızın ve istediğiniz her şeyin fotoğrafını çekmek ve başkalarıyla "
 "paylaşmak çok kolay."
 
@@ -253,7 +255,7 @@ msgstr "Geri sayım uzunluğu"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:4
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr "Fotoğraf çekmeden önceki geri sayım süresi, saniye cinsinden"
+msgstr "Fotoğraf çekmeden önceki geri sayım süresi, saniye türünden"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
 msgid "Fire flash before taking a photo"
@@ -288,7 +290,7 @@ msgstr "Fotoğraf genişliği"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:12
 msgid "The width of the image captured from the camera, in pixels"
-msgstr "Kameradan yakalanan resmin genişliği, piksel cinsinden"
+msgstr "Kameradan yakalanan resmin genişliği, piksel türünden"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:13
 msgid "Photo height"
@@ -296,7 +298,7 @@ msgstr "Fotoğraf yüksekliği"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:14
 msgid "The height of the image captured from the camera, in pixels"
-msgstr "Kameradan yakalanan resmin yüksekliği, piksel cinsinden"
+msgstr "Kameradan yakalanan resmin yüksekliği, piksel türünden"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:15
 msgid "Video width"
@@ -304,7 +306,7 @@ msgstr "Video genişliği"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:16
 msgid "The width of the video captured from the camera, in pixels"
-msgstr "Kameradan yakalanan videonun genişliği, piksel cinsinden"
+msgstr "Kameradan yakalanan videonun genişliği, piksel türünden"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:17
 msgid "Video height"
@@ -312,7 +314,7 @@ msgstr "Video yüksekliği"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:18
 msgid "The height of the video captured from the camera, in pixels"
-msgstr "Kameradan yakalanan videonun yüksekliği, piksel cinsinden"
+msgstr "Kameradan yakalanan videonun yüksekliği, piksel türünden"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
 msgid "Image brightness"
@@ -351,30 +353,24 @@ msgid "Video path"
 msgstr "Video yolu"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-#| msgid ""
-#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam"
-#| "\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Videoların saklandığı dosya yolunu belirtir. Eğer boşsa, \"XDG_VIDEOS_DIR/"
-"Webcam\" kullanılır."
+"Videoların saklandığı dosya yolunu belirtir. Eğer boşsa, “XDG_VIDEOS_DIR/"
+"Webcam” kullanılacak."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
 msgstr "Fotoğraf yolu"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-#| msgid ""
-#| "Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam"
-#| "\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Fotoğrafların saklandığı dosya yolunu belirtir. Eğer boşsa, "
-"\"XDG_PICTURES_DIR/Webcam\" kullanılır."
+"“XDG_PICTURES_DIR/Webcam” kullanılacak."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -387,7 +383,7 @@ msgid ""
 "duration, the countdown duration will be used instead."
 msgstr ""
 "Fotoğraf patlama sırasında her fotoğraf arasında geçecek zamanın milisaniye "
-"cinsinden uzunluğu. Eğer flaş gecikmesi geri sayım değerinden düşükse, bunun "
+"türünden uzunluğu. Eğer flaş gecikmesi geri sayım değerinden düşükse, bunun "
 "yerine geri sayım değeri kullanılır."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
@@ -415,11 +411,11 @@ msgstr "Deklanşör sesi"
 msgid "_Take Another Picture"
 msgstr "Başka Bir Resim _Çek"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
-msgstr "Gereken GStreamer ögelerinden bir veya daha fazlası eksik: "
+msgstr "Gereken GStreamer ögelerinden bir veya daha çoğu eksik: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Aygıt bulunamadı"
@@ -429,21 +425,21 @@ msgstr "Aygıt bulunamadı"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Aygıt yetenekleri desteklenmedi"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Bilinmeyen aygıt"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "İptal edilebilir ilklendirme desteklenmiyor"
 
@@ -505,7 +501,7 @@ msgstr "_Sil"
 #: ../src/cheese-window.vala:267
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
-msgstr[0] "Eğer bu öğeleri silerseniz, kalıcı olarak kaybolacaklar"
+msgstr[0] "Eğer bu ögeleri silerseniz, kalıcı olarak kaybolacaklar"
 
 #: ../src/cheese-window.vala:291
 #, c-format
@@ -545,7 +541,7 @@ msgstr "Kaydı durdur"
 
 #: ../src/cheese-window.vala:835
 msgid "Record a video"
-msgstr "Video Kaydet"
+msgstr "Video kaydet"
 
 #. FIXME: Set the effects action to be inactive.
 #: ../src/cheese-window.vala:870
@@ -574,7 +570,7 @@ msgstr "Web kamerası kullanarak çoklu fotoğraf çek"
 
 #: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
-msgstr "Bir Etki Seçin"
+msgstr "Bir Etki Seç"
 
 #: ../src/cheese-window.vala:1354
 msgid "Record a Video"
