@@ -243,56 +243,12 @@ cheese_LDADD = \
 	$(CHEESE_LIBS) \
 	$(CHEESE_GTK_LIBS)
 
-libexec_PROGRAMS = \
-	gnome-camera-service
-
-service/camera.c: service/camera.h
-service/camera.h: Makefile data/org.gnome.Camera.xml
-	$(AM_V_GEN) $(GDBUS_CODEGEN) --interface-prefix org.gnome.Camera. \
-		--generate-c-code service/camera \
-		--c-namespace Gc $(srcdir)/data/org.gnome.Camera.xml
-
-BUILT_SOURCES = \
-	$(nodist_gnome_camera_service_SOURCES)
-
-gnome_camera_service_SOURCES = \
-	service/gc-application.c \
-	service/gc-camera-client.c \
-	service/gc-camera-manager.c \
-	service/gc-client-monitor.c \
-	service/gc-main.c
-
-noinst_gnome_camera_service_headers = \
-	service/gc-application.h \
-	service/gc-camera-client.h \
-	service/gc-camera-manager.h \
-	service/gc-client-monitor.h
-
-nodist_gnome_camera_service_headers = \
-	service/camera.h
-
-nodist_gnome_camera_service_SOURCES = \
-	service/camera.c
-
-gnome_camera_service_CPPFLAGS = \
-	$(AM_CPPFLAGS) \
-	-I$(top_builddir)/service \
-	-I$(top_srcdir)/libcheese
-
-gnome_camera_service_CFLAGS = \
-	$(CHEESE_GTK_CFLAGS)
-
-gnome_camera_service_LDADD = \
-	libcheese-gtk.la \
-	$(CHEESE_GTK_LIBS)
-
 EXAMPLES = \
 	tests/cheese-test-camera \
 	tests/cheese-test-chooser \
 	tests/cheese-test-flash \
 	tests/cheese-test-monitor \
-	tests/cheese-test-widget \
-	tests/test-service-client
+	tests/cheese-test-widget
 
 if HAVE_XTEST
 noinst_PROGRAMS = \
@@ -312,8 +268,6 @@ tests_cheese_test_chooser_SOURCES = tests/cheese-test-chooser.c
 tests_cheese_test_flash_SOURCES = tests/cheese-test-flash.c
 tests_cheese_test_monitor_SOURCES = tests/cheese-test-monitor.c
 tests_cheese_test_widget_SOURCES = tests/cheese-test-widget.c
-tests_test_service_client_SOURCES = tests/test-service-client.c
-nodist_tests_test_service_client_SOURCES = service/camera.c
 tests_test_webcam_button_SOURCES = tests/test-webcam-button.c
 
 tests_cheese_test_camera_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
@@ -321,8 +275,6 @@ tests_cheese_test_chooser_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_cheese_test_flash_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_cheese_test_monitor_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 tests_cheese_test_widget_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
-tests_test_service_client_CPPFLAGS = \
-	$(EXAMPLES_CPPFLAGS) -I$(top_builddir)/service
 tests_test_webcam_button_CPPFLAGS = $(EXAMPLES_CPPFLAGS)
 
 tests_cheese_test_camera_LDADD = \
@@ -349,7 +301,6 @@ tests_cheese_test_widget_LDADD = \
 	$(CHEESE_GTK_LIBS) \
 	libcheese.la \
 	libcheese-gtk.la
-tests_test_service_client_LDADD = $(CHEESE_GTK_LIBS)
 tests_test_webcam_button_LDADD = $(XTEST_LIBS)
 
 @INTLTOOL_DESKTOP_RULE@
@@ -365,13 +316,9 @@ appstream_XML = $(appstream_in_files:.appdata.xml.in=.appdata.xml)
 data/org.gnome.Cheese.service: data/org.gnome.Cheese.service.in
 	$(AM_V_GEN)$(SED) -e "s|[@]bindir[@]|$(bindir)|" $< > $@
 
-data/org.gnome.Camera.service: data/org.gnome.Camera.service.in
-	$(AM_V_GEN)$(SED) -e "s|[@]libexecdir[@]|$(libexecdir)|" $< > $@
-
 servicedir = $(datadir)/dbus-1/services
 service_in_files = \
-	data/org.gnome.Camera.service.in \
-	data/org.gnome.Cheese.service.in
+       data/org.gnome.Cheese.service.in
 service_DATA = $(service_in_files:.service.in=.service)
 
 @GSETTINGS_RULES@
@@ -537,15 +484,12 @@ dist-hook: git-changelog-hook
 
 dist_noinst_DATA = \
 	ChangeLog.pre-git \
-	COPYING.GPL3 \
 	$(appstream_in_files) \
 	$(desktop_in_files) \
 	$(gsettings_SCHEMAS) \
-	$(noinst_gnome_camera_service_headers) \
 	$(noinst_resource_files) \
 	$(service_in_files) \
 	data/org.gnome.Cheese.gresource.xml \
-	data/org.gnome.Camera.xml \
 	build-aux/test-driver \
 	$(gtkdoc_srcdir)/cheese-docs.xml \
 	$(gtkdoc_srcdir)/cheese-sections.txt \
@@ -573,8 +517,6 @@ CLEANFILES = \
 	$(gir_DATA) \
 	$(service_DATA) \
 	$(typelib_DATA) \
-	$(nodist_gnome_camera_service_headers) \
-	$(nodist_gnome_camera_service_SOURCES) \
 	src/cheese-resource.c \
 	src/cheese-resource.h
 
