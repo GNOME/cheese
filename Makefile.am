@@ -38,11 +38,6 @@ libcheese/cheese-enums.h: $(cheese_enum_headers)
 		$(cheese_enum_headers) > $@
 
 AM_CPPFLAGS = \
-	-DDATADIR=\"$(datadir)\" \
-	-DPREFIX=\""$(prefix)"\" \
-	-DSYSCONFDIR=\""$(sysconfdir)"\" \
-	-DLIBDIR=\""$(libdir)"\" \
-	-DPACKAGE_DATADIR=\""$(pkgdatadir)"\" \
 	-DPACKAGE_LOCALEDIR=\""$(datadir)/locale"\" \
 	-DGNOME_DESKTOP_USE_UNSTABLE_API=1 \
 	-I$(top_builddir) \
