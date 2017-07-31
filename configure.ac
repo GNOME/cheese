@@ -101,7 +101,6 @@ PKG_CHECK_EXISTS([$GNOME_VIDEO_EFFECTS_REQUIRED],
 
 # GLib programs.
 AC_SUBST([GLIB_COMPILE_RESOURCES], [`$PKG_CONFIG --variable glib_compile_resources gio-2.0`])
-AC_SUBST([GDBUS_CODEGEN], [`$PKG_CONFIG --variable gdbus_codegen gio-2.0`])
 
 # Recommend some runtime GStreamer plugins.
 AC_PATH_PROGS([GST_INSPECT], [gst-inspect-1.0], [notfound])
