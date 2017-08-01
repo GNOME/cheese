@@ -20,9 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-#ifdef HAVE_CONFIG_H
-  #include <config.h>
-#endif
+#include "config.h"
 
 #include <string.h>
 #include <glib-object.h>
@@ -1061,7 +1059,7 @@ cheese_camera_set_tags (CheeseCamera *camera)
   datetime = gst_date_time_new_now_local_time();
 
   taglist = gst_tag_list_new (
-      GST_TAG_APPLICATION_NAME, PACKAGE_STRING,
+      GST_TAG_APPLICATION_NAME, PACKAGE_NAME " " PACKAGE_VERSION,
       GST_TAG_DATE_TIME, datetime,
       GST_TAG_DEVICE_MODEL, device_name,
       GST_TAG_KEYWORDS, PACKAGE_NAME, NULL);
