@@ -1,6 +1,46 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.25.90
+  - Remove camera service
+    It was an experiment, but in future PipeWire will be used instead, so it
+    is no longer needed.
+  - Remove some unused configuration variables
+  - Correctly select the given camera device
+    Due to a bug in the VAPI file the code would pass a string to the camera
+    setup routine instead of a CameraDevice object. As the setup routine
+    already has code to automatically select an appropriate device based on
+    the name passing an argument is not even required.
+
+    Note that the --device parameter might be somewhat confusing as it
+    refers to the devices name and not to the /dev/videoX device file.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=777047
+  - Fix bug 773526
+    Fix bug 773526 to use consisent language about the user's home folder.
+    Fix <files> tag to be used around one folder and not multiple folders.
+    Update last sentence to shorten and simplify it.
+  - camera-device: limit width and height
+    Set a limit on the width and height or else we might end scanning and
+    overflowing forever.
+  - camera-device: handle fraction ranges
+    Add support for fraction ranges
+  - camera: remove dead instance variables
+    https://bugzilla.gnome.org/show_bug.cgi?id=780021
+  - Added/Updated Translations
+    - ne, courtesy of Pawan Chitrakar
+    - pl, courtesy of Piotr Drąg
+    - tr, courtesy of Emin Tufan Çetin
+  - Added/Updated Documentation
+    - cs, courtesy of Marek Černocký
+    - de, courtesy of Christian Kirbach
+    - es, courtesy of Daniel Mustieles
+    - hu, courtesy of Gabor Kelemen
+    - id, courtesy of Andika Triwidada
+    - pl, courtesy of Piotr Drąg
+    - pt_BR, courtesy of Rafael Fontenelle
+    - sv, courtesy of Anders Jonsson
+
 version 3.24.0
   - Fix build with new vala
   - camera: don't use hardcoded format
