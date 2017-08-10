@@ -11,22 +11,22 @@
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010, 2011, 2012.
 # Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011, 2012.
 # Fran Dieguez <frandieguez@gnome.org>, 2012, 2013, 2014, 2015, 2016, 2017.
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-02-23 10:58+0000\n"
-"PO-Revision-Date: 2017-02-26 22:23+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
+"&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2017-08-10 11:54+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
-"Language-Team: Galician <gnome-l10n-gl@gnome.org>\n"
+"Language-Team: Galician\n"
 "Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Virtaal 0.7.1\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -82,7 +82,7 @@ msgstr "Preferencias"
 
 #: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
 msgid "_Help"
-msgstr "A_xuda"
+msgstr "_Axuda"
 
 #: ../data/cheese-prefs.ui.h:3
 msgid "_Close"
@@ -115,7 +115,7 @@ msgstr "Saturación"
 
 #: ../data/cheese-prefs.ui.h:10
 msgid "Hue"
-msgstr "Ton"
+msgstr "Matiz"
 
 #: ../data/cheese-prefs.ui.h:11
 msgid "Contrast"
@@ -354,9 +354,6 @@ msgid "Video path"
 msgstr "Ruta de vídeo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-#| msgid ""
-#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-#| "Webcam\" will be used."
 msgid ""
 "Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
 "Webcam” will be used."
@@ -369,9 +366,6 @@ msgid "Photo path"
 msgstr "Ruta das fotos"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-#| msgid ""
-#| "Defines the path where the photos are stored. If empty, "
-#| "\"XDG_PICTURES_DIR/Webcam\" will be used."
 msgid ""
 "Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
 "Webcam” will be used."
@@ -418,11 +412,11 @@ msgstr "Son do obturador"
 msgid "_Take Another Picture"
 msgstr "_Sacar outra fotografía"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1610
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Falta un ou máis elementos necesarios de Gstreamer: "
 
-#: ../libcheese/cheese-camera.c:1552
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Non se atopou ningún dispositivo"
@@ -432,21 +426,21 @@ msgstr "Non se atopou ningún dispositivo"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1845
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "As capacidades do dispositivo non son compatíbeis"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Dispositivo descoñecido"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "A inicialización cancelábel non é compatíbel"
 
