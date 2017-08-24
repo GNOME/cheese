@@ -38,14 +38,14 @@
 # Paulus Santané (laudaka) <laudaka.vertaalt@xs4all.nl>, 2013.
 # Erwin Poeze <donnut@outlook.com>, 2014.
 # Justin van Steijn <justin50@live.nl>, 2015, 2016.
-# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2016.
+# Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2016, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-23 04:14+0000\n"
-"PO-Revision-Date: 2016-02-29 17:34+0100\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
+"&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2017-08-24 11:22+0100\n"
 "Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -53,7 +53,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -133,7 +133,8 @@ msgstr "Video-resolutie"
 # * Capture
 #
 # webcam=webcam
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Webcam"
 
@@ -266,8 +267,8 @@ msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
-"Cheese gebruikt uw webcam om foto's en video's te maken, past hippe, speciale "
-"effecten toe en laat u dat delen met anderen."
+"Cheese gebruikt uw webcam om foto's en video's te maken, past hippe, "
+"speciale effecten toe en laat u dat delen met anderen."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
 msgid ""
@@ -284,8 +285,8 @@ msgid ""
 "whatever you want and share them with others."
 msgstr ""
 "Onder de motorkap gebruikt Cheese GStreamer om foto's en video's hippe "
-"effecten te geven. Met Cheese is het eenvoudig foto's van uzelf, uw vrienden, "
-"huisdieren of wat dan ook te maken en deze te delen met anderen."
+"effecten te geven. Met Cheese is het eenvoudig foto's van uzelf, uw "
+"vrienden, huisdieren of wat dan ook te maken en deze te delen met anderen."
 
 # Vincent, Reinout en Tino zijn voor (Wouter Bolsterlee)
 # Klinkt mij ook goed in de oren. (laudaka)
@@ -445,24 +446,30 @@ msgstr "Pad naar video's"
 # Het is verwarrend. :-)
 # (laudaka)
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
+#| msgid ""
+#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+#| "Webcam\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Geeft aan waar de video's opgeslagen worden. Indien leeg gelaten wordt "
-"‘XDG_VIDEOS_DIR/Webcam’ gebruikt."
+"Geeft aan waar de video's opgeslagen worden. Als hier niets is opgegeven, dan"
+" wordt ‘XDG_VIDEOS_DIR/Webcam’ gebruikt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
 msgstr "Pad naar foto's"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
+#| msgid ""
+#| "Defines the path where the photos are stored. If empty, "
+#| "\"XDG_PICTURES_DIR/Webcam\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Geeft aan waar de foto's opgeslagen worden. Indien leeg gelaten wordt "
-"‘XDG_PICTURES_DIR/Webcam’ gebruikt."
+"Geeft aan waar de foto's opgeslagen worden. Als hier niets is opgegeven, dan"
+" wordt ‘XDG_PICTURES_DIR/Webcam’ gebruikt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -509,14 +516,14 @@ msgstr "Sluitergeluid"
 msgid "_Take Another Picture"
 msgstr "_Nog een foto nemen"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Eén of meerdere vereiste Gstreamer-onderdelen ontbreken: "
 
 # camera/apparaat/camera-apparaat
 # De vertaling van ``device'' is in meer modules iets waar we mee worstelen.
 # (laudaka)
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Geen camera gevonden"
@@ -532,23 +539,23 @@ msgstr "Geen camera gevonden"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
 # camera/apparaat/camera-apparaat
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Apparaatmogelijkheden niet ondersteund"
 
 # camera/apparaat/camera-apparaat
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Onbekend apparaat"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "Annuleerbare initialisatie niet ondersteund"
 
