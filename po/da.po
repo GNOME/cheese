@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
 "Report-Msgid-Bugs-To: "
-"http://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-12-08 21:58+0000\n"
+"https://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
 "PO-Revision-Date: 2016-03-03 00:50+0200\n"
 "Last-Translator: scootergrisen\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -359,7 +359,7 @@ msgid ""
 "“XDG_VIDEOS_DIR/Webcam” will be used."
 msgstr ""
 "Definerer stien hvor videoer vil blive gemt. Hvis den er tom vil "
-"\"XDG_VIDEOS_DIR/Webcam\" blive brugt."
+"“XDG_VIDEOS_DIR/Webcam” blive brugt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -371,7 +371,7 @@ msgid ""
 "“XDG_PICTURES_DIR/Webcam” will be used."
 msgstr ""
 "Definerer stien hvor billeder vil blive gemt. Hvis den er tom vil "
-"\"XDG_PICTURES_DIR/Webcam\" blive brugt."
+"“XDG_PICTURES_DIR/Webcam” blive brugt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -412,11 +412,11 @@ msgstr "Lukker lyd"
 msgid "_Take Another Picture"
 msgstr "_Tag et billede mere"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Et eller flere gstreamer-elementer mangler: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhed fundet"
@@ -426,21 +426,21 @@ msgstr "Ingen enhed fundet"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Enheds funktioner ikke understøttet"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Ukendt enhed"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "Annullerbar opstart ikke understøttet"
 
@@ -596,7 +596,7 @@ msgstr "Tag flere billeder"
 
 #~ msgid "Run '%s --help' to see a full list of available command line options."
 #~ msgstr ""
-#~ "Kør \"%s --help\" for at få en liste over alle tilgængelige "
+#~ "Kør “%s --help” for at få en liste over alle tilgængelige "
 #~ "kommandlinjetilvalg."
 
 #~ msgid "_Take a Photo"
@@ -720,10 +720,9 @@ msgstr "Tag flere billeder"
 #~ "\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and "
 #~ "\"warp\""
 #~ msgstr ""
-#~ "Liste af effekter som anvendes ved opstart. Mulige værdier er: \"mauve\", "
-#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", "
-#~ "\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" og "
-#~ "\"warp\""
+#~ "Liste af effekter som anvendes ved opstart. Mulige værdier er: “mauve”, "
+#~ "“noir_blanc”, “saturation”, “hulk”, “vertical-flip”, “horizontal-flip”, "
+#~ "“shagadelic”, “vertigo”, “edge”, “dice” og “warp”"
 
 #~ msgid ""
 #~ "If set to true, then Cheese will have a feature allowing you to delete a "
@@ -771,7 +770,7 @@ msgstr "Tag flere billeder"
 #~ msgstr "Fejl under sletning"
 
 #~ msgid "The file \"%s\" cannot be deleted. Details: %s"
-#~ msgstr "Filen \"%s\" kan ikke slettes. Detaljer: %s"
+#~ msgstr "Filen “%s” kan ikke slettes. Detaljer: %s"
 
 #~ msgid "Are you sure you want to permanently delete the %'d selected item?"
 #~ msgid_plural ""
@@ -788,7 +787,7 @@ msgstr "Tag flere billeder"
 #~ "Kan ikke flytte fil til papirkurv, ønsker du at slette den øjeblikkeligt?"
 
 #~ msgid "The file \"%s\" cannot be moved to the trash. Details: %s"
-#~ msgstr "Filen \"%s\" kan ikke flyttes til papirkurven. Detaljer: %s"
+#~ msgstr "Filen “%s” kan ikke flyttes til papirkurven. Detaljer: %s"
 
 #~ msgid "Really move all photos and videos to the trash?"
 #~ msgstr "Vil du virkelig flytte alle billeder og videoer til papirkurven?"
@@ -934,4 +933,5 @@ msgstr "Tag flere billeder"
 
 #~ msgid "Cheese!"
 #~ msgstr "Cheese!"
+
 
