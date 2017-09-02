@@ -1,16 +1,16 @@
 # Bulgarian translation of cheese po-file.
-# Copyright (C) 2008, 2009, 2010, 2012, 2013, 2016 Free Software Foundation, Inc.
+# Copyright (C) 2008, 2009, 2010, 2012, 2013, 2016, 2017 Free Software Foundation, Inc.
 # Copyright (C) 2010, 2011, 2012 Krasimir Chonov <mk2616@abv.bg>.
 # This file is distributed under the same license as the cheese package.
-# Alexander Shopov <ash@kambanaria.org>, 2008, 2009, 2010, 2012, 2013, 2016.
+# Alexander Shopov <ash@kambanaria.org>, 2008, 2009, 2010, 2012, 2013, 2016, 2017.
 # Krasimir Chonov <mk2616@abv.bg>, 2010, 2011, 2012.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-05 06:40+0300\n"
-"PO-Revision-Date: 2016-04-05 06:39+0300\n"
+"POT-Creation-Date: 2017-09-02 09:30+0300\n"
+"PO-Revision-Date: 2017-08-25 10:52+0200\n"
 "Last-Translator: Alexander Shopov <ash@kambanaria.org>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
 "Language: bg\n"
@@ -345,10 +345,10 @@ msgstr "Път за видео"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Указва път до папка за съхраняване на видео. Стандартно се запазват в "
+"Указва път до папка за съхраняване на видео. Без настройка се ползва "
 "„XDG_VIDEOS_DIR/Webcam“."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
@@ -357,10 +357,10 @@ msgstr "Път за снимки"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Указва път до папка за съхраняване на снимките. Стандартно се запазват в "
+"Указва път до папка за съхраняване на снимките. Без настройка се ползва "
 "„XDG_PICTURES_DIR/Webcam“."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
@@ -402,11 +402,11 @@ msgstr "Звук при снимка"
 msgid "_Take Another Picture"
 msgstr "Снимане _отново"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Липсва поне един елемент на GStreamer: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Липсва камера"
@@ -416,21 +416,21 @@ msgstr "Липсва камера"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Някои възможности на устройството не се поддържат"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Непозната камера"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "Не се поддържа инициализация, която може да се отмени"
 
