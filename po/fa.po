@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the cheese package.
 # Mahyar Moqimi <mahyar.moqimi@gmail.com>, 2010.
 # Ali Badiee <dr_ervina@ymail.com>, 2010.
-# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2013, 2014, 2015.
+# Arash Mousavi <mousavi.arash@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-04-08 15:16+0000\n"
-"PO-Revision-Date: 2016-04-08 20:59+0430\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2017-09-22 22:14+0330\n"
 "Last-Translator: Arash Mousavi <mousavi.arash@gmail.com>\n"
 "Language-Team: Persian <>\n"
 "Language: fa\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.3\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -94,7 +94,8 @@ msgstr "تفکیک‌پذیری عکس"
 msgid "Video resolution"
 msgstr "تفکیک‌پذیری ویدیو"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "وبکم"
 
@@ -344,8 +345,8 @@ msgstr "مسیر ویدئو"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/Webcam"
-"\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "مسیری که ویدئوها در آن ذخیره می‌شوند را تعیین می‌کند. اگر خالی باشد "
 "«XDG_VIDEOS_DIR/Webcam» استفاده خواهد شد."
@@ -356,8 +357,8 @@ msgstr "مسیر عکس"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "مسیری که عکس‌ها در آن ذخیره می‌شوند را تعیین می‌کند. اگر خالی باشد "
 "«XDG_PICTURES_DIR/Webcam» استفاده خواهد شد."
@@ -401,11 +402,11 @@ msgstr "صدای شاتر"
 msgid "_Take Another Picture"
 msgstr "_گرفتن یک عکس دیگر"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "یک یا تعدادی از عنصر‌های GStreamer موجود نیستند: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "هیچ دستگاهی پیدا نشد"
@@ -415,21 +416,21 @@ msgstr "هیچ دستگاهی پیدا نشد"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%I02i:%I02i:%I02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "از توانایی‌های دستگاه پشتیبانی نمی‌شود"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "دستگاه ناشناخته"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "راه‌اندازی قابل انصراف پشتیبانی نمی‌شود"
 
