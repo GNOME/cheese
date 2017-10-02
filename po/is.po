@@ -5,10 +5,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-12-04 14:10+0000\n"
-"PO-Revision-Date: 2017-03-01 11:40+0000\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2017-10-02 10:35+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic <translation-team-is@lists.sourceforge.net>\n"
 "Language: is\n"
@@ -209,8 +209,8 @@ msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
 msgstr ""
-"Taktu margar myndir í einu með runuham. Notaðu niðurteljarann ef þú vilt taka "
-"þér stöðu og bíddu svo eftir leifturljósinu."
+"Taktu margar myndir í einu með runuham. Notaðu niðurteljarann ef þú vilt "
+"taka þér stöðu og bíddu svo eftir leifturljósinu."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:6
 msgid ""
@@ -219,9 +219,8 @@ msgid ""
 "whatever you want and share them with others."
 msgstr ""
 "Undir húddinu styðst Cheese við GStreamer fyrir allskyns sjónbrellur á "
-"ljósmyndir "
-"og myndskeið. Með Cheese er einfalt að taka myndir af sjálfum þér, vinum "
-"þínum, gæludýrunum eða hverju sem er og deila þeim með öðrum."
+"ljósmyndir og myndskeið. Með Cheese er einfalt að taka myndir af sjálfum "
+"þér, vinum þínum, gæludýrunum eða hverju sem er og deila þeim með öðrum."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Webcam Booth"
@@ -347,9 +346,12 @@ msgid "Video path"
 msgstr "Slóð á myndskeið"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
+#| msgid ""
+#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+#| "Webcam\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Skilgreinir slóðina þar sem myndskeið eru geymd. Ef þetta er autt, verður "
 "\"XDG_VIDEOS_DIR/Webcam\" notað."
@@ -359,9 +361,12 @@ msgid "Photo path"
 msgstr "Slóð á ljósmynd"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
+#| msgid ""
+#| "Defines the path where the photos are stored. If empty, "
+#| "\"XDG_PICTURES_DIR/Webcam\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Skilgreinir slóðina þar sem ljósmyndir eru geymdar. Ef þetta er autt, verður "
 "\"XDG_PICTURES_DIR/Webcam\" notað."
@@ -405,11 +410,11 @@ msgstr "Hljóð lokara"
 msgid "_Take Another Picture"
 msgstr "Taka aðra mynd"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Eina eða fleiri GStreamer-einingar vantar: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Ekkert tæki fannst"
@@ -419,21 +424,21 @@ msgstr "Ekkert tæki fannst"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Þessi eiginleiki tækis er ekki studdur"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Óþekkt tæki"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "Ekki stuðningur við frestanlega frumstillingu"
 
