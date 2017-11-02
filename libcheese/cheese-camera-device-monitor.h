@@ -23,6 +23,7 @@
 #ifndef __CHEESE_CAMERA_DEVICE_MONITOR_H__
 #define __CHEESE_CAMERA_DEVICE_MONITOR_H__
 
+#include <gio/gio.h>
 #include <glib-object.h>
 #include <cheese-camera-device.h>
 
@@ -75,6 +76,11 @@ struct _CheeseCameraDeviceMonitorClass
 
 GType                      cheese_camera_device_monitor_get_type (void);
 CheeseCameraDeviceMonitor *cheese_camera_device_monitor_new (void);
+void                       cheese_camera_device_monitor_new_async (GCancellable       *cancellable,
+                                                                   GAsyncReadyCallback callback,
+                                                                   gpointer            user_data);
+CheeseCameraDeviceMonitor *cheese_camera_device_monitor_new_finish (GAsyncResult *result,
+                                                                    GError      **error);
 void                       cheese_camera_device_monitor_coldplug (CheeseCameraDeviceMonitor *monitor);
 
 G_END_DECLS

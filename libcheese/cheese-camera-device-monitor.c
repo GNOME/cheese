@@ -47,7 +47,14 @@ struct _CheeseCameraDeviceMonitorPrivate
   GstDeviceMonitor *monitor;
 };
 
-G_DEFINE_TYPE_WITH_PRIVATE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor, G_TYPE_OBJECT)
+static void initable_iface_init       (GInitableIface      *initable_iface);
+static void async_initable_iface_init (GAsyncInitableIface *async_initable_iface);
+
+G_DEFINE_TYPE_WITH_CODE (CheeseCameraDeviceMonitor, cheese_camera_device_monitor,
+                         G_TYPE_OBJECT,
+                         G_ADD_PRIVATE (CheeseCameraDeviceMonitor)
+                         G_IMPLEMENT_INTERFACE (G_TYPE_INITABLE, initable_iface_init)
+                         G_IMPLEMENT_INTERFACE (G_TYPE_ASYNC_INITABLE, async_initable_iface_init));
 
 #define CHEESE_CAMERA_DEVICE_MONITOR_ERROR cheese_camera_device_monitor_error_quark ()
 
@@ -271,10 +278,13 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
                                            G_TYPE_NONE, 1, CHEESE_TYPE_CAMERA_DEVICE);
 }
 
-static void
-cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
+static gboolean
+initable_init (GInitable     *initable,
+               GCancellable  *cancellable,
+               GError       **error)
 {
-    CheeseCameraDeviceMonitorPrivate *priv = cheese_camera_device_monitor_get_instance_private (monitor);
+  CheeseCameraDeviceMonitor *monitor = CHEESE_CAMERA_DEVICE_MONITOR (initable);
+  CheeseCameraDeviceMonitorPrivate *priv = cheese_camera_device_monitor_get_instance_private (monitor);
   GstBus *bus;
   GstCaps *caps;
 
@@ -289,17 +299,84 @@ cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
   gst_caps_unref (caps);
 
   gst_device_monitor_start (priv->monitor);
+
+  return TRUE;
+}
+
+static void
+initable_iface_init (GInitableIface *initable_iface)
+{
+  initable_iface->init = initable_init;
+}
+
+static void
+async_initable_iface_init (GAsyncInitableIface *async_initable_iface)
+{
+  /* Run GInitable code in thread. */
+}
+
+static void
+cheese_camera_device_monitor_init (CheeseCameraDeviceMonitor *monitor)
+{
+  /* Let GInitable initialize it. */
 }
 
 /**
  * cheese_camera_device_monitor_new:
  *
- * Returns a new #CheeseCameraDeviceMonitor object.
+ * Returns a new #CheeseCameraDeviceMonitor object. The initialization may block.
+ * See cheese_camera_device_monitor_new_async() for the asynchronous version.
  *
  * Return value: a new #CheeseCameraDeviceMonitor object.
  **/
 CheeseCameraDeviceMonitor *
 cheese_camera_device_monitor_new (void)
 {
-  return g_object_new (CHEESE_TYPE_CAMERA_DEVICE_MONITOR, NULL);
+  return g_initable_new (CHEESE_TYPE_CAMERA_DEVICE_MONITOR, NULL, NULL, NULL);
+}
+
+/**
+ * cheese_camera_device_monitor_new_async:
+ * @cancellable: a #GCancellable or NULL
+ * @callback: a GAsyncReadyCallback to call when the initialization is finished
+ * @user_data: user data to pass to callback
+ *
+ * Creates a new #CheeseCameraDeviceMonitor object asynchronously. Callback
+ * will be called when it is done. Use cheese_camera_device_monitor_new_finish()
+ * to get the result.
+ *
+ * See cheese_camera_device_monitor_new() for the synchronous version.
+ **/
+void
+cheese_camera_device_monitor_new_async (GCancellable *cancellable,
+                                        GAsyncReadyCallback callback,
+                                        gpointer user_data)
+{
+  g_async_initable_new_async (CHEESE_TYPE_CAMERA_DEVICE_MONITOR, 0, cancellable, callback, user_data, NULL);
+}
+
+/**
+ * cheese_camera_device_monitor_new_finish:
+ * @result: the GAsyncResult from the callback
+ * @error: return location for errors, or NULL to ignore
+ *
+ * Finishes creating a new #CheeseCameraDeviceMonitor object.
+ *
+ * Return value: a new #CheeseCameraDeviceMonitor object or NULL if error is set.
+ **/
+CheeseCameraDeviceMonitor *
+cheese_camera_device_monitor_new_finish (GAsyncResult *result,
+                                         GError      **error)
+{
+  GObject *ret;
+  GObject *source;
+
+  source = g_async_result_get_source_object (result);
+  ret = g_async_initable_new_finish (G_ASYNC_INITABLE (source), result, error);
+  g_object_unref (source);
+
+  if (ret != NULL)
+    return CHEESE_CAMERA_DEVICE_MONITOR (ret);
+  else
+    return NULL;
 }
