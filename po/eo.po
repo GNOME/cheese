@@ -6,21 +6,22 @@
 # Tiffany ANTOPOLSKI <tiffany.antopolski@gmail.com>, 2012.
 # Ryan LORTIE <desrt@desrt.ca>, 2013.
 # Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011, 2012, 2015.
+# Anders JONSSON <anders.jonsson@norsjovallen.se>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
 "&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2015-10-03 15:15+0000\n"
-"PO-Revision-Date: 2015-10-04 02:00+0200\n"
-"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
-"Language-Team: Esperanto <gnome-l10n-eo@lists.launchpad.net>\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2018-02-23 22:28+0100\n"
+"Last-Translator: Anders JONSSON <anders.jonsson@norsjovallen.se>\n"
+"Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-DamnedLies-Scope: partial\n"
 "X-Project-Style: gnome\n"
 
@@ -96,7 +97,8 @@ msgstr "Fotodistingivo"
 msgid "Video resolution"
 msgstr "Videodistingivo"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Retkamerao"
 
@@ -203,7 +205,7 @@ msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
-"Rideto uzas vian retkameron por fari fotojn kaj videojn, aldonas kapricajn "
+"Rideto uzas vian retkameraon por fari fotojn kaj videojn, aldonas kapricajn "
 "efektojn kaj ebligas vin kunhavigi la amuzon kun aliaj."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
@@ -225,7 +227,6 @@ msgstr ""
 "kiun vi volas kaj kunhavigi ilin kun aliaj."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
-#| msgid "Cheese Webcam Booth"
 msgid "Webcam Booth"
 msgstr "Retkamerao-Budo"
 
@@ -270,8 +271,7 @@ msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
 msgstr ""
-"La vojo al la nodo de aparato kiu indikas al la kamerao, ekzemple "
-"/dev/video0"
+"La vojo al la nodo de aparato kiu indikas al la kamerao, ekzemple /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -351,11 +351,11 @@ msgstr "Videa vojo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEO/Webcam\" "
-"will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Difini la vojon kien la videoj estas konservata. Se estas malplena, "
-"\"XDG_VIDEO/Webcam\" estas uzata."
+"“XDG_VIDEOS_DIR/Retkamerao” estas uzata."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -363,11 +363,11 @@ msgstr "Fota vojo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PHOTO/Webcam\" "
-"will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Difini la vojon kien la fotoj estas konservataj. Se estas malplena, "
-"\"XDG_PHOTO/Webcam\" estas uzata."
+"“XDG_PICTURES_DIR/Retkamerao” estas uzata."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -408,11 +408,11 @@ msgstr "Obturatorsono"
 msgid "_Take Another Picture"
 msgstr "_Fari alian foton"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Unu aŭ plu bezonataj GStreamer-elementoj mankas: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Neniu aparato estas trovita"
@@ -422,21 +422,21 @@ msgstr "Neniu aparato estas trovita"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Aparatkapabloj ne estas subtenataj"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Nekonata aparato"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "Rezignebla pravalorizo ne estas subtenata"
 
@@ -461,7 +461,6 @@ msgid "Start in fullscreen mode"
 msgstr "Starti per tutekrana reĝimo"
 
 #: ../src/cheese-application.vala:310
-#| msgid "Webcam"
 msgid "Webcam in use"
 msgstr "Retkamerao estas uzata"
 
@@ -505,17 +504,14 @@ msgstr[1] "Se vi forigos elementon, ĝi malaperos daŭre"
 
 #: ../src/cheese-window.vala:291
 #, c-format
-#| msgid "Could not save %s"
 msgid "Could not delete %s"
 msgstr "Ne eblis forigi na %s"
 
 #: ../src/cheese-window.vala:294
-#| msgid "_Skip"
 msgid "Skip"
 msgstr "Ignori"
 
 #: ../src/cheese-window.vala:295
-#| msgid "S_kip All"
 msgid "Skip all"
 msgstr "Ignori ĉiujn"
 
