@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-11-10 15:25+0000\n"
-"PO-Revision-Date: 2016-11-17 12:02+0100\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2018-03-07 17:25+0100\n"
 "Last-Translator: gogo <trebelnik2@gmail.com>\n"
 "Language-Team: Croatian <hr@li.org>\n"
 "Language: hr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -46,7 +46,7 @@ msgstr "Višestruka fotografija"
 
 #: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
 msgid "Take a photo using a webcam"
-msgstr "Uslikajte fotografiju pomoću web kamere."
+msgstr "Uslikajte fotografiju pomoću web kamere"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Navigate to the previous page of effects"
@@ -74,7 +74,7 @@ msgstr "Osobitosti"
 
 #: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
 msgid "_Help"
-msgstr "_Pomoć"
+msgstr "_Priručnik"
 
 #: ../data/cheese-prefs.ui.h:3
 msgid "_Close"
@@ -172,7 +172,7 @@ msgstr "Otvori"
 
 #: ../data/menus.ui.h:7
 msgid "Save _As…"
-msgstr "Spremi _kao..."
+msgstr "Spremi _kao…"
 
 #: ../data/menus.ui.h:8
 msgid "Move to _Trash"
@@ -251,7 +251,7 @@ msgstr "Trajanje odbrojavanja"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:4
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr "Trajanje odbrojavanja prije slikanja fotografije, u sekundama."
+msgstr "Trajanje odbrojavanja prije slikanja fotografije, u sekundama"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:5
 msgid "Fire flash before taking a photo"
@@ -365,7 +365,7 @@ msgid ""
 "Webcam” will be used."
 msgstr ""
 "Određuje putanju gdje se fotografije spremaju. Ako je prazno koristiti će se "
-"\"XDG_PICTURES_DIR/Webcam\""
+"\"XDG_PICTURES_DIR/Webcam\"."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -407,11 +407,11 @@ msgstr "Zvuk škljocanja"
 msgid "_Take Another Picture"
 msgstr "_Uslikaj drugu sliku"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Jedan ili više GStreamer elemenata nedostaje: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Nema pronađenog uređaja"
@@ -421,21 +421,21 @@ msgstr "Nema pronađenog uređaja"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Mogućnosti uređaja nisu podržane"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Nepoznati uređaj"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "Prekidanje pokretanja nije podržano"
 
