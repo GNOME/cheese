@@ -8,17 +8,17 @@
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010-2012.
 # Hajime Taira <htaira@redhat.com>, 2011-2014.
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
-# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013-2015.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013-2015,2018.
 # Tsuji Kento <tuziemon@pclives.org>, 2015, 2016.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-17 04:15+0000\n"
-"PO-Revision-Date: 2016-03-17 18:28+0900\n"
-"Last-Translator: Tsuji Kento <tuziemon@pclives.org>\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2018-03-10 10:03+0900\n"
+"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,8 @@ msgstr "写真の解像度"
 msgid "Video resolution"
 msgstr "ビデオの解像度"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "ウェブカム"
 
@@ -352,11 +353,11 @@ msgstr "ビデオを保存する場所"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
-"ビデオを保存するフォルダーです。空の場合は \"XDG_VIDEOS_DIR/Webcam\" を使"
-"用します。"
+"ビデオを保存するフォルダーです。空の場合は“XDG_VIDEOS_DIR/Webcam”を使用し"
+"ます。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -364,11 +365,11 @@ msgstr "写真を保存する場所"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
-"写真を保存するフォルダーです。空の場合は \"XDG_PICTURES_DIR/Webcam\" を使用"
-"します。"
+"写真を保存するフォルダーです。空の場合は“XDG_PICTURES_DIR/Webcam”を使用し"
+"ます。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -408,11 +409,11 @@ msgstr "シャッター音"
 msgid "_Take Another Picture"
 msgstr "もう一度写真を撮る(_T)"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "必要な GStreamer エレメントが見つかりません: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "デバイスが見つかりません"
@@ -422,21 +423,21 @@ msgstr "デバイスが見つかりません"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "デバイスの機能はサポートされていません"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "不明なデバイス"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "初期化はキャンセルできません"
 
