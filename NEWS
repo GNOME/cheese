@@ -1,6 +1,37 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.28.0
+  - Add new device monitor methods to documentation
+  - monitor: Implement GAsyncInitable interface
+    Monitor initialization may block if external camera is connected,
+    probably due to some kernel bug. It causes freezes for applications,
+    which is not acceptable. Let's implement GAsyncInitable interface,
+    so it can be initialized asynchronously.
+
+    https://bugzilla.gnome.org/show_bug.cgi?id=782627
+  - Remove the OMF file
+    It’s a gnome-doc-utils/ScrollKeeper leftover.
+  - help: Remove unused blurry images (screenshots?) that bloat the
+    tarball
+  - Added/Updated Translations
+    - af, courtesy of Pieter Schalk Schoeman
+    - ca@valencia, courtesy of Xavi Ivars
+    - eo, courtesy of Anders JONSSON
+    - et, courtesy of Mart Raudsepp
+    - fa, courtesy of Arash Mousavi
+    - hi, courtesy of G Karunakar
+    - hr, courtesy of gogo
+    - is, courtesy of Sveinn í Felli
+    - ja, courtesy of Jiro Matsuzawa
+    - ne, courtesy of Pawan Chitrakar
+  - Added/Updated Documentation
+    - el, courtesy of Efstathios Iosifidis
+    - fr, courtesy of Charles Monzat
+    - gl, courtesy of marcos
+    - nl, courtesy of Justin van Steijn
+    - pl, courtesy of Piotr Drąg
+
 version 3.26.0
   - Added/Updated Translations
     - bg, courtesy of Alexander Shopov
