@@ -14,22 +14,23 @@
 # Wylmer Wang <wantinghard@gmail.com>, 2011, 2012.
 # YunQiang Su <wzssyqa@gmail.com>, 2011, 2012.
 # Tong Hui <tonghuix@gmail.com>, 2013.
+# Jeff Bai <jeffbai@aosc.xyz>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
 "product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-02-19 04:14+0000\n"
-"PO-Revision-Date: 2016-02-19 22:09+0800\n"
-"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
+"POT-Creation-Date: 2017-04-04 13:50+0000\n"
+"PO-Revision-Date: 2017-02-18 12:05-0600\n"
+"Last-Translator: Jeff Bai <jeffbai@aosc.xyz>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.8.11\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -103,7 +104,8 @@ msgstr "照片分辨率"
 msgid "Video resolution"
 msgstr "视频分辨率"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "摄像头"
 
@@ -353,8 +355,8 @@ msgstr "视频路径"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr "指定保存视频的路径。如果为空，将使用“XDG_VIDEOS_DIR/Webcam”。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
@@ -363,8 +365,8 @@ msgstr "照片路径"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr "指定保存照片的路径。如果为空，将使用“XDG_PICTURES_DIR/Webcam”。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
@@ -405,11 +407,11 @@ msgstr "快门声"
 msgid "_Take Another Picture"
 msgstr "再拍一张照片(_T)"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "缺少所需的一个或多个 GStreamer 元素："
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "未发现设备"
@@ -419,21 +421,21 @@ msgstr "未发现设备"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "不支持该设备的全部功能"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "未知设备"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "不支持可中断初始化"
 
@@ -476,7 +478,8 @@ msgstr ""
 "chiachen <luojiazhen@gmail.com>, 2011\n"
 "Wylmer Wang<wantinghard@gmail.com>, 2011\n"
 "tuhaihe <1132321739qq@gmail.com>, 2013\n"
-"Tong Hui <tonghuix@gmail.com>, 2014"
+"Tong Hui <tonghuix@gmail.com>, 2014\n"
+"Jeff Bai <jeffbai@aosc.xyz>, 2017"
 
 #: ../src/cheese-application.vala:546
 msgid "Cheese Website"
