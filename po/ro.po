@@ -9,23 +9,25 @@
 # Dobre Alin <dobre.inter@yahoo.com>, 2010.
 # Alexandru Florescu <show_some_originality@yahoo.com>, 2011.
 # Jobava <jobaval10n@gmail.com), 2015, 2016
+# Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2016-03-19 18:18+0000\n"
-"PO-Revision-Date: 2016-03-18 21:40+0200\n"
-"Last-Translator: Jobava <jobaval10n@gmail.com>\n"
-"Language-Team: Romanian Gnome Team <gnomero-list@lists.sourceforge.net>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/"
+"enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-06-28 17:20+0000\n"
+"PO-Revision-Date: 2018-03-24 22:14+0200\n"
+"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"Language-Team: Gnome Romanian Translation Team\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?"
-"2:1));\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);;\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Project-Style: gnome\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -99,7 +101,8 @@ msgstr "Rezoluție fotografică"
 msgid "Video resolution"
 msgstr "Rezoluție video"
 
-#: ../data/cheese-prefs.ui.h:7
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "Cameră web"
 
@@ -352,9 +355,12 @@ msgid "Video path"
 msgstr "Cale video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
+#| msgid ""
+#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
+#| "Webcam\" will be used."
 msgid ""
-"Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-"Webcam\" will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Definește calea unde sunt stocate videourile. Dacă este nulă, va fi folosită "
 "„XDG_VIDEOS_DIR/Webcam”."
@@ -364,12 +370,15 @@ msgid "Photo path"
 msgstr "Cale fotografii"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
+#| msgid ""
+#| "Defines the path where the photos are stored. If empty, "
+#| "\"XDG_PICTURES_DIR/Webcam\" will be used."
 msgid ""
-"Defines the path where the photos are stored. If empty, \"XDG_PICTURES_DIR/"
-"Webcam\" will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
-"Definește calea unde sunt stocate pozele. Dacă este nulă, va fi folosită "
-"„XDG_PICTURES_DIR/Webcam”."
+"Definește calea unde sunt stocate pozele. Dacă este nulă, va fi folosită „"
+"XDG_PICTURES_DIR/Webcam”."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -410,11 +419,11 @@ msgstr "Sunet obturator"
 msgid "_Take Another Picture"
 msgstr "Fă o nouă po_ză"
 
-#: ../libcheese/cheese-camera.c:432 ../libcheese/cheese-camera.c:1613
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Unul sau mai multe elemente necesare GStreamer lipsesc: "
 
-#: ../libcheese/cheese-camera.c:1555
+#: ../libcheese/cheese-camera.c:1544
 #, c-format
 msgid "No device found"
 msgstr "Niciun dispozitiv găsit"
@@ -424,21 +433,21 @@ msgstr "Niciun dispozitiv găsit"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1848
+#: ../libcheese/cheese-camera.c:1837
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: ../libcheese/cheese-camera-device.c:537
+#: ../libcheese/cheese-camera-device.c:552
 msgid "Device capabilities not supported"
 msgstr "Capabilitățile dispozitivului nu sunt suportate"
 
-#: ../libcheese/cheese-camera-device.c:668
+#: ../libcheese/cheese-camera-device.c:683
 msgid "Unknown device"
 msgstr "Dispozitiv necunoscut"
 
-#: ../libcheese/cheese-camera-device.c:687
+#: ../libcheese/cheese-camera-device.c:702
 msgid "Cancellable initialization not supported"
 msgstr "Inițializarea anulabilă nu este suportată"
 
