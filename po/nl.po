@@ -39,21 +39,22 @@
 # Erwin Poeze <donnut@outlook.com>, 2014.
 # Justin van Steijn <justin50@live.nl>, 2015, 2016.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2016, 2017.
+# Nathan Follens <nthn@unseen.is>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
-"&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-28 17:20+0000\n"
-"PO-Revision-Date: 2017-08-24 11:22+0100\n"
-"Last-Translator: Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
+"product=cheese&keywords=I18N+L10N&component=general\n"
+"POT-Creation-Date: 2017-11-09 18:14+0000\n"
+"PO-Revision-Date: 2018-03-24 19:58+0100\n"
+"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 2.0\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -188,11 +189,11 @@ msgstr "Burst-modus"
 
 #: ../data/cheese-prefs.ui.h:17
 msgid "Number of photos"
-msgstr "Aantal foto's"
+msgstr "Aantal foto’s"
 
 #: ../data/cheese-prefs.ui.h:18
 msgid "Delay between photos (seconds)"
-msgstr "Vertraging tussen foto's (seconden)"
+msgstr "Vertraging tussen foto’s (seconden)"
 
 # De tabbladen van Bewerken --> Voorkeuren.
 # * Webcam
@@ -223,7 +224,7 @@ msgstr "_Volledig scherm"
 
 #: ../data/menus.ui.h:2
 msgid "P_references"
-msgstr "_Voorkeuren"
+msgstr "Voo_rkeuren"
 
 #: ../data/menus.ui.h:4
 msgid "_About"
@@ -231,7 +232,7 @@ msgstr "I_nfo"
 
 #: ../data/menus.ui.h:5
 msgid "_Quit"
-msgstr "A_fsluiten"
+msgstr "_Afsluiten"
 
 #: ../data/menus.ui.h:6
 msgid "Open"
@@ -260,14 +261,14 @@ msgstr "Cheese"
 #: ../data/org.gnome.Cheese.desktop.in.in.h:4
 #: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Foto's en video's met een webcam maken, met leuke visuele effecten"
+msgstr "Foto’s en video’s met een webcam maken, met leuke visuele effecten"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:4
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
-"Cheese gebruikt uw webcam om foto's en video's te maken, past hippe, "
+"Cheese gebruikt uw webcam om foto’s en video’s te maken, past hippe, "
 "speciale effecten toe en laat u dat delen met anderen."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
@@ -284,8 +285,8 @@ msgid ""
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
 "whatever you want and share them with others."
 msgstr ""
-"Onder de motorkap gebruikt Cheese GStreamer om foto's en video's hippe "
-"effecten te geven. Met Cheese is het eenvoudig foto's van uzelf, uw "
+"Onder de motorkap gebruikt Cheese GStreamer om foto’s en video’s hippe "
+"effecten te geven. Met Cheese is het eenvoudig foto’s van uzelf, uw "
 "vrienden, huisdieren of wat dan ook te maken en deze te delen met anderen."
 
 # Vincent, Reinout en Tino zijn voor (Wouter Bolsterlee)
@@ -440,40 +441,34 @@ msgstr "Past de tint aan van de foto genomen met de camera"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
 msgid "Video path"
-msgstr "Pad naar video's"
+msgstr "Pad naar video’s"
 
 # Wel ``leegmaken'' en ``leegplunderen'', maar niet ``leeglaten''
 # Het is verwarrend. :-)
 # (laudaka)
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-#| msgid ""
-#| "Defines the path where the videos are stored. If empty, \"XDG_VIDEOS_DIR/"
-#| "Webcam\" will be used."
 msgid ""
 "Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
 "Webcam” will be used."
 msgstr ""
-"Geeft aan waar de video's opgeslagen worden. Als hier niets is opgegeven, dan"
-" wordt ‘XDG_VIDEOS_DIR/Webcam’ gebruikt."
+"Geeft aan waar de video’s opgeslagen worden. Als hier niets is opgegeven, "
+"dan wordt ‘XDG_VIDEOS_DIR/Webcam’ gebruikt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
-msgstr "Pad naar foto's"
+msgstr "Pad naar foto’s"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-#| msgid ""
-#| "Defines the path where the photos are stored. If empty, "
-#| "\"XDG_PICTURES_DIR/Webcam\" will be used."
 msgid ""
 "Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
 "Webcam” will be used."
 msgstr ""
-"Geeft aan waar de foto's opgeslagen worden. Als hier niets is opgegeven, dan"
-" wordt ‘XDG_PICTURES_DIR/Webcam’ gebruikt."
+"Geeft aan waar de foto’s opgeslagen worden. Als hier niets is opgegeven, dan "
+"wordt ‘XDG_PICTURES_DIR/Webcam’ gebruikt."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
-msgstr "Tijd tussen foto's in burst-modus"
+msgstr "Tijd tussen foto’s in burst-modus"
 
 # Hele vertaling herschreven naar een vrijere vertaling die Nederlands klinkt.
 # Nog niet helemaal tevreden met vertaling.
@@ -487,17 +482,17 @@ msgid ""
 "burst sequence of photos. If the burst delay is less than the countdown "
 "duration, the countdown duration will be used instead."
 msgstr ""
-"De tijdsduur in milliseconden tussen foto's bij het maken van een reeks "
-"foto's in de burst-modus. Als de tijdsduur van het aftellen minder is dan "
+"De tijdsduur in milliseconden tussen foto’s bij het maken van een reeks "
+"foto’s in de burst-modus. Als de tijdsduur van het aftellen minder is dan "
 "deze tijdsduur zal de tijdsduur van het aftellen gebruikt worden."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
-msgstr "Aantal foto's in burst-modus"
+msgstr "Aantal foto’s in burst-modus"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:34
 msgid "The number of photos to take in a single burst."
-msgstr "Het aantal in een enkele burst te nemen foto's."
+msgstr "Het aantal in een enkele burst te nemen foto’s."
 
 #: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
 #: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
@@ -514,7 +509,7 @@ msgstr "Sluitergeluid"
 
 #: ../libcheese/cheese-avatar-widget.c:270
 msgid "_Take Another Picture"
-msgstr "_Nog een foto nemen"
+msgstr "Nog een fo_to nemen"
 
 #: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
 msgid "One or more needed GStreamer elements are missing: "
@@ -597,16 +592,17 @@ msgstr "Webcam in gebruik"
 #: ../src/cheese-application.vala:544
 msgid "translator-credits"
 msgstr ""
-"Reinout van Schouwen\n"
-"Wouter Bolsterlee\n"
-"Paulus Santané (laudaka)\n"
-"Tino Meinen\n"
-"Max Beauchez\n"
-"Erwin Poeze\n"
-"Justin van Steijn\n"
-"Hannie Dumoleyn\n"
+"Reinout van Schouwen <reinouts@gnome.org>\n"
+"Wouter Bolsterlee <wbolster@gnome.org>\n"
+"Paulus Santané (laudaka) <laudaka.vertaalt@xs4all.nl>\n"
+"Tino Meinen <a.t.meinen@chello.nl>\n"
+"Max Beauchez <max.780@gmail.com>\n"
+"Erwin Poeze <donnut@outlook.com>\n"
+"Justin van Steijn <jvs@fsfe.org>\n"
+"Hannie Dumoleyn <hannie@ubuntu-nl.org>\n"
+"Nathan Follens <nthn@unseen.is>\n"
 "\n"
-"Kijk voor meer info op http://nl.gnome.org/"
+"Meer info over Gnome-NL http://nl.gnome.org/"
 
 # Op onze GNOME website gebruiken we ``website'' en niet ``webstek''.
 # Dus hier ook ``website''. (laudaka)
@@ -630,19 +626,19 @@ msgstr "Kon %s niet openen"
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
-msgstr[0] "Weet u zeker dat u het bestand blijvend wilt verwijderen?"
-msgstr[1] "Weet u zeker dat u %d bestanden blijvend wilt verwijderen?"
+msgstr[0] "Weet u zeker dat u het bestand definitief wilt verwijderen?"
+msgstr[1] "Weet u zeker dat u %d bestanden definitief wilt verwijderen?"
 
 #: ../src/cheese-window.vala:265
 msgid "_Delete"
-msgstr "_Verwijderen"
+msgstr "Verwij_deren"
 
 # Vertaald zoals in Nautilus. (laudaka)
 #: ../src/cheese-window.vala:267
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
-msgstr[0] "Als u een item verwijdert, zal het voorgoed verloren gaan."
-msgstr[1] "Als u de items verwijdert, zullen ze voorgoed verloren gaan."
+msgstr[0] "Als u een item verwijdert, zal het voorgoed verloren gaan"
+msgstr[1] "Als u de items verwijdert, zullen ze voorgoed verloren gaan"
 
 #: ../src/cheese-window.vala:291
 #, c-format
@@ -687,11 +683,11 @@ msgstr "Video opnemen"
 #. FIXME: Set the effects action to be inactive.
 #: ../src/cheese-window.vala:870
 msgid "Stop taking pictures"
-msgstr "Geen foto's meer nemen"
+msgstr "Geen foto’s meer nemen"
 
 #: ../src/cheese-window.vala:893
 msgid "Take multiple photos"
-msgstr "Meerdere foto's nemen"
+msgstr "Meerdere foto’s nemen"
 
 #: ../src/cheese-window.vala:1087
 msgid "No effects found"
@@ -707,7 +703,7 @@ msgstr "Video opnemen met behulp van een webcam"
 
 #: ../src/cheese-window.vala:1331
 msgid "Take multiple photos using a webcam"
-msgstr "Meerdere foto's nemen met behulp van een webcam"
+msgstr "Meerdere foto’s nemen met behulp van een webcam"
 
 #: ../src/cheese-window.vala:1343
 msgid "Choose an Effect"
@@ -719,5 +715,4 @@ msgstr "Video opnemen"
 
 #: ../src/cheese-window.vala:1358
 msgid "Take Multiple Photos"
-msgstr "Meerdere foto's nemen"
-
+msgstr "Meerdere foto’s nemen"
