@@ -73,6 +73,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     private Gtk.ToggleButton effects_toggle_button;
     [GtkChild]
     private Gtk.Widget buttons_area;
+    [GtkChild]
+    private Gtk.Button switch_camera_button;
     private Gtk.Menu thumbnail_popup;
 
     private Clutter.Stage viewport;
@@ -1213,6 +1215,92 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     }
 
   /**
+   * Select next camera in list and activate it.
+   */
+  public void on_switch_camera_clicked ()
+  {
+      Cheese.CameraDevice selected;
+      Cheese.CameraDevice next = null;
+      GLib.PtrArray cameras;
+      uint i;
+
+      if (camera == null)
+      {
+          return;
+      }
+
+      selected = camera.get_selected_device ();
+
+      if (selected == null)
+      {
+          return;
+      }
+
+      cameras = camera.get_camera_devices ();
+
+      for (i = 0; i < cameras.len; i++)
+      {
+          next = (Cheese.CameraDevice )cameras.index (i);
+
+          if (next == selected)
+          {
+              break;
+          }
+      }
+
+      if (i + 1 < cameras.len)
+      {
+          next = (Cheese.CameraDevice )cameras.index (i + 1);
+      }
+      else
+      {
+          next = (Cheese.CameraDevice )cameras.index (0);
+      }
+
+      if (next == selected)
+      {
+          /* Next is the same device.... */
+          return;
+      }
+
+      camera.set_device (next);
+      camera.switch_camera_device ();
+  }
+
+  /**
+   * Set switch camera buttons visible state.
+   */
+  public void set_switch_camera_button_state ()
+  {
+      Cheese.CameraDevice selected;
+      GLib.PtrArray cameras;
+
+      if (camera == null)
+      {
+          switch_camera_button.set_visible (false);
+          return;
+      }
+
+      selected = camera.get_selected_device ();
+
+      if (selected == null)
+      {
+          switch_camera_button.set_visible (false);
+          return;
+      }
+
+      cameras = camera.get_camera_devices ();
+
+      if (cameras.len > 1)
+      {
+         switch_camera_button.set_visible (true);
+         return;
+      }
+
+      switch_camera_button.set_visible (false);
+  }
+
+  /**
    * Load the UI from the GtkBuilder description.
    */
   public void setup_ui ()
@@ -1276,6 +1364,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     Gtk.StyleContext.add_provider_for_screen (screen, css, STYLE_PROVIDER_PRIORITY_USER);
 
     thumb_view.button_press_event.connect (on_thumbnail_button_press_event);
+
+    switch_camera_button.clicked.connect (on_switch_camera_clicked);
 
     /* needed for the sizing tricks in set_wide_mode (allocation is 0
      * if the widget is not realized */
@@ -1368,5 +1458,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     public void set_camera (Camera camera)
     {
         this.camera = camera;
-    }
+        set_switch_camera_button_state ();
+     }
 }
