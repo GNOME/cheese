@@ -32,7 +32,6 @@ enum
   LAST_PAGE    = 3,
 };
 
-GObject   *cheese_widget_get_camera (CheeseWidget *widget);
 GSettings *cheese_widget_get_settings (CheeseWidget *widget);
 GtkWidget *cheese_widget_get_video_area (CheeseWidget *widget);
 

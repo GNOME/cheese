@@ -32,6 +32,7 @@ G_DECLARE_FINAL_TYPE (CheeseWidget, cheese_widget, CHEESE, WIDGET, GtkNotebook)
 
 GtkWidget *cheese_widget_new (void);
 void       cheese_widget_get_error (CheeseWidget *widget, GError **error);
+GObject   *cheese_widget_get_camera (CheeseWidget *widget);
 
 
 /**
