@@ -1,0 +1,210 @@
+project(
+  'Cheese', ['c', 'vala'],
+  version: '3.30.0',
+  license: 'GPL2',
+  default_options: 'buildtype=debugoptimized',
+  meson_version: '>= 0.49.0',
+)
+
+cheese_name = meson.project_name().to_lower()
+
+cheese_version = meson.project_version()
+version_array = cheese_version.split('.')
+cheese_major_version = version_array[0].to_int()
+cheese_minor_version = version_array[1].to_int()
+cheese_micro_version = version_array[2].to_int()
+
+cheese_api_version = cheese_major_version.to_string() + '.0'
+
+cheese_prefix = get_option('prefix')
+cheese_bindir = get_option('bindir')
+cheese_datadir = get_option('datadir')
+cheese_includedir = get_option('includedir')
+cheese_localedir = get_option('localedir')
+cheese_mandir = get_option('mandir')
+
+cheese_namespace = 'org.gnome.' + meson.project_name()
+
+#*******************************************************************************
+# Libraries
+#*******************************************************************************
+# Before making a release, the CHEESE_LT_VERSION string should be modified.
+# The string is of the form C:R:A.
+# - If interfaces have been changed or added, but binary compatibility has
+#   been preserved, change to C+1:0:A+1
+# - If binary compatibility has been broken (eg removed or changed interfaces)
+#   change to C+1:0:0
+# - If the interface is the same as the previous version, change to C:R+1:A
+current = 8
+revision = 10
+age = 0
+libcheese_version = '@0@.@1@.@2@'.format(current - age, age, revision)
+
+current = 26
+revision = 0
+age = 1
+libcheese_gtk_version = '@0@.@1@.@2@'.format(current - age, age, revision)
+
+gnome = import('gnome')
+i18n = import('i18n')
+pkg = import('pkgconfig')
+
+source_root = meson.current_source_dir()
+build_root = meson.current_build_dir()
+
+po_dir = source_root / 'po'
+vapi_dir = source_root / 'src' / 'vapi'
+
+intltool_merge = find_program('intltool-merge')
+intltool_cache = join_paths(po_dir, '.intltool-merge-cache')
+intltool_desktop_cmd = [intltool_merge, '-d', '-u', '-c', intltool_cache, po_dir, '@INPUT@', '@OUTPUT@']
+intltool_xml_cmd = [intltool_merge, '-x', '-u', '-c', intltool_cache, po_dir, '@INPUT@', '@OUTPUT@']
+
+top_inc = include_directories('.')
+
+cc = meson.get_compiler('c')
+valac = meson.get_compiler('vala')
+
+config_h = configuration_data()
+
+# defines
+set_defines = [
+  # package
+  ['PACKAGE_LOCALEDIR', cheese_prefix / cheese_localedir],
+  ['PACKAGE_NAME', meson.project_name()],
+  ['PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), cheese_version)],
+  ['PACKAGE_TARNAME', meson.project_name()],
+  ['PACKAGE_URL', 'https://wiki.gnome.org/Apps/Cheese'],
+  ['PACKAGE_VERSION', cheese_version],
+  # i18n
+  ['GETTEXT_PACKAGE', cheese_name],
+]
+
+foreach define: set_defines
+  config_h.set_quoted(define[0], define[1])
+endforeach
+
+# compiler flags
+common_flags = ['-DHAVE_CONFIG_H']
+
+if get_option('buildtype').contains('debug')
+  common_flags += cc.get_supported_arguments([
+    '-Wnested-externs',
+    '-Wstrict-prototypes',
+    '-Werror=format=2',
+    '-Werror=implicit-function-declaration',
+    '-Werror=init-self',
+    '-Werror=missing-include-dirs',
+    '-Werror=missing-prototypes',
+    '-Werror=pointer-arith',
+    '-Werror=return-type',
+  ])
+endif
+
+add_project_arguments(common_flags, language: 'c')
+
+#*******************************************************************************
+# Check required libraries
+#*******************************************************************************
+clutter_dep = dependency('clutter-1.0', version: '>= 1.13.2')
+clutter_gst_dep = dependency('clutter-gst-3.0', version: '>= 3.0.0')
+clutter_gtk_dep = dependency('clutter-gtk-1.0')
+gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0')
+gio_dep = dependency('gio-2.0')
+glib_dep = dependency('glib-2.0', version: '>= 2.39.90')
+gnome_desktop_dep = dependency('gnome-desktop-3.0')
+gstreamer_dep = dependency('gstreamer-1.0')
+gstreamer_pbutils_dep = dependency('gstreamer-pbutils-1.0')
+gstreamer_plugins_bad_dep = dependency('gstreamer-plugins-bad-1.0', version: '>= 1.4')
+gtk_dep = dependency('gtk+-3.0', version: '>= 3.13.4')
+libcanberra_dep = dependency('libcanberra')
+libcanberra_gtk_dep = dependency('libcanberra-gtk')
+libcanberra_gtk3_dep = dependency('libcanberra-gtk3', version: '>= 0.26')
+
+m_dep = cc.find_library('m')
+
+cheese_common_dep = valac.find_library('cheese-common', dirs: vapi_dir)
+cheese_thumbview_dep = valac.find_library('cheese-thumbview', dirs: vapi_dir)
+config_dep = valac.find_library('config', dirs: vapi_dir)
+eogthumbnav_dep = valac.find_library('eogthumbnav', dirs: vapi_dir)
+posix_dep = valac.find_library('posix')
+
+x11_dep = dependency('x11')
+have_xtest = false
+if cc.has_header('X11/extensions/XTest.h', dependencies: x11_dep)
+  xtst_dep = dependency('xtst', required: false)
+  if xtst_dep.found()
+    have_xtest = cc.has_function('XTestFakeKeyEvent', dependencies: xtst_dep)
+  endif
+endif
+
+dbus_dep = dependency('dbus-1')
+dbus_servicedir = dbus_dep.get_pkgconfig_variable('session_bus_services_dir', define_variable: ['datadir', cheese_datadir])
+
+schemasdir = gio_dep.get_pkgconfig_variable('schemasdir', define_variable: ['datadir', cheese_datadir])
+if schemasdir == ''
+  schemasdir = cheese_datadir / 'glib-2.0' / 'schemas'
+endif
+
+gnome_video_effects_dep = dependency('gnome-video-effects', required: false)
+if not gnome_video_effects_dep.found()
+  warning('The gnome-video-effects package is required at runtime for effects')
+endif
+
+# Recommend some runtime GStreamer plugins.
+gst_inspect = find_program('gst-inspect-1.0', required: false)
+if gst_inspect.found()
+  foreach plugin: ['camerabin', 'vp8enc', 'webmmux']
+    r = run_command(gst_inspect, plugin)
+    if r.returncode() != 0
+      warning(plugin + ' was not found. It needs to be installed before Cheese is run')
+    endif
+  endforeach
+else
+  warning('unable to check for runtime GStreamer plugin dependencies')
+endif
+
+# Check for GLib testing utilities.
+# FIXME: meson has its own test framework
+'''
+gtester = find_program('gtester', required: false)
+enable_cheese_tests = gtester.found()
+if not enable_cheese_tests
+  warning('testing disabled as the required utilities were not found')
+endif
+'''
+
+# introspection support
+enable_gir = get_option('introspection')
+if enable_gir
+  dependency('gobject-introspection-1.0', version: '>= 0.6.7')
+endif
+
+
+subdir('data')
+subdir('libcheese')
+subdir('src')
+
+if get_option('tests')
+  subdir('tests')
+endif
+
+subdir('po')
+subdir('help')
+
+enable_gtk_doc = get_option('gtk_doc')
+enable_man = get_option('man')
+if enable_gtk_doc or enable_man
+  subdir('docs/reference')
+endif
+
+configure_file(
+  output: 'config.h',
+  configuration: config_h,
+)
+
+meson.add_install_script(
+  'meson_post_install.py',
+  cheese_datadir,
+  schemasdir,
+)
