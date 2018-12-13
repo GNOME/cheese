@@ -1,0 +1,5 @@
+option('tests', type: 'boolean', value: false, description: 'Build tests')
+option('introspection', type: 'boolean', value: true, description: 'Enable introspection for this build')
+
+option('gtk_doc', type: 'boolean', value: true, description: 'use gtk-doc to build documentation')
+option('man', type: 'boolean', value: true, description: 'build manual pages')
