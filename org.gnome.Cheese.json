@@ -29,12 +29,6 @@
         /* Needed to load and save videos */
         "--filesystem=xdg-videos"
     ],
-    "build-options" : {
-        "cflags" : "-O2 -g",
-        "cxxflags" : "-O2 -g",
-        "env" : {
-        }
-    },
     "cleanup" : [
         "/include",
         "/lib/pkgconfig",
@@ -49,12 +43,12 @@
     "modules" : [
         {
             "name" : "gnome-desktop",
-            "config-opts" : ["--disable-debug-tools", "--disable-udev"],
+            "buildsystem" : "meson",
+            "config-opts" : ["-Ddebug_tools=false", "-Dudev=disabled"],
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://download.gnome.org/sources/gnome-desktop/3.28/gnome-desktop-3.28.0.tar.xz",
-                    "sha256" : "f1df71c39e32147f6d58f53a9c05b964b00b7c98fbca090419355437c72fd59d"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gnome-desktop.git"
                 }
             ]
         },
@@ -62,9 +56,8 @@
             "name" : "gnome-video-effects",
             "sources" : [
                 {
-                    "type" : "archive",
-                    "url" : "https://download.gnome.org/sources/gnome-video-effects/0.4/gnome-video-effects-0.4.3.tar.xz",
-                    "sha256" : "5a7ee0f5ade4b7d921f1b99f3b97d7d7bb830f2fef0f1daee20a7a1867708219"
+                    "type" : "git",
+                    "url" : "https://gitlab.gnome.org/GNOME/gnome-video-effects.git"
                 }
             ]
         },
