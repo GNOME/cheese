@@ -331,20 +331,10 @@ pkgconfig_DATA = \
 
 iconthemedir = $(datadir)/icons/hicolor
 
-appsicon16dir = $(iconthemedir)/16x16/apps
-appsicon22dir = $(iconthemedir)/22x22/apps
-appsicon24dir = $(iconthemedir)/24x24/apps
-appsicon32dir = $(iconthemedir)/32x32/apps
-appsicon48dir = $(iconthemedir)/48x48/apps
-appsicon256dir = $(iconthemedir)/256x256/apps
+appsiconscalabledir = $(iconthemedir)/scalable/apps
 appsiconsymbolicdir = $(iconthemedir)/symbolic/apps
 
-dist_appsicon16_DATA = data/icons/16x16/org.gnome.Cheese.png
-dist_appsicon22_DATA = data/icons/22x22/org.gnome.Cheese.png
-dist_appsicon24_DATA = data/icons/24x24/org.gnome.Cheese.png
-dist_appsicon32_DATA = data/icons/32x32/org.gnome.Cheese.png
-dist_appsicon48_DATA = data/icons/48x48/org.gnome.Cheese.png
-dist_appsicon256_DATA = data/icons/256x256/org.gnome.Cheese.png
+dist_appsiconscalable_DATA = data/icons/scalable/org.gnome.Cheese.svg
 dist_appsiconsymbolic_DATA = data/icons/symbolic/org.gnome.Cheese-symbolic.svg
 
 update_icon_cache = gtk-update-icon-cache --ignore-theme-index --force
