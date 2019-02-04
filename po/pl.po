@@ -1,18 +1,18 @@
 # Polish translation for cheese.
-# Copyright © 2007-2017 the cheese authors.
+# Copyright © 2007-2019 the cheese authors.
 # This file is distributed under the same license as the cheese package.
 # Tomasz Dominikowski <dominikowski@gmail.com>, 2007-2009.
 # Piotr Zaryk <pzaryk@aviary.pl>, 2008.
-# Piotr Drąg <piotrdrag@gmail.com>, 2009-2017.
+# Piotr Drąg <piotrdrag@gmail.com>, 2009-2019.
 # Paweł Żołnowski <pawel@zolnowski.name>, 2014.
-# Aviary.pl <community-poland@mozilla.org>, 2008-2017.
+# Aviary.pl <community-poland@mozilla.org>, 2008-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-10 21:55+0200\n"
-"PO-Revision-Date: 2017-06-10 21:58+0200\n"
+"POT-Creation-Date: 2019-02-04 18:19+0100\n"
+"PO-Revision-Date: 2019-02-04 18:20+0100\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <community-poland@mozilla.org>\n"
 "Language: pl\n"
@@ -46,7 +46,7 @@ msgstr "Tryb zdjęć seryjnych"
 msgid "Burst"
 msgstr "Zdjęcia seryjne"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "Robi zdjęcie za pomocą kamery"
 
@@ -74,7 +74,7 @@ msgstr "Opuszcza tryb pełnoekranowy i wraca do trybu okna"
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "Pomo_c"
 
@@ -148,40 +148,36 @@ msgstr "Opóźnienie między zdjęciami (w sekundach)"
 msgid "Capture"
 msgstr "Robienie zdjęć"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Pełny ekran"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "P_referencje"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "_O programie"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "Robienie zdjęcia"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Pełny ekran"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "P_referencje"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "_O programie"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "Za_kończ"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "Otwórz"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Z_apisz jako…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "_Przenieś do kosza"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Usuń"
 
@@ -399,8 +395,8 @@ msgstr "Liczba zdjęć w trybie seryjnym"
 msgid "The number of photos to take in a single burst."
 msgstr "Liczba zdjęć robionych w jednej serii."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_Anuluj"
 
@@ -408,7 +404,7 @@ msgstr "_Anuluj"
 msgid "_Select"
 msgstr "_Wybierz"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "Dźwięk migawki"
 
@@ -478,9 +474,9 @@ msgid "translator-credits"
 msgstr ""
 "Tomasz Dominikowski <dominikowski@gmail.com>, 2007-2009\n"
 "Piotr Zaryk <pzaryk@aviary.pl>, 2008\n"
-"Piotr Drąg <piotrdrag@gmail.com>, 2009-2017\n"
+"Piotr Drąg <piotrdrag@gmail.com>, 2009-2019\n"
 "Paweł Żołnowski <pawel@zolnowski.name>, 2014\n"
-"Aviary.pl <community-poland@mozilla.org>, 2008-2017"
+"Aviary.pl <community-poland@mozilla.org>, 2008-2019"
 
 #: ../src/cheese-application.vala:546
 msgid "Cheese Website"
@@ -492,12 +488,12 @@ msgstr "Witryna programu Cheese"
 msgid "No Effect"
 msgstr "Bez efektów"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "Nie można otworzyć %s"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
@@ -505,11 +501,11 @@ msgstr[0] "Na pewno trwale usunąć plik?"
 msgstr[1] "Na pewno trwale usunąć %d pliki?"
 msgstr[2] "Na pewno trwale usunąć %d plików?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "_Usuń"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] ""
@@ -519,79 +515,79 @@ msgstr[1] ""
 msgstr[2] ""
 "Jeśli elementy zostaną usunięte, to zostaną one bezpowrotnie utracone."
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "Nie można usunąć %s"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "Pomiń"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "Pomiń wszystko"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Nie można przenieść %s do kosza"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "Zapis pliku"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "Zapisz"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "Nie można zapisać %s"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "Zatrzymuje nagrywanie"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "Nagrywanie wideo"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "Zatrzymuje robienie zdjęć"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "Robi wiele zdjęć"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "Nie odnaleziono efektów"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "Wystąpił błąd podczas odtwarzania nagrania wideo z kamery"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "Nagrywa wideo za pomocą kamery"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "Robi wiele zdjęć za pomocą kamery"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "Wybór efektu"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "Nagrywanie wideo"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Robienie wielu zdjęć"
