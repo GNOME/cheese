@@ -1,6 +1,19 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.31.90
+  - Remove app menu
+    https://wiki.gnome.org/Initiatives/GnomeGoals/AppMenuRetirement
+  - Replace git.gnome.org by Gitlab URL in <GitRepository> in DOAP file
+  - Replace Bugzilla by Gitlab URL in DOAP file
+  - Drop deprecated GtkScrollbar-min-slider-length
+    It seems to serve no purpose anymore + added bonus:
+    Avoid deprecation warning littering journald logs.
+  - Added/Updated Translations
+    - fr, courtesy of Charles Monzat
+    - id, courtesy of Andika Triwidada
+    - pl, courtesy of Piotr Drąg
+
 version 3.30.0
   - cheese-window: Add camera toggle button
     Fixes: https://bugzilla.gnome.org/show_bug.cgi?id=750285
