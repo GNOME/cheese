@@ -9,16 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2018-08-14 19:12+0000\n"
-"PO-Revision-Date: 2019-01-12 12:45+0700\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>\n"
+"POT-Creation-Date: 2019-02-04 17:20+0000\n"
+"PO-Revision-Date: 2019-02-06 21:23+0700\n"
+"Last-Translator: Kukuh Syafaat <kukuhsyafaat@gnome.org>\n"
 "Language-Team: Indonesian <gnome@i15n.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural= n!=1;\n"
-"X-Generator: Poedit 1.8.11\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -50,7 +50,7 @@ msgstr "Ambil foto memakai webcam"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Navigate to the previous page of effects"
-msgstr "Navigasi ke halaman efek sebelumnya "
+msgstr "Navigasi ke halaman efek sebelumnya"
 
 #: ../data/cheese-main-window.ui.h:9
 msgid "Effects"
@@ -62,7 +62,7 @@ msgstr "_Efek"
 
 #: ../data/cheese-main-window.ui.h:11
 msgid "Navigate to the next page of effects"
-msgstr "Navigasi ke halaman efek selanjutnya "
+msgstr "Navigasi ke halaman efek selanjutnya"
 
 #: ../data/cheese-main-window.ui.h:12
 msgid "Leave fullscreen mode and go back to windowed mode"
@@ -72,7 +72,7 @@ msgstr "Tinggalkan mode layar penuh dan kembalik ke mode jendela"
 msgid "Preferences"
 msgstr "Preferensi"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "Ba_ntuan"
 
@@ -135,7 +135,7 @@ msgstr "Mode rentetan"
 
 #: ../data/cheese-prefs.ui.h:17
 msgid "Number of photos"
-msgstr "Jumlah foto:"
+msgstr "Jumlah foto"
 
 #: ../data/cheese-prefs.ui.h:18
 msgid "Delay between photos (seconds)"
@@ -145,40 +145,36 @@ msgstr "Jeda antar foto (detik)"
 msgid "Capture"
 msgstr "Ambil"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Layar Penuh"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "P_referensi"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "Tent_ang Cheese"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
 #: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "Ambil Foto"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Layar Penuh"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "P_referensi"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "Tent_ang"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_Keluar"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "Buka"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Simp_an Sebagai…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "Buang ke _Tempat Sampah"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Hapus"
 
@@ -376,7 +372,7 @@ msgid ""
 msgstr ""
 "Lama waktu dalam mili detik, untuk jeda antara mengambil tiap foto dalam "
 "suatu urutan rentetan foto. Kalau jeda rentetan kurang dari durasi hitung "
-"mundur, durasi hitung mundur yang akan dipakai"
+"mundur, durasi hitung mundur yang akan dipakai."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
@@ -464,7 +460,8 @@ msgid "translator-credits"
 msgstr ""
 "Andika Triwidada <andika@gmail.com>, 2010-2015.\n"
 "Dirgita <dirgitadevina@yahoo.co.id>, 2010, 2011, 2012.\n"
-"Vincent Sebastian The <vincent.s.the@gmail.com>, 2011."
+"Vincent Sebastian The <vincent.s.the@gmail.com>, 2011.\n"
+"Kukuh Syafaat <kukuhsyafaat@gnome.org>, 2019."
 
 #: ../src/cheese-application.vala:546
 msgid "Cheese Website"
@@ -498,6 +495,7 @@ msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] ""
 "Jika Anda menghapus barang, barang tersebut akan hilang secara permanen"
 msgstr[1] ""
+"Jika Anda menghapus barang, barang tersebut akan hilang secara permanen"
 
 #: ../src/cheese-window.vala:293
 #, c-format
@@ -575,3 +573,6 @@ msgstr "Rekam Video"
 #: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Ambil Banyak Foto"
+
+#~ msgid "_Quit"
+#~ msgstr "_Keluar"
