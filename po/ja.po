@@ -10,15 +10,15 @@
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
 # Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013-2015,2018.
 # Tsuji Kento <tuziemon@pclives.org>, 2015, 2016.
+# sicklylife <translation@sicklylife.jp>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-28 17:20+0000\n"
-"PO-Revision-Date: 2018-03-10 10:03+0900\n"
-"Last-Translator: Jiro Matsuzawa <jmatsuzawa@gnome.org>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-02-09 17:50+0900\n"
+"Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -50,7 +50,7 @@ msgstr "連写モード"
 msgid "Burst"
 msgstr "連写"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "ウェブカムを使って写真を撮ります"
 
@@ -78,7 +78,7 @@ msgstr "フルスクリーンモードを解除してウィンドウモードに
 msgid "Preferences"
 msgstr "設定"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "ヘルプ(_H)"
 
@@ -151,40 +151,36 @@ msgstr "画像表示の遅延間隔(秒)"
 msgid "Capture"
 msgstr "キャプチャ"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "フルスクリーン(_F)"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "設定(_R)"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "Cheese について(_A)"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "写真を撮る"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "フルスクリーン(_F)"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "設定(_R)"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "このアプリケーションについて(_A)"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "終了(_Q)"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "開く"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "名前を付けて保存(_A)…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "ゴミ箱へ移動する(_T)"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "削除"
 
@@ -356,8 +352,8 @@ msgid ""
 "Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
 "Webcam” will be used."
 msgstr ""
-"ビデオを保存するフォルダーです。空の場合は“XDG_VIDEOS_DIR/Webcam”を使用し"
-"ます。"
+"ビデオを保存するフォルダーです。空の場合は“XDG_VIDEOS_DIR/Webcam”を使用しま"
+"す。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -368,8 +364,8 @@ msgid ""
 "Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
 "Webcam” will be used."
 msgstr ""
-"写真を保存するフォルダーです。空の場合は“XDG_PICTURES_DIR/Webcam”を使用し"
-"ます。"
+"写真を保存するフォルダーです。空の場合は“XDG_PICTURES_DIR/Webcam”を使用しま"
+"す。"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -392,8 +388,8 @@ msgstr "連写モードでの画像の数"
 msgid "The number of photos to take in a single burst."
 msgstr "一度の連写モードで撮影する写真の数を設定します。"
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "キャンセル(_C)"
 
@@ -401,7 +397,7 @@ msgstr "キャンセル(_C)"
 msgid "_Select"
 msgstr "選択(_S)"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "シャッター音"
 
@@ -469,12 +465,15 @@ msgstr "ウェブカムは使用中です"
 msgid "translator-credits"
 msgstr ""
 "相花 毅 <takeshi.aihana@gmail.com>\n"
-"kentaro kazuhama <kazken3@gmail.com>\n"
-"やまねひでき <henrich@debian.org>\n"
 "草野 貴之 <AE5T-KSN@asahi-net.or.jp>\n"
-"Hajime Taira <htaira@redhat.com>\n"
+"日本 GNOME ユーザー会 <http://www.gnome.gr.jp/>\n"
 "松澤 二郎 <jmatsuzawa@gnome.org>\n"
-"日本GNOMEユーザー会 <http://www.gnome.gr.jp/>"
+"やまねひでき <henrich@debian.org>\n"
+"Hajime Taira <htaira@redhat.com>\n"
+"Kentaro Kazuhama <kazken3@gmail.com>\n"
+"Noriko Mizumoto <noriko@fedoraproject.org>\n"
+"sicklylife <translation@sicklylife.jp>\n"
+"Tsuji Kento <tuziemon@pclives.org>"
 
 #: ../src/cheese-application.vala:546
 msgid "Cheese Website"
@@ -486,104 +485,110 @@ msgstr "Cheese のウェブサイト"
 msgid "No Effect"
 msgstr "エフェクトなし"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "%s を開けませんでした"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "本当にこのファイルを削除しますか?"
 msgstr[1] "本当に %d 個のファイルを削除しますか?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "削除(_D)"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "ファイルを削除すると、元に戻せなくなります。"
 msgstr[1] "ファイルを削除すると、元に戻せなくなります。"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "%s を削除できませんでした"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "スキップ"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "すべてスキップ"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s をゴミ箱に移動できませんでした"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "ファイルの保存"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "保存"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "%s を保存できませんでした"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "撮影の停止"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "ビデオを撮影する"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "写真撮影を停止"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "複数の写真を撮る"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "エフェクトが見つかりません"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "ウェブカムからビデオを再生する際にエラーが発生しました"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "ウェブカムを使ってビデオを撮影する"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "ウェブカムを使って複数の写真を撮ります"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "エフェクトを選択する"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "ビデオを撮影する"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "複数の写真を撮る"
+
+#~ msgid "_About"
+#~ msgstr "このアプリケーションについて(_A)"
+
+#~ msgid "_Quit"
+#~ msgstr "終了(_Q)"
 
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr "デバイス %s の機能の検索のための初期化に失敗しました"
@@ -666,9 +671,6 @@ msgstr "複数の写真を撮る"
 
 #~ msgid "Another instance of Cheese is currently running\n"
 #~ msgstr "すでに他のインスタンスの Cheese が起動しています。\n"
-
-#~ msgid "_Cheese"
-#~ msgstr "Cheese(_C)"
 
 #~ msgid "_Edit"
 #~ msgstr "編集(_E)"
