@@ -12,22 +12,22 @@
 # Alain Lojewski <allomervan@gmail.com>, 2012-2013.
 # Essodjolo Kahanam <k.essodjolo@gmail.com>, 2012.
 # Alexandre Franke <alexandre.franke@gmail.com>, 2012.
-# Charles Monzat <charles.monzat@numericable.fr>, 2017-2018.
+# Charles Monzat <charles.monzat@free.fr>, 2017-2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2018-08-14 19:12+0000\n"
-"PO-Revision-Date: 2018-12-05 20:52+0100\n"
-"Last-Translator: Charles Monzat <charles.monzat@numericable.fr>\n"
+"POT-Creation-Date: 2019-02-04 17:20+0000\n"
+"PO-Revision-Date: 2019-02-07 14:58+0100\n"
+"Last-Translator: Charles Monzat <charles.monzat@free.fr>\n"
 "Language-Team: GNOME French Team <gnomefr@traduc.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
-"X-Generator: Gtranslator 3.30.0\n"
+"X-Generator: Gtranslator 3.30.1\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -81,7 +81,7 @@ msgstr "Quitter le mode plein écran et retourner au mode fenêtré"
 msgid "Preferences"
 msgstr "Préférences"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "Aid_e"
 
@@ -154,40 +154,37 @@ msgstr "Délai entre les photos (sec.)"
 msgid "Capture"
 msgstr "Capture"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Plein écran"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "_Préférences"
+
+#: ../data/headerbar.ui.h:4
+#| msgid "_About"
+msgid "_About Cheese"
+msgstr "À _propos de Cheese"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
 #: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "Prendre une photo"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Plein écran"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "_Préférences"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "À _propos"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_Quitter"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "Ouvrir"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Enregistrer _sous…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "_Mettre à la corbeille"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -595,6 +592,9 @@ msgstr "Enregistrer une vidéo"
 #: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Prendre plusieurs photos"
+
+#~ msgid "_Quit"
+#~ msgstr "_Quitter"
 
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr ""
