@@ -11,10 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-04-12 15:19+0000\n"
-"PO-Revision-Date: 2017-05-13 16:36+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-02-05 18:26+0300\n"
 "Last-Translator: Emin Tufan Çetin <etcetin@gmail.com>\n"
 "Language-Team: Türkçe <>\n"
 "Language: tr\n"
@@ -22,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Gtranslator 2.91.7\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -48,7 +47,7 @@ msgstr "Şipşak kipi"
 msgid "Burst"
 msgstr "Şipşak"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "Web kamerası kullanarak fotoğraf çek"
 
@@ -76,7 +75,7 @@ msgstr "Tam ekran kipinden çık ve pencereli kipe geri dön"
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "_Yardım"
 
@@ -149,40 +148,36 @@ msgstr "Fotoğraflar arasındaki bekleme (saniye)"
 msgid "Capture"
 msgstr "Yakala"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Tam Ekran"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "Te_rcihler"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "Peynir _Hakkında"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "Fotoğraf Çek"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Tam Ekran"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "Te_rcihler"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "_Hakkında"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_Çık"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "Aç"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Farklı _Kaydet..."
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "Çöp’e _Taşı"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Sil"
 
@@ -394,8 +389,8 @@ msgstr "Patlama kipinde fotoğraf sayısı"
 msgid "The number of photos to take in a single burst."
 msgstr "Tek bir patlamada çekilecek fotoğraf sayısı."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_İptal"
 
@@ -403,7 +398,7 @@ msgstr "_İptal"
 msgid "_Select"
 msgstr "_Seç"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "Deklanşör sesi"
 
@@ -483,102 +478,108 @@ msgstr "Peynir Web Sitesi"
 msgid "No Effect"
 msgstr "Etki Yok"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "%s açılamadı"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "%d dosyayı kalıcı olarak silmek istediğinizden emin misiniz?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "_Sil"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Eğer bu ögeleri silerseniz, kalıcı olarak kaybolacaklar"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "%s silinemedi"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "Atla"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "Tümünü atla"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s, çöpe taşınamadı"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "Dosyayı Kaydet"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "Kaydet"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "%s kaydedilemedi"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "Kaydı durdur"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "Video kaydet"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "Resim çekmeyi durdur"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "Çoklu fotoğraf çek"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "Etki yok"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "Web kamerasından video oynatırken bir hata oluştu"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "Web kamerası kullanarak video kaydet"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "Web kamerası kullanarak çoklu fotoğraf çek"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "Bir Etki Seç"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "Video Kaydet"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Çoklu Fotoğraf Çek"
+
+#~ msgid "_About"
+#~ msgstr "_Hakkında"
+
+#~ msgid "_Quit"
+#~ msgstr "_Çık"
 
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr "Yetenek sınaması için %s aygıtı başlatılamadı"
@@ -662,9 +663,6 @@ msgstr "Çoklu Fotoğraf Çek"
 
 #~ msgid "_Take a photo"
 #~ msgstr "_Fotoğraf çek"
-
-#~ msgid "_Cheese"
-#~ msgstr "_Peynir"
 
 #~ msgid "_Contents"
 #~ msgstr "İçi_ndekiler"
