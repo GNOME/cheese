@@ -10,14 +10,13 @@
 # Anton Meixome <meixome@mancomun.org>, 2009.
 # Leandro Regueiro <leandro.regueiro@gmail.com>, 2009, 2010, 2011, 2012.
 # Fran Diéguez <frandieguez@gnome.org>, 2009, 2010, 2011, 2012.
-# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013, 2014, 2015, 2016, 2017.
+# Fran Dieguez <frandieguez@gnome.org>, 2012, 2013, 2014, 2015, 2016, 2017, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese.master\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
-"&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-28 17:20+0000\n"
-"PO-Revision-Date: 2017-08-10 11:54+0200\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-02-09 16:44+0200\n"
 "Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
 "Language-Team: Galician\n"
 "Language: gl\n"
@@ -52,7 +51,7 @@ msgstr "Modo de ráfaga de fotos"
 msgid "Burst"
 msgstr "Ráfaga"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "Sacar unha foto usando a cámara web"
 
@@ -80,7 +79,7 @@ msgstr "Deixar o modo a pantalla completa e volver ao modo en xanela"
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "_Axuda"
 
@@ -153,40 +152,37 @@ msgstr "Atraso entre fotos (segundos)"
 msgid "Capture"
 msgstr "Capturar"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Pantalla completa"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "P_referencias"
+
+#: ../data/headerbar.ui.h:4
+#| msgid "_Cheese"
+msgid "_About Cheese"
+msgstr "_Sobre Cheese"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "Sacar unha foto"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Pantalla completa"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "P_referencias"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "_Sobre"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_Saír"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "Abrir"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Gardar _como…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "Mover ao _lixo"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -395,8 +391,8 @@ msgstr "Número de fotos no modo ráfaga"
 msgid "The number of photos to take in a single burst."
 msgstr "O número de fotos que tomar nunha sola ráfaga."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_Cancelar"
 
@@ -404,7 +400,7 @@ msgstr "_Cancelar"
 msgid "_Select"
 msgstr "_Seleccionar"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "Son do obturador"
 
@@ -491,104 +487,110 @@ msgstr "Sitio web de Cheese"
 msgid "No Effect"
 msgstr "Sen efectos"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "Non foi posíbel abrir %s"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Está seguro de que desexa eliminar permanentemente o ficheiro?"
 msgstr[1] "Está seguro de que desexa eliminar permanentemente %d ficheiros?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Se elimina un elemento perderase para sempre"
 msgstr[1] "Se elimina os elementos perderanse para sempre"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "Non foi posíbel eliminar %s"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "Omitir"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "Omitir todo"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Non foi posíbel mover %s ao lixo"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "Gardar o ficheiro"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "Gardar"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "Non foi posíbel gardar %s"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "Deter a gravación"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "Gravar un vídeo"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "Deixar de tomar imaxes"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "Sacar varias fotos"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "Non se atopou ningún efecto"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "Produciuse un erro ao reproducir o vídeo desde a cámara web"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "Gravar un vídeo usando unha cámara web"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "Sacar varias fotos usando unha cámara web"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "Escolla un efecto"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "Gravar un vídeo"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Sacar varias fotos"
+
+#~ msgid "_About"
+#~ msgstr "_Sobre"
+
+#~ msgid "_Quit"
+#~ msgstr "_Saír"
 
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr ""
@@ -676,9 +678,6 @@ msgstr "Sacar varias fotos"
 
 #~ msgid "_Take a photo"
 #~ msgstr "_Sacar unha foto"
-
-#~ msgid "_Cheese"
-#~ msgstr "_Cheese"
 
 #~ msgid "_Edit"
 #~ msgstr "_Editar"
