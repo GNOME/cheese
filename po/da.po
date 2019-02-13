@@ -12,18 +12,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
-"Report-Msgid-Bugs-To: "
-"https://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-28 17:20+0000\n"
-"PO-Revision-Date: 2016-03-03 00:50+0200\n"
-"Last-Translator: scootergrisen\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-02-11 19:34+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Project-Style: gnome\n"
 
 #: ../data/cheese-main-window.ui.h:1
@@ -50,7 +49,7 @@ msgstr "Serietilstand"
 msgid "Burst"
 msgstr "Serie"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "Tag et billede med et webkamera"
 
@@ -78,7 +77,7 @@ msgstr "Forlad fuldskærmstilstand og gå tilbage til vinduestilstand"
 msgid "Preferences"
 msgstr "Indstillinger"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "_Hjælp"
 
@@ -151,40 +150,36 @@ msgstr "Forsinkelse mellem billeder (sekunder)"
 msgid "Capture"
 msgstr "Optag"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Fuldskærm"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "_Indstillinger"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "_Om Cheese"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "Tag et billede"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Fuldskærm"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "_Indstillinger"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "_Om"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_Afslut"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "Åbn"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Gem _som …"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "Flyt til _papirkurv"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Slet"
 
@@ -273,8 +268,8 @@ msgstr "Kamerasenhedsindikatorstreng"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
 msgid ""
-"The path to the device node which points to the camera, for example "
-"/dev/video0"
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
 msgstr "Stien til kameraets enhedsfil. F.eks. /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
@@ -355,8 +350,8 @@ msgstr "Videosti"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
 msgid ""
-"Defines the path where the videos are stored. If empty, "
-"“XDG_VIDEOS_DIR/Webcam” will be used."
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Definerer stien hvor videoer vil blive gemt. Hvis den er tom vil "
 "“XDG_VIDEOS_DIR/Webcam” blive brugt."
@@ -367,8 +362,8 @@ msgstr "Billedsti"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
 msgid ""
-"Defines the path where the photos are stored. If empty, "
-"“XDG_PICTURES_DIR/Webcam” will be used."
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
 msgstr ""
 "Definerer stien hvor billeder vil blive gemt. Hvis den er tom vil "
 "“XDG_PICTURES_DIR/Webcam” blive brugt."
@@ -395,8 +390,8 @@ msgstr "Antal billeder i serietilstand"
 msgid "The number of photos to take in a single burst."
 msgstr "Antallet af billeder der skal tages i en enkelt serie (burst)."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_Afbryd"
 
@@ -404,7 +399,7 @@ msgstr "_Afbryd"
 msgid "_Select"
 msgstr "_Vælg"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "Lukker lyd"
 
@@ -488,113 +483,121 @@ msgstr "Webside for Cheese"
 msgid "No Effect"
 msgstr "Ingen effekt"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "Kunne ikke åbne %s"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Er du sikker på, at du permanent vil slette filen?"
 msgstr[1] "Er du sikker på, at du permanent vil slette %d filer?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "_Slet"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Hvis du sletter et element, vil det gå permanent tabt"
 msgstr[1] "Hvis du sletter elementerne, vil de gå permanent tabt"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "Kunne ikke slette %s"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "Spring over"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "Spring alle over"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Kan ikke flytte %s til papirkurven"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "Gem fil"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "Gem"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunne ikke gemme %s"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "Stop optagelse"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "Optag en video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "Stop med at tage billeder"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "Tag flere billeder"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "Ingen effekter fundet"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "Der opstod en fejl under afspilning af video fra webkamera"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "Optag en video med et webkamera"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "Tag flere billeder med et webkamera"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "Vælg en effekt"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "Optag en video"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Tag flere billeder"
 
+#~ msgid "_About"
+#~ msgstr "_Om"
+
+#~ msgid "_Quit"
+#~ msgstr "_Afslut"
+
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr ""
-#~ "Kunne ikke initialisere enheden %s med henblik på kompatibilitetsundersøgelse"
+#~ "Kunne ikke initialisere enheden %s med henblik på "
+#~ "kompatibilitetsundersøgelse"
 
 #~ msgid "- Take photos and videos from your webcam"
 #~ msgstr "- Tag billeder og videoer med dit webkamera"
 
-#~ msgid "Run '%s --help' to see a full list of available command line options."
+#~ msgid ""
+#~ "Run '%s --help' to see a full list of available command line options."
 #~ msgstr ""
 #~ "Kør “%s --help” for at få en liste over alle tilgængelige "
 #~ "kommandlinjetilvalg."
@@ -642,8 +645,8 @@ msgstr "Tag flere billeder"
 #~ msgstr "Hvorvidt der skal startes i bredtilstand"
 
 #~ msgid ""
-#~ "If set to true, Cheese will start up in wide mode, with the image collection "
-#~ "placed on the right-hand side. Useful with small screens."
+#~ "If set to true, Cheese will start up in wide mode, with the image "
+#~ "collection placed on the right-hand side. Useful with small screens."
 #~ msgstr ""
 #~ "Hvis sat til sand, vil Cheese starte op i en bredtilstand med "
 #~ "billedsamlingen placeret på højre side. Nyttigt ved små skærme."
@@ -669,9 +672,6 @@ msgstr "Tag flere billeder"
 #~ msgid "_Take a photo"
 #~ msgstr "_Tag et billede"
 
-#~ msgid "_Cheese"
-#~ msgstr "_Cheese"
-
 #~ msgid "_Contents"
 #~ msgstr "_Indhold"
 
@@ -683,30 +683,30 @@ msgstr "Tag flere billeder"
 
 #~ msgid ""
 #~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the Free "
-#~ "Software Foundation; either version 2 of the License, or (at your option) "
-#~ "any later version.\n"
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
 #~ "\n"
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT "
-#~ "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-#~ "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-#~ "more details.\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
 #~ "\n"
-#~ "You should have received a copy of the GNU General Public License along with "
-#~ "this program. If not, see http://www.gnu.org/licenses/\n"
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see http://www.gnu.org/licenses/\n"
 #~ msgstr ""
-#~ "Dette program er fri software. Du kan redistribuere og/eller modificere det "
-#~ "under de betingelser, som er angivet i GNU General Public License, som er "
-#~ "udgivet af Free Software Foundation. Enten version 2 af licensen eller "
-#~ "(efter eget valg) enhver senere version.\n"
+#~ "Dette program er fri software. Du kan redistribuere og/eller modificere "
+#~ "det under de betingelser, som er angivet i GNU General Public License, "
+#~ "som er udgivet af Free Software Foundation. Enten version 2 af licensen "
+#~ "eller (efter eget valg) enhver senere version.\n"
 #~ "\n"
-#~ "Dette program distribueres i håb om, at det vil vise sig nyttigt, men UDEN "
-#~ "NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
-#~ "SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere detaljer kan "
-#~ "læses i GNU General Public License.\n"
+#~ "Dette program distribueres i håb om, at det vil vise sig nyttigt, men "
+#~ "UDEN NOGEN FORM FOR GARANTI, uden selv de underforståede garantier "
+#~ "omkring SALGBARHED eller EGNETHED TIL ET BESTEMT FORMÅL. Yderligere "
+#~ "detaljer kan læses i GNU General Public License.\n"
 #~ "\n"
-#~ "Du bør have modtaget en kopi af GNU General Public License sammen med dette "
-#~ "program. Hvis ikke, så besøg http://www.gnu.org/licenses/\n"
+#~ "Du bør have modtaget en kopi af GNU General Public License sammen med "
+#~ "dette program. Hvis ikke, så besøg http://www.gnu.org/licenses/\n"
 
 #~ msgid "Image properties"
 #~ msgstr "Billedegenskaber"
@@ -716,9 +716,8 @@ msgstr "Tag flere billeder"
 
 #~ msgid ""
 #~ "A list of effects applied on startup. Possible values are: \"mauve\", "
-#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", "
-#~ "\"horizontal-flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and "
-#~ "\"warp\""
+#~ "\"noir_blanc\", \"saturation\", \"hulk\", \"vertical-flip\", \"horizontal-"
+#~ "flip\", \"shagadelic\", \"vertigo\", \"edge\", \"dice\" and \"warp\""
 #~ msgstr ""
 #~ "Liste af effekter som anvendes ved opstart. Mulige værdier er: “mauve”, "
 #~ "“noir_blanc”, “saturation”, “hulk”, “vertical-flip”, “horizontal-flip”, "
@@ -729,9 +728,10 @@ msgstr "Tag flere billeder"
 #~ "file immediately and in-place, instead of moving it to the trash. This "
 #~ "feature can be dangerous, so use caution."
 #~ msgstr ""
-#~ "Hvis sat til sand, så vil Cheese have en funktion som tillader dig at slette "
-#~ "en fil øjeblikkeligt, der hvor den er, i stedet for at flytte den til "
-#~ "papirkurven. Denne funktion kan være farlig så brug den med forsigtighed."
+#~ "Hvis sat til sand, så vil Cheese have en funktion som tillader dig at "
+#~ "slette en fil øjeblikkeligt, der hvor den er, i stedet for at flytte den "
+#~ "til papirkurven. Denne funktion kan være farlig så brug den med "
+#~ "forsigtighed."
 
 #~ msgid "Whether to enable immediate deletion"
 #~ msgstr "Om øjeblikkelig sletning skal slås til"
@@ -800,20 +800,20 @@ msgstr "Tag flere billeder"
 
 #~ msgid ""
 #~ "This program is free software; you can redistribute it and/or modify it "
-#~ "under the terms of the GNU General Public License as published by the Free "
-#~ "Software Foundation; either version 2 of the License, or (at your option) "
-#~ "any later version.\n"
+#~ "under the terms of the GNU General Public License as published by the "
+#~ "Free Software Foundation; either version 2 of the License, or (at your "
+#~ "option) any later version.\n"
 #~ msgstr ""
-#~ "Dette program er fri software. Du kan redistribuere og/eller modificere det "
-#~ "under de betingelserne som er angivet i GNU General Public License, som er "
-#~ "udgivet af Free Software Foundation. Enten version 2 af licensen eller "
-#~ "(efter eget valg) enhver senere version\n"
+#~ "Dette program er fri software. Du kan redistribuere og/eller modificere "
+#~ "det under de betingelserne som er angivet i GNU General Public License, "
+#~ "som er udgivet af Free Software Foundation. Enten version 2 af licensen "
+#~ "eller (efter eget valg) enhver senere version\n"
 
 #~ msgid ""
-#~ "This program is distributed in the hope that it will be useful, but WITHOUT "
-#~ "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
-#~ "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for "
-#~ "more details.\n"
+#~ "This program is distributed in the hope that it will be useful, but "
+#~ "WITHOUT ANY WARRANTY; without even the implied warranty of "
+#~ "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General "
+#~ "Public License for more details.\n"
 #~ msgstr ""
 #~ "Dette program distribueres i håb om at det vil vise sig nyttigt, men UDEN "
 #~ "NOGEN FORM FOR GARANTI, uden selv de underforståede garantier omkring "
@@ -821,12 +821,12 @@ msgstr "Tag flere billeder"
 #~ "læses i GNU General Public License.\n"
 
 #~ msgid ""
-#~ "You should have received a copy of the GNU General Public License along with "
-#~ "this program. If not, see <http://www.gnu.org/licenses/>."
+#~ "You should have received a copy of the GNU General Public License along "
+#~ "with this program. If not, see <http://www.gnu.org/licenses/>."
 #~ msgstr ""
 #~ "Du skulle have modtaget en kopi af GNU General Public License sammen med "
-#~ "dette program. Hvis ikke så kan du finde det her, "
-#~ "<http://www.gnu.org/licenses/>."
+#~ "dette program. Hvis ikke så kan du finde det her, <http://www.gnu.org/"
+#~ "licenses/>."
 
 #~ msgid "Mauve"
 #~ msgstr "Lilla skær"
@@ -861,7 +861,7 @@ msgstr "Tag flere billeder"
 #~ msgid "No camera found!"
 #~ msgstr "Intet kamera fundet!"
 
-#~ # Jeg vil gerne have tilføjet enten "dokumentation" eller "menu" efter hjælp, men efter som jeg reelt ikke ved hvad der menes har jeg ikke gjort det
+# Jeg vil gerne have tilføjet enten "dokumentation" eller "menu" efter hjælp, men efter som jeg reelt ikke ved hvad der menes har jeg ikke gjort det
 #~ msgid "Please refer to the help for further information."
 #~ msgstr "Se hjælp for mere information."
 
@@ -874,9 +874,11 @@ msgstr "Tag flere billeder"
 #~ msgid "Be verbose"
 #~ msgstr "Vær uddybende"
 
-#~ msgid "- Take photos and videos with your webcam, with fun graphical effects"
+#~ msgid ""
+#~ "- Take photos and videos with your webcam, with fun graphical effects"
 #~ msgstr ""
-#~ "- Tag billeder og optag video fra dit webkamera, med sjove grafiske effekter"
+#~ "- Tag billeder og optag video fra dit webkamera, med sjove grafiske "
+#~ "effekter"
 
 #~ msgid "Could not set the Account Photo"
 #~ msgstr "Kunne ikke indstille kontobilledet"
@@ -933,5 +935,3 @@ msgstr "Tag flere billeder"
 
 #~ msgid "Cheese!"
 #~ msgstr "Cheese!"
-
-
