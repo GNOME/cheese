@@ -1,22 +1,23 @@
 # Chinese (Taiwan) translation for deskbar-applet.
 # Copyright (C) 2008 Free Software Foundation, Inc.
+#
 # Chao-Hsiung Liao <j_h_liau@yahoo.com.tw>, 2008, 2010.
 # Wei-Lun Chao <chaoweilun@gmail.com>, 2010.
-#
+# pan93412 <pan93412@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese 3.3.5\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2018-08-14 19:12+0000\n"
-"PO-Revision-Date: 2018-08-22 00:03+0800\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
-"Language-Team: Chinese/Traditional <zh-l10n@lists.linux.org.tw>\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-02-17 23:02+0800\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
+"Language-Team: Chinese <zh-l10n@linux.org.tw>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Lokalize 18.12.2\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -70,7 +71,7 @@ msgstr "離開全螢幕模式回到視窗模式"
 msgid "Preferences"
 msgstr "偏好設定"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "求助(_H)"
 
@@ -143,40 +144,37 @@ msgstr "照片間延遲(秒)"
 msgid "Capture"
 msgstr "擷取"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "全螢幕(_F)"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "偏好設定(_R)"
+
+#: ../data/headerbar.ui.h:4
+#| msgid "_Cheese"
+msgid "_About Cheese"
+msgstr "關於 Cheese(_A)"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
 #: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "照相"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "全螢幕(_F)"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "偏好設定(_R)"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "關於(_A)"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "結束(_Q)"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "開啟"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "儲存為(_A)…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "移至垃圾桶(_T)"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "刪除"
 
@@ -566,6 +564,12 @@ msgstr "錄製影片"
 msgid "Take Multiple Photos"
 msgstr "拍攝多張照片"
 
+#~ msgid "_About"
+#~ msgstr "關於(_A)"
+
+#~ msgid "_Quit"
+#~ msgstr "結束(_Q)"
+
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr "無法初始化裝置 %s 進行相容性探查"
 
@@ -645,9 +649,6 @@ msgstr "拍攝多張照片"
 
 #~ msgid "Another instance of Cheese is currently running\n"
 #~ msgstr "另一個 Cheese 實體已經在執行\n"
-
-#~ msgid "_Cheese"
-#~ msgstr "_Cheese"
 
 #~ msgid "_Contents"
 #~ msgstr "內容(_C)"
