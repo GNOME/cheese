@@ -39,14 +39,13 @@
 # Erwin Poeze <donnut@outlook.com>, 2014.
 # Justin van Steijn <justin50@live.nl>, 2015, 2016.
 # Hannie Dumoleyn <hannie@ubuntu-nl.org>, 2016, 2017.
-# Nathan Follens <nthn@unseen.is>, 2018.
+# Nathan Follens <nthn@unseen.is>, 2018-2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: Cheese\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-11-09 18:14+0000\n"
-"PO-Revision-Date: 2018-03-24 19:58+0100\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-02-24 12:00+0100\n"
 "Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <gnome-nl-list@gnome.org>\n"
 "Language: nl\n"
@@ -54,7 +53,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.2.1\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -80,7 +79,7 @@ msgstr "Burst-modus (foto)"
 msgid "Burst"
 msgstr "Burst"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "Foto nemen met behulp van een webcam"
 
@@ -108,7 +107,7 @@ msgstr "Volledig scherm verlaten en teruggaan naar venstermodus"
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "_Hulp"
 
@@ -207,46 +206,42 @@ msgstr "Vertraging tussen foto’s (seconden)"
 msgid "Capture"
 msgstr "Opname"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
-msgid "Take a Photo"
-msgstr "Foto nemen"
-
 # volledig scherm/schermvullend
 # Wouter zegt dat ``volledig scherm'' meer voor de hand ligt
 # dan ``schermvullend''.
 #
 # ``fullscreen'' moet dan o.a. in Gedit en in EOG Afbeeldingviewer vertaald
 # worden als ``volledig scherm'' i.p.v. ``schermvullend''. (laudaka)
-#: ../data/menus.ui.h:1
+#: ../data/headerbar.ui.h:1
 msgid "_Fullscreen"
 msgstr "_Volledig scherm"
 
-#: ../data/menus.ui.h:2
+#: ../data/headerbar.ui.h:2
 msgid "P_references"
 msgstr "Voo_rkeuren"
 
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "I_nfo"
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "_Over Cheese"
 
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_Afsluiten"
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
+msgid "Take a Photo"
+msgstr "Foto nemen"
 
-#: ../data/menus.ui.h:6
+#: ../data/menus.ui.h:1
 msgid "Open"
 msgstr "Openen"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Opslaan _als…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "In _prullenbak gooien"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -494,8 +489,8 @@ msgstr "Aantal foto’s in burst-modus"
 msgid "The number of photos to take in a single burst."
 msgstr "Het aantal in een enkele burst te nemen foto’s."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_Annuleren"
 
@@ -503,7 +498,7 @@ msgstr "_Annuleren"
 msgid "_Select"
 msgstr "_Selecteren"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "Sluitergeluid"
 
@@ -616,103 +611,106 @@ msgstr "Cheese-website"
 msgid "No Effect"
 msgstr "Geen effect"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "Kon %s niet openen"
 
 # Vertaald zoals in Nautilus. (laudaka)
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Weet u zeker dat u het bestand definitief wilt verwijderen?"
 msgstr[1] "Weet u zeker dat u %d bestanden definitief wilt verwijderen?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "Verwij_deren"
 
 # Vertaald zoals in Nautilus. (laudaka)
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Als u een item verwijdert, zal het voorgoed verloren gaan"
 msgstr[1] "Als u de items verwijdert, zullen ze voorgoed verloren gaan"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "Kon %s niet verwijderen"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "Overslaan"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "Alle overslaan"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Kon %s niet in prullenbak gooien"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "Bestand opslaan"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "Opslaan"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "Kon %s niet opslaan"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "Opname stoppen"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "Video opnemen"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "Geen foto’s meer nemen"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "Meerdere foto’s nemen"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "Geen effecten gevonden"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "Het afspelen van de webcam-video is mislukt"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "Video opnemen met behulp van een webcam"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "Meerdere foto’s nemen met behulp van een webcam"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "Een effect kiezen"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "Video opnemen"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Meerdere foto’s nemen"
+
+#~ msgid "_Quit"
+#~ msgstr "_Afsluiten"
