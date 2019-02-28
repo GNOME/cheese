@@ -1,7 +1,7 @@
 # cheese Korean message translation
 # This file is distributed under the same license as the cheese package.
 # Seong-ho Cho <darkcircle.0426@gmail.com>, 2012.
-# Changwoo Ryu <cwryu@debian.org>, 2008-2011, 2013-2017.
+# Changwoo Ryu <cwryu@debian.org>, 2008-2011, 2013-2017, 2019.
 #
 # 참고:
 # - 이 프로그램의 이름인 "Cheese"는 "치즈"라고 표기
@@ -11,10 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-28 17:20+0000\n"
-"PO-Revision-Date: 2017-09-04 02:45+0900\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-02-27 01:52+0900\n"
 "Last-Translator: Changwoo Ryu <cwryu@debian.org>\n"
 "Language-Team: GNOME Korea <gnome-kr@googlegroups.com>\n"
 "Language: ko\n"
@@ -47,7 +46,7 @@ msgstr "연사 모드"
 msgid "Burst"
 msgstr "연사"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "웹캠으로 사진을 찍습니다"
 
@@ -75,7 +74,7 @@ msgstr "전체 화면 모드를 나가서 창 모드로 돌아갑니다"
 msgid "Preferences"
 msgstr "기본 설정"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "도움말(_H)"
 
@@ -148,40 +147,36 @@ msgstr "사진 찍을 시간 간격(초 단위)"
 msgid "Capture"
 msgstr "찍기"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "최대 화면(_F)"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "기본 설정(_R)"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "치즈 정보(_A)"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "사진 찍기"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "최대 화면(_F)"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "기본 설정(_R)"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "정보(_A)"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "끝내기(_Q)"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "열기"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "다른 이름으로 저장(_A)…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "휴지통으로 옮기기(_T)"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "삭제"
 
@@ -389,8 +384,8 @@ msgstr "연사 모드에서 사진 수"
 msgid "The number of photos to take in a single burst."
 msgstr "한 번 연사에서 찍을 사진 수."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "취소(_C)"
 
@@ -398,7 +393,7 @@ msgstr "취소(_C)"
 msgid "_Select"
 msgstr "선택(_S)"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "셔터 소리"
 
@@ -479,99 +474,99 @@ msgstr "치즈 웹사이트"
 msgid "No Effect"
 msgstr "효과 없음"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "%s 파일을 열 수 없습니다"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "정말로 파일 %d개를 완전히 지우시겠습니까?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "삭제(_D)"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "항목을 지우면 되살릴 수 없게 됩니다."
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "%s 파일을 삭제할 수 없습니다"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "건너뛰기"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "모두 건너뛰기"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s 파일을 휴지통으로 옮길 수 없습니다"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "파일 저장"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "저장"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "%s 파일을 저장할 수 없습니다"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "녹화 중지"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "동영상 녹화"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "사진 찍기 중지"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "사진 여러 장 찍기"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "효과가 없습니다"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "웹캠에서 만든 동영상을 재생하는데 오류가 발생했습니다"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "웹캠으로 동영상을 녹화합니다"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "웹캠으로 사진 여러 장을 찍습니다"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "효과 선택"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "동영상 녹화"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "사진 여러 장 찍기"
