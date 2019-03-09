@@ -34,7 +34,7 @@ cameradevicemonitor_create (void)
     CheeseCameraDeviceMonitor *monitor;
 
     monitor = cheese_camera_device_monitor_new ();
-    g_assert (monitor != NULL);
+    g_assert_nonnull (monitor);
 
     cheese_camera_device_monitor_coldplug (monitor);
 
@@ -50,7 +50,7 @@ effect_create (void)
     static const gchar desc[] = "identity";
 
     effect = cheese_effect_new (name, desc);
-    g_assert (effect != NULL);
+    g_assert_nonnull (effect);
 
     g_assert_cmpstr (name, ==, cheese_effect_get_name (effect));
     g_assert_cmpstr (desc, ==, cheese_effect_get_pipeline_desc (effect));
@@ -68,7 +68,7 @@ fileutil_burst (void)
     gchar **split;
 
     fileutil = cheese_fileutil_new ();
-    g_assert (fileutil != NULL);
+    g_assert_nonnull (fileutil);
 
     first_path = cheese_fileutil_get_new_media_filename (fileutil,
         CHEESE_MEDIA_MODE_BURST);
@@ -105,7 +105,7 @@ fileutil_reset_burst (void)
     gchar *first_path, *second_path;
 
     fileutil = cheese_fileutil_new ();
-    g_assert (fileutil != NULL);
+    g_assert_nonnull (fileutil);
 
     first_path = cheese_fileutil_get_new_media_filename (fileutil,
         CHEESE_MEDIA_MODE_BURST);
@@ -115,8 +115,8 @@ fileutil_reset_burst (void)
     second_path = cheese_fileutil_get_new_media_filename (fileutil,
         CHEESE_MEDIA_MODE_BURST);
 
-    g_assert (g_str_has_suffix (first_path, "_1.jpg"));
-    g_assert (g_str_has_suffix (second_path, "_1.jpg"));
+    g_assert_true (g_str_has_suffix (first_path, "_1.jpg"));
+    g_assert_true (g_str_has_suffix (second_path, "_1.jpg"));
     g_assert_cmpstr (first_path, !=, second_path);
 
     g_free (first_path);
@@ -131,25 +131,25 @@ fileutil_new_media_filename (void)
     const gchar *filename;
 
     fileutil = cheese_fileutil_new ();
-    g_assert (fileutil != NULL);
+    g_assert_nonnull (fileutil);
 
     filename = cheese_fileutil_get_new_media_filename (fileutil,
         CHEESE_MEDIA_MODE_PHOTO);
-    g_assert (filename != NULL);
-    g_assert (g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX));
-    g_assert (!g_file_test (filename, G_FILE_TEST_EXISTS));
+    g_assert_nonnull (filename);
+    g_assert_true (g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX));
+    g_assert_true (!g_file_test (filename, G_FILE_TEST_EXISTS));
 
     filename = cheese_fileutil_get_new_media_filename (fileutil,
         CHEESE_MEDIA_MODE_BURST);
-    g_assert (filename != NULL);
-    g_assert (g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX));
-    g_assert (!g_file_test (filename, G_FILE_TEST_EXISTS));
+    g_assert_nonnull (filename);
+    g_assert_true (g_str_has_suffix (filename, CHEESE_PHOTO_NAME_SUFFIX));
+    g_assert_false (g_file_test (filename, G_FILE_TEST_EXISTS));
 
     filename = cheese_fileutil_get_new_media_filename (fileutil,
         CHEESE_MEDIA_MODE_VIDEO);
-    g_assert (filename != NULL);
-    g_assert (g_str_has_suffix (filename, CHEESE_VIDEO_NAME_SUFFIX));
-    g_assert (!g_file_test (filename, G_FILE_TEST_EXISTS));
+    g_assert_nonnull (filename);
+    g_assert_true (g_str_has_suffix (filename, CHEESE_VIDEO_NAME_SUFFIX));
+    g_assert_false (g_file_test (filename, G_FILE_TEST_EXISTS));
 
     g_object_unref (fileutil);
 }
@@ -161,12 +161,12 @@ fileutil_photo_path (void)
     const gchar *path;
 
     fileutil = cheese_fileutil_new ();
-    g_assert (fileutil != NULL);
+    g_assert_nonnull (fileutil);
 
     path = cheese_fileutil_get_photo_path (fileutil);
-    g_assert (path != NULL);
-    g_assert (g_file_test (path, G_FILE_TEST_EXISTS));
-    g_assert (g_file_test (path, G_FILE_TEST_IS_DIR));
+    g_assert_nonnull (path);
+    g_assert_true (g_file_test (path, G_FILE_TEST_EXISTS));
+    g_assert_true (g_file_test (path, G_FILE_TEST_IS_DIR));
 
     g_object_unref (fileutil);
 }
@@ -178,12 +178,12 @@ fileutil_video_path (void)
     const gchar *path;
 
     fileutil = cheese_fileutil_new ();
-    g_assert (fileutil != NULL);
+    g_assert_nonnull (fileutil);
 
     path = cheese_fileutil_get_video_path (fileutil);
-    g_assert (path != NULL);
-    g_assert (g_file_test (path, G_FILE_TEST_EXISTS));
-    g_assert (g_file_test (path, G_FILE_TEST_IS_DIR));
+    g_assert_nonnull (path);
+    g_assert_true (g_file_test (path, G_FILE_TEST_EXISTS));
+    g_assert_true (g_file_test (path, G_FILE_TEST_IS_DIR));
 
     g_object_unref (fileutil);
 }
@@ -196,7 +196,7 @@ videoformat_create (void)
     CheeseVideoFormat format = { 640, 480 };
 
     other = g_boxed_copy (CHEESE_TYPE_VIDEO_FORMAT, &format);
-    g_assert (other != NULL);
+    g_assert_nonnull (other);
     g_assert_cmpint (other->width, ==, format.width);
     g_assert_cmpint (other->height, ==, format.height);
 

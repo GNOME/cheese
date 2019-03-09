@@ -38,12 +38,12 @@ avatar_chooser (void)
     GtkWidget *chooser, *select_button;
 
     chooser = gtk_test_create_widget (CHEESE_TYPE_AVATAR_CHOOSER, NULL);
-    g_assert (chooser != NULL);
+    g_assert_nonnull (chooser);
 
     /* Check that all the child widgets were successfully instantiated. */
     select_button = gtk_test_find_widget (chooser, "Select", GTK_TYPE_BUTTON);
-    g_assert (select_button != NULL);
-    g_assert (GTK_IS_BUTTON (select_button));
+    g_assert_nonnull (select_button);
+    g_assert_true (GTK_IS_BUTTON (select_button));
 }
 
 /* CheeseFlash */
@@ -53,13 +53,13 @@ flash (void)
     GtkWidget *flash, *window;
 
     window = gtk_test_create_simple_window ("CheeseFlash", "CheeseFlash test");
-    g_assert (window != NULL);
+    g_assert_nonnull (window);
 
     /* Window must be realised to have a GdkWindow. */
     gtk_widget_show (window);
 
     flash = gtk_test_create_widget (CHEESE_TYPE_FLASH, "parent", window, NULL);
-    g_assert (flash != NULL);
+    g_assert_nonnull (flash);
 
     cheese_flash_fire (CHEESE_FLASH (flash));
 }
@@ -91,7 +91,7 @@ static void widget (void)
     GtkWidget *widget;
 
     widget = gtk_test_create_widget (CHEESE_TYPE_WIDGET, NULL);
-    g_assert (widget != NULL);
+    g_assert_nonnull (widget);
 }
 
 int main (int argc, gchar *argv[])
