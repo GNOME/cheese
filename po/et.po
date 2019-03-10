@@ -10,10 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese MASTER\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?"
-"product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2018-03-26 22:07+0000\n"
-"PO-Revision-Date: 2018-06-02 21:32+0300\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-03-10 16:31+0200\n"
 "Last-Translator: Mart Raudsepp <leio@gentoo.org>\n"
 "Language-Team: Estonian <>\n"
 "Language: et\n"
@@ -21,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.2\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -47,7 +46,7 @@ msgstr "Sarivõtte režiim"
 msgid "Burst"
 msgstr "Sarivõte"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "Pildista veebikaameraga"
 
@@ -75,7 +74,7 @@ msgstr "Täisekraani režiimi sulgemine ning naasmine aknarežiimi"
 msgid "Preferences"
 msgstr "Eelistused"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "A_bi"
 
@@ -148,40 +147,36 @@ msgstr "Viivitus fotode vahel (sekundites)"
 msgid "Capture"
 msgstr "Võte"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_Täisekraan"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "_Eelistused"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "Cheese’ist _lähemalt"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "Pildista"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_Täisekraan"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "_Eelistused"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "_Programmist"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_Lõpeta"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "Ava"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Salvesta _kui…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "Viska _prügikasti"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Kustuta"
 
@@ -391,8 +386,8 @@ msgstr "Fotode arv sarivõttes"
 msgid "The number of photos to take in a single burst."
 msgstr "Fotode arv, mis võetakse ühe sarivõttega."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_Loobu"
 
@@ -400,7 +395,7 @@ msgstr "_Loobu"
 msgid "_Select"
 msgstr "_Vali"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "Katiku heli"
 
@@ -481,104 +476,107 @@ msgstr "Cheese’i veebisait"
 msgid "No Effect"
 msgstr "Efekt puudub"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "%s polnud võimalik avada"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Kas soovid faili jäädavalt kustutada?"
 msgstr[1] "Kas soovid %d faili jäädavalt kustutada?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "_Kustuta"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Kui sa kirje kustutad, hävib see jäädavalt"
 msgstr[1] "Kui sa kirjed kustutad, hävivad need jäädavalt"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "%s polnud võimalik kustutada"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "Jäta vahele"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "Jäta kõik vahele"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "%s polnud võimalik prügikasti liigutada"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "Faili salvestamine"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "Salvesta"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "%s polnud võimalik salvestada"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "Video salvestamise lõpetamine"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "Video salvestamine"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "Pildistamise lõpetamine"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "Sarivõttega pildistamine"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "Efekte ei leitud"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "Video esitamisel veebikaamerast esines viga"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "Video salvestamine veebikaameraga"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "Sarivõtte pildistamine veebikaameraga"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "Efekti valimine"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "Filmi"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Sarivõte"
+
+#~ msgid "_Quit"
+#~ msgstr "_Lõpeta"
 
 #~ msgid "_Take a Photo"
 #~ msgstr "_Pildista"
