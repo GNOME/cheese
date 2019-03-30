@@ -5,23 +5,23 @@
 # Patrick (Petriko) OUDEJANS < >, 2011.
 # Tiffany ANTOPOLSKI <tiffany.antopolski@gmail.com>, 2012.
 # Ryan LORTIE <desrt@desrt.ca>, 2013.
-# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011, 2012, 2015.
 # Anders JONSSON <anders.jonsson@norsjovallen.se>, 2018.
+# Carmen Bianca BAKKER <carmen@carmenbianca.eu>, 2019.
+# Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>, 2011-2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=cheese"
-"&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-06-28 17:20+0000\n"
-"PO-Revision-Date: 2018-02-23 22:28+0100\n"
-"Last-Translator: Anders JONSSON <anders.jonsson@norsjovallen.se>\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-02-04 16:42+0000\n"
+"PO-Revision-Date: 2019-03-30 10:22+0200\n"
+"Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Virtaal 0.7.1\n"
 "X-DamnedLies-Scope: partial\n"
 "X-Project-Style: gnome\n"
 
@@ -31,7 +31,7 @@ msgstr "Fotoreĝimo"
 
 #: ../data/cheese-main-window.ui.h:2
 msgid "Photo"
-msgstr "Fotaĵo"
+msgstr "Foto"
 
 #: ../data/cheese-main-window.ui.h:3
 msgid "Video mode"
@@ -49,7 +49,7 @@ msgstr "Foto-seriokapta reĝimo"
 msgid "Burst"
 msgstr "Seriokapto"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "Fari foton per retkamerao"
 
@@ -77,7 +77,7 @@ msgstr "Forlasi tutekranan reĝimon kaj reiri al fenestra reĝimo"
 msgid "Preferences"
 msgstr "Agordoj"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "_Helpo"
 
@@ -150,40 +150,36 @@ msgstr "Prokrasto inter fotoj (sekundoj)"
 msgid "Capture"
 msgstr "Kapti"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1350
-msgid "Take a Photo"
-msgstr "Fari fotaĵon"
-
-#: ../data/menus.ui.h:1
+#: ../data/headerbar.ui.h:1
 msgid "_Fullscreen"
 msgstr "_Tutekrana reĝimo"
 
-#: ../data/menus.ui.h:2
+#: ../data/headerbar.ui.h:2
 msgid "P_references"
 msgstr "_Agordoj"
 
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "_Pri"
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "_Pri Rideto"
 
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "Ĉ_esi"
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
+msgid "Take a Photo"
+msgstr "Fari foton"
 
-#: ../data/menus.ui.h:6
+#: ../data/menus.ui.h:1
 msgid "Open"
 msgstr "Malfermi"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "Konservi _kiel…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "Movi _rubujen"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "Forigi"
 
@@ -391,8 +387,8 @@ msgstr "Nombro da fotoj dum seriokapta reĝimo"
 msgid "The number of photos to take in a single burst."
 msgstr "Nombro da fotoj kiuj estu kaptota dum seriokapto."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264
-#: ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_Nuligi"
 
@@ -400,7 +396,7 @@ msgstr "_Nuligi"
 msgid "_Select"
 msgstr "_Elekti"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "Obturatorsono"
 
@@ -468,7 +464,7 @@ msgstr "Retkamerao estas uzata"
 msgid "translator-credits"
 msgstr ""
 "Kim RIBEIRO, Patrick (Petriko) OUDEJANS, Tiffany ANTOPOLSKI, Kristjan "
-"SCHMIDT, Ryan LORTIE"
+"SCHMIDT, Ryan LORTIE, Carmen Bianca BAKKER"
 
 #: ../src/cheese-application.vala:546
 msgid "Cheese Website"
@@ -480,104 +476,110 @@ msgstr "Rideto-retpaĝaro"
 msgid "No Effect"
 msgstr "Neniu efekto"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "Ne eblis malfermi %s"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Ĉu vi certe volas forigi la dosieron daŭre?"
 msgstr[1] "Ĉu vi certe volas forigi %d dosierojn daŭre?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "_Forigi"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Se vi forigos elementon, ĝi malaperos daŭre"
 msgstr[1] "Se vi forigos elementon, ĝi malaperos daŭre"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "Ne eblis forigi na %s"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
-msgstr "Ignori"
+msgstr "Preterpasi"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
-msgstr "Ignori ĉiujn"
+msgstr "Preterpasi ĉiujn"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Ne eblis movi %s rubujen"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "Konservi dosieron"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "Konservi"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "Ne eblis konservi %s"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "Ĉesi registradon"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "Registri videon"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "Ĉesi fotfaradon"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "Fari plurajn fotojn"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "Trovis neniun efekton"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "Estis eraro dum reproduktado de video el la retkamerao"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "Registri videon per retkamerao"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "Fari plurajn fotojn per retkamerao"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "Elekti efekton"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "Registri videon"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "Fari plurajn fotojn"
+
+#~ msgid "_About"
+#~ msgstr "_Pri"
+
+#~ msgid "_Quit"
+#~ msgstr "Ĉ_esi"
 
 #~ msgid "Failed to initialize device %s for capability probing"
 #~ msgstr "Malsukcesis pravalorizi aparaton %s por elprovi kapaplojn"
@@ -590,9 +592,6 @@ msgstr "Fari plurajn fotojn"
 #~ msgstr ""
 #~ "Ruli '%s --help' por vidigi plenan liston de disponeblajn komandliniaj "
 #~ "opciojn."
-
-#~ msgid "_Cheese"
-#~ msgstr "_Rideto"
 
 #~ msgid "_Edit"
 #~ msgstr "R_edakti"
