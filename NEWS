@@ -1,6 +1,24 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.32.1
+  - icon: update app icon
+    GNOME 3.32 redesign of app icons.
+    See https://gitlab.gnome.org/GNOME/Initiatives/issues/2
+    for more info.
+
+    /label ~"9. Initiative: AppIconRedesign"
+  - Fix g_assert() use in tests
+    Rather than using g_assert(), which is disabled if G_DISABLE_ASSERT is
+    set, use the g_assert_*() macros that are explicitly intended for use in
+    unit tests, and unaffected.
+
+    https://gitlab.gnome.org/GNOME/cheese/issues/22
+  - Added/Updated Translations
+    - da, courtesy of Alan Mortensen
+    - eo, courtesy of Kristjan SCHMIDT
+    - hr, courtesy of gogo
+
 version 3.32.0
   - Added/Updated Translations
     - cs, courtesy of Marek Černocký
