@@ -932,8 +932,11 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
   GST_INFO_OBJECT (camera, "Changing effect to: \"%s\"", effect_desc);
 
   if (strcmp (effect_desc, "identity") == 0)
+  {
     effect_filter = gst_element_factory_make ("identity", "effect");
+  }
   else
+  {
     effect_filter = cheese_camera_element_from_effect (camera, effect);
 
     if (effect_filter != NULL)
@@ -942,6 +945,7 @@ cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect)
         g_free (priv->current_effect_desc);
         priv->current_effect_desc = g_strdup (effect_desc);
     }
+  }
 }
 
 /**

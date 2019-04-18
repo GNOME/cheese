@@ -1138,8 +1138,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       foreach (var effect in effects_manager.effects)
       {
         Clutter.Actor texture = new Clutter.Actor ();
-        Clutter.BinLayout layout = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
-                                                          Clutter.BinAlignment.CENTER);
+        Clutter.BinLayout layout = new Clutter.BinLayout (Clutter.BinAlignment.START,
+                                                          Clutter.BinAlignment.START);
         var box = new Clutter.Actor ();
         box.set_layout_manager (layout);
         Clutter.Text      text = new Clutter.Text ();

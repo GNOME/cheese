@@ -69,7 +69,7 @@ enum CheeseCameraDeviceError
 GST_DEBUG_CATEGORY (cheese_camera_device_cat);
 #define GST_CAT_DEFAULT cheese_camera_device_cat
 
-static const gchar const *supported_formats[] = {
+static const gchar *supported_formats[] = {
   "video/x-raw",
   NULL
 };
@@ -177,7 +177,7 @@ compare_formats (gconstpointer a, gconstpointer b)
 static GstCaps *
 cheese_camera_device_filter_caps (CheeseCameraDevice *device,
                                   GstCaps *caps,
-                                  const gchar const *formats[])
+                                  const gchar *formats[])
 {
   GstCaps *filter;
   GstCaps *allowed;
