@@ -448,8 +448,15 @@ public class Cheese.Application : Gtk.Application
 
         var state = value.get_string ();
 
+        if (main_window.toggled_mode == MediaMode.NONE)
+        {
+            state = "none";
+        }
+
         // FIXME: Should be able to get these from the enum.
-        if (state == "photo")
+        if (state == "none")
+            update_mode (MediaMode.NONE);
+        else if (state == "photo")
             update_mode (MediaMode.PHOTO);
         else if (state == "video")
             update_mode (MediaMode.VIDEO);
@@ -467,7 +474,7 @@ public class Cheese.Application : Gtk.Application
     private void on_preferences ()
     {
         preferences_dialog.show ();
-    }
+    }   
 
     /**
      * Show the Cheese help contents.

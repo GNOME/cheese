@@ -52,10 +52,10 @@
                             <property name="tooltip_text" translatable="yes">Photo mode</property>
                             <property name="label" translatable="yes">Photo</property>
                             <property name="visible">True</property>
-                            <property name="visible">True</property>
                             <style>
                               <class name="text-button"/>
                             </style>
+                            <signal name="toggled" handler="photo_button_toggled" swapped="no"/>
                           </object>
                         </child>
                         <child>
@@ -68,6 +68,7 @@
                             <style>
                               <class name="text-button"/>
                             </style>
+                            <signal name="toggled" handler="video_button_toggled" swapped="no"/>
                           </object>
                         </child>
                         <child>
@@ -80,6 +81,7 @@
                             <style>
                               <class name="text-button"/>
                             </style>
+                            <signal name="toggled" handler="burst_button_toggled" swapped="no"/>
                           </object>
                         </child>
                       </object>
