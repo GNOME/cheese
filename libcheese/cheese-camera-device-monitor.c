@@ -240,10 +240,12 @@ cheese_camera_device_monitor_class_init (CheeseCameraDeviceMonitorClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+#ifndef GST_DISABLE_GST_DEBUG
   if (cheese_device_monitor_cat == NULL)
     GST_DEBUG_CATEGORY_INIT (cheese_device_monitor_cat,
                              "cheese-device-monitor",
                              0, "Cheese Camera Device Monitor");
+#endif
 
   object_class->finalize = cheese_camera_device_monitor_finalize;
 

@@ -630,10 +630,12 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
 {
   GObjectClass *object_class = G_OBJECT_CLASS (klass);
 
+#ifndef GST_DISABLE_GST_DEBUG
   if (cheese_camera_device_cat == NULL)
     GST_DEBUG_CATEGORY_INIT (cheese_camera_device_cat,
                              "cheese-camera-device",
                              0, "Cheese Camera Device");
+#endif
 
   object_class->finalize     = cheese_camera_device_finalize;
   object_class->get_property = cheese_camera_device_get_property;
