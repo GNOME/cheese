@@ -194,6 +194,7 @@ noinst_resource_files = \
 	data/cheese-prefs.ui \
 	data/headerbar.ui \
 	data/menus.ui \
+	data/shortcuts.ui \
 	data/pixmaps/cheese-1.svg \
 	data/pixmaps/cheese-2.svg \
 	data/pixmaps/cheese-3.svg \
