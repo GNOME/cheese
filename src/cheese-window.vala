@@ -1312,6 +1312,14 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
         var menu = application.get_menu_by_id ("thumbview-menu");
         thumbnail_popup = new Gtk.Menu.from_model (menu);
+        
+        application.set_accels_for_action ("app.quit", {"<Primary>q"});
+		application.set_accels_for_action ("app.fullscreen", {"F11"});
+
+		application.set_accels_for_action ("win.file-open", {"<Primary>o"});
+		application.set_accels_for_action ("win.file-saveas", {"<Primary>s"});
+		application.set_accels_for_action ("win.file-trash", {"Delete"});
+		application.set_accels_for_action ("win.file-delete", {"<Shift>Delete"});
 
         this.add_action_entries (actions, this);
 
