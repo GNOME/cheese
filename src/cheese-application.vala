@@ -116,7 +116,7 @@ public class Cheese.Application : Gtk.Application
             Environment.set_application_name (_("Cheese"));
             Window.set_default_icon_name ("org.gnome.Cheese");
 
-            this.add_accelerator ("space", "app.shoot", null);
+            this.set_accels_for_action ("app.shoot", {"space"});
 
             // FIXME: Push these into the main window initialization.
             main_window.setup_ui ();
