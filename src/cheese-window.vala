@@ -149,16 +149,14 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         return false;
     }
 
-    private void do_thumb_view_popup_menu (Gtk.Widget widget,
-                                           uint button,
-                                           uint time)
+    private void do_thumb_view_popup_menu ()
     {
-        thumbnail_popup.popup (null, widget, null, button, time);
+        thumbnail_popup.popup_at_pointer (null);
     }
 
-    private bool on_thumb_view_popup_menu (Gtk.Widget thumbview)
+    private bool on_thumb_view_popup_menu ()
     {
-        do_thumb_view_popup_menu (thumbview, 0, 0);
+        do_thumb_view_popup_menu ();
 
         return true;
     }
@@ -195,8 +193,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
             if (button_press->triggers_context_menu ())
             {
-                do_thumb_view_popup_menu (thumb_view, event.button,
-                                          event.time);
+                do_thumb_view_popup_menu ();
                 return true;
             }
         }
