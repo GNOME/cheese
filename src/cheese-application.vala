@@ -44,6 +44,7 @@ public class Cheese.Application : Gtk.Application
         { "wide-mode", on_action_toggle, null, "false", on_wide_mode_change },
         { "effects", on_action_toggle, null, "false", on_effects_change },
         { "preferences", on_preferences },
+        { "shortcuts", on_shortcuts },
         { "help", on_help },
         { "about", on_about },
         { "quit", on_quit }
@@ -467,6 +468,33 @@ public class Cheese.Application : Gtk.Application
     private void on_preferences ()
     {
         preferences_dialog.show ();
+    }
+
+    /**
+     * Show the keyboard shortcuts.
+     */
+    private void on_shortcuts ()
+    {
+        if (shortcuts_window == null)
+        {
+            var builder = new Gtk.Builder ();
+            try
+            {
+                builder.add_from_resource ("/org/gnome/Cheese/shortcuts.ui");
+            }
+            catch (Error e)
+            {
+                error ("Error loading shortcuts window UI: %s", e.message);
+            }
+
+            shortcuts_window = builder.get_object ("shortcuts-cheese") as Gtk.ShortcutsWindow;
+            shortcuts_window.destroy.connect ( (event) => { shortcuts_window = null; });
+        }
+
+        if (get_active_window () != shortcuts_window.get_transient_for ())
+            shortcuts_window.set_transient_for (get_active_window ());
+            shortcuts_window.show_all ();
+            shortcuts_window.present ();
     }
 
     /**
