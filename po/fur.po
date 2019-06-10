@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese gnome-3-6\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2019-02-04 16:42+0000\n"
-"PO-Revision-Date: 2019-02-05 12:23+0100\n"
+"POT-Creation-Date: 2019-06-01 12:53+0000\n"
+"PO-Revision-Date: 2019-06-10 15:16+0200\n"
 "Last-Translator: Fabio Tomat <f.t.public@gmail.com>\n"
 "Language-Team: Friulian <fur@li.org>\n"
 "Language: fur\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.2\n"
+"X-Generator: Poedit 2.2.3\n"
 
 #: ../data/cheese-main-window.ui.h:1
 msgid "Photo mode"
@@ -42,7 +42,7 @@ msgstr "Modalitât fotos in sucession rapide"
 msgid "Burst"
 msgstr "Rafiche"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1415
 msgid "Take a photo using a webcam"
 msgstr "Fâs une foto doprant la webcam"
 
@@ -70,7 +70,7 @@ msgstr "Jes de modalitât a plen visôr e torne al barcon normâl"
 msgid "Preferences"
 msgstr "Preferencis"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:4
 msgid "_Help"
 msgstr "_Jutori"
 
@@ -151,12 +151,16 @@ msgstr "_Plen visôr"
 msgid "P_references"
 msgstr "P_referencis"
 
-#: ../data/headerbar.ui.h:4
+#: ../data/headerbar.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "Scurtis di _tastiere"
+
+#: ../data/headerbar.ui.h:5
 msgid "_About Cheese"
 msgstr "_Informazions su Cheese"
 
-#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1440
+#: ../data/headerbar.ui.h:6 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1444
 msgid "Take a Photo"
 msgstr "Fâs une Foto"
 
@@ -176,16 +180,56 @@ msgstr "Spos_te te Scovacere"
 msgid "Delete"
 msgstr "Elimine"
 
+#: ../data/shortcuts.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "Panoramiche"
+
+#: ../data/shortcuts.ui.h:2
+msgctxt "shortcut window"
+msgid "Fullscreen on / off"
+msgstr "A plen visôr impiât / distudât"
+
+#: ../data/shortcuts.ui.h:3
+msgctxt "shortcut window"
+msgid "Quit the application"
+msgstr "Jes de aplicazion"
+
+#: ../data/shortcuts.ui.h:4
+msgctxt "shortcut window"
+msgid "Thumbnails"
+msgstr "Miniaturis"
+
+#: ../data/shortcuts.ui.h:5
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Vierç"
+
+#: ../data/shortcuts.ui.h:6
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Salve come"
+
+#: ../data/shortcuts.ui.h:7
+msgctxt "shortcut window"
+msgid "Move to Trash"
+msgstr "Sposte te scovacere"
+
+#: ../data/shortcuts.ui.h:8
+msgctxt "shortcut window"
+msgid "Delete"
+msgstr "Elimine"
+
 #. Both taken from the desktop file.
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 #: ../data/org.gnome.Cheese.desktop.in.in.h:1
-#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
+#: ../src/cheese-application.vala:116 ../src/cheese-application.vala:574
 msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 #: ../data/org.gnome.Cheese.desktop.in.in.h:4
-#: ../src/cheese-application.vala:538
+#: ../src/cheese-application.vala:569
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Fâs fotos e videos cun la tô webcam, cun efiets grafics legris"
 
@@ -382,8 +426,8 @@ msgstr "Numar di fotos in modalitât sucession rapide."
 msgid "The number of photos to take in a single burst."
 msgstr "Il numar di foto di fâ intune ugnule sucession."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
-#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:292 ../src/cheese-window.vala:367
 msgid "_Cancel"
 msgstr "_Anule"
 
@@ -391,7 +435,7 @@ msgstr "_Anule"
 msgid "_Select"
 msgstr "_Selezione"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:691
 msgid "Shutter sound"
 msgstr "Sun dall'oturadôr"
 
@@ -399,11 +443,11 @@ msgstr "Sun dall'oturadôr"
 msgid "_Take Another Picture"
 msgstr "Sca_te une altre foto"
 
-#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1604
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Un o plui elements di GStreamer a mancjin:"
 
-#: ../libcheese/cheese-camera.c:1544
+#: ../libcheese/cheese-camera.c:1546
 #, c-format
 msgid "No device found"
 msgstr "Nissun argagn cjatât"
@@ -413,7 +457,7 @@ msgstr "Nissun argagn cjatât"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1837
+#: ../libcheese/cheese-camera.c:1839
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -423,44 +467,44 @@ msgstr "%02i:%02i:%02i"
 msgid "Device capabilities not supported"
 msgstr "Funzions dall'argagn no supuartadis"
 
-#: ../libcheese/cheese-camera-device.c:683
+#: ../libcheese/cheese-camera-device.c:685
 msgid "Unknown device"
 msgstr "Argagn no cognossût"
 
-#: ../libcheese/cheese-camera-device.c:702
+#: ../libcheese/cheese-camera-device.c:704
 msgid "Cancellable initialization not supported"
 msgstr ""
 "Le interuzion dal procès par tacâ a doprâ il dispositîf no je supuartade"
 
-#: ../src/cheese-application.vala:53
+#: ../src/cheese-application.vala:56
 msgid "Start in wide mode"
 msgstr "Partis in modalitât panoramiche"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "Device to use as a camera"
 msgstr "Argagn di doprâ come machine fotografiche"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "DEVICE"
 msgstr "ARGAGN"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:61
 msgid "Output version information and exit"
 msgstr "Mostre informazions di version e jes"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:63
 msgid "Start in fullscreen mode"
 msgstr "Partis in modalitât plen visôr"
 
-#: ../src/cheese-application.vala:310
+#: ../src/cheese-application.vala:313
 msgid "Webcam in use"
 msgstr "Webcam in ûs"
 
-#: ../src/cheese-application.vala:544
+#: ../src/cheese-application.vala:575
 msgid "translator-credits"
 msgstr "Fabio Tomat <f.t.public@gmail.com>"
 
-#: ../src/cheese-application.vala:546
+#: ../src/cheese-application.vala:577
 msgid "Cheese Website"
 msgstr "Cheese Website"
 
@@ -470,102 +514,102 @@ msgstr "Cheese Website"
 msgid "No Effect"
 msgstr "Nissun Efiet"
 
-#: ../src/cheese-window.vala:238
+#: ../src/cheese-window.vala:235
 #, c-format
 msgid "Could not open %s"
 msgstr "No puès vierzi %s"
 
-#: ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:260
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Sigûrs di scancelâ par simpri il file?"
 msgstr[1] "Sigûrs di scancelâ par simpri %d file?"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:264
 msgid "_Delete"
 msgstr "_Elimine"
 
-#: ../src/cheese-window.vala:269
+#: ../src/cheese-window.vala:266
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Se tu scancelis un element, al sarà pierdût par simpri"
 msgstr[1] "Se tu scancelis i elements, a saran pierdûts par simpri"
 
-#: ../src/cheese-window.vala:293
+#: ../src/cheese-window.vala:290
 #, c-format
 msgid "Could not delete %s"
 msgstr "Impussibil eliminâ %s"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:293
 msgid "Skip"
 msgstr "Salte"
 
-#: ../src/cheese-window.vala:297
+#: ../src/cheese-window.vala:294
 msgid "Skip all"
 msgstr "Salte dut"
 
-#: ../src/cheese-window.vala:342
+#: ../src/cheese-window.vala:339
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "No puès spostâ %s te scovacere"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:367
+#: ../src/cheese-window.vala:364
 msgid "Save File"
 msgstr "Salve il File"
 
-#: ../src/cheese-window.vala:371
+#: ../src/cheese-window.vala:368
 msgid "Save"
 msgstr "Salve"
 
-#: ../src/cheese-window.vala:401
+#: ../src/cheese-window.vala:398
 #, c-format
 msgid "Could not save %s"
 msgstr "No puès salvâ %s"
 
-#: ../src/cheese-window.vala:822
+#: ../src/cheese-window.vala:819
 msgid "Stop recording"
 msgstr "Ferme regjistrazion"
 
-#: ../src/cheese-window.vala:837
+#: ../src/cheese-window.vala:834
 msgid "Record a video"
 msgstr "Regjistre un video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:872
+#: ../src/cheese-window.vala:869
 msgid "Stop taking pictures"
 msgstr "Ferme di fâ fotos"
 
-#: ../src/cheese-window.vala:895
+#: ../src/cheese-window.vala:892
 msgid "Take multiple photos"
 msgstr "Fâs tantis fotos"
 
-#: ../src/cheese-window.vala:1089
+#: ../src/cheese-window.vala:1086
 msgid "No effects found"
 msgstr "Nissun efiet cjatât"
 
-#: ../src/cheese-window.vala:1213
+#: ../src/cheese-window.vala:1210
 msgid "There was an error playing video from the webcam"
 msgstr "Al è vignût fûr un erôr tal riprodusi il video de webcam"
 
-#: ../src/cheese-window.vala:1415
+#: ../src/cheese-window.vala:1419
 msgid "Record a video using a webcam"
 msgstr "Regjistre un video cun la webcam"
 
-#: ../src/cheese-window.vala:1421
+#: ../src/cheese-window.vala:1425
 msgid "Take multiple photos using a webcam"
 msgstr "Scate fotos a rafiche cun la webcam"
 
-#: ../src/cheese-window.vala:1433
+#: ../src/cheese-window.vala:1437
 msgid "Choose an Effect"
 msgstr "Selezione un efiet"
 
-#: ../src/cheese-window.vala:1444
+#: ../src/cheese-window.vala:1448
 msgid "Record a Video"
 msgstr "Regjistre un _Video"
 
-#: ../src/cheese-window.vala:1448
+#: ../src/cheese-window.vala:1452
 msgid "Take Multiple Photos"
 msgstr "Fâs Tantis Fotos"
 
