@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2019-02-04 16:42+0000\n"
-"PO-Revision-Date: 2019-02-07 21:12+0100\n"
+"POT-Creation-Date: 2019-06-01 12:53+0000\n"
+"PO-Revision-Date: 2019-06-27 01:02+0200\n"
 "Last-Translator: Anders Jonsson <anders.jonsson@norsjovallen.se>\n"
 "Language-Team: Swedish <tp-sv@listor.tp-sv.se>\n"
 "Language: sv\n"
@@ -44,7 +44,7 @@ msgstr "Fotosekvensläge"
 msgid "Burst"
 msgstr "Sekvens"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1415
 msgid "Take a photo using a webcam"
 msgstr "Ta ett foto med en webbkamera"
 
@@ -72,7 +72,7 @@ msgstr "Lämna helskärmsläge och återgå till fönsterläge"
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:4
 msgid "_Help"
 msgstr "_Hjälp"
 
@@ -153,12 +153,16 @@ msgstr "H_elskärm"
 msgid "P_references"
 msgstr "_Inställningar"
 
-#: ../data/headerbar.ui.h:4
+#: ../data/headerbar.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "_Tangenbordsgenvägar"
+
+#: ../data/headerbar.ui.h:5
 msgid "_About Cheese"
 msgstr "_Om Cheese"
 
-#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1440
+#: ../data/headerbar.ui.h:6 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1444
 msgid "Take a Photo"
 msgstr "Ta ett foto"
 
@@ -178,16 +182,56 @@ msgstr "Flytta till _papperskorgen"
 msgid "Delete"
 msgstr "Ta bort"
 
+#: ../data/shortcuts.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "Översikt"
+
+#: ../data/shortcuts.ui.h:2
+msgctxt "shortcut window"
+msgid "Fullscreen on / off"
+msgstr "Helskärm på / av"
+
+#: ../data/shortcuts.ui.h:3
+msgctxt "shortcut window"
+msgid "Quit the application"
+msgstr "Avsluta programmet"
+
+#: ../data/shortcuts.ui.h:4
+msgctxt "shortcut window"
+msgid "Thumbnails"
+msgstr "Miniatyrbilder"
+
+#: ../data/shortcuts.ui.h:5
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Öppna"
+
+#: ../data/shortcuts.ui.h:6
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Spara som"
+
+#: ../data/shortcuts.ui.h:7
+msgctxt "shortcut window"
+msgid "Move to Trash"
+msgstr "Flytta till papperskorgen"
+
+#: ../data/shortcuts.ui.h:8
+msgctxt "shortcut window"
+msgid "Delete"
+msgstr "Ta bort"
+
 #. Both taken from the desktop file.
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 #: ../data/org.gnome.Cheese.desktop.in.in.h:1
-#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
+#: ../src/cheese-application.vala:116 ../src/cheese-application.vala:574
 msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 #: ../data/org.gnome.Cheese.desktop.in.in.h:4
-#: ../src/cheese-application.vala:538
+#: ../src/cheese-application.vala:569
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Ta foton och videor med din webbkamera med roliga grafiska effekter"
 
@@ -381,8 +425,8 @@ msgstr "Antal foton i sekvensläge"
 msgid "The number of photos to take in a single burst."
 msgstr "Antalet foton att ta i en enda sekvens."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
-#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:292 ../src/cheese-window.vala:367
 msgid "_Cancel"
 msgstr "_Avbryt"
 
@@ -390,7 +434,7 @@ msgstr "_Avbryt"
 msgid "_Select"
 msgstr "_Välj"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:691
 msgid "Shutter sound"
 msgstr "Slutarljud"
 
@@ -398,11 +442,11 @@ msgstr "Slutarljud"
 msgid "_Take Another Picture"
 msgstr "_Ta ett foto till"
 
-#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1604
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Ett eller flera nödvändiga GStreamer-element saknas: "
 
-#: ../libcheese/cheese-camera.c:1544
+#: ../libcheese/cheese-camera.c:1546
 #, c-format
 msgid "No device found"
 msgstr "Ingen enhet hittades"
@@ -412,7 +456,7 @@ msgstr "Ingen enhet hittades"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1837
+#: ../libcheese/cheese-camera.c:1839
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -422,39 +466,39 @@ msgstr "%02i:%02i:%02i"
 msgid "Device capabilities not supported"
 msgstr "Enhetsförmågorna stöds inte"
 
-#: ../libcheese/cheese-camera-device.c:683
+#: ../libcheese/cheese-camera-device.c:685
 msgid "Unknown device"
 msgstr "Okänd enhet"
 
-#: ../libcheese/cheese-camera-device.c:702
+#: ../libcheese/cheese-camera-device.c:704
 msgid "Cancellable initialization not supported"
 msgstr "Avbrytningsbar initiering stöds inte"
 
-#: ../src/cheese-application.vala:53
+#: ../src/cheese-application.vala:56
 msgid "Start in wide mode"
 msgstr "Starta i bredläge"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "Device to use as a camera"
 msgstr "Enhet att använda som en kamera"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "DEVICE"
 msgstr "ENHET"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:61
 msgid "Output version information and exit"
 msgstr "Skriv ut versionsinformation och avsluta"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:63
 msgid "Start in fullscreen mode"
 msgstr "Starta i helskärmsläge"
 
-#: ../src/cheese-application.vala:310
+#: ../src/cheese-application.vala:313
 msgid "Webcam in use"
 msgstr "Webbkamera används"
 
-#: ../src/cheese-application.vala:544
+#: ../src/cheese-application.vala:575
 msgid "translator-credits"
 msgstr ""
 "Daniel Nylander <po@danielnylander.se>\n"
@@ -463,7 +507,7 @@ msgstr ""
 "Skicka synpunkter på översättningen till\n"
 "<tp-sv@listor.tp-sv.se>."
 
-#: ../src/cheese-application.vala:546
+#: ../src/cheese-application.vala:577
 msgid "Cheese Website"
 msgstr "Webbplats för Cheese"
 
@@ -473,102 +517,102 @@ msgstr "Webbplats för Cheese"
 msgid "No Effect"
 msgstr "Ingen effekt"
 
-#: ../src/cheese-window.vala:238
+#: ../src/cheese-window.vala:235
 #, c-format
 msgid "Could not open %s"
 msgstr "Kunde inte öppna %s"
 
-#: ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:260
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Är du säker på att du vill permanent ta bort filen?"
 msgstr[1] "Är du säker på att du vill permanent ta bort %d filer?"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:264
 msgid "_Delete"
 msgstr "_Ta bort"
 
-#: ../src/cheese-window.vala:269
+#: ../src/cheese-window.vala:266
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Om du tar bort ett objekt så kommer det att försvinna för alltid"
 msgstr[1] "Om du tar bort objekten så kommer de att försvinna för alltid"
 
-#: ../src/cheese-window.vala:293
+#: ../src/cheese-window.vala:290
 #, c-format
 msgid "Could not delete %s"
 msgstr "Kunde inte ta bort %s"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:293
 msgid "Skip"
 msgstr "Hoppa över"
 
-#: ../src/cheese-window.vala:297
+#: ../src/cheese-window.vala:294
 msgid "Skip all"
 msgstr "Hoppa över alla"
 
-#: ../src/cheese-window.vala:342
+#: ../src/cheese-window.vala:339
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Kunde inte flytta %s till papperskorgen"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:367
+#: ../src/cheese-window.vala:364
 msgid "Save File"
 msgstr "Spara fil"
 
-#: ../src/cheese-window.vala:371
+#: ../src/cheese-window.vala:368
 msgid "Save"
 msgstr "Spara"
 
-#: ../src/cheese-window.vala:401
+#: ../src/cheese-window.vala:398
 #, c-format
 msgid "Could not save %s"
 msgstr "Kunde inte spara %s"
 
-#: ../src/cheese-window.vala:822
+#: ../src/cheese-window.vala:819
 msgid "Stop recording"
 msgstr "Stoppa inspelning"
 
-#: ../src/cheese-window.vala:837
+#: ../src/cheese-window.vala:834
 msgid "Record a video"
 msgstr "Spela in en video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:872
+#: ../src/cheese-window.vala:869
 msgid "Stop taking pictures"
 msgstr "Sluta ta foton"
 
-#: ../src/cheese-window.vala:895
+#: ../src/cheese-window.vala:892
 msgid "Take multiple photos"
 msgstr "Ta flera foton"
 
-#: ../src/cheese-window.vala:1089
+#: ../src/cheese-window.vala:1086
 msgid "No effects found"
 msgstr "Inga effekter hittades"
 
-#: ../src/cheese-window.vala:1213
+#: ../src/cheese-window.vala:1210
 msgid "There was an error playing video from the webcam"
 msgstr "Ett fel uppstod vid uppspelning av video från webbkameran"
 
-#: ../src/cheese-window.vala:1415
+#: ../src/cheese-window.vala:1419
 msgid "Record a video using a webcam"
 msgstr "Spela in en video med en webbkamera"
 
-#: ../src/cheese-window.vala:1421
+#: ../src/cheese-window.vala:1425
 msgid "Take multiple photos using a webcam"
 msgstr "Ta flera foton med en webbkamera"
 
-#: ../src/cheese-window.vala:1433
+#: ../src/cheese-window.vala:1437
 msgid "Choose an Effect"
 msgstr "Välj en effekt"
 
-#: ../src/cheese-window.vala:1444
+#: ../src/cheese-window.vala:1448
 msgid "Record a Video"
 msgstr "Spela in en video"
 
-#: ../src/cheese-window.vala:1448
+#: ../src/cheese-window.vala:1452
 msgid "Take Multiple Photos"
 msgstr "Ta flera foton"
 
