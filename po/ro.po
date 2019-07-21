@@ -14,9 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2019-02-04 16:42+0000\n"
-"PO-Revision-Date: 2019-02-13 13:55+0100\n"
-"Last-Translator: Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>\n"
+"POT-Creation-Date: 2019-06-01 12:53+0000\n"
+"PO-Revision-Date: 2019-07-04 08:40+0300\n"
+"Last-Translator: Florentina Mușat <florentina.musat.28 [at] gmail [dot] "
+"com>\n"
 "Language-Team: Gnome Romanian Translation Team <gnomero-list@lists."
 "sourceforge.net>\n"
 "Language: ro\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Project-Style: gnome\n"
 
@@ -53,7 +54,7 @@ msgstr "Mod foto în rafală"
 msgid "Burst"
 msgstr "Rafală"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1415
 msgid "Take a photo using a webcam"
 msgstr "Fă o poză cu camera web"
 
@@ -81,7 +82,7 @@ msgstr "Părăsește modul „pe tot ecranul” și revino la modul „fereastr�
 msgid "Preferences"
 msgstr "Preferințe"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:4
 msgid "_Help"
 msgstr "_Ajutor"
 
@@ -162,12 +163,16 @@ msgstr "Pe tot _ecranul"
 msgid "P_references"
 msgstr "P_referințe"
 
-#: ../data/headerbar.ui.h:4
+#: ../data/headerbar.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "Scurtături de _tastatură"
+
+#: ../data/headerbar.ui.h:5
 msgid "_About Cheese"
 msgstr "_Despre Cheese"
 
-#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1440
+#: ../data/headerbar.ui.h:6 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1444
 msgid "Take a Photo"
 msgstr "Fă o poză"
 
@@ -187,16 +192,56 @@ msgstr "Mu_tă la coșul de gunoi"
 msgid "Delete"
 msgstr "Șterge"
 
+#: ../data/shortcuts.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "Prezentare generală"
+
+#: ../data/shortcuts.ui.h:2
+msgctxt "shortcut window"
+msgid "Fullscreen on / off"
+msgstr "Pe tot ecranul pornit / oprit"
+
+#: ../data/shortcuts.ui.h:3
+msgctxt "shortcut window"
+msgid "Quit the application"
+msgstr "Ieșire din aplicație"
+
+#: ../data/shortcuts.ui.h:4
+msgctxt "shortcut window"
+msgid "Thumbnails"
+msgstr "Miniaturi"
+
+#: ../data/shortcuts.ui.h:5
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Deschide"
+
+#: ../data/shortcuts.ui.h:6
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Salvează ca"
+
+#: ../data/shortcuts.ui.h:7
+msgctxt "shortcut window"
+msgid "Move to Trash"
+msgstr "Mută la coșul de gunoi"
+
+#: ../data/shortcuts.ui.h:8
+msgctxt "shortcut window"
+msgid "Delete"
+msgstr "Șterge"
+
 #. Both taken from the desktop file.
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 #: ../data/org.gnome.Cheese.desktop.in.in.h:1
-#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
+#: ../src/cheese-application.vala:116 ../src/cheese-application.vala:574
 msgid "Cheese"
 msgstr "Cheese"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 #: ../data/org.gnome.Cheese.desktop.in.in.h:4
-#: ../src/cheese-application.vala:538
+#: ../src/cheese-application.vala:569
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "Faceți poze și filme cu camera web, folosind efect grafice nostime"
 
@@ -392,8 +437,8 @@ msgstr "Număr de poze în modul rafală"
 msgid "The number of photos to take in a single burst."
 msgstr "Numărul de poze de luat într-o singură rafală."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
-#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:292 ../src/cheese-window.vala:367
 msgid "_Cancel"
 msgstr "_Anulează"
 
@@ -401,7 +446,7 @@ msgstr "_Anulează"
 msgid "_Select"
 msgstr "_Alege"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:691
 msgid "Shutter sound"
 msgstr "Sunet obturator"
 
@@ -409,11 +454,11 @@ msgstr "Sunet obturator"
 msgid "_Take Another Picture"
 msgstr "Fă o nouă po_ză"
 
-#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1604
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Unul sau mai multe elemente necesare GStreamer lipsesc: "
 
-#: ../libcheese/cheese-camera.c:1544
+#: ../libcheese/cheese-camera.c:1546
 #, c-format
 msgid "No device found"
 msgstr "Niciun dispozitiv găsit"
@@ -423,7 +468,7 @@ msgstr "Niciun dispozitiv găsit"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1837
+#: ../libcheese/cheese-camera.c:1839
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -433,39 +478,39 @@ msgstr "%02i:%02i:%02i"
 msgid "Device capabilities not supported"
 msgstr "Capabilitățile dispozitivului nu sunt suportate"
 
-#: ../libcheese/cheese-camera-device.c:683
+#: ../libcheese/cheese-camera-device.c:685
 msgid "Unknown device"
 msgstr "Dispozitiv necunoscut"
 
-#: ../libcheese/cheese-camera-device.c:702
+#: ../libcheese/cheese-camera-device.c:704
 msgid "Cancellable initialization not supported"
 msgstr "Inițializarea anulabilă nu este suportată"
 
-#: ../src/cheese-application.vala:53
+#: ../src/cheese-application.vala:56
 msgid "Start in wide mode"
 msgstr "Pornește în modul lat"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "Device to use as a camera"
 msgstr "Dispozitiv de folosit drept cameră"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "DEVICE"
 msgstr "DISPOZITIV"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:61
 msgid "Output version information and exit"
 msgstr "Afișează informații despre versiune și ieși"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:63
 msgid "Start in fullscreen mode"
 msgstr "Pornește în modul „pe tot ecranul”"
 
-#: ../src/cheese-application.vala:310
+#: ../src/cheese-application.vala:313
 msgid "Webcam in use"
 msgstr "Cameră web în uz"
 
-#: ../src/cheese-application.vala:544
+#: ../src/cheese-application.vala:575
 msgid "translator-credits"
 msgstr ""
 "  Alexandru Florescu Marian <show_some_originality@yahoo.com>\n"
@@ -474,9 +519,10 @@ msgstr ""
 "  Dan Telecan https://launchpad.net/~telecan-dan\n"
 "  Daniel Șerbănescu <daniel [at] serbanescu [dot] dk>, 2019\n"
 "  Radu M. Ilea https://launchpad.net/~ilearadumircea\n"
-"  Jobava <jobaval10n@gmail.com>"
+"  Jobava <jobaval10n@gmail.com>\n"
+"Florentina Mușat <florentina.musat.28 [at] gmail [dot] com>, 2019"
 
-#: ../src/cheese-application.vala:546
+#: ../src/cheese-application.vala:577
 msgid "Cheese Website"
 msgstr "Saitul web Cheese"
 
@@ -486,12 +532,12 @@ msgstr "Saitul web Cheese"
 msgid "No Effect"
 msgstr "Niciun efect"
 
-#: ../src/cheese-window.vala:238
+#: ../src/cheese-window.vala:235
 #, c-format
 msgid "Could not open %s"
 msgstr "Nu s-a putut deschide %s"
 
-#: ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:260
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
@@ -499,91 +545,91 @@ msgstr[0] "Sigur doriți să ștergeți permanent fișierul?"
 msgstr[1] "Sigur doriți să ștergeți permanent %d fișiere?"
 msgstr[2] "Sigur doriți să ștergeți permanent %d de fișiere?"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:264
 msgid "_Delete"
 msgstr "Șter_ge"
 
-#: ../src/cheese-window.vala:269
+#: ../src/cheese-window.vala:266
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Dacă ștergeți un element, acesta va fi pierdut permanent"
 msgstr[1] "Dacă ștergeți elementele, acestea vor fi pierdute permanent"
 msgstr[2] "Dacă ștergeți elementele, acestea vor fi pierdute permanent"
 
-#: ../src/cheese-window.vala:293
+#: ../src/cheese-window.vala:290
 #, c-format
 msgid "Could not delete %s"
 msgstr "Nu s-a putut șterge %s"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:293
 msgid "Skip"
 msgstr "Omite"
 
-#: ../src/cheese-window.vala:297
+#: ../src/cheese-window.vala:294
 msgid "Skip all"
 msgstr "Omite toate"
 
-#: ../src/cheese-window.vala:342
+#: ../src/cheese-window.vala:339
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Nu s-a putut muta %s la gunoi"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:367
+#: ../src/cheese-window.vala:364
 msgid "Save File"
 msgstr "Salvează fișierul"
 
-#: ../src/cheese-window.vala:371
+#: ../src/cheese-window.vala:368
 msgid "Save"
 msgstr "Salvează"
 
-#: ../src/cheese-window.vala:401
+#: ../src/cheese-window.vala:398
 #, c-format
 msgid "Could not save %s"
 msgstr "Nu s-a putut salva %s"
 
-#: ../src/cheese-window.vala:822
+#: ../src/cheese-window.vala:819
 msgid "Stop recording"
 msgstr "Oprește înregistrarea"
 
-#: ../src/cheese-window.vala:837
+#: ../src/cheese-window.vala:834
 msgid "Record a video"
 msgstr "Înregistrează un video"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:872
+#: ../src/cheese-window.vala:869
 msgid "Stop taking pictures"
 msgstr "Oprește fotografierea"
 
-#: ../src/cheese-window.vala:895
+#: ../src/cheese-window.vala:892
 msgid "Take multiple photos"
 msgstr "Fă poze multiple"
 
-#: ../src/cheese-window.vala:1089
+#: ../src/cheese-window.vala:1086
 msgid "No effects found"
 msgstr "Niciun efect găsit"
 
-#: ../src/cheese-window.vala:1213
+#: ../src/cheese-window.vala:1210
 msgid "There was an error playing video from the webcam"
 msgstr "S-a produs o eroare în redarea video de la camera web"
 
-#: ../src/cheese-window.vala:1415
+#: ../src/cheese-window.vala:1419
 msgid "Record a video using a webcam"
 msgstr "Înregistrează un video folosind camera web"
 
-#: ../src/cheese-window.vala:1421
+#: ../src/cheese-window.vala:1425
 msgid "Take multiple photos using a webcam"
 msgstr "Realizează mai multe poze folosind o cameră web"
 
-#: ../src/cheese-window.vala:1433
+#: ../src/cheese-window.vala:1437
 msgid "Choose an Effect"
 msgstr "Alegeți un efect"
 
-#: ../src/cheese-window.vala:1444
+#: ../src/cheese-window.vala:1448
 msgid "Record a Video"
 msgstr "Înregistrează un video"
 
-#: ../src/cheese-window.vala:1448
+#: ../src/cheese-window.vala:1452
 msgid "Take Multiple Photos"
 msgstr "Fă poze multiple"
 
