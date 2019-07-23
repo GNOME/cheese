@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2019-02-04 16:42+0000\n"
-"PO-Revision-Date: 2019-03-30 10:22+0200\n"
+"POT-Creation-Date: 2019-06-01 12:53+0000\n"
+"PO-Revision-Date: 2019-07-23 21:01+0200\n"
 "Last-Translator: Kristjan SCHMIDT <kristjan.schmidt@googlemail.com>\n"
 "Language-Team: Esperanto <gnome-eo-list@gnome.org>\n"
 "Language: eo\n"
@@ -49,9 +49,9 @@ msgstr "Foto-seriokapta reĝimo"
 msgid "Burst"
 msgstr "Seriokapto"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1415
 msgid "Take a photo using a webcam"
-msgstr "Fari foton per retkamerao"
+msgstr "Fari foton per retfilmilo"
 
 #: ../data/cheese-main-window.ui.h:8
 msgid "Navigate to the previous page of effects"
@@ -77,7 +77,7 @@ msgstr "Forlasi tutekranan reĝimon kaj reiri al fenestra reĝimo"
 msgid "Preferences"
 msgstr "Agordoj"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:4
 msgid "_Help"
 msgstr "_Helpo"
 
@@ -91,16 +91,16 @@ msgstr "Aparato"
 
 #: ../data/cheese-prefs.ui.h:5
 msgid "Photo resolution"
-msgstr "Fotodistingivo"
+msgstr "Distingo de foto"
 
 #: ../data/cheese-prefs.ui.h:6
 msgid "Video resolution"
-msgstr "Videodistingivo"
+msgstr "Distingo de video"
 
 #: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
 #: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
-msgstr "Retkamerao"
+msgstr "Retfilmilo"
 
 #: ../data/cheese-prefs.ui.h:8
 msgid "Brightness"
@@ -158,12 +158,16 @@ msgstr "_Tutekrana reĝimo"
 msgid "P_references"
 msgstr "_Agordoj"
 
-#: ../data/headerbar.ui.h:4
+#: ../data/headerbar.ui.h:3
+msgid "_Keyboard Shortcuts"
+msgstr "_Klavkombinoj"
+
+#: ../data/headerbar.ui.h:5
 msgid "_About Cheese"
 msgstr "_Pri Rideto"
 
-#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
-#: ../src/cheese-window.vala:1440
+#: ../data/headerbar.ui.h:6 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1444
 msgid "Take a Photo"
 msgstr "Fari foton"
 
@@ -183,25 +187,65 @@ msgstr "Movi _rubujen"
 msgid "Delete"
 msgstr "Forigi"
 
+#: ../data/shortcuts.ui.h:1
+msgctxt "shortcut window"
+msgid "Overview"
+msgstr "Superrigardo"
+
+#: ../data/shortcuts.ui.h:2
+msgctxt "shortcut window"
+msgid "Fullscreen on / off"
+msgstr "Baskuligi tutekranan reĝimon"
+
+#: ../data/shortcuts.ui.h:3
+msgctxt "shortcut window"
+msgid "Quit the application"
+msgstr "Ĉesigi la aplikaĵon"
+
+#: ../data/shortcuts.ui.h:4
+msgctxt "shortcut window"
+msgid "Thumbnails"
+msgstr "Bildetoj"
+
+#: ../data/shortcuts.ui.h:5
+msgctxt "shortcut window"
+msgid "Open"
+msgstr "Malfermi"
+
+#: ../data/shortcuts.ui.h:6
+msgctxt "shortcut window"
+msgid "Save As"
+msgstr "Konservi kiel"
+
+#: ../data/shortcuts.ui.h:7
+msgctxt "shortcut window"
+msgid "Move to Trash"
+msgstr "Movi rubujen"
+
+#: ../data/shortcuts.ui.h:8
+msgctxt "shortcut window"
+msgid "Delete"
+msgstr "Forigi"
+
 #. Both taken from the desktop file.
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:2
 #: ../data/org.gnome.Cheese.desktop.in.in.h:1
-#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
+#: ../src/cheese-application.vala:116 ../src/cheese-application.vala:574
 msgid "Cheese"
 msgstr "Rideto"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:3
 #: ../data/org.gnome.Cheese.desktop.in.in.h:4
-#: ../src/cheese-application.vala:538
+#: ../src/cheese-application.vala:569
 msgid "Take photos and videos with your webcam, with fun graphical effects"
-msgstr "Fari fotojn kaj videojn per via retkamerao, kun gajaj grafikaj efektoj"
+msgstr "Fari fotojn kaj videojn per via retfilmilo, kun gajaj grafikaj efektoj"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:4
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
-"Rideto uzas vian retkameraon por fari fotojn kaj videojn, aldonas kapricajn "
+"Rideto uzas vian retfilmilon por fari fotojn kaj videojn, aldonas kapricajn "
 "efektojn kaj ebligas vin kunhavigi la amuzon kun aliaj."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
@@ -224,15 +268,15 @@ msgstr ""
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Webcam Booth"
-msgstr "Retkamerao-Budo"
+msgstr "Retfilmilo-Budo"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:3
 msgid "Cheese Webcam Booth"
-msgstr "Rideto-Retkamerao-Budo"
+msgstr "Rideto-Retfilmilo-Budo"
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:5
 msgid "photo;video;webcam;"
-msgstr "foto;fotilo;video;retkamerao;kamerao;"
+msgstr "foto;fotilo;video;retfilmilo;filmilo;retkamerao;kamerao;"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:1
 msgid "Use a countdown"
@@ -260,14 +304,14 @@ msgstr "Agordi al 'vere' por uzi antaŭ faranta foton"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:7
 msgid "Camera device string indicator"
-msgstr "Aparatvojo al la kamerao"
+msgstr "Aparatvojo al la filmilo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:8
 msgid ""
 "The path to the device node which points to the camera, for example /dev/"
 "video0"
 msgstr ""
-"La vojo al la nodo de aparato kiu indikas al la kamerao, ekzemple /dev/video0"
+"La vojo al la nodo de aparato kiu indikas al la filmilo, ekzemple /dev/video0"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:9
 msgid "Last selected effect"
@@ -283,7 +327,7 @@ msgstr "Larĝo de foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:12
 msgid "The width of the image captured from the camera, in pixels"
-msgstr "La larĝo de la bildo kaptita de la kamerao, en rastrumeroj"
+msgstr "La larĝo de la bildo kaptita de la filmilo, en bilderoj"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:13
 msgid "Photo height"
@@ -291,7 +335,7 @@ msgstr "Alto de foto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:14
 msgid "The height of the image captured from the camera, in pixels"
-msgstr "La alto de la bildo kaptita de la kamerao, en rastrumeroj"
+msgstr "La alto de la bildo kaptita de la filmilo, en bilderoj"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:15
 msgid "Video width"
@@ -299,7 +343,7 @@ msgstr "Larĝo de video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:16
 msgid "The width of the video captured from the camera, in pixels"
-msgstr "La larĝo de la video kaptita de la kamerao, en rastrumeroj"
+msgstr "La larĝo de la video kaptita de la filmilo, en bilderoj"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:17
 msgid "Video height"
@@ -307,7 +351,7 @@ msgstr "Alto de video"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:18
 msgid "The height of the video captured from the camera, in pixels"
-msgstr "La alto de la video kaptita de la kamerao, en rastrumeroj"
+msgstr "La alto de la video kaptita de la filmilo, en bilderoj"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:19
 msgid "Image brightness"
@@ -315,7 +359,7 @@ msgstr "Bilda heleco"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:20
 msgid "Adjusts the brightness of the image coming from the camera"
-msgstr "Akomodi helecon de la bildo venanta de la kamerao"
+msgstr "Akomodi helecon de la bildo venanta de la filmilo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:21
 msgid "Image contrast"
@@ -323,7 +367,7 @@ msgstr "Bilda kontrasto"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:22
 msgid "Adjusts the contrast of the image coming from the camera"
-msgstr "Akomodi kontraston de la bildo venanta de la kamerao"
+msgstr "Akomodi kontraston de la bildo venanta de la filmilo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:23
 msgid "Image saturation"
@@ -331,7 +375,7 @@ msgstr "Bilda satureco"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:24
 msgid "Adjusts the saturation of the image coming from the camera"
-msgstr "Akomodi saturecon de la bildo venanta de la kamerao"
+msgstr "Akomodi saturecon de la bildo venanta de la filmilo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:25
 msgid "Image hue"
@@ -339,7 +383,7 @@ msgstr "Bilda kolornuanco"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:26
 msgid "Adjusts the hue (color tint) of the image coming from the camera"
-msgstr "Akomodi kolornuanco de la bildo venanta de la kamerao"
+msgstr "Akomodi la kolornuancon de la bildo venanta de la filmilo"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:27
 msgid "Video path"
@@ -351,7 +395,7 @@ msgid ""
 "Webcam” will be used."
 msgstr ""
 "Difini la vojon kien la videoj estas konservata. Se estas malplena, "
-"“XDG_VIDEOS_DIR/Retkamerao” estas uzata."
+"“XDG_VIDEOS_DIR/Retfilmilo” estas uzata."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
 msgid "Photo path"
@@ -363,7 +407,7 @@ msgid ""
 "Webcam” will be used."
 msgstr ""
 "Difini la vojon kien la fotoj estas konservataj. Se estas malplena, "
-"“XDG_PICTURES_DIR/Retkamerao” estas uzata."
+"“XDG_PICTURES_DIR/Retfilmilo” estas uzata."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
 msgid "Time between photos in burst mode"
@@ -387,8 +431,8 @@ msgstr "Nombro da fotoj dum seriokapta reĝimo"
 msgid "The number of photos to take in a single burst."
 msgstr "Nombro da fotoj kiuj estu kaptota dum seriokapto."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
-#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:292 ../src/cheese-window.vala:367
 msgid "_Cancel"
 msgstr "_Nuligi"
 
@@ -396,7 +440,7 @@ msgstr "_Nuligi"
 msgid "_Select"
 msgstr "_Elekti"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:691
 msgid "Shutter sound"
 msgstr "Obturatorsono"
 
@@ -404,11 +448,11 @@ msgstr "Obturatorsono"
 msgid "_Take Another Picture"
 msgstr "_Fari alian foton"
 
-#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1602
+#: ../libcheese/cheese-camera.c:424 ../libcheese/cheese-camera.c:1604
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Unu aŭ plu bezonataj GStreamer-elementoj mankas: "
 
-#: ../libcheese/cheese-camera.c:1544
+#: ../libcheese/cheese-camera.c:1546
 #, c-format
 msgid "No device found"
 msgstr "Neniu aparato estas trovita"
@@ -418,7 +462,7 @@ msgstr "Neniu aparato estas trovita"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: ../libcheese/cheese-camera.c:1837
+#: ../libcheese/cheese-camera.c:1839
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
@@ -428,45 +472,45 @@ msgstr "%02i:%02i:%02i"
 msgid "Device capabilities not supported"
 msgstr "Aparatkapabloj ne estas subtenataj"
 
-#: ../libcheese/cheese-camera-device.c:683
+#: ../libcheese/cheese-camera-device.c:685
 msgid "Unknown device"
 msgstr "Nekonata aparato"
 
-#: ../libcheese/cheese-camera-device.c:702
+#: ../libcheese/cheese-camera-device.c:704
 msgid "Cancellable initialization not supported"
 msgstr "Rezignebla pravalorizo ne estas subtenata"
 
-#: ../src/cheese-application.vala:53
+#: ../src/cheese-application.vala:56
 msgid "Start in wide mode"
 msgstr "Starti per larĝa reĝimo"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "Device to use as a camera"
-msgstr "Aparato por uzi kameraon"
+msgstr "Aparato por uzi filmilon"
 
-#: ../src/cheese-application.vala:56
+#: ../src/cheese-application.vala:59
 msgid "DEVICE"
 msgstr "APARATO"
 
-#: ../src/cheese-application.vala:58
+#: ../src/cheese-application.vala:61
 msgid "Output version information and exit"
 msgstr "Eligi versioinformon kaj eliri"
 
-#: ../src/cheese-application.vala:60
+#: ../src/cheese-application.vala:63
 msgid "Start in fullscreen mode"
 msgstr "Starti per tutekrana reĝimo"
 
-#: ../src/cheese-application.vala:310
+#: ../src/cheese-application.vala:313
 msgid "Webcam in use"
-msgstr "Retkamerao estas uzata"
+msgstr "Retfilmilo estas uzata"
 
-#: ../src/cheese-application.vala:544
+#: ../src/cheese-application.vala:575
 msgid "translator-credits"
 msgstr ""
 "Kim RIBEIRO, Patrick (Petriko) OUDEJANS, Tiffany ANTOPOLSKI, Kristjan "
-"SCHMIDT, Ryan LORTIE, Carmen Bianca BAKKER"
+"SCHMIDT, Ryan LORTIE, Carmen Bianca BAKKER, Tirifto"
 
-#: ../src/cheese-application.vala:546
+#: ../src/cheese-application.vala:577
 msgid "Cheese Website"
 msgstr "Rideto-retpaĝaro"
 
@@ -476,102 +520,102 @@ msgstr "Rideto-retpaĝaro"
 msgid "No Effect"
 msgstr "Neniu efekto"
 
-#: ../src/cheese-window.vala:238
+#: ../src/cheese-window.vala:235
 #, c-format
 msgid "Could not open %s"
 msgstr "Ne eblis malfermi %s"
 
-#: ../src/cheese-window.vala:263
+#: ../src/cheese-window.vala:260
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "Ĉu vi certe volas forigi la dosieron daŭre?"
 msgstr[1] "Ĉu vi certe volas forigi %d dosierojn daŭre?"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:264
 msgid "_Delete"
 msgstr "_Forigi"
 
-#: ../src/cheese-window.vala:269
+#: ../src/cheese-window.vala:266
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "Se vi forigos elementon, ĝi malaperos daŭre"
 msgstr[1] "Se vi forigos elementon, ĝi malaperos daŭre"
 
-#: ../src/cheese-window.vala:293
+#: ../src/cheese-window.vala:290
 #, c-format
 msgid "Could not delete %s"
 msgstr "Ne eblis forigi na %s"
 
-#: ../src/cheese-window.vala:296
+#: ../src/cheese-window.vala:293
 msgid "Skip"
 msgstr "Preterpasi"
 
-#: ../src/cheese-window.vala:297
+#: ../src/cheese-window.vala:294
 msgid "Skip all"
 msgstr "Preterpasi ĉiujn"
 
-#: ../src/cheese-window.vala:342
+#: ../src/cheese-window.vala:339
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "Ne eblis movi %s rubujen"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:367
+#: ../src/cheese-window.vala:364
 msgid "Save File"
 msgstr "Konservi dosieron"
 
-#: ../src/cheese-window.vala:371
+#: ../src/cheese-window.vala:368
 msgid "Save"
 msgstr "Konservi"
 
-#: ../src/cheese-window.vala:401
+#: ../src/cheese-window.vala:398
 #, c-format
 msgid "Could not save %s"
 msgstr "Ne eblis konservi %s"
 
-#: ../src/cheese-window.vala:822
+#: ../src/cheese-window.vala:819
 msgid "Stop recording"
 msgstr "Ĉesi registradon"
 
-#: ../src/cheese-window.vala:837
+#: ../src/cheese-window.vala:834
 msgid "Record a video"
 msgstr "Registri videon"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:872
+#: ../src/cheese-window.vala:869
 msgid "Stop taking pictures"
 msgstr "Ĉesi fotfaradon"
 
-#: ../src/cheese-window.vala:895
+#: ../src/cheese-window.vala:892
 msgid "Take multiple photos"
 msgstr "Fari plurajn fotojn"
 
-#: ../src/cheese-window.vala:1089
+#: ../src/cheese-window.vala:1086
 msgid "No effects found"
 msgstr "Trovis neniun efekton"
 
-#: ../src/cheese-window.vala:1213
+#: ../src/cheese-window.vala:1210
 msgid "There was an error playing video from the webcam"
-msgstr "Estis eraro dum reproduktado de video el la retkamerao"
+msgstr "Estis eraro dum reproduktado de video el la retfilmilo"
 
-#: ../src/cheese-window.vala:1415
+#: ../src/cheese-window.vala:1419
 msgid "Record a video using a webcam"
-msgstr "Registri videon per retkamerao"
+msgstr "Registri videon per retfilmilo"
 
-#: ../src/cheese-window.vala:1421
+#: ../src/cheese-window.vala:1425
 msgid "Take multiple photos using a webcam"
-msgstr "Fari plurajn fotojn per retkamerao"
+msgstr "Fari plurajn fotojn per retfilmilo"
 
-#: ../src/cheese-window.vala:1433
+#: ../src/cheese-window.vala:1437
 msgid "Choose an Effect"
 msgstr "Elekti efekton"
 
-#: ../src/cheese-window.vala:1444
+#: ../src/cheese-window.vala:1448
 msgid "Record a Video"
 msgstr "Registri videon"
 
-#: ../src/cheese-window.vala:1448
+#: ../src/cheese-window.vala:1452
 msgid "Take Multiple Photos"
 msgstr "Fari plurajn fotojn"
 
@@ -773,9 +817,6 @@ msgstr "Fari plurajn fotojn"
 #~ msgid "Really move all photos and videos to the trash?"
 #~ msgstr "Ĉu certe movi ĉiujn fotaĵojn kaj videojn rubujen?"
 
-#~ msgid "_Move to Trash"
-#~ msgstr "_Movi rubujen"
-
 #~ msgid "Unable to open help file for Cheese"
 #~ msgstr "Ne eblas malfermi helpdosieron por Rideto"
 
@@ -843,9 +884,6 @@ msgstr "Fari plurajn fotojn"
 
 #~ msgid "Please refer to the help for further information."
 #~ msgstr "Bonvole referencu al la helpo por plua informo."
-
-#~ msgid "Help on this Application"
-#~ msgstr "Helpo pri ĉi tiu aplikaĵo"
 
 #~ msgid "_Start Recording"
 #~ msgstr "_Starti registradon"
