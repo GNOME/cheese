@@ -107,13 +107,9 @@ sources = um_crop_area_source + files(
   'totem-aspect-frame.c',
 )
 
-enum_types = 'cheese-enums'
-
-enum_sources = gnome.mkenums(
-  enum_types,
+enum_sources = gnome.mkenums_simple(
+  'cheese-enums',
   sources: enum_headers,
-  c_template: enum_types + '.c.template',
-  h_template: enum_types + '.h.template',
 )
 
 deps = [
