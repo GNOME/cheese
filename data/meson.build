@@ -22,22 +22,23 @@ resource_sources = gnome.compile_resources(
 
 desktop = cheese_namespace + '.desktop'
 
-custom_target(
+i18n.merge_file(
   desktop,
+  type: 'desktop',
   input: desktop + '.in',
   output: '@BASENAME@',
-  command: intltool_desktop_cmd,
+  po_dir: po_dir,
   install: true,
   install_dir: cheese_datadir / 'applications',
 )
 
 appdata = cheese_namespace + '.appdata.xml'
 
-custom_target(
+i18n.merge_file(
   appdata,
   input: appdata + '.in',
   output: '@BASENAME@',
-  command: intltool_xml_cmd,
+  po_dir: po_dir,
   install: true,
   install_dir: cheese_datadir / 'metainfo',
 )
