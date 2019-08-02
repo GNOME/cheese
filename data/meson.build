@@ -22,15 +22,9 @@ resource_sources = gnome.compile_resources(
 
 desktop = cheese_namespace + '.desktop'
 
-desktop_in = configure_file(
-  input: desktop + '.in.in',
-  output: '@BASENAME@',
-  configuration: {'PACKAGE_VERSION': cheese_version},
-)
-
 custom_target(
   desktop,
-  input: desktop_in,
+  input: desktop + '.in',
   output: '@BASENAME@',
   command: intltool_desktop_cmd,
   install: true,
