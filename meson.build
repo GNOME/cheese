@@ -1,12 +1,12 @@
 project(
-  'Cheese', ['c', 'vala'],
+  'cheese', ['c', 'vala'],
   version: '3.32.0',
   license: 'GPL2',
   default_options: 'buildtype=debugoptimized',
   meson_version: '>= 0.50.0',
 )
 
-cheese_name = meson.project_name().to_lower()
+cheese_name = meson.project_name()
 
 cheese_version = meson.project_version()
 version_array = cheese_version.split('.')
@@ -22,7 +22,7 @@ cheese_includedir = get_option('includedir')
 cheese_localedir = get_option('localedir')
 cheese_mandir = get_option('mandir')
 
-cheese_namespace = 'org.gnome.' + meson.project_name()
+cheese_namespace = 'org.gnome.Cheese'
 
 #*******************************************************************************
 # Libraries
@@ -64,9 +64,9 @@ config_h = configuration_data()
 set_defines = [
   # package
   ['PACKAGE_LOCALEDIR', cheese_prefix / cheese_localedir],
-  ['PACKAGE_NAME', meson.project_name()],
+  ['PACKAGE_NAME', 'Cheese'],
   ['PACKAGE_STRING', '@0@ @1@'.format(meson.project_name(), cheese_version)],
-  ['PACKAGE_TARNAME', meson.project_name()],
+  ['PACKAGE_TARNAME', cheese_name],
   ['PACKAGE_URL', 'https://wiki.gnome.org/Apps/Cheese'],
   ['PACKAGE_VERSION', cheese_version],
   # i18n

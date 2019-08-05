@@ -89,7 +89,7 @@ if enable_gir
     # FIXME: WidgetState enums are missing. However, they actually belong to libcheese_gtk.
     sources: sources + gir_headers + private_gir_headers,
     includes: incs,
-    namespace: meson.project_name(),
+    namespace: 'Cheese',
     nsversion: cheese_api_version,
     export_packages: cheese_name,
     install: true,
