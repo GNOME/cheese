@@ -8,6 +8,7 @@ sources = files(
   'thumbview/cheese-thumbnail.c',
   'thumbview/cheese-thumb-view.c',
   'thumbview/eog-thumb-nav.c',
+  'vapi/libcanberra-gtk3.vapi'
 )
 
 deps = [
@@ -17,7 +18,7 @@ deps = [
   gnome_desktop_dep,
   eogthumbnav_dep,
   libcanberra_dep,
-  libcanberra_gtk_dep,
+  libcanberra_gtk3_dep,
   libcheese_gtk_dep,
   posix_dep,
 ]
