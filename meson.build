@@ -111,7 +111,7 @@ gstreamer_pbutils_dep = dependency('gstreamer-pbutils-1.0')
 gstreamer_plugins_bad_dep = dependency('gstreamer-plugins-bad-1.0', version: '>= 1.4')
 gtk_dep = dependency('gtk+-3.0', version: '>= 3.13.4')
 libcanberra_dep = dependency('libcanberra')
-libcanberra_gtk_lib = meson.get_compiler('c').find_library('libcanberra-gtk3')
+libcanberra_gtk_lib = meson.get_compiler('c').find_library('canberra-gtk3')
 libcanberra_gtk3_dep = declare_dependency(dependencies: [libcanberra_gtk_lib])
 
 m_dep = cc.find_library('m')
