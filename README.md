@@ -5,11 +5,8 @@ Take photos and videos with your webcam, with fun graphical effects
 ## Useful links
 
 - Homepage: <https://wiki.gnome.org/Apps/Cheese>
-
 - Report issues: <https://gitlab.gnome.org/GNOME/cheese/issues/>
-
 - Donate: <https://www.gnome.org/friends/>
-
 - Translate: <https://wiki.gnome.org/TranslationProject>
 
 ## How to get your camera working
