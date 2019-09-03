@@ -70,8 +70,9 @@ GST_DEBUG_CATEGORY (cheese_camera_device_cat);
 #define GST_CAT_DEFAULT cheese_camera_device_cat
 
 static const gchar * const supported_formats[] = {
-  "video/x-raw",
-  NULL
+    "video/x-raw",
+    "image/jpeg",
+    NULL
 };
 
 /* FIXME: make this configurable */
