@@ -71,6 +71,7 @@ GST_DEBUG_CATEGORY (cheese_camera_device_cat);
 
 static const gchar * const supported_formats[] = {
   "video/x-raw",
+  "image/jpeg",
   NULL
 };
 
