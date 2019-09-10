@@ -1,6 +1,28 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.34.0
+  - build: Don't use 'lib' prefix in find_library
+    Meson passes it directly to -l option, so an extra 'lib' can cause error
+    because it tells the linker to find liblibcanberra-gtk3.so.
+  - Add translator comments to the desktop file
+  - Added/Updated Translations
+    - ca, courtesy of Gil Forcada
+    - cs, courtesy of Marek Černocký
+    - en_GB, courtesy of Bruce Cowan
+    - fa, courtesy of Arash Mousavi
+    - fi, courtesy of Jiri Grönroos
+    - gl, courtesy of Fran Dieguez
+    - it, courtesy of Milo Casagrande
+    - ja, courtesy of sicklylife
+    - ko, courtesy of Changwoo Ryu
+    - lt, courtesy of Aurimas Černius
+    - lv, courtesy of Rūdolfs Mazurs
+    - pl, courtesy of Piotr Drąg
+    - sr, courtesy of Марко М. Костић
+    - tr, courtesy of Çağatay Yiğit Şahin
+    - vi, courtesy of Trần Ngọc Quân
+
 version 3.33.91
   - Drop libcanberra-gtk (GTK 2) dependency introduced in previous release
 
