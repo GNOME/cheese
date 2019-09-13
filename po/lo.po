@@ -6,16 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Cheese v 1.0\n"
-"Report-Msgid-Bugs-To: https://bugzilla.gnome.org/enter_bug.cgi?product=cheese&keywords=I18N+L10N&component=general\n"
-"POT-Creation-Date: 2017-07-27 10:28+0000\n"
-"PO-Revision-Date: 2017-08-10 09:41+0700\n"
+"Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
+"POT-Creation-Date: 2019-04-08 15:20+0000\n"
+"PO-Revision-Date: 2019-05-15 08:03+0700\n"
+"Last-Translator: \n"
 "Language-Team: Saikeo (kavhanxay@hotmail.com)\n"
+"Language: lo_LA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
-"Last-Translator: \n"
-"Language: lo_LA\n"
+"X-Generator: Poedit 2.2.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -43,7 +43,7 @@ msgstr "ໂຫມດຮູບພາບຕໍ່ເນື່ອງ"
 msgid "Burst"
 msgstr "ຮູບພາບຕໍ່ເນື່ອງ"
 
-#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1321
+#: ../data/cheese-main-window.ui.h:7 ../src/cheese-window.vala:1411
 msgid "Take a photo using a webcam"
 msgstr "ຖ່າຍຮູບໂດຍການນຳໃຊ້ເວັບແຄມ"
 
@@ -71,7 +71,7 @@ msgstr "ອອກຈາກໂຫມດເຕັມຫນ້າຈໍ ແລະ �
 msgid "Preferences"
 msgstr "ການປັບແຕ່ງ"
 
-#: ../data/cheese-prefs.ui.h:2 ../data/menus.ui.h:3
+#: ../data/cheese-prefs.ui.h:2 ../data/headerbar.ui.h:3
 msgid "_Help"
 msgstr "_ວິທີໃຊ້"
 
@@ -91,7 +91,8 @@ msgstr "ຄວາມລະອຽດຂອງພາບ"
 msgid "Video resolution"
 msgstr "ຄວາມລະອຽດຂອງວິດີໂອ"
 
-#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283 ../libcheese/cheese-fileutil.c:303
+#: ../data/cheese-prefs.ui.h:7 ../libcheese/cheese-fileutil.c:283
+#: ../libcheese/cheese-fileutil.c:303
 msgid "Webcam"
 msgstr "ເວັບແຄມ"
 
@@ -143,68 +144,74 @@ msgstr "ໄລຍະເວລາລະຫວ່າງແຕ່ລະຮູບ (�
 msgid "Capture"
 msgstr "ການຈັບພາບ"
 
-#: ../data/headerbar.ui.h:1 ../libcheese/cheese-avatar-chooser.c:85 ../src/cheese-window.vala:1350
+#: ../data/headerbar.ui.h:1
+msgid "_Fullscreen"
+msgstr "_ເຕັມຈໍ"
+
+#: ../data/headerbar.ui.h:2
+msgid "P_references"
+msgstr "ການປັບແຕ່ງ"
+
+#: ../data/headerbar.ui.h:4
+msgid "_About Cheese"
+msgstr "_ກ່ຽວກັບ"
+
+#: ../data/headerbar.ui.h:5 ../libcheese/cheese-avatar-chooser.c:85
+#: ../src/cheese-window.vala:1440
 msgid "Take a Photo"
 msgstr "ຖ່າຍຮູບ"
 
 #: ../data/menus.ui.h:1
-msgid "_Fullscreen"
-msgstr "_ເຕັມຈໍ"
-
-#: ../data/menus.ui.h:2
-msgid "P_references"
-msgstr "ການປັບແຕ່ງ"
-
-#: ../data/menus.ui.h:4
-msgid "_About"
-msgstr "_ກ່ຽວກັບ"
-
-#: ../data/menus.ui.h:5
-msgid "_Quit"
-msgstr "_ອອກ"
-
-#: ../data/menus.ui.h:6
 msgid "Open"
 msgstr "ເປີດ"
 
-#: ../data/menus.ui.h:7
+#: ../data/menus.ui.h:2
 msgid "Save _As…"
 msgstr "ບັນທຶກໄວ້ທີ່…"
 
-#: ../data/menus.ui.h:8
+#: ../data/menus.ui.h:3
 msgid "Move to _Trash"
 msgstr "ຖີ້ມລົງໃນຖັງຂີ້ເຫຍື້ອ"
 
-#: ../data/menus.ui.h:9
+#: ../data/menus.ui.h:4
 msgid "Delete"
 msgstr "ລຶບ"
 
 #. Both taken from the desktop file.
-#: ../data/org.gnome.Cheese.appdata.xml.in.h:2 ../data/org.gnome.Cheese.desktop.in.in.h:1 ../src/cheese-application.vala:113
-#: ../src/cheese-application.vala:543
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:2 ../data/org.gnome.Cheese.desktop.in.in.h:1
+#: ../src/cheese-application.vala:113 ../src/cheese-application.vala:543
 msgid "Cheese"
 msgstr "Cheese"
 
-#: ../data/org.gnome.Cheese.appdata.xml.in.h:3 ../data/org.gnome.Cheese.desktop.in.in.h:4 ../src/cheese-application.vala:538
+#: ../data/org.gnome.Cheese.appdata.xml.in.h:3 ../data/org.gnome.Cheese.desktop.in.in.h:4
+#: ../src/cheese-application.vala:538
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr "ຖ່າຍຮູບ ແລະ ວິດີໂອດ້ວຍເວັບແຄມຂອງທ່ານ ພ້ອມກັບໃສ່ລູກຫລີ້ນທີ່ຫນ້າຮັກ"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:4
-msgid "Cheese uses your webcam to take photos and videos, applies fancy special effects and lets you share the fun with others."
-msgstr "Cheese ນຳໃຊ້ເວັບແຄມຂອງທ່ານໃນການຖ່າຍຮູບ ແລະ ວິດີໂອ ພ້ອມກັບມີລູກຫລີ້ນທີ່ຫລາກລາຍ ແລະ ເຮັດໃຫ້ທ່ານສາມາດແບ່ງປັນຄວາມສະຫນຸກສະຫນານກັບຄົນອື່ນໆ."
+msgid ""
+"Cheese uses your webcam to take photos and videos, applies fancy special effects and lets "
+"you share the fun with others."
+msgstr ""
+"Cheese ນຳໃຊ້ເວັບແຄມຂອງທ່ານໃນການຖ່າຍຮູບ ແລະ ວິດີໂອ ພ້ອມກັບມີລູກຫລີ້ນທີ່ຫລາກລາຍ ແລະ "
+"ເຮັດໃຫ້ທ່ານສາມາດແບ່ງປັນຄວາມສະຫນຸກສະຫນານກັບຄົນອື່ນໆ."
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:5
 msgid ""
-"Take multiple photos in quick succession with burst mode. Use the countdown to give yourself time to strike a pose, and wait for the flash!"
-msgstr "ຖ່າຍຫລາຍຮູບພ້ອມກັນຢ່າງວອງໄວດ້ວຍການນຳໃຊ້ໂຫມດຮູບພາບຕໍ່ເນື່ອງ. ໃຊ້ການນັບຖອຍຫລັງເພື່ອເຮັດໃຫ້ທ່ານມີເວລາກັບໄປຖ່າຍຮູບທັນ!"
+"Take multiple photos in quick succession with burst mode. Use the countdown to give "
+"yourself time to strike a pose, and wait for the flash!"
+msgstr ""
+"ຖ່າຍຫລາຍຮູບພ້ອມກັນຢ່າງວອງໄວດ້ວຍການນຳໃຊ້ໂຫມດຮູບພາບຕໍ່ເນື່ອງ. ໃຊ້ການນັບຖອຍຫລັງເພື່ອເຮັດໃຫ້ທ່ານມີເວລາກັບໄປຖ່າຍຮູບທັນ!"
 
 #: ../data/org.gnome.Cheese.appdata.xml.in.h:6
 msgid ""
-"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and videos. With Cheese it is easy to take photos of you, your "
-"friends, pets or whatever you want and share them with others."
+"Under the hood, Cheese uses GStreamer to apply fancy effects to photos and videos. With "
+"Cheese it is easy to take photos of you, your friends, pets or whatever you want and share "
+"them with others."
 msgstr ""
-"ການເຮັດວຽກພາຍໃນຂອງ Cheese ແມ່ນໄດ້ນຳໃຊ້ GStreamer ໃນການເພີ່ມລູກຫລີ້ນທີ່ຫລາກຫລາຍໃຫ້ກັບຮູບພາບ ແລະ ວິດີໂອ. Cheese ຈະເຮັດໃຫ້ທ່ານສາມາດຖ່າຍຮູບຂອງທ່ານໄດ້ງ່າຍຂື້ນ, ຫມູ່ຂອງທ່ານ, "
-"ສັດລ້ຽງ ຫລື ອື່ນໆທີ່ທ່ານຕ້ອງການ ແລະ ແບ່ງປັນຮູບເຫລົ່ານັ້ນກັບຄົນອື່ນໆ."
+"ການເຮັດວຽກພາຍໃນຂອງ Cheese ແມ່ນໄດ້ນຳໃຊ້ GStreamer ໃນການເພີ່ມລູກຫລີ້ນທີ່ຫລາກຫລາຍໃຫ້ກັບຮູບພາບ ແລະ ວິດີໂອ. "
+"Cheese ຈະເຮັດໃຫ້ທ່ານສາມາດຖ່າຍຮູບຂອງທ່ານໄດ້ງ່າຍຂື້ນ, ຫມູ່ຂອງທ່ານ, ສັດລ້ຽງ ຫລື ອື່ນໆທີ່ທ່ານຕ້ອງການ ແລະ "
+"ແບ່ງປັນຮູບເຫລົ່ານັ້ນກັບຄົນອື່ນໆ."
 
 #: ../data/org.gnome.Cheese.desktop.in.in.h:2
 msgid "Webcam Booth"
@@ -327,7 +334,9 @@ msgid "Video path"
 msgstr "ພາທ໌ທີ່ເກັບວິດີໂອ"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:28
-msgid "Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/Webcam” will be used."
+msgid ""
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/Webcam” will be "
+"used."
 msgstr "ກຳນົດພາທ໌ທີ່ຈະໃຊ້ເກັບວິດີໂອ. ຖ້າບໍ່ກຳນົດໄວ້ຈະໃຊ້ “XDG_VIDEOS_DIR/Webcam” ແທນ."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:29
@@ -335,7 +344,9 @@ msgid "Photo path"
 msgstr "ພາທ໌ທີ່ເກັບຮູບພາບ"
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:30
-msgid "Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/Webcam” will be used."
+msgid ""
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/Webcam” will be "
+"used."
 msgstr "ກຳນົດພາທ໌ທີ່ຈະໃຊ້ເກັບຮູບພາບ. ຖ້າບໍ່ກຳນົດໄວ້ຈະໃຊ້ “XDG_VIDEOS_DIR/Webcam” ແທນ."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:31
@@ -344,9 +355,12 @@ msgstr "ເວລາລະຫວ່າງພາບໃນໂຫມດຖ່າຍ
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:32
 msgid ""
-"The length of time, in milliseconds, to delay between taking each photo in a burst sequence of photos. If the burst delay is less than the "
-"countdown duration, the countdown duration will be used instead."
-msgstr "ໄລຍະເວລາທີ່ໃຊ້ໃນການຖ່າຍຮູບພາບແບບຕໍ່ເນື່ອງແມ່ນໃຊ້ຫົວຫນ່ວຍເປັນມິລລີວິນາທີ. ຖ້າວ່າເວລາທີ່ໃຊ້ໃນການຖ່າຍນ້ອຍກ່ວາໄລຍະເວລາການນັບຖອຍຫລັງ ມັນກໍຈະນຳໃຊ້ໄລຍະເວລາການນັບຖອຍຫລັງແທນ."
+"The length of time, in milliseconds, to delay between taking each photo in a burst sequence "
+"of photos. If the burst delay is less than the countdown duration, the countdown duration "
+"will be used instead."
+msgstr ""
+"ໄລຍະເວລາທີ່ໃຊ້ໃນການຖ່າຍຮູບພາບແບບຕໍ່ເນື່ອງແມ່ນໃຊ້ຫົວຫນ່ວຍເປັນມິລລີວິນາທີ. "
+"ຖ້າວ່າເວລາທີ່ໃຊ້ໃນການຖ່າຍນ້ອຍກ່ວາໄລຍະເວລາການນັບຖອຍຫລັງ ມັນກໍຈະນຳໃຊ້ໄລຍະເວລາການນັບຖອຍຫລັງແທນ."
 
 #: ../data/org.gnome.Cheese.gschema.xml.h:33
 msgid "Number of photos in burst mode"
@@ -356,7 +370,8 @@ msgstr "ຈຳນວນຂອງຮູບພາບໃນໂຫມດຮູບພ
 msgid "The number of photos to take in a single burst."
 msgstr "ຈຳນວນຂອງຮູບພາບທີ່ຈະຖ່າຍໃນໂຫມດຕໍ່ເນື່ອງແຕ່ລະຄັ້ງ."
 
-#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:264 ../src/cheese-window.vala:293 ../src/cheese-window.vala:368
+#: ../libcheese/cheese-avatar-chooser.c:80 ../src/cheese-window.vala:266
+#: ../src/cheese-window.vala:295 ../src/cheese-window.vala:370
 msgid "_Cancel"
 msgstr "_ຍົກເລີກ"
 
@@ -364,7 +379,7 @@ msgstr "_ຍົກເລີກ"
 msgid "_Select"
 msgstr "_ເລືອກ"
 
-#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:692
+#: ../libcheese/cheese-avatar-widget.c:128 ../src/cheese-window.vala:694
 msgid "Shutter sound"
 msgstr "ສຽງຊັດເຕີ"
 
@@ -442,99 +457,102 @@ msgstr "ເວັບໄຊທ໌ຂອງ Cheese"
 msgid "No Effect"
 msgstr "ບໍ່ມີລູກຫລີ້ນ"
 
-#: ../src/cheese-window.vala:236
+#: ../src/cheese-window.vala:238
 #, c-format
 msgid "Could not open %s"
 msgstr "ບໍ່ສາມາດເປີດ %s"
 
-#: ../src/cheese-window.vala:261
+#: ../src/cheese-window.vala:263
 #, c-format
 msgid "Are you sure you want to permanently delete the file?"
 msgid_plural "Are you sure you want to permanently delete %d files?"
 msgstr[0] "ທ່ານຫມັ້ນໃຈແລ້ວບໍ່ວ່າຕ້ອງການຈະລຶບ %d ໄຟລ໌ນີ້ຢ່າງຖາວອນ?"
 
-#: ../src/cheese-window.vala:265
+#: ../src/cheese-window.vala:267
 msgid "_Delete"
 msgstr "_ລຶບ"
 
-#: ../src/cheese-window.vala:267
+#: ../src/cheese-window.vala:269
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
 msgstr[0] "ຖ້າທ່ານລຶບລາຍການເຫລົ່ານີ້ ພວກມັນຈະຖືກລຶບໄປຢ່າງຖາວອນ"
 
-#: ../src/cheese-window.vala:291
+#: ../src/cheese-window.vala:293
 #, c-format
 msgid "Could not delete %s"
 msgstr "ບໍ່ສາມາດເປີດ %s"
 
-#: ../src/cheese-window.vala:294
+#: ../src/cheese-window.vala:296
 msgid "Skip"
 msgstr "ຂ້າມ"
 
-#: ../src/cheese-window.vala:295
+#: ../src/cheese-window.vala:297
 msgid "Skip all"
 msgstr "ຂ້າມທັງຫມົດ"
 
-#: ../src/cheese-window.vala:340
+#: ../src/cheese-window.vala:342
 #, c-format
 msgid "Could not move %s to trash"
 msgstr "ບໍ່ສາມາດຍ້າຍ %s ໄປລົງໄວ້ໃນຖັງຂີ້ເຫຍື້ອໄດ້"
 
 #. Nothing selected.
-#: ../src/cheese-window.vala:365
+#: ../src/cheese-window.vala:367
 msgid "Save File"
 msgstr "ບັນທຶກໄຟລ໌"
 
-#: ../src/cheese-window.vala:369
+#: ../src/cheese-window.vala:371
 msgid "Save"
 msgstr "ບັນທຶກ"
 
-#: ../src/cheese-window.vala:399
+#: ../src/cheese-window.vala:401
 #, c-format
 msgid "Could not save %s"
 msgstr "ບໍ່ສາມາດບັນທຶກ %s"
 
-#: ../src/cheese-window.vala:820
+#: ../src/cheese-window.vala:822
 msgid "Stop recording"
 msgstr "ຍຸດການບັນທຶກ"
 
-#: ../src/cheese-window.vala:835
+#: ../src/cheese-window.vala:837
 msgid "Record a video"
 msgstr "ບັນທຶກວິດີໂອ"
 
 #. FIXME: Set the effects action to be inactive.
-#: ../src/cheese-window.vala:870
+#: ../src/cheese-window.vala:872
 msgid "Stop taking pictures"
 msgstr "ຍຸດການຖ່າຍຮູບ"
 
-#: ../src/cheese-window.vala:893
+#: ../src/cheese-window.vala:895
 msgid "Take multiple photos"
 msgstr "ຖ່າຍຫລາຍຮູບ"
 
-#: ../src/cheese-window.vala:1087
+#: ../src/cheese-window.vala:1089
 msgid "No effects found"
 msgstr "ບໍ່ພົບລູກຫລີ້ນ"
 
-#: ../src/cheese-window.vala:1211
+#: ../src/cheese-window.vala:1213
 msgid "There was an error playing video from the webcam"
 msgstr "ເກີດມີຂໍ້ຜິດພາດໃນການເປີດວິດີໂອທີ່ມາຈາກເວັບແຄມ"
 
-#: ../src/cheese-window.vala:1325
+#: ../src/cheese-window.vala:1415
 msgid "Record a video using a webcam"
 msgstr "ບັນທຶກວິດີໂອໂດຍການນຳໃຊ້ເວັບແຄມ"
 
-#: ../src/cheese-window.vala:1331
+#: ../src/cheese-window.vala:1421
 msgid "Take multiple photos using a webcam"
 msgstr "ຖ່າຍຫລາຍຮູບໂດຍການນຳໃຊ້ເວັບແຄມ"
 
-#: ../src/cheese-window.vala:1343
+#: ../src/cheese-window.vala:1433
 msgid "Choose an Effect"
 msgstr "ເລືອກລູກຫລີ້ນ"
 
-#: ../src/cheese-window.vala:1354
+#: ../src/cheese-window.vala:1444
 msgid "Record a Video"
 msgstr "ບັນທຶກວິດີໂອ"
 
-#: ../src/cheese-window.vala:1358
+#: ../src/cheese-window.vala:1448
 msgid "Take Multiple Photos"
 msgstr "ຖ່າຍຫລາຍຮູບ"
+
+#~ msgid "_Quit"
+#~ msgstr "_ອອກ"
