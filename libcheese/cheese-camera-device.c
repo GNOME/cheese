@@ -71,6 +71,7 @@ GST_DEBUG_CATEGORY (cheese_camera_device_cat);
 
 static const gchar * const supported_formats[] = {
   "video/x-raw",
+  "image/jpeg",
   NULL
 };
 
@@ -882,8 +883,7 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
 {
     CheeseCameraDevicePrivate *priv;
   CheeseVideoFormatFull *full_format;
-  GstCaps *desired_caps;
-  GstCaps *subset_caps;
+  GstCaps *result_caps;
   gsize i;
 
   g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
@@ -901,21 +901,26 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
             full_format->width, full_format->height,
             full_format->fr_numerator, full_format->fr_denominator);
 
-  desired_caps = gst_caps_new_empty ();
+  priv = cheese_camera_device_get_instance_private (device);
+
+  result_caps = gst_caps_new_empty();
 
   for (i = 0; supported_formats[i] != NULL; i++)
   {
-    gst_caps_append (desired_caps,
-                     cheese_camera_device_format_to_caps (supported_formats[i],
-                                                          full_format));
+    GstCaps *desired_caps;
+    GstCaps *subset_caps;
+
+    desired_caps = cheese_camera_device_format_to_caps (supported_formats[i],
+                                                        full_format);
+    subset_caps = gst_caps_intersect (desired_caps, priv->caps);
+    subset_caps = gst_caps_simplify (subset_caps);
+
+    gst_caps_append (result_caps, subset_caps);
+
+    gst_caps_unref (desired_caps);
   }
 
-    priv = cheese_camera_device_get_instance_private (device);
-    subset_caps = gst_caps_intersect (desired_caps, priv->caps);
-  subset_caps = gst_caps_simplify (subset_caps);
-  gst_caps_unref (desired_caps);
+  GST_INFO ("Got %" GST_PTR_FORMAT, result_caps);
 
-  GST_INFO ("Got %" GST_PTR_FORMAT, subset_caps);
-
-  return subset_caps;
+  return result_caps;
 }
