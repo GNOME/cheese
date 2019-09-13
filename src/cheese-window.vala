@@ -45,6 +45,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     private MediaMode current_mode;
 
+    internal MediaMode toggled_mode;
+
     private Clutter.Script clutter_builder;
 
     private Gtk.Builder header_bar_ui = new Gtk.Builder.from_resource ("/org/gnome/Cheese/headerbar.ui");
@@ -52,6 +54,40 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     private Gtk.HeaderBar header_bar;
 
     private GLib.Settings settings;
+
+    
+    [GtkCallback]
+    private void photo_button_toggled (Gtk.ToggleButton button)
+    {
+        if (button.get_active())
+        {
+            toggled_mode = MediaMode.PHOTO;
+        } 
+        else 
+            toggled_mode = MediaMode.NONE;
+    }
+
+    [GtkCallback]
+    private void video_button_toggled (Gtk.ToggleButton button)
+    {
+        if (button.get_active())
+        {
+            toggled_mode = MediaMode.VIDEO;
+        }
+        else 
+            toggled_mode = MediaMode.NONE;
+    }
+
+    [GtkCallback]
+    private void burst_button_toggled (Gtk.ToggleButton button)
+    {
+        if (button.get_active())
+        {
+            toggled_mode = MediaMode.BURST;
+        }
+        else 
+            toggled_mode = MediaMode.NONE;
+    }
 
     [GtkChild]
     private GtkClutter.Embed viewport_widget;
@@ -462,6 +498,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     switch (mode)
     {
+      case MediaMode.NONE:
       case MediaMode.PHOTO:
       case MediaMode.BURST:
         width  = settings.get_int ("photo-x-resolution");
@@ -904,6 +941,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     {
         switch (current_mode)
         {
+            case MediaMode.NONE:
+                break;
             case MediaMode.PHOTO:
                 take_photo ();
                 break;
@@ -1135,8 +1174,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
       foreach (var effect in effects_manager.effects)
       {
         Clutter.Actor texture = new Clutter.Actor ();
-        Clutter.BinLayout layout = new Clutter.BinLayout (Clutter.BinAlignment.CENTER,
-                                                          Clutter.BinAlignment.CENTER);
+        Clutter.BinLayout layout = new Clutter.BinLayout (Clutter.BinAlignment.START,
+                                                          Clutter.BinAlignment.START);
         var box = new Clutter.Actor ();
         box.set_layout_manager (layout);
         Clutter.Text      text = new Clutter.Text ();
@@ -1403,7 +1442,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
      */
     public void set_current_mode (MediaMode mode)
     {
-        current_mode = mode;
+        current_mode = toggled_mode;
 
         set_resolution (current_mode);
         update_header_bar_title ();
@@ -1411,6 +1450,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
         switch (current_mode)
         {
+            case MediaMode.NONE:
+                take_action_button.tooltip_text = ("");
+                break;
+
             case MediaMode.PHOTO:
                 take_action_button.tooltip_text = _("Take a photo using a webcam");
                 break;
@@ -1440,6 +1483,10 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         {
             switch (current_mode)
             {
+                case MediaMode.NONE:
+                    set_window_title ("");
+                    break;
+
                 case MediaMode.PHOTO:
                     set_window_title (_("Take a Photo"));
                     break;
