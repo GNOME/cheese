@@ -362,30 +362,58 @@ cheese_camera_detect_camera_devices (CheeseCamera *camera)
 static gboolean
 cheese_camera_set_camera_source (CheeseCamera *camera)
 {
-    CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
+  CheeseCameraPrivate *priv = cheese_camera_get_instance_private (camera);
 
   guint i;
-  CheeseCameraDevice *selected_camera;
+  CheeseCameraDevice *selected_camera = NULL;
   GstElement *src, *filter;
   GstPad *srcpad;
 
   if (priv->video_source)
     gst_object_unref (priv->video_source);
 
-  /* If we have a matching video device use that one, otherwise use the first */
-  priv->selected_device = 0;
-  selected_camera = g_ptr_array_index (priv->camera_devices, 0);
-
-  for (i = 1; i < priv->num_camera_devices; i++)
+  for (i = 0; i < priv->num_camera_devices; i++)
   {
     CheeseCameraDevice *dev = g_ptr_array_index (priv->camera_devices, i);
-    if (dev == priv->device)
+    const gchar *device_name = cheese_camera_device_get_name (dev);
+
+    /* If we have a matching video device use that one, otherwise use the first Non IR Camera */
+    /* No video deice was preset */
+    if (NULL == priv->device)
+    {
+      /* Find the first Non IR Camera */
+      if (NULL == g_strrstr (device_name, "IR Camera"))
+      {
+        selected_camera       = dev;
+        priv->selected_device = i;
+	break;
+      }
+      /* When there are only one device, use it even it's IR Camera. */
+      else if (1 == priv->num_camera_devices)
+      {
+        selected_camera       = dev;
+        priv->selected_device = i;
+	break;
+      }
+      else
+        g_debug ("Skipping %s", device_name);
+    }
+    /* Find the preset video deice */
+    else if (dev == priv->device)
     {
       selected_camera       = dev;
       priv->selected_device = i;
       break;
     }
   }
+  /* If we don't find any matching video device, use the first one. */
+  if (NULL == selected_camera)
+  {
+    priv->selected_device = 0;
+    selected_camera = g_ptr_array_index (priv->camera_devices, 0);
+  }
+
+  g_debug ("selected_camera is %s", cheese_camera_device_get_name (selected_camera));
 
   priv->video_source = gst_bin_new (NULL);
   if (priv->video_source == NULL)
