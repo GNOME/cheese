@@ -163,6 +163,27 @@ compare_formats (gconstpointer a, gconstpointer b)
   return (d->width * d->height - c->width * c->height);
 }
 
+static GstCaps *
+format_caps (const gchar * const formats[])
+{
+    GstCaps *filter;
+    gsize i;
+
+    filter = gst_caps_new_empty ();
+
+    for (i = 0; formats[i] != NULL; i++)
+    {
+        gst_caps_append (filter,
+                         gst_caps_new_simple (formats[i],
+                                              "framerate",
+                                              GST_TYPE_FRACTION_RANGE,
+                                              0, 1, CHEESE_MAXIMUM_RATE, 1,
+                                              NULL));
+    }
+
+    return filter;
+}
+
 /*
  * cheese_camera_device_filter_caps:
  * @device: the #CheeseCameraDevice
@@ -182,18 +203,8 @@ cheese_camera_device_filter_caps (CheeseCameraDevice *device,
 {
   GstCaps *filter;
   GstCaps *allowed;
-  gsize i;
 
-  filter = gst_caps_new_empty ();
-
-  for (i = 0; formats[i] != NULL; i++)
-  {
-    gst_caps_append (filter,
-                     gst_caps_new_simple (formats[i],
-                                          "framerate", GST_TYPE_FRACTION_RANGE,
-                                          0, 1, CHEESE_MAXIMUM_RATE, 1,
-                                          NULL));
-  }
+    filter = format_caps (formats);
 
   allowed = gst_caps_intersect (caps, filter);
 
@@ -934,4 +945,10 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
     GST_INFO ("Got %" GST_PTR_FORMAT, result_caps);
 
     return result_caps;
+}
+
+GstCaps *
+cheese_camera_device_supported_format_caps (void)
+{
+    return format_caps (supported_formats);
 }

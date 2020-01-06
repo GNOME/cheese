@@ -296,7 +296,7 @@ initable_init (GInitable     *initable,
   gst_bus_add_watch (bus, cheese_camera_device_monitor_bus_func, monitor);
   gst_object_unref (bus);
 
-  caps = gst_caps_new_empty_simple ("video/x-raw");
+  caps = cheese_camera_device_supported_format_caps ();
   gst_device_monitor_add_filter (priv->monitor, "Video/Source", caps);
   gst_caps_unref (caps);
 

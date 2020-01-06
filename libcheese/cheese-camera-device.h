@@ -75,6 +75,8 @@ GList *            cheese_camera_device_get_format_list (CheeseCameraDevice *dev
 const gchar *cheese_camera_device_get_name (CheeseCameraDevice *device);
 GstElement * cheese_camera_device_get_src (CheeseCameraDevice *device);
 
+GstCaps * cheese_camera_device_supported_format_caps (void);
+
 G_END_DECLS
 
 #endif /* CHEESE_CAMERA_DEVICE_H_ */
