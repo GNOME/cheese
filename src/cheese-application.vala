@@ -490,7 +490,7 @@ public class Cheese.Application : Gtk.Application
             }
 
             shortcuts_window = builder.get_object ("shortcuts-cheese") as Gtk.ShortcutsWindow;
-            shortcuts_window.close.connect ( (event) => { shortcuts_window = null; } );
+            shortcuts_window.destroy.connect ( (event) => { shortcuts_window = null; } );
         }
 
         if (get_active_window () != shortcuts_window.get_transient_for ())
