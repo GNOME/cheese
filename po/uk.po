@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2019-09-23 05:29+0000\n"
-"PO-Revision-Date: 2020-03-06 20:36+0200\n"
+"POT-Creation-Date: 2020-06-12 08:06+0000\n"
+"PO-Revision-Date: 2020-06-12 11:08+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
 "=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.03.70\n"
+"X-Generator: Lokalize 20.07.70\n"
 "X-Project-Style: gnome\n"
 
 #: data/cheese-main-window.ui:52
@@ -159,7 +159,6 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Клавіатурні скорочення"
 
 #: data/headerbar.ui:25
-#| msgid "_Cheese"
 msgid "_About Cheese"
 msgstr "_Про Cheese"
 
@@ -231,8 +230,9 @@ msgstr "Кабінка"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Cheese.desktop.in:7
-msgid "photo;video;webcam;"
-msgstr "фото;відео;вебкамера;"
+#| msgid "photo;video;webcam;"
+msgid "photo;video;webcam;camera;selfie;"
+msgstr "photo;video;webcam;camera;selfie;фото;відео;вебкамера;камера;селфі;"
 
 #: data/org.gnome.Cheese.gschema.xml:5
 msgid "Use a countdown"
@@ -392,13 +392,11 @@ msgid "Overview"
 msgstr "Огляд"
 
 #: data/shortcuts.ui:16
-#| msgid "_Fullscreen"
 msgctxt "shortcut window"
 msgid "Fullscreen on / off"
 msgstr "Увімкнути або вимкнути повноекранний режим"
 
 #: data/shortcuts.ui:22
-#| msgid "Help on this Application"
 msgctxt "shortcut window"
 msgid "Quit the application"
 msgstr "Вийти з програми"
@@ -409,25 +407,21 @@ msgid "Thumbnails"
 msgstr "Мініатюри"
 
 #: data/shortcuts.ui:34
-#| msgid "Open"
 msgctxt "shortcut window"
 msgid "Open"
 msgstr "Відкрити"
 
 #: data/shortcuts.ui:40
-#| msgid "Save _As…"
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Зберегти як"
 
 #: data/shortcuts.ui:46
-#| msgid "_Move to Trash"
 msgctxt "shortcut window"
 msgid "Move to Trash"
 msgstr "Перемістити у смітник"
 
 #: data/shortcuts.ui:52
-#| msgid "Delete"
 msgctxt "shortcut window"
 msgid "Delete"
 msgstr "Вилучити"
