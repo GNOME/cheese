@@ -6,14 +6,14 @@
 # Yaşar Şentürk <yasarix@gmail.com>, 2014.
 # Muhammet Kara <muhammetk@gmail.com>, 2011, 2012, 2013, 2014, 2015, 2016.
 # Furkan Ahmet Kara <furkanahmetkara.fk@gmail.com>, 2017.
-# Emin Tufan Çetin <etcetin@gmail.com>, 2017.
+# Emin Tufan Çetin <etcetin@gmail.com>, 2017, 2020.
 # Çağatay Yiğit Şahin <cyigitsahin@outlook.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2019-08-06 06:21+0000\n"
+"POT-Creation-Date: 2020-06-12 08:06+0000\n"
 "PO-Revision-Date: 2019-08-08 17:12+0300\n"
 "Last-Translator: Çağatay Yiğit Şahin <cyigitsahin@outlook.com>\n"
 "Language-Team: Turkish <gnome-turk@gnome.org>\n"
@@ -211,7 +211,7 @@ msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
 msgstr ""
-"Şipşak kipinde hızlı bir şekilde birçok fotoğraf çekin. Poz verebilmek için "
+"Şipşak kipinde hızlıca birçok fotoğraf çekin. Poz verebilmek için "
 "sayacı kullanarak kendinize zaman tanıyın ve flaşı bekleyin!"
 
 #: data/org.gnome.Cheese.appdata.xml.in:21
@@ -231,8 +231,8 @@ msgstr "Web Kamerası Standı"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Cheese.desktop.in:7
-msgid "photo;video;webcam;"
-msgstr "fotoğraf;video;görüntü;web kamerası;"
+msgid "photo;video;webcam;camera;selfie;"
+msgstr "fotoğraf;video;görüntü;web kamerası;webcam;kamera;özçekim;selfie"
 
 #: data/org.gnome.Cheese.gschema.xml:5
 msgid "Use a countdown"
@@ -387,7 +387,7 @@ msgstr "Patlama kipinde fotoğraf sayısı"
 
 #: data/org.gnome.Cheese.gschema.xml:112
 msgid "The number of photos to take in a single burst."
-msgstr "Tek bir patlamada çekilecek fotoğraf sayısı."
+msgstr "Tek patlamada çekilecek fotoğraf sayısı."
 
 #: data/shortcuts.ui:12
 msgctxt "shortcut window"
@@ -395,13 +395,11 @@ msgid "Overview"
 msgstr "Genel Bakış"
 
 #: data/shortcuts.ui:16
-#| msgid "_Fullscreen"
 msgctxt "shortcut window"
 msgid "Fullscreen on / off"
 msgstr "Tam ekran aç / kapa"
 
 #: data/shortcuts.ui:22
-#| msgid "Help on this Application"
 msgctxt "shortcut window"
 msgid "Quit the application"
 msgstr "Uygulamadan çık"
@@ -412,25 +410,21 @@ msgid "Thumbnails"
 msgstr "Küçük Resimler"
 
 #: data/shortcuts.ui:34
-#| msgid "Open"
 msgctxt "shortcut window"
 msgid "Open"
 msgstr "Aç"
 
 #: data/shortcuts.ui:40
-#| msgid "Save _As…"
 msgctxt "shortcut window"
 msgid "Save As"
 msgstr "Farklı Kaydet"
 
 #: data/shortcuts.ui:46
-#| msgid "_Move to Trash"
 msgctxt "shortcut window"
 msgid "Move to Trash"
 msgstr "Çöpe Taşı"
 
 #: data/shortcuts.ui:52
-#| msgid "Delete"
 msgctxt "shortcut window"
 msgid "Delete"
 msgstr "Sil"
@@ -450,7 +444,7 @@ msgstr "Deklanşör sesi"
 
 #: libcheese/cheese-avatar-widget.c:270
 msgid "_Take Another Picture"
-msgstr "Başka Bir Resim _Çek"
+msgstr "Başka Resim _Çek"
 
 #: libcheese/cheese-camera.c:424 libcheese/cheese-camera.c:1604
 msgid "One or more needed GStreamer elements are missing: "
@@ -599,7 +593,7 @@ msgstr "Etki yok"
 
 #: src/cheese-window.vala:1210
 msgid "There was an error playing video from the webcam"
-msgstr "Web kamerasından video oynatırken bir hata oluştu"
+msgstr "Web kamerasından video oynatırken hata oluştu"
 
 #: src/cheese-window.vala:1419
 msgid "Record a video using a webcam"
@@ -611,7 +605,7 @@ msgstr "Web kamerası kullanarak çoklu fotoğraf çek"
 
 #: src/cheese-window.vala:1437
 msgid "Choose an Effect"
-msgstr "Bir Etki Seç"
+msgstr "Etki Seç"
 
 #: src/cheese-window.vala:1448
 msgid "Record a Video"
