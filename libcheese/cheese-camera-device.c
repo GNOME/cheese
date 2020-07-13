@@ -446,15 +446,25 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
     height = gst_structure_get_value (structure, "height");
     framerate = gst_structure_get_value (structure, "framerate");
 
-    if (G_VALUE_HOLDS_INT (width))
+    if (G_VALUE_HOLDS_INT (width) && G_VALUE_HOLDS_INT (height))
     {
-      CheeseVideoFormatFull *format = g_slice_new0 (CheeseVideoFormatFull);
+      CheeseVideoFormatFull *format;
+      gint width = 0, height = 0;
 
-      gst_structure_get_int (structure, "width", &(format->width));
-      gst_structure_get_int (structure, "height", &(format->height));
-      cheese_camera_device_add_format (device, format, framerate);
+      gst_structure_get_int (structure, "width", &width);
+      gst_structure_get_int (structure, "height", &height);
+
+      if (width > 0 && height > 0) {
+        format = g_slice_new0 (CheeseVideoFormatFull);
+
+	format->width = width;
+	format->height = height;
+
+        cheese_camera_device_add_format (device, format, framerate);
+      }
     }
-    else if (GST_VALUE_HOLDS_INT_RANGE (width))
+    else if (GST_VALUE_HOLDS_INT_RANGE (width) &&
+             GST_VALUE_HOLDS_INT_RANGE (height))
     {
       gint min_width, max_width, min_height, max_height;
       gint cur_width, cur_height;
@@ -516,7 +526,8 @@ cheese_camera_device_update_format_table (CheeseCameraDevice *device)
     }
     else
     {
-      g_critical ("GValue type %s, cannot be handled for resolution width", G_VALUE_TYPE_NAME (width));
+      g_critical ("GValue type %s x %s, cannot be handled for resolution",
+		      G_VALUE_TYPE_NAME (width), G_VALUE_TYPE_NAME (height));
     }
   }
 }
