@@ -123,14 +123,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
         GLib.Object (application: application);
 
         header_bar = header_bar_ui.get_object ("header_bar") as Gtk.HeaderBar;
-
-        Gtk.Settings settings = Gtk.Settings.get_default ();
-
-        if (settings.gtk_dialogs_use_header)
-        {
-            header_bar.visible = true;
-            this.set_titlebar (header_bar);
-        }
+        header_bar.visible = true;
+        this.set_titlebar (header_bar);
     }
 
     private void set_window_title (string title)
