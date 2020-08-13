@@ -199,6 +199,14 @@ public class Cheese.Application : Gtk.Application
         mode.set_enabled (false);
         shoot.set_enabled (false);
 
+        /* If no device has been given on the commandline, retrieve it from
+         * gsettings.
+         */
+        if (device == null)
+        {
+            device = settings.get_string ("camera");
+        }
+
         var video_preview = main_window.get_video_preview ();
         camera = new Camera (video_preview, device,
             settings.get_int ("photo-x-resolution"),
