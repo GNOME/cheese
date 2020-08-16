@@ -1,23 +1,23 @@
 # cheese ja.po.
-# Copyright (C) 2007-2019 daniel g. siegel <dgsiegel@gnome.org>
+# Copyright (C) 2007-2016, 2018-2020 daniel g. siegel <dgsiegel@gnome.org>
 # This file is distributed under the same license as the cheese package.
-# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2007,2008.
-# Kentaro Kazuhama <kazken3@gmail.com>, 2009.
+# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2007-2008.
+# Kentaro Kazuhama <kazken3@gmail.com>, 2009, 2020.
 # Hideki Yamane (Debian-JP) <henrich@debian.or.jp>, 2009-2010.
 # Hideki Yamane <henrich@debian.org>, 2011.
 # Takayuki KUSANO <AE5T-KSN@asahi-net.or.jp>, 2010-2012.
 # Hajime Taira <htaira@redhat.com>, 2011-2014.
 # Noriko Mizumoto <noriko@fedoraproject.org>, 2012.
-# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013-2015,2018.
-# Tsuji Kento <tuziemon@pclives.org>, 2015, 2016.
-# sicklylife <translation@sicklylife.jp>, 2019.
+# Jiro Matsuzawa <jmatsuzawa@gnome.org>, 2013-2015, 2018.
+# Tsuji Kento <tuziemon@pclives.org>, 2015-2016.
+# sicklylife <translation@sicklylife.jp>, 2019-2020.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
 "POT-Creation-Date: 2020-06-12 08:06+0000\n"
-"PO-Revision-Date: 2019-09-26 19:00+0900\n"
+"PO-Revision-Date: 2020-08-17 00:50+0900\n"
 "Last-Translator: sicklylife <translation@sicklylife.jp>\n"
 "Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
 "Language: ja\n"
@@ -227,16 +227,14 @@ msgstr ""
 
 #: data/org.gnome.Cheese.desktop.in:4
 msgid "Webcam Booth"
-msgstr "ウェブカム・ブース"
+msgstr "ウェブカムブース"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.Cheese.desktop.in:7
-#, fuzzy
-#| msgid "photo;video;webcam;"
 msgid "photo;video;webcam;camera;selfie;"
 msgstr ""
-"photo;video;webcam;フォト;写真;ビデオ;動画;ウェブカム;ウェブカメラ;movie;ムー"
-"ビー;"
+"photo;video;webcam;camera;selfie;フォト;写真;ビデオ;動画;ウェブカム;ウェブカ"
+"メラ;カメラ;セルフィー;自撮り;movie;ムービー;"
 
 #: data/org.gnome.Cheese.gschema.xml:5
 msgid "Use a countdown"
@@ -392,7 +390,7 @@ msgstr "一度の連写モードで撮影する写真の数を設定します。
 #: data/shortcuts.ui:12
 msgctxt "shortcut window"
 msgid "Overview"
-msgstr ""
+msgstr "概要"
 
 #: data/shortcuts.ui:16
 msgctxt "shortcut window"
@@ -545,8 +543,8 @@ msgstr "削除(_D)"
 #: src/cheese-window.vala:266
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
-msgstr[0] "ファイルを削除すると、元に戻せなくなります。"
-msgstr[1] "ファイルを削除すると、元に戻せなくなります。"
+msgstr[0] "削除すると元に戻すことはできません。"
+msgstr[1] "削除すると元に戻すことはできません。"
 
 #: src/cheese-window.vala:290
 #, c-format
