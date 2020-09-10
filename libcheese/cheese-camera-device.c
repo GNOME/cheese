@@ -87,6 +87,7 @@ enum
 {
   PROP_0,
   PROP_NAME,
+  PROP_PATH,
   PROP_DEVICE,
   PROP_LAST
 };
@@ -99,6 +100,7 @@ typedef struct
   gchar     *name;
   GstCaps   *caps;
   GList     *formats; /* list members are CheeseVideoFormatFull structs. */
+  gchar     *path;
 
   GError    *construct_error;
 } CheeseCameraDevicePrivate;
@@ -602,6 +604,9 @@ cheese_camera_device_get_property (GObject *object, guint prop_id, GValue *value
     case PROP_DEVICE:
       g_value_set_object (value, priv->device);
       break;
+    case PROP_PATH:
+      g_value_set_string (value, priv->path);
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
       break;
@@ -626,6 +631,12 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
       priv->device = g_value_dup_object (value);
       g_free (priv->name);
       priv->name = gst_device_get_display_name (priv->device);
+      g_free (priv->path);
+      priv->path = g_value_dup_string (gst_structure_get_value (gst_device_get_properties (priv->device), "api.v4l2.path"));
+      break;
+    case PROP_PATH:
+      g_free (priv->path);
+      priv->path = g_value_dup_string (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -641,6 +652,7 @@ cheese_camera_device_finalize (GObject *object)
 
   g_object_unref (priv->device);
   g_free (priv->name);
+  g_free (priv->path);
 
   gst_caps_unref (priv->caps);
   free_format_list (device);
@@ -678,6 +690,18 @@ cheese_camera_device_class_init (CheeseCameraDeviceClass *klass)
                                                G_PARAM_CONSTRUCT_ONLY |
                                                G_PARAM_STATIC_STRINGS);
 
+  /**
+   * CheeseCameraDevice:path:
+   *
+   * Path of the video capture device.
+   */
+  properties[PROP_PATH] = g_param_spec_string ("path",
+                                               "Device path",
+                                               "Path of the video capture device",
+                                               NULL,
+                                               G_PARAM_READWRITE |
+                                               G_PARAM_CONSTRUCT_ONLY |
+                                               G_PARAM_STATIC_STRINGS);
   /**
    * CheeseCameraDevice:device:
    *
@@ -781,6 +805,25 @@ cheese_camera_device_get_format_list (CheeseCameraDevice *device)
     return g_list_copy (priv->formats);
 }
 
+/**
+ * cheese_camera_device_get_path:
+ * @device: a #CheeseCameraDevice
+ *
+ * Get path for the device, as reported by udev.
+ *
+ * Returns: (transfer none): the path of the video capture device
+ */
+const gchar *
+cheese_camera_device_get_path (CheeseCameraDevice *device)
+{
+  CheeseCameraDevicePrivate *priv;
+
+  g_return_val_if_fail (CHEESE_IS_CAMERA_DEVICE (device), NULL);
+
+  priv = cheese_camera_device_get_instance_private (device);
+
+  return priv->path;
+}
 /**
  * cheese_camera_device_get_name:
  * @device: a #CheeseCameraDevice

@@ -1594,8 +1594,8 @@ cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **
     {
       device = g_ptr_array_index (priv->camera_devices, i);
 
-      if (g_strcmp0 (cheese_camera_device_get_name (device),
-                     priv->initial_name) == 0)
+      if (g_strcmp0 (cheese_camera_device_get_name (device), priv->initial_name) == 0
+          || g_strcmp0 (cheese_camera_device_get_path (device), priv->initial_name) == 0)
       {
         cheese_camera_set_device (camera, device);
         break;

@@ -78,11 +78,14 @@ namespace Cheese
     public Gst.Caps get_caps_for_format (Cheese.VideoFormat format);
     public GLib.List<unowned Cheese.VideoFormat> get_format_list ();
     public unowned string             get_name ();
+    public unowned string             get_path ();
     public Gst.Element                get_src ();
     [NoAccessorMethod]
     public Gst.Device device {get; construct;}
     [NoAccessorMethod]
     public string name {get;}
+    [NoAccessorMethod]
+    public string path {get;}
   }
 
   [CCode (cheader_filename = "cheese-camera-device-monitor.h")]
