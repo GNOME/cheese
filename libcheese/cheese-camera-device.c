@@ -549,7 +549,7 @@ cheese_camera_device_get_caps (CheeseCameraDevice *device)
 
   caps = gst_device_get_caps (priv->device);
   if (caps == NULL)
-    caps = gst_caps_new_empty_simple ("video/x-raw");
+    caps = gst_caps_new_empty_simple ("video/x-h264");
 
   gst_caps_unref (priv->caps);
   priv->caps = cheese_camera_device_filter_caps (device, caps, supported_formats);
