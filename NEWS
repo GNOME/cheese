@@ -1,6 +1,76 @@
 ChangeLog for Cheese
 --------------------
 
+version 3.38.0
+  - cheese: improve format parsing
+    Check if both width and height are of the expected value type.
+
+    Check if width and height are > 0 before adding the format as a
+    valid format. Adding 0x0 resolutions causes a divide by 0 later
+    when we calculate aspect ratios.
+  - Add 'camera' and 'selfie' keywords to .desktop file
+    These both seems like search terms people are likely to use when looking
+    for this app.
+  - Fix keyboard shortcut window being displayed twice
+    https://gitlab.gnome.org/GNOME/cheese/-/issues/57
+  - App icon: minor refinements
+  - Added/Updated Translations
+    - ca, courtesy of Gil Forcada
+    - ckb, courtesy of Jwtiyar Nariman
+    - cs, courtesy of Marek Černocký
+    - da, courtesy of Alan Mortensen
+    - de, courtesy of Tim Sabsch
+    - el, courtesy of Efstathios Iosifidis
+    - es, courtesy of Daniel Mustieles
+    - eu, courtesy of Asier Sarasua Garmendia
+    - fa, courtesy of Arash Mousavi
+    - fi, courtesy of Jiri Grönroos
+    - fr, courtesy of Julien Humbert
+    - fur, courtesy of Fabio Tomat
+    - gl, courtesy of Fran Dieguez
+    - hi, courtesy of G Karunakar
+    - hr, courtesy of gogo
+    - hu, courtesy of Meskó Balázs
+    - id, courtesy of Kukuh Syafaat
+    - it, courtesy of Milo Casagrande
+    - ja, courtesy of sicklylife
+    - kk, courtesy of Baurzhan Muftakhidinov
+    - ko, courtesy of Changwoo Ryu
+    - lo, courtesy of "Last-Translator: \n"
+    - lt, courtesy of Aurimas Černius
+    - lv, courtesy of Rūdolfs Mazurs
+    - ms, courtesy of abuyop
+    - nb, courtesy of Kjartan Maraas
+    - nl, courtesy of Nathan Follens
+    - pl, courtesy of Piotr Drąg
+    - pt_BR, courtesy of Rafael Fontenelle
+    - pt, courtesy of Juliano Camargo
+    - ro, courtesy of Florentina Mușat
+    - sk, courtesy of Dušan Kazik
+    - sl, courtesy of Matej Urbančič
+    - sr, courtesy of Марко М. Костић
+    - sv, courtesy of Anders Jonsson
+    - ta, courtesy of Lakshmanan
+    - tr, courtesy of Çağatay Yiğit Şahin
+    - uk, courtesy of Yuri Chornoivan
+    - zh_CN, courtesy of Dingzhong Chen
+    - zh_TW, courtesy of pan93412
+  - Added/Updated Documentation
+    - ca, courtesy of Jordi Mas i Hernàndez
+    - cs, courtesy of Marek Černocký
+    - da, courtesy of "Last-Translator: scootergrisen\n"
+    - de, courtesy of Christian Kirbach
+    - es, courtesy of Daniel Mustieles
+    - fr, courtesy of Charles Monzat
+    - gl, courtesy of Fran Diéguez
+    - id, courtesy of Andika Triwidada
+    - ko, courtesy of Changwoo Ryu
+    - pl, courtesy of Piotr Drąg
+    - pt_BR, courtesy of Fábio Nogueira
+    - sv, courtesy of Anders Jonsson
+    - uk, courtesy of Yuri Chornoivan
+    - zh_CN, courtesy of Mandy Wang
+
 version 3.34.0
   - build: Don't use 'lib' prefix in find_library
     Meson passes it directly to -l option, so an extra 'lib' can cause error
