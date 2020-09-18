@@ -1,0 +1,45 @@
+variables:
+    GIT_SUBMODULE_STRATEGY: normal
+    FEDORA_DEPS:
+      redhat-rpm-config
+      meson
+      git
+      cairo-devel
+      desktop-file-utils
+      clutter-devel
+      clutter-gst3-devel
+      clutter-gtk-devel
+      gcc
+      gettext
+      gnome-desktop3-devel
+      gobject-introspection-devel
+      gsettings-desktop-schemas-devel
+      gstreamer1-devel
+      gstreamer1-plugins-base-devel
+      gstreamer1-plugins-good
+      gstreamer1-plugins-bad-free-devel
+      gtk3-devel
+      gtk-doc
+      itstool
+      libappstream-glib
+      libcanberra-devel
+      libX11-devel
+      totem-pl-parser-devel
+      vala
+      chrpath
+      docbook-dtds
+      docbook-style-xsl
+      itstool
+      libXtst-devel
+      libxslt
+      xorg-x11-server-Xvfb
+
+build-fedora:
+  image: fedora:latest
+  stage: test
+  before_script:
+    - dnf install -y $FEDORA_DEPS
+  script:
+    - meson _build
+    - ninja -C _build install
+    - G_MESSAGES_DEBUG=all xvfb-run -a -s "-screen 0 1024x768x24" ninja -C _build test
