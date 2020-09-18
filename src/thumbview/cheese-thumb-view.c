@@ -92,7 +92,7 @@ GtkWidget * cheese_thumb_view_new (void);
 static gboolean
 cheese_thumb_view_idle_append_item (gpointer data)
 {
-  CheeseThumbViewIdleData *item = g_queue_peek_head (data);
+  CheeseThumbViewIdleData *item = g_queue_pop_head (data);
   CheeseThumbView         *thumb_view;
   CheeseThumbViewPrivate  *priv;
 
@@ -119,6 +119,7 @@ cheese_thumb_view_idle_append_item (gpointer data)
   if (!info)
   {
     g_warning ("Invalid filename\n");
+    g_slice_free (CheeseThumbViewIdleData, item);
     return TRUE;
   }
   g_file_info_get_modification_time (info, &mtime);
@@ -167,6 +168,7 @@ cheese_thumb_view_idle_append_item (gpointer data)
     if (error)
     {
       g_warning ("%s", error->message);
+      g_slice_free (CheeseThumbViewIdleData, item);
       return TRUE;
     }
   }
@@ -183,7 +185,6 @@ cheese_thumb_view_idle_append_item (gpointer data)
   g_object_unref (pixbuf);
   g_object_unref (file);
   g_slice_free (CheeseThumbViewIdleData, item);
-  g_queue_pop_head (data);
 
   return TRUE;
 }
