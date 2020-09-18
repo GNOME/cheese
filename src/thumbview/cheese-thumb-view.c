@@ -113,12 +113,14 @@ cheese_thumb_view_idle_append_item (gpointer data)
   char                         *mime_type;
   char                         *uri;
   char                         *filename;
+  GError                       *error = NULL;
 
-  info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, NULL);
+  info = g_file_query_info (file, "standard::content-type,time::modified", 0, NULL, &error);
 
   if (!info)
   {
-    g_warning ("Invalid filename\n");
+    g_warning ("Could not query file info: %s", error->message);
+    g_error_free (error);
     g_slice_free (CheeseThumbViewIdleData, item);
     return TRUE;
   }
