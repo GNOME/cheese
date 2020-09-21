@@ -947,6 +947,13 @@ cheese_camera_device_get_caps_for_format (CheeseCameraDevice *device,
     return result_caps;
 }
 
+/**
+ * cheese_camera_device_supported_format_caps:
+ *
+ * Get the #GstCaps that are supported for all #CheeseCameraDevice
+ *
+ * Returns: (transfer full): the #GstCaps
+ */
 GstCaps *
 cheese_camera_device_supported_format_caps (void)
 {
