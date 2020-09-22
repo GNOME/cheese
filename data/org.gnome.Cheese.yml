@@ -1,7 +1,7 @@
 id: org.gnome.Cheese
 runtime: org.gnome.Platform
 sdk: org.gnome.Sdk
-runtime-version: 3.30
+runtime-version: "3.38"
 command: cheese
 tags:
   - nightly
@@ -12,10 +12,7 @@ finish-args:
   - --socket=pulseaudio
   - --socket=wayland
   - --device=all
-  - --filesystem=xdg-run/dconf
-  - --filesystem=~/.config/dconf:ro
-  - --talk-name=ca.desrt.dconf
-  - --env=DCONF_USER_CONFIG_DIR=.config/dconf
+  - --metadata=X-DConf=migrate-path=/org/gnome/Cheese/
   - --filesystem=xdg-pictures
   - --filesystem=xdg-videos
 cleanup:
@@ -50,12 +47,27 @@ modules:
       - type: git
         url: https://gitlab.gnome.org/GNOME/totem-video-thumbnailer.git
   - name: gnome-video-effects
+    buildsystem: meson
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/gnome-video-effects.git
-  - name: cheese
+  - name: libcanberra
     config-opts:
-      - --disable-introspection
+      - --enable-gstreamer
+      - --enable-pulse
+      - --disable-oss
+      - --disable-static
+      - --with-builtin=dso
+      - --with-systemdsystemunitdir=no
+    sources:
+      - type: git
+        url: http://git.0pointer.net/clone/libcanberra.git
+        commit: c0620e432650e81062c1967cc669829dbd29b310
+        disable-shallow-clone: true
+  - name: cheese
+    buildsystem: meson
+    config-opts:
+      - -Dintrospection=false
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/cheese.git
