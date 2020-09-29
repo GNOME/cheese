@@ -474,7 +474,7 @@ update_cursor (UmCropArea *area,
                 GdkCursor *cursor = gdk_cursor_new_for_display (gtk_widget_get_display (GTK_WIDGET (area)),
                                                                 cursor_type);
                 gdk_window_set_cursor (gtk_widget_get_window (GTK_WIDGET (area)), cursor);
-                g_object_unref (cursor);
+                g_clear_object (&cursor);
                 priv->current_cursor = cursor_type;
         }
 }
