@@ -35,7 +35,7 @@ namespace Cheese
     [CCode (has_construct_function = false)]
     public Camera (Clutter.Actor video_texture, string camera_device_node, int x_resolution, int y_resolution);
     public bool                        get_balance_property_range (string property, double min, double max, double def);
-    public unowned GLib.PtrArray       get_camera_devices ();
+    public GLib.GenericArray<unowned Cheese.CameraDevice> get_camera_devices ();
     public unowned Cheese.VideoFormat  get_current_video_format ();
     public int                         get_num_camera_devices ();
     public unowned Cheese.CameraDevice get_selected_device ();

@@ -1216,9 +1216,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    */
   public void on_switch_camera_clicked ()
   {
-      Cheese.CameraDevice selected;
-      Cheese.CameraDevice next = null;
-      GLib.PtrArray cameras;
+      unowned Cheese.CameraDevice selected;
+      unowned Cheese.CameraDevice next = null;
+      GLib.GenericArray<unowned Cheese.CameraDevice> cameras;
       uint i;
 
       if (camera == null)
@@ -1235,9 +1235,9 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
       cameras = camera.get_camera_devices ();
 
-      for (i = 0; i < cameras.len; i++)
+      for (i = 0; i < cameras.length; i++)
       {
-          next = (Cheese.CameraDevice )cameras.index (i);
+          next = cameras.get (i);
 
           if (next == selected)
           {
@@ -1245,13 +1245,13 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
           }
       }
 
-      if (i + 1 < cameras.len)
+      if (i + 1 < cameras.length)
       {
-          next = (Cheese.CameraDevice )cameras.index (i + 1);
+          next = cameras.get (i + 1);
       }
       else
       {
-          next = (Cheese.CameraDevice )cameras.index (0);
+          next = cameras.get (0);
       }
 
       if (next == selected)
@@ -1269,8 +1269,8 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
    */
   public void set_switch_camera_button_state ()
   {
-      Cheese.CameraDevice selected;
-      GLib.PtrArray cameras;
+      unowned Cheese.CameraDevice selected;
+      GLib.GenericArray<unowned Cheese.CameraDevice> cameras;
 
       if (camera == null)
       {
@@ -1288,7 +1288,7 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
       cameras = camera.get_camera_devices ();
 
-      if (cameras.len > 1)
+      if (cameras.length > 1)
       {
          switch_camera_button.set_visible (true);
          return;
