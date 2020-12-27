@@ -64,6 +64,11 @@ modules:
         url: http://git.0pointer.net/clone/libcanberra.git
         commit: c0620e432650e81062c1967cc669829dbd29b310
         disable-shallow-clone: true
+  - name: libhandy
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/libhandy.git
   - name: cheese
     buildsystem: meson
     config-opts:

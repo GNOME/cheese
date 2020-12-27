@@ -32,7 +32,7 @@ const int FULLSCREEN_TIMEOUT_INTERVAL = 5 * 1000;
 const uint EFFECTS_PER_PAGE = 9;
 
 [GtkTemplate (ui = "/org/gnome/Cheese/cheese-main-window.ui")]
-public class Cheese.MainWindow : Gtk.ApplicationWindow
+public class Cheese.MainWindow : Hdy.ApplicationWindow
 {
     private const GLib.ActionEntry actions[] = {
         { "file-open", on_file_open },
@@ -47,16 +47,14 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
 
     private Clutter.Script clutter_builder;
 
-    private Gtk.Builder header_bar_ui = new Gtk.Builder.from_resource ("/org/gnome/Cheese/headerbar.ui");
-
-    private Gtk.HeaderBar header_bar;
-
     private GLib.Settings settings;
 
     [GtkChild]
     private GtkClutter.Embed viewport_widget;
     [GtkChild]
     private Gtk.Widget main_vbox;
+    [GtkChild]
+    private Hdy.HeaderBar header_bar;
     private Eog.ThumbNav thumb_nav;
     private Cheese.ThumbView thumb_view;
     [GtkChild]
@@ -121,16 +119,6 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     public MainWindow (Gtk.Application application)
     {
         GLib.Object (application: application);
-
-        header_bar = header_bar_ui.get_object ("header_bar") as Gtk.HeaderBar;
-
-        Gtk.Settings settings = Gtk.Settings.get_default ();
-
-        if (settings.gtk_dialogs_use_header)
-        {
-            header_bar.visible = true;
-            this.set_titlebar (header_bar);
-        }
     }
 
     private void set_window_title (string title)

@@ -20,6 +20,7 @@ deps = [
   libcanberra_dep,
   libcanberra_gtk3_dep,
   libcheese_gtk_dep,
+  libhandy_dep,
   posix_dep,
 ]
 

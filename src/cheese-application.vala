@@ -91,6 +91,7 @@ public class Cheese.Application : Gtk.Application
 
         // Calls gtk_init() with no arguments.
         base.startup ();
+        Hdy.init ();
     }
 
     /**
