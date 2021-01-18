@@ -14,16 +14,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.12\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2020-08-19 18:57+0000\n"
-"PO-Revision-Date: 2020-09-22 23:58+0100\n"
-"Last-Translator: Juliano de Souza Camargo <julianosc@pm.me>\n"
+"POT-Creation-Date: 2021-01-08 13:14+0000\n"
+"PO-Revision-Date: 2021-01-18 19:09+0000\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 3.38.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
 
 #: data/cheese-main-window.ui:52
 msgid "Photo mode"
@@ -71,7 +71,7 @@ msgstr "Navegar para a página seguinte de efeitos"
 
 #: data/cheese-main-window.ui:192
 msgid "Leave fullscreen mode and go back to windowed mode"
-msgstr "Sair do modo de ecrã completo e voltar para o modo Janela"
+msgstr "Sair do modo de ecrã inteiro e voltar para o modo janela"
 
 #: data/cheese-prefs.ui:7
 msgid "Preferences"
@@ -152,7 +152,7 @@ msgstr "Capturar"
 
 #: data/headerbar.ui:6
 msgid "_Fullscreen"
-msgstr "_Ecrã cheio"
+msgstr "_Ecrã inteiro"
 
 #: data/headerbar.ui:10
 msgid "P_references"
@@ -189,15 +189,15 @@ msgstr "Eliminar"
 
 #. Both taken from the desktop file.
 #: data/org.gnome.Cheese.appdata.xml.in:9 data/org.gnome.Cheese.desktop.in:3
-#: src/cheese-application.vala:116 src/cheese-application.vala:574
+#: src/cheese-application.vala:116 src/cheese-application.vala:582
 msgid "Cheese"
 msgstr "Cheese"
 
 #: data/org.gnome.Cheese.appdata.xml.in:10 data/org.gnome.Cheese.desktop.in:5
-#: src/cheese-application.vala:569
+#: src/cheese-application.vala:577
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
-"Tire fotografias e grave vídeos, com efeitos gráficos engraçados, em sua "
+"Tire fotografias e grave vídeos, com efeitos gráficos divertidos, na sua "
 "câmera Web"
 
 #: data/org.gnome.Cheese.appdata.xml.in:12
@@ -289,7 +289,7 @@ msgstr "Largura da fotografia"
 
 #: data/org.gnome.Cheese.gschema.xml:37
 msgid "The width of the image captured from the camera, in pixels"
-msgstr "A largura da imagem capturada pela câmara, em pixels"
+msgstr "A largura da imagem capturada pela câmara, em pixeis"
 
 #: data/org.gnome.Cheese.gschema.xml:43
 msgid "Photo height"
@@ -297,7 +297,7 @@ msgstr "Altura da fotografia"
 
 #: data/org.gnome.Cheese.gschema.xml:44
 msgid "The height of the image captured from the camera, in pixels"
-msgstr "A altura da imagem capturada pela câmara, em pixels"
+msgstr "A altura da imagem capturada pela câmara, em pixeis"
 
 #: data/org.gnome.Cheese.gschema.xml:50
 msgid "Video width"
@@ -305,7 +305,7 @@ msgstr "Largura do vídeo"
 
 #: data/org.gnome.Cheese.gschema.xml:51
 msgid "The width of the video captured from the camera, in pixels"
-msgstr "A largura do vídeo capturado pela câmara, em pixels"
+msgstr "A largura do vídeo capturado pela câmara, em pixeis"
 
 #: data/org.gnome.Cheese.gschema.xml:57
 msgid "Video height"
@@ -313,7 +313,7 @@ msgstr "Altura do vídeo"
 
 #: data/org.gnome.Cheese.gschema.xml:58
 msgid "The height of the video captured from the camera, in pixels"
-msgstr "A altura do vídeo capturado pela câmara, em pixels"
+msgstr "A altura do vídeo capturado pela câmara, em pixeis"
 
 #: data/org.gnome.Cheese.gschema.xml:64
 msgid "Image brightness"
@@ -387,7 +387,7 @@ msgstr ""
 
 #: data/org.gnome.Cheese.gschema.xml:111
 msgid "Number of photos in burst mode"
-msgstr "Número de fotografias em modo de sequência"
+msgstr "Número de fotografias em modo sequência"
 
 #: data/org.gnome.Cheese.gschema.xml:112
 msgid "The number of photos to take in a single burst."
@@ -401,7 +401,7 @@ msgstr "Visão Geral"
 #: data/shortcuts.ui:16
 msgctxt "shortcut window"
 msgid "Fullscreen on / off"
-msgstr "Alterna ecrã completo"
+msgstr "Ecrã inteiro ligado / desligado"
 
 #: data/shortcuts.ui:22
 msgctxt "shortcut window"
@@ -450,11 +450,11 @@ msgstr "Som do obturador"
 msgid "_Take Another Picture"
 msgstr "_Tirar outra fotografia"
 
-#: libcheese/cheese-camera.c:424 libcheese/cheese-camera.c:1604
+#: libcheese/cheese-camera.c:445 libcheese/cheese-camera.c:1639
 msgid "One or more needed GStreamer elements are missing: "
 msgstr "Um ou mais elementos necessários do GStreamer em falta: "
 
-#: libcheese/cheese-camera.c:1546
+#: libcheese/cheese-camera.c:1581
 #, c-format
 msgid "No device found"
 msgstr "Nenhum dispositivo encontrado"
@@ -464,21 +464,21 @@ msgstr "Nenhum dispositivo encontrado"
 #. * the separator that your locale uses or use "%Id" instead
 #. * of "%d" if your locale uses localized digits.
 #.
-#: libcheese/cheese-camera.c:1839
+#: libcheese/cheese-camera.c:1874
 #, c-format
 msgctxt "time format"
 msgid "%02i:%02i:%02i"
 msgstr "%02i:%02i:%02i"
 
-#: libcheese/cheese-camera-device.c:563
+#: libcheese/cheese-camera-device.c:577
 msgid "Device capabilities not supported"
 msgstr "Capacidades do dispositivo não suportadas"
 
-#: libcheese/cheese-camera-device.c:696
+#: libcheese/cheese-camera-device.c:732
 msgid "Unknown device"
 msgstr "Dispositivo desconhecido"
 
-#: libcheese/cheese-camera-device.c:715
+#: libcheese/cheese-camera-device.c:751
 msgid "Cancellable initialization not supported"
 msgstr "Cancelar inicialização não é suportado"
 
@@ -500,21 +500,22 @@ msgstr "Mostrar informação de versão e terminar"
 
 #: src/cheese-application.vala:63
 msgid "Start in fullscreen mode"
-msgstr "Iniciar em modo de ecrã completo"
+msgstr "Iniciar em modo de ecrã inteiro"
 
-#: src/cheese-application.vala:313
+#: src/cheese-application.vala:321
 msgid "Webcam in use"
 msgstr "Webcam em uso"
 
-#: src/cheese-application.vala:575
+#: src/cheese-application.vala:583
 msgid "translator-credits"
 msgstr ""
 "Duarte Loreto <happyguy_pt@hotmail.com>\n"
 "Miguel Pires da Rosa <miguelpires@gmail.com>\n"
 "Pedro Albuquerque <palbuquerque73@gmail.com>\n"
-"Juliano de Souza Camargo <julianosc@pm.me>"
+"Juliano de Souza Camargo <julianosc@pm.me>\n"
+"Hugo Carvalho <hugokarvalho@hotmail.com>"
 
-#: src/cheese-application.vala:577
+#: src/cheese-application.vala:585
 msgid "Cheese Website"
 msgstr "Página Web do Cheese"
 
