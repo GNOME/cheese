@@ -54,27 +54,27 @@ public class Cheese.MainWindow : Gtk.ApplicationWindow
     private GLib.Settings settings;
 
     [GtkChild]
-    private GtkClutter.Embed viewport_widget;
+    private unowned GtkClutter.Embed viewport_widget;
     [GtkChild]
-    private Gtk.Widget main_vbox;
+    private unowned Gtk.Widget main_vbox;
     private Eog.ThumbNav thumb_nav;
     private Cheese.ThumbView thumb_view;
     [GtkChild]
-    private Gtk.Box thumbnails_right;
+    private unowned Gtk.Box thumbnails_right;
     [GtkChild]
-    private Gtk.Box thumbnails_bottom;
+    private unowned Gtk.Box thumbnails_bottom;
     [GtkChild]
-    private Gtk.Widget leave_fullscreen_button_box;
+    private unowned Gtk.Widget leave_fullscreen_button_box;
     [GtkChild]
-    private Gtk.Button take_action_button;
+    private unowned Gtk.Button take_action_button;
     [GtkChild]
-    private Gtk.Image take_action_button_image;
+    private unowned Gtk.Image take_action_button_image;
     [GtkChild]
-    private Gtk.ToggleButton effects_toggle_button;
+    private unowned Gtk.ToggleButton effects_toggle_button;
     [GtkChild]
-    private Gtk.Widget buttons_area;
+    private unowned Gtk.Widget buttons_area;
     [GtkChild]
-    private Gtk.Button switch_camera_button;
+    private unowned Gtk.Button switch_camera_button;
     private Gtk.Menu thumbnail_popup;
 
     private Clutter.Stage viewport;

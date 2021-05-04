@@ -29,32 +29,32 @@ public class Cheese.PreferencesDialog : Gtk.Dialog
     private GLib.Settings settings;
 
     [GtkChild]
-    private Gtk.ComboBox photo_resolution_combo;
+    private unowned Gtk.ComboBox photo_resolution_combo;
     [GtkChild]
-    private Gtk.ComboBox video_resolution_combo;
+    private unowned Gtk.ComboBox video_resolution_combo;
     [GtkChild]
-    private Gtk.ComboBox source_combo;
+    private unowned Gtk.ComboBox source_combo;
 
     private Gtk.ListStore camera_model;
 
     [GtkChild]
-    private Gtk.Adjustment brightness_adjustment;
+    private unowned Gtk.Adjustment brightness_adjustment;
     [GtkChild]
-    private Gtk.Adjustment contrast_adjustment;
+    private unowned Gtk.Adjustment contrast_adjustment;
     [GtkChild]
-    private Gtk.Adjustment hue_adjustment;
+    private unowned Gtk.Adjustment hue_adjustment;
     [GtkChild]
-    private Gtk.Adjustment saturation_adjustment;
+    private unowned Gtk.Adjustment saturation_adjustment;
 
     [GtkChild]
-    private Gtk.SpinButton burst_repeat_spin;
+    private unowned Gtk.SpinButton burst_repeat_spin;
     [GtkChild]
-    private Gtk.SpinButton burst_delay_spin;
+    private unowned Gtk.SpinButton burst_delay_spin;
 
     [GtkChild]
-    private Gtk.CheckButton countdown_check;
+    private unowned Gtk.CheckButton countdown_check;
     [GtkChild]
-    private Gtk.CheckButton flash_check;
+    private unowned Gtk.CheckButton flash_check;
   
     private MediaMode current_mode;
 
