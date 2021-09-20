@@ -14,7 +14,7 @@ cheese_major_version = version_array[0].to_int()
 cheese_minor_version = version_array[1].to_int()
 
 #cheese_api_version = cheese_major_version.to_string() + '.0'
-cheese_api_version = 3.0
+cheese_api_version = '3.0'
 
 cheese_prefix = get_option('prefix')
 cheese_bindir = get_option('bindir')
