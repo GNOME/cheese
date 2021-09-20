@@ -1,6 +1,93 @@
 ChangeLog for Cheese
 --------------------
 
+version 41.0
+  - Allow headerbar to appear on all desktops
+    Removed gtk_dialogs_use_header() and accompanying code to allow the
+    headerbar to appear in GNOME as well as other desktops. Tested with
+    XFCE and it works as expected.
+    https://gitlab.gnome.org/GNOME/cheese/-/issues/62
+  - Update to runtime 40 and some meta-data fixes
+  - Reference of [GtkChild] fields is handled by GtkBuilder, type must
+    be unowned
+  - Change GLib.PtrArray into GLib.GenericArray
+    This is the vala-friendly way of handling GPtrArray.
+    Fix several memory leaks on the go and unnecessary reference increase.
+  - libcheese: Fix critical on failing to load cropping cursor
+    Loading a cursor can fail (`gdk_cursor_new_for_display()` can return
+    `NULL`); avoid a critical warning in that case.
+    Signed-off-by: Philip Withnall <pwithnall@endlessos.org>
+  - Allow device parameter to understand api.v4l2.path
+    https://gitlab.gnome.org/GNOME/cheese/-/merge_requests/37
+    https://gitlab.gnome.org/GNOME/cheese/-/issues/4
+  - Update flatpak manifest and appdata
+    Make the minimal required changes to build against the current SDK.
+  - Remember last used camera
+    During setup_camera() in cheese-application.vala, we were not explicitly
+    assigning the camera from settings and only assigning the camera from
+    the command line.
+
+    This now checks for values from both the command line and from settings
+    and allows the command line to override settings.
+
+    Fixes: https://gitlab.gnome.org/GNOME/cheese/-/issues/76
+  - Add documentation for new API
+    Add gtk-doc documentation for
+    cheese_camera_device_supported_format_caps().
+  - Enable cameras with only MJPEG output
+    This enables cameras like Sunplus Technology 1.3M Camera with vendor ID
+    04fc and device ID 2802, which only outputs through image/jpeg and
+    doesn't support raw output.
+  - Preserve video/x-raw over image/jpeg
+    gst_caps_simplify() doesn't preserve the original order of caps, so when
+    called on the full set of caps, collected from all supported_formats, it
+    may end up preferring image/jpeg caps even when video/x-raw with
+    identical resolution and framerate is available.
+
+    Simplify the caps coming from each of supported_formats separately, so
+    that video/x-raw always comes first in the result GstCaps.
+
+    We prefer raw camera output whenever possible in order to avoid decoding
+    MJPEG.
+  - Support camera video formats with MJPEG output
+    This enables higher resolutions and framerates with cameras like
+    Logitech C910, which can do e.g. 1920x1080 @ 30fps, but only through
+    image/jpeg output.
+
+    https://gitlab.gnome.org/GNOME/cheese/-/merge_requests/17
+    https://gitlab.gnome.org/GNOME/cheese/-/issues/28
+  - Show better error when file info query fails
+  - Fix infinite loop if thumbnailer is not available
+    The code in cheese_thumb_view_idle_append_item() in
+    src/thumbview/cheese-thumb-view.c didn't pop the list of items to
+    thumbnail if thumbnailing failed.
+
+    Closes: #81
+  - ci: Add CI
+  - Added/Updated Translations
+    - ca, courtesy of Gil Forcada
+    - en_GB, courtesy of Zander Brown
+    - fa, courtesy of Danial Behzadi
+    - fur, courtesy of Fabio Tomat
+    - gl, courtesy of Fran Dieguez
+    - he, courtesy of Yosef Or Boczko
+    - lo, courtesy of Saikeo Kavhanxay
+    - ne, courtesy of Pawan Chitrakar
+    - oc, courtesy of Quentin PAGÈS
+    - pa, courtesy of A S Alam
+    - pt, courtesy of Hugo Carvalho
+    - ru, courtesy of Alexey Rubtsov
+    - tr, courtesy of Çağatay Yiğit Şahin
+    - vi, courtesy of Trần Ngọc Quân
+    - zh_TW, courtesy of Cheng-Chia Tseng
+  - Added/Updated Documentation
+    - ca, courtesy of Jordi Mas i Hernàndez
+    - es, courtesy of Daniel Mustieles
+    - eu, courtesy of Asier Sarasua Garmendia
+    - hu, courtesy of Balázs Meskó
+    - ru, courtesy of Alexey Rubtsov
+    - tr, courtesy of Emin Tufan Çetin
+
 version 3.38.0
   - cheese: improve format parsing
     Check if both width and height are of the expected value type.

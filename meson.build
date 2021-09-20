@@ -1,6 +1,6 @@
 project(
   'cheese', ['c', 'vala'],
-  version: '3.38.0',
+  version: '41.0',
   license: 'GPL2',
   default_options: 'buildtype=debugoptimized',
   meson_version: '>= 0.50.0',
@@ -35,12 +35,12 @@ cheese_namespace = 'org.gnome.Cheese'
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 current = 8
-revision = 15
+revision = 16
 age = 0
 libcheese_version = '@0@.@1@.@2@'.format(current - age, age, revision)
 
 current = 26
-revision = 5
+revision = 6
 age = 1
 libcheese_gtk_version = '@0@.@1@.@2@'.format(current - age, age, revision)
 
