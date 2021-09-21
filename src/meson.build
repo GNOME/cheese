@@ -1,15 +1,18 @@
-sources = files(
-  'cheese-application.vala',
-  'cheese-countdown.vala',
-  'cheese-effects-manager.vala',
-  'cheese-main.vala',
-  'cheese-preferences.vala',
-  'cheese-window.vala',
-  'thumbview/cheese-thumbnail.c',
-  'thumbview/cheese-thumb-view.c',
-  'thumbview/eog-thumb-nav.c',
-  'vapi/libcanberra-gtk3.vapi'
-)
+sources = [
+  files(
+    'cheese-application.vala',
+    'cheese-countdown.vala',
+    'cheese-effects-manager.vala',
+    'cheese-main.vala',
+    'cheese-preferences.vala',
+    'cheese-window.vala',
+    'thumbview/cheese-thumbnail.c',
+    'thumbview/cheese-thumb-view.c',
+    'thumbview/eog-thumb-nav.c',
+    'vapi/libcanberra-gtk3.vapi'
+  ),
+  compile_schemas
+]
 
 deps = [
   cheese_common_dep,

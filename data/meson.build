@@ -51,6 +51,8 @@ configure_file(
   install_dir: dbus_session_bus_services_dir,
 )
 
+compile_schemas = gnome.compile_schemas()
+
 install_data(
   cheese_namespace + '.gschema.xml',
   install_dir: gio_schemasdir,
