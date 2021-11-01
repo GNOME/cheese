@@ -23,10 +23,9 @@ resource_sources = gnome.compile_resources(
 desktop = cheese_namespace + '.desktop'
 
 i18n.merge_file(
-  desktop,
   type: 'desktop',
   input: desktop + '.in',
-  output: '@BASENAME@',
+  output: desktop,
   po_dir: po_dir,
   install: true,
   install_dir: cheese_datadir / 'applications',
@@ -35,9 +34,8 @@ i18n.merge_file(
 appdata = cheese_namespace + '.appdata.xml'
 
 i18n.merge_file(
-  appdata,
   input: appdata + '.in',
-  output: '@BASENAME@',
+  output: appdata,
   po_dir: po_dir,
   install: true,
   install_dir: cheese_datadir / 'metainfo',
