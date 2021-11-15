@@ -1,6 +1,17 @@
 ChangeLog for Cheese
 --------------------
 
+version 41.1
+  - meson: avoid positional arguments in merge_file
+    https://gitlab.gnome.org/GNOME/cheese/-/issues/124
+  - tests: Compile gsettings schemas for use in build tests
+    Closes: https://bugzilla.gnome.org/show_bug.cgi?id=731009
+  - Update DOAP with Gitlab account information
+    https://gitlab.gnome.org/GNOME/cheese/-/issues/117
+  - introspection: Pin the API version for now
+  - Added/Updated Translations
+    - bg, courtesy of Alexander Shopov
+
 version 41.0
   - Allow headerbar to appear on all desktops
     Removed gtk_dialogs_use_header() and accompanying code to allow the
