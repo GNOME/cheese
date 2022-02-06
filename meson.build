@@ -176,7 +176,7 @@ endif
 
 subdir('data')
 subdir('libcheese')
-subdir('src')
+# subdir('src')
 
 if get_option('tests')
   subdir('tests')
