@@ -618,6 +618,7 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
 {
   CheeseCameraDevice        *device = CHEESE_CAMERA_DEVICE (object);
   CheeseCameraDevicePrivate *priv = cheese_camera_device_get_instance_private (device);
+  const GValue *tmp;
 
   switch (prop_id)
   {
@@ -626,13 +627,15 @@ cheese_camera_device_set_property (GObject *object, guint prop_id, const GValue 
       priv->name = g_value_dup_string (value);
       break;
     case PROP_DEVICE:
-      if (priv->device)
-        g_object_unref (priv->device);
+      g_clear_object (&priv->device);
       priv->device = g_value_dup_object (value);
       g_free (priv->name);
       priv->name = gst_device_get_display_name (priv->device);
-      g_free (priv->path);
-      priv->path = g_value_dup_string (gst_structure_get_value (gst_device_get_properties (priv->device), "api.v4l2.path"));
+      tmp = gst_structure_get_value (gst_device_get_properties (priv->device), "api.v4l2.path");
+      if (tmp) {
+        g_clear_pointer (&priv->path, g_free);
+        priv->path = g_value_dup_string (tmp);
+      }
       break;
     case PROP_PATH:
       g_free (priv->path);
