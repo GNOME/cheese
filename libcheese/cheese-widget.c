@@ -20,13 +20,11 @@
 #include "config.h"
 
 #include <glib/gi18n-lib.h>
-#include <clutter-gst/clutter-gst.h>
 
 #include "cheese-widget.h"
 #include "cheese-widget-private.h"
 #include "cheese-camera.h"
 #include "cheese-enums.h"
-#include "totem-aspect-frame.h"
 
 /**
  * SECTION:cheese-widget
@@ -70,7 +68,6 @@ typedef struct
 {
   GtkWidget *spinner;
   GtkWidget *screen;
-  ClutterActor *texture;
   GtkWidget *problem;
   GSettings *settings;
   CheeseCamera *webcam;
@@ -201,8 +198,6 @@ cheese_widget_init (CheeseWidget *widget)
 {
     CheeseWidgetPrivate *priv = cheese_widget_get_instance_private (widget);
   GtkWidget           *box;
-  ClutterActor        *stage, *frame;
-  ClutterColor black = { 0x00, 0x00, 0x00, 0xff };
 
   priv->state = CHEESE_WIDGET_STATE_NONE;
   priv->error = NULL;
@@ -223,20 +218,8 @@ cheese_widget_init (CheeseWidget *widget)
                             box, gtk_label_new ("spinner"));
 
   /* Webcam page */
-  priv->screen = gtk_clutter_embed_new ();
-  gtk_widget_set_size_request (priv->screen, 460, 345);
-  stage = gtk_clutter_embed_get_stage (GTK_CLUTTER_EMBED (priv->screen));
-  clutter_actor_set_background_color (stage, &black);
-  frame = totem_aspect_frame_new ();
-
-  priv->texture = clutter_actor_new ();
-  totem_aspect_frame_set_child (TOTEM_ASPECT_FRAME (frame), priv->texture);
-
-  clutter_actor_set_layout_manager (stage, clutter_bin_layout_new (CLUTTER_BIN_ALIGNMENT_FILL, CLUTTER_BIN_ALIGNMENT_FILL));
-  clutter_actor_add_child (stage, frame);
-
+  priv->screen = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   gtk_widget_show (priv->screen);
-  clutter_actor_show (priv->texture);
   gtk_notebook_append_page (GTK_NOTEBOOK (widget),
                             priv->screen, gtk_label_new ("webcam"));
 
@@ -309,18 +292,22 @@ setup_camera (CheeseWidget *widget)
     gchar *webcam_device;
     gint x_resolution;
     gint y_resolution;
+    GtkWidget *video_widget;
 
     x_resolution = g_settings_get_int (priv->settings, "photo-x-resolution");
     y_resolution = g_settings_get_int (priv->settings, "photo-y-resolution");
     webcam_device = g_settings_get_string (priv->settings, "camera");
 
-    priv->webcam = cheese_camera_new (priv->texture,
-                                      webcam_device, x_resolution,
+    priv->webcam = cheese_camera_new (webcam_device,
+                                      x_resolution,
                                       y_resolution);
 
     g_free (webcam_device);
 
     cheese_camera_setup (priv->webcam, NULL, &priv->error);
+    g_object_get (G_OBJECT (priv->webcam), "widget", &video_widget, NULL);
+    gtk_container_add (GTK_CONTAINER (priv->screen), video_widget);
+    gtk_widget_show (video_widget);
 
     gtk_spinner_stop (GTK_SPINNER (priv->spinner));
 

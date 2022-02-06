@@ -33,15 +33,15 @@ sources = files(
 )
 
 deps = [
-  clutter_dep,
   gdk_pixbuf_dep,
   gio_dep,
   glib_dep,
+  gtk_dep,
   gstreamer_dep,
 ]
 
 private_deps = [
-  clutter_gst_dep,
+  gstreamer_dep,
   gstreamer_pbutils_dep,
   gstreamer_plugins_bad_dep,
   x11_dep,
@@ -78,7 +78,6 @@ pkg.generate(
 # GObject Introspection
 if enable_gir
   incs = [
-    'Clutter-1.0',
     'GdkPixbuf-2.0',
     'Gst-1.0',
   ]
@@ -113,12 +112,11 @@ enum_sources = gnome.mkenums_simple(
 )
 
 deps = [
-  clutter_gtk_dep,
   gtk_dep,
 ]
 
 private_deps = [
-  clutter_gst_dep,
+  gstreamer_dep,
   libcanberra_gtk3_dep,
   m_dep,
   x11_dep,

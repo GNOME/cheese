@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <clutter-gst/clutter-gst.h>
+#include <gst/gst.h>
 
 #include "cheese.h"
 
@@ -36,19 +36,14 @@
  * @argc: (allow-none): pointer to the argument list count
  * @argv: (allow-none): pointer to the argument list vector
  *
- * Initialize libcheese, by initializing Clutter and GStreamer.
+ * Initialize libcheese, by initializing GStreamer.
  *
  * Returns: %TRUE if the initialization was successful, %FALSE otherwise
  */
 gboolean
 cheese_init (int *argc, char ***argv)
 {
-    ClutterInitError error;
-
-    error = clutter_gst_init (argc, argv);
-
-    if (error != CLUTTER_INIT_SUCCESS)
-        return FALSE;
+    gst_init (argc, argv);
 
     return TRUE;
 }

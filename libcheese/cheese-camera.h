@@ -25,10 +25,9 @@
 #define __CHEESE_CAMERA_H__
 
 #include <glib-object.h>
-#include <clutter/clutter.h>
 #include <cheese-camera-device.h>
 #include <cheese-effect.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
+#include <gtk/gtk.h>
 
 G_BEGIN_DECLS
 
@@ -95,8 +94,7 @@ typedef enum
 } CheeseCameraError;
 
 GType         cheese_camera_get_type (void);
-CheeseCamera *cheese_camera_new (ClutterActor *video_texture,
-                                 const gchar  *name,
+CheeseCamera *cheese_camera_new (const gchar  *name,
                                  gint          x_resolution,
                                  gint          y_resolution);
 
@@ -107,7 +105,7 @@ void                     cheese_camera_stop (CheeseCamera *camera);
 void                     cheese_camera_set_effect (CheeseCamera *camera, CheeseEffect *effect);
 void                     cheese_camera_connect_effect_texture (CheeseCamera *camera,
                                                                CheeseEffect *effect,
-                                                               ClutterActor *texture);
+                                                               GtkContainer *container);
 void                cheese_camera_start_video_recording (CheeseCamera *camera, const gchar *filename);
 void                cheese_camera_stop_video_recording (CheeseCamera *camera);
 gboolean            cheese_camera_take_photo (CheeseCamera *camera, const gchar *filename);

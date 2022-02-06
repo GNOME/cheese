@@ -21,7 +21,6 @@
 #ifdef GDK_WINDOWING_X11
   #include <X11/Xlib.h>
 #endif
-#include <clutter-gtk/clutter-gtk.h>
 
 #include "cheese-gtk.h"
 #include "cheese.h"
@@ -41,7 +40,7 @@
  * @argc: (allow-none): pointer to the argument list count
  * @argv: (allow-none): pointer to the argument list vector
  *
- * Initialize libcheese-gtk, by initializing Clutter, GStreamer and GTK+. This
+ * Initialize libcheese-gtk, by initializing GStreamer and GTK+. This
  * automatically calls cheese_init(), initializing libcheese.
  *
  * Returns: %TRUE if the initialization was successful, %FALSE otherwise
@@ -49,17 +48,11 @@
 gboolean
 cheese_gtk_init (int *argc, char ***argv)
 {
-    ClutterInitError error;
-
 #ifdef GDK_WINDOWING_X11
     XInitThreads ();
 #endif
 
-    error = gtk_clutter_init (argc, argv);
-
-    if (error != CLUTTER_INIT_SUCCESS)
-        return FALSE;
-
+    gtk_init (argc, argv);
     if (!cheese_init (argc, argv))
         return FALSE;
 
