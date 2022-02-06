@@ -103,7 +103,6 @@ sources = um_crop_area_source + files(
   'cheese-flash.c',
   'cheese-gtk.c',
   'cheese-widget.c',
-  'totem-aspect-frame.c',
 )
 
 enum_sources = gnome.mkenums_simple(
