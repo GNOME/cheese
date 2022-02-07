@@ -1562,15 +1562,15 @@ cheese_camera_size_change_cb (ClutterGstContent *content, gint width, gint heigh
  *
  * Setup a video capture device.
  */
-void
+gboolean
 cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **error)
 {
   CheeseCameraPrivate *priv;
   GError  *tmp_error = NULL;
   GstElement *video_sink;
 
-  g_return_if_fail (error == NULL || *error == NULL);
-  g_return_if_fail (CHEESE_IS_CAMERA (camera));
+  g_return_val_if_fail (error == NULL || *error == NULL, FALSE);
+  g_return_val_if_fail (CHEESE_IS_CAMERA (camera), FALSE);
 
     priv = cheese_camera_get_instance_private (camera);
 
@@ -1579,7 +1579,7 @@ cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **
   if (priv->num_camera_devices < 1)
   {
     g_set_error (error, CHEESE_CAMERA_ERROR, CHEESE_CAMERA_ERROR_NO_DEVICE, _("No device found"));
-    return;
+    return FALSE;
   }
 
   if (device != NULL)
@@ -1638,7 +1638,7 @@ cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **
     g_propagate_prefixed_error (error, tmp_error,
                                 _("One or more needed GStreamer elements are missing: "));
     GST_WARNING ("%s", (*error)->message);
-    return;
+    return FALSE;
   }
 
   g_object_set (G_OBJECT (priv->camera_source), "video-source-filter", priv->video_filter_bin, NULL);
@@ -1648,6 +1648,8 @@ cheese_camera_setup (CheeseCamera *camera, CheeseCameraDevice *device, GError **
 
   g_signal_connect (G_OBJECT (priv->bus), "message",
                     G_CALLBACK (cheese_camera_bus_message_cb), camera);
+
+  return TRUE;
 }
 
 /**
