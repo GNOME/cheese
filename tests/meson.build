@@ -4,6 +4,7 @@ cheese_tests = [
   'cheese-test-flash',
   'cheese-test-monitor',
   'cheese-test-widget',
+  'cheese-test-camera-effects',
 ]
 
 foreach cheese_test: cheese_tests
