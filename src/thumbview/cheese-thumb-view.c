@@ -134,6 +134,23 @@ cheese_thumb_view_idle_append_item (gpointer data)
 
   if (!thumb_loc)
   {
+#if defined(GNOME_DESKTOP_PLATFORM_VERSION) && GNOME_DESKTOP_PLATFORM_VERSION >= 43
+    pixbuf = gnome_desktop_thumbnail_factory_generate_thumbnail (factory, uri, mime_type, NULL, &error);
+    if (!pixbuf)
+    {
+      g_warning ("could not generate thumbnail for %s (%s): %s\n", filename, mime_type, error->message);
+      g_clear_error (&error);
+    }
+    else
+    {
+      gnome_desktop_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, mtime.tv_sec, NULL, &error);
+      if (error)
+      {
+        g_warning ("could not save thumbnail for %s (%s): %s\n", filename, mime_type, error->message);
+        g_clear_error (&error);
+      }
+    }
+#else
     pixbuf = gnome_desktop_thumbnail_factory_generate_thumbnail (factory, uri, mime_type);
     if (!pixbuf)
     {
@@ -143,6 +160,7 @@ cheese_thumb_view_idle_append_item (gpointer data)
     {
       gnome_desktop_thumbnail_factory_save_thumbnail (factory, pixbuf, uri, mtime.tv_sec);
     }
+#endif
   }
   else
   {
