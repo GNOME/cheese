@@ -151,7 +151,7 @@ gnome_video_effects_dep = dependency(
 gst_inspect = find_program('gst-inspect-1.0', required: false)
 if gst_inspect.found()
   foreach plugin: ['camerabin', 'vp8enc', 'webmmux']
-    if run_command(gst_inspect, plugin).returncode() != 0
+    if run_command(gst_inspect, plugin, check: false).returncode() != 0
       warning(plugin + ' was not found. It needs to be installed before Cheese is run')
     endif
   endforeach
