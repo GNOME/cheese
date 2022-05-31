@@ -3,7 +3,7 @@ project(
   version: '41.0',
   license: 'GPL2',
   default_options: 'buildtype=debugoptimized',
-  meson_version: '>= 0.50.0',
+  meson_version: '>= 0.58.0',
 )
 
 cheese_name = meson.project_name()
@@ -130,15 +130,15 @@ if cc.has_header('X11/extensions/XTest.h', dependencies: x11_dep)
   have_xtest = xtst_dep.found() and cc.has_function('XTestFakeKeyEvent', dependencies: xtst_dep)
 endif
 
-dbus_session_bus_services_dir = dependency('dbus-1').get_pkgconfig_variable(
+dbus_session_bus_services_dir = dependency('dbus-1').get_variable(
   'session_bus_services_dir',
-  define_variable: ['datadir', cheese_prefix / cheese_datadir],
+  pkgconfig_define: ['datadir', cheese_prefix / cheese_datadir],
 )
 
-gio_schemasdir = gio_dep.get_pkgconfig_variable(
+gio_schemasdir = gio_dep.get_variable(
   'schemasdir',
-  define_variable: ['datadir', cheese_prefix / cheese_datadir],
-  default: cheese_prefix / cheese_datadir / 'glib-2.0/schemas',
+  pkgconfig_define: ['datadir', cheese_prefix / cheese_datadir],
+  default_value: cheese_prefix / cheese_datadir / 'glib-2.0/schemas',
 )
 
 gnome_video_effects_dep = dependency(

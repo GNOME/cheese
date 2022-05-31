@@ -8,8 +8,8 @@ if enable_gtk_doc
     'um-crop-area.h',
   ]
 
-  glib_prefix = glib_dep.get_pkgconfig_variable('prefix')
-  gtk_prefix = gtk_dep.get_pkgconfig_variable('prefix')
+  glib_prefix = glib_dep.get_variable('prefix')
+  gtk_prefix = gtk_dep.get_variable('prefix')
 
   fixxref_args = [
     '--html-dir=' + (cheese_prefix / gnome.gtkdoc_html_dir(cheese_name)),
