@@ -1,6 +1,6 @@
 project(
   'cheese', ['c', 'vala'],
-  version: '41.0',
+  version: '43.alpha',
   license: 'GPL2',
   default_options: 'buildtype=debugoptimized',
   meson_version: '>= 0.58.0',
@@ -11,7 +11,6 @@ cheese_name = meson.project_name()
 cheese_version = meson.project_version()
 version_array = cheese_version.split('.')
 cheese_major_version = version_array[0].to_int()
-cheese_minor_version = version_array[1].to_int()
 
 #cheese_api_version = cheese_major_version.to_string() + '.0'
 cheese_api_version = '3.0'
@@ -36,7 +35,7 @@ cheese_namespace = 'org.gnome.Cheese'
 #   change to C+1:0:0
 # - If the interface is the same as the previous version, change to C:R+1:A
 current = 8
-revision = 16
+revision = 17
 age = 0
 libcheese_version = '@0@.@1@.@2@'.format(current - age, age, revision)
 
