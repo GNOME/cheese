@@ -1,13 +1,7 @@
-# Copyright (C) 2022 The Abkhazian language development fund named after Bagrat Shinkuba
-# This file is distributed under the same license as the cheese package.
-# Нанба Наала <naala-nanba@rambler.ru>, 2022.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: cheese master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
 "POT-Creation-Date: 2022-07-15 18:47+0000\n"
-"PO-Revision-Date: 2019-07-26 07:14+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <ab@li.org>\n"
 "Language: ab\n"
@@ -15,7 +9,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-DamnedLies-Scope: partial\n"
 
 #: data/cheese-main-window.ui:52
 msgid "Photo mode"
@@ -104,7 +97,7 @@ msgstr ""
 
 #: data/cheese-prefs.ui:189
 msgid "Hue"
-msgstr ""
+msgstr "Hue"
 
 #: data/cheese-prefs.ui:280
 msgid "Contrast"
@@ -177,9 +170,11 @@ msgstr ""
 
 #: data/menus.ui:21
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
-#: data/org.gnome.Cheese.appdata.xml.in:9+data/org.gnome.Cheese.desktop.in:3+src/cheese-application.vala:116+src/cheese-application.vala:582
+#. Both taken from the desktop file.
+#: data/org.gnome.Cheese.appdata.xml.in:9 data/org.gnome.Cheese.desktop.in:3
+#: src/cheese-application.vala:116 src/cheese-application.vala:582
 msgid "Cheese"
 msgstr "Cheese"
 
@@ -275,10 +270,8 @@ msgid "The height of the image captured from the camera, in pixels"
 msgstr ""
 
 #: data/org.gnome.Cheese.gschema.xml:50
-#, fuzzy
-#| msgid "Video"
 msgid "Video width"
-msgstr "Авидио"
+msgstr ""
 
 #: data/org.gnome.Cheese.gschema.xml:51
 msgid "The width of the video captured from the camera, in pixels"
@@ -325,10 +318,8 @@ msgid "Adjusts the hue (color tint) of the image coming from the camera"
 msgstr ""
 
 #: data/org.gnome.Cheese.gschema.xml:92
-#, fuzzy
-#| msgid "Video"
 msgid "Video path"
-msgstr "Авидио"
+msgstr ""
 
 #: data/org.gnome.Cheese.gschema.xml:93
 msgid ""
@@ -480,7 +471,7 @@ msgstr ""
 
 #: src/cheese-application.vala:583
 msgid "translator-credits"
-msgstr ""
+msgstr "Нанба Наала <naala-nanba@rambler.ru>, 2022"
 
 #: src/cheese-application.vala:585
 msgid "Cheese Website"
@@ -590,7 +581,3 @@ msgstr ""
 #: src/cheese-window.vala:1446
 msgid "Take Multiple Photos"
 msgstr ""
-
-#: libcheese/cheese-camera.c:1874
-msgid "%02i:%02i:%02i"
-msgstr "%02i:%02i:%02i"
