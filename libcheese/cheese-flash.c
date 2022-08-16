@@ -43,18 +43,6 @@ enum
 
 static GParamSpec *properties[PROP_LAST];
 
-/* How long to hold the flash for, in milliseconds. */
-static const guint FLASH_DURATION = 250;
-
-/* The factor which defines how much the flash fades per frame */
-static const gdouble FLASH_FADE_FACTOR = 0.95;
-
-/* How many frames per second */
-static const guint FLASH_ANIMATION_RATE = 50;
-
-/* When to consider the flash finished so we can stop fading */
-static const gdouble FLASH_LOW_THRESHOLD = 0.01;
-
 /*
  * CheeseFlashPrivate:
  * @parent: the parent #GtkWidget, for choosing on which display to fire the
@@ -78,34 +66,7 @@ G_DEFINE_TYPE_WITH_PRIVATE (CheeseFlash, cheese_flash, GTK_TYPE_WINDOW)
 static void
 cheese_flash_init (CheeseFlash *self)
 {
-    CheeseFlashPrivate *priv = cheese_flash_get_instance_private (self);
-  cairo_region_t *input_region;
-  GtkWindow *window = GTK_WINDOW (self);
-  const GdkRGBA white = { 1.0, 1.0, 1.0, 1.0 };
 
-  priv->flash_timeout_tag = 0;
-  priv->fade_timeout_tag  = 0;
-  priv->opacity = 1.0;
-
-  /* make it so it doesn't look like a window on the desktop (+fullscreen) */
-  gtk_window_set_decorated (window, FALSE);
-  gtk_window_set_skip_taskbar_hint (window, TRUE);
-  gtk_window_set_skip_pager_hint (window, TRUE);
-  gtk_window_set_keep_above (window, TRUE);
-
-  /* Don't take focus */
-  gtk_window_set_accept_focus (window, FALSE);
-  gtk_window_set_focus_on_map (window, FALSE);
-
-  /* Make it white */
-  gtk_widget_override_background_color (GTK_WIDGET (window), GTK_STATE_NORMAL,
-                                        &white);
-
-  /* Don't consume input */
-  gtk_widget_realize (GTK_WIDGET (window));
-  input_region = cairo_region_create ();
-  gdk_window_input_shape_combine_region (gtk_widget_get_window (GTK_WIDGET (window)), input_region, 0, 0);
-  cairo_region_destroy (input_region);
 }
 
 static void
@@ -167,69 +128,6 @@ cheese_flash_class_init (CheeseFlashClass *klass)
   g_object_class_install_properties (object_class, PROP_LAST, properties);
 }
 
-/*
- * cheese_flash_opacity_fade:
- * @data: the #CheeseFlash
- *
- * Fade the flash out.
- *
- * Returns: %TRUE if the fade was completed, %FALSE if the flash must continue
- * to fade
- */
-static gboolean
-cheese_flash_opacity_fade (gpointer data)
-{
-  CheeseFlashPrivate *priv;
-  GtkWidget *flash_window;
-
-  flash_window = GTK_WIDGET (data);
-  priv = cheese_flash_get_instance_private (CHEESE_FLASH (data));
-
-  /* exponentially decrease */
-  priv->opacity *= FLASH_FADE_FACTOR;
-
-  if (priv->opacity <= FLASH_LOW_THRESHOLD)
-  {
-    /* the flasher has finished when we reach the quit value */
-    gtk_widget_hide (flash_window);
-    priv->fade_timeout_tag = 0;
-    return G_SOURCE_REMOVE;
-  }
-  else
-  {
-    gtk_widget_set_opacity (flash_window, priv->opacity);
-  }
-
-  return G_SOURCE_CONTINUE;
-}
-
-/*
- * cheese_flash_start_fade:
- * @data: the #CheeseFlash
- *
- * Add a timeout to start the fade animation.
- *
- * Returns: %FALSE
- */
-static gboolean
-cheese_flash_start_fade (gpointer data)
-{
-    CheeseFlashPrivate *priv = cheese_flash_get_instance_private (CHEESE_FLASH (data));
-
-  GtkWindow *flash_window = GTK_WINDOW (data);
-
-  /* If the screen is non-composited, just hide and finish up */
-  if (!gdk_screen_is_composited (gtk_window_get_screen (flash_window)))
-  {
-    gtk_widget_hide (GTK_WIDGET (flash_window));
-    return G_SOURCE_REMOVE;
-  }
-
-    priv->fade_timeout_tag = g_timeout_add (1000.0 / FLASH_ANIMATION_RATE, cheese_flash_opacity_fade, data);
-    priv->flash_timeout_tag = 0;
-  return G_SOURCE_REMOVE;
-}
-
 /**
  * cheese_flash_fire:
  * @flash: a #CheeseFlash
@@ -240,11 +138,10 @@ void
 cheese_flash_fire (CheeseFlash *flash)
 {
     CheeseFlashPrivate *priv;
-  GtkWidget          *parent;
-  GdkScreen          *screen;
-  GdkRectangle        rect, work_rect;
-  int                 monitor;
-  GtkWindow *flash_window;
+  GdkRectangle        rect;
+  GdkMonitor *monitor;
+  GDBusProxy *proxy;
+  GVariant *parameters;
 
   g_return_if_fail (CHEESE_IS_FLASH (flash));
 
@@ -252,38 +149,18 @@ cheese_flash_fire (CheeseFlash *flash)
 
     g_return_if_fail (priv->parent != NULL);
 
-  flash_window = GTK_WINDOW (flash);
+  monitor = gdk_display_get_monitor_at_window (gdk_display_get_default (), gtk_widget_get_window (priv->parent));
+  gdk_monitor_get_geometry (monitor, &rect);
 
-    if (priv->flash_timeout_tag > 0)
-    {
-        g_source_remove (priv->flash_timeout_tag);
-        priv->flash_timeout_tag = 0;
-    }
+  proxy = g_dbus_proxy_new_for_bus_sync (G_BUS_TYPE_SESSION, G_DBUS_PROXY_FLAGS_NONE,
+                                         NULL,
+                                         "org.gnome.Shell.Screenshot",
+                                         "/org/gnome/Shell/Screenshot",
+                                         "org.gnome.Shell.Screenshot", NULL, NULL);
+  parameters = g_variant_new_parsed ("(%i, %i, %i, %i)", rect.x, rect.y, rect.width, rect.height);
+  g_dbus_proxy_call_sync (proxy, "FlashArea", parameters, G_DBUS_CALL_FLAGS_NONE, G_MAXINT, NULL, NULL);
 
-    if (priv->fade_timeout_tag > 0)
-    {
-        g_source_remove (priv->fade_timeout_tag);
-        priv->fade_timeout_tag = 0;
-    }
-
-    priv->opacity = 1.0;
-
-    parent = gtk_widget_get_toplevel (priv->parent);
-  screen  = gtk_widget_get_screen (parent);
-  monitor = gdk_screen_get_monitor_at_window (screen,
-					      gtk_widget_get_window (parent));
-
-  gdk_screen_get_monitor_geometry (screen, monitor, &rect);
-  gdk_screen_get_monitor_workarea (screen, monitor, &work_rect);
-  gdk_rectangle_intersect (&work_rect, &rect, &rect);
-
-  gtk_window_set_transient_for (GTK_WINDOW (flash_window), GTK_WINDOW (parent));
-  gtk_window_resize (flash_window, rect.width, rect.height);
-  gtk_window_move (flash_window, rect.x, rect.y);
-
-  gtk_widget_set_opacity (GTK_WIDGET (flash_window), 1);
-  gtk_widget_show_all (GTK_WIDGET (flash_window));
-    priv->flash_timeout_tag = g_timeout_add (FLASH_DURATION, cheese_flash_start_fade, (gpointer) flash);
+  g_object_unref (proxy);
 }
 
 /**
