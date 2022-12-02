@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
-"POT-Creation-Date: 2022-10-03 08:26+0000\n"
+"POT-Creation-Date: 2022-10-31 10:40+0000\n"
 "Last-Translator: Нанба Наала <naala-nanba@rambler.ru>\n"
 "Language-Team: Abkhazian <daniel.abzakh@gmail.com>\n"
 "Language: ab\n"
@@ -212,6 +212,72 @@ msgstr ""
 msgid "photo;video;webcam;camera;selfie;"
 msgstr ""
 
+#: data/org.gnome.Cheese.gschema.xml:5
+msgid "Use a countdown"
+msgstr "_Шьҭахьҟатәи аҧхьаӡара"
+
+#: data/org.gnome.Cheese.gschema.xml:6
+msgid "Set to true to show a countdown before taking a photo"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:11
+msgid "Countdown length"
+msgstr "_Шьҭахьҟатәи аҧхьаӡара"
+
+#: data/org.gnome.Cheese.gschema.xml:12
+msgid "The duration of the countdown before taking a photo, in seconds"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:18
+msgid "Fire flash before taking a photo"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:19
+msgid "Set to true to fire a flash before taking a photo"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:24
+msgid "Camera device string indicator"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:25
+msgid ""
+"The path to the device node which points to the camera, for example /dev/"
+"video0"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:30
+msgid "Last selected effect"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:31
+msgid "Name of the installed effect that was selected last"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:36
+msgid "Photo width"
+msgstr "Аԥшранҵа"
+
+#: data/org.gnome.Cheese.gschema.xml:37
+msgid "The width of the image captured from the camera, in pixels"
+msgstr "Акамера(пиксельла) аҟынтәи ишәоуз авидео аҳаракыра"
+
+#: data/org.gnome.Cheese.gschema.xml:43
+msgid "Photo height"
+msgstr "Авидео аҳаракыра"
+
+#: data/org.gnome.Cheese.gschema.xml:44
+msgid "The height of the image captured from the camera, in pixels"
+msgstr "Акамера(пиксельла) аҟынтәи ишәоуз авидео аҳаракыра"
+
+#: data/org.gnome.Cheese.gschema.xml:50
+msgid "Video width"
+msgstr "Авидео аҳаракыра"
+
+#: data/org.gnome.Cheese.gschema.xml:51
+msgid "The width of the video captured from the camera, in pixels"
+msgstr "Акамера(пиксельла) аҟынтәи ишәоуз авидео аҳаракыра"
+
 #: data/org.gnome.Cheese.gschema.xml:57
 msgid "Video height"
 msgstr "Авидео аҳаракыра"
@@ -219,6 +285,77 @@ msgstr "Авидео аҳаракыра"
 #: data/org.gnome.Cheese.gschema.xml:58
 msgid "The height of the video captured from the camera, in pixels"
 msgstr "Акамера(пиксельла) аҟынтәи ишәоуз авидео аҳаракыра"
+
+#: data/org.gnome.Cheese.gschema.xml:64
+msgid "Image brightness"
+msgstr "Ашеишеира"
+
+#: data/org.gnome.Cheese.gschema.xml:65
+msgid "Adjusts the brightness of the image coming from the camera"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:71
+msgid "Image contrast"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:72
+msgid "Adjusts the contrast of the image coming from the camera"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:78
+msgid "Image saturation"
+msgstr "Аԥштәылгара"
+
+#: data/org.gnome.Cheese.gschema.xml:79
+msgid "Adjusts the saturation of the image coming from the camera"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:85
+msgid "Image hue"
+msgstr "Асахьа"
+
+#: data/org.gnome.Cheese.gschema.xml:86
+msgid "Adjusts the hue (color tint) of the image coming from the camera"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:92
+msgid "Video path"
+msgstr "Авидео"
+
+#: data/org.gnome.Cheese.gschema.xml:93
+msgid ""
+"Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
+"Webcam” will be used."
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:98
+msgid "Photo path"
+msgstr "Аԥшранҵа"
+
+#: data/org.gnome.Cheese.gschema.xml:99
+msgid ""
+"Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
+"Webcam” will be used."
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:104
+msgid "Time between photos in burst mode"
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:105
+msgid ""
+"The length of time, in milliseconds, to delay between taking each photo in a "
+"burst sequence of photos. If the burst delay is less than the countdown "
+"duration, the countdown duration will be used instead."
+msgstr ""
+
+#: data/org.gnome.Cheese.gschema.xml:111
+msgid "Number of photos in burst mode"
+msgstr "Аԥшранҵақәа рхыԥхьаӡара"
+
+#: data/org.gnome.Cheese.gschema.xml:112
+msgid "The number of photos to take in a single burst."
+msgstr ""
 
 #: data/shortcuts.ui:12
 msgctxt "shortcut window"
@@ -445,860 +582,3 @@ msgstr ""
 #: src/cheese-window.vala:1446
 msgid "Take Multiple Photos"
 msgstr ""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#, fuzzy
