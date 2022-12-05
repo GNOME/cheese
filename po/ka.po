@@ -1,22 +1,22 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Georgian translation for Cheese
+# Copyright (C) 2022, Cheese's authors
+# This file is distributed under the same license as the Cheese package.
+# Ekaterine Papava <papava.e@gtu.ge>, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/cheese/issues\n"
 "POT-Creation-Date: 2022-09-17 07:11+0000\n"
-"PO-Revision-Date: 2022-11-26 10:46+0100\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
+"PO-Revision-Date: 2022-12-05 17:05+0100\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
 "Language-Team: \n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/cheese-main-window.ui:52
 msgid "Photo mode"
@@ -190,18 +190,24 @@ msgstr "Cheese"
 #: src/cheese-application.vala:577
 msgid "Take photos and videos with your webcam, with fun graphical effects"
 msgstr ""
+"გადაიღეთ სურათები და ვიდეოები თქვენი ვებკამერით და დაადეთ სასაცილო გრაფიკული "
+"ეფექტები"
 
 #: data/org.gnome.Cheese.appdata.xml.in:12
 msgid ""
 "Cheese uses your webcam to take photos and videos, applies fancy special "
 "effects and lets you share the fun with others."
 msgstr ""
+"Cheese იყენებს ვებკამერას სურათების და ვიდეოების გადასაღებად, დაადებს "
+"ეფექტებს და საშუალებას გაძლევთ, სხვებთან მისი გაზიარებით გაერთოთ."
 
 #: data/org.gnome.Cheese.appdata.xml.in:16
 msgid ""
 "Take multiple photos in quick succession with burst mode. Use the countdown "
 "to give yourself time to strike a pose, and wait for the flash!"
 msgstr ""
+"გადაიღეთ ბევრი სურათი სწრაფ რეჟიმში. მიუთითეთ წამზომის დაყოვნება, რათა "
+"მომზადებისთვის დრო დაიტოვოთ და დაელოდეთ, ჩიტი გამოფრინდება!"
 
 #: data/org.gnome.Cheese.appdata.xml.in:21
 msgid ""
@@ -209,6 +215,9 @@ msgid ""
 "videos. With Cheese it is easy to take photos of you, your friends, pets or "
 "whatever you want and share them with others."
 msgstr ""
+"ფარდის უკან კი, Cheese ეფექტების დასადებად GStreamer-ს იყენებს. Cheese -ის "
+"საშუალებით თქვენი და თქვენი მეგობრების, ცხოველებისა თუ რაც გნებავთ, "
+"სურათების გადაღება და გაზიარება უადვილესი გახდება."
 
 #: data/org.gnome.Cheese.desktop.in:4
 msgid "Webcam Booth"
@@ -233,7 +242,7 @@ msgstr "ათვლის სიგრძე"
 
 #: data/org.gnome.Cheese.gschema.xml:12
 msgid "The duration of the countdown before taking a photo, in seconds"
-msgstr ""
+msgstr "წამზომის დაყოვნების ხანგრძლივობა სურათის გადაღებამდე, წამებში"
 
 #: data/org.gnome.Cheese.gschema.xml:18
 msgid "Fire flash before taking a photo"
@@ -241,7 +250,7 @@ msgstr "განათება სურათის გადაღება�
 
 #: data/org.gnome.Cheese.gschema.xml:19
 msgid "Set to true to fire a flash before taking a photo"
-msgstr ""
+msgstr "ჩართეთ, თუ სურათის გადაღებამდე განათების ჩართვა გნებავთ"
 
 #: data/org.gnome.Cheese.gschema.xml:24
 msgid "Camera device string indicator"
@@ -324,7 +333,7 @@ msgstr "სურათის ტონი"
 
 #: data/org.gnome.Cheese.gschema.xml:86
 msgid "Adjusts the hue (color tint) of the image coming from the camera"
-msgstr ""
+msgstr "კამერიდან მოსული სურათის ტონის მორგება"
 
 #: data/org.gnome.Cheese.gschema.xml:92
 msgid "Video path"
@@ -335,6 +344,8 @@ msgid ""
 "Defines the path where the videos are stored. If empty, “XDG_VIDEOS_DIR/"
 "Webcam” will be used."
 msgstr ""
+"აღწერს ბილიკს, სადაც ვიდეოს შენახვა მოხდება. თუ ცარიელია, გამოყენებული "
+"იქნება \"XDG_VIDEOS_DIR/Webcam\"."
 
 #: data/org.gnome.Cheese.gschema.xml:98
 msgid "Photo path"
@@ -345,6 +356,8 @@ msgid ""
 "Defines the path where the photos are stored. If empty, “XDG_PICTURES_DIR/"
 "Webcam” will be used."
 msgstr ""
+"აღწერს ბილიკს, სადაც სურათების შენახვა მოხდება. თუ ცარიელია, გამოყენებული "
+"იქნება \"XDG_VIDEOS_DIR/Webcam\"."
 
 #: data/org.gnome.Cheese.gschema.xml:104
 msgid "Time between photos in burst mode"
@@ -356,6 +369,9 @@ msgid ""
 "burst sequence of photos. If the burst delay is less than the countdown "
 "duration, the countdown duration will be used instead."
 msgstr ""
+"სწრაფი გადაღებისას სურათების გადაღებებს შორის დაყოვნება, მილიწამებში. თუ "
+"დაყოვნება წამზომის ხანგრძლივობაზე ნაკლებია, წამზომის ხანგრძლივობა იქნება "
+"გამოყენებული."
 
 #: data/org.gnome.Cheese.gschema.xml:111
 msgid "Number of photos in burst mode"
@@ -511,8 +527,8 @@ msgstr "სამუ_დამოდ წაშლა"
 #: src/cheese-window.vala:260
 msgid "If you delete an item, it will be permanently lost"
 msgid_plural "If you delete the items, they will be permanently lost"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "თუ ელემენტს წაშლით, მას სამუდამოდ დაკარგავთ"
+msgstr[1] "თუ ელემენტებს წაშლით, მას სამუდამოდ დაკარგავთ"
 
 #: src/cheese-window.vala:284
 #, c-format
