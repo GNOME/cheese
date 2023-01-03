@@ -114,7 +114,16 @@ static void
 cheese_camera_device_monitor_added (CheeseCameraDeviceMonitor *monitor,
                                     GstDevice                 *device)
 {
-  CheeseCameraDevice *newdev = cheese_camera_device_monitor_set_up_device (device);
+  CheeseCameraDevice *olddev;
+  CheeseCameraDevice *newdev;
+
+  olddev = g_object_get_data (G_OBJECT (device), "cheese-camera-device");
+  if (olddev) {
+      GST_DEBUG ("Ignoring duplicate device %" GST_PTR_FORMAT, device);
+      return;
+  }
+
+  newdev = cheese_camera_device_monitor_set_up_device (device);
   /* Ignore non-video devices, GNOME bug #677544. */
   if (newdev) {
     g_object_set_data (G_OBJECT (device), "cheese-camera-device", newdev);
