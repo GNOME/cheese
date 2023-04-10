@@ -1,10 +1,20 @@
 ChangeLog for Cheese
 --------------------
 
-version 43.0
-  - TODO: code changes
+version 44.0
+  - Avoid creating duplicated camera devices
+    Devices detected in `cheese_camera_device_monitor_coldplug()` may get
+    duplicated, as Gstreamer will emit `GST_MESSAGE_DEVICE_ADDED` for them.
+
+    While this issue could be fixed by reorganizing the initialization code,
+    let's go with a simple and robust solution and check if a
+    `CheeseCameraDevice` using the `GstDevice` is already present.
+  - build: Use GNOME module post_install()
   - Added/Updated Translations
     - ab, courtesy of Nart Tlisha
+
+version 43.0
+  - TODO: code changes
     - be, courtesy of Vasil Pupkin
     - ie, courtesy of Olga Smirnova
     - ka, courtesy of Zurab Kargareteli, Ekaterine Papava
