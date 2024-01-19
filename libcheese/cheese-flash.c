@@ -132,7 +132,7 @@ cheese_flash_set_property (GObject      *object,
       GObject *parent;
       parent = g_value_get_object (value);
       if (object != NULL)
-        priv->parent = g_object_ref (parent);
+        priv->parent = GTK_WIDGET (g_object_ref (parent));
       else
         priv->parent = NULL;
     }
