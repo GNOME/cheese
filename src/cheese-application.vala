@@ -114,6 +114,7 @@ public class Cheese.Application : Gtk.Application
                                       true);
 
             Environment.set_application_name (_("Cheese"));
+            Environment.set_prgname ("org.gnome.Cheese");
             Window.set_default_icon_name ("org.gnome.Cheese");
 
             this.set_accels_for_action ("app.shoot", {"space"});
